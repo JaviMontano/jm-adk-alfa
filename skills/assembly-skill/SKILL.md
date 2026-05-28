@@ -21,7 +21,7 @@ allowed-tools:
   - Glob
   - Grep
   - Bash
-  - Agent
+  - Task
 model: opus
 ---
 

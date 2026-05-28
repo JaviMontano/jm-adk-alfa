@@ -5,6 +5,13 @@ version: 1.0.0
 status: production
 owner: Javier Montaño
 tags: [data, search, algolia, typesense, autocomplete]
+allowed-tools:
+  - Read
+  - Write
+  - Edit
+  - Bash
+  - Glob
+  - Grep
 ---
 # search-implementation {Data} (v1.0)
 > **"Data is the product. Model it for queries, secure it with rules, back it up daily."**

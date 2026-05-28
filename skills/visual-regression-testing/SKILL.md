@@ -5,6 +5,13 @@ version: 1.0.0
 status: production
 owner: Javier Montaño
 tags: [testing, visual-regression, percy, chromatic, screenshot, responsive, storybook]
+allowed-tools:
+  - Read
+  - Write
+  - Edit
+  - Bash
+  - Glob
+  - Grep
 ---
 
 # 086 — Visual Regression Testing {Testing}

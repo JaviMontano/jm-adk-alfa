@@ -5,6 +5,13 @@ version: 1.0.0
 status: production
 owner: Javier Montaño
 tags: [analysis, user-stories, acceptance-criteria, bdd]
+allowed-tools:
+  - Read
+  - Write
+  - Edit
+  - Bash
+  - Glob
+  - Grep
 ---
 # user-story-writer {Analysis} (v1.0)
 > **"Analyze with evidence. Every claim tagged. Every finding actionable."**

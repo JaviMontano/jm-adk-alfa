@@ -5,6 +5,13 @@ version: 1.0.0
 status: production
 owner: Javier Montaño
 tags: [backend, background, cloud-tasks, pubsub, scheduled]
+allowed-tools:
+  - Read
+  - Write
+  - Edit
+  - Bash
+  - Glob
+  - Grep
 ---
 # background-jobs {Backend} (v1.0)
 > **"Firebase Functions are your backend. Design them like microservices, deploy them like magic."**

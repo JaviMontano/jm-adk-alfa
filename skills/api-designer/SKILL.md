@@ -5,6 +5,13 @@ version: 1.0.0
 status: production
 owner: Javier Montaño
 tags: [architecture, api, rest, graphql, cloud-functions]
+allowed-tools:
+  - Read
+  - Write
+  - Edit
+  - Bash
+  - Glob
+  - Grep
 ---
 # api-designer {Architecture} (v1.0)
 > **"An API is a contract. Design it before you code it."**

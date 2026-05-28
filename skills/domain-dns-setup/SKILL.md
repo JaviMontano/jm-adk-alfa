@@ -5,6 +5,13 @@ version: 1.0.0
 status: production
 owner: Javier Montaño
 tags: [devops, dns, domain, ssl, firebase-hosting, mx-records, cname]
+allowed-tools:
+  - Read
+  - Write
+  - Edit
+  - Bash
+  - Glob
+  - Grep
 ---
 
 # 093 — Domain & DNS Setup {DevOps}

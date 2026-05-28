@@ -5,6 +5,13 @@ version: 1.0.0
 status: production
 owner: Javier Montaño
 tags: [data, firestore, security-rules, rbac]
+allowed-tools:
+  - Read
+  - Write
+  - Edit
+  - Bash
+  - Glob
+  - Grep
 ---
 # firestore-security-rules {Data} (v1.0)
 > **"Data is the product. Model it for queries, secure it with rules, back it up daily."**

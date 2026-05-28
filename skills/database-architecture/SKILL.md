@@ -5,6 +5,13 @@ version: 1.0.0
 status: production
 owner: Javier Montaño
 tags: [architecture, database, firestore, modeling]
+allowed-tools:
+  - Read
+  - Write
+  - Edit
+  - Bash
+  - Glob
+  - Grep
 ---
 # database-architecture {Architecture} (v1.0)
 > **"Model for your queries, not your entities."**

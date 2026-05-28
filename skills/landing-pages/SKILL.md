@@ -10,7 +10,13 @@ description: >
 argument-hint: "person-name [portfolio|consultant|speaker|executive|product] [context]"
 model: opus
 context: fork
-allowed-tools: Read, Write, Edit, Glob, Grep, WebSearch
+allowed-tools:
+  - Read
+  - Write
+  - Edit
+  - Glob
+  - Grep
+  - WebSearch
 ---
 
 # Landing Pages — Personal Brand Web Presence

@@ -5,6 +5,13 @@ version: 1.0.0
 status: production
 owner: Javier Montano
 tags: [meta, index, catalog, json]
+allowed-tools:
+  - Read
+  - Write
+  - Edit
+  - Bash
+  - Glob
+  - Grep
 ---
 
 # meta-skill-indexer {Meta} (v1.0)

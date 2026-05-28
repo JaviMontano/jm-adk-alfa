@@ -9,7 +9,12 @@ description: >
 argument-hint: "current LinkedIn profile text or URL, target role, industry, career goals"
 model: opus
 context: fork
-allowed-tools: Read, Write, Edit, Glob, Grep
+allowed-tools:
+  - Read
+  - Write
+  - Edit
+  - Glob
+  - Grep
 ---
 
 # LinkedIn Optimization

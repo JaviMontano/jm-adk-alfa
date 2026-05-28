@@ -9,7 +9,12 @@ description: >
 argument-hint: "client name, line items (description + qty + unit price), currency, payment terms"
 model: opus
 context: fork
-allowed-tools: Read, Write, Edit, Glob, Grep
+allowed-tools:
+  - Read
+  - Write
+  - Edit
+  - Glob
+  - Grep
 ---
 
 # invoice-generator

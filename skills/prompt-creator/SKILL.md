@@ -10,7 +10,12 @@ description:  [EXPLICIT]
 argument-hint: prompt-type owning-agent-id [EXPLICIT]
 model: opus [EXPLICIT]
 context: fork [EXPLICIT]
-allowed-tools: Read, Write, Edit, Glob, Grep [EXPLICIT]
+allowed-tools:
+  - Read
+  - Write
+  - Edit
+  - Glob
+  - Grep
 ---
 
 # Prompt Creator

@@ -10,16 +10,15 @@ argument-hint: "project-name technology-or-concept" [EXPLICIT]
 author: Javier Montaño · Comunidad MetodologIA [EXPLICIT]
 model: opus [EXPLICIT]
 context: fork [EXPLICIT]
-allowed-tools: [EXPLICIT]
-  - Read [EXPLICIT]
-  - Write [EXPLICIT]
-  - Edit [EXPLICIT]
-  - Glob [EXPLICIT]
-  - Grep [EXPLICIT]
-  - Bash [EXPLICIT]
-  - WebFetch [EXPLICIT]
+allowed-tools:
+  - Read
+  - Write
+  - Edit
+  - Glob
+  - Grep
+  - Bash
+  - WebFetch
 ---
- [EXPLICIT]
 # Proof of Concept Lab [EXPLICIT]
  [EXPLICIT]
 Framework for design, execution, and evaluation of proofs of concept (PoC), [EXPLICIT]

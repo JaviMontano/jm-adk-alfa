@@ -5,6 +5,13 @@ version: 1.0.0
 status: production
 owner: Javier Montaño
 tags: [analysis, cost, fte-months, estimation]
+allowed-tools:
+  - Read
+  - Write
+  - Edit
+  - Bash
+  - Glob
+  - Grep
 ---
 # cost-estimation {Analysis} (v1.0)
 > **"Analyze with evidence. Every claim tagged. Every finding actionable."**

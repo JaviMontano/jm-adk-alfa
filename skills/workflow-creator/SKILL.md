@@ -8,7 +8,12 @@ description:
 argument-hint: workflow-id [owning-skill-id]
 model: opus
 context: fork
-allowed-tools: Read, Write, Edit, Glob, Grep
+allowed-tools:
+  - Read
+  - Write
+  - Edit
+  - Glob
+  - Grep
 ---
 
 # Workflow Creator

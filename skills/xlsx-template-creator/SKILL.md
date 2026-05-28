@@ -8,9 +8,12 @@ description:  [EXPLICIT]
 argument-hint: tracking-matrix|metrics-dashboard title [EXPLICIT]
 model: opus [EXPLICIT]
 context: fork [EXPLICIT]
-allowed-tools: Read, Write, Edit, Glob [EXPLICIT]
+allowed-tools:
+  - Read
+  - Write
+  - Edit
+  - Glob
 ---
- [EXPLICIT]
 # XLSX Template Creator [EXPLICIT]
  [EXPLICIT]
 Generate XLSX template specifications — YAML definitions that describe spreadsheet structure, formulas, validation rules, and conditional formatting for a rendering skill to produce .xlsx files. [EXPLICIT]

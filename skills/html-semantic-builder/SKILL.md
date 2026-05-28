@@ -5,6 +5,13 @@ version: 1.0.0
 status: production
 owner: Javier Montaño
 tags: [frontend, html, semantic, aria, a11y]
+allowed-tools:
+  - Read
+  - Write
+  - Edit
+  - Bash
+  - Glob
+  - Grep
 ---
 # html-semantic-builder {Frontend} (v1.0)
 > **"Ship pixels that perform, accessible by default."**

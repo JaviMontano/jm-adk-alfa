@@ -9,7 +9,12 @@ description: >
 argument-hint: "contact records or fields to include, optional: export format, grouping criteria"
 model: opus
 context: fork
-allowed-tools: Read, Write, Edit, Glob, Grep
+allowed-tools:
+  - Read
+  - Write
+  - Edit
+  - Glob
+  - Grep
 ---
 
 # contact-database

@@ -24,7 +24,7 @@ allowed-tools:
   - Glob
   - Grep
   - Bash
-  - Agent
+  - Task
 ---
 
 # Regional Finance & Accounting Standards Skill

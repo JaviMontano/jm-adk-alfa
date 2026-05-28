@@ -7,6 +7,13 @@ description: >-
 license: MIT
 metadata:
   version: "1.6.4"
+allowed-tools:
+  - Read
+  - Write
+  - Edit
+  - Bash
+  - Glob
+  - Grep
 ---
 
 # Intent Integrity Kit Tasks

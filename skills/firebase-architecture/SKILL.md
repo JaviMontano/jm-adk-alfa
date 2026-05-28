@@ -5,6 +5,13 @@ version: 1.0.0
 status: production
 owner: Javier Montaño
 tags: [architecture, firebase, design, c4]
+allowed-tools:
+  - Read
+  - Write
+  - Edit
+  - Bash
+  - Glob
+  - Grep
 ---
 # firebase-architecture {Architecture} (v1.0)
 > **"Firebase is the platform. Architecture is how you use it without hitting walls."**

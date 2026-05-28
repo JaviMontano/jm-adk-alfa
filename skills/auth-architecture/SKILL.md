@@ -5,6 +5,13 @@ version: 1.0.0
 status: production
 owner: Javier Montaño
 tags: [architecture, auth, firebase-auth, rbac]
+allowed-tools:
+  - Read
+  - Write
+  - Edit
+  - Bash
+  - Glob
+  - Grep
 ---
 # auth-architecture {Architecture} (v1.0)
 > **"Auth is not a feature. It's the foundation."**

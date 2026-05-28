@@ -5,6 +5,13 @@ version: 1.0.0
 status: production
 owner: Javier Montaño
 tags: [architecture, integration, google-apis, third-party]
+allowed-tools:
+  - Read
+  - Write
+  - Edit
+  - Bash
+  - Glob
+  - Grep
 ---
 # integration-architecture {Architecture} (v1.0)
 > **"Architecture is decisions. Document every one."**

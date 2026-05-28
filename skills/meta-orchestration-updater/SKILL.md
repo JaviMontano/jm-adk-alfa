@@ -5,6 +5,13 @@ version: 1.0.0
 status: production
 owner: Javier Montano
 tags: [meta, orchestration, sync, auto-update]
+allowed-tools:
+  - Read
+  - Write
+  - Edit
+  - Bash
+  - Glob
+  - Grep
 ---
 
 # meta-orchestration-updater {Meta} (v1.0)

@@ -8,7 +8,12 @@ description: >
 argument-hint: "Sprint number, team name, date range, and data source or raw metrics"
 model: opus
 context: fork
-allowed-tools: Read, Write, Edit, Glob, Grep
+allowed-tools:
+  - Read
+  - Write
+  - Edit
+  - Glob
+  - Grep
 ---
 
 # sprint-report

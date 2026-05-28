@@ -5,6 +5,13 @@ version: 1.0.0
 status: production
 owner: Javier Montano
 tags: [meta, search, bm25, discovery]
+allowed-tools:
+  - Read
+  - Write
+  - Edit
+  - Bash
+  - Glob
+  - Grep
 ---
 
 # meta-skill-searcher {Meta} (v1.0)

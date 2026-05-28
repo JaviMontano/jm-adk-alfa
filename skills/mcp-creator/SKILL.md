@@ -10,9 +10,14 @@ description:  [EXPLICIT]
 argument-hint: server-name [transport: stdio|http] [EXPLICIT]
 model: opus [EXPLICIT]
 context: fork [EXPLICIT]
-allowed-tools: Read, Write, Edit, Bash, Glob, Grep [EXPLICIT]
+allowed-tools:
+  - Read
+  - Write
+  - Edit
+  - Bash
+  - Glob
+  - Grep
 ---
- [EXPLICIT]
 # MCP Creator [EXPLICIT]
  [EXPLICIT]
 Configure Model Context Protocol servers — the bridge between Claude Code and external tools, databases, APIs. [EXPLICIT]

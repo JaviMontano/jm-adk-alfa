@@ -5,6 +5,13 @@ version: 1.0.0
 status: production
 owner: Javier Montaño
 tags: [architecture, state, redux, ngrx, firebase-realtime]
+allowed-tools:
+  - Read
+  - Write
+  - Edit
+  - Bash
+  - Glob
+  - Grep
 ---
 # state-management-design {Architecture} (v1.0)
 > **"Firebase is real-time. Your state management must be too."**

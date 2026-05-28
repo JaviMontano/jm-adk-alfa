@@ -5,6 +5,13 @@ version: 1.0.0
 status: production
 owner: Javier Montaño
 tags: [frontend, email, responsive, template]
+allowed-tools:
+  - Read
+  - Write
+  - Edit
+  - Bash
+  - Glob
+  - Grep
 ---
 # email-template-builder {Frontend} (v1.0)
 > **"Ship pixels that perform, accessible by default."**

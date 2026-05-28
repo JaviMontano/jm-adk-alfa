@@ -13,15 +13,14 @@ description:  [EXPLICIT]
 argument-hint: "document-type title [brand-config-path]" [EXPLICIT]
 model: opus [EXPLICIT]
 context: fork [EXPLICIT]
-allowed-tools: [EXPLICIT]
-  - Read [EXPLICIT]
-  - Grep [EXPLICIT]
-  - Glob [EXPLICIT]
-  - Write [EXPLICIT]
-  - Edit [EXPLICIT]
-  - Bash [EXPLICIT]
+allowed-tools:
+  - Read
+  - Grep
+  - Glob
+  - Write
+  - Edit
+  - Bash
 ---
- [EXPLICIT]
 # Brand DOCX — Word Document Generator [EXPLICIT]
  [EXPLICIT]
 Generate brand-compliant Word documents (.docx) using python-docx. Reads brand tokens from config and applies colors, typography, layout patterns, and structural elements. [EXPLICIT]

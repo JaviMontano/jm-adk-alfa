@@ -5,6 +5,13 @@ version: 1.0.0
 status: production
 owner: Javier Montaño
 tags: [architecture, components, atomic-design, a11y]
+allowed-tools:
+  - Read
+  - Write
+  - Edit
+  - Bash
+  - Glob
+  - Grep
 ---
 # component-designer {Architecture} (v1.0)
 > **"A component is a contract: props in, UI out, accessible always."**

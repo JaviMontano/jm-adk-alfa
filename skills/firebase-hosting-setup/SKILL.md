@@ -5,6 +5,13 @@ version: 1.0.0
 status: production
 owner: Javier Montaño
 tags: [devops, firebase-hosting, cdn, custom-domain, preview-channels, deploy]
+allowed-tools:
+  - Read
+  - Write
+  - Edit
+  - Bash
+  - Glob
+  - Grep
 ---
 
 # 089 — Firebase Hosting Setup {DevOps}

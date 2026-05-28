@@ -9,6 +9,13 @@ description: >-
 license: MIT
 metadata:
   version: "2.5.0"
+allowed-tools:
+  - Read
+  - Write
+  - Edit
+  - Bash
+  - Glob
+  - Grep
 ---
 
 # Intent Integrity Kit Clarify (Generic Utility)

@@ -5,6 +5,13 @@ version: 1.0.0
 status: production
 owner: Javier Montaño
 tags: [frontend, scaffold, angular, angularfire]
+allowed-tools:
+  - Read
+  - Write
+  - Edit
+  - Bash
+  - Glob
+  - Grep
 ---
 # scaffold-angular-app {Frontend} (v1.0)
 > **"Ship pixels that perform, accessible by default."**

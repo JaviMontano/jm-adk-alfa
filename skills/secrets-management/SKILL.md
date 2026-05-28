@@ -5,6 +5,13 @@ version: 1.0.0
 status: production
 owner: Javier Montaño
 tags: [security, secrets, env, secret-manager]
+allowed-tools:
+  - Read
+  - Write
+  - Edit
+  - Bash
+  - Glob
+  - Grep
 ---
 # secrets-management {Security} (v1.0)
 > **"Security is not a feature. It's every feature's foundation."**

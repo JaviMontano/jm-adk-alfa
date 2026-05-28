@@ -5,6 +5,13 @@ version: 1.0.0
 status: production
 owner: Javier Montaño
 tags: [security, owasp, csp, xss, csrf]
+allowed-tools:
+  - Read
+  - Write
+  - Edit
+  - Bash
+  - Glob
+  - Grep
 ---
 # web-security-implementation {Security} (v1.0)
 > **"Security is not a feature. It's every feature's foundation."**

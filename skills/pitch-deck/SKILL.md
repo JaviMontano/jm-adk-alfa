@@ -9,7 +9,12 @@ description: >
 argument-hint: "company name, problem statement, solution, market size, business model, team, ask amount"
 model: opus
 context: fork
-allowed-tools: Read, Write, Edit, Glob, Grep
+allowed-tools:
+  - Read
+  - Write
+  - Edit
+  - Glob
+  - Grep
 ---
 
 # Pitch Deck

@@ -9,7 +9,12 @@ description: >
 argument-hint: "meeting transcript, agenda, attendee list, date, or raw notes"
 model: opus
 context: fork
-allowed-tools: Read, Write, Edit, Glob, Grep
+allowed-tools:
+  - Read
+  - Write
+  - Edit
+  - Glob
+  - Grep
 ---
 
 # Meeting Notes

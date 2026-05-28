@@ -12,7 +12,13 @@ description:  [EXPLICIT]
 argument-hint: agent-name [description] [EXPLICIT]
 model: opus [EXPLICIT]
 context: fork [EXPLICIT]
-allowed-tools: Read, Write, Edit, Bash, Glob, Grep [EXPLICIT]
+allowed-tools:
+  - Read
+  - Write
+  - Edit
+  - Bash
+  - Glob
+  - Grep
 ---
 
 # Agent Creator

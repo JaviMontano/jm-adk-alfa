@@ -44,6 +44,7 @@ ALLOWED_TOOLS = {
     "WebSearch",
     "Write",
 }
+MCP_TOOL_RE = re.compile(r"^mcp__[A-Za-z0-9_-]+__[A-Za-z0-9_-]+$")
 HIGH_RISK_TRIGGERS = {"create", "build", "deploy", "test", "analyze", "review", "fix", "audit", "design"}
 
 
@@ -156,7 +157,8 @@ def validate_skill(skill_dir: Path, root: Path, strict: bool) -> tuple[list[str]
     if strict and not tools:
         warnings.append(f"{skill_md}: missing allowed-tools")
     for tool in tools if isinstance(tools, list) else []:
-        if str(tool) not in ALLOWED_TOOLS:
+        tool_name = str(tool)
+        if tool_name not in ALLOWED_TOOLS and not MCP_TOOL_RE.match(tool_name):
             warnings.append(f"{skill_md}: unknown allowed tool '{tool}'")
     body = skill_md.read_text(encoding="utf-8")
     triggers = extract_triggers(fm, body, skill_dir.name)

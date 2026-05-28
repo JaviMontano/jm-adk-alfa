@@ -14,7 +14,7 @@ allowed-tools:
   - Grep
   - Bash
   - WebFetch
-  - Agent
+  - Task
 ---
 
 # Find Skills
