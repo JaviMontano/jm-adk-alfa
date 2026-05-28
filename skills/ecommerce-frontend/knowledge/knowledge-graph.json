@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "ecommerce-frontend",
+  "nodes": [
+    {
+      "id": "ecommerce-frontend",
+      "type": "skill",
+      "label": "ecommerce-frontend"
+    },
+    {
+      "id": "ecommerce-frontend:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "ecommerce-frontend:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "ecommerce-frontend:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "ecommerce-frontend",
+      "to": "ecommerce-frontend:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "ecommerce-frontend",
+      "to": "ecommerce-frontend:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "ecommerce-frontend",
+      "to": "ecommerce-frontend:quality",
+      "type": "validated_by"
+    }
+  ]
+}

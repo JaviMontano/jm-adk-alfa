@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "contact-database",
+  "nodes": [
+    {
+      "id": "contact-database",
+      "type": "skill",
+      "label": "contact-database"
+    },
+    {
+      "id": "contact-database:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "contact-database:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "contact-database:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "contact-database",
+      "to": "contact-database:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "contact-database",
+      "to": "contact-database:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "contact-database",
+      "to": "contact-database:quality",
+      "type": "validated_by"
+    }
+  ]
+}

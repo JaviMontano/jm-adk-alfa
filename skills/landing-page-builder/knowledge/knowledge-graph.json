@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "landing-page-builder",
+  "nodes": [
+    {
+      "id": "landing-page-builder",
+      "type": "skill",
+      "label": "landing-page-builder"
+    },
+    {
+      "id": "landing-page-builder:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "landing-page-builder:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "landing-page-builder:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "landing-page-builder",
+      "to": "landing-page-builder:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "landing-page-builder",
+      "to": "landing-page-builder:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "landing-page-builder",
+      "to": "landing-page-builder:quality",
+      "type": "validated_by"
+    }
+  ]
+}

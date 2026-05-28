@@ -1,5 +1,6 @@
 ---
 name: x-ray-skill
+version: 1.0.0
 description: 
   This skill should be used when the user asks to "audit a skill",
   "review skill quality", "diagnose a skill", "score this skill",

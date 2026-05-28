@@ -1,109 +1,118 @@
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://capsule-render.vercel.app/api?type=waving&color=0:122562,100:137DC5&height=180&section=header&text=JM%20Agentic%20Development%20Kit%20Alfa&fontSize=36&fontColor=FFFFFF&fontAlignY=35&desc=De%20la%20intenci%C3%B3n%20al%20resultado%20%E2%80%94%20tu%20kit%20de%20desarrollo%20ag%C3%A9ntico%20completo&descSize=14&descAlignY=55&descColor=BBA0CC">
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:122562,100:137DC5&height=180&section=header&text=JM%20Agentic%20Development%20Kit%20Alfa&fontSize=36&fontColor=FFFFFF&fontAlignY=35&desc=De%20la%20intenci%C3%B3n%20al%20resultado%20%E2%80%94%20tu%20kit%20de%20desarrollo%20ag%C3%A9ntico%20completo&descSize=14&descAlignY=55&descColor=BBA0CC" width="100%">
-</picture>
-
-<p align="center">
-  <img src="https://img.shields.io/badge/v5.1.0-FFD700?style=flat-square" alt="v5.1.0">
-  <img src="https://img.shields.io/badge/MIT-22D3EE?style=flat-square" alt="MIT">
-  <img src="https://img.shields.io/badge/1036_componentes-6366F1?style=flat-square" alt="1036 componentes">
-  <img src="https://img.shields.io/badge/264_skills-8B5CF6?style=flat-square" alt="264 skills">
-  <img src="https://img.shields.io/badge/256_agentes-10B981?style=flat-square" alt="256 agentes">
-</p>
-
 # JM Agentic Development Kit Alfa
 
-> De la intención al resultado — tu kit de desarrollo agéntico completo
+Version: 5.2.0
+License: MIT
+Repository: https://github.com/JaviMontano/jm-adk-alfa
 
-Kit completo de desarrollo agéntico. Incluye 5 plugins, workspace automático y pipeline de especificación a producción. Describe lo que quieres — el kit analiza, diseña, construye, prueba y despliega con trazabilidad completa.
+JM-ADK is a local-first agentic development kit for AI-assisted software work. It packages skills, agents, commands, prompts, workspace governance, guardrails, and validation scripts so a developer can scaffold, run, review, and update agentic workflows without mixing versioned kit files with local state.
 
----
+## Component Inventory
 
-## 🚀 Instalación Rápida
+The authoritative counts come from `python3 scripts/count-components.py`.
+
+| Component | Count |
+|---|---:|
+| Skills | 524 |
+| Agents | 256 |
+| Commands | 260 |
+| Prompts | 256 |
+| Total physical components | 1296 |
+
+## Install
 
 ```bash
-git clone https://github.com/JaviMontano/jm-adk-alfa.git && cd jm-adk-alfa
+git clone https://github.com/JaviMontano/jm-adk-alfa.git
+cd jm-adk-alfa
+python3 scripts/count-components.py
+python3 scripts/validate-skills.py --strict
 ```
 
-## 🔑 Qué Hace
+## Local State
 
-- Pipeline completo spec→build→test→deploy
-- 5 plugins integrados (MAO, SA, PM-APEX, SDD, PQA)
-- 256 agentes especializados
-- Protocolo Cero Alucinación con etiquetas de evidencia
-- Puertas de Calidad G0-G3
-- Patrón MOAT (Methods, Ontology, Assets, Templates)
+Versioned kit files live in the repo. Local runtime state does not.
 
-## 📐 Arquitectura
+Tracked:
 
-```
-5 plugins → workspace automático → pipeline de 8 fases → entregables con trazabilidad
-```
+- `.jm-adk.json`
+- `skills/`
+- `agents/`
+- `commands/`
+- `prompts/`
+- `references/`
+- `scripts/`
+- `docs/`
 
-## 🔗 Parte del Ecosistema JM Labs
+Ignored:
 
-| Repo | Descripción |
-|------|-------------|
-| [**mao-discovery-framework**](https://github.com/JaviMontano/mao-discovery-framework) | MAO Discovery Framework |
-| [**mao-pm-apex**](https://github.com/JaviMontano/mao-pm-apex) | PM APEX |
-| [**mao-sovereign-architect**](https://github.com/JaviMontano/mao-sovereign-architect) | Sovereign Architect |
+- `workspace/` except `workspace/.gitkeep`
+- `.jm-adk.local.json`
+- `.local/`
+- `.codex/`
+- `.env*`
+- logs, caches, backups, temp files
 
-## 👤 Autor
+## Create a Skill
 
-<img src="https://github.com/ejemplo-deo-repo/mao-brand-assets/blob/main/team_javier-montano.webp?raw=true" width="80" align="left" style="margin-right:1rem;">
+Dry-run first:
 
-**Javier Montaño** — Founder JM Labs & MetodologIA<br>
-40.000 horas convirtiendo retos en casos de éxito.<br>
-[GitHub](https://github.com/JaviMontano) · [MetodologIA](https://metodologia.info) · [LinkedIn](https://co.linkedin.com/in/javier-andr%C3%A9s-monta%C3%B1o-guzm%C3%A1n-35b02756/en)
-
-<br clear="both">
-
-## 📄 Licencia
-
-MIT — © 2026 Javier Montaño · JM Labs
-
----
-
-<details>
-<summary><b>🇬🇧 English</b></summary>
-<br>
-
-# JM Agentic Development Kit Alfa
-
-> From intention to results — your complete agentic development kit
-
-Complete agentic development kit. Includes 5 plugins, automatic workspace, and specification-to-production pipeline. Describe what you want — the kit analyzes, designs, builds, tests, and deploys with full traceability.
-
-### What It Does
-
-- Full spec→build→test→deploy pipeline
-- 5 integrated plugins (MAO, SA, PM-APEX, SDD, PQA)
-- 256 specialized agents
-- Zero-Hallucination Protocol with evidence tags
-- Quality Gates G0-G3
-- MOAT Pattern (Methods, Ontology, Assets, Templates)
-
-### Architecture
-
-```
-5 plugins → automatic workspace → 8-phase pipeline → traceable deliverables
+```bash
+python3 scripts/scaffold-skill.py \
+  --name my-skill \
+  --description "Short description" \
+  --triggers my-skill,example-trigger \
+  --allowed-tools Read,Grep,Glob,Bash \
+  --owner "JM Labs" \
+  --version 0.1.0 \
+  --dry-run
 ```
 
-### Part of the JM Labs Ecosystem
+Apply after review:
 
-| Repo | Description |
-|------|-------------|
-| [**mao-discovery-framework**](https://github.com/JaviMontano/mao-discovery-framework) | MAO Discovery Framework |
-| [**mao-pm-apex**](https://github.com/JaviMontano/mao-pm-apex) | PM APEX |
-| [**mao-sovereign-architect**](https://github.com/JaviMontano/mao-sovereign-architect) | Sovereign Architect |
+```bash
+python3 scripts/scaffold-skill.py \
+  --name my-skill \
+  --description "Short description" \
+  --triggers my-skill,example-trigger \
+  --allowed-tools Read,Grep,Glob,Bash \
+  --owner "JM Labs" \
+  --version 0.1.0
+```
 
----
+Create an experimental local skill without tracking it:
 
-<sub>Created by <a href="https://github.com/JaviMontano">Javier Montaño</a> · JM Labs · MIT</sub>
+```bash
+python3 scripts/scaffold-skill.py --name my-experiment --description "Local experiment" --local
+```
 
-</details>
+## Validate
 
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://capsule-render.vercel.app/api?type=waving&color=0:122562,100:137DC5&height=100&section=footer">
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:122562,100:137DC5&height=100&section=footer" width="100%">
-</picture>
+```bash
+python3 scripts/validate-skills.py --strict
+python3 scripts/count-components.py --check-docs
+bash scripts/check-repo-boundaries.sh
+bash scripts/generate-pristino-index.sh
+```
+
+## Update Safely from GitHub
+
+Use the guide in `docs/git-sync-local-safe.md`.
+
+Fast-forward only when the tree is clean:
+
+```bash
+bash scripts/sync-upstream-safe.sh --remote origin
+```
+
+Push only an owned branch explicitly:
+
+```bash
+bash scripts/sync-upstream-safe.sh --remote origin --push-branch
+```
+
+## Contribute
+
+1. Create a branch; do not push directly to `main`.
+2. Keep local overrides in `.jm-adk.local.json` or `.local/`.
+3. Run the validation commands above.
+4. Regenerate `PRISTINO-INDEX.md` when component metadata changes.
+5. Open a pull request with the validation output.

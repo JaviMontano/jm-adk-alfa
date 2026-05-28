@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "task-automation",
+  "nodes": [
+    {
+      "id": "task-automation",
+      "type": "skill",
+      "label": "task-automation"
+    },
+    {
+      "id": "task-automation:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "task-automation:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "task-automation:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "task-automation",
+      "to": "task-automation:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "task-automation",
+      "to": "task-automation:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "task-automation",
+      "to": "task-automation:quality",
+      "type": "validated_by"
+    }
+  ]
+}

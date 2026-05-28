@@ -1,5 +1,6 @@
 ---
 name: finops
+version: 1.0.0
 description: >
   Financial Operations para cloud — visibilidad de costos, optimización, gobernanza, y cultura
   de responsabilidad financiera. Usar cuando el usuario pida "optimizar costos cloud",

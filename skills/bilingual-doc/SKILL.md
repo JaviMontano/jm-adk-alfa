@@ -1,5 +1,6 @@
 ---
 name: bilingual-doc
+version: 1.0.0
 description: >
   Triggers on "bilingual", "ES/EN toggle", "bilingual document", "dual language",
   "español e inglés", "agregar idioma", "make it bilingual". Implements the JM Labs

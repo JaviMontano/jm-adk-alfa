@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "openclaw-isolation",
+  "nodes": [
+    {
+      "id": "openclaw-isolation",
+      "type": "skill",
+      "label": "openclaw-isolation"
+    },
+    {
+      "id": "openclaw-isolation:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "openclaw-isolation:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "openclaw-isolation:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "openclaw-isolation",
+      "to": "openclaw-isolation:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "openclaw-isolation",
+      "to": "openclaw-isolation:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "openclaw-isolation",
+      "to": "openclaw-isolation:quality",
+      "type": "validated_by"
+    }
+  ]
+}

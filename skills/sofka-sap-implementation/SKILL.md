@@ -1,5 +1,6 @@
 ---
 name: sofka-sap-implementation
+version: 1.0.0
 author: JM Labs (Javier Montano)
 description: 
   SAP S/4HANA implementation skill covering module selection (CO, SD, PS, FI, HCM),

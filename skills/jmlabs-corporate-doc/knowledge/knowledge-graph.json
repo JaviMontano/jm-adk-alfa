@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "jmlabs-corporate-doc",
+  "nodes": [
+    {
+      "id": "jmlabs-corporate-doc",
+      "type": "skill",
+      "label": "jmlabs-corporate-doc"
+    },
+    {
+      "id": "jmlabs-corporate-doc:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "jmlabs-corporate-doc:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "jmlabs-corporate-doc:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "jmlabs-corporate-doc",
+      "to": "jmlabs-corporate-doc:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "jmlabs-corporate-doc",
+      "to": "jmlabs-corporate-doc:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "jmlabs-corporate-doc",
+      "to": "jmlabs-corporate-doc:quality",
+      "type": "validated_by"
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "table-ux",
+  "nodes": [
+    {
+      "id": "table-ux",
+      "type": "skill",
+      "label": "table-ux"
+    },
+    {
+      "id": "table-ux:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "table-ux:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "table-ux:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "table-ux",
+      "to": "table-ux:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "table-ux",
+      "to": "table-ux:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "table-ux",
+      "to": "table-ux:quality",
+      "type": "validated_by"
+    }
+  ]
+}

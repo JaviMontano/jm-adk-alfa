@@ -1,5 +1,6 @@
 ---
 name: validate-components
+version: 1.0.0
 description: "Validates frontmatter and body structure of all skills, agents, and commands in a plugin. Triggers: validate components, check frontmatter, component audit, skill validation."
 author: JM Labs (Javier Montaño)
 allowed-tools:

@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "validate-cross-refs",
+  "nodes": [
+    {
+      "id": "validate-cross-refs",
+      "type": "skill",
+      "label": "validate-cross-refs"
+    },
+    {
+      "id": "validate-cross-refs:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "validate-cross-refs:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "validate-cross-refs:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "validate-cross-refs",
+      "to": "validate-cross-refs:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "validate-cross-refs",
+      "to": "validate-cross-refs:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "validate-cross-refs",
+      "to": "validate-cross-refs:quality",
+      "type": "validated_by"
+    }
+  ]
+}

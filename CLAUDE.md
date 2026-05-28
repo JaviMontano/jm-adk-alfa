@@ -1,6 +1,6 @@
-# JM Agentic Development Kit (JM-ADK) v5.1.0
+# JM Agentic Development Kit (JM-ADK) v5.2.0
 
-> Convierte intención en resultados. 524 skills · market research · CV · brand HTML · discovery · architecture · security · Google Workspace MCP · office workflows.
+> Convierte intención en resultados. 524 skills · 256 agents · 260 commands · 256 prompts · safe scaffolding · local-first workspaces.
 
 ## Environment
 
@@ -99,6 +99,15 @@ bash scripts/workspace-manager.sh log <tool> [input]      # Manual tasklog entry
 | Workspace dir manually deleted | Detect orphan via `status`, clear registry, create fresh. |
 | `.jm-adk.json` missing but `workspace/` exists | Workspace system is "disabled" per protocol. Suggest re-init. |
 
+### Local Override Boundary
+
+| Local path | Rule |
+|----------|------|
+| `.jm-adk.local.json` | Local-only config. Never commit. |
+| `.local/skills/` | Experimental local skills. Never commit. |
+| `.codex/` | Codex local state. Never commit. |
+| `workspace/` | Runtime state. Only `workspace/.gitkeep` is tracked. |
+
 ## Input Tolerance
 
 Handle imperfect input with respect (full protocol in `PRISTINO.md`):
@@ -115,6 +124,15 @@ Pristino auto-selects the best skill/prompt for the user's intent (full protocol
 - Confidence 0.60-0.84 → present top 3 options
 - Confidence < 0.60 → ask clarifying question
 - Official `/jm-adk:command` → skip matching, execute directly
+
+## Maintainer Quality Gates
+
+```bash
+python3 scripts/scaffold-skill.py --name scaffold-smoke-test --description "Smoke test skill" --triggers smoke-test --allowed-tools Read,Grep --owner "JM Labs" --version 0.1.0 --dry-run
+python3 scripts/validate-skills.py --strict
+python3 scripts/count-components.py --check-docs
+bash scripts/check-repo-boundaries.sh
+```
 
 ## Agent Routing (Triad-First)
 

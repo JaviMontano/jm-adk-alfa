@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "x-ray-skill",
+  "nodes": [
+    {
+      "id": "x-ray-skill",
+      "type": "skill",
+      "label": "x-ray-skill"
+    },
+    {
+      "id": "x-ray-skill:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "x-ray-skill:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "x-ray-skill:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "x-ray-skill",
+      "to": "x-ray-skill:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "x-ray-skill",
+      "to": "x-ray-skill:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "x-ray-skill",
+      "to": "x-ray-skill:quality",
+      "type": "validated_by"
+    }
+  ]
+}

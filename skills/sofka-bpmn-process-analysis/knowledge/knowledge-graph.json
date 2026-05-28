@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "sofka-bpmn-process-analysis",
+  "nodes": [
+    {
+      "id": "sofka-bpmn-process-analysis",
+      "type": "skill",
+      "label": "sofka-bpmn-process-analysis"
+    },
+    {
+      "id": "sofka-bpmn-process-analysis:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "sofka-bpmn-process-analysis:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "sofka-bpmn-process-analysis:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "sofka-bpmn-process-analysis",
+      "to": "sofka-bpmn-process-analysis:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "sofka-bpmn-process-analysis",
+      "to": "sofka-bpmn-process-analysis:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "sofka-bpmn-process-analysis",
+      "to": "sofka-bpmn-process-analysis:quality",
+      "type": "validated_by"
+    }
+  ]
+}

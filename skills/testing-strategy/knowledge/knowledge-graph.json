@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "testing-strategy",
+  "nodes": [
+    {
+      "id": "testing-strategy",
+      "type": "skill",
+      "label": "testing-strategy"
+    },
+    {
+      "id": "testing-strategy:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "testing-strategy:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "testing-strategy:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "testing-strategy",
+      "to": "testing-strategy:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "testing-strategy",
+      "to": "testing-strategy:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "testing-strategy",
+      "to": "testing-strategy:quality",
+      "type": "validated_by"
+    }
+  ]
+}

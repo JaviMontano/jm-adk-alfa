@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "error-handling-patterns",
+  "nodes": [
+    {
+      "id": "error-handling-patterns",
+      "type": "skill",
+      "label": "error-handling-patterns"
+    },
+    {
+      "id": "error-handling-patterns:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "error-handling-patterns:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "error-handling-patterns:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "error-handling-patterns",
+      "to": "error-handling-patterns:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "error-handling-patterns",
+      "to": "error-handling-patterns:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "error-handling-patterns",
+      "to": "error-handling-patterns:quality",
+      "type": "validated_by"
+    }
+  ]
+}

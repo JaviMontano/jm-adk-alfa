@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "compliance-assessment",
+  "nodes": [
+    {
+      "id": "compliance-assessment",
+      "type": "skill",
+      "label": "compliance-assessment"
+    },
+    {
+      "id": "compliance-assessment:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "compliance-assessment:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "compliance-assessment:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "compliance-assessment",
+      "to": "compliance-assessment:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "compliance-assessment",
+      "to": "compliance-assessment:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "compliance-assessment",
+      "to": "compliance-assessment:quality",
+      "type": "validated_by"
+    }
+  ]
+}

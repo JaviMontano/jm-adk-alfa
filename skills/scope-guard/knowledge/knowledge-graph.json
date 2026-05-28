@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "scope-guard",
+  "nodes": [
+    {
+      "id": "scope-guard",
+      "type": "skill",
+      "label": "scope-guard"
+    },
+    {
+      "id": "scope-guard:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "scope-guard:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "scope-guard:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "scope-guard",
+      "to": "scope-guard:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "scope-guard",
+      "to": "scope-guard:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "scope-guard",
+      "to": "scope-guard:quality",
+      "type": "validated_by"
+    }
+  ]
+}

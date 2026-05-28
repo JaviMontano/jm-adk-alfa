@@ -1,5 +1,6 @@
---- [EXPLICIT]
+---
 name: functional-toolbelt
+version: 1.0.0
 argument-hint: "module-or-system-name"
 description: 
   This skill should be used when the user asks to "run event storming",

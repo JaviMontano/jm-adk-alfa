@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "dual-layer-verification",
+  "nodes": [
+    {
+      "id": "dual-layer-verification",
+      "type": "skill",
+      "label": "dual-layer-verification"
+    },
+    {
+      "id": "dual-layer-verification:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "dual-layer-verification:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "dual-layer-verification:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "dual-layer-verification",
+      "to": "dual-layer-verification:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "dual-layer-verification",
+      "to": "dual-layer-verification:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "dual-layer-verification",
+      "to": "dual-layer-verification:quality",
+      "type": "validated_by"
+    }
+  ]
+}

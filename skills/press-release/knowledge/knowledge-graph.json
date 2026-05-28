@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "press-release",
+  "nodes": [
+    {
+      "id": "press-release",
+      "type": "skill",
+      "label": "press-release"
+    },
+    {
+      "id": "press-release:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "press-release:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "press-release:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "press-release",
+      "to": "press-release:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "press-release",
+      "to": "press-release:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "press-release",
+      "to": "press-release:quality",
+      "type": "validated_by"
+    }
+  ]
+}

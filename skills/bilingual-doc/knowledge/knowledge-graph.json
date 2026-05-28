@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "bilingual-doc",
+  "nodes": [
+    {
+      "id": "bilingual-doc",
+      "type": "skill",
+      "label": "bilingual-doc"
+    },
+    {
+      "id": "bilingual-doc:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "bilingual-doc:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "bilingual-doc:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "bilingual-doc",
+      "to": "bilingual-doc:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "bilingual-doc",
+      "to": "bilingual-doc:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "bilingual-doc",
+      "to": "bilingual-doc:quality",
+      "type": "validated_by"
+    }
+  ]
+}

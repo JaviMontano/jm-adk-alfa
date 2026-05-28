@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "market-intelligence",
+  "nodes": [
+    {
+      "id": "market-intelligence",
+      "type": "skill",
+      "label": "market-intelligence"
+    },
+    {
+      "id": "market-intelligence:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "market-intelligence:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "market-intelligence:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "market-intelligence",
+      "to": "market-intelligence:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "market-intelligence",
+      "to": "market-intelligence:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "market-intelligence",
+      "to": "market-intelligence:quality",
+      "type": "validated_by"
+    }
+  ]
+}

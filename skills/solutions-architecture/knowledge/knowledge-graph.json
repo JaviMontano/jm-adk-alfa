@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "solutions-architecture",
+  "nodes": [
+    {
+      "id": "solutions-architecture",
+      "type": "skill",
+      "label": "solutions-architecture"
+    },
+    {
+      "id": "solutions-architecture:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "solutions-architecture:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "solutions-architecture:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "solutions-architecture",
+      "to": "solutions-architecture:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "solutions-architecture",
+      "to": "solutions-architecture:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "solutions-architecture",
+      "to": "solutions-architecture:quality",
+      "type": "validated_by"
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "intelligent-routing",
+  "nodes": [
+    {
+      "id": "intelligent-routing",
+      "type": "skill",
+      "label": "intelligent-routing"
+    },
+    {
+      "id": "intelligent-routing:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "intelligent-routing:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "intelligent-routing:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "intelligent-routing",
+      "to": "intelligent-routing:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "intelligent-routing",
+      "to": "intelligent-routing:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "intelligent-routing",
+      "to": "intelligent-routing:quality",
+      "type": "validated_by"
+    }
+  ]
+}

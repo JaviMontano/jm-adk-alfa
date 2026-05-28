@@ -1,5 +1,6 @@
 ---
 name: generate-qa-scorecard
+version: 1.0.0
 author: JM Labs (Javier Montaño)
 description: >
   Produces a compact executive scorecard grading a plugin across 7 quality dimensions

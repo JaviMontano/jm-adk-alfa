@@ -1,5 +1,6 @@
 ---
 name: audit-security
+version: 1.0.0
 author: JM Labs (Javier Montaño)
 description: >
   Performs a comprehensive security audit on a Claude Code plugin, detecting leaked secrets,

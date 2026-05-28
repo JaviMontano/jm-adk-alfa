@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "cloud-native-architecture",
+  "nodes": [
+    {
+      "id": "cloud-native-architecture",
+      "type": "skill",
+      "label": "cloud-native-architecture"
+    },
+    {
+      "id": "cloud-native-architecture:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "cloud-native-architecture:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "cloud-native-architecture:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "cloud-native-architecture",
+      "to": "cloud-native-architecture:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "cloud-native-architecture",
+      "to": "cloud-native-architecture:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "cloud-native-architecture",
+      "to": "cloud-native-architecture:quality",
+      "type": "validated_by"
+    }
+  ]
+}

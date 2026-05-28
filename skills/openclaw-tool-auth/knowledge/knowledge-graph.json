@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "openclaw-tool-auth",
+  "nodes": [
+    {
+      "id": "openclaw-tool-auth",
+      "type": "skill",
+      "label": "openclaw-tool-auth"
+    },
+    {
+      "id": "openclaw-tool-auth:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "openclaw-tool-auth:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "openclaw-tool-auth:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "openclaw-tool-auth",
+      "to": "openclaw-tool-auth:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "openclaw-tool-auth",
+      "to": "openclaw-tool-auth:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "openclaw-tool-auth",
+      "to": "openclaw-tool-auth:quality",
+      "type": "validated_by"
+    }
+  ]
+}

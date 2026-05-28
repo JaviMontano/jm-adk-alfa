@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "aws-architecture-audit",
+  "nodes": [
+    {
+      "id": "aws-architecture-audit",
+      "type": "skill",
+      "label": "aws-architecture-audit"
+    },
+    {
+      "id": "aws-architecture-audit:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "aws-architecture-audit:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "aws-architecture-audit:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "aws-architecture-audit",
+      "to": "aws-architecture-audit:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "aws-architecture-audit",
+      "to": "aws-architecture-audit:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "aws-architecture-audit",
+      "to": "aws-architecture-audit:quality",
+      "type": "validated_by"
+    }
+  ]
+}

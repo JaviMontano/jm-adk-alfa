@@ -1,179 +1,93 @@
 # Getting Started with JM-ADK
 
-Get from zero to your first deployed project in 5 minutes.
-
 ## Prerequisites
 
-| Tool | Version | Check |
-|------|---------|-------|
-| [Claude Code](https://claude.ai/claude-code) | >= 1.0.0 | `claude --version` |
-| Git | any | `git --version` |
-| Node.js | >= 18 | `node --version` |
-| Python 3 | >= 3.10 | `python3 --version` |
+| Tool | Check |
+|---|---|
+| Git | `git --version` |
+| Python 3 | `python3 --version` |
+| Bash | `bash --version` |
+| Claude Code or compatible agent runner | environment-specific |
 
-## Step 1: Install the Plugin
-
-```bash
-# Clone the repository
-git clone https://github.com/JaviMontano/jm-agentic-development-kit.git
-
-# Install as a Claude Code plugin
-claude plugin add ./jm-agentic-development-kit
-```
-
-Verify it loaded:
+## Clone
 
 ```bash
-/jm-adk:menu
+git clone https://github.com/JaviMontano/jm-adk-alfa.git
+cd jm-adk-alfa
 ```
 
-You should see the command palette with all available commands.
-
-## Step 2: Your First Analysis
-
-Let's analyze a project idea. Start Claude Code and type:
+## Validate the Kit
 
 ```bash
-/jm-adk:analyze input="A task management app for small teams with real-time collaboration"
+python3 scripts/count-components.py
+python3 scripts/validate-skills.py --strict
+bash scripts/check-repo-boundaries.sh
 ```
 
-**What happens behind the scenes:**
+Expected component inventory:
 
-1. The `adk-orchestrator` routes your request to the analysis pipeline
-2. `requirements-analyst` extracts user stories and acceptance criteria
-3. `domain-modeler` maps the domain (Tasks, Teams, Users, Boards)
-4. `flow-mapper` traces end-to-end business flows
-5. `feasibility-validator` checks technical viability against the stack
-6. You receive a structured analysis document with evidence tags
+| Component | Count |
+|---|---:|
+| Skills | 524 |
+| Agents | 256 |
+| Commands | 260 |
+| Prompts | 256 |
 
-**Expected output**: A discovery document covering requirements, domain model, flows, and feasibility — all tagged with `[INFERENCE]` or `[ASSUMPTION]` evidence markers.
+## Initialize Local Workspace
 
-## Step 3: Scaffold the Project
-
-Based on the analysis, scaffold a project:
+`workspace/` is local runtime state. It is ignored by git except for `workspace/.gitkeep`.
 
 ```bash
-/jm-adk:scaffold-firebase
+bash scripts/workspace-manager.sh create "first-local-session"
 ```
 
-This generates a Firebase + Vanilla JS project structure:
+Use `.jm-adk.local.json` for local overrides. Do not commit it.
 
-```
-my-project/
-├── public/
-│   ├── index.html          # Entry point
-│   ├── css/
-│   │   └── styles.css      # CSS architecture (layers, custom properties)
-│   ├── js/
-│   │   ├── app.js          # App initialization
-│   │   ├── firebase.js     # Firebase config
-│   │   └── modules/        # Feature modules
-│   └── assets/
-├── functions/               # Cloud Functions
-│   ├── index.js
-│   └── package.json
-├── firestore.rules          # Security rules
-├── firebase.json            # Firebase config
-└── .specify/                # Governance docs
-    └── CONSTITUTION.md
-```
+## Create a Skill
 
-## Step 4: Build a Feature
-
-Create a task board component:
+Preview first:
 
 ```bash
-/jm-adk:create-component name="task-board" type="interactive"
+python3 scripts/scaffold-skill.py \
+  --name example-skill \
+  --description "Example generated skill" \
+  --triggers example-skill \
+  --allowed-tools Read,Grep,Glob,Bash \
+  --owner "JM Labs" \
+  --version 0.1.0 \
+  --dry-run
 ```
 
-The `frontend-craftsman` agent will:
-1. Generate semantic HTML with ARIA attributes
-2. Write CSS using layers and custom properties
-3. Add vanilla JS with ES modules
-4. Include evidence tags in code comments
-
-## Step 5: Deploy
+Create after reviewing the planned files:
 
 ```bash
-/jm-adk:ship target=firebase
+python3 scripts/scaffold-skill.py \
+  --name example-skill \
+  --description "Example generated skill" \
+  --triggers example-skill \
+  --allowed-tools Read,Grep,Glob,Bash \
+  --owner "JM Labs" \
+  --version 0.1.0
 ```
 
-Or for Hostinger (shared hosting):
+Create an ignored local experiment:
 
 ```bash
-/jm-adk:ship target=hostinger
+python3 scripts/scaffold-skill.py --name local-experiment --description "Local only" --local
 ```
 
-**Pre-deploy checks run automatically:**
-- G0: Security scan (no exposed secrets)
-- G2: Lighthouse audit (Performance > 90, Accessibility > 95)
-- G3: Deployment compatibility check
+## Update from GitHub
 
-## What's Next?
-
-| Goal | Command | Docs |
-|------|---------|------|
-| Full analysis pipeline | `/jm-adk:analyze` | [Examples](examples/01-ecommerce-analysis.md) |
-| Code review | `/jm-adk:review` | [Quality Gates](advanced/production-deployment.md) |
-| Add authentication | `/jm-adk:create-auth-flow` | [Firebase Auth skill](../skills/firebase-auth/) |
-| Custom skills | — | [Custom Skills Guide](advanced/custom-skills.md) |
-| Custom agents | — | [Custom Agents Guide](advanced/custom-agents.md) |
-| MCP integration | — | [MCP Integration](mcp-integration.md) |
-
-## Common Commands Cheat Sheet
+Read [Git Sync Local Safe](git-sync-local-safe.md), then run from a clean tree:
 
 ```bash
-# Discovery & Analysis
-/jm-adk:analyze input="..."      # Full analysis pipeline
-/jm-adk:requirements             # Extract requirements only
-/jm-adk:flows                    # Map business flows
-
-# Development
-/jm-adk:scaffold-firebase        # Firebase + vanilla JS
-/jm-adk:scaffold-angular         # Angular 18+ + Firebase
-/jm-adk:scaffold-react           # React 19+ + Firebase
-/jm-adk:create-page name="..."   # New page
-/jm-adk:create-component         # New component
-/jm-adk:create-form              # New form with validation
-
-# Quality
-/jm-adk:review                   # Code review + quality gates
-/jm-adk:audit-perf               # Lighthouse performance audit
-/jm-adk:audit-a11y               # Accessibility audit
-
-# Deploy
-/jm-adk:ship target=firebase     # Deploy to Firebase Hosting
-/jm-adk:ship target=hostinger    # Deploy to Hostinger
+bash scripts/sync-upstream-safe.sh --remote origin
 ```
 
-## Troubleshooting
+## Contribute
 
-### Plugin not loading
-
-```bash
-# Verify plugin.json is valid
-cat jm-agentic-development-kit/.claude-plugin/plugin.json | python3 -m json.tool
-
-# Reload plugins
-/reload-plugins
-```
-
-### Commands not found
-
-Make sure the plugin installed correctly:
-
-```bash
-/skills  # Should list jm-adk skills
-```
-
-### Skill search
-
-Find the right skill for your task:
-
-```bash
-/jm-adk:search "firebase authentication"
-```
-
----
-
-*Made with Claude Code and Tons of Love with the Help of Pristino Agent*
+1. Create a branch.
+2. Keep local overrides in ignored paths.
+3. Run validation.
+4. Regenerate `PRISTINO-INDEX.md` when component metadata changes.
+5. Open a pull request.

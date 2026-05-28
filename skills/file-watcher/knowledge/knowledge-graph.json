@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "file-watcher",
+  "nodes": [
+    {
+      "id": "file-watcher",
+      "type": "skill",
+      "label": "file-watcher"
+    },
+    {
+      "id": "file-watcher:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "file-watcher:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "file-watcher:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "file-watcher",
+      "to": "file-watcher:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "file-watcher",
+      "to": "file-watcher:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "file-watcher",
+      "to": "file-watcher:quality",
+      "type": "validated_by"
+    }
+  ]
+}

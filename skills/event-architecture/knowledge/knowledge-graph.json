@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "event-architecture",
+  "nodes": [
+    {
+      "id": "event-architecture",
+      "type": "skill",
+      "label": "event-architecture"
+    },
+    {
+      "id": "event-architecture:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "event-architecture:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "event-architecture:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "event-architecture",
+      "to": "event-architecture:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "event-architecture",
+      "to": "event-architecture:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "event-architecture",
+      "to": "event-architecture:quality",
+      "type": "validated_by"
+    }
+  ]
+}

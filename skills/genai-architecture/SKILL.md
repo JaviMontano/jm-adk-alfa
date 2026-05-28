@@ -1,5 +1,6 @@
 ---
 name: genai-architecture
+version: 1.0.0
 description: >
   Generative AI architecture — RAG patterns, LLM orchestration, multi-model tiering, agent workflow design, vector database
   architecture, knowledge connectors, and GenAI quality assurance. This skill should be used when the user asks to "design RAG

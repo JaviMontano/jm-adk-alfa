@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "workshop-facilitator",
+  "nodes": [
+    {
+      "id": "workshop-facilitator",
+      "type": "skill",
+      "label": "workshop-facilitator"
+    },
+    {
+      "id": "workshop-facilitator:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "workshop-facilitator:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "workshop-facilitator:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "workshop-facilitator",
+      "to": "workshop-facilitator:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "workshop-facilitator",
+      "to": "workshop-facilitator:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "workshop-facilitator",
+      "to": "workshop-facilitator:quality",
+      "type": "validated_by"
+    }
+  ]
+}

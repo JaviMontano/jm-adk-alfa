@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "localization-guide",
+  "nodes": [
+    {
+      "id": "localization-guide",
+      "type": "skill",
+      "label": "localization-guide"
+    },
+    {
+      "id": "localization-guide:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "localization-guide:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "localization-guide:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "localization-guide",
+      "to": "localization-guide:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "localization-guide",
+      "to": "localization-guide:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "localization-guide",
+      "to": "localization-guide:quality",
+      "type": "validated_by"
+    }
+  ]
+}

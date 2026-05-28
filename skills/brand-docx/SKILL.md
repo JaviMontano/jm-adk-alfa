@@ -1,5 +1,6 @@
---- [EXPLICIT]
+---
 name: brand-docx
+version: 1.0.0
 description:  [EXPLICIT]
   This skill should be used when the user asks to "generate a Word document", [EXPLICIT]
   "create a branded DOCX", "build a proposal in Word format", [EXPLICIT]
@@ -19,7 +20,7 @@ allowed-tools: [EXPLICIT]
   - Write [EXPLICIT]
   - Edit [EXPLICIT]
   - Bash [EXPLICIT]
---- [EXPLICIT]
+---
  [EXPLICIT]
 # Brand DOCX — Word Document Generator [EXPLICIT]
  [EXPLICIT]

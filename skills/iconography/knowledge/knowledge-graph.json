@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "iconography",
+  "nodes": [
+    {
+      "id": "iconography",
+      "type": "skill",
+      "label": "iconography"
+    },
+    {
+      "id": "iconography:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "iconography:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "iconography:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "iconography",
+      "to": "iconography:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "iconography",
+      "to": "iconography:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "iconography",
+      "to": "iconography:quality",
+      "type": "validated_by"
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "sprint-report",
+  "nodes": [
+    {
+      "id": "sprint-report",
+      "type": "skill",
+      "label": "sprint-report"
+    },
+    {
+      "id": "sprint-report:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "sprint-report:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "sprint-report:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "sprint-report",
+      "to": "sprint-report:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "sprint-report",
+      "to": "sprint-report:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "sprint-report",
+      "to": "sprint-report:quality",
+      "type": "validated_by"
+    }
+  ]
+}

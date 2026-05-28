@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "context-window-management",
+  "nodes": [
+    {
+      "id": "context-window-management",
+      "type": "skill",
+      "label": "context-window-management"
+    },
+    {
+      "id": "context-window-management:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "context-window-management:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "context-window-management:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "context-window-management",
+      "to": "context-window-management:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "context-window-management",
+      "to": "context-window-management:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "context-window-management",
+      "to": "context-window-management:quality",
+      "type": "validated_by"
+    }
+  ]
+}

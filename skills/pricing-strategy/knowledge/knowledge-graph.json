@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "pricing-strategy",
+  "nodes": [
+    {
+      "id": "pricing-strategy",
+      "type": "skill",
+      "label": "pricing-strategy"
+    },
+    {
+      "id": "pricing-strategy:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "pricing-strategy:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "pricing-strategy:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "pricing-strategy",
+      "to": "pricing-strategy:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "pricing-strategy",
+      "to": "pricing-strategy:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "pricing-strategy",
+      "to": "pricing-strategy:quality",
+      "type": "validated_by"
+    }
+  ]
+}

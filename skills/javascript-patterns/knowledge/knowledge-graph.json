@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "javascript-patterns",
+  "nodes": [
+    {
+      "id": "javascript-patterns",
+      "type": "skill",
+      "label": "javascript-patterns"
+    },
+    {
+      "id": "javascript-patterns:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "javascript-patterns:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "javascript-patterns:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "javascript-patterns",
+      "to": "javascript-patterns:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "javascript-patterns",
+      "to": "javascript-patterns:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "javascript-patterns",
+      "to": "javascript-patterns:quality",
+      "type": "validated_by"
+    }
+  ]
+}

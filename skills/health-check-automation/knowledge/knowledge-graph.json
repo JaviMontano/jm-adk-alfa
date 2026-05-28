@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "health-check-automation",
+  "nodes": [
+    {
+      "id": "health-check-automation",
+      "type": "skill",
+      "label": "health-check-automation"
+    },
+    {
+      "id": "health-check-automation:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "health-check-automation:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "health-check-automation:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "health-check-automation",
+      "to": "health-check-automation:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "health-check-automation",
+      "to": "health-check-automation:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "health-check-automation",
+      "to": "health-check-automation:quality",
+      "type": "validated_by"
+    }
+  ]
+}

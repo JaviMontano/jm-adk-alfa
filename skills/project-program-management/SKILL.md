@@ -1,5 +1,6 @@
 ---
 name: project-program-management
+version: 1.0.0
 argument-hint: "project-or-engagement-name"
 description: 
   Provides PMO governance backbone — portfolio tracking, phase gate management, resource orchestration,

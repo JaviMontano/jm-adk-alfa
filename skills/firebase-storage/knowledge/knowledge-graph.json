@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "firebase-storage",
+  "nodes": [
+    {
+      "id": "firebase-storage",
+      "type": "skill",
+      "label": "firebase-storage"
+    },
+    {
+      "id": "firebase-storage:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "firebase-storage:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "firebase-storage:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "firebase-storage",
+      "to": "firebase-storage:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "firebase-storage",
+      "to": "firebase-storage:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "firebase-storage",
+      "to": "firebase-storage:quality",
+      "type": "validated_by"
+    }
+  ]
+}

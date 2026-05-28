@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "indexability-validator",
+  "nodes": [
+    {
+      "id": "indexability-validator",
+      "type": "skill",
+      "label": "indexability-validator"
+    },
+    {
+      "id": "indexability-validator:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "indexability-validator:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "indexability-validator:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "indexability-validator",
+      "to": "indexability-validator:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "indexability-validator",
+      "to": "indexability-validator:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "indexability-validator",
+      "to": "indexability-validator:quality",
+      "type": "validated_by"
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "parallel-workflow",
+  "nodes": [
+    {
+      "id": "parallel-workflow",
+      "type": "skill",
+      "label": "parallel-workflow"
+    },
+    {
+      "id": "parallel-workflow:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "parallel-workflow:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "parallel-workflow:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "parallel-workflow",
+      "to": "parallel-workflow:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "parallel-workflow",
+      "to": "parallel-workflow:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "parallel-workflow",
+      "to": "parallel-workflow:quality",
+      "type": "validated_by"
+    }
+  ]
+}

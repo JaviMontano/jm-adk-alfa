@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "firebase-emulator-setup",
+  "nodes": [
+    {
+      "id": "firebase-emulator-setup",
+      "type": "skill",
+      "label": "firebase-emulator-setup"
+    },
+    {
+      "id": "firebase-emulator-setup:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "firebase-emulator-setup:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "firebase-emulator-setup:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "firebase-emulator-setup",
+      "to": "firebase-emulator-setup:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "firebase-emulator-setup",
+      "to": "firebase-emulator-setup:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "firebase-emulator-setup",
+      "to": "firebase-emulator-setup:quality",
+      "type": "validated_by"
+    }
+  ]
+}

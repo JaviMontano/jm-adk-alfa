@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "ai-workflow-automation",
+  "nodes": [
+    {
+      "id": "ai-workflow-automation",
+      "type": "skill",
+      "label": "ai-workflow-automation"
+    },
+    {
+      "id": "ai-workflow-automation:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "ai-workflow-automation:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "ai-workflow-automation:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "ai-workflow-automation",
+      "to": "ai-workflow-automation:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "ai-workflow-automation",
+      "to": "ai-workflow-automation:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "ai-workflow-automation",
+      "to": "ai-workflow-automation:quality",
+      "type": "validated_by"
+    }
+  ]
+}

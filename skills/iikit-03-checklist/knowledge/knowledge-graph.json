@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "iikit-03-checklist",
+  "nodes": [
+    {
+      "id": "iikit-03-checklist",
+      "type": "skill",
+      "label": "iikit-03-checklist"
+    },
+    {
+      "id": "iikit-03-checklist:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "iikit-03-checklist:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "iikit-03-checklist:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "iikit-03-checklist",
+      "to": "iikit-03-checklist:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "iikit-03-checklist",
+      "to": "iikit-03-checklist:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "iikit-03-checklist",
+      "to": "iikit-03-checklist:quality",
+      "type": "validated_by"
+    }
+  ]
+}

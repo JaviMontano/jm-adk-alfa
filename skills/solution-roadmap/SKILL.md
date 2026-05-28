@@ -1,5 +1,6 @@
 ---
 name: solution-roadmap
+version: 1.0.0
 argument-hint: "project-or-engagement-name"
 description: 
   Complete transformation roadmap with phased execution, investment horizon, team ramp-up,

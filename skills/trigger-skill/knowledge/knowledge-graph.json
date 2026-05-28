@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "trigger-skill",
+  "nodes": [
+    {
+      "id": "trigger-skill",
+      "type": "skill",
+      "label": "trigger-skill"
+    },
+    {
+      "id": "trigger-skill:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "trigger-skill:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "trigger-skill:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "trigger-skill",
+      "to": "trigger-skill:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "trigger-skill",
+      "to": "trigger-skill:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "trigger-skill",
+      "to": "trigger-skill:quality",
+      "type": "validated_by"
+    }
+  ]
+}

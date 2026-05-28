@@ -1,5 +1,6 @@
 ---
 name: jmlabs-corporate-doc
+version: 1.0.0
 description: >
   Triggers on "create corporate document", "make investor deck", "build partnership prospectus",
   "design executive brief", "branded HTML report", "JM Labs document", "make it brand friendly".

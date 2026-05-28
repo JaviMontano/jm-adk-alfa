@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "firestore-modeling",
+  "nodes": [
+    {
+      "id": "firestore-modeling",
+      "type": "skill",
+      "label": "firestore-modeling"
+    },
+    {
+      "id": "firestore-modeling:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "firestore-modeling:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "firestore-modeling:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "firestore-modeling",
+      "to": "firestore-modeling:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "firestore-modeling",
+      "to": "firestore-modeling:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "firestore-modeling",
+      "to": "firestore-modeling:quality",
+      "type": "validated_by"
+    }
+  ]
+}

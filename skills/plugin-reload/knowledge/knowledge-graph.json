@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "plugin-reload",
+  "nodes": [
+    {
+      "id": "plugin-reload",
+      "type": "skill",
+      "label": "plugin-reload"
+    },
+    {
+      "id": "plugin-reload:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "plugin-reload:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "plugin-reload:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "plugin-reload",
+      "to": "plugin-reload:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "plugin-reload",
+      "to": "plugin-reload:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "plugin-reload",
+      "to": "plugin-reload:quality",
+      "type": "validated_by"
+    }
+  ]
+}

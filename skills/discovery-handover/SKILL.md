@@ -1,5 +1,6 @@
 ---
 name: discovery-handover
+version: 1.0.0
 argument-hint: "discovery-directory"
 description: 
   This skill should be used when the user asks to "create handover",

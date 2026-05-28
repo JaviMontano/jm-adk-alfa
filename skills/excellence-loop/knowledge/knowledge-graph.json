@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "excellence-loop",
+  "nodes": [
+    {
+      "id": "excellence-loop",
+      "type": "skill",
+      "label": "excellence-loop"
+    },
+    {
+      "id": "excellence-loop:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "excellence-loop:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "excellence-loop:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "excellence-loop",
+      "to": "excellence-loop:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "excellence-loop",
+      "to": "excellence-loop:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "excellence-loop",
+      "to": "excellence-loop:quality",
+      "type": "validated_by"
+    }
+  ]
+}

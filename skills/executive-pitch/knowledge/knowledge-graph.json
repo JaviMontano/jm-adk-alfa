@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "executive-pitch",
+  "nodes": [
+    {
+      "id": "executive-pitch",
+      "type": "skill",
+      "label": "executive-pitch"
+    },
+    {
+      "id": "executive-pitch:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "executive-pitch:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "executive-pitch:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "executive-pitch",
+      "to": "executive-pitch:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "executive-pitch",
+      "to": "executive-pitch:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "executive-pitch",
+      "to": "executive-pitch:quality",
+      "type": "validated_by"
+    }
+  ]
+}

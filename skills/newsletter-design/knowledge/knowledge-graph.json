@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "newsletter-design",
+  "nodes": [
+    {
+      "id": "newsletter-design",
+      "type": "skill",
+      "label": "newsletter-design"
+    },
+    {
+      "id": "newsletter-design:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "newsletter-design:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "newsletter-design:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "newsletter-design",
+      "to": "newsletter-design:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "newsletter-design",
+      "to": "newsletter-design:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "newsletter-design",
+      "to": "newsletter-design:quality",
+      "type": "validated_by"
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "brand-docx",
+  "nodes": [
+    {
+      "id": "brand-docx",
+      "type": "skill",
+      "label": "brand-docx"
+    },
+    {
+      "id": "brand-docx:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "brand-docx:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "brand-docx:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "brand-docx",
+      "to": "brand-docx:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "brand-docx",
+      "to": "brand-docx:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "brand-docx",
+      "to": "brand-docx:quality",
+      "type": "validated_by"
+    }
+  ]
+}

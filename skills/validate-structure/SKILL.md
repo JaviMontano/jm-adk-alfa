@@ -1,5 +1,6 @@
 ---
 name: validate-structure
+version: 1.0.0
 description: "Validates plugin directory layout against the official Claude Code plugin spec. Triggers: validate structure, check layout, directory audit, plugin skeleton check."
 author: JM Labs (Javier Montaño)
 allowed-tools:

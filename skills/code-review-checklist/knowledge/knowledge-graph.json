@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "code-review-checklist",
+  "nodes": [
+    {
+      "id": "code-review-checklist",
+      "type": "skill",
+      "label": "code-review-checklist"
+    },
+    {
+      "id": "code-review-checklist:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "code-review-checklist:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "code-review-checklist:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "code-review-checklist",
+      "to": "code-review-checklist:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "code-review-checklist",
+      "to": "code-review-checklist:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "code-review-checklist",
+      "to": "code-review-checklist:quality",
+      "type": "validated_by"
+    }
+  ]
+}

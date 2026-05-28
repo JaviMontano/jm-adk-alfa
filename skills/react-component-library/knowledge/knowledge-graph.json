@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "react-component-library",
+  "nodes": [
+    {
+      "id": "react-component-library",
+      "type": "skill",
+      "label": "react-component-library"
+    },
+    {
+      "id": "react-component-library:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "react-component-library:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "react-component-library:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "react-component-library",
+      "to": "react-component-library:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "react-component-library",
+      "to": "react-component-library:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "react-component-library",
+      "to": "react-component-library:quality",
+      "type": "validated_by"
+    }
+  ]
+}

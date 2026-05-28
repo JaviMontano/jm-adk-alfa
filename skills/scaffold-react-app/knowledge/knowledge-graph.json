@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "scaffold-react-app",
+  "nodes": [
+    {
+      "id": "scaffold-react-app",
+      "type": "skill",
+      "label": "scaffold-react-app"
+    },
+    {
+      "id": "scaffold-react-app:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "scaffold-react-app:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "scaffold-react-app:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "scaffold-react-app",
+      "to": "scaffold-react-app:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "scaffold-react-app",
+      "to": "scaffold-react-app:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "scaffold-react-app",
+      "to": "scaffold-react-app:quality",
+      "type": "validated_by"
+    }
+  ]
+}

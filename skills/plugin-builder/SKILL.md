@@ -1,5 +1,6 @@
---- [EXPLICIT]
+---
 name: plugin-builder
+version: 1.0.0
 argument-hint: "plugin-name" [EXPLICIT]
 description: 
   Builds complete Claude Code plugins from scratch — scaffolds plugin.json, CLAUDE.md, commands/, agents/,

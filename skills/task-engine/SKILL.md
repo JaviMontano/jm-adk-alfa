@@ -1,5 +1,6 @@
 ---
 name: task-engine
+version: 1.0.0
 description: 
   Meta-cognitive reasoning engine that decomposes complex problems using the DSVSR protocol
   (Decompose-Solve-Verify-Synthesize-Reflect) with explicit confidence calibration. [EXPLICIT]

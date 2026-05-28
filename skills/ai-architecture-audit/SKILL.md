@@ -1,5 +1,6 @@
 ---
 name: ai-architecture-audit
+version: 1.0.0
 description: >
   Audits existing AI system architectures against best practices — structural integrity, AI quality attributes,
   pattern adherence, anti-pattern detection, security compliance, and technical debt inventory. This skill should

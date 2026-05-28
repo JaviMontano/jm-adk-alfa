@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "input-sanitization",
+  "nodes": [
+    {
+      "id": "input-sanitization",
+      "type": "skill",
+      "label": "input-sanitization"
+    },
+    {
+      "id": "input-sanitization:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "input-sanitization:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "input-sanitization:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "input-sanitization",
+      "to": "input-sanitization:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "input-sanitization",
+      "to": "input-sanitization:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "input-sanitization",
+      "to": "input-sanitization:quality",
+      "type": "validated_by"
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "analytics-engineering",
+  "nodes": [
+    {
+      "id": "analytics-engineering",
+      "type": "skill",
+      "label": "analytics-engineering"
+    },
+    {
+      "id": "analytics-engineering:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "analytics-engineering:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "analytics-engineering:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "analytics-engineering",
+      "to": "analytics-engineering:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "analytics-engineering",
+      "to": "analytics-engineering:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "analytics-engineering",
+      "to": "analytics-engineering:quality",
+      "type": "validated_by"
+    }
+  ]
+}

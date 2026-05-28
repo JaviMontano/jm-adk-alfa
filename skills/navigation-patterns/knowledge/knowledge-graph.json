@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "navigation-patterns",
+  "nodes": [
+    {
+      "id": "navigation-patterns",
+      "type": "skill",
+      "label": "navigation-patterns"
+    },
+    {
+      "id": "navigation-patterns:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "navigation-patterns:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "navigation-patterns:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "navigation-patterns",
+      "to": "navigation-patterns:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "navigation-patterns",
+      "to": "navigation-patterns:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "navigation-patterns",
+      "to": "navigation-patterns:quality",
+      "type": "validated_by"
+    }
+  ]
+}

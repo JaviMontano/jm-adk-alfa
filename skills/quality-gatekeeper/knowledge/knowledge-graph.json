@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "quality-gatekeeper",
+  "nodes": [
+    {
+      "id": "quality-gatekeeper",
+      "type": "skill",
+      "label": "quality-gatekeeper"
+    },
+    {
+      "id": "quality-gatekeeper:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "quality-gatekeeper:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "quality-gatekeeper:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "quality-gatekeeper",
+      "to": "quality-gatekeeper:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "quality-gatekeeper",
+      "to": "quality-gatekeeper:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "quality-gatekeeper",
+      "to": "quality-gatekeeper:quality",
+      "type": "validated_by"
+    }
+  ]
+}

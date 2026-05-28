@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "design-agent",
+  "nodes": [
+    {
+      "id": "design-agent",
+      "type": "skill",
+      "label": "design-agent"
+    },
+    {
+      "id": "design-agent:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "design-agent:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "design-agent:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "design-agent",
+      "to": "design-agent:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "design-agent",
+      "to": "design-agent:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "design-agent",
+      "to": "design-agent:quality",
+      "type": "validated_by"
+    }
+  ]
+}

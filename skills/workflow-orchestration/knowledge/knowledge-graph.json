@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "workflow-orchestration",
+  "nodes": [
+    {
+      "id": "workflow-orchestration",
+      "type": "skill",
+      "label": "workflow-orchestration"
+    },
+    {
+      "id": "workflow-orchestration:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "workflow-orchestration:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "workflow-orchestration:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "workflow-orchestration",
+      "to": "workflow-orchestration:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "workflow-orchestration",
+      "to": "workflow-orchestration:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "workflow-orchestration",
+      "to": "workflow-orchestration:quality",
+      "type": "validated_by"
+    }
+  ]
+}

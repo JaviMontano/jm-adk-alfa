@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "google-slides-mcp",
+  "nodes": [
+    {
+      "id": "google-slides-mcp",
+      "type": "skill",
+      "label": "google-slides-mcp"
+    },
+    {
+      "id": "google-slides-mcp:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "google-slides-mcp:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "google-slides-mcp:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "google-slides-mcp",
+      "to": "google-slides-mcp:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "google-slides-mcp",
+      "to": "google-slides-mcp:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "google-slides-mcp",
+      "to": "google-slides-mcp:quality",
+      "type": "validated_by"
+    }
+  ]
+}

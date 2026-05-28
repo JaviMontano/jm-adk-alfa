@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "firebase-functions",
+  "nodes": [
+    {
+      "id": "firebase-functions",
+      "type": "skill",
+      "label": "firebase-functions"
+    },
+    {
+      "id": "firebase-functions:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "firebase-functions:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "firebase-functions:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "firebase-functions",
+      "to": "firebase-functions:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "firebase-functions",
+      "to": "firebase-functions:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "firebase-functions",
+      "to": "firebase-functions:quality",
+      "type": "validated_by"
+    }
+  ]
+}

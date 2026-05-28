@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "incident-response",
+  "nodes": [
+    {
+      "id": "incident-response",
+      "type": "skill",
+      "label": "incident-response"
+    },
+    {
+      "id": "incident-response:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "incident-response:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "incident-response:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "incident-response",
+      "to": "incident-response:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "incident-response",
+      "to": "incident-response:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "incident-response",
+      "to": "incident-response:quality",
+      "type": "validated_by"
+    }
+  ]
+}

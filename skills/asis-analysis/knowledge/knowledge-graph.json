@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "asis-analysis",
+  "nodes": [
+    {
+      "id": "asis-analysis",
+      "type": "skill",
+      "label": "asis-analysis"
+    },
+    {
+      "id": "asis-analysis:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "asis-analysis:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "asis-analysis:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "asis-analysis",
+      "to": "asis-analysis:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "asis-analysis",
+      "to": "asis-analysis:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "asis-analysis",
+      "to": "asis-analysis:quality",
+      "type": "validated_by"
+    }
+  ]
+}

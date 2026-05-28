@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "kpi-framework",
+  "nodes": [
+    {
+      "id": "kpi-framework",
+      "type": "skill",
+      "label": "kpi-framework"
+    },
+    {
+      "id": "kpi-framework:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "kpi-framework:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "kpi-framework:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "kpi-framework",
+      "to": "kpi-framework:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "kpi-framework",
+      "to": "kpi-framework:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "kpi-framework",
+      "to": "kpi-framework:quality",
+      "type": "validated_by"
+    }
+  ]
+}

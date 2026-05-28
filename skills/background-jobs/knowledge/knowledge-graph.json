@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "background-jobs",
+  "nodes": [
+    {
+      "id": "background-jobs",
+      "type": "skill",
+      "label": "background-jobs"
+    },
+    {
+      "id": "background-jobs:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "background-jobs:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "background-jobs:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "background-jobs",
+      "to": "background-jobs:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "background-jobs",
+      "to": "background-jobs:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "background-jobs",
+      "to": "background-jobs:quality",
+      "type": "validated_by"
+    }
+  ]
+}

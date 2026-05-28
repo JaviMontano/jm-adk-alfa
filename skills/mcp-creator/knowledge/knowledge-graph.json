@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "mcp-creator",
+  "nodes": [
+    {
+      "id": "mcp-creator",
+      "type": "skill",
+      "label": "mcp-creator"
+    },
+    {
+      "id": "mcp-creator:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "mcp-creator:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "mcp-creator:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "mcp-creator",
+      "to": "mcp-creator:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "mcp-creator",
+      "to": "mcp-creator:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "mcp-creator",
+      "to": "mcp-creator:quality",
+      "type": "validated_by"
+    }
+  ]
+}

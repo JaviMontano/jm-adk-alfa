@@ -1,5 +1,6 @@
 ---
 name: cloud-native-architecture
+version: 1.0.0
 argument-hint: "project-or-system-name"
 description: 
   This skill should be used when the user asks to "design cloud-native architecture",

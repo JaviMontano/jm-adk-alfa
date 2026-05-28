@@ -1,5 +1,6 @@
 ---
 name: client-dossier
+version: 1.0.0
 description: >
   Triggers on "build dossier on", "client profile", "prospect research", "research company X",
   "build profile on X person", "dossier for sales call", "quién es X empresa".

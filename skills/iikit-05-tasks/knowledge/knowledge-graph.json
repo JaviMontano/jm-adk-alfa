@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "iikit-05-tasks",
+  "nodes": [
+    {
+      "id": "iikit-05-tasks",
+      "type": "skill",
+      "label": "iikit-05-tasks"
+    },
+    {
+      "id": "iikit-05-tasks:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "iikit-05-tasks:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "iikit-05-tasks:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "iikit-05-tasks",
+      "to": "iikit-05-tasks:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "iikit-05-tasks",
+      "to": "iikit-05-tasks:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "iikit-05-tasks",
+      "to": "iikit-05-tasks:quality",
+      "type": "validated_by"
+    }
+  ]
+}

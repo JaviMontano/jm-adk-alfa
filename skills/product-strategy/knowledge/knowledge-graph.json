@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "product-strategy",
+  "nodes": [
+    {
+      "id": "product-strategy",
+      "type": "skill",
+      "label": "product-strategy"
+    },
+    {
+      "id": "product-strategy:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "product-strategy:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "product-strategy:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "product-strategy",
+      "to": "product-strategy:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "product-strategy",
+      "to": "product-strategy:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "product-strategy",
+      "to": "product-strategy:quality",
+      "type": "validated_by"
+    }
+  ]
+}

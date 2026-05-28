@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "email-sending",
+  "nodes": [
+    {
+      "id": "email-sending",
+      "type": "skill",
+      "label": "email-sending"
+    },
+    {
+      "id": "email-sending:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "email-sending:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "email-sending:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "email-sending",
+      "to": "email-sending:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "email-sending",
+      "to": "email-sending:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "email-sending",
+      "to": "email-sending:quality",
+      "type": "validated_by"
+    }
+  ]
+}

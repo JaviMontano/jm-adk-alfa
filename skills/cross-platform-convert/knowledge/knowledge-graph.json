@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "cross-platform-convert",
+  "nodes": [
+    {
+      "id": "cross-platform-convert",
+      "type": "skill",
+      "label": "cross-platform-convert"
+    },
+    {
+      "id": "cross-platform-convert:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "cross-platform-convert:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "cross-platform-convert:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "cross-platform-convert",
+      "to": "cross-platform-convert:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "cross-platform-convert",
+      "to": "cross-platform-convert:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "cross-platform-convert",
+      "to": "cross-platform-convert:quality",
+      "type": "validated_by"
+    }
+  ]
+}

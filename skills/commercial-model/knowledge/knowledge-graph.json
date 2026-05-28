@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "commercial-model",
+  "nodes": [
+    {
+      "id": "commercial-model",
+      "type": "skill",
+      "label": "commercial-model"
+    },
+    {
+      "id": "commercial-model:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "commercial-model:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "commercial-model:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "commercial-model",
+      "to": "commercial-model:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "commercial-model",
+      "to": "commercial-model:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "commercial-model",
+      "to": "commercial-model:quality",
+      "type": "validated_by"
+    }
+  ]
+}

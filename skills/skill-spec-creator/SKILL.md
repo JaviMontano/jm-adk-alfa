@@ -1,5 +1,6 @@
---- [EXPLICIT]
+---
 name: skill-spec-creator
+version: 1.0.0
 description:  [EXPLICIT]
   This skill should be used when the user asks to "create a skill spec", "generate a [EXPLICIT]
   skill.yaml", "define skill workflows", "design an agentic capability", or mentions [EXPLICIT]
@@ -12,7 +13,7 @@ argument-hint: skill-id owning-agent-id [EXPLICIT]
 model: opus [EXPLICIT]
 context: fork [EXPLICIT]
 allowed-tools: Read, Write, Edit, Glob, Grep [EXPLICIT]
---- [EXPLICIT]
+---
  [EXPLICIT]
 # Skill Spec Creator [EXPLICIT]
  [EXPLICIT]

@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "ecosystem-forge",
+  "nodes": [
+    {
+      "id": "ecosystem-forge",
+      "type": "skill",
+      "label": "ecosystem-forge"
+    },
+    {
+      "id": "ecosystem-forge:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "ecosystem-forge:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "ecosystem-forge:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "ecosystem-forge",
+      "to": "ecosystem-forge:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "ecosystem-forge",
+      "to": "ecosystem-forge:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "ecosystem-forge",
+      "to": "ecosystem-forge:quality",
+      "type": "validated_by"
+    }
+  ]
+}

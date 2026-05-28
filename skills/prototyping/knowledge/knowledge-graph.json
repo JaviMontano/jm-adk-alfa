@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "prototyping",
+  "nodes": [
+    {
+      "id": "prototyping",
+      "type": "skill",
+      "label": "prototyping"
+    },
+    {
+      "id": "prototyping:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "prototyping:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "prototyping:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "prototyping",
+      "to": "prototyping:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "prototyping",
+      "to": "prototyping:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "prototyping",
+      "to": "prototyping:quality",
+      "type": "validated_by"
+    }
+  ]
+}

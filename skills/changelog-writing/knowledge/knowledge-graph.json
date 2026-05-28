@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "changelog-writing",
+  "nodes": [
+    {
+      "id": "changelog-writing",
+      "type": "skill",
+      "label": "changelog-writing"
+    },
+    {
+      "id": "changelog-writing:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "changelog-writing:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "changelog-writing:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "changelog-writing",
+      "to": "changelog-writing:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "changelog-writing",
+      "to": "changelog-writing:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "changelog-writing",
+      "to": "changelog-writing:quality",
+      "type": "validated_by"
+    }
+  ]
+}

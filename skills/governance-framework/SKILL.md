@@ -1,5 +1,6 @@
 ---
 name: governance-framework
+version: 1.0.0
 description: >
   Use when the user asks to "define governance", "create governance model",
   "set up escalation paths", "design authority matrix", "establish decision framework",

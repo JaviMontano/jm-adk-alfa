@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "sofka-regional-finance",
+  "nodes": [
+    {
+      "id": "sofka-regional-finance",
+      "type": "skill",
+      "label": "sofka-regional-finance"
+    },
+    {
+      "id": "sofka-regional-finance:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "sofka-regional-finance:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "sofka-regional-finance:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "sofka-regional-finance",
+      "to": "sofka-regional-finance:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "sofka-regional-finance",
+      "to": "sofka-regional-finance:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "sofka-regional-finance",
+      "to": "sofka-regional-finance:quality",
+      "type": "validated_by"
+    }
+  ]
+}

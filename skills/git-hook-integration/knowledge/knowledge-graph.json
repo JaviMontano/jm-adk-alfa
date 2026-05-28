@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "git-hook-integration",
+  "nodes": [
+    {
+      "id": "git-hook-integration",
+      "type": "skill",
+      "label": "git-hook-integration"
+    },
+    {
+      "id": "git-hook-integration:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "git-hook-integration:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "git-hook-integration:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "git-hook-integration",
+      "to": "git-hook-integration:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "git-hook-integration",
+      "to": "git-hook-integration:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "git-hook-integration",
+      "to": "git-hook-integration:quality",
+      "type": "validated_by"
+    }
+  ]
+}

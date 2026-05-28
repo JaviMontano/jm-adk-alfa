@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "software-viability",
+  "nodes": [
+    {
+      "id": "software-viability",
+      "type": "skill",
+      "label": "software-viability"
+    },
+    {
+      "id": "software-viability:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "software-viability:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "software-viability:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "software-viability",
+      "to": "software-viability:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "software-viability",
+      "to": "software-viability:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "software-viability",
+      "to": "software-viability:quality",
+      "type": "validated_by"
+    }
+  ]
+}

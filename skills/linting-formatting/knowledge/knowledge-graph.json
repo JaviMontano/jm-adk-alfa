@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "linting-formatting",
+  "nodes": [
+    {
+      "id": "linting-formatting",
+      "type": "skill",
+      "label": "linting-formatting"
+    },
+    {
+      "id": "linting-formatting:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "linting-formatting:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "linting-formatting:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "linting-formatting",
+      "to": "linting-formatting:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "linting-formatting",
+      "to": "linting-formatting:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "linting-formatting",
+      "to": "linting-formatting:quality",
+      "type": "validated_by"
+    }
+  ]
+}

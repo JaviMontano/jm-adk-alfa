@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "dashboard-design",
+  "nodes": [
+    {
+      "id": "dashboard-design",
+      "type": "skill",
+      "label": "dashboard-design"
+    },
+    {
+      "id": "dashboard-design:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "dashboard-design:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "dashboard-design:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "dashboard-design",
+      "to": "dashboard-design:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "dashboard-design",
+      "to": "dashboard-design:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "dashboard-design",
+      "to": "dashboard-design:quality",
+      "type": "validated_by"
+    }
+  ]
+}

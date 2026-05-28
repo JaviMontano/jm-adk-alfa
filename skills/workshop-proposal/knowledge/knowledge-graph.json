@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "workshop-proposal",
+  "nodes": [
+    {
+      "id": "workshop-proposal",
+      "type": "skill",
+      "label": "workshop-proposal"
+    },
+    {
+      "id": "workshop-proposal:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "workshop-proposal:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "workshop-proposal:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "workshop-proposal",
+      "to": "workshop-proposal:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "workshop-proposal",
+      "to": "workshop-proposal:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "workshop-proposal",
+      "to": "workshop-proposal:quality",
+      "type": "validated_by"
+    }
+  ]
+}

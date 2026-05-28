@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "meta-skill-indexer",
+  "nodes": [
+    {
+      "id": "meta-skill-indexer",
+      "type": "skill",
+      "label": "meta-skill-indexer"
+    },
+    {
+      "id": "meta-skill-indexer:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "meta-skill-indexer:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "meta-skill-indexer:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "meta-skill-indexer",
+      "to": "meta-skill-indexer:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "meta-skill-indexer",
+      "to": "meta-skill-indexer:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "meta-skill-indexer",
+      "to": "meta-skill-indexer:quality",
+      "type": "validated_by"
+    }
+  ]
+}

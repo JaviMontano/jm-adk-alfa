@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "enterprise-architecture",
+  "nodes": [
+    {
+      "id": "enterprise-architecture",
+      "type": "skill",
+      "label": "enterprise-architecture"
+    },
+    {
+      "id": "enterprise-architecture:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "enterprise-architecture:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "enterprise-architecture:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "enterprise-architecture",
+      "to": "enterprise-architecture:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "enterprise-architecture",
+      "to": "enterprise-architecture:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "enterprise-architecture",
+      "to": "enterprise-architecture:quality",
+      "type": "validated_by"
+    }
+  ]
+}

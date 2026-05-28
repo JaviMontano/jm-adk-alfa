@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "firebase-extensions",
+  "nodes": [
+    {
+      "id": "firebase-extensions",
+      "type": "skill",
+      "label": "firebase-extensions"
+    },
+    {
+      "id": "firebase-extensions:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "firebase-extensions:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "firebase-extensions:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "firebase-extensions",
+      "to": "firebase-extensions:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "firebase-extensions",
+      "to": "firebase-extensions:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "firebase-extensions",
+      "to": "firebase-extensions:quality",
+      "type": "validated_by"
+    }
+  ]
+}

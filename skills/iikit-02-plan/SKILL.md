@@ -1,5 +1,6 @@
 ---
 name: iikit-02-plan
+version: 1.0.0
 description: >-
   Generate a technical design document from a feature spec — selects frameworks, defines data models, produces API contracts, and creates a dependency-ordered implementation strategy.
   Use when planning how to build a feature, writing a technical design doc, choosing libraries, defining database schemas, or setting up Tessl tiles for runtime library knowledge.

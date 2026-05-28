@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "firebase-setup",
+  "nodes": [
+    {
+      "id": "firebase-setup",
+      "type": "skill",
+      "label": "firebase-setup"
+    },
+    {
+      "id": "firebase-setup:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "firebase-setup:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "firebase-setup:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "firebase-setup",
+      "to": "firebase-setup:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "firebase-setup",
+      "to": "firebase-setup:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "firebase-setup",
+      "to": "firebase-setup:quality",
+      "type": "validated_by"
+    }
+  ]
+}

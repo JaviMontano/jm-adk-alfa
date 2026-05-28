@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "build-plugin-scaffold",
+  "nodes": [
+    {
+      "id": "build-plugin-scaffold",
+      "type": "skill",
+      "label": "build-plugin-scaffold"
+    },
+    {
+      "id": "build-plugin-scaffold:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "build-plugin-scaffold:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "build-plugin-scaffold:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "build-plugin-scaffold",
+      "to": "build-plugin-scaffold:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "build-plugin-scaffold",
+      "to": "build-plugin-scaffold:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "build-plugin-scaffold",
+      "to": "build-plugin-scaffold:quality",
+      "type": "validated_by"
+    }
+  ]
+}

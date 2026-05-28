@@ -1,5 +1,6 @@
 ---
 name: aws-architecture-design
+version: 1.0.0
 description: >
   Designs AWS cloud architectures for AI and GenAI workloads applying the Well-Architected Framework
   GenAI Lens (6 pillars: GENOPS, GENSEC, GENREL, GENPERF, GENCOST, GENSUS), AWS service selection

@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "swot-analysis",
+  "nodes": [
+    {
+      "id": "swot-analysis",
+      "type": "skill",
+      "label": "swot-analysis"
+    },
+    {
+      "id": "swot-analysis:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "swot-analysis:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "swot-analysis:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "swot-analysis",
+      "to": "swot-analysis:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "swot-analysis",
+      "to": "swot-analysis:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "swot-analysis",
+      "to": "swot-analysis:quality",
+      "type": "validated_by"
+    }
+  ]
+}

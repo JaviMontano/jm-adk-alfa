@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "security-architecture",
+  "nodes": [
+    {
+      "id": "security-architecture",
+      "type": "skill",
+      "label": "security-architecture"
+    },
+    {
+      "id": "security-architecture:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "security-architecture:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "security-architecture:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "security-architecture",
+      "to": "security-architecture:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "security-architecture",
+      "to": "security-architecture:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "security-architecture",
+      "to": "security-architecture:quality",
+      "type": "validated_by"
+    }
+  ]
+}

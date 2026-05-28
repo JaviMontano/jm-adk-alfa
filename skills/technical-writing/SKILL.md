@@ -1,5 +1,6 @@
 ---
 name: technical-writing
+version: 1.0.0
 author: Javier Montaño · Comunidad MetodologIA
 argument-hint: "doc-type: analysis|spec|handover|architecture|assessment depth: ejecutivo|tecnico|exhaustivo"
 description: 

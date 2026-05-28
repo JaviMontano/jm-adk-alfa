@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "finops",
+  "nodes": [
+    {
+      "id": "finops",
+      "type": "skill",
+      "label": "finops"
+    },
+    {
+      "id": "finops:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "finops:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "finops:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "finops",
+      "to": "finops:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "finops",
+      "to": "finops:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "finops",
+      "to": "finops:quality",
+      "type": "validated_by"
+    }
+  ]
+}

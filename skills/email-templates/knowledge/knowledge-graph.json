@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "email-templates",
+  "nodes": [
+    {
+      "id": "email-templates",
+      "type": "skill",
+      "label": "email-templates"
+    },
+    {
+      "id": "email-templates:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "email-templates:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "email-templates:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "email-templates",
+      "to": "email-templates:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "email-templates",
+      "to": "email-templates:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "email-templates",
+      "to": "email-templates:quality",
+      "type": "validated_by"
+    }
+  ]
+}

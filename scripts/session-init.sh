@@ -4,8 +4,7 @@
 # Emits structured KEY: VALUE lines for model consumption. Read-only: never writes to disk.
 # Always exits 0 (a failing SessionStart hook blocks the entire session).
 
-SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
-PROJECT_ROOT="$(dirname "$SCRIPT_DIR")"
+PROJECT_ROOT="$(git -C "$(dirname "$0")/.." rev-parse --show-toplevel)"
 TODAY=$(date +%Y-%m-%d)
 
 # ── System integrity (existence checks only — fast) ──
@@ -16,9 +15,10 @@ P="false"; C="false"; I="false"; H="false"
 [ -f "$PROJECT_ROOT/PRISTINO-INDEX.md" ] && I="true"
 [ -f "$PROJECT_ROOT/hooks/hooks.json" ] && H="true"
 
-SK=$(find "$PROJECT_ROOT/skills" -name "SKILL.md" 2>/dev/null | wc -l | tr -d ' ')
-AG=$(find "$PROJECT_ROOT/agents" -name "*.md" 2>/dev/null | wc -l | tr -d ' ')
-CM=$(find "$PROJECT_ROOT/commands" -name "*.md" 2>/dev/null | wc -l | tr -d ' ')
+SK=$(find "$PROJECT_ROOT/skills" -mindepth 2 -maxdepth 2 -name "SKILL.md" 2>/dev/null | wc -l | tr -d ' ')
+AG=$(find "$PROJECT_ROOT/agents" -maxdepth 1 -name "*.md" 2>/dev/null | wc -l | tr -d ' ')
+CM=$(find "$PROJECT_ROOT/commands" -maxdepth 1 -name "*.md" 2>/dev/null | wc -l | tr -d ' ')
+PR=$(find "$PROJECT_ROOT/prompts" -mindepth 2 -maxdepth 2 -name "*.md" -not -path "*/.catalog/*" 2>/dev/null | wc -l | tr -d ' ')
 
 DEGRADED=""
 [ "$P" = "false" ] && DEGRADED="${DEGRADED}PRISTINO "
@@ -67,9 +67,9 @@ AD=$(find "$PROJECT_ROOT/.specify/adr" -name "*.md" 2>/dev/null | wc -l | tr -d 
 
 # ── Output (model-parseable) ──
 
-echo "VERSION: 4.0.0"
+echo "VERSION: 5.2.0"
 echo "SYSTEM: PRISTINO=$P CONSTITUTION=$C INDEX=$I HOOKS=$H"
-echo "COMPONENTS: $SK skills, $AG agents, $CM commands"
+echo "COMPONENTS: $SK skills, $AG agents, $CM commands, $PR prompts"
 echo "GOVERNANCE: $PL plans, $AD ADRs"
 [ -n "$DEGRADED" ] && echo "DEGRADED: $DEGRADED"
 echo "WORKSPACE: $WS"

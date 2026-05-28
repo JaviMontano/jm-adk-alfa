@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "skill-search",
+  "nodes": [
+    {
+      "id": "skill-search",
+      "type": "skill",
+      "label": "skill-search"
+    },
+    {
+      "id": "skill-search:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "skill-search:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "skill-search:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "skill-search",
+      "to": "skill-search:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "skill-search",
+      "to": "skill-search:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "skill-search",
+      "to": "skill-search:quality",
+      "type": "validated_by"
+    }
+  ]
+}

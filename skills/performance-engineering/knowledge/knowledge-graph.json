@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "performance-engineering",
+  "nodes": [
+    {
+      "id": "performance-engineering",
+      "type": "skill",
+      "label": "performance-engineering"
+    },
+    {
+      "id": "performance-engineering:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "performance-engineering:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "performance-engineering:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "performance-engineering",
+      "to": "performance-engineering:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "performance-engineering",
+      "to": "performance-engineering:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "performance-engineering",
+      "to": "performance-engineering:quality",
+      "type": "validated_by"
+    }
+  ]
+}

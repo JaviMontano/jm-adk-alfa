@@ -1,5 +1,6 @@
 ---
 name: ideate-plugin
+version: 1.0.0
 author: JM Labs (Javier Montaño)
 description: 
   Generate a structured plugin concept brief from a user idea. Trigger: ideate plugin, brainstorm plugin, plugin concept, new plugin idea, create plugin concept. [EXPLICIT]

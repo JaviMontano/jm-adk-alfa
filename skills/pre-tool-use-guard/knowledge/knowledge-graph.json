@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "pre-tool-use-guard",
+  "nodes": [
+    {
+      "id": "pre-tool-use-guard",
+      "type": "skill",
+      "label": "pre-tool-use-guard"
+    },
+    {
+      "id": "pre-tool-use-guard:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "pre-tool-use-guard:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "pre-tool-use-guard:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "pre-tool-use-guard",
+      "to": "pre-tool-use-guard:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "pre-tool-use-guard",
+      "to": "pre-tool-use-guard:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "pre-tool-use-guard",
+      "to": "pre-tool-use-guard:quality",
+      "type": "validated_by"
+    }
+  ]
+}

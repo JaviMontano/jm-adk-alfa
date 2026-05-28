@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "triad-composition",
+  "nodes": [
+    {
+      "id": "triad-composition",
+      "type": "skill",
+      "label": "triad-composition"
+    },
+    {
+      "id": "triad-composition:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "triad-composition:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "triad-composition:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "triad-composition",
+      "to": "triad-composition:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "triad-composition",
+      "to": "triad-composition:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "triad-composition",
+      "to": "triad-composition:quality",
+      "type": "validated_by"
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "performance-testing",
+  "nodes": [
+    {
+      "id": "performance-testing",
+      "type": "skill",
+      "label": "performance-testing"
+    },
+    {
+      "id": "performance-testing:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "performance-testing:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "performance-testing:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "performance-testing",
+      "to": "performance-testing:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "performance-testing",
+      "to": "performance-testing:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "performance-testing",
+      "to": "performance-testing:quality",
+      "type": "validated_by"
+    }
+  ]
+}

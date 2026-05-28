@@ -1,5 +1,6 @@
 ---
 name: iikit-00-constitution
+version: 1.0.0
 description: >-
   Create or update a CONSTITUTION.md that defines project governance — establishes coding standards, quality gates, TDD policy, review requirements, and non-negotiable development principles with versioned amendment tracking.
   Use when defining project rules, setting up coding standards, establishing quality gates, configuring TDD requirements, or creating non-negotiable development principles.

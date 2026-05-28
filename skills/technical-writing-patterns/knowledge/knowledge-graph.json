@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "technical-writing-patterns",
+  "nodes": [
+    {
+      "id": "technical-writing-patterns",
+      "type": "skill",
+      "label": "technical-writing-patterns"
+    },
+    {
+      "id": "technical-writing-patterns:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "technical-writing-patterns:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "technical-writing-patterns:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "technical-writing-patterns",
+      "to": "technical-writing-patterns:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "technical-writing-patterns",
+      "to": "technical-writing-patterns:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "technical-writing-patterns",
+      "to": "technical-writing-patterns:quality",
+      "type": "validated_by"
+    }
+  ]
+}

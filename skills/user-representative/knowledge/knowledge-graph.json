@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "user-representative",
+  "nodes": [
+    {
+      "id": "user-representative",
+      "type": "skill",
+      "label": "user-representative"
+    },
+    {
+      "id": "user-representative:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "user-representative:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "user-representative:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "user-representative",
+      "to": "user-representative:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "user-representative",
+      "to": "user-representative:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "user-representative",
+      "to": "user-representative:quality",
+      "type": "validated_by"
+    }
+  ]
+}

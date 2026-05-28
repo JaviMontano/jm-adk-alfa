@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "competitive-positioning",
+  "nodes": [
+    {
+      "id": "competitive-positioning",
+      "type": "skill",
+      "label": "competitive-positioning"
+    },
+    {
+      "id": "competitive-positioning:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "competitive-positioning:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "competitive-positioning:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "competitive-positioning",
+      "to": "competitive-positioning:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "competitive-positioning",
+      "to": "competitive-positioning:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "competitive-positioning",
+      "to": "competitive-positioning:quality",
+      "type": "validated_by"
+    }
+  ]
+}

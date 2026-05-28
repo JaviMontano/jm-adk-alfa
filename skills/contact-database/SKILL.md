@@ -1,5 +1,6 @@
 ---
 name: contact-database
+version: 1.0.0
 description: >
   Triggers on "contact database", "contact list", "CRM list", "base de contactos",
   "lista de contactos". Structured contact/CRM list builder with records for name,

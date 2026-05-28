@@ -1,5 +1,5 @@
 {
-  "version": "4.0.0",
+  "version": "5.2.0",
   "schema": 1,
   "initialized": "2026-03-25T14:59:00Z",
   "workspace": {
@@ -10,6 +10,17 @@
     "maxActive": 3,
     "archiveAfterDays": 30,
     "cleanupStaleAfterDays": 7
+  },
+  "localConfig": {
+    "path": ".jm-adk.local.json",
+    "tracked": false,
+    "purpose": "Developer-specific overrides; never commit"
+  },
+  "components": {
+    "skills": 524,
+    "agents": 256,
+    "commands": 260,
+    "prompts": 256
   },
   "hooks": {
     "sessionStartCheck": true,

@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "functional-toolbelt",
+  "nodes": [
+    {
+      "id": "functional-toolbelt",
+      "type": "skill",
+      "label": "functional-toolbelt"
+    },
+    {
+      "id": "functional-toolbelt:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "functional-toolbelt:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "functional-toolbelt:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "functional-toolbelt",
+      "to": "functional-toolbelt:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "functional-toolbelt",
+      "to": "functional-toolbelt:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "functional-toolbelt",
+      "to": "functional-toolbelt:quality",
+      "type": "validated_by"
+    }
+  ]
+}

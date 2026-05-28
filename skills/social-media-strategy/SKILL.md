@@ -1,5 +1,6 @@
 ---
 name: social-media-strategy
+version: 1.0.0
 description: >
   Triggers on "social media strategy", "content calendar", "social media plan", "estrategia redes sociales".
   Builds a platform selection matrix, content pillars, posting cadence, hashtag strategy, and engagement tactics. Output: content calendar + platform-specific guidelines. [EXPLICIT]

@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "session-protocol",
+  "nodes": [
+    {
+      "id": "session-protocol",
+      "type": "skill",
+      "label": "session-protocol"
+    },
+    {
+      "id": "session-protocol:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "session-protocol:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "session-protocol:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "session-protocol",
+      "to": "session-protocol:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "session-protocol",
+      "to": "session-protocol:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "session-protocol",
+      "to": "session-protocol:quality",
+      "type": "validated_by"
+    }
+  ]
+}

@@ -1,5 +1,6 @@
 ---
 name: iikit-clarify
+version: 1.0.0
 description: >-
   Resolve ambiguities in any project artifact — auto-detects the most recent artifact (spec, plan, checklist, testify, tasks, or constitution),
   asks targeted questions with option tables, and writes answers back into the artifact's Clarifications section.

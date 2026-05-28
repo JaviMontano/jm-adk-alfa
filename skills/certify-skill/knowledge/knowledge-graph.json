@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "certify-skill",
+  "nodes": [
+    {
+      "id": "certify-skill",
+      "type": "skill",
+      "label": "certify-skill"
+    },
+    {
+      "id": "certify-skill:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "certify-skill:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "certify-skill:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "certify-skill",
+      "to": "certify-skill:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "certify-skill",
+      "to": "certify-skill:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "certify-skill",
+      "to": "certify-skill:quality",
+      "type": "validated_by"
+    }
+  ]
+}

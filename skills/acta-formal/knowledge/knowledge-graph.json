@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "acta-formal",
+  "nodes": [
+    {
+      "id": "acta-formal",
+      "type": "skill",
+      "label": "acta-formal"
+    },
+    {
+      "id": "acta-formal:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "acta-formal:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "acta-formal:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "acta-formal",
+      "to": "acta-formal:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "acta-formal",
+      "to": "acta-formal:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "acta-formal",
+      "to": "acta-formal:quality",
+      "type": "validated_by"
+    }
+  ]
+}

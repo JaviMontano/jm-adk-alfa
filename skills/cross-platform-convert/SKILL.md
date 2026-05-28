@@ -1,5 +1,6 @@
 ---
 name: cross-platform-convert
+version: 1.0.0
 description: >
   Use when the user asks to "convert skills to Cursor", "export to Codex",
   "convert to Gemini format", "port skills to another AI platform", or "create multi-platform skills". [EXPLICIT]

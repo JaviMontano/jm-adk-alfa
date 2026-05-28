@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "plan-architecture",
+  "nodes": [
+    {
+      "id": "plan-architecture",
+      "type": "skill",
+      "label": "plan-architecture"
+    },
+    {
+      "id": "plan-architecture:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "plan-architecture:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "plan-architecture:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "plan-architecture",
+      "to": "plan-architecture:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "plan-architecture",
+      "to": "plan-architecture:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "plan-architecture",
+      "to": "plan-architecture:quality",
+      "type": "validated_by"
+    }
+  ]
+}

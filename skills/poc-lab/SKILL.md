@@ -1,5 +1,6 @@
---- [EXPLICIT]
+---
 name: poc-lab
+version: 1.0.0
 description:  [EXPLICIT]
   Proof of concept design and execution framework, success criteria definition, and evaluation [EXPLICIT]
   methodology. Use when the user asks to "design a PoC", "plan a proof of concept", "define PoC [EXPLICIT]
@@ -17,7 +18,7 @@ allowed-tools: [EXPLICIT]
   - Grep [EXPLICIT]
   - Bash [EXPLICIT]
   - WebFetch [EXPLICIT]
---- [EXPLICIT]
+---
  [EXPLICIT]
 # Proof of Concept Lab [EXPLICIT]
  [EXPLICIT]
@@ -288,7 +289,7 @@ graph TD [EXPLICIT]
 - Decision tree: framework de decision post-PoC [EXPLICIT]
 - Gantt: timeline del PoC [EXPLICIT]
  [EXPLICIT]
---- [EXPLICIT]
+---
 **Autor:** Javier Montaño · Comunidad MetodologIA | **Version:** 1.0.0 [EXPLICIT]
  [EXPLICIT]
 ## Usage [EXPLICIT]

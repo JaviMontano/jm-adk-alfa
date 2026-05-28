@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "llm-evaluation",
+  "nodes": [
+    {
+      "id": "llm-evaluation",
+      "type": "skill",
+      "label": "llm-evaluation"
+    },
+    {
+      "id": "llm-evaluation:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "llm-evaluation:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "llm-evaluation:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "llm-evaluation",
+      "to": "llm-evaluation:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "llm-evaluation",
+      "to": "llm-evaluation:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "llm-evaluation",
+      "to": "llm-evaluation:quality",
+      "type": "validated_by"
+    }
+  ]
+}

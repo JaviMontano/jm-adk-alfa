@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "domain-driven-design",
+  "nodes": [
+    {
+      "id": "domain-driven-design",
+      "type": "skill",
+      "label": "domain-driven-design"
+    },
+    {
+      "id": "domain-driven-design:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "domain-driven-design:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "domain-driven-design:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "domain-driven-design",
+      "to": "domain-driven-design:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "domain-driven-design",
+      "to": "domain-driven-design:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "domain-driven-design",
+      "to": "domain-driven-design:quality",
+      "type": "validated_by"
+    }
+  ]
+}

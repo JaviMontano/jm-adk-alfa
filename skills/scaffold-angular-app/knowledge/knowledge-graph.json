@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "scaffold-angular-app",
+  "nodes": [
+    {
+      "id": "scaffold-angular-app",
+      "type": "skill",
+      "label": "scaffold-angular-app"
+    },
+    {
+      "id": "scaffold-angular-app:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "scaffold-angular-app:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "scaffold-angular-app:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "scaffold-angular-app",
+      "to": "scaffold-angular-app:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "scaffold-angular-app",
+      "to": "scaffold-angular-app:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "scaffold-angular-app",
+      "to": "scaffold-angular-app:quality",
+      "type": "validated_by"
+    }
+  ]
+}

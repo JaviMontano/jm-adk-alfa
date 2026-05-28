@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "web-security-implementation",
+  "nodes": [
+    {
+      "id": "web-security-implementation",
+      "type": "skill",
+      "label": "web-security-implementation"
+    },
+    {
+      "id": "web-security-implementation:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "web-security-implementation:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "web-security-implementation:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "web-security-implementation",
+      "to": "web-security-implementation:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "web-security-implementation",
+      "to": "web-security-implementation:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "web-security-implementation",
+      "to": "web-security-implementation:quality",
+      "type": "validated_by"
+    }
+  ]
+}

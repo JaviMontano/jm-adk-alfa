@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "react-development",
+  "nodes": [
+    {
+      "id": "react-development",
+      "type": "skill",
+      "label": "react-development"
+    },
+    {
+      "id": "react-development:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "react-development:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "react-development:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "react-development",
+      "to": "react-development:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "react-development",
+      "to": "react-development:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "react-development",
+      "to": "react-development:quality",
+      "type": "validated_by"
+    }
+  ]
+}

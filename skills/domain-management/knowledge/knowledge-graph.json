@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "domain-management",
+  "nodes": [
+    {
+      "id": "domain-management",
+      "type": "skill",
+      "label": "domain-management"
+    },
+    {
+      "id": "domain-management:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "domain-management:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "domain-management:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "domain-management",
+      "to": "domain-management:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "domain-management",
+      "to": "domain-management:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "domain-management",
+      "to": "domain-management:quality",
+      "type": "validated_by"
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "trade-off-analysis",
+  "nodes": [
+    {
+      "id": "trade-off-analysis",
+      "type": "skill",
+      "label": "trade-off-analysis"
+    },
+    {
+      "id": "trade-off-analysis:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "trade-off-analysis:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "trade-off-analysis:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "trade-off-analysis",
+      "to": "trade-off-analysis:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "trade-off-analysis",
+      "to": "trade-off-analysis:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "trade-off-analysis",
+      "to": "trade-off-analysis:quality",
+      "type": "validated_by"
+    }
+  ]
+}

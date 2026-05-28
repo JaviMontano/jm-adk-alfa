@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "form-ux-advanced",
+  "nodes": [
+    {
+      "id": "form-ux-advanced",
+      "type": "skill",
+      "label": "form-ux-advanced"
+    },
+    {
+      "id": "form-ux-advanced:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "form-ux-advanced:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "form-ux-advanced:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "form-ux-advanced",
+      "to": "form-ux-advanced:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "form-ux-advanced",
+      "to": "form-ux-advanced:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "form-ux-advanced",
+      "to": "form-ux-advanced:quality",
+      "type": "validated_by"
+    }
+  ]
+}

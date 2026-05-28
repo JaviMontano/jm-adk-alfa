@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "linkedin-optimization",
+  "nodes": [
+    {
+      "id": "linkedin-optimization",
+      "type": "skill",
+      "label": "linkedin-optimization"
+    },
+    {
+      "id": "linkedin-optimization:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "linkedin-optimization:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "linkedin-optimization:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "linkedin-optimization",
+      "to": "linkedin-optimization:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "linkedin-optimization",
+      "to": "linkedin-optimization:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "linkedin-optimization",
+      "to": "linkedin-optimization:quality",
+      "type": "validated_by"
+    }
+  ]
+}

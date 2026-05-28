@@ -1,5 +1,6 @@
 ---
 name: progress-tracker
+version: 1.0.0
 description: >
   Triggers on "seguimiento de avance", "progress report", "status update", "informe de progreso",
   "track milestones", "weekly report", "reporte semanal", "project dashboard", "create progress document".

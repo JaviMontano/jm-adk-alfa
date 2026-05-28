@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "repository-organization",
+  "nodes": [
+    {
+      "id": "repository-organization",
+      "type": "skill",
+      "label": "repository-organization"
+    },
+    {
+      "id": "repository-organization:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "repository-organization:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "repository-organization:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "repository-organization",
+      "to": "repository-organization:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "repository-organization",
+      "to": "repository-organization:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "repository-organization",
+      "to": "repository-organization:quality",
+      "type": "validated_by"
+    }
+  ]
+}

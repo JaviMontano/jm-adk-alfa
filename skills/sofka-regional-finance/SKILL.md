@@ -1,5 +1,6 @@
 ---
 name: sofka-regional-finance
+version: 1.0.0
 author: JM Labs (Javier Montano)
 description: 
   Regional finance and accounting standards skill covering Colombia (NIIF/DIAN/CTC),

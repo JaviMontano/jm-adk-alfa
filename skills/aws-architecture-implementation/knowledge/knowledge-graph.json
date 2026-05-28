@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "aws-architecture-implementation",
+  "nodes": [
+    {
+      "id": "aws-architecture-implementation",
+      "type": "skill",
+      "label": "aws-architecture-implementation"
+    },
+    {
+      "id": "aws-architecture-implementation:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "aws-architecture-implementation:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "aws-architecture-implementation:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "aws-architecture-implementation",
+      "to": "aws-architecture-implementation:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "aws-architecture-implementation",
+      "to": "aws-architecture-implementation:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "aws-architecture-implementation",
+      "to": "aws-architecture-implementation:quality",
+      "type": "validated_by"
+    }
+  ]
+}

@@ -1,5 +1,6 @@
 ---
 name: ux-writing
+version: 1.0.0
 argument-hint: "component-or-flow-name"
 description: 
   UX writing and document accessibility standards for technical deliverables. [EXPLICIT]

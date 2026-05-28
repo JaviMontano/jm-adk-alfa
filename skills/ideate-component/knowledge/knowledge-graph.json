@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "ideate-component",
+  "nodes": [
+    {
+      "id": "ideate-component",
+      "type": "skill",
+      "label": "ideate-component"
+    },
+    {
+      "id": "ideate-component:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "ideate-component:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "ideate-component:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "ideate-component",
+      "to": "ideate-component:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "ideate-component",
+      "to": "ideate-component:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "ideate-component",
+      "to": "ideate-component:quality",
+      "type": "validated_by"
+    }
+  ]
+}

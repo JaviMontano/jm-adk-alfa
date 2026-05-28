@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "pipeline-governance",
+  "nodes": [
+    {
+      "id": "pipeline-governance",
+      "type": "skill",
+      "label": "pipeline-governance"
+    },
+    {
+      "id": "pipeline-governance:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "pipeline-governance:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "pipeline-governance:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "pipeline-governance",
+      "to": "pipeline-governance:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "pipeline-governance",
+      "to": "pipeline-governance:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "pipeline-governance",
+      "to": "pipeline-governance:quality",
+      "type": "validated_by"
+    }
+  ]
+}

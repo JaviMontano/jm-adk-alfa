@@ -1,5 +1,6 @@
 ---
 name: openclaw-isolation
+version: 1.0.0
 description: >
   This skill should be used when the user asks to "isolate OpenClaw in Docker",
   "containerize the agent", "set up network isolation", "sandbox OpenClaw",

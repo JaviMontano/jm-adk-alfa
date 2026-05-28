@@ -1,5 +1,6 @@
 ---
 name: secrets-sanitization
+version: 1.0.0
 description: >
   Use when the user asks to "scan for secrets", "detect credentials", "sanitize sensitive data",
   "check for exposed passwords", "run security gate G0", or mentions secret detection,

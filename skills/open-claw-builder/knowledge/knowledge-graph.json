@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "open-claw-builder",
+  "nodes": [
+    {
+      "id": "open-claw-builder",
+      "type": "skill",
+      "label": "open-claw-builder"
+    },
+    {
+      "id": "open-claw-builder:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "open-claw-builder:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "open-claw-builder:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "open-claw-builder",
+      "to": "open-claw-builder:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "open-claw-builder",
+      "to": "open-claw-builder:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "open-claw-builder",
+      "to": "open-claw-builder:quality",
+      "type": "validated_by"
+    }
+  ]
+}

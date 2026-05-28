@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "constitution-compliance",
+  "nodes": [
+    {
+      "id": "constitution-compliance",
+      "type": "skill",
+      "label": "constitution-compliance"
+    },
+    {
+      "id": "constitution-compliance:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "constitution-compliance:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "constitution-compliance:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "constitution-compliance",
+      "to": "constitution-compliance:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "constitution-compliance",
+      "to": "constitution-compliance:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "constitution-compliance",
+      "to": "constitution-compliance:quality",
+      "type": "validated_by"
+    }
+  ]
+}

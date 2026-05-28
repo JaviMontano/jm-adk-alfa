@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "requirements-engineering",
+  "nodes": [
+    {
+      "id": "requirements-engineering",
+      "type": "skill",
+      "label": "requirements-engineering"
+    },
+    {
+      "id": "requirements-engineering:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "requirements-engineering:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "requirements-engineering:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "requirements-engineering",
+      "to": "requirements-engineering:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "requirements-engineering",
+      "to": "requirements-engineering:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "requirements-engineering",
+      "to": "requirements-engineering:quality",
+      "type": "validated_by"
+    }
+  ]
+}

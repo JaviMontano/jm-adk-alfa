@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "okr-design",
+  "nodes": [
+    {
+      "id": "okr-design",
+      "type": "skill",
+      "label": "okr-design"
+    },
+    {
+      "id": "okr-design:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "okr-design:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "okr-design:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "okr-design",
+      "to": "okr-design:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "okr-design",
+      "to": "okr-design:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "okr-design",
+      "to": "okr-design:quality",
+      "type": "validated_by"
+    }
+  ]
+}

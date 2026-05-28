@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "validate-manifest",
+  "nodes": [
+    {
+      "id": "validate-manifest",
+      "type": "skill",
+      "label": "validate-manifest"
+    },
+    {
+      "id": "validate-manifest:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "validate-manifest:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "validate-manifest:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "validate-manifest",
+      "to": "validate-manifest:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "validate-manifest",
+      "to": "validate-manifest:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "validate-manifest",
+      "to": "validate-manifest:quality",
+      "type": "validated_by"
+    }
+  ]
+}

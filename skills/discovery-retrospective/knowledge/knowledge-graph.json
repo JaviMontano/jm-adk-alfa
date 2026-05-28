@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "discovery-retrospective",
+  "nodes": [
+    {
+      "id": "discovery-retrospective",
+      "type": "skill",
+      "label": "discovery-retrospective"
+    },
+    {
+      "id": "discovery-retrospective:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "discovery-retrospective:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "discovery-retrospective:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "discovery-retrospective",
+      "to": "discovery-retrospective:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "discovery-retrospective",
+      "to": "discovery-retrospective:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "discovery-retrospective",
+      "to": "discovery-retrospective:quality",
+      "type": "validated_by"
+    }
+  ]
+}

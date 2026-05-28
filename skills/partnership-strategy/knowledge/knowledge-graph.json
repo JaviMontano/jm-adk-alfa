@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "partnership-strategy",
+  "nodes": [
+    {
+      "id": "partnership-strategy",
+      "type": "skill",
+      "label": "partnership-strategy"
+    },
+    {
+      "id": "partnership-strategy:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "partnership-strategy:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "partnership-strategy:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "partnership-strategy",
+      "to": "partnership-strategy:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "partnership-strategy",
+      "to": "partnership-strategy:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "partnership-strategy",
+      "to": "partnership-strategy:quality",
+      "type": "validated_by"
+    }
+  ]
+}

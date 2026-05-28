@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "stakeholder-mapping",
+  "nodes": [
+    {
+      "id": "stakeholder-mapping",
+      "type": "skill",
+      "label": "stakeholder-mapping"
+    },
+    {
+      "id": "stakeholder-mapping:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "stakeholder-mapping:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "stakeholder-mapping:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "stakeholder-mapping",
+      "to": "stakeholder-mapping:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "stakeholder-mapping",
+      "to": "stakeholder-mapping:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "stakeholder-mapping",
+      "to": "stakeholder-mapping:quality",
+      "type": "validated_by"
+    }
+  ]
+}

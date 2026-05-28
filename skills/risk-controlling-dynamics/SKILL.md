@@ -1,5 +1,6 @@
 ---
 name: risk-controlling-dynamics
+version: 1.0.0
 argument-hint: "project-or-engagement-name"
 description: 
   This skill should be used when the user asks to "assess risks", "stress-test the plan",

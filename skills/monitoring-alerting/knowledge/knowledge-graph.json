@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "monitoring-alerting",
+  "nodes": [
+    {
+      "id": "monitoring-alerting",
+      "type": "skill",
+      "label": "monitoring-alerting"
+    },
+    {
+      "id": "monitoring-alerting:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "monitoring-alerting:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "monitoring-alerting:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "monitoring-alerting",
+      "to": "monitoring-alerting:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "monitoring-alerting",
+      "to": "monitoring-alerting:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "monitoring-alerting",
+      "to": "monitoring-alerting:quality",
+      "type": "validated_by"
+    }
+  ]
+}

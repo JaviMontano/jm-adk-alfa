@@ -1,0 +1,10 @@
+<!--
+generated-by: scripts/scaffold-skill.py
+generated-for: rest-api-development
+generated-on: 2026-05-28
+overwrite-policy: missing-only unless --force
+-->
+
+# Example Input
+
+Use `rest-api-development` to produce a concise deliverable for a realistic project request.

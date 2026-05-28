@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "ux-writing",
+  "nodes": [
+    {
+      "id": "ux-writing",
+      "type": "skill",
+      "label": "ux-writing"
+    },
+    {
+      "id": "ux-writing:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "ux-writing:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "ux-writing:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "ux-writing",
+      "to": "ux-writing:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "ux-writing",
+      "to": "ux-writing:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "ux-writing",
+      "to": "ux-writing:quality",
+      "type": "validated_by"
+    }
+  ]
+}

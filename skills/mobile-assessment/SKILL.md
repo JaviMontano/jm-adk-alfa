@@ -1,5 +1,6 @@
 ---
 name: mobile-assessment
+version: 1.0.0
 argument-hint: "app-or-platform-name"
 description: 
   This skill should be used when the user asks to "assess the mobile app", "audit app health",

@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "folio-generator",
+  "nodes": [
+    {
+      "id": "folio-generator",
+      "type": "skill",
+      "label": "folio-generator"
+    },
+    {
+      "id": "folio-generator:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "folio-generator:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "folio-generator:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "folio-generator",
+      "to": "folio-generator:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "folio-generator",
+      "to": "folio-generator:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "folio-generator",
+      "to": "folio-generator:quality",
+      "type": "validated_by"
+    }
+  ]
+}

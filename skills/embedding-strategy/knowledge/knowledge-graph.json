@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "embedding-strategy",
+  "nodes": [
+    {
+      "id": "embedding-strategy",
+      "type": "skill",
+      "label": "embedding-strategy"
+    },
+    {
+      "id": "embedding-strategy:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "embedding-strategy:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "embedding-strategy:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "embedding-strategy",
+      "to": "embedding-strategy:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "embedding-strategy",
+      "to": "embedding-strategy:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "embedding-strategy",
+      "to": "embedding-strategy:quality",
+      "type": "validated_by"
+    }
+  ]
+}

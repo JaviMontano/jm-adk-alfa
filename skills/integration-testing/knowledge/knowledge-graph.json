@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "integration-testing",
+  "nodes": [
+    {
+      "id": "integration-testing",
+      "type": "skill",
+      "label": "integration-testing"
+    },
+    {
+      "id": "integration-testing:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "integration-testing:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "integration-testing:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "integration-testing",
+      "to": "integration-testing:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "integration-testing",
+      "to": "integration-testing:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "integration-testing",
+      "to": "integration-testing:quality",
+      "type": "validated_by"
+    }
+  ]
+}

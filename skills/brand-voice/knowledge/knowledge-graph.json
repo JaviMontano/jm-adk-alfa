@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "brand-voice",
+  "nodes": [
+    {
+      "id": "brand-voice",
+      "type": "skill",
+      "label": "brand-voice"
+    },
+    {
+      "id": "brand-voice:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "brand-voice:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "brand-voice:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "brand-voice",
+      "to": "brand-voice:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "brand-voice",
+      "to": "brand-voice:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "brand-voice",
+      "to": "brand-voice:quality",
+      "type": "validated_by"
+    }
+  ]
+}

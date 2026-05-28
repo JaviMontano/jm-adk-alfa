@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "modal-dialog-patterns",
+  "nodes": [
+    {
+      "id": "modal-dialog-patterns",
+      "type": "skill",
+      "label": "modal-dialog-patterns"
+    },
+    {
+      "id": "modal-dialog-patterns:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "modal-dialog-patterns:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "modal-dialog-patterns:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "modal-dialog-patterns",
+      "to": "modal-dialog-patterns:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "modal-dialog-patterns",
+      "to": "modal-dialog-patterns:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "modal-dialog-patterns",
+      "to": "modal-dialog-patterns:quality",
+      "type": "validated_by"
+    }
+  ]
+}

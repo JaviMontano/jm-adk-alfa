@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "accessibility-testing",
+  "nodes": [
+    {
+      "id": "accessibility-testing",
+      "type": "skill",
+      "label": "accessibility-testing"
+    },
+    {
+      "id": "accessibility-testing:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "accessibility-testing:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "accessibility-testing:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "accessibility-testing",
+      "to": "accessibility-testing:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "accessibility-testing",
+      "to": "accessibility-testing:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "accessibility-testing",
+      "to": "accessibility-testing:quality",
+      "type": "validated_by"
+    }
+  ]
+}

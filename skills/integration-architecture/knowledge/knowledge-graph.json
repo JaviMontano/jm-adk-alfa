@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "integration-architecture",
+  "nodes": [
+    {
+      "id": "integration-architecture",
+      "type": "skill",
+      "label": "integration-architecture"
+    },
+    {
+      "id": "integration-architecture:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "integration-architecture:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "integration-architecture:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "integration-architecture",
+      "to": "integration-architecture:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "integration-architecture",
+      "to": "integration-architecture:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "integration-architecture",
+      "to": "integration-architecture:quality",
+      "type": "validated_by"
+    }
+  ]
+}

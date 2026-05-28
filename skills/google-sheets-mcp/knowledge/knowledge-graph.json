@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "google-sheets-mcp",
+  "nodes": [
+    {
+      "id": "google-sheets-mcp",
+      "type": "skill",
+      "label": "google-sheets-mcp"
+    },
+    {
+      "id": "google-sheets-mcp:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "google-sheets-mcp:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "google-sheets-mcp:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "google-sheets-mcp",
+      "to": "google-sheets-mcp:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "google-sheets-mcp",
+      "to": "google-sheets-mcp:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "google-sheets-mcp",
+      "to": "google-sheets-mcp:quality",
+      "type": "validated_by"
+    }
+  ]
+}

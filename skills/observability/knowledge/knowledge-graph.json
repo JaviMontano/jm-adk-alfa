@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "observability",
+  "nodes": [
+    {
+      "id": "observability",
+      "type": "skill",
+      "label": "observability"
+    },
+    {
+      "id": "observability:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "observability:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "observability:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "observability",
+      "to": "observability:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "observability",
+      "to": "observability:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "observability",
+      "to": "observability:quality",
+      "type": "validated_by"
+    }
+  ]
+}

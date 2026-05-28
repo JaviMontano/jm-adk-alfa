@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "fine-tuning-prep",
+  "nodes": [
+    {
+      "id": "fine-tuning-prep",
+      "type": "skill",
+      "label": "fine-tuning-prep"
+    },
+    {
+      "id": "fine-tuning-prep:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "fine-tuning-prep:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "fine-tuning-prep:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "fine-tuning-prep",
+      "to": "fine-tuning-prep:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "fine-tuning-prep",
+      "to": "fine-tuning-prep:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "fine-tuning-prep",
+      "to": "fine-tuning-prep:quality",
+      "type": "validated_by"
+    }
+  ]
+}

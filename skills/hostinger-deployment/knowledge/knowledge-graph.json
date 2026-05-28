@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "hostinger-deployment",
+  "nodes": [
+    {
+      "id": "hostinger-deployment",
+      "type": "skill",
+      "label": "hostinger-deployment"
+    },
+    {
+      "id": "hostinger-deployment:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "hostinger-deployment:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "hostinger-deployment:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "hostinger-deployment",
+      "to": "hostinger-deployment:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "hostinger-deployment",
+      "to": "hostinger-deployment:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "hostinger-deployment",
+      "to": "hostinger-deployment:quality",
+      "type": "validated_by"
+    }
+  ]
+}

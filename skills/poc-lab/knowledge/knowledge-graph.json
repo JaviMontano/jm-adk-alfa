@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "poc-lab",
+  "nodes": [
+    {
+      "id": "poc-lab",
+      "type": "skill",
+      "label": "poc-lab"
+    },
+    {
+      "id": "poc-lab:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "poc-lab:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "poc-lab:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "poc-lab",
+      "to": "poc-lab:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "poc-lab",
+      "to": "poc-lab:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "poc-lab",
+      "to": "poc-lab:quality",
+      "type": "validated_by"
+    }
+  ]
+}

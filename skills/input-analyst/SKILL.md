@@ -1,5 +1,6 @@
 ---
 name: input-analyst
+version: 1.0.0
 description: "Pre-processing layer that analyzes raw user input — detecting surface errors, performing root-cause analysis (5 Whys), impact tracing (7 So-Whats), and intent gap analysis — then reformulates into a precise, actionable prompt."
 argument-hint: "raw user input [--passes 1,2,3,4,5] [--json]"
 model: opus

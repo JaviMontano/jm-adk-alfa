@@ -3,8 +3,9 @@
 # Usage: bash scripts/enrich-skill.sh <skill-name>
 # Batch: for s in skills/*/; do bash scripts/enrich-skill.sh "$(basename $s)"; done
 
-set -e
-cd "$(dirname "$0")/.."
+set -euo pipefail
+ROOT="$(git -C "$(dirname "$0")/.." rev-parse --show-toplevel)"
+cd "$ROOT"
 
 SKILL="$1"
 DIR="skills/$SKILL"

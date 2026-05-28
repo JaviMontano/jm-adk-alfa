@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "meta-skill-deployer",
+  "nodes": [
+    {
+      "id": "meta-skill-deployer",
+      "type": "skill",
+      "label": "meta-skill-deployer"
+    },
+    {
+      "id": "meta-skill-deployer:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "meta-skill-deployer:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "meta-skill-deployer:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "meta-skill-deployer",
+      "to": "meta-skill-deployer:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "meta-skill-deployer",
+      "to": "meta-skill-deployer:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "meta-skill-deployer",
+      "to": "meta-skill-deployer:quality",
+      "type": "validated_by"
+    }
+  ]
+}

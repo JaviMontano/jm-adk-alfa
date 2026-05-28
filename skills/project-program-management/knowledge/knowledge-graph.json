@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "project-program-management",
+  "nodes": [
+    {
+      "id": "project-program-management",
+      "type": "skill",
+      "label": "project-program-management"
+    },
+    {
+      "id": "project-program-management:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "project-program-management:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "project-program-management:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "project-program-management",
+      "to": "project-program-management:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "project-program-management",
+      "to": "project-program-management:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "project-program-management",
+      "to": "project-program-management:quality",
+      "type": "validated_by"
+    }
+  ]
+}

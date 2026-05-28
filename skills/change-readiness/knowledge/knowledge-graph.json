@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "change-readiness",
+  "nodes": [
+    {
+      "id": "change-readiness",
+      "type": "skill",
+      "label": "change-readiness"
+    },
+    {
+      "id": "change-readiness:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "change-readiness:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "change-readiness:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "change-readiness",
+      "to": "change-readiness:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "change-readiness",
+      "to": "change-readiness:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "change-readiness",
+      "to": "change-readiness:quality",
+      "type": "validated_by"
+    }
+  ]
+}

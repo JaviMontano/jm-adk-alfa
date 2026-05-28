@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "flow-mapping",
+  "nodes": [
+    {
+      "id": "flow-mapping",
+      "type": "skill",
+      "label": "flow-mapping"
+    },
+    {
+      "id": "flow-mapping:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "flow-mapping:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "flow-mapping:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "flow-mapping",
+      "to": "flow-mapping:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "flow-mapping",
+      "to": "flow-mapping:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "flow-mapping",
+      "to": "flow-mapping:quality",
+      "type": "validated_by"
+    }
+  ]
+}

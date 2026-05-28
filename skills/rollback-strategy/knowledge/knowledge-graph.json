@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "rollback-strategy",
+  "nodes": [
+    {
+      "id": "rollback-strategy",
+      "type": "skill",
+      "label": "rollback-strategy"
+    },
+    {
+      "id": "rollback-strategy:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "rollback-strategy:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "rollback-strategy:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "rollback-strategy",
+      "to": "rollback-strategy:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "rollback-strategy",
+      "to": "rollback-strategy:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "rollback-strategy",
+      "to": "rollback-strategy:quality",
+      "type": "validated_by"
+    }
+  ]
+}

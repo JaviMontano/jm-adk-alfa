@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "inventory-management",
+  "nodes": [
+    {
+      "id": "inventory-management",
+      "type": "skill",
+      "label": "inventory-management"
+    },
+    {
+      "id": "inventory-management:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "inventory-management:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "inventory-management:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "inventory-management",
+      "to": "inventory-management:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "inventory-management",
+      "to": "inventory-management:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "inventory-management",
+      "to": "inventory-management:quality",
+      "type": "validated_by"
+    }
+  ]
+}

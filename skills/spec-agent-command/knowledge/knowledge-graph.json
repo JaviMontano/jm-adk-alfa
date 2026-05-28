@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "spec-agent-command",
+  "nodes": [
+    {
+      "id": "spec-agent-command",
+      "type": "skill",
+      "label": "spec-agent-command"
+    },
+    {
+      "id": "spec-agent-command:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "spec-agent-command:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "spec-agent-command:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "spec-agent-command",
+      "to": "spec-agent-command:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "spec-agent-command",
+      "to": "spec-agent-command:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "spec-agent-command",
+      "to": "spec-agent-command:quality",
+      "type": "validated_by"
+    }
+  ]
+}

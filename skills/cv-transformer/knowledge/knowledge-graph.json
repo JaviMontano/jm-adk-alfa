@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "cv-transformer",
+  "nodes": [
+    {
+      "id": "cv-transformer",
+      "type": "skill",
+      "label": "cv-transformer"
+    },
+    {
+      "id": "cv-transformer:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "cv-transformer:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "cv-transformer:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "cv-transformer",
+      "to": "cv-transformer:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "cv-transformer",
+      "to": "cv-transformer:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "cv-transformer",
+      "to": "cv-transformer:quality",
+      "type": "validated_by"
+    }
+  ]
+}

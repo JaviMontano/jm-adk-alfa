@@ -1,5 +1,6 @@
 ---
 name: pitch-deck
+version: 1.0.0
 description: >
   Triggers on "pitch deck", "investor deck", "presentation slides", "crear presentacion".
   Generates a self-contained HTML slide deck with JM Labs brand identity following the standard

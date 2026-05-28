@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "fix-common-issues",
+  "nodes": [
+    {
+      "id": "fix-common-issues",
+      "type": "skill",
+      "label": "fix-common-issues"
+    },
+    {
+      "id": "fix-common-issues:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "fix-common-issues:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "fix-common-issues:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "fix-common-issues",
+      "to": "fix-common-issues:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "fix-common-issues",
+      "to": "fix-common-issues:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "fix-common-issues",
+      "to": "fix-common-issues:quality",
+      "type": "validated_by"
+    }
+  ]
+}

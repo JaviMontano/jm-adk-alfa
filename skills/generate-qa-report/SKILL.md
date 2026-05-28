@@ -1,5 +1,6 @@
 ---
 name: generate-qa-report
+version: 1.0.0
 author: JM Labs (Javier Montaño)
 description: >
   Generates a comprehensive QA report in Markdown combining findings from all validation

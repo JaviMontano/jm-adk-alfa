@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "survey-design",
+  "nodes": [
+    {
+      "id": "survey-design",
+      "type": "skill",
+      "label": "survey-design"
+    },
+    {
+      "id": "survey-design:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "survey-design:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "survey-design:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "survey-design",
+      "to": "survey-design:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "survey-design",
+      "to": "survey-design:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "survey-design",
+      "to": "survey-design:quality",
+      "type": "validated_by"
+    }
+  ]
+}

@@ -1,5 +1,6 @@
 ---
 name: creator-moat-skill
+version: 1.0.0
 description: 
   This skill should be used when the user asks to "create a production skill",
   "build a moat-level skill", "make a robust skill", "improve skill quality",

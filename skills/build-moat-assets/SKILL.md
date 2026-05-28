@@ -1,5 +1,6 @@
 ---
 name: build-moat-assets
+version: 1.0.0
 author: JM Labs (Javier Montaño)
 description: 
   Create MOAT directory structures and populate asset files (references/, examples/, prompts/, scripts/, assets/) for plugin skills. [EXPLICIT]

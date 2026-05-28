@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "schema-evolution",
+  "nodes": [
+    {
+      "id": "schema-evolution",
+      "type": "skill",
+      "label": "schema-evolution"
+    },
+    {
+      "id": "schema-evolution:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "schema-evolution:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "schema-evolution:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "schema-evolution",
+      "to": "schema-evolution:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "schema-evolution",
+      "to": "schema-evolution:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "schema-evolution",
+      "to": "schema-evolution:quality",
+      "type": "validated_by"
+    }
+  ]
+}

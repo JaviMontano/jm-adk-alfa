@@ -1,5 +1,6 @@
 ---
 name: openclaw-tool-auth
+version: 1.0.0
 description: >
   This skill should be used when the user asks to "control agent tool access",
   "implement tool authorization", "gate Bash commands", "restrict MCP access",

@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "ai-architecture-audit",
+  "nodes": [
+    {
+      "id": "ai-architecture-audit",
+      "type": "skill",
+      "label": "ai-architecture-audit"
+    },
+    {
+      "id": "ai-architecture-audit:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "ai-architecture-audit:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "ai-architecture-audit:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "ai-architecture-audit",
+      "to": "ai-architecture-audit:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "ai-architecture-audit",
+      "to": "ai-architecture-audit:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "ai-architecture-audit",
+      "to": "ai-architecture-audit:quality",
+      "type": "validated_by"
+    }
+  ]
+}

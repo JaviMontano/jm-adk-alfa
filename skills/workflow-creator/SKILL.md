@@ -1,5 +1,6 @@
 ---
 name: workflow-creator
+version: 1.0.0
 description: 
   Generates complete workflow definitions with steps, DoD, RACI, KPIs, and failure handling for agentic ecosystems. [EXPLICIT]
   Use when the user asks to "create a workflow", "define workflow steps", "build a workflow YAML",

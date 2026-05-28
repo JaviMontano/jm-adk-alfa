@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "lead-generation",
+  "nodes": [
+    {
+      "id": "lead-generation",
+      "type": "skill",
+      "label": "lead-generation"
+    },
+    {
+      "id": "lead-generation:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "lead-generation:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "lead-generation:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "lead-generation",
+      "to": "lead-generation:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "lead-generation",
+      "to": "lead-generation:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "lead-generation",
+      "to": "lead-generation:quality",
+      "type": "validated_by"
+    }
+  ]
+}

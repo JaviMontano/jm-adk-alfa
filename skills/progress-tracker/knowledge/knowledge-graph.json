@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "progress-tracker",
+  "nodes": [
+    {
+      "id": "progress-tracker",
+      "type": "skill",
+      "label": "progress-tracker"
+    },
+    {
+      "id": "progress-tracker:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "progress-tracker:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "progress-tracker:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "progress-tracker",
+      "to": "progress-tracker:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "progress-tracker",
+      "to": "progress-tracker:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "progress-tracker",
+      "to": "progress-tracker:quality",
+      "type": "validated_by"
+    }
+  ]
+}

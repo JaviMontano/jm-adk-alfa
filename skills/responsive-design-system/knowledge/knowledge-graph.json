@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "responsive-design-system",
+  "nodes": [
+    {
+      "id": "responsive-design-system",
+      "type": "skill",
+      "label": "responsive-design-system"
+    },
+    {
+      "id": "responsive-design-system:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "responsive-design-system:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "responsive-design-system:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "responsive-design-system",
+      "to": "responsive-design-system:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "responsive-design-system",
+      "to": "responsive-design-system:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "responsive-design-system",
+      "to": "responsive-design-system:quality",
+      "type": "validated_by"
+    }
+  ]
+}

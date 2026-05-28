@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "iic-checklist-generator",
+  "nodes": [
+    {
+      "id": "iic-checklist-generator",
+      "type": "skill",
+      "label": "iic-checklist-generator"
+    },
+    {
+      "id": "iic-checklist-generator:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "iic-checklist-generator:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "iic-checklist-generator:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "iic-checklist-generator",
+      "to": "iic-checklist-generator:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "iic-checklist-generator",
+      "to": "iic-checklist-generator:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "iic-checklist-generator",
+      "to": "iic-checklist-generator:quality",
+      "type": "validated_by"
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "feasibility-validation",
+  "nodes": [
+    {
+      "id": "feasibility-validation",
+      "type": "skill",
+      "label": "feasibility-validation"
+    },
+    {
+      "id": "feasibility-validation:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "feasibility-validation:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "feasibility-validation:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "feasibility-validation",
+      "to": "feasibility-validation:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "feasibility-validation",
+      "to": "feasibility-validation:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "feasibility-validation",
+      "to": "feasibility-validation:quality",
+      "type": "validated_by"
+    }
+  ]
+}

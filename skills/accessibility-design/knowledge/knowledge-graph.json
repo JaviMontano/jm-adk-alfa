@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "accessibility-design",
+  "nodes": [
+    {
+      "id": "accessibility-design",
+      "type": "skill",
+      "label": "accessibility-design"
+    },
+    {
+      "id": "accessibility-design:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "accessibility-design:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "accessibility-design:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "accessibility-design",
+      "to": "accessibility-design:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "accessibility-design",
+      "to": "accessibility-design:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "accessibility-design",
+      "to": "accessibility-design:quality",
+      "type": "validated_by"
+    }
+  ]
+}

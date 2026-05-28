@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "ai-architecture-implementation",
+  "nodes": [
+    {
+      "id": "ai-architecture-implementation",
+      "type": "skill",
+      "label": "ai-architecture-implementation"
+    },
+    {
+      "id": "ai-architecture-implementation:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "ai-architecture-implementation:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "ai-architecture-implementation:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "ai-architecture-implementation",
+      "to": "ai-architecture-implementation:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "ai-architecture-implementation",
+      "to": "ai-architecture-implementation:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "ai-architecture-implementation",
+      "to": "ai-architecture-implementation:quality",
+      "type": "validated_by"
+    }
+  ]
+}

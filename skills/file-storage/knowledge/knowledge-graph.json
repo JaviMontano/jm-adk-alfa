@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "file-storage",
+  "nodes": [
+    {
+      "id": "file-storage",
+      "type": "skill",
+      "label": "file-storage"
+    },
+    {
+      "id": "file-storage:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "file-storage:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "file-storage:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "file-storage",
+      "to": "file-storage:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "file-storage",
+      "to": "file-storage:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "file-storage",
+      "to": "file-storage:quality",
+      "type": "validated_by"
+    }
+  ]
+}

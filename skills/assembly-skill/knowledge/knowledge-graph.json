@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "assembly-skill",
+  "nodes": [
+    {
+      "id": "assembly-skill",
+      "type": "skill",
+      "label": "assembly-skill"
+    },
+    {
+      "id": "assembly-skill:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "assembly-skill:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "assembly-skill:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "assembly-skill",
+      "to": "assembly-skill:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "assembly-skill",
+      "to": "assembly-skill:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "assembly-skill",
+      "to": "assembly-skill:quality",
+      "type": "validated_by"
+    }
+  ]
+}

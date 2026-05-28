@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "google-workspace-apis",
+  "nodes": [
+    {
+      "id": "google-workspace-apis",
+      "type": "skill",
+      "label": "google-workspace-apis"
+    },
+    {
+      "id": "google-workspace-apis:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "google-workspace-apis:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "google-workspace-apis:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "google-workspace-apis",
+      "to": "google-workspace-apis:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "google-workspace-apis",
+      "to": "google-workspace-apis:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "google-workspace-apis",
+      "to": "google-workspace-apis:quality",
+      "type": "validated_by"
+    }
+  ]
+}

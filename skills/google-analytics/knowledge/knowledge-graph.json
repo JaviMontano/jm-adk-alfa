@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "google-analytics",
+  "nodes": [
+    {
+      "id": "google-analytics",
+      "type": "skill",
+      "label": "google-analytics"
+    },
+    {
+      "id": "google-analytics:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "google-analytics:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "google-analytics:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "google-analytics",
+      "to": "google-analytics:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "google-analytics",
+      "to": "google-analytics:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "google-analytics",
+      "to": "google-analytics:quality",
+      "type": "validated_by"
+    }
+  ]
+}

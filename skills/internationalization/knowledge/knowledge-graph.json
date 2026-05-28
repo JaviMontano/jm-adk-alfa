@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "internationalization",
+  "nodes": [
+    {
+      "id": "internationalization",
+      "type": "skill",
+      "label": "internationalization"
+    },
+    {
+      "id": "internationalization:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "internationalization:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "internationalization:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "internationalization",
+      "to": "internationalization:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "internationalization",
+      "to": "internationalization:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "internationalization",
+      "to": "internationalization:quality",
+      "type": "validated_by"
+    }
+  ]
+}

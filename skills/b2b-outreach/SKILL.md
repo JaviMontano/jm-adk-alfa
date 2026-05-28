@@ -1,5 +1,6 @@
 ---
 name: b2b-outreach
+version: 1.0.0
 description: >
   Triggers on "outreach sequence", "cold email", "B2B outreach", "prospecting messages",
   "contact X company", "write outreach for", "sales sequence", "follow-up cadence".

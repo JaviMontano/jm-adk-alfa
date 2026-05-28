@@ -1,5 +1,6 @@
 ---
 name: mermaid-diagramming
+version: 1.0.0
 argument-hint: "diagram-type [source-file]"
 description: 
   This skill should be used when the user asks to "create diagrams", "generate Mermaid",

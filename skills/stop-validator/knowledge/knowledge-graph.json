@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "stop-validator",
+  "nodes": [
+    {
+      "id": "stop-validator",
+      "type": "skill",
+      "label": "stop-validator"
+    },
+    {
+      "id": "stop-validator:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "stop-validator:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "stop-validator:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "stop-validator",
+      "to": "stop-validator:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "stop-validator",
+      "to": "stop-validator:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "stop-validator",
+      "to": "stop-validator:quality",
+      "type": "validated_by"
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "plan-moat-strategy",
+  "nodes": [
+    {
+      "id": "plan-moat-strategy",
+      "type": "skill",
+      "label": "plan-moat-strategy"
+    },
+    {
+      "id": "plan-moat-strategy:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "plan-moat-strategy:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "plan-moat-strategy:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "plan-moat-strategy",
+      "to": "plan-moat-strategy:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "plan-moat-strategy",
+      "to": "plan-moat-strategy:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "plan-moat-strategy",
+      "to": "plan-moat-strategy:quality",
+      "type": "validated_by"
+    }
+  ]
+}

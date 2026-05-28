@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "tasklog-management",
+  "nodes": [
+    {
+      "id": "tasklog-management",
+      "type": "skill",
+      "label": "tasklog-management"
+    },
+    {
+      "id": "tasklog-management:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "tasklog-management:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "tasklog-management:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "tasklog-management",
+      "to": "tasklog-management:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "tasklog-management",
+      "to": "tasklog-management:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "tasklog-management",
+      "to": "tasklog-management:quality",
+      "type": "validated_by"
+    }
+  ]
+}

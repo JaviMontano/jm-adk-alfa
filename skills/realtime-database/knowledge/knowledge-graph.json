@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "realtime-database",
+  "nodes": [
+    {
+      "id": "realtime-database",
+      "type": "skill",
+      "label": "realtime-database"
+    },
+    {
+      "id": "realtime-database:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "realtime-database:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "realtime-database:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "realtime-database",
+      "to": "realtime-database:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "realtime-database",
+      "to": "realtime-database:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "realtime-database",
+      "to": "realtime-database:quality",
+      "type": "validated_by"
+    }
+  ]
+}

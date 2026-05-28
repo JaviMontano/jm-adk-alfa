@@ -1,5 +1,6 @@
 ---
 name: sofka-bpmn-process-analysis
+version: 1.0.0
 author: JM Labs (Javier Montano)
 description: 
   BPMN 2.0 process modeling and analysis skill for AS-IS/TO-BE business process

@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "output-engineering",
+  "nodes": [
+    {
+      "id": "output-engineering",
+      "type": "skill",
+      "label": "output-engineering"
+    },
+    {
+      "id": "output-engineering:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "output-engineering:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "output-engineering:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "output-engineering",
+      "to": "output-engineering:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "output-engineering",
+      "to": "output-engineering:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "output-engineering",
+      "to": "output-engineering:quality",
+      "type": "validated_by"
+    }
+  ]
+}

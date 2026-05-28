@@ -1,5 +1,6 @@
 ---
 name: ai-testing-strategy
+version: 1.0.0
 description: >
   Comprehensive testing strategy for AI systems — testing scope matrix (6 types x 6 layers), model prediction testing,
   data quality testing, compliance and fairness testing, integration approaches, and CI/CD test automation. This skill

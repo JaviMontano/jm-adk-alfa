@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "cloud-functions",
+  "nodes": [
+    {
+      "id": "cloud-functions",
+      "type": "skill",
+      "label": "cloud-functions"
+    },
+    {
+      "id": "cloud-functions:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "cloud-functions:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "cloud-functions:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "cloud-functions",
+      "to": "cloud-functions:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "cloud-functions",
+      "to": "cloud-functions:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "cloud-functions",
+      "to": "cloud-functions:quality",
+      "type": "validated_by"
+    }
+  ]
+}

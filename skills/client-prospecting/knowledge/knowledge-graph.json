@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "client-prospecting",
+  "nodes": [
+    {
+      "id": "client-prospecting",
+      "type": "skill",
+      "label": "client-prospecting"
+    },
+    {
+      "id": "client-prospecting:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "client-prospecting:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "client-prospecting:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "client-prospecting",
+      "to": "client-prospecting:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "client-prospecting",
+      "to": "client-prospecting:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "client-prospecting",
+      "to": "client-prospecting:quality",
+      "type": "validated_by"
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "naming-and-slugging",
+  "nodes": [
+    {
+      "id": "naming-and-slugging",
+      "type": "skill",
+      "label": "naming-and-slugging"
+    },
+    {
+      "id": "naming-and-slugging:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "naming-and-slugging:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "naming-and-slugging:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "naming-and-slugging",
+      "to": "naming-and-slugging:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "naming-and-slugging",
+      "to": "naming-and-slugging:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "naming-and-slugging",
+      "to": "naming-and-slugging:quality",
+      "type": "validated_by"
+    }
+  ]
+}

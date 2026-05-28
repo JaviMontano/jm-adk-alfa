@@ -1,5 +1,6 @@
 ---
 name: validate-hooks
+version: 1.0.0
 description: "THE CRITICAL SKILL -- validates hooks.json structure, event names, and type-event compatibility. Detects prompt/agent hooks on events lacking ToolUseContext. Triggers: validate hooks, check hooks.json, hooks audit, hook safety check."
 author: JM Labs (Javier Montaño)
 allowed-tools:

@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "pre-compact-context",
+  "nodes": [
+    {
+      "id": "pre-compact-context",
+      "type": "skill",
+      "label": "pre-compact-context"
+    },
+    {
+      "id": "pre-compact-context:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "pre-compact-context:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "pre-compact-context:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "pre-compact-context",
+      "to": "pre-compact-context:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "pre-compact-context",
+      "to": "pre-compact-context:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "pre-compact-context",
+      "to": "pre-compact-context:quality",
+      "type": "validated_by"
+    }
+  ]
+}

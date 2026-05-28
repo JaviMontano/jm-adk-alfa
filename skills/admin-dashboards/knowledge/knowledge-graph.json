@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "admin-dashboards",
+  "nodes": [
+    {
+      "id": "admin-dashboards",
+      "type": "skill",
+      "label": "admin-dashboards"
+    },
+    {
+      "id": "admin-dashboards:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "admin-dashboards:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "admin-dashboards:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "admin-dashboards",
+      "to": "admin-dashboards:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "admin-dashboards",
+      "to": "admin-dashboards:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "admin-dashboards",
+      "to": "admin-dashboards:quality",
+      "type": "validated_by"
+    }
+  ]
+}

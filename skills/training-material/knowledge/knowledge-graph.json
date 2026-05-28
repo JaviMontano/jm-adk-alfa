@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "training-material",
+  "nodes": [
+    {
+      "id": "training-material",
+      "type": "skill",
+      "label": "training-material"
+    },
+    {
+      "id": "training-material:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "training-material:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "training-material:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "training-material",
+      "to": "training-material:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "training-material",
+      "to": "training-material:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "training-material",
+      "to": "training-material:quality",
+      "type": "validated_by"
+    }
+  ]
+}

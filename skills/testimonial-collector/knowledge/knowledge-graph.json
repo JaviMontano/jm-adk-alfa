@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "testimonial-collector",
+  "nodes": [
+    {
+      "id": "testimonial-collector",
+      "type": "skill",
+      "label": "testimonial-collector"
+    },
+    {
+      "id": "testimonial-collector:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "testimonial-collector:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "testimonial-collector:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "testimonial-collector",
+      "to": "testimonial-collector:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "testimonial-collector",
+      "to": "testimonial-collector:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "testimonial-collector",
+      "to": "testimonial-collector:quality",
+      "type": "validated_by"
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "change-management-enterprise",
+  "nodes": [
+    {
+      "id": "change-management-enterprise",
+      "type": "skill",
+      "label": "change-management-enterprise"
+    },
+    {
+      "id": "change-management-enterprise:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "change-management-enterprise:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "change-management-enterprise:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "change-management-enterprise",
+      "to": "change-management-enterprise:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "change-management-enterprise",
+      "to": "change-management-enterprise:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "change-management-enterprise",
+      "to": "change-management-enterprise:quality",
+      "type": "validated_by"
+    }
+  ]
+}

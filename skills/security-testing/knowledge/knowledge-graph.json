@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "security-testing",
+  "nodes": [
+    {
+      "id": "security-testing",
+      "type": "skill",
+      "label": "security-testing"
+    },
+    {
+      "id": "security-testing:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "security-testing:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "security-testing:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "security-testing",
+      "to": "security-testing:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "security-testing",
+      "to": "security-testing:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "security-testing",
+      "to": "security-testing:quality",
+      "type": "validated_by"
+    }
+  ]
+}

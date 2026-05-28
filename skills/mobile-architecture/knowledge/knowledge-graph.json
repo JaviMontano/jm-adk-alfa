@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "mobile-architecture",
+  "nodes": [
+    {
+      "id": "mobile-architecture",
+      "type": "skill",
+      "label": "mobile-architecture"
+    },
+    {
+      "id": "mobile-architecture:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "mobile-architecture:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "mobile-architecture:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "mobile-architecture",
+      "to": "mobile-architecture:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "mobile-architecture",
+      "to": "mobile-architecture:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "mobile-architecture",
+      "to": "mobile-architecture:quality",
+      "type": "validated_by"
+    }
+  ]
+}

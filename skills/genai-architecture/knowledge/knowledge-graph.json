@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "genai-architecture",
+  "nodes": [
+    {
+      "id": "genai-architecture",
+      "type": "skill",
+      "label": "genai-architecture"
+    },
+    {
+      "id": "genai-architecture:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "genai-architecture:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "genai-architecture:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "genai-architecture",
+      "to": "genai-architecture:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "genai-architecture",
+      "to": "genai-architecture:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "genai-architecture",
+      "to": "genai-architecture:quality",
+      "type": "validated_by"
+    }
+  ]
+}

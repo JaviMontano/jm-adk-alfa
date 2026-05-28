@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "data-flow-architecture",
+  "nodes": [
+    {
+      "id": "data-flow-architecture",
+      "type": "skill",
+      "label": "data-flow-architecture"
+    },
+    {
+      "id": "data-flow-architecture:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "data-flow-architecture:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "data-flow-architecture:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "data-flow-architecture",
+      "to": "data-flow-architecture:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "data-flow-architecture",
+      "to": "data-flow-architecture:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "data-flow-architecture",
+      "to": "data-flow-architecture:quality",
+      "type": "validated_by"
+    }
+  ]
+}

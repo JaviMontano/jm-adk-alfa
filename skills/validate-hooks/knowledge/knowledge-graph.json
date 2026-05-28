@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "validate-hooks",
+  "nodes": [
+    {
+      "id": "validate-hooks",
+      "type": "skill",
+      "label": "validate-hooks"
+    },
+    {
+      "id": "validate-hooks:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "validate-hooks:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "validate-hooks:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "validate-hooks",
+      "to": "validate-hooks:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "validate-hooks",
+      "to": "validate-hooks:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "validate-hooks",
+      "to": "validate-hooks:quality",
+      "type": "validated_by"
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "rbac-patterns",
+  "nodes": [
+    {
+      "id": "rbac-patterns",
+      "type": "skill",
+      "label": "rbac-patterns"
+    },
+    {
+      "id": "rbac-patterns:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "rbac-patterns:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "rbac-patterns:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "rbac-patterns",
+      "to": "rbac-patterns:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "rbac-patterns",
+      "to": "rbac-patterns:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "rbac-patterns",
+      "to": "rbac-patterns:quality",
+      "type": "validated_by"
+    }
+  ]
+}

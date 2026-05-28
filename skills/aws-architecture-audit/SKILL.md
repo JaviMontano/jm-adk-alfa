@@ -1,5 +1,6 @@
 ---
 name: aws-architecture-audit
+version: 1.0.0
 description: >
   Audits AWS AI/GenAI architectures against the Well-Architected GenAI Lens — operational excellence, security,
   reliability, performance, cost optimization, and sustainability. This skill should be used when the user asks to

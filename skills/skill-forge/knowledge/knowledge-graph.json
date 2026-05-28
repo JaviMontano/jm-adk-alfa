@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "skill-forge",
+  "nodes": [
+    {
+      "id": "skill-forge",
+      "type": "skill",
+      "label": "skill-forge"
+    },
+    {
+      "id": "skill-forge:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "skill-forge:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "skill-forge:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "skill-forge",
+      "to": "skill-forge:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "skill-forge",
+      "to": "skill-forge:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "skill-forge",
+      "to": "skill-forge:quality",
+      "type": "validated_by"
+    }
+  ]
+}

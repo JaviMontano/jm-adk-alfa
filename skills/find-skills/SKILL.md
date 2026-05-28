@@ -1,5 +1,6 @@
 ---
 name: find-skills
+version: 1.0.0
 author: JM Labs (Javier Montaño)
 description: >
   Discover, evaluate, and install agent skills from the open ecosystem (skills.sh, GitHub, local plugins).

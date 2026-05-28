@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "penetration-testing-guide",
+  "nodes": [
+    {
+      "id": "penetration-testing-guide",
+      "type": "skill",
+      "label": "penetration-testing-guide"
+    },
+    {
+      "id": "penetration-testing-guide:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "penetration-testing-guide:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "penetration-testing-guide:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "penetration-testing-guide",
+      "to": "penetration-testing-guide:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "penetration-testing-guide",
+      "to": "penetration-testing-guide:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "penetration-testing-guide",
+      "to": "penetration-testing-guide:quality",
+      "type": "validated_by"
+    }
+  ]
+}

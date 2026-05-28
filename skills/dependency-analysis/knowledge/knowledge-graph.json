@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "dependency-analysis",
+  "nodes": [
+    {
+      "id": "dependency-analysis",
+      "type": "skill",
+      "label": "dependency-analysis"
+    },
+    {
+      "id": "dependency-analysis:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "dependency-analysis:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "dependency-analysis:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "dependency-analysis",
+      "to": "dependency-analysis:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "dependency-analysis",
+      "to": "dependency-analysis:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "dependency-analysis",
+      "to": "dependency-analysis:quality",
+      "type": "validated_by"
+    }
+  ]
+}

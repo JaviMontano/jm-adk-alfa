@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "data-storytelling",
+  "nodes": [
+    {
+      "id": "data-storytelling",
+      "type": "skill",
+      "label": "data-storytelling"
+    },
+    {
+      "id": "data-storytelling:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "data-storytelling:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "data-storytelling:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "data-storytelling",
+      "to": "data-storytelling:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "data-storytelling",
+      "to": "data-storytelling:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "data-storytelling",
+      "to": "data-storytelling:quality",
+      "type": "validated_by"
+    }
+  ]
+}

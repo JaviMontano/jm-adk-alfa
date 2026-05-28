@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "push-notifications",
+  "nodes": [
+    {
+      "id": "push-notifications",
+      "type": "skill",
+      "label": "push-notifications"
+    },
+    {
+      "id": "push-notifications:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "push-notifications:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "push-notifications:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "push-notifications",
+      "to": "push-notifications:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "push-notifications",
+      "to": "push-notifications:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "push-notifications",
+      "to": "push-notifications:quality",
+      "type": "validated_by"
+    }
+  ]
+}

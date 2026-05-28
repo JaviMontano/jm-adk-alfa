@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "firebase-deployment",
+  "nodes": [
+    {
+      "id": "firebase-deployment",
+      "type": "skill",
+      "label": "firebase-deployment"
+    },
+    {
+      "id": "firebase-deployment:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "firebase-deployment:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "firebase-deployment:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "firebase-deployment",
+      "to": "firebase-deployment:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "firebase-deployment",
+      "to": "firebase-deployment:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "firebase-deployment",
+      "to": "firebase-deployment:quality",
+      "type": "validated_by"
+    }
+  ]
+}

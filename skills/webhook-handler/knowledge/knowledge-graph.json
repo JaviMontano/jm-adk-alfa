@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "webhook-handler",
+  "nodes": [
+    {
+      "id": "webhook-handler",
+      "type": "skill",
+      "label": "webhook-handler"
+    },
+    {
+      "id": "webhook-handler:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "webhook-handler:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "webhook-handler:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "webhook-handler",
+      "to": "webhook-handler:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "webhook-handler",
+      "to": "webhook-handler:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "webhook-handler",
+      "to": "webhook-handler:quality",
+      "type": "validated_by"
+    }
+  ]
+}

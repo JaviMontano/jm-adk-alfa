@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "color-theory",
+  "nodes": [
+    {
+      "id": "color-theory",
+      "type": "skill",
+      "label": "color-theory"
+    },
+    {
+      "id": "color-theory:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "color-theory:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "color-theory:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "color-theory",
+      "to": "color-theory:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "color-theory",
+      "to": "color-theory:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "color-theory",
+      "to": "color-theory:quality",
+      "type": "validated_by"
+    }
+  ]
+}

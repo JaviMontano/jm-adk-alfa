@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "data-visualization",
+  "nodes": [
+    {
+      "id": "data-visualization",
+      "type": "skill",
+      "label": "data-visualization"
+    },
+    {
+      "id": "data-visualization:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "data-visualization:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "data-visualization:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "data-visualization",
+      "to": "data-visualization:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "data-visualization",
+      "to": "data-visualization:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "data-visualization",
+      "to": "data-visualization:quality",
+      "type": "validated_by"
+    }
+  ]
+}

@@ -1,5 +1,6 @@
 ---
 name: executive-summary
+version: 1.0.0
 description: >
   Triggers on "executive summary", "resumen ejecutivo", "write executive brief", "summarize for C-level".
   Distills complex information into 1-page executive summaries with key metrics, decision points,

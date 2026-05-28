@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "input-analyst",
+  "nodes": [
+    {
+      "id": "input-analyst",
+      "type": "skill",
+      "label": "input-analyst"
+    },
+    {
+      "id": "input-analyst:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "input-analyst:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "input-analyst:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "input-analyst",
+      "to": "input-analyst:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "input-analyst",
+      "to": "input-analyst:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "input-analyst",
+      "to": "input-analyst:quality",
+      "type": "validated_by"
+    }
+  ]
+}

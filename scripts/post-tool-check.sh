@@ -5,8 +5,8 @@
 # Filters read-only tools (Read, Glob, Grep, etc.) which produce 80%+ of calls and bury signal.
 # ~50ms overhead per call. Acceptable against 100ms–10s per tool call.
 
-SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
-PROJECT_ROOT="$(dirname "$SCRIPT_DIR")"
+PROJECT_ROOT="$(git -C "$(dirname "$0")/.." rev-parse --show-toplevel)"
+SCRIPT_DIR="$PROJECT_ROOT/scripts"
 
 [ ! -f "$PROJECT_ROOT/workspace/.workspace-registry.json" ] && exit 0
 

@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "funnel-design",
+  "nodes": [
+    {
+      "id": "funnel-design",
+      "type": "skill",
+      "label": "funnel-design"
+    },
+    {
+      "id": "funnel-design:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "funnel-design:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "funnel-design:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "funnel-design",
+      "to": "funnel-design:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "funnel-design",
+      "to": "funnel-design:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "funnel-design",
+      "to": "funnel-design:quality",
+      "type": "validated_by"
+    }
+  ]
+}

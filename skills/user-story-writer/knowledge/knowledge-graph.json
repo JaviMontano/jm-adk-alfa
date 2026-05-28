@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "user-story-writer",
+  "nodes": [
+    {
+      "id": "user-story-writer",
+      "type": "skill",
+      "label": "user-story-writer"
+    },
+    {
+      "id": "user-story-writer:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "user-story-writer:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "user-story-writer:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "user-story-writer",
+      "to": "user-story-writer:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "user-story-writer",
+      "to": "user-story-writer:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "user-story-writer",
+      "to": "user-story-writer:quality",
+      "type": "validated_by"
+    }
+  ]
+}

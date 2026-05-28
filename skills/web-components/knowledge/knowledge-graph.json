@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "web-components",
+  "nodes": [
+    {
+      "id": "web-components",
+      "type": "skill",
+      "label": "web-components"
+    },
+    {
+      "id": "web-components:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "web-components:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "web-components:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "web-components",
+      "to": "web-components:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "web-components",
+      "to": "web-components:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "web-components",
+      "to": "web-components:quality",
+      "type": "validated_by"
+    }
+  ]
+}

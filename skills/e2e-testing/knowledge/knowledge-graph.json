@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "e2e-testing",
+  "nodes": [
+    {
+      "id": "e2e-testing",
+      "type": "skill",
+      "label": "e2e-testing"
+    },
+    {
+      "id": "e2e-testing:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "e2e-testing:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "e2e-testing:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "e2e-testing",
+      "to": "e2e-testing:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "e2e-testing",
+      "to": "e2e-testing:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "e2e-testing",
+      "to": "e2e-testing:quality",
+      "type": "validated_by"
+    }
+  ]
+}

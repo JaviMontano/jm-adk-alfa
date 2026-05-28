@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "capacity-planning",
+  "nodes": [
+    {
+      "id": "capacity-planning",
+      "type": "skill",
+      "label": "capacity-planning"
+    },
+    {
+      "id": "capacity-planning:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "capacity-planning:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "capacity-planning:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "capacity-planning",
+      "to": "capacity-planning:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "capacity-planning",
+      "to": "capacity-planning:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "capacity-planning",
+      "to": "capacity-planning:quality",
+      "type": "validated_by"
+    }
+  ]
+}

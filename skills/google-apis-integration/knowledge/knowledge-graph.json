@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "google-apis-integration",
+  "nodes": [
+    {
+      "id": "google-apis-integration",
+      "type": "skill",
+      "label": "google-apis-integration"
+    },
+    {
+      "id": "google-apis-integration:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "google-apis-integration:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "google-apis-integration:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "google-apis-integration",
+      "to": "google-apis-integration:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "google-apis-integration",
+      "to": "google-apis-integration:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "google-apis-integration",
+      "to": "google-apis-integration:quality",
+      "type": "validated_by"
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "rag-patterns",
+  "nodes": [
+    {
+      "id": "rag-patterns",
+      "type": "skill",
+      "label": "rag-patterns"
+    },
+    {
+      "id": "rag-patterns:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "rag-patterns:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "rag-patterns:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "rag-patterns",
+      "to": "rag-patterns:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "rag-patterns",
+      "to": "rag-patterns:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "rag-patterns",
+      "to": "rag-patterns:quality",
+      "type": "validated_by"
+    }
+  ]
+}

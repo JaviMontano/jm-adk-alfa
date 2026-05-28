@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "etl-patterns",
+  "nodes": [
+    {
+      "id": "etl-patterns",
+      "type": "skill",
+      "label": "etl-patterns"
+    },
+    {
+      "id": "etl-patterns:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "etl-patterns:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "etl-patterns:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "etl-patterns",
+      "to": "etl-patterns:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "etl-patterns",
+      "to": "etl-patterns:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "etl-patterns",
+      "to": "etl-patterns:quality",
+      "type": "validated_by"
+    }
+  ]
+}

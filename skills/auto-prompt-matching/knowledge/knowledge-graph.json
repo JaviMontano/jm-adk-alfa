@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "auto-prompt-matching",
+  "nodes": [
+    {
+      "id": "auto-prompt-matching",
+      "type": "skill",
+      "label": "auto-prompt-matching"
+    },
+    {
+      "id": "auto-prompt-matching:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "auto-prompt-matching:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "auto-prompt-matching:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "auto-prompt-matching",
+      "to": "auto-prompt-matching:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "auto-prompt-matching",
+      "to": "auto-prompt-matching:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "auto-prompt-matching",
+      "to": "auto-prompt-matching:quality",
+      "type": "validated_by"
+    }
+  ]
+}

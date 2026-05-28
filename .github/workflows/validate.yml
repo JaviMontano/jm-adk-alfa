@@ -7,8 +7,8 @@ on:
     branches: [main]
 
 jobs:
-  validate-structure:
-    name: Validate Plugin Structure
+  validate:
+    name: Quality Gates
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -18,182 +18,68 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Validate plugin.json
-        run: python3 -m json.tool .claude-plugin/plugin.json > /dev/null
-
-      - name: Validate skills_index.json
-        run: python3 -m json.tool .agent/skills_index.json > /dev/null
-
-      - name: Validate hooks.json
-        run: python3 -m json.tool hooks/hooks.json > /dev/null
-
-  count-components:
-    name: Verify Component Counts
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Count agents
+      - name: Validate tracked JSON
         run: |
-          COUNT=$(find agents -name "*.md" -type f | wc -l | tr -d ' ')
-          echo "Agents: $COUNT"
-          if [ "$COUNT" -lt 100 ]; then
-            echo "::error::Expected >= 100 agents, found $COUNT"
-            exit 1
-          fi
-
-      - name: Count skills
-        run: |
-          COUNT=$(find skills -name "SKILL.md" -type f | wc -l | tr -d ' ')
-          echo "Skills: $COUNT"
-          if [ "$COUNT" -lt 100 ]; then
-            echo "::error::Expected >= 100 skills, found $COUNT"
-            exit 1
-          fi
-
-      - name: Count commands
-        run: |
-          COUNT=$(find commands -name "*.md" -type f | wc -l | tr -d ' ')
-          echo "Commands: $COUNT"
-          if [ "$COUNT" -lt 100 ]; then
-            echo "::error::Expected >= 100 commands, found $COUNT"
-            exit 1
-          fi
-
-      - name: Count prompts
-        run: |
-          COUNT=$(find prompts -name "*.md" -type f -not -path "*/\.catalog/*" | wc -l | tr -d ' ')
-          echo "Prompts: $COUNT"
-          if [ "$COUNT" -lt 100 ]; then
-            echo "::error::Expected >= 100 prompts, found $COUNT"
-            exit 1
-          fi
-
-  validate-frontmatter:
-    name: Validate Skill Frontmatter
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.12'
-
-      - name: Check skill frontmatter
-        run: |
-          ERRORS=0
-          for skill in skills/*/SKILL.md; do
-            SKILL_NAME=$(basename $(dirname "$skill"))
-
-            # Check frontmatter exists
-            if ! head -1 "$skill" | grep -q "^---"; then
-              echo "::error file=$skill::Missing frontmatter"
-              ERRORS=$((ERRORS + 1))
-              continue
-            fi
-
-            # Check required fields
-            FRONTMATTER=$(sed -n '/^---$/,/^---$/p' "$skill")
-            for field in name description version; do
-              if ! echo "$FRONTMATTER" | grep -q "^${field}:"; then
-                echo "::error file=$skill::Missing required field: $field"
-                ERRORS=$((ERRORS + 1))
-              fi
-            done
+          set -euo pipefail
+          git ls-files '*.json' | while read -r file; do
+            python3 -m json.tool "$file" >/dev/null
           done
 
-          if [ $ERRORS -gt 0 ]; then
-            echo "::error::$ERRORS frontmatter errors found"
+      - name: Validate skill scaffolds
+        run: python3 scripts/validate-skills.py --strict
+
+      - name: Verify component counts and docs
+        run: python3 scripts/count-components.py --check-docs
+
+      - name: Check repository boundaries
+        run: bash scripts/check-repo-boundaries.sh
+
+      - name: Scaffold dry-run smoke test
+        run: |
+          python3 scripts/scaffold-skill.py \
+            --name scaffold-smoke-test \
+            --description "Smoke test skill" \
+            --triggers smoke-test \
+            --allowed-tools Read,Grep \
+            --owner "JM Labs" \
+            --version 0.1.0 \
+            --dry-run
+
+      - name: ShellCheck when available
+        run: |
+          set -euo pipefail
+          if command -v shellcheck >/dev/null 2>&1; then
+            shellcheck -S error scripts/*.sh scripts/adapters/*.sh
+          else
+            echo "shellcheck not installed; skipping shell lint"
+          fi
+
+      - name: Verify generated index freshness
+        run: |
+          set -euo pipefail
+          bash scripts/generate-pristino-index.sh
+          if ! git diff --quiet -- PRISTINO-INDEX.md; then
+            echo "::error::PRISTINO-INDEX.md is stale. Run bash scripts/generate-pristino-index.sh"
+            git diff -- PRISTINO-INDEX.md
             exit 1
           fi
-          echo "All skills have valid frontmatter"
 
-      - name: Check agent frontmatter
+      - name: Tracked secret pattern scan
         run: |
-          ERRORS=0
-          for agent in agents/*.md; do
-            if ! head -1 "$agent" | grep -q "^---"; then
-              echo "::error file=$agent::Missing frontmatter"
-              ERRORS=$((ERRORS + 1))
-              continue
+          set -euo pipefail
+          PATTERNS='(AKIA[0-9A-Z]{16}|AIza[0-9A-Za-z_-]{35}|ghp_[0-9A-Za-z]{36}|sk-[0-9A-Za-z]{48}|-----BEGIN (RSA |EC )?PRIVATE KEY)'
+          found=0
+          while IFS= read -r -d '' file; do
+            [ -f "$file" ] || continue
+            case "$file" in
+              *.env|*.env.*|*/.env|*/.env.*) continue ;;
+            esac
+            if grep -Iq . "$file" && grep -nE "$PATTERNS" "$file"; then
+              found=1
             fi
-
-            FRONTMATTER=$(sed -n '/^---$/,/^---$/p' "$agent")
-            for field in name description; do
-              if ! echo "$FRONTMATTER" | grep -q "^${field}:"; then
-                echo "::error file=$agent::Missing required field: $field"
-                ERRORS=$((ERRORS + 1))
-              fi
-            done
-          done
-
-          if [ $ERRORS -gt 0 ]; then
-            echo "::error::$ERRORS agent frontmatter errors found"
+          done < <(git ls-files -z)
+          if [ "$found" -ne 0 ]; then
+            echo "::error::Potential tracked secret found"
             exit 1
           fi
-          echo "All agents have valid frontmatter"
-
-      - name: Check command frontmatter
-        run: |
-          ERRORS=0
-          for cmd in commands/*.md; do
-            if ! head -1 "$cmd" | grep -q "^---"; then
-              echo "::error file=$cmd::Missing frontmatter"
-              ERRORS=$((ERRORS + 1))
-              continue
-            fi
-
-            FRONTMATTER=$(sed -n '/^---$/,/^---$/p' "$cmd")
-            if ! echo "$FRONTMATTER" | grep -q "description:"; then
-              echo "::error file=$cmd::Missing description field"
-              ERRORS=$((ERRORS + 1))
-            fi
-            if ! echo "$FRONTMATTER" | grep -q "user-invocable:"; then
-              echo "::error file=$cmd::Missing user-invocable field"
-              ERRORS=$((ERRORS + 1))
-            fi
-          done
-
-          if [ $ERRORS -gt 0 ]; then
-            echo "::error::$ERRORS command frontmatter errors found"
-            exit 1
-          fi
-          echo "All commands have valid frontmatter"
-
-  validate-links:
-    name: Check Internal Links
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Check docs for broken internal links
-        run: |
-          ERRORS=0
-          for doc in docs/*.md docs/**/*.md README.md CONTRIBUTING.md; do
-            [ -f "$doc" ] || continue
-            # Extract markdown links to local files
-            grep -oP '\[.*?\]\(((?!http)[^)]+)\)' "$doc" | grep -oP '\(([^)]+)\)' | tr -d '()' | while read -r link; do
-              # Resolve relative to the doc's directory
-              DIR=$(dirname "$doc")
-              TARGET="$DIR/$link"
-              if [ ! -f "$TARGET" ] && [ ! -f "$link" ]; then
-                echo "::warning file=$doc::Broken link: $link"
-              fi
-            done
-          done
-
-  security-scan:
-    name: Security Scan
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Check for exposed secrets
-        run: |
-          PATTERNS='(AKIA[0-9A-Z]{16}|AIza[0-9A-Za-z_-]{35}|ghp_[0-9a-zA-Z]{36}|sk-[0-9a-zA-Z]{48}|-----BEGIN (RSA |EC )?PRIVATE KEY)'
-          if grep -rPl "$PATTERNS" --include="*.md" --include="*.json" --include="*.js" --include="*.py" . 2>/dev/null; then
-            echo "::error::Potential secrets found in repository"
-            exit 1
-          fi
-          echo "No secrets detected"
+          echo "No tracked secret patterns detected"

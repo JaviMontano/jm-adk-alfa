@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "design-critique",
+  "nodes": [
+    {
+      "id": "design-critique",
+      "type": "skill",
+      "label": "design-critique"
+    },
+    {
+      "id": "design-critique:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "design-critique:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "design-critique:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "design-critique",
+      "to": "design-critique:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "design-critique",
+      "to": "design-critique:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "design-critique",
+      "to": "design-critique:quality",
+      "type": "validated_by"
+    }
+  ]
+}

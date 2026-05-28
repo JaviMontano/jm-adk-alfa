@@ -1,5 +1,6 @@
---- [EXPLICIT]
+---
 name: mcp-creator
+version: 1.0.0
 description:  [EXPLICIT]
   This skill should be used when the user asks to "configure an MCP server", "connect Claude to [EXPLICIT]
   an external tool", "set up a database MCP", "add an API integration via MCP", or "list MCP [EXPLICIT]
@@ -10,7 +11,7 @@ argument-hint: server-name [transport: stdio|http] [EXPLICIT]
 model: opus [EXPLICIT]
 context: fork [EXPLICIT]
 allowed-tools: Read, Write, Edit, Bash, Glob, Grep [EXPLICIT]
---- [EXPLICIT]
+---
  [EXPLICIT]
 # MCP Creator [EXPLICIT]
  [EXPLICIT]
