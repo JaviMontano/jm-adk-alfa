@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "workspace-governance",
+  "nodes": [
+    {
+      "id": "workspace-governance",
+      "type": "skill",
+      "label": "workspace-governance"
+    },
+    {
+      "id": "workspace-governance:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "workspace-governance:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "workspace-governance:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "workspace-governance",
+      "to": "workspace-governance:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "workspace-governance",
+      "to": "workspace-governance:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "workspace-governance",
+      "to": "workspace-governance:quality",
+      "type": "validated_by"
+    }
+  ]
+}

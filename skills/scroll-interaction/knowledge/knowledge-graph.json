@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "scroll-interaction",
+  "nodes": [
+    {
+      "id": "scroll-interaction",
+      "type": "skill",
+      "label": "scroll-interaction"
+    },
+    {
+      "id": "scroll-interaction:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "scroll-interaction:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "scroll-interaction:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "scroll-interaction",
+      "to": "scroll-interaction:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "scroll-interaction",
+      "to": "scroll-interaction:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "scroll-interaction",
+      "to": "scroll-interaction:quality",
+      "type": "validated_by"
+    }
+  ]
+}

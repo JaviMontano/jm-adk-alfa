@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "iikit-bugfix",
+  "nodes": [
+    {
+      "id": "iikit-bugfix",
+      "type": "skill",
+      "label": "iikit-bugfix"
+    },
+    {
+      "id": "iikit-bugfix:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "iikit-bugfix:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "iikit-bugfix:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "iikit-bugfix",
+      "to": "iikit-bugfix:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "iikit-bugfix",
+      "to": "iikit-bugfix:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "iikit-bugfix",
+      "to": "iikit-bugfix:quality",
+      "type": "validated_by"
+    }
+  ]
+}

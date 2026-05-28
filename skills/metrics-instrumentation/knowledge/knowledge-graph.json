@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "metrics-instrumentation",
+  "nodes": [
+    {
+      "id": "metrics-instrumentation",
+      "type": "skill",
+      "label": "metrics-instrumentation"
+    },
+    {
+      "id": "metrics-instrumentation:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "metrics-instrumentation:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "metrics-instrumentation:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "metrics-instrumentation",
+      "to": "metrics-instrumentation:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "metrics-instrumentation",
+      "to": "metrics-instrumentation:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "metrics-instrumentation",
+      "to": "metrics-instrumentation:quality",
+      "type": "validated_by"
+    }
+  ]
+}

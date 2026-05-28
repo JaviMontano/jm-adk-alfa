@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "microcopy-writing",
+  "nodes": [
+    {
+      "id": "microcopy-writing",
+      "type": "skill",
+      "label": "microcopy-writing"
+    },
+    {
+      "id": "microcopy-writing:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "microcopy-writing:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "microcopy-writing:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "microcopy-writing",
+      "to": "microcopy-writing:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "microcopy-writing",
+      "to": "microcopy-writing:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "microcopy-writing",
+      "to": "microcopy-writing:quality",
+      "type": "validated_by"
+    }
+  ]
+}

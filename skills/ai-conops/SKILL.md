@@ -1,5 +1,6 @@
 ---
 name: ai-conops
+version: 1.0.0
 description: >
   Concept of Operations (CONOPS) for AI systems — system vision, stakeholder mapping, AI-human interaction spectrum,
   business value assessment, success metrics, and operational modes. This skill should be used when the user asks to

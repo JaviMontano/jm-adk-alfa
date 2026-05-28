@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "github-actions-ci",
+  "nodes": [
+    {
+      "id": "github-actions-ci",
+      "type": "skill",
+      "label": "github-actions-ci"
+    },
+    {
+      "id": "github-actions-ci:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "github-actions-ci:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "github-actions-ci:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "github-actions-ci",
+      "to": "github-actions-ci:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "github-actions-ci",
+      "to": "github-actions-ci:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "github-actions-ci",
+      "to": "github-actions-ci:quality",
+      "type": "validated_by"
+    }
+  ]
+}

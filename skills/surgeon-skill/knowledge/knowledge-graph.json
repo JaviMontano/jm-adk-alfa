@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "surgeon-skill",
+  "nodes": [
+    {
+      "id": "surgeon-skill",
+      "type": "skill",
+      "label": "surgeon-skill"
+    },
+    {
+      "id": "surgeon-skill:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "surgeon-skill:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "surgeon-skill:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "surgeon-skill",
+      "to": "surgeon-skill:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "surgeon-skill",
+      "to": "surgeon-skill:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "surgeon-skill",
+      "to": "surgeon-skill:quality",
+      "type": "validated_by"
+    }
+  ]
+}

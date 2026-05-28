@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "team-topology",
+  "nodes": [
+    {
+      "id": "team-topology",
+      "type": "skill",
+      "label": "team-topology"
+    },
+    {
+      "id": "team-topology:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "team-topology:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "team-topology:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "team-topology",
+      "to": "team-topology:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "team-topology",
+      "to": "team-topology:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "team-topology",
+      "to": "team-topology:quality",
+      "type": "validated_by"
+    }
+  ]
+}

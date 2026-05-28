@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "html-semantic-builder",
+  "nodes": [
+    {
+      "id": "html-semantic-builder",
+      "type": "skill",
+      "label": "html-semantic-builder"
+    },
+    {
+      "id": "html-semantic-builder:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "html-semantic-builder:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "html-semantic-builder:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "html-semantic-builder",
+      "to": "html-semantic-builder:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "html-semantic-builder",
+      "to": "html-semantic-builder:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "html-semantic-builder",
+      "to": "html-semantic-builder:quality",
+      "type": "validated_by"
+    }
+  ]
+}

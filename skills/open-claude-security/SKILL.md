@@ -1,5 +1,6 @@
 ---
 name: open-claude-security
+version: 1.0.0
 description: >
   This skill should be used when the user asks to "design secure Claude Code environment",
   "harden Claude Code configuration", "audit Claude Code security", "secure MCP servers",

@@ -1,5 +1,6 @@
 ---
 name: bmad-method
+version: 1.0.0
 description: >
   Teach and apply the BMAD (Breakthrough Method for Agile AI-Driven Development)
   methodology for AI-driven software development. Covers the full 4-phase lifecycle:

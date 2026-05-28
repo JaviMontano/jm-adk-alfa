@@ -1,5 +1,6 @@
 ---
 name: testing-strategy
+version: 1.0.0
 argument-hint: "project-or-system-name"
 description: 
   Test strategy design — pyramid, automation, E2E, contract testing, shift-left, test data management. [EXPLICIT]

@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "release-strategy",
+  "nodes": [
+    {
+      "id": "release-strategy",
+      "type": "skill",
+      "label": "release-strategy"
+    },
+    {
+      "id": "release-strategy:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "release-strategy:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "release-strategy:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "release-strategy",
+      "to": "release-strategy:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "release-strategy",
+      "to": "release-strategy:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "release-strategy",
+      "to": "release-strategy:quality",
+      "type": "validated_by"
+    }
+  ]
+}

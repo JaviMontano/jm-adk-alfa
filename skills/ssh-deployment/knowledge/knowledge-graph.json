@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "ssh-deployment",
+  "nodes": [
+    {
+      "id": "ssh-deployment",
+      "type": "skill",
+      "label": "ssh-deployment"
+    },
+    {
+      "id": "ssh-deployment:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "ssh-deployment:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "ssh-deployment:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "ssh-deployment",
+      "to": "ssh-deployment:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "ssh-deployment",
+      "to": "ssh-deployment:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "ssh-deployment",
+      "to": "ssh-deployment:quality",
+      "type": "validated_by"
+    }
+  ]
+}

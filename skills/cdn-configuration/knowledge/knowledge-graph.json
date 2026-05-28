@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "cdn-configuration",
+  "nodes": [
+    {
+      "id": "cdn-configuration",
+      "type": "skill",
+      "label": "cdn-configuration"
+    },
+    {
+      "id": "cdn-configuration:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "cdn-configuration:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "cdn-configuration:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "cdn-configuration",
+      "to": "cdn-configuration:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "cdn-configuration",
+      "to": "cdn-configuration:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "cdn-configuration",
+      "to": "cdn-configuration:quality",
+      "type": "validated_by"
+    }
+  ]
+}

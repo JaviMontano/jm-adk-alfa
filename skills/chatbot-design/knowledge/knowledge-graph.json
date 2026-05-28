@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "chatbot-design",
+  "nodes": [
+    {
+      "id": "chatbot-design",
+      "type": "skill",
+      "label": "chatbot-design"
+    },
+    {
+      "id": "chatbot-design:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "chatbot-design:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "chatbot-design:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "chatbot-design",
+      "to": "chatbot-design:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "chatbot-design",
+      "to": "chatbot-design:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "chatbot-design",
+      "to": "chatbot-design:quality",
+      "type": "validated_by"
+    }
+  ]
+}

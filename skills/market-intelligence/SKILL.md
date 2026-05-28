@@ -1,5 +1,6 @@
 ---
 name: market-intelligence
+version: 1.0.0
 description: >
   Triggers on "market intelligence", "market research", "geographic analysis", "sector analysis",
   "competitive landscape", "research X company", "profile on X person", "contact points for".

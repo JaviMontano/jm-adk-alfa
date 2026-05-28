@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "mermaid-diagramming",
+  "nodes": [
+    {
+      "id": "mermaid-diagramming",
+      "type": "skill",
+      "label": "mermaid-diagramming"
+    },
+    {
+      "id": "mermaid-diagramming:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "mermaid-diagramming:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "mermaid-diagramming:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "mermaid-diagramming",
+      "to": "mermaid-diagramming:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "mermaid-diagramming",
+      "to": "mermaid-diagramming:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "mermaid-diagramming",
+      "to": "mermaid-diagramming:quality",
+      "type": "validated_by"
+    }
+  ]
+}

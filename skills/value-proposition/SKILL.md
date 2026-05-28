@@ -1,5 +1,6 @@
 ---
 name: value-proposition
+version: 1.0.0
 description: >
   Triggers on "value proposition", "propuesta de valor", "value prop canvas", "messaging framework".
   Designs a value proposition canvas mapping customer jobs, pains, and gains to product features, pain relievers, and gain creators. Builds a messaging hierarchy from tagline to full narrative. Output: canvas + messaging doc. [EXPLICIT]

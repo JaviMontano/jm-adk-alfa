@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "portfolio-sites",
+  "nodes": [
+    {
+      "id": "portfolio-sites",
+      "type": "skill",
+      "label": "portfolio-sites"
+    },
+    {
+      "id": "portfolio-sites:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "portfolio-sites:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "portfolio-sites:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "portfolio-sites",
+      "to": "portfolio-sites:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "portfolio-sites",
+      "to": "portfolio-sites:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "portfolio-sites",
+      "to": "portfolio-sites:quality",
+      "type": "validated_by"
+    }
+  ]
+}

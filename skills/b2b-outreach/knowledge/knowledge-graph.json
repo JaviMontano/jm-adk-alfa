@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "b2b-outreach",
+  "nodes": [
+    {
+      "id": "b2b-outreach",
+      "type": "skill",
+      "label": "b2b-outreach"
+    },
+    {
+      "id": "b2b-outreach:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "b2b-outreach:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "b2b-outreach:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "b2b-outreach",
+      "to": "b2b-outreach:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "b2b-outreach",
+      "to": "b2b-outreach:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "b2b-outreach",
+      "to": "b2b-outreach:quality",
+      "type": "validated_by"
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "monitoring-setup",
+  "nodes": [
+    {
+      "id": "monitoring-setup",
+      "type": "skill",
+      "label": "monitoring-setup"
+    },
+    {
+      "id": "monitoring-setup:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "monitoring-setup:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "monitoring-setup:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "monitoring-setup",
+      "to": "monitoring-setup:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "monitoring-setup",
+      "to": "monitoring-setup:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "monitoring-setup",
+      "to": "monitoring-setup:quality",
+      "type": "validated_by"
+    }
+  ]
+}

@@ -1,5 +1,6 @@
 ---
 name: storytelling
+version: 1.0.0
 author: Javier Montaño · Comunidad MetodologIA
 argument-hint: "story-type: transformation|scenario|risk|success|cross-deliverable audience: executive|technical|mixed"
 description: 

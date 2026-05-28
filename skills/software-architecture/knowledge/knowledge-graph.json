@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "software-architecture",
+  "nodes": [
+    {
+      "id": "software-architecture",
+      "type": "skill",
+      "label": "software-architecture"
+    },
+    {
+      "id": "software-architecture:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "software-architecture:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "software-architecture:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "software-architecture",
+      "to": "software-architecture:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "software-architecture",
+      "to": "software-architecture:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "software-architecture",
+      "to": "software-architecture:quality",
+      "type": "validated_by"
+    }
+  ]
+}

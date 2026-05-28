@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "multi-model-routing",
+  "nodes": [
+    {
+      "id": "multi-model-routing",
+      "type": "skill",
+      "label": "multi-model-routing"
+    },
+    {
+      "id": "multi-model-routing:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "multi-model-routing:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "multi-model-routing:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "multi-model-routing",
+      "to": "multi-model-routing:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "multi-model-routing",
+      "to": "multi-model-routing:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "multi-model-routing",
+      "to": "multi-model-routing:quality",
+      "type": "validated_by"
+    }
+  ]
+}

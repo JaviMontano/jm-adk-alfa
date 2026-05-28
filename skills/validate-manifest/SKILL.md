@@ -1,5 +1,6 @@
 ---
 name: validate-manifest
+version: 1.0.0
 description: "Validates plugin.json completeness, field correctness, and consistency with actual plugin contents. Triggers: validate manifest, check plugin.json, manifest audit."
 author: JM Labs (Javier Montaño)
 allowed-tools:

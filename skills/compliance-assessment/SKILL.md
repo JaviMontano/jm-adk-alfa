@@ -1,5 +1,6 @@
 ---
 name: compliance-assessment
+version: 1.0.0
 description: 
   Regulatory and standards compliance assessment — GDPR, SOX, PCI-DSS, HIPAA, ISO 27001, NIST CSF. [EXPLICIT]
   Use when the user asks to "evaluate compliance", "audit regulatory gaps", "assess GDPR readiness",

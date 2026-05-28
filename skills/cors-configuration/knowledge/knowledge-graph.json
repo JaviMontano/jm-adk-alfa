@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "cors-configuration",
+  "nodes": [
+    {
+      "id": "cors-configuration",
+      "type": "skill",
+      "label": "cors-configuration"
+    },
+    {
+      "id": "cors-configuration:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "cors-configuration:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "cors-configuration:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "cors-configuration",
+      "to": "cors-configuration:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "cors-configuration",
+      "to": "cors-configuration:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "cors-configuration",
+      "to": "cors-configuration:quality",
+      "type": "validated_by"
+    }
+  ]
+}

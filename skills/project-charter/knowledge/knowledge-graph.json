@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "project-charter",
+  "nodes": [
+    {
+      "id": "project-charter",
+      "type": "skill",
+      "label": "project-charter"
+    },
+    {
+      "id": "project-charter:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "project-charter:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "project-charter:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "project-charter",
+      "to": "project-charter:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "project-charter",
+      "to": "project-charter:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "project-charter",
+      "to": "project-charter:quality",
+      "type": "validated_by"
+    }
+  ]
+}

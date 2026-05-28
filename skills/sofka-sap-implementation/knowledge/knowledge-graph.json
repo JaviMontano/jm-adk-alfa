@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "sofka-sap-implementation",
+  "nodes": [
+    {
+      "id": "sofka-sap-implementation",
+      "type": "skill",
+      "label": "sofka-sap-implementation"
+    },
+    {
+      "id": "sofka-sap-implementation:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "sofka-sap-implementation:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "sofka-sap-implementation:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "sofka-sap-implementation",
+      "to": "sofka-sap-implementation:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "sofka-sap-implementation",
+      "to": "sofka-sap-implementation:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "sofka-sap-implementation",
+      "to": "sofka-sap-implementation:quality",
+      "type": "validated_by"
+    }
+  ]
+}

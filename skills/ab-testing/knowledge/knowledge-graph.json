@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "ab-testing",
+  "nodes": [
+    {
+      "id": "ab-testing",
+      "type": "skill",
+      "label": "ab-testing"
+    },
+    {
+      "id": "ab-testing:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "ab-testing:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "ab-testing:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "ab-testing",
+      "to": "ab-testing:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "ab-testing",
+      "to": "ab-testing:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "ab-testing",
+      "to": "ab-testing:quality",
+      "type": "validated_by"
+    }
+  ]
+}

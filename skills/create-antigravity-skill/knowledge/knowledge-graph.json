@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "create-antigravity-skill",
+  "nodes": [
+    {
+      "id": "create-antigravity-skill",
+      "type": "skill",
+      "label": "create-antigravity-skill"
+    },
+    {
+      "id": "create-antigravity-skill:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "create-antigravity-skill:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "create-antigravity-skill:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "create-antigravity-skill",
+      "to": "create-antigravity-skill:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "create-antigravity-skill",
+      "to": "create-antigravity-skill:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "create-antigravity-skill",
+      "to": "create-antigravity-skill:quality",
+      "type": "validated_by"
+    }
+  ]
+}

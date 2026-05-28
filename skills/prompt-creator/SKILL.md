@@ -1,5 +1,6 @@
---- [EXPLICIT]
+---
 name: prompt-creator
+version: 1.0.0
 description:  [EXPLICIT]
   Generates structured prompts for 9 prompt types in agentic ecosystems — meta, handoff, deliberation, [EXPLICIT]
   synthesis, validation, and fallback. Activates when the user says "create a prompt", "write a handoff prompt", [EXPLICIT]

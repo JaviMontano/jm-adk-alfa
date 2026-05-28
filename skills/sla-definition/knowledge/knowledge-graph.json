@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "sla-definition",
+  "nodes": [
+    {
+      "id": "sla-definition",
+      "type": "skill",
+      "label": "sla-definition"
+    },
+    {
+      "id": "sla-definition:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "sla-definition:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "sla-definition:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "sla-definition",
+      "to": "sla-definition:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "sla-definition",
+      "to": "sla-definition:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "sla-definition",
+      "to": "sla-definition:quality",
+      "type": "validated_by"
+    }
+  ]
+}

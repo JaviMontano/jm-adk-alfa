@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "architecture-tobe",
+  "nodes": [
+    {
+      "id": "architecture-tobe",
+      "type": "skill",
+      "label": "architecture-tobe"
+    },
+    {
+      "id": "architecture-tobe:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "architecture-tobe:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "architecture-tobe:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "architecture-tobe",
+      "to": "architecture-tobe:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "architecture-tobe",
+      "to": "architecture-tobe:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "architecture-tobe",
+      "to": "architecture-tobe:quality",
+      "type": "validated_by"
+    }
+  ]
+}

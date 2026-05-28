@@ -12,7 +12,8 @@
 
 set -euo pipefail
 
-SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+PROJECT_ROOT="$(git -C "$(dirname "$0")/.." rev-parse --show-toplevel)"
+SCRIPT_DIR="$PROJECT_ROOT/scripts"
 ADAPTERS_DIR="$SCRIPT_DIR/adapters"
 
 TARGET="${1:-all}"

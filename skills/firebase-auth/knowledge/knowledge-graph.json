@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "firebase-auth",
+  "nodes": [
+    {
+      "id": "firebase-auth",
+      "type": "skill",
+      "label": "firebase-auth"
+    },
+    {
+      "id": "firebase-auth:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "firebase-auth:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "firebase-auth:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "firebase-auth",
+      "to": "firebase-auth:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "firebase-auth",
+      "to": "firebase-auth:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "firebase-auth",
+      "to": "firebase-auth:quality",
+      "type": "validated_by"
+    }
+  ]
+}

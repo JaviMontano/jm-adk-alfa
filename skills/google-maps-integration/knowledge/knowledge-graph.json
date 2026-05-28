@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "google-maps-integration",
+  "nodes": [
+    {
+      "id": "google-maps-integration",
+      "type": "skill",
+      "label": "google-maps-integration"
+    },
+    {
+      "id": "google-maps-integration:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "google-maps-integration:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "google-maps-integration:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "google-maps-integration",
+      "to": "google-maps-integration:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "google-maps-integration",
+      "to": "google-maps-integration:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "google-maps-integration",
+      "to": "google-maps-integration:quality",
+      "type": "validated_by"
+    }
+  ]
+}

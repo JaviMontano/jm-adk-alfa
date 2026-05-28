@@ -1,5 +1,6 @@
---- [EXPLICIT]
+---
 name: maturity-assessment
+version: 1.0.0
 description:  [EXPLICIT]
   Capability maturity evaluation using CMMI and custom models, current vs target state scoring, [EXPLICIT]
   and improvement roadmap generation. Use when the user asks to "assess maturity", "evaluate capability", [EXPLICIT]

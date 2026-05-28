@@ -1,5 +1,6 @@
 ---
 name: digital-presence
+version: 1.0.0
 description: >
   Triggers on "digital presence audit", "online presence", "presencia digital", "audit my online footprint".
   Conducts online footprint audits covering search results, social profiles, domain authority,

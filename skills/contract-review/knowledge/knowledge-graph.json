@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "contract-review",
+  "nodes": [
+    {
+      "id": "contract-review",
+      "type": "skill",
+      "label": "contract-review"
+    },
+    {
+      "id": "contract-review:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "contract-review:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "contract-review:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "contract-review",
+      "to": "contract-review:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "contract-review",
+      "to": "contract-review:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "contract-review",
+      "to": "contract-review:quality",
+      "type": "validated_by"
+    }
+  ]
+}

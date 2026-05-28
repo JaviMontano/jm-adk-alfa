@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "dynamic-sme",
+  "nodes": [
+    {
+      "id": "dynamic-sme",
+      "type": "skill",
+      "label": "dynamic-sme"
+    },
+    {
+      "id": "dynamic-sme:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "dynamic-sme:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "dynamic-sme:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "dynamic-sme",
+      "to": "dynamic-sme:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "dynamic-sme",
+      "to": "dynamic-sme:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "dynamic-sme",
+      "to": "dynamic-sme:quality",
+      "type": "validated_by"
+    }
+  ]
+}

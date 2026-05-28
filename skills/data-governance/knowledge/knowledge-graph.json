@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "data-governance",
+  "nodes": [
+    {
+      "id": "data-governance",
+      "type": "skill",
+      "label": "data-governance"
+    },
+    {
+      "id": "data-governance:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "data-governance:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "data-governance:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "data-governance",
+      "to": "data-governance:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "data-governance",
+      "to": "data-governance:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "data-governance",
+      "to": "data-governance:quality",
+      "type": "validated_by"
+    }
+  ]
+}

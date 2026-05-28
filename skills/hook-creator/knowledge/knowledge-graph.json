@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "hook-creator",
+  "nodes": [
+    {
+      "id": "hook-creator",
+      "type": "skill",
+      "label": "hook-creator"
+    },
+    {
+      "id": "hook-creator:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "hook-creator:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "hook-creator:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "hook-creator",
+      "to": "hook-creator:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "hook-creator",
+      "to": "hook-creator:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "hook-creator",
+      "to": "hook-creator:quality",
+      "type": "validated_by"
+    }
+  ]
+}

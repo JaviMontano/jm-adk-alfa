@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "mobile-assessment",
+  "nodes": [
+    {
+      "id": "mobile-assessment",
+      "type": "skill",
+      "label": "mobile-assessment"
+    },
+    {
+      "id": "mobile-assessment:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "mobile-assessment:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "mobile-assessment:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "mobile-assessment",
+      "to": "mobile-assessment:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "mobile-assessment",
+      "to": "mobile-assessment:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "mobile-assessment",
+      "to": "mobile-assessment:quality",
+      "type": "validated_by"
+    }
+  ]
+}

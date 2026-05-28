@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "scenario-analysis",
+  "nodes": [
+    {
+      "id": "scenario-analysis",
+      "type": "skill",
+      "label": "scenario-analysis"
+    },
+    {
+      "id": "scenario-analysis:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "scenario-analysis:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "scenario-analysis:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "scenario-analysis",
+      "to": "scenario-analysis:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "scenario-analysis",
+      "to": "scenario-analysis:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "scenario-analysis",
+      "to": "scenario-analysis:quality",
+      "type": "validated_by"
+    }
+  ]
+}

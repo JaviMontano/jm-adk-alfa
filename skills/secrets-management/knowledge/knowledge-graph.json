@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "secrets-management",
+  "nodes": [
+    {
+      "id": "secrets-management",
+      "type": "skill",
+      "label": "secrets-management"
+    },
+    {
+      "id": "secrets-management:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "secrets-management:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "secrets-management:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "secrets-management",
+      "to": "secrets-management:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "secrets-management",
+      "to": "secrets-management:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "secrets-management",
+      "to": "secrets-management:quality",
+      "type": "validated_by"
+    }
+  ]
+}

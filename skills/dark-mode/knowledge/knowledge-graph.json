@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "dark-mode",
+  "nodes": [
+    {
+      "id": "dark-mode",
+      "type": "skill",
+      "label": "dark-mode"
+    },
+    {
+      "id": "dark-mode:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "dark-mode:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "dark-mode:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "dark-mode",
+      "to": "dark-mode:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "dark-mode",
+      "to": "dark-mode:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "dark-mode",
+      "to": "dark-mode:quality",
+      "type": "validated_by"
+    }
+  ]
+}

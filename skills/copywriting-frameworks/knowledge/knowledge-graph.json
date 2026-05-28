@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "copywriting-frameworks",
+  "nodes": [
+    {
+      "id": "copywriting-frameworks",
+      "type": "skill",
+      "label": "copywriting-frameworks"
+    },
+    {
+      "id": "copywriting-frameworks:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "copywriting-frameworks:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "copywriting-frameworks:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "copywriting-frameworks",
+      "to": "copywriting-frameworks:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "copywriting-frameworks",
+      "to": "copywriting-frameworks:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "copywriting-frameworks",
+      "to": "copywriting-frameworks:quality",
+      "type": "validated_by"
+    }
+  ]
+}

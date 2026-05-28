@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "bmad-method",
+  "nodes": [
+    {
+      "id": "bmad-method",
+      "type": "skill",
+      "label": "bmad-method"
+    },
+    {
+      "id": "bmad-method:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "bmad-method:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "bmad-method:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "bmad-method",
+      "to": "bmad-method:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "bmad-method",
+      "to": "bmad-method:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "bmad-method",
+      "to": "bmad-method:quality",
+      "type": "validated_by"
+    }
+  ]
+}

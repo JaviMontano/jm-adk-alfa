@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "devsecops-architecture",
+  "nodes": [
+    {
+      "id": "devsecops-architecture",
+      "type": "skill",
+      "label": "devsecops-architecture"
+    },
+    {
+      "id": "devsecops-architecture:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "devsecops-architecture:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "devsecops-architecture:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "devsecops-architecture",
+      "to": "devsecops-architecture:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "devsecops-architecture",
+      "to": "devsecops-architecture:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "devsecops-architecture",
+      "to": "devsecops-architecture:quality",
+      "type": "validated_by"
+    }
+  ]
+}

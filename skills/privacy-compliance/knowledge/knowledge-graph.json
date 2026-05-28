@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "privacy-compliance",
+  "nodes": [
+    {
+      "id": "privacy-compliance",
+      "type": "skill",
+      "label": "privacy-compliance"
+    },
+    {
+      "id": "privacy-compliance:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "privacy-compliance:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "privacy-compliance:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "privacy-compliance",
+      "to": "privacy-compliance:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "privacy-compliance",
+      "to": "privacy-compliance:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "privacy-compliance",
+      "to": "privacy-compliance:quality",
+      "type": "validated_by"
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "analytics-events",
+  "nodes": [
+    {
+      "id": "analytics-events",
+      "type": "skill",
+      "label": "analytics-events"
+    },
+    {
+      "id": "analytics-events:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "analytics-events:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "analytics-events:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "analytics-events",
+      "to": "analytics-events:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "analytics-events",
+      "to": "analytics-events:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "analytics-events",
+      "to": "analytics-events:quality",
+      "type": "validated_by"
+    }
+  ]
+}

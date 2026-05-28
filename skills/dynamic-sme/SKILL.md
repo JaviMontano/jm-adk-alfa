@@ -1,5 +1,6 @@
 ---
 name: dynamic-sme
+version: 1.0.0
 argument-hint: "project-name [codebase-path]"
 description: 
   This skill should be used when the user asks to "add industry context",

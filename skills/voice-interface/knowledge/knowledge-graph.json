@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "voice-interface",
+  "nodes": [
+    {
+      "id": "voice-interface",
+      "type": "skill",
+      "label": "voice-interface"
+    },
+    {
+      "id": "voice-interface:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "voice-interface:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "voice-interface:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "voice-interface",
+      "to": "voice-interface:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "voice-interface",
+      "to": "voice-interface:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "voice-interface",
+      "to": "voice-interface:quality",
+      "type": "validated_by"
+    }
+  ]
+}

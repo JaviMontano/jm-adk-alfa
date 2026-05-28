@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "typescript-patterns",
+  "nodes": [
+    {
+      "id": "typescript-patterns",
+      "type": "skill",
+      "label": "typescript-patterns"
+    },
+    {
+      "id": "typescript-patterns:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "typescript-patterns:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "typescript-patterns:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "typescript-patterns",
+      "to": "typescript-patterns:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "typescript-patterns",
+      "to": "typescript-patterns:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "typescript-patterns",
+      "to": "typescript-patterns:quality",
+      "type": "validated_by"
+    }
+  ]
+}

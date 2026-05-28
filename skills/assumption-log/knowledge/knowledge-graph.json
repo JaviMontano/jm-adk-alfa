@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "assumption-log",
+  "nodes": [
+    {
+      "id": "assumption-log",
+      "type": "skill",
+      "label": "assumption-log"
+    },
+    {
+      "id": "assumption-log:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "assumption-log:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "assumption-log:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "assumption-log",
+      "to": "assumption-log:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "assumption-log",
+      "to": "assumption-log:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "assumption-log",
+      "to": "assumption-log:quality",
+      "type": "validated_by"
+    }
+  ]
+}

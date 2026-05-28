@@ -1,5 +1,6 @@
 ---
 name: excellence-loop
+version: 1.0.0
 author: JM Labs (Javier Montaño)
 description: >
   Applies a 10-point quality rubric to every artifact with iterative refinement until excellence criteria are met. [EXPLICIT]

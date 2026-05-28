@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "socratic-debate",
+  "nodes": [
+    {
+      "id": "socratic-debate",
+      "type": "skill",
+      "label": "socratic-debate"
+    },
+    {
+      "id": "socratic-debate:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "socratic-debate:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "socratic-debate:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "socratic-debate",
+      "to": "socratic-debate:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "socratic-debate",
+      "to": "socratic-debate:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "socratic-debate",
+      "to": "socratic-debate:quality",
+      "type": "validated_by"
+    }
+  ]
+}

@@ -1,5 +1,6 @@
 ---
 name: discovery-retrospective
+version: 1.0.0
 description: >
   Use when the user asks to "run a project discovery retrospective", "review discovery outcomes",
   "assess discovery effectiveness", "calibrate pipeline parameters", or "measure discovery quality". [EXPLICIT]

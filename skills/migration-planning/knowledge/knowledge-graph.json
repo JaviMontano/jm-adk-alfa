@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "migration-planning",
+  "nodes": [
+    {
+      "id": "migration-planning",
+      "type": "skill",
+      "label": "migration-planning"
+    },
+    {
+      "id": "migration-planning:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "migration-planning:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "migration-planning:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "migration-planning",
+      "to": "migration-planning:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "migration-planning",
+      "to": "migration-planning:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "migration-planning",
+      "to": "migration-planning:quality",
+      "type": "validated_by"
+    }
+  ]
+}

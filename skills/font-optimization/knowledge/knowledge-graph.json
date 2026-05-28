@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "font-optimization",
+  "nodes": [
+    {
+      "id": "font-optimization",
+      "type": "skill",
+      "label": "font-optimization"
+    },
+    {
+      "id": "font-optimization:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "font-optimization:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "font-optimization:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "font-optimization",
+      "to": "font-optimization:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "font-optimization",
+      "to": "font-optimization:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "font-optimization",
+      "to": "font-optimization:quality",
+      "type": "validated_by"
+    }
+  ]
+}

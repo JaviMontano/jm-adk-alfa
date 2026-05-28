@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "rate-limiting",
+  "nodes": [
+    {
+      "id": "rate-limiting",
+      "type": "skill",
+      "label": "rate-limiting"
+    },
+    {
+      "id": "rate-limiting:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "rate-limiting:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "rate-limiting:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "rate-limiting",
+      "to": "rate-limiting:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "rate-limiting",
+      "to": "rate-limiting:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "rate-limiting",
+      "to": "rate-limiting:quality",
+      "type": "validated_by"
+    }
+  ]
+}

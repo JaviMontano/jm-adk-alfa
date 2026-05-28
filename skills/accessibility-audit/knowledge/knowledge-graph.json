@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "accessibility-audit",
+  "nodes": [
+    {
+      "id": "accessibility-audit",
+      "type": "skill",
+      "label": "accessibility-audit"
+    },
+    {
+      "id": "accessibility-audit:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "accessibility-audit:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "accessibility-audit:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "accessibility-audit",
+      "to": "accessibility-audit:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "accessibility-audit",
+      "to": "accessibility-audit:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "accessibility-audit",
+      "to": "accessibility-audit:quality",
+      "type": "validated_by"
+    }
+  ]
+}

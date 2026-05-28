@@ -1,5 +1,6 @@
 ---
 name: iikit-08-taskstoissues
+version: 1.0.0
 description: >-
   Convert tasks from tasks.md into GitHub Issues with labels and dependencies.
   Use when exporting work items to GitHub, setting up project boards, or assigning tasks to team members.

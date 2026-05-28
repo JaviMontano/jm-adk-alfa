@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "iic-artifact-analyzer",
+  "nodes": [
+    {
+      "id": "iic-artifact-analyzer",
+      "type": "skill",
+      "label": "iic-artifact-analyzer"
+    },
+    {
+      "id": "iic-artifact-analyzer:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "iic-artifact-analyzer:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "iic-artifact-analyzer:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "iic-artifact-analyzer",
+      "to": "iic-artifact-analyzer:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "iic-artifact-analyzer",
+      "to": "iic-artifact-analyzer:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "iic-artifact-analyzer",
+      "to": "iic-artifact-analyzer:quality",
+      "type": "validated_by"
+    }
+  ]
+}

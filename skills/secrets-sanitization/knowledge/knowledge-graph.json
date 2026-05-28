@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "secrets-sanitization",
+  "nodes": [
+    {
+      "id": "secrets-sanitization",
+      "type": "skill",
+      "label": "secrets-sanitization"
+    },
+    {
+      "id": "secrets-sanitization:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "secrets-sanitization:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "secrets-sanitization:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "secrets-sanitization",
+      "to": "secrets-sanitization:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "secrets-sanitization",
+      "to": "secrets-sanitization:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "secrets-sanitization",
+      "to": "secrets-sanitization:quality",
+      "type": "validated_by"
+    }
+  ]
+}

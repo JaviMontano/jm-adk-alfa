@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "micro-interactions",
+  "nodes": [
+    {
+      "id": "micro-interactions",
+      "type": "skill",
+      "label": "micro-interactions"
+    },
+    {
+      "id": "micro-interactions:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "micro-interactions:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "micro-interactions:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "micro-interactions",
+      "to": "micro-interactions:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "micro-interactions",
+      "to": "micro-interactions:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "micro-interactions",
+      "to": "micro-interactions:quality",
+      "type": "validated_by"
+    }
+  ]
+}

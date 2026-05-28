@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "knowledge-management",
+  "nodes": [
+    {
+      "id": "knowledge-management",
+      "type": "skill",
+      "label": "knowledge-management"
+    },
+    {
+      "id": "knowledge-management:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "knowledge-management:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "knowledge-management:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "knowledge-management",
+      "to": "knowledge-management:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "knowledge-management",
+      "to": "knowledge-management:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "knowledge-management",
+      "to": "knowledge-management:quality",
+      "type": "validated_by"
+    }
+  ]
+}

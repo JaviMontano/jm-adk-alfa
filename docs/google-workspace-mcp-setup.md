@@ -91,7 +91,7 @@ Inicia sesion con tu cuenta de Google y acepta los permisos. El token se guarda 
 
 ```bash
 # Desde el directorio del proyecto
-cd /path/to/jm-agentic-development-kit-alfa
+cd /path/to/jm-adk-alfa
 
 # Verificar que el MCP esta configurado
 claude mcp list

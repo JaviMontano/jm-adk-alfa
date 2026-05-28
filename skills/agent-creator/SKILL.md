@@ -1,5 +1,6 @@
---- [EXPLICIT]
+---
 name: agent-creator
+version: 1.0.0
 description:  [EXPLICIT]
   This skill should be used when the user asks to "create an agent", [EXPLICIT]
   "add a subagent", "make a custom agent", "define agent definition", [EXPLICIT]

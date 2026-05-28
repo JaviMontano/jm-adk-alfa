@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "sector-intelligence",
+  "nodes": [
+    {
+      "id": "sector-intelligence",
+      "type": "skill",
+      "label": "sector-intelligence"
+    },
+    {
+      "id": "sector-intelligence:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "sector-intelligence:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "sector-intelligence:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "sector-intelligence",
+      "to": "sector-intelligence:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "sector-intelligence",
+      "to": "sector-intelligence:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "sector-intelligence",
+      "to": "sector-intelligence:quality",
+      "type": "validated_by"
+    }
+  ]
+}

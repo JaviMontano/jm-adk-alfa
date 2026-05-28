@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "design-system",
+  "nodes": [
+    {
+      "id": "design-system",
+      "type": "skill",
+      "label": "design-system"
+    },
+    {
+      "id": "design-system:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "design-system:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "design-system:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "design-system",
+      "to": "design-system:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "design-system",
+      "to": "design-system:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "design-system",
+      "to": "design-system:quality",
+      "type": "validated_by"
+    }
+  ]
+}

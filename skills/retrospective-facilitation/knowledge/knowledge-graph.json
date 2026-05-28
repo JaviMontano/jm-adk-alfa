@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "retrospective-facilitation",
+  "nodes": [
+    {
+      "id": "retrospective-facilitation",
+      "type": "skill",
+      "label": "retrospective-facilitation"
+    },
+    {
+      "id": "retrospective-facilitation:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "retrospective-facilitation:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "retrospective-facilitation:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "retrospective-facilitation",
+      "to": "retrospective-facilitation:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "retrospective-facilitation",
+      "to": "retrospective-facilitation:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "retrospective-facilitation",
+      "to": "retrospective-facilitation:quality",
+      "type": "validated_by"
+    }
+  ]
+}

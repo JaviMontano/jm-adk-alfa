@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "docker-awareness",
+  "nodes": [
+    {
+      "id": "docker-awareness",
+      "type": "skill",
+      "label": "docker-awareness"
+    },
+    {
+      "id": "docker-awareness:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "docker-awareness:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "docker-awareness:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "docker-awareness",
+      "to": "docker-awareness:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "docker-awareness",
+      "to": "docker-awareness:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "docker-awareness",
+      "to": "docker-awareness:quality",
+      "type": "validated_by"
+    }
+  ]
+}

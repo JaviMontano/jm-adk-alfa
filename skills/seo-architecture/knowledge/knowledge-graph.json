@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "seo-architecture",
+  "nodes": [
+    {
+      "id": "seo-architecture",
+      "type": "skill",
+      "label": "seo-architecture"
+    },
+    {
+      "id": "seo-architecture:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "seo-architecture:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "seo-architecture:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "seo-architecture",
+      "to": "seo-architecture:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "seo-architecture",
+      "to": "seo-architecture:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "seo-architecture",
+      "to": "seo-architecture:quality",
+      "type": "validated_by"
+    }
+  ]
+}

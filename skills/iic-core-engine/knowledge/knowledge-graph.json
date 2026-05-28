@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "iic-core-engine",
+  "nodes": [
+    {
+      "id": "iic-core-engine",
+      "type": "skill",
+      "label": "iic-core-engine"
+    },
+    {
+      "id": "iic-core-engine:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "iic-core-engine:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "iic-core-engine:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "iic-core-engine",
+      "to": "iic-core-engine:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "iic-core-engine",
+      "to": "iic-core-engine:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "iic-core-engine",
+      "to": "iic-core-engine:quality",
+      "type": "validated_by"
+    }
+  ]
+}

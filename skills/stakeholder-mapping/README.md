@@ -1,0 +1,29 @@
+<!--
+generated-by: scripts/scaffold-skill.py
+generated-for: stakeholder-mapping
+generated-on: 2026-05-28
+overwrite-policy: missing-only unless --force
+-->
+
+# Stakeholder Mapping
+
+Influence/interest matrix. RACI matrix. Communication plan. Power/interest grid. Stakeholder registry. [EXPLICIT]
+
+## Triggers
+
+- stakeholder-mapping
+
+## Allowed Tools
+
+- Read
+- Grep
+- Glob
+- Bash
+
+## Quick Use
+
+Use this skill when the request clearly matches the triggers and requires the `stakeholder-mapping` capability.
+
+## Output Format
+
+Markdown with summary, evidence, result, validation, and risks.

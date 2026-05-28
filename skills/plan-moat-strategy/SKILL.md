@@ -1,5 +1,6 @@
 ---
 name: plan-moat-strategy
+version: 1.0.0
 author: JM Labs (Javier Montaño)
 description: 
   Design MOAT asset strategy per skill: which subdirectories needed, what content they contain, naming conventions. [EXPLICIT]

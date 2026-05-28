@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "lighthouse-ci",
+  "nodes": [
+    {
+      "id": "lighthouse-ci",
+      "type": "skill",
+      "label": "lighthouse-ci"
+    },
+    {
+      "id": "lighthouse-ci:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "lighthouse-ci:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "lighthouse-ci:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "lighthouse-ci",
+      "to": "lighthouse-ci:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "lighthouse-ci",
+      "to": "lighthouse-ci:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "lighthouse-ci",
+      "to": "lighthouse-ci:quality",
+      "type": "validated_by"
+    }
+  ]
+}

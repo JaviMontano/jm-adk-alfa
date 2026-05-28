@@ -1,5 +1,6 @@
 ---
 name: meeting-notes
+version: 1.0.0
 description: >
   Triggers on "meeting notes", "meeting minutes", "acta de reunion", "notas de la reunion".
   Produces structured meeting minutes with attendees, agenda, discussion summary, decisions,

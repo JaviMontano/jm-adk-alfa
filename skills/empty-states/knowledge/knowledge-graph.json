@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "empty-states",
+  "nodes": [
+    {
+      "id": "empty-states",
+      "type": "skill",
+      "label": "empty-states"
+    },
+    {
+      "id": "empty-states:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "empty-states:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "empty-states:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "empty-states",
+      "to": "empty-states:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "empty-states",
+      "to": "empty-states:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "empty-states",
+      "to": "empty-states:quality",
+      "type": "validated_by"
+    }
+  ]
+}

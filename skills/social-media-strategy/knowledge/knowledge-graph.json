@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "social-media-strategy",
+  "nodes": [
+    {
+      "id": "social-media-strategy",
+      "type": "skill",
+      "label": "social-media-strategy"
+    },
+    {
+      "id": "social-media-strategy:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "social-media-strategy:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "social-media-strategy:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "social-media-strategy",
+      "to": "social-media-strategy:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "social-media-strategy",
+      "to": "social-media-strategy:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "social-media-strategy",
+      "to": "social-media-strategy:quality",
+      "type": "validated_by"
+    }
+  ]
+}

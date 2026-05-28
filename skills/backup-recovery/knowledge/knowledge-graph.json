@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "backup-recovery",
+  "nodes": [
+    {
+      "id": "backup-recovery",
+      "type": "skill",
+      "label": "backup-recovery"
+    },
+    {
+      "id": "backup-recovery:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "backup-recovery:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "backup-recovery:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "backup-recovery",
+      "to": "backup-recovery:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "backup-recovery",
+      "to": "backup-recovery:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "backup-recovery",
+      "to": "backup-recovery:quality",
+      "type": "validated_by"
+    }
+  ]
+}

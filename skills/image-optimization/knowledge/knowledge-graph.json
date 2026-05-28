@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "image-optimization",
+  "nodes": [
+    {
+      "id": "image-optimization",
+      "type": "skill",
+      "label": "image-optimization"
+    },
+    {
+      "id": "image-optimization:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "image-optimization:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "image-optimization:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "image-optimization",
+      "to": "image-optimization:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "image-optimization",
+      "to": "image-optimization:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "image-optimization",
+      "to": "image-optimization:quality",
+      "type": "validated_by"
+    }
+  ]
+}

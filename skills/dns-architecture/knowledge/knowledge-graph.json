@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "dns-architecture",
+  "nodes": [
+    {
+      "id": "dns-architecture",
+      "type": "skill",
+      "label": "dns-architecture"
+    },
+    {
+      "id": "dns-architecture:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "dns-architecture:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "dns-architecture:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "dns-architecture",
+      "to": "dns-architecture:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "dns-architecture",
+      "to": "dns-architecture:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "dns-architecture",
+      "to": "dns-architecture:quality",
+      "type": "validated_by"
+    }
+  ]
+}

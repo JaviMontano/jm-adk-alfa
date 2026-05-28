@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "build-optimization",
+  "nodes": [
+    {
+      "id": "build-optimization",
+      "type": "skill",
+      "label": "build-optimization"
+    },
+    {
+      "id": "build-optimization:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "build-optimization:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "build-optimization:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "build-optimization",
+      "to": "build-optimization:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "build-optimization",
+      "to": "build-optimization:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "build-optimization",
+      "to": "build-optimization:quality",
+      "type": "validated_by"
+    }
+  ]
+}

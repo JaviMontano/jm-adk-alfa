@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "test-data-factory",
+  "nodes": [
+    {
+      "id": "test-data-factory",
+      "type": "skill",
+      "label": "test-data-factory"
+    },
+    {
+      "id": "test-data-factory:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "test-data-factory:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "test-data-factory:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "test-data-factory",
+      "to": "test-data-factory:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "test-data-factory",
+      "to": "test-data-factory:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "test-data-factory",
+      "to": "test-data-factory:quality",
+      "type": "validated_by"
+    }
+  ]
+}

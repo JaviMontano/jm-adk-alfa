@@ -1,5 +1,6 @@
 ---
 name: workshop-facilitator
+version: 1.0.0
 argument-hint: "workshop-topic [duration]"
 description: 
   Workshop design — event storming, impact mapping, user story mapping, design sprints. [EXPLICIT]

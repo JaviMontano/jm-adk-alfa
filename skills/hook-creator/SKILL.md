@@ -1,5 +1,6 @@
 ---
 name: hook-creator
+version: 1.0.0
 description: 
   This skill should be used when the user asks to "create a hook",
   "add format-on-save", "set up a file guard", "automate on tool use",

@@ -1,5 +1,6 @@
 ---
 name: brand-xlsx
+version: 1.0.0
 description: 
   This skill should be used when the user asks to "generate a branded spreadsheet",
   "create an Excel file with brand colors", "build an XLSX report",

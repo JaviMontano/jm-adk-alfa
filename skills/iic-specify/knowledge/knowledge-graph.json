@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "iic-specify",
+  "nodes": [
+    {
+      "id": "iic-specify",
+      "type": "skill",
+      "label": "iic-specify"
+    },
+    {
+      "id": "iic-specify:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "iic-specify:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "iic-specify:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "iic-specify",
+      "to": "iic-specify:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "iic-specify",
+      "to": "iic-specify:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "iic-specify",
+      "to": "iic-specify:quality",
+      "type": "validated_by"
+    }
+  ]
+}

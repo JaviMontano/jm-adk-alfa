@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "data-privacy-patterns",
+  "nodes": [
+    {
+      "id": "data-privacy-patterns",
+      "type": "skill",
+      "label": "data-privacy-patterns"
+    },
+    {
+      "id": "data-privacy-patterns:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "data-privacy-patterns:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "data-privacy-patterns:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "data-privacy-patterns",
+      "to": "data-privacy-patterns:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "data-privacy-patterns",
+      "to": "data-privacy-patterns:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "data-privacy-patterns",
+      "to": "data-privacy-patterns:quality",
+      "type": "validated_by"
+    }
+  ]
+}

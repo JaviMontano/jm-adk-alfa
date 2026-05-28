@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "step-creator",
+  "nodes": [
+    {
+      "id": "step-creator",
+      "type": "skill",
+      "label": "step-creator"
+    },
+    {
+      "id": "step-creator:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "step-creator:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "step-creator:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "step-creator",
+      "to": "step-creator:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "step-creator",
+      "to": "step-creator:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "step-creator",
+      "to": "step-creator:quality",
+      "type": "validated_by"
+    }
+  ]
+}

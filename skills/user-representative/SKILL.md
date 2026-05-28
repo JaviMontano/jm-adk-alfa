@@ -1,5 +1,6 @@
 ---
 name: user-representative
+version: 1.0.0
 argument-hint: "user-persona-or-segment"
 description: 
   End-user advocate that evaluates deliverable clarity, cognitive load, accessibility, adoption risks, and biases. [EXPLICIT]

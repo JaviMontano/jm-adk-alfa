@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "data-strategy",
+  "nodes": [
+    {
+      "id": "data-strategy",
+      "type": "skill",
+      "label": "data-strategy"
+    },
+    {
+      "id": "data-strategy:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "data-strategy:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "data-strategy:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "data-strategy",
+      "to": "data-strategy:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "data-strategy",
+      "to": "data-strategy:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "data-strategy",
+      "to": "data-strategy:quality",
+      "type": "validated_by"
+    }
+  ]
+}

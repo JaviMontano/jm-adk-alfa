@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "context-optimization",
+  "nodes": [
+    {
+      "id": "context-optimization",
+      "type": "skill",
+      "label": "context-optimization"
+    },
+    {
+      "id": "context-optimization:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "context-optimization:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "context-optimization:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "context-optimization",
+      "to": "context-optimization:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "context-optimization",
+      "to": "context-optimization:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "context-optimization",
+      "to": "context-optimization:quality",
+      "type": "validated_by"
+    }
+  ]
+}

@@ -1,5 +1,6 @@
 ---
 name: build-plugin-scaffold
+version: 1.0.0
 author: JM Labs (Javier Montaño)
 description: 
   Scaffold a complete plugin directory from architecture plans and specs. Creates all files, then validates structure. [EXPLICIT]

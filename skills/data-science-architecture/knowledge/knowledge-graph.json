@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "data-science-architecture",
+  "nodes": [
+    {
+      "id": "data-science-architecture",
+      "type": "skill",
+      "label": "data-science-architecture"
+    },
+    {
+      "id": "data-science-architecture:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "data-science-architecture:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "data-science-architecture:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "data-science-architecture",
+      "to": "data-science-architecture:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "data-science-architecture",
+      "to": "data-science-architecture:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "data-science-architecture",
+      "to": "data-science-architecture:quality",
+      "type": "validated_by"
+    }
+  ]
+}

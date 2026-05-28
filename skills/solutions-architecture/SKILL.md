@@ -1,5 +1,6 @@
 ---
 name: solutions-architecture
+version: 1.0.0
 argument-hint: "project-or-system-name"
 description: 
   End-to-end solution design — system integration, channel orchestration, identity management, observability, and cross-cutting concerns. [EXPLICIT]

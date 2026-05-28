@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "iic-task-decomposer",
+  "nodes": [
+    {
+      "id": "iic-task-decomposer",
+      "type": "skill",
+      "label": "iic-task-decomposer"
+    },
+    {
+      "id": "iic-task-decomposer:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "iic-task-decomposer:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "iic-task-decomposer:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "iic-task-decomposer",
+      "to": "iic-task-decomposer:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "iic-task-decomposer",
+      "to": "iic-task-decomposer:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "iic-task-decomposer",
+      "to": "iic-task-decomposer:quality",
+      "type": "validated_by"
+    }
+  ]
+}

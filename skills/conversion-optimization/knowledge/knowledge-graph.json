@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "conversion-optimization",
+  "nodes": [
+    {
+      "id": "conversion-optimization",
+      "type": "skill",
+      "label": "conversion-optimization"
+    },
+    {
+      "id": "conversion-optimization:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "conversion-optimization:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "conversion-optimization:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "conversion-optimization",
+      "to": "conversion-optimization:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "conversion-optimization",
+      "to": "conversion-optimization:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "conversion-optimization",
+      "to": "conversion-optimization:quality",
+      "type": "validated_by"
+    }
+  ]
+}

@@ -1,5 +1,6 @@
 ---
 name: client-prospecting
+version: 1.0.0
 description: >
   Triggers on "find prospects", "prospecting", "lead list", "ICP definition",
   "target accounts", "who should I contact", "prospectar clientes", "lista de prospectos".

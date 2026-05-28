@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "agent-constitution-creator",
+  "nodes": [
+    {
+      "id": "agent-constitution-creator",
+      "type": "skill",
+      "label": "agent-constitution-creator"
+    },
+    {
+      "id": "agent-constitution-creator:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "agent-constitution-creator:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "agent-constitution-creator:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "agent-constitution-creator",
+      "to": "agent-constitution-creator:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "agent-constitution-creator",
+      "to": "agent-constitution-creator:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "agent-constitution-creator",
+      "to": "agent-constitution-creator:quality",
+      "type": "validated_by"
+    }
+  ]
+}

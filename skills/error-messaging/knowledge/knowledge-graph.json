@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "error-messaging",
+  "nodes": [
+    {
+      "id": "error-messaging",
+      "type": "skill",
+      "label": "error-messaging"
+    },
+    {
+      "id": "error-messaging:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "error-messaging:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "error-messaging:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "error-messaging",
+      "to": "error-messaging:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "error-messaging",
+      "to": "error-messaging:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "error-messaging",
+      "to": "error-messaging:quality",
+      "type": "validated_by"
+    }
+  ]
+}

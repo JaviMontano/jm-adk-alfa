@@ -2,38 +2,39 @@
 
 ## Start Here
 
-- **[Getting Started](getting-started.md)** — Install, first project, first deploy (5 min)
-- **[Component Catalog](catalog.md)** — Browse all 101 agents, 101 skills, 102 commands
+- [Getting Started](getting-started.md): clone, validate, create a skill, and keep local state safe.
+- [Git Sync Local Safe](git-sync-local-safe.md): update from GitHub without breaking local work.
+- [Architecture](../ARCHITECTURE.md): component model and repository boundaries.
 
-## Visual
+## Component Catalog
 
-- **[Architecture Diagrams](architecture-diagram.md)** — Pipeline, DSVSR cycle, quality gates, agent routing (Mermaid)
+Run the live counter instead of trusting stale prose:
 
-## Guides
+```bash
+python3 scripts/count-components.py
+```
 
-- **[MCP Integration](mcp-integration.md)** — Connect external tools, databases, and APIs
+Current physical inventory: 524 skills, 256 agents, 260 commands, 256 prompts.
+
+## Maintainer Guides
+
+- [Custom Skills](advanced/custom-skills.md)
+- [Custom Agents](advanced/custom-agents.md)
+- [MCP Integration](mcp-integration.md)
+- [Production Deployment](advanced/production-deployment.md)
 
 ## Examples
 
-Real-world walkthroughs with actual input/output:
-
 | # | Example | Shows |
 |---|---------|-------|
-| 1 | [E-Commerce Analysis](examples/01-ecommerce-analysis.md) | Full discovery pipeline |
-| 2 | [Task Manager Scaffold](examples/02-task-manager-scaffold.md) | Scaffold → Build → Deploy |
-| 3 | [Portfolio on Hostinger](examples/03-portfolio-deploy.md) | Static site, zero deps |
+| 1 | [E-Commerce Analysis](examples/01-ecommerce-analysis.md) | Discovery pipeline |
+| 2 | [Task Manager Scaffold](examples/02-task-manager-scaffold.md) | Scaffold to build |
+| 3 | [Portfolio on Hostinger](examples/03-portfolio-deploy.md) | Static deployment |
 
-## Advanced
+## Quality Gates
 
-- **[Custom Skills](advanced/custom-skills.md)** — Create and register your own skills
-- **[Custom Agents](advanced/custom-agents.md)** — Build specialist agents
-- **[Metacognition Deep Dive](advanced/metacognition-deep-dive.md)** — DSVSR reasoning engine
-- **[Production Deployment](advanced/production-deployment.md)** — Firebase and Hostinger deployment
-
-## Reference
-
-- **[Architecture Index](../ARCHITECTURE.md)** — Master index of all components (raw)
-- **[Constitution](../.specify/CONSTITUTION.md)** — Project governance (7 articles)
-- **[Contributing](../CONTRIBUTING.md)** — How to contribute
-- **[Changelog](../CHANGELOG.md)** — Version history
-- **[Security Policy](../SECURITY.md)** — Vulnerability reporting
+```bash
+python3 scripts/validate-skills.py --strict
+python3 scripts/count-components.py --check-docs
+bash scripts/check-repo-boundaries.sh
+```

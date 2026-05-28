@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "pitch-deck",
+  "nodes": [
+    {
+      "id": "pitch-deck",
+      "type": "skill",
+      "label": "pitch-deck"
+    },
+    {
+      "id": "pitch-deck:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "pitch-deck:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "pitch-deck:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "pitch-deck",
+      "to": "pitch-deck:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "pitch-deck",
+      "to": "pitch-deck:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "pitch-deck",
+      "to": "pitch-deck:quality",
+      "type": "validated_by"
+    }
+  ]
+}

@@ -1,5 +1,6 @@
 ---
 name: ai-design-patterns
+version: 1.0.0
 description: >
   AI-specific design patterns and system tactics — Feature Store, Champion-Challenger, Shadow Deployment, Drift Detection,
   Explainability Wrapper, Canary Deployment, Bulkhead, and traditional patterns adapted for AI. This skill should be used

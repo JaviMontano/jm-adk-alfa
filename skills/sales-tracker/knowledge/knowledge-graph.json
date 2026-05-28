@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "sales-tracker",
+  "nodes": [
+    {
+      "id": "sales-tracker",
+      "type": "skill",
+      "label": "sales-tracker"
+    },
+    {
+      "id": "sales-tracker:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "sales-tracker:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "sales-tracker:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "sales-tracker",
+      "to": "sales-tracker:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "sales-tracker",
+      "to": "sales-tracker:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "sales-tracker",
+      "to": "sales-tracker:quality",
+      "type": "validated_by"
+    }
+  ]
+}

@@ -1,5 +1,6 @@
 ---
 name: fix-common-issues
+version: 1.0.0
 author: JM Labs (Javier Montaño)
 description: >
   Automatically fixes mechanical issues found during plugin validation, including JSON

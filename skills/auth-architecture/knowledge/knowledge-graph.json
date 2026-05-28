@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "auth-architecture",
+  "nodes": [
+    {
+      "id": "auth-architecture",
+      "type": "skill",
+      "label": "auth-architecture"
+    },
+    {
+      "id": "auth-architecture:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "auth-architecture:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "auth-architecture:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "auth-architecture",
+      "to": "auth-architecture:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "auth-architecture",
+      "to": "auth-architecture:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "auth-architecture",
+      "to": "auth-architecture:quality",
+      "type": "validated_by"
+    }
+  ]
+}

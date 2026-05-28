@@ -1,5 +1,6 @@
 ---
 name: spec-agent-command
+version: 1.0.0
 author: JM Labs (Javier Montaño)
 description: 
   Generate production-ready agent .md and command .md files from designs. Enforces plugin subagent constraints and alias linkage. [EXPLICIT]

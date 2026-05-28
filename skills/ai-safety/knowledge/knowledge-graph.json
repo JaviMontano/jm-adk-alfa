@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "ai-safety",
+  "nodes": [
+    {
+      "id": "ai-safety",
+      "type": "skill",
+      "label": "ai-safety"
+    },
+    {
+      "id": "ai-safety:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "ai-safety:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "ai-safety:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "ai-safety",
+      "to": "ai-safety:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "ai-safety",
+      "to": "ai-safety:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "ai-safety",
+      "to": "ai-safety:quality",
+      "type": "validated_by"
+    }
+  ]
+}

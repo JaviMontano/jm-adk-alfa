@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "continuous-learning",
+  "nodes": [
+    {
+      "id": "continuous-learning",
+      "type": "skill",
+      "label": "continuous-learning"
+    },
+    {
+      "id": "continuous-learning:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "continuous-learning:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "continuous-learning:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "continuous-learning",
+      "to": "continuous-learning:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "continuous-learning",
+      "to": "continuous-learning:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "continuous-learning",
+      "to": "continuous-learning:quality",
+      "type": "validated_by"
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "firestore-security-rules",
+  "nodes": [
+    {
+      "id": "firestore-security-rules",
+      "type": "skill",
+      "label": "firestore-security-rules"
+    },
+    {
+      "id": "firestore-security-rules:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "firestore-security-rules:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "firestore-security-rules:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "firestore-security-rules",
+      "to": "firestore-security-rules:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "firestore-security-rules",
+      "to": "firestore-security-rules:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "firestore-security-rules",
+      "to": "firestore-security-rules:quality",
+      "type": "validated_by"
+    }
+  ]
+}

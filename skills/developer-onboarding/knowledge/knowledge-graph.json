@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "developer-onboarding",
+  "nodes": [
+    {
+      "id": "developer-onboarding",
+      "type": "skill",
+      "label": "developer-onboarding"
+    },
+    {
+      "id": "developer-onboarding:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "developer-onboarding:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "developer-onboarding:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "developer-onboarding",
+      "to": "developer-onboarding:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "developer-onboarding",
+      "to": "developer-onboarding:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "developer-onboarding",
+      "to": "developer-onboarding:quality",
+      "type": "validated_by"
+    }
+  ]
+}

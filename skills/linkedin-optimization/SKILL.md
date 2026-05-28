@@ -1,5 +1,6 @@
 ---
 name: linkedin-optimization
+version: 1.0.0
 description: >
   Triggers on "optimize my LinkedIn", "LinkedIn profile", "improve my LinkedIn", "mejorar LinkedIn".
   Rewrites LinkedIn profile sections using proven frameworks — headline, about, experience,

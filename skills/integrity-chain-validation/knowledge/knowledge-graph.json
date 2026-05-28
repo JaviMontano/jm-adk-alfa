@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "integrity-chain-validation",
+  "nodes": [
+    {
+      "id": "integrity-chain-validation",
+      "type": "skill",
+      "label": "integrity-chain-validation"
+    },
+    {
+      "id": "integrity-chain-validation:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "integrity-chain-validation:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "integrity-chain-validation:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "integrity-chain-validation",
+      "to": "integrity-chain-validation:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "integrity-chain-validation",
+      "to": "integrity-chain-validation:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "integrity-chain-validation",
+      "to": "integrity-chain-validation:quality",
+      "type": "validated_by"
+    }
+  ]
+}

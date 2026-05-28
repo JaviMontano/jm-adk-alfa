@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "google-calendar-mcp",
+  "nodes": [
+    {
+      "id": "google-calendar-mcp",
+      "type": "skill",
+      "label": "google-calendar-mcp"
+    },
+    {
+      "id": "google-calendar-mcp:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "google-calendar-mcp:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "google-calendar-mcp:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "google-calendar-mcp",
+      "to": "google-calendar-mcp:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "google-calendar-mcp",
+      "to": "google-calendar-mcp:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "google-calendar-mcp",
+      "to": "google-calendar-mcp:quality",
+      "type": "validated_by"
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "unit-testing",
+  "nodes": [
+    {
+      "id": "unit-testing",
+      "type": "skill",
+      "label": "unit-testing"
+    },
+    {
+      "id": "unit-testing:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "unit-testing:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "unit-testing:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "unit-testing",
+      "to": "unit-testing:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "unit-testing",
+      "to": "unit-testing:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "unit-testing",
+      "to": "unit-testing:quality",
+      "type": "validated_by"
+    }
+  ]
+}

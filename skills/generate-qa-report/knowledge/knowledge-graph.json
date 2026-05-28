@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "generate-qa-report",
+  "nodes": [
+    {
+      "id": "generate-qa-report",
+      "type": "skill",
+      "label": "generate-qa-report"
+    },
+    {
+      "id": "generate-qa-report:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "generate-qa-report:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "generate-qa-report:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "generate-qa-report",
+      "to": "generate-qa-report:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "generate-qa-report",
+      "to": "generate-qa-report:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "generate-qa-report",
+      "to": "generate-qa-report:quality",
+      "type": "validated_by"
+    }
+  ]
+}

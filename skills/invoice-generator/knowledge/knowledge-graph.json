@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "invoice-generator",
+  "nodes": [
+    {
+      "id": "invoice-generator",
+      "type": "skill",
+      "label": "invoice-generator"
+    },
+    {
+      "id": "invoice-generator:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "invoice-generator:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "invoice-generator:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "invoice-generator",
+      "to": "invoice-generator:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "invoice-generator",
+      "to": "invoice-generator:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "invoice-generator",
+      "to": "invoice-generator:quality",
+      "type": "validated_by"
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "server-middleware",
+  "nodes": [
+    {
+      "id": "server-middleware",
+      "type": "skill",
+      "label": "server-middleware"
+    },
+    {
+      "id": "server-middleware:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "server-middleware:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "server-middleware:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "server-middleware",
+      "to": "server-middleware:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "server-middleware",
+      "to": "server-middleware:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "server-middleware",
+      "to": "server-middleware:quality",
+      "type": "validated_by"
+    }
+  ]
+}

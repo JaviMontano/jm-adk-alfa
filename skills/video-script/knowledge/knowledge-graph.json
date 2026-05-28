@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "video-script",
+  "nodes": [
+    {
+      "id": "video-script",
+      "type": "skill",
+      "label": "video-script"
+    },
+    {
+      "id": "video-script:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "video-script:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "video-script:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "video-script",
+      "to": "video-script:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "video-script",
+      "to": "video-script:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "video-script",
+      "to": "video-script:quality",
+      "type": "validated_by"
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "case-study-writing",
+  "nodes": [
+    {
+      "id": "case-study-writing",
+      "type": "skill",
+      "label": "case-study-writing"
+    },
+    {
+      "id": "case-study-writing:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "case-study-writing:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "case-study-writing:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "case-study-writing",
+      "to": "case-study-writing:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "case-study-writing",
+      "to": "case-study-writing:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "case-study-writing",
+      "to": "case-study-writing:quality",
+      "type": "validated_by"
+    }
+  ]
+}

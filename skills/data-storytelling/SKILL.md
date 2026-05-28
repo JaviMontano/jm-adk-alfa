@@ -1,5 +1,6 @@
 ---
 name: data-storytelling
+version: 1.0.0
 author: Javier Montaño · Comunidad MetodologIA
 argument-hint: "data-context: metrics|scoring|financial|performance|coverage audience: executive|technical|mixed"
 description: 

@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "bi-architecture",
+  "nodes": [
+    {
+      "id": "bi-architecture",
+      "type": "skill",
+      "label": "bi-architecture"
+    },
+    {
+      "id": "bi-architecture:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "bi-architecture:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "bi-architecture:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "bi-architecture",
+      "to": "bi-architecture:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "bi-architecture",
+      "to": "bi-architecture:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "bi-architecture",
+      "to": "bi-architecture:quality",
+      "type": "validated_by"
+    }
+  ]
+}

@@ -1,5 +1,6 @@
 ---
 name: ideate-component
+version: 1.0.0
 author: JM Labs (Javier Montaño)
 description: 
   Brainstorm individual plugin components (skill, agent, command, hook) for existing or planned plugins. [EXPLICIT]

@@ -1,5 +1,6 @@
 ---
 name: landing-pages
+version: 1.0.0
 description: >
   Triggers on "landing page", "personal brand page", "portfolio site", "create my web page",
   "página web personal", "create my website", "professional web presence". Creates personal

@@ -2,7 +2,8 @@
 # Upgrade all prompts to production-grade: triad, dynamic params, skill integration
 # Usage: bash scripts/upgrade-prompts.sh
 set -e
-cd "$(dirname "$0")/.."
+ROOT="$(git -C "$(dirname "$0")/.." rev-parse --show-toplevel)"
+cd "$ROOT"
 
 # Category → default support concern mapping
 get_support_concern() {

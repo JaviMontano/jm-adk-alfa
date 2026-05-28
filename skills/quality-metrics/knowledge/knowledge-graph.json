@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "quality-metrics",
+  "nodes": [
+    {
+      "id": "quality-metrics",
+      "type": "skill",
+      "label": "quality-metrics"
+    },
+    {
+      "id": "quality-metrics:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "quality-metrics:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "quality-metrics:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "quality-metrics",
+      "to": "quality-metrics:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "quality-metrics",
+      "to": "quality-metrics:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "quality-metrics",
+      "to": "quality-metrics:quality",
+      "type": "validated_by"
+    }
+  ]
+}

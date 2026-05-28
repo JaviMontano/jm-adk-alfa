@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "post-tool-use-validator",
+  "nodes": [
+    {
+      "id": "post-tool-use-validator",
+      "type": "skill",
+      "label": "post-tool-use-validator"
+    },
+    {
+      "id": "post-tool-use-validator:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "post-tool-use-validator:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "post-tool-use-validator:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "post-tool-use-validator",
+      "to": "post-tool-use-validator:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "post-tool-use-validator",
+      "to": "post-tool-use-validator:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "post-tool-use-validator",
+      "to": "post-tool-use-validator:quality",
+      "type": "validated_by"
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "cv-enhancement",
+  "nodes": [
+    {
+      "id": "cv-enhancement",
+      "type": "skill",
+      "label": "cv-enhancement"
+    },
+    {
+      "id": "cv-enhancement:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "cv-enhancement:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "cv-enhancement:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "cv-enhancement",
+      "to": "cv-enhancement:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "cv-enhancement",
+      "to": "cv-enhancement:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "cv-enhancement",
+      "to": "cv-enhancement:quality",
+      "type": "validated_by"
+    }
+  ]
+}

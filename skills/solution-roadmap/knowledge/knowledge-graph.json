@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "solution-roadmap",
+  "nodes": [
+    {
+      "id": "solution-roadmap",
+      "type": "skill",
+      "label": "solution-roadmap"
+    },
+    {
+      "id": "solution-roadmap:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "solution-roadmap:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "solution-roadmap:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "solution-roadmap",
+      "to": "solution-roadmap:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "solution-roadmap",
+      "to": "solution-roadmap:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "solution-roadmap",
+      "to": "solution-roadmap:quality",
+      "type": "validated_by"
+    }
+  ]
+}

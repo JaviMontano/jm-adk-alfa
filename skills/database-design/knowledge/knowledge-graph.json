@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "database-design",
+  "nodes": [
+    {
+      "id": "database-design",
+      "type": "skill",
+      "label": "database-design"
+    },
+    {
+      "id": "database-design:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "database-design:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "database-design:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "database-design",
+      "to": "database-design:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "database-design",
+      "to": "database-design:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "database-design",
+      "to": "database-design:quality",
+      "type": "validated_by"
+    }
+  ]
+}

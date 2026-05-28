@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "permission-fast-path",
+  "nodes": [
+    {
+      "id": "permission-fast-path",
+      "type": "skill",
+      "label": "permission-fast-path"
+    },
+    {
+      "id": "permission-fast-path:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "permission-fast-path:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "permission-fast-path:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "permission-fast-path",
+      "to": "permission-fast-path:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "permission-fast-path",
+      "to": "permission-fast-path:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "permission-fast-path",
+      "to": "permission-fast-path:quality",
+      "type": "validated_by"
+    }
+  ]
+}

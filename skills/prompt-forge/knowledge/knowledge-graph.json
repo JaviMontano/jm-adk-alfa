@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "prompt-forge",
+  "nodes": [
+    {
+      "id": "prompt-forge",
+      "type": "skill",
+      "label": "prompt-forge"
+    },
+    {
+      "id": "prompt-forge:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "prompt-forge:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "prompt-forge:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "prompt-forge",
+      "to": "prompt-forge:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "prompt-forge",
+      "to": "prompt-forge:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "prompt-forge",
+      "to": "prompt-forge:quality",
+      "type": "validated_by"
+    }
+  ]
+}

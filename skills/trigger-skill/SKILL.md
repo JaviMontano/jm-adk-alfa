@@ -1,5 +1,6 @@
 ---
 name: trigger-skill
+version: 1.0.0
 description: 
   This skill should be used when the user asks to "optimize skill triggers",
   "improve skill description", "why isn't my skill triggering",

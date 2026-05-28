@@ -1,5 +1,6 @@
 ---
 name: surgeon-skill
+version: 1.0.0
 description: 
   This skill should be used when the user asks to "improve a skill",
   "fix this skill", "upgrade skill quality", "apply improvements",

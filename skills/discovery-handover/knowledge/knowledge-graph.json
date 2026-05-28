@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "discovery-handover",
+  "nodes": [
+    {
+      "id": "discovery-handover",
+      "type": "skill",
+      "label": "discovery-handover"
+    },
+    {
+      "id": "discovery-handover:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "discovery-handover:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "discovery-handover:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "discovery-handover",
+      "to": "discovery-handover:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "discovery-handover",
+      "to": "discovery-handover:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "discovery-handover",
+      "to": "discovery-handover:quality",
+      "type": "validated_by"
+    }
+  ]
+}

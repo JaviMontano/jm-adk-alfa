@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "ci-cd-pipeline",
+  "nodes": [
+    {
+      "id": "ci-cd-pipeline",
+      "type": "skill",
+      "label": "ci-cd-pipeline"
+    },
+    {
+      "id": "ci-cd-pipeline:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "ci-cd-pipeline:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "ci-cd-pipeline:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "ci-cd-pipeline",
+      "to": "ci-cd-pipeline:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "ci-cd-pipeline",
+      "to": "ci-cd-pipeline:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "ci-cd-pipeline",
+      "to": "ci-cd-pipeline:quality",
+      "type": "validated_by"
+    }
+  ]
+}

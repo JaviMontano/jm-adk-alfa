@@ -1,5 +1,6 @@
 ---
 name: brand-html
+version: 1.0.0
 description: 
   This skill should be used when the user asks to "generate branded HTML",
   "create a landing page", "build a brand-compliant web page",

@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "serverless-patterns",
+  "nodes": [
+    {
+      "id": "serverless-patterns",
+      "type": "skill",
+      "label": "serverless-patterns"
+    },
+    {
+      "id": "serverless-patterns:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "serverless-patterns:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "serverless-patterns:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "serverless-patterns",
+      "to": "serverless-patterns:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "serverless-patterns",
+      "to": "serverless-patterns:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "serverless-patterns",
+      "to": "serverless-patterns:quality",
+      "type": "validated_by"
+    }
+  ]
+}

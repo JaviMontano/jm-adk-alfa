@@ -1,5 +1,6 @@
 ---
 name: interview-prep
+version: 1.0.0
 description: >
   Triggers on "prepare for interview", "interview prep", "preparar entrevista", "mock interview".
   Builds an interview preparation kit with question banks, STAR frameworks, company research checklists, and follow-up templates. Output: prep document. [EXPLICIT]

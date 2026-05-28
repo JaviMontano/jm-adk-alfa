@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "quality-engineering",
+  "nodes": [
+    {
+      "id": "quality-engineering",
+      "type": "skill",
+      "label": "quality-engineering"
+    },
+    {
+      "id": "quality-engineering:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "quality-engineering:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "quality-engineering:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "quality-engineering",
+      "to": "quality-engineering:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "quality-engineering",
+      "to": "quality-engineering:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "quality-engineering",
+      "to": "quality-engineering:quality",
+      "type": "validated_by"
+    }
+  ]
+}

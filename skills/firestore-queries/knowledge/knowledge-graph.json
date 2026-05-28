@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "firestore-queries",
+  "nodes": [
+    {
+      "id": "firestore-queries",
+      "type": "skill",
+      "label": "firestore-queries"
+    },
+    {
+      "id": "firestore-queries:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "firestore-queries:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "firestore-queries:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "firestore-queries",
+      "to": "firestore-queries:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "firestore-queries",
+      "to": "firestore-queries:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "firestore-queries",
+      "to": "firestore-queries:quality",
+      "type": "validated_by"
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "grid-systems",
+  "nodes": [
+    {
+      "id": "grid-systems",
+      "type": "skill",
+      "label": "grid-systems"
+    },
+    {
+      "id": "grid-systems:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "grid-systems:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "grid-systems:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "grid-systems",
+      "to": "grid-systems:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "grid-systems",
+      "to": "grid-systems:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "grid-systems",
+      "to": "grid-systems:quality",
+      "type": "validated_by"
+    }
+  ]
+}

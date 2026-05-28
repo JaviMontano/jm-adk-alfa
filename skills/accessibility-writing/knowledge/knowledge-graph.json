@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "accessibility-writing",
+  "nodes": [
+    {
+      "id": "accessibility-writing",
+      "type": "skill",
+      "label": "accessibility-writing"
+    },
+    {
+      "id": "accessibility-writing:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "accessibility-writing:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "accessibility-writing:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "accessibility-writing",
+      "to": "accessibility-writing:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "accessibility-writing",
+      "to": "accessibility-writing:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "accessibility-writing",
+      "to": "accessibility-writing:quality",
+      "type": "validated_by"
+    }
+  ]
+}

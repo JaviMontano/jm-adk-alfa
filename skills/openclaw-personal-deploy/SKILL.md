@@ -1,5 +1,6 @@
 ---
 name: openclaw-personal-deploy
+version: 1.0.0
 description: >
   This skill should be used when the user asks to "deploy OpenClaw for personal use",
   "set up a secure personal agent", "create my own Claude agent", "deploy isolated

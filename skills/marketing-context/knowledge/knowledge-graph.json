@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "marketing-context",
+  "nodes": [
+    {
+      "id": "marketing-context",
+      "type": "skill",
+      "label": "marketing-context"
+    },
+    {
+      "id": "marketing-context:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "marketing-context:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "marketing-context:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "marketing-context",
+      "to": "marketing-context:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "marketing-context",
+      "to": "marketing-context:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "marketing-context",
+      "to": "marketing-context:quality",
+      "type": "validated_by"
+    }
+  ]
+}

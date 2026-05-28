@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "meta-orchestration-updater",
+  "nodes": [
+    {
+      "id": "meta-orchestration-updater",
+      "type": "skill",
+      "label": "meta-orchestration-updater"
+    },
+    {
+      "id": "meta-orchestration-updater:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "meta-orchestration-updater:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "meta-orchestration-updater:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "meta-orchestration-updater",
+      "to": "meta-orchestration-updater:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "meta-orchestration-updater",
+      "to": "meta-orchestration-updater:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "meta-orchestration-updater",
+      "to": "meta-orchestration-updater:quality",
+      "type": "validated_by"
+    }
+  ]
+}

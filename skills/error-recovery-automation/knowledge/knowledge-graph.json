@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "error-recovery-automation",
+  "nodes": [
+    {
+      "id": "error-recovery-automation",
+      "type": "skill",
+      "label": "error-recovery-automation"
+    },
+    {
+      "id": "error-recovery-automation:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "error-recovery-automation:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "error-recovery-automation:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "error-recovery-automation",
+      "to": "error-recovery-automation:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "error-recovery-automation",
+      "to": "error-recovery-automation:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "error-recovery-automation",
+      "to": "error-recovery-automation:quality",
+      "type": "validated_by"
+    }
+  ]
+}

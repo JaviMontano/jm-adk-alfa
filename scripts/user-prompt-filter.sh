@@ -6,7 +6,7 @@
 # Pattern matching is intentionally basic — sophisticated attacks are the model's concern.
 
 PROMPT="${CLAUDE_USER_PROMPT:-}"
-PROJECT_ROOT="$(cd "$(dirname "$0")/.." && pwd)"
+PROJECT_ROOT="$(git -C "$(dirname "$0")/.." rev-parse --show-toplevel)"
 
 # ── Injection patterns (warn, never block) ──
 

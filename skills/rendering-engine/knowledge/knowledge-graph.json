@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "rendering-engine",
+  "nodes": [
+    {
+      "id": "rendering-engine",
+      "type": "skill",
+      "label": "rendering-engine"
+    },
+    {
+      "id": "rendering-engine:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "rendering-engine:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "rendering-engine:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "rendering-engine",
+      "to": "rendering-engine:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "rendering-engine",
+      "to": "rendering-engine:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "rendering-engine",
+      "to": "rendering-engine:quality",
+      "type": "validated_by"
+    }
+  ]
+}

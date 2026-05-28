@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "mobile-patterns",
+  "nodes": [
+    {
+      "id": "mobile-patterns",
+      "type": "skill",
+      "label": "mobile-patterns"
+    },
+    {
+      "id": "mobile-patterns:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "mobile-patterns:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "mobile-patterns:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "mobile-patterns",
+      "to": "mobile-patterns:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "mobile-patterns",
+      "to": "mobile-patterns:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "mobile-patterns",
+      "to": "mobile-patterns:quality",
+      "type": "validated_by"
+    }
+  ]
+}

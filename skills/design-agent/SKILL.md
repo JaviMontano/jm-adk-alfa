@@ -1,5 +1,6 @@
 ---
 name: design-agent
+version: 1.0.0
 author: JM Labs (Javier Montaño)
 description: 
   Design a plugin agent: role, tool allowlist, skill assignments, execution flows, operating principles. [EXPLICIT]

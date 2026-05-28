@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "infrastructure-design",
+  "nodes": [
+    {
+      "id": "infrastructure-design",
+      "type": "skill",
+      "label": "infrastructure-design"
+    },
+    {
+      "id": "infrastructure-design:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "infrastructure-design:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "infrastructure-design:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "infrastructure-design",
+      "to": "infrastructure-design:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "infrastructure-design",
+      "to": "infrastructure-design:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "infrastructure-design",
+      "to": "infrastructure-design:quality",
+      "type": "validated_by"
+    }
+  ]
+}

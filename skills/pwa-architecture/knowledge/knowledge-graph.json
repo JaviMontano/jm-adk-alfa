@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "pwa-architecture",
+  "nodes": [
+    {
+      "id": "pwa-architecture",
+      "type": "skill",
+      "label": "pwa-architecture"
+    },
+    {
+      "id": "pwa-architecture:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "pwa-architecture:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "pwa-architecture:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "pwa-architecture",
+      "to": "pwa-architecture:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "pwa-architecture",
+      "to": "pwa-architecture:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "pwa-architecture",
+      "to": "pwa-architecture:quality",
+      "type": "validated_by"
+    }
+  ]
+}

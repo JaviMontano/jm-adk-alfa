@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "caching-strategy",
+  "nodes": [
+    {
+      "id": "caching-strategy",
+      "type": "skill",
+      "label": "caching-strategy"
+    },
+    {
+      "id": "caching-strategy:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "caching-strategy:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "caching-strategy:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "caching-strategy",
+      "to": "caching-strategy:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "caching-strategy",
+      "to": "caching-strategy:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "caching-strategy",
+      "to": "caching-strategy:quality",
+      "type": "validated_by"
+    }
+  ]
+}

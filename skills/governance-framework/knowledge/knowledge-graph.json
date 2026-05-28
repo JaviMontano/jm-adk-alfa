@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "governance-framework",
+  "nodes": [
+    {
+      "id": "governance-framework",
+      "type": "skill",
+      "label": "governance-framework"
+    },
+    {
+      "id": "governance-framework:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "governance-framework:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "governance-framework:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "governance-framework",
+      "to": "governance-framework:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "governance-framework",
+      "to": "governance-framework:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "governance-framework",
+      "to": "governance-framework:quality",
+      "type": "validated_by"
+    }
+  ]
+}

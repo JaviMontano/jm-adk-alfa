@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "audit-trail-design",
+  "nodes": [
+    {
+      "id": "audit-trail-design",
+      "type": "skill",
+      "label": "audit-trail-design"
+    },
+    {
+      "id": "audit-trail-design:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "audit-trail-design:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "audit-trail-design:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "audit-trail-design",
+      "to": "audit-trail-design:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "audit-trail-design",
+      "to": "audit-trail-design:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "audit-trail-design",
+      "to": "audit-trail-design:quality",
+      "type": "validated_by"
+    }
+  ]
+}

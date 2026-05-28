@@ -1,5 +1,6 @@
 ---
 name: audit-content-quality
+version: 1.0.0
 author: JM Labs (Javier Montaño)
 description: >
   Audits all SKILL.md files in a plugin against a 6-criteria excellence rubric, producing

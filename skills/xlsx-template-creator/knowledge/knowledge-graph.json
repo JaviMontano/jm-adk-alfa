@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "xlsx-template-creator",
+  "nodes": [
+    {
+      "id": "xlsx-template-creator",
+      "type": "skill",
+      "label": "xlsx-template-creator"
+    },
+    {
+      "id": "xlsx-template-creator:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "xlsx-template-creator:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "xlsx-template-creator:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "xlsx-template-creator",
+      "to": "xlsx-template-creator:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "xlsx-template-creator",
+      "to": "xlsx-template-creator:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "xlsx-template-creator",
+      "to": "xlsx-template-creator:quality",
+      "type": "validated_by"
+    }
+  ]
+}

@@ -1,5 +1,6 @@
 ---
 name: copywriting
+version: 1.0.0
 author: Javier Montaño · Comunidad MetodologIA
 argument-hint: "audience: ceo|cto|cfo|board|mixed context: pitch|scenario|roadmap|summary|recommendation"
 description: 

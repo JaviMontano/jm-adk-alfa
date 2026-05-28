@@ -1,9 +1,9 @@
-# JM-ADK v4.0.0 — Gemini Agent Instructions
+# JM-ADK v5.2.0 — Gemini Agent Instructions
 
 ## Environment
 
 IDE: gemini | Triad: sequential-prompts | Tools: limited | Hooks: no | MCP: no | Multimodal: yes (mobile)
-Components: 264 skills · 256 agents · 260 commands
+Components: 524 skills · 256 agents · 260 commands · 256 prompts
 
 ## Awakening
 
@@ -46,6 +46,7 @@ Full matrix: `PRISTINO.md`
 - 4. Think First (XIII) — read before write
 - 5. Simple First (XIV) — complexity requires justification
 - 6. Hostinger-first — output deployable on shared hosting
+- 7. Local state stays local: do not commit `workspace/`, `.local/`, `.codex/`, `.env*`, or `.jm-adk.local.json`
 
 ## Quality Gates
 

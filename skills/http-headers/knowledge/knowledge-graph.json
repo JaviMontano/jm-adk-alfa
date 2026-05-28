@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "http-headers",
+  "nodes": [
+    {
+      "id": "http-headers",
+      "type": "skill",
+      "label": "http-headers"
+    },
+    {
+      "id": "http-headers:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "http-headers:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "http-headers:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "http-headers",
+      "to": "http-headers:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "http-headers",
+      "to": "http-headers:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "http-headers",
+      "to": "http-headers:quality",
+      "type": "validated_by"
+    }
+  ]
+}

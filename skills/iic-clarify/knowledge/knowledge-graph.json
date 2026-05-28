@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "iic-clarify",
+  "nodes": [
+    {
+      "id": "iic-clarify",
+      "type": "skill",
+      "label": "iic-clarify"
+    },
+    {
+      "id": "iic-clarify:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "iic-clarify:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "iic-clarify:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "iic-clarify",
+      "to": "iic-clarify:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "iic-clarify",
+      "to": "iic-clarify:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "iic-clarify",
+      "to": "iic-clarify:quality",
+      "type": "validated_by"
+    }
+  ]
+}

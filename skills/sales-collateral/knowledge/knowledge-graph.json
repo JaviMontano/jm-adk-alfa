@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "sales-collateral",
+  "nodes": [
+    {
+      "id": "sales-collateral",
+      "type": "skill",
+      "label": "sales-collateral"
+    },
+    {
+      "id": "sales-collateral:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "sales-collateral:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "sales-collateral:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "sales-collateral",
+      "to": "sales-collateral:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "sales-collateral",
+      "to": "sales-collateral:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "sales-collateral",
+      "to": "sales-collateral:quality",
+      "type": "validated_by"
+    }
+  ]
+}

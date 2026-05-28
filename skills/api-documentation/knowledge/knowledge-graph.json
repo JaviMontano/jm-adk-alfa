@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "api-documentation",
+  "nodes": [
+    {
+      "id": "api-documentation",
+      "type": "skill",
+      "label": "api-documentation"
+    },
+    {
+      "id": "api-documentation:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "api-documentation:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "api-documentation:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "api-documentation",
+      "to": "api-documentation:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "api-documentation",
+      "to": "api-documentation:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "api-documentation",
+      "to": "api-documentation:quality",
+      "type": "validated_by"
+    }
+  ]
+}

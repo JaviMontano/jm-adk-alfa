@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "client-dossier",
+  "nodes": [
+    {
+      "id": "client-dossier",
+      "type": "skill",
+      "label": "client-dossier"
+    },
+    {
+      "id": "client-dossier:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "client-dossier:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "client-dossier:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "client-dossier",
+      "to": "client-dossier:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "client-dossier",
+      "to": "client-dossier:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "client-dossier",
+      "to": "client-dossier:quality",
+      "type": "validated_by"
+    }
+  ]
+}

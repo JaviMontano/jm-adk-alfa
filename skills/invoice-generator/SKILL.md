@@ -1,5 +1,6 @@
 ---
 name: invoice-generator
+version: 1.0.0
 description: >
   Triggers on "create invoice", "invoice template", "factura", "generar factura".
   Branded invoice template builder with client info, line items, subtotal/tax/total,

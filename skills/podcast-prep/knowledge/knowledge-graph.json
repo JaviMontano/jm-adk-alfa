@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "podcast-prep",
+  "nodes": [
+    {
+      "id": "podcast-prep",
+      "type": "skill",
+      "label": "podcast-prep"
+    },
+    {
+      "id": "podcast-prep:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "podcast-prep:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "podcast-prep:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "podcast-prep",
+      "to": "podcast-prep:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "podcast-prep",
+      "to": "podcast-prep:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "podcast-prep",
+      "to": "podcast-prep:quality",
+      "type": "validated_by"
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "component-designer",
+  "nodes": [
+    {
+      "id": "component-designer",
+      "type": "skill",
+      "label": "component-designer"
+    },
+    {
+      "id": "component-designer:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "component-designer:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "component-designer:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "component-designer",
+      "to": "component-designer:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "component-designer",
+      "to": "component-designer:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "component-designer",
+      "to": "component-designer:quality",
+      "type": "validated_by"
+    }
+  ]
+}

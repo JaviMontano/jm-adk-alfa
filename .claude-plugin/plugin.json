@@ -1,16 +1,16 @@
 {
   "name": "jm-adk",
-  "version": "5.1.0",
-  "description": "JM Agentic Development Kit — 512 skills, market research, CV, brand HTML, landing pages, progress tracking, discovery, architecture, security and more. Constitution-governed, triad-orchestrated, workspace-tracked. From intent to production with full traceability.",
+  "version": "5.2.0",
+  "description": "JM Agentic Development Kit — 524 skills, 256 agents, 260 commands, safe skill scaffolding, local-first workspaces, validation gates, and upgrade-safe GitHub sync.",
   "author": {
     "name": "Javier Montaño (JM Labs)",
     "url": "https://metodologia.info"
   },
   "license": "MIT",
-  "homepage": "https://github.com/JaviMontano/jm-agentic-development-kit-alfa",
+  "homepage": "https://github.com/JaviMontano/jm-adk-alfa",
   "repository": {
     "type": "git",
-    "url": "https://github.com/JaviMontano/jm-agentic-development-kit-alfa"
+    "url": "https://github.com/JaviMontano/jm-adk-alfa"
   },
   "keywords": [
     "agentic-development",

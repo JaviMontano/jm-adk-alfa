@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "cross-browser-testing",
+  "nodes": [
+    {
+      "id": "cross-browser-testing",
+      "type": "skill",
+      "label": "cross-browser-testing"
+    },
+    {
+      "id": "cross-browser-testing:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "cross-browser-testing:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "cross-browser-testing:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "cross-browser-testing",
+      "to": "cross-browser-testing:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "cross-browser-testing",
+      "to": "cross-browser-testing:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "cross-browser-testing",
+      "to": "cross-browser-testing:quality",
+      "type": "validated_by"
+    }
+  ]
+}

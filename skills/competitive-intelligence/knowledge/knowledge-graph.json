@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "competitive-intelligence",
+  "nodes": [
+    {
+      "id": "competitive-intelligence",
+      "type": "skill",
+      "label": "competitive-intelligence"
+    },
+    {
+      "id": "competitive-intelligence:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "competitive-intelligence:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "competitive-intelligence:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "competitive-intelligence",
+      "to": "competitive-intelligence:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "competitive-intelligence",
+      "to": "competitive-intelligence:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "competitive-intelligence",
+      "to": "competitive-intelligence:quality",
+      "type": "validated_by"
+    }
+  ]
+}

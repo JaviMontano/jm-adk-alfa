@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "oauth-social-login",
+  "nodes": [
+    {
+      "id": "oauth-social-login",
+      "type": "skill",
+      "label": "oauth-social-login"
+    },
+    {
+      "id": "oauth-social-login:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "oauth-social-login:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "oauth-social-login:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "oauth-social-login",
+      "to": "oauth-social-login:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "oauth-social-login",
+      "to": "oauth-social-login:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "oauth-social-login",
+      "to": "oauth-social-login:quality",
+      "type": "validated_by"
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "event-marketing",
+  "nodes": [
+    {
+      "id": "event-marketing",
+      "type": "skill",
+      "label": "event-marketing"
+    },
+    {
+      "id": "event-marketing:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "event-marketing:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "event-marketing:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "event-marketing",
+      "to": "event-marketing:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "event-marketing",
+      "to": "event-marketing:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "event-marketing",
+      "to": "event-marketing:quality",
+      "type": "validated_by"
+    }
+  ]
+}

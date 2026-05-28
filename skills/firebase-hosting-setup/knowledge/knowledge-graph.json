@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "firebase-hosting-setup",
+  "nodes": [
+    {
+      "id": "firebase-hosting-setup",
+      "type": "skill",
+      "label": "firebase-hosting-setup"
+    },
+    {
+      "id": "firebase-hosting-setup:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "firebase-hosting-setup:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "firebase-hosting-setup:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "firebase-hosting-setup",
+      "to": "firebase-hosting-setup:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "firebase-hosting-setup",
+      "to": "firebase-hosting-setup:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "firebase-hosting-setup",
+      "to": "firebase-hosting-setup:quality",
+      "type": "validated_by"
+    }
+  ]
+}

@@ -1,5 +1,6 @@
 ---
 name: spec-skill-moat
+version: 1.0.0
 author: JM Labs (Javier Montaño)
 description: 
   Generate production-ready SKILL.md and MOAT asset files from a skill design. Enforces MOAT quality dimensions (=7 on all 6), 500-line body limit, progressive disclosure. [EXPLICIT]

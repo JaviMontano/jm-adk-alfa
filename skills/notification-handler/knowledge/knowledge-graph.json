@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "notification-handler",
+  "nodes": [
+    {
+      "id": "notification-handler",
+      "type": "skill",
+      "label": "notification-handler"
+    },
+    {
+      "id": "notification-handler:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "notification-handler:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "notification-handler:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "notification-handler",
+      "to": "notification-handler:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "notification-handler",
+      "to": "notification-handler:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "notification-handler",
+      "to": "notification-handler:quality",
+      "type": "validated_by"
+    }
+  ]
+}

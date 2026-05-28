@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "technical-feasibility",
+  "nodes": [
+    {
+      "id": "technical-feasibility",
+      "type": "skill",
+      "label": "technical-feasibility"
+    },
+    {
+      "id": "technical-feasibility:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "technical-feasibility:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "technical-feasibility:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "technical-feasibility",
+      "to": "technical-feasibility:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "technical-feasibility",
+      "to": "technical-feasibility:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "technical-feasibility",
+      "to": "technical-feasibility:quality",
+      "type": "validated_by"
+    }
+  ]
+}

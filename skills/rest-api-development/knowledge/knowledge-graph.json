@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "rest-api-development",
+  "nodes": [
+    {
+      "id": "rest-api-development",
+      "type": "skill",
+      "label": "rest-api-development"
+    },
+    {
+      "id": "rest-api-development:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "rest-api-development:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "rest-api-development:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "rest-api-development",
+      "to": "rest-api-development:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "rest-api-development",
+      "to": "rest-api-development:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "rest-api-development",
+      "to": "rest-api-development:quality",
+      "type": "validated_by"
+    }
+  ]
+}

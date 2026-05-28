@@ -1,5 +1,6 @@
 ---
 name: open-claw-builder
+version: 1.0.0
 description: 
   Builds production-grade tool-calling AI agents with TypeScript on open LLM stacks (Groq, OpenRouter, Ollama). [EXPLICIT]
   Activates when the user says "build an agent", "create a bot", "scaffold a Telegram bot",

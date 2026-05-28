@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "bundle-analysis",
+  "nodes": [
+    {
+      "id": "bundle-analysis",
+      "type": "skill",
+      "label": "bundle-analysis"
+    },
+    {
+      "id": "bundle-analysis:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "bundle-analysis:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "bundle-analysis:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "bundle-analysis",
+      "to": "bundle-analysis:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "bundle-analysis",
+      "to": "bundle-analysis:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "bundle-analysis",
+      "to": "bundle-analysis:quality",
+      "type": "validated_by"
+    }
+  ]
+}

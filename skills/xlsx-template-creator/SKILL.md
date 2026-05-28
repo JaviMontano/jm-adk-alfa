@@ -1,5 +1,6 @@
---- [EXPLICIT]
+---
 name: xlsx-template-creator
+version: 1.0.0
 description:  [EXPLICIT]
   Generates XLSX template specifications with columns, formulas, conditional formatting, and dashboard layouts for tracking and metrics. [EXPLICIT]
   Use when the user asks to "create a spreadsheet template", "build a tracking matrix", "design a metrics dashboard", [EXPLICIT]
@@ -8,7 +9,7 @@ argument-hint: tracking-matrix|metrics-dashboard title [EXPLICIT]
 model: opus [EXPLICIT]
 context: fork [EXPLICIT]
 allowed-tools: Read, Write, Edit, Glob [EXPLICIT]
---- [EXPLICIT]
+---
  [EXPLICIT]
 # XLSX Template Creator [EXPLICIT]
  [EXPLICIT]
@@ -264,5 +265,5 @@ sheets: [EXPLICIT]
 - [ ] Print area set per sheet [EXPLICIT]
 - [ ] Config sheet is clearly labeled as "edit here" [EXPLICIT]
  [EXPLICIT]
---- [EXPLICIT]
+---
 **Author:** Javier Montano | **Last updated:** 2026-03-12 [EXPLICIT]

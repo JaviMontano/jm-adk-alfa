@@ -10,8 +10,7 @@
 
 set -euo pipefail
 
-SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
-PROJECT_ROOT="$(dirname "$SCRIPT_DIR")"
+PROJECT_ROOT="$(git -C "$(dirname "$0")/.." rev-parse --show-toplevel)"
 WS_ROOT="$PROJECT_ROOT/workspace"
 REGISTRY="$WS_ROOT/.workspace-registry.json"
 TODAY=$(date +%Y-%m-%d)

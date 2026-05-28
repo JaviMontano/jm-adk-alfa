@@ -1,5 +1,6 @@
---- [EXPLICIT]
+---
 name: onboarding-playbook
+version: 1.0.0
 description:  [EXPLICIT]
   Developer and team onboarding program design, knowledge transfer framework, and ramp-up metrics [EXPLICIT]
   definition. Use when the user asks to "design onboarding program", "create onboarding playbook", [EXPLICIT]

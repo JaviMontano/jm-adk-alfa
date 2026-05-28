@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "bdd-full-spectrum",
+  "nodes": [
+    {
+      "id": "bdd-full-spectrum",
+      "type": "skill",
+      "label": "bdd-full-spectrum"
+    },
+    {
+      "id": "bdd-full-spectrum:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "bdd-full-spectrum:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "bdd-full-spectrum:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "bdd-full-spectrum",
+      "to": "bdd-full-spectrum:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "bdd-full-spectrum",
+      "to": "bdd-full-spectrum:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "bdd-full-spectrum",
+      "to": "bdd-full-spectrum:quality",
+      "type": "validated_by"
+    }
+  ]
+}

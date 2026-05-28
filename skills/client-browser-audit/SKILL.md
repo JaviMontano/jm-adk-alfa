@@ -1,5 +1,6 @@
 ---
 name: client-browser-audit
+version: 1.0.0
 description: >
   Use when the user asks to "audit PM tools visually", "inspect Jira configuration",
   "review Azure DevOps setup", "check Monday.com boards", or "evaluate tool configuration". [EXPLICIT]

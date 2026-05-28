@@ -1,5 +1,6 @@
 ---
 name: iikit-bugfix
+version: 1.0.0
 description: >-
   Report a bug against an existing feature — creates a structured bugs.md record, generates fix tasks in tasks.md, and optionally imports from or creates GitHub issues.
   Use when fixing a bug, reporting a defect, importing a GitHub issue into the workflow, or triaging an error without running the full specification process.

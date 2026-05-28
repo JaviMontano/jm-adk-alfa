@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "spa-routing",
+  "nodes": [
+    {
+      "id": "spa-routing",
+      "type": "skill",
+      "label": "spa-routing"
+    },
+    {
+      "id": "spa-routing:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "spa-routing:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "spa-routing:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "spa-routing",
+      "to": "spa-routing:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "spa-routing",
+      "to": "spa-routing:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "spa-routing",
+      "to": "spa-routing:quality",
+      "type": "validated_by"
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "workflow-creator",
+  "nodes": [
+    {
+      "id": "workflow-creator",
+      "type": "skill",
+      "label": "workflow-creator"
+    },
+    {
+      "id": "workflow-creator:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "workflow-creator:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "workflow-creator:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "workflow-creator",
+      "to": "workflow-creator:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "workflow-creator",
+      "to": "workflow-creator:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "workflow-creator",
+      "to": "workflow-creator:quality",
+      "type": "validated_by"
+    }
+  ]
+}

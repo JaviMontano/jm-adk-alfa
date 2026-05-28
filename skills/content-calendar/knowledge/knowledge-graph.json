@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "content-calendar",
+  "nodes": [
+    {
+      "id": "content-calendar",
+      "type": "skill",
+      "label": "content-calendar"
+    },
+    {
+      "id": "content-calendar:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "content-calendar:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "content-calendar:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "content-calendar",
+      "to": "content-calendar:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "content-calendar",
+      "to": "content-calendar:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "content-calendar",
+      "to": "content-calendar:quality",
+      "type": "validated_by"
+    }
+  ]
+}

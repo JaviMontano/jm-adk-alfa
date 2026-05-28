@@ -1,5 +1,6 @@
 ---
 name: capacity-planning
+version: 1.0.0
 description: >
   Use when the user asks to "plan capacity", "forecast resource demand",
   "analyze resource availability", "match supply to demand", or "model resource scenarios". [EXPLICIT]

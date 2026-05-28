@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "state-management-design",
+  "nodes": [
+    {
+      "id": "state-management-design",
+      "type": "skill",
+      "label": "state-management-design"
+    },
+    {
+      "id": "state-management-design:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "state-management-design:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "state-management-design:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "state-management-design",
+      "to": "state-management-design:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "state-management-design",
+      "to": "state-management-design:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "state-management-design",
+      "to": "state-management-design:quality",
+      "type": "validated_by"
+    }
+  ]
+}

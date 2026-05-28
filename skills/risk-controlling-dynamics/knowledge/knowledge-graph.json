@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "risk-controlling-dynamics",
+  "nodes": [
+    {
+      "id": "risk-controlling-dynamics",
+      "type": "skill",
+      "label": "risk-controlling-dynamics"
+    },
+    {
+      "id": "risk-controlling-dynamics:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "risk-controlling-dynamics:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "risk-controlling-dynamics:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "risk-controlling-dynamics",
+      "to": "risk-controlling-dynamics:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "risk-controlling-dynamics",
+      "to": "risk-controlling-dynamics:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "risk-controlling-dynamics",
+      "to": "risk-controlling-dynamics:quality",
+      "type": "validated_by"
+    }
+  ]
+}

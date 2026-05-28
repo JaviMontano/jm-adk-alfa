@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "audit-security",
+  "nodes": [
+    {
+      "id": "audit-security",
+      "type": "skill",
+      "label": "audit-security"
+    },
+    {
+      "id": "audit-security:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "audit-security:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "audit-security:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "audit-security",
+      "to": "audit-security:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "audit-security",
+      "to": "audit-security:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "audit-security",
+      "to": "audit-security:quality",
+      "type": "validated_by"
+    }
+  ]
+}

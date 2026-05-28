@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "session-end-cleanup",
+  "nodes": [
+    {
+      "id": "session-end-cleanup",
+      "type": "skill",
+      "label": "session-end-cleanup"
+    },
+    {
+      "id": "session-end-cleanup:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "session-end-cleanup:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "session-end-cleanup:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "session-end-cleanup",
+      "to": "session-end-cleanup:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "session-end-cleanup",
+      "to": "session-end-cleanup:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "session-end-cleanup",
+      "to": "session-end-cleanup:quality",
+      "type": "validated_by"
+    }
+  ]
+}

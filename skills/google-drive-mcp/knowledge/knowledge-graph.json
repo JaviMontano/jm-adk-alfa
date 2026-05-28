@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "google-drive-mcp",
+  "nodes": [
+    {
+      "id": "google-drive-mcp",
+      "type": "skill",
+      "label": "google-drive-mcp"
+    },
+    {
+      "id": "google-drive-mcp:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "google-drive-mcp:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "google-drive-mcp:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "google-drive-mcp",
+      "to": "google-drive-mcp:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "google-drive-mcp",
+      "to": "google-drive-mcp:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "google-drive-mcp",
+      "to": "google-drive-mcp:quality",
+      "type": "validated_by"
+    }
+  ]
+}

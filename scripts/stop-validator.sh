@@ -4,8 +4,7 @@
 # Marks session boundary in tasklog. Does not write summaries (model's job).
 # Updates .workspace.json timestamp and .jm-adk.json lastSession (best-effort).
 
-SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
-PROJECT_ROOT="$(dirname "$SCRIPT_DIR")"
+PROJECT_ROOT="$(git -C "$(dirname "$0")/.." rev-parse --show-toplevel)"
 REG="$PROJECT_ROOT/workspace/.workspace-registry.json"
 
 [ ! -f "$REG" ] && { echo "STOP: no-workspace-system" >&2; exit 0; }

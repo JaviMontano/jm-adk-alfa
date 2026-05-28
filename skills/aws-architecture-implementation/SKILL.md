@@ -1,5 +1,6 @@
 ---
 name: aws-architecture-implementation
+version: 1.0.0
 description: >
   Guides implementation of AI/GenAI architectures on AWS — Bedrock setup, SageMaker pipelines, OpenSearch vector stores,
   API Gateway configuration, security hardening, cost controls, and deployment automation. This skill should be used when

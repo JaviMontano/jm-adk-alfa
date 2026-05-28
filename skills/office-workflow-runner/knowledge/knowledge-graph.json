@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "office-workflow-runner",
+  "nodes": [
+    {
+      "id": "office-workflow-runner",
+      "type": "skill",
+      "label": "office-workflow-runner"
+    },
+    {
+      "id": "office-workflow-runner:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "office-workflow-runner:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "office-workflow-runner:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "office-workflow-runner",
+      "to": "office-workflow-runner:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "office-workflow-runner",
+      "to": "office-workflow-runner:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "office-workflow-runner",
+      "to": "office-workflow-runner:quality",
+      "type": "validated_by"
+    }
+  ]
+}

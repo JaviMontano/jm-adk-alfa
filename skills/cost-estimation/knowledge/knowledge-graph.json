@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "cost-estimation",
+  "nodes": [
+    {
+      "id": "cost-estimation",
+      "type": "skill",
+      "label": "cost-estimation"
+    },
+    {
+      "id": "cost-estimation:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "cost-estimation:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "cost-estimation:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "cost-estimation",
+      "to": "cost-estimation:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "cost-estimation",
+      "to": "cost-estimation:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "cost-estimation",
+      "to": "cost-estimation:quality",
+      "type": "validated_by"
+    }
+  ]
+}

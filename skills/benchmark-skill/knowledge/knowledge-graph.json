@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "benchmark-skill",
+  "nodes": [
+    {
+      "id": "benchmark-skill",
+      "type": "skill",
+      "label": "benchmark-skill"
+    },
+    {
+      "id": "benchmark-skill:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "benchmark-skill:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "benchmark-skill:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "benchmark-skill",
+      "to": "benchmark-skill:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "benchmark-skill",
+      "to": "benchmark-skill:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "benchmark-skill",
+      "to": "benchmark-skill:quality",
+      "type": "validated_by"
+    }
+  ]
+}

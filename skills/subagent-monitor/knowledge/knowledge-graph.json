@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "subagent-monitor",
+  "nodes": [
+    {
+      "id": "subagent-monitor",
+      "type": "skill",
+      "label": "subagent-monitor"
+    },
+    {
+      "id": "subagent-monitor:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "subagent-monitor:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "subagent-monitor:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "subagent-monitor",
+      "to": "subagent-monitor:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "subagent-monitor",
+      "to": "subagent-monitor:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "subagent-monitor",
+      "to": "subagent-monitor:quality",
+      "type": "validated_by"
+    }
+  ]
+}

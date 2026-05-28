@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "vanilla-javascript",
+  "nodes": [
+    {
+      "id": "vanilla-javascript",
+      "type": "skill",
+      "label": "vanilla-javascript"
+    },
+    {
+      "id": "vanilla-javascript:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "vanilla-javascript:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "vanilla-javascript:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "vanilla-javascript",
+      "to": "vanilla-javascript:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "vanilla-javascript",
+      "to": "vanilla-javascript:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "vanilla-javascript",
+      "to": "vanilla-javascript:quality",
+      "type": "validated_by"
+    }
+  ]
+}

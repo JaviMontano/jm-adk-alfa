@@ -1,5 +1,6 @@
 ---
 name: ai-architecture-implementation
+version: 1.0.0
 description: >
   Guides implementation of AI system architectures — technology selection, pipeline implementation, model serving setup,
   monitoring deployment, and CI/CD automation. This skill should be used when the user asks to "implement AI architecture",

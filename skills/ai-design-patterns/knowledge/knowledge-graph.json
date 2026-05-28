@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "ai-design-patterns",
+  "nodes": [
+    {
+      "id": "ai-design-patterns",
+      "type": "skill",
+      "label": "ai-design-patterns"
+    },
+    {
+      "id": "ai-design-patterns:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "ai-design-patterns:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "ai-design-patterns:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "ai-design-patterns",
+      "to": "ai-design-patterns:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "ai-design-patterns",
+      "to": "ai-design-patterns:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "ai-design-patterns",
+      "to": "ai-design-patterns:quality",
+      "type": "validated_by"
+    }
+  ]
+}

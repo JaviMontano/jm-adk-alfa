@@ -1,5 +1,6 @@
 ---
 name: iikit-05-tasks
+version: 1.0.0
 description: >-
   Generate dependency-ordered task breakdown from plan and specification.
   Use when breaking features into implementable tasks, planning sprints, or creating work items with parallel markers.

@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "internal-memo",
+  "nodes": [
+    {
+      "id": "internal-memo",
+      "type": "skill",
+      "label": "internal-memo"
+    },
+    {
+      "id": "internal-memo:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "internal-memo:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "internal-memo:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "internal-memo",
+      "to": "internal-memo:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "internal-memo",
+      "to": "internal-memo:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "internal-memo",
+      "to": "internal-memo:quality",
+      "type": "validated_by"
+    }
+  ]
+}

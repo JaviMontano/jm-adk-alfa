@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "real-time-analytics",
+  "nodes": [
+    {
+      "id": "real-time-analytics",
+      "type": "skill",
+      "label": "real-time-analytics"
+    },
+    {
+      "id": "real-time-analytics:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "real-time-analytics:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "real-time-analytics:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "real-time-analytics",
+      "to": "real-time-analytics:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "real-time-analytics",
+      "to": "real-time-analytics:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "real-time-analytics",
+      "to": "real-time-analytics:quality",
+      "type": "validated_by"
+    }
+  ]
+}

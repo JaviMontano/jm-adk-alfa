@@ -1,5 +1,6 @@
 ---
 name: plan-architecture
+version: 1.0.0
 author: JM Labs (Javier Montaño)
 description: 
   Generate plugin architecture plan with agent roles, skill-movement mapping, hook strategy, and command routing. [EXPLICIT]

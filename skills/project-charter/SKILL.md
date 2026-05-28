@@ -1,5 +1,6 @@
 ---
 name: project-charter
+version: 1.0.0
 description: >
   Triggers on "project charter", "project initiation", "acta de constitucion", "kickoff document".
   Generates formal project initiation documents with business case, scope, stakeholders, milestones,

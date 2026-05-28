@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "environment-detection",
+  "nodes": [
+    {
+      "id": "environment-detection",
+      "type": "skill",
+      "label": "environment-detection"
+    },
+    {
+      "id": "environment-detection:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "environment-detection:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "environment-detection:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "environment-detection",
+      "to": "environment-detection:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "environment-detection",
+      "to": "environment-detection:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "environment-detection",
+      "to": "environment-detection:quality",
+      "type": "validated_by"
+    }
+  ]
+}

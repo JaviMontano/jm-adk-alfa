@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "session-start-bootstrap",
+  "nodes": [
+    {
+      "id": "session-start-bootstrap",
+      "type": "skill",
+      "label": "session-start-bootstrap"
+    },
+    {
+      "id": "session-start-bootstrap:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "session-start-bootstrap:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "session-start-bootstrap:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "session-start-bootstrap",
+      "to": "session-start-bootstrap:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "session-start-bootstrap",
+      "to": "session-start-bootstrap:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "session-start-bootstrap",
+      "to": "session-start-bootstrap:quality",
+      "type": "validated_by"
+    }
+  ]
+}

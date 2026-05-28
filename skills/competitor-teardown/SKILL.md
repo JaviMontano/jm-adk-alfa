@@ -1,5 +1,6 @@
 ---
 name: competitor-teardown
+version: 1.0.0
 description: >
   Triggers on "competitor teardown", "competitive analysis", "analizar competencia",
   "competitor comparison". Detailed competitor product/service analysis with feature

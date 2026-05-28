@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "iic-testify",
+  "nodes": [
+    {
+      "id": "iic-testify",
+      "type": "skill",
+      "label": "iic-testify"
+    },
+    {
+      "id": "iic-testify:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "iic-testify:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "iic-testify:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "iic-testify",
+      "to": "iic-testify:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "iic-testify",
+      "to": "iic-testify:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "iic-testify",
+      "to": "iic-testify:quality",
+      "type": "validated_by"
+    }
+  ]
+}

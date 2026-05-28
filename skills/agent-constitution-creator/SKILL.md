@@ -1,5 +1,6 @@
---- [EXPLICIT]
+---
 name: agent-constitution-creator
+version: 1.0.0
 description:  [EXPLICIT]
   This skill should be used when the user asks to "create an agent constitution", [EXPLICIT]
   "define agent identity", "write agent.md", "generate agent spec", or "design [EXPLICIT]
@@ -12,7 +13,7 @@ argument-hint: agent-id [role-description] [EXPLICIT]
 model: opus [EXPLICIT]
 context: fork [EXPLICIT]
 allowed-tools: Read, Write, Edit, Glob, Grep [EXPLICIT]
---- [EXPLICIT]
+---
  [EXPLICIT]
 # Agent Constitution Creator [EXPLICIT]
  [EXPLICIT]
@@ -93,12 +94,12 @@ Organized in 4 categories for coherence: [EXPLICIT]
 Write to `agents/{id}/agent.md`: [EXPLICIT]
  [EXPLICIT]
 ```markdown [EXPLICIT]
---- [EXPLICIT]
+---
 id: "{id}" [EXPLICIT]
 name: agent-constitution-creator
 role: "{role}" [EXPLICIT]
 version: "1.0.0" [EXPLICIT]
---- [EXPLICIT]
+---
  [EXPLICIT]
 # Mission [EXPLICIT]
 {1-2 sentences with measurable outcome} [EXPLICIT]
@@ -237,5 +238,5 @@ version: "1.0.0" [EXPLICIT]
 - [ ] KPIs include ≥3 metrics with units [EXPLICIT]
 - [ ] No two agents in the ecosystem have overlapping Scope [EXPLICIT]
  [EXPLICIT]
---- [EXPLICIT]
+---
 **Author:** Javier Montano | **Last updated:** March 18, 2026 [EXPLICIT]

@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "cohort-analysis",
+  "nodes": [
+    {
+      "id": "cohort-analysis",
+      "type": "skill",
+      "label": "cohort-analysis"
+    },
+    {
+      "id": "cohort-analysis:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "cohort-analysis:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "cohort-analysis:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "cohort-analysis",
+      "to": "cohort-analysis:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "cohort-analysis",
+      "to": "cohort-analysis:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "cohort-analysis",
+      "to": "cohort-analysis:quality",
+      "type": "validated_by"
+    }
+  ]
+}

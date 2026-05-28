@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "search-ux",
+  "nodes": [
+    {
+      "id": "search-ux",
+      "type": "skill",
+      "label": "search-ux"
+    },
+    {
+      "id": "search-ux:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "search-ux:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "search-ux:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "search-ux",
+      "to": "search-ux:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "search-ux",
+      "to": "search-ux:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "search-ux",
+      "to": "search-ux:quality",
+      "type": "validated_by"
+    }
+  ]
+}

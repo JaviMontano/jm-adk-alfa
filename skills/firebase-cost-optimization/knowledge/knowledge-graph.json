@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "firebase-cost-optimization",
+  "nodes": [
+    {
+      "id": "firebase-cost-optimization",
+      "type": "skill",
+      "label": "firebase-cost-optimization"
+    },
+    {
+      "id": "firebase-cost-optimization:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "firebase-cost-optimization:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "firebase-cost-optimization:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "firebase-cost-optimization",
+      "to": "firebase-cost-optimization:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "firebase-cost-optimization",
+      "to": "firebase-cost-optimization:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "firebase-cost-optimization",
+      "to": "firebase-cost-optimization:quality",
+      "type": "validated_by"
+    }
+  ]
+}

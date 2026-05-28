@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "ai-code-review",
+  "nodes": [
+    {
+      "id": "ai-code-review",
+      "type": "skill",
+      "label": "ai-code-review"
+    },
+    {
+      "id": "ai-code-review:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "ai-code-review:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "ai-code-review:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "ai-code-review",
+      "to": "ai-code-review:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "ai-code-review",
+      "to": "ai-code-review:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "ai-code-review",
+      "to": "ai-code-review:quality",
+      "type": "validated_by"
+    }
+  ]
+}

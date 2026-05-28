@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "visual-regression",
+  "nodes": [
+    {
+      "id": "visual-regression",
+      "type": "skill",
+      "label": "visual-regression"
+    },
+    {
+      "id": "visual-regression:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "visual-regression:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "visual-regression:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "visual-regression",
+      "to": "visual-regression:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "visual-regression",
+      "to": "visual-regression:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "visual-regression",
+      "to": "visual-regression:quality",
+      "type": "validated_by"
+    }
+  ]
+}

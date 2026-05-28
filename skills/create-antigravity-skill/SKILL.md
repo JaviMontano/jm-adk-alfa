@@ -1,5 +1,6 @@
 ---
 name: create-antigravity-skill
+version: 1.0.0
 description: >
   Constructor de skills de produccion. Genera skills estructuradas con SKILL.md + references/,
   validacion de calidad, y estandares canonicos. Usar cuando el usuario pida "crear skill",

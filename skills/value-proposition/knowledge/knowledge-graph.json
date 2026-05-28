@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "value-proposition",
+  "nodes": [
+    {
+      "id": "value-proposition",
+      "type": "skill",
+      "label": "value-proposition"
+    },
+    {
+      "id": "value-proposition:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "value-proposition:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "value-proposition:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "value-proposition",
+      "to": "value-proposition:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "value-proposition",
+      "to": "value-proposition:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "value-proposition",
+      "to": "value-proposition:quality",
+      "type": "validated_by"
+    }
+  ]
+}

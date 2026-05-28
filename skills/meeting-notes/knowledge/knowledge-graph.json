@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "meeting-notes",
+  "nodes": [
+    {
+      "id": "meeting-notes",
+      "type": "skill",
+      "label": "meeting-notes"
+    },
+    {
+      "id": "meeting-notes:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "meeting-notes:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "meeting-notes:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "meeting-notes",
+      "to": "meeting-notes:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "meeting-notes",
+      "to": "meeting-notes:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "meeting-notes",
+      "to": "meeting-notes:quality",
+      "type": "validated_by"
+    }
+  ]
+}

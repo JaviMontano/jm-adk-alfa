@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "ai-assisted-testing",
+  "nodes": [
+    {
+      "id": "ai-assisted-testing",
+      "type": "skill",
+      "label": "ai-assisted-testing"
+    },
+    {
+      "id": "ai-assisted-testing:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "ai-assisted-testing:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "ai-assisted-testing:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "ai-assisted-testing",
+      "to": "ai-assisted-testing:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "ai-assisted-testing",
+      "to": "ai-assisted-testing:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "ai-assisted-testing",
+      "to": "ai-assisted-testing:quality",
+      "type": "validated_by"
+    }
+  ]
+}

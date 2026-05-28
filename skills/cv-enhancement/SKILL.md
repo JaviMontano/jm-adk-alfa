@@ -1,5 +1,6 @@
 ---
 name: cv-enhancement
+version: 1.0.0
 description: >
   Triggers on "improve my CV", "rewrite resume", "enhance CV", "make my CV better",
   "CV for tech role", "mejorar mi hoja de vida", "reescribir CV", "CV para entrevista".

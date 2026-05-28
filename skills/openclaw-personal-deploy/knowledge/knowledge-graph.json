@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "openclaw-personal-deploy",
+  "nodes": [
+    {
+      "id": "openclaw-personal-deploy",
+      "type": "skill",
+      "label": "openclaw-personal-deploy"
+    },
+    {
+      "id": "openclaw-personal-deploy:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "openclaw-personal-deploy:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "openclaw-personal-deploy:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "openclaw-personal-deploy",
+      "to": "openclaw-personal-deploy:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "openclaw-personal-deploy",
+      "to": "openclaw-personal-deploy:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "openclaw-personal-deploy",
+      "to": "openclaw-personal-deploy:quality",
+      "type": "validated_by"
+    }
+  ]
+}

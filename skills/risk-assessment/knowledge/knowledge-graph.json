@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "risk-assessment",
+  "nodes": [
+    {
+      "id": "risk-assessment",
+      "type": "skill",
+      "label": "risk-assessment"
+    },
+    {
+      "id": "risk-assessment:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "risk-assessment:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "risk-assessment:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "risk-assessment",
+      "to": "risk-assessment:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "risk-assessment",
+      "to": "risk-assessment:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "risk-assessment",
+      "to": "risk-assessment:quality",
+      "type": "validated_by"
+    }
+  ]
+}

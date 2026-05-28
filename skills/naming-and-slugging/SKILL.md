@@ -1,5 +1,6 @@
 ---
 name: naming-and-slugging
+version: 1.0.0
 description: 
   This skill should be used when the user asks to "generate a slug", "rename files to kebab-case",
   "audit naming conventions", "clean up filenames", or "validate a name". Also triggers on mentions

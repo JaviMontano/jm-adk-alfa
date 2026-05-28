@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "open-claude-security",
+  "nodes": [
+    {
+      "id": "open-claude-security",
+      "type": "skill",
+      "label": "open-claude-security"
+    },
+    {
+      "id": "open-claude-security:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "open-claude-security:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "open-claude-security:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "open-claude-security",
+      "to": "open-claude-security:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "open-claude-security",
+      "to": "open-claude-security:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "open-claude-security",
+      "to": "open-claude-security:quality",
+      "type": "validated_by"
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "deployment-checklist",
+  "nodes": [
+    {
+      "id": "deployment-checklist",
+      "type": "skill",
+      "label": "deployment-checklist"
+    },
+    {
+      "id": "deployment-checklist:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "deployment-checklist:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "deployment-checklist:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "deployment-checklist",
+      "to": "deployment-checklist:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "deployment-checklist",
+      "to": "deployment-checklist:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "deployment-checklist",
+      "to": "deployment-checklist:quality",
+      "type": "validated_by"
+    }
+  ]
+}

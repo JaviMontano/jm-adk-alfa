@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "proposal-writing",
+  "nodes": [
+    {
+      "id": "proposal-writing",
+      "type": "skill",
+      "label": "proposal-writing"
+    },
+    {
+      "id": "proposal-writing:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "proposal-writing:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "proposal-writing:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "proposal-writing",
+      "to": "proposal-writing:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "proposal-writing",
+      "to": "proposal-writing:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "proposal-writing",
+      "to": "proposal-writing:quality",
+      "type": "validated_by"
+    }
+  ]
+}

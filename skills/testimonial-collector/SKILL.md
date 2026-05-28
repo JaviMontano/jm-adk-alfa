@@ -1,5 +1,6 @@
 ---
 name: testimonial-collector
+version: 1.0.0
 description: >
   Triggers on "collect testimonials", "client testimonials", "social proof",
   "testimonios de clientes". Client testimonial and social proof collection

@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "business-process-modeling",
+  "nodes": [
+    {
+      "id": "business-process-modeling",
+      "type": "skill",
+      "label": "business-process-modeling"
+    },
+    {
+      "id": "business-process-modeling:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "business-process-modeling:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "business-process-modeling:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "business-process-modeling",
+      "to": "business-process-modeling:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "business-process-modeling",
+      "to": "business-process-modeling:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "business-process-modeling",
+      "to": "business-process-modeling:quality",
+      "type": "validated_by"
+    }
+  ]
+}

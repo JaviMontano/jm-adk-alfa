@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "ai-conops",
+  "nodes": [
+    {
+      "id": "ai-conops",
+      "type": "skill",
+      "label": "ai-conops"
+    },
+    {
+      "id": "ai-conops:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "ai-conops:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "ai-conops:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "ai-conops",
+      "to": "ai-conops:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "ai-conops",
+      "to": "ai-conops:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "ai-conops",
+      "to": "ai-conops:quality",
+      "type": "validated_by"
+    }
+  ]
+}

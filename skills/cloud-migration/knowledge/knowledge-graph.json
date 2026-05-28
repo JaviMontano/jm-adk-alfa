@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "cloud-migration",
+  "nodes": [
+    {
+      "id": "cloud-migration",
+      "type": "skill",
+      "label": "cloud-migration"
+    },
+    {
+      "id": "cloud-migration:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "cloud-migration:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "cloud-migration:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "cloud-migration",
+      "to": "cloud-migration:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "cloud-migration",
+      "to": "cloud-migration:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "cloud-migration",
+      "to": "cloud-migration:quality",
+      "type": "validated_by"
+    }
+  ]
+}

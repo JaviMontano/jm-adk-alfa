@@ -1,5 +1,6 @@
 ---
 name: team-topology
+version: 1.0.0
 description: 
   Conway's Law analysis, team interaction modes, cognitive load assessment, organizational design. [EXPLICIT]
   Use when the user asks to "design team structure", "assess cognitive load", "map team interactions",

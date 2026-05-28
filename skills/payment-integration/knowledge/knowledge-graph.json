@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "payment-integration",
+  "nodes": [
+    {
+      "id": "payment-integration",
+      "type": "skill",
+      "label": "payment-integration"
+    },
+    {
+      "id": "payment-integration:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "payment-integration:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "payment-integration:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "payment-integration",
+      "to": "payment-integration:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "payment-integration",
+      "to": "payment-integration:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "payment-integration",
+      "to": "payment-integration:quality",
+      "type": "validated_by"
+    }
+  ]
+}

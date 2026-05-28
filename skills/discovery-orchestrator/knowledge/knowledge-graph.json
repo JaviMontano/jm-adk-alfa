@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "discovery-orchestrator",
+  "nodes": [
+    {
+      "id": "discovery-orchestrator",
+      "type": "skill",
+      "label": "discovery-orchestrator"
+    },
+    {
+      "id": "discovery-orchestrator:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "discovery-orchestrator:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "discovery-orchestrator:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "discovery-orchestrator",
+      "to": "discovery-orchestrator:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "discovery-orchestrator",
+      "to": "discovery-orchestrator:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "discovery-orchestrator",
+      "to": "discovery-orchestrator:quality",
+      "type": "validated_by"
+    }
+  ]
+}

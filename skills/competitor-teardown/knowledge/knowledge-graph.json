@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "competitor-teardown",
+  "nodes": [
+    {
+      "id": "competitor-teardown",
+      "type": "skill",
+      "label": "competitor-teardown"
+    },
+    {
+      "id": "competitor-teardown:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "competitor-teardown:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "competitor-teardown:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "competitor-teardown",
+      "to": "competitor-teardown:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "competitor-teardown",
+      "to": "competitor-teardown:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "competitor-teardown",
+      "to": "competitor-teardown:quality",
+      "type": "validated_by"
+    }
+  ]
+}

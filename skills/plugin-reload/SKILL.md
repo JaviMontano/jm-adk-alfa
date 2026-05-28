@@ -1,5 +1,6 @@
 ---
 name: plugin-reload
+version: 1.0.0
 argument-hint: "plugin-name"
 description: 
   Deploys, validates, and reloads Claude Code plugins from local development.

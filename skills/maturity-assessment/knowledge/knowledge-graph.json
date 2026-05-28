@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "maturity-assessment",
+  "nodes": [
+    {
+      "id": "maturity-assessment",
+      "type": "skill",
+      "label": "maturity-assessment"
+    },
+    {
+      "id": "maturity-assessment:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "maturity-assessment:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "maturity-assessment:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "maturity-assessment",
+      "to": "maturity-assessment:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "maturity-assessment",
+      "to": "maturity-assessment:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "maturity-assessment",
+      "to": "maturity-assessment:quality",
+      "type": "validated_by"
+    }
+  ]
+}

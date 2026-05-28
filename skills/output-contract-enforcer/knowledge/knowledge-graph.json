@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "output-contract-enforcer",
+  "nodes": [
+    {
+      "id": "output-contract-enforcer",
+      "type": "skill",
+      "label": "output-contract-enforcer"
+    },
+    {
+      "id": "output-contract-enforcer:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "output-contract-enforcer:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "output-contract-enforcer:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "output-contract-enforcer",
+      "to": "output-contract-enforcer:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "output-contract-enforcer",
+      "to": "output-contract-enforcer:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "output-contract-enforcer",
+      "to": "output-contract-enforcer:quality",
+      "type": "validated_by"
+    }
+  ]
+}

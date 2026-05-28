@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "form-builder",
+  "nodes": [
+    {
+      "id": "form-builder",
+      "type": "skill",
+      "label": "form-builder"
+    },
+    {
+      "id": "form-builder:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "form-builder:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "form-builder:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "form-builder",
+      "to": "form-builder:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "form-builder",
+      "to": "form-builder:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "form-builder",
+      "to": "form-builder:quality",
+      "type": "validated_by"
+    }
+  ]
+}

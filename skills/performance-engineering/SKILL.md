@@ -1,5 +1,6 @@
 ---
 name: performance-engineering
+version: 1.0.0
 argument-hint: "project-or-system-name"
 description: 
   Produces performance assessments covering load testing, capacity planning, bottleneck analysis, caching, CDN, and SLAs. [EXPLICIT]

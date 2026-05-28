@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "alerting-strategy",
+  "nodes": [
+    {
+      "id": "alerting-strategy",
+      "type": "skill",
+      "label": "alerting-strategy"
+    },
+    {
+      "id": "alerting-strategy:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "alerting-strategy:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "alerting-strategy:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "alerting-strategy",
+      "to": "alerting-strategy:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "alerting-strategy",
+      "to": "alerting-strategy:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "alerting-strategy",
+      "to": "alerting-strategy:quality",
+      "type": "validated_by"
+    }
+  ]
+}

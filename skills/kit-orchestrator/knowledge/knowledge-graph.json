@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "kit-orchestrator",
+  "nodes": [
+    {
+      "id": "kit-orchestrator",
+      "type": "skill",
+      "label": "kit-orchestrator"
+    },
+    {
+      "id": "kit-orchestrator:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "kit-orchestrator:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "kit-orchestrator:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "kit-orchestrator",
+      "to": "kit-orchestrator:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "kit-orchestrator",
+      "to": "kit-orchestrator:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "kit-orchestrator",
+      "to": "kit-orchestrator:quality",
+      "type": "validated_by"
+    }
+  ]
+}

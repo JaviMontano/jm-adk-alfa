@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "css-animation",
+  "nodes": [
+    {
+      "id": "css-animation",
+      "type": "skill",
+      "label": "css-animation"
+    },
+    {
+      "id": "css-animation:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "css-animation:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "css-animation:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "css-animation",
+      "to": "css-animation:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "css-animation",
+      "to": "css-animation:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "css-animation",
+      "to": "css-animation:quality",
+      "type": "validated_by"
+    }
+  ]
+}

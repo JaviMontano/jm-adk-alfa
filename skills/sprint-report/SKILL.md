@@ -1,5 +1,6 @@
 ---
 name: sprint-report
+version: 1.0.0
 description: >
   Triggers on "sprint report", "sprint summary", "reporte de sprint", "sprint review document".
   Generates agile sprint summaries with velocity, burndown, completed stories, blockers,

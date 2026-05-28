@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "log-management",
+  "nodes": [
+    {
+      "id": "log-management",
+      "type": "skill",
+      "label": "log-management"
+    },
+    {
+      "id": "log-management:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "log-management:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "log-management:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "log-management",
+      "to": "log-management:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "log-management",
+      "to": "log-management:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "log-management",
+      "to": "log-management:quality",
+      "type": "validated_by"
+    }
+  ]
+}

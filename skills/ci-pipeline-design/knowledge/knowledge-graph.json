@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "ci-pipeline-design",
+  "nodes": [
+    {
+      "id": "ci-pipeline-design",
+      "type": "skill",
+      "label": "ci-pipeline-design"
+    },
+    {
+      "id": "ci-pipeline-design:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "ci-pipeline-design:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "ci-pipeline-design:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "ci-pipeline-design",
+      "to": "ci-pipeline-design:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "ci-pipeline-design",
+      "to": "ci-pipeline-design:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "ci-pipeline-design",
+      "to": "ci-pipeline-design:quality",
+      "type": "validated_by"
+    }
+  ]
+}

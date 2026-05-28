@@ -1,19 +1,20 @@
 #!/usr/bin/env python3
-"""
-sync_canonical.py — Sync 557 canonical MOAT skills from jm-labs canonical registry
-into the JM Agentic Development Kit skill structure.
+"""Safely sync canonical MOAT skills into the JM-ADK skill structure.
 
-Usage: python scripts/sync_canonical.py
+Dry-run is the default. Existing files are preserved unless --force is set.
 """
 
+import argparse
 import os
 import re
 import shutil
+import subprocess
 from pathlib import Path
 
-# ─── Paths ────────────────────────────────────────────────────────────────────
-CANONICAL_SRC = Path("C:/Users/kathe/OneDrive/Desktop/Skills Claude J/Archivo/skills/javier-montano")
-AGENTIC_SKILLS = Path("C:/Users/kathe/OneDrive/Desktop/Skills Claude J/agentic-sync/skills")
+CANONICAL_SRC: Path
+AGENTIC_SKILLS: Path
+APPLY = False
+FORCE = False
 
 # ─── Counters ─────────────────────────────────────────────────────────────────
 stats = {
@@ -31,8 +32,25 @@ def slug_to_title(slug: str) -> str:
 
 def write_file(path: Path, content: str) -> None:
     """Write file, creating parent dirs as needed. Increment counter."""
+    if path.exists() and not FORCE:
+        return
+    print(f"{'overwrite' if path.exists() else 'create'}: {path}")
+    if not APPLY:
+        return
     os.makedirs(path.parent, exist_ok=True)
     path.write_text(content, encoding="utf-8")
+    stats["files_written"] += 1
+
+
+def copy_file(src: Path, dst: Path) -> None:
+    """Copy a file only when missing, unless --force is set."""
+    if dst.exists() and not FORCE:
+        return
+    print(f"{'overwrite' if dst.exists() else 'copy'}: {dst}")
+    if not APPLY:
+        return
+    os.makedirs(dst.parent, exist_ok=True)
+    shutil.copy2(src, dst)
     stats["files_written"] += 1
 
 
@@ -42,7 +60,8 @@ def create_agents(skill_dir: Path, slug: str) -> None:
     if agents_dir.exists():
         return
     title = slug_to_title(slug)
-    os.makedirs(agents_dir, exist_ok=True)
+    if APPLY:
+        os.makedirs(agents_dir, exist_ok=True)
 
     write_file(agents_dir / "lead.md", f"""---
 name: {slug}-lead
@@ -92,7 +111,8 @@ def create_knowledge(skill_dir: Path, slug: str) -> None:
     if knowledge_dir.exists():
         return
     title = slug_to_title(slug)
-    os.makedirs(knowledge_dir, exist_ok=True)
+    if APPLY:
+        os.makedirs(knowledge_dir, exist_ok=True)
 
     write_file(knowledge_dir / "body-of-knowledge.md", f"""# {title} — Body of Knowledge
 
@@ -134,9 +154,11 @@ def create_prompts(skill_dir: Path, slug: str) -> None:
     if prompts_dir.exists():
         return
     title = slug_to_title(slug)
-    os.makedirs(prompts_dir, exist_ok=True)
+    if APPLY:
+        os.makedirs(prompts_dir, exist_ok=True)
     variations_dir = prompts_dir / "variations"
-    os.makedirs(variations_dir, exist_ok=True)
+    if APPLY:
+        os.makedirs(variations_dir, exist_ok=True)
 
     write_file(prompts_dir / "meta.md", f"""---
 name: {slug}-meta
@@ -214,7 +236,8 @@ def create_templates(skill_dir: Path, slug: str) -> None:
     if templates_dir.exists():
         return
     title = slug_to_title(slug)
-    os.makedirs(templates_dir, exist_ok=True)
+    if APPLY:
+        os.makedirs(templates_dir, exist_ok=True)
 
     write_file(templates_dir / "output.docx.md", f"""# {title} — DOCX Template
 
@@ -270,10 +293,7 @@ def copy_evals(canonical_skill_dir: Path, skill_dir: Path) -> None:
     if not src_evals.exists():
         return
     dst_evals_dir = skill_dir / "evals"
-    os.makedirs(dst_evals_dir, exist_ok=True)
-    dst = dst_evals_dir / "evals.json"
-    shutil.copy2(src_evals, dst)
-    stats["files_written"] += 1
+    copy_file(src_evals, dst_evals_dir / "evals.json")
 
 
 def copy_references(canonical_skill_dir: Path, skill_dir: Path) -> None:
@@ -282,12 +302,9 @@ def copy_references(canonical_skill_dir: Path, skill_dir: Path) -> None:
     if not src_refs.exists():
         return
     dst_refs = skill_dir / "references"
-    os.makedirs(dst_refs, exist_ok=True)
     for ref_file in src_refs.iterdir():
         if ref_file.is_file():
-            dst = dst_refs / ref_file.name
-            shutil.copy2(ref_file, dst)
-            stats["files_written"] += 1
+            copy_file(ref_file, dst_refs / ref_file.name)
 
 
 def sync_skill(canonical_dir: Path, slug: str) -> None:
@@ -295,14 +312,13 @@ def sync_skill(canonical_dir: Path, slug: str) -> None:
     skill_dir = AGENTIC_SKILLS / slug
     existed = skill_dir.exists()
 
-    os.makedirs(skill_dir, exist_ok=True)
+    if APPLY:
+        os.makedirs(skill_dir, exist_ok=True)
 
-    # B. Always overwrite SKILL.md
+    # B. Copy SKILL.md missing-only unless --force is set.
     src_skill_md = canonical_dir / "SKILL.md"
     if src_skill_md.exists():
-        dst_skill_md = skill_dir / "SKILL.md"
-        shutil.copy2(src_skill_md, dst_skill_md)
-        stats["files_written"] += 1
+        copy_file(src_skill_md, skill_dir / "SKILL.md")
 
     # C. agents/ — only if not present
     create_agents(skill_dir, slug)
@@ -329,7 +345,28 @@ def sync_skill(canonical_dir: Path, slug: str) -> None:
         stats["added"] += 1
 
 
+def repo_root() -> Path:
+    result = subprocess.run(["git", "rev-parse", "--show-toplevel"], check=True, text=True, stdout=subprocess.PIPE)
+    return Path(result.stdout.strip())
+
+
 def main() -> None:
+    global CANONICAL_SRC, AGENTIC_SKILLS, APPLY, FORCE
+    parser = argparse.ArgumentParser(description="Safely sync canonical skills")
+    parser.add_argument("--canonical-src", required=True, help="Directory containing numbered canonical skill folders")
+    parser.add_argument("--skills-dir", default="skills", help="Target skills directory relative to repo root")
+    parser.add_argument("--apply", action="store_true", help="Apply writes; default is dry-run")
+    parser.add_argument("--force", action="store_true", help="Allow overwriting existing files")
+    args = parser.parse_args()
+    root = repo_root()
+    CANONICAL_SRC = Path(args.canonical_src).expanduser().resolve()
+    AGENTIC_SKILLS = (root / args.skills_dir).resolve()
+    APPLY = args.apply
+    FORCE = args.force
+
+    if not CANONICAL_SRC.exists():
+        raise SystemExit(f"canonical source not found: {CANONICAL_SRC}")
+
     # Build slug mapping from canonical source
     pattern = re.compile(r"^\d{4}-(.+)$")
     canonical_skills = []
@@ -345,6 +382,7 @@ def main() -> None:
 
     print(f"Found {len(canonical_skills)} canonical skills to sync...")
     print(f"Target: {AGENTIC_SKILLS}")
+    print(f"Mode: {'apply' if APPLY else 'dry-run'} | Force: {FORCE}")
     print()
 
     for i, (canonical_dir, slug) in enumerate(canonical_skills, 1):

@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "domain-dns-setup",
+  "nodes": [
+    {
+      "id": "domain-dns-setup",
+      "type": "skill",
+      "label": "domain-dns-setup"
+    },
+    {
+      "id": "domain-dns-setup:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "domain-dns-setup:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "domain-dns-setup:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "domain-dns-setup",
+      "to": "domain-dns-setup:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "domain-dns-setup",
+      "to": "domain-dns-setup:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "domain-dns-setup",
+      "to": "domain-dns-setup:quality",
+      "type": "validated_by"
+    }
+  ]
+}

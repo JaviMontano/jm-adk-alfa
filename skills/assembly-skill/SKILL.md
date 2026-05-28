@@ -1,5 +1,6 @@
 ---
 name: assembly-skill
+version: 1.0.0
 description: 
   This skill should be used when the user asks to "run the full skill
   pipeline", "improve this skill end to end", "take this skill to

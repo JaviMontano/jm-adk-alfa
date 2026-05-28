@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "recaptcha-integration",
+  "nodes": [
+    {
+      "id": "recaptcha-integration",
+      "type": "skill",
+      "label": "recaptcha-integration"
+    },
+    {
+      "id": "recaptcha-integration:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "recaptcha-integration:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "recaptcha-integration:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "recaptcha-integration",
+      "to": "recaptcha-integration:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "recaptcha-integration",
+      "to": "recaptcha-integration:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "recaptcha-integration",
+      "to": "recaptcha-integration:quality",
+      "type": "validated_by"
+    }
+  ]
+}

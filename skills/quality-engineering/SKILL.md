@@ -1,5 +1,6 @@
 ---
 name: quality-engineering
+version: 1.0.0
 argument-hint: "project-or-system-name"
 description: 
   Designs strategic quality engineering frameworks covering test strategy, automation architecture, quality gates,

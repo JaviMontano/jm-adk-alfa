@@ -1,5 +1,6 @@
 ---
 name: prompt-forge
+version: 1.0.0
 description: 
   Creates, reviews, evolves, repairs, and ports system prompts across LLM platforms using the Playbook format,
   a 10-criterion evaluation rubric, and context engineering principles. Activates when the user says "create a

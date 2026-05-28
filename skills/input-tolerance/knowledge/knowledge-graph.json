@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "input-tolerance",
+  "nodes": [
+    {
+      "id": "input-tolerance",
+      "type": "skill",
+      "label": "input-tolerance"
+    },
+    {
+      "id": "input-tolerance:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "input-tolerance:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "input-tolerance:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "input-tolerance",
+      "to": "input-tolerance:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "input-tolerance",
+      "to": "input-tolerance:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "input-tolerance",
+      "to": "input-tolerance:quality",
+      "type": "validated_by"
+    }
+  ]
+}

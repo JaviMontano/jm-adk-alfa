@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "iic-plan-generator",
+  "nodes": [
+    {
+      "id": "iic-plan-generator",
+      "type": "skill",
+      "label": "iic-plan-generator"
+    },
+    {
+      "id": "iic-plan-generator:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "iic-plan-generator:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "iic-plan-generator:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "iic-plan-generator",
+      "to": "iic-plan-generator:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "iic-plan-generator",
+      "to": "iic-plan-generator:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "iic-plan-generator",
+      "to": "iic-plan-generator:quality",
+      "type": "validated_by"
+    }
+  ]
+}

@@ -1,5 +1,6 @@
 ---
 name: html-brand
+version: 1.0.0
 argument-hint: "[executive|technical] [output-path]"
 description: >
   This skill should be used when the user asks to "create a Sofka HTML document",

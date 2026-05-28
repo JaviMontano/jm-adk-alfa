@@ -1,5 +1,6 @@
 ---
 name: brand-voice
+version: 1.0.0
 description: 
   This skill should be used when the user asks to "apply brand voice",
   "write in our brand tone", "review copy for brand consistency",

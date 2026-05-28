@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "client-browser-audit",
+  "nodes": [
+    {
+      "id": "client-browser-audit",
+      "type": "skill",
+      "label": "client-browser-audit"
+    },
+    {
+      "id": "client-browser-audit:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "client-browser-audit:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "client-browser-audit:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "client-browser-audit",
+      "to": "client-browser-audit:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "client-browser-audit",
+      "to": "client-browser-audit:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "client-browser-audit",
+      "to": "client-browser-audit:quality",
+      "type": "validated_by"
+    }
+  ]
+}

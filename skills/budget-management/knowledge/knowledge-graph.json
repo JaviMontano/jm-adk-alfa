@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "budget-management",
+  "nodes": [
+    {
+      "id": "budget-management",
+      "type": "skill",
+      "label": "budget-management"
+    },
+    {
+      "id": "budget-management:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "budget-management:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "budget-management:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "budget-management",
+      "to": "budget-management:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "budget-management",
+      "to": "budget-management:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "budget-management",
+      "to": "budget-management:quality",
+      "type": "validated_by"
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "social-proof",
+  "nodes": [
+    {
+      "id": "social-proof",
+      "type": "skill",
+      "label": "social-proof"
+    },
+    {
+      "id": "social-proof:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "social-proof:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "social-proof:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "social-proof",
+      "to": "social-proof:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "social-proof",
+      "to": "social-proof:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "social-proof",
+      "to": "social-proof:quality",
+      "type": "validated_by"
+    }
+  ]
+}

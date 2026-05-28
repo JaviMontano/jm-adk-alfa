@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "environment-management",
+  "nodes": [
+    {
+      "id": "environment-management",
+      "type": "skill",
+      "label": "environment-management"
+    },
+    {
+      "id": "environment-management:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "environment-management:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "environment-management:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "environment-management",
+      "to": "environment-management:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "environment-management",
+      "to": "environment-management:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "environment-management",
+      "to": "environment-management:quality",
+      "type": "validated_by"
+    }
+  ]
+}

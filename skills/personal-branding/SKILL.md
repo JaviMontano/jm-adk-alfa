@@ -1,5 +1,6 @@
 ---
 name: personal-branding
+version: 1.0.0
 description: >
   Triggers on "personal brand", "brand strategy for me", "how to position myself", "marca personal".
   Builds a complete personal brand strategy including positioning, narrative architecture, platform

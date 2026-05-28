@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "state-management",
+  "nodes": [
+    {
+      "id": "state-management",
+      "type": "skill",
+      "label": "state-management"
+    },
+    {
+      "id": "state-management:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "state-management:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "state-management:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "state-management",
+      "to": "state-management:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "state-management",
+      "to": "state-management:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "state-management",
+      "to": "state-management:quality",
+      "type": "validated_by"
+    }
+  ]
+}

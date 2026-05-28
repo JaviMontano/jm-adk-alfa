@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "analytics-implementation",
+  "nodes": [
+    {
+      "id": "analytics-implementation",
+      "type": "skill",
+      "label": "analytics-implementation"
+    },
+    {
+      "id": "analytics-implementation:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "analytics-implementation:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "analytics-implementation:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "analytics-implementation",
+      "to": "analytics-implementation:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "analytics-implementation",
+      "to": "analytics-implementation:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "analytics-implementation",
+      "to": "analytics-implementation:quality",
+      "type": "validated_by"
+    }
+  ]
+}

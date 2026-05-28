@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "personal-branding",
+  "nodes": [
+    {
+      "id": "personal-branding",
+      "type": "skill",
+      "label": "personal-branding"
+    },
+    {
+      "id": "personal-branding:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "personal-branding:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "personal-branding:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "personal-branding",
+      "to": "personal-branding:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "personal-branding",
+      "to": "personal-branding:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "personal-branding",
+      "to": "personal-branding:quality",
+      "type": "validated_by"
+    }
+  ]
+}

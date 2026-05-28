@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "git-workflow",
+  "nodes": [
+    {
+      "id": "git-workflow",
+      "type": "skill",
+      "label": "git-workflow"
+    },
+    {
+      "id": "git-workflow:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "git-workflow:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "git-workflow:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "git-workflow",
+      "to": "git-workflow:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "git-workflow",
+      "to": "git-workflow:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "git-workflow",
+      "to": "git-workflow:quality",
+      "type": "validated_by"
+    }
+  ]
+}

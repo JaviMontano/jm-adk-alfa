@@ -18,10 +18,10 @@ Secrets sanitization is the process of detecting, masking, removing, and prevent
 
 | Secret Type | Pattern Example | Risk Level |
 |-------------|----------------|:----------:|
-| API keys | `AKIAIOSFODNN7EXAMPLE` | Critical |
+| API keys | `AWS_ACCESS_KEY_ID_PLACEHOLDER` | Critical |
 | Database credentials | `postgres://user:pass@host` | Critical |
 | JWT tokens | `eyJhbGciOiJI...` | High |
-| SSH private keys | `-----BEGIN RSA PRIVATE KEY-----` | Critical |
+| SSH private keys | `PRIVATE_KEY_BLOCK_PLACEHOLDER` | Critical |
 | OAuth tokens | `ghp_xxxxxxxxxxxx` | High |
 | PII (emails, SSN) | `user@domain.com`, `123-45-6789` | High |
 | Cloud credentials | `AKIA...`, `aws_secret_access_key` | Critical |

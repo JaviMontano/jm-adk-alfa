@@ -1,5 +1,6 @@
 ---
 name: swot-analysis
+version: 1.0.0
 description: >
   Triggers on "SWOT analysis", "SWOT for", "analisis FODA", "DAFO".
   Produces a structured SWOT analysis with evidence tagging, cross-impact matrix, strategic implications, and action priorities. Output: branded HTML SWOT matrix + action plan. [EXPLICIT]

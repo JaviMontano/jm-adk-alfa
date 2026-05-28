@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "brand-xlsx",
+  "nodes": [
+    {
+      "id": "brand-xlsx",
+      "type": "skill",
+      "label": "brand-xlsx"
+    },
+    {
+      "id": "brand-xlsx:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "brand-xlsx:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "brand-xlsx:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "brand-xlsx",
+      "to": "brand-xlsx:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "brand-xlsx",
+      "to": "brand-xlsx:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "brand-xlsx",
+      "to": "brand-xlsx:quality",
+      "type": "validated_by"
+    }
+  ]
+}

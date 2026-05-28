@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "disaster-recovery",
+  "nodes": [
+    {
+      "id": "disaster-recovery",
+      "type": "skill",
+      "label": "disaster-recovery"
+    },
+    {
+      "id": "disaster-recovery:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "disaster-recovery:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "disaster-recovery:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "disaster-recovery",
+      "to": "disaster-recovery:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "disaster-recovery",
+      "to": "disaster-recovery:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "disaster-recovery",
+      "to": "disaster-recovery:quality",
+      "type": "validated_by"
+    }
+  ]
+}

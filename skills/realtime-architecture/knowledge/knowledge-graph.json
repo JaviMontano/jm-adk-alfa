@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "realtime-architecture",
+  "nodes": [
+    {
+      "id": "realtime-architecture",
+      "type": "skill",
+      "label": "realtime-architecture"
+    },
+    {
+      "id": "realtime-architecture:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "realtime-architecture:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "realtime-architecture:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "realtime-architecture",
+      "to": "realtime-architecture:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "realtime-architecture",
+      "to": "realtime-architecture:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "realtime-architecture",
+      "to": "realtime-architecture:quality",
+      "type": "validated_by"
+    }
+  ]
+}

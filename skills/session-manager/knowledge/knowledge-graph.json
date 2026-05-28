@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "session-manager",
+  "nodes": [
+    {
+      "id": "session-manager",
+      "type": "skill",
+      "label": "session-manager"
+    },
+    {
+      "id": "session-manager:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "session-manager:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "session-manager:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "session-manager",
+      "to": "session-manager:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "session-manager",
+      "to": "session-manager:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "session-manager",
+      "to": "session-manager:quality",
+      "type": "validated_by"
+    }
+  ]
+}

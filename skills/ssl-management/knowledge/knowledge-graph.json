@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "ssl-management",
+  "nodes": [
+    {
+      "id": "ssl-management",
+      "type": "skill",
+      "label": "ssl-management"
+    },
+    {
+      "id": "ssl-management:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "ssl-management:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "ssl-management:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "ssl-management",
+      "to": "ssl-management:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "ssl-management",
+      "to": "ssl-management:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "ssl-management",
+      "to": "ssl-management:quality",
+      "type": "validated_by"
+    }
+  ]
+}

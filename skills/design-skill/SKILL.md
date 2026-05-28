@@ -1,5 +1,6 @@
 ---
 name: design-skill
+version: 1.0.0
 author: JM Labs (Javier Montaño)
 description: 
   Design a plugin skill in detail: frontmatter, procedure outline, quality criteria, anti-patterns, edge cases, tool selection. [EXPLICIT]

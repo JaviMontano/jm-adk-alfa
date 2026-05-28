@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "vendor-evaluation",
+  "nodes": [
+    {
+      "id": "vendor-evaluation",
+      "type": "skill",
+      "label": "vendor-evaluation"
+    },
+    {
+      "id": "vendor-evaluation:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "vendor-evaluation:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "vendor-evaluation:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "vendor-evaluation",
+      "to": "vendor-evaluation:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "vendor-evaluation",
+      "to": "vendor-evaluation:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "vendor-evaluation",
+      "to": "vendor-evaluation:quality",
+      "type": "validated_by"
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "presentation-design",
+  "nodes": [
+    {
+      "id": "presentation-design",
+      "type": "skill",
+      "label": "presentation-design"
+    },
+    {
+      "id": "presentation-design:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "presentation-design:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "presentation-design:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "presentation-design",
+      "to": "presentation-design:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "presentation-design",
+      "to": "presentation-design:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "presentation-design",
+      "to": "presentation-design:quality",
+      "type": "validated_by"
+    }
+  ]
+}

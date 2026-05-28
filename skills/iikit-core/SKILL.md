@@ -1,5 +1,6 @@
 ---
 name: iikit-core
+version: 1.0.0
 description: >-
   Initialize an IIKit project, check feature progress, select the active feature, and display the workflow command reference.
   Use when starting a new project, running init, checking status, switching between features, or looking up available commands and phases.

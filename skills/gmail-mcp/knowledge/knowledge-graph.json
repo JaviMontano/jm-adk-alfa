@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "gmail-mcp",
+  "nodes": [
+    {
+      "id": "gmail-mcp",
+      "type": "skill",
+      "label": "gmail-mcp"
+    },
+    {
+      "id": "gmail-mcp:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "gmail-mcp:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "gmail-mcp:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "gmail-mcp",
+      "to": "gmail-mcp:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "gmail-mcp",
+      "to": "gmail-mcp:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "gmail-mcp",
+      "to": "gmail-mcp:quality",
+      "type": "validated_by"
+    }
+  ]
+}

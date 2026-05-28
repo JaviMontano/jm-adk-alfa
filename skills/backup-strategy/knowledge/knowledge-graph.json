@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "backup-strategy",
+  "nodes": [
+    {
+      "id": "backup-strategy",
+      "type": "skill",
+      "label": "backup-strategy"
+    },
+    {
+      "id": "backup-strategy:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "backup-strategy:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "backup-strategy:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "backup-strategy",
+      "to": "backup-strategy:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "backup-strategy",
+      "to": "backup-strategy:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "backup-strategy",
+      "to": "backup-strategy:quality",
+      "type": "validated_by"
+    }
+  ]
+}

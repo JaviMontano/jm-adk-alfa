@@ -1,5 +1,6 @@
 ---
 name: step-creator
+version: 1.0.0
 argument-hint: "step-name [workflow-name]"
 description: 
   Generates individual workflow steps with all 12 mandatory fields as an internal helper.

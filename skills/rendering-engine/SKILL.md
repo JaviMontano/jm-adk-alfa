@@ -1,5 +1,6 @@
 ---
 name: rendering-engine
+version: 1.0.0
 description: >
   Use when the user asks to "render to PNG", "convert to PDF",
   "export Mermaid diagrams", "generate printable deliverables", "create branded exports",

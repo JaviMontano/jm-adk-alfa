@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "angular-module-builder",
+  "nodes": [
+    {
+      "id": "angular-module-builder",
+      "type": "skill",
+      "label": "angular-module-builder"
+    },
+    {
+      "id": "angular-module-builder:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "angular-module-builder:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "angular-module-builder:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "angular-module-builder",
+      "to": "angular-module-builder:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "angular-module-builder",
+      "to": "angular-module-builder:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "angular-module-builder",
+      "to": "angular-module-builder:quality",
+      "type": "validated_by"
+    }
+  ]
+}

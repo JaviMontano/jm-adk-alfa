@@ -1,5 +1,6 @@
 ---
 name: certify-skill
+version: 1.0.0
 description: 
   This skill should be used when the user asks to "certify a skill",
   "validate this skill", "is this skill ready", "check skill quality",

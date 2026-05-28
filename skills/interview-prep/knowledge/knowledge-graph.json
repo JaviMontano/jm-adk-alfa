@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "interview-prep",
+  "nodes": [
+    {
+      "id": "interview-prep",
+      "type": "skill",
+      "label": "interview-prep"
+    },
+    {
+      "id": "interview-prep:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "interview-prep:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "interview-prep:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "interview-prep",
+      "to": "interview-prep:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "interview-prep",
+      "to": "interview-prep:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "interview-prep",
+      "to": "interview-prep:quality",
+      "type": "validated_by"
+    }
+  ]
+}

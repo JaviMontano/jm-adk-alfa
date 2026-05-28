@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "role-based-access",
+  "nodes": [
+    {
+      "id": "role-based-access",
+      "type": "skill",
+      "label": "role-based-access"
+    },
+    {
+      "id": "role-based-access:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "role-based-access:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "role-based-access:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "role-based-access",
+      "to": "role-based-access:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "role-based-access",
+      "to": "role-based-access:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "role-based-access",
+      "to": "role-based-access:quality",
+      "type": "validated_by"
+    }
+  ]
+}

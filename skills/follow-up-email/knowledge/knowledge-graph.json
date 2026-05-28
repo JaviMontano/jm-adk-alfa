@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "follow-up-email",
+  "nodes": [
+    {
+      "id": "follow-up-email",
+      "type": "skill",
+      "label": "follow-up-email"
+    },
+    {
+      "id": "follow-up-email:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "follow-up-email:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "follow-up-email:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "follow-up-email",
+      "to": "follow-up-email:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "follow-up-email",
+      "to": "follow-up-email:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "follow-up-email",
+      "to": "follow-up-email:quality",
+      "type": "validated_by"
+    }
+  ]
+}
