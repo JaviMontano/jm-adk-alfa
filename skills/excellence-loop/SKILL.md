@@ -10,6 +10,7 @@ allowed-tools:
   - Grep
   - Bash
   - Agent
+version: 1.0.0
 ---
 
 # Excellence Loop

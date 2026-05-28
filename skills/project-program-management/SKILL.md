@@ -17,6 +17,7 @@ allowed-tools:
   - Glob
   - Grep
   - Bash
+version: 1.0.0
 ---
 
 # Project & Program Management: PMO Governance Backbone

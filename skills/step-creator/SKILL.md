@@ -10,6 +10,7 @@ user-invocable: false
 model: opus
 context: fork
 allowed-tools: Read, Write, Edit
+version: 1.0.0
 ---
 
 # Step Creator (Internal Helper)

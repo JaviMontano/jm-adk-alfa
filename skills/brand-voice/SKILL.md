@@ -18,6 +18,7 @@ allowed-tools:
   - Glob
   - Write
   - Edit
+version: 1.0.0
 ---
 
 # Brand Voice & Tone

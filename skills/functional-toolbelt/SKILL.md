@@ -1,4 +1,4 @@
---- [EXPLICIT]
+---
 name: functional-toolbelt
 argument-hint: "module-or-system-name"
 description: 
@@ -16,6 +16,7 @@ allowed-tools:
   - Glob
   - Grep
   - Bash
+version: 1.0.0
 ---
 
 # Functional Toolbelt

@@ -19,6 +19,7 @@ allowed-tools:
   - Grep
   - Bash
   - WebFetch
+version: 1.0.0
 ---
 
 # Software Viability: Substance vs Smoke Technology Validator

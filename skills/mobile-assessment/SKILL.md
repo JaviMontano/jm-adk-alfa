@@ -16,6 +16,7 @@ allowed-tools:
   - Glob
   - Grep
   - Bash
+version: 1.0.0
 ---
 
 # Mobile Assessment: App Health, Compliance & Remediation

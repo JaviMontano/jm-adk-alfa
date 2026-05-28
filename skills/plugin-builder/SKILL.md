@@ -1,4 +1,4 @@
---- [EXPLICIT]
+---
 name: plugin-builder
 argument-hint: "plugin-name" [EXPLICIT]
 description: 
@@ -16,6 +16,7 @@ allowed-tools:
   - Glob
   - Grep
   - Bash
+version: 1.0.0
 ---
 
 # Plugin Builder — Claude Code Plugin Scaffolding

@@ -1,4 +1,4 @@
---- [EXPLICIT]
+---
 name: maturity-assessment
 description:  [EXPLICIT]
   Capability maturity evaluation using CMMI and custom models, current vs target state scoring, [EXPLICIT]
@@ -17,6 +17,7 @@ allowed-tools:
   - Grep
   - Bash
   - WebFetch
+version: 1.0.0
 ---
 
 # Evaluacion de Madurez

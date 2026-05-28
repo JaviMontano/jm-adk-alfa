@@ -7,6 +7,7 @@ argument-hint: "product/service name + target customer segment + competitive con
 model: opus
 context: fork
 allowed-tools: Read, Write, Edit, Glob, Grep
+version: 1.0.0
 ---
 
 # Value Proposition Canvas Design

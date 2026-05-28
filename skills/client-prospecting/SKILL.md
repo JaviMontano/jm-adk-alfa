@@ -10,6 +10,7 @@ argument-hint: "your-offering [industry] [geography] [size-range] [list-size: 10
 model: opus
 context: fork
 allowed-tools: Read, Write, Edit, Glob, Grep, WebSearch
+version: 1.0.0
 ---
 
 # Client Prospecting — Systematic Lead Identification and Qualification

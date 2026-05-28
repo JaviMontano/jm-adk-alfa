@@ -7,6 +7,7 @@ argument-hint: "brand/product name + target audience + goals (awareness, leads, 
 model: opus
 context: fork
 allowed-tools: Read, Write, Edit, Glob, Grep
+version: 1.0.0
 ---
 
 # Social Media Strategy

@@ -21,6 +21,7 @@ allowed-tools:
   - Grep
   - Bash
   - WebFetch
+version: 1.0.0
 ---
 
 # Dynamic Subject Matter Expert

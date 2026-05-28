@@ -22,6 +22,7 @@ allowed-tools:
   - Glob
   - Grep
   - Bash
+version: 1.0.0
 ---
 
 # Open Claude Security: Designing Secure Claude Code & OpenClaw Architectures

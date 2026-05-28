@@ -12,6 +12,7 @@ argument-hint: skill-name [description]
 allowed-tools: Read, Write, Edit, Bash, Glob, Grep, Agent
 model: opus
 context: fork
+version: 1.0.0
 ---
 
 # Skill Creator Moat

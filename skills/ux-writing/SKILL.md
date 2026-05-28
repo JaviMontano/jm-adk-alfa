@@ -15,6 +15,7 @@ allowed-tools:
   - Glob
   - Grep
   - Bash
+version: 1.0.0
 ---
 
 # UX Writing: Information Design & Cognitive Accessibility Standards

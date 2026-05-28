@@ -14,6 +14,7 @@ allowed-tools:
   - Glob
   - Grep
   - Bash
+version: 1.0.0
 ---
 
 # AWS Architecture Design for AI/GenAI Workloads

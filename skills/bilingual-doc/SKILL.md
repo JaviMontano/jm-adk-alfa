@@ -9,6 +9,7 @@ argument-hint: "content to bilingualize OR document to add EN/ES toggle"
 model: sonnet
 context: fork
 allowed-tools: Read, Write, Edit, Glob, Grep
+version: 1.0.0
 ---
 
 # bilingual-doc — Bilingual ES/EN Document Pattern

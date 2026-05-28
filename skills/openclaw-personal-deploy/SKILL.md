@@ -19,6 +19,7 @@ allowed-tools:
   - Glob
   - Grep
   - Bash
+version: 1.0.0
 ---
 
 # OpenClaw Personal Deploy: Your Own Secure AI Agent, Controlled by You

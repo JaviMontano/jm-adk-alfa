@@ -24,6 +24,7 @@ allowed-tools:
   - Grep
   - Bash
   - Agent
+version: 1.0.0
 ---
 
 # SAP S/4HANA Implementation Skill

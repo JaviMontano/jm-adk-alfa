@@ -1,4 +1,4 @@
---- [EXPLICIT]
+---
 name: poc-lab
 description:  [EXPLICIT]
   Proof of concept design and execution framework, success criteria definition, and evaluation [EXPLICIT]
@@ -17,7 +17,8 @@ allowed-tools: [EXPLICIT]
   - Grep [EXPLICIT]
   - Bash [EXPLICIT]
   - WebFetch [EXPLICIT]
---- [EXPLICIT]
+version: 1.0.0
+---
  [EXPLICIT]
 # Proof of Concept Lab [EXPLICIT]
  [EXPLICIT]

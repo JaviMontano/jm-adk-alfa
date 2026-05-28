@@ -21,6 +21,7 @@ allowed-tools:
   - Glob
   - Grep
   - Bash
+version: 1.0.0
 ---
 
 # Discovery Handover — Phase 6: Transición a Ejecución

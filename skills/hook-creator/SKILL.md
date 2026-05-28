@@ -10,6 +10,7 @@ argument-hint: event-name [handler-type]
 model: opus
 context: fork
 allowed-tools: Read, Write, Edit, Bash, Glob, Grep
+version: 1.0.0
 ---
 
 # Hook Creator

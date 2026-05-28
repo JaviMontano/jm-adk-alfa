@@ -6,6 +6,7 @@ description: >-
 license: MIT
 metadata:
   version: "1.6.4"
+version: 1.0.0
 ---
 
 # Intent Integrity Kit Checklist

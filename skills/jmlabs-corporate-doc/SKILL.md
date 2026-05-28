@@ -10,6 +10,7 @@ argument-hint: "document-type: deck | prospectus | brief | report | proposal"
 model: opus
 context: fork
 allowed-tools: Read, Write, Edit, Glob, Grep
+version: 1.0.0
 ---
 
 # jmlabs-corporate-doc — JM Labs Corporate Document Generator

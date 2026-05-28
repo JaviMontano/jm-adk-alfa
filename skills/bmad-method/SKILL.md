@@ -27,6 +27,7 @@ allowed-tools:
 context:
   - type: file
     path: references/schemas.md
+version: 1.0.0
 ---
 
 # BMAD Method — Breakthrough Method for Agile AI-Driven Development

@@ -19,6 +19,7 @@ allowed-tools:
   - Write
   - Edit
   - Bash
+version: 1.0.0
 ---
 
 # Brand HTML / Web Generation

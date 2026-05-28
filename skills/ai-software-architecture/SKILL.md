@@ -14,6 +14,7 @@ allowed-tools:
   - Glob
   - Grep
   - Bash
+version: 1.0.0
 ---
 
 # AI Software Architecture: Internal Structure & Design Decisions for AI-Enabled Systems

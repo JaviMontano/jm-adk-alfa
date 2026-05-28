@@ -12,6 +12,7 @@ allowed-tools:
   - Glob
   - Grep
   - Bash
+version: 1.0.0
 ---
 
 # Rendering Engine (Mermaid-to-PNG, Markdown-to-PDF)

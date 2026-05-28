@@ -19,6 +19,7 @@ allowed-tools:
   - Glob
   - Grep
   - Bash
+version: 1.0.0
 ---
 
 # Data Engineering: Pipeline Architecture & Data Platform Design

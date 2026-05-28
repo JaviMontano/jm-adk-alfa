@@ -7,6 +7,7 @@ argument-hint: "role title + company name + interview type (behavioral, technica
 model: opus
 context: fork
 allowed-tools: Read, Write, Edit, Glob, Grep
+version: 1.0.0
 ---
 
 # Interview Preparation Kit

@@ -15,6 +15,7 @@ allowed-tools:
   - Glob
   - Grep
   - Bash
+version: 1.0.0
 ---
 
 # GenAI Architecture: Architecture for Generative AI Systems

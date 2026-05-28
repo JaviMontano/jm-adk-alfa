@@ -18,6 +18,7 @@ allowed-tools:
   - Grep
   - WebSearch
   - WebFetch
+version: 1.0.0
 ---
 
 # Prompt Forge

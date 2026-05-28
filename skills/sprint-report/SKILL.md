@@ -8,6 +8,7 @@ argument-hint: "Sprint number, team name, date range, and data source or raw met
 model: opus
 context: fork
 allowed-tools: Read, Write, Edit, Glob, Grep
+version: 1.0.0
 ---
 
 # sprint-report

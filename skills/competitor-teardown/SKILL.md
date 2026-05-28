@@ -9,6 +9,7 @@ argument-hint: "your product/service name + list of competitors to analyze"
 model: opus
 context: fork
 allowed-tools: Read, Write, Edit, Glob, Grep
+version: 1.0.0
 ---
 
 # competitor-teardown

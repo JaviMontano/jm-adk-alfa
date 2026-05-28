@@ -17,6 +17,7 @@ allowed-tools:
   - Write
   - WebSearch
   - WebFetch
+version: 1.0.0
 ---
 
 # Task Engine

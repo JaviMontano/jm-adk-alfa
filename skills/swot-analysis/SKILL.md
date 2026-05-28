@@ -7,6 +7,7 @@ argument-hint: "company/product/project name + context (market entry, pivot, ann
 model: opus
 context: fork
 allowed-tools: Read, Write, Edit, Glob, Grep
+version: 1.0.0
 ---
 
 # SWOT Analysis

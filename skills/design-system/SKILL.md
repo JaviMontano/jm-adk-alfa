@@ -19,6 +19,7 @@ allowed-tools:
   - Glob
   - Grep
   - Bash
+version: 1.0.0
 ---
 
 # Design System v4 (Brand-Configurable)

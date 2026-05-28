@@ -8,6 +8,7 @@ description: >-
 license: MIT
 metadata:
   version: "2.5.0"
+version: 1.0.0
 ---
 
 # Intent Integrity Kit Clarify (Generic Utility)

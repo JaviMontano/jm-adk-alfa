@@ -15,6 +15,7 @@ allowed-tools:
   - Edit
   - Glob
   - Grep
+version: 1.0.0
 ---
 
 # Copywriting — Persuasive Executive Communication

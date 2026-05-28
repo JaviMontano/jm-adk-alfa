@@ -8,6 +8,7 @@ argument-hint: "paste your CV text or describe target role"
 model: opus
 context: fork
 allowed-tools: Read, Write, Edit, Glob, Grep
+version: 1.0.0
 ---
 
 # CV Enhancement — From Duty Descriptions to Impact Stories

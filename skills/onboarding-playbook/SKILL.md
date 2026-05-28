@@ -1,4 +1,4 @@
---- [EXPLICIT]
+---
 name: onboarding-playbook
 description:  [EXPLICIT]
   Developer and team onboarding program design, knowledge transfer framework, and ramp-up metrics [EXPLICIT]
@@ -17,6 +17,7 @@ allowed-tools:
   - Grep
   - Bash
   - WebFetch
+version: 1.0.0
 ---
 
 # Playbook de Onboarding

@@ -15,6 +15,7 @@ allowed-tools:
   - Glob
   - Grep
   - Bash
+version: 1.0.0
 ---
 
 # AI Architecture Audit: Systematic Assessment of AI-Enabled Systems

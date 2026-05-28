@@ -9,6 +9,7 @@ argument-hint: "contact records or fields to include, optional: export format, g
 model: opus
 context: fork
 allowed-tools: Read, Write, Edit, Glob, Grep
+version: 1.0.0
 ---
 
 # contact-database

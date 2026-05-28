@@ -14,6 +14,7 @@ allowed-tools:
   - Bash
   - WebFetch
   - Agent
+version: 1.0.0
 ---
 
 # Find Skills

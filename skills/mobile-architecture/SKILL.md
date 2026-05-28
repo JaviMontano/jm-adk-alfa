@@ -16,6 +16,7 @@ allowed-tools:
   - Glob
   - Grep
   - Bash
+version: 1.0.0
 ---
 
 # Mobile Architecture: Platform Strategy, Patterns & Release Management

@@ -20,6 +20,7 @@ allowed-tools:
   - Glob
   - Grep
   - Bash
+version: 1.0.0
 ---
 
 # API Architecture: Design, Governance & Developer Experience

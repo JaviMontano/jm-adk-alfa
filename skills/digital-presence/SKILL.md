@@ -8,6 +8,7 @@ argument-hint: "Brand or person name, primary domain, social profile URLs, and t
 model: opus
 context: fork
 allowed-tools: Read, Write, Edit, Glob, Grep
+version: 1.0.0
 ---
 
 # digital-presence

@@ -8,6 +8,7 @@ argument-hint: "Source material (document, report, or context) and target audien
 model: opus
 context: fork
 allowed-tools: Read, Write, Edit, Glob, Grep
+version: 1.0.0
 ---
 
 # executive-summary

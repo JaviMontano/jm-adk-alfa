@@ -22,6 +22,7 @@ allowed-tools:
   - Bash
   - Agent
 model: opus
+version: 1.0.0
 ---
 
 # Skill Assembly Line

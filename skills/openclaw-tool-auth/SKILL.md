@@ -19,6 +19,7 @@ allowed-tools:
   - Glob
   - Grep
   - Bash
+version: 1.0.0
 ---
 
 # OpenClaw Tool Auth: Per-Tool Authorization for Claude Code & OpenClaw

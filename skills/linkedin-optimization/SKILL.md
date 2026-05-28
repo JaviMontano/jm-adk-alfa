@@ -9,6 +9,7 @@ argument-hint: "current LinkedIn profile text or URL, target role, industry, car
 model: opus
 context: fork
 allowed-tools: Read, Write, Edit, Glob, Grep
+version: 1.0.0
 ---
 
 # LinkedIn Optimization

@@ -1,4 +1,4 @@
---- [EXPLICIT]
+---
 name: prompt-creator
 description:  [EXPLICIT]
   Generates structured prompts for 9 prompt types in agentic ecosystems — meta, handoff, deliberation, [EXPLICIT]

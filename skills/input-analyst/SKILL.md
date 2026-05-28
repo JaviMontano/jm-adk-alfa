@@ -9,6 +9,7 @@ allowed-tools:
   - Grep
   - Glob
   - Bash
+version: 1.0.0
 ---
 
 # Input Analyst

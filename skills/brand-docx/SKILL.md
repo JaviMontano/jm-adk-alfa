@@ -1,4 +1,4 @@
---- [EXPLICIT]
+---
 name: brand-docx
 description:  [EXPLICIT]
   This skill should be used when the user asks to "generate a Word document", [EXPLICIT]
@@ -19,7 +19,8 @@ allowed-tools: [EXPLICIT]
   - Write [EXPLICIT]
   - Edit [EXPLICIT]
   - Bash [EXPLICIT]
---- [EXPLICIT]
+version: 1.0.0
+---
  [EXPLICIT]
 # Brand DOCX — Word Document Generator [EXPLICIT]
  [EXPLICIT]
@@ -277,6 +278,7 @@ def add_header_footer(doc, title="", config={}):
 - [ ] Header shows wordmark; footer shows year + confidential
 - [ ] Page margins are generous (brand breathing room)
 
+version: 1.0.0
 ---
 **Author:** Javier Montano | **Last updated:** March 18, 2026
 

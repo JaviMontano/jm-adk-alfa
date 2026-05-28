@@ -21,6 +21,7 @@ allowed-tools:
   - Grep
   - Bash
 model: opus
+version: 1.0.0
 ---
 
 # Skill Trigger Optimizer

@@ -9,6 +9,7 @@ argument-hint: "entity-name [company|person|territory|sector] [depth: quick|stan
 model: opus
 context: fork
 allowed-tools: Read, Write, Edit, Glob, Grep, WebSearch
+version: 1.0.0
 ---
 
 # Market Intelligence — Deep Research with Evidence Architecture

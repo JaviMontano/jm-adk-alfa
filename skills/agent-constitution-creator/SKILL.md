@@ -1,4 +1,4 @@
---- [EXPLICIT]
+---
 name: agent-constitution-creator
 description:  [EXPLICIT]
   This skill should be used when the user asks to "create an agent constitution", [EXPLICIT]
@@ -12,7 +12,8 @@ argument-hint: agent-id [role-description] [EXPLICIT]
 model: opus [EXPLICIT]
 context: fork [EXPLICIT]
 allowed-tools: Read, Write, Edit, Glob, Grep [EXPLICIT]
---- [EXPLICIT]
+version: 1.0.0
+---
  [EXPLICIT]
 # Agent Constitution Creator [EXPLICIT]
  [EXPLICIT]

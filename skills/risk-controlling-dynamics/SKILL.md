@@ -20,6 +20,7 @@ allowed-tools:
   - Glob
   - Grep
   - Bash
+version: 1.0.0
 ---
 
 # Risk & Controlling Dynamics: The Anxious Controller Who Makes Everything Reliable

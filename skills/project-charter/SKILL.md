@@ -8,6 +8,7 @@ argument-hint: "Project name, business context, key stakeholders, and any known 
 model: opus
 context: fork
 allowed-tools: Read, Write, Edit, Glob, Grep
+version: 1.0.0
 ---
 
 # project-charter

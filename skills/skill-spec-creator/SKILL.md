@@ -1,4 +1,4 @@
---- [EXPLICIT]
+---
 name: skill-spec-creator
 description:  [EXPLICIT]
   This skill should be used when the user asks to "create a skill spec", "generate a [EXPLICIT]
@@ -12,7 +12,8 @@ argument-hint: skill-id owning-agent-id [EXPLICIT]
 model: opus [EXPLICIT]
 context: fork [EXPLICIT]
 allowed-tools: Read, Write, Edit, Glob, Grep [EXPLICIT]
---- [EXPLICIT]
+version: 1.0.0
+---
  [EXPLICIT]
 # Skill Spec Creator [EXPLICIT]
  [EXPLICIT]
@@ -205,5 +206,6 @@ workflows:
 - [ ] `interoperabilityContract` specifies concrete formats
 - [ ] `inputs` have validation constraints
 
+version: 1.0.0
 ---
 **Author:** Javier Montano | **Last updated:** March 18, 2026

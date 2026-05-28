@@ -15,6 +15,7 @@ allowed-tools:
   - Edit
   - Glob
   - Grep
+version: 1.0.0
 ---
 
 # Storytelling — Narrative Arc & Transformation Stories

@@ -16,6 +16,7 @@ allowed-tools:
   - Bash
   - Glob
   - Grep
+version: 1.0.0
 ---
 
 # Naming & Slugging

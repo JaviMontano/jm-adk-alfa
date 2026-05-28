@@ -10,6 +10,7 @@ argument-hint: "person-name [portfolio|consultant|speaker|executive|product] [co
 model: opus
 context: fork
 allowed-tools: Read, Write, Edit, Glob, Grep, WebSearch
+version: 1.0.0
 ---
 
 # Landing Pages — Personal Brand Web Presence

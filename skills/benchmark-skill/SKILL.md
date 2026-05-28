@@ -17,6 +17,7 @@ allowed-tools:
   - Bash
 model: opus
 context: fork
+version: 1.0.0
 ---
 
 # Skill Benchmark

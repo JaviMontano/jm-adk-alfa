@@ -9,6 +9,7 @@ argument-hint: "meeting transcript, agenda, attendee list, date, or raw notes"
 model: opus
 context: fork
 allowed-tools: Read, Write, Edit, Glob, Grep
+version: 1.0.0
 ---
 
 # Meeting Notes

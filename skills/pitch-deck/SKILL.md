@@ -9,6 +9,7 @@ argument-hint: "company name, problem statement, solution, market size, business
 model: opus
 context: fork
 allowed-tools: Read, Write, Edit, Glob, Grep
+version: 1.0.0
 ---
 
 # Pitch Deck

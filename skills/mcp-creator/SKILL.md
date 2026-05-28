@@ -1,4 +1,4 @@
---- [EXPLICIT]
+---
 name: mcp-creator
 description:  [EXPLICIT]
   This skill should be used when the user asks to "configure an MCP server", "connect Claude to [EXPLICIT]
@@ -10,7 +10,8 @@ argument-hint: server-name [transport: stdio|http] [EXPLICIT]
 model: opus [EXPLICIT]
 context: fork [EXPLICIT]
 allowed-tools: Read, Write, Edit, Bash, Glob, Grep [EXPLICIT]
---- [EXPLICIT]
+version: 1.0.0
+---
  [EXPLICIT]
 # MCP Creator [EXPLICIT]
  [EXPLICIT]
@@ -213,5 +214,6 @@ When MCP tools exceed 10% of context window, Claude auto-enables tool search —
 - [ ] Server responds after config: `claude mcp list` shows it
 - [ ] Env vars referenced in config are actually set in environment
 
+version: 1.0.0
 ---
 **Author:** Javier Montaño | **Last updated:** 2026-03-12

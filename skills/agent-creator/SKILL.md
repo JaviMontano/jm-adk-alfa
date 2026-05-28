@@ -1,4 +1,4 @@
---- [EXPLICIT]
+---
 name: agent-creator
 description:  [EXPLICIT]
   This skill should be used when the user asks to "create an agent", [EXPLICIT]
@@ -12,6 +12,7 @@ argument-hint: agent-name [description] [EXPLICIT]
 model: opus [EXPLICIT]
 context: fork [EXPLICIT]
 allowed-tools: Read, Write, Edit, Bash, Glob, Grep [EXPLICIT]
+version: 1.0.0
 ---
 
 # Agent Creator

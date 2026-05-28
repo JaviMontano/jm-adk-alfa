@@ -18,6 +18,7 @@ allowed-tools:
   - Glob
   - Grep
   - Bash
+version: 1.0.0
 ---
 
 # Commercial Model: Value Capture & Deal Structure Strategy

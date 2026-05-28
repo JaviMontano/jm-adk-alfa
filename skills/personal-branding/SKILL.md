@@ -9,6 +9,7 @@ argument-hint: "professional context, target audience, career goals, current pos
 model: opus
 context: fork
 allowed-tools: Read, Write, Edit, Glob, Grep
+version: 1.0.0
 ---
 
 # Personal Branding

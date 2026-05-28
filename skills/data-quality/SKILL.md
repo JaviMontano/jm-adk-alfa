@@ -18,6 +18,7 @@ allowed-tools:
   - Glob
   - Grep
   - Bash
+version: 1.0.0
 ---
 
 # Data Quality: Framework Design for Validation, Contracts & Monitoring

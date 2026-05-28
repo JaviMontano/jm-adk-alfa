@@ -10,6 +10,7 @@ argument-hint: "client name(s), project context, intended use (web, deck, propos
 model: opus
 context: fork
 allowed-tools: Read, Write, Edit, Glob, Grep
+version: 1.0.0
 ---
 
 # testimonial-collector

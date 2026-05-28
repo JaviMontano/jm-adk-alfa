@@ -14,6 +14,7 @@ allowed-tools:
   - Glob
   - Grep
   - Bash
+version: 1.0.0
 ---
 
 # Testing Strategy: Quality Assurance Architecture & Automation Design
