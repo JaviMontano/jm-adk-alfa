@@ -10,7 +10,13 @@ description: >
 argument-hint: "target-persona-or-company [product/service] [sequence-length: 3|5|7]"
 model: opus
 context: fork
-allowed-tools: Read, Write, Edit, Glob, Grep, WebSearch
+allowed-tools:
+  - Read
+  - Write
+  - Edit
+  - Glob
+  - Grep
+  - WebSearch
 ---
 
 # B2B Outreach — Sequences That Start Conversations

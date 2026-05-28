@@ -7,7 +7,12 @@ description: >
 argument-hint: "brand/product name + target audience + goals (awareness, leads, engagement)"
 model: opus
 context: fork
-allowed-tools: Read, Write, Edit, Glob, Grep
+allowed-tools:
+  - Read
+  - Write
+  - Edit
+  - Glob
+  - Grep
 ---
 
 # Social Media Strategy

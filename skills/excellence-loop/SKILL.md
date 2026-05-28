@@ -10,7 +10,7 @@ allowed-tools:
   - Glob
   - Grep
   - Bash
-  - Agent
+  - Task
 ---
 
 # Excellence Loop

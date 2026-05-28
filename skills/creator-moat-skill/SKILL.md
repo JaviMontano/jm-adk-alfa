@@ -10,7 +10,14 @@ description:
   and enterprise patterns. Use alongside or after the official skill-creator
   for skills that need production-grade robustness. [EXPLICIT]
 argument-hint: skill-name [description]
-allowed-tools: Read, Write, Edit, Bash, Glob, Grep, Agent
+allowed-tools:
+  - Read
+  - Write
+  - Edit
+  - Bash
+  - Glob
+  - Grep
+  - Task
 model: opus
 context: fork
 ---

@@ -5,6 +5,13 @@ version: 1.0.0
 status: production
 owner: Javier Montaño
 tags: [backend, serverless, fan-out, saga, event-sourcing]
+allowed-tools:
+  - Read
+  - Write
+  - Edit
+  - Bash
+  - Glob
+  - Grep
 ---
 # serverless-patterns {Backend} (v1.0)
 > **"Firebase Functions are your backend. Design them like microservices, deploy them like magic."**

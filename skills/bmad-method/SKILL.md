@@ -21,7 +21,7 @@ allowed-tools:
   - Bash
   - Glob
   - Grep
-  - Agent
+  - Task
   - WebFetch
   - WebSearch
   - TodoWrite

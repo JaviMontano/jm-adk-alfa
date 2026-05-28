@@ -8,7 +8,14 @@ description:
   open LLM stack, Groq agent, or OpenRouter bot. Use this skill even if the user only has a
   vague idea — it interviews for missing details. [EXPLICIT]
 argument-hint: agent-name [platform: telegram|discord|http]
-allowed-tools: Read, Write, Edit, Bash, Glob, Grep, Agent
+allowed-tools:
+  - Read
+  - Write
+  - Edit
+  - Bash
+  - Glob
+  - Grep
+  - Task
 model: opus
 context: fork
 ---

@@ -5,6 +5,13 @@ version: 1.0.0
 status: production
 owner: Javier Montaño
 tags: [testing, metrics, coverage, complexity, lighthouse, bundle-size, firestore]
+allowed-tools:
+  - Read
+  - Write
+  - Edit
+  - Bash
+  - Glob
+  - Grep
 ---
 
 # 084 — Quality Metrics {Testing}

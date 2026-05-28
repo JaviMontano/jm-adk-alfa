@@ -5,6 +5,13 @@ version: 1.0.0
 status: production
 owner: Javier Montano
 tags: [meta, review, audit, quality]
+allowed-tools:
+  - Read
+  - Write
+  - Edit
+  - Bash
+  - Glob
+  - Grep
 ---
 
 # meta-skill-reviewer {Meta} (v1.0)

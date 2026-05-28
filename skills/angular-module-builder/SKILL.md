@@ -5,6 +5,13 @@ version: 1.0.0
 status: production
 owner: Javier Montaño
 tags: [frontend, angular, modules, standalone]
+allowed-tools:
+  - Read
+  - Write
+  - Edit
+  - Bash
+  - Glob
+  - Grep
 ---
 # angular-module-builder {Frontend} (v1.0)
 > **"Ship pixels that perform, accessible by default."**

@@ -5,6 +5,13 @@ version: 1.0.0
 status: production
 owner: Javier Montaño
 tags: [performance, bundle, webpack, rollup, vite, code-splitting, tree-shaking]
+allowed-tools:
+  - Read
+  - Write
+  - Edit
+  - Bash
+  - Glob
+  - Grep
 ---
 
 # 099 — Bundle Analysis {Performance}

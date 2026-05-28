@@ -5,6 +5,13 @@ version: 1.0.0
 status: production
 owner: Javier Montano
 tags: [meta, deploy, auto-deploy, install]
+allowed-tools:
+  - Read
+  - Write
+  - Edit
+  - Bash
+  - Glob
+  - Grep
 ---
 
 # meta-skill-deployer {Meta} (v1.0)

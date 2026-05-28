@@ -5,6 +5,13 @@ version: 1.0.0
 status: production
 owner: Javier Montaño
 tags: [security, privacy, gdpr, ccpa, compliance]
+allowed-tools:
+  - Read
+  - Write
+  - Edit
+  - Bash
+  - Glob
+  - Grep
 ---
 # privacy-compliance {Security} (v1.0)
 > **"Security is not a feature. It's every feature's foundation."**

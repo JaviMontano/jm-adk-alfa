@@ -12,9 +12,13 @@ description:  [EXPLICIT]
 argument-hint: skill-id owning-agent-id [EXPLICIT]
 model: opus [EXPLICIT]
 context: fork [EXPLICIT]
-allowed-tools: Read, Write, Edit, Glob, Grep [EXPLICIT]
+allowed-tools:
+  - Read
+  - Write
+  - Edit
+  - Glob
+  - Grep
 ---
- [EXPLICIT]
 # Skill Spec Creator [EXPLICIT]
  [EXPLICIT]
 Generate complete `skill.yaml` definitions — capability modules for agents in multi-agent ecosystems. Each spec defines inputs/outputs, security, observability, interoperability contracts, and minimum 4 workflows with full step decomposition. [EXPLICIT]

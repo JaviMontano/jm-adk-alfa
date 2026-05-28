@@ -9,7 +9,12 @@ description: >
 argument-hint: "professional context, target audience, career goals, current positioning"
 model: opus
 context: fork
-allowed-tools: Read, Write, Edit, Glob, Grep
+allowed-tools:
+  - Read
+  - Write
+  - Edit
+  - Glob
+  - Grep
 ---
 
 # Personal Branding

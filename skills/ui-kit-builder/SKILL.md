@@ -5,6 +5,13 @@ version: 1.0.0
 status: production
 owner: Javier Montaño
 tags: [frontend, ui-kit, design-tokens, components]
+allowed-tools:
+  - Read
+  - Write
+  - Edit
+  - Bash
+  - Glob
+  - Grep
 ---
 # ui-kit-builder {Frontend} (v1.0)
 > **"Ship pixels that perform, accessible by default."**

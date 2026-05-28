@@ -9,7 +9,12 @@ description: >
 argument-hint: "project-name or description of what to track"
 model: opus
 context: fork
-allowed-tools: Read, Write, Edit, Glob, Grep
+allowed-tools:
+  - Read
+  - Write
+  - Edit
+  - Glob
+  - Grep
 ---
 
 # progress-tracker — Project Progress & Status Reports

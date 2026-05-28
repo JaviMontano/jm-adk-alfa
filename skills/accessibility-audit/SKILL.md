@@ -5,6 +5,13 @@ version: 1.0.0
 status: production
 owner: Javier Montaño
 tags: [testing, accessibility, wcag, axe-core, a11y, screen-reader, keyboard-nav]
+allowed-tools:
+  - Read
+  - Write
+  - Edit
+  - Bash
+  - Glob
+  - Grep
 ---
 
 # 082 — Accessibility Audit {Testing}

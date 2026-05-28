@@ -12,9 +12,13 @@ description:  [EXPLICIT]
 argument-hint: agent-id [role-description] [EXPLICIT]
 model: opus [EXPLICIT]
 context: fork [EXPLICIT]
-allowed-tools: Read, Write, Edit, Glob, Grep [EXPLICIT]
+allowed-tools:
+  - Read
+  - Write
+  - Edit
+  - Glob
+  - Grep
 ---
- [EXPLICIT]
 # Agent Constitution Creator [EXPLICIT]
  [EXPLICIT]
 Generate constitutional `agent.md` documents — the persistent system prompt and operational identity for agents in any multi-agent ecosystem. Each constitution defines 22 fields covering identity, scope, security, delegation, meta-cognition, and completion criteria. [EXPLICIT]
@@ -100,7 +104,6 @@ name: agent-constitution-creator
 role: "{role}" [EXPLICIT]
 version: "1.0.0" [EXPLICIT]
 ---
- [EXPLICIT]
 # Mission [EXPLICIT]
 {1-2 sentences with measurable outcome} [EXPLICIT]
  [EXPLICIT]

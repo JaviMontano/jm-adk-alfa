@@ -5,6 +5,13 @@ version: 1.0.0
 status: production
 owner: Javier Montaño
 tags: [backend, cloud-functions, triggers, nodejs]
+allowed-tools:
+  - Read
+  - Write
+  - Edit
+  - Bash
+  - Glob
+  - Grep
 ---
 # firebase-functions {Backend} (v1.0)
 > **"Firebase Functions are your backend. Design them like microservices, deploy them like magic."**

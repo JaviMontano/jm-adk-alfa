@@ -8,7 +8,12 @@ description: >
 argument-hint: "Project name, business context, key stakeholders, and any known constraints"
 model: opus
 context: fork
-allowed-tools: Read, Write, Edit, Glob, Grep
+allowed-tools:
+  - Read
+  - Write
+  - Edit
+  - Glob
+  - Grep
 ---
 
 # project-charter

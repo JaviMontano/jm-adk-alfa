@@ -5,6 +5,13 @@ version: 1.0.0
 status: production
 owner: Javier Montaño
 tags: [architecture, data-flow, triggers, real-time]
+allowed-tools:
+  - Read
+  - Write
+  - Edit
+  - Bash
+  - Glob
+  - Grep
 ---
 # data-flow-architecture {Architecture} (v1.0)
 > **"Architecture is decisions. Document every one."**

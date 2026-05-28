@@ -7,6 +7,13 @@ description: >-
 license: MIT
 metadata:
   version: "1.7.0"
+allowed-tools:
+  - Read
+  - Write
+  - Edit
+  - Bash
+  - Glob
+  - Grep
 ---
 
 # Intent Integrity Kit Testify

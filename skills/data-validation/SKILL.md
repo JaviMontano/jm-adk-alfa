@@ -5,6 +5,13 @@ version: 1.0.0
 status: production
 owner: Javier Montaño
 tags: [data, validation, zod, type-safety]
+allowed-tools:
+  - Read
+  - Write
+  - Edit
+  - Bash
+  - Glob
+  - Grep
 ---
 # data-validation {Data} (v1.0)
 > **"Data is the product. Model it for queries, secure it with rules, back it up daily."**

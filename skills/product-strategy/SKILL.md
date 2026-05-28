@@ -5,6 +5,13 @@ version: 1.0.0
 status: production
 owner: Javier Montaño
 tags: [analysis, product, roadmap, prioritization]
+allowed-tools:
+  - Read
+  - Write
+  - Edit
+  - Bash
+  - Glob
+  - Grep
 ---
 # product-strategy {Analysis} (v1.0)
 > **"Analyze with evidence. Every claim tagged. Every finding actionable."**

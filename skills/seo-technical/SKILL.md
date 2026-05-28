@@ -5,6 +5,13 @@ version: 1.0.0
 status: production
 owner: Javier Montaño
 tags: [performance, seo, json-ld, sitemap, robots, open-graph, canonical, structured-data]
+allowed-tools:
+  - Read
+  - Write
+  - Edit
+  - Bash
+  - Glob
+  - Grep
 ---
 
 # 097 — Technical SEO {Performance}

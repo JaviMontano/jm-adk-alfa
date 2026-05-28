@@ -5,6 +5,13 @@ version: 1.0.0
 status: production
 owner: Javier Montaño
 tags: [analysis, asis, assessment, current-state]
+allowed-tools:
+  - Read
+  - Write
+  - Edit
+  - Bash
+  - Glob
+  - Grep
 ---
 # asis-analysis {Analysis} (v1.0)
 > **"Analyze with evidence. Every claim tagged. Every finding actionable."**

@@ -8,7 +8,13 @@ description: >
 argument-hint: "company-name or person-name"
 model: opus
 context: fork
-allowed-tools: Read, Write, Edit, Glob, Grep, WebSearch
+allowed-tools:
+  - Read
+  - Write
+  - Edit
+  - Glob
+  - Grep
+  - WebSearch
 ---
 
 # Client Dossier — Intelligence Brief for High-Stakes Meetings

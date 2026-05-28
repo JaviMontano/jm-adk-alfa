@@ -8,7 +8,12 @@ description: >
 argument-hint: "Source material (document, report, or context) and target audience"
 model: opus
 context: fork
-allowed-tools: Read, Write, Edit, Glob, Grep
+allowed-tools:
+  - Read
+  - Write
+  - Edit
+  - Glob
+  - Grep
 ---
 
 # executive-summary

@@ -24,7 +24,7 @@ allowed-tools:
   - Glob
   - Grep
   - Bash
-  - Agent
+  - Task
 ---
 
 # SAP S/4HANA Implementation Skill

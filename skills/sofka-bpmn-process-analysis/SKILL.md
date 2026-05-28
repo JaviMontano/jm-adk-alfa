@@ -23,7 +23,7 @@ allowed-tools:
   - Glob
   - Grep
   - Bash
-  - Agent
+  - Task
 ---
 
 # BPMN Process Analysis & Modeling Skill

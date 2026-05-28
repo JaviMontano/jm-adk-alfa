@@ -10,7 +10,12 @@ description: >
 argument-hint: "client name(s), project context, intended use (web, deck, proposal), language preference"
 model: opus
 context: fork
-allowed-tools: Read, Write, Edit, Glob, Grep
+allowed-tools:
+  - Read
+  - Write
+  - Edit
+  - Glob
+  - Grep
 ---
 
 # testimonial-collector

@@ -9,7 +9,13 @@ description: >
 argument-hint: "entity-name [company|person|territory|sector] [depth: quick|standard|deep]"
 model: opus
 context: fork
-allowed-tools: Read, Write, Edit, Glob, Grep, WebSearch
+allowed-tools:
+  - Read
+  - Write
+  - Edit
+  - Glob
+  - Grep
+  - WebSearch
 ---
 
 # Market Intelligence — Deep Research with Evidence Architecture

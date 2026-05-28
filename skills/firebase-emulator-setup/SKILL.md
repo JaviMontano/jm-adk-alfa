@@ -5,6 +5,13 @@ version: 1.0.0
 status: production
 owner: Javier Montaño
 tags: [testing, firebase-emulator, firestore, auth, functions, storage, hosting, seed-data]
+allowed-tools:
+  - Read
+  - Write
+  - Edit
+  - Bash
+  - Glob
+  - Grep
 ---
 
 # 087 — Firebase Emulator Setup {Testing}

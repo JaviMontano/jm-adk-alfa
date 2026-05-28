@@ -5,6 +5,13 @@ version: 1.0.0
 status: production
 owner: Javier Montaño
 tags: [frontend, routing, spa, firebase-hosting]
+allowed-tools:
+  - Read
+  - Write
+  - Edit
+  - Bash
+  - Glob
+  - Grep
 ---
 # spa-routing {Frontend} (v1.0)
 > **"Ship pixels that perform, accessible by default."**

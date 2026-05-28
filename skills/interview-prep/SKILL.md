@@ -7,7 +7,12 @@ description: >
 argument-hint: "role title + company name + interview type (behavioral, technical, panel)"
 model: opus
 context: fork
-allowed-tools: Read, Write, Edit, Glob, Grep
+allowed-tools:
+  - Read
+  - Write
+  - Edit
+  - Glob
+  - Grep
 ---
 
 # Interview Preparation Kit

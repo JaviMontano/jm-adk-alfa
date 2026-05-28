@@ -5,6 +5,13 @@ version: 1.0.0
 status: production
 owner: Javier Montaño
 tags: [analysis, spec, use-cases, acceptance-criteria]
+allowed-tools:
+  - Read
+  - Write
+  - Edit
+  - Bash
+  - Glob
+  - Grep
 ---
 # functional-spec {Analysis} (v1.0)
 > **"Analyze with evidence. Every claim tagged. Every finding actionable."**

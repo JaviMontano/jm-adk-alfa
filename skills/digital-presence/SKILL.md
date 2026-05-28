@@ -8,7 +8,12 @@ description: >
 argument-hint: "Brand or person name, primary domain, social profile URLs, and target audience"
 model: opus
 context: fork
-allowed-tools: Read, Write, Edit, Glob, Grep
+allowed-tools:
+  - Read
+  - Write
+  - Edit
+  - Glob
+  - Grep
 ---
 
 # digital-presence

@@ -5,6 +5,13 @@ version: 1.0.0
 status: production
 owner: Javier Montaño
 tags: [data, analytics, ga4, bigquery, dashboard]
+allowed-tools:
+  - Read
+  - Write
+  - Edit
+  - Bash
+  - Glob
+  - Grep
 ---
 # analytics-implementation {Data} (v1.0)
 > **"Data is the product. Model it for queries, secure it with rules, back it up daily."**
