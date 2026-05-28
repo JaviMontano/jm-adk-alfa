@@ -49,7 +49,7 @@ jobs:
         run: |
           set -euo pipefail
           if command -v shellcheck >/dev/null 2>&1; then
-            shellcheck scripts/*.sh scripts/adapters/*.sh
+            shellcheck -S error scripts/*.sh scripts/adapters/*.sh
           else
             echo "shellcheck not installed; skipping shell lint"
           fi

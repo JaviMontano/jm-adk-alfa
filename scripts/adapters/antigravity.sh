@@ -34,11 +34,11 @@ else
   echo "  WARN: generate_index.py not found, building JSON manually"
   # Fallback: build index from ACL
   echo "[" > "$AGENT_DIR/skills_index.json"
-  local FIRST=true
+  FIRST=true
   acl_list_skills | while read -r SKILL_ID; do
-    local DESC
+    DESC=""
     DESC=$(acl_skill_description "$PROJECT_ROOT/skills/$SKILL_ID")
-    local NAME
+    NAME=""
     NAME=$(echo "$SKILL_ID" | sed 's/-/ /g' | awk '{for(i=1;i<=NF;i++) $i=toupper(substr($i,1,1)) substr($i,2)}1')
     [ "$FIRST" = "true" ] && FIRST=false || echo "," >> "$AGENT_DIR/skills_index.json"
     printf '  {"id":"%s","path":"skills/%s","name":"%s","description":"%s"}' \
