@@ -1,12 +1,14 @@
 # JM-ADK Component Catalog
 
-Interactive reference for all 101 agents, 101 skills, and 101 commands.
+Interactive reference for the curated catalog snapshot.
+For authoritative live counts, run `python3 scripts/count-components.py`.
+Current physical inventory is 256 agents, 524 skills, 260 commands, and 256 prompts.
 
 > **Tip**: Use `Ctrl+F` / `Cmd+F` to search this page, or `/jm-adk:search "keyword"` inside Claude Code.
 
 ---
 
-## Agents (101)
+## Agents (catalog snapshot)
 
 ### Orchestration (5)
 
@@ -285,7 +287,7 @@ Interactive reference for all 101 agents, 101 skills, and 101 commands.
 
 ---
 
-## Commands Quick Reference (101)
+## Commands Quick Reference (catalog snapshot)
 
 ### Pipeline (10)
 

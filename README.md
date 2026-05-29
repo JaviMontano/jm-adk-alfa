@@ -90,8 +90,11 @@ python3 scripts/scaffold-skill.py --name my-experiment --description "Local expe
 python3 scripts/validate-skills.py --strict
 python3 scripts/count-components.py --check-docs
 bash scripts/check-repo-boundaries.sh
+python3 scripts/qa/run-adversarial-tests.py
 bash scripts/generate-pristino-index.sh
 ```
+
+If a gate fails, use `docs/troubleshooting.md` and report the exact command, output, branch, and files changed before asking an agent to fix it.
 
 ## Update Safely from GitHub
 
