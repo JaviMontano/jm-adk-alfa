@@ -22,6 +22,7 @@ cd jm-adk-alfa
 python3 scripts/count-components.py
 python3 scripts/validate-skills.py --strict
 bash scripts/check-repo-boundaries.sh
+python3 scripts/qa/run-adversarial-tests.py
 ```
 
 Expected component inventory:
@@ -83,6 +84,12 @@ Read [Git Sync Local Safe](git-sync-local-safe.md), then run from a clean tree:
 ```bash
 bash scripts/sync-upstream-safe.sh --remote origin
 ```
+
+## When Something Fails
+
+Use [Troubleshooting JM-ADK](troubleshooting.md).
+Do not use destructive Git commands to recover.
+Capture the failed command, output, current branch, and local changes before asking an agent to fix the issue.
 
 ## Contribute
 

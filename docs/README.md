@@ -4,6 +4,7 @@
 
 - [Getting Started](getting-started.md): clone, validate, create a skill, and keep local state safe.
 - [Git Sync Local Safe](git-sync-local-safe.md): update from GitHub without breaking local work.
+- [Troubleshooting](troubleshooting.md): recover from failed gates without guessing or destroying local state.
 - [Architecture](../ARCHITECTURE.md): component model and repository boundaries.
 
 ## Component Catalog
@@ -37,4 +38,5 @@ Current physical inventory: 524 skills, 256 agents, 260 commands, 256 prompts.
 python3 scripts/validate-skills.py --strict
 python3 scripts/count-components.py --check-docs
 bash scripts/check-repo-boundaries.sh
+python3 scripts/qa/run-adversarial-tests.py
 ```

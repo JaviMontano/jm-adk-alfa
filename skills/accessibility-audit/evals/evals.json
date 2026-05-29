@@ -1,9 +1,58 @@
 [
-  {"id": "accessibility-audit-happy-path", "type": "happy_path", "input": "Run accessibility audit on this project", "expected_behavior": "Skill activates and produces the expected accessibility audit output following the defined process", "tags": ["basic", "activation"]},
-  {"id": "accessibility-audit-explicit-trigger", "type": "happy_path", "input": "Apply accessibility audit analysis", "expected_behavior": "Skill recognizes the trigger phrase and executes the accessibility audit workflow", "tags": ["trigger", "recognition"]},
-  {"id": "accessibility-audit-with-context", "type": "happy_path", "input": "Apply accessibility audit to analyze the current codebase with detailed output", "expected_behavior": "Skill produces comprehensive accessibility audit analysis with evidence-tagged findings", "tags": ["detailed", "comprehensive"]},
-  {"id": "accessibility-audit-minimal-input", "type": "happy_path", "input": "Quick accessibility audit", "expected_behavior": "Skill activates with minimal input, applies reasonable defaults", "tags": ["minimal", "defaults"]},
-  {"id": "accessibility-audit-false-positive", "type": "false_positive", "input": "What is the weather forecast for tomorrow?", "expected_behavior": "Skill should NOT activate — this input has no relation to accessibility audit", "tags": ["false_positive", "should-not-activate"]},
-  {"id": "accessibility-audit-edge-empty-input", "type": "edge_case", "input": "Run accessibility audit but I have no files or documentation yet", "expected_behavior": "Skill handles gracefully — requests minimum viable input or produces gap analysis", "tags": ["edge_case", "empty-input", "boundary"]},
-  {"id": "accessibility-audit-edge-conflicting", "type": "edge_case", "input": "Apply accessibility audit but requirements contradict each other", "expected_behavior": "Skill detects contradiction, flags with [OPEN] tag, proposes resolution", "tags": ["edge_case", "conflict", "corner"]}
+  {
+    "id": "accessibility-audit-route-scope-happy-path",
+    "type": "happy_path",
+    "input": "Run a WCAG 2.1 AA accessibility audit for /, /pricing, and /checkout. Use the existing Playwright app command, axe results, keyboard traversal, VoiceOver notes, and contrast screenshots.",
+    "expected_behavior": "Produces an audit report with scope, environment, automated findings, manual checklist, WCAG mapping, remediation tickets, final status, and validation evidence.",
+    "tags": ["wcag", "axe", "manual-checklist", "route-scope"]
+  },
+  {
+    "id": "accessibility-audit-clean-axe-keyboard-fail",
+    "type": "edge_case",
+    "input": "axe reports zero violations, but the checkout modal traps focus and Escape does not close it.",
+    "expected_behavior": "Does not mark the audit pass; records automated pass plus manual keyboard/focus failure with remediation ticket and fail or conditional status.",
+    "tags": ["keyboard", "modal", "clean-axe", "manual-failure"]
+  },
+  {
+    "id": "accessibility-audit-missing-evidence",
+    "type": "edge_case",
+    "input": "Audit my app for accessibility. I cannot provide a URL, files, route list, screenshots, or axe report yet.",
+    "expected_behavior": "Returns a not-verified gap report with required inputs and does not claim WCAG compliance.",
+    "tags": ["missing-evidence", "not-verified"]
+  },
+  {
+    "id": "accessibility-audit-violation-bundle",
+    "type": "happy_path",
+    "input": "Audit this checkout form: placeholder-only email input, gray text on white, icon-only delete buttons, toast after submit, and custom div buttons.",
+    "expected_behavior": "Maps issues to labels, contrast, accessible names, live regions, keyboard activation, WCAG/principle references, user impact, and acceptance checks.",
+    "tags": ["forms", "contrast", "aria", "dynamic-content"]
+  },
+  {
+    "id": "accessibility-audit-screen-reader-skipped",
+    "type": "edge_case",
+    "input": "We ran axe and keyboard tests but skipped screen reader verification. Can we say WCAG AA compliant?",
+    "expected_behavior": "Refuses compliance claim; marks screen reader as not verified and returns conditional or not-verified status.",
+    "tags": ["screen-reader", "unsupported-claim"]
+  },
+  {
+    "id": "accessibility-audit-aria-overuse",
+    "type": "edge_case",
+    "input": "Fix accessibility by adding aria-label and role attributes everywhere, including native buttons and headings.",
+    "expected_behavior": "Prefers native HTML semantics, flags redundant or misleading ARIA, and recommends targeted ARIA only where native semantics are unavailable.",
+    "tags": ["aria", "native-html", "anti-pattern"]
+  },
+  {
+    "id": "accessibility-audit-false-positive-physical-space",
+    "type": "false_positive",
+    "input": "Audit accessibility of our office building entrance.",
+    "expected_behavior": "Does not activate digital WCAG audit without clarification; asks whether the target is a digital product or routes to a different process.",
+    "tags": ["false-positive", "physical-accessibility"]
+  },
+  {
+    "id": "accessibility-audit-false-positive-business-credit",
+    "type": "false_positive",
+    "input": "Audit accessibility to credit for SMBs in Colombia.",
+    "expected_behavior": "Does not activate web accessibility audit because the request is about financial access, not WCAG digital accessibility.",
+    "tags": ["false-positive", "semantic-ambiguity"]
+  }
 ]

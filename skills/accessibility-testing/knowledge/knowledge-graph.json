@@ -1,44 +1,92 @@
 {
   "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-28",
   "skill": "accessibility-testing",
   "nodes": [
     {
       "id": "accessibility-testing",
       "type": "skill",
-      "label": "accessibility-testing"
+      "label": "Accessibility Testing"
     },
     {
-      "id": "accessibility-testing:inputs",
+      "id": "scope-contract",
       "type": "contract",
-      "label": "Expected inputs"
+      "label": "Scope and environment contract"
     },
     {
-      "id": "accessibility-testing:outputs",
-      "type": "contract",
-      "label": "Expected outputs"
+      "id": "automated-evidence",
+      "type": "evidence",
+      "label": "Automated axe and component evidence"
     },
     {
-      "id": "accessibility-testing:quality",
+      "id": "manual-keyboard",
+      "type": "evidence",
+      "label": "Manual keyboard matrix"
+    },
+    {
+      "id": "screen-reader-smoke",
+      "type": "evidence",
+      "label": "Screen reader smoke matrix"
+    },
+    {
+      "id": "contrast-motion",
+      "type": "evidence",
+      "label": "Contrast and reduced-motion checks"
+    },
+    {
+      "id": "status-model",
       "type": "gate",
-      "label": "Quality criteria"
+      "label": "Pass/fail/conditional/not-verified status model"
+    },
+    {
+      "id": "claim-safety",
+      "type": "gate",
+      "label": "No unsupported WCAG conformance claims"
+    },
+    {
+      "id": "suppression-governance",
+      "type": "gate",
+      "label": "Governed suppressions and exclusions"
     }
   ],
   "edges": [
     {
       "from": "accessibility-testing",
-      "to": "accessibility-testing:inputs",
+      "to": "scope-contract",
       "type": "requires"
     },
     {
       "from": "accessibility-testing",
-      "to": "accessibility-testing:outputs",
+      "to": "automated-evidence",
       "type": "produces"
     },
     {
       "from": "accessibility-testing",
-      "to": "accessibility-testing:quality",
+      "to": "manual-keyboard",
+      "type": "produces"
+    },
+    {
+      "from": "accessibility-testing",
+      "to": "screen-reader-smoke",
+      "type": "produces"
+    },
+    {
+      "from": "accessibility-testing",
+      "to": "contrast-motion",
+      "type": "produces"
+    },
+    {
+      "from": "accessibility-testing",
+      "to": "status-model",
+      "type": "validated_by"
+    },
+    {
+      "from": "accessibility-testing",
+      "to": "claim-safety",
+      "type": "validated_by"
+    },
+    {
+      "from": "accessibility-testing",
+      "to": "suppression-governance",
       "type": "validated_by"
     }
   ]

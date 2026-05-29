@@ -159,7 +159,8 @@ def validate_skill(skill_dir: Path, root: Path, strict: bool) -> tuple[list[str]
     for tool in tools if isinstance(tools, list) else []:
         tool_name = str(tool)
         if tool_name not in ALLOWED_TOOLS and not MCP_TOOL_RE.match(tool_name):
-            warnings.append(f"{skill_md}: unknown allowed tool '{tool}'")
+            message = f"{skill_md}: unknown allowed tool '{tool}'"
+            (errors if strict else warnings).append(message)
     body = skill_md.read_text(encoding="utf-8")
     triggers = extract_triggers(fm, body, skill_dir.name)
 

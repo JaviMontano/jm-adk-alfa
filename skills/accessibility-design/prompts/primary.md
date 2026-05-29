@@ -26,19 +26,21 @@ triad:
 1. **Load knowledge**: Read `knowledge/body-of-knowledge.md`
 2. **Check guardrails**: Read `references/guardrails/*.json`
 3. **Lead** (`accessibility-design-lead`): Execute SKILL.md Steps 1-4 for `{{task}}`
-   - Discover → Analyze → Execute → Validate
-   - Apply evidence tags on all claims
+   - Discover: feature/component scope, states, user journey, tokens, constraints
+   - Analyze: native HTML vs ARIA, WCAG/POUR mapping, keyboard and focus model
+   - Execute: accessible interaction spec or implementation guidance
+   - Validate: acceptance criteria and validation matrix
 4. **Support** (`accessibility-design-support`): Review for cross-cutting concerns
-   - Edge cases, security, accessibility, performance
+   - Content, forms/errors, reduced motion, responsive/zoom, design tokens, implementation constraints
 5. **Guardian** (`accessibility-design-guardian`): Validate
-   - Evidence tags complete
-   - Quality gate met
-   - Constitution XIII + XIV respected
-   - Output exceeds expectations
+   - Native HTML considered before ARIA
+   - Keyboard map, focus plan, screen reader expectations, and contrast/token status are present
+   - Acceptance criteria are testable
+   - Audit/testing boundary is respected
 
 ## Output
 
-- Primary deliverable for `{{task}}` in `{{output_format}}`
+- Accessible interaction spec or implementation guidance for `{{task}}` in `{{output_format}}`
 - Evidence tags on every claim
-- Recommendations beyond the ask
+- WCAG/POUR mapping, keyboard map, focus plan, semantic/ARIA decision log, validation matrix
 - Confidence score (>= 0.95)

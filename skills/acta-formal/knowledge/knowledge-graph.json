@@ -1,44 +1,92 @@
 {
   "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-28",
   "skill": "acta-formal",
   "nodes": [
     {
       "id": "acta-formal",
       "type": "skill",
-      "label": "acta-formal"
+      "label": "Acta Formal"
     },
     {
-      "id": "acta-formal:inputs",
+      "id": "formal-scope",
       "type": "contract",
-      "label": "Expected inputs"
+      "label": "Formal meeting scope and routing"
     },
     {
-      "id": "acta-formal:outputs",
+      "id": "metadata-contract",
       "type": "contract",
-      "label": "Expected outputs"
+      "label": "Meeting metadata and folio"
     },
     {
-      "id": "acta-formal:quality",
+      "id": "attendance-register",
+      "type": "contract",
+      "label": "Attendees, attendance state, and signatures"
+    },
+    {
+      "id": "quorum-gate",
       "type": "gate",
-      "label": "Quality criteria"
+      "label": "Quorum status gate"
+    },
+    {
+      "id": "agreement-traceability",
+      "type": "gate",
+      "label": "Agreement owner, deadline, status, and source"
+    },
+    {
+      "id": "no-invention",
+      "type": "gate",
+      "label": "No invented formal facts"
+    },
+    {
+      "id": "distribution-confirmation",
+      "type": "gate",
+      "label": "Drive/Gmail require human confirmation"
+    },
+    {
+      "id": "markdown-html-parity",
+      "type": "gate",
+      "label": "Markdown and HTML section parity"
     }
   ],
   "edges": [
     {
       "from": "acta-formal",
-      "to": "acta-formal:inputs",
+      "to": "formal-scope",
       "type": "requires"
     },
     {
       "from": "acta-formal",
-      "to": "acta-formal:outputs",
-      "type": "produces"
+      "to": "metadata-contract",
+      "type": "requires"
     },
     {
       "from": "acta-formal",
-      "to": "acta-formal:quality",
+      "to": "attendance-register",
+      "type": "requires"
+    },
+    {
+      "from": "acta-formal",
+      "to": "quorum-gate",
+      "type": "validated_by"
+    },
+    {
+      "from": "acta-formal",
+      "to": "agreement-traceability",
+      "type": "validated_by"
+    },
+    {
+      "from": "acta-formal",
+      "to": "no-invention",
+      "type": "validated_by"
+    },
+    {
+      "from": "acta-formal",
+      "to": "distribution-confirmation",
+      "type": "validated_by"
+    },
+    {
+      "from": "acta-formal",
+      "to": "markdown-html-parity",
       "type": "validated_by"
     }
   ]

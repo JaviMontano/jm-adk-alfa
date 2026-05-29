@@ -138,13 +138,12 @@ graph TD
 
 ```mermaid
 graph TD
-    ROOT["jm-agentic-development-kit/"]
+    ROOT["jm-adk-alfa/"]
 
-    ROOT --> AGENTS["agents/<br/>101 .md files"]
-    ROOT --> COMMANDS["commands/<br/>101 .md files"]
-    ROOT --> SKILLS["skills/<br/>101 dirs/SKILL.md"]
-    ROOT --> PROMPTS["prompts/<br/>101 .md files"]
-    ROOT --> TEMPLATES["templates/<br/>5 scaffolds"]
+    ROOT --> AGENTS["agents/<br/>256 .md files"]
+    ROOT --> COMMANDS["commands/<br/>260 .md files"]
+    ROOT --> SKILLS["skills/<br/>524 dirs/SKILL.md"]
+    ROOT --> PROMPTS["prompts/<br/>256 .md files"]
     ROOT --> DOCS["docs/<br/>human-readable"]
     ROOT --> AGENT[".agent/<br/>Antigravity compat"]
     ROOT --> SPECIFY[".specify/<br/>governance"]

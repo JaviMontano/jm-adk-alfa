@@ -101,18 +101,36 @@ Ask yourself:
 - What **tools** does it need? (minimal set)
 - What does the **output** look like? (expected deliverable)
 
-### 2. Create the File
+### 2. Preview the Scaffold
 
 ```bash
-mkdir -p skills/my-custom-skill
+python3 scripts/scaffold-skill.py \
+  --name my-custom-skill \
+  --description "One-paragraph description of what this skill does" \
+  --triggers my-custom-skill,keyword1 \
+  --allowed-tools Read,Grep,Glob,Bash \
+  --dry-run
 ```
 
-Write `skills/my-custom-skill/SKILL.md` following the MOAT pattern above.
+Review the planned files before creating anything.
+The scaffold refuses duplicate skill slugs unless `--force` is explicit.
 
-### 3. Validate
+### 3. Create the Skill
 
 ```bash
-python3 .agent/scripts/validate_skills.py
+python3 scripts/scaffold-skill.py \
+  --name my-custom-skill \
+  --description "One-paragraph description of what this skill does" \
+  --triggers my-custom-skill,keyword1 \
+  --allowed-tools Read,Grep,Glob,Bash
+```
+
+Then refine `skills/my-custom-skill/SKILL.md` following the MOAT pattern above.
+
+### 4. Validate
+
+```bash
+python3 scripts/validate-skills.py --strict
 ```
 
 This checks:
@@ -120,24 +138,23 @@ This checks:
 - `name` matches directory name
 - `allowed-tools` only contains valid tools
 - Body has required sections (Procedure, Quality Criteria)
+- Evals and knowledge graph JSON are valid
 
-### 4. Update the Index
-
-```bash
-python3 .agent/scripts/generate_index.py
-```
-
-This rebuilds `.agent/skills_index.json` so the skill router can find your skill.
-
-### 5. Test It
+### 5. Update the Index
 
 ```bash
-# Reinstall plugin
-claude plugin add ./
-
-# Test routing — mention your trigger keywords
-/jm-adk:search "your trigger keywords"
+bash scripts/generate-pristino-index.sh
 ```
+
+This rebuilds `PRISTINO-INDEX.md` when component metadata changes.
+
+### 6. Test It
+
+```bash
+python3 scripts/qa/run-adversarial-tests.py
+```
+
+Then test routing in your chosen runner by mentioning the skill triggers.
 
 ## Real Example: `email-templates` Skill
 

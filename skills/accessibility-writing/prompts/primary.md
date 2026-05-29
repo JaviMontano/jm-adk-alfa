@@ -2,7 +2,7 @@
 name: accessibility-writing-primary
 type: execution
 version: 2.0.0
-description: "Execute the Accessibility Writing workflow with triad orchestration."
+description: "Execute the Accessibility Writing workflow with copy, evidence, and claim-safety triad orchestration."
 triad:
   lead: "accessibility-writing-lead"
   support: "accessibility-writing-support"
@@ -26,19 +26,20 @@ triad:
 1. **Load knowledge**: Read `knowledge/body-of-knowledge.md`
 2. **Check guardrails**: Read `references/guardrails/*.json`
 3. **Lead** (`accessibility-writing-lead`): Execute SKILL.md Steps 1-4 for `{{task}}`
-   - Discover → Analyze → Execute → Validate
-   - Apply evidence tags on all claims
+   - Identify content type, audience, locale, channel, constraints, and missing context
+   - Produce reader-facing copy separately from validation notes
+   - Rewrite alt text, links, instructions, errors, and body copy as applicable
+   - Mark missing visual/chart/reading-level evidence as `not verified`
 4. **Support** (`accessibility-writing-support`): Review for cross-cutting concerns
-   - Edge cases, security, accessibility, performance
+   - Meaning preservation, scannability, localization, inclusive language, and user recovery
 5. **Guardian** (`accessibility-writing-guardian`): Validate
-   - Evidence tags complete
-   - Quality gate met
-   - Constitution XIII + XIV respected
-   - Output exceeds expectations
+   - No invented visual details, reading-level guarantees, or unsupported claims
+   - Evidence is outside final reader-facing copy unless requested inline
+   - Related skill routing is correct for testing, design, or audit requests
 
 ## Output
 
-- Primary deliverable for `{{task}}` in `{{output_format}}`
-- Evidence tags on every claim
-- Recommendations beyond the ask
-- Confidence score (>= 0.95)
+- Accessible writing deliverable for `{{task}}` in `{{output_format}}`
+- Final reader-facing copy
+- Review table with original, issue, rewrite, rationale, assumptions, and status
+- Confidence score based on source completeness and validation coverage

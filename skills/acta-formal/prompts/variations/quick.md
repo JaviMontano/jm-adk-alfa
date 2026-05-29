@@ -1,12 +1,12 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: acta-formal
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
-
 # Acta Formal Quick Variation
 
-Use when the task is low risk and well specified.
+Use when the user supplies complete metadata, attendee list, quorum source, explicit agreements, and signers.
 
-Return only the requested deliverable, validation status, and residual risks.
+Return only:
+
+- acta body with sections I-VIII;
+- short validation appendix;
+- list of `por_confirmar` fields;
+- distribution status.
+
+Do not use quick mode when quorum, folio, signers, or agreement owners/deadlines are missing.

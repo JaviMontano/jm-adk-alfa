@@ -111,8 +111,11 @@ python3 scripts/count-components.py --check-docs
 bash scripts/check-repo-boundaries.sh
 python3 scripts/validate-onboarding.py
 python3 scripts/check-devkit-readiness.py
+python3 scripts/qa/run-adversarial-tests.py
 bash scripts/generate-pristino-index.sh
 ```
+
+If a gate fails, use `docs/TROUBLESHOOTING.md` and report the exact command, output, branch, and files changed before asking an agent to fix it.
 
 ## Update Safely from GitHub
 
