@@ -30,6 +30,10 @@ if git ls-files | grep -E '(^|/)\.local/' >/dev/null; then
   fail "tracked .local state detected"
 fi
 
+if git ls-files | grep -E '(^|/)\.codex/' >/dev/null; then
+  fail "tracked .codex state detected"
+fi
+
 if git ls-files | grep -E '^workspace/' | grep -v '^workspace/\.gitkeep$' >/dev/null; then
   fail "tracked workspace state detected outside workspace/.gitkeep"
 fi

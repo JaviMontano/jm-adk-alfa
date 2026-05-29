@@ -23,6 +23,21 @@ TODAY = date.today().isoformat()
 DEFAULT_OWNER = "JM Labs"
 DEFAULT_VERSION = "1.0.0"
 DEFAULT_ALLOWED_TOOLS = ["Read", "Grep", "Glob", "Bash"]
+ALLOWED_TOOLS = {
+    "Bash",
+    "Edit",
+    "Glob",
+    "Grep",
+    "MultiEdit",
+    "NotebookEdit",
+    "Read",
+    "Task",
+    "TodoWrite",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+}
+MCP_TOOL_RE = re.compile(r"^mcp__[A-Za-z0-9_-]+__[A-Za-z0-9_-]+$")
 CANONICAL_FILES = [
     "SKILL.md",
     "README.md",
@@ -74,6 +89,22 @@ def slugify(value: str) -> str:
     if not value:
         raise ValueError("--name must produce a non-empty slug")
     return value
+
+
+def validate_name_input(value: str) -> None:
+    raw = value.strip()
+    if not raw:
+        raise ValueError("--name is required")
+    if Path(raw).is_absolute() or "/" in raw or "\\" in raw or ".." in raw:
+        raise ValueError("--name must be a slug-like name, not a path")
+    if raw.startswith("."):
+        raise ValueError("--name cannot start with a dot")
+
+
+def validate_allowed_tools(tools: list[str]) -> None:
+    invalid = [tool for tool in tools if tool not in ALLOWED_TOOLS and not MCP_TOOL_RE.match(tool)]
+    if invalid:
+        raise ValueError(f"unknown allowed tool(s): {', '.join(invalid)}")
 
 
 def title_from_slug(slug: str) -> str:
@@ -159,13 +190,16 @@ def spec_from_existing(skill_dir: Path, defaults: argparse.Namespace) -> SkillSp
 
 
 def spec_from_args(args: argparse.Namespace) -> SkillSpec:
+    validate_name_input(args.name)
     slug = slugify(args.name)
+    allowed_tools = split_csv(args.allowed_tools) or DEFAULT_ALLOWED_TOOLS
+    validate_allowed_tools(allowed_tools)
     return SkillSpec(
         slug=slug,
         name=args.name.strip(),
         description=args.description.strip(),
         triggers=split_csv(args.triggers) or [slug],
-        allowed_tools=split_csv(args.allowed_tools) or DEFAULT_ALLOWED_TOOLS,
+        allowed_tools=allowed_tools,
         owner=args.owner,
         version=args.version,
         output_format=args.output_format,
@@ -544,7 +578,18 @@ def main() -> int:
         return complete_existing(root, args)
     if not args.name:
         parser.error("--name is required unless --all-existing is used")
-    spec = spec_from_args(args)
+    try:
+        spec = spec_from_args(args)
+    except ValueError as exc:
+        parser.error(str(exc))
+    base = skill_root(root, spec)
+    if base.exists() and not args.force:
+        print(
+            f"ERROR: skill already exists: {base.relative_to(root)}. "
+            "Choose a new name, use --force after review, or use --all-existing to complete existing skills.",
+            file=sys.stderr,
+        )
+        return 1
     planned, written = write_scaffold(root, spec, dry_run=args.dry_run, force=args.force, include_skill_md=True)
     mode = "dry-run" if args.dry_run else "applied"
     print(f"{mode}: planned={planned} written={written}")
