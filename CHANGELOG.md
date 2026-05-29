@@ -5,6 +5,16 @@ All notable changes to the JM Agentic Development Kit will be documented in this
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Added — Pristino Persona Calibration (Phase 1)
+
+- Deterministic 8-persona role model: `references/ontology/personas.json` + `references/ontology/persona-protocol.md`.
+- `scripts/persona-calibrate.sh` UserPromptSubmit hook — byte-stable persona/mode/optimizer signals injected as additionalContext.
+- `skills/pristino-calibration/` — persona on line 1, adaptive prompt optimizer (original/optimized/response), precedence Veracidad>Seguridad>Objetivo>Formato>Estilo, Canvas output contract.
+- `scripts/validate-personas.py` schema gate; `/jm-adk:calibrate` command.
+- Counts → 533 skills / 267 commands (1316 components).
+
 ## [4.0.1] - 2026-03-25
 
 ### Changed — Ecosystem: SDD v3.4.0 Workspace Sessions Alignment
