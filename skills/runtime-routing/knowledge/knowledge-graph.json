@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "runtime-routing",
+  "nodes": [
+    {
+      "id": "runtime-routing",
+      "type": "skill",
+      "label": "runtime-routing"
+    },
+    {
+      "id": "runtime-routing:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "runtime-routing:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "runtime-routing:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "runtime-routing",
+      "to": "runtime-routing:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "runtime-routing",
+      "to": "runtime-routing:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "runtime-routing",
+      "to": "runtime-routing:quality",
+      "type": "validated_by"
+    }
+  ]
+}

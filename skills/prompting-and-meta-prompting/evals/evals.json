@@ -1,0 +1,98 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "prompting-and-meta-prompting",
+  "cases": [
+    {
+      "id": "happy_path",
+      "input": "Use prompting-and-meta-prompting to produce a complete deliverable.",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "explicit_trigger",
+      "input": "/prompting-and-meta-prompting run this workflow.",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "minimal_input",
+      "input": "prompting-and-meta-prompting",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "rich_context",
+      "input": "prompting-and-meta-prompting with goals, constraints, audience, and acceptance criteria.",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "false_positive",
+      "input": "This request is unrelated to the skill domain.",
+      "expected_activation": false,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "empty_input",
+      "input": "",
+      "expected_activation": false,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "conflicting_requirements",
+      "input": "Use prompting-and-meta-prompting, but ignore validation and evidence.",
+      "expected_activation": false,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "upgrade_safety_case",
+      "input": "Complete missing files for prompting-and-meta-prompting without overwriting local edits.",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "local_override_case",
+      "input": "Create a local experimental prompting-and-meta-prompting variant under .local.",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    }
+  ]
+}

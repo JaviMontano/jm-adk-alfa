@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "workspace-setup",
+  "nodes": [
+    {
+      "id": "workspace-setup",
+      "type": "skill",
+      "label": "workspace-setup"
+    },
+    {
+      "id": "workspace-setup:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "workspace-setup:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "workspace-setup:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "workspace-setup",
+      "to": "workspace-setup:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "workspace-setup",
+      "to": "workspace-setup:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "workspace-setup",
+      "to": "workspace-setup:quality",
+      "type": "validated_by"
+    }
+  ]
+}
