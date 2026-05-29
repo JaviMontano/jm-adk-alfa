@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-29",
+  "skill": "repo-sync-auditor",
+  "nodes": [
+    {
+      "id": "repo-sync-auditor",
+      "type": "skill",
+      "label": "repo-sync-auditor"
+    },
+    {
+      "id": "repo-sync-auditor:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "repo-sync-auditor:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "repo-sync-auditor:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "repo-sync-auditor",
+      "to": "repo-sync-auditor:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "repo-sync-auditor",
+      "to": "repo-sync-auditor:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "repo-sync-auditor",
+      "to": "repo-sync-auditor:quality",
+      "type": "validated_by"
+    }
+  ]
+}

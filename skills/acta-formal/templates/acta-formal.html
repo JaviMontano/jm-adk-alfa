@@ -45,7 +45,7 @@
 
 <!-- II. LISTA DE ASISTENCIA -->
 <div class="section">
-  <h2>II. Lista de Asistencia</h2>
+  <h2>II. Lista de Asistencia y Quorum</h2>
   <table class="attendees-table">
     <thead>
       <tr><th>#</th><th>Nombre</th><th>Cargo</th><th>Asistencia</th><th>Firma</th></tr>
@@ -62,7 +62,7 @@
       {{/each}}
     </tbody>
   </table>
-  <div class="quorum">Quorum: {{quorum_count}}/{{total_invited}} ({{quorum_status}})</div>
+  <div class="quorum">Quorum: {{quorum_count}}/{{total_invited}} ({{quorum_status}}). Fuente: {{quorum_source}}</div>
 </div>
 
 <!-- III. ORDEN DEL DIA -->
@@ -100,11 +100,12 @@
       {{/each}}
     </tbody>
   </table>
+  <p><small>Si el quorum no fue validado, las decisiones deben quedar como pendientes o discusiones, no como acuerdos vinculantes.</small></p>
 </div>
 
 <!-- VI. ASUNTOS VARIOS -->
 <div class="section">
-  <h2>VI. Asuntos Varios</h2>
+  <h2>VI. Asuntos Varios y Pendientes</h2>
   {{misc_content}}
 </div>
 

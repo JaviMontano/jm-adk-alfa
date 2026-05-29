@@ -14,15 +14,16 @@
 | Tipo | {{meeting_type}} |
 | Convocante | {{convener_name}} — {{convener_role}} |
 
-## II. Lista de Asistencia
+## II. Lista de Asistencia y Quorum
 
-| # | Nombre | Cargo | Asistencia |
-|---|--------|-------|------------|
+| # | Nombre | Cargo | Asistencia | Firma |
+|---|--------|-------|------------|-------|
 {{#each attendees}}
-| {{@index_plus_one}} | {{this.name}} | {{this.role}} | {{this.attendance}} |
+| {{@index_plus_one}} | {{this.name}} | {{this.role}} | {{this.attendance}} | {{this.signature_status}} |
 {{/each}}
 
 **Quorum**: {{quorum_count}}/{{total_invited}} — {{quorum_status}}
+**Fuente del quorum**: {{quorum_source}}
 
 ## III. Orden del Dia
 
@@ -42,7 +43,9 @@
 | {{@index_plus_one}} | {{this.description}} | {{this.responsible}} | {{this.deadline}} | {{this.status}} |
 {{/each}}
 
-## VI. Asuntos Varios
+> Si el quorum no fue validado, registrar decisiones como pendientes o discusiones, no como acuerdos vinculantes.
+
+## VI. Asuntos Varios y Pendientes
 
 {{misc_content}}
 

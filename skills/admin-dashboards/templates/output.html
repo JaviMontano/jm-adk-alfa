@@ -1,6 +1,6 @@
-<!-- MetodologIA Brand Template: Admin Dashboards -->
+<!-- MetodologIA Brand Template: Admin Dashboard Specification -->
 <!-- Uses: references/brand/design-tokens.json + html-template.html -->
-<!-- Replace: {{TITLE}}, {{SUBTITLE}}, {{CONTENT}}, {{DATE}} -->
+<!-- Replace: {{TITLE}}, {{SUBTITLE}}, {{SCOPE}}, {{DATA_CONTRACT}}, {{RBAC}}, {{TABLES}}, {{CRUD}}, {{METRICS}}, {{STATES}}, {{GATES}}, {{TESTS}}, {{DATE}} -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,6 +25,42 @@ footer{text-align:center;margin-top:3rem;border-top:2px solid var(--gold);paddin
 <h1>{{TITLE}}</h1>
 <p style="color:var(--muted);font-family:'JetBrains Mono',monospace;font-size:.85rem">{{SUBTITLE}}</p>
 <hr style="border:none;height:4px;background:linear-gradient(90deg,var(--gold),var(--cyan));border-radius:2px;margin:1.5rem 0">
-{{CONTENT}}
+<section class="card" aria-labelledby="scope-heading">
+<h2 id="scope-heading">Scope and Assumptions</h2>
+{{SCOPE}}
+</section>
+<section class="card" aria-labelledby="data-heading">
+<h2 id="data-heading">Entity and Data Contract</h2>
+{{DATA_CONTRACT}}
+</section>
+<section class="card" aria-labelledby="rbac-heading">
+<h2 id="rbac-heading">Authorization Matrix</h2>
+{{RBAC}}
+</section>
+<section class="card" aria-labelledby="tables-heading">
+<h2 id="tables-heading">Table Behavior Contract</h2>
+{{TABLES}}
+</section>
+<section class="card" aria-labelledby="crud-heading">
+<h2 id="crud-heading">CRUD and Bulk Workflows</h2>
+{{CRUD}}
+</section>
+<section class="card" aria-labelledby="metrics-heading">
+<h2 id="metrics-heading">Metrics and Realtime</h2>
+{{METRICS}}
+</section>
+<section class="card" aria-labelledby="states-heading">
+<h2 id="states-heading">States and Recovery</h2>
+{{STATES}}
+</section>
+<section class="card" aria-labelledby="gates-heading">
+<h2 id="gates-heading">Security, Accessibility, Performance, and Export Gates</h2>
+{{GATES}}
+</section>
+<section class="card" aria-labelledby="tests-heading">
+<h2 id="tests-heading">Test Plan</h2>
+{{TESTS}}
+<p>Missing APIs, schemas, permissions, metrics, or realtime channels must be marked not verified.</p>
+</section>
 <footer><span style="color:var(--gold)">MetodologIA</span> — {{DATE}}<br>Made with Pristino Agent</footer>
 </div></body></html>

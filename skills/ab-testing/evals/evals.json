@@ -1,9 +1,48 @@
-[
-  {"id": "ab-testing-happy-path", "type": "happy_path", "input": "Run ab testing on this project", "expected_behavior": "Skill activates and produces the expected ab testing output following the defined process", "tags": ["basic", "activation"]},
-  {"id": "ab-testing-explicit-trigger", "type": "happy_path", "input": "Apply ab testing analysis", "expected_behavior": "Skill recognizes the trigger phrase and executes the ab testing workflow", "tags": ["trigger", "recognition"]},
-  {"id": "ab-testing-with-context", "type": "happy_path", "input": "Apply ab testing to analyze the current codebase with detailed output", "expected_behavior": "Skill produces comprehensive ab testing analysis with evidence-tagged findings", "tags": ["detailed", "comprehensive"]},
-  {"id": "ab-testing-minimal-input", "type": "happy_path", "input": "Quick ab testing", "expected_behavior": "Skill activates with minimal input, applies reasonable defaults", "tags": ["minimal", "defaults"]},
-  {"id": "ab-testing-false-positive", "type": "false_positive", "input": "What is the weather forecast for tomorrow?", "expected_behavior": "Skill should NOT activate — this input has no relation to ab testing", "tags": ["false_positive", "should-not-activate"]},
-  {"id": "ab-testing-edge-empty-input", "type": "edge_case", "input": "Run ab testing but I have no files or documentation yet", "expected_behavior": "Skill handles gracefully — requests minimum viable input or produces gap analysis", "tags": ["edge_case", "empty-input", "boundary"]},
-  {"id": "ab-testing-edge-conflicting", "type": "edge_case", "input": "Apply ab testing but requirements contradict each other", "expected_behavior": "Skill detects contradiction, flags with [OPEN] tag, proposes resolution", "tags": ["edge_case", "conflict", "corner"]}
-]
+{
+  "schema": 1,
+  "skill": "ab-testing",
+  "cases": [
+    {
+      "id": "ab-testing-design-ready-experiment",
+      "type": "happy_path",
+      "input": "Design an A/B test for checkout CTA copy. Baseline conversion is 4.2%, expected MDE is 8% relative, traffic is 12k eligible sessions per week, primary metric is purchase conversion, guardrails are refund requests and support tickets.",
+      "expected_behavior": "Produces an experiment brief with falsifiable hypothesis, control, variant, primary metric, guardrails, assumptions, sample-size/duration notes, launch checklist, and decision rule.",
+      "tags": ["experiment-design", "ready-check"]
+    },
+    {
+      "id": "ab-testing-audit-existing-test",
+      "type": "happy_path",
+      "input": "Review this A/B test plan: variant changes pricing page testimonials, but the team has not defined event names or a stopping rule.",
+      "expected_behavior": "Classifies the plan as blocked or risky, names missing instrumentation and stopping rule, and recommends next actions before launch.",
+      "tags": ["audit", "blocked"]
+    },
+    {
+      "id": "ab-testing-sample-size-gap",
+      "type": "edge_case",
+      "input": "How many users do I need for an A/B test? I only know that I want more signups.",
+      "expected_behavior": "Does not invent sample size; returns missing inputs for baseline, MDE, power, alpha, variance/metric type, and traffic.",
+      "tags": ["sample-size", "missing-inputs"]
+    },
+    {
+      "id": "ab-testing-result-interpretation",
+      "type": "happy_path",
+      "input": "Variant B had 5.1% conversion and control had 4.9%, but support tickets increased 20%. What should we decide?",
+      "expected_behavior": "Refuses to claim significance without sample and method data, checks guardrail harm, and frames decision options.",
+      "tags": ["interpretation", "guardrails"]
+    },
+    {
+      "id": "ab-testing-false-positive",
+      "type": "false_positive",
+      "input": "What is the weather forecast for tomorrow?",
+      "expected_behavior": "Skill should not activate because the input is unrelated to experiments, split testing, metrics, or product decisions.",
+      "tags": ["false-positive", "should-not-activate"]
+    },
+    {
+      "id": "ab-testing-anti-peeking",
+      "type": "edge_case",
+      "input": "We launched yesterday and variant is ahead. Can we stop now and ship?",
+      "expected_behavior": "Warns about peeking and early stopping, asks for the predefined stopping rule, sample progress, guardrails, and business-cycle coverage.",
+      "tags": ["peeking", "stopping-rule"]
+    }
+  ]
+}

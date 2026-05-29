@@ -9,21 +9,21 @@ description: "Evaluate and improve the Accessibility Testing skill."
 
 ## Evaluate
 
-1. Is `knowledge/body-of-knowledge.md` current? New standards, deprecated practices?
-2. Are the 4 sub-agents (lead, support, guardian, specialist) covering all perspectives?
-3. Are templates producing useful deliverables? Test with a real scenario.
-4. What edge cases have been encountered that aren't documented?
-5. Are there new insights from `insights/` that apply to this skill?
-6. Has the related skill landscape changed? New cross-references needed?
+1. Does `knowledge/body-of-knowledge.md` still reflect current accessibility testing evidence needs?
+2. Do the 4 sub-agents cover automated testing, keyboard, screen reader, contrast, motion, suppressions, and claim safety?
+3. Does `templates/output.md` force scope, status, evidence, not-verified areas, findings, and retest criteria?
+4. Do evals catch false passes, missing target scope, broad suppressions, and remediation boundary drift?
+5. Have real projects exposed new AT/browser pairings, component patterns, or dynamic states?
+6. Has the related skill landscape changed: `accessibility-audit`, `accessibility-design`, modal/dialog/navigation skills?
 
 ## Improve
 
-1. Update body of knowledge with new findings (tag with `[DOC]`)
-2. Add prompt variations for newly discovered use cases
-3. Refine quality criteria based on real-world feedback
-4. Update knowledge graph: new concepts, new `[[wikilinks]]`
-5. Test templates with edge-case inputs to verify robustness
-6. Propose Constitution amendment if recurring ambiguity found (XVII)
+1. Update evidence models and status semantics with new findings.
+2. Add evals for any false pass or unsupported compliance claim observed in practice.
+3. Refine quality criteria based on failed retests and missing evidence.
+4. Update knowledge graph with new concepts, tools, and related skills.
+5. Test templates with edge-case inputs before accepting the change.
+6. Propose a broader guardrail only when the ambiguity repeats across skills.
 
 ## Trigger
 

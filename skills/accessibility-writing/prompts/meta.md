@@ -9,21 +9,21 @@ description: "Evaluate and improve the Accessibility Writing skill."
 
 ## Evaluate
 
-1. Is `knowledge/body-of-knowledge.md` current? New standards, deprecated practices?
-2. Are the 4 sub-agents (lead, support, guardian, specialist) covering all perspectives?
-3. Are templates producing useful deliverables? Test with a real scenario.
-4. What edge cases have been encountered that aren't documented?
-5. Are there new insights from `insights/` that apply to this skill?
-6. Has the related skill landscape changed? New cross-references needed?
+1. Does `knowledge/body-of-knowledge.md` still cover alt text, plain language, reading-level evidence, inclusive language, links, errors, instructions, localization, and source limits?
+2. Are the 4 sub-agents blocking invented visual details, vague copy, over-simplification, and evidence leakage into reader-facing copy?
+3. Are templates producing useful publish-ready copy and review tables?
+4. Do evals catch missing image context, SEO-vs-alt conflict, unmeasured reading-level claims, false positives, and routing drift?
+5. Have real projects introduced new content types, locales, brand constraints, or legal/regulatory boundaries?
+6. Has the related skill landscape changed: `accessibility-testing`, `accessibility-design`, `accessibility-audit`, brand, copywriting, localization?
 
 ## Improve
 
-1. Update body of knowledge with new findings (tag with `[DOC]`)
-2. Add prompt variations for newly discovered use cases
-3. Refine quality criteria based on real-world feedback
-4. Update knowledge graph: new concepts, new `[[wikilinks]]`
-5. Test templates with edge-case inputs to verify robustness
-6. Propose Constitution amendment if recurring ambiguity found (XVII)
+1. Update body of knowledge with new content types, edge cases, and claim-safety rules.
+2. Add evals for any observed hallucinated alt text, inaccessible error copy, or unsupported reading-level claim.
+3. Refine quality criteria based on publishing feedback and user comprehension issues.
+4. Update knowledge graph with new concepts, related skills, and gates.
+5. Test templates with realistic edge-case inputs before accepting changes.
+6. Escalate broader policy only when the ambiguity repeats across multiple skills.
 
 ## Trigger
 

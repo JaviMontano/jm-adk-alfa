@@ -17,32 +17,39 @@ allowed-tools:
 # 082 — Accessibility Audit {Testing}
 
 ## Purpose
-Enforce WCAG 2.1 AA compliance through automated axe-core scanning and structured manual testing. Every UI component must be usable by keyboard, screen reader, and users with visual impairments. [EXPLICIT]
+Audit digital interfaces against WCAG 2.1 AA using automated axe-core scanning plus structured manual checks for keyboard, screen reader behavior, color contrast, forms, focus management, dynamic content, and semantic structure. [EXPLICIT]
+The default output is an evidence-backed accessibility audit report, not a code remediation patch. Code edits require an explicit remediation request. [EXPLICIT]
 
 ## Physics — 3 Immutable Laws
 
 1. **Law of Universal Access**: If a sighted mouse user can do it, a keyboard-only or screen reader user must also be able to do it. No exceptions. [EXPLICIT]
-2. **Law of Automated First**: axe-core catches ~57% of WCAG issues automatically. Run it first, then manually verify the remaining 43%. [EXPLICIT]
-3. **Law of Continuous Compliance**: Accessibility is not a one-time audit. Every PR must pass a11y checks. Regressions are bugs. [EXPLICIT]
+2. **Law of Automated First, Manual Finality**: Automated scans find important issues but do not prove WCAG conformance. Run automation first, then manually verify the remaining criteria before making compliance claims. [EXPLICIT]
+3. **Law of Evidence Before Compliance**: Do not claim "WCAG compliant" unless automated results, manual checks, scope, exceptions, and remediation status are documented. [EXPLICIT]
 
 ## Protocol
 
+### Phase 0 — Scope and Evidence Setup
+1. Identify audit target: URL, local app command, route list, component list, design artifact, or supplied HTML. [EXPLICIT]
+2. Record environment: browser, viewport set, assistive technology used, auth/session state, and test date. [EXPLICIT]
+3. If there is no runnable target, source artifact, or route/component list, return a gap report and do not claim compliance. [EXPLICIT]
+
 ### Phase 1 — Automated Scanning
-1. Install `@axe-core/react` (dev) or `axe-playwright`/`cypress-axe` for E2E. [EXPLICIT]
-2. Add axe check to every component test: `expect(await axe(container)).toHaveNoViolations()`. [EXPLICIT]
-3. Configure CI to run `axe-core` on all routes via Playwright crawl. [EXPLICIT]
-4. Generate JSON + HTML violation report. [EXPLICIT]
+1. Select the available runner: `axe-core`, `@axe-core/playwright`, `axe-playwright`, `cypress-axe`, `jest-axe`, or equivalent project-local tooling. [EXPLICIT]
+2. Run scans against each route/component in scope and save machine-readable evidence when the environment permits. [EXPLICIT]
+3. Report scan command, target, rule id, impact, affected selector, WCAG tags, and artifact path for every violation. [EXPLICIT]
+4. Treat automated "no violations" as "no automated violations found", not as full WCAG compliance. [EXPLICIT]
 
 ### Phase 2 — Manual Checklist
-1. **Keyboard navigation**: Tab through all interactive elements. Verify focus order is logical. Ensure focus is visible. [EXPLICIT]
-2. **Screen reader**: Test with VoiceOver (macOS) or NVDA (Windows). Verify aria-labels, live regions, landmarks. [EXPLICIT]
-3. **Color contrast**: Verify 4.5:1 ratio for text, 3:1 for large text. Use Chrome DevTools contrast checker. [EXPLICIT]
-4. **Motion/animation**: Verify `prefers-reduced-motion` is respected. No auto-playing animations without pause. [EXPLICIT]
+1. **Keyboard navigation**: Verify tab order, visible focus, skip links, focus trap, return focus, escape behavior, and keyboard activation for custom controls. [EXPLICIT]
+2. **Screen reader**: Verify page title, headings, landmarks, names/roles/values, form labels, error announcements, status updates, and modal announcements with VoiceOver, NVDA, or the available runner. [EXPLICIT]
+3. **Contrast and visual states**: Verify 4.5:1 for normal text, 3:1 for large text, non-text contrast for UI controls/icons, focus indicator visibility, and color-not-alone signaling. [EXPLICIT]
+4. **Responsive and motion**: Verify reflow at narrow widths, zoom behavior, orientation assumptions, `prefers-reduced-motion`, and pause/stop/hide controls for moving content. [EXPLICIT]
 
 ### Phase 3 — Remediation
-1. Prioritize violations: Critical > Serious > Moderate > Minor. [EXPLICIT]
-2. Fix critical/serious in current sprint. Track moderate/minor in backlog. [EXPLICIT]
-3. Update component library with a11y-compliant variants. [EXPLICIT]
+1. Prioritize by user impact, WCAG level, blocker status, and recurrence across components; do not rely only on axe severity. [EXPLICIT]
+2. Each remediation ticket must include target, selector/component, reproducer, WCAG criterion, user impact, expected behavior, evidence artifact, and acceptance check. [EXPLICIT]
+3. If remediation is requested, make the smallest safe patch and rerun the relevant automated/manual checks. [EXPLICIT]
+4. If remediation is not requested, produce owner-ready tickets and status: `pass`, `conditional`, `fail`, or `not verified`. [EXPLICIT]
 
 ## I/O
 
@@ -55,11 +62,11 @@ Enforce WCAG 2.1 AA compliance through automated axe-core scanning and structure
 
 ## Quality Gates — 5 Checks
 
-1. **Zero critical/serious axe violations** in CI — merge blocked on failure. [EXPLICIT]
-2. **All interactive elements keyboard-reachable** — manual verification per page. [EXPLICIT]
-3. **Color contrast ratio >= 4.5:1** for all body text. [EXPLICIT]
-4. **ARIA landmarks present** — `main`, `nav`, `banner`, `contentinfo` on every page. [EXPLICIT]
-5. **Form inputs have visible labels** — no placeholder-only fields. [EXPLICIT]
+1. **Zero unresolved WCAG 2.1 AA failures** in scope, or each exception has owner, rationale, expiry, and risk acceptance. [EXPLICIT]
+2. **Automated evidence present**: command/tool, target, rule id, impact, selector, WCAG tags, and report artifact are recorded when runnable. [EXPLICIT]
+3. **Manual evidence present**: keyboard, screen reader, contrast, forms/errors, focus, dynamic content, motion, and responsive checks are pass/fail/not-verified with notes. [EXPLICIT]
+4. **No unsupported compliance claim**: final status is `pass`, `conditional`, `fail`, or `not verified`; "compliant" requires all in-scope checks passing or documented exceptions. [EXPLICIT]
+5. **Owner-ready remediation**: every finding has severity, WCAG criterion, user impact, reproducer, expected behavior, and acceptance check. [EXPLICIT]
 
 ## Edge Cases
 
@@ -67,6 +74,8 @@ Enforce WCAG 2.1 AA compliance through automated axe-core scanning and structure
 - **Modals**: Trap focus inside modal. Return focus to trigger on close.
 - **Custom components**: `<div>` buttons need `role="button"`, `tabindex="0"`, `onKeyDown` for Enter/Space.
 - **SVG icons**: Add `aria-hidden="true"` for decorative. `role="img"` + `aria-label` for meaningful.
+- **ARIA overuse**: Prefer native HTML before adding ARIA. Remove redundant or misleading roles.
+- **Clean axe report with manual failure**: Overall status remains `fail` or `conditional`; automation cannot override manual blockers.
 
 ## Self-Correction Triggers
 
@@ -86,5 +95,5 @@ Example invocations:
 ## Assumptions & Limits
 
 - Assumes access to project artifacts (code, docs, configs) [EXPLICIT]
-- Requires English-language output unless otherwise specified [EXPLICIT]
 - Does not replace domain expert judgment for final decisions [EXPLICIT]
+- If no runnable target or artifact is available, produce a gap report with required inputs instead of an audit verdict. [EXPLICIT]

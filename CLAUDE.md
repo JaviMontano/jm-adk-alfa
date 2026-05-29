@@ -1,6 +1,6 @@
 # JM Agentic Development Kit (JM-ADK) v5.2.0
 
-> Convierte intención en resultados. 524 skills · 256 agents · 260 commands · 256 prompts · safe scaffolding · local-first workspaces.
+> Convierte intención en resultados. 533 skills · 260 agents · 267 commands · 256 prompts · safe first-use onboarding · safe scaffolding · local-first workspaces.
 
 ## Environment
 
@@ -46,6 +46,24 @@ Session starts → SessionStart hook fires → parse output:
 
 4. WORKSPACE: ORPHANED:{id} → Registry points to deleted dir. Self-healing in progress.
                                Treat as "none" — create fresh on next task.
+```
+
+### Cold-Start / First-Use Decision Tree
+
+Before the first technical task:
+
+| State | Behavior |
+|---|---|
+| Repo not confirmed as Alfa | Stop with `Dato requerido: confirmar ruta o remote de Alfa`; do not edit. |
+| Greeting-only input (`hola`, `buenas`, `hey`, `hello`, `empecemos`) | Activate `/jm-adk:first-use`; present Alfa and request guided setup inputs. |
+| Empty or vague input | Diagnose workspace, explain Alfa briefly, ask for setup inputs or first concrete task. |
+| No `.jm-adk.local.json` | Offer `python3 scripts/setup-workspace-profile.py --dry-run`; write only with `--apply`. |
+| Explicit task | Do not block with full onboarding; collect only missing critical context, then proceed. |
+
+Readiness command:
+
+```bash
+python3 scripts/diagnose-first-use.py --dry-run
 ```
 
 ### Slug Derivation Rules

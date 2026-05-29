@@ -1,15 +1,15 @@
 {
   "version": "1.0.0",
   "name": "JM Agentic Development Kit",
-  "description": "512 MOAT-grade skills for market research, brand HTML, CV enhancement, progress tracking, discovery, architecture, security and more.",
+  "description": "524 MOAT-grade skills for market research, brand HTML, CV enhancement, progress tracking, discovery, architecture, security and more.",
   "author": "Javier Montaño (JM Labs)",
   "url": "https://metodologia.info",
   "plugins": [
     {
       "name": "jm-adk",
-      "description": "JM Agentic Development Kit — 512 skills across business intelligence, brand design, architecture, security, discovery and delivery. Includes market research, CV transformation, branded HTML, landing pages, progress tracking, and full project lifecycle.",
-      "repository": "JaviMontano/jm-agentic-development-kit-alfa",
-      "version": "5.1.0",
+      "description": "JM Agentic Development Kit — 524 skills across business intelligence, brand design, architecture, security, discovery and delivery. Includes market research, CV transformation, branded HTML, landing pages, progress tracking, and full project lifecycle.",
+      "repository": "JaviMontano/jm-adk-alfa",
+      "version": "5.2.0",
       "tags": [
         "market-research",
         "cv-enhancement",
@@ -22,7 +22,7 @@
         "jm-labs"
       ],
       "highlights": [
-        "512 MOAT-grade skills with evals and reference docs",
+        "524 MOAT-grade skills with evals and reference docs",
         "Market intelligence & competitive analysis (market-intelligence, client-dossier, client-prospecting)",
         "CV enhancement & branded transformation (cv-enhancement, cv-transformer)",
         "Personal brand web pages & landing pages (landing-pages, html-brand, brand-voice)",

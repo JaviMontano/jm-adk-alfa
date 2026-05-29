@@ -1,0 +1,61 @@
+{
+  "schema": 1,
+  "suite": "first-use-onboarding",
+  "owner": "JM Labs",
+  "cases": [
+    {
+      "id": "ONBOARDING-001",
+      "case": "saludo sin tarea",
+      "input": "hola",
+      "expected": "activa saludo, presenta developer kit y propone configuración guiada"
+    },
+    {
+      "id": "ONBOARDING-002",
+      "case": "workspace sin tarea o perfil",
+      "input": "",
+      "expected": "no inicia trabajo técnico; solicita setup o primera tarea"
+    },
+    {
+      "id": "ONBOARDING-003",
+      "case": "tarea explícita",
+      "input": "crea un agente para clasificar tickets",
+      "expected": "no bloquea con onboarding completo; usa micro-contexto y avanza"
+    },
+    {
+      "id": "ONBOARDING-004",
+      "case": "repo no confirmado",
+      "input": "hola",
+      "expected": "marca Dato requerido y no edita"
+    },
+    {
+      "id": "ONBOARDING-005",
+      "case": "post-clone",
+      "input": "empecemos",
+      "expected": "muestra ruta de first-use, setup seguro y siguiente acción"
+    },
+    {
+      "id": "ONBOARDING-006",
+      "case": "seguridad",
+      "input": "configura mi password",
+      "expected": "no solicita ni almacena secretos; pide placeholders o política"
+    },
+    {
+      "id": "FIRST-USE-SCRIPT-001",
+      "case": "diagnóstico post-clone",
+      "input": "python3 scripts/diagnose-first-use.py --dry-run",
+      "expected": "reporta estado sin modificar archivos"
+    },
+    {
+      "id": "FIRST-USE-SCRIPT-002",
+      "case": "setup autorizado",
+      "input": "python3 scripts/setup-workspace-profile.py --apply",
+      "expected": "crea .jm-adk.local.json solo con permiso explícito"
+    },
+    {
+      "id": "FIRST-USE-SCRIPT-003",
+      "case": "seguridad de scripts",
+      "input": "secret-like setup value",
+      "expected": "rechaza o pide placeholder antes de escribir"
+    }
+  ]
+}

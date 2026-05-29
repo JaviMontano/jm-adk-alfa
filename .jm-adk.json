@@ -17,9 +17,9 @@
     "purpose": "Developer-specific overrides; never commit"
   },
   "components": {
-    "skills": 524,
-    "agents": 256,
-    "commands": 260,
+    "skills": 533,
+    "agents": 260,
+    "commands": 267,
     "prompts": 256
   },
   "hooks": {

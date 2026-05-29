@@ -2,14 +2,14 @@
 name: admin-dashboards-deep
 type: variation
 version: 2.0.0
-description: "Admin Dashboards — deep analysis mode. Exhaustive coverage."
+description: "Admin Dashboards — deep analysis mode with full data, authorization, state, and test contracts."
 ---
 
 # Admin Dashboards — Deep Mode
 
 ## When to Use
 
-Use deep mode when thoroughness matters more than speed: architecture decisions, security audits, compliance reviews, critical deliverables.
+Use deep mode for new admin systems, sensitive data, destructive operations, exports, complex RBAC, unclear APIs, large datasets, realtime requirements, or release gates.
 
 ## Dynamic Parameters
 
@@ -21,24 +21,22 @@ Use deep mode when thoroughness matters more than speed: architecture decisions,
 
 ## Execution (Deep)
 
-1. Load ALL knowledge: `knowledge/body-of-knowledge.md` + cross-referenced skills
+1. Load focused knowledge: `knowledge/body-of-knowledge.md` plus only related skills needed for security, forms, API, accessibility, audit, or data visualization
 2. Check guardrails: `references/guardrails/*.json`
 3. Lead executes with exhaustive analysis:
-   - Cover ALL edge cases, not just common path
-   - Research: check standards, best practices, recent changes
-   - Document every assumption with `[ASSUMPTION]` tag
+   - Cover entities, data contracts, RBAC, navigation, tables, CRUD, charts, realtime, exports, audit, states, responsive, performance, and tests
+   - Document every missing API/schema/policy/metric/channel as `not verified`
+   - Decide whether this is Quick Flow or needs BMAD story/readiness gates before implementation
 4. Support reviews with expanded scope:
-   - Security, accessibility, performance, business viability
-   - Adversarial scenarios: what could go wrong?
+   - IDOR, export leaks, CSV injection, raw HTML, backend authorization gaps, keyboard access, mobile density, large dataset behavior
+   - Adversarial scenarios: what could expose data, mislead operators, or fail under operational load?
 5. Guardian validates with strict criteria:
-   - Evidence tags 100% coverage (no untagged claims)
-   - Quality gate fully met
-   - Confidence >= 0.95 with evidence support
+   - RBAC, data contract, state matrix, audit, and test plan are present
+   - Confidence is capped by missing backend evidence
 
 ## Output
 
-- Exhaustive deliverable with full evidence trail
-- Edge cases documented
-- Risk assessment included
-- Recommendations with priority ranking
-- Confidence score with justification
+- Full admin dashboard specification with evidence trail
+- Implementation readiness gaps and story/test recommendations
+- Security, accessibility, responsive, performance, audit, and export risks
+- Confidence score with evidence-based justification

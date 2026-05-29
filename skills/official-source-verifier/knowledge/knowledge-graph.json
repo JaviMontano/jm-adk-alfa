@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-29",
+  "skill": "official-source-verifier",
+  "nodes": [
+    {
+      "id": "official-source-verifier",
+      "type": "skill",
+      "label": "official-source-verifier"
+    },
+    {
+      "id": "official-source-verifier:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "official-source-verifier:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "official-source-verifier:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "official-source-verifier",
+      "to": "official-source-verifier:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "official-source-verifier",
+      "to": "official-source-verifier:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "official-source-verifier",
+      "to": "official-source-verifier:quality",
+      "type": "validated_by"
+    }
+  ]
+}

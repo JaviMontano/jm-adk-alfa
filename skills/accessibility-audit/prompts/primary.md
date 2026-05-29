@@ -20,7 +20,10 @@ triad:
 | `{{constraints}}` | Additional rules | No | Guardrails JSON |
 
 ## Execution Steps
-1. Read SKILL.md `## When to Activate` — confirm this skill applies
-2. Read SKILL.md `## Validation Gate` — internalize quality criteria
-3. Execute the skill workflow per SKILL.md sections
-4. Validate output against Validation Gate before delivering
+1. Read `SKILL.md` `## Purpose`, `## Protocol`, `## I/O`, and `## Quality Gates`.
+2. Confirm the request is for digital WCAG/accessibility audit scope.
+3. Establish target, route/component scope, environment, available tools, and evidence gaps.
+4. Run or request automated scan evidence; record tool, target, rule, impact, selector, WCAG tags, and artifact path.
+5. Perform or request manual evidence for keyboard, focus, screen reader, contrast, forms/errors, dynamic content, motion, and responsive behavior.
+6. Produce the audit report using `templates/output.md`.
+7. Validate that final status is `pass`, `conditional`, `fail`, or `not verified`, and that no compliance claim appears without evidence.

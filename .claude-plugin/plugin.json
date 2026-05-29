@@ -1,7 +1,7 @@
 {
   "name": "jm-adk",
   "version": "5.2.0",
-  "description": "JM Agentic Development Kit — 524 skills, 256 agents, 260 commands, safe skill scaffolding, local-first workspaces, validation gates, and upgrade-safe GitHub sync.",
+  "description": "JM Agentic Development Kit — 533 skills, 260 agents, 267 commands, safe first-use onboarding, skill scaffolding, local-first workspaces, validation gates, and upgrade-safe GitHub sync.",
   "author": {
     "name": "Javier Montaño (JM Labs)",
     "url": "https://metodologia.info"

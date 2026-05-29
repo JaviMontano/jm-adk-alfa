@@ -9,7 +9,9 @@ description: "Accessibility Design — deep analysis mode. Exhaustive coverage."
 
 ## When to Use
 
-Use deep mode when thoroughness matters more than speed: architecture decisions, security audits, compliance reviews, critical deliverables.
+Use deep mode when accessible interaction quality matters more than speed:
+design-system components, public release blockers, complex custom widgets,
+forms, modals, navigation, or multi-step flows.
 
 ## Dynamic Parameters
 
@@ -21,19 +23,11 @@ Use deep mode when thoroughness matters more than speed: architecture decisions,
 
 ## Execution (Deep)
 
-1. Load ALL knowledge: `knowledge/body-of-knowledge.md` + cross-referenced skills
-2. Check guardrails: `references/guardrails/*.json`
-3. Lead executes with exhaustive analysis:
-   - Cover ALL edge cases, not just common path
-   - Research: check standards, best practices, recent changes
-   - Document every assumption with `[ASSUMPTION]` tag
-4. Support reviews with expanded scope:
-   - Security, accessibility, performance, business viability
-   - Adversarial scenarios: what could go wrong?
-5. Guardian validates with strict criteria:
-   - Evidence tags 100% coverage (no untagged claims)
-   - Quality gate fully met
-   - Confidence >= 0.95 with evidence support
+1. Load `SKILL.md`, `knowledge/body-of-knowledge.md`, `templates/output.md`, and relevant component/design-system docs.
+2. Enumerate each state and interaction, including empty, loading, error, disabled, hover, focus, active, expanded, selected, and success.
+3. Produce a WCAG/POUR mapping, semantic/ARIA decision log, keyboard map, focus plan, content/error guidance, contrast/token requirements, and validation matrix.
+4. Include reduced-motion, zoom/reflow, forced-color, and sensory-cue considerations when relevant.
+5. Mark contrast ratios, assistive technology behavior, or runtime behavior as not verified when evidence is unavailable.
 
 ## Output
 

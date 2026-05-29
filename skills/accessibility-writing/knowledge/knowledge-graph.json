@@ -1,44 +1,112 @@
 {
   "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-28",
   "skill": "accessibility-writing",
   "nodes": [
     {
       "id": "accessibility-writing",
       "type": "skill",
-      "label": "accessibility-writing"
+      "label": "Accessibility Writing"
     },
     {
-      "id": "accessibility-writing:inputs",
+      "id": "content-inventory",
       "type": "contract",
-      "label": "Expected inputs"
+      "label": "Content inventory and source context"
     },
     {
-      "id": "accessibility-writing:outputs",
-      "type": "contract",
-      "label": "Expected outputs"
+      "id": "alt-text-decision-tree",
+      "type": "pattern",
+      "label": "Alt text decision tree"
     },
     {
-      "id": "accessibility-writing:quality",
+      "id": "plain-language",
+      "type": "pattern",
+      "label": "Plain language rewrite"
+    },
+    {
+      "id": "reading-level-claim-safety",
       "type": "gate",
-      "label": "Quality criteria"
+      "label": "Measured vs estimated reading level"
+    },
+    {
+      "id": "inclusive-language",
+      "type": "pattern",
+      "label": "Inclusive language review"
+    },
+    {
+      "id": "descriptive-links",
+      "type": "pattern",
+      "label": "Descriptive links"
+    },
+    {
+      "id": "error-copy",
+      "type": "pattern",
+      "label": "Accessible error copy"
+    },
+    {
+      "id": "non-sensory-instructions",
+      "type": "gate",
+      "label": "No sensory-only instructions"
+    },
+    {
+      "id": "reader-facing-separation",
+      "type": "gate",
+      "label": "Reader-facing copy separated from validation notes"
+    },
+    {
+      "id": "no-hallucinated-assets",
+      "type": "gate",
+      "label": "No invented image or chart details"
     }
   ],
   "edges": [
     {
       "from": "accessibility-writing",
-      "to": "accessibility-writing:inputs",
+      "to": "content-inventory",
       "type": "requires"
     },
     {
       "from": "accessibility-writing",
-      "to": "accessibility-writing:outputs",
-      "type": "produces"
+      "to": "alt-text-decision-tree",
+      "type": "uses"
     },
     {
       "from": "accessibility-writing",
-      "to": "accessibility-writing:quality",
+      "to": "plain-language",
+      "type": "uses"
+    },
+    {
+      "from": "accessibility-writing",
+      "to": "inclusive-language",
+      "type": "uses"
+    },
+    {
+      "from": "accessibility-writing",
+      "to": "descriptive-links",
+      "type": "uses"
+    },
+    {
+      "from": "accessibility-writing",
+      "to": "error-copy",
+      "type": "uses"
+    },
+    {
+      "from": "accessibility-writing",
+      "to": "reading-level-claim-safety",
+      "type": "validated_by"
+    },
+    {
+      "from": "accessibility-writing",
+      "to": "non-sensory-instructions",
+      "type": "validated_by"
+    },
+    {
+      "from": "accessibility-writing",
+      "to": "reader-facing-separation",
+      "type": "validated_by"
+    },
+    {
+      "from": "accessibility-writing",
+      "to": "no-hallucinated-assets",
       "type": "validated_by"
     }
   ]

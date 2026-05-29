@@ -12,11 +12,11 @@ The authoritative counts come from `python3 scripts/count-components.py`.
 
 | Component | Count |
 |---|---:|
-| Skills | 524 |
-| Agents | 256 |
-| Commands | 260 |
+| Skills | 533 |
+| Agents | 260 |
+| Commands | 267 |
 | Prompts | 256 |
-| Total physical components | 1296 |
+| Total physical components | 1316 |
 
 ## Install
 
@@ -26,6 +26,25 @@ cd jm-adk-alfa
 python3 scripts/count-components.py
 python3 scripts/validate-skills.py --strict
 ```
+
+## After Clone / First Use
+
+Before the first task, diagnose local readiness:
+
+```bash
+python3 scripts/diagnose-first-use.py --dry-run
+```
+
+If the first user input is only `hola`, `buenas`, `hey`, `hello`, or `empecemos`, Alfa should start `/jm-adk:first-use` instead of beginning technical work. The guided setup asks for goal, project type, stack, preferred runtime, autonomy level, command policy, privacy constraints, workspace area, and output format.
+
+Create local profile state only after review:
+
+```bash
+python3 scripts/setup-workspace-profile.py --dry-run
+python3 scripts/setup-workspace-profile.py --apply
+```
+
+The profile lives in `.jm-adk.local.json` and must remain untracked.
 
 ## Local State
 
@@ -90,8 +109,13 @@ python3 scripts/scaffold-skill.py --name my-experiment --description "Local expe
 python3 scripts/validate-skills.py --strict
 python3 scripts/count-components.py --check-docs
 bash scripts/check-repo-boundaries.sh
+python3 scripts/validate-onboarding.py
+python3 scripts/check-devkit-readiness.py
+python3 scripts/qa/run-adversarial-tests.py
 bash scripts/generate-pristino-index.sh
 ```
+
+If a gate fails, use `docs/TROUBLESHOOTING.md` and report the exact command, output, branch, and files changed before asking an agent to fix it.
 
 ## Update Safely from GitHub
 

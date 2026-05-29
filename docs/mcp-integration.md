@@ -68,7 +68,7 @@ Add `.mcp.json` inside the JM-ADK plugin directory for servers that ship with th
     "skill-search": {
       "command": "python3",
       "args": ["${CLAUDE_PLUGIN_ROOT}/.agent/scripts/search_skills.py", "--mcp"],
-      "description": "BM25 skill search over 101 skills"
+      "description": "BM25 skill search over the compatibility skill index"
     }
   }
 }

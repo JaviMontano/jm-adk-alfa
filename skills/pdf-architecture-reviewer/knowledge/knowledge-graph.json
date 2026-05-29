@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-29",
+  "skill": "pdf-architecture-reviewer",
+  "nodes": [
+    {
+      "id": "pdf-architecture-reviewer",
+      "type": "skill",
+      "label": "pdf-architecture-reviewer"
+    },
+    {
+      "id": "pdf-architecture-reviewer:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "pdf-architecture-reviewer:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "pdf-architecture-reviewer:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "pdf-architecture-reviewer",
+      "to": "pdf-architecture-reviewer:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "pdf-architecture-reviewer",
+      "to": "pdf-architecture-reviewer:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "pdf-architecture-reviewer",
+      "to": "pdf-architecture-reviewer:quality",
+      "type": "validated_by"
+    }
+  ]
+}

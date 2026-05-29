@@ -45,8 +45,8 @@ Project maintainers are responsible for clarifying standards and will take appro
 ### 1. Fork & Clone
 
 ```bash
-gh repo fork JaviMontano/jm-agentic-development-kit --clone
-cd jm-agentic-development-kit
+gh repo fork JaviMontano/jm-adk-alfa --clone
+cd jm-adk-alfa
 ```
 
 ### 2. Create a Branch
@@ -65,15 +65,22 @@ Follow the [Style Guide](#style-guide) and [Project Structure](#project-structur
 
 ```bash
 # Validate skill structure
-python3 .agent/scripts/validate_skills.py
+python3 scripts/validate-skills.py --strict
 
-# Rebuild the skills index
-python3 .agent/scripts/generate_index.py
+# Verify documented component counts
+python3 scripts/count-components.py --check-docs
 
-# Install as local plugin and test
-claude plugin add ./
-/jm-adk:menu
+# Check local-state and repository boundaries
+bash scripts/check-repo-boundaries.sh
+
+# Run safe adversarial guardrail tests
+python3 scripts/qa/run-adversarial-tests.py
 ```
+
+**Definition of Done:** before opening a PR, walk through
+[`docs/NO_REGRESSION_CHECKLIST.md`](docs/NO_REGRESSION_CHECKLIST.md). All four
+gates above must exit `0` and every checklist item must hold. A change is not
+complete until the checklist passes — this is the deterministic acceptance gate.
 
 ### 5. Submit a Pull Request
 
@@ -83,33 +90,35 @@ Push your branch and open a PR against `main`.
 
 ### Prerequisites
 
-- [Claude Code](https://claude.ai/claude-code) >= 1.0.0
-- Python 3.10+ (for automation scripts)
 - Git
+- Python 3.10+ (for automation scripts)
+- Bash
+- Claude Code, Codex, or another compatible agent runner when testing runner-specific integrations
 
 ### Local Installation
 
 ```bash
 # Clone the repository
-git clone https://github.com/JaviMontano/jm-agentic-development-kit.git
-cd jm-agentic-development-kit
+git clone https://github.com/JaviMontano/jm-adk-alfa.git
+cd jm-adk-alfa
 
-# Install as Claude Code plugin (local)
-claude plugin add ./
+# Verify the kit
+python3 scripts/count-components.py
+python3 scripts/validate-skills.py --strict
+bash scripts/check-repo-boundaries.sh
 
-# Verify installation
-/jm-adk:menu
+# Optional: run adversarial guardrail tests
+python3 scripts/qa/run-adversarial-tests.py
 ```
 
 ## Project Structure
 
 ```
-jm-agentic-development-kit/
-├── agents/          # 101 specialist agent definitions (.md)
-├── commands/        # 101 user-invocable slash commands (.md)
-├── skills/          # 101 skill modules (directory/SKILL.md)
-├── prompts/         # 101 reusable prompt templates (.md)
-├── templates/       # Project scaffolding templates
+jm-adk-alfa/
+├── agents/          # 256 specialist agent definitions (.md)
+├── commands/        # 260 user-invocable slash commands (.md)
+├── skills/          # 524 skill modules (directory/SKILL.md)
+├── prompts/         # 256 reusable prompt templates (.md)
 ├── hooks/           # Session automation hooks
 ├── references/      # Governance ontology + RAG priming
 ├── scripts/         # Automation utilities
@@ -126,12 +135,21 @@ jm-agentic-development-kit/
 
 ### Adding a New Skill
 
-1. Create `skills/your-skill-name/SKILL.md`
-2. Follow the MOAT pattern (see any existing skill for reference):
+1. Preview the scaffold:
+   ```bash
+   python3 scripts/scaffold-skill.py \
+     --name your-skill-name \
+     --description "One sentence description" \
+     --triggers your-skill-name \
+     --allowed-tools Read,Grep,Glob,Bash \
+     --dry-run
+   ```
+2. Create the skill only after reviewing the planned files.
+3. Follow the MOAT pattern (see any existing skill for reference):
    - Frontmatter: `name`, `author`, `version`, `description`, `allowed-tools`
    - Sections: TL;DR, Procedure (Discover/Analyze/Execute/Validate), Quality Criteria, Anti-Patterns, Related Skills
-3. Run `python3 .agent/scripts/validate_skills.py` to verify structure
-4. Run `python3 .agent/scripts/generate_index.py` to update the index
+4. Run `python3 scripts/validate-skills.py --strict` to verify structure
+5. Run `bash scripts/generate-pristino-index.sh` when component metadata changes
 
 ### Adding a New Agent
 
@@ -253,8 +271,8 @@ Use the **Feature Request** issue template. Include:
 
 ## Questions?
 
-- Open a [GitHub Discussion](https://github.com/JaviMontano/jm-agentic-development-kit/discussions)
-- File an [Issue](https://github.com/JaviMontano/jm-agentic-development-kit/issues)
+- Open a [GitHub Discussion](https://github.com/JaviMontano/jm-adk-alfa/discussions)
+- File an [Issue](https://github.com/JaviMontano/jm-adk-alfa/issues)
 
 ---
 

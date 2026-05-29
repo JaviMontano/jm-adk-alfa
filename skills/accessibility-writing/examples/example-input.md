@@ -1,10 +1,20 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: accessibility-writing
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
-
 # Example Input
 
-Use `accessibility-writing` to produce a concise deliverable for a realistic project request.
+Review and rewrite the onboarding page for accessibility.
+
+Audience: non-technical customers in Colombia.
+Language: Spanish.
+Channel: web app onboarding page.
+Reading target: plain language; do not claim an exact grade level unless measured.
+
+Content:
+
+- Hero image: a customer looking at a dashboard on a laptop.
+- Decorative background pattern behind the hero.
+- Chart: conversion improved from 12% in January to 18% in March.
+- CTA link: "Click here"
+- Error message: "Invalid"
+- Instruction: "Press the green button on the right."
+- Paragraph: "Operationalize the omnichannel onboarding paradigm to unlock stakeholder journey synergies."
+
+Need reader-facing copy plus a validation table. Do not edit files.
