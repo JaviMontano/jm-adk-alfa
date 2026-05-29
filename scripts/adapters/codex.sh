@@ -14,6 +14,7 @@ VERSION=$(acl_version)
 SKILLS_COUNT=$(acl_count_skills)
 AGENTS_COUNT=$(acl_count_agents)
 COMMANDS_COUNT=$(acl_count_commands)
+PROMPTS_COUNT=$(acl_count_prompts)
 CONSTITUTION=$(acl_constitution_version)
 
 echo "Adapter: Core → Codex + Gemini"
@@ -26,11 +27,18 @@ cat > "$PROJECT_ROOT/AGENTS.md" << AGENTS
 ## Environment
 
 IDE: codex | Triad: sequential-prompts | Tools: Bash/Read/Write | MCP: no | Multimodal: no
-Components: $SKILLS_COUNT skills · $AGENTS_COUNT agents · $COMMANDS_COUNT commands
+Components: $SKILLS_COUNT skills · $AGENTS_COUNT agents · $COMMANDS_COUNT commands · $PROMPTS_COUNT prompts
 
 ## Awakening
 
-Read: PRISTINO.md → Constitution $CONSTITUTION → PRISTINO-INDEX.md → greet
+Read: PRISTINO.md → Constitution $CONSTITUTION → PRISTINO-INDEX.md → diagnose first-use → greet
+
+## First Use
+
+- Greeting-only or empty input: run guided setup before technical work.
+- Explicit task: collect only missing critical context, then proceed.
+- Repo not confirmed as Alfa: report \`Dato requerido\` and do not edit.
+- Diagnosis command: \`python3 scripts/diagnose-first-use.py --dry-run\`.
 
 ## Input Tolerance
 
@@ -45,6 +53,11 @@ Auto-select skill for intent. No Agent tool: apply all 3 triad perspectives in s
 ## Core Rules
 
 $(acl_core_rules | head -6 | sed 's/^/- /')
+
+## Local State Boundary
+
+- Do not commit \`workspace/\`, \`.local/\`, \`.codex/\`, \`.env*\`, or \`.jm-adk.local.json\`.
+- Use \`scripts/setup-workspace-profile.py --dry-run\` before creating local profile state.
 
 ## Quality Gates
 
@@ -70,11 +83,18 @@ cat > "$PROJECT_ROOT/GEMINI.md" << GEMINI
 ## Environment
 
 IDE: gemini | Triad: sequential-prompts | Tools: limited | Hooks: no | MCP: no | Multimodal: yes (mobile)
-Components: $SKILLS_COUNT skills · $AGENTS_COUNT agents · $COMMANDS_COUNT commands
+Components: $SKILLS_COUNT skills · $AGENTS_COUNT agents · $COMMANDS_COUNT commands · $PROMPTS_COUNT prompts
 
 ## Awakening
 
-On session start: load PRISTINO.md → Constitution $CONSTITUTION → PRISTINO-INDEX.md → greet user.
+On session start: load PRISTINO.md → Constitution $CONSTITUTION → PRISTINO-INDEX.md → diagnose first-use → greet user.
+
+## First Use
+
+- Greeting-only or empty input: run guided setup before technical work.
+- Explicit task: collect only missing critical context, then proceed.
+- Repo not confirmed as Alfa: report \`Dato requerido\` and do not edit.
+- Diagnosis command: \`python3 scripts/diagnose-first-use.py --dry-run\`.
 
 ## Input Tolerance
 
@@ -108,6 +128,11 @@ Full matrix: \`PRISTINO.md\`
 ## Core Rules
 
 $(acl_core_rules | head -6 | sed 's/^/- /')
+
+## Local State Boundary
+
+- Do not commit \`workspace/\`, \`.local/\`, \`.codex/\`, \`.env*\`, or \`.jm-adk.local.json\`.
+- Use \`scripts/setup-workspace-profile.py --dry-run\` before creating local profile state.
 
 ## Quality Gates
 

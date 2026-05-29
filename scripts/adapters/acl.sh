@@ -47,6 +47,7 @@ acl_list_skills() {
 acl_count_skills() { find "$PROJECT_ROOT/skills" -name "SKILL.md" 2>/dev/null | wc -l | tr -d ' '; }
 acl_count_agents() { find "$PROJECT_ROOT/agents" -name "*.md" 2>/dev/null | wc -l | tr -d ' '; }
 acl_count_commands() { find "$PROJECT_ROOT/commands" -name "*.md" 2>/dev/null | wc -l | tr -d ' '; }
+acl_count_prompts() { find "$PROJECT_ROOT/prompts" -name "*.md" -not -path "*/.catalog/*" 2>/dev/null | wc -l | tr -d ' '; }
 
 # Read version from plugin.json
 acl_version() {
@@ -83,4 +84,4 @@ acl_quality_gates() {
   echo "G0 (pre-flight) → G1 (post-spec) → G2 (post-plan) → G3 (deploy-ready)"
 }
 
-export -f acl_skill_field acl_skill_description acl_list_skills acl_count_skills acl_count_agents acl_count_commands acl_version acl_constitution_version acl_skill_tools acl_core_rules acl_brand_palette acl_quality_gates 2>/dev/null || true
+export -f acl_skill_field acl_skill_description acl_list_skills acl_count_skills acl_count_agents acl_count_commands acl_count_prompts acl_version acl_constitution_version acl_skill_tools acl_core_rules acl_brand_palette acl_quality_gates 2>/dev/null || true

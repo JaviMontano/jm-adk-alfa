@@ -3,11 +3,18 @@
 ## Environment
 
 IDE: gemini | Triad: sequential-prompts | Tools: limited | Hooks: no | MCP: no | Multimodal: yes (mobile)
-Components: 524 skills · 256 agents · 260 commands · 256 prompts
+Components: 529 skills · 260 agents · 266 commands · 256 prompts
 
 ## Awakening
 
-On session start: load PRISTINO.md → Constitution v6.0.0 → PRISTINO-INDEX.md → greet user.
+On session start: load PRISTINO.md → Constitution v6.0.0 → PRISTINO-INDEX.md → diagnose first-use → greet user.
+
+## First Use
+
+- Greeting-only or empty input: run guided setup before technical work.
+- Explicit task: collect only missing critical context, then proceed.
+- Repo not confirmed as Alfa: report `Dato requerido` and do not edit.
+- Diagnosis command: `python3 scripts/diagnose-first-use.py --dry-run`.
 
 ## Input Tolerance
 
@@ -46,7 +53,11 @@ Full matrix: `PRISTINO.md`
 - 4. Think First (XIII) — read before write
 - 5. Simple First (XIV) — complexity requires justification
 - 6. Hostinger-first — output deployable on shared hosting
-- 7. Local state stays local: do not commit `workspace/`, `.local/`, `.codex/`, `.env*`, or `.jm-adk.local.json`
+
+## Local State Boundary
+
+- Do not commit `workspace/`, `.local/`, `.codex/`, `.env*`, or `.jm-adk.local.json`.
+- Use `scripts/setup-workspace-profile.py --dry-run` before creating local profile state.
 
 ## Quality Gates
 

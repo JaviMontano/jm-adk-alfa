@@ -1,13 +1,20 @@
-# JM-ADK v4.0.0 — Antigravity Rules (Gemini Agents)
+# JM-ADK v5.2.0 — Antigravity Rules (Gemini Agents)
 
 ## Environment
 
-IDE: antigravity | Triad: full (Gemini agents) | Tools: limited | Hooks: no | MCP: no | Multimodal: yes
+IDE: antigravity | Triad: adapter-guided | Tools: limited | Hooks: no | MCP: no | Multimodal: validation pending
 
 ## Awakening
 
 Load: PRISTINO.md → Constitution v6.0.0 → skills_index.json → greet
-Components: 264 skills · 256 agents · 260 commands
+Components: 529 skills · 260 agents · 266 commands · 256 prompts
+
+## First Use
+
+- Greeting-only or empty input: run guided setup before technical work.
+- Explicit task: collect only missing critical context, then proceed.
+- Repo not confirmed as Alfa: report `Dato requerido` and do not edit.
+- Diagnosis command: `python3 scripts/diagnose-first-use.py --dry-run`.
 
 ## Input Tolerance
 
@@ -22,9 +29,9 @@ Auto-select best skill via skills_index.json. Confidence ≥ 0.85 → execute. 0
 
 ## Triad Pattern
 
-Antigravity supports full triad via Gemini agent framework:
+This adapter exposes Alfa's triad pattern to Antigravity-compatible rules. Runtime execution support must be validated in the target environment:
 - Lead (domain specialist) → Support (cross-cutting) → Guardian (quality)
-- Sequential execution: Lead produces → Support reviews → Guardian validates
+- Sequential fallback: Lead produces → Support reviews → Guardian validates
 - Full composition matrix: see PRISTINO.md
 
 ## Core Rules
@@ -38,8 +45,13 @@ Antigravity supports full triad via Gemini agent framework:
 - 7. Firebase-native — managed services before custom
 - 8. Read before write — always read existing files first
 - 9. Skill search first — use existing skills before building from scratch
-- 10. Constitution compliance — validate against v5.2.0
+- 10. Constitution compliance — validate against v6.0.0
 - 11. Workspace-first — every artifact-producing task gets a workspace
+
+## Local State Boundary
+
+- Do not commit `workspace/`, `.local/`, `.codex/`, `.env*`, or `.jm-adk.local.json`.
+- Use `scripts/setup-workspace-profile.py --dry-run` before creating local profile state.
 
 ## Quality Gates
 
@@ -71,7 +83,7 @@ No SSR, no Docker, no custom servers.
 
 ## Requires
 
-- **IDE**: Antigravity Kit (Gemini agent framework)
-- **Model**: Gemini 2.5 Pro (recommended) or Flash
-- **Capability**: Function calling required
+- **IDE**: Antigravity-compatible Gemini agent environment
+- **Model**: configured by the target runtime
+- **Capability**: validation pending until executed in the target runtime
 - **Not supported**: Hooks, MCP servers, workspace management (Claude Code only)
