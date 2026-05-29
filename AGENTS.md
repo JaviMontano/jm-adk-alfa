@@ -3,7 +3,7 @@
 ## Environment
 
 IDE: codex | Triad: sequential-prompts | Tools: Bash/Read/Write | MCP: no | Multimodal: no
-Components: 529 skills · 260 agents · 266 commands · 256 prompts
+Components: 532 skills · 260 agents · 266 commands · 256 prompts
 
 ## Awakening
 
