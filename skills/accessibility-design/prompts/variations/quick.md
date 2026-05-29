@@ -9,7 +9,7 @@ description: "Accessibility Design in quick mode."
 
 ## When to Use
 
-Use quick mode when you need adjusted depth for the Accessibility Design workflow.
+Use quick mode for one small component or interaction.
 
 ## Dynamic Parameters
 
@@ -22,13 +22,13 @@ Use quick mode when you need adjusted depth for the Accessibility Design workflo
 ## Execution
 
 1. Load skill: `skills/accessibility-design/knowledge/body-of-knowledge.md`
-2. Check guardrails: `references/guardrails/*.json`
-3. Execute at quick depth with evidence tags
-4. Lead → Support → Guardian validation
-5. Confidence >= 0.95
+2. Identify component, states, and user journey.
+3. Produce native/ARIA decision, keyboard behavior, focus rule, content/error requirement, and validation checklist.
+4. Mark missing contrast/runtime/SR evidence as not verified.
+5. Keep audit/reporting requests routed to `accessibility-audit`.
 
 ## Output
 
-- Deliverable calibrated to quick depth
-- Evidence-tagged, Constitution-compliant
-- Recommendations beyond the ask
+- Compact accessible interaction spec
+- Acceptance criteria and not-verified items
+- No unsupported compliance claim

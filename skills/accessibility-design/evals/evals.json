@@ -1,9 +1,58 @@
 [
-  {"id": "accessibility-design-happy-path", "type": "happy_path", "input": "Run accessibility design on this project", "expected_behavior": "Skill activates and produces the expected accessibility design output following the defined process", "tags": ["basic", "activation"]},
-  {"id": "accessibility-design-explicit-trigger", "type": "happy_path", "input": "Apply accessibility design analysis", "expected_behavior": "Skill recognizes the trigger phrase and executes the accessibility design workflow", "tags": ["trigger", "recognition"]},
-  {"id": "accessibility-design-with-context", "type": "happy_path", "input": "Apply accessibility design to analyze the current codebase with detailed output", "expected_behavior": "Skill produces comprehensive accessibility design analysis with evidence-tagged findings", "tags": ["detailed", "comprehensive"]},
-  {"id": "accessibility-design-minimal-input", "type": "happy_path", "input": "Quick accessibility design", "expected_behavior": "Skill activates with minimal input, applies reasonable defaults", "tags": ["minimal", "defaults"]},
-  {"id": "accessibility-design-false-positive", "type": "false_positive", "input": "What is the weather forecast for tomorrow?", "expected_behavior": "Skill should NOT activate — this input has no relation to accessibility design", "tags": ["false_positive", "should-not-activate"]},
-  {"id": "accessibility-design-edge-empty-input", "type": "edge_case", "input": "Run accessibility design but I have no files or documentation yet", "expected_behavior": "Skill handles gracefully — requests minimum viable input or produces gap analysis", "tags": ["edge_case", "empty-input", "boundary"]},
-  {"id": "accessibility-design-edge-conflicting", "type": "edge_case", "input": "Apply accessibility design but requirements contradict each other", "expected_behavior": "Skill detects contradiction, flags with [OPEN] tag, proposes resolution", "tags": ["edge_case", "conflict", "corner"]}
+  {
+    "id": "accessibility-design-modal-pattern",
+    "type": "happy_path",
+    "input": "Design an accessible coupon modal for checkout with open button, title, form field, validation error, cancel, apply, and close actions.",
+    "expected_behavior": "Produces semantic/ARIA decisions, keyboard map, focus trap and return rule, form/error behavior, screen reader expectations, contrast/focus requirements, and acceptance criteria.",
+    "tags": ["modal", "focus-management", "keyboard", "forms"]
+  },
+  {
+    "id": "accessibility-design-tabs-keyboard-map",
+    "type": "happy_path",
+    "input": "Create accessibility requirements for a pricing tabs component with three plans and keyboard support.",
+    "expected_behavior": "Specifies tablist semantics, selected state, panel association, arrow-key behavior, Tab behavior, focus vs activation model, and validation checks.",
+    "tags": ["tabs", "keyboard", "aria-pattern"]
+  },
+  {
+    "id": "accessibility-design-aria-overuse",
+    "type": "edge_case",
+    "input": "Make everything accessible by adding role=\"button\" to native buttons, aria-label to all headings, and aria-hidden=\"true\" to decorative wrappers that contain links.",
+    "expected_behavior": "Rejects ARIA overuse, preserves native semantics, warns about focusable content inside aria-hidden, and recommends targeted ARIA only when native HTML is insufficient.",
+    "tags": ["aria", "native-html", "anti-pattern"]
+  },
+  {
+    "id": "accessibility-design-contrast-token-gap",
+    "type": "edge_case",
+    "input": "Design success, warning, error, disabled, hover, and focus states using only color tokens, but no contrast ratios are available.",
+    "expected_behavior": "Requires text and non-text contrast evidence or marks ratios not verified; adds non-color cues and focus indicator requirements.",
+    "tags": ["contrast", "tokens", "color-not-alone"]
+  },
+  {
+    "id": "accessibility-design-form-error-recovery",
+    "type": "happy_path",
+    "input": "Design accessible validation behavior for a signup form with email, password, required terms checkbox, inline errors, and an error summary.",
+    "expected_behavior": "Specifies visible and programmatic labels, aria-describedby/error associations, error summary behavior, first-invalid focus, recovery copy, and acceptance checks.",
+    "tags": ["forms", "errors", "aria-describedby", "focus"]
+  },
+  {
+    "id": "accessibility-design-reduced-motion-edge",
+    "type": "edge_case",
+    "input": "Design an animated onboarding carousel with auto-advance, parallax, and progress dots.",
+    "expected_behavior": "Requires pause/stop controls, reduced-motion alternative, keyboard operation, non-motion progress cue, and no auto-advance trap.",
+    "tags": ["motion", "carousel", "reduced-motion"]
+  },
+  {
+    "id": "accessibility-design-false-positive-audit",
+    "type": "false_positive",
+    "input": "Run an accessibility audit and report all WCAG violations on this production app.",
+    "expected_behavior": "Routes or defers to accessibility-audit/testing because the primary output is violation discovery, not design/implementation specification.",
+    "tags": ["false-positive", "audit-boundary"]
+  },
+  {
+    "id": "accessibility-design-false-positive-physical",
+    "type": "false_positive",
+    "input": "Design accessibility improvements for our office entrance ramp and elevator signage.",
+    "expected_behavior": "Does not activate web UI accessibility design without clarification because the target is physical accessibility, not digital WCAG UI behavior.",
+    "tags": ["false-positive", "physical-accessibility"]
+  }
 ]

@@ -3,9 +3,11 @@ name: accessibility-testing
 author: JM Labs (Javier Montaño)
 version: 1.0.0
 description: >
-  Test web accessibility with axe-core, screen reader testing, keyboard
-  navigation, and color contrast validation for WCAG compliance. [EXPLICIT]
-  Trigger: "accessibility", "a11y", "WCAG", "screen reader", "axe-core"
+  Plan, execute, and report web accessibility tests with axe-core,
+  Playwright/Jest evidence, keyboard scripts, screen reader smoke checks,
+  color contrast validation, and explicit WCAG target scope. [EXPLICIT]
+  Trigger: "accessibility test", "a11y test", "WCAG test", "screen reader",
+  "axe-core", "keyboard accessibility"
 allowed-tools:
   - Read
   - Write
@@ -20,53 +22,59 @@ allowed-tools:
 
 ## TL;DR
 
-Guides comprehensive accessibility testing — automated scanning with axe-core, manual keyboard navigation testing, screen reader verification, color contrast validation, and WCAG 2.1 AA compliance checking. Use when auditing, building, or maintaining accessible web applications. [EXPLICIT]
+Guides accessibility testing as an evidence-producing workflow: define scope, run automated checks where possible, execute manual keyboard and assistive-technology smoke tests, record contrast and motion results, and produce a pass/fail/not-verified report. Use for test plans, regression suites, QA reports, and retest evidence. Do not claim WCAG compliance without explicit target, scope, date, tested technologies, and evidence. [EXPLICIT]
 
 ## Procedure
 
 ### Step 1: Discover
-- Run axe-core scan on all key pages and interactive components
-- Check current WCAG compliance level and known issues
-- Identify dynamic content that needs ARIA live regions
-- Review form error handling and label associations
+- Capture the accessibility target: WCAG version/level, routes, components, flows, browsers, viewports, auth state, and assistive technology pairings.
+- Inventory dynamic states that must be opened before testing: menus, dialogs, tooltips, form errors, toasts, accordions, route changes, and live regions.
+- Identify available tooling: axe-core, `@axe-core/playwright`, `jest-axe`, browser-rendered contrast checks, visual/focus evidence, CI, and manual test notes.
+- Record known issues, exclusions, and suppressions with owner, issue ID, selector, rule ID, expiry, and re-enable criteria.
 
 ### Step 2: Analyze
-- Categorize findings by WCAG level (A, AA, AAA) and severity
-- Prioritize fixes: critical (blocks usage) → high (major difficulty) → medium → low
-- Identify patterns requiring manual testing (focus management, screen reader flow)
-- Evaluate color contrast ratios for all text/background combinations
+- Map each test to an observable expectation, artifact, and status: `pass`, `fail`, `conditional`, or `not verified`.
+- Separate automated evidence from manual evidence; a clean axe run is not a full accessibility or WCAG conformance claim.
+- Prioritize risks by user impact: blocker, high, medium, low, or observation.
+- Choose manual scripts for focus order, focus trapping/restoration, keyboard activation, screen reader announcements, contrast, zoom/reflow, reduced motion, and dynamic content.
 
 ### Step 3: Execute
-- Integrate axe-core into unit tests (jest-axe) and e2e tests (Playwright axe)
-- Fix semantic HTML issues (headings hierarchy, landmark regions, list structure)
-- Add ARIA attributes where native HTML semantics are insufficient
-- Ensure all interactive elements are keyboard accessible (Tab, Enter, Space, Escape)
-- Implement focus management for dynamic content (modals, route changes, notifications)
-- Verify color contrast meets WCAG AA (4.5:1 normal text, 3:1 large text)
-- Test with screen readers (VoiceOver on Mac, NVDA on Windows)
+- Produce or run automated tests with route/component/state coverage; scan after interactions, not just first page load.
+- Produce keyboard scripts covering Tab, Shift+Tab, Enter, Space, Escape, arrow keys where relevant, skip links, focus visibility, focus trap, and focus restoration.
+- Produce screen reader smoke scripts with OS/browser/AT pairing, expected announcement, observed announcement, and pass/fail status.
+- Record contrast evidence for normal text, large text, non-text UI, placeholder, disabled, focus, hover, and error states, or mark gaps as `not verified`.
+- Create remediation tickets or backlog items only when remediation is requested; otherwise report issues with evidence and recommended owner.
 
 ### Step 4: Validate
-- axe-core reports zero violations on all pages
-- Complete keyboard-only navigation test of all user flows
-- Screen reader announces all content in logical order
-- Reduced motion preference disables animations
+- Every claim has a command, artifact, observation, or explicit `not verified` marker.
+- Automated findings include command/tool version, route or component, state, rule ID, impact, selector, WCAG tags when available, and artifact path.
+- Manual findings include script step, expected result, observed result, evidence, severity, and retest status.
+- Final status avoids blanket "compliant" language unless the full conformance scope is documented and evidenced.
 
 ## Quality Criteria
 
-- [ ] axe-core integrated in CI — zero automated violations
-- [ ] All interactive elements keyboard accessible with visible focus indicators
-- [ ] Color contrast meets WCAG AA ratios for all text
-- [ ] Screen reader testing completed for critical user flows
-- [ ] Evidence tags applied to all claims
+- [ ] Scope and environment are explicit: target, routes/components/states, browser, viewport, assistive technology, date, and tool versions.
+- [ ] Automated evidence is scoped and reproducible; single body scans and unopened dynamic states are rejected as insufficient proof.
+- [ ] Keyboard evidence covers forward/reverse tab order, activation keys, escape paths, focus visibility, traps, restoration, and route-change focus.
+- [ ] Screen reader evidence is labeled as smoke, regression, or full manual test and includes expected vs observed announcements.
+- [ ] Contrast and reduced-motion results are recorded, or each gap is marked `not verified` with next action.
+- [ ] Suppressions have issue ID, owner, expiry, selector, rule ID, reason, and re-enable criteria.
+- [ ] No WCAG conformance claim is made without scope, target level, tested technologies, date, and evidence.
+- [ ] Evidence tags applied to all claims.
 
 ## Anti-Patterns
 
-- Relying solely on automated tools (they catch only ~30% of a11y issues)
+- Treating automated tools as complete proof of accessibility or WCAG conformance
 - Adding ARIA attributes to elements that already have native semantics
 - Using `outline: none` without providing alternative focus indicators
+- Scanning only the initial DOM while ignoring opened menus, dialogs, form errors, and live updates
+- Broadly excluding selectors from axe without owner, expiry, and re-enable criteria
+- Mixing testing with remediation without explicit user approval
 
 ## Related Skills
 
+- `accessibility-audit` — use for broader governance, policy, and compliance audit scope
+- `accessibility-design` — use for designing accessible interaction patterns and UI changes
 - `modal-dialog-patterns` — focus management is critical for modal accessibility
 - `navigation-patterns` — navigation is the most common a11y failure area
 

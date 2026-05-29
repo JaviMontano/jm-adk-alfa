@@ -2,7 +2,7 @@
 name: accessibility-testing-primary
 type: execution
 version: 2.0.0
-description: "Execute the Accessibility Testing workflow with triad orchestration."
+description: "Execute the Accessibility Testing workflow with evidence-first triad orchestration."
 triad:
   lead: "accessibility-testing-lead"
   support: "accessibility-testing-support"
@@ -26,19 +26,21 @@ triad:
 1. **Load knowledge**: Read `knowledge/body-of-knowledge.md`
 2. **Check guardrails**: Read `references/guardrails/*.json`
 3. **Lead** (`accessibility-testing-lead`): Execute SKILL.md Steps 1-4 for `{{task}}`
-   - Discover → Analyze → Execute → Validate
-   - Apply evidence tags on all claims
-4. **Support** (`accessibility-testing-support`): Review for cross-cutting concerns
-   - Edge cases, security, accessibility, performance
+   - Define target scope and environment
+   - Produce or run automated test commands when runnable
+   - Build manual keyboard, screen reader, contrast, and motion evidence matrices
+   - Mark every untested item as `not verified`
+4. **Support** (`accessibility-testing-support`): Review for blind spots
+   - Dynamic states, keyboard paths, AT smoke coverage, suppressions, and claim boundaries
 5. **Guardian** (`accessibility-testing-guardian`): Validate
+   - No unsupported WCAG conformance claim
    - Evidence tags complete
-   - Quality gate met
-   - Constitution XIII + XIV respected
-   - Output exceeds expectations
+   - Pass/fail/conditional/not-verified statuses present
+   - Suppressions and remediation boundaries are governed
 
 ## Output
 
-- Primary deliverable for `{{task}}` in `{{output_format}}`
-- Evidence tags on every claim
-- Recommendations beyond the ask
-- Confidence score (>= 0.95)
+- Accessibility testing report for `{{task}}` in `{{output_format}}`
+- Exact commands, artifacts, and manual scripts where available
+- Findings with user impact, recommended fix, owner suggestion, and retest criterion
+- Not-verified areas and confidence score tied to evidence

@@ -1,6 +1,6 @@
-<!-- MetodologIA Brand Template: Accessibility Testing -->
+<!-- MetodologIA Brand Template: Accessibility Testing Report -->
 <!-- Uses: references/brand/design-tokens.json + html-template.html -->
-<!-- Replace: {{TITLE}}, {{SUBTITLE}}, {{CONTENT}}, {{DATE}} -->
+<!-- Replace: {{TITLE}}, {{SUBTITLE}}, {{SCOPE}}, {{STATUS}}, {{AUTOMATED_RESULTS}}, {{MANUAL_RESULTS}}, {{FINDINGS}}, {{RISKS}}, {{DATE}} -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,6 +25,30 @@ footer{text-align:center;margin-top:3rem;border-top:2px solid var(--gold);paddin
 <h1>{{TITLE}}</h1>
 <p style="color:var(--muted);font-family:'JetBrains Mono',monospace;font-size:.85rem">{{SUBTITLE}}</p>
 <hr style="border:none;height:4px;background:linear-gradient(90deg,var(--gold),var(--cyan));border-radius:2px;margin:1.5rem 0">
-{{CONTENT}}
+<section class="card" aria-labelledby="scope-heading">
+<h2 id="scope-heading">Scope and Environment</h2>
+{{SCOPE}}
+</section>
+<section class="card" aria-labelledby="status-heading">
+<h2 id="status-heading">Final Status</h2>
+{{STATUS}}
+</section>
+<section class="card" aria-labelledby="automated-heading">
+<h2 id="automated-heading">Automated Results</h2>
+{{AUTOMATED_RESULTS}}
+</section>
+<section class="card" aria-labelledby="manual-heading">
+<h2 id="manual-heading">Manual Evidence</h2>
+{{MANUAL_RESULTS}}
+</section>
+<section class="card" aria-labelledby="findings-heading">
+<h2 id="findings-heading">Findings and Retest Backlog</h2>
+{{FINDINGS}}
+</section>
+<section class="card" aria-labelledby="risks-heading">
+<h2 id="risks-heading">Risks and Limits</h2>
+{{RISKS}}
+<p>Do not convert a clean automated scan into a blanket WCAG conformance claim without target, scope, date, tested technologies, and evidence.</p>
+</section>
 <footer><span style="color:var(--gold)">MetodologIA</span> — {{DATE}}<br>Made with Pristino Agent</footer>
 </div></body></html>

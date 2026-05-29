@@ -26,19 +26,22 @@ triad:
 1. **Load knowledge**: Read `knowledge/body-of-knowledge.md`
 2. **Check guardrails**: Read `references/guardrails/*.json`
 3. **Lead** (`ab-testing-lead`): Execute SKILL.md Steps 1-4 for `{{task}}`
-   - Discover → Analyze → Execute → Validate
-   - Apply evidence tags on all claims
-4. **Support** (`ab-testing-support`): Review for cross-cutting concerns
-   - Edge cases, security, accessibility, performance
+   - Discover: goal, decision, audience, variants, metrics, traffic, constraints
+   - Analyze: test readiness, sample-size assumptions, duration, and validity threats
+   - Execute: experiment brief or review verdict
+   - Validate: decision rule, evidence tags, and open requirements
+4. **Support** (`ab-testing-support`): Review cross-cutting risks
+   - Analytics instrumentation, guardrail metrics, sample ratio mismatch,
+     peeking, seasonality, overlapping experiments, and segment bias
 5. **Guardian** (`ab-testing-guardian`): Validate
    - Evidence tags complete
    - Quality gate met
    - Constitution XIII + XIV respected
-   - Output exceeds expectations
+   - No significance, ROI, or causality claim is made without required data
 
 ## Output
 
-- Primary deliverable for `{{task}}` in `{{output_format}}`
+- Experiment brief or review verdict for `{{task}}` in `{{output_format}}`
 - Evidence tags on every claim
-- Recommendations beyond the ask
+- Launch checklist, decision rule, risks, and open requirements
 - Confidence score (>= 0.95)

@@ -1,44 +1,102 @@
 {
   "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-28",
   "skill": "admin-dashboards",
   "nodes": [
     {
       "id": "admin-dashboards",
       "type": "skill",
-      "label": "admin-dashboards"
+      "label": "Admin Dashboards"
     },
     {
-      "id": "admin-dashboards:inputs",
+      "id": "data-contract",
       "type": "contract",
-      "label": "Expected inputs"
+      "label": "Entity and API data contract"
     },
     {
-      "id": "admin-dashboards:outputs",
-      "type": "contract",
-      "label": "Expected outputs"
-    },
-    {
-      "id": "admin-dashboards:quality",
+      "id": "authorization-matrix",
       "type": "gate",
-      "label": "Quality criteria"
+      "label": "RBAC UI and backend authorization matrix"
+    },
+    {
+      "id": "table-contract",
+      "type": "contract",
+      "label": "Table pagination, filtering, sorting, and bulk actions"
+    },
+    {
+      "id": "crud-recovery",
+      "type": "contract",
+      "label": "CRUD validation, conflicts, audit, and recovery"
+    },
+    {
+      "id": "metric-integrity",
+      "type": "gate",
+      "label": "KPI formula, source, unit, timezone, and owner"
+    },
+    {
+      "id": "state-matrix",
+      "type": "contract",
+      "label": "Empty, loading, error, permission, offline, and stale states"
+    },
+    {
+      "id": "security-export",
+      "type": "gate",
+      "label": "Escaping, export governance, PII, and CSV formula safety"
+    },
+    {
+      "id": "responsive-accessibility",
+      "type": "gate",
+      "label": "Keyboard, semantic table, focus, and responsive density"
+    },
+    {
+      "id": "no-invented-backend",
+      "type": "gate",
+      "label": "No invented API, schema, metric, permission, or realtime channel"
     }
   ],
   "edges": [
     {
       "from": "admin-dashboards",
-      "to": "admin-dashboards:inputs",
+      "to": "data-contract",
       "type": "requires"
     },
     {
       "from": "admin-dashboards",
-      "to": "admin-dashboards:outputs",
-      "type": "produces"
+      "to": "authorization-matrix",
+      "type": "validated_by"
     },
     {
       "from": "admin-dashboards",
-      "to": "admin-dashboards:quality",
+      "to": "table-contract",
+      "type": "requires"
+    },
+    {
+      "from": "admin-dashboards",
+      "to": "crud-recovery",
+      "type": "requires"
+    },
+    {
+      "from": "admin-dashboards",
+      "to": "metric-integrity",
+      "type": "validated_by"
+    },
+    {
+      "from": "admin-dashboards",
+      "to": "state-matrix",
+      "type": "requires"
+    },
+    {
+      "from": "admin-dashboards",
+      "to": "security-export",
+      "type": "validated_by"
+    },
+    {
+      "from": "admin-dashboards",
+      "to": "responsive-accessibility",
+      "type": "validated_by"
+    },
+    {
+      "from": "admin-dashboards",
+      "to": "no-invented-backend",
       "type": "validated_by"
     }
   ]

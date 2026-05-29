@@ -4,8 +4,11 @@ author: JM Labs (Javier Montaño)
 version: 1.0.0
 description: >
   Build admin dashboard interfaces with data tables, filters, charts, CRUD
-  operations, and real-time data updates. Covers layout patterns and state management. [EXPLICIT]
-  Trigger: "admin panel", "dashboard", "data table", "CRUD interface"
+  operations, real-time data updates, RBAC, auditability, and operational UI
+  states. Covers layout patterns, data contracts, state management, and
+  safety gates. [EXPLICIT]
+  Trigger: "admin panel", "dashboard", "data table", "CRUD interface",
+  "back-office", "RBAC dashboard", "admin console"
 allowed-tools:
   - Read
   - Write
@@ -20,7 +23,7 @@ allowed-tools:
 
 ## TL;DR
 
-Guides the architecture and implementation of admin dashboard interfaces featuring sortable/filterable data tables, CRUD operations, charts/metrics, real-time updates, and role-based access control. Use when building back-office tools, content management systems, or operational dashboards. [EXPLICIT]
+Guides the architecture and implementation of admin dashboard interfaces featuring sortable/filterable data tables, CRUD operations, charts/metrics, real-time updates, audit trails, empty/loading/error states, responsive dense layouts, and role-based access control enforced beyond the UI. Use when building back-office tools, content management systems, or operational dashboards. Do not invent APIs, schemas, metrics, permissions, or realtime channels without repo evidence or explicit user input. [EXPLICIT]
 
 ## Procedure
 
@@ -29,12 +32,18 @@ Guides the architecture and implementation of admin dashboard interfaces featuri
 - Review user roles and permission levels (admin, editor, viewer)
 - Check existing API endpoints and data schemas
 - Determine real-time requirements (WebSocket, polling, SSE)
+- Capture operational workflows: list, inspect, create, update, delete, bulk actions, export, audit, and recovery
+- Mark missing backend, schema, permission, metric, or endpoint evidence as `[ASSUMPTION]` or `not verified`
 
 ### Step 2: Analyze
 - Plan navigation structure (sidebar, breadcrumbs, nested routes)
 - Design data table features (sort, filter, search, pagination, bulk actions)
 - Choose chart library (Chart.js, Recharts, D3, Apache ECharts)
 - Evaluate state management for complex filter/table interactions
+- Define RBAC matrix: role x route x action x resource x backend enforcement point
+- Define data contract: endpoint/query, parameters, pagination, sorting, filters, response shape, error shape, freshness, and owner
+- Define state contract: empty, loading, partial error, permission denied, stale data, conflict, timeout, offline, and retry
+- Define audit contract for create/update/delete/export and destructive actions
 
 ### Step 3: Execute
 - Build sidebar layout with collapsible navigation and role-based menu items
@@ -43,19 +52,31 @@ Guides the architecture and implementation of admin dashboard interfaces featuri
 - Create metric cards and charts for KPI overview section
 - Wire real-time updates via Firestore listeners or WebSocket connections
 - Add export functionality (CSV, PDF) for table data
+- Prefer established table/chart/form libraries already present in the repo; if none exist, document the selection rationale before adding dependencies
+- Treat destructive operations and bulk actions as confirmable, auditable workflows with rollback or recovery notes
+- Sanitize rendered cell content and exports; prevent formula injection in CSV-style outputs
+- Preserve URL/query state for filters, search, sort, pagination, and selected views when useful
 
 ### Step 4: Validate
 - Test with large datasets (1000+ rows) — no UI freezing
 - Verify CRUD operations handle errors gracefully (network failures, conflicts)
 - Confirm role-based access hides unauthorized actions, not just routes
 - Check keyboard navigation for data tables and forms
+- Verify backend/API authorization or mark RBAC as `not verified`; hiding buttons is not enough
+- Verify empty/loading/error/permission-denied states for each critical panel
+- Verify KPI formulas, units, time ranges, timezone, freshness, and data owner before presenting metrics as truth
+- Verify responsive density across mobile, tablet, and desktop without losing critical actions
 
 ## Quality Criteria
 
 - [ ] Data tables handle sorting, filtering, and pagination without full page reload
 - [ ] CRUD operations show loading states, success feedback, and error recovery
-- [ ] Dashboard loads key metrics within 1 second
-- [ ] Role-based access enforced on both UI and API levels
+- [ ] Dashboard performance targets include measurement context, dataset size, and environment
+- [ ] Role-based access enforced on both UI and API levels, or explicitly marked `not verified`
+- [ ] Authorization matrix, data contract, state matrix, and audit trail are documented
+- [ ] Exports protect PII and neutralize spreadsheet formula injection risks
+- [ ] Empty, loading, error, offline, stale, and permission states are designed
+- [ ] Responsive and keyboard-accessible flows are covered
 - [ ] Evidence tags applied to all claims
 
 ## Anti-Patterns
@@ -63,6 +84,11 @@ Guides the architecture and implementation of admin dashboard interfaces featuri
 - Loading all records client-side instead of server-side pagination
 - Building custom data tables from scratch when libraries like TanStack Table exist
 - Hiding menu items but not protecting API routes for unauthorized roles
+- Inventing `/api/*`, Firestore collections, WebSocket/SSE channels, or KPI formulas without evidence
+- Treating admin dashboards as marketing pages instead of dense operational tools
+- Logging full sensitive payloads in audit trails
+- Exporting raw PII or spreadsheet formulas without governance
+- Reporting performance targets without dataset and measurement context
 
 ## Related Skills
 
@@ -80,8 +106,10 @@ Example invocations:
 ## Assumptions & Limits
 
 - Assumes access to project artifacts (code, docs, configs) [EXPLICIT]
-- Requires English-language output unless otherwise specified [EXPLICIT]
+- Uses the language of the user request unless repo conventions require otherwise [EXPLICIT]
 - Does not replace domain expert judgment for final decisions [EXPLICIT]
+- Does not certify backend authorization unless policies, middleware, rules, or endpoint checks were inspected or provided [EXPLICIT]
+- Does not create or mutate files when the user asks for design/spec only [EXPLICIT]
 
 ## Edge Cases
 

@@ -2,14 +2,14 @@
 name: admin-dashboards-quick
 type: variation
 version: 2.0.0
-description: "Admin Dashboards in quick mode."
+description: "Admin Dashboards quick mode for bounded, low-risk admin changes."
 ---
 
 # Admin Dashboards — quick Mode
 
 ## When to Use
 
-Use quick mode when you need adjusted depth for the Admin Dashboards workflow.
+Use quick mode for a small, well-scoped admin change where APIs, permissions, states, and acceptance criteria are already known. Do not use quick mode for new dashboards, destructive actions, exports, sensitive data, or unclear RBAC.
 
 ## Dynamic Parameters
 
@@ -23,12 +23,12 @@ Use quick mode when you need adjusted depth for the Admin Dashboards workflow.
 
 1. Load skill: `skills/admin-dashboards/knowledge/body-of-knowledge.md`
 2. Check guardrails: `references/guardrails/*.json`
-3. Execute at quick depth with evidence tags
-4. Lead → Support → Guardian validation
-5. Confidence >= 0.95
+3. Execute at quick depth with data source, RBAC impact, UI state impact, and test impact
+4. Lead -> Support -> Guardian validation
+5. Set confidence from evidence coverage
 
 ## Output
 
-- Deliverable calibrated to quick depth
-- Evidence-tagged, Constitution-compliant
-- Recommendations beyond the ask
+- Bounded spec or patch plan
+- Explicit assumptions and `not verified` gaps
+- Minimal no-regression test checklist

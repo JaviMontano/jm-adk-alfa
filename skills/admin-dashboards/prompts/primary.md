@@ -2,7 +2,7 @@
 name: admin-dashboards-primary
 type: execution
 version: 2.0.0
-description: "Execute the Admin Dashboards workflow with triad orchestration."
+description: "Execute the Admin Dashboards workflow with evidence-first product, data, and authorization contracts."
 triad:
   lead: "admin-dashboards-lead"
   support: "admin-dashboards-support"
@@ -26,19 +26,19 @@ triad:
 1. **Load knowledge**: Read `knowledge/body-of-knowledge.md`
 2. **Check guardrails**: Read `references/guardrails/*.json`
 3. **Lead** (`admin-dashboards-lead`): Execute SKILL.md Steps 1-4 for `{{task}}`
-   - Discover → Analyze → Execute → Validate
-   - Apply evidence tags on all claims
+   - Identify entities, workflows, data sources, roles, routes, actions, and states
+   - Produce data contract, RBAC matrix, table contract, CRUD flows, metrics contract, and test plan
+   - Mark missing APIs/schemas/metrics/realtime channels as `not verified`
 4. **Support** (`admin-dashboards-support`): Review for cross-cutting concerns
-   - Edge cases, security, accessibility, performance
+   - Security, accessibility, performance, responsive density, export governance, auditability
 5. **Guardian** (`admin-dashboards-guardian`): Validate
-   - Evidence tags complete
-   - Quality gate met
-   - Constitution XIII + XIV respected
-   - Output exceeds expectations
+   - No invented backend, schema, KPI, permission, or realtime channel
+   - RBAC includes backend enforcement or explicit `not verified`
+   - Empty/loading/error/permission states are covered
 
 ## Output
 
-- Primary deliverable for `{{task}}` in `{{output_format}}`
-- Evidence tags on every claim
-- Recommendations beyond the ask
-- Confidence score (>= 0.95)
+- Admin dashboard spec or scoped implementation for `{{task}}` in `{{output_format}}`
+- Evidence-tagged assumptions and `not verified` gaps
+- Test plan and acceptance gates
+- Confidence score based on source completeness and validation coverage

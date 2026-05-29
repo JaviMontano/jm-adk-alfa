@@ -7,11 +7,18 @@ overwrite-policy: missing-only unless --force
 
 # Ab Testing
 
->
+Design and review A/B tests with explicit hypotheses, metric contracts,
+sample-size assumptions, duration, instrumentation checks, risks, and decision
+rules.
 
 ## Triggers
 
 - ab-testing
+- a/b test
+- experiment design
+- split test
+- statistical significance
+- sample size
 
 ## Allowed Tools
 
@@ -23,8 +30,12 @@ overwrite-policy: missing-only unless --force
 
 ## Quick Use
 
-Use this skill when the request clearly matches the triggers and requires the `ab-testing` capability.
+Use this skill when a user needs to decide whether an A/B test is ready to run,
+how to design it, why it is blocked, or how to interpret the result without
+overclaiming evidence.
 
 ## Output Format
 
-Markdown with summary, evidence, result, validation, and risks.
+Markdown experiment brief with hypothesis, variants, metrics, assumptions,
+sample-size and duration notes, launch checklist, decision rule, risks, and
+validation status.
