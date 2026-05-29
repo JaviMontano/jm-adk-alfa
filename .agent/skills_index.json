@@ -6,6 +6,12 @@
     "description": ">"
   },
   {
+    "id": "accessibility-audit",
+    "path": "skills/accessibility-audit",
+    "name": "Accessibility Audit",
+    "description": "WCAG 2.1 AA automated scanning with axe-core plus manual checklist for keyboard, screen reader, and contrast"
+  },
+  {
     "id": "accessibility-design",
     "path": "skills/accessibility-design",
     "name": "Accessibility Design",
@@ -24,9 +30,39 @@
     "description": ">"
   },
   {
+    "id": "acta-formal",
+    "path": "skills/acta-formal",
+    "name": "Acta Formal",
+    "description": ">"
+  },
+  {
     "id": "admin-dashboards",
     "path": "skills/admin-dashboards",
     "name": "Admin Dashboards",
+    "description": ">"
+  },
+  {
+    "id": "agent-constitution-creator",
+    "path": "skills/agent-constitution-creator",
+    "name": "Agent Constitution Creator",
+    "description": "[EXPLICIT]"
+  },
+  {
+    "id": "agent-creator",
+    "path": "skills/agent-creator",
+    "name": "Agent Creator",
+    "description": "[EXPLICIT]"
+  },
+  {
+    "id": "ai-architecture-audit",
+    "path": "skills/ai-architecture-audit",
+    "name": "Ai Architecture Audit",
+    "description": ">"
+  },
+  {
+    "id": "ai-architecture-implementation",
+    "path": "skills/ai-architecture-implementation",
+    "name": "Ai Architecture Implementation",
     "description": ">"
   },
   {
@@ -42,9 +78,21 @@
     "description": ">"
   },
   {
+    "id": "ai-conops",
+    "path": "skills/ai-conops",
+    "name": "Ai Conops",
+    "description": ">"
+  },
+  {
     "id": "ai-content-detection",
     "path": "skills/ai-content-detection",
     "name": "Ai Content Detection",
+    "description": ">"
+  },
+  {
+    "id": "ai-design-patterns",
+    "path": "skills/ai-design-patterns",
+    "name": "Ai Design Patterns",
     "description": ">"
   },
   {
@@ -54,9 +102,27 @@
     "description": ">"
   },
   {
+    "id": "ai-pipeline-architecture",
+    "path": "skills/ai-pipeline-architecture",
+    "name": "Ai Pipeline Architecture",
+    "description": ">"
+  },
+  {
     "id": "ai-safety",
     "path": "skills/ai-safety",
     "name": "Ai Safety",
+    "description": ">"
+  },
+  {
+    "id": "ai-software-architecture",
+    "path": "skills/ai-software-architecture",
+    "name": "Ai Software Architecture",
+    "description": ">"
+  },
+  {
+    "id": "ai-testing-strategy",
+    "path": "skills/ai-testing-strategy",
+    "name": "Ai Testing Strategy",
     "description": ">"
   },
   {
@@ -72,10 +138,22 @@
     "description": ">"
   },
   {
+    "id": "analytics-engineering",
+    "path": "skills/analytics-engineering",
+    "name": "Analytics Engineering",
+    "description": "Analytics engineering defines how raw data is transformed into reliable, documented, and tested analytical models — source-to-target mapping, modeling patterns, transformation frameworks, testing, and"
+  },
+  {
     "id": "analytics-events",
     "path": "skills/analytics-events",
     "name": "Analytics Events",
     "description": ">"
+  },
+  {
+    "id": "analytics-implementation",
+    "path": "skills/analytics-implementation",
+    "name": "Analytics Implementation",
+    "description": "GA4 setup. Firebase Analytics custom events. Conversions. User properties. BigQuery export. Looker Studio dashboards. [EXPLICIT]"
   },
   {
     "id": "angular-development",
@@ -84,10 +162,28 @@
     "description": ">"
   },
   {
+    "id": "angular-module-builder",
+    "path": "skills/angular-module-builder",
+    "name": "Angular Module Builder",
+    "description": "Angular feature modules with standalone components. Services, pipes, directives, Angular Material integration. [EXPLICIT]"
+  },
+  {
+    "id": "animation-motion",
+    "path": "skills/animation-motion",
+    "name": "Animation Motion",
+    "description": "CSS transitions and animations. @keyframes, scroll-driven animations, View Transitions API, Lottie integration. [EXPLICIT]"
+  },
+  {
     "id": "animation-principles",
     "path": "skills/animation-principles",
     "name": "Animation Principles",
     "description": ">"
+  },
+  {
+    "id": "api-architecture",
+    "path": "skills/api-architecture",
+    "name": "Api Architecture",
+    "description": "API architecture defines how services expose capabilities to consumers — internal teams, partners, and third parties. The skill covers style selection, contract-first design, versioning strategy, secu"
   },
   {
     "id": "api-design",
@@ -96,9 +192,57 @@
     "description": ">"
   },
   {
+    "id": "api-designer",
+    "path": "skills/api-designer",
+    "name": "Api Designer",
+    "description": "REST/GraphQL API design for Firebase Cloud Functions. OpenAPI spec generation. Versioning strategy. Rate limiting patterns. [EXPLICIT]"
+  },
+  {
     "id": "api-documentation",
     "path": "skills/api-documentation",
     "name": "Api Documentation",
+    "description": ">"
+  },
+  {
+    "id": "api-security",
+    "path": "skills/api-security",
+    "name": "Api Security",
+    "description": "Firebase App Check (reCAPTCHA v3). API key restrictions. Rate limiting in Cloud Functions. Request signing. [EXPLICIT]"
+  },
+  {
+    "id": "architecture-tobe",
+    "path": "skills/architecture-tobe",
+    "name": "Architecture Tobe",
+    "description": "TO-BE architecture blueprint from AS-IS analysis. Gap analysis, migration path, target state C4 diagrams. [EXPLICIT]"
+  },
+  {
+    "id": "asis-analysis",
+    "path": "skills/asis-analysis",
+    "name": "Asis Analysis",
+    "description": "Current-state 10-section assessment: stack, architecture, code quality, testing, CI/CD, security, performance, data, team, tech debt. [EXPLICIT]"
+  },
+  {
+    "id": "assembly-skill",
+    "path": "skills/assembly-skill",
+    "name": "Assembly Skill",
+    "description": "One-command skill engineering pipeline. Runs diagnostic → intervention → certification in sequence, adapting depth to the skill's current state — so a single invocation takes a skill from whatever sta"
+  },
+  {
+    "id": "assumption-log",
+    "path": "skills/assumption-log",
+    "name": "Assumption Log",
+    "description": "Track and validate assumptions. Format: A-NNN assumption, status (unvalidated/validated/invalidated), evidence tag. [EXPLICIT]"
+  },
+  {
+    "id": "audit-content-quality",
+    "path": "skills/audit-content-quality",
+    "name": "Audit Content Quality",
+    "description": ">"
+  },
+  {
+    "id": "audit-security",
+    "path": "skills/audit-security",
+    "name": "Audit Security",
     "description": ">"
   },
   {
@@ -111,7 +255,7 @@
     "id": "auth-architecture",
     "path": "skills/auth-architecture",
     "name": "Auth Architecture",
-    "description": ">"
+    "description": "Firebase Auth setup. Custom claims for RBAC. Session management. MFA configuration. Provider selection. [EXPLICIT]"
   },
   {
     "id": "auto-prompt-matching",
@@ -120,10 +264,40 @@
     "description": ">"
   },
   {
+    "id": "aws-architecture-audit",
+    "path": "skills/aws-architecture-audit",
+    "name": "Aws Architecture Audit",
+    "description": ">"
+  },
+  {
+    "id": "aws-architecture-design",
+    "path": "skills/aws-architecture-design",
+    "name": "Aws Architecture Design",
+    "description": ">"
+  },
+  {
+    "id": "aws-architecture-implementation",
+    "path": "skills/aws-architecture-implementation",
+    "name": "Aws Architecture Implementation",
+    "description": ">"
+  },
+  {
     "id": "b2b-outreach",
     "path": "skills/b2b-outreach",
     "name": "B2b Outreach",
     "description": ">"
+  },
+  {
+    "id": "background-jobs",
+    "path": "skills/background-jobs",
+    "name": "Background Jobs",
+    "description": "Cloud Tasks for deferred work. Pub/Sub event-driven. Scheduled functions (cron). Retry policies. Dead letter queues. [EXPLICIT]"
+  },
+  {
+    "id": "backup-recovery",
+    "path": "skills/backup-recovery",
+    "name": "Backup Recovery",
+    "description": "gcloud firestore export. Scheduled backups via Cloud Scheduler. Point-in-time recovery. Import procedures. Disaster recovery. [EXPLICIT]"
   },
   {
     "id": "backup-strategy",
@@ -138,9 +312,27 @@
     "description": ">"
   },
   {
+    "id": "benchmark-skill",
+    "path": "skills/benchmark-skill",
+    "name": "Benchmark Skill",
+    "description": "Quantified comparison between two skill states. Measures improvement dimension by dimension, identifies regressions, and produces evidence that changes actually made things better — or exposes that th"
+  },
+  {
     "id": "benchmarking-analysis",
     "path": "skills/benchmarking-analysis",
     "name": "Benchmarking Analysis",
+    "description": ">"
+  },
+  {
+    "id": "bi-architecture",
+    "path": "skills/bi-architecture",
+    "name": "Bi Architecture",
+    "description": "BI architecture defines how organizations consume data for decision-making — KPI frameworks, semantic layers, dashboard hierarchies, self-service analytics, and governance. This skill produces BI docu"
+  },
+  {
+    "id": "bilingual-doc",
+    "path": "skills/bilingual-doc",
+    "name": "Bilingual Doc",
     "description": ">"
   },
   {
@@ -148,6 +340,36 @@
     "path": "skills/blog-cms",
     "name": "Blog Cms",
     "description": ">"
+  },
+  {
+    "id": "bmad-method",
+    "path": "skills/bmad-method",
+    "name": "Bmad Method",
+    "description": ">"
+  },
+  {
+    "id": "brand-docx",
+    "path": "skills/brand-docx",
+    "name": "Brand Docx",
+    "description": "[EXPLICIT]"
+  },
+  {
+    "id": "brand-html",
+    "path": "skills/brand-html",
+    "name": "Brand Html",
+    "description": "Generate brand-compliant HTML/CSS for any brand. Reads brand tokens (colors, fonts, spacing) from a config file and produces self-contained, accessible, responsive web pages. [EXPLICIT]"
+  },
+  {
+    "id": "brand-voice",
+    "path": "skills/brand-voice",
+    "name": "Brand Voice",
+    "description": "Apply configurable brand voice to any written content. Reads brand identity from a config file and adapts voice pillars, vocabulary, tone calibration, and writing patterns accordingly. [EXPLICIT]"
+  },
+  {
+    "id": "brand-xlsx",
+    "path": "skills/brand-xlsx",
+    "name": "Brand Xlsx",
+    "description": "Generate brand-compliant Excel spreadsheets (.xlsx) using openpyxl. Reads brand tokens from config and applies consistent colors, typography, layout patterns. [EXPLICIT]"
   },
   {
     "id": "branded-html-output",
@@ -162,10 +384,28 @@
     "description": ">"
   },
   {
+    "id": "build-moat-assets",
+    "path": "skills/build-moat-assets",
+    "name": "Build Moat Assets",
+    "description": "Creates MOAT directory structures for plugin skills and populates them with asset files from spec packages. Handles the physical disk operations that turn specification content into a living skill dir"
+  },
+  {
     "id": "build-optimization",
     "path": "skills/build-optimization",
     "name": "Build Optimization",
-    "description": ">"
+    "description": "Vite/Webpack config tuning with tree shaking, code splitting, dynamic imports, Brotli/gzip compression, and source maps"
+  },
+  {
+    "id": "build-plugin-scaffold",
+    "path": "skills/build-plugin-scaffold",
+    "name": "Build Plugin Scaffold",
+    "description": "Assembles a complete Claude Code plugin directory from architecture plans and specification packages. Creates all structural files (plugin.json, settings.json, hooks.json), writes agent and command fi"
+  },
+  {
+    "id": "bundle-analysis",
+    "path": "skills/bundle-analysis",
+    "name": "Bundle Analysis",
+    "description": "webpack-bundle-analyzer/rollup-plugin-visualizer for chunk analysis, splitting strategy, dynamic imports, and tree shaking audit"
   },
   {
     "id": "business-process-modeling",
@@ -177,7 +417,7 @@
     "id": "caching-strategy",
     "path": "skills/caching-strategy",
     "name": "Caching Strategy",
-    "description": ">"
+    "description": "Firebase Hosting CDN cache headers. Firestore offline persistence. Client-side cache (localStorage/IndexedDB). [EXPLICIT]"
   },
   {
     "id": "capacity-planning",
@@ -196,6 +436,12 @@
     "path": "skills/cdn-configuration",
     "name": "Cdn Configuration",
     "description": ">"
+  },
+  {
+    "id": "certify-skill",
+    "path": "skills/certify-skill",
+    "name": "Certify Skill",
+    "description": "Final quality gate for Claude Code skills. Runs every check and produces a certification report that says exactly what passed, what failed, and what to fix — with no ambiguity about production readine"
   },
   {
     "id": "change-management-enterprise",
@@ -228,9 +474,21 @@
     "description": ">"
   },
   {
+    "id": "ci-cd-pipeline",
+    "path": "skills/ci-cd-pipeline",
+    "name": "Ci Cd Pipeline",
+    "description": "GitHub Actions CI/CD with build, lint, test, deploy stages, Firebase deploy tokens, and branch-based environments"
+  },
+  {
     "id": "ci-pipeline-design",
     "path": "skills/ci-pipeline-design",
     "name": "Ci Pipeline Design",
+    "description": ">"
+  },
+  {
+    "id": "client-browser-audit",
+    "path": "skills/client-browser-audit",
+    "name": "Client Browser Audit",
     "description": ">"
   },
   {
@@ -252,10 +510,28 @@
     "description": ">"
   },
   {
+    "id": "cloud-migration",
+    "path": "skills/cloud-migration",
+    "name": "Cloud Migration",
+    "description": "Cloud migration moves workloads from on-premises or legacy environments to cloud platforms. This skill produces comprehensive migration plans covering 7R assessment, workload analysis, wave planning,"
+  },
+  {
+    "id": "cloud-native-architecture",
+    "path": "skills/cloud-native-architecture",
+    "name": "Cloud Native Architecture",
+    "description": "Cloud-native architecture designs applications to fully exploit cloud platforms -- containers, orchestration, service mesh, serverless, infrastructure as code, and cost-aware engineering. This skill p"
+  },
+  {
     "id": "code-review",
     "path": "skills/code-review",
     "name": "Code Review",
     "description": ">"
+  },
+  {
+    "id": "code-review-checklist",
+    "path": "skills/code-review-checklist",
+    "name": "Code Review Checklist",
+    "description": "Structured code review covering OWASP security, Core Web Vitals performance, Firebase best practices, and TypeScript types"
   },
   {
     "id": "cohort-analysis",
@@ -270,10 +546,16 @@
     "description": ">"
   },
   {
+    "id": "commercial-model",
+    "path": "skills/commercial-model",
+    "name": "Commercial Model",
+    "description": "Identifies the optimal commercial model for a technology transformation engagement. Goes beyond"
+  },
+  {
     "id": "competitive-intelligence",
     "path": "skills/competitive-intelligence",
     "name": "Competitive Intelligence",
-    "description": ">"
+    "description": "Market analysis. Competitor feature matrix. Technical stack comparison. SWOT. Differentiation opportunities. [EXPLICIT]"
   },
   {
     "id": "competitive-positioning",
@@ -282,10 +564,16 @@
     "description": ">"
   },
   {
+    "id": "competitor-teardown",
+    "path": "skills/competitor-teardown",
+    "name": "Competitor Teardown",
+    "description": ">"
+  },
+  {
     "id": "compliance-assessment",
     "path": "skills/compliance-assessment",
     "name": "Compliance Assessment",
-    "description": ">"
+    "description": "Compliance assessment identifies gaps between an organization's current practices and applicable regulatory or standards requirements. The skill produces compliance gap matrices, remediation roadmaps,"
   },
   {
     "id": "compliance-framework",
@@ -300,9 +588,21 @@
     "description": ">"
   },
   {
+    "id": "component-designer",
+    "path": "skills/component-designer",
+    "name": "Component Designer",
+    "description": "UI component architecture. Atomic design (atoms/molecules/organisms). Props contracts. Composition patterns. Accessibility built-in. [EXPLICIT]"
+  },
+  {
     "id": "constitution-compliance",
     "path": "skills/constitution-compliance",
     "name": "Constitution Compliance",
+    "description": ">"
+  },
+  {
+    "id": "contact-database",
+    "path": "skills/contact-database",
+    "name": "Contact Database",
     "description": ">"
   },
   {
@@ -318,6 +618,12 @@
     "description": ">"
   },
   {
+    "id": "context-optimizer",
+    "path": "skills/context-optimizer",
+    "name": "Context Optimizer",
+    "description": "Manages token budget across sessions. Implements lazy loading, context compression, and progressive disclosure to maximize effective context usage. [EXPLICIT]"
+  },
+  {
     "id": "context-window-management",
     "path": "skills/context-window-management",
     "name": "Context Window Management",
@@ -327,7 +633,7 @@
     "id": "continuous-learning",
     "path": "skills/continuous-learning",
     "name": "Continuous Learning",
-    "description": ">"
+    "description": "Implements Constitution XVII: every debate and discovery produces reusable insights captured in `insights/<domain>.md`. Before new debates, consult existing insights. When recurring ambiguity detected"
   },
   {
     "id": "contract-review",
@@ -340,6 +646,12 @@
     "path": "skills/conversion-optimization",
     "name": "Conversion Optimization",
     "description": ">"
+  },
+  {
+    "id": "copywriting",
+    "path": "skills/copywriting",
+    "name": "Copywriting",
+    "description": "Transforms technical findings into decision-driving prose. Owns value propositions, calls to action, cost-of-inaction narratives, executive summaries, and recommendation justifications across all disc"
   },
   {
     "id": "copywriting-frameworks",
@@ -357,12 +669,30 @@
     "id": "cost-estimation",
     "path": "skills/cost-estimation",
     "name": "Cost Estimation",
+    "description": "FTE-month estimation (NEVER prices). Effort inductors. Scope drivers. Confidence ranges (optimistic/expected/pessimistic). [EXPLICIT]"
+  },
+  {
+    "id": "create-antigravity-skill",
+    "path": "skills/create-antigravity-skill",
+    "name": "Create Antigravity Skill",
     "description": ">"
+  },
+  {
+    "id": "creator-moat-skill",
+    "path": "skills/creator-moat-skill",
+    "name": "Creator Moat Skill",
+    "description": "Elevate Claude Code skills to production grade. This skill adds structural rigor, quality gates, and enterprise patterns on top of the official Anthropic skill-creator workflow. Use it when a skill ne"
   },
   {
     "id": "cross-browser-testing",
     "path": "skills/cross-browser-testing",
     "name": "Cross Browser Testing",
+    "description": ">"
+  },
+  {
+    "id": "cross-platform-convert",
+    "path": "skills/cross-platform-convert",
+    "name": "Cross Platform Convert",
     "description": ">"
   },
   {
@@ -375,13 +705,19 @@
     "id": "css-architecture",
     "path": "skills/css-architecture",
     "name": "Css Architecture",
-    "description": ">"
+    "description": "CSS methodology selection (BEM/utility-first). Custom properties system. Container queries. CSS layers. Dark mode. [EXPLICIT]"
   },
   {
     "id": "cv-enhancement",
     "path": "skills/cv-enhancement",
     "name": "Cv Enhancement",
     "description": ">"
+  },
+  {
+    "id": "cv-transformer",
+    "path": "skills/cv-transformer",
+    "name": "Cv Transformer",
+    "description": "Transform any CV/resume into 8 polished outputs: 3 visually stunning 'WOW' versions (DOCX, HTML, PPTX), 3 ATS-optimized versions (DOCX, HTML, PPTX), plus a tailored cover letter and an optimized LinkedIn profile summary. Works in English and Spanish. Accepts CVs in any format (PDF, DOCX, TXT, image, LinkedIn export, or even pasted text). Use this skill whenever the user mentions 'CV', 'resume', 'curriculum', 'hoja de vida', 'ATS', 'job application', 'cover letter', 'LinkedIn profile', 'career document', 'optimize my resume', 'improve my CV', 'transform my resume', 'make my CV stand out', 'aplicar a trabajo', 'mejorar curriculum', or anything related to professional career documents, job applications, or professional branding. Also trigger when the user uploads a document that looks like a CV/resume, even if they don't explicitly say so."
   },
   {
     "id": "dark-mode",
@@ -402,16 +738,58 @@
     "description": ">"
   },
   {
+    "id": "data-engineering",
+    "path": "skills/data-engineering",
+    "name": "Data Engineering",
+    "description": "Data engineering architecture defines how data is ingested, orchestrated, stored, validated, and observed — the backbone infrastructure that feeds analytics, ML, and operational systems. This skill pr"
+  },
+  {
     "id": "data-export",
     "path": "skills/data-export",
     "name": "Data Export",
     "description": ">"
   },
   {
+    "id": "data-flow-architecture",
+    "path": "skills/data-flow-architecture",
+    "name": "Data Flow Architecture",
+    "description": "Firebase real-time sync patterns. Firestore triggers to Cloud Functions event chains. Data pipeline design. [EXPLICIT]"
+  },
+  {
+    "id": "data-governance",
+    "path": "skills/data-governance",
+    "name": "Data Governance",
+    "description": "Data governance defines how data assets are discovered, owned, classified, retained, and protected across an organization. This skill produces governance frameworks that enable trust in data, regulato"
+  },
+  {
+    "id": "data-migration",
+    "path": "skills/data-migration",
+    "name": "Data Migration",
+    "description": "CSV/JSON import to Firestore. Batch writes (500/batch). Schema evolution. Rollback procedures. Data transformation scripts. [EXPLICIT]"
+  },
+  {
     "id": "data-privacy-patterns",
     "path": "skills/data-privacy-patterns",
     "name": "Data Privacy Patterns",
     "description": ">"
+  },
+  {
+    "id": "data-quality",
+    "path": "skills/data-quality",
+    "name": "Data Quality",
+    "description": "Data quality architecture defines how organizations detect, prevent, and remediate data issues through profiling, validation rules, anomaly detection, contracts between teams, and SLA monitoring. This"
+  },
+  {
+    "id": "data-science-architecture",
+    "path": "skills/data-science-architecture",
+    "name": "Data Science Architecture",
+    "description": "Data science architecture defines how machine learning systems are structured end-to-end — from feature engineering through model training, serving, monitoring, and governance. This skill produces ML"
+  },
+  {
+    "id": "data-storytelling",
+    "path": "skills/data-storytelling",
+    "name": "Data Storytelling",
+    "description": "Transforms raw metrics, scores, and quantitative findings into meaningful narratives that drive understanding and action. Owns insight extraction, comparison framing, magnitude communication, and the"
   },
   {
     "id": "data-strategy",
@@ -423,7 +801,7 @@
     "id": "data-validation",
     "path": "skills/data-validation",
     "name": "Data Validation",
-    "description": ">"
+    "description": "Client-side Zod/Yup schemas. Server-side Cloud Functions validation. Firestore rules validation. End-to-end type safety. [EXPLICIT]"
   },
   {
     "id": "data-visualization",
@@ -432,10 +810,22 @@
     "description": ">"
   },
   {
+    "id": "database-architecture",
+    "path": "skills/database-architecture",
+    "name": "Database Architecture",
+    "description": "Firestore document/collection modeling. Denormalization strategies. Composite indexes. Query optimization. Collection group queries. [EXPLICIT]"
+  },
+  {
     "id": "database-design",
     "path": "skills/database-design",
     "name": "Database Design",
     "description": ">"
+  },
+  {
+    "id": "dependency-analysis",
+    "path": "skills/dependency-analysis",
+    "name": "Dependency Analysis",
+    "description": "Map project dependencies. Critical path. Integration touchpoints. External service deps. Circular dependency detection. [EXPLICIT]"
   },
   {
     "id": "dependency-management",
@@ -450,21 +840,45 @@
     "description": ">"
   },
   {
+    "id": "design-agent",
+    "path": "skills/design-agent",
+    "name": "Design Agent",
+    "description": "Design a plugin agent with complete frontmatter, role definition, skill assignments, execution flows, and operating principles. Prominently enforces the plugin subagent constraint: agents in plugins c"
+  },
+  {
     "id": "design-critique",
     "path": "skills/design-critique",
     "name": "Design Critique",
     "description": ">"
   },
   {
+    "id": "design-skill",
+    "path": "skills/design-skill",
+    "name": "Design Skill",
+    "description": "Design a single plugin skill in full detail. Produces a complete SKILL.md specification with frontmatter, guiding principle, numbered procedure, quality criteria, anti-patterns, and edge cases. Valida"
+  },
+  {
     "id": "design-system",
     "path": "skills/design-system",
     "name": "Design System",
-    "description": ">"
+    "description": "Foundation system for building styled HTML documents. All colors, typography, layout patterns, and component specs. **CRITICAL:** All brand tokens are configurable via `brand-config.json` — no hardcod"
   },
   {
     "id": "developer-onboarding",
     "path": "skills/developer-onboarding",
     "name": "Developer Onboarding",
+    "description": ">"
+  },
+  {
+    "id": "devsecops-architecture",
+    "path": "skills/devsecops-architecture",
+    "name": "Devsecops Architecture",
+    "description": "DevSecOps architecture designs how software is built, tested, secured, and released to production. It integrates security into every stage of the delivery pipeline, ensuring code quality, compliance,"
+  },
+  {
+    "id": "digital-presence",
+    "path": "skills/digital-presence",
+    "name": "Digital Presence",
     "description": ">"
   },
   {
@@ -474,9 +888,27 @@
     "description": ">"
   },
   {
+    "id": "discovery-handover",
+    "path": "skills/discovery-handover",
+    "name": "Discovery Handover",
+    "description": "Genera el paquete de transición operativa que traduce los entregables de descubrimiento (Fases 0-5) en artefactos de ejecución listos para Operaciones y/o Comercial. [EXPLICIT]"
+  },
+  {
     "id": "discovery-orchestration",
     "path": "skills/discovery-orchestration",
     "name": "Discovery Orchestration",
+    "description": ">"
+  },
+  {
+    "id": "discovery-orchestrator",
+    "path": "skills/discovery-orchestrator",
+    "name": "Discovery Orchestrator",
+    "description": "Coordinates full analysis pipeline (phases 0-6). Sequences skills 009-023. Manages G1 gate. Does NOT analyze. [EXPLICIT]"
+  },
+  {
+    "id": "discovery-retrospective",
+    "path": "skills/discovery-retrospective",
+    "name": "Discovery Retrospective",
     "description": ">"
   },
   {
@@ -504,6 +936,12 @@
     "description": ">"
   },
   {
+    "id": "domain-dns-setup",
+    "path": "skills/domain-dns-setup",
+    "name": "Domain Dns Setup",
+    "description": "DNS configuration for Firebase Hosting (A/CNAME), email (MX), verification (TXT), and SSL certificate management"
+  },
+  {
     "id": "domain-driven-design",
     "path": "skills/domain-driven-design",
     "name": "Domain Driven Design",
@@ -522,10 +960,16 @@
     "description": ">"
   },
   {
+    "id": "dynamic-sme",
+    "path": "skills/dynamic-sme",
+    "name": "Dynamic Sme",
+    "description": "Dynamic expert that shifts expertise based on engagement context. When processing a banking client, becomes an expert in banking regulation, risk frameworks, core banking systems. When processing reta"
+  },
+  {
     "id": "e2e-testing",
     "path": "skills/e2e-testing",
     "name": "E2e Testing",
-    "description": ">"
+    "description": "Cypress/Playwright E2E testing with page object model, CI integration, and visual assertions"
   },
   {
     "id": "ecommerce-frontend",
@@ -534,10 +978,22 @@
     "description": ">"
   },
   {
+    "id": "ecosystem-forge",
+    "path": "skills/ecosystem-forge",
+    "name": "Ecosystem Forge",
+    "description": "Individual forges (prompt-forge, rule-forge, workflow-forge) create artifacts. Ecosystem-forge coordinates them into a coherent system. Use it when you need 3+ interrelated artifacts working together."
+  },
+  {
     "id": "email-sending",
     "path": "skills/email-sending",
     "name": "Email Sending",
     "description": ">"
+  },
+  {
+    "id": "email-template-builder",
+    "path": "skills/email-template-builder",
+    "name": "Email Template Builder",
+    "description": "Responsive HTML email templates. Table-based layout, inline CSS, 600px max-width. Firebase Extensions trigger. [EXPLICIT]"
   },
   {
     "id": "email-templates",
@@ -558,6 +1014,12 @@
     "description": ">"
   },
   {
+    "id": "enterprise-architecture",
+    "path": "skills/enterprise-architecture",
+    "name": "Enterprise Architecture",
+    "description": "Enterprise architecture aligns technology initiatives with business strategy. It defines what capabilities the enterprise needs, what technologies support them, how decisions are governed, and how inv"
+  },
+  {
     "id": "environment-detection",
     "path": "skills/environment-detection",
     "name": "Environment Detection",
@@ -567,13 +1029,19 @@
     "id": "environment-management",
     "path": "skills/environment-management",
     "name": "Environment Management",
-    "description": ">"
+    "description": "Dev/staging/prod Firebase project separation, environment variables, .env files, and CLI project aliases"
   },
   {
     "id": "error-handling",
     "path": "skills/error-handling",
     "name": "Error Handling",
     "description": ">"
+  },
+  {
+    "id": "error-handling-patterns",
+    "path": "skills/error-handling-patterns",
+    "name": "Error Handling Patterns",
+    "description": "Centralized error handler. Custom error classes. Cloud Logging. Error reporting. Cloud Monitoring alerts. [EXPLICIT]"
   },
   {
     "id": "error-messaging",
@@ -597,7 +1065,7 @@
     "id": "event-architecture",
     "path": "skills/event-architecture",
     "name": "Event Architecture",
-    "description": ">"
+    "description": "Event-driven architecture decouples producers from consumers through asynchronous messaging — enabling scalability, resilience, and temporal flexibility. The skill covers event catalog design, broker"
   },
   {
     "id": "event-marketing",
@@ -606,9 +1074,21 @@
     "description": ">"
   },
   {
+    "id": "excellence-loop",
+    "path": "skills/excellence-loop",
+    "name": "Excellence Loop",
+    "description": ">"
+  },
+  {
     "id": "executive-pitch",
     "path": "skills/executive-pitch",
     "name": "Executive Pitch",
+    "description": "Generates C-level presentations with quantified problem statements, 4-pillar value propositions, 3-option comparison analysis, investment summaries with financial models (NPV, IRR, payback), and decis"
+  },
+  {
+    "id": "executive-summary",
+    "path": "skills/executive-summary",
+    "name": "Executive Summary",
     "description": ">"
   },
   {
@@ -618,9 +1098,21 @@
     "description": ">"
   },
   {
+    "id": "file-storage",
+    "path": "skills/file-storage",
+    "name": "File Storage",
+    "description": "Firebase Cloud Storage. Upload with progress. Security rules. Image processing triggers (resize, watermark, thumbnails). [EXPLICIT]"
+  },
+  {
     "id": "file-watcher",
     "path": "skills/file-watcher",
     "name": "File Watcher",
+    "description": ">"
+  },
+  {
+    "id": "find-skills",
+    "path": "skills/find-skills",
+    "name": "Find Skills",
     "description": ">"
   },
   {
@@ -630,10 +1122,34 @@
     "description": ">"
   },
   {
+    "id": "finops",
+    "path": "skills/finops",
+    "name": "Finops",
+    "description": ">"
+  },
+  {
+    "id": "firebase-architecture",
+    "path": "skills/firebase-architecture",
+    "name": "Firebase Architecture",
+    "description": "End-to-end Firebase project architecture. Firestore schema strategy, Cloud Functions topology, Hosting config, Security Rules design. C4 diagram output. [EXPLICIT]"
+  },
+  {
     "id": "firebase-auth",
     "path": "skills/firebase-auth",
     "name": "Firebase Auth",
     "description": ">"
+  },
+  {
+    "id": "firebase-auth-setup",
+    "path": "skills/firebase-auth-setup",
+    "name": "Firebase Auth Setup",
+    "description": "Firebase Auth: email/password, phone, anonymous, custom tokens, MFA (TOTP/SMS). Session cookies. Provider linking. [EXPLICIT]"
+  },
+  {
+    "id": "firebase-cost-optimization",
+    "path": "skills/firebase-cost-optimization",
+    "name": "Firebase Cost Optimization",
+    "description": "Firestore read/write reduction, Functions cold start mitigation, Storage lifecycle rules, and billing alerts"
   },
   {
     "id": "firebase-deployment",
@@ -642,16 +1158,34 @@
     "description": ">"
   },
   {
+    "id": "firebase-emulator-setup",
+    "path": "skills/firebase-emulator-setup",
+    "name": "Firebase Emulator Setup",
+    "description": "Firebase Emulator Suite configuration for Firestore, Auth, Functions, Storage, and Hosting with seed data"
+  },
+  {
     "id": "firebase-extensions",
     "path": "skills/firebase-extensions",
     "name": "Firebase Extensions",
-    "description": ">"
+    "description": "Configure Firebase Extensions: Stripe payments, SendGrid email, image resize, translation, Algolia search. [EXPLICIT]"
+  },
+  {
+    "id": "firebase-functions",
+    "path": "skills/firebase-functions",
+    "name": "Firebase Functions",
+    "description": "Cloud Functions development. HTTP, Firestore, Auth, Storage, scheduled triggers. 2nd gen functions. Node.js 20. [EXPLICIT]"
   },
   {
     "id": "firebase-hosting",
     "path": "skills/firebase-hosting",
     "name": "Firebase Hosting",
     "description": ">"
+  },
+  {
+    "id": "firebase-hosting-setup",
+    "path": "skills/firebase-hosting-setup",
+    "name": "Firebase Hosting Setup",
+    "description": "Firebase Hosting config with rewrites, redirects, headers, preview channels, custom domains, and CDN cache control"
   },
   {
     "id": "firebase-setup",
@@ -678,15 +1212,45 @@
     "description": ">"
   },
   {
+    "id": "firestore-schema-design",
+    "path": "skills/firestore-schema-design",
+    "name": "Firestore Schema Design",
+    "description": "Document/collection design. Embedding vs subcollections. Composite indexes. TTL fields. Collection group queries. [EXPLICIT]"
+  },
+  {
     "id": "firestore-security-rules",
     "path": "skills/firestore-security-rules",
     "name": "Firestore Security Rules",
+    "description": "Rules authoring: request.auth, request.resource, resource.data. Custom claims. Role-based. Rate limiting in rules. [EXPLICIT]"
+  },
+  {
+    "id": "first-use-onboarding",
+    "path": "skills/first-use-onboarding",
+    "name": "First Use Onboarding",
+    "description": "First-use and cold-start onboarding for JM-ADK after clone, greeting, or missing task context."
+  },
+  {
+    "id": "fix-common-issues",
+    "path": "skills/fix-common-issues",
+    "name": "Fix Common Issues",
     "description": ">"
   },
   {
     "id": "flow-mapping",
     "path": "skills/flow-mapping",
     "name": "Flow Mapping",
+    "description": "DDD domain taxonomy + 8-12 end-to-end business flows. Sequence diagrams (Mermaid). Bounded contexts. Integration matrix. [EXPLICIT]"
+  },
+  {
+    "id": "folio-generator",
+    "path": "skills/folio-generator",
+    "name": "Folio Generator",
+    "description": ">"
+  },
+  {
+    "id": "follow-up-email",
+    "path": "skills/follow-up-email",
+    "name": "Follow Up Email",
     "description": ">"
   },
   {
@@ -694,6 +1258,12 @@
     "path": "skills/font-optimization",
     "name": "Font Optimization",
     "description": ">"
+  },
+  {
+    "id": "form-builder",
+    "path": "skills/form-builder",
+    "name": "Form Builder",
+    "description": "Complex form construction. Multi-step, conditional fields, validation (Zod + React Hook Form / Angular Reactive Forms), Firebase submission. [EXPLICIT]"
   },
   {
     "id": "form-engineering",
@@ -708,6 +1278,18 @@
     "description": ">"
   },
   {
+    "id": "functional-spec",
+    "path": "skills/functional-spec",
+    "name": "Functional Spec",
+    "description": "Functional specifications. MVP modules, 8+ use cases, business rules, acceptance criteria. Firestore data models. [EXPLICIT]"
+  },
+  {
+    "id": "functional-toolbelt",
+    "path": "skills/functional-toolbelt",
+    "name": "Functional Toolbelt",
+    "description": "Mental models, techniques, and validation tools for producing better functional analysis. NOT a deliverable skill — a **toolbelt** that enhances output quality of any requirements or specification wor"
+  },
+  {
     "id": "funnel-analytics",
     "path": "skills/funnel-analytics",
     "name": "Funnel Analytics",
@@ -717,6 +1299,24 @@
     "id": "funnel-design",
     "path": "skills/funnel-design",
     "name": "Funnel Design",
+    "description": ">"
+  },
+  {
+    "id": "genai-architecture",
+    "path": "skills/genai-architecture",
+    "name": "Genai Architecture",
+    "description": ">"
+  },
+  {
+    "id": "generate-qa-report",
+    "path": "skills/generate-qa-report",
+    "name": "Generate Qa Report",
+    "description": ">"
+  },
+  {
+    "id": "generate-qa-scorecard",
+    "path": "skills/generate-qa-scorecard",
+    "name": "Generate Qa Scorecard",
     "description": ">"
   },
   {
@@ -738,9 +1338,39 @@
     "description": ">"
   },
   {
+    "id": "gmail-mcp",
+    "path": "skills/gmail-mcp",
+    "name": "Gmail Mcp",
+    "description": ">"
+  },
+  {
     "id": "google-analytics",
     "path": "skills/google-analytics",
     "name": "Google Analytics",
+    "description": ">"
+  },
+  {
+    "id": "google-apis-integration",
+    "path": "skills/google-apis-integration",
+    "name": "Google Apis Integration",
+    "description": "Google Sheets API v4, Docs API v1, Calendar API v3, Maps JS API, YouTube Data API v3 integration patterns. [EXPLICIT]"
+  },
+  {
+    "id": "google-calendar-mcp",
+    "path": "skills/google-calendar-mcp",
+    "name": "Google Calendar Mcp",
+    "description": ">"
+  },
+  {
+    "id": "google-docs-mcp",
+    "path": "skills/google-docs-mcp",
+    "name": "Google Docs Mcp",
+    "description": ">"
+  },
+  {
+    "id": "google-drive-mcp",
+    "path": "skills/google-drive-mcp",
+    "name": "Google Drive Mcp",
     "description": ">"
   },
   {
@@ -750,9 +1380,27 @@
     "description": ">"
   },
   {
+    "id": "google-sheets-mcp",
+    "path": "skills/google-sheets-mcp",
+    "name": "Google Sheets Mcp",
+    "description": ">"
+  },
+  {
+    "id": "google-slides-mcp",
+    "path": "skills/google-slides-mcp",
+    "name": "Google Slides Mcp",
+    "description": ">"
+  },
+  {
     "id": "google-workspace-apis",
     "path": "skills/google-workspace-apis",
     "name": "Google Workspace Apis",
+    "description": ">"
+  },
+  {
+    "id": "governance-framework",
+    "path": "skills/governance-framework",
+    "name": "Governance Framework",
     "description": ">"
   },
   {
@@ -774,9 +1422,21 @@
     "description": ">"
   },
   {
+    "id": "hook-creator",
+    "path": "skills/hook-creator",
+    "name": "Hook Creator",
+    "description": "Create event-driven hooks — deterministic automation that fires at Claude Code lifecycle points. Hooks are NOT LLM judgment; they're programmatic control. [EXPLICIT]"
+  },
+  {
     "id": "hostinger-deployment",
     "path": "skills/hostinger-deployment",
     "name": "Hostinger Deployment",
+    "description": "Static site and Node.js deployment on Hostinger via SFTP/Git, cPanel/hPanel config, and PM2 process management"
+  },
+  {
+    "id": "html-brand",
+    "path": "skills/html-brand",
+    "name": "Html Brand",
     "description": ">"
   },
   {
@@ -784,6 +1444,12 @@
     "path": "skills/html-semantic",
     "name": "Html Semantic",
     "description": ">"
+  },
+  {
+    "id": "html-semantic-builder",
+    "path": "skills/html-semantic-builder",
+    "name": "Html Semantic Builder",
+    "description": "Semantic HTML5 page construction. Landmarks, ARIA roles, structured data (JSON-LD), Open Graph meta, accessibility. [EXPLICIT]"
   },
   {
     "id": "http-headers",
@@ -798,10 +1464,166 @@
     "description": ">"
   },
   {
+    "id": "ideate-component",
+    "path": "skills/ideate-component",
+    "name": "Ideate Component",
+    "description": "Brainstorm individual components (skill, agent, command, or hook) for an existing or planned plugin. Produces a concept card that defines the component's responsibility, relationships, and placement w"
+  },
+  {
+    "id": "ideate-plugin",
+    "path": "skills/ideate-plugin",
+    "name": "Ideate Plugin",
+    "description": "Generate a structured plugin concept brief from a user's idea or problem statement. This skill transforms vague intentions into a concrete, reviewable document that serves as the foundation for archit"
+  },
+  {
+    "id": "iic-artifact-analyzer",
+    "path": "skills/iic-artifact-analyzer",
+    "name": "Iic Artifact Analyzer",
+    "description": "Non-destructive cross-artifact consistency analysis. 8 detection categories. Health score 0-100. Updates score-history.json. [EXPLICIT]"
+  },
+  {
+    "id": "iic-bugfix",
+    "path": "skills/iic-bugfix",
+    "name": "Iic Bugfix",
+    "description": "Structured bug tracking. Creates bug entries with severity, reproduction steps, and T-B tasks. Links to affected requirements. [EXPLICIT]"
+  },
+  {
+    "id": "iic-checklist-generator",
+    "path": "skills/iic-checklist-generator",
+    "name": "Iic Checklist Generator",
+    "description": "Creates phase-specific QA checklists with pass/fail items linked to FR-XXX, US-X, SC-XXX. Validates readiness before phase transitions. [EXPLICIT]"
+  },
+  {
+    "id": "iic-clarify",
+    "path": "skills/iic-clarify",
+    "name": "Iic Clarify",
+    "description": "Socratic debate for ambiguity reduction. Auto-detects artifact, applies question taxonomy, records answers with traceability to FR/US/T IDs. [EXPLICIT]"
+  },
+  {
+    "id": "iic-constitution",
+    "path": "skills/iic-constitution",
+    "name": "Iic Constitution",
+    "description": "Governance backbone. Loads CONSTITUTION.md, validates all actions against non-negotiable principles. Blocks constitutional violations. [EXPLICIT]"
+  },
+  {
+    "id": "iic-core-engine",
+    "path": "skills/iic-core-engine",
+    "name": "Iic Core Engine",
+    "description": "State machine and next-step guidance. Computes feature stage from artifacts. Suggests next action. Updates context.json. [EXPLICIT]"
+  },
+  {
+    "id": "iic-implement",
+    "path": "skills/iic-implement",
+    "name": "Iic Implement",
+    "description": "Red-green-verify implementation cycle. Verifies hash integrity of .feature files. NEVER modifies test assertions. Enforces coverage. [EXPLICIT]"
+  },
+  {
+    "id": "iic-plan-generator",
+    "path": "skills/iic-plan-generator",
+    "name": "Iic Plan Generator",
+    "description": "Creates plan-YYYY-MM-DD-{task}.md with decision table (D1-DN), technical approach, Firebase services, and fact-checked viability. [EXPLICIT]"
+  },
+  {
+    "id": "iic-specify",
+    "path": "skills/iic-specify",
+    "name": "Iic Specify",
+    "description": "Creates spec.md with FR-XXX functional requirements, US-X user stories, SC-XXX scenarios. Scores quality 0-10. Traceable requirements. [EXPLICIT]"
+  },
+  {
+    "id": "iic-task-decomposer",
+    "path": "skills/iic-task-decomposer",
+    "name": "Iic Task Decomposer",
+    "description": "Decomposes plans into tasks with format [T###] [P?] [US#] Description. Marks parallelizable tasks, tracks dependencies, estimates effort. [EXPLICIT]"
+  },
+  {
+    "id": "iic-tasks-to-issues",
+    "path": "skills/iic-tasks-to-issues",
+    "name": "Iic Tasks To Issues",
+    "description": "Converts tasks.md entries to GitHub Issues via gh CLI. Links to spec IDs. Tracks in context.json. [EXPLICIT]"
+  },
+  {
+    "id": "iic-testify",
+    "path": "skills/iic-testify",
+    "name": "Iic Testify",
+    "description": "Generates Gherkin .feature files from spec.md. SHA256 hash-locks assertions BEFORE implementation. Prevents silent requirement drift. [EXPLICIT]"
+  },
+  {
+    "id": "iikit-00-constitution",
+    "path": "skills/iikit-00-constitution",
+    "name": "Iikit 00 Constitution",
+    "description": ">-"
+  },
+  {
+    "id": "iikit-01-specify",
+    "path": "skills/iikit-01-specify",
+    "name": "Iikit 01 Specify",
+    "description": ">-"
+  },
+  {
+    "id": "iikit-02-plan",
+    "path": "skills/iikit-02-plan",
+    "name": "Iikit 02 Plan",
+    "description": ">-"
+  },
+  {
+    "id": "iikit-03-checklist",
+    "path": "skills/iikit-03-checklist",
+    "name": "Iikit 03 Checklist",
+    "description": ">-"
+  },
+  {
+    "id": "iikit-04-testify",
+    "path": "skills/iikit-04-testify",
+    "name": "Iikit 04 Testify",
+    "description": ">-"
+  },
+  {
+    "id": "iikit-05-tasks",
+    "path": "skills/iikit-05-tasks",
+    "name": "Iikit 05 Tasks",
+    "description": ">-"
+  },
+  {
+    "id": "iikit-06-analyze",
+    "path": "skills/iikit-06-analyze",
+    "name": "Iikit 06 Analyze",
+    "description": ">-"
+  },
+  {
+    "id": "iikit-07-implement",
+    "path": "skills/iikit-07-implement",
+    "name": "Iikit 07 Implement",
+    "description": ">-"
+  },
+  {
+    "id": "iikit-08-taskstoissues",
+    "path": "skills/iikit-08-taskstoissues",
+    "name": "Iikit 08 Taskstoissues",
+    "description": ">-"
+  },
+  {
+    "id": "iikit-bugfix",
+    "path": "skills/iikit-bugfix",
+    "name": "Iikit Bugfix",
+    "description": ">-"
+  },
+  {
+    "id": "iikit-clarify",
+    "path": "skills/iikit-clarify",
+    "name": "Iikit Clarify",
+    "description": ">-"
+  },
+  {
+    "id": "iikit-core",
+    "path": "skills/iikit-core",
+    "name": "Iikit Core",
+    "description": ">-"
+  },
+  {
     "id": "image-optimization",
     "path": "skills/image-optimization",
     "name": "Image Optimization",
-    "description": ">"
+    "description": "WebP/AVIF format selection, responsive images with srcset, lazy loading, and Firebase Storage image resize extension"
   },
   {
     "id": "incident-response",
@@ -816,6 +1638,12 @@
     "description": ">"
   },
   {
+    "id": "infrastructure-architecture",
+    "path": "skills/infrastructure-architecture",
+    "name": "Infrastructure Architecture",
+    "description": "Infrastructure architecture designs where and how software runs — compute resources, network topology, data storage, high availability, disaster recovery, identity management, and cost optimization. I"
+  },
+  {
     "id": "infrastructure-design",
     "path": "skills/infrastructure-design",
     "name": "Infrastructure Design",
@@ -825,7 +1653,13 @@
     "id": "input-analysis",
     "path": "skills/input-analysis",
     "name": "Input Analysis",
-    "description": ">"
+    "description": "Parse project inputs (RFPs, briefs, emails). Detect contradictions, gaps, ambiguities. Score completeness 0-100. [EXPLICIT]"
+  },
+  {
+    "id": "input-analyst",
+    "path": "skills/input-analyst",
+    "name": "Input Analyst",
+    "description": "Pre-processing layer that analyzes raw user input — detecting surface errors, performing root-cause analysis (5 Whys), impact tracing (7 So-Whats), and intent gap analysis — then reformulates into a precise, actionable prompt."
   },
   {
     "id": "input-sanitization",
@@ -838,6 +1672,18 @@
     "path": "skills/input-tolerance",
     "name": "Input Tolerance",
     "description": ">"
+  },
+  {
+    "id": "integration-architecture",
+    "path": "skills/integration-architecture",
+    "name": "Integration Architecture",
+    "description": "Third-party + Google API integration patterns. Payment gateways, email services, maps, analytics. [EXPLICIT]"
+  },
+  {
+    "id": "integration-testing",
+    "path": "skills/integration-testing",
+    "name": "Integration Testing",
+    "description": "Firebase Emulator Suite integration tests for Firestore rules, Cloud Functions, and Auth flows"
   },
   {
     "id": "integrity-chain-validation",
@@ -864,6 +1710,42 @@
     "description": ">"
   },
   {
+    "id": "interview-prep",
+    "path": "skills/interview-prep",
+    "name": "Interview Prep",
+    "description": ">"
+  },
+  {
+    "id": "inventory-management",
+    "path": "skills/inventory-management",
+    "name": "Inventory Management",
+    "description": ">"
+  },
+  {
+    "id": "invoice-generator",
+    "path": "skills/invoice-generator",
+    "name": "Invoice Generator",
+    "description": ">"
+  },
+  {
+    "id": "javascript-patterns",
+    "path": "skills/javascript-patterns",
+    "name": "Javascript Patterns",
+    "description": "Modern JS patterns. ES modules, async/await, Web APIs (Intersection/Resize/Mutation Observer), event delegation, AbortController. [EXPLICIT]"
+  },
+  {
+    "id": "jmlabs-corporate-doc",
+    "path": "skills/jmlabs-corporate-doc",
+    "name": "Jmlabs Corporate Doc",
+    "description": ">"
+  },
+  {
+    "id": "kit-orchestrator",
+    "path": "skills/kit-orchestrator",
+    "name": "Kit Orchestrator",
+    "description": "Entry point and mode router. Detects whether the user needs analysis (MAO DNA) or development (SA DNA) and routes to the appropriate agent cluster. [EXPLICIT]"
+  },
+  {
     "id": "knowledge-management",
     "path": "skills/knowledge-management",
     "name": "Knowledge Management",
@@ -874,6 +1756,12 @@
     "path": "skills/kpi-framework",
     "name": "Kpi Framework",
     "description": ">"
+  },
+  {
+    "id": "landing-page-builder",
+    "path": "skills/landing-page-builder",
+    "name": "Landing Page Builder",
+    "description": "High-conversion landing page. Hero, features, testimonials, pricing, CTA, footer sections. SEO optimized. Hostinger deploy. [EXPLICIT]"
   },
   {
     "id": "landing-pages",
@@ -891,6 +1779,12 @@
     "id": "lighthouse-ci",
     "path": "skills/lighthouse-ci",
     "name": "Lighthouse Ci",
+    "description": ">"
+  },
+  {
+    "id": "linkedin-optimization",
+    "path": "skills/linkedin-optimization",
+    "name": "Linkedin Optimization",
     "description": ">"
   },
   {
@@ -930,10 +1824,64 @@
     "description": ">"
   },
   {
+    "id": "maturity-assessment",
+    "path": "skills/maturity-assessment",
+    "name": "Maturity Assessment",
+    "description": "[EXPLICIT]"
+  },
+  {
+    "id": "mcp-creator",
+    "path": "skills/mcp-creator",
+    "name": "Mcp Creator",
+    "description": "[EXPLICIT]"
+  },
+  {
+    "id": "meeting-notes",
+    "path": "skills/meeting-notes",
+    "name": "Meeting Notes",
+    "description": ">"
+  },
+  {
     "id": "mermaid-diagramming",
     "path": "skills/mermaid-diagramming",
     "name": "Mermaid Diagramming",
-    "description": ">"
+    "description": "Generates syntactically valid, semantically precise Mermaid diagrams for discovery deliverables. Every diagram earns its place — no decorative visuals. Each diagram must compress complexity into clari"
+  },
+  {
+    "id": "meta-orchestration-updater",
+    "path": "skills/meta-orchestration-updater",
+    "name": "Meta Orchestration Updater",
+    "description": "Auto-updates orchestration state. Syncs context.json, score-history.json, skills_index.json. Triggers dashboard regeneration. [EXPLICIT]"
+  },
+  {
+    "id": "meta-skill-creator",
+    "path": "skills/meta-skill-creator",
+    "name": "Meta Skill Creator",
+    "description": "Create new 10x skills using the skill-forge protocol. Loads reference sub-repo, applies Trinity (Alfa-Atoms-Beta), validates with 10/10 rubric. [EXPLICIT]"
+  },
+  {
+    "id": "meta-skill-deployer",
+    "path": "skills/meta-skill-deployer",
+    "name": "Meta Skill Deployer",
+    "description": "Auto-deploy skills to a target project. Copies skill directories, updates project CLAUDE.md, registers in skills_index.json. [EXPLICIT]"
+  },
+  {
+    "id": "meta-skill-indexer",
+    "path": "skills/meta-skill-indexer",
+    "name": "Meta Skill Indexer",
+    "description": "Regenerates skills_index.json by scanning all SKILL.md files. Extracts frontmatter metadata for BM25 search. [EXPLICIT]"
+  },
+  {
+    "id": "meta-skill-reviewer",
+    "path": "skills/meta-skill-reviewer",
+    "name": "Meta Skill Reviewer",
+    "description": "Audit existing skills against the 10x rubric. Checks structural integrity, cognitive density, operational safety. Produces score report. [EXPLICIT]"
+  },
+  {
+    "id": "meta-skill-searcher",
+    "path": "skills/meta-skill-searcher",
+    "name": "Meta Skill Searcher",
+    "description": "BM25 search over the skills catalog. Finds relevant skills by keyword, domain, or capability. Uses skills_index.json. [EXPLICIT]"
   },
   {
     "id": "metrics-instrumentation",
@@ -960,6 +1908,18 @@
     "description": ">"
   },
   {
+    "id": "mobile-architecture",
+    "path": "skills/mobile-architecture",
+    "name": "Mobile Architecture",
+    "description": "Mobile architecture defines how mobile applications are structured, how they communicate with backends, handle offline scenarios, manage state, and reach users through app stores. This skill produces"
+  },
+  {
+    "id": "mobile-assessment",
+    "path": "skills/mobile-assessment",
+    "name": "Mobile Assessment",
+    "description": "Mobile assessment evaluates an existing mobile application across six dimensions: runtime health, dependency security, platform compliance, code quality, user experience metrics, and remediation plann"
+  },
+  {
     "id": "mobile-patterns",
     "path": "skills/mobile-patterns",
     "name": "Mobile Patterns",
@@ -970,6 +1930,12 @@
     "path": "skills/modal-dialog-patterns",
     "name": "Modal Dialog Patterns",
     "description": ">"
+  },
+  {
+    "id": "monitoring-alerting",
+    "path": "skills/monitoring-alerting",
+    "name": "Monitoring Alerting",
+    "description": "Firebase Crashlytics, Performance Monitoring, Cloud Logging, Cloud Monitoring alerts, and uptime checks"
   },
   {
     "id": "monitoring-setup",
@@ -990,6 +1956,12 @@
     "description": ">"
   },
   {
+    "id": "naming-and-slugging",
+    "path": "skills/naming-and-slugging",
+    "name": "Naming And Slugging",
+    "description": "Every artifact should be findable via search, safe for URLs and filesystems, and self-describing. [EXPLICIT]"
+  },
+  {
     "id": "navigation-patterns",
     "path": "skills/navigation-patterns",
     "name": "Navigation Patterns",
@@ -1000,6 +1972,12 @@
     "path": "skills/newsletter-design",
     "name": "Newsletter Design",
     "description": ">"
+  },
+  {
+    "id": "node-api-builder",
+    "path": "skills/node-api-builder",
+    "name": "Node Api Builder",
+    "description": "Node.js/Express API for Cloud Functions or Hostinger Node.js hosting. Middleware chain. Error handling. [EXPLICIT]"
   },
   {
     "id": "node-development",
@@ -1014,9 +1992,33 @@
     "description": ">"
   },
   {
+    "id": "notification-service",
+    "path": "skills/notification-service",
+    "name": "Notification Service",
+    "description": "FCM push notifications (topics, data messages). Email via SendGrid/Mailgun. In-app notifications via Firestore. [EXPLICIT]"
+  },
+  {
     "id": "notification-ux",
     "path": "skills/notification-ux",
     "name": "Notification Ux",
+    "description": ">"
+  },
+  {
+    "id": "oauth-social-login",
+    "path": "skills/oauth-social-login",
+    "name": "Oauth Social Login",
+    "description": "Google Sign-In, Facebook Login, GitHub OAuth, Apple Sign-In. Provider linking. Account conflict handling. [EXPLICIT]"
+  },
+  {
+    "id": "observability",
+    "path": "skills/observability",
+    "name": "Observability",
+    "description": "Observability architecture enables teams to understand system behavior from external outputs — logs, traces, and metrics. The skill produces comprehensive observability strategies covering the three p"
+  },
+  {
+    "id": "office-workflow-runner",
+    "path": "skills/office-workflow-runner",
+    "name": "Office Workflow Runner",
     "description": ">"
   },
   {
@@ -1026,9 +2028,57 @@
     "description": ">"
   },
   {
+    "id": "onboarding-playbook",
+    "path": "skills/onboarding-playbook",
+    "name": "Onboarding Playbook",
+    "description": "[EXPLICIT]"
+  },
+  {
     "id": "onboarding-ux",
     "path": "skills/onboarding-ux",
     "name": "Onboarding Ux",
+    "description": ">"
+  },
+  {
+    "id": "open-claude-security",
+    "path": "skills/open-claude-security",
+    "name": "Open Claude Security",
+    "description": ">"
+  },
+  {
+    "id": "open-claw-builder",
+    "path": "skills/open-claw-builder",
+    "name": "Open Claw Builder",
+    "description": "Build tool-calling AI agents on open LLM stacks. \"Claw\" = Claude-like architecture patterns (loop → tool → security) applied to any function-calling LLM. [EXPLICIT]"
+  },
+  {
+    "id": "openclaw-isolation",
+    "path": "skills/openclaw-isolation",
+    "name": "Openclaw Isolation",
+    "description": ">"
+  },
+  {
+    "id": "openclaw-personal-deploy",
+    "path": "skills/openclaw-personal-deploy",
+    "name": "Openclaw Personal Deploy",
+    "description": ">"
+  },
+  {
+    "id": "openclaw-tool-auth",
+    "path": "skills/openclaw-tool-auth",
+    "name": "Openclaw Tool Auth",
+    "description": ">"
+  },
+  {
+    "id": "output-contract-enforcer",
+    "path": "skills/output-contract-enforcer",
+    "name": "Output Contract Enforcer",
+    "description": "Validates that every skill output matches its declared contract (format, completeness, evidence tags). Rejects non-conformant outputs. [EXPLICIT]"
+  },
+  {
+    "id": "output-engineering",
+    "path": "skills/output-engineering",
+    "name": "Output Engineering",
     "description": ">"
   },
   {
@@ -1050,10 +2100,22 @@
     "description": ">"
   },
   {
+    "id": "penetration-testing-guide",
+    "path": "skills/penetration-testing-guide",
+    "name": "Penetration Testing Guide",
+    "description": "OWASP Top 10 checklist for Firebase apps. Firestore rules audit. Auth flow testing. Functions input validation. [EXPLICIT]"
+  },
+  {
     "id": "performance-architecture",
     "path": "skills/performance-architecture",
     "name": "Performance Architecture",
     "description": ">"
+  },
+  {
+    "id": "performance-engineering",
+    "path": "skills/performance-engineering",
+    "name": "Performance Engineering",
+    "description": "Performance engineering ensures systems meet latency, throughput, and reliability targets under current and projected load. The skill produces actionable performance baselines, load testing strategies"
   },
   {
     "id": "performance-testing",
@@ -1068,10 +2130,52 @@
     "description": ">"
   },
   {
+    "id": "personal-branding",
+    "path": "skills/personal-branding",
+    "name": "Personal Branding",
+    "description": ">"
+  },
+  {
     "id": "pipeline-governance",
     "path": "skills/pipeline-governance",
     "name": "Pipeline Governance",
     "description": ">"
+  },
+  {
+    "id": "pitch-deck",
+    "path": "skills/pitch-deck",
+    "name": "Pitch Deck",
+    "description": ">"
+  },
+  {
+    "id": "plan-architecture",
+    "path": "skills/plan-architecture",
+    "name": "Plan Architecture",
+    "description": "Generate a complete architecture plan for a Claude Code plugin. Takes a plugin concept brief (from `ideate-plugin`) and produces a detailed technical plan covering agents, skills, hooks, commands, qua"
+  },
+  {
+    "id": "plan-moat-strategy",
+    "path": "skills/plan-moat-strategy",
+    "name": "Plan Moat Strategy",
+    "description": "Design the MOAT (Materials, Ontology, Assets, Templates) asset allocation for each skill in a plugin. Determines which subdirectories each skill needs, what content they should contain, naming convent"
+  },
+  {
+    "id": "plugin-builder",
+    "path": "skills/plugin-builder",
+    "name": "Plugin Builder",
+    "description": "Creates production-ready Claude Code plugins following the official plugin specification. [EXPLICIT]"
+  },
+  {
+    "id": "plugin-reload",
+    "path": "skills/plugin-reload",
+    "name": "Plugin Reload",
+    "description": "For the target plugin directory, verify:"
+  },
+  {
+    "id": "poc-lab",
+    "path": "skills/poc-lab",
+    "name": "Poc Lab",
+    "description": "[EXPLICIT]"
   },
   {
     "id": "podcast-prep",
@@ -1128,16 +2232,64 @@
     "description": ">"
   },
   {
+    "id": "privacy-compliance",
+    "path": "skills/privacy-compliance",
+    "name": "Privacy Compliance",
+    "description": "GDPR consent banner, data export, right to deletion. CCPA. Cookie policy. Firebase data deletion pipeline. [EXPLICIT]"
+  },
+  {
     "id": "product-roadmapping",
     "path": "skills/product-roadmapping",
     "name": "Product Roadmapping",
     "description": ">"
   },
   {
+    "id": "product-strategy",
+    "path": "skills/product-strategy",
+    "name": "Product Strategy",
+    "description": "Product vision and roadmap. Feature prioritization (MoSCoW/RICE). Value stream mapping. Google ecosystem positioning. [EXPLICIT]"
+  },
+  {
+    "id": "progress-tracker",
+    "path": "skills/progress-tracker",
+    "name": "Progress Tracker",
+    "description": ">"
+  },
+  {
+    "id": "project-charter",
+    "path": "skills/project-charter",
+    "name": "Project Charter",
+    "description": ">"
+  },
+  {
+    "id": "project-program-management",
+    "path": "skills/project-program-management",
+    "name": "Project Program Management",
+    "description": "Structural governance layer that manages the discovery pipeline as a formal program —"
+  },
+  {
+    "id": "prompt-creator",
+    "path": "skills/prompt-creator",
+    "name": "Prompt Creator",
+    "description": "[EXPLICIT]"
+  },
+  {
     "id": "prompt-engineering",
     "path": "skills/prompt-engineering",
     "name": "Prompt Engineering",
     "description": ">"
+  },
+  {
+    "id": "prompt-forge",
+    "path": "skills/prompt-forge",
+    "name": "Prompt Forge",
+    "description": "Turn vague assistant ideas into structured, high-performance system prompts — portable across Claude, GPT, and Gemini. [EXPLICIT]"
+  },
+  {
+    "id": "prompting-and-meta-prompting",
+    "path": "skills/prompting-and-meta-prompting",
+    "name": "Prompting And Meta Prompting",
+    "description": "Transform intentions into durable prompts, meta-prompts, acceptance criteria, and eval-ready prompt systems."
   },
   {
     "id": "proposal-writing",
@@ -1161,7 +2313,25 @@
     "id": "pwa-architecture",
     "path": "skills/pwa-architecture",
     "name": "Pwa Architecture",
-    "description": ">"
+    "description": "Progressive Web App design. Service workers, Web App Manifest, offline-first, push notifications via FCM. [EXPLICIT]"
+  },
+  {
+    "id": "quality-engineering",
+    "path": "skills/quality-engineering",
+    "name": "Quality Engineering",
+    "description": "Strategic quality engineering framework. Designs the system — QA teams execute it. For architects, engineering leads, and quality strategists who define *how* quality works. [EXPLICIT]"
+  },
+  {
+    "id": "quality-gatekeeper",
+    "path": "skills/quality-gatekeeper",
+    "name": "Quality Gatekeeper",
+    "description": "Validates deliverables at quality gates G0-G3. Blocks phase transitions until criteria are met. Produces pass/fail reports with evidence. [EXPLICIT]"
+  },
+  {
+    "id": "quality-metrics",
+    "path": "skills/quality-metrics",
+    "name": "Quality Metrics",
+    "description": "Code coverage, cyclomatic complexity, duplication, Lighthouse scores, bundle size, and Firestore read/write tracking"
   },
   {
     "id": "rag-patterns",
@@ -1182,6 +2352,12 @@
     "description": ">"
   },
   {
+    "id": "react-component-library",
+    "path": "skills/react-component-library",
+    "name": "React Component Library",
+    "description": "React component library with Storybook. TypeScript interfaces, Jest/Testing Library tests, compound components. [EXPLICIT]"
+  },
+  {
     "id": "react-development",
     "path": "skills/react-development",
     "name": "React Development",
@@ -1200,9 +2376,27 @@
     "description": ">"
   },
   {
+    "id": "realtime-database",
+    "path": "skills/realtime-database",
+    "name": "Realtime Database",
+    "description": "Firebase RTDB JSON tree. Listeners (on/once). Presence detection. Fan-out writes. Priority/ordering. [EXPLICIT]"
+  },
+  {
     "id": "recaptcha-integration",
     "path": "skills/recaptcha-integration",
     "name": "Recaptcha Integration",
+    "description": ">"
+  },
+  {
+    "id": "release-strategy",
+    "path": "skills/release-strategy",
+    "name": "Release Strategy",
+    "description": "Semantic versioning, conventional commits, auto-changelog, feature flags via Remote Config, and rollback strategy"
+  },
+  {
+    "id": "rendering-engine",
+    "path": "skills/rendering-engine",
+    "name": "Rendering Engine",
     "description": ">"
   },
   {
@@ -1230,6 +2424,12 @@
     "description": ">"
   },
   {
+    "id": "responsive-design-system",
+    "path": "skills/responsive-design-system",
+    "name": "Responsive Design System",
+    "description": "Design token system. CSS custom properties, breakpoints, grid, typography scale, theming. [EXPLICIT]"
+  },
+  {
     "id": "rest-api-development",
     "path": "skills/rest-api-development",
     "name": "Rest Api Development",
@@ -1245,7 +2445,25 @@
     "id": "risk-assessment",
     "path": "skills/risk-assessment",
     "name": "Risk Assessment",
-    "description": ">"
+    "description": "Risk identification across 7 categories (technical, operational, security, scalability, data, team, timeline). Severity x likelihood. [EXPLICIT]"
+  },
+  {
+    "id": "risk-controlling-dynamics",
+    "path": "skills/risk-controlling-dynamics",
+    "name": "Risk Controlling Dynamics",
+    "description": "Proactive risk management and financial controlling layer that operates with the mindset"
+  },
+  {
+    "id": "roadmap-poc",
+    "path": "skills/roadmap-poc",
+    "name": "Roadmap Poc",
+    "description": "Generates 4-8 week execution roadmaps with sprint-level planning, prerequisite validation, measurable go/no-go gate criteria, team composition, budget ranges, and risk registers. [EXPLICIT]"
+  },
+  {
+    "id": "role-based-access",
+    "path": "skills/role-based-access",
+    "name": "Role Based Access",
+    "description": "RBAC via custom claims. Admin SDK setCustomUserClaims. Firestore rules request.auth.token. Role hierarchy design. [EXPLICIT]"
   },
   {
     "id": "rollback-strategy",
@@ -1254,16 +2472,58 @@
     "description": ">"
   },
   {
+    "id": "rule-forge",
+    "path": "skills/rule-forge",
+    "name": "Rule Forge",
+    "description": "Rules are binary: Pass or Fail. No \"try to avoid\", no subjective judgment. If you can't express it as Pass/Fail, it's a guideline, not a rule. [EXPLICIT]"
+  },
+  {
+    "id": "runtime-routing",
+    "path": "skills/runtime-routing",
+    "name": "Runtime Routing",
+    "description": "Route agentic work across Claude, Codex, Gemini, Antigravity, VS Code, and local adapters with explicit validation limits."
+  },
+  {
+    "id": "safe-scripting-and-bash",
+    "path": "skills/safe-scripting-and-bash",
+    "name": "Safe Scripting And Bash",
+    "description": "Design and review safe, portable, dry-run-first scripts for local agentic development workflows."
+  },
+  {
     "id": "sales-collateral",
     "path": "skills/sales-collateral",
     "name": "Sales Collateral",
     "description": ">"
   },
   {
+    "id": "sales-tracker",
+    "path": "skills/sales-tracker",
+    "name": "Sales Tracker",
+    "description": ">"
+  },
+  {
+    "id": "scaffold-angular-app",
+    "path": "skills/scaffold-angular-app",
+    "name": "Scaffold Angular App",
+    "description": "Angular 18+ with AngularFire. Standalone components, signals, guards, services, interceptors, lazy routes. [EXPLICIT]"
+  },
+  {
+    "id": "scaffold-html-css",
+    "path": "skills/scaffold-html-css",
+    "name": "Scaffold Html Css",
+    "description": "Production HTML5/CSS3/JS project scaffold. Semantic structure, responsive grid, design tokens, Hostinger-ready deployment. [EXPLICIT]"
+  },
+  {
+    "id": "scaffold-react-app",
+    "path": "skills/scaffold-react-app",
+    "name": "Scaffold React App",
+    "description": "React 19+ project with Firebase integration. Routing (React Router v7), Auth context, Firestore hooks, TypeScript. [EXPLICIT]"
+  },
+  {
     "id": "scenario-analysis",
     "path": "skills/scenario-analysis",
     "name": "Scenario Analysis",
-    "description": ">"
+    "description": "Evaluate 3+ implementation scenarios. Weighted criteria matrix. Risk/reward. Firebase/Google stack constrained. [EXPLICIT]"
   },
   {
     "id": "scheduled-functions",
@@ -1278,15 +2538,39 @@
     "description": ">"
   },
   {
+    "id": "scope-guard",
+    "path": "skills/scope-guard",
+    "name": "Scope Guard",
+    "description": "Stack constraint enforcer. Blocks AWS, Azure, Docker, K8s references and redirects to Firebase/Google/Hostinger equivalents. [EXPLICIT]"
+  },
+  {
     "id": "scroll-interaction",
     "path": "skills/scroll-interaction",
     "name": "Scroll Interaction",
     "description": ">"
   },
   {
+    "id": "search-implementation",
+    "path": "skills/search-implementation",
+    "name": "Search Implementation",
+    "description": "Algolia/Typesense/Meilisearch integration. Firestore to search index sync via Cloud Functions. Faceted search. Autocomplete. [EXPLICIT]"
+  },
+  {
     "id": "search-ux",
     "path": "skills/search-ux",
     "name": "Search Ux",
+    "description": ">"
+  },
+  {
+    "id": "secrets-management",
+    "path": "skills/secrets-management",
+    "name": "Secrets Management",
+    "description": "Firebase environment config. Google Secret Manager. .env files (.gitignore). Runtime configuration. Key rotation. [EXPLICIT]"
+  },
+  {
+    "id": "secrets-sanitization",
+    "path": "skills/secrets-sanitization",
+    "name": "Secrets Sanitization",
     "description": ">"
   },
   {
@@ -1299,7 +2583,7 @@
     "id": "security-architecture",
     "path": "skills/security-architecture",
     "name": "Security Architecture",
-    "description": ">"
+    "description": "Security architecture defines how systems protect data, verify identity, enforce access, and maintain compliance across the entire technology stack. The skill produces comprehensive security designs c"
   },
   {
     "id": "security-testing",
@@ -1320,16 +2604,34 @@
     "description": ">"
   },
   {
+    "id": "seo-technical",
+    "path": "skills/seo-technical",
+    "name": "Seo Technical",
+    "description": "JSON-LD structured data, sitemap.xml, robots.txt, Open Graph tags, canonical URLs, and Firebase Hosting SEO headers"
+  },
+  {
+    "id": "server-middleware",
+    "path": "skills/server-middleware",
+    "name": "Server Middleware",
+    "description": "Auth verification (verifyIdToken), rate limiting, CORS config, request logging, input sanitization middleware. [EXPLICIT]"
+  },
+  {
     "id": "serverless-patterns",
     "path": "skills/serverless-patterns",
     "name": "Serverless Patterns",
-    "description": ">"
+    "description": "Fan-out (Firestore trigger to multiple ops). Saga (compensating transactions). Event sourcing with Firestore. [EXPLICIT]"
   },
   {
     "id": "session-end-cleanup",
     "path": "skills/session-end-cleanup",
     "name": "Session End Cleanup",
     "description": ">"
+  },
+  {
+    "id": "session-manager",
+    "path": "skills/session-manager",
+    "name": "Session Manager",
+    "description": "Manages session state, pipeline progress, and cold-start priming. Reads/writes .specify/context.json to track feature stages and artifact completion. [EXPLICIT]"
   },
   {
     "id": "session-protocol",
@@ -1344,15 +2646,33 @@
     "description": ">"
   },
   {
+    "id": "skill-forge",
+    "path": "skills/skill-forge",
+    "name": "Skill Forge",
+    "description": "The Meta-Cognitive Architect. Creates new 10x skills following the MOAT pattern with reference sub-repo, self-evaluation rubric, and knowledge graph. [EXPLICIT]"
+  },
+  {
     "id": "skill-search",
     "path": "skills/skill-search",
     "name": "Skill Search",
     "description": ">"
   },
   {
+    "id": "skill-spec-creator",
+    "path": "skills/skill-spec-creator",
+    "name": "Skill Spec Creator",
+    "description": "[EXPLICIT]"
+  },
+  {
     "id": "sla-definition",
     "path": "skills/sla-definition",
     "name": "Sla Definition",
+    "description": ">"
+  },
+  {
+    "id": "social-media-strategy",
+    "path": "skills/social-media-strategy",
+    "name": "Social Media Strategy",
     "description": ">"
   },
   {
@@ -1365,6 +2685,72 @@
     "id": "socratic-debate",
     "path": "skills/socratic-debate",
     "name": "Socratic Debate",
+    "description": ">"
+  },
+  {
+    "id": "sofka-bpmn-process-analysis",
+    "path": "skills/sofka-bpmn-process-analysis",
+    "name": "Sofka Bpmn Process Analysis",
+    "description": "Model, analyze, and improve business processes using BPMN 2.0 notation. Delivers AS-IS documentation with pain points, TO-BE design with automation opportunities, process maturity scoring, automation"
+  },
+  {
+    "id": "sofka-regional-finance",
+    "path": "skills/sofka-regional-finance",
+    "name": "Sofka Regional Finance",
+    "description": "Provide financial regulatory guidance for IT services companies operating across Colombia, Ecuador, Mexico, United States, and Spain. Covers accounting standards (NIIF/IFRS, US GAAP), tax compliance,"
+  },
+  {
+    "id": "sofka-sap-implementation",
+    "path": "skills/sofka-sap-implementation",
+    "name": "Sofka Sap Implementation",
+    "description": "Guide SAP S/4HANA Public Cloud implementations for IT services companies. Covers module configuration, SAP Activate methodology, fit-to-standard workshops, multi-country localization, intercompany bil"
+  },
+  {
+    "id": "software-architecture",
+    "path": "skills/software-architecture",
+    "name": "Software Architecture",
+    "description": "Software architecture defines how code is organized internally — module boundaries, layer separation, dependency direction, design patterns, and the reasoning behind technical decisions. This skill pr"
+  },
+  {
+    "id": "software-viability",
+    "path": "skills/software-viability",
+    "name": "Software Viability",
+    "description": "Forensic validation of whether proposed software solutions, technology choices, and AI/ML"
+  },
+  {
+    "id": "solution-roadmap",
+    "path": "skills/solution-roadmap",
+    "name": "Solution Roadmap",
+    "description": "Defines the complete transformation plan AFTER scenario approval but BEFORE PoC validation. Covers transformation vision, phased execution (Foundation > Build > Integrate > Optimize > Scale), investme"
+  },
+  {
+    "id": "solutions-architecture",
+    "path": "skills/solutions-architecture",
+    "name": "Solutions Architecture",
+    "description": "Solutions architecture designs the complete system that solves a business problem — how multiple systems connect, how users interact, how data flows, how security is enforced, and how the solution is"
+  },
+  {
+    "id": "spa-routing",
+    "path": "skills/spa-routing",
+    "name": "Spa Routing",
+    "description": "Client-side routing for React Router v7 or Angular Router. Firebase Hosting rewrites for SPA. Route guards, lazy loading. [EXPLICIT]"
+  },
+  {
+    "id": "spec-agent-command",
+    "path": "skills/spec-agent-command",
+    "name": "Spec Agent Command",
+    "description": "Generates production-ready agent markdown files and command markdown files (canonical + alias pairs) from design documents. Enforces plugin subagent constraints: no `hooks`, `mcpServers`, or `permissi"
+  },
+  {
+    "id": "spec-skill-moat",
+    "path": "skills/spec-skill-moat",
+    "name": "Spec Skill Moat",
+    "description": "Generates production-ready SKILL.md files and all associated MOAT asset files (references/, examples/, prompts/) from a skill design document. Every output is scored against the MOAT 6-dimension rubri"
+  },
+  {
+    "id": "sprint-report",
+    "path": "skills/sprint-report",
+    "name": "Sprint Report",
     "description": ">"
   },
   {
@@ -1383,7 +2769,7 @@
     "id": "stakeholder-mapping",
     "path": "skills/stakeholder-mapping",
     "name": "Stakeholder Mapping",
-    "description": ">"
+    "description": "Influence/interest matrix. RACI matrix. Communication plan. Power/interest grid. Stakeholder registry. [EXPLICIT]"
   },
   {
     "id": "state-management",
@@ -1392,10 +2778,28 @@
     "description": ">"
   },
   {
+    "id": "state-management-design",
+    "path": "skills/state-management-design",
+    "name": "State Management Design",
+    "description": "Client-side state architecture. Redux/NgRx/Zustand/Context patterns adapted for Firebase real-time listeners and offline persistence. [EXPLICIT]"
+  },
+  {
+    "id": "step-creator",
+    "path": "skills/step-creator",
+    "name": "Step Creator",
+    "description": "Generate workflow steps with all 12 mandatory fields. Invoked by `workflow-creator` and `skill-spec-creator`, not directly by users."
+  },
+  {
     "id": "stop-validator",
     "path": "skills/stop-validator",
     "name": "Stop Validator",
     "description": ">"
+  },
+  {
+    "id": "storytelling",
+    "path": "skills/storytelling",
+    "name": "Storytelling",
+    "description": "Designs the narrative architecture that transforms raw analysis into compelling transformation stories. Owns story arcs across deliverables, scenario narratives, risk stories, and evidence-based trans"
   },
   {
     "id": "structured-output",
@@ -1410,9 +2814,21 @@
     "description": ">"
   },
   {
+    "id": "surgeon-skill",
+    "path": "skills/surgeon-skill",
+    "name": "Surgeon Skill",
+    "description": "Precision improvements for Claude Code skills. Identifies fixes prioritized by impact, applies each with snapshot verification, and produces a changelog — so domain content is never lost and every cha"
+  },
+  {
     "id": "survey-design",
     "path": "skills/survey-design",
     "name": "Survey Design",
+    "description": ">"
+  },
+  {
+    "id": "swot-analysis",
+    "path": "skills/swot-analysis",
+    "name": "Swot Analysis",
     "description": ">"
   },
   {
@@ -1420,6 +2836,12 @@
     "path": "skills/system-architecture",
     "name": "System Architecture",
     "description": ">"
+  },
+  {
+    "id": "system-design",
+    "path": "skills/system-design",
+    "name": "System Design",
+    "description": "End-to-end system design. Frontend + Firebase backend + Google APIs + third-party integrations. Sequence diagrams. Deployment topology. [EXPLICIT]"
   },
   {
     "id": "table-ux",
@@ -1434,6 +2856,12 @@
     "description": ">"
   },
   {
+    "id": "task-engine",
+    "path": "skills/task-engine",
+    "name": "Task Engine",
+    "description": "Decompose, solve with confidence, verify, synthesize, and reflect — until the answer earns its confidence score. [EXPLICIT]"
+  },
+  {
     "id": "tasklog-management",
     "path": "skills/tasklog-management",
     "name": "Tasklog Management",
@@ -1443,7 +2871,25 @@
     "id": "team-topology",
     "path": "skills/team-topology",
     "name": "Team Topology",
-    "description": ">"
+    "description": "Team topology designs organizational structures that optimize for fast flow of change while managing cognitive load. The skill produces team topology maps, interaction matrices, and evolution plans ba"
+  },
+  {
+    "id": "technical-documentation",
+    "path": "skills/technical-documentation",
+    "name": "Technical Documentation",
+    "description": "README generation, API endpoint docs from Cloud Functions, ADR templates, ops runbooks, and developer onboarding guides"
+  },
+  {
+    "id": "technical-feasibility",
+    "path": "skills/technical-feasibility",
+    "name": "Technical Feasibility",
+    "description": "7-dimension feasibility within Firebase/Google/Hostinger. Score 1-5 per dimension. Evidence-tagged findings. [EXPLICIT]"
+  },
+  {
+    "id": "technical-writing",
+    "path": "skills/technical-writing",
+    "name": "Technical Writing",
+    "description": "Ensures technical deliverables are precise, reproducible, and progressively disclosed. Owns terminology consistency, evidence attribution, structural patterns, and anti-pattern enforcement across all"
   },
   {
     "id": "technical-writing-patterns",
@@ -1452,10 +2898,28 @@
     "description": ">"
   },
   {
+    "id": "test-data-factory",
+    "path": "skills/test-data-factory",
+    "name": "Test Data Factory",
+    "description": "Firestore seed scripts, mock data generators, fixture files, and factory pattern for test entities"
+  },
+  {
     "id": "test-strategy",
     "path": "skills/test-strategy",
     "name": "Test Strategy",
     "description": ">"
+  },
+  {
+    "id": "testimonial-collector",
+    "path": "skills/testimonial-collector",
+    "name": "Testimonial Collector",
+    "description": ">"
+  },
+  {
+    "id": "testing-strategy",
+    "path": "skills/testing-strategy",
+    "name": "Testing Strategy",
+    "description": "Testing strategy defines how quality is verified, automated, and measured across the software delivery lifecycle. The skill produces comprehensive test architectures covering shape selection, automati"
   },
   {
     "id": "trade-off-analysis",
@@ -1476,6 +2940,12 @@
     "description": ">"
   },
   {
+    "id": "trigger-skill",
+    "path": "skills/trigger-skill",
+    "name": "Trigger Skill",
+    "description": "Optimize the single most important line in any skill: the frontmatter description. A perfect skill with a bad description never fires. A mediocre skill with a great description fires reliably and impr"
+  },
+  {
     "id": "typescript-patterns",
     "path": "skills/typescript-patterns",
     "name": "Typescript Patterns",
@@ -1488,10 +2958,16 @@
     "description": ">"
   },
   {
+    "id": "ui-kit-builder",
+    "path": "skills/ui-kit-builder",
+    "name": "Ui Kit Builder",
+    "description": "Design-token-driven UI kit. Button, Card, Modal, Table, Nav, Badge, Toast components. Theme switching support. [EXPLICIT]"
+  },
+  {
     "id": "unit-testing",
     "path": "skills/unit-testing",
     "name": "Unit Testing",
-    "description": ">"
+    "description": "Jest/Vitest unit testing with Firebase emulator mocking, TDD workflow, and 80%+ coverage enforcement"
   },
   {
     "id": "user-prompt-filter",
@@ -1500,15 +2976,69 @@
     "description": ">"
   },
   {
+    "id": "user-representative",
+    "path": "skills/user-representative",
+    "name": "User Representative",
+    "description": "Represents the end user and business reader. Evaluates every deliverable for: comprehension, cognitive load, accessibility, adoption risk, and bias. Proposes specific micro-adjustments to copy and str"
+  },
+  {
     "id": "user-research",
     "path": "skills/user-research",
     "name": "User Research",
     "description": ">"
   },
   {
+    "id": "user-story-writer",
+    "path": "skills/user-story-writer",
+    "name": "User Story Writer",
+    "description": "Transform requirements into user stories. As a role, I want capability, so that benefit. Given/When/Then acceptance criteria. [EXPLICIT]"
+  },
+  {
     "id": "user-testing",
     "path": "skills/user-testing",
     "name": "User Testing",
+    "description": ">"
+  },
+  {
+    "id": "ux-writing",
+    "path": "skills/ux-writing",
+    "name": "Ux Writing",
+    "description": "Ensures deliverables are business-readable, scannable, and cognitively accessible. Provides 5 standards: information hierarchy, cognitive load reduction, scannability, microcopy, and readability heuri"
+  },
+  {
+    "id": "validate-components",
+    "path": "skills/validate-components",
+    "name": "Validate Components",
+    "description": "Validates frontmatter and body structure of all skills, agents, and commands in a plugin. Triggers: validate components, check frontmatter, component audit, skill validation."
+  },
+  {
+    "id": "validate-cross-refs",
+    "path": "skills/validate-cross-refs",
+    "name": "Validate Cross Refs",
+    "description": "Validates cross-reference integrity across all plugin components. Detects broken references, orphaned skills, missing aliases, and settings.json inconsistencies. Triggers: validate cross-refs, check references, dependency audit, orphan detection."
+  },
+  {
+    "id": "validate-hooks",
+    "path": "skills/validate-hooks",
+    "name": "Validate Hooks",
+    "description": "THE CRITICAL SKILL -- validates hooks.json structure, event names, and type-event compatibility. Detects prompt/agent hooks on events lacking ToolUseContext. Triggers: validate hooks, check hooks.json, hooks audit, hook safety check."
+  },
+  {
+    "id": "validate-manifest",
+    "path": "skills/validate-manifest",
+    "name": "Validate Manifest",
+    "description": "Validates plugin.json completeness, field correctness, and consistency with actual plugin contents. Triggers: validate manifest, check plugin.json, manifest audit."
+  },
+  {
+    "id": "validate-structure",
+    "path": "skills/validate-structure",
+    "name": "Validate Structure",
+    "description": "Validates plugin directory layout against the official Claude Code plugin spec. Triggers: validate structure, check layout, directory audit, plugin skeleton check."
+  },
+  {
+    "id": "value-proposition",
+    "path": "skills/value-proposition",
+    "name": "Value Proposition",
     "description": ">"
   },
   {
@@ -1536,6 +3066,12 @@
     "description": ">"
   },
   {
+    "id": "visual-regression-testing",
+    "path": "skills/visual-regression-testing",
+    "name": "Visual Regression Testing",
+    "description": "Percy/Chromatic visual regression with screenshot comparison, component visual tests, and responsive breakpoints"
+  },
+  {
     "id": "voice-interface",
     "path": "skills/voice-interface",
     "name": "Voice Interface",
@@ -1546,6 +3082,24 @@
     "path": "skills/web-components",
     "name": "Web Components",
     "description": ">"
+  },
+  {
+    "id": "web-performance",
+    "path": "skills/web-performance",
+    "name": "Web Performance",
+    "description": "Core Web Vitals optimization (LCP, INP, CLS), Lighthouse CI, performance budgets, and critical CSS extraction"
+  },
+  {
+    "id": "web-security-implementation",
+    "path": "skills/web-security-implementation",
+    "name": "Web Security Implementation",
+    "description": "OWASP Top 10 mitigations. CSP headers. XSS prevention (DOMPurify). CSRF tokens. Clickjacking protection. [EXPLICIT]"
+  },
+  {
+    "id": "webhook-handler",
+    "path": "skills/webhook-handler",
+    "name": "Webhook Handler",
+    "description": "Webhook receiver/sender patterns. Signature verification (Stripe, GitHub). Idempotency keys. Response formatting. [EXPLICIT]"
   },
   {
     "id": "webhook-handling",
@@ -1560,6 +3114,18 @@
     "description": ">"
   },
   {
+    "id": "workflow-creator",
+    "path": "skills/workflow-creator",
+    "name": "Workflow Creator",
+    "description": "Generate complete workflow definitions — sequential step-by-step operational procedures for agent skills. Each workflow has 17 fields including steps (12 fields each), RACI, KPIs, and failure routes."
+  },
+  {
+    "id": "workflow-forge",
+    "path": "skills/workflow-forge",
+    "name": "Workflow Forge",
+    "description": "Creates new workflows (slash commands) following the Antigravity format with phases, agent coordination, and verification checkpoints. [EXPLICIT]"
+  },
+  {
     "id": "workflow-orchestration",
     "path": "skills/workflow-orchestration",
     "name": "Workflow Orchestration",
@@ -1572,6 +3138,12 @@
     "description": ">"
   },
   {
+    "id": "workshop-facilitator",
+    "path": "skills/workshop-facilitator",
+    "name": "Workshop Facilitator",
+    "description": "Workshop facilitation designs and runs structured collaborative sessions to extract knowledge, align stakeholders, and produce actionable artifacts. Covers technique selection, session design, facilit"
+  },
+  {
     "id": "workshop-proposal",
     "path": "skills/workshop-proposal",
     "name": "Workshop Proposal",
@@ -1582,5 +3154,23 @@
     "path": "skills/workspace-governance",
     "name": "Workspace Governance",
     "description": ">"
+  },
+  {
+    "id": "workspace-setup",
+    "path": "skills/workspace-setup",
+    "name": "Workspace Setup",
+    "description": "Safe local workspace profile setup with runtime preferences, command policy, privacy boundaries, and quality checklist."
+  },
+  {
+    "id": "x-ray-skill",
+    "path": "skills/x-ray-skill",
+    "name": "X Ray Skill",
+    "description": "Diagnostic scan for Claude Code skills. Reads every file, scores against the gold standard, and produces a prioritized gap analysis — so you know exactly what to fix and in what order. [EXPLICIT]"
+  },
+  {
+    "id": "xlsx-template-creator",
+    "path": "skills/xlsx-template-creator",
+    "name": "Xlsx Template Creator",
+    "description": "[EXPLICIT]"
   }
 ]

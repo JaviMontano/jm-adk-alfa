@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "first-use-onboarding",
+  "nodes": [
+    {
+      "id": "first-use-onboarding",
+      "type": "skill",
+      "label": "first-use-onboarding"
+    },
+    {
+      "id": "first-use-onboarding:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "first-use-onboarding:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "first-use-onboarding:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "first-use-onboarding",
+      "to": "first-use-onboarding:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "first-use-onboarding",
+      "to": "first-use-onboarding:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "first-use-onboarding",
+      "to": "first-use-onboarding:quality",
+      "type": "validated_by"
+    }
+  ]
+}

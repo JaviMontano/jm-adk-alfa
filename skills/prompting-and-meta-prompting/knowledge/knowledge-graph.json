@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "prompting-and-meta-prompting",
+  "nodes": [
+    {
+      "id": "prompting-and-meta-prompting",
+      "type": "skill",
+      "label": "prompting-and-meta-prompting"
+    },
+    {
+      "id": "prompting-and-meta-prompting:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "prompting-and-meta-prompting:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "prompting-and-meta-prompting:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "prompting-and-meta-prompting",
+      "to": "prompting-and-meta-prompting:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "prompting-and-meta-prompting",
+      "to": "prompting-and-meta-prompting:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "prompting-and-meta-prompting",
+      "to": "prompting-and-meta-prompting:quality",
+      "type": "validated_by"
+    }
+  ]
+}

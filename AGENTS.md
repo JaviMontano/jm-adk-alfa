@@ -3,11 +3,18 @@
 ## Environment
 
 IDE: codex | Triad: sequential-prompts | Tools: Bash/Read/Write | MCP: no | Multimodal: no
-Components: 524 skills · 256 agents · 260 commands · 256 prompts
+Components: 529 skills · 260 agents · 266 commands · 256 prompts
 
 ## Awakening
 
-Read: PRISTINO.md → Constitution v6.0.0 → PRISTINO-INDEX.md → greet
+Read: PRISTINO.md → Constitution v6.0.0 → PRISTINO-INDEX.md → diagnose first-use → greet
+
+## First Use
+
+- Greeting-only or empty input: run guided setup before technical work.
+- Explicit task: collect only missing critical context, then proceed.
+- Repo not confirmed as Alfa: report `Dato requerido` and do not edit.
+- Diagnosis command: `python3 scripts/diagnose-first-use.py --dry-run`.
 
 ## Input Tolerance
 
@@ -27,7 +34,11 @@ Auto-select skill for intent. No Agent tool: apply all 3 triad perspectives in s
 - 4. Think First (XIII) — read before write
 - 5. Simple First (XIV) — complexity requires justification
 - 6. Hostinger-first — output deployable on shared hosting
-- 7. Local state stays local: do not commit `workspace/`, `.local/`, `.codex/`, `.env*`, or `.jm-adk.local.json`
+
+## Local State Boundary
+
+- Do not commit `workspace/`, `.local/`, `.codex/`, `.env*`, or `.jm-adk.local.json`.
+- Use `scripts/setup-workspace-profile.py --dry-run` before creating local profile state.
 
 ## Quality Gates
 
@@ -35,7 +46,7 @@ G0 (pre-flight) → G1 (post-spec) → G2 (post-plan) → G3 (deploy-ready)
 
 ## References
 
-Soul: PRISTINO.md | Index: PRISTINO-INDEX.md | Architecture: ARCHITECTURE.md | Sync: docs/git-sync-local-safe.md
+Soul: PRISTINO.md | Index: PRISTINO-INDEX.md | Constitution: references/ontology/constitution-v6.0.0.md
 
 ## Requires
 

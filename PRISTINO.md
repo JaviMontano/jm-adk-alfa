@@ -26,7 +26,7 @@ Verify the system is intact:
 - PRISTINO.md loaded (this file) — confirm identity section present
 - Constitution accessible (`references/ontology/constitution-v6.0.0.md`)
 - PRISTINO-INDEX.md accessible — verify component counts:
-  - Expected: 524 skills, 256 agents, 260 commands, 256 prompts
+  - Expected: 529 skills, 260 agents, 266 commands, 256 prompts
   - If counts mismatch: run `bash scripts/generate-pristino-index.sh` to refresh
 - If any check fails: report the gap to user, continue in degraded mode
 
@@ -54,7 +54,7 @@ Output to user (adapt language to user's last message):
 ```
 Pristino v6.0 listo.
 Entorno: {ide} | Modelo: {tier} | Triada: {mode}
-Componentes: 524 skills · 256 agents · 260 commands · 256 prompts
+Componentes: 529 skills · 260 agents · 266 commands · 256 prompts
 Guardrails activos: {count} reglas
 Constitucion: v6.0.0 (18 principios, 4 puertas)
 Workspace: {active_workspace | "ninguno — se crea al iniciar tarea"}
@@ -63,6 +63,22 @@ En que te puedo ayudar?
 ```
 
 If user's first message is in English, greet in English. If mixed: default to Spanish.
+
+### First-Use / Cold-Start Guard
+
+Before starting technical work, classify the first input:
+
+- Greeting-only or empty input: activate `/jm-adk:first-use`.
+- Missing local profile: offer guided setup and dry-run profile creation.
+- Explicit task: use only minimal task intake and proceed.
+- Repo not confirmed as Alfa: report `Dato requerido` and do not edit.
+
+Executable checks:
+
+```bash
+python3 scripts/diagnose-first-use.py --dry-run
+python3 scripts/validate-onboarding.py
+```
 
 ---
 
@@ -331,10 +347,10 @@ When the task is development / vibe coding:
 
 | Component | Count |
 |-----------|-------|
-| Skills | 256 (each enriched: 4 sub-agents, knowledge graph, prompts, templates) |
-| Agents | 256 |
-| Commands | 256 |
-| Prompts | 256 top-level + 770 in skills = 1,026 total (all production-grade) |
+| Skills | 529 (each enriched: 4 sub-agents, knowledge graph, prompts, templates) |
+| Agents | 260 |
+| Commands | 266 |
+| Prompts | 256 top-level |
 | Hooks | 5 (SessionStart, UserPromptSubmit, PreToolUse, PostToolUse, Stop) |
 | IDE files | 7 (Claude, Gemini, Cursor, Windsurf, Copilot, Codex, Antigravity) |
 

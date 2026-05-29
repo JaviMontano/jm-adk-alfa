@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-28",
+  "skill": "safe-scripting-and-bash",
+  "nodes": [
+    {
+      "id": "safe-scripting-and-bash",
+      "type": "skill",
+      "label": "safe-scripting-and-bash"
+    },
+    {
+      "id": "safe-scripting-and-bash:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "safe-scripting-and-bash:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "safe-scripting-and-bash:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "safe-scripting-and-bash",
+      "to": "safe-scripting-and-bash:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "safe-scripting-and-bash",
+      "to": "safe-scripting-and-bash:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "safe-scripting-and-bash",
+      "to": "safe-scripting-and-bash:quality",
+      "type": "validated_by"
+    }
+  ]
+}

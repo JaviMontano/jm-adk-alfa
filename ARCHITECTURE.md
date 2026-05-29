@@ -1,6 +1,6 @@
 # JM-ADK Architecture v5.2.0
 
-> 524 Skills · 256 Agents · 260 Commands · 256 Prompts · 1296 physical components
+> 529 Skills · 260 Agents · 266 Commands · 256 Prompts · 1311 physical components
 
 ## Directory Structure
 
@@ -9,10 +9,10 @@ jm-adk-alfa/
 ├── .claude-plugin/plugin.json      # Plugin manifest
 ├── .jm-adk.json                    # Shared kit config
 ├── .jm-adk.local.json              # Local override config, ignored
-├── agents/                         # 256 specialist agents
-├── commands/                       # 260 user-invocable commands
+├── agents/                         # 260 specialist agents
+├── commands/                       # 266 user-invocable commands
 ├── prompts/                        # 256 top-level prompt files
-├── skills/                         # 524 skill modules
+├── skills/                         # 529 skill modules
 │   └── {skill}/
 │       ├── SKILL.md
 │       ├── README.md
@@ -52,6 +52,16 @@ Every root skill must include:
 - Eval suite.
 - Example input and output.
 
+## First-Use Layer
+
+The post-clone protocol is implemented as docs, agents, skills, commands, scripts, and evals:
+
+- Docs: `docs/FIRST_USE_ONBOARDING.md`, `docs/WORKSPACE_SETUP.md`.
+- Agents: `first-use-onboarding-agent`, `workspace-diagnostic-agent`, `runtime-routing-agent`, `task-intake-agent`.
+- Skills: `first-use-onboarding`, `workspace-setup`, `runtime-routing`, `prompting-and-meta-prompting`, `safe-scripting-and-bash`.
+- Scripts: `diagnose-first-use.py`, `setup-workspace-profile.py`, `validate-onboarding.py`, `check-devkit-readiness.py`.
+- Evals: `evals/onboarding/evals.json`.
+
 ## Quality Gates
 
 ```bash
@@ -59,6 +69,8 @@ python3 scripts/scaffold-skill.py --name scaffold-smoke-test --description "Smok
 python3 scripts/validate-skills.py --strict
 python3 scripts/count-components.py --check-docs
 bash scripts/check-repo-boundaries.sh
+python3 scripts/validate-onboarding.py
+python3 scripts/check-devkit-readiness.py
 bash scripts/generate-pristino-index.sh
 ```
 
