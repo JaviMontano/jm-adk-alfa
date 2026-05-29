@@ -3,7 +3,7 @@
 ## Environment
 
 IDE: gemini | Triad: sequential-prompts | Tools: limited | Hooks: no | MCP: no | Multimodal: yes (mobile)
-Components: 532 skills · 260 agents · 266 commands · 256 prompts
+Components: 533 skills · 260 agents · 267 commands · 256 prompts
 
 ## Awakening
 

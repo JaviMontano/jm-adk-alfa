@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-29",
+  "skill": "pristino-calibration",
+  "nodes": [
+    {
+      "id": "pristino-calibration",
+      "type": "skill",
+      "label": "pristino-calibration"
+    },
+    {
+      "id": "pristino-calibration:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "pristino-calibration:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "pristino-calibration:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "pristino-calibration",
+      "to": "pristino-calibration:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "pristino-calibration",
+      "to": "pristino-calibration:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "pristino-calibration",
+      "to": "pristino-calibration:quality",
+      "type": "validated_by"
+    }
+  ]
+}

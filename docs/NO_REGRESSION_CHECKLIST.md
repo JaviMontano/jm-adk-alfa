@@ -15,3 +15,7 @@
 - [ ] `validate-skills.py --strict` passes.
 - [ ] `count-components.py --check-docs` passes.
 - [ ] `check-repo-boundaries.sh` passes.
+- [ ] `validate-personas.py` passes (8 personas, exactly one default, all capability_agents exist).
+- [ ] `persona-calibrate.sh` is byte-stable for identical input and exits 0.
+- [ ] Persona registry, protocol doc, calibration skill, and command stay in sync.
+- [ ] Persona answers declare the persona on line 1 and honor mode flags (`!`, `MODO: SOLO_PROMPT`, `MODO: SOLO_RESPUESTA`).

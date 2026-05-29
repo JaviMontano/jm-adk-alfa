@@ -11,6 +11,11 @@
       "description": "Injection pattern detection (stderr) + workspace signal emission (stdout)"
     },
     {
+      "type": "UserPromptSubmit",
+      "command": "bash scripts/persona-calibrate.sh",
+      "description": "Deterministic persona auto-calibration + prompt-optimizer signals (stdout additionalContext)"
+    },
+    {
       "type": "PreToolUse",
       "command": "bash scripts/pre-tool-guard.sh",
       "description": "Block dangerous commands (rm -rf, git reset --hard, .env access) before execution"
