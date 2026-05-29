@@ -77,6 +77,11 @@ bash scripts/check-repo-boundaries.sh
 python3 scripts/qa/run-adversarial-tests.py
 ```
 
+**Definition of Done:** before opening a PR, walk through
+[`docs/NO_REGRESSION_CHECKLIST.md`](docs/NO_REGRESSION_CHECKLIST.md). All four
+gates above must exit `0` and every checklist item must hold. A change is not
+complete until the checklist passes — this is the deterministic acceptance gate.
+
 ### 5. Submit a Pull Request
 
 Push your branch and open a PR against `main`.
