@@ -7,7 +7,7 @@ IDE: antigravity | Triad: adapter-guided | Tools: limited | Hooks: no | MCP: no 
 ## Awakening
 
 Load: PRISTINO.md → Constitution v6.0.0 → skills_index.json → greet
-Components: 532 skills · 260 agents · 266 commands · 256 prompts
+Components: 533 skills · 260 agents · 267 commands · 256 prompts
 
 ## First Use
 

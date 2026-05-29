@@ -12,11 +12,11 @@ The authoritative counts come from `python3 scripts/count-components.py`.
 
 | Component | Count |
 |---|---:|
-| Skills | 532 |
+| Skills | 533 |
 | Agents | 260 |
-| Commands | 266 |
+| Commands | 267 |
 | Prompts | 256 |
-| Total physical components | 1314 |
+| Total physical components | 1316 |
 
 ## Install
 
