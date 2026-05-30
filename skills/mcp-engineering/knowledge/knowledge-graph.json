@@ -1,0 +1,145 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-30",
+  "skill": "mcp-engineering",
+  "nodes": [
+    {
+      "id": "mcp-engineering",
+      "type": "skill",
+      "label": "mcp-engineering"
+    },
+    {
+      "id": "mcp-engineering:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "mcp-engineering:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "mcp-engineering:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    },
+    {
+      "id": "mcp-engineering:server-scope",
+      "type": "concept",
+      "label": "Server scope (.mcp.json team vs ~/.claude.json user)"
+    },
+    {
+      "id": "mcp-engineering:env-var-expansion",
+      "type": "concept",
+      "label": "Env-var credential expansion (${ENV}, no literals)"
+    },
+    {
+      "id": "mcp-engineering:typed-error-contract",
+      "type": "concept",
+      "label": "Typed error contract (isError, errorCategory, isRetryable, retryAfterSeconds)"
+    },
+    {
+      "id": "mcp-engineering:client-side-retry",
+      "type": "concept",
+      "label": "Retry policy in client, not in model"
+    },
+    {
+      "id": "mcp-engineering:secret-remediation",
+      "type": "concept",
+      "label": "Secret leak remediation (rotate + git filter-repo)"
+    },
+    {
+      "id": "mcp-engineering:builtin-vs-mcp",
+      "type": "concept",
+      "label": "MCP only when no built-in tool applies"
+    },
+    {
+      "id": "mcp-engineering:literal-token-antipattern",
+      "type": "antipattern",
+      "label": "Literal token in versioned file / generic error string"
+    },
+    {
+      "id": "mcp-engineering:ontology",
+      "type": "ontology",
+      "label": "Domain: tool-design-mcp"
+    },
+    {
+      "id": "mcp-engineering:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "mcp-engineering:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
+    }
+  ],
+  "edges": [
+    {
+      "from": "mcp-engineering",
+      "to": "mcp-engineering:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "mcp-engineering",
+      "to": "mcp-engineering:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "mcp-engineering",
+      "to": "mcp-engineering:quality",
+      "type": "validated_by"
+    },
+    {
+      "from": "mcp-engineering",
+      "to": "mcp-engineering:server-scope",
+      "type": "applies"
+    },
+    {
+      "from": "mcp-engineering",
+      "to": "mcp-engineering:env-var-expansion",
+      "type": "applies"
+    },
+    {
+      "from": "mcp-engineering",
+      "to": "mcp-engineering:typed-error-contract",
+      "type": "applies"
+    },
+    {
+      "from": "mcp-engineering:typed-error-contract",
+      "to": "mcp-engineering:client-side-retry",
+      "type": "enables"
+    },
+    {
+      "from": "mcp-engineering:env-var-expansion",
+      "to": "mcp-engineering:secret-remediation",
+      "type": "fallback_of"
+    },
+    {
+      "from": "mcp-engineering",
+      "to": "mcp-engineering:builtin-vs-mcp",
+      "type": "applies"
+    },
+    {
+      "from": "mcp-engineering:literal-token-antipattern",
+      "to": "mcp-engineering:quality",
+      "type": "blocked_by"
+    },
+    {
+      "from": "mcp-engineering",
+      "to": "mcp-engineering:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "mcp-engineering",
+      "to": "mcp-engineering:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "mcp-engineering",
+      "to": "mcp-engineering:antipattern",
+      "type": "guards_against"
+    }
+  ]
+}

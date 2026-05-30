@@ -23,6 +23,21 @@
       "id": "iconography:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "iconography:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "iconography:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "iconography:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "iconography",
       "to": "iconography:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "iconography",
+      "to": "iconography:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "iconography",
+      "to": "iconography:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "iconography",
+      "to": "iconography:antipattern",
+      "type": "guards_against"
     }
   ]
 }

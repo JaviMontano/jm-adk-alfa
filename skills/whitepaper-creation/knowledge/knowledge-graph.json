@@ -23,6 +23,21 @@
       "id": "whitepaper-creation:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "whitepaper-creation:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "whitepaper-creation:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "whitepaper-creation:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "whitepaper-creation",
       "to": "whitepaper-creation:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "whitepaper-creation",
+      "to": "whitepaper-creation:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "whitepaper-creation",
+      "to": "whitepaper-creation:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "whitepaper-creation",
+      "to": "whitepaper-creation:antipattern",
+      "type": "guards_against"
     }
   ]
 }

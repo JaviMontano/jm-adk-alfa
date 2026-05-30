@@ -23,6 +23,21 @@
       "id": "migration-planning:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "migration-planning:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "migration-planning:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "migration-planning:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "migration-planning",
       "to": "migration-planning:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "migration-planning",
+      "to": "migration-planning:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "migration-planning",
+      "to": "migration-planning:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "migration-planning",
+      "to": "migration-planning:antipattern",
+      "type": "guards_against"
     }
   ]
 }

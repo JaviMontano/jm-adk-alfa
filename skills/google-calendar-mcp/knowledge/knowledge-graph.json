@@ -23,6 +23,21 @@
       "id": "google-calendar-mcp:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "google-calendar-mcp:ontology",
+      "type": "ontology",
+      "label": "Domain: tool-design-mcp"
+    },
+    {
+      "id": "google-calendar-mcp:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "google-calendar-mcp:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "google-calendar-mcp",
       "to": "google-calendar-mcp:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "google-calendar-mcp",
+      "to": "google-calendar-mcp:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "google-calendar-mcp",
+      "to": "google-calendar-mcp:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "google-calendar-mcp",
+      "to": "google-calendar-mcp:antipattern",
+      "type": "guards_against"
     }
   ]
 }

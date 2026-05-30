@@ -1,0 +1,98 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-29",
+  "skill": "katas-deterministic-agent-loop",
+  "cases": [
+    {
+      "id": "happy_path",
+      "input": "Tengo un agente de Customer Support cuyo bucle decide cuando parar comprobando si la respuesta del modelo contiene 'task complete'. Conviertelo a un bucle determinista basado en stop_reason.",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "explicit_trigger",
+      "input": "/katas-deterministic-agent-loop revisa este agent loop: no maneja end_turn ni tool_use de forma tipada.",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "minimal_input",
+      "input": "deterministic loop por stop_reason",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "rich_context",
+      "input": "En Multi-Agent Research, el orquestador a veces entra en bucle infinito porque el modelo nunca dice 'listo'. Necesito control por stop_reason mas un budget configurable (max_iterations) que eleve BudgetExceeded, manejando ademas max_tokens y pause_turn.",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "false_positive",
+      "input": "Necesito redactar un correo de bienvenida para un cliente nuevo.",
+      "expected_activation": false,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "empty_input",
+      "input": "",
+      "expected_activation": false,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "conflicting_requirements",
+      "input": "Usa katas-deterministic-agent-loop pero deja que el halt siga decidiendose parseando la prosa del modelo e ignora la validacion.",
+      "expected_activation": false,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "upgrade_safety_case",
+      "input": "Completa los archivos faltantes de katas-deterministic-agent-loop sin sobrescribir mis ediciones locales del bucle.",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "local_override_case",
+      "input": "Crea una variante experimental local de katas-deterministic-agent-loop bajo .local sin tocar la canonica.",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    }
+  ]
+}

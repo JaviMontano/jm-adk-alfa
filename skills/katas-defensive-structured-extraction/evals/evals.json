@@ -1,0 +1,98 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-29",
+  "skill": "katas-defensive-structured-extraction",
+  "cases": [
+    {
+      "id": "happy_path",
+      "input": "Extrae invoice_id, currency, status y due_date de esta factura usando un JSON Schema con tool_choice forzado; due_date puede faltar.",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "explicit_trigger",
+      "input": "/katas-defensive-structured-extraction extrae estos campos del ticket de soporte forzando la tool de extracción.",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "quiz_p1_nullable_union",
+      "input": "El campo due_date a veces no aparece en la fuente. ¿Cómo lo modelo en el schema? (esperado: nullable union {\"type\":[\"string\",\"null\"],\"format\":\"date\"})",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "quiz_p2_enum_escape_valve",
+      "input": "La moneda recibida es GBP pero el enum solo tiene USD/EUR/COP. ¿Cómo evito que el modelo mienta? (esperado: enum con 'other' + campo currency_other_details)",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "quiz_p3_no_force_tool_choice",
+      "input": "El agente debe decidir entre varias tools y a veces responder texto híbrido. ¿Debo forzar tool_choice? (esperado: NO forzar tool_choice en ese caso)",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "false_positive",
+      "input": "Resume las novedades del sprint y agenda la retro del equipo.",
+      "expected_activation": false,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "empty_input",
+      "input": "",
+      "expected_activation": false,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "conflicting_requirements",
+      "input": "Usa katas-defensive-structured-extraction pero pídeme el JSON en prosa y haz json.loads(resp.text) sin schema.",
+      "expected_activation": false,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "upgrade_safety_case",
+      "input": "Completa los archivos faltantes de katas-defensive-structured-extraction sin sobrescribir mis ediciones locales.",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    }
+  ]
+}

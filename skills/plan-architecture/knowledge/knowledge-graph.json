@@ -23,6 +23,21 @@
       "id": "plan-architecture:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "plan-architecture:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "plan-architecture:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "plan-architecture:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "plan-architecture",
       "to": "plan-architecture:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "plan-architecture",
+      "to": "plan-architecture:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "plan-architecture",
+      "to": "plan-architecture:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "plan-architecture",
+      "to": "plan-architecture:antipattern",
+      "type": "guards_against"
     }
   ]
 }

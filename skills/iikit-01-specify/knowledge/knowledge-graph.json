@@ -23,6 +23,21 @@
       "id": "iikit-01-specify:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "iikit-01-specify:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "iikit-01-specify:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "iikit-01-specify:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "iikit-01-specify",
       "to": "iikit-01-specify:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "iikit-01-specify",
+      "to": "iikit-01-specify:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "iikit-01-specify",
+      "to": "iikit-01-specify:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "iikit-01-specify",
+      "to": "iikit-01-specify:antipattern",
+      "type": "guards_against"
     }
   ]
 }

@@ -23,6 +23,21 @@
       "id": "brand-xlsx:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "brand-xlsx:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "brand-xlsx:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "brand-xlsx:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "brand-xlsx",
       "to": "brand-xlsx:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "brand-xlsx",
+      "to": "brand-xlsx:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "brand-xlsx",
+      "to": "brand-xlsx:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "brand-xlsx",
+      "to": "brand-xlsx:antipattern",
+      "type": "guards_against"
     }
   ]
 }

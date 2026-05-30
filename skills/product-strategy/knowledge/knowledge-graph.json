@@ -23,6 +23,21 @@
       "id": "product-strategy:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "product-strategy:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "product-strategy:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "product-strategy:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "product-strategy",
       "to": "product-strategy:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "product-strategy",
+      "to": "product-strategy:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "product-strategy",
+      "to": "product-strategy:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "product-strategy",
+      "to": "product-strategy:antipattern",
+      "type": "guards_against"
     }
   ]
 }

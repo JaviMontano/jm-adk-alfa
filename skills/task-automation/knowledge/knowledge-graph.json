@@ -23,6 +23,21 @@
       "id": "task-automation:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "task-automation:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "task-automation:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "task-automation:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "task-automation",
       "to": "task-automation:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "task-automation",
+      "to": "task-automation:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "task-automation",
+      "to": "task-automation:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "task-automation",
+      "to": "task-automation:antipattern",
+      "type": "guards_against"
     }
   ]
 }

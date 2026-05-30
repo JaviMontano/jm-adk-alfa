@@ -23,6 +23,21 @@
       "id": "swot-analysis:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "swot-analysis:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "swot-analysis:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "swot-analysis:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "swot-analysis",
       "to": "swot-analysis:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "swot-analysis",
+      "to": "swot-analysis:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "swot-analysis",
+      "to": "swot-analysis:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "swot-analysis",
+      "to": "swot-analysis:antipattern",
+      "type": "guards_against"
     }
   ]
 }

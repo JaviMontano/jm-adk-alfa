@@ -1,0 +1,103 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-30",
+  "skill": "independent-review-design",
+  "cases": [
+    {
+      "id": "self_review_to_independent",
+      "input": "Our generator reviews its own patches in the same session with a 2-of-3 quorum and misses cross-module naming bugs. Redesign the review stage.",
+      "expected_activation": true,
+      "expected_checks": [
+        "clean_session_reviewer",
+        "per_file_cross_file_separated",
+        "no_quorum",
+        "evidence"
+      ]
+    },
+    {
+      "id": "audit_existing_review_pipeline",
+      "input": "Audit our review pipeline: confirm the reviewer is independent, per-file and cross-file passes are separate, and no quorum suppresses findings.",
+      "expected_activation": true,
+      "expected_checks": [
+        "clean_session_reviewer",
+        "per_file_cross_file_separated",
+        "no_quorum",
+        "quality_criteria"
+      ]
+    },
+    {
+      "id": "remove_quorum",
+      "input": "Findings detected by only one pass are dropped by our majority vote. Redesign so we keep rare-but-legitimate signal.",
+      "expected_activation": true,
+      "expected_checks": [
+        "no_quorum",
+        "evidence",
+        "quality_criteria"
+      ]
+    },
+    {
+      "id": "separate_per_file_cross_file",
+      "input": "Our reviewer does one combined pass over all files. Split it into per-file and cross-file passes.",
+      "expected_activation": true,
+      "expected_checks": [
+        "per_file_cross_file_separated",
+        "clean_session_reviewer",
+        "quality_criteria"
+      ]
+    },
+    {
+      "id": "minimal_input",
+      "input": "independent-review-design",
+      "expected_activation": true,
+      "expected_checks": [
+        "clean_session_reviewer",
+        "per_file_cross_file_separated",
+        "no_quorum"
+      ]
+    },
+    {
+      "id": "false_positive_confidence_calibration",
+      "input": "Calibrate our confidence scores against a labeled set and reduce false positives by category.",
+      "expected_activation": false,
+      "expected_checks": [
+        "quality_criteria"
+      ]
+    },
+    {
+      "id": "false_positive_unrelated",
+      "input": "Generate a quarterly sales report from this spreadsheet.",
+      "expected_activation": false,
+      "expected_checks": [
+        "quality_criteria"
+      ]
+    },
+    {
+      "id": "empty_input",
+      "input": "",
+      "expected_activation": false,
+      "expected_checks": [
+        "quality_criteria"
+      ]
+    },
+    {
+      "id": "conflicting_keep_self_review",
+      "input": "Design the review but keep the reviewer in the generator's session and keep the 2-of-3 quorum.",
+      "expected_activation": false,
+      "expected_checks": [
+        "clean_session_reviewer",
+        "no_quorum"
+      ]
+    },
+    {
+      "id": "false_positive",
+      "input": "This request is unrelated to the skill domain.",
+      "expected_activation": false,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    }
+  ]
+}

@@ -23,6 +23,21 @@
       "id": "firebase-storage:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "firebase-storage:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "firebase-storage:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "firebase-storage:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "firebase-storage",
       "to": "firebase-storage:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "firebase-storage",
+      "to": "firebase-storage:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "firebase-storage",
+      "to": "firebase-storage:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "firebase-storage",
+      "to": "firebase-storage:antipattern",
+      "type": "guards_against"
     }
   ]
 }

@@ -23,6 +23,21 @@
       "id": "file-storage:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "file-storage:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "file-storage:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "file-storage:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "file-storage",
       "to": "file-storage:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "file-storage",
+      "to": "file-storage:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "file-storage",
+      "to": "file-storage:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "file-storage",
+      "to": "file-storage:antipattern",
+      "type": "guards_against"
     }
   ]
 }

@@ -23,6 +23,21 @@
       "id": "cohort-analysis:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "cohort-analysis:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "cohort-analysis:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "cohort-analysis:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "cohort-analysis",
       "to": "cohort-analysis:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "cohort-analysis",
+      "to": "cohort-analysis:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "cohort-analysis",
+      "to": "cohort-analysis:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "cohort-analysis",
+      "to": "cohort-analysis:antipattern",
+      "type": "guards_against"
     }
   ]
 }

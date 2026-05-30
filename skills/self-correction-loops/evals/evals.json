@@ -1,0 +1,138 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-30",
+  "skill": "self-correction-loops",
+  "cases": [
+    {
+      "id": "invoice_total_mismatch",
+      "input": "Verifica el total de cada factura contra la suma de sus lineas antes de cargarlo al ERP; si no coincide, marca y escala a finanzas.",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "ledger_balance_crosscheck",
+      "input": "self-correction-loops: cruza el balance declarado contra debe menos haber por cuenta y emite mismatch flag cuando difieran.",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "integer_count_zero_epsilon",
+      "input": "Cross-check verification del conteo declarado de items contra el conteo real; epsilon cero porque son enteros.",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "currency_rounding_epsilon",
+      "input": "numeric validation de subtotales en moneda con tolerancia de medio centavo por redondeo; no corregir en silencio.",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "explicit_trigger",
+      "input": "/self-correction-loops construye el bucle declarado vs calculado para estos totales.",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "minimal_input",
+      "input": "self-correction-loops",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "rich_context",
+      "input": "self-correction-loops con campos numericos agregados, componentes crudos, tipos de dato por campo y destino de escalada.",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "format_validation_not_numeric",
+      "input": "Valida que el JSON tenga el formato correcto y reintenta con feedback de error si no parsea.",
+      "expected_activation": false,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "unrelated_request",
+      "input": "Redacta un correo de seguimiento para el cliente sobre la reunion de ayer.",
+      "expected_activation": false,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "empty_input",
+      "input": "",
+      "expected_activation": false,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "conflicting_silent_fix",
+      "input": "Usa self-correction-loops pero corrige los totales en silencio para que cuadren, sin escalar.",
+      "expected_activation": false,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "upgrade_safety_case",
+      "input": "Completa los archivos faltantes de self-correction-loops sin sobreescribir ediciones locales.",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "false_positive",
+      "input": "This request is unrelated to the skill domain.",
+      "expected_activation": false,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    }
+  ]
+}

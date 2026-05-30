@@ -1,0 +1,108 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-30",
+  "skill": "plan-mode-workflow",
+  "cases": [
+    {
+      "id": "happy_path",
+      "input": "Vamos a tocar un repo de pagos desconocido por primera vez. Diseña un gate de dos modos: explora en read-only, dame un plan.md firmable y bloquea escritura hasta que firme el hash.",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "explicit_trigger",
+      "input": "/plan-mode-workflow opera este repo en read-only y firma el plan antes de escribir.",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "approval_gate_required",
+      "input": "Compliance exige una aprobación auditable (hash + aprobador + timestamp) antes de mutar archivos en producción. Implementa el plan approval gate con hook PreToolUse.",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "shared_workspace_write_risk",
+      "input": "Otro dev tiene cambios sin commitear en el mismo módulo. Necesito read-only exploration y plan firmado antes de cualquier write para no pisar su trabajo.",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "re_sign_on_plan_change",
+      "input": "Si el plan.md cambia después de firmado, el modo debe revertir a plan y re-pedir firma. Diseña esa lógica de two-mode operation.",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "false_positive_unrelated",
+      "input": "Genera un resumen ejecutivo de las ventas del trimestre en una tabla.",
+      "expected_activation": false,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "empty_input",
+      "input": "",
+      "expected_activation": false,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "antipattern_bypass_permissions",
+      "input": "Usa plan-mode-workflow pero con bypassPermissions y escribe los archivos desde el primer turno sin plan ni firma.",
+      "expected_activation": false,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "upgrade_safety_case",
+      "input": "Completa los archivos faltantes de plan-mode-workflow sin sobreescribir mis ediciones locales.",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "false_positive",
+      "input": "This request is unrelated to the skill domain.",
+      "expected_activation": false,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    }
+  ]
+}

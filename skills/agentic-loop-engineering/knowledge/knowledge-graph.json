@@ -1,0 +1,140 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-30",
+  "skill": "agentic-loop-engineering",
+  "nodes": [
+    {
+      "id": "agentic-loop-engineering",
+      "type": "skill",
+      "label": "agentic-loop-engineering"
+    },
+    {
+      "id": "agentic-loop-engineering:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "agentic-loop-engineering:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "agentic-loop-engineering:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    },
+    {
+      "id": "concept:control-loop",
+      "type": "concept",
+      "label": "Loop de control while True"
+    },
+    {
+      "id": "concept:stop-reason-routing",
+      "type": "concept",
+      "label": "Enrutado por stop_reason tipado"
+    },
+    {
+      "id": "concept:tool-result-injection",
+      "type": "concept",
+      "label": "Reinyeccion de tool_result como user"
+    },
+    {
+      "id": "concept:hard-budget",
+      "type": "concept",
+      "label": "Budget duro y BudgetExceeded"
+    },
+    {
+      "id": "concept:strong-failure",
+      "type": "concept",
+      "label": "Fallo fuerte UnhandledStop"
+    },
+    {
+      "id": "antipattern:prose-control",
+      "type": "antipattern",
+      "label": "Control por prosa done in text"
+    },
+    {
+      "id": "agentic-loop-engineering:ontology",
+      "type": "ontology",
+      "label": "Domain: agentic-architecture"
+    },
+    {
+      "id": "agentic-loop-engineering:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "agentic-loop-engineering:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
+    }
+  ],
+  "edges": [
+    {
+      "from": "agentic-loop-engineering",
+      "to": "agentic-loop-engineering:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "agentic-loop-engineering",
+      "to": "agentic-loop-engineering:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "agentic-loop-engineering",
+      "to": "agentic-loop-engineering:quality",
+      "type": "validated_by"
+    },
+    {
+      "from": "agentic-loop-engineering",
+      "to": "concept:control-loop",
+      "type": "builds"
+    },
+    {
+      "from": "concept:control-loop",
+      "to": "concept:stop-reason-routing",
+      "type": "routes_by"
+    },
+    {
+      "from": "concept:stop-reason-routing",
+      "to": "concept:tool-result-injection",
+      "type": "dispatches_to"
+    },
+    {
+      "from": "concept:control-loop",
+      "to": "concept:hard-budget",
+      "type": "bounded_by"
+    },
+    {
+      "from": "concept:stop-reason-routing",
+      "to": "concept:strong-failure",
+      "type": "escalates_to"
+    },
+    {
+      "from": "antipattern:prose-control",
+      "to": "concept:stop-reason-routing",
+      "type": "violates"
+    },
+    {
+      "from": "agentic-loop-engineering:quality",
+      "to": "antipattern:prose-control",
+      "type": "rejects"
+    },
+    {
+      "from": "agentic-loop-engineering",
+      "to": "agentic-loop-engineering:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "agentic-loop-engineering",
+      "to": "agentic-loop-engineering:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "agentic-loop-engineering",
+      "to": "agentic-loop-engineering:antipattern",
+      "type": "guards_against"
+    }
+  ]
+}

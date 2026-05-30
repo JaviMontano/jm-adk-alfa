@@ -23,6 +23,21 @@
       "id": "vendor-evaluation:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "vendor-evaluation:ontology",
+      "type": "ontology",
+      "label": "Domain: prompt-structured-output"
+    },
+    {
+      "id": "vendor-evaluation:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "vendor-evaluation:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "vendor-evaluation",
       "to": "vendor-evaluation:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "vendor-evaluation",
+      "to": "vendor-evaluation:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "vendor-evaluation",
+      "to": "vendor-evaluation:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "vendor-evaluation",
+      "to": "vendor-evaluation:antipattern",
+      "type": "guards_against"
     }
   ]
 }

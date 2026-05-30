@@ -23,6 +23,21 @@
       "id": "pitch-deck:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "pitch-deck:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "pitch-deck:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "pitch-deck:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "pitch-deck",
       "to": "pitch-deck:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "pitch-deck",
+      "to": "pitch-deck:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "pitch-deck",
+      "to": "pitch-deck:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "pitch-deck",
+      "to": "pitch-deck:antipattern",
+      "type": "guards_against"
     }
   ]
 }

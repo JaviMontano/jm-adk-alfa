@@ -23,6 +23,21 @@
       "id": "firebase-functions:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "firebase-functions:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "firebase-functions:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "firebase-functions:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "firebase-functions",
       "to": "firebase-functions:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "firebase-functions",
+      "to": "firebase-functions:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "firebase-functions",
+      "to": "firebase-functions:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "firebase-functions",
+      "to": "firebase-functions:antipattern",
+      "type": "guards_against"
     }
   ]
 }

@@ -23,6 +23,21 @@
       "id": "enterprise-architecture:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "enterprise-architecture:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "enterprise-architecture:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "enterprise-architecture:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "enterprise-architecture",
       "to": "enterprise-architecture:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "enterprise-architecture",
+      "to": "enterprise-architecture:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "enterprise-architecture",
+      "to": "enterprise-architecture:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "enterprise-architecture",
+      "to": "enterprise-architecture:antipattern",
+      "type": "guards_against"
     }
   ]
 }

@@ -23,6 +23,21 @@
       "id": "google-analytics:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "google-analytics:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "google-analytics:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "google-analytics:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "google-analytics",
       "to": "google-analytics:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "google-analytics",
+      "to": "google-analytics:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "google-analytics",
+      "to": "google-analytics:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "google-analytics",
+      "to": "google-analytics:antipattern",
+      "type": "guards_against"
     }
   ]
 }

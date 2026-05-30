@@ -23,6 +23,21 @@
       "id": "skill-spec-creator:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "skill-spec-creator:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "skill-spec-creator:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "skill-spec-creator:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "skill-spec-creator",
       "to": "skill-spec-creator:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "skill-spec-creator",
+      "to": "skill-spec-creator:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "skill-spec-creator",
+      "to": "skill-spec-creator:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "skill-spec-creator",
+      "to": "skill-spec-creator:antipattern",
+      "type": "guards_against"
     }
   ]
 }

@@ -23,6 +23,21 @@
       "id": "trigger-skill:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "trigger-skill:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "trigger-skill:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "trigger-skill:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "trigger-skill",
       "to": "trigger-skill:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "trigger-skill",
+      "to": "trigger-skill:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "trigger-skill",
+      "to": "trigger-skill:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "trigger-skill",
+      "to": "trigger-skill:antipattern",
+      "type": "guards_against"
     }
   ]
 }

@@ -23,6 +23,21 @@
       "id": "workflow-orchestration:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "workflow-orchestration:ontology",
+      "type": "ontology",
+      "label": "Domain: agentic-architecture"
+    },
+    {
+      "id": "workflow-orchestration:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "workflow-orchestration:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "workflow-orchestration",
       "to": "workflow-orchestration:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "workflow-orchestration",
+      "to": "workflow-orchestration:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "workflow-orchestration",
+      "to": "workflow-orchestration:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "workflow-orchestration",
+      "to": "workflow-orchestration:antipattern",
+      "type": "guards_against"
     }
   ]
 }

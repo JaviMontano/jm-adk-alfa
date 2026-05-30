@@ -23,6 +23,21 @@
       "id": "google-apis-integration:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "google-apis-integration:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "google-apis-integration:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "google-apis-integration:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "google-apis-integration",
       "to": "google-apis-integration:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "google-apis-integration",
+      "to": "google-apis-integration:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "google-apis-integration",
+      "to": "google-apis-integration:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "google-apis-integration",
+      "to": "google-apis-integration:antipattern",
+      "type": "guards_against"
     }
   ]
 }

@@ -1,0 +1,108 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-30",
+  "skill": "human-escalation-design",
+  "cases": [
+    {
+      "id": "refund_limit_exceeded",
+      "input": "Disena el handoff cuando un reembolso supera el tier2 limit: el agente debe escalar a un humano con un payload tipado.",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "irreversible_account_deletion",
+      "input": "El agente va a borrar una cuenta (accion irreversible). Quiero un escalate_to_human end-state con payload autocontenido antes de proceder.",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "data_conflict_mismatch",
+      "input": "Una verificacion cruzada dio mismatch=true entre el total declarado y el calculado. Disena el handoff tipado a humano con ambos valores.",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "explicit_trigger",
+      "input": "/human-escalation-design disena el payload de escalada para customer support.",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "rich_context_payload_contract",
+      "input": "typed handoff con customer_id, issue_summary, actions_taken, escalation_reason y recommended_action, mas un hook PostToolUse que termine la sesion.",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "upgrade_safety_case",
+      "input": "Completa archivos faltantes de human-escalation-design sin sobrescribir ediciones locales.",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "false_positive_unrelated",
+      "input": "Genera un grafico de barras con las ventas mensuales del Q3.",
+      "expected_activation": false,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "empty_input",
+      "input": "",
+      "expected_activation": false,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "conflicting_requirements",
+      "input": "Usa human-escalation-design pero deja que el agente siga generando prosa de cortesia despues de escalar y omite el payload tipado.",
+      "expected_activation": false,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "false_positive",
+      "input": "This request is unrelated to the skill domain.",
+      "expected_activation": false,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    }
+  ]
+}

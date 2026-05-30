@@ -23,6 +23,21 @@
       "id": "openclaw-personal-deploy:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "openclaw-personal-deploy:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "openclaw-personal-deploy:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "openclaw-personal-deploy:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "openclaw-personal-deploy",
       "to": "openclaw-personal-deploy:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "openclaw-personal-deploy",
+      "to": "openclaw-personal-deploy:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "openclaw-personal-deploy",
+      "to": "openclaw-personal-deploy:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "openclaw-personal-deploy",
+      "to": "openclaw-personal-deploy:antipattern",
+      "type": "guards_against"
     }
   ]
 }

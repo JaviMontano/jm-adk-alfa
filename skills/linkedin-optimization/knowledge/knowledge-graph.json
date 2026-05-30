@@ -23,6 +23,21 @@
       "id": "linkedin-optimization:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "linkedin-optimization:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "linkedin-optimization:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "linkedin-optimization:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "linkedin-optimization",
       "to": "linkedin-optimization:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "linkedin-optimization",
+      "to": "linkedin-optimization:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "linkedin-optimization",
+      "to": "linkedin-optimization:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "linkedin-optimization",
+      "to": "linkedin-optimization:antipattern",
+      "type": "guards_against"
     }
   ]
 }

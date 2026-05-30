@@ -23,6 +23,21 @@
       "id": "newsletter-design:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "newsletter-design:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "newsletter-design:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "newsletter-design:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "newsletter-design",
       "to": "newsletter-design:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "newsletter-design",
+      "to": "newsletter-design:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "newsletter-design",
+      "to": "newsletter-design:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "newsletter-design",
+      "to": "newsletter-design:antipattern",
+      "type": "guards_against"
     }
   ]
 }

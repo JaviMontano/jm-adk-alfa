@@ -1,0 +1,185 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-30",
+  "skill": "subagent-orchestration",
+  "nodes": [
+    {
+      "id": "subagent-orchestration",
+      "type": "skill",
+      "label": "subagent-orchestration"
+    },
+    {
+      "id": "subagent-orchestration:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "subagent-orchestration:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "subagent-orchestration:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    },
+    {
+      "id": "concept:hub-and-spoke",
+      "type": "concept",
+      "label": "Hub-and-spoke coordinator"
+    },
+    {
+      "id": "concept:context-isolation",
+      "type": "concept",
+      "label": "Structural context isolation per spoke"
+    },
+    {
+      "id": "concept:agent-definition-task",
+      "type": "concept",
+      "label": "AgentDefinition + Task dispatch"
+    },
+    {
+      "id": "concept:typed-error",
+      "type": "concept",
+      "label": "Structured spoke error (failure_type, attempted_query, partial_results, suggested_alternatives)"
+    },
+    {
+      "id": "concept:local-recovery",
+      "type": "concept",
+      "label": "Local recovery before propagation"
+    },
+    {
+      "id": "concept:access-failure-vs-empty",
+      "type": "concept",
+      "label": "access_failure distinct from valid_empty"
+    },
+    {
+      "id": "concept:coverage-gap",
+      "type": "concept",
+      "label": "Explicit coverage gap annotation"
+    },
+    {
+      "id": "concept:blast-radius",
+      "type": "concept",
+      "label": "Bounded blast radius on partial failure"
+    },
+    {
+      "id": "anti:monolith-swallow",
+      "type": "anti_pattern",
+      "label": "Single concatenated agent with except returning empty results"
+    },
+    {
+      "id": "kata:hub-and-spoke-isolation",
+      "type": "kata",
+      "label": "katas-hub-and-spoke-isolation"
+    },
+    {
+      "id": "kata:multiagent-error-propagation",
+      "type": "kata",
+      "label": "katas-multiagent-error-propagation"
+    },
+    {
+      "id": "subagent-orchestration:ontology",
+      "type": "ontology",
+      "label": "Domain: agentic-architecture"
+    },
+    {
+      "id": "subagent-orchestration:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "subagent-orchestration:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
+    }
+  ],
+  "edges": [
+    {
+      "from": "subagent-orchestration",
+      "to": "subagent-orchestration:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "subagent-orchestration",
+      "to": "subagent-orchestration:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "subagent-orchestration",
+      "to": "subagent-orchestration:quality",
+      "type": "validated_by"
+    },
+    {
+      "from": "subagent-orchestration",
+      "to": "concept:hub-and-spoke",
+      "type": "applies"
+    },
+    {
+      "from": "concept:hub-and-spoke",
+      "to": "concept:context-isolation",
+      "type": "depends_on"
+    },
+    {
+      "from": "concept:hub-and-spoke",
+      "to": "concept:agent-definition-task",
+      "type": "implemented_with"
+    },
+    {
+      "from": "concept:typed-error",
+      "to": "concept:local-recovery",
+      "type": "enables"
+    },
+    {
+      "from": "concept:typed-error",
+      "to": "concept:access-failure-vs-empty",
+      "type": "enables"
+    },
+    {
+      "from": "concept:access-failure-vs-empty",
+      "to": "concept:coverage-gap",
+      "type": "enables"
+    },
+    {
+      "from": "concept:hub-and-spoke",
+      "to": "concept:blast-radius",
+      "type": "guarantees"
+    },
+    {
+      "from": "anti:monolith-swallow",
+      "to": "concept:context-isolation",
+      "type": "violates"
+    },
+    {
+      "from": "anti:monolith-swallow",
+      "to": "concept:access-failure-vs-empty",
+      "type": "violates"
+    },
+    {
+      "from": "subagent-orchestration:quality",
+      "to": "kata:hub-and-spoke-isolation",
+      "type": "trained_by"
+    },
+    {
+      "from": "subagent-orchestration:quality",
+      "to": "kata:multiagent-error-propagation",
+      "type": "trained_by"
+    },
+    {
+      "from": "subagent-orchestration",
+      "to": "subagent-orchestration:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "subagent-orchestration",
+      "to": "subagent-orchestration:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "subagent-orchestration",
+      "to": "subagent-orchestration:antipattern",
+      "type": "guards_against"
+    }
+  ]
+}

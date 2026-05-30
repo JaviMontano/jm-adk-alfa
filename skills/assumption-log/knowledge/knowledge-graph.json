@@ -23,6 +23,21 @@
       "id": "assumption-log:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "assumption-log:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "assumption-log:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "assumption-log:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "assumption-log",
       "to": "assumption-log:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "assumption-log",
+      "to": "assumption-log:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "assumption-log",
+      "to": "assumption-log:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "assumption-log",
+      "to": "assumption-log:antipattern",
+      "type": "guards_against"
     }
   ]
 }

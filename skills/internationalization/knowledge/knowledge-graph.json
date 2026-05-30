@@ -23,6 +23,21 @@
       "id": "internationalization:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "internationalization:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "internationalization:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "internationalization:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "internationalization",
       "to": "internationalization:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "internationalization",
+      "to": "internationalization:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "internationalization",
+      "to": "internationalization:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "internationalization",
+      "to": "internationalization:antipattern",
+      "type": "guards_against"
     }
   ]
 }

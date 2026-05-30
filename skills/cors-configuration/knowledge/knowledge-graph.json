@@ -23,6 +23,21 @@
       "id": "cors-configuration:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "cors-configuration:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "cors-configuration:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "cors-configuration:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "cors-configuration",
       "to": "cors-configuration:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "cors-configuration",
+      "to": "cors-configuration:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "cors-configuration",
+      "to": "cors-configuration:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "cors-configuration",
+      "to": "cors-configuration:antipattern",
+      "type": "guards_against"
     }
   ]
 }

@@ -23,6 +23,21 @@
       "id": "ssh-deployment:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "ssh-deployment:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "ssh-deployment:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "ssh-deployment:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "ssh-deployment",
       "to": "ssh-deployment:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "ssh-deployment",
+      "to": "ssh-deployment:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "ssh-deployment",
+      "to": "ssh-deployment:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "ssh-deployment",
+      "to": "ssh-deployment:antipattern",
+      "type": "guards_against"
     }
   ]
 }

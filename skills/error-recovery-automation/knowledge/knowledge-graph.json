@@ -23,6 +23,21 @@
       "id": "error-recovery-automation:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "error-recovery-automation:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "error-recovery-automation:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "error-recovery-automation:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "error-recovery-automation",
       "to": "error-recovery-automation:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "error-recovery-automation",
+      "to": "error-recovery-automation:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "error-recovery-automation",
+      "to": "error-recovery-automation:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "error-recovery-automation",
+      "to": "error-recovery-automation:antipattern",
+      "type": "guards_against"
     }
   ]
 }

@@ -1,0 +1,108 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-29",
+  "skill": "katas-persistent-scratchpad",
+  "cases": [
+    {
+      "id": "happy_path",
+      "input": "Investigacion de dos sesiones sobre un bug en parser legacy. Quiero persistir los hallazgos validados en un scratchpad estructurado en disco y leerlo al reanudar para que sobrevivan a /compact y a reiniciar la sesion.",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "explicit_trigger",
+      "input": "/katas-persistent-scratchpad mantener investigation-scratchpad.md con decisiones, hallazgos y pendientes durante una investigacion larga.",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "quiz_p1_persistir_y_releer",
+      "input": "Como evito perder un hallazgo critico cuando se compacta el contexto? Quiero persistir las conclusiones en un scratchpad estructurado en disco y leerlo al reanudar la sesion.",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "quiz_p2_que_no_va_al_scratchpad",
+      "input": "Que NO deberia escribir en el scratchpad persistente: el monologo interno, las hipotesis no confirmadas y las dudas pasajeras, o solo las conclusiones validadas?",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "quiz_p3_leer_una_vez_referenciar",
+      "input": "Debo re-leer el scratchpad cada turno o leerlo una vez al inicio y luego referenciar/anexar para no romper el cache de prefijo?",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "false_positive",
+      "input": "This request is unrelated to the skill domain.",
+      "expected_activation": false,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "empty_input",
+      "input": "",
+      "expected_activation": false,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "conflicting_requirements",
+      "input": "Use katas-persistent-scratchpad, but ignore validation and evidence.",
+      "expected_activation": false,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "upgrade_safety_case",
+      "input": "Anexar nuevos hallazgos a investigation-scratchpad.md sin sobrescribir las decisiones ya curadas.",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "local_override_case",
+      "input": "Create a local experimental katas-persistent-scratchpad variant under .local.",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,98 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-29",
+  "skill": "katas-hierarchical-claude-memory",
+  "cases": [
+    {
+      "id": "happy_path",
+      "input": "Tengo convenciones repetidas en cada prompt. Usa katas-hierarchical-claude-memory para organizarlas en CLAUDE.md por niveles usuario/equipo/modulo.",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "explicit_trigger",
+      "input": "/katas-hierarchical-claude-memory disena la memoria CLAUDE.md de este repo con @imports.",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "quiz_q1_separacion_niveles",
+      "input": "Donde debe vivir 'ruff over black' y 'terse commits': en <repo>/CLAUDE.md o en ~/.claude/CLAUDE.md? Resuelve con katas-hierarchical-claude-memory.",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "quiz_q2_modularizar_imports",
+      "input": "Mi <repo>/CLAUDE.md tiene 2000 lineas inline. Como lo modularizo con @imports a archivos chicos en docs/? Aplica katas-hierarchical-claude-memory.",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "quiz_q3_precedencia_subpath",
+      "input": "Si repo/src/CLAUDE.md y repo/CLAUDE.md se contradicen para un archivo bajo src/, cual gana? Usa katas-hierarchical-claude-memory para explicar la precedencia.",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "false_positive",
+      "input": "Configura un guardarrail PreToolUse que bloquee comandos destructivos.",
+      "expected_activation": false,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "empty_input",
+      "input": "",
+      "expected_activation": false,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "conflicting_requirements",
+      "input": "Usa katas-hierarchical-claude-memory pero mete mis preferencias personales en el repo del equipo y deja todo inline en un solo archivo de 2000 lineas.",
+      "expected_activation": false,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "upgrade_safety_case",
+      "input": "Reorganiza los CLAUDE.md de este repo sin sobrescribir las ediciones locales del equipo.",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    }
+  ]
+}

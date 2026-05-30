@@ -23,6 +23,21 @@
       "id": "visual-regression:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "visual-regression:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "visual-regression:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "visual-regression:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "visual-regression",
       "to": "visual-regression:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "visual-regression",
+      "to": "visual-regression:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "visual-regression",
+      "to": "visual-regression:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "visual-regression",
+      "to": "visual-regression:antipattern",
+      "type": "guards_against"
     }
   ]
 }

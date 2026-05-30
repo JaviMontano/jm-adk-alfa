@@ -23,6 +23,21 @@
       "id": "discovery-orchestration:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "discovery-orchestration:ontology",
+      "type": "ontology",
+      "label": "Domain: agentic-architecture"
+    },
+    {
+      "id": "discovery-orchestration:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "discovery-orchestration:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "discovery-orchestration",
       "to": "discovery-orchestration:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "discovery-orchestration",
+      "to": "discovery-orchestration:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "discovery-orchestration",
+      "to": "discovery-orchestration:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "discovery-orchestration",
+      "to": "discovery-orchestration:antipattern",
+      "type": "guards_against"
     }
   ]
 }

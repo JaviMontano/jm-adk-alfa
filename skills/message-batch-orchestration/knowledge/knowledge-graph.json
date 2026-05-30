@@ -1,0 +1,140 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-30",
+  "skill": "message-batch-orchestration",
+  "nodes": [
+    {
+      "id": "message-batch-orchestration",
+      "type": "skill",
+      "label": "message-batch-orchestration"
+    },
+    {
+      "id": "message-batch-orchestration:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "message-batch-orchestration:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "message-batch-orchestration:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    },
+    {
+      "id": "message-batch-orchestration:batches-api",
+      "type": "concept",
+      "label": "Message Batches API (offline, ~50% descuento)"
+    },
+    {
+      "id": "message-batch-orchestration:custom-id",
+      "type": "concept",
+      "label": "custom_id unico y estable"
+    },
+    {
+      "id": "message-batch-orchestration:lifecycle",
+      "type": "concept",
+      "label": "create -> poll processing_status -> results"
+    },
+    {
+      "id": "message-batch-orchestration:selective-retry",
+      "type": "concept",
+      "label": "Fragmentacion selectiva de fallos"
+    },
+    {
+      "id": "message-batch-orchestration:anti-pattern",
+      "type": "anti_pattern",
+      "label": "Loop sincrono sin custom_id ni fail-isolation"
+    },
+    {
+      "id": "katas-message-batch-processing",
+      "type": "related_skill",
+      "label": "katas-message-batch-processing"
+    },
+    {
+      "id": "message-batch-orchestration:ontology",
+      "type": "ontology",
+      "label": "Domain: agentic-architecture"
+    },
+    {
+      "id": "message-batch-orchestration:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "message-batch-orchestration:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
+    }
+  ],
+  "edges": [
+    {
+      "from": "message-batch-orchestration",
+      "to": "message-batch-orchestration:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "message-batch-orchestration",
+      "to": "message-batch-orchestration:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "message-batch-orchestration",
+      "to": "message-batch-orchestration:quality",
+      "type": "validated_by"
+    },
+    {
+      "from": "message-batch-orchestration",
+      "to": "message-batch-orchestration:batches-api",
+      "type": "uses"
+    },
+    {
+      "from": "message-batch-orchestration:batches-api",
+      "to": "message-batch-orchestration:custom-id",
+      "type": "requires"
+    },
+    {
+      "from": "message-batch-orchestration",
+      "to": "message-batch-orchestration:lifecycle",
+      "type": "implements"
+    },
+    {
+      "from": "message-batch-orchestration:lifecycle",
+      "to": "message-batch-orchestration:selective-retry",
+      "type": "enables"
+    },
+    {
+      "from": "message-batch-orchestration:custom-id",
+      "to": "message-batch-orchestration:selective-retry",
+      "type": "enables"
+    },
+    {
+      "from": "message-batch-orchestration:anti-pattern",
+      "to": "message-batch-orchestration:lifecycle",
+      "type": "violates"
+    },
+    {
+      "from": "message-batch-orchestration",
+      "to": "katas-message-batch-processing",
+      "type": "related_to"
+    },
+    {
+      "from": "message-batch-orchestration",
+      "to": "message-batch-orchestration:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "message-batch-orchestration",
+      "to": "message-batch-orchestration:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "message-batch-orchestration",
+      "to": "message-batch-orchestration:antipattern",
+      "type": "guards_against"
+    }
+  ]
+}

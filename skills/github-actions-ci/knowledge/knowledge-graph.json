@@ -23,6 +23,21 @@
       "id": "github-actions-ci:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "github-actions-ci:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "github-actions-ci:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "github-actions-ci:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "github-actions-ci",
       "to": "github-actions-ci:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "github-actions-ci",
+      "to": "github-actions-ci:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "github-actions-ci",
+      "to": "github-actions-ci:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "github-actions-ci",
+      "to": "github-actions-ci:antipattern",
+      "type": "guards_against"
     }
   ]
 }

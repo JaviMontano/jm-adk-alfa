@@ -23,6 +23,21 @@
       "id": "caching-strategy:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "caching-strategy:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "caching-strategy:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "caching-strategy:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "caching-strategy",
       "to": "caching-strategy:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "caching-strategy",
+      "to": "caching-strategy:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "caching-strategy",
+      "to": "caching-strategy:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "caching-strategy",
+      "to": "caching-strategy:antipattern",
+      "type": "guards_against"
     }
   ]
 }

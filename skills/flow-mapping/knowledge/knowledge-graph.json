@@ -23,6 +23,21 @@
       "id": "flow-mapping:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "flow-mapping:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "flow-mapping:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "flow-mapping:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "flow-mapping",
       "to": "flow-mapping:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "flow-mapping",
+      "to": "flow-mapping:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "flow-mapping",
+      "to": "flow-mapping:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "flow-mapping",
+      "to": "flow-mapping:antipattern",
+      "type": "guards_against"
     }
   ]
 }

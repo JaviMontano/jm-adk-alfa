@@ -23,6 +23,21 @@
       "id": "observability:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "observability:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "observability:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "observability:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "observability",
       "to": "observability:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "observability",
+      "to": "observability:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "observability",
+      "to": "observability:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "observability",
+      "to": "observability:antipattern",
+      "type": "guards_against"
     }
   ]
 }

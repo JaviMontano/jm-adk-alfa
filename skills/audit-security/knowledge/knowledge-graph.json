@@ -23,6 +23,21 @@
       "id": "audit-security:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "audit-security:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "audit-security:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "audit-security:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "audit-security",
       "to": "audit-security:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "audit-security",
+      "to": "audit-security:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "audit-security",
+      "to": "audit-security:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "audit-security",
+      "to": "audit-security:antipattern",
+      "type": "guards_against"
     }
   ]
 }

@@ -7,6 +7,26 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added — Katas Alignment (Claude Certified Architect)
+
+Systemic upgrades + 30 new skills derived from the 30-kata "Claude Certified Architect" pocket guide. Improves functional capability, predictability, hooks, tool use, and token use.
+
+- **Inventories** (`docs/katas/`): `katas-content.md` (canonical source for all 30 katas), `practices-inventory.md`, `skill-inventory.md`.
+- **30 new skills** `skills/katas-*` (one per kata, full 16-file CI-valid scaffold) covering deterministic loops, PreToolUse/PostToolUse hooks, hub-and-spoke isolation, JSON-Schema extraction, MCP errors, Plan Mode, hierarchical/path-conditional memory, prefix caching, context-dilution mitigation, prompt chaining, headless review, few-shot, self-correction, human handoff, message batches, scratchpad, adaptive investigation, provenance, tool descriptions, MCP config, built-in tool selection, commands/skills, sessions, retry-with-feedback, independent review, multi-agent errors, confidence calibration, false-positive criteria.
+- **Hooks (Kata 02/03)**: `scripts/pre-tool-guard.sh` is now policy-driven — hot-reloads `references/guardrails/tool-policy.json` and emits a deterministic deny (exit 2) before dangerous Bash or writes to protected paths; `references/reliability/posttooluse-normalization.md` documents runtime output normalization.
+- **Reliability (Kata 10/11)**: `references/reliability/prefix-caching.md`, `references/reliability/context-dilution.md`.
+- **Structured extraction & headless review (Kata 05/13)**: `references/schemas/annotations.schema.json` + `scripts/post_annotations.py` (stdlib validator); CI now validates review output against the schema.
+- **Message Batches (Kata 17)**: `scripts/batch/batch-runner.py` (lifecycle + selective failed-retry, injectable client, `--dry-run`).
+- **Path-conditional rules (Kata 09)**: `references/path-rules.md` manifest.
+- **Confidence + false positives (Kata 29/30)**: `scripts/qa/run-confidence-fp-tests.py` (calibration, stratified sampling, categorical FP criteria) wired into CI.
+- **Tool description quality (Kata 21)**: `validate-skills.py` adds a WARN-only check for generic/empty descriptions.
+
+### Added — Competency skills + deterministic skill improver
+
+- **22 competency skills** (`docs/competencies/`, `scripts/scaffold-competencies.sh`): the buildable capability behind the katas — `hook-engineering`, `agentic-loop-engineering`, `subagent-orchestration`, `structured-output-design`, `mcp-engineering`, `tool-use-design`, `plan-mode-workflow`, `claude-md-architecture`, `context-window-engineering`, `prompt-chaining-design`, `few-shot-engineering`, `self-correction-loops`, `human-escalation-design`, `message-batch-orchestration`, `persistent-memory-design`, `adaptive-investigation-method`, `provenance-engineering`, `custom-tooling-extension`, `session-lifecycle-management`, `validation-retry-design`, `independent-review-design`, `evaluation-confidence-design`. Each is a full 16-file CI-valid skill (filled via parallel fan-out).
+- **Deterministic skill improver** (`scripts/improve-skills.py`): additive, idempotent quality pass over every skill — enriches each `knowledge-graph.json` with ontology/evidence/anti-pattern nodes+edges and guarantees the canonical eval edge cases (false-positive, empty input). Dry-run by default; re-running is a no-op. Applied across all skills.
+- Counts → 585 skills (1368 components).
+
 ### Added — Pristino Persona Calibration (Phase 1)
 
 - Deterministic 8-persona role model: `references/ontology/personas.json` + `references/ontology/persona-protocol.md`.

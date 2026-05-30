@@ -23,6 +23,21 @@
       "id": "client-prospecting:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "client-prospecting:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "client-prospecting:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "client-prospecting:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "client-prospecting",
       "to": "client-prospecting:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "client-prospecting",
+      "to": "client-prospecting:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "client-prospecting",
+      "to": "client-prospecting:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "client-prospecting",
+      "to": "client-prospecting:antipattern",
+      "type": "guards_against"
     }
   ]
 }

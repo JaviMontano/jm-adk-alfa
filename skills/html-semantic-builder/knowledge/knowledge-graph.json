@@ -23,6 +23,21 @@
       "id": "html-semantic-builder:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "html-semantic-builder:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "html-semantic-builder:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "html-semantic-builder:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "html-semantic-builder",
       "to": "html-semantic-builder:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "html-semantic-builder",
+      "to": "html-semantic-builder:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "html-semantic-builder",
+      "to": "html-semantic-builder:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "html-semantic-builder",
+      "to": "html-semantic-builder:antipattern",
+      "type": "guards_against"
     }
   ]
 }

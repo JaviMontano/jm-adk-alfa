@@ -1,0 +1,145 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-30",
+  "skill": "claude-md-architecture",
+  "nodes": [
+    {
+      "id": "claude-md-architecture",
+      "type": "skill",
+      "label": "claude-md-architecture"
+    },
+    {
+      "id": "claude-md-architecture:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "claude-md-architecture:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "claude-md-architecture:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    },
+    {
+      "id": "concept:three-level-hierarchy",
+      "type": "concept",
+      "label": "User / team / module hierarchy"
+    },
+    {
+      "id": "concept:at-imports",
+      "type": "concept",
+      "label": "Cache-friendly @imports"
+    },
+    {
+      "id": "concept:path-scoped-rules",
+      "type": "concept",
+      "label": "Glob path-scoped rules"
+    },
+    {
+      "id": "concept:subpath-precedence",
+      "type": "concept",
+      "label": "Most-specific subpath precedence"
+    },
+    {
+      "id": "concept:user-scope",
+      "type": "concept",
+      "label": "User scope (~/.claude/CLAUDE.md)"
+    },
+    {
+      "id": "anti:monolithic-claude-md",
+      "type": "anti_pattern",
+      "label": "Monolithic always-loaded CLAUDE.md"
+    },
+    {
+      "id": "related:context-window-engineering",
+      "type": "skill",
+      "label": "context-window-engineering"
+    },
+    {
+      "id": "claude-md-architecture:ontology",
+      "type": "ontology",
+      "label": "Domain: claude-code-config"
+    },
+    {
+      "id": "claude-md-architecture:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "claude-md-architecture:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
+    }
+  ],
+  "edges": [
+    {
+      "from": "claude-md-architecture",
+      "to": "claude-md-architecture:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "claude-md-architecture",
+      "to": "claude-md-architecture:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "claude-md-architecture",
+      "to": "claude-md-architecture:quality",
+      "type": "validated_by"
+    },
+    {
+      "from": "claude-md-architecture",
+      "to": "concept:three-level-hierarchy",
+      "type": "applies"
+    },
+    {
+      "from": "claude-md-architecture",
+      "to": "concept:at-imports",
+      "type": "applies"
+    },
+    {
+      "from": "claude-md-architecture",
+      "to": "concept:path-scoped-rules",
+      "type": "applies"
+    },
+    {
+      "from": "concept:path-scoped-rules",
+      "to": "concept:subpath-precedence",
+      "type": "requires"
+    },
+    {
+      "from": "concept:three-level-hierarchy",
+      "to": "concept:user-scope",
+      "type": "includes"
+    },
+    {
+      "from": "claude-md-architecture",
+      "to": "anti:monolithic-claude-md",
+      "type": "avoids"
+    },
+    {
+      "from": "concept:at-imports",
+      "to": "related:context-window-engineering",
+      "type": "related_to"
+    },
+    {
+      "from": "claude-md-architecture",
+      "to": "claude-md-architecture:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "claude-md-architecture",
+      "to": "claude-md-architecture:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "claude-md-architecture",
+      "to": "claude-md-architecture:antipattern",
+      "type": "guards_against"
+    }
+  ]
+}

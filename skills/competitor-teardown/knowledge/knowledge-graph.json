@@ -23,6 +23,21 @@
       "id": "competitor-teardown:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "competitor-teardown:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "competitor-teardown:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "competitor-teardown:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "competitor-teardown",
       "to": "competitor-teardown:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "competitor-teardown",
+      "to": "competitor-teardown:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "competitor-teardown",
+      "to": "competitor-teardown:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "competitor-teardown",
+      "to": "competitor-teardown:antipattern",
+      "type": "guards_against"
     }
   ]
 }

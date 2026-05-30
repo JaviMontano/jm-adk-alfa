@@ -1,0 +1,150 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-30",
+  "skill": "evaluation-confidence-design",
+  "nodes": [
+    {
+      "id": "evaluation-confidence-design",
+      "type": "skill",
+      "label": "evaluation-confidence-design"
+    },
+    {
+      "id": "evaluation-confidence-design:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "evaluation-confidence-design:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "evaluation-confidence-design:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    },
+    {
+      "id": "concept:calibrated-confidence",
+      "type": "concept",
+      "label": "Calibrated confidence vs raw"
+    },
+    {
+      "id": "concept:labeled-set",
+      "type": "concept",
+      "label": "Labeled set / ground truth"
+    },
+    {
+      "id": "concept:stratified-sampling",
+      "type": "concept",
+      "label": "Stratified sampling by document_type"
+    },
+    {
+      "id": "concept:categorical-criteria",
+      "type": "concept",
+      "label": "Categorical criteria with +/- examples"
+    },
+    {
+      "id": "concept:fp-rate-per-category",
+      "type": "concept",
+      "label": "False positive rate per category"
+    },
+    {
+      "id": "concept:temporal-disable",
+      "type": "concept",
+      "label": "Temporal disable of high-FP category"
+    },
+    {
+      "id": "antipattern:raw-confidence-aggregate-accuracy",
+      "type": "antipattern",
+      "label": "Raw confidence cutoff + global sample + aggregate accuracy"
+    },
+    {
+      "id": "evaluation-confidence-design:ontology",
+      "type": "ontology",
+      "label": "Domain: prompt-structured-output"
+    },
+    {
+      "id": "evaluation-confidence-design:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "evaluation-confidence-design:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
+    }
+  ],
+  "edges": [
+    {
+      "from": "evaluation-confidence-design",
+      "to": "evaluation-confidence-design:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "evaluation-confidence-design",
+      "to": "evaluation-confidence-design:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "evaluation-confidence-design",
+      "to": "evaluation-confidence-design:quality",
+      "type": "validated_by"
+    },
+    {
+      "from": "evaluation-confidence-design",
+      "to": "concept:calibrated-confidence",
+      "type": "applies"
+    },
+    {
+      "from": "concept:calibrated-confidence",
+      "to": "concept:labeled-set",
+      "type": "requires"
+    },
+    {
+      "from": "evaluation-confidence-design",
+      "to": "concept:stratified-sampling",
+      "type": "applies"
+    },
+    {
+      "from": "concept:stratified-sampling",
+      "to": "concept:labeled-set",
+      "type": "requires"
+    },
+    {
+      "from": "evaluation-confidence-design",
+      "to": "concept:categorical-criteria",
+      "type": "applies"
+    },
+    {
+      "from": "evaluation-confidence-design",
+      "to": "concept:fp-rate-per-category",
+      "type": "applies"
+    },
+    {
+      "from": "concept:fp-rate-per-category",
+      "to": "concept:temporal-disable",
+      "type": "triggers"
+    },
+    {
+      "from": "evaluation-confidence-design:quality",
+      "to": "antipattern:raw-confidence-aggregate-accuracy",
+      "type": "rejects"
+    },
+    {
+      "from": "evaluation-confidence-design",
+      "to": "evaluation-confidence-design:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "evaluation-confidence-design",
+      "to": "evaluation-confidence-design:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "evaluation-confidence-design",
+      "to": "evaluation-confidence-design:antipattern",
+      "type": "guards_against"
+    }
+  ]
+}

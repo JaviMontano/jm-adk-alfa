@@ -23,6 +23,21 @@
       "id": "alerting-strategy:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "alerting-strategy:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "alerting-strategy:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "alerting-strategy:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "alerting-strategy",
       "to": "alerting-strategy:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "alerting-strategy",
+      "to": "alerting-strategy:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "alerting-strategy",
+      "to": "alerting-strategy:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "alerting-strategy",
+      "to": "alerting-strategy:antipattern",
+      "type": "guards_against"
     }
   ]
 }

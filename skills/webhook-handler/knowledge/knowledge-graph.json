@@ -23,6 +23,21 @@
       "id": "webhook-handler:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "webhook-handler:ontology",
+      "type": "ontology",
+      "label": "Domain: agentic-architecture/hooks"
+    },
+    {
+      "id": "webhook-handler:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "webhook-handler:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "webhook-handler",
       "to": "webhook-handler:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "webhook-handler",
+      "to": "webhook-handler:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "webhook-handler",
+      "to": "webhook-handler:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "webhook-handler",
+      "to": "webhook-handler:antipattern",
+      "type": "guards_against"
     }
   ]
 }

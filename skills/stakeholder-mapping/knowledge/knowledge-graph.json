@@ -23,6 +23,21 @@
       "id": "stakeholder-mapping:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "stakeholder-mapping:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "stakeholder-mapping:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "stakeholder-mapping:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "stakeholder-mapping",
       "to": "stakeholder-mapping:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "stakeholder-mapping",
+      "to": "stakeholder-mapping:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "stakeholder-mapping",
+      "to": "stakeholder-mapping:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "stakeholder-mapping",
+      "to": "stakeholder-mapping:antipattern",
+      "type": "guards_against"
     }
   ]
 }

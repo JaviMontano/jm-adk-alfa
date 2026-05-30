@@ -23,6 +23,21 @@
       "id": "discovery-retrospective:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "discovery-retrospective:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "discovery-retrospective:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "discovery-retrospective:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "discovery-retrospective",
       "to": "discovery-retrospective:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "discovery-retrospective",
+      "to": "discovery-retrospective:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "discovery-retrospective",
+      "to": "discovery-retrospective:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "discovery-retrospective",
+      "to": "discovery-retrospective:antipattern",
+      "type": "guards_against"
     }
   ]
 }

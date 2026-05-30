@@ -23,6 +23,21 @@
       "id": "budget-management:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "budget-management:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "budget-management:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "budget-management:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "budget-management",
       "to": "budget-management:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "budget-management",
+      "to": "budget-management:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "budget-management",
+      "to": "budget-management:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "budget-management",
+      "to": "budget-management:antipattern",
+      "type": "guards_against"
     }
   ]
 }

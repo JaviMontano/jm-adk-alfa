@@ -23,6 +23,21 @@
       "id": "hostinger-deployment:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "hostinger-deployment:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "hostinger-deployment:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "hostinger-deployment:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "hostinger-deployment",
       "to": "hostinger-deployment:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "hostinger-deployment",
+      "to": "hostinger-deployment:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "hostinger-deployment",
+      "to": "hostinger-deployment:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "hostinger-deployment",
+      "to": "hostinger-deployment:antipattern",
+      "type": "guards_against"
     }
   ]
 }

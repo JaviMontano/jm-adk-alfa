@@ -23,6 +23,21 @@
       "id": "voice-interface:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "voice-interface:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "voice-interface:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "voice-interface:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "voice-interface",
       "to": "voice-interface:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "voice-interface",
+      "to": "voice-interface:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "voice-interface",
+      "to": "voice-interface:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "voice-interface",
+      "to": "voice-interface:antipattern",
+      "type": "guards_against"
     }
   ]
 }

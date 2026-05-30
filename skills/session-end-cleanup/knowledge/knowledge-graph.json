@@ -23,6 +23,21 @@
       "id": "session-end-cleanup:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "session-end-cleanup:ontology",
+      "type": "ontology",
+      "label": "Domain: claude-code-config"
+    },
+    {
+      "id": "session-end-cleanup:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "session-end-cleanup:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "session-end-cleanup",
       "to": "session-end-cleanup:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "session-end-cleanup",
+      "to": "session-end-cleanup:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "session-end-cleanup",
+      "to": "session-end-cleanup:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "session-end-cleanup",
+      "to": "session-end-cleanup:antipattern",
+      "type": "guards_against"
     }
   ]
 }

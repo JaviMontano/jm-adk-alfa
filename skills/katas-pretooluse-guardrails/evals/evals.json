@@ -1,0 +1,98 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-29",
+  "skill": "katas-pretooluse-guardrails",
+  "cases": [
+    {
+      "id": "happy_path",
+      "input": "Quiz P1: nuestro agente de soporte aprueba reembolsos mayores a $1000 pese a la regla en el system prompt. Aplica katas-pretooluse-guardrails para convertir esa regla en un guardarrail determinista.",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "explicit_trigger",
+      "input": "/katas-pretooluse-guardrails registra un hook PreToolUse con permissionDecision deny para process_refund.",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "minimal_input",
+      "input": "katas-pretooluse-guardrails",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "rich_context",
+      "input": "Quiz P2: necesitamos cambiar el limite de reembolso sin reiniciar el agente. Usa katas-pretooluse-guardrails para dejar la politica en un dict POLICY recargable o un JSON que se relea en caliente, con el hook PreToolUse y HookMatcher.",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "false_positive",
+      "input": "Ayudame a redactar un correo de bienvenida para un nuevo cliente.",
+      "expected_activation": false,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "empty_input",
+      "input": "",
+      "expected_activation": false,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "conflicting_requirements",
+      "input": "Usa katas-pretooluse-guardrails, pero deja la politica solo en el system prompt y omite los hooks.",
+      "expected_activation": false,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "upgrade_safety_case",
+      "input": "Quiz P3: por que deny en PreToolUse evita side-effects y un raise dentro de la tool no? Completa los archivos faltantes de katas-pretooluse-guardrails sin sobreescribir ediciones locales.",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "local_override_case",
+      "input": "Crea una variante local experimental de katas-pretooluse-guardrails bajo .local que bloquee dominios prohibidos ademas de montos.",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    }
+  ]
+}

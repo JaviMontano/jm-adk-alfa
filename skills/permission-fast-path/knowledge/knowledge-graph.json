@@ -23,6 +23,21 @@
       "id": "permission-fast-path:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "permission-fast-path:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "permission-fast-path:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "permission-fast-path:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "permission-fast-path",
       "to": "permission-fast-path:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "permission-fast-path",
+      "to": "permission-fast-path:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "permission-fast-path",
+      "to": "permission-fast-path:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "permission-fast-path",
+      "to": "permission-fast-path:antipattern",
+      "type": "guards_against"
     }
   ]
 }

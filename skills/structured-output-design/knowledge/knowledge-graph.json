@@ -1,0 +1,160 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-30",
+  "skill": "structured-output-design",
+  "nodes": [
+    {
+      "id": "structured-output-design",
+      "type": "skill",
+      "label": "structured-output-design"
+    },
+    {
+      "id": "structured-output-design:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "structured-output-design:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "structured-output-design:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    },
+    {
+      "id": "concept:defensive-schema",
+      "type": "concept",
+      "label": "Defensive JSON Schema"
+    },
+    {
+      "id": "concept:nullable-union",
+      "type": "concept",
+      "label": "Nullable union for optionals"
+    },
+    {
+      "id": "concept:enum-escape-valve",
+      "type": "concept",
+      "label": "Enum escape valve (other + details)"
+    },
+    {
+      "id": "concept:forced-tool-choice",
+      "type": "concept",
+      "label": "Forced tool_choice"
+    },
+    {
+      "id": "concept:typed-parsing",
+      "type": "concept",
+      "label": "Parse from tool_use.input"
+    },
+    {
+      "id": "anti:prose-json-loads",
+      "type": "anti-pattern",
+      "label": "Prose JSON + json.loads(text)"
+    },
+    {
+      "id": "related:validation-retry-design",
+      "type": "skill",
+      "label": "validation-retry-design"
+    },
+    {
+      "id": "related:self-correction-loops",
+      "type": "skill",
+      "label": "self-correction-loops"
+    },
+    {
+      "id": "structured-output-design:ontology",
+      "type": "ontology",
+      "label": "Domain: tool-design-mcp"
+    },
+    {
+      "id": "structured-output-design:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "structured-output-design:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
+    }
+  ],
+  "edges": [
+    {
+      "from": "structured-output-design",
+      "to": "structured-output-design:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "structured-output-design",
+      "to": "structured-output-design:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "structured-output-design",
+      "to": "structured-output-design:quality",
+      "type": "validated_by"
+    },
+    {
+      "from": "structured-output-design",
+      "to": "concept:defensive-schema",
+      "type": "applies"
+    },
+    {
+      "from": "concept:defensive-schema",
+      "to": "concept:nullable-union",
+      "type": "includes"
+    },
+    {
+      "from": "concept:defensive-schema",
+      "to": "concept:enum-escape-valve",
+      "type": "includes"
+    },
+    {
+      "from": "structured-output-design",
+      "to": "concept:forced-tool-choice",
+      "type": "applies"
+    },
+    {
+      "from": "structured-output-design",
+      "to": "concept:typed-parsing",
+      "type": "applies"
+    },
+    {
+      "from": "structured-output-design",
+      "to": "anti:prose-json-loads",
+      "type": "avoids"
+    },
+    {
+      "from": "concept:typed-parsing",
+      "to": "anti:prose-json-loads",
+      "type": "replaces"
+    },
+    {
+      "from": "structured-output-design:quality",
+      "to": "related:validation-retry-design",
+      "type": "escalates_to"
+    },
+    {
+      "from": "structured-output-design:quality",
+      "to": "related:self-correction-loops",
+      "type": "escalates_to"
+    },
+    {
+      "from": "structured-output-design",
+      "to": "structured-output-design:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "structured-output-design",
+      "to": "structured-output-design:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "structured-output-design",
+      "to": "structured-output-design:antipattern",
+      "type": "guards_against"
+    }
+  ]
+}

@@ -23,6 +23,21 @@
       "id": "governance-framework:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "governance-framework:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "governance-framework:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "governance-framework:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "governance-framework",
       "to": "governance-framework:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "governance-framework",
+      "to": "governance-framework:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "governance-framework",
+      "to": "governance-framework:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "governance-framework",
+      "to": "governance-framework:antipattern",
+      "type": "guards_against"
     }
   ]
 }

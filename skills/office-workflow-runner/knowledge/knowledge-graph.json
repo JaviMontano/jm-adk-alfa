@@ -23,6 +23,21 @@
       "id": "office-workflow-runner:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "office-workflow-runner:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "office-workflow-runner:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "office-workflow-runner:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "office-workflow-runner",
       "to": "office-workflow-runner:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "office-workflow-runner",
+      "to": "office-workflow-runner:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "office-workflow-runner",
+      "to": "office-workflow-runner:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "office-workflow-runner",
+      "to": "office-workflow-runner:antipattern",
+      "type": "guards_against"
     }
   ]
 }

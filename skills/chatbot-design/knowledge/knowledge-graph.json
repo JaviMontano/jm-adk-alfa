@@ -23,6 +23,21 @@
       "id": "chatbot-design:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "chatbot-design:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "chatbot-design:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "chatbot-design:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "chatbot-design",
       "to": "chatbot-design:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "chatbot-design",
+      "to": "chatbot-design:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "chatbot-design",
+      "to": "chatbot-design:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "chatbot-design",
+      "to": "chatbot-design:antipattern",
+      "type": "guards_against"
     }
   ]
 }

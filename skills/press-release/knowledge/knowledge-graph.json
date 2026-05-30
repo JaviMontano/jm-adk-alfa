@@ -23,6 +23,21 @@
       "id": "press-release:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "press-release:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "press-release:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "press-release:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "press-release",
       "to": "press-release:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "press-release",
+      "to": "press-release:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "press-release",
+      "to": "press-release:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "press-release",
+      "to": "press-release:antipattern",
+      "type": "guards_against"
     }
   ]
 }

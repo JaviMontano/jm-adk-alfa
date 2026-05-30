@@ -23,6 +23,21 @@
       "id": "ai-assisted-testing:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "ai-assisted-testing:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "ai-assisted-testing:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "ai-assisted-testing:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "ai-assisted-testing",
       "to": "ai-assisted-testing:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "ai-assisted-testing",
+      "to": "ai-assisted-testing:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "ai-assisted-testing",
+      "to": "ai-assisted-testing:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "ai-assisted-testing",
+      "to": "ai-assisted-testing:antipattern",
+      "type": "guards_against"
     }
   ]
 }

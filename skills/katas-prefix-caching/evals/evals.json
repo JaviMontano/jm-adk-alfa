@@ -1,0 +1,88 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-29",
+  "skill": "katas-prefix-caching",
+  "cases": [
+    {
+      "id": "quiz_p1_dynamic_at_start_breaks_cache",
+      "input": "Mi prompt mete el timestamp y el user_id al inicio del system y la factura de tokens es 10x. ¿Por qué el prefix caching no se activa y cómo lo arreglo?",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "quiz_p2_one_char_invalidates_from_there",
+      "input": "Edité un carácter en medio del system prompt grande y de pronto el cache_read_input_tokens cayó a cero. ¿Qué pasó con el cache KV?",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "quiz_p3_dynamic_at_end_in_reminder",
+      "input": "Tengo la hora actual que cambia cada turno y un system prompt estable enorme. ¿Dónde coloco la hora para no romper el prefix caching?",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "explicit_trigger",
+      "input": "/katas-prefix-caching reorganiza este prompt para reusar el cache y márcalo con cache_control ephemeral.",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "rich_context_usage_audit",
+      "input": "Aquí está mi usage con cache_creation_input_tokens=8000 y cache_read_input_tokens=0 en cada llamada; el prompt tiene system estable, contexto de repo y el user_id al frente. Estima el ahorro y reordénalo.",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "false_positive",
+      "input": "Configura una caché de Redis para guardar las sesiones HTTP de mi servidor web.",
+      "expected_activation": false,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "empty_input",
+      "input": "",
+      "expected_activation": false,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "upgrade_safety_case",
+      "input": "Complete missing files for katas-prefix-caching without overwriting local edits.",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    }
+  ]
+}

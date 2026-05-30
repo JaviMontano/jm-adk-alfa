@@ -23,6 +23,21 @@
       "id": "ai-workflow-automation:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "ai-workflow-automation:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "ai-workflow-automation:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "ai-workflow-automation:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "ai-workflow-automation",
       "to": "ai-workflow-automation:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "ai-workflow-automation",
+      "to": "ai-workflow-automation:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "ai-workflow-automation",
+      "to": "ai-workflow-automation:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "ai-workflow-automation",
+      "to": "ai-workflow-automation:antipattern",
+      "type": "guards_against"
     }
   ]
 }

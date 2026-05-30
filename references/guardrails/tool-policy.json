@@ -1,0 +1,31 @@
+{
+  "schema": 1,
+  "description": "Deterministic tool-use enforcement policy for the PreToolUse hook (Kata 02). Distinct from the user-RAG files (guidelines/constraints/guardrails.json): this file is enforced in code by scripts/pre-tool-guard.sh and emits a deny decision before a tool runs. Edit freely; the hook hot-reloads on every call.",
+  "deny_bash_patterns": [
+    "rm\\s+-[a-z]*r[a-z]*f[a-z]*\\s+(/|~|\\.)(\\s|$)",
+    "rm\\s+-[a-z]*f[a-z]*r[a-z]*\\s+(/|~|\\.)(\\s|$)",
+    "git\\s+reset\\s+--hard",
+    "git\\s+push\\s+(--force|-f)\\b",
+    "git\\s+clean\\s+-[a-z]*f",
+    "mkfs\\.",
+    "dd\\s+if=",
+    ":\\|:&",
+    "curl[^|]*\\|\\s*(sh|bash)\\b",
+    "wget[^|]*\\|\\s*(sh|bash)\\b",
+    "chmod\\s+-R\\s+777\\s+/"
+  ],
+  "protected_path_substrings": [
+    "/.git/",
+    "/.env",
+    "id_rsa",
+    "id_ed25519",
+    ".jm-adk.local.json"
+  ],
+  "write_tools": ["Write", "Edit", "MultiEdit", "NotebookEdit"],
+  "sensitive_warn_substrings": [".env", "credentials", "secret", ".pem", ".key"],
+  "documented_sdk_limits": {
+    "note": "These thresholds illustrate Kata 02 for the Agent SDK (ClaudeAgentOptions.hooks). They are NOT enforced by the Claude Code bash hook, which only sees Bash/Write tool inputs; enforce them in your SDK PreToolUse hook via permissionDecision=deny.",
+    "refund_max_usd": 1000,
+    "prohibited_domains": ["production-db", "payments-prod"]
+  }
+}

@@ -1,0 +1,145 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-29",
+  "skill": "katas-critical-self-correction",
+  "nodes": [
+    {
+      "id": "katas-critical-self-correction",
+      "type": "skill",
+      "label": "katas-critical-self-correction"
+    },
+    {
+      "id": "katas-critical-self-correction:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "katas-critical-self-correction:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "katas-critical-self-correction:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    },
+    {
+      "id": "katas-critical-self-correction:stated-value",
+      "type": "concept",
+      "label": "Valor declarado (stated)"
+    },
+    {
+      "id": "katas-critical-self-correction:computed-value",
+      "type": "concept",
+      "label": "Valor calculado (computed)"
+    },
+    {
+      "id": "katas-critical-self-correction:epsilon",
+      "type": "concept",
+      "label": "Epsilon de tolerancia"
+    },
+    {
+      "id": "katas-critical-self-correction:mismatch-flag",
+      "type": "concept",
+      "label": "Mismatch flag con ambos valores y delta"
+    },
+    {
+      "id": "katas-critical-self-correction:anti-pattern",
+      "type": "anti_pattern",
+      "label": "Corregir en silencio o confiar en lo declarado"
+    },
+    {
+      "id": "katas-human-handoff-protocol",
+      "type": "skill",
+      "label": "katas-human-handoff-protocol"
+    },
+    {
+      "id": "katas-provenance-preservation",
+      "type": "skill",
+      "label": "katas-provenance-preservation"
+    },
+    {
+      "id": "katas-critical-self-correction:ontology",
+      "type": "ontology",
+      "label": "Domain: prompt-structured-output"
+    },
+    {
+      "id": "katas-critical-self-correction:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "katas-critical-self-correction:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
+    }
+  ],
+  "edges": [
+    {
+      "from": "katas-critical-self-correction",
+      "to": "katas-critical-self-correction:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "katas-critical-self-correction",
+      "to": "katas-critical-self-correction:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "katas-critical-self-correction",
+      "to": "katas-critical-self-correction:quality",
+      "type": "validated_by"
+    },
+    {
+      "from": "katas-critical-self-correction",
+      "to": "katas-critical-self-correction:stated-value",
+      "type": "uses"
+    },
+    {
+      "from": "katas-critical-self-correction",
+      "to": "katas-critical-self-correction:computed-value",
+      "type": "uses"
+    },
+    {
+      "from": "katas-critical-self-correction:computed-value",
+      "to": "katas-critical-self-correction:stated-value",
+      "type": "cross_checks"
+    },
+    {
+      "from": "katas-critical-self-correction:epsilon",
+      "to": "katas-critical-self-correction:mismatch-flag",
+      "type": "governs"
+    },
+    {
+      "from": "katas-critical-self-correction:mismatch-flag",
+      "to": "katas-human-handoff-protocol",
+      "type": "escalates_to"
+    },
+    {
+      "from": "katas-critical-self-correction:mismatch-flag",
+      "to": "katas-provenance-preservation",
+      "type": "connects_to"
+    },
+    {
+      "from": "katas-critical-self-correction",
+      "to": "katas-critical-self-correction:anti-pattern",
+      "type": "rejects"
+    },
+    {
+      "from": "katas-critical-self-correction",
+      "to": "katas-critical-self-correction:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "katas-critical-self-correction",
+      "to": "katas-critical-self-correction:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "katas-critical-self-correction",
+      "to": "katas-critical-self-correction:antipattern",
+      "type": "guards_against"
+    }
+  ]
+}

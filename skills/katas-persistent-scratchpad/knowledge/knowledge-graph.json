@@ -1,0 +1,155 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-29",
+  "skill": "katas-persistent-scratchpad",
+  "nodes": [
+    {
+      "id": "katas-persistent-scratchpad",
+      "type": "skill",
+      "label": "katas-persistent-scratchpad"
+    },
+    {
+      "id": "katas-persistent-scratchpad:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "katas-persistent-scratchpad:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "katas-persistent-scratchpad:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    },
+    {
+      "id": "concept:volatile-vs-persistent-memory",
+      "type": "concept",
+      "label": "Memoria conversacional volatil vs scratchpad persistente en disco"
+    },
+    {
+      "id": "concept:curated-conclusions",
+      "type": "concept",
+      "label": "Curar solo conclusiones validadas: decisiones, hallazgos, pendientes"
+    },
+    {
+      "id": "concept:structured-scratchpad-file",
+      "type": "concept",
+      "label": "investigation-scratchpad.md estructurado por secciones"
+    },
+    {
+      "id": "concept:read-once-reference-after",
+      "type": "concept",
+      "label": "Leer una vez al inicio y referenciar/anexar despues"
+    },
+    {
+      "id": "antipattern:conversation-as-long-term-memory",
+      "type": "antipattern",
+      "label": "Confiar en la conversacion como memoria de largo plazo (se pierde tras /compact)"
+    },
+    {
+      "id": "kata:11-compaction",
+      "type": "related_kata",
+      "label": "Kata 11 - Compactacion (motiva la persistencia)"
+    },
+    {
+      "id": "kata:19-adaptive-investigation",
+      "type": "related_kata",
+      "label": "Kata 19 - Investigacion adaptativa (consume y alimenta el scratchpad)"
+    },
+    {
+      "id": "kata:10-cache-aware",
+      "type": "related_kata",
+      "label": "Kata 10 - Contexto cache-aware (no re-leer cada turno)"
+    },
+    {
+      "id": "katas-persistent-scratchpad:ontology",
+      "type": "ontology",
+      "label": "Domain: context-reliability"
+    },
+    {
+      "id": "katas-persistent-scratchpad:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "katas-persistent-scratchpad:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
+    }
+  ],
+  "edges": [
+    {
+      "from": "katas-persistent-scratchpad",
+      "to": "katas-persistent-scratchpad:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "katas-persistent-scratchpad",
+      "to": "katas-persistent-scratchpad:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "katas-persistent-scratchpad",
+      "to": "katas-persistent-scratchpad:quality",
+      "type": "validated_by"
+    },
+    {
+      "from": "katas-persistent-scratchpad",
+      "to": "concept:volatile-vs-persistent-memory",
+      "type": "teaches"
+    },
+    {
+      "from": "katas-persistent-scratchpad",
+      "to": "concept:curated-conclusions",
+      "type": "teaches"
+    },
+    {
+      "from": "katas-persistent-scratchpad",
+      "to": "concept:structured-scratchpad-file",
+      "type": "teaches"
+    },
+    {
+      "from": "katas-persistent-scratchpad",
+      "to": "concept:read-once-reference-after",
+      "type": "teaches"
+    },
+    {
+      "from": "katas-persistent-scratchpad",
+      "to": "antipattern:conversation-as-long-term-memory",
+      "type": "avoids"
+    },
+    {
+      "from": "concept:read-once-reference-after",
+      "to": "kata:10-cache-aware",
+      "type": "preserves"
+    },
+    {
+      "from": "concept:volatile-vs-persistent-memory",
+      "to": "kata:11-compaction",
+      "type": "motivated_by"
+    },
+    {
+      "from": "katas-persistent-scratchpad",
+      "to": "kata:19-adaptive-investigation",
+      "type": "feeds"
+    },
+    {
+      "from": "katas-persistent-scratchpad",
+      "to": "katas-persistent-scratchpad:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "katas-persistent-scratchpad",
+      "to": "katas-persistent-scratchpad:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "katas-persistent-scratchpad",
+      "to": "katas-persistent-scratchpad:antipattern",
+      "type": "guards_against"
+    }
+  ]
+}

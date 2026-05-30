@@ -1,0 +1,155 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-30",
+  "skill": "session-lifecycle-management",
+  "nodes": [
+    {
+      "id": "session-lifecycle-management",
+      "type": "skill",
+      "label": "session-lifecycle-management"
+    },
+    {
+      "id": "session-lifecycle-management:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "session-lifecycle-management:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "session-lifecycle-management:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    },
+    {
+      "id": "session-context",
+      "type": "concept",
+      "label": "SessionContext: snapshot con tool results e invariantes del mundo"
+    },
+    {
+      "id": "staleness-detection",
+      "type": "concept",
+      "label": "Deteccion de tool results stale via mtime/hash/HEAD"
+    },
+    {
+      "id": "resume",
+      "type": "transition",
+      "label": "resume: contexto valido, objetivo continuo"
+    },
+    {
+      "id": "fork",
+      "type": "transition",
+      "label": "fork: ramas paralelas con scratchpad aislado"
+    },
+    {
+      "id": "fresh",
+      "type": "transition",
+      "label": "fresh: el mundo cambio, reiniciar con summary"
+    },
+    {
+      "id": "typed-summary",
+      "type": "concept",
+      "label": "TypedSummary: goal/decisions/open_questions/verified_facts/stale_dropped"
+    },
+    {
+      "id": "fork-isolation",
+      "type": "concept",
+      "label": "Aislamiento de forks sin estado mutable compartido"
+    },
+    {
+      "id": "blind-resume-anti-pattern",
+      "type": "anti_pattern",
+      "label": "resume ciego tras refactor + transcript crudo como summary"
+    },
+    {
+      "id": "session-lifecycle-management:ontology",
+      "type": "ontology",
+      "label": "Domain: claude-code-config"
+    },
+    {
+      "id": "session-lifecycle-management:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "session-lifecycle-management:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
+    }
+  ],
+  "edges": [
+    {
+      "from": "session-lifecycle-management",
+      "to": "session-lifecycle-management:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "session-lifecycle-management",
+      "to": "session-lifecycle-management:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "session-lifecycle-management",
+      "to": "session-lifecycle-management:quality",
+      "type": "validated_by"
+    },
+    {
+      "from": "session-lifecycle-management",
+      "to": "session-context",
+      "type": "models"
+    },
+    {
+      "from": "staleness-detection",
+      "to": "session-context",
+      "type": "inspects"
+    },
+    {
+      "from": "staleness-detection",
+      "to": "resume",
+      "type": "guards"
+    },
+    {
+      "from": "staleness-detection",
+      "to": "fresh",
+      "type": "triggers"
+    },
+    {
+      "from": "fresh",
+      "to": "typed-summary",
+      "type": "produces"
+    },
+    {
+      "from": "fork",
+      "to": "fork-isolation",
+      "type": "requires"
+    },
+    {
+      "from": "blind-resume-anti-pattern",
+      "to": "resume",
+      "type": "violates"
+    },
+    {
+      "from": "blind-resume-anti-pattern",
+      "to": "typed-summary",
+      "type": "violates"
+    },
+    {
+      "from": "session-lifecycle-management",
+      "to": "session-lifecycle-management:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "session-lifecycle-management",
+      "to": "session-lifecycle-management:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "session-lifecycle-management",
+      "to": "session-lifecycle-management:antipattern",
+      "type": "guards_against"
+    }
+  ]
+}

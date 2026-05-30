@@ -1,0 +1,145 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-29",
+  "skill": "katas-context-dilution-mitigation",
+  "nodes": [
+    {
+      "id": "katas-context-dilution-mitigation",
+      "type": "skill",
+      "label": "katas-context-dilution-mitigation"
+    },
+    {
+      "id": "katas-context-dilution-mitigation:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "katas-context-dilution-mitigation:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "katas-context-dilution-mitigation:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    },
+    {
+      "id": "concept:u-curve-attention",
+      "type": "concept",
+      "label": "Curva en U de atencion (lost in the middle)"
+    },
+    {
+      "id": "concept:edge-placement",
+      "type": "concept",
+      "label": "Edge placement de reglas criticas"
+    },
+    {
+      "id": "concept:reminder-block",
+      "type": "concept",
+      "label": "Reminder en el borde final"
+    },
+    {
+      "id": "concept:usage-fraction-threshold",
+      "type": "concept",
+      "label": "Umbral usage_fraction 0.55 (50-60 por ciento)"
+    },
+    {
+      "id": "concept:compaction-preserve",
+      "type": "concept",
+      "label": "Compactacion preservando reglas, decisiones y escaladas"
+    },
+    {
+      "id": "concept:silent-policy-violation",
+      "type": "antipattern",
+      "label": "Violacion silenciosa de politica enterrada en el valle"
+    },
+    {
+      "id": "katas-context-dilution-mitigation:ontology",
+      "type": "ontology",
+      "label": "Domain: context-reliability"
+    },
+    {
+      "id": "katas-context-dilution-mitigation:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "katas-context-dilution-mitigation:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
+    }
+  ],
+  "edges": [
+    {
+      "from": "katas-context-dilution-mitigation",
+      "to": "katas-context-dilution-mitigation:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "katas-context-dilution-mitigation",
+      "to": "katas-context-dilution-mitigation:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "katas-context-dilution-mitigation",
+      "to": "katas-context-dilution-mitigation:quality",
+      "type": "validated_by"
+    },
+    {
+      "from": "katas-context-dilution-mitigation",
+      "to": "concept:u-curve-attention",
+      "type": "explains"
+    },
+    {
+      "from": "concept:u-curve-attention",
+      "to": "concept:silent-policy-violation",
+      "type": "causes"
+    },
+    {
+      "from": "concept:edge-placement",
+      "to": "concept:u-curve-attention",
+      "type": "mitigates"
+    },
+    {
+      "from": "concept:edge-placement",
+      "to": "concept:reminder-block",
+      "type": "uses"
+    },
+    {
+      "from": "concept:usage-fraction-threshold",
+      "to": "concept:compaction-preserve",
+      "type": "triggers"
+    },
+    {
+      "from": "concept:compaction-preserve",
+      "to": "concept:u-curve-attention",
+      "type": "mitigates"
+    },
+    {
+      "from": "katas-context-dilution-mitigation",
+      "to": "concept:edge-placement",
+      "type": "applies"
+    },
+    {
+      "from": "katas-context-dilution-mitigation",
+      "to": "concept:usage-fraction-threshold",
+      "type": "applies"
+    },
+    {
+      "from": "katas-context-dilution-mitigation",
+      "to": "katas-context-dilution-mitigation:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "katas-context-dilution-mitigation",
+      "to": "katas-context-dilution-mitigation:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "katas-context-dilution-mitigation",
+      "to": "katas-context-dilution-mitigation:antipattern",
+      "type": "guards_against"
+    }
+  ]
+}

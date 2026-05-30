@@ -23,6 +23,21 @@
       "id": "payment-integration:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "payment-integration:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "payment-integration:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "payment-integration:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "payment-integration",
       "to": "payment-integration:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "payment-integration",
+      "to": "payment-integration:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "payment-integration",
+      "to": "payment-integration:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "payment-integration",
+      "to": "payment-integration:antipattern",
+      "type": "guards_against"
     }
   ]
 }

@@ -23,6 +23,21 @@
       "id": "b2b-outreach:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "b2b-outreach:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "b2b-outreach:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "b2b-outreach:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "b2b-outreach",
       "to": "b2b-outreach:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "b2b-outreach",
+      "to": "b2b-outreach:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "b2b-outreach",
+      "to": "b2b-outreach:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "b2b-outreach",
+      "to": "b2b-outreach:antipattern",
+      "type": "guards_against"
     }
   ]
 }

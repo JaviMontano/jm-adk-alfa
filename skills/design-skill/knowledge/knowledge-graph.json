@@ -23,6 +23,21 @@
       "id": "design-skill:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "design-skill:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "design-skill:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "design-skill:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "design-skill",
       "to": "design-skill:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "design-skill",
+      "to": "design-skill:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "design-skill",
+      "to": "design-skill:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "design-skill",
+      "to": "design-skill:antipattern",
+      "type": "guards_against"
     }
   ]
 }

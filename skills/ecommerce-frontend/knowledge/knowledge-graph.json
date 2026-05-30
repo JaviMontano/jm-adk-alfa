@@ -23,6 +23,21 @@
       "id": "ecommerce-frontend:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "ecommerce-frontend:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "ecommerce-frontend:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "ecommerce-frontend:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "ecommerce-frontend",
       "to": "ecommerce-frontend:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "ecommerce-frontend",
+      "to": "ecommerce-frontend:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "ecommerce-frontend",
+      "to": "ecommerce-frontend:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "ecommerce-frontend",
+      "to": "ecommerce-frontend:antipattern",
+      "type": "guards_against"
     }
   ]
 }

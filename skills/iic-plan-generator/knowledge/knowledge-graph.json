@@ -23,6 +23,21 @@
       "id": "iic-plan-generator:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "iic-plan-generator:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "iic-plan-generator:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "iic-plan-generator:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "iic-plan-generator",
       "to": "iic-plan-generator:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "iic-plan-generator",
+      "to": "iic-plan-generator:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "iic-plan-generator",
+      "to": "iic-plan-generator:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "iic-plan-generator",
+      "to": "iic-plan-generator:antipattern",
+      "type": "guards_against"
     }
   ]
 }

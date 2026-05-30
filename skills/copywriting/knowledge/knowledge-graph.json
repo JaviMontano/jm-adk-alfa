@@ -23,6 +23,21 @@
       "id": "copywriting:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "copywriting:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "copywriting:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "copywriting:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "copywriting",
       "to": "copywriting:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "copywriting",
+      "to": "copywriting:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "copywriting",
+      "to": "copywriting:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "copywriting",
+      "to": "copywriting:antipattern",
+      "type": "guards_against"
     }
   ]
 }

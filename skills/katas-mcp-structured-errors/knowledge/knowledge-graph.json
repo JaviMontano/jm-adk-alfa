@@ -1,0 +1,135 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-29",
+  "skill": "katas-mcp-structured-errors",
+  "nodes": [
+    {
+      "id": "katas-mcp-structured-errors",
+      "type": "skill",
+      "label": "katas-mcp-structured-errors"
+    },
+    {
+      "id": "katas-mcp-structured-errors:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "katas-mcp-structured-errors:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "katas-mcp-structured-errors:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    },
+    {
+      "id": "concept:typed-error-contract",
+      "type": "concept",
+      "label": "Contrato de error tipado (isError, errorCategory, isRetryable, retryAfterSeconds)"
+    },
+    {
+      "id": "concept:error-category",
+      "type": "concept",
+      "label": "errorCategory enum (auth, rate_limit, not_found, validation, transient, unknown)"
+    },
+    {
+      "id": "concept:client-retry-policy",
+      "type": "concept",
+      "label": "Política de retry en el cliente (backoff exponencial, n máximo)"
+    },
+    {
+      "id": "concept:explanation-audit-only",
+      "type": "concept",
+      "label": "explanation es para auditoría humana, no para la lógica del modelo"
+    },
+    {
+      "id": "anti-pattern:generic-error-string",
+      "type": "anti_pattern",
+      "label": "String genérico 'something went wrong' sin flags tipados"
+    },
+    {
+      "id": "certification:typed-contract-argument",
+      "type": "gate",
+      "label": "Argumento: errores MCP son contratos tipados; retry vive en el cliente"
+    },
+    {
+      "id": "katas-mcp-structured-errors:ontology",
+      "type": "ontology",
+      "label": "Domain: tool-design-mcp"
+    },
+    {
+      "id": "katas-mcp-structured-errors:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "katas-mcp-structured-errors:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
+    }
+  ],
+  "edges": [
+    {
+      "from": "katas-mcp-structured-errors",
+      "to": "katas-mcp-structured-errors:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "katas-mcp-structured-errors",
+      "to": "katas-mcp-structured-errors:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "katas-mcp-structured-errors",
+      "to": "katas-mcp-structured-errors:quality",
+      "type": "validated_by"
+    },
+    {
+      "from": "katas-mcp-structured-errors",
+      "to": "concept:typed-error-contract",
+      "type": "teaches"
+    },
+    {
+      "from": "concept:typed-error-contract",
+      "to": "concept:error-category",
+      "type": "includes"
+    },
+    {
+      "from": "concept:typed-error-contract",
+      "to": "concept:client-retry-policy",
+      "type": "delegates_to"
+    },
+    {
+      "from": "concept:typed-error-contract",
+      "to": "concept:explanation-audit-only",
+      "type": "includes"
+    },
+    {
+      "from": "concept:typed-error-contract",
+      "to": "anti-pattern:generic-error-string",
+      "type": "contrasts_with"
+    },
+    {
+      "from": "katas-mcp-structured-errors:quality",
+      "to": "certification:typed-contract-argument",
+      "type": "asserts"
+    },
+    {
+      "from": "katas-mcp-structured-errors",
+      "to": "katas-mcp-structured-errors:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "katas-mcp-structured-errors",
+      "to": "katas-mcp-structured-errors:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "katas-mcp-structured-errors",
+      "to": "katas-mcp-structured-errors:antipattern",
+      "type": "guards_against"
+    }
+  ]
+}

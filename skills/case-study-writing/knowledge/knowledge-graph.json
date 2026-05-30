@@ -23,6 +23,21 @@
       "id": "case-study-writing:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "case-study-writing:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "case-study-writing:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "case-study-writing:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "case-study-writing",
       "to": "case-study-writing:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "case-study-writing",
+      "to": "case-study-writing:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "case-study-writing",
+      "to": "case-study-writing:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "case-study-writing",
+      "to": "case-study-writing:antipattern",
+      "type": "guards_against"
     }
   ]
 }

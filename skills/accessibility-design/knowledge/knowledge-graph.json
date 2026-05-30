@@ -23,6 +23,21 @@
       "id": "accessibility-design:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "accessibility-design:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "accessibility-design:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "accessibility-design:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "accessibility-design",
       "to": "accessibility-design:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "accessibility-design",
+      "to": "accessibility-design:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "accessibility-design",
+      "to": "accessibility-design:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "accessibility-design",
+      "to": "accessibility-design:antipattern",
+      "type": "guards_against"
     }
   ]
 }

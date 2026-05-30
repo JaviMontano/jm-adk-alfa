@@ -23,6 +23,21 @@
       "id": "technical-feasibility:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "technical-feasibility:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "technical-feasibility:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "technical-feasibility:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "technical-feasibility",
       "to": "technical-feasibility:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "technical-feasibility",
+      "to": "technical-feasibility:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "technical-feasibility",
+      "to": "technical-feasibility:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "technical-feasibility",
+      "to": "technical-feasibility:antipattern",
+      "type": "guards_against"
     }
   ]
 }

@@ -1,0 +1,26 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://jm-adk/annotations.schema.json",
+  "title": "Headless Code Review Annotations (Kata 13)",
+  "description": "Contract for claude -p --output-format=json code review output. A pipeline validates against this schema and posts deterministic PR comments; if invalid, the job fails (no prose parsing).",
+  "type": "object",
+  "required": ["annotations"],
+  "additionalProperties": false,
+  "properties": {
+    "annotations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["file", "line", "severity", "rule_id", "message"],
+        "additionalProperties": false,
+        "properties": {
+          "file": {"type": "string", "minLength": 1},
+          "line": {"type": "integer", "minimum": 1},
+          "severity": {"type": "string", "enum": ["error", "warning", "info"]},
+          "rule_id": {"type": "string", "minLength": 1},
+          "message": {"type": "string", "minLength": 1}
+        }
+      }
+    }
+  }
+}

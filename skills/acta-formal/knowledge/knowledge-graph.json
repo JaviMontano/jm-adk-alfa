@@ -46,6 +46,21 @@
       "id": "markdown-html-parity",
       "type": "gate",
       "label": "Markdown and HTML section parity"
+    },
+    {
+      "id": "acta-formal:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "acta-formal:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "acta-formal:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -88,6 +103,21 @@
       "from": "acta-formal",
       "to": "markdown-html-parity",
       "type": "validated_by"
+    },
+    {
+      "from": "acta-formal",
+      "to": "acta-formal:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "acta-formal",
+      "to": "acta-formal:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "acta-formal",
+      "to": "acta-formal:antipattern",
+      "type": "guards_against"
     }
   ]
 }

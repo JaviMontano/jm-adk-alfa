@@ -1,0 +1,175 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-30",
+  "skill": "custom-tooling-extension",
+  "nodes": [
+    {
+      "id": "custom-tooling-extension",
+      "type": "skill",
+      "label": "custom-tooling-extension"
+    },
+    {
+      "id": "custom-tooling-extension:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "custom-tooling-extension:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "custom-tooling-extension:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    },
+    {
+      "id": "concept:slash-command",
+      "type": "concept",
+      "label": "Slash command (.claude/commands/X.md, disparo explicito)"
+    },
+    {
+      "id": "concept:skill-frontmatter",
+      "type": "concept",
+      "label": "Skill frontmatter (description, argument-hint)"
+    },
+    {
+      "id": "concept:context-fork",
+      "type": "concept",
+      "label": "context: fork (ventana aislada, economia de contexto)"
+    },
+    {
+      "id": "concept:allowed-tools",
+      "type": "concept",
+      "label": "allowed-tools whitelist (blast radius acotado)"
+    },
+    {
+      "id": "concept:scope-project-vs-user",
+      "type": "concept",
+      "label": "Scope project vs user (replicabilidad al equipo)"
+    },
+    {
+      "id": "concept:claude-md-conventions",
+      "type": "concept",
+      "label": "Convenciones permanentes en CLAUDE.md"
+    },
+    {
+      "id": "anti:user-scope-no-replica",
+      "type": "anti_pattern",
+      "label": "User scope cuando debe replicarse"
+    },
+    {
+      "id": "anti:skill-sin-fork",
+      "type": "anti_pattern",
+      "label": "Skill sin fork contamina la sesion"
+    },
+    {
+      "id": "anti:sin-allowed-tools",
+      "type": "anti_pattern",
+      "label": "Ops destructivas sin allowed-tools"
+    },
+    {
+      "id": "kata:custom-commands-skills",
+      "type": "kata",
+      "label": "katas-custom-commands-skills (kata 24)"
+    },
+    {
+      "id": "custom-tooling-extension:ontology",
+      "type": "ontology",
+      "label": "Domain: claude-code-config"
+    },
+    {
+      "id": "custom-tooling-extension:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "custom-tooling-extension:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
+    }
+  ],
+  "edges": [
+    {
+      "from": "custom-tooling-extension",
+      "to": "custom-tooling-extension:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "custom-tooling-extension",
+      "to": "custom-tooling-extension:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "custom-tooling-extension",
+      "to": "custom-tooling-extension:quality",
+      "type": "validated_by"
+    },
+    {
+      "from": "custom-tooling-extension",
+      "to": "concept:slash-command",
+      "type": "uses"
+    },
+    {
+      "from": "custom-tooling-extension",
+      "to": "concept:skill-frontmatter",
+      "type": "uses"
+    },
+    {
+      "from": "custom-tooling-extension",
+      "to": "concept:context-fork",
+      "type": "uses"
+    },
+    {
+      "from": "custom-tooling-extension",
+      "to": "concept:allowed-tools",
+      "type": "uses"
+    },
+    {
+      "from": "custom-tooling-extension",
+      "to": "concept:scope-project-vs-user",
+      "type": "decides"
+    },
+    {
+      "from": "concept:scope-project-vs-user",
+      "to": "anti:user-scope-no-replica",
+      "type": "violated_by"
+    },
+    {
+      "from": "concept:context-fork",
+      "to": "anti:skill-sin-fork",
+      "type": "violated_by"
+    },
+    {
+      "from": "concept:allowed-tools",
+      "to": "anti:sin-allowed-tools",
+      "type": "violated_by"
+    },
+    {
+      "from": "concept:claude-md-conventions",
+      "to": "custom-tooling-extension:quality",
+      "type": "supports"
+    },
+    {
+      "from": "custom-tooling-extension",
+      "to": "kata:custom-commands-skills",
+      "type": "practiced_by"
+    },
+    {
+      "from": "custom-tooling-extension",
+      "to": "custom-tooling-extension:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "custom-tooling-extension",
+      "to": "custom-tooling-extension:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "custom-tooling-extension",
+      "to": "custom-tooling-extension:antipattern",
+      "type": "guards_against"
+    }
+  ]
+}

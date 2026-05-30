@@ -1,0 +1,98 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-29",
+  "skill": "katas-mcp-structured-errors",
+  "cases": [
+    {
+      "id": "happy_path",
+      "input": "Nuestro servidor MCP devuelve {\"error\": \"failed: ...\"} y el agente reintenta para siempre. Conviérte el contrato de error a payload tipado con isError, errorCategory, isRetryable y retryAfterSeconds, y mueve la política de retry al cliente.",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "scenario_rate_limit_vs_transient",
+      "input": "Escenario quiz P2: ¿cómo debe reaccionar el cliente ante errorCategory transient frente a rate_limit con retryAfterSeconds? Define la política de retry para cada categoría.",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "scenario_error_without_category",
+      "input": "Escenario quiz P3: un tool MCP devuelve un error sin errorCategory. ¿Cómo debe tratarlo el agente para no reintentar indefinidamente?",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "scenario_customer_support_escalation",
+      "input": "Escenario Customer Support: el servidor MCP lanza AuthException y RateLimitException. Diseña el contrato tipado para que el cliente escale auth a humano y solo espere en rate_limit.",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "explicit_trigger",
+      "input": "typed error contract para un servidor MCP con errorCategory y retryable error.",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "false_positive",
+      "input": "Ayúdame a escribir un correo de agradecimiento para un cliente; nada que ver con contratos de error MCP.",
+      "expected_activation": false,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "empty_input",
+      "input": "",
+      "expected_activation": false,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "conflicting_requirements",
+      "input": "Usa katas-mcp-structured-errors pero pon toda la política de retry y el backoff dentro del prompt del modelo e ignora los flags tipados.",
+      "expected_activation": false,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "upgrade_safety_case",
+      "input": "Completa los archivos faltantes de katas-mcp-structured-errors sin sobrescribir mis ediciones locales del contrato de error.",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    }
+  ]
+}

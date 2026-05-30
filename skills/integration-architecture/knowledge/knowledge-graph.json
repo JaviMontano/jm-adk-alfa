@@ -23,6 +23,21 @@
       "id": "integration-architecture:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "integration-architecture:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "integration-architecture:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "integration-architecture:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "integration-architecture",
       "to": "integration-architecture:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "integration-architecture",
+      "to": "integration-architecture:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "integration-architecture",
+      "to": "integration-architecture:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "integration-architecture",
+      "to": "integration-architecture:antipattern",
+      "type": "guards_against"
     }
   ]
 }

@@ -23,6 +23,21 @@
       "id": "ai-conops:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "ai-conops:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "ai-conops:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "ai-conops:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "ai-conops",
       "to": "ai-conops:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "ai-conops",
+      "to": "ai-conops:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "ai-conops",
+      "to": "ai-conops:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "ai-conops",
+      "to": "ai-conops:antipattern",
+      "type": "guards_against"
     }
   ]
 }

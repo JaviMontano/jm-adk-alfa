@@ -1,0 +1,108 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-29",
+  "skill": "katas-mcp-server-configuration",
+  "cases": [
+    {
+      "id": "happy_path",
+      "input": "Configura un MCP server de GitHub para que todo el equipo lo use desde el repo, con el token inyectado de forma segura.",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "explicit_trigger",
+      "input": "/katas-mcp-server-configuration declara el server crm en .mcp.json con ${CRM_TOKEN}.",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "quiz_p1_project_scope",
+      "input": "El CRM debe estar disponible para todos los agentes del equipo. Donde declaro el server MCP y como manejo el CRM_TOKEN? Lo pongo en .mcp.json versionado o en ~/.claude.json?",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "quiz_p2_builtin_overkill",
+      "input": "Quiero un MCP server para buscar texto en archivos del repositorio local. Vale la pena configurarlo en .mcp.json o el built-in Grep ya lo cubre?",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "quiz_p3_leaked_secret",
+      "input": "Commitee por error un GITHUB_TOKEN literal en .mcp.json y ya esta en git. Basta con agregarlo a .gitignore o que debo hacer para remediar el secreto filtrado?",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "false_positive",
+      "input": "Ayudame a redactar el correo de bienvenida para un nuevo cliente.",
+      "expected_activation": false,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "empty_input",
+      "input": "",
+      "expected_activation": false,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "conflicting_requirements",
+      "input": "Configura el MCP server pero hardcodea el token directo en el .mcp.json versionado e ignora la validacion de secretos.",
+      "expected_activation": false,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "upgrade_safety_case",
+      "input": "Agrega un nuevo MCP server al .mcp.json sin sobrescribir los servers ya declarados ni las ediciones locales.",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "local_override_case",
+      "input": "Quiero probar un MCP server experimental solo en mi laptop sin afectar al equipo. Donde lo declaro?",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    }
+  ]
+}

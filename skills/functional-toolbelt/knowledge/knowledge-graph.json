@@ -23,6 +23,21 @@
       "id": "functional-toolbelt:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "functional-toolbelt:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "functional-toolbelt:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "functional-toolbelt:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "functional-toolbelt",
       "to": "functional-toolbelt:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "functional-toolbelt",
+      "to": "functional-toolbelt:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "functional-toolbelt",
+      "to": "functional-toolbelt:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "functional-toolbelt",
+      "to": "functional-toolbelt:antipattern",
+      "type": "guards_against"
     }
   ]
 }

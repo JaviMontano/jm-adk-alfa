@@ -1,0 +1,145 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-30",
+  "skill": "provenance-engineering",
+  "nodes": [
+    {
+      "id": "provenance-engineering",
+      "type": "skill",
+      "label": "provenance-engineering"
+    },
+    {
+      "id": "provenance-engineering:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "provenance-engineering:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "provenance-engineering:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    },
+    {
+      "id": "provenance-engineering:typed-claim",
+      "type": "concept",
+      "label": "Typed claim with non-empty source[] and as_of"
+    },
+    {
+      "id": "provenance-engineering:no-claim-without-source",
+      "type": "invariant",
+      "label": "No claim without source (enforced by construction)"
+    },
+    {
+      "id": "provenance-engineering:conflict-marking",
+      "type": "concept",
+      "label": "Conflicts marked conflict=true, all sources preserved"
+    },
+    {
+      "id": "provenance-engineering:escalation-not-resolution",
+      "type": "concept",
+      "label": "Conflicts escalated to human, not averaged or resolved"
+    },
+    {
+      "id": "provenance-engineering:as-of-visible",
+      "type": "concept",
+      "label": "Date (as_of) visible to the human in the render"
+    },
+    {
+      "id": "provenance-engineering:structural-test",
+      "type": "gate",
+      "label": "Structural provenance test fails on missing source or masked conflict"
+    },
+    {
+      "id": "provenance-engineering:anti-pattern",
+      "type": "anti_pattern",
+      "label": "Prose summary without source_id, date, or conflict signal"
+    },
+    {
+      "id": "provenance-engineering:ontology",
+      "type": "ontology",
+      "label": "Domain: context-reliability"
+    },
+    {
+      "id": "provenance-engineering:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "provenance-engineering:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
+    }
+  ],
+  "edges": [
+    {
+      "from": "provenance-engineering",
+      "to": "provenance-engineering:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "provenance-engineering",
+      "to": "provenance-engineering:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "provenance-engineering",
+      "to": "provenance-engineering:quality",
+      "type": "validated_by"
+    },
+    {
+      "from": "provenance-engineering",
+      "to": "provenance-engineering:typed-claim",
+      "type": "builds"
+    },
+    {
+      "from": "provenance-engineering:typed-claim",
+      "to": "provenance-engineering:no-claim-without-source",
+      "type": "enforces"
+    },
+    {
+      "from": "provenance-engineering:typed-claim",
+      "to": "provenance-engineering:conflict-marking",
+      "type": "supports"
+    },
+    {
+      "from": "provenance-engineering:conflict-marking",
+      "to": "provenance-engineering:escalation-not-resolution",
+      "type": "requires"
+    },
+    {
+      "from": "provenance-engineering:typed-claim",
+      "to": "provenance-engineering:as-of-visible",
+      "type": "exposes"
+    },
+    {
+      "from": "provenance-engineering:no-claim-without-source",
+      "to": "provenance-engineering:structural-test",
+      "type": "validated_by"
+    },
+    {
+      "from": "provenance-engineering:anti-pattern",
+      "to": "provenance-engineering:no-claim-without-source",
+      "type": "violates"
+    },
+    {
+      "from": "provenance-engineering",
+      "to": "provenance-engineering:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "provenance-engineering",
+      "to": "provenance-engineering:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "provenance-engineering",
+      "to": "provenance-engineering:antipattern",
+      "type": "guards_against"
+    }
+  ]
+}

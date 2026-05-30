@@ -23,6 +23,21 @@
       "id": "analytics-events:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "analytics-events:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "analytics-events:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "analytics-events:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "analytics-events",
       "to": "analytics-events:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "analytics-events",
+      "to": "analytics-events:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "analytics-events",
+      "to": "analytics-events:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "analytics-events",
+      "to": "analytics-events:antipattern",
+      "type": "guards_against"
     }
   ]
 }

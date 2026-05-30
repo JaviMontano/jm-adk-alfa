@@ -23,6 +23,21 @@
       "id": "cost-estimation:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "cost-estimation:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "cost-estimation:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "cost-estimation:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "cost-estimation",
       "to": "cost-estimation:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "cost-estimation",
+      "to": "cost-estimation:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "cost-estimation",
+      "to": "cost-estimation:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "cost-estimation",
+      "to": "cost-estimation:antipattern",
+      "type": "guards_against"
     }
   ]
 }

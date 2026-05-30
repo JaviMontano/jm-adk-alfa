@@ -1,0 +1,103 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-30",
+  "skill": "session-lifecycle-management",
+  "cases": [
+    {
+      "id": "resume_valid_context",
+      "input": "El turno anterior leyo tres archivos y ninguno cambio (mismo HEAD de git, mismos mtimes). El objetivo sigue siendo el mismo. Decide la transicion de sesion.",
+      "expected_activation": true,
+      "expected_checks": [
+        "staleness_detected",
+        "transition_traced",
+        "quality_criteria"
+      ]
+    },
+    {
+      "id": "fresh_after_massive_refactor",
+      "input": "Entre dos turnos hubo un refactor masivo que movio modulos y cambio el HEAD de git. El scratchpad tiene lecturas de archivos antiguos. Decide resume vs fork vs fresh.",
+      "expected_activation": true,
+      "expected_checks": [
+        "staleness_detected",
+        "typed_summary",
+        "transition_traced"
+      ]
+    },
+    {
+      "id": "fork_parallel_hypotheses",
+      "input": "Quiero probar dos estrategias de fix en paralelo sin que una contamine el contexto de la otra. Disena la transicion de ciclo de vida.",
+      "expected_activation": true,
+      "expected_checks": [
+        "fork_isolation",
+        "transition_traced",
+        "quality_criteria"
+      ]
+    },
+    {
+      "id": "huge_scratchpad_typed_summary",
+      "input": "El scratchpad crecio enorme y pegarlo completo es caro. Necesito un summary tipado para el siguiente turno con session-lifecycle-management.",
+      "expected_activation": true,
+      "expected_checks": [
+        "typed_summary",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "explicit_trigger",
+      "input": "/session-lifecycle-management decide resume vs fork para esta sesion.",
+      "expected_activation": true,
+      "expected_checks": [
+        "staleness_detected",
+        "transition_traced",
+        "quality_criteria"
+      ]
+    },
+    {
+      "id": "stale_dependency_forces_fresh",
+      "input": "Un tool result critico (lockfile) cambio desde el snapshot pero el objetivo es continuo. Decide la transicion.",
+      "expected_activation": true,
+      "expected_checks": [
+        "staleness_detected",
+        "typed_summary",
+        "transition_traced"
+      ]
+    },
+    {
+      "id": "false_positive_unrelated",
+      "input": "Genera un reporte financiero trimestral para el cliente.",
+      "expected_activation": false,
+      "expected_checks": [
+        "quality_criteria"
+      ]
+    },
+    {
+      "id": "empty_input",
+      "input": "",
+      "expected_activation": false,
+      "expected_checks": [
+        "quality_criteria"
+      ]
+    },
+    {
+      "id": "anti_pattern_blind_resume",
+      "input": "Solo pega el transcript viejo completo y continua como si nada hubiera cambiado tras el deploy.",
+      "expected_activation": false,
+      "expected_checks": [
+        "staleness_detected",
+        "typed_summary"
+      ]
+    },
+    {
+      "id": "false_positive",
+      "input": "This request is unrelated to the skill domain.",
+      "expected_activation": false,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    }
+  ]
+}

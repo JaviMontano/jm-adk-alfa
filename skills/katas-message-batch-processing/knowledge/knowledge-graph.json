@@ -1,0 +1,135 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-29",
+  "skill": "katas-message-batch-processing",
+  "nodes": [
+    {
+      "id": "katas-message-batch-processing",
+      "type": "skill",
+      "label": "katas-message-batch-processing"
+    },
+    {
+      "id": "katas-message-batch-processing:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "katas-message-batch-processing:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "katas-message-batch-processing:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    },
+    {
+      "id": "concept:message-batches-api",
+      "type": "concept",
+      "label": "Message Batches API (offline, ~50% costo)"
+    },
+    {
+      "id": "concept:custom-id",
+      "type": "concept",
+      "label": "custom_id unico por request"
+    },
+    {
+      "id": "concept:lifecycle",
+      "type": "concept",
+      "label": "Ciclo create -> poll processing_status -> results"
+    },
+    {
+      "id": "concept:partial-failure-recovery",
+      "type": "concept",
+      "label": "Fragmentacion selectiva: reintentar solo failed"
+    },
+    {
+      "id": "concept:eligibility",
+      "type": "concept",
+      "label": "Carga offline tolerante a latencia"
+    },
+    {
+      "id": "antipattern:realtime-for-loop",
+      "type": "antipattern",
+      "label": "for item: messages.create en real-time sin custom_id"
+    },
+    {
+      "id": "katas-message-batch-processing:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "katas-message-batch-processing:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "katas-message-batch-processing:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
+    }
+  ],
+  "edges": [
+    {
+      "from": "katas-message-batch-processing",
+      "to": "katas-message-batch-processing:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "katas-message-batch-processing",
+      "to": "katas-message-batch-processing:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "katas-message-batch-processing",
+      "to": "katas-message-batch-processing:quality",
+      "type": "validated_by"
+    },
+    {
+      "from": "katas-message-batch-processing",
+      "to": "concept:message-batches-api",
+      "type": "applies"
+    },
+    {
+      "from": "concept:message-batches-api",
+      "to": "concept:eligibility",
+      "type": "requires"
+    },
+    {
+      "from": "concept:message-batches-api",
+      "to": "concept:lifecycle",
+      "type": "uses"
+    },
+    {
+      "from": "concept:lifecycle",
+      "to": "concept:custom-id",
+      "type": "requires"
+    },
+    {
+      "from": "concept:partial-failure-recovery",
+      "to": "concept:custom-id",
+      "type": "requires"
+    },
+    {
+      "from": "concept:message-batches-api",
+      "to": "antipattern:realtime-for-loop",
+      "type": "rejects"
+    },
+    {
+      "from": "katas-message-batch-processing",
+      "to": "katas-message-batch-processing:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "katas-message-batch-processing",
+      "to": "katas-message-batch-processing:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "katas-message-batch-processing",
+      "to": "katas-message-batch-processing:antipattern",
+      "type": "guards_against"
+    }
+  ]
+}

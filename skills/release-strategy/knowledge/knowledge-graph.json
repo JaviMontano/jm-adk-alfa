@@ -23,6 +23,21 @@
       "id": "release-strategy:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "release-strategy:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "release-strategy:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "release-strategy:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "release-strategy",
       "to": "release-strategy:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "release-strategy",
+      "to": "release-strategy:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "release-strategy",
+      "to": "release-strategy:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "release-strategy",
+      "to": "release-strategy:antipattern",
+      "type": "guards_against"
     }
   ]
 }

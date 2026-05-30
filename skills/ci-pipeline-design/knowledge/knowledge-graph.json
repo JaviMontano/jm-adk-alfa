@@ -23,6 +23,21 @@
       "id": "ci-pipeline-design:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "ci-pipeline-design:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "ci-pipeline-design:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "ci-pipeline-design:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "ci-pipeline-design",
       "to": "ci-pipeline-design:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "ci-pipeline-design",
+      "to": "ci-pipeline-design:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "ci-pipeline-design",
+      "to": "ci-pipeline-design:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "ci-pipeline-design",
+      "to": "ci-pipeline-design:antipattern",
+      "type": "guards_against"
     }
   ]
 }

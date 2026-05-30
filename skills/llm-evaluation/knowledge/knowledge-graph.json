@@ -23,6 +23,21 @@
       "id": "llm-evaluation:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "llm-evaluation:ontology",
+      "type": "ontology",
+      "label": "Domain: prompt-structured-output"
+    },
+    {
+      "id": "llm-evaluation:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "llm-evaluation:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "llm-evaluation",
       "to": "llm-evaluation:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "llm-evaluation",
+      "to": "llm-evaluation:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "llm-evaluation",
+      "to": "llm-evaluation:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "llm-evaluation",
+      "to": "llm-evaluation:antipattern",
+      "type": "guards_against"
     }
   ]
 }

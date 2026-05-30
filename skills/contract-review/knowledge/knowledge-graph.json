@@ -23,6 +23,21 @@
       "id": "contract-review:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "contract-review:ontology",
+      "type": "ontology",
+      "label": "Domain: prompt-structured-output"
+    },
+    {
+      "id": "contract-review:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "contract-review:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "contract-review",
       "to": "contract-review:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "contract-review",
+      "to": "contract-review:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "contract-review",
+      "to": "contract-review:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "contract-review",
+      "to": "contract-review:antipattern",
+      "type": "guards_against"
     }
   ]
 }

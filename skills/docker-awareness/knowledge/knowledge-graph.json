@@ -23,6 +23,21 @@
       "id": "docker-awareness:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "docker-awareness:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "docker-awareness:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "docker-awareness:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "docker-awareness",
       "to": "docker-awareness:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "docker-awareness",
+      "to": "docker-awareness:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "docker-awareness",
+      "to": "docker-awareness:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "docker-awareness",
+      "to": "docker-awareness:antipattern",
+      "type": "guards_against"
     }
   ]
 }

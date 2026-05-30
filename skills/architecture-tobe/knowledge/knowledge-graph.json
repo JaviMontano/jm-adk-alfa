@@ -23,6 +23,21 @@
       "id": "architecture-tobe:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "architecture-tobe:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "architecture-tobe:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "architecture-tobe:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "architecture-tobe",
       "to": "architecture-tobe:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "architecture-tobe",
+      "to": "architecture-tobe:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "architecture-tobe",
+      "to": "architecture-tobe:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "architecture-tobe",
+      "to": "architecture-tobe:antipattern",
+      "type": "guards_against"
     }
   ]
 }

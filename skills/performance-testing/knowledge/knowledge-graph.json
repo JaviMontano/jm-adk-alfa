@@ -23,6 +23,21 @@
       "id": "performance-testing:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "performance-testing:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "performance-testing:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "performance-testing:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "performance-testing",
       "to": "performance-testing:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "performance-testing",
+      "to": "performance-testing:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "performance-testing",
+      "to": "performance-testing:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "performance-testing",
+      "to": "performance-testing:antipattern",
+      "type": "guards_against"
     }
   ]
 }

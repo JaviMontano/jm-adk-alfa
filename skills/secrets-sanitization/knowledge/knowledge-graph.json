@@ -23,6 +23,21 @@
       "id": "secrets-sanitization:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "secrets-sanitization:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "secrets-sanitization:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "secrets-sanitization:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "secrets-sanitization",
       "to": "secrets-sanitization:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "secrets-sanitization",
+      "to": "secrets-sanitization:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "secrets-sanitization",
+      "to": "secrets-sanitization:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "secrets-sanitization",
+      "to": "secrets-sanitization:antipattern",
+      "type": "guards_against"
     }
   ]
 }

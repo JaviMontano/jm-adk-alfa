@@ -23,6 +23,21 @@
       "id": "onboarding-playbook:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "onboarding-playbook:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "onboarding-playbook:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "onboarding-playbook:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "onboarding-playbook",
       "to": "onboarding-playbook:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "onboarding-playbook",
+      "to": "onboarding-playbook:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "onboarding-playbook",
+      "to": "onboarding-playbook:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "onboarding-playbook",
+      "to": "onboarding-playbook:antipattern",
+      "type": "guards_against"
     }
   ]
 }

@@ -23,6 +23,21 @@
       "id": "data-governance:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "data-governance:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "data-governance:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "data-governance:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "data-governance",
       "to": "data-governance:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "data-governance",
+      "to": "data-governance:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "data-governance",
+      "to": "data-governance:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "data-governance",
+      "to": "data-governance:antipattern",
+      "type": "guards_against"
     }
   ]
 }

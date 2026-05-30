@@ -1,0 +1,170 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-29",
+  "skill": "katas-custom-commands-skills",
+  "nodes": [
+    {
+      "id": "katas-custom-commands-skills",
+      "type": "skill",
+      "label": "katas-custom-commands-skills"
+    },
+    {
+      "id": "katas-custom-commands-skills:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "katas-custom-commands-skills:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "katas-custom-commands-skills:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    },
+    {
+      "id": "concept:slash-command",
+      "type": "concept",
+      "label": "Slash command (.claude/commands/X.md, trigger /X)"
+    },
+    {
+      "id": "concept:skill",
+      "type": "concept",
+      "label": "Skill (.claude/skills/X/SKILL.md, on-demand)"
+    },
+    {
+      "id": "concept:project-vs-user-scope",
+      "type": "concept",
+      "label": "Project scope viaja con git; user scope es personal"
+    },
+    {
+      "id": "concept:context-fork",
+      "type": "concept",
+      "label": "context: fork aisla en sub-agente (economia de contexto)"
+    },
+    {
+      "id": "concept:allowed-tools",
+      "type": "concept",
+      "label": "allowed-tools whitelist limita operaciones destructivas"
+    },
+    {
+      "id": "concept:argument-hint",
+      "type": "concept",
+      "label": "argument-hint documenta argumentos esperados"
+    },
+    {
+      "id": "concept:claude-md-conventions",
+      "type": "concept",
+      "label": "Convenciones permanentes van en CLAUDE.md"
+    },
+    {
+      "id": "antipattern:user-scope-no-fork-no-tools",
+      "type": "antipattern",
+      "label": "Skill en user scope, sin context: fork, sin allowed-tools"
+    },
+    {
+      "id": "katas-custom-commands-skills:ontology",
+      "type": "ontology",
+      "label": "Domain: claude-code-config"
+    },
+    {
+      "id": "katas-custom-commands-skills:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "katas-custom-commands-skills:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
+    }
+  ],
+  "edges": [
+    {
+      "from": "katas-custom-commands-skills",
+      "to": "katas-custom-commands-skills:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "katas-custom-commands-skills",
+      "to": "katas-custom-commands-skills:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "katas-custom-commands-skills",
+      "to": "katas-custom-commands-skills:quality",
+      "type": "validated_by"
+    },
+    {
+      "from": "katas-custom-commands-skills",
+      "to": "concept:slash-command",
+      "type": "teaches"
+    },
+    {
+      "from": "katas-custom-commands-skills",
+      "to": "concept:skill",
+      "type": "teaches"
+    },
+    {
+      "from": "katas-custom-commands-skills",
+      "to": "concept:project-vs-user-scope",
+      "type": "teaches"
+    },
+    {
+      "from": "concept:skill",
+      "to": "concept:context-fork",
+      "type": "configured_by"
+    },
+    {
+      "from": "concept:skill",
+      "to": "concept:allowed-tools",
+      "type": "configured_by"
+    },
+    {
+      "from": "concept:skill",
+      "to": "concept:argument-hint",
+      "type": "configured_by"
+    },
+    {
+      "from": "katas-custom-commands-skills",
+      "to": "concept:claude-md-conventions",
+      "type": "teaches"
+    },
+    {
+      "from": "antipattern:user-scope-no-fork-no-tools",
+      "to": "concept:project-vs-user-scope",
+      "type": "violates"
+    },
+    {
+      "from": "antipattern:user-scope-no-fork-no-tools",
+      "to": "concept:context-fork",
+      "type": "violates"
+    },
+    {
+      "from": "antipattern:user-scope-no-fork-no-tools",
+      "to": "concept:allowed-tools",
+      "type": "violates"
+    },
+    {
+      "from": "katas-custom-commands-skills:quality",
+      "to": "antipattern:user-scope-no-fork-no-tools",
+      "type": "rejects"
+    },
+    {
+      "from": "katas-custom-commands-skills",
+      "to": "katas-custom-commands-skills:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "katas-custom-commands-skills",
+      "to": "katas-custom-commands-skills:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "katas-custom-commands-skills",
+      "to": "katas-custom-commands-skills:antipattern",
+      "type": "guards_against"
+    }
+  ]
+}

@@ -23,6 +23,21 @@
       "id": "mermaid-diagramming:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "mermaid-diagramming:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "mermaid-diagramming:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "mermaid-diagramming:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "mermaid-diagramming",
       "to": "mermaid-diagramming:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "mermaid-diagramming",
+      "to": "mermaid-diagramming:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "mermaid-diagramming",
+      "to": "mermaid-diagramming:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "mermaid-diagramming",
+      "to": "mermaid-diagramming:antipattern",
+      "type": "guards_against"
     }
   ]
 }

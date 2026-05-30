@@ -51,6 +51,21 @@
       "id": "no-invented-backend",
       "type": "gate",
       "label": "No invented API, schema, metric, permission, or realtime channel"
+    },
+    {
+      "id": "admin-dashboards:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "admin-dashboards:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "admin-dashboards:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -98,6 +113,21 @@
       "from": "admin-dashboards",
       "to": "no-invented-backend",
       "type": "validated_by"
+    },
+    {
+      "from": "admin-dashboards",
+      "to": "admin-dashboards:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "admin-dashboards",
+      "to": "admin-dashboards:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "admin-dashboards",
+      "to": "admin-dashboards:antipattern",
+      "type": "guards_against"
     }
   ]
 }

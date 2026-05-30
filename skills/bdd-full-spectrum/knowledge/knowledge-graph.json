@@ -23,6 +23,21 @@
       "id": "bdd-full-spectrum:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "bdd-full-spectrum:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "bdd-full-spectrum:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "bdd-full-spectrum:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "bdd-full-spectrum",
       "to": "bdd-full-spectrum:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "bdd-full-spectrum",
+      "to": "bdd-full-spectrum:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "bdd-full-spectrum",
+      "to": "bdd-full-spectrum:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "bdd-full-spectrum",
+      "to": "bdd-full-spectrum:antipattern",
+      "type": "guards_against"
     }
   ]
 }

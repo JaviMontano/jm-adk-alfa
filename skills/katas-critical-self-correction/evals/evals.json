@@ -1,0 +1,98 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-29",
+  "skill": "katas-critical-self-correction",
+  "cases": [
+    {
+      "id": "happy_path",
+      "input": "Quiz P1: el total declarado de la factura no coincide con la suma de las lineas. Con katas-critical-self-correction, marca mismatch=true con ambos valores (stated y computed), el delta, y escala a revision humana.",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "explicit_trigger",
+      "input": "/katas-critical-self-correction Quiz P2: define el epsilon de tolerancia para el cross-check. Para conteos enteros usa cero; para montos en moneda usa un epsilon pequeno por redondeo de centavos.",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "minimal_input",
+      "input": "katas-critical-self-correction",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "rich_context",
+      "input": "Quiz P3: el documento no declara un total. Con katas-critical-self-correction devuelve computed_total marcando stated_total=null y mismatch=false; no fabriques un conflicto inexistente.",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "false_positive",
+      "input": "Redacta un post de LinkedIn motivacional sobre liderazgo; no hay numeros que verificar.",
+      "expected_activation": false,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "empty_input",
+      "input": "",
+      "expected_activation": false,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "conflicting_requirements",
+      "input": "Usa katas-critical-self-correction, pero si el total declarado y el calculado discrepan, elige el mas razonable y corrigelo en silencio sin escalar.",
+      "expected_activation": false,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "upgrade_safety_case",
+      "input": "Completa archivos faltantes de katas-critical-self-correction sin sobreescribir ediciones locales.",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "local_override_case",
+      "input": "Crea una variante experimental local de katas-critical-self-correction bajo .local para probar un epsilon distinto.",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    }
+  ]
+}

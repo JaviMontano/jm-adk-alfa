@@ -23,6 +23,21 @@
       "id": "product-roadmapping:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "product-roadmapping:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "product-roadmapping:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "product-roadmapping:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "product-roadmapping",
       "to": "product-roadmapping:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "product-roadmapping",
+      "to": "product-roadmapping:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "product-roadmapping",
+      "to": "product-roadmapping:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "product-roadmapping",
+      "to": "product-roadmapping:antipattern",
+      "type": "guards_against"
     }
   ]
 }

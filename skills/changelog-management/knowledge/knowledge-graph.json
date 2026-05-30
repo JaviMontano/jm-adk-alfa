@@ -23,6 +23,21 @@
       "id": "changelog-management:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "changelog-management:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "changelog-management:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "changelog-management:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "changelog-management",
       "to": "changelog-management:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "changelog-management",
+      "to": "changelog-management:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "changelog-management",
+      "to": "changelog-management:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "changelog-management",
+      "to": "changelog-management:antipattern",
+      "type": "guards_against"
     }
   ]
 }

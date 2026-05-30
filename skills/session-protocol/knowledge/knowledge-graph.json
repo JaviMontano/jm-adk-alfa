@@ -23,6 +23,21 @@
       "id": "session-protocol:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "session-protocol:ontology",
+      "type": "ontology",
+      "label": "Domain: claude-code-config"
+    },
+    {
+      "id": "session-protocol:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "session-protocol:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "session-protocol",
       "to": "session-protocol:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "session-protocol",
+      "to": "session-protocol:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "session-protocol",
+      "to": "session-protocol:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "session-protocol",
+      "to": "session-protocol:antipattern",
+      "type": "guards_against"
     }
   ]
 }

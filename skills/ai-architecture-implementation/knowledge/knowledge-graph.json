@@ -23,6 +23,21 @@
       "id": "ai-architecture-implementation:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "ai-architecture-implementation:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "ai-architecture-implementation:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "ai-architecture-implementation:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "ai-architecture-implementation",
       "to": "ai-architecture-implementation:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "ai-architecture-implementation",
+      "to": "ai-architecture-implementation:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "ai-architecture-implementation",
+      "to": "ai-architecture-implementation:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "ai-architecture-implementation",
+      "to": "ai-architecture-implementation:antipattern",
+      "type": "guards_against"
     }
   ]
 }

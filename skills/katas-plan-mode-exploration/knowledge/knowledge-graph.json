@@ -1,0 +1,140 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-29",
+  "skill": "katas-plan-mode-exploration",
+  "nodes": [
+    {
+      "id": "katas-plan-mode-exploration",
+      "type": "skill",
+      "label": "katas-plan-mode-exploration"
+    },
+    {
+      "id": "katas-plan-mode-exploration:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "katas-plan-mode-exploration:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "katas-plan-mode-exploration:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    },
+    {
+      "id": "katas-plan-mode-exploration:plan-mode",
+      "type": "concept",
+      "label": "Plan Mode read-only"
+    },
+    {
+      "id": "katas-plan-mode-exploration:two-mode-contract",
+      "type": "concept",
+      "label": "Two-mode contract read-only/write"
+    },
+    {
+      "id": "katas-plan-mode-exploration:plan-md",
+      "type": "artifact",
+      "label": "plan.md firmado por humano"
+    },
+    {
+      "id": "katas-plan-mode-exploration:pretooluse-hook",
+      "type": "control",
+      "label": "PreToolUse hook deny on write"
+    },
+    {
+      "id": "katas-plan-mode-exploration:human-approval",
+      "type": "gate",
+      "label": "Firma humana del plan"
+    },
+    {
+      "id": "katas-plan-mode-exploration:bypass-antipattern",
+      "type": "antipattern",
+      "label": "bypassPermissions con write desde el inicio"
+    },
+    {
+      "id": "katas-plan-mode-exploration:ontology",
+      "type": "ontology",
+      "label": "Domain: claude-code-config"
+    },
+    {
+      "id": "katas-plan-mode-exploration:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "katas-plan-mode-exploration:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
+    }
+  ],
+  "edges": [
+    {
+      "from": "katas-plan-mode-exploration",
+      "to": "katas-plan-mode-exploration:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "katas-plan-mode-exploration",
+      "to": "katas-plan-mode-exploration:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "katas-plan-mode-exploration",
+      "to": "katas-plan-mode-exploration:quality",
+      "type": "validated_by"
+    },
+    {
+      "from": "katas-plan-mode-exploration",
+      "to": "katas-plan-mode-exploration:plan-mode",
+      "type": "applies"
+    },
+    {
+      "from": "katas-plan-mode-exploration:plan-mode",
+      "to": "katas-plan-mode-exploration:two-mode-contract",
+      "type": "part_of"
+    },
+    {
+      "from": "katas-plan-mode-exploration:plan-mode",
+      "to": "katas-plan-mode-exploration:plan-md",
+      "type": "produces"
+    },
+    {
+      "from": "katas-plan-mode-exploration:plan-mode",
+      "to": "katas-plan-mode-exploration:pretooluse-hook",
+      "type": "enforced_by"
+    },
+    {
+      "from": "katas-plan-mode-exploration:plan-md",
+      "to": "katas-plan-mode-exploration:human-approval",
+      "type": "validated_by"
+    },
+    {
+      "from": "katas-plan-mode-exploration:human-approval",
+      "to": "katas-plan-mode-exploration:two-mode-contract",
+      "type": "gates_transition"
+    },
+    {
+      "from": "katas-plan-mode-exploration:bypass-antipattern",
+      "to": "katas-plan-mode-exploration:two-mode-contract",
+      "type": "violates"
+    },
+    {
+      "from": "katas-plan-mode-exploration",
+      "to": "katas-plan-mode-exploration:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "katas-plan-mode-exploration",
+      "to": "katas-plan-mode-exploration:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "katas-plan-mode-exploration",
+      "to": "katas-plan-mode-exploration:antipattern",
+      "type": "guards_against"
+    }
+  ]
+}

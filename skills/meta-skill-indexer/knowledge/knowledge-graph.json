@@ -23,6 +23,21 @@
       "id": "meta-skill-indexer:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "meta-skill-indexer:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "meta-skill-indexer:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "meta-skill-indexer:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "meta-skill-indexer",
       "to": "meta-skill-indexer:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "meta-skill-indexer",
+      "to": "meta-skill-indexer:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "meta-skill-indexer",
+      "to": "meta-skill-indexer:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "meta-skill-indexer",
+      "to": "meta-skill-indexer:antipattern",
+      "type": "guards_against"
     }
   ]
 }

@@ -1,0 +1,145 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-29",
+  "skill": "katas-validation-retry-feedback",
+  "nodes": [
+    {
+      "id": "katas-validation-retry-feedback",
+      "type": "skill",
+      "label": "katas-validation-retry-feedback"
+    },
+    {
+      "id": "katas-validation-retry-feedback:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "katas-validation-retry-feedback:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "katas-validation-retry-feedback:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    },
+    {
+      "id": "katas-validation-retry-feedback:retry-loop",
+      "type": "concept",
+      "label": "extract -> validate -> extract+feedback -> validate"
+    },
+    {
+      "id": "katas-validation-retry-feedback:specific-feedback",
+      "type": "concept",
+      "label": "Feedback con error especifico, no generico"
+    },
+    {
+      "id": "katas-validation-retry-feedback:recoverable-vs-not",
+      "type": "concept",
+      "label": "Error recuperable vs no recuperable"
+    },
+    {
+      "id": "katas-validation-retry-feedback:attempt-cap",
+      "type": "concept",
+      "label": "Cap de 2-3 intentos"
+    },
+    {
+      "id": "katas-validation-retry-feedback:human-escalation",
+      "type": "concept",
+      "label": "needs_human_review con cadena de errores"
+    },
+    {
+      "id": "katas-validation-retry-feedback:systematic-fix",
+      "type": "concept",
+      "label": "Patron sistematico -> fix estructural, no mas retries"
+    },
+    {
+      "id": "katas-validation-retry-feedback:anti-pattern",
+      "type": "anti-pattern",
+      "label": "Retry sin feedback + aceptar salida fallida en silencio"
+    },
+    {
+      "id": "katas-validation-retry-feedback:ontology",
+      "type": "ontology",
+      "label": "Domain: prompt-structured-output"
+    },
+    {
+      "id": "katas-validation-retry-feedback:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "katas-validation-retry-feedback:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
+    }
+  ],
+  "edges": [
+    {
+      "from": "katas-validation-retry-feedback",
+      "to": "katas-validation-retry-feedback:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "katas-validation-retry-feedback",
+      "to": "katas-validation-retry-feedback:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "katas-validation-retry-feedback",
+      "to": "katas-validation-retry-feedback:quality",
+      "type": "validated_by"
+    },
+    {
+      "from": "katas-validation-retry-feedback",
+      "to": "katas-validation-retry-feedback:retry-loop",
+      "type": "applies"
+    },
+    {
+      "from": "katas-validation-retry-feedback:retry-loop",
+      "to": "katas-validation-retry-feedback:specific-feedback",
+      "type": "depends_on"
+    },
+    {
+      "from": "katas-validation-retry-feedback:retry-loop",
+      "to": "katas-validation-retry-feedback:recoverable-vs-not",
+      "type": "branches_on"
+    },
+    {
+      "from": "katas-validation-retry-feedback:retry-loop",
+      "to": "katas-validation-retry-feedback:attempt-cap",
+      "type": "bounded_by"
+    },
+    {
+      "from": "katas-validation-retry-feedback:attempt-cap",
+      "to": "katas-validation-retry-feedback:human-escalation",
+      "type": "escalates_to"
+    },
+    {
+      "from": "katas-validation-retry-feedback:recoverable-vs-not",
+      "to": "katas-validation-retry-feedback:systematic-fix",
+      "type": "informs"
+    },
+    {
+      "from": "katas-validation-retry-feedback:anti-pattern",
+      "to": "katas-validation-retry-feedback:specific-feedback",
+      "type": "violates"
+    },
+    {
+      "from": "katas-validation-retry-feedback",
+      "to": "katas-validation-retry-feedback:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "katas-validation-retry-feedback",
+      "to": "katas-validation-retry-feedback:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "katas-validation-retry-feedback",
+      "to": "katas-validation-retry-feedback:antipattern",
+      "type": "guards_against"
+    }
+  ]
+}

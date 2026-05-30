@@ -1,0 +1,160 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-29",
+  "skill": "katas-adaptive-investigation",
+  "nodes": [
+    {
+      "id": "katas-adaptive-investigation",
+      "type": "skill",
+      "label": "katas-adaptive-investigation"
+    },
+    {
+      "id": "katas-adaptive-investigation:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "katas-adaptive-investigation:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "katas-adaptive-investigation:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    },
+    {
+      "id": "katas-adaptive-investigation:cheap-mapping",
+      "type": "concept",
+      "label": "Mapeo barato (glob de nombres + regex de imports)"
+    },
+    {
+      "id": "katas-adaptive-investigation:prioritization",
+      "type": "concept",
+      "label": "Priorizacion declarada del plan"
+    },
+    {
+      "id": "katas-adaptive-investigation:selective-deep-dive",
+      "type": "concept",
+      "label": "Deep-dive selectivo solo sobre priorizados"
+    },
+    {
+      "id": "katas-adaptive-investigation:exploration-budget",
+      "type": "concept",
+      "label": "Presupuesto de exploracion acotado (archivos/queries/minutos)"
+    },
+    {
+      "id": "katas-adaptive-investigation:replan-criterion",
+      "type": "concept",
+      "label": "Re-plan solo si un hallazgo invalida la hipotesis"
+    },
+    {
+      "id": "katas-adaptive-investigation:rigid-plan-antipattern",
+      "type": "antipattern",
+      "label": "Plan rigido upfront / read_all_files sin budget / re-plan reflejo"
+    },
+    {
+      "id": "katas-subagent-parallelism",
+      "type": "skill",
+      "label": "katas-subagent-parallelism (Kata 4)"
+    },
+    {
+      "id": "katas-scratchpad-pattern",
+      "type": "skill",
+      "label": "katas-scratchpad-pattern (Kata 18)"
+    },
+    {
+      "id": "katas-adaptive-investigation:ontology",
+      "type": "ontology",
+      "label": "Domain: agentic-architecture"
+    },
+    {
+      "id": "katas-adaptive-investigation:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "katas-adaptive-investigation:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
+    }
+  ],
+  "edges": [
+    {
+      "from": "katas-adaptive-investigation",
+      "to": "katas-adaptive-investigation:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "katas-adaptive-investigation",
+      "to": "katas-adaptive-investigation:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "katas-adaptive-investigation",
+      "to": "katas-adaptive-investigation:quality",
+      "type": "validated_by"
+    },
+    {
+      "from": "katas-adaptive-investigation",
+      "to": "katas-adaptive-investigation:cheap-mapping",
+      "type": "step"
+    },
+    {
+      "from": "katas-adaptive-investigation:cheap-mapping",
+      "to": "katas-adaptive-investigation:prioritization",
+      "type": "feeds"
+    },
+    {
+      "from": "katas-adaptive-investigation:prioritization",
+      "to": "katas-adaptive-investigation:selective-deep-dive",
+      "type": "feeds"
+    },
+    {
+      "from": "katas-adaptive-investigation:selective-deep-dive",
+      "to": "katas-adaptive-investigation:replan-criterion",
+      "type": "may_trigger"
+    },
+    {
+      "from": "katas-adaptive-investigation:replan-criterion",
+      "to": "katas-adaptive-investigation:prioritization",
+      "type": "re_plans"
+    },
+    {
+      "from": "katas-adaptive-investigation:exploration-budget",
+      "to": "katas-adaptive-investigation:selective-deep-dive",
+      "type": "bounds"
+    },
+    {
+      "from": "katas-adaptive-investigation",
+      "to": "katas-adaptive-investigation:rigid-plan-antipattern",
+      "type": "avoids"
+    },
+    {
+      "from": "katas-adaptive-investigation",
+      "to": "katas-subagent-parallelism",
+      "type": "relates_to"
+    },
+    {
+      "from": "katas-adaptive-investigation",
+      "to": "katas-scratchpad-pattern",
+      "type": "relates_to"
+    },
+    {
+      "from": "katas-adaptive-investigation",
+      "to": "katas-adaptive-investigation:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "katas-adaptive-investigation",
+      "to": "katas-adaptive-investigation:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "katas-adaptive-investigation",
+      "to": "katas-adaptive-investigation:antipattern",
+      "type": "guards_against"
+    }
+  ]
+}

@@ -23,6 +23,21 @@
       "id": "poc-lab:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "poc-lab:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "poc-lab:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "poc-lab:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "poc-lab",
       "to": "poc-lab:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "poc-lab",
+      "to": "poc-lab:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "poc-lab",
+      "to": "poc-lab:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "poc-lab",
+      "to": "poc-lab:antipattern",
+      "type": "guards_against"
     }
   ]
 }

@@ -23,6 +23,21 @@
       "id": "stop-validator:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "stop-validator:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "stop-validator:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "stop-validator:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "stop-validator",
       "to": "stop-validator:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "stop-validator",
+      "to": "stop-validator:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "stop-validator",
+      "to": "stop-validator:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "stop-validator",
+      "to": "stop-validator:antipattern",
+      "type": "guards_against"
     }
   ]
 }

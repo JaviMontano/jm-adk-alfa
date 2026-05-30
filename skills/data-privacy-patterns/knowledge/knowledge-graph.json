@@ -23,6 +23,21 @@
       "id": "data-privacy-patterns:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "data-privacy-patterns:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "data-privacy-patterns:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "data-privacy-patterns:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "data-privacy-patterns",
       "to": "data-privacy-patterns:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "data-privacy-patterns",
+      "to": "data-privacy-patterns:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "data-privacy-patterns",
+      "to": "data-privacy-patterns:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "data-privacy-patterns",
+      "to": "data-privacy-patterns:antipattern",
+      "type": "guards_against"
     }
   ]
 }

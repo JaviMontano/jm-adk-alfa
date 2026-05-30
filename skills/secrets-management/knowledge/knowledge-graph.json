@@ -23,6 +23,21 @@
       "id": "secrets-management:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "secrets-management:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "secrets-management:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "secrets-management:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "secrets-management",
       "to": "secrets-management:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "secrets-management",
+      "to": "secrets-management:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "secrets-management",
+      "to": "secrets-management:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "secrets-management",
+      "to": "secrets-management:antipattern",
+      "type": "guards_against"
     }
   ]
 }

@@ -23,6 +23,21 @@
       "id": "naming-and-slugging:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "naming-and-slugging:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "naming-and-slugging:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "naming-and-slugging:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "naming-and-slugging",
       "to": "naming-and-slugging:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "naming-and-slugging",
+      "to": "naming-and-slugging:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "naming-and-slugging",
+      "to": "naming-and-slugging:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "naming-and-slugging",
+      "to": "naming-and-slugging:antipattern",
+      "type": "guards_against"
     }
   ]
 }

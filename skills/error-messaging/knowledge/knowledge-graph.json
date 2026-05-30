@@ -23,6 +23,21 @@
       "id": "error-messaging:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "error-messaging:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "error-messaging:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "error-messaging:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "error-messaging",
       "to": "error-messaging:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "error-messaging",
+      "to": "error-messaging:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "error-messaging",
+      "to": "error-messaging:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "error-messaging",
+      "to": "error-messaging:antipattern",
+      "type": "guards_against"
     }
   ]
 }

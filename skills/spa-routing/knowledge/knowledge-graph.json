@@ -23,6 +23,21 @@
       "id": "spa-routing:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "spa-routing:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "spa-routing:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "spa-routing:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "spa-routing",
       "to": "spa-routing:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "spa-routing",
+      "to": "spa-routing:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "spa-routing",
+      "to": "spa-routing:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "spa-routing",
+      "to": "spa-routing:antipattern",
+      "type": "guards_against"
     }
   ]
 }

@@ -1,0 +1,135 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-29",
+  "skill": "katas-deterministic-agent-loop",
+  "nodes": [
+    {
+      "id": "katas-deterministic-agent-loop",
+      "type": "skill",
+      "label": "katas-deterministic-agent-loop"
+    },
+    {
+      "id": "katas-deterministic-agent-loop:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "katas-deterministic-agent-loop:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "katas-deterministic-agent-loop:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    },
+    {
+      "id": "katas-deterministic-agent-loop:stop-reason",
+      "type": "concept",
+      "label": "stop_reason como contrato de control"
+    },
+    {
+      "id": "katas-deterministic-agent-loop:tool-use-dispatch",
+      "type": "concept",
+      "label": "tool_use dispatcha y reinyecta tool_result (role=user)"
+    },
+    {
+      "id": "katas-deterministic-agent-loop:end-turn-halt",
+      "type": "concept",
+      "label": "end_turn finaliza el bucle"
+    },
+    {
+      "id": "katas-deterministic-agent-loop:unhandled-stop",
+      "type": "concept",
+      "label": "stop_reason no manejado eleva error explicito"
+    },
+    {
+      "id": "katas-deterministic-agent-loop:budget",
+      "type": "concept",
+      "label": "Budget configurable (max_iterations) eleva BudgetExceeded"
+    },
+    {
+      "id": "katas-deterministic-agent-loop:prose-parsing",
+      "type": "anti_pattern",
+      "label": "Parsear prosa del modelo para decidir halt"
+    },
+    {
+      "id": "katas-deterministic-agent-loop:ontology",
+      "type": "ontology",
+      "label": "Domain: agentic-architecture"
+    },
+    {
+      "id": "katas-deterministic-agent-loop:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "katas-deterministic-agent-loop:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
+    }
+  ],
+  "edges": [
+    {
+      "from": "katas-deterministic-agent-loop",
+      "to": "katas-deterministic-agent-loop:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "katas-deterministic-agent-loop",
+      "to": "katas-deterministic-agent-loop:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "katas-deterministic-agent-loop",
+      "to": "katas-deterministic-agent-loop:quality",
+      "type": "validated_by"
+    },
+    {
+      "from": "katas-deterministic-agent-loop",
+      "to": "katas-deterministic-agent-loop:stop-reason",
+      "type": "controlled_by"
+    },
+    {
+      "from": "katas-deterministic-agent-loop:stop-reason",
+      "to": "katas-deterministic-agent-loop:tool-use-dispatch",
+      "type": "routes_to"
+    },
+    {
+      "from": "katas-deterministic-agent-loop:stop-reason",
+      "to": "katas-deterministic-agent-loop:end-turn-halt",
+      "type": "routes_to"
+    },
+    {
+      "from": "katas-deterministic-agent-loop:stop-reason",
+      "to": "katas-deterministic-agent-loop:unhandled-stop",
+      "type": "routes_to"
+    },
+    {
+      "from": "katas-deterministic-agent-loop",
+      "to": "katas-deterministic-agent-loop:budget",
+      "type": "bounded_by"
+    },
+    {
+      "from": "katas-deterministic-agent-loop:prose-parsing",
+      "to": "katas-deterministic-agent-loop:stop-reason",
+      "type": "violates"
+    },
+    {
+      "from": "katas-deterministic-agent-loop",
+      "to": "katas-deterministic-agent-loop:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "katas-deterministic-agent-loop",
+      "to": "katas-deterministic-agent-loop:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "katas-deterministic-agent-loop",
+      "to": "katas-deterministic-agent-loop:antipattern",
+      "type": "guards_against"
+    }
+  ]
+}

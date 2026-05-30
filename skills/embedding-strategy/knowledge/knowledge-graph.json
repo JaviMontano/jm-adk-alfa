@@ -23,6 +23,21 @@
       "id": "embedding-strategy:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "embedding-strategy:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "embedding-strategy:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "embedding-strategy:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "embedding-strategy",
       "to": "embedding-strategy:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "embedding-strategy",
+      "to": "embedding-strategy:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "embedding-strategy",
+      "to": "embedding-strategy:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "embedding-strategy",
+      "to": "embedding-strategy:antipattern",
+      "type": "guards_against"
     }
   ]
 }

@@ -1,0 +1,155 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-29",
+  "skill": "katas-headless-code-review",
+  "nodes": [
+    {
+      "id": "katas-headless-code-review",
+      "type": "skill",
+      "label": "katas-headless-code-review"
+    },
+    {
+      "id": "katas-headless-code-review:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "katas-headless-code-review:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "katas-headless-code-review:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    },
+    {
+      "id": "concept:headless-invocation",
+      "type": "concept",
+      "label": "claude -p sin TTY (modo headless en CI)"
+    },
+    {
+      "id": "concept:output-format-json",
+      "type": "concept",
+      "label": "--output-format=json (salida estructurada)"
+    },
+    {
+      "id": "concept:annotation-schema",
+      "type": "concept",
+      "label": "Schema de Annotation {file,line,severity,rule_id,message}"
+    },
+    {
+      "id": "concept:schema-validation",
+      "type": "gate",
+      "label": "Validacion contra schema: JSON invalido => job falla"
+    },
+    {
+      "id": "concept:human-merge-gate",
+      "type": "gate",
+      "label": "Humano es gate final de merge (LLM anota, no aprueba)"
+    },
+    {
+      "id": "anti:prose-parsing",
+      "type": "antipattern",
+      "label": "Parsear prosa con grep/awk/regex"
+    },
+    {
+      "id": "kata:05-defensive-extraction",
+      "type": "related_kata",
+      "label": "Kata 5 - extraccion defensiva con JSON Schema"
+    },
+    {
+      "id": "kata:01-output-signal-control",
+      "type": "related_kata",
+      "label": "Kata 1 - control por senal de salida"
+    },
+    {
+      "id": "katas-headless-code-review:ontology",
+      "type": "ontology",
+      "label": "Domain: prompt-structured-output"
+    },
+    {
+      "id": "katas-headless-code-review:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "katas-headless-code-review:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
+    }
+  ],
+  "edges": [
+    {
+      "from": "katas-headless-code-review",
+      "to": "katas-headless-code-review:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "katas-headless-code-review",
+      "to": "katas-headless-code-review:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "katas-headless-code-review",
+      "to": "katas-headless-code-review:quality",
+      "type": "validated_by"
+    },
+    {
+      "from": "katas-headless-code-review",
+      "to": "concept:headless-invocation",
+      "type": "applies"
+    },
+    {
+      "from": "concept:headless-invocation",
+      "to": "concept:output-format-json",
+      "type": "produces"
+    },
+    {
+      "from": "concept:output-format-json",
+      "to": "concept:annotation-schema",
+      "type": "conforms_to"
+    },
+    {
+      "from": "concept:annotation-schema",
+      "to": "concept:schema-validation",
+      "type": "validated_by"
+    },
+    {
+      "from": "concept:schema-validation",
+      "to": "concept:human-merge-gate",
+      "type": "precedes"
+    },
+    {
+      "from": "katas-headless-code-review",
+      "to": "anti:prose-parsing",
+      "type": "rejects"
+    },
+    {
+      "from": "concept:schema-validation",
+      "to": "kata:05-defensive-extraction",
+      "type": "derives_from"
+    },
+    {
+      "from": "concept:schema-validation",
+      "to": "kata:01-output-signal-control",
+      "type": "derives_from"
+    },
+    {
+      "from": "katas-headless-code-review",
+      "to": "katas-headless-code-review:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "katas-headless-code-review",
+      "to": "katas-headless-code-review:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "katas-headless-code-review",
+      "to": "katas-headless-code-review:antipattern",
+      "type": "guards_against"
+    }
+  ]
+}

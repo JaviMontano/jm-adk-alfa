@@ -1,0 +1,175 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-30",
+  "skill": "validation-retry-design",
+  "nodes": [
+    {
+      "id": "validation-retry-design",
+      "type": "skill",
+      "label": "validation-retry-design"
+    },
+    {
+      "id": "validation-retry-design:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "validation-retry-design:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "validation-retry-design:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    },
+    {
+      "id": "validation-retry-design:validate-extract-retry-loop",
+      "type": "concept",
+      "label": "extract -> validate -> retry-with-error-feedback loop"
+    },
+    {
+      "id": "validation-retry-design:error-feedback",
+      "type": "concept",
+      "label": "Specific error feedback reinjected into retry"
+    },
+    {
+      "id": "validation-retry-design:validator",
+      "type": "concept",
+      "label": "Validator returns {ok, error, recoverable}"
+    },
+    {
+      "id": "validation-retry-design:recoverable-vs-not",
+      "type": "concept",
+      "label": "Recoverable (format) vs not-recoverable (missing data)"
+    },
+    {
+      "id": "validation-retry-design:retry-budget",
+      "type": "concept",
+      "label": "Retry budget (max 2-3) with error chain"
+    },
+    {
+      "id": "validation-retry-design:systematic-pattern",
+      "type": "concept",
+      "label": "Systematic error pattern -> structural fix"
+    },
+    {
+      "id": "validation-retry-design:escalation",
+      "type": "concept",
+      "label": "Escalate with full error chain"
+    },
+    {
+      "id": "validation-retry-design:blind-retry",
+      "type": "anti_pattern",
+      "label": "Blind retry (same prompt) + silent failure"
+    },
+    {
+      "id": "katas-validation-retry-feedback",
+      "type": "kata",
+      "label": "katas-validation-retry-feedback"
+    },
+    {
+      "id": "validation-retry-design:ontology",
+      "type": "ontology",
+      "label": "Domain: prompt-structured-output"
+    },
+    {
+      "id": "validation-retry-design:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "validation-retry-design:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
+    }
+  ],
+  "edges": [
+    {
+      "from": "validation-retry-design",
+      "to": "validation-retry-design:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "validation-retry-design",
+      "to": "validation-retry-design:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "validation-retry-design",
+      "to": "validation-retry-design:quality",
+      "type": "validated_by"
+    },
+    {
+      "from": "validation-retry-design",
+      "to": "validation-retry-design:validate-extract-retry-loop",
+      "type": "implements"
+    },
+    {
+      "from": "validation-retry-design:validate-extract-retry-loop",
+      "to": "validation-retry-design:validator",
+      "type": "uses"
+    },
+    {
+      "from": "validation-retry-design:validator",
+      "to": "validation-retry-design:error-feedback",
+      "type": "produces"
+    },
+    {
+      "from": "validation-retry-design:error-feedback",
+      "to": "validation-retry-design:validate-extract-retry-loop",
+      "type": "feeds"
+    },
+    {
+      "from": "validation-retry-design:validator",
+      "to": "validation-retry-design:recoverable-vs-not",
+      "type": "classifies"
+    },
+    {
+      "from": "validation-retry-design:validate-extract-retry-loop",
+      "to": "validation-retry-design:retry-budget",
+      "type": "bounded_by"
+    },
+    {
+      "from": "validation-retry-design:validate-extract-retry-loop",
+      "to": "validation-retry-design:systematic-pattern",
+      "type": "detects"
+    },
+    {
+      "from": "validation-retry-design:retry-budget",
+      "to": "validation-retry-design:escalation",
+      "type": "triggers"
+    },
+    {
+      "from": "validation-retry-design:recoverable-vs-not",
+      "to": "validation-retry-design:escalation",
+      "type": "triggers"
+    },
+    {
+      "from": "validation-retry-design:validate-extract-retry-loop",
+      "to": "validation-retry-design:blind-retry",
+      "type": "avoids"
+    },
+    {
+      "from": "validation-retry-design",
+      "to": "katas-validation-retry-feedback",
+      "type": "related_to"
+    },
+    {
+      "from": "validation-retry-design",
+      "to": "validation-retry-design:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "validation-retry-design",
+      "to": "validation-retry-design:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "validation-retry-design",
+      "to": "validation-retry-design:antipattern",
+      "type": "guards_against"
+    }
+  ]
+}

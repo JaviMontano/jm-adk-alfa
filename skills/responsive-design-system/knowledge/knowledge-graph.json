@@ -23,6 +23,21 @@
       "id": "responsive-design-system:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "responsive-design-system:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "responsive-design-system:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "responsive-design-system:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "responsive-design-system",
       "to": "responsive-design-system:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "responsive-design-system",
+      "to": "responsive-design-system:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "responsive-design-system",
+      "to": "responsive-design-system:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "responsive-design-system",
+      "to": "responsive-design-system:antipattern",
+      "type": "guards_against"
     }
   ]
 }

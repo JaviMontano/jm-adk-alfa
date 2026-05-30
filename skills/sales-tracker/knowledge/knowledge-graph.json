@@ -23,6 +23,21 @@
       "id": "sales-tracker:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "sales-tracker:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "sales-tracker:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "sales-tracker:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "sales-tracker",
       "to": "sales-tracker:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "sales-tracker",
+      "to": "sales-tracker:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "sales-tracker",
+      "to": "sales-tracker:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "sales-tracker",
+      "to": "sales-tracker:antipattern",
+      "type": "guards_against"
     }
   ]
 }

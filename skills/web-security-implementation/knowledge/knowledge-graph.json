@@ -23,6 +23,21 @@
       "id": "web-security-implementation:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "web-security-implementation:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "web-security-implementation:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "web-security-implementation:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "web-security-implementation",
       "to": "web-security-implementation:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "web-security-implementation",
+      "to": "web-security-implementation:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "web-security-implementation",
+      "to": "web-security-implementation:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "web-security-implementation",
+      "to": "web-security-implementation:antipattern",
+      "type": "guards_against"
     }
   ]
 }

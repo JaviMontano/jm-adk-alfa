@@ -23,6 +23,21 @@
       "id": "agent-constitution-creator:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "agent-constitution-creator:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "agent-constitution-creator:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "agent-constitution-creator:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "agent-constitution-creator",
       "to": "agent-constitution-creator:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "agent-constitution-creator",
+      "to": "agent-constitution-creator:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "agent-constitution-creator",
+      "to": "agent-constitution-creator:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "agent-constitution-creator",
+      "to": "agent-constitution-creator:antipattern",
+      "type": "guards_against"
     }
   ]
 }

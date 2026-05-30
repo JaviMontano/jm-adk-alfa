@@ -23,6 +23,21 @@
       "id": "dark-mode:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "dark-mode:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "dark-mode:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "dark-mode:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "dark-mode",
       "to": "dark-mode:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "dark-mode",
+      "to": "dark-mode:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "dark-mode",
+      "to": "dark-mode:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "dark-mode",
+      "to": "dark-mode:antipattern",
+      "type": "guards_against"
     }
   ]
 }

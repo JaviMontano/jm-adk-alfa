@@ -23,6 +23,21 @@
       "id": "meta-skill-deployer:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "meta-skill-deployer:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "meta-skill-deployer:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "meta-skill-deployer:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "meta-skill-deployer",
       "to": "meta-skill-deployer:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "meta-skill-deployer",
+      "to": "meta-skill-deployer:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "meta-skill-deployer",
+      "to": "meta-skill-deployer:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "meta-skill-deployer",
+      "to": "meta-skill-deployer:antipattern",
+      "type": "guards_against"
     }
   ]
 }

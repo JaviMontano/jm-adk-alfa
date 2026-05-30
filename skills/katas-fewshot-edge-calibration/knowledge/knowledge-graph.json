@@ -1,0 +1,150 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-29",
+  "skill": "katas-fewshot-edge-calibration",
+  "nodes": [
+    {
+      "id": "katas-fewshot-edge-calibration",
+      "type": "skill",
+      "label": "katas-fewshot-edge-calibration"
+    },
+    {
+      "id": "katas-fewshot-edge-calibration:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "katas-fewshot-edge-calibration:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "katas-fewshot-edge-calibration:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    },
+    {
+      "id": "katas-fewshot-edge-calibration:few-shot-examples",
+      "type": "concept",
+      "label": "2-4 ejemplos input/output del mismo schema"
+    },
+    {
+      "id": "katas-fewshot-edge-calibration:edge-coverage",
+      "type": "concept",
+      "label": "Ejemplos cubren bordes del dominio, no el centro"
+    },
+    {
+      "id": "katas-fewshot-edge-calibration:schema-precedence",
+      "type": "rule",
+      "label": "Ante conflicto, gana el schema (Kata 5)"
+    },
+    {
+      "id": "katas-fewshot-edge-calibration:static-prefix",
+      "type": "rule",
+      "label": "Ejemplos al inicio: prefix cache + atencion alta"
+    },
+    {
+      "id": "katas-fewshot-edge-calibration:prose-antipattern",
+      "type": "antipattern",
+      "label": "Parrafo abstracto sin ejemplos"
+    },
+    {
+      "id": "katas-schema-tool-extraction",
+      "type": "skill",
+      "label": "Kata 5 schema"
+    },
+    {
+      "id": "katas-prefix-caching",
+      "type": "skill",
+      "label": "Kata 10 prefix caching"
+    },
+    {
+      "id": "katas-context-dilution-mitigation",
+      "type": "skill",
+      "label": "Kata 11 dilucion softmax"
+    },
+    {
+      "id": "katas-fewshot-edge-calibration:ontology",
+      "type": "ontology",
+      "label": "Domain: prompt-structured-output"
+    },
+    {
+      "id": "katas-fewshot-edge-calibration:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "katas-fewshot-edge-calibration:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
+    }
+  ],
+  "edges": [
+    {
+      "from": "katas-fewshot-edge-calibration",
+      "to": "katas-fewshot-edge-calibration:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "katas-fewshot-edge-calibration",
+      "to": "katas-fewshot-edge-calibration:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "katas-fewshot-edge-calibration",
+      "to": "katas-fewshot-edge-calibration:quality",
+      "type": "validated_by"
+    },
+    {
+      "from": "katas-fewshot-edge-calibration",
+      "to": "katas-fewshot-edge-calibration:few-shot-examples",
+      "type": "uses"
+    },
+    {
+      "from": "katas-fewshot-edge-calibration:few-shot-examples",
+      "to": "katas-fewshot-edge-calibration:edge-coverage",
+      "type": "constrained_by"
+    },
+    {
+      "from": "katas-fewshot-edge-calibration:few-shot-examples",
+      "to": "katas-fewshot-edge-calibration:static-prefix",
+      "type": "positioned_by"
+    },
+    {
+      "from": "katas-fewshot-edge-calibration",
+      "to": "katas-fewshot-edge-calibration:prose-antipattern",
+      "type": "avoids"
+    },
+    {
+      "from": "katas-fewshot-edge-calibration:schema-precedence",
+      "to": "katas-schema-tool-extraction",
+      "type": "defers_to"
+    },
+    {
+      "from": "katas-fewshot-edge-calibration:static-prefix",
+      "to": "katas-prefix-caching",
+      "type": "leverages"
+    },
+    {
+      "from": "katas-fewshot-edge-calibration:static-prefix",
+      "to": "katas-context-dilution-mitigation",
+      "type": "leverages"
+    },
+    {
+      "from": "katas-fewshot-edge-calibration",
+      "to": "katas-fewshot-edge-calibration:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "katas-fewshot-edge-calibration",
+      "to": "katas-fewshot-edge-calibration:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "katas-fewshot-edge-calibration",
+      "to": "katas-fewshot-edge-calibration:antipattern",
+      "type": "guards_against"
+    }
+  ]
+}

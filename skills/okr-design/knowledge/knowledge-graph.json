@@ -23,6 +23,21 @@
       "id": "okr-design:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "okr-design:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "okr-design:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "okr-design:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "okr-design",
       "to": "okr-design:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "okr-design",
+      "to": "okr-design:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "okr-design",
+      "to": "okr-design:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "okr-design",
+      "to": "okr-design:antipattern",
+      "type": "guards_against"
     }
   ]
 }

@@ -23,6 +23,21 @@
       "id": "interview-prep:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "interview-prep:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "interview-prep:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "interview-prep:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "interview-prep",
       "to": "interview-prep:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "interview-prep",
+      "to": "interview-prep:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "interview-prep",
+      "to": "interview-prep:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "interview-prep",
+      "to": "interview-prep:antipattern",
+      "type": "guards_against"
     }
   ]
 }

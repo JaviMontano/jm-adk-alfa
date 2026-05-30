@@ -23,6 +23,21 @@
       "id": "solution-roadmap:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "solution-roadmap:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "solution-roadmap:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "solution-roadmap:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "solution-roadmap",
       "to": "solution-roadmap:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "solution-roadmap",
+      "to": "solution-roadmap:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "solution-roadmap",
+      "to": "solution-roadmap:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "solution-roadmap",
+      "to": "solution-roadmap:antipattern",
+      "type": "guards_against"
     }
   ]
 }

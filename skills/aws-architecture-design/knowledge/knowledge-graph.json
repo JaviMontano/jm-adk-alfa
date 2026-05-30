@@ -23,6 +23,21 @@
       "id": "aws-architecture-design:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "aws-architecture-design:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "aws-architecture-design:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "aws-architecture-design:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "aws-architecture-design",
       "to": "aws-architecture-design:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "aws-architecture-design",
+      "to": "aws-architecture-design:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "aws-architecture-design",
+      "to": "aws-architecture-design:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "aws-architecture-design",
+      "to": "aws-architecture-design:antipattern",
+      "type": "guards_against"
     }
   ]
 }

@@ -23,6 +23,21 @@
       "id": "constitution-compliance:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "constitution-compliance:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "constitution-compliance:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "constitution-compliance:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "constitution-compliance",
       "to": "constitution-compliance:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "constitution-compliance",
+      "to": "constitution-compliance:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "constitution-compliance",
+      "to": "constitution-compliance:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "constitution-compliance",
+      "to": "constitution-compliance:antipattern",
+      "type": "guards_against"
     }
   ]
 }

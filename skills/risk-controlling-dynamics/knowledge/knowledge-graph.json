@@ -23,6 +23,21 @@
       "id": "risk-controlling-dynamics:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "risk-controlling-dynamics:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "risk-controlling-dynamics:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "risk-controlling-dynamics:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "risk-controlling-dynamics",
       "to": "risk-controlling-dynamics:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "risk-controlling-dynamics",
+      "to": "risk-controlling-dynamics:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "risk-controlling-dynamics",
+      "to": "risk-controlling-dynamics:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "risk-controlling-dynamics",
+      "to": "risk-controlling-dynamics:antipattern",
+      "type": "guards_against"
     }
   ]
 }

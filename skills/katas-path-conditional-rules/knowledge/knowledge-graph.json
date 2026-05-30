@@ -1,0 +1,135 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-29",
+  "skill": "katas-path-conditional-rules",
+  "nodes": [
+    {
+      "id": "katas-path-conditional-rules",
+      "type": "skill",
+      "label": "katas-path-conditional-rules"
+    },
+    {
+      "id": "katas-path-conditional-rules:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "katas-path-conditional-rules:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "katas-path-conditional-rules:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    },
+    {
+      "id": "katas-path-conditional-rules:universal-rule",
+      "type": "concept",
+      "label": "Universal rule (always loaded, no glob)"
+    },
+    {
+      "id": "katas-path-conditional-rules:conditional-rule",
+      "type": "concept",
+      "label": "Conditional rule by path glob"
+    },
+    {
+      "id": "katas-path-conditional-rules:activation-glob",
+      "type": "concept",
+      "label": "Activation glob (src/**/*.py, *.tf)"
+    },
+    {
+      "id": "katas-path-conditional-rules:subpath-precedence",
+      "type": "concept",
+      "label": "Subpath precedence in conflicts"
+    },
+    {
+      "id": "katas-path-conditional-rules:token-savings",
+      "type": "concept",
+      "label": "Measurable token savings (input_tokens README vs .py)"
+    },
+    {
+      "id": "katas-path-conditional-rules:monolith-anti-pattern",
+      "type": "anti_pattern",
+      "label": "Monolithic CLAUDE.md loading all rules always"
+    },
+    {
+      "id": "katas-path-conditional-rules:ontology",
+      "type": "ontology",
+      "label": "Domain: claude-code-config"
+    },
+    {
+      "id": "katas-path-conditional-rules:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "katas-path-conditional-rules:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
+    }
+  ],
+  "edges": [
+    {
+      "from": "katas-path-conditional-rules",
+      "to": "katas-path-conditional-rules:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "katas-path-conditional-rules",
+      "to": "katas-path-conditional-rules:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "katas-path-conditional-rules",
+      "to": "katas-path-conditional-rules:quality",
+      "type": "validated_by"
+    },
+    {
+      "from": "katas-path-conditional-rules",
+      "to": "katas-path-conditional-rules:universal-rule",
+      "type": "defines"
+    },
+    {
+      "from": "katas-path-conditional-rules",
+      "to": "katas-path-conditional-rules:conditional-rule",
+      "type": "defines"
+    },
+    {
+      "from": "katas-path-conditional-rules:conditional-rule",
+      "to": "katas-path-conditional-rules:activation-glob",
+      "type": "activated_by"
+    },
+    {
+      "from": "katas-path-conditional-rules:conditional-rule",
+      "to": "katas-path-conditional-rules:subpath-precedence",
+      "type": "resolved_by"
+    },
+    {
+      "from": "katas-path-conditional-rules:conditional-rule",
+      "to": "katas-path-conditional-rules:token-savings",
+      "type": "yields"
+    },
+    {
+      "from": "katas-path-conditional-rules:monolith-anti-pattern",
+      "to": "katas-path-conditional-rules:token-savings",
+      "type": "violates"
+    },
+    {
+      "from": "katas-path-conditional-rules",
+      "to": "katas-path-conditional-rules:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "katas-path-conditional-rules",
+      "to": "katas-path-conditional-rules:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "katas-path-conditional-rules",
+      "to": "katas-path-conditional-rules:antipattern",
+      "type": "guards_against"
+    }
+  ]
+}

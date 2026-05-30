@@ -23,6 +23,21 @@
       "id": "email-template-builder:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "email-template-builder:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "email-template-builder:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "email-template-builder:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "email-template-builder",
       "to": "email-template-builder:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "email-template-builder",
+      "to": "email-template-builder:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "email-template-builder",
+      "to": "email-template-builder:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "email-template-builder",
+      "to": "email-template-builder:antipattern",
+      "type": "guards_against"
     }
   ]
 }

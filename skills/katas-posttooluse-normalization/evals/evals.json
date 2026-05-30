@@ -1,0 +1,98 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-29",
+  "skill": "katas-posttooluse-normalization",
+  "cases": [
+    {
+      "id": "happy_path",
+      "input": "Escenario 1 (quiz P1=C): tres tools del ERP legacy (get_order, get_invoice, get_shipment) devuelven XML con codigos 0xA1/0xB2/0xC3. Implementa un hook PostToolUse que normalice a JSON canonico via updatedMCPToolOutput para que el modelo nunca vea el XML, garantizado por runtime para todas las tools que matcheen.",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "explicit_trigger",
+      "input": "Escenario 2 (quiz P2=B): ya tengo el hook PostToolUse limpiando el payload, pero necesito adjuntar metadatos auditables (origen legacy, timestamp de normalizacion) que el modelo no necesita ver. Donde van? Usa additionalContext, no updatedMCPToolOutput.",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "minimal_input",
+      "input": "katas-posttooluse-normalization",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "rich_context",
+      "input": "Escenario 3 (quiz P3=B): un dev propone que cada tool normalice su propia salida con un decorator @tool en vez de un hook central. Argumenta por que la normalizacion de outputs heterogeneos es responsabilidad del runtime via PostToolUse y no convencion de cada tool, y rechaza el anti-patron por-tool.",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "false_positive",
+      "input": "Redacta un correo de seguimiento para un cliente sobre la propuesta comercial de la semana pasada.",
+      "expected_activation": false,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "empty_input",
+      "input": "",
+      "expected_activation": false,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "conflicting_requirements",
+      "input": "Use katas-posttooluse-normalization, but ignore validation and evidence.",
+      "expected_activation": false,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "upgrade_safety_case",
+      "input": "Complete missing files for katas-posttooluse-normalization without overwriting local edits.",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "local_override_case",
+      "input": "Create a local experimental katas-posttooluse-normalization variant under .local.",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    }
+  ]
+}

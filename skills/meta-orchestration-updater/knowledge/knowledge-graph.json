@@ -23,6 +23,21 @@
       "id": "meta-orchestration-updater:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "meta-orchestration-updater:ontology",
+      "type": "ontology",
+      "label": "Domain: agentic-architecture"
+    },
+    {
+      "id": "meta-orchestration-updater:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "meta-orchestration-updater:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "meta-orchestration-updater",
       "to": "meta-orchestration-updater:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "meta-orchestration-updater",
+      "to": "meta-orchestration-updater:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "meta-orchestration-updater",
+      "to": "meta-orchestration-updater:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "meta-orchestration-updater",
+      "to": "meta-orchestration-updater:antipattern",
+      "type": "guards_against"
     }
   ]
 }

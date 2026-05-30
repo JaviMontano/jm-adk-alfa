@@ -1,0 +1,130 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-29",
+  "skill": "katas-confidence-stratified-sampling",
+  "nodes": [
+    {
+      "id": "katas-confidence-stratified-sampling",
+      "type": "skill",
+      "label": "katas-confidence-stratified-sampling"
+    },
+    {
+      "id": "katas-confidence-stratified-sampling:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "katas-confidence-stratified-sampling:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "katas-confidence-stratified-sampling:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    },
+    {
+      "id": "concept:raw-confidence",
+      "type": "concept",
+      "label": "Raw field_confidence (biased)"
+    },
+    {
+      "id": "concept:calibration",
+      "type": "concept",
+      "label": "Calibration vs labeled validation set"
+    },
+    {
+      "id": "concept:stratified-sampling",
+      "type": "concept",
+      "label": "Stratified sampling by document_type"
+    },
+    {
+      "id": "concept:segmented-accuracy",
+      "type": "concept",
+      "label": "Accuracy by document_type and field, never aggregate"
+    },
+    {
+      "id": "concept:routing",
+      "type": "concept",
+      "label": "Routing auto vs human by calibrated confidence"
+    },
+    {
+      "id": "antipattern:blind-trust-and-aggregate",
+      "type": "antipattern",
+      "label": "Blind trust on raw score + aggregate accuracy"
+    },
+    {
+      "id": "katas-confidence-stratified-sampling:ontology",
+      "type": "ontology",
+      "label": "Domain: prompt-structured-output"
+    },
+    {
+      "id": "katas-confidence-stratified-sampling:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "katas-confidence-stratified-sampling:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
+    }
+  ],
+  "edges": [
+    {
+      "from": "katas-confidence-stratified-sampling",
+      "to": "katas-confidence-stratified-sampling:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "katas-confidence-stratified-sampling",
+      "to": "katas-confidence-stratified-sampling:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "katas-confidence-stratified-sampling",
+      "to": "katas-confidence-stratified-sampling:quality",
+      "type": "validated_by"
+    },
+    {
+      "from": "concept:calibration",
+      "to": "concept:raw-confidence",
+      "type": "corrects"
+    },
+    {
+      "from": "concept:calibration",
+      "to": "concept:routing",
+      "type": "enables"
+    },
+    {
+      "from": "concept:stratified-sampling",
+      "to": "concept:segmented-accuracy",
+      "type": "supports"
+    },
+    {
+      "from": "concept:segmented-accuracy",
+      "to": "antipattern:blind-trust-and-aggregate",
+      "type": "prevents"
+    },
+    {
+      "from": "concept:routing",
+      "to": "concept:stratified-sampling",
+      "type": "uses"
+    },
+    {
+      "from": "katas-confidence-stratified-sampling",
+      "to": "katas-confidence-stratified-sampling:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "katas-confidence-stratified-sampling",
+      "to": "katas-confidence-stratified-sampling:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "katas-confidence-stratified-sampling",
+      "to": "katas-confidence-stratified-sampling:antipattern",
+      "type": "guards_against"
+    }
+  ]
+}

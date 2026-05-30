@@ -23,6 +23,21 @@
       "id": "rate-limiting:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "rate-limiting:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "rate-limiting:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "rate-limiting:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "rate-limiting",
       "to": "rate-limiting:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "rate-limiting",
+      "to": "rate-limiting:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "rate-limiting",
+      "to": "rate-limiting:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "rate-limiting",
+      "to": "rate-limiting:antipattern",
+      "type": "guards_against"
     }
   ]
 }

@@ -23,6 +23,21 @@
       "id": "technical-writing:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "technical-writing:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "technical-writing:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "technical-writing:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "technical-writing",
       "to": "technical-writing:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "technical-writing",
+      "to": "technical-writing:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "technical-writing",
+      "to": "technical-writing:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "technical-writing",
+      "to": "technical-writing:antipattern",
+      "type": "guards_against"
     }
   ]
 }

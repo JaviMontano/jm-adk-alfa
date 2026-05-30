@@ -1,0 +1,175 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-29",
+  "skill": "katas-builtin-tool-selection",
+  "nodes": [
+    {
+      "id": "katas-builtin-tool-selection",
+      "type": "skill",
+      "label": "katas-builtin-tool-selection"
+    },
+    {
+      "id": "katas-builtin-tool-selection:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "katas-builtin-tool-selection:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "katas-builtin-tool-selection:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    },
+    {
+      "id": "concept:grep",
+      "type": "concept",
+      "label": "Grep busca contenido por regex"
+    },
+    {
+      "id": "concept:glob",
+      "type": "concept",
+      "label": "Glob busca paths por patron de nombre"
+    },
+    {
+      "id": "concept:read",
+      "type": "concept",
+      "label": "Read carga un archivo en contexto"
+    },
+    {
+      "id": "concept:edit",
+      "type": "concept",
+      "label": "Edit modifica sobre anchor unico"
+    },
+    {
+      "id": "concept:write",
+      "type": "concept",
+      "label": "Write sobrescribe archivo completo"
+    },
+    {
+      "id": "concept:bash",
+      "type": "concept",
+      "label": "Bash ejecuta shell"
+    },
+    {
+      "id": "concept:incremental-strategy",
+      "type": "concept",
+      "label": "Estrategia Grep then Read then Edit"
+    },
+    {
+      "id": "concept:edit-failure-mode",
+      "type": "concept",
+      "label": "Edit falla con anchor no unico o inexistente"
+    },
+    {
+      "id": "concept:read-write-fallback",
+      "type": "concept",
+      "label": "Fallback Read entero mas Write completo"
+    },
+    {
+      "id": "antipattern:massive-read-upfront",
+      "type": "antipattern",
+      "label": "Read masivo del repo upfront quema tokens"
+    },
+    {
+      "id": "katas-builtin-tool-selection:ontology",
+      "type": "ontology",
+      "label": "Domain: tool-design-mcp"
+    },
+    {
+      "id": "katas-builtin-tool-selection:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "katas-builtin-tool-selection:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
+    }
+  ],
+  "edges": [
+    {
+      "from": "katas-builtin-tool-selection",
+      "to": "katas-builtin-tool-selection:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "katas-builtin-tool-selection",
+      "to": "katas-builtin-tool-selection:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "katas-builtin-tool-selection",
+      "to": "katas-builtin-tool-selection:quality",
+      "type": "validated_by"
+    },
+    {
+      "from": "katas-builtin-tool-selection",
+      "to": "concept:incremental-strategy",
+      "type": "teaches"
+    },
+    {
+      "from": "concept:incremental-strategy",
+      "to": "concept:grep",
+      "type": "starts_with"
+    },
+    {
+      "from": "concept:incremental-strategy",
+      "to": "concept:read",
+      "type": "then"
+    },
+    {
+      "from": "concept:incremental-strategy",
+      "to": "concept:edit",
+      "type": "then"
+    },
+    {
+      "from": "concept:edit",
+      "to": "concept:edit-failure-mode",
+      "type": "has_failure_mode"
+    },
+    {
+      "from": "concept:edit-failure-mode",
+      "to": "concept:read-write-fallback",
+      "type": "mitigated_by"
+    },
+    {
+      "from": "concept:read-write-fallback",
+      "to": "concept:write",
+      "type": "uses"
+    },
+    {
+      "from": "concept:glob",
+      "to": "concept:read",
+      "type": "complements"
+    },
+    {
+      "from": "katas-builtin-tool-selection:quality",
+      "to": "antipattern:massive-read-upfront",
+      "type": "rejects"
+    },
+    {
+      "from": "antipattern:massive-read-upfront",
+      "to": "concept:read",
+      "type": "misuses"
+    },
+    {
+      "from": "katas-builtin-tool-selection",
+      "to": "katas-builtin-tool-selection:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "katas-builtin-tool-selection",
+      "to": "katas-builtin-tool-selection:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "katas-builtin-tool-selection",
+      "to": "katas-builtin-tool-selection:antipattern",
+      "type": "guards_against"
+    }
+  ]
+}

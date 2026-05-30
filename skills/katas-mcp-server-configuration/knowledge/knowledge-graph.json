@@ -1,0 +1,145 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-29",
+  "skill": "katas-mcp-server-configuration",
+  "nodes": [
+    {
+      "id": "katas-mcp-server-configuration",
+      "type": "skill",
+      "label": "katas-mcp-server-configuration"
+    },
+    {
+      "id": "katas-mcp-server-configuration:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "katas-mcp-server-configuration:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "katas-mcp-server-configuration:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    },
+    {
+      "id": "concept:project-scope",
+      "type": "concept",
+      "label": ".mcp.json project scope (versionado, sirve a la flota)"
+    },
+    {
+      "id": "concept:user-scope",
+      "type": "concept",
+      "label": "~/.claude.json user scope (personal, no se replica)"
+    },
+    {
+      "id": "concept:env-var-expansion",
+      "type": "concept",
+      "label": "Env-var expansion ${ENV_VAR} para credenciales"
+    },
+    {
+      "id": "concept:mcp-resources",
+      "type": "concept",
+      "label": "MCP resources reducen llamadas exploratorias"
+    },
+    {
+      "id": "concept:builtin-vs-mcp",
+      "type": "concept",
+      "label": "MCP solo cuando un built-in no aplica"
+    },
+    {
+      "id": "antipattern:hardcoded-token",
+      "type": "antipattern",
+      "label": "Token literal hardcodeado en archivo versionado"
+    },
+    {
+      "id": "remedy:rotate-and-purge",
+      "type": "remedy",
+      "label": "Rotar credencial + ${ENV} + purgar historial (git filter-repo)"
+    },
+    {
+      "id": "katas-mcp-server-configuration:ontology",
+      "type": "ontology",
+      "label": "Domain: tool-design-mcp"
+    },
+    {
+      "id": "katas-mcp-server-configuration:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "katas-mcp-server-configuration:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
+    }
+  ],
+  "edges": [
+    {
+      "from": "katas-mcp-server-configuration",
+      "to": "katas-mcp-server-configuration:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "katas-mcp-server-configuration",
+      "to": "katas-mcp-server-configuration:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "katas-mcp-server-configuration",
+      "to": "katas-mcp-server-configuration:quality",
+      "type": "validated_by"
+    },
+    {
+      "from": "katas-mcp-server-configuration",
+      "to": "concept:project-scope",
+      "type": "teaches"
+    },
+    {
+      "from": "katas-mcp-server-configuration",
+      "to": "concept:user-scope",
+      "type": "teaches"
+    },
+    {
+      "from": "katas-mcp-server-configuration",
+      "to": "concept:env-var-expansion",
+      "type": "teaches"
+    },
+    {
+      "from": "katas-mcp-server-configuration",
+      "to": "concept:mcp-resources",
+      "type": "teaches"
+    },
+    {
+      "from": "katas-mcp-server-configuration",
+      "to": "concept:builtin-vs-mcp",
+      "type": "teaches"
+    },
+    {
+      "from": "concept:env-var-expansion",
+      "to": "antipattern:hardcoded-token",
+      "type": "prevents"
+    },
+    {
+      "from": "antipattern:hardcoded-token",
+      "to": "remedy:rotate-and-purge",
+      "type": "remediated_by"
+    },
+    {
+      "from": "katas-mcp-server-configuration",
+      "to": "katas-mcp-server-configuration:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "katas-mcp-server-configuration",
+      "to": "katas-mcp-server-configuration:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "katas-mcp-server-configuration",
+      "to": "katas-mcp-server-configuration:antipattern",
+      "type": "guards_against"
+    }
+  ]
+}

@@ -23,6 +23,21 @@
       "id": "output-contract-enforcer:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "output-contract-enforcer:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "output-contract-enforcer:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "output-contract-enforcer:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "output-contract-enforcer",
       "to": "output-contract-enforcer:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "output-contract-enforcer",
+      "to": "output-contract-enforcer:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "output-contract-enforcer",
+      "to": "output-contract-enforcer:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "output-contract-enforcer",
+      "to": "output-contract-enforcer:antipattern",
+      "type": "guards_against"
     }
   ]
 }

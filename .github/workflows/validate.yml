@@ -37,6 +37,12 @@ jobs:
       - name: Run safe adversarial guardrail tests
         run: python3 scripts/qa/run-adversarial-tests.py
 
+      - name: Run confidence calibration and false-positive tests (Katas 29-30)
+        run: python3 scripts/qa/run-confidence-fp-tests.py
+
+      - name: Validate headless review annotations schema (Kata 13)
+        run: python3 scripts/post_annotations.py --validate-only references/schemas/annotations.example.json
+
       - name: Scaffold dry-run smoke test
         run: |
           python3 scripts/scaffold-skill.py \

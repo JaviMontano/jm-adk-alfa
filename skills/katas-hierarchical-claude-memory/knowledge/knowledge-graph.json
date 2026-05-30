@@ -1,0 +1,185 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-29",
+  "skill": "katas-hierarchical-claude-memory",
+  "nodes": [
+    {
+      "id": "katas-hierarchical-claude-memory",
+      "type": "skill",
+      "label": "katas-hierarchical-claude-memory"
+    },
+    {
+      "id": "katas-hierarchical-claude-memory:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "katas-hierarchical-claude-memory:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "katas-hierarchical-claude-memory:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    },
+    {
+      "id": "level:user",
+      "type": "concept",
+      "label": "~/.claude/CLAUDE.md (usuario)"
+    },
+    {
+      "id": "level:team",
+      "type": "concept",
+      "label": "<repo>/CLAUDE.md (equipo)"
+    },
+    {
+      "id": "level:module",
+      "type": "concept",
+      "label": "<repo>/<subpath>/CLAUDE.md (modulo)"
+    },
+    {
+      "id": "concept:precedence",
+      "type": "concept",
+      "label": "Precedencia: subpath > repo > user"
+    },
+    {
+      "id": "concept:at-imports",
+      "type": "concept",
+      "label": "@imports a archivos chicos en docs/"
+    },
+    {
+      "id": "concept:cache-friendly",
+      "type": "concept",
+      "label": "Caché-friendliness (archivo principal corto)"
+    },
+    {
+      "id": "anti:personal-in-repo",
+      "type": "anti_pattern",
+      "label": "Preferencias personales en el repo de equipo"
+    },
+    {
+      "id": "anti:monolith",
+      "type": "anti_pattern",
+      "label": "CLAUDE.md monolitico 2000 lineas inline"
+    },
+    {
+      "id": "cert:argument",
+      "type": "gate",
+      "label": "Separacion usuario/equipo/modulo + @imports"
+    },
+    {
+      "id": "katas-hierarchical-claude-memory:ontology",
+      "type": "ontology",
+      "label": "Domain: claude-code-config"
+    },
+    {
+      "id": "katas-hierarchical-claude-memory:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "katas-hierarchical-claude-memory:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
+    }
+  ],
+  "edges": [
+    {
+      "from": "katas-hierarchical-claude-memory",
+      "to": "katas-hierarchical-claude-memory:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "katas-hierarchical-claude-memory",
+      "to": "katas-hierarchical-claude-memory:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "katas-hierarchical-claude-memory",
+      "to": "katas-hierarchical-claude-memory:quality",
+      "type": "validated_by"
+    },
+    {
+      "from": "katas-hierarchical-claude-memory",
+      "to": "level:user",
+      "type": "uses"
+    },
+    {
+      "from": "katas-hierarchical-claude-memory",
+      "to": "level:team",
+      "type": "uses"
+    },
+    {
+      "from": "katas-hierarchical-claude-memory",
+      "to": "level:module",
+      "type": "uses"
+    },
+    {
+      "from": "level:module",
+      "to": "level:team",
+      "type": "overrides"
+    },
+    {
+      "from": "level:team",
+      "to": "level:user",
+      "type": "overrides"
+    },
+    {
+      "from": "concept:precedence",
+      "to": "level:module",
+      "type": "ranks_highest"
+    },
+    {
+      "from": "level:team",
+      "to": "concept:at-imports",
+      "type": "uses"
+    },
+    {
+      "from": "concept:at-imports",
+      "to": "concept:cache-friendly",
+      "type": "enables"
+    },
+    {
+      "from": "anti:personal-in-repo",
+      "to": "level:team",
+      "type": "contaminates"
+    },
+    {
+      "from": "anti:monolith",
+      "to": "concept:cache-friendly",
+      "type": "degrades"
+    },
+    {
+      "from": "cert:argument",
+      "to": "anti:personal-in-repo",
+      "type": "rejects"
+    },
+    {
+      "from": "cert:argument",
+      "to": "anti:monolith",
+      "type": "rejects"
+    },
+    {
+      "from": "katas-hierarchical-claude-memory:quality",
+      "to": "cert:argument",
+      "type": "enforces"
+    },
+    {
+      "from": "katas-hierarchical-claude-memory",
+      "to": "katas-hierarchical-claude-memory:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "katas-hierarchical-claude-memory",
+      "to": "katas-hierarchical-claude-memory:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "katas-hierarchical-claude-memory",
+      "to": "katas-hierarchical-claude-memory:antipattern",
+      "type": "guards_against"
+    }
+  ]
+}

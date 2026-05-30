@@ -23,6 +23,21 @@
       "id": "cloud-migration:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "cloud-migration:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "cloud-migration:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "cloud-migration:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "cloud-migration",
       "to": "cloud-migration:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "cloud-migration",
+      "to": "cloud-migration:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "cloud-migration",
+      "to": "cloud-migration:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "cloud-migration",
+      "to": "cloud-migration:antipattern",
+      "type": "guards_against"
     }
   ]
 }

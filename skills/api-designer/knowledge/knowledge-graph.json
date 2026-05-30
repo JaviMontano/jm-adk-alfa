@@ -23,6 +23,21 @@
       "id": "api-designer:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "api-designer:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "api-designer:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "api-designer:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "api-designer",
       "to": "api-designer:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "api-designer",
+      "to": "api-designer:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "api-designer",
+      "to": "api-designer:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "api-designer",
+      "to": "api-designer:antipattern",
+      "type": "guards_against"
     }
   ]
 }

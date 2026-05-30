@@ -23,6 +23,21 @@
       "id": "backup-recovery:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "backup-recovery:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "backup-recovery:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "backup-recovery:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "backup-recovery",
       "to": "backup-recovery:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "backup-recovery",
+      "to": "backup-recovery:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "backup-recovery",
+      "to": "backup-recovery:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "backup-recovery",
+      "to": "backup-recovery:antipattern",
+      "type": "guards_against"
     }
   ]
 }

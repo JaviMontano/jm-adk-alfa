@@ -23,6 +23,21 @@
       "id": "knowledge-management:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "knowledge-management:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "knowledge-management:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "knowledge-management:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "knowledge-management",
       "to": "knowledge-management:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "knowledge-management",
+      "to": "knowledge-management:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "knowledge-management",
+      "to": "knowledge-management:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "knowledge-management",
+      "to": "knowledge-management:antipattern",
+      "type": "guards_against"
     }
   ]
 }

@@ -23,6 +23,21 @@
       "id": "environment-management:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "environment-management:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "environment-management:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "environment-management:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "environment-management",
       "to": "environment-management:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "environment-management",
+      "to": "environment-management:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "environment-management",
+      "to": "environment-management:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "environment-management",
+      "to": "environment-management:antipattern",
+      "type": "guards_against"
     }
   ]
 }

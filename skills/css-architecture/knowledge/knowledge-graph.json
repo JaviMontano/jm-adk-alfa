@@ -23,6 +23,21 @@
       "id": "css-architecture:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "css-architecture:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "css-architecture:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "css-architecture:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "css-architecture",
       "to": "css-architecture:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "css-architecture",
+      "to": "css-architecture:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "css-architecture",
+      "to": "css-architecture:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "css-architecture",
+      "to": "css-architecture:antipattern",
+      "type": "guards_against"
     }
   ]
 }

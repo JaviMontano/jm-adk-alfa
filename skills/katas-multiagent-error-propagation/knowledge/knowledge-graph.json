@@ -1,0 +1,75 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-29",
+  "skill": "katas-multiagent-error-propagation",
+  "nodes": [
+    {
+      "id": "katas-multiagent-error-propagation",
+      "type": "skill",
+      "label": "katas-multiagent-error-propagation"
+    },
+    {
+      "id": "katas-multiagent-error-propagation:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "katas-multiagent-error-propagation:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "katas-multiagent-error-propagation:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    },
+    {
+      "id": "katas-multiagent-error-propagation:ontology",
+      "type": "ontology",
+      "label": "Domain: agentic-architecture"
+    },
+    {
+      "id": "katas-multiagent-error-propagation:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "katas-multiagent-error-propagation:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
+    }
+  ],
+  "edges": [
+    {
+      "from": "katas-multiagent-error-propagation",
+      "to": "katas-multiagent-error-propagation:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "katas-multiagent-error-propagation",
+      "to": "katas-multiagent-error-propagation:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "katas-multiagent-error-propagation",
+      "to": "katas-multiagent-error-propagation:quality",
+      "type": "validated_by"
+    },
+    {
+      "from": "katas-multiagent-error-propagation",
+      "to": "katas-multiagent-error-propagation:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "katas-multiagent-error-propagation",
+      "to": "katas-multiagent-error-propagation:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "katas-multiagent-error-propagation",
+      "to": "katas-multiagent-error-propagation:antipattern",
+      "type": "guards_against"
+    }
+  ]
+}

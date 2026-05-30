@@ -23,6 +23,21 @@
       "id": "cloud-functions:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "cloud-functions:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "cloud-functions:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "cloud-functions:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "cloud-functions",
       "to": "cloud-functions:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "cloud-functions",
+      "to": "cloud-functions:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "cloud-functions",
+      "to": "cloud-functions:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "cloud-functions",
+      "to": "cloud-functions:antipattern",
+      "type": "guards_against"
     }
   ]
 }

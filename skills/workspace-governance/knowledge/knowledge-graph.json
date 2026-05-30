@@ -23,6 +23,21 @@
       "id": "workspace-governance:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "workspace-governance:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "workspace-governance:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "workspace-governance:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "workspace-governance",
       "to": "workspace-governance:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "workspace-governance",
+      "to": "workspace-governance:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "workspace-governance",
+      "to": "workspace-governance:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "workspace-governance",
+      "to": "workspace-governance:antipattern",
+      "type": "guards_against"
     }
   ]
 }

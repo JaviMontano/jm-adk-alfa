@@ -23,6 +23,21 @@
       "id": "react-development:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "react-development:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "react-development:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "react-development:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "react-development",
       "to": "react-development:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "react-development",
+      "to": "react-development:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "react-development",
+      "to": "react-development:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "react-development",
+      "to": "react-development:antipattern",
+      "type": "guards_against"
     }
   ]
 }

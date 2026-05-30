@@ -23,6 +23,21 @@
       "id": "testimonial-collector:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "testimonial-collector:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "testimonial-collector:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "testimonial-collector:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "testimonial-collector",
       "to": "testimonial-collector:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "testimonial-collector",
+      "to": "testimonial-collector:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "testimonial-collector",
+      "to": "testimonial-collector:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "testimonial-collector",
+      "to": "testimonial-collector:antipattern",
+      "type": "guards_against"
     }
   ]
 }
