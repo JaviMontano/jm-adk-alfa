@@ -1,0 +1,98 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-29",
+  "skill": "katas-hub-and-spoke-isolation",
+  "cases": [
+    {
+      "id": "happy_path",
+      "input": "Tengo un coordinador que sintetiza un informe a partir de 30 documentos en un solo agente opus. Rediseñalo con aislamiento hub-and-spoke: un subagente extractor por documento con AgentDefinition, tools=[] y model=haiku, despachado vía el built-in Task tool.",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "explicit_trigger",
+      "input": "/katas-hub-and-spoke-isolation: en el Code Audit Pipeline, ¿cómo acoto el blast radius de un prompt injection en uno de los documentos auditados? (quiz P: blast radius)",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "minimal_input",
+      "input": "¿Puedo asignar un modelo distinto (haiku barato) a cada subagente de extracción, o todos heredan el modelo del coordinador? (quiz P: modelo por subagente vía AgentDefinition)",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "rich_context",
+      "input": "Diseña el Multi-Agent Research con coordinador hub y subagentes spoke: registra los AgentDefinition en ClaudeAgentOptions.agents, usa allowed_tools=['Task'], max_turns=15, y asegúrate de que el coordinador agregue solo el último mensaje como tool_result, no el historial interno.",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "false_positive",
+      "input": "Ayúdame a escribir un correo de agradecimiento para un cliente; nada que ver con subagentes ni aislamiento multi-agente.",
+      "expected_activation": false,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "empty_input",
+      "input": "",
+      "expected_activation": false,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "conflicting_requirements",
+      "input": "Usa katas-hub-and-spoke-isolation pero concatena todo el historial del coordinador y los 30 documentos en un único agente sin Task y sin validar el aislamiento.",
+      "expected_activation": false,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "upgrade_safety_case",
+      "input": "Completa los archivos faltantes de katas-hub-and-spoke-isolation sin sobrescribir mis ediciones locales en SKILL.md.",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "local_override_case",
+      "input": "Crea una variante experimental local de katas-hub-and-spoke-isolation bajo .local que pruebe asignar model=sonnet al subagente extractor.",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,95 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-29",
+  "skill": "katas-defensive-structured-extraction",
+  "nodes": [
+    {
+      "id": "katas-defensive-structured-extraction",
+      "type": "skill",
+      "label": "katas-defensive-structured-extraction"
+    },
+    {
+      "id": "katas-defensive-structured-extraction:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "katas-defensive-structured-extraction:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "katas-defensive-structured-extraction:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    },
+    {
+      "id": "concept:json-schema",
+      "type": "concept",
+      "label": "JSON Schema con required reales"
+    },
+    {
+      "id": "concept:forced-tool-choice",
+      "type": "concept",
+      "label": "tool_choice forzado"
+    },
+    {
+      "id": "concept:nullable-union",
+      "type": "concept",
+      "label": "Union nullable para opcionales"
+    },
+    {
+      "id": "concept:enum-escape-valve",
+      "type": "concept",
+      "label": "Enum con valvula de escape (other/unclear) + details"
+    },
+    {
+      "id": "antipattern:prose-json-parse",
+      "type": "antipattern",
+      "label": "Prompt en prosa + json.loads(resp.text)"
+    }
+  ],
+  "edges": [
+    {
+      "from": "katas-defensive-structured-extraction",
+      "to": "katas-defensive-structured-extraction:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "katas-defensive-structured-extraction",
+      "to": "katas-defensive-structured-extraction:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "katas-defensive-structured-extraction",
+      "to": "katas-defensive-structured-extraction:quality",
+      "type": "validated_by"
+    },
+    {
+      "from": "katas-defensive-structured-extraction",
+      "to": "concept:json-schema",
+      "type": "applies"
+    },
+    {
+      "from": "katas-defensive-structured-extraction",
+      "to": "concept:forced-tool-choice",
+      "type": "applies"
+    },
+    {
+      "from": "katas-defensive-structured-extraction",
+      "to": "concept:nullable-union",
+      "type": "applies"
+    },
+    {
+      "from": "katas-defensive-structured-extraction",
+      "to": "concept:enum-escape-valve",
+      "type": "applies"
+    },
+    {
+      "from": "katas-defensive-structured-extraction",
+      "to": "antipattern:prose-json-parse",
+      "type": "avoids"
+    }
+  ]
+}

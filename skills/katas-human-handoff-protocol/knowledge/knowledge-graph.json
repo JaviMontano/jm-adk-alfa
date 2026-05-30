@@ -1,0 +1,125 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-29",
+  "skill": "katas-human-handoff-protocol",
+  "nodes": [
+    {
+      "id": "katas-human-handoff-protocol",
+      "type": "skill",
+      "label": "katas-human-handoff-protocol"
+    },
+    {
+      "id": "katas-human-handoff-protocol:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "katas-human-handoff-protocol:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "katas-human-handoff-protocol:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    },
+    {
+      "id": "concept:escalation-preconditions",
+      "type": "concept",
+      "label": "Precondiciones de escalada (limite, irreversibilidad, conflicto)"
+    },
+    {
+      "id": "concept:escalate-to-human-tool",
+      "type": "concept",
+      "label": "Tool escalate_to_human"
+    },
+    {
+      "id": "concept:typed-payload",
+      "type": "concept",
+      "label": "Payload tipado autocontenido (customer_id, issue_summary, actions_taken, escalation_reason, recommended_action)"
+    },
+    {
+      "id": "concept:end-state-not-pause",
+      "type": "concept",
+      "label": "End-state del bucle, no pausa"
+    },
+    {
+      "id": "concept:cut-generation",
+      "type": "concept",
+      "label": "Corte de generacion de prosa"
+    },
+    {
+      "id": "anti:raw-transcript-prose",
+      "type": "anti_pattern",
+      "label": "Prosa tranquilizadora + transcript crudo sin payload"
+    },
+    {
+      "id": "related:katas-hook-driven-policy-enforcement",
+      "type": "related_skill",
+      "label": "katas-hook-driven-policy-enforcement"
+    },
+    {
+      "id": "related:katas-numeric-cross-validation",
+      "type": "related_skill",
+      "label": "katas-numeric-cross-validation"
+    }
+  ],
+  "edges": [
+    {
+      "from": "katas-human-handoff-protocol",
+      "to": "katas-human-handoff-protocol:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "katas-human-handoff-protocol",
+      "to": "katas-human-handoff-protocol:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "katas-human-handoff-protocol",
+      "to": "katas-human-handoff-protocol:quality",
+      "type": "validated_by"
+    },
+    {
+      "from": "katas-human-handoff-protocol",
+      "to": "concept:escalation-preconditions",
+      "type": "detects"
+    },
+    {
+      "from": "concept:escalation-preconditions",
+      "to": "concept:escalate-to-human-tool",
+      "type": "triggers"
+    },
+    {
+      "from": "concept:escalate-to-human-tool",
+      "to": "concept:typed-payload",
+      "type": "emits"
+    },
+    {
+      "from": "concept:escalate-to-human-tool",
+      "to": "concept:cut-generation",
+      "type": "enforces"
+    },
+    {
+      "from": "concept:escalate-to-human-tool",
+      "to": "concept:end-state-not-pause",
+      "type": "is"
+    },
+    {
+      "from": "katas-human-handoff-protocol",
+      "to": "anti:raw-transcript-prose",
+      "type": "rejects"
+    },
+    {
+      "from": "related:katas-hook-driven-policy-enforcement",
+      "to": "concept:escalate-to-human-tool",
+      "type": "can_force"
+    },
+    {
+      "from": "related:katas-numeric-cross-validation",
+      "to": "concept:escalation-preconditions",
+      "type": "triggers"
+    }
+  ]
+}

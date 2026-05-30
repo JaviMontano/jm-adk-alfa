@@ -1,0 +1,105 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-29",
+  "skill": "katas-tool-description-quality",
+  "nodes": [
+    {
+      "id": "katas-tool-description-quality",
+      "type": "skill",
+      "label": "katas-tool-description-quality"
+    },
+    {
+      "id": "katas-tool-description-quality:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "katas-tool-description-quality:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "katas-tool-description-quality:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    },
+    {
+      "id": "tool-description-as-contract",
+      "type": "concept",
+      "label": "Descripcion = contrato de seleccion (input format + query + frontera)"
+    },
+    {
+      "id": "overlapping-contracts",
+      "type": "failure",
+      "label": "Contratos solapados producen misroute en 20-30% de turnos"
+    },
+    {
+      "id": "rename-over-explain",
+      "type": "remedy",
+      "label": "Rename supera a explicar mas cuando el nombre confunde"
+    },
+    {
+      "id": "split-over-overloading",
+      "type": "remedy",
+      "label": "Split en tools de proposito unico supera al overloading"
+    },
+    {
+      "id": "reciprocal-boundary",
+      "type": "signal",
+      "label": "Frontera explicita y reciproca entre tools que compiten"
+    },
+    {
+      "id": "system-prompt-bias",
+      "type": "failure",
+      "label": "Keywords del system prompt sesgan el routing"
+    }
+  ],
+  "edges": [
+    {
+      "from": "katas-tool-description-quality",
+      "to": "katas-tool-description-quality:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "katas-tool-description-quality",
+      "to": "katas-tool-description-quality:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "katas-tool-description-quality",
+      "to": "katas-tool-description-quality:quality",
+      "type": "validated_by"
+    },
+    {
+      "from": "katas-tool-description-quality",
+      "to": "tool-description-as-contract",
+      "type": "teaches"
+    },
+    {
+      "from": "tool-description-as-contract",
+      "to": "overlapping-contracts",
+      "type": "violated_by"
+    },
+    {
+      "from": "overlapping-contracts",
+      "to": "rename-over-explain",
+      "type": "remedied_by"
+    },
+    {
+      "from": "overlapping-contracts",
+      "to": "split-over-overloading",
+      "type": "remedied_by"
+    },
+    {
+      "from": "tool-description-as-contract",
+      "to": "reciprocal-boundary",
+      "type": "requires"
+    },
+    {
+      "from": "system-prompt-bias",
+      "to": "reciprocal-boundary",
+      "type": "mitigated_by"
+    }
+  ]
+}

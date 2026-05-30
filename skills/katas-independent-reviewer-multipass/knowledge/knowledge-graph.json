@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-29",
+  "skill": "katas-independent-reviewer-multipass",
+  "nodes": [
+    {
+      "id": "katas-independent-reviewer-multipass",
+      "type": "skill",
+      "label": "katas-independent-reviewer-multipass"
+    },
+    {
+      "id": "katas-independent-reviewer-multipass:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "katas-independent-reviewer-multipass:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "katas-independent-reviewer-multipass:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "katas-independent-reviewer-multipass",
+      "to": "katas-independent-reviewer-multipass:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "katas-independent-reviewer-multipass",
+      "to": "katas-independent-reviewer-multipass:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "katas-independent-reviewer-multipass",
+      "to": "katas-independent-reviewer-multipass:quality",
+      "type": "validated_by"
+    }
+  ]
+}

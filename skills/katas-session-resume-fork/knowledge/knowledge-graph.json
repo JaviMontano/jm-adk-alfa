@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-29",
+  "skill": "katas-session-resume-fork",
+  "nodes": [
+    {
+      "id": "katas-session-resume-fork",
+      "type": "skill",
+      "label": "katas-session-resume-fork"
+    },
+    {
+      "id": "katas-session-resume-fork:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "katas-session-resume-fork:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "katas-session-resume-fork:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "katas-session-resume-fork",
+      "to": "katas-session-resume-fork:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "katas-session-resume-fork",
+      "to": "katas-session-resume-fork:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "katas-session-resume-fork",
+      "to": "katas-session-resume-fork:quality",
+      "type": "validated_by"
+    }
+  ]
+}

@@ -1,0 +1,115 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-29",
+  "skill": "katas-hub-and-spoke-isolation",
+  "nodes": [
+    {
+      "id": "katas-hub-and-spoke-isolation",
+      "type": "skill",
+      "label": "katas-hub-and-spoke-isolation"
+    },
+    {
+      "id": "katas-hub-and-spoke-isolation:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "katas-hub-and-spoke-isolation:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "katas-hub-and-spoke-isolation:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    },
+    {
+      "id": "concept:agent-definition",
+      "type": "concept",
+      "label": "AgentDefinition con description, prompt, tools y model propios"
+    },
+    {
+      "id": "concept:task-tool",
+      "type": "concept",
+      "label": "Built-in Task tool despacha cada subagente en sesion nueva"
+    },
+    {
+      "id": "concept:structural-isolation",
+      "type": "concept",
+      "label": "Aislamiento estructural por runtime, no via system prompt"
+    },
+    {
+      "id": "concept:model-per-subagent",
+      "type": "concept",
+      "label": "Modelo distinto por subagente (haiku barato para extraccion)"
+    },
+    {
+      "id": "concept:last-message-aggregation",
+      "type": "concept",
+      "label": "El coordinador agrega solo el ultimo mensaje como tool_result"
+    },
+    {
+      "id": "concept:blast-radius",
+      "type": "concept",
+      "label": "Blast radius de prompt injection acotado a una tarea"
+    },
+    {
+      "id": "antipattern:single-agent-concatenated",
+      "type": "antipattern",
+      "label": "Un solo agente con todo concatenado, sin agents ni Task"
+    }
+  ],
+  "edges": [
+    {
+      "from": "katas-hub-and-spoke-isolation",
+      "to": "katas-hub-and-spoke-isolation:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "katas-hub-and-spoke-isolation",
+      "to": "katas-hub-and-spoke-isolation:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "katas-hub-and-spoke-isolation",
+      "to": "katas-hub-and-spoke-isolation:quality",
+      "type": "validated_by"
+    },
+    {
+      "from": "katas-hub-and-spoke-isolation",
+      "to": "concept:agent-definition",
+      "type": "uses"
+    },
+    {
+      "from": "concept:agent-definition",
+      "to": "concept:task-tool",
+      "type": "dispatched_via"
+    },
+    {
+      "from": "concept:task-tool",
+      "to": "concept:structural-isolation",
+      "type": "guarantees"
+    },
+    {
+      "from": "concept:agent-definition",
+      "to": "concept:model-per-subagent",
+      "type": "enables"
+    },
+    {
+      "from": "concept:task-tool",
+      "to": "concept:last-message-aggregation",
+      "type": "produces"
+    },
+    {
+      "from": "concept:structural-isolation",
+      "to": "concept:blast-radius",
+      "type": "bounds"
+    },
+    {
+      "from": "antipattern:single-agent-concatenated",
+      "to": "concept:structural-isolation",
+      "type": "violates"
+    }
+  ]
+}

@@ -1,0 +1,140 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-29",
+  "skill": "katas-multipass-prompt-chaining",
+  "nodes": [
+    {
+      "id": "katas-multipass-prompt-chaining",
+      "type": "skill",
+      "label": "katas-multipass-prompt-chaining"
+    },
+    {
+      "id": "katas-multipass-prompt-chaining:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "katas-multipass-prompt-chaining:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "katas-multipass-prompt-chaining:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    },
+    {
+      "id": "concept:local-pass",
+      "type": "concept",
+      "label": "Pase local tipado por unidad (paralelizable)"
+    },
+    {
+      "id": "concept:integration-pass",
+      "type": "concept",
+      "label": "Pase de integracion sobre resumenes tipados"
+    },
+    {
+      "id": "concept:transition-schema",
+      "type": "concept",
+      "label": "Schema de transicion entre pases"
+    },
+    {
+      "id": "concept:typed-error-state",
+      "type": "concept",
+      "label": "Estado de error tipado por unidad"
+    },
+    {
+      "id": "concept:chaining-candidacy",
+      "type": "concept",
+      "label": "Candidatura a chaining vs single-pass"
+    },
+    {
+      "id": "antipattern:mega-prompt",
+      "type": "antipattern",
+      "label": "Mega-prompt que concatena unidades crudas"
+    },
+    {
+      "id": "kata:04-subagents",
+      "type": "related_kata",
+      "label": "Kata 4 - subagentes para paralelizar el pase 1"
+    },
+    {
+      "id": "kata:11-context-budget",
+      "type": "related_kata",
+      "label": "Kata 11 - limite de contexto por pase"
+    },
+    {
+      "id": "kata:20-provenance",
+      "type": "related_kata",
+      "label": "Kata 20 - preservacion de provenance"
+    }
+  ],
+  "edges": [
+    {
+      "from": "katas-multipass-prompt-chaining",
+      "to": "katas-multipass-prompt-chaining:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "katas-multipass-prompt-chaining",
+      "to": "katas-multipass-prompt-chaining:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "katas-multipass-prompt-chaining",
+      "to": "katas-multipass-prompt-chaining:quality",
+      "type": "validated_by"
+    },
+    {
+      "from": "katas-multipass-prompt-chaining",
+      "to": "concept:local-pass",
+      "type": "applies"
+    },
+    {
+      "from": "katas-multipass-prompt-chaining",
+      "to": "concept:integration-pass",
+      "type": "applies"
+    },
+    {
+      "from": "concept:local-pass",
+      "to": "concept:transition-schema",
+      "type": "emits"
+    },
+    {
+      "from": "concept:integration-pass",
+      "to": "concept:transition-schema",
+      "type": "consumes"
+    },
+    {
+      "from": "concept:local-pass",
+      "to": "concept:typed-error-state",
+      "type": "requires"
+    },
+    {
+      "from": "katas-multipass-prompt-chaining",
+      "to": "concept:chaining-candidacy",
+      "type": "gated_by"
+    },
+    {
+      "from": "katas-multipass-prompt-chaining",
+      "to": "antipattern:mega-prompt",
+      "type": "avoids"
+    },
+    {
+      "from": "concept:local-pass",
+      "to": "kata:04-subagents",
+      "type": "related_to"
+    },
+    {
+      "from": "katas-multipass-prompt-chaining",
+      "to": "kata:11-context-budget",
+      "type": "related_to"
+    },
+    {
+      "from": "concept:integration-pass",
+      "to": "kata:20-provenance",
+      "type": "related_to"
+    }
+  ]
+}

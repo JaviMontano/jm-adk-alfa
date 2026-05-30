@@ -1,0 +1,105 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-29",
+  "skill": "katas-posttooluse-normalization",
+  "nodes": [
+    {
+      "id": "katas-posttooluse-normalization",
+      "type": "skill",
+      "label": "katas-posttooluse-normalization"
+    },
+    {
+      "id": "katas-posttooluse-normalization:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "katas-posttooluse-normalization:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "katas-posttooluse-normalization:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    },
+    {
+      "id": "concept:posttooluse-hook",
+      "type": "concept",
+      "label": "Hook PostToolUse (garantia de runtime)"
+    },
+    {
+      "id": "concept:updated-mcp-tool-output",
+      "type": "concept",
+      "label": "updatedMCPToolOutput reemplaza el output crudo"
+    },
+    {
+      "id": "concept:status-map",
+      "type": "concept",
+      "label": "STATUS_MAP / esquemas en codigo recargable"
+    },
+    {
+      "id": "concept:additional-context",
+      "type": "concept",
+      "label": "additionalContext para metadatos auditables"
+    },
+    {
+      "id": "antipattern:per-tool-normalization",
+      "type": "antipattern",
+      "label": "Normalizacion por-tool via @tool decorators (fragil)"
+    },
+    {
+      "id": "argument:runtime-responsibility",
+      "type": "argument",
+      "label": "La normalizacion es responsabilidad del runtime, no de cada tool"
+    }
+  ],
+  "edges": [
+    {
+      "from": "katas-posttooluse-normalization",
+      "to": "katas-posttooluse-normalization:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "katas-posttooluse-normalization",
+      "to": "katas-posttooluse-normalization:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "katas-posttooluse-normalization",
+      "to": "katas-posttooluse-normalization:quality",
+      "type": "validated_by"
+    },
+    {
+      "from": "katas-posttooluse-normalization",
+      "to": "concept:posttooluse-hook",
+      "type": "applies"
+    },
+    {
+      "from": "concept:posttooluse-hook",
+      "to": "concept:updated-mcp-tool-output",
+      "type": "uses"
+    },
+    {
+      "from": "concept:posttooluse-hook",
+      "to": "concept:status-map",
+      "type": "uses"
+    },
+    {
+      "from": "concept:posttooluse-hook",
+      "to": "concept:additional-context",
+      "type": "uses"
+    },
+    {
+      "from": "concept:posttooluse-hook",
+      "to": "antipattern:per-tool-normalization",
+      "type": "contrasts_with"
+    },
+    {
+      "from": "argument:runtime-responsibility",
+      "to": "concept:posttooluse-hook",
+      "type": "justifies"
+    }
+  ]
+}

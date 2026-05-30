@@ -1,0 +1,95 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-29",
+  "skill": "katas-prefix-caching",
+  "nodes": [
+    {
+      "id": "katas-prefix-caching",
+      "type": "skill",
+      "label": "katas-prefix-caching"
+    },
+    {
+      "id": "katas-prefix-caching:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "katas-prefix-caching:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "katas-prefix-caching:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    },
+    {
+      "id": "katas-prefix-caching:static-prefix",
+      "type": "concept",
+      "label": "Static prefix (system prompt, CLAUDE.md, tool defs, repo context)"
+    },
+    {
+      "id": "katas-prefix-caching:dynamic-suffix",
+      "type": "concept",
+      "label": "Dynamic suffix (user input, timestamp, user_id) aislado en <reminder>"
+    },
+    {
+      "id": "katas-prefix-caching:cache-control",
+      "type": "concept",
+      "label": "cache_control ephemeral en bloques estables"
+    },
+    {
+      "id": "katas-prefix-caching:usage-metric",
+      "type": "concept",
+      "label": "cache_creation_input_tokens vs cache_read_input_tokens (~10x)"
+    },
+    {
+      "id": "katas-prefix-caching:anti-pattern",
+      "type": "anti_pattern",
+      "label": "Dato dinamico al inicio invalida el cache cada llamada"
+    }
+  ],
+  "edges": [
+    {
+      "from": "katas-prefix-caching",
+      "to": "katas-prefix-caching:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "katas-prefix-caching",
+      "to": "katas-prefix-caching:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "katas-prefix-caching",
+      "to": "katas-prefix-caching:quality",
+      "type": "validated_by"
+    },
+    {
+      "from": "katas-prefix-caching",
+      "to": "katas-prefix-caching:static-prefix",
+      "type": "applies"
+    },
+    {
+      "from": "katas-prefix-caching",
+      "to": "katas-prefix-caching:dynamic-suffix",
+      "type": "applies"
+    },
+    {
+      "from": "katas-prefix-caching:static-prefix",
+      "to": "katas-prefix-caching:cache-control",
+      "type": "enabled_by"
+    },
+    {
+      "from": "katas-prefix-caching:quality",
+      "to": "katas-prefix-caching:usage-metric",
+      "type": "measured_by"
+    },
+    {
+      "from": "katas-prefix-caching:anti-pattern",
+      "to": "katas-prefix-caching:static-prefix",
+      "type": "violates"
+    }
+  ]
+}

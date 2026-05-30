@@ -1,0 +1,130 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-29",
+  "skill": "katas-provenance-preservation",
+  "nodes": [
+    {
+      "id": "katas-provenance-preservation",
+      "type": "skill",
+      "label": "katas-provenance-preservation"
+    },
+    {
+      "id": "katas-provenance-preservation:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "katas-provenance-preservation:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "katas-provenance-preservation:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    },
+    {
+      "id": "concept:typed-provenance",
+      "type": "concept",
+      "label": "Provenance tipada (claim, source_id, source_name, publication_date)"
+    },
+    {
+      "id": "concept:no-claim-without-source",
+      "type": "invariant",
+      "label": "Invariante: no hay claim sin source"
+    },
+    {
+      "id": "concept:conflict-flag",
+      "type": "policy",
+      "label": "Politica de conflictos: conflict=true, registrar ambos, no promediar"
+    },
+    {
+      "id": "concept:human-escalation",
+      "type": "policy",
+      "label": "Escalar conflicto a humano (needs_human_review)"
+    },
+    {
+      "id": "concept:structural-test",
+      "type": "test",
+      "label": "Test estructural: cada claim tiene sources[] con source_id existente"
+    },
+    {
+      "id": "concept:free-prose-antipattern",
+      "type": "antipattern",
+      "label": "Resumen en prosa libre sin source_id ni fecha ni conflicto"
+    },
+    {
+      "id": "kata:04-parallel-aggregation",
+      "type": "related_kata",
+      "label": "Kata 4 · agregacion tras subagentes paralelos"
+    },
+    {
+      "id": "kata:15-numeric-verification",
+      "type": "related_kata",
+      "label": "Kata 15 · verificacion numerica"
+    },
+    {
+      "id": "kata:16-human-escalation",
+      "type": "related_kata",
+      "label": "Kata 16 · escalado a humano"
+    }
+  ],
+  "edges": [
+    {
+      "from": "katas-provenance-preservation",
+      "to": "katas-provenance-preservation:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "katas-provenance-preservation",
+      "to": "katas-provenance-preservation:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "katas-provenance-preservation",
+      "to": "katas-provenance-preservation:quality",
+      "type": "validated_by"
+    },
+    {
+      "from": "katas-provenance-preservation",
+      "to": "concept:typed-provenance",
+      "type": "applies"
+    },
+    {
+      "from": "concept:typed-provenance",
+      "to": "concept:no-claim-without-source",
+      "type": "enforces"
+    },
+    {
+      "from": "concept:no-claim-without-source",
+      "to": "concept:structural-test",
+      "type": "verified_by"
+    },
+    {
+      "from": "concept:no-claim-without-source",
+      "to": "concept:free-prose-antipattern",
+      "type": "violated_by"
+    },
+    {
+      "from": "concept:conflict-flag",
+      "to": "concept:human-escalation",
+      "type": "triggers"
+    },
+    {
+      "from": "concept:conflict-flag",
+      "to": "kata:16-human-escalation",
+      "type": "escalates_via"
+    },
+    {
+      "from": "katas-provenance-preservation",
+      "to": "kata:04-parallel-aggregation",
+      "type": "depends_on"
+    },
+    {
+      "from": "katas-provenance-preservation",
+      "to": "kata:15-numeric-verification",
+      "type": "complements"
+    }
+  ]
+}

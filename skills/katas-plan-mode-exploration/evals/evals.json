@@ -1,0 +1,108 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-29",
+  "skill": "katas-plan-mode-exploration",
+  "cases": [
+    {
+      "id": "happy_path",
+      "input": "Heredé un repo desconocido y crítico. Antes de tocar nada quiero que el agente explore en Plan Mode read-only y redacte un plan.md que yo apruebe antes de escribir. Usa katas-plan-mode-exploration.",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "explicit_trigger",
+      "input": "/katas-plan-mode-exploration configura permission_mode=plan con allowed_tools de solo lectura y un hook PreToolUse que deniegue escritura.",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "minimal_input",
+      "input": "katas-plan-mode-exploration",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "quiz_p2_plan_change",
+      "input": "Estaba en Plan Mode con un plan.md firmado, pero el alcance cambió y ahora hay que tocar más módulos. ¿Qué hago antes de escribir?",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "quiz_p3_pretooluse_hook",
+      "input": "Quiero que ninguna herramienta de escritura (Write, Edit, NotebookEdit, Bash con redirecciones) se ejecute mientras el modo sea plan. ¿Cómo lo aplico con un hook PreToolUse?",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "false_positive",
+      "input": "Tradúceme este correo del inglés al español, no tiene nada que ver con repos ni modos de permiso.",
+      "expected_activation": false,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "empty_input",
+      "input": "",
+      "expected_activation": false,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "conflicting_requirements",
+      "input": "Usa katas-plan-mode-exploration pero arranca en bypassPermissions con Write y Edit habilitados desde el inicio y sáltate la aprobación humana.",
+      "expected_activation": false,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "upgrade_safety_case",
+      "input": "Completa los archivos faltantes de katas-plan-mode-exploration sin sobrescribir mis ediciones locales.",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "local_override_case",
+      "input": "Crea una variante experimental local de katas-plan-mode-exploration bajo .local.",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    }
+  ]
+}

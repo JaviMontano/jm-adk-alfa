@@ -1,0 +1,108 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-29",
+  "skill": "katas-builtin-tool-selection",
+  "cases": [
+    {
+      "id": "happy_path",
+      "input": "Necesito cambiar 'if amount > 1000:' por 'if amount > MAX_REFUND:' dentro de processRefund en un repo Python grande, sin cargar todo el repo. Usa katas-builtin-tool-selection.",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "explicit_trigger",
+      "input": "/katas-builtin-tool-selection: aplica la estrategia Grep then Read then Edit para localizar y modificar el umbral de reembolso.",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "quiz_p1_glob_by_path",
+      "input": "Quiero listar todos los archivos de test que terminan en .test.tsx para revisarlos. Que built-in tool uso, Grep o Glob?",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "quiz_p2_edit_anchor_fallback",
+      "input": "Mi Edit con old_text 'if amount' falla porque matchea muchas lineas. Como lo arreglo y cual es el fallback si no logro un anchor unico?",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "quiz_p3_trace_auth_flow",
+      "input": "Tengo que entender el flujo de autenticacion en un codebase desconocido tocando authenticate, login y session. Como exploro sin leer todo el repo?",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "false_positive",
+      "input": "Redacta un correo de agradecimiento al cliente por la reunion de ayer.",
+      "expected_activation": false,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "empty_input",
+      "input": "",
+      "expected_activation": false,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "conflicting_requirements",
+      "input": "Usa katas-builtin-tool-selection pero carga todo el repo con Read upfront e ignora si el anchor de Edit es unico.",
+      "expected_activation": false,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "upgrade_safety_case",
+      "input": "Completa los archivos faltantes de katas-builtin-tool-selection sin sobrescribir mis ediciones locales.",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "local_override_case",
+      "input": "Crea una variante experimental local de katas-builtin-tool-selection bajo .local.",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    }
+  ]
+}

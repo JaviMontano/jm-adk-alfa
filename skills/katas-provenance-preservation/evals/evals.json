@@ -1,0 +1,118 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-29",
+  "skill": "katas-provenance-preservation",
+  "cases": [
+    {
+      "id": "happy_path",
+      "input": "Agrega hechos de tres documentos sobre una empresa y produce un reporte factual auditable con provenance tipada (claim, source_id, source_name, publication_date).",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "explicit_trigger",
+      "input": "/katas-provenance-preservation mapea cada claim a su source y marca los conflictos.",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "minimal_input",
+      "input": "katas-provenance-preservation",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "quiz_p1_conflict_routing",
+      "input": "Dos fuentes contradicen el headcount de fin de 2025 (doc-A=450, doc-C=462). El reporte agregado debe preservar ambas posturas, marcar el conflicto y escalar a humano para que juzgue; la fuente más reciente no decide sola.",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "quiz_p2_invariant",
+      "input": "Define el invariante del schema de salida: no hay claim sin source con id y fecha de publicacion. Cada afirmacion factual debe tener un sources[] tipado no vacio.",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "quiz_p3_structural_test",
+      "input": "Escribe el test estructural que asserta que cada claim_in_output tiene un campo sources[] no vacio con un source_id existente.",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "false_positive",
+      "input": "This request is unrelated to the skill domain.",
+      "expected_activation": false,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "empty_input",
+      "input": "",
+      "expected_activation": false,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "conflicting_requirements",
+      "input": "Usa katas-provenance-preservation pero ignora la validacion y entrega solo un resumen en prosa libre sin source_id.",
+      "expected_activation": false,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "upgrade_safety_case",
+      "input": "Complete missing files for katas-provenance-preservation without overwriting local edits.",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "local_override_case",
+      "input": "Create a local experimental katas-provenance-preservation variant under .local.",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    }
+  ]
+}

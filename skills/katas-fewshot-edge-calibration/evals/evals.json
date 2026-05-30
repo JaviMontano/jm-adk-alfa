@@ -1,0 +1,108 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-29",
+  "skill": "katas-fewshot-edge-calibration",
+  "cases": [
+    {
+      "id": "happy_path",
+      "input": "Mi clasificador de tickets usa prosa abstracta y sale inconsistente. Aplica few-shot para calibrar los bordes (billing/high, feedback/low, auth/high) con 2-4 ejemplos del mismo schema.",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "explicit_trigger",
+      "input": "/katas-fewshot-edge-calibration disena ejemplos few-shot de borde para una tarea de tono subjetivo.",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "quiz_p1_fewshot_beats_prose",
+      "input": "Tengo una tarea subjetiva de clasificacion donde la descripcion zero-shot deja al modelo en su default generico. Conviene few-shot en vez de mas prosa?",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "quiz_p2_schema_conflict",
+      "input": "Uno de mis ejemplos few-shot contradice el JSON schema estricto de la extraccion (Kata 5). Cual gana y como reescribo los ejemplos?",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "quiz_p3_static_placement",
+      "input": "Donde coloco el bloque de ejemplos few-shot para maximizar prefix cache (Kata 10) y quedar en el borde de atencion alta (Kata 11)?",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "false_positive",
+      "input": "Necesito configurar el pipeline de CI para desplegar a produccion los viernes.",
+      "expected_activation": false,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "empty_input",
+      "input": "",
+      "expected_activation": false,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "conflicting_requirements",
+      "input": "Usa katas-fewshot-edge-calibration, pero ignora la validacion y la evidencia.",
+      "expected_activation": false,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "upgrade_safety_case",
+      "input": "Completa los archivos faltantes de katas-fewshot-edge-calibration sin sobreescribir mis ediciones locales.",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "local_override_case",
+      "input": "Crea una variante experimental local de katas-fewshot-edge-calibration bajo .local.",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    }
+  ]
+}

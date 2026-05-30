@@ -1,0 +1,115 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-29",
+  "skill": "katas-false-positive-criteria",
+  "nodes": [
+    {
+      "id": "katas-false-positive-criteria",
+      "type": "skill",
+      "label": "katas-false-positive-criteria"
+    },
+    {
+      "id": "katas-false-positive-criteria:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "katas-false-positive-criteria:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "katas-false-positive-criteria:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    },
+    {
+      "id": "concept:vague-instructions",
+      "type": "concept",
+      "label": "Vague instructions interpreted differently each turn"
+    },
+    {
+      "id": "concept:categorical-criteria",
+      "type": "concept",
+      "label": "Categorical criteria with positive and negative examples"
+    },
+    {
+      "id": "concept:severity-levels",
+      "type": "concept",
+      "label": "Declared severity: error vs warning"
+    },
+    {
+      "id": "concept:fp-rate-per-category",
+      "type": "concept",
+      "label": "Measure FP rate per category, not aggregated"
+    },
+    {
+      "id": "concept:cross-category-trust",
+      "type": "concept",
+      "label": "Trust is cross-category; one noisy category erodes all"
+    },
+    {
+      "id": "concept:temporary-disable",
+      "type": "concept",
+      "label": "Temporarily disable noisy category while tuning"
+    },
+    {
+      "id": "concept:confidence-not-a-filter",
+      "type": "concept",
+      "label": "Self-reported confidence fails: model is miscalibrated"
+    },
+    {
+      "id": "anti:vague-confidence-prompt",
+      "type": "anti_pattern",
+      "label": "SYSTEM_VAGUE: report high-confidence findings, be conservative"
+    }
+  ],
+  "edges": [
+    {
+      "from": "katas-false-positive-criteria",
+      "to": "katas-false-positive-criteria:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "katas-false-positive-criteria",
+      "to": "katas-false-positive-criteria:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "katas-false-positive-criteria",
+      "to": "katas-false-positive-criteria:quality",
+      "type": "validated_by"
+    },
+    {
+      "from": "concept:vague-instructions",
+      "to": "concept:categorical-criteria",
+      "type": "replaced_by"
+    },
+    {
+      "from": "concept:categorical-criteria",
+      "to": "concept:severity-levels",
+      "type": "includes"
+    },
+    {
+      "from": "concept:fp-rate-per-category",
+      "to": "concept:temporary-disable",
+      "type": "enables"
+    },
+    {
+      "from": "concept:cross-category-trust",
+      "to": "concept:temporary-disable",
+      "type": "justifies"
+    },
+    {
+      "from": "concept:confidence-not-a-filter",
+      "to": "concept:categorical-criteria",
+      "type": "motivates"
+    },
+    {
+      "from": "anti:vague-confidence-prompt",
+      "to": "katas-false-positive-criteria:quality",
+      "type": "rejected_by"
+    }
+  ]
+}
