@@ -2,7 +2,7 @@
 
 Interactive reference for the curated catalog snapshot.
 For authoritative live counts, run `python3 scripts/count-components.py`.
-Current physical inventory is 256 agents, 524 skills, 260 commands, and 256 prompts.
+Current physical inventory is 260 agents, 585 skills, 267 commands, and 256 prompts. This includes the 30 `katas-*` skills (Claude Certified Architect) — see `docs/katas/` and the README "Claude Certified Architect Katas" section.
 
 > **Tip**: Use `Ctrl+F` / `Cmd+F` to search this page, or `/jm-adk:search "keyword"` inside Claude Code.
 
