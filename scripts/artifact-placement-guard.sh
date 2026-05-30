@@ -71,7 +71,8 @@ if root and not abs_target.startswith(root + os.sep):
     print("OK"); sys.exit()           # outside repo → not our business
 
 rel = abs_target[len(root):].lstrip("/") if root else target
-rel = rel.lstrip("./")
+if rel.startswith("./"):              # strip a leading "./" PREFIX only — not a
+    rel = rel[2:]                     # char set (lstrip("./") would eat ".specify"→"specify")
 if not rel:
     print("OK"); sys.exit()
 
@@ -97,6 +98,11 @@ def slugify_seg(name):
         return "%s.%s" % (re.sub(r"[^a-z0-9]+", "-", stem).strip("-") or "x", ext)
     return re.sub(r"[^a-z0-9]+", "-", s).strip("-") or "x"
 
+# Maintainer mode → free (placement + naming). Must precede the naming check:
+# governance/generators edit paths with their own conventions.
+if mode == "maintainer":
+    print("OK"); sys.exit()
+
 naming = p.get("naming", {})
 if naming.get("enabled"):
     allow_exact = set(naming.get("allow_exact", []))
@@ -112,10 +118,14 @@ if naming.get("enabled"):
         if is_leaf:
             stem = seg.rsplit(".", 1)[0] if "." in seg else seg
             ext_ok = ("." not in seg) or bool(re.match(r"^[a-z0-9]+$", seg.rsplit(".", 1)[1] or ""))
-            if re.match(r"^[a-z0-9]+(-[a-z0-9]+)*$", stem) and ext_ok:
+            # Snake-allowed zones (e.g. dated ADR/log files YYYYMMDD_scope_slug).
+            snake = match(naming.get("snake_allowed_globs", []))
+            pat = r"^[a-z0-9]+([_-][a-z0-9]+)*$" if snake else r"^[a-z0-9]+(-[a-z0-9]+)*$"
+            if re.match(pat, stem) and ext_ok:
                 continue
-            print("DENY:nombre '%s' no es kebab-case. Renombra a '%s' "
-                  "(minusculas, guiones, sin espacios/acentos)." % (seg, slugify_seg(seg))); sys.exit()
+            kind = "kebab/snake" if snake else "kebab-case"
+            print("DENY:nombre '%s' no es %s. Renombra a '%s' "
+                  "(minusculas, guiones, sin espacios/acentos)." % (seg, kind, slugify_seg(seg))); sys.exit()
         else:
             # Dir: permissive — allow kebab, snake, T-NNN, acronyms. Block only the
             # unambiguous ad-hoc signals: spaces or non-ASCII (accents, symbols).
