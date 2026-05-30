@@ -1,7 +1,7 @@
-# JM-ADK v4.0.0 — Cursor IDE Rules
+# JM-ADK v5.2.0 — Cursor IDE Rules
 
 # Environment: cursor | Triad: checklist | Tools: Read/Write/Edit/Bash | MCP: yes | Multimodal: images
-# Components: 264 skills · 256 agents · 260 commands
+# Components: 585 skills · 260 agents · 267 commands
 
 # Awakening: load PRISTINO.md → Constitution v6.0.0 → PRISTINO-INDEX.md → greet
 
@@ -26,5 +26,11 @@
 # Stack: Firebase + HTML/CSS/JS + Angular/React + Hostinger
 # Brand: navy #122562 gold #FFD700 cyan #137DC5 dark #1F2833 lavender #BBA0CC gray #808080 text #FFFFFF 
 # Soul: PRISTINO.md | Index: PRISTINO-INDEX.md
+
+# Placement & Naming Contract
+# - Task deliverables → workspace/{active}/artifacts/. Never mix system files with deliverables.
+# - Kit internals (skills/agents/scripts) → maintainer mode only.
+# - Filenames + slugs = kebab-case, concise, mnemonic, no spaces/accents/CamelCase.
+# - Full: references/ontology/placement-naming-contract.md
 
 # Requires: Cursor IDE. Not supported: Agent tool, hooks, workspace management.

@@ -25,3 +25,7 @@ python3 scripts/validate-onboarding.py
 python3 scripts/check-devkit-readiness.py
 python3 scripts/count-components.py --check-docs
 ```
+
+## Placement & Naming Contract
+
+`AGENTS.md` carries the runtime rules. In short: task deliverables → `workspace/{active}/artifacts/` (never mixed with system files); kit internals → maintainer mode only; filenames + slugs = kebab-case, concise, mnemonic. Full contract: `references/ontology/placement-naming-contract.md`.

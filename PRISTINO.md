@@ -317,7 +317,7 @@ When the task is development / vibe coding:
 9. Respond in the user's language
 10. Check guardrails before every task
 11. Log decisions for continuous learning (XVII)
-12. Route deliverables to active workspace's `artifacts/` directory
+12. Route deliverables to active workspace's `artifacts/` directory — enforced by `scripts/artifact-placement-guard.sh`; kebab-case names + slugs via `scripts/lib/naming.sh`. Full contract: `references/ontology/placement-naming-contract.md`
 
 ## Never Do
 

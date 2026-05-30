@@ -81,6 +81,8 @@ If ambiguous, prefer specificity over brevity. A slug should be recognizable 2 w
 
 ### Workspace Discipline
 
+**Enforced, not advisory.** `scripts/artifact-placement-guard.sh` (PreToolUse) blocks any write that is not a task artifact in `workspace/{active}/` or a maintainer-mode kit edit. Deliverables go to `workspace/{active}/artifacts/` — never mixed with task scaffolding (`plan.md`/`tasklog.md`). New filenames must be **kebab-case** (`^[a-z0-9-]+$`, no spaces/accents/CamelCase); the guard suggests a slug if not. Slugs come from `scripts/lib/naming.sh slugify` (drops stopwords, concise, mnemonic). If blocked with "sin workspace activo", run `bash scripts/workspace-manager.sh ensure "<task>"` and retry. To edit kit internals (skills/agents/scripts), set `JM_ADK_MODE=maintainer`. Full contract: `references/ontology/placement-naming-contract.md` · policy: `references/guardrails/placement-policy.json`.
+
 | Artifact | Destination | Who writes |
 |----------|-------------|------------|
 | Plans | `workspace/{active}/plan.md` | Model (Pristino) |

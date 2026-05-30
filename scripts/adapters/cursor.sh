@@ -45,6 +45,12 @@ $(acl_core_rules | head -6 | sed 's/^/# /')
 # Brand: $(acl_brand_palette | tr '\n' ' ')
 # Soul: PRISTINO.md | Index: PRISTINO-INDEX.md
 
+# Placement & Naming Contract
+# - Task deliverables → workspace/{active}/artifacts/. Never mix system files with deliverables.
+# - Kit internals (skills/agents/scripts) → maintainer mode only.
+# - Filenames + slugs = kebab-case, concise, mnemonic, no spaces/accents/CamelCase.
+# - Full: references/ontology/placement-naming-contract.md
+
 # Requires: Cursor IDE. Not supported: Agent tool, hooks, workspace management.
 CURSORRULES
 
@@ -74,6 +80,12 @@ $(acl_core_rules | head -6 | sed 's/^/# /')
 # Quality Gates: $(acl_quality_gates)
 # Stack: Firebase + HTML/CSS/JS + Angular/React + Hostinger
 # Soul: PRISTINO.md | Index: PRISTINO-INDEX.md
+
+# Placement & Naming Contract
+# - Task deliverables → workspace/{active}/artifacts/. Never mix system files with deliverables.
+# - Kit internals (skills/agents/scripts) → maintainer mode only.
+# - Filenames + slugs = kebab-case, concise, mnemonic, no spaces/accents/CamelCase.
+# - Full: references/ontology/placement-naming-contract.md
 
 # Requires: Windsurf IDE. Not supported: Agent tool, hooks, MCP, workspace management.
 WINDRULES

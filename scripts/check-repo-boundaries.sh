@@ -42,6 +42,17 @@ if find . -path './.git' -prune -o -type d \( -name 'jm-adk-alfa' -o -name 'jm-a
   fail "clone-like directory detected inside repo"
 fi
 
+# Placement guard must remain installed (anti-regression: prevents silent return
+# to advisory-only placement discipline).
+[ -f scripts/artifact-placement-guard.sh ] || fail "artifact-placement-guard.sh missing"
+[ -f references/guardrails/placement-policy.json ] || fail "placement-policy.json missing"
+grep -q 'artifact-placement-guard.sh' hooks/hooks.json || fail "placement guard not registered in hooks.json"
+
+# Naming standard + contract must remain installed.
+[ -f scripts/lib/naming.sh ] || fail "scripts/lib/naming.sh missing"
+[ -f references/ontology/placement-naming-contract.md ] || fail "placement-naming-contract.md missing"
+grep -q '"naming"' references/guardrails/placement-policy.json || fail "naming block missing from placement-policy.json"
+
 if [ "$ERRORS" -gt 0 ]; then
   exit 1
 fi

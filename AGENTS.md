@@ -44,6 +44,13 @@ Auto-select skill for intent. No Agent tool: apply all 3 triad perspectives in s
 
 G0 (pre-flight) → G1 (post-spec) → G2 (post-plan) → G3 (deploy-ready)
 
+## Placement & Naming Contract
+
+- Task deliverables → `workspace/{active}/artifacts/`. Task scaffolding stays at task root. Never mix system files with deliverables.
+- Kit internals (skills/agents/scripts/references) → maintainer mode only.
+- Filenames + slugs = kebab-case `^[a-z0-9]+(-[a-z0-9]+)*$`, concise, mnemonic, no spaces/accents/CamelCase.
+- No hooks in this runtime → apply manually. Full contract: `references/ontology/placement-naming-contract.md`.
+
 ## References
 
 Soul: PRISTINO.md | Index: PRISTINO-INDEX.md | Constitution: references/ontology/constitution-v6.0.0.md

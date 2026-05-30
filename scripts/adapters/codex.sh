@@ -63,6 +63,13 @@ $(acl_core_rules | head -6 | sed 's/^/- /')
 
 $(acl_quality_gates)
 
+## Placement & Naming Contract
+
+- Task deliverables → \`workspace/{active}/artifacts/\`. Task scaffolding stays at task root. Never mix system files with deliverables.
+- Kit internals (skills/agents/scripts/references) → maintainer mode only.
+- Filenames + slugs = kebab-case \`^[a-z0-9]+(-[a-z0-9]+)*\$\`, concise, mnemonic, no spaces/accents/CamelCase.
+- No hooks in this runtime → apply manually. Full contract: \`references/ontology/placement-naming-contract.md\`.
+
 ## References
 
 Soul: PRISTINO.md | Index: PRISTINO-INDEX.md | Constitution: references/ontology/constitution-$CONSTITUTION.md
@@ -137,6 +144,13 @@ $(acl_core_rules | head -6 | sed 's/^/- /')
 ## Quality Gates
 
 $(acl_quality_gates)
+
+## Placement & Naming Contract
+
+- Task deliverables → \`workspace/{active}/artifacts/\`. Task scaffolding stays at task root. Never mix system files with deliverables.
+- Kit internals (skills/agents/scripts/references) → maintainer mode only.
+- Filenames + slugs = kebab-case \`^[a-z0-9]+(-[a-z0-9]+)*\$\`, concise, mnemonic, no spaces/accents/CamelCase.
+- No hooks in this runtime → apply manually. Full contract: \`references/ontology/placement-naming-contract.md\`.
 
 ## References
 
