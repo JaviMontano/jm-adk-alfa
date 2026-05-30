@@ -9,6 +9,7 @@ User-declared working rules that Pristino loads as internal RAG at every session
 | `guidelines.json` | Guidelines | Working preferences ("always use TypeScript") — followed by default |
 | `constraints.json` | Constraints | Hard rules ("never use jQuery") — never violated |
 | `guardrails.json` | Guardrails | Soft boundaries ("prefer functional style") — flexible when justified |
+| `tool-policy.json` | Enforcement | **Deterministic** tool-use policy enforced in code by `scripts/pre-tool-guard.sh` (Kata 02). Hot-reloaded on every PreToolUse call; emits a deny before a dangerous Bash command or a write to a protected path runs. Distinct from the three user-RAG files above. |
 
 ## How It Works
 
