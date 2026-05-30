@@ -21,6 +21,11 @@
       "description": "Block dangerous commands (rm -rf, git reset --hard, .env access) before execution"
     },
     {
+      "type": "PreToolUse",
+      "command": "bash scripts/artifact-placement-guard.sh",
+      "description": "Enforce artifact placement: task outputs must land in workspace/{active}/; kit internals maintainer-gated; ad-hoc writes blocked and routed"
+    },
+    {
       "type": "PostToolUse",
       "command": "bash scripts/post-tool-check.sh",
       "description": "Auto-log tool usage to active workspace tasklog via workspace-manager.sh"

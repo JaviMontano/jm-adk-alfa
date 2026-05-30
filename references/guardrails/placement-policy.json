@@ -1,0 +1,39 @@
+{
+  "schema": 1,
+  "version": "1.0.0",
+  "description": "Deterministic artifact-placement policy enforced by scripts/artifact-placement-guard.sh (PreToolUse). Distinct from tool-policy.json (which enforces danger). This file enforces LOCATION: task artifacts must land in the active workspace; kit-internal files are editable only in maintainer mode; everything else is blocked and routed. Classification is by destination path, never by prompt intent. Hot-reloaded on every tool call — edit freely.",
+  "task_artifact_globs": [
+    "workspace/*/artifacts/**",
+    "workspace/*/plan.md",
+    "workspace/*/tasklog.md",
+    "workspace/*/changelog.md",
+    "workspace/*/.workspace.json",
+    "workspace/.workspace-registry.json",
+    "workspace/.gitkeep"
+  ],
+  "system_globs": [
+    "skills/**",
+    "agents/**",
+    "commands/**",
+    "prompts/**",
+    "scripts/**",
+    "references/**",
+    "docs/**",
+    "hooks/**",
+    "evals/**",
+    ".agent/**",
+    ".claude-plugin/**",
+    ".specify/**",
+    ".github/**",
+    "*.md",
+    "*.json",
+    "*.html",
+    "LICENSE",
+    ".gitignore"
+  ],
+  "notes": {
+    "maintainer_mode": "Set JM_ADK_MODE=maintainer or create a ./.maintainer sentinel file to edit kit internals. Without it, writes to system_globs are blocked so end-user task work cannot silently mutate the kit.",
+    "fail_open": "If python3 or this file is missing, the guard exits 0 (allow). A broken guard must never brick the session.",
+    "deny_to_create": "A write with no active workspace is denied with an instruction to run 'workspace-manager.sh ensure'. The model creates the workspace then retries — a deterministic, self-healing loop."
+  }
+}

@@ -81,6 +81,8 @@ If ambiguous, prefer specificity over brevity. A slug should be recognizable 2 w
 
 ### Workspace Discipline
 
+**Enforced, not advisory.** `scripts/artifact-placement-guard.sh` (PreToolUse) blocks any write that is not a task artifact in `workspace/{active}/` or a maintainer-mode kit edit. If it blocks you with "sin workspace activo", run `bash scripts/workspace-manager.sh ensure "<task>"` and retry. To edit kit internals (skills/agents/scripts), set `JM_ADK_MODE=maintainer`. Policy: `references/guardrails/placement-policy.json`.
+
 | Artifact | Destination | Who writes |
 |----------|-------------|------------|
 | Plans | `workspace/{active}/plan.md` | Model (Pristino) |

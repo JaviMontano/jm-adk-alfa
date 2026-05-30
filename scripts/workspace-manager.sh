@@ -244,6 +244,20 @@ PLAN
   echo "ACTIVE-COUNT: $(count_active)"
 }
 
+cmd_ensure() {
+  # Idempotent: reuse the active workspace if one exists, else create.
+  # Used by the placement guard's deny→create→retry loop so the model never
+  # has to branch on "is there an active workspace?" — it just calls ensure.
+  ensure_registry
+  local A; A=$(get_active)
+  if [ -n "$A" ] && [ "$A" != "null" ] && [ -d "$WS_ROOT/$A" ]; then
+    echo "WORKSPACE-ACTIVE: $A"
+    echo "PATH: $WS_ROOT/$A"
+    return 0
+  fi
+  cmd_create "create" "${2:-unnamed}"
+}
+
 cmd_status() {
   ensure_registry
   local A; A=$(get_active)
@@ -473,6 +487,7 @@ Usage: workspace-manager.sh <command> [args]
 
 CRUD:
   create <name>       Create workspace (YYYY-MM-DD-slug). Deduplicates.
+  ensure <name>       Reuse active workspace if any, else create. Idempotent.
   status              Active workspace info, metrics, staleness.
   list                All workspaces with status + gate.
   complete [id]       Mark completed (default: active). Writes stats to tasklog.
@@ -493,6 +508,7 @@ HELP
 
 case "$ACTION" in
   create)   cmd_create "$@" ;;
+  ensure)   cmd_ensure "$@" ;;
   status)   cmd_status ;;
   list)     cmd_list ;;
   complete) cmd_complete "$@" ;;
