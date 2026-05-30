@@ -36,6 +36,14 @@ run 2 Write  "{\"file_path\":\"$ROOT/workspace/$WS/artifacts/Bad Name.md\"}" tas
 run 0 Write  "{\"file_path\":\"$ROOT/workspace/$WS/artifacts/good-name.md\"}" task    "new kebab filename allowed"
 run 2 Write  "{\"file_path\":\"$ROOT/workspace/$WS/loose-note.md\"}"      task       "deliverable at task root routed to artifacts/"
 run 0 Write  "{\"file_path\":\"$ROOT/workspace/$WS/plan.md\"}"            task       "canonical task file allowed"
+run 2 Write  "{\"file_path\":\"$ROOT/workspace/$WS/artifacts/Bad Dir/x.md\"}" task   "new dir with space blocked"
+run 0 Write  "{\"file_path\":\"$ROOT/workspace/$WS/artifacts/sub-zone/x.md\"}" task  "new kebab dir allowed"
+
+# Stdin contract (Claude Code runtime) must work too.
+echo "{\"tool_name\":\"Write\",\"tool_input\":{\"file_path\":\"$ROOT/skills/foo/SKILL.md\"}}" \
+  | CLAUDE_TOOL_NAME="" CLAUDE_TOOL_INPUT="" bash "$GUARD" >/dev/null 2>&1
+if [ "$?" = "2" ]; then echo "PASS: stdin contract blocks kit path"; PASS=$((PASS+1))
+else echo "FAIL: stdin contract did not block"; FAIL=$((FAIL+1)); fi
 
 echo "---"
 echo "RESULT: $PASS passed, $FAIL failed"

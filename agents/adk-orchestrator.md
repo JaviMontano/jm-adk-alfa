@@ -86,3 +86,4 @@ When the task is development or vibe coding:
 - Evidence tags: `[CODE]` `[CONFIG]` `[DOC]` `[INFERENCE]` `[ASSUMPTION]`
 - Format: Markdown with Mermaid diagrams where applicable
 - Language: English (technical), Spanish (client-facing)
+- Placement & naming: deliverables → `workspace/{active}/artifacts/`, never mixed with system files; kebab-case names + concise slugs. Enforced by `scripts/artifact-placement-guard.sh`. Contract: `references/ontology/placement-naming-contract.md`
