@@ -23,6 +23,21 @@
       "id": "disaster-recovery:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "disaster-recovery:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "disaster-recovery:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "disaster-recovery:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "disaster-recovery",
       "to": "disaster-recovery:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "disaster-recovery",
+      "to": "disaster-recovery:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "disaster-recovery",
+      "to": "disaster-recovery:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "disaster-recovery",
+      "to": "disaster-recovery:antipattern",
+      "type": "guards_against"
     }
   ]
 }

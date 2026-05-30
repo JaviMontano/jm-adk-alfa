@@ -23,6 +23,21 @@
       "id": "real-time-analytics:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "real-time-analytics:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "real-time-analytics:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "real-time-analytics:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "real-time-analytics",
       "to": "real-time-analytics:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "real-time-analytics",
+      "to": "real-time-analytics:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "real-time-analytics",
+      "to": "real-time-analytics:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "real-time-analytics",
+      "to": "real-time-analytics:antipattern",
+      "type": "guards_against"
     }
   ]
 }

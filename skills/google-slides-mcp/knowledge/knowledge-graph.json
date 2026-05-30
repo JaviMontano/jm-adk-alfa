@@ -23,6 +23,21 @@
       "id": "google-slides-mcp:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "google-slides-mcp:ontology",
+      "type": "ontology",
+      "label": "Domain: tool-design-mcp"
+    },
+    {
+      "id": "google-slides-mcp:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "google-slides-mcp:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "google-slides-mcp",
       "to": "google-slides-mcp:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "google-slides-mcp",
+      "to": "google-slides-mcp:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "google-slides-mcp",
+      "to": "google-slides-mcp:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "google-slides-mcp",
+      "to": "google-slides-mcp:antipattern",
+      "type": "guards_against"
     }
   ]
 }

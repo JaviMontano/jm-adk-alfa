@@ -23,6 +23,21 @@
       "id": "personal-branding:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "personal-branding:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "personal-branding:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "personal-branding:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "personal-branding",
       "to": "personal-branding:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "personal-branding",
+      "to": "personal-branding:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "personal-branding",
+      "to": "personal-branding:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "personal-branding",
+      "to": "personal-branding:antipattern",
+      "type": "guards_against"
     }
   ]
 }

@@ -23,6 +23,21 @@
       "id": "localization-guide:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "localization-guide:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "localization-guide:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "localization-guide:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "localization-guide",
       "to": "localization-guide:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "localization-guide",
+      "to": "localization-guide:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "localization-guide",
+      "to": "localization-guide:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "localization-guide",
+      "to": "localization-guide:antipattern",
+      "type": "guards_against"
     }
   ]
 }

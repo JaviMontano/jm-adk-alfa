@@ -23,6 +23,21 @@
       "id": "penetration-testing-guide:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "penetration-testing-guide:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "penetration-testing-guide:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "penetration-testing-guide:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "penetration-testing-guide",
       "to": "penetration-testing-guide:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "penetration-testing-guide",
+      "to": "penetration-testing-guide:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "penetration-testing-guide",
+      "to": "penetration-testing-guide:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "penetration-testing-guide",
+      "to": "penetration-testing-guide:antipattern",
+      "type": "guards_against"
     }
   ]
 }

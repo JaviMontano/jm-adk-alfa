@@ -53,6 +53,21 @@
       "id": "certification:typed-contract-argument",
       "type": "gate",
       "label": "Argumento: errores MCP son contratos tipados; retry vive en el cliente"
+    },
+    {
+      "id": "katas-mcp-structured-errors:ontology",
+      "type": "ontology",
+      "label": "Domain: tool-design-mcp"
+    },
+    {
+      "id": "katas-mcp-structured-errors:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "katas-mcp-structured-errors:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -100,6 +115,21 @@
       "from": "katas-mcp-structured-errors:quality",
       "to": "certification:typed-contract-argument",
       "type": "asserts"
+    },
+    {
+      "from": "katas-mcp-structured-errors",
+      "to": "katas-mcp-structured-errors:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "katas-mcp-structured-errors",
+      "to": "katas-mcp-structured-errors:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "katas-mcp-structured-errors",
+      "to": "katas-mcp-structured-errors:antipattern",
+      "type": "guards_against"
     }
   ]
 }

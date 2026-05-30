@@ -23,6 +23,21 @@
       "id": "fine-tuning-prep:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "fine-tuning-prep:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "fine-tuning-prep:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "fine-tuning-prep:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "fine-tuning-prep",
       "to": "fine-tuning-prep:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "fine-tuning-prep",
+      "to": "fine-tuning-prep:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "fine-tuning-prep",
+      "to": "fine-tuning-prep:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "fine-tuning-prep",
+      "to": "fine-tuning-prep:antipattern",
+      "type": "guards_against"
     }
   ]
 }

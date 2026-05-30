@@ -23,6 +23,21 @@
       "id": "xlsx-template-creator:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "xlsx-template-creator:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "xlsx-template-creator:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "xlsx-template-creator:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "xlsx-template-creator",
       "to": "xlsx-template-creator:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "xlsx-template-creator",
+      "to": "xlsx-template-creator:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "xlsx-template-creator",
+      "to": "xlsx-template-creator:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "xlsx-template-creator",
+      "to": "xlsx-template-creator:antipattern",
+      "type": "guards_against"
     }
   ]
 }

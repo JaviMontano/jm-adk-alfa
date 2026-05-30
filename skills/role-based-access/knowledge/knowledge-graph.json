@@ -23,6 +23,21 @@
       "id": "role-based-access:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "role-based-access:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "role-based-access:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "role-based-access:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "role-based-access",
       "to": "role-based-access:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "role-based-access",
+      "to": "role-based-access:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "role-based-access",
+      "to": "role-based-access:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "role-based-access",
+      "to": "role-based-access:antipattern",
+      "type": "guards_against"
     }
   ]
 }

@@ -23,6 +23,21 @@
       "id": "animation-principles:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "animation-principles:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "animation-principles:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "animation-principles:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "animation-principles",
       "to": "animation-principles:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "animation-principles",
+      "to": "animation-principles:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "animation-principles",
+      "to": "animation-principles:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "animation-principles",
+      "to": "animation-principles:antipattern",
+      "type": "guards_against"
     }
   ]
 }

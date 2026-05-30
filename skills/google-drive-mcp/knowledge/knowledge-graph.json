@@ -23,6 +23,21 @@
       "id": "google-drive-mcp:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "google-drive-mcp:ontology",
+      "type": "ontology",
+      "label": "Domain: tool-design-mcp"
+    },
+    {
+      "id": "google-drive-mcp:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "google-drive-mcp:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "google-drive-mcp",
       "to": "google-drive-mcp:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "google-drive-mcp",
+      "to": "google-drive-mcp:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "google-drive-mcp",
+      "to": "google-drive-mcp:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "google-drive-mcp",
+      "to": "google-drive-mcp:antipattern",
+      "type": "guards_against"
     }
   ]
 }

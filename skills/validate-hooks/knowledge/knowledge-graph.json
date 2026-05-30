@@ -23,6 +23,21 @@
       "id": "validate-hooks:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "validate-hooks:ontology",
+      "type": "ontology",
+      "label": "Domain: agentic-architecture/hooks"
+    },
+    {
+      "id": "validate-hooks:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "validate-hooks:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "validate-hooks",
       "to": "validate-hooks:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "validate-hooks",
+      "to": "validate-hooks:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "validate-hooks",
+      "to": "validate-hooks:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "validate-hooks",
+      "to": "validate-hooks:antipattern",
+      "type": "guards_against"
     }
   ]
 }

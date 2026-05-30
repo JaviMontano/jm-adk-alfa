@@ -23,6 +23,21 @@
       "id": "output-engineering:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "output-engineering:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "output-engineering:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "output-engineering:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "output-engineering",
       "to": "output-engineering:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "output-engineering",
+      "to": "output-engineering:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "output-engineering",
+      "to": "output-engineering:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "output-engineering",
+      "to": "output-engineering:antipattern",
+      "type": "guards_against"
     }
   ]
 }

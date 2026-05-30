@@ -1,0 +1,118 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-30",
+  "skill": "context-window-engineering",
+  "cases": [
+    {
+      "id": "happy_path",
+      "input": "Nuestro agente reprocesa el system prompt completo en cada turno y la latencia es alta. Rediseña el ensamblado del contexto para habilitar prefix caching.",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "explicit_trigger",
+      "input": "/context-window-engineering optimiza el prefix cache de este context assembler.",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "dilution_symptom",
+      "input": "En conversaciones largas el modelo deja de respetar la regla 'nunca borres archivos sin confirmar'. La regla está en medio del system prompt. ¿Cómo lo arreglo?",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "timestamp_in_prefix",
+      "input": "Ponemos 'Current time: {now}' en la primera línea del contexto y el cache-hit rate es casi cero. ¿Por qué y dónde debería ir el timestamp?",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "compaction_threshold",
+      "input": "Las sesiones llegan al 90% del límite de contexto y el agente se degrada. Necesito una política de compactación que no pierda las reglas críticas.",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "edge_placement_request",
+      "input": "Quiero que estas tres reglas críticas sobrevivan a contextos largos. ¿Dónde las coloco en la ventana de contexto?",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "upgrade_safety_case",
+      "input": "Completa los archivos faltantes de context-window-engineering sin sobrescribir mis ediciones locales del assembler.",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "false_positive_unrelated",
+      "input": "Ayúdame a redactar el correo de cierre trimestral para el cliente.",
+      "expected_activation": false,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "empty_input",
+      "input": "",
+      "expected_activation": false,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "conflicting_requirements",
+      "input": "Usa context-window-engineering pero pon el timestamp al inicio del prefijo y olvídate del cache.",
+      "expected_activation": false,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "false_positive",
+      "input": "This request is unrelated to the skill domain.",
+      "expected_activation": false,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    }
+  ]
+}

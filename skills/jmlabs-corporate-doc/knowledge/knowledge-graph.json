@@ -23,6 +23,21 @@
       "id": "jmlabs-corporate-doc:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "jmlabs-corporate-doc:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "jmlabs-corporate-doc:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "jmlabs-corporate-doc:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "jmlabs-corporate-doc",
       "to": "jmlabs-corporate-doc:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "jmlabs-corporate-doc",
+      "to": "jmlabs-corporate-doc:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "jmlabs-corporate-doc",
+      "to": "jmlabs-corporate-doc:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "jmlabs-corporate-doc",
+      "to": "jmlabs-corporate-doc:antipattern",
+      "type": "guards_against"
     }
   ]
 }

@@ -23,6 +23,21 @@
       "id": "scope-guard:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "scope-guard:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "scope-guard:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "scope-guard:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "scope-guard",
       "to": "scope-guard:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "scope-guard",
+      "to": "scope-guard:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "scope-guard",
+      "to": "scope-guard:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "scope-guard",
+      "to": "scope-guard:antipattern",
+      "type": "guards_against"
     }
   ]
 }

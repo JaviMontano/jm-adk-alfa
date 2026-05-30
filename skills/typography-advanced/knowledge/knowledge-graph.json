@@ -23,6 +23,21 @@
       "id": "typography-advanced:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "typography-advanced:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "typography-advanced:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "typography-advanced:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "typography-advanced",
       "to": "typography-advanced:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "typography-advanced",
+      "to": "typography-advanced:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "typography-advanced",
+      "to": "typography-advanced:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "typography-advanced",
+      "to": "typography-advanced:antipattern",
+      "type": "guards_against"
     }
   ]
 }

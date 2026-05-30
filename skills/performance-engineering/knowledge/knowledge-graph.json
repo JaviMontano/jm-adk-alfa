@@ -23,6 +23,21 @@
       "id": "performance-engineering:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "performance-engineering:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "performance-engineering:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "performance-engineering:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "performance-engineering",
       "to": "performance-engineering:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "performance-engineering",
+      "to": "performance-engineering:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "performance-engineering",
+      "to": "performance-engineering:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "performance-engineering",
+      "to": "performance-engineering:antipattern",
+      "type": "guards_against"
     }
   ]
 }

@@ -23,6 +23,21 @@
       "id": "ux-writing:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "ux-writing:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "ux-writing:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "ux-writing:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "ux-writing",
       "to": "ux-writing:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "ux-writing",
+      "to": "ux-writing:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "ux-writing",
+      "to": "ux-writing:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "ux-writing",
+      "to": "ux-writing:antipattern",
+      "type": "guards_against"
     }
   ]
 }

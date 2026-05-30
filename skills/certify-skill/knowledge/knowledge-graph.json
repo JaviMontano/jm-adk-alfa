@@ -23,6 +23,21 @@
       "id": "certify-skill:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "certify-skill:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "certify-skill:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "certify-skill:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "certify-skill",
       "to": "certify-skill:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "certify-skill",
+      "to": "certify-skill:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "certify-skill",
+      "to": "certify-skill:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "certify-skill",
+      "to": "certify-skill:antipattern",
+      "type": "guards_against"
     }
   ]
 }

@@ -23,6 +23,21 @@
       "id": "infrastructure-architecture:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "infrastructure-architecture:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "infrastructure-architecture:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "infrastructure-architecture:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "infrastructure-architecture",
       "to": "infrastructure-architecture:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "infrastructure-architecture",
+      "to": "infrastructure-architecture:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "infrastructure-architecture",
+      "to": "infrastructure-architecture:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "infrastructure-architecture",
+      "to": "infrastructure-architecture:antipattern",
+      "type": "guards_against"
     }
   ]
 }

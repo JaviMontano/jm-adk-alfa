@@ -23,6 +23,21 @@
       "id": "integrity-chain-validation:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "integrity-chain-validation:ontology",
+      "type": "ontology",
+      "label": "Domain: prompt-structured-output"
+    },
+    {
+      "id": "integrity-chain-validation:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "integrity-chain-validation:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "integrity-chain-validation",
       "to": "integrity-chain-validation:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "integrity-chain-validation",
+      "to": "integrity-chain-validation:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "integrity-chain-validation",
+      "to": "integrity-chain-validation:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "integrity-chain-validation",
+      "to": "integrity-chain-validation:antipattern",
+      "type": "guards_against"
     }
   ]
 }

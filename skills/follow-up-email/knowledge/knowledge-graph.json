@@ -23,6 +23,21 @@
       "id": "follow-up-email:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "follow-up-email:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "follow-up-email:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "follow-up-email:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "follow-up-email",
       "to": "follow-up-email:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "follow-up-email",
+      "to": "follow-up-email:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "follow-up-email",
+      "to": "follow-up-email:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "follow-up-email",
+      "to": "follow-up-email:antipattern",
+      "type": "guards_against"
     }
   ]
 }

@@ -23,6 +23,21 @@
       "id": "compliance-framework:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "compliance-framework:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "compliance-framework:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "compliance-framework:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "compliance-framework",
       "to": "compliance-framework:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "compliance-framework",
+      "to": "compliance-framework:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "compliance-framework",
+      "to": "compliance-framework:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "compliance-framework",
+      "to": "compliance-framework:antipattern",
+      "type": "guards_against"
     }
   ]
 }

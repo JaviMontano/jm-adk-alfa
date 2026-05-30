@@ -23,6 +23,21 @@
       "id": "katas-independent-reviewer-multipass:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "katas-independent-reviewer-multipass:ontology",
+      "type": "ontology",
+      "label": "Domain: prompt-structured-output"
+    },
+    {
+      "id": "katas-independent-reviewer-multipass:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "katas-independent-reviewer-multipass:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "katas-independent-reviewer-multipass",
       "to": "katas-independent-reviewer-multipass:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "katas-independent-reviewer-multipass",
+      "to": "katas-independent-reviewer-multipass:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "katas-independent-reviewer-multipass",
+      "to": "katas-independent-reviewer-multipass:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "katas-independent-reviewer-multipass",
+      "to": "katas-independent-reviewer-multipass:antipattern",
+      "type": "guards_against"
     }
   ]
 }

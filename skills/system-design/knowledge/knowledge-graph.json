@@ -23,6 +23,21 @@
       "id": "system-design:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "system-design:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "system-design:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "system-design:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "system-design",
       "to": "system-design:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "system-design",
+      "to": "system-design:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "system-design",
+      "to": "system-design:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "system-design",
+      "to": "system-design:antipattern",
+      "type": "guards_against"
     }
   ]
 }

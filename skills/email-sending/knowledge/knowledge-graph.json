@@ -23,6 +23,21 @@
       "id": "email-sending:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "email-sending:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "email-sending:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "email-sending:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "email-sending",
       "to": "email-sending:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "email-sending",
+      "to": "email-sending:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "email-sending",
+      "to": "email-sending:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "email-sending",
+      "to": "email-sending:antipattern",
+      "type": "guards_against"
     }
   ]
 }

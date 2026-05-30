@@ -23,6 +23,21 @@
       "id": "pwa-architecture:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "pwa-architecture:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "pwa-architecture:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "pwa-architecture:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "pwa-architecture",
       "to": "pwa-architecture:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "pwa-architecture",
+      "to": "pwa-architecture:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "pwa-architecture",
+      "to": "pwa-architecture:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "pwa-architecture",
+      "to": "pwa-architecture:antipattern",
+      "type": "guards_against"
     }
   ]
 }

@@ -23,6 +23,21 @@
       "id": "change-management-enterprise:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "change-management-enterprise:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "change-management-enterprise:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "change-management-enterprise:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "change-management-enterprise",
       "to": "change-management-enterprise:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "change-management-enterprise",
+      "to": "change-management-enterprise:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "change-management-enterprise",
+      "to": "change-management-enterprise:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "change-management-enterprise",
+      "to": "change-management-enterprise:antipattern",
+      "type": "guards_against"
     }
   ]
 }

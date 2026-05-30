@@ -23,6 +23,21 @@
       "id": "session-manager:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "session-manager:ontology",
+      "type": "ontology",
+      "label": "Domain: claude-code-config"
+    },
+    {
+      "id": "session-manager:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "session-manager:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "session-manager",
       "to": "session-manager:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "session-manager",
+      "to": "session-manager:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "session-manager",
+      "to": "session-manager:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "session-manager",
+      "to": "session-manager:antipattern",
+      "type": "guards_against"
     }
   ]
 }

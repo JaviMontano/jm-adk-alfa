@@ -23,6 +23,21 @@
       "id": "workshop-proposal:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "workshop-proposal:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "workshop-proposal:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "workshop-proposal:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "workshop-proposal",
       "to": "workshop-proposal:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "workshop-proposal",
+      "to": "workshop-proposal:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "workshop-proposal",
+      "to": "workshop-proposal:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "workshop-proposal",
+      "to": "workshop-proposal:antipattern",
+      "type": "guards_against"
     }
   ]
 }

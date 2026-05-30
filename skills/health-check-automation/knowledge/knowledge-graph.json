@@ -23,6 +23,21 @@
       "id": "health-check-automation:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "health-check-automation:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "health-check-automation:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "health-check-automation:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "health-check-automation",
       "to": "health-check-automation:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "health-check-automation",
+      "to": "health-check-automation:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "health-check-automation",
+      "to": "health-check-automation:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "health-check-automation",
+      "to": "health-check-automation:antipattern",
+      "type": "guards_against"
     }
   ]
 }

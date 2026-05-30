@@ -23,6 +23,21 @@
       "id": "market-intelligence:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "market-intelligence:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "market-intelligence:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "market-intelligence:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "market-intelligence",
       "to": "market-intelligence:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "market-intelligence",
+      "to": "market-intelligence:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "market-intelligence",
+      "to": "market-intelligence:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "market-intelligence",
+      "to": "market-intelligence:antipattern",
+      "type": "guards_against"
     }
   ]
 }

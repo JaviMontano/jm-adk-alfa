@@ -23,6 +23,21 @@
       "id": "dependency-management:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "dependency-management:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "dependency-management:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "dependency-management:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "dependency-management",
       "to": "dependency-management:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "dependency-management",
+      "to": "dependency-management:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "dependency-management",
+      "to": "dependency-management:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "dependency-management",
+      "to": "dependency-management:antipattern",
+      "type": "guards_against"
     }
   ]
 }

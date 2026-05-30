@@ -23,6 +23,21 @@
       "id": "firebase-auth:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "firebase-auth:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "firebase-auth:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "firebase-auth:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "firebase-auth",
       "to": "firebase-auth:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "firebase-auth",
+      "to": "firebase-auth:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "firebase-auth",
+      "to": "firebase-auth:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "firebase-auth",
+      "to": "firebase-auth:antipattern",
+      "type": "guards_against"
     }
   ]
 }

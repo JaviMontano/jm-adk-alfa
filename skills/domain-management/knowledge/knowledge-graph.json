@@ -23,6 +23,21 @@
       "id": "domain-management:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "domain-management:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "domain-management:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "domain-management:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "domain-management",
       "to": "domain-management:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "domain-management",
+      "to": "domain-management:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "domain-management",
+      "to": "domain-management:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "domain-management",
+      "to": "domain-management:antipattern",
+      "type": "guards_against"
     }
   ]
 }

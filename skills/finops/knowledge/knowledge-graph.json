@@ -23,6 +23,21 @@
       "id": "finops:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "finops:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "finops:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "finops:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "finops",
       "to": "finops:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "finops",
+      "to": "finops:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "finops",
+      "to": "finops:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "finops",
+      "to": "finops:antipattern",
+      "type": "guards_against"
     }
   ]
 }

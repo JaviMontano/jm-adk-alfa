@@ -68,6 +68,21 @@
       "id": "cert:argument",
       "type": "gate",
       "label": "Separacion usuario/equipo/modulo + @imports"
+    },
+    {
+      "id": "katas-hierarchical-claude-memory:ontology",
+      "type": "ontology",
+      "label": "Domain: claude-code-config"
+    },
+    {
+      "id": "katas-hierarchical-claude-memory:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "katas-hierarchical-claude-memory:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -150,6 +165,21 @@
       "from": "katas-hierarchical-claude-memory:quality",
       "to": "cert:argument",
       "type": "enforces"
+    },
+    {
+      "from": "katas-hierarchical-claude-memory",
+      "to": "katas-hierarchical-claude-memory:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "katas-hierarchical-claude-memory",
+      "to": "katas-hierarchical-claude-memory:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "katas-hierarchical-claude-memory",
+      "to": "katas-hierarchical-claude-memory:antipattern",
+      "type": "guards_against"
     }
   ]
 }

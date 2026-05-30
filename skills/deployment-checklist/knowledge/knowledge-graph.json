@@ -23,6 +23,21 @@
       "id": "deployment-checklist:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "deployment-checklist:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "deployment-checklist:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "deployment-checklist:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "deployment-checklist",
       "to": "deployment-checklist:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "deployment-checklist",
+      "to": "deployment-checklist:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "deployment-checklist",
+      "to": "deployment-checklist:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "deployment-checklist",
+      "to": "deployment-checklist:antipattern",
+      "type": "guards_against"
     }
   ]
 }

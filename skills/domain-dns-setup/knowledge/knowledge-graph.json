@@ -23,6 +23,21 @@
       "id": "domain-dns-setup:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "domain-dns-setup:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "domain-dns-setup:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "domain-dns-setup:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "domain-dns-setup",
       "to": "domain-dns-setup:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "domain-dns-setup",
+      "to": "domain-dns-setup:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "domain-dns-setup",
+      "to": "domain-dns-setup:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "domain-dns-setup",
+      "to": "domain-dns-setup:antipattern",
+      "type": "guards_against"
     }
   ]
 }

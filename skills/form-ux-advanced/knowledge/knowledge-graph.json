@@ -23,6 +23,21 @@
       "id": "form-ux-advanced:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "form-ux-advanced:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "form-ux-advanced:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "form-ux-advanced:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "form-ux-advanced",
       "to": "form-ux-advanced:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "form-ux-advanced",
+      "to": "form-ux-advanced:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "form-ux-advanced",
+      "to": "form-ux-advanced:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "form-ux-advanced",
+      "to": "form-ux-advanced:antipattern",
+      "type": "guards_against"
     }
   ]
 }

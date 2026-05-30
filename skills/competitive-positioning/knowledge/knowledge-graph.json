@@ -23,6 +23,21 @@
       "id": "competitive-positioning:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "competitive-positioning:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "competitive-positioning:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "competitive-positioning:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "competitive-positioning",
       "to": "competitive-positioning:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "competitive-positioning",
+      "to": "competitive-positioning:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "competitive-positioning",
+      "to": "competitive-positioning:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "competitive-positioning",
+      "to": "competitive-positioning:antipattern",
+      "type": "guards_against"
     }
   ]
 }

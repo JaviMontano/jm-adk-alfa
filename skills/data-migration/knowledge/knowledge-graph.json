@@ -23,6 +23,21 @@
       "id": "data-migration:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "data-migration:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "data-migration:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "data-migration:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "data-migration",
       "to": "data-migration:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "data-migration",
+      "to": "data-migration:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "data-migration",
+      "to": "data-migration:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "data-migration",
+      "to": "data-migration:antipattern",
+      "type": "guards_against"
     }
   ]
 }

@@ -23,6 +23,21 @@
       "id": "rule-forge:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "rule-forge:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "rule-forge:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "rule-forge:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "rule-forge",
       "to": "rule-forge:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "rule-forge",
+      "to": "rule-forge:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "rule-forge",
+      "to": "rule-forge:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "rule-forge",
+      "to": "rule-forge:antipattern",
+      "type": "guards_against"
     }
   ]
 }

@@ -23,6 +23,21 @@
       "id": "sofka-bpmn-process-analysis:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "sofka-bpmn-process-analysis:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "sofka-bpmn-process-analysis:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "sofka-bpmn-process-analysis:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "sofka-bpmn-process-analysis",
       "to": "sofka-bpmn-process-analysis:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "sofka-bpmn-process-analysis",
+      "to": "sofka-bpmn-process-analysis:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "sofka-bpmn-process-analysis",
+      "to": "sofka-bpmn-process-analysis:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "sofka-bpmn-process-analysis",
+      "to": "sofka-bpmn-process-analysis:antipattern",
+      "type": "guards_against"
     }
   ]
 }

@@ -63,6 +63,21 @@
       "id": "kata:10-cache-aware",
       "type": "related_kata",
       "label": "Kata 10 - Contexto cache-aware (no re-leer cada turno)"
+    },
+    {
+      "id": "katas-persistent-scratchpad:ontology",
+      "type": "ontology",
+      "label": "Domain: context-reliability"
+    },
+    {
+      "id": "katas-persistent-scratchpad:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "katas-persistent-scratchpad:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -120,6 +135,21 @@
       "from": "katas-persistent-scratchpad",
       "to": "kata:19-adaptive-investigation",
       "type": "feeds"
+    },
+    {
+      "from": "katas-persistent-scratchpad",
+      "to": "katas-persistent-scratchpad:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "katas-persistent-scratchpad",
+      "to": "katas-persistent-scratchpad:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "katas-persistent-scratchpad",
+      "to": "katas-persistent-scratchpad:antipattern",
+      "type": "guards_against"
     }
   ]
 }

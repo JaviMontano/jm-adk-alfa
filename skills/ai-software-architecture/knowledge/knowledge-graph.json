@@ -23,6 +23,21 @@
       "id": "ai-software-architecture:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "ai-software-architecture:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "ai-software-architecture:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "ai-software-architecture:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "ai-software-architecture",
       "to": "ai-software-architecture:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "ai-software-architecture",
+      "to": "ai-software-architecture:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "ai-software-architecture",
+      "to": "ai-software-architecture:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "ai-software-architecture",
+      "to": "ai-software-architecture:antipattern",
+      "type": "guards_against"
     }
   ]
 }

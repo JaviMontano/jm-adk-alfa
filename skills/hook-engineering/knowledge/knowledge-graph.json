@@ -1,0 +1,145 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-30",
+  "skill": "hook-engineering",
+  "nodes": [
+    {
+      "id": "hook-engineering",
+      "type": "skill",
+      "label": "hook-engineering"
+    },
+    {
+      "id": "hook-engineering:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "hook-engineering:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "hook-engineering:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    },
+    {
+      "id": "hook-engineering:pretooluse",
+      "type": "concept",
+      "label": "PreToolUse permissionDecision allow|deny|ask"
+    },
+    {
+      "id": "hook-engineering:posttooluse",
+      "type": "concept",
+      "label": "PostToolUse updatedMCPToolOutput"
+    },
+    {
+      "id": "hook-engineering:reloadable-policy",
+      "type": "concept",
+      "label": "Reloadable policy in code (not prompt)"
+    },
+    {
+      "id": "hook-engineering:hookmatcher",
+      "type": "concept",
+      "label": "HookMatcher matcher='*' or per-tool"
+    },
+    {
+      "id": "hook-engineering:auditability",
+      "type": "concept",
+      "label": "Auditable deny decisions"
+    },
+    {
+      "id": "hook-engineering:anti-pattern",
+      "type": "anti_pattern",
+      "label": "Policy only in system prompt / per-tool normalization"
+    },
+    {
+      "id": "hook-engineering:ontology",
+      "type": "ontology",
+      "label": "Domain: agentic-architecture/hooks"
+    },
+    {
+      "id": "hook-engineering:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "hook-engineering:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
+    }
+  ],
+  "edges": [
+    {
+      "from": "hook-engineering",
+      "to": "hook-engineering:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "hook-engineering",
+      "to": "hook-engineering:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "hook-engineering",
+      "to": "hook-engineering:quality",
+      "type": "validated_by"
+    },
+    {
+      "from": "hook-engineering",
+      "to": "hook-engineering:pretooluse",
+      "type": "uses"
+    },
+    {
+      "from": "hook-engineering",
+      "to": "hook-engineering:posttooluse",
+      "type": "uses"
+    },
+    {
+      "from": "hook-engineering:pretooluse",
+      "to": "hook-engineering:reloadable-policy",
+      "type": "requires"
+    },
+    {
+      "from": "hook-engineering:pretooluse",
+      "to": "hook-engineering:hookmatcher",
+      "type": "registered_by"
+    },
+    {
+      "from": "hook-engineering:posttooluse",
+      "to": "hook-engineering:hookmatcher",
+      "type": "registered_by"
+    },
+    {
+      "from": "hook-engineering:pretooluse",
+      "to": "hook-engineering:auditability",
+      "type": "produces"
+    },
+    {
+      "from": "hook-engineering:reloadable-policy",
+      "to": "hook-engineering:anti-pattern",
+      "type": "mitigates"
+    },
+    {
+      "from": "hook-engineering:anti-pattern",
+      "to": "hook-engineering:quality",
+      "type": "rejected_by"
+    },
+    {
+      "from": "hook-engineering",
+      "to": "hook-engineering:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "hook-engineering",
+      "to": "hook-engineering:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "hook-engineering",
+      "to": "hook-engineering:antipattern",
+      "type": "guards_against"
+    }
+  ]
+}

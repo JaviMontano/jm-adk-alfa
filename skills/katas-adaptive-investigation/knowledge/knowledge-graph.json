@@ -63,6 +63,21 @@
       "id": "katas-scratchpad-pattern",
       "type": "skill",
       "label": "katas-scratchpad-pattern (Kata 18)"
+    },
+    {
+      "id": "katas-adaptive-investigation:ontology",
+      "type": "ontology",
+      "label": "Domain: agentic-architecture"
+    },
+    {
+      "id": "katas-adaptive-investigation:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "katas-adaptive-investigation:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -125,6 +140,21 @@
       "from": "katas-adaptive-investigation",
       "to": "katas-scratchpad-pattern",
       "type": "relates_to"
+    },
+    {
+      "from": "katas-adaptive-investigation",
+      "to": "katas-adaptive-investigation:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "katas-adaptive-investigation",
+      "to": "katas-adaptive-investigation:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "katas-adaptive-investigation",
+      "to": "katas-adaptive-investigation:antipattern",
+      "type": "guards_against"
     }
   ]
 }

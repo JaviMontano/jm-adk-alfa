@@ -23,6 +23,21 @@
       "id": "brand-docx:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "brand-docx:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "brand-docx:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "brand-docx:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "brand-docx",
       "to": "brand-docx:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "brand-docx",
+      "to": "brand-docx:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "brand-docx",
+      "to": "brand-docx:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "brand-docx",
+      "to": "brand-docx:antipattern",
+      "type": "guards_against"
     }
   ]
 }

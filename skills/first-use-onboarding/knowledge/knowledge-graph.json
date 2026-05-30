@@ -23,6 +23,21 @@
       "id": "first-use-onboarding:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "first-use-onboarding:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "first-use-onboarding:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "first-use-onboarding:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "first-use-onboarding",
       "to": "first-use-onboarding:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "first-use-onboarding",
+      "to": "first-use-onboarding:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "first-use-onboarding",
+      "to": "first-use-onboarding:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "first-use-onboarding",
+      "to": "first-use-onboarding:antipattern",
+      "type": "guards_against"
     }
   ]
 }

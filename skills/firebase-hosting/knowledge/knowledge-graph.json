@@ -23,6 +23,21 @@
       "id": "firebase-hosting:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "firebase-hosting:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "firebase-hosting:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "firebase-hosting:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "firebase-hosting",
       "to": "firebase-hosting:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "firebase-hosting",
+      "to": "firebase-hosting:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "firebase-hosting",
+      "to": "firebase-hosting:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "firebase-hosting",
+      "to": "firebase-hosting:antipattern",
+      "type": "guards_against"
     }
   ]
 }

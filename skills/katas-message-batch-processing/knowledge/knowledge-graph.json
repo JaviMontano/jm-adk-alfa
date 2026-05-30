@@ -53,6 +53,21 @@
       "id": "antipattern:realtime-for-loop",
       "type": "antipattern",
       "label": "for item: messages.create en real-time sin custom_id"
+    },
+    {
+      "id": "katas-message-batch-processing:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "katas-message-batch-processing:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "katas-message-batch-processing:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -100,6 +115,21 @@
       "from": "concept:message-batches-api",
       "to": "antipattern:realtime-for-loop",
       "type": "rejects"
+    },
+    {
+      "from": "katas-message-batch-processing",
+      "to": "katas-message-batch-processing:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "katas-message-batch-processing",
+      "to": "katas-message-batch-processing:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "katas-message-batch-processing",
+      "to": "katas-message-batch-processing:antipattern",
+      "type": "guards_against"
     }
   ]
 }

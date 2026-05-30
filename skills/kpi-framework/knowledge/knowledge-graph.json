@@ -23,6 +23,21 @@
       "id": "kpi-framework:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "kpi-framework:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "kpi-framework:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "kpi-framework:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "kpi-framework",
       "to": "kpi-framework:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "kpi-framework",
+      "to": "kpi-framework:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "kpi-framework",
+      "to": "kpi-framework:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "kpi-framework",
+      "to": "kpi-framework:antipattern",
+      "type": "guards_against"
     }
   ]
 }

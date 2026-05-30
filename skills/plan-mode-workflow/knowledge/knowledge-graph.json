@@ -1,0 +1,145 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-30",
+  "skill": "plan-mode-workflow",
+  "nodes": [
+    {
+      "id": "plan-mode-workflow",
+      "type": "skill",
+      "label": "plan-mode-workflow"
+    },
+    {
+      "id": "plan-mode-workflow:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "plan-mode-workflow:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "plan-mode-workflow:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    },
+    {
+      "id": "plan-mode-workflow:mode-state",
+      "type": "concept",
+      "label": "Mode state (plan | execute)"
+    },
+    {
+      "id": "plan-mode-workflow:plan-artifact",
+      "type": "concept",
+      "label": "Signable plan.md artifact"
+    },
+    {
+      "id": "plan-mode-workflow:approval-event",
+      "type": "concept",
+      "label": "Auditable approval (hash + approver + timestamp)"
+    },
+    {
+      "id": "plan-mode-workflow:pre-tool-hook",
+      "type": "mechanism",
+      "label": "PreToolUse hook enforcing read-only"
+    },
+    {
+      "id": "plan-mode-workflow:write-tool-list",
+      "type": "concept",
+      "label": "Enumerated write-tool blocklist"
+    },
+    {
+      "id": "plan-mode-workflow:re-sign-on-change",
+      "type": "concept",
+      "label": "Re-sign on plan change"
+    },
+    {
+      "id": "plan-mode-workflow:antipattern",
+      "type": "antipattern",
+      "label": "bypassPermissions + write from turn one"
+    },
+    {
+      "id": "plan-mode-workflow:ontology",
+      "type": "ontology",
+      "label": "Domain: claude-code-config"
+    },
+    {
+      "id": "plan-mode-workflow:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    }
+  ],
+  "edges": [
+    {
+      "from": "plan-mode-workflow",
+      "to": "plan-mode-workflow:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "plan-mode-workflow",
+      "to": "plan-mode-workflow:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "plan-mode-workflow",
+      "to": "plan-mode-workflow:quality",
+      "type": "validated_by"
+    },
+    {
+      "from": "plan-mode-workflow",
+      "to": "plan-mode-workflow:mode-state",
+      "type": "models"
+    },
+    {
+      "from": "plan-mode-workflow",
+      "to": "plan-mode-workflow:plan-artifact",
+      "type": "produces"
+    },
+    {
+      "from": "plan-mode-workflow:approval-event",
+      "to": "plan-mode-workflow:plan-artifact",
+      "type": "signs"
+    },
+    {
+      "from": "plan-mode-workflow:pre-tool-hook",
+      "to": "plan-mode-workflow:mode-state",
+      "type": "reads"
+    },
+    {
+      "from": "plan-mode-workflow:pre-tool-hook",
+      "to": "plan-mode-workflow:write-tool-list",
+      "type": "enforces"
+    },
+    {
+      "from": "plan-mode-workflow:approval-event",
+      "to": "plan-mode-workflow:mode-state",
+      "type": "transitions_to_execute"
+    },
+    {
+      "from": "plan-mode-workflow:re-sign-on-change",
+      "to": "plan-mode-workflow:mode-state",
+      "type": "reverts_to_plan"
+    },
+    {
+      "from": "plan-mode-workflow:antipattern",
+      "to": "plan-mode-workflow:quality",
+      "type": "violates"
+    },
+    {
+      "from": "plan-mode-workflow",
+      "to": "plan-mode-workflow:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "plan-mode-workflow",
+      "to": "plan-mode-workflow:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "plan-mode-workflow",
+      "to": "plan-mode-workflow:antipattern",
+      "type": "guards_against"
+    }
+  ]
+}

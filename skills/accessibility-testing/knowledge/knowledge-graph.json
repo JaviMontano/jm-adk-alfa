@@ -46,6 +46,21 @@
       "id": "suppression-governance",
       "type": "gate",
       "label": "Governed suppressions and exclusions"
+    },
+    {
+      "id": "accessibility-testing:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "accessibility-testing:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "accessibility-testing:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -88,6 +103,21 @@
       "from": "accessibility-testing",
       "to": "suppression-governance",
       "type": "validated_by"
+    },
+    {
+      "from": "accessibility-testing",
+      "to": "accessibility-testing:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "accessibility-testing",
+      "to": "accessibility-testing:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "accessibility-testing",
+      "to": "accessibility-testing:antipattern",
+      "type": "guards_against"
     }
   ]
 }

@@ -53,6 +53,21 @@
       "id": "katas-pretooluse-guardrails:prompt-only-antipattern",
       "type": "antipattern",
       "label": "Policy only in system_prompt"
+    },
+    {
+      "id": "katas-pretooluse-guardrails:ontology",
+      "type": "ontology",
+      "label": "Domain: agentic-architecture/hooks"
+    },
+    {
+      "id": "katas-pretooluse-guardrails:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "katas-pretooluse-guardrails:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -100,6 +115,21 @@
       "from": "katas-pretooluse-guardrails:prompt-only-antipattern",
       "to": "katas-pretooluse-guardrails:certification-argument",
       "type": "violates"
+    },
+    {
+      "from": "katas-pretooluse-guardrails",
+      "to": "katas-pretooluse-guardrails:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "katas-pretooluse-guardrails",
+      "to": "katas-pretooluse-guardrails:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "katas-pretooluse-guardrails",
+      "to": "katas-pretooluse-guardrails:antipattern",
+      "type": "guards_against"
     }
   ]
 }

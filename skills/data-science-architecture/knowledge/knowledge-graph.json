@@ -23,6 +23,21 @@
       "id": "data-science-architecture:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "data-science-architecture:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "data-science-architecture:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "data-science-architecture:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "data-science-architecture",
       "to": "data-science-architecture:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "data-science-architecture",
+      "to": "data-science-architecture:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "data-science-architecture",
+      "to": "data-science-architecture:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "data-science-architecture",
+      "to": "data-science-architecture:antipattern",
+      "type": "guards_against"
     }
   ]
 }

@@ -23,6 +23,21 @@
       "id": "dual-layer-verification:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "dual-layer-verification:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "dual-layer-verification:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "dual-layer-verification:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "dual-layer-verification",
       "to": "dual-layer-verification:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "dual-layer-verification",
+      "to": "dual-layer-verification:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "dual-layer-verification",
+      "to": "dual-layer-verification:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "dual-layer-verification",
+      "to": "dual-layer-verification:antipattern",
+      "type": "guards_against"
     }
   ]
 }

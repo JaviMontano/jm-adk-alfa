@@ -23,6 +23,21 @@
       "id": "inventory-management:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "inventory-management:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "inventory-management:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "inventory-management:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "inventory-management",
       "to": "inventory-management:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "inventory-management",
+      "to": "inventory-management:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "inventory-management",
+      "to": "inventory-management:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "inventory-management",
+      "to": "inventory-management:antipattern",
+      "type": "guards_against"
     }
   ]
 }

@@ -23,6 +23,21 @@
       "id": "triad-composition:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "triad-composition:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "triad-composition:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "triad-composition:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "triad-composition",
       "to": "triad-composition:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "triad-composition",
+      "to": "triad-composition:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "triad-composition",
+      "to": "triad-composition:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "triad-composition",
+      "to": "triad-composition:antipattern",
+      "type": "guards_against"
     }
   ]
 }

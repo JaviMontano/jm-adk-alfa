@@ -23,6 +23,21 @@
       "id": "event-marketing:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "event-marketing:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "event-marketing:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "event-marketing:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "event-marketing",
       "to": "event-marketing:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "event-marketing",
+      "to": "event-marketing:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "event-marketing",
+      "to": "event-marketing:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "event-marketing",
+      "to": "event-marketing:antipattern",
+      "type": "guards_against"
     }
   ]
 }

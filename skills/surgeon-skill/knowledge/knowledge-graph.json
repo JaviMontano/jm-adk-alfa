@@ -23,6 +23,21 @@
       "id": "surgeon-skill:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "surgeon-skill:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "surgeon-skill:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "surgeon-skill:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "surgeon-skill",
       "to": "surgeon-skill:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "surgeon-skill",
+      "to": "surgeon-skill:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "surgeon-skill",
+      "to": "surgeon-skill:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "surgeon-skill",
+      "to": "surgeon-skill:antipattern",
+      "type": "guards_against"
     }
   ]
 }

@@ -23,6 +23,21 @@
       "id": "training-material:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "training-material:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "training-material:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "training-material:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "training-material",
       "to": "training-material:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "training-material",
+      "to": "training-material:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "training-material",
+      "to": "training-material:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "training-material",
+      "to": "training-material:antipattern",
+      "type": "guards_against"
     }
   ]
 }

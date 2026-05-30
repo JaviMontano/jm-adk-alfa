@@ -23,6 +23,21 @@
       "id": "auth-architecture:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "auth-architecture:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "auth-architecture:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "auth-architecture:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "auth-architecture",
       "to": "auth-architecture:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "auth-architecture",
+      "to": "auth-architecture:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "auth-architecture",
+      "to": "auth-architecture:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "auth-architecture",
+      "to": "auth-architecture:antipattern",
+      "type": "guards_against"
     }
   ]
 }

@@ -23,6 +23,21 @@
       "id": "repository-organization:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "repository-organization:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "repository-organization:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "repository-organization:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "repository-organization",
       "to": "repository-organization:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "repository-organization",
+      "to": "repository-organization:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "repository-organization",
+      "to": "repository-organization:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "repository-organization",
+      "to": "repository-organization:antipattern",
+      "type": "guards_against"
     }
   ]
 }

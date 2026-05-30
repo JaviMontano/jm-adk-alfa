@@ -23,6 +23,21 @@
       "id": "meeting-notes:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "meeting-notes:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "meeting-notes:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "meeting-notes:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "meeting-notes",
       "to": "meeting-notes:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "meeting-notes",
+      "to": "meeting-notes:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "meeting-notes",
+      "to": "meeting-notes:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "meeting-notes",
+      "to": "meeting-notes:antipattern",
+      "type": "guards_against"
     }
   ]
 }

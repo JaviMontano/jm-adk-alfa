@@ -23,6 +23,21 @@
       "id": "google-maps-integration:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "google-maps-integration:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "google-maps-integration:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "google-maps-integration:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "google-maps-integration",
       "to": "google-maps-integration:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "google-maps-integration",
+      "to": "google-maps-integration:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "google-maps-integration",
+      "to": "google-maps-integration:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "google-maps-integration",
+      "to": "google-maps-integration:antipattern",
+      "type": "guards_against"
     }
   ]
 }

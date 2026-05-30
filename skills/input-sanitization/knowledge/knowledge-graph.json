@@ -23,6 +23,21 @@
       "id": "input-sanitization:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "input-sanitization:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "input-sanitization:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "input-sanitization:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "input-sanitization",
       "to": "input-sanitization:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "input-sanitization",
+      "to": "input-sanitization:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "input-sanitization",
+      "to": "input-sanitization:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "input-sanitization",
+      "to": "input-sanitization:antipattern",
+      "type": "guards_against"
     }
   ]
 }

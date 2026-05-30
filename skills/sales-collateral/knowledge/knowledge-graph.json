@@ -23,6 +23,21 @@
       "id": "sales-collateral:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "sales-collateral:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "sales-collateral:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "sales-collateral:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "sales-collateral",
       "to": "sales-collateral:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "sales-collateral",
+      "to": "sales-collateral:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "sales-collateral",
+      "to": "sales-collateral:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "sales-collateral",
+      "to": "sales-collateral:antipattern",
+      "type": "guards_against"
     }
   ]
 }

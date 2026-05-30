@@ -23,6 +23,21 @@
       "id": "font-optimization:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "font-optimization:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "font-optimization:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "font-optimization:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "font-optimization",
       "to": "font-optimization:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "font-optimization",
+      "to": "font-optimization:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "font-optimization",
+      "to": "font-optimization:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "font-optimization",
+      "to": "font-optimization:antipattern",
+      "type": "guards_against"
     }
   ]
 }

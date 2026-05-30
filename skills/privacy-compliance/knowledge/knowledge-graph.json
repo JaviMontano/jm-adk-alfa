@@ -23,6 +23,21 @@
       "id": "privacy-compliance:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "privacy-compliance:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "privacy-compliance:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "privacy-compliance:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "privacy-compliance",
       "to": "privacy-compliance:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "privacy-compliance",
+      "to": "privacy-compliance:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "privacy-compliance",
+      "to": "privacy-compliance:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "privacy-compliance",
+      "to": "privacy-compliance:antipattern",
+      "type": "guards_against"
     }
   ]
 }

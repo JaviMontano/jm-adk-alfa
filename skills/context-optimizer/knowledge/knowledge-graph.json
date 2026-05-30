@@ -23,6 +23,21 @@
       "id": "context-optimizer:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "context-optimizer:ontology",
+      "type": "ontology",
+      "label": "Domain: context-reliability"
+    },
+    {
+      "id": "context-optimizer:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "context-optimizer:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "context-optimizer",
       "to": "context-optimizer:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "context-optimizer",
+      "to": "context-optimizer:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "context-optimizer",
+      "to": "context-optimizer:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "context-optimizer",
+      "to": "context-optimizer:antipattern",
+      "type": "guards_against"
     }
   ]
 }

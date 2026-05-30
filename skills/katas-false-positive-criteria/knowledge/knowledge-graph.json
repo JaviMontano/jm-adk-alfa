@@ -63,6 +63,21 @@
       "id": "anti:vague-confidence-prompt",
       "type": "anti_pattern",
       "label": "SYSTEM_VAGUE: report high-confidence findings, be conservative"
+    },
+    {
+      "id": "katas-false-positive-criteria:ontology",
+      "type": "ontology",
+      "label": "Domain: prompt-structured-output"
+    },
+    {
+      "id": "katas-false-positive-criteria:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "katas-false-positive-criteria:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -110,6 +125,21 @@
       "from": "anti:vague-confidence-prompt",
       "to": "katas-false-positive-criteria:quality",
       "type": "rejected_by"
+    },
+    {
+      "from": "katas-false-positive-criteria",
+      "to": "katas-false-positive-criteria:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "katas-false-positive-criteria",
+      "to": "katas-false-positive-criteria:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "katas-false-positive-criteria",
+      "to": "katas-false-positive-criteria:antipattern",
+      "type": "guards_against"
     }
   ]
 }

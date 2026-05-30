@@ -23,6 +23,21 @@
       "id": "dependency-analysis:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "dependency-analysis:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "dependency-analysis:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "dependency-analysis:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "dependency-analysis",
       "to": "dependency-analysis:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "dependency-analysis",
+      "to": "dependency-analysis:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "dependency-analysis",
+      "to": "dependency-analysis:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "dependency-analysis",
+      "to": "dependency-analysis:antipattern",
+      "type": "guards_against"
     }
   ]
 }

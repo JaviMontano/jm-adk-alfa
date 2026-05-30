@@ -63,6 +63,21 @@
       "id": "kata:01-output-signal-control",
       "type": "related_kata",
       "label": "Kata 1 - control por senal de salida"
+    },
+    {
+      "id": "katas-headless-code-review:ontology",
+      "type": "ontology",
+      "label": "Domain: prompt-structured-output"
+    },
+    {
+      "id": "katas-headless-code-review:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "katas-headless-code-review:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -120,6 +135,21 @@
       "from": "concept:schema-validation",
       "to": "kata:01-output-signal-control",
       "type": "derives_from"
+    },
+    {
+      "from": "katas-headless-code-review",
+      "to": "katas-headless-code-review:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "katas-headless-code-review",
+      "to": "katas-headless-code-review:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "katas-headless-code-review",
+      "to": "katas-headless-code-review:antipattern",
+      "type": "guards_against"
     }
   ]
 }

@@ -23,6 +23,21 @@
       "id": "angular-development:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "angular-development:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "angular-development:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "angular-development:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "angular-development",
       "to": "angular-development:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "angular-development",
+      "to": "angular-development:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "angular-development",
+      "to": "angular-development:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "angular-development",
+      "to": "angular-development:antipattern",
+      "type": "guards_against"
     }
   ]
 }

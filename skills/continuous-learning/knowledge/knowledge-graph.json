@@ -23,6 +23,21 @@
       "id": "continuous-learning:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "continuous-learning:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "continuous-learning:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "continuous-learning:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "continuous-learning",
       "to": "continuous-learning:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "continuous-learning",
+      "to": "continuous-learning:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "continuous-learning",
+      "to": "continuous-learning:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "continuous-learning",
+      "to": "continuous-learning:antipattern",
+      "type": "guards_against"
     }
   ]
 }

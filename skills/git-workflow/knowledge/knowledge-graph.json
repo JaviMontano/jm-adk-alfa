@@ -23,6 +23,21 @@
       "id": "git-workflow:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "git-workflow:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "git-workflow:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "git-workflow:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "git-workflow",
       "to": "git-workflow:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "git-workflow",
+      "to": "git-workflow:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "git-workflow",
+      "to": "git-workflow:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "git-workflow",
+      "to": "git-workflow:antipattern",
+      "type": "guards_against"
     }
   ]
 }

@@ -23,6 +23,21 @@
       "id": "business-process-modeling:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "business-process-modeling:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "business-process-modeling:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "business-process-modeling:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "business-process-modeling",
       "to": "business-process-modeling:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "business-process-modeling",
+      "to": "business-process-modeling:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "business-process-modeling",
+      "to": "business-process-modeling:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "business-process-modeling",
+      "to": "business-process-modeling:antipattern",
+      "type": "guards_against"
     }
   ]
 }

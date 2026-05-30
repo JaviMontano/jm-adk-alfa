@@ -23,6 +23,21 @@
       "id": "ecosystem-forge:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "ecosystem-forge:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "ecosystem-forge:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "ecosystem-forge:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "ecosystem-forge",
       "to": "ecosystem-forge:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "ecosystem-forge",
+      "to": "ecosystem-forge:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "ecosystem-forge",
+      "to": "ecosystem-forge:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "ecosystem-forge",
+      "to": "ecosystem-forge:antipattern",
+      "type": "guards_against"
     }
   ]
 }

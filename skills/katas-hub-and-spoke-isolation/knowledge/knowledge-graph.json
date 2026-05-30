@@ -58,6 +58,21 @@
       "id": "antipattern:single-agent-concatenated",
       "type": "antipattern",
       "label": "Un solo agente con todo concatenado, sin agents ni Task"
+    },
+    {
+      "id": "katas-hub-and-spoke-isolation:ontology",
+      "type": "ontology",
+      "label": "Domain: agentic-architecture"
+    },
+    {
+      "id": "katas-hub-and-spoke-isolation:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "katas-hub-and-spoke-isolation:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -110,6 +125,21 @@
       "from": "antipattern:single-agent-concatenated",
       "to": "concept:structural-isolation",
       "type": "violates"
+    },
+    {
+      "from": "katas-hub-and-spoke-isolation",
+      "to": "katas-hub-and-spoke-isolation:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "katas-hub-and-spoke-isolation",
+      "to": "katas-hub-and-spoke-isolation:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "katas-hub-and-spoke-isolation",
+      "to": "katas-hub-and-spoke-isolation:antipattern",
+      "type": "guards_against"
     }
   ]
 }

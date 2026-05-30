@@ -23,6 +23,21 @@
       "id": "guardrails-management:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "guardrails-management:ontology",
+      "type": "ontology",
+      "label": "Domain: agentic-architecture/hooks"
+    },
+    {
+      "id": "guardrails-management:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "guardrails-management:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "guardrails-management",
       "to": "guardrails-management:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "guardrails-management",
+      "to": "guardrails-management:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "guardrails-management",
+      "to": "guardrails-management:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "guardrails-management",
+      "to": "guardrails-management:antipattern",
+      "type": "guards_against"
     }
   ]
 }

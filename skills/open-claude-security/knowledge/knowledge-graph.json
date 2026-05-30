@@ -23,6 +23,21 @@
       "id": "open-claude-security:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "open-claude-security:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "open-claude-security:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "open-claude-security:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "open-claude-security",
       "to": "open-claude-security:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "open-claude-security",
+      "to": "open-claude-security:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "open-claude-security",
+      "to": "open-claude-security:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "open-claude-security",
+      "to": "open-claude-security:antipattern",
+      "type": "guards_against"
     }
   ]
 }

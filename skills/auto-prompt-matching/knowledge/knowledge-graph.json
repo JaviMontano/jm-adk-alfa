@@ -23,6 +23,21 @@
       "id": "auto-prompt-matching:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "auto-prompt-matching:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "auto-prompt-matching:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "auto-prompt-matching:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "auto-prompt-matching",
       "to": "auto-prompt-matching:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "auto-prompt-matching",
+      "to": "auto-prompt-matching:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "auto-prompt-matching",
+      "to": "auto-prompt-matching:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "auto-prompt-matching",
+      "to": "auto-prompt-matching:antipattern",
+      "type": "guards_against"
     }
   ]
 }

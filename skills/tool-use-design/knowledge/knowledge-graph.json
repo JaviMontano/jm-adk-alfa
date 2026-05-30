@@ -1,0 +1,135 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-30",
+  "skill": "tool-use-design",
+  "nodes": [
+    {
+      "id": "tool-use-design",
+      "type": "skill",
+      "label": "tool-use-design"
+    },
+    {
+      "id": "tool-use-design:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "tool-use-design:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "tool-use-design:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    },
+    {
+      "id": "tool-use-design:description-contract",
+      "type": "concept",
+      "label": "Tool description as routing contract"
+    },
+    {
+      "id": "tool-use-design:reciprocal-boundary",
+      "type": "concept",
+      "label": "Reciprocal boundary between competing tools"
+    },
+    {
+      "id": "tool-use-design:rename-split",
+      "type": "concept",
+      "label": "Overloading resolved by rename + split"
+    },
+    {
+      "id": "tool-use-design:grep-read-edit",
+      "type": "concept",
+      "label": "Grep then Read then Edit strategy"
+    },
+    {
+      "id": "tool-use-design:edit-failure-mode",
+      "type": "concept",
+      "label": "Edit anchor non-unique failure with Read+Write fallback"
+    },
+    {
+      "id": "tool-use-design:read-all-antipattern",
+      "type": "antipattern",
+      "label": "Glob all plus read all upfront"
+    },
+    {
+      "id": "tool-use-design:ontology",
+      "type": "ontology",
+      "label": "Domain: tool-design-mcp"
+    },
+    {
+      "id": "tool-use-design:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "tool-use-design:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
+    }
+  ],
+  "edges": [
+    {
+      "from": "tool-use-design",
+      "to": "tool-use-design:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "tool-use-design",
+      "to": "tool-use-design:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "tool-use-design",
+      "to": "tool-use-design:quality",
+      "type": "validated_by"
+    },
+    {
+      "from": "tool-use-design",
+      "to": "tool-use-design:description-contract",
+      "type": "applies"
+    },
+    {
+      "from": "tool-use-design:description-contract",
+      "to": "tool-use-design:reciprocal-boundary",
+      "type": "requires"
+    },
+    {
+      "from": "tool-use-design:reciprocal-boundary",
+      "to": "tool-use-design:rename-split",
+      "type": "enforced_by"
+    },
+    {
+      "from": "tool-use-design",
+      "to": "tool-use-design:grep-read-edit",
+      "type": "applies"
+    },
+    {
+      "from": "tool-use-design:grep-read-edit",
+      "to": "tool-use-design:edit-failure-mode",
+      "type": "handles"
+    },
+    {
+      "from": "tool-use-design:grep-read-edit",
+      "to": "tool-use-design:read-all-antipattern",
+      "type": "prevents"
+    },
+    {
+      "from": "tool-use-design",
+      "to": "tool-use-design:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "tool-use-design",
+      "to": "tool-use-design:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "tool-use-design",
+      "to": "tool-use-design:antipattern",
+      "type": "guards_against"
+    }
+  ]
+}

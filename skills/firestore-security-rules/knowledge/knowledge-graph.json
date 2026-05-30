@@ -23,6 +23,21 @@
       "id": "firestore-security-rules:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "firestore-security-rules:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "firestore-security-rules:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "firestore-security-rules:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "firestore-security-rules",
       "to": "firestore-security-rules:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "firestore-security-rules",
+      "to": "firestore-security-rules:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "firestore-security-rules",
+      "to": "firestore-security-rules:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "firestore-security-rules",
+      "to": "firestore-security-rules:antipattern",
+      "type": "guards_against"
     }
   ]
 }

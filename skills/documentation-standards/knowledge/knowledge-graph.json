@@ -23,6 +23,21 @@
       "id": "documentation-standards:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "documentation-standards:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "documentation-standards:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "documentation-standards:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "documentation-standards",
       "to": "documentation-standards:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "documentation-standards",
+      "to": "documentation-standards:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "documentation-standards",
+      "to": "documentation-standards:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "documentation-standards",
+      "to": "documentation-standards:antipattern",
+      "type": "guards_against"
     }
   ]
 }

@@ -23,6 +23,21 @@
       "id": "sofka-sap-implementation:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "sofka-sap-implementation:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "sofka-sap-implementation:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "sofka-sap-implementation:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "sofka-sap-implementation",
       "to": "sofka-sap-implementation:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "sofka-sap-implementation",
+      "to": "sofka-sap-implementation:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "sofka-sap-implementation",
+      "to": "sofka-sap-implementation:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "sofka-sap-implementation",
+      "to": "sofka-sap-implementation:antipattern",
+      "type": "guards_against"
     }
   ]
 }

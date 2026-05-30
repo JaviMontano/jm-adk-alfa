@@ -23,6 +23,21 @@
       "id": "iic-checklist-generator:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "iic-checklist-generator:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "iic-checklist-generator:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "iic-checklist-generator:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "iic-checklist-generator",
       "to": "iic-checklist-generator:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "iic-checklist-generator",
+      "to": "iic-checklist-generator:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "iic-checklist-generator",
+      "to": "iic-checklist-generator:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "iic-checklist-generator",
+      "to": "iic-checklist-generator:antipattern",
+      "type": "guards_against"
     }
   ]
 }

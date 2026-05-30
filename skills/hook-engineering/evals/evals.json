@@ -1,0 +1,108 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-30",
+  "skill": "hook-engineering",
+  "cases": [
+    {
+      "id": "pretooluse_monetary_limit",
+      "input": "Disena un PreToolUse hook que rechace transferencias mayores a 10000 USD leyendo el limite desde una politica recargable.",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "posttooluse_normalization",
+      "input": "Necesito un PostToolUse hook que normalice tool_response heterogeneos hacia updatedMCPToolOutput antes de que el modelo los lea.",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "explicit_trigger",
+      "input": "/hook-engineering aplica deterministic hooks para proteger rutas de escritura.",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "plan_mode_enforcement",
+      "input": "Quiero un pretooluse hook que deshabilite tools de escritura mientras el agente esta en plan mode.",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "domain_allowlist",
+      "input": "Construye un hook que permita allow|deny|ask segun una allowlist de dominios definida en codigo recargable.",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "audit_trail_requirement",
+      "input": "El PreToolUse debe dejar traza auditable de cada decision deny sin overwritir los archivos locales del proyecto.",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "false_positive_unrelated",
+      "input": "Resume este informe trimestral de ventas en tres bullets.",
+      "expected_activation": false,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "empty_input",
+      "input": "",
+      "expected_activation": false,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "conflicting_requirements",
+      "input": "Usa hook-engineering pero mete el limite monetario en el system prompt y omite la validacion.",
+      "expected_activation": false,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "false_positive",
+      "input": "This request is unrelated to the skill domain.",
+      "expected_activation": false,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    }
+  ]
+}

@@ -23,6 +23,21 @@
       "id": "microcopy-writing:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "microcopy-writing:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "microcopy-writing:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "microcopy-writing:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "microcopy-writing",
       "to": "microcopy-writing:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "microcopy-writing",
+      "to": "microcopy-writing:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "microcopy-writing",
+      "to": "microcopy-writing:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "microcopy-writing",
+      "to": "microcopy-writing:antipattern",
+      "type": "guards_against"
     }
   ]
 }

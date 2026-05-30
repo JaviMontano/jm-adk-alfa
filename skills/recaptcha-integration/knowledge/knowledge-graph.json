@@ -23,6 +23,21 @@
       "id": "recaptcha-integration:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "recaptcha-integration:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "recaptcha-integration:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "recaptcha-integration:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "recaptcha-integration",
       "to": "recaptcha-integration:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "recaptcha-integration",
+      "to": "recaptcha-integration:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "recaptcha-integration",
+      "to": "recaptcha-integration:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "recaptcha-integration",
+      "to": "recaptcha-integration:antipattern",
+      "type": "guards_against"
     }
   ]
 }

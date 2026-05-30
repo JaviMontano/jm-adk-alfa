@@ -73,6 +73,21 @@
       "id": "antipattern:massive-read-upfront",
       "type": "antipattern",
       "label": "Read masivo del repo upfront quema tokens"
+    },
+    {
+      "id": "katas-builtin-tool-selection:ontology",
+      "type": "ontology",
+      "label": "Domain: tool-design-mcp"
+    },
+    {
+      "id": "katas-builtin-tool-selection:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "katas-builtin-tool-selection:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -140,6 +155,21 @@
       "from": "antipattern:massive-read-upfront",
       "to": "concept:read",
       "type": "misuses"
+    },
+    {
+      "from": "katas-builtin-tool-selection",
+      "to": "katas-builtin-tool-selection:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "katas-builtin-tool-selection",
+      "to": "katas-builtin-tool-selection:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "katas-builtin-tool-selection",
+      "to": "katas-builtin-tool-selection:antipattern",
+      "type": "guards_against"
     }
   ]
 }

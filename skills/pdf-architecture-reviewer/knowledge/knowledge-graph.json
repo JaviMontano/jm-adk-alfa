@@ -23,6 +23,21 @@
       "id": "pdf-architecture-reviewer:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "pdf-architecture-reviewer:ontology",
+      "type": "ontology",
+      "label": "Domain: prompt-structured-output"
+    },
+    {
+      "id": "pdf-architecture-reviewer:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "pdf-architecture-reviewer:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "pdf-architecture-reviewer",
       "to": "pdf-architecture-reviewer:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "pdf-architecture-reviewer",
+      "to": "pdf-architecture-reviewer:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "pdf-architecture-reviewer",
+      "to": "pdf-architecture-reviewer:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "pdf-architecture-reviewer",
+      "to": "pdf-architecture-reviewer:antipattern",
+      "type": "guards_against"
     }
   ]
 }

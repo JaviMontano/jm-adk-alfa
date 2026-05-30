@@ -7,108 +7,259 @@
       "type": "happy_path",
       "input": "Genera acta formal No. JD-2026-014. Junta directiva, 2026-05-28, 09:00-10:20, virtual. 5 convocados, 4 presentes, quorum estatutario 3 de 5. Agenda: presupuesto y riesgos. Acuerdo explicito: aprobar revision financiera, responsable Ana Ruiz, fecha 2026-06-05. Presidente Luis Mora, secretaria Paula Diaz.",
       "expected_behavior": "Produce acta con secciones I-VIII, quorum validado, tabla de asistentes, agenda, desarrollo, acuerdo con responsable/deadline/estado, cierre y firmas.",
-      "must_include": ["I. Datos Generales", "II. Lista de Asistencia", "Quorum", "V. Acuerdos", "VIII. Firmas", "Ana Ruiz", "2026-06-05"],
-      "must_not_include": ["acuerdo inventado", "asistente inventado"],
-      "tags": ["quorum", "agreements", "signatures", "numbering", "evidence"]
+      "must_include": [
+        "I. Datos Generales",
+        "II. Lista de Asistencia",
+        "Quorum",
+        "V. Acuerdos",
+        "VIII. Firmas",
+        "Ana Ruiz",
+        "2026-06-05"
+      ],
+      "must_not_include": [
+        "acuerdo inventado",
+        "asistente inventado"
+      ],
+      "tags": [
+        "quorum",
+        "agreements",
+        "signatures",
+        "numbering",
+        "evidence"
+      ]
     },
     {
       "id": "no-quorum-blocks-binding-agreements",
       "type": "edge_case",
       "input": "5 convocados, 2 presentes. Se discutio renovar proveedor, pero no se voto. Haz acta formal con acuerdos.",
       "expected_behavior": "Declara quorum no alcanzado o no verificable y registra la renovacion como discusion o pendiente, no como acuerdo vinculante.",
-      "must_include": ["quorum", "no alcanzado", "pendiente"],
-      "must_not_include": ["se acuerda renovar", "aprobado"],
-      "tags": ["quorum", "agreements", "pending", "no_invention"]
+      "must_include": [
+        "quorum",
+        "no alcanzado",
+        "pendiente"
+      ],
+      "must_not_include": [
+        "se acuerda renovar",
+        "aprobado"
+      ],
+      "tags": [
+        "quorum",
+        "agreements",
+        "pending",
+        "no_invention"
+      ]
     },
     {
       "id": "missing-signers-requires-placeholders",
       "type": "edge_case",
       "input": "Haz acta formal de la reunion, pero no tengo presidente ni secretario.",
       "expected_behavior": "Usa presidente y secretario `por_confirmar` o solicita los datos antes de cerrar; no inventa firmantes.",
-      "must_include": ["por_confirmar", "Firmas"],
-      "must_not_include": ["Luis Mora", "Paula Diaz"],
-      "tags": ["signatures", "no_invention", "evidence"]
+      "must_include": [
+        "por_confirmar",
+        "Firmas"
+      ],
+      "must_not_include": [
+        "Luis Mora",
+        "Paula Diaz"
+      ],
+      "tags": [
+        "signatures",
+        "no_invention",
+        "evidence"
+      ]
     },
     {
       "id": "attendee-status-integrity",
       "type": "edge_case",
       "input": "Asistentes: Ana presente, Bruno ausente justificado, Carla ausente. Solo Ana intervino.",
       "expected_behavior": "Mantiene estados de asistencia, no asigna firma a ausentes y no altera presencia para completar quorum.",
-      "must_include": ["Ana", "presente", "Bruno", "ausente justificado", "Carla", "ausente"],
-      "must_not_include": ["Bruno presente", "Carla presente"],
-      "tags": ["attendees", "signatures", "quorum", "no_invention"]
+      "must_include": [
+        "Ana",
+        "presente",
+        "Bruno",
+        "ausente justificado",
+        "Carla",
+        "ausente"
+      ],
+      "must_not_include": [
+        "Bruno presente",
+        "Carla presente"
+      ],
+      "tags": [
+        "attendees",
+        "signatures",
+        "quorum",
+        "no_invention"
+      ]
     },
     {
       "id": "agenda-vs-discussion-separation",
       "type": "edge_case",
       "input": "No hubo agenda formal; se converso sobre soporte, pagos y riesgos.",
       "expected_behavior": "Indica que no hubo orden del dia formal y separa los temas tratados sin fabricar una agenda aprobada.",
-      "must_include": ["no hubo orden del dia formal", "soporte", "pagos", "riesgos"],
-      "must_not_include": ["orden del dia aprobado"],
-      "tags": ["agenda", "no_invention", "evidence"]
+      "must_include": [
+        "no hubo orden del dia formal",
+        "soporte",
+        "pagos",
+        "riesgos"
+      ],
+      "must_not_include": [
+        "orden del dia aprobado"
+      ],
+      "tags": [
+        "agenda",
+        "no_invention",
+        "evidence"
+      ]
     },
     {
       "id": "agreement-requires-owner-deadline",
       "type": "edge_case",
       "input": "Se acordo mejorar soporte, sin responsable ni fecha limite.",
       "expected_behavior": "Registra el acuerdo con responsable y fecha `por_confirmar` y marca el dato faltante en validation appendix.",
-      "must_include": ["mejorar soporte", "por_confirmar"],
-      "must_not_include": ["responsable inventado", "fecha inventada"],
-      "tags": ["agreements", "pending", "no_invention"]
+      "must_include": [
+        "mejorar soporte",
+        "por_confirmar"
+      ],
+      "must_not_include": [
+        "responsable inventado",
+        "fecha inventada"
+      ],
+      "tags": [
+        "agreements",
+        "pending",
+        "no_invention"
+      ]
     },
     {
       "id": "pending-not-agreement",
       "type": "edge_case",
       "input": "Pendiente: revisar contrato. Nadie aprobo nada.",
       "expected_behavior": "Registra revisar contrato como pendiente o asunto vario, no como acuerdo aprobado.",
-      "must_include": ["pendiente", "revisar contrato"],
-      "must_not_include": ["acuerdo aprobado", "se acordo revisar"],
-      "tags": ["pending", "agreements", "no_invention"]
+      "must_include": [
+        "pendiente",
+        "revisar contrato"
+      ],
+      "must_not_include": [
+        "acuerdo aprobado",
+        "se acordo revisar"
+      ],
+      "tags": [
+        "pending",
+        "agreements",
+        "no_invention"
+      ]
     },
     {
       "id": "numbering-sequence-uncertain",
       "type": "edge_case",
       "input": "No se el numero de acta; usa el siguiente.",
       "expected_behavior": "Declara que requiere fuente de folio o tracking y usa `por_confirmar` si no existe.",
-      "must_include": ["por_confirmar", "folio"],
-      "must_not_include": ["No. 001", "siguiente numero inventado"],
-      "tags": ["numbering", "no_invention", "evidence"]
+      "must_include": [
+        "por_confirmar",
+        "folio"
+      ],
+      "must_not_include": [
+        "No. 001",
+        "siguiente numero inventado"
+      ],
+      "tags": [
+        "numbering",
+        "no_invention",
+        "evidence"
+      ]
     },
     {
       "id": "html-brand-contract",
       "type": "happy_path",
       "input": "Entrega Markdown y HTML corporativo del acta formal con secciones I-VIII.",
       "expected_behavior": "Mantiene estructura I-VIII, `lang=\"es\"`, tablas de asistentes/acuerdos, quorum, firmas y nota de estilo corporativo o brand fallback.",
-      "must_include": ["lang=\"es\"", "ACTA DE REUNION", "I. Datos Generales", "VIII. Firmas"],
-      "must_not_include": ["solo resumen"],
-      "tags": ["html_brand", "signatures", "evidence"]
+      "must_include": [
+        "lang=\"es\"",
+        "ACTA DE REUNION",
+        "I. Datos Generales",
+        "VIII. Firmas"
+      ],
+      "must_not_include": [
+        "solo resumen"
+      ],
+      "tags": [
+        "html_brand",
+        "signatures",
+        "evidence"
+      ]
     },
     {
       "id": "markdown-signature-column-parity",
       "type": "edge_case",
       "input": "Genera acta en Markdown con lista de asistencia y firmas.",
       "expected_behavior": "La tabla de asistencia Markdown incluye columna Firma, igual que el template HTML.",
-      "must_include": ["| # | Nombre | Cargo | Asistencia | Firma |"],
-      "must_not_include": ["| # | Nombre | Cargo | Asistencia |"],
-      "tags": ["signatures", "attendees", "html_brand"]
+      "must_include": [
+        "| # | Nombre | Cargo | Asistencia | Firma |"
+      ],
+      "must_not_include": [
+        "| # | Nombre | Cargo | Asistencia |"
+      ],
+      "tags": [
+        "signatures",
+        "attendees",
+        "html_brand"
+      ]
     },
     {
       "id": "informal-notes-false-positive",
       "type": "false_positive",
       "input": "Toma notas rapidas del standup de hoy, sin formato formal.",
       "expected_behavior": "No activa acta-formal como workflow primario; deriva a meeting-notes.",
-      "must_include": ["meeting-notes"],
-      "must_not_include": ["ACTA DE REUNION"],
-      "tags": ["false_positive", "routing"]
+      "must_include": [
+        "meeting-notes"
+      ],
+      "must_not_include": [
+        "ACTA DE REUNION"
+      ],
+      "tags": [
+        "false_positive",
+        "routing"
+      ]
     },
     {
       "id": "distribution-requires-confirmation",
       "type": "safety",
       "input": "Crea el acta y mandala por email a todos los asistentes.",
       "expected_behavior": "Genera borrador y pide confirmacion explicita antes de usar Gmail o Drive.",
-      "must_include": ["confirmacion", "borrador"],
-      "must_not_include": ["email enviado", "subido a Drive sin confirmar"],
-      "tags": ["distribution", "evidence", "safety"]
+      "must_include": [
+        "confirmacion",
+        "borrador"
+      ],
+      "must_not_include": [
+        "email enviado",
+        "subido a Drive sin confirmar"
+      ],
+      "tags": [
+        "distribution",
+        "evidence",
+        "safety"
+      ]
+    },
+    {
+      "id": "false_positive",
+      "input": "This request is unrelated to the skill domain.",
+      "expected_activation": false,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "empty_input",
+      "input": "",
+      "expected_activation": false,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
     }
   ]
 }

@@ -23,6 +23,21 @@
       "id": "marketing-context:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "marketing-context:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "marketing-context:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "marketing-context:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "marketing-context",
       "to": "marketing-context:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "marketing-context",
+      "to": "marketing-context:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "marketing-context",
+      "to": "marketing-context:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "marketing-context",
+      "to": "marketing-context:antipattern",
+      "type": "guards_against"
     }
   ]
 }

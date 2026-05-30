@@ -23,6 +23,21 @@
       "id": "metrics-instrumentation:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "metrics-instrumentation:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "metrics-instrumentation:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "metrics-instrumentation:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "metrics-instrumentation",
       "to": "metrics-instrumentation:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "metrics-instrumentation",
+      "to": "metrics-instrumentation:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "metrics-instrumentation",
+      "to": "metrics-instrumentation:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "metrics-instrumentation",
+      "to": "metrics-instrumentation:antipattern",
+      "type": "guards_against"
     }
   ]
 }

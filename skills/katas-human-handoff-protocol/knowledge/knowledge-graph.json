@@ -63,6 +63,21 @@
       "id": "related:katas-numeric-cross-validation",
       "type": "related_skill",
       "label": "katas-numeric-cross-validation"
+    },
+    {
+      "id": "katas-human-handoff-protocol:ontology",
+      "type": "ontology",
+      "label": "Domain: agentic-architecture"
+    },
+    {
+      "id": "katas-human-handoff-protocol:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "katas-human-handoff-protocol:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -120,6 +135,21 @@
       "from": "related:katas-numeric-cross-validation",
       "to": "concept:escalation-preconditions",
       "type": "triggers"
+    },
+    {
+      "from": "katas-human-handoff-protocol",
+      "to": "katas-human-handoff-protocol:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "katas-human-handoff-protocol",
+      "to": "katas-human-handoff-protocol:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "katas-human-handoff-protocol",
+      "to": "katas-human-handoff-protocol:antipattern",
+      "type": "guards_against"
     }
   ]
 }

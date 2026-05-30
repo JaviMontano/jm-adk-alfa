@@ -23,6 +23,21 @@
       "id": "safe-scripting-and-bash:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "safe-scripting-and-bash:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "safe-scripting-and-bash:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "safe-scripting-and-bash:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "safe-scripting-and-bash",
       "to": "safe-scripting-and-bash:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "safe-scripting-and-bash",
+      "to": "safe-scripting-and-bash:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "safe-scripting-and-bash",
+      "to": "safe-scripting-and-bash:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "safe-scripting-and-bash",
+      "to": "safe-scripting-and-bash:antipattern",
+      "type": "guards_against"
     }
   ]
 }

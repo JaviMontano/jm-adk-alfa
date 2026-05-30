@@ -1,0 +1,135 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-30",
+  "skill": "independent-review-design",
+  "nodes": [
+    {
+      "id": "independent-review-design",
+      "type": "skill",
+      "label": "independent-review-design"
+    },
+    {
+      "id": "independent-review-design:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "independent-review-design:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "independent-review-design:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    },
+    {
+      "id": "independent-review-design:clean-session-reviewer",
+      "type": "concept",
+      "label": "Clean-session independent reviewer"
+    },
+    {
+      "id": "independent-review-design:per-file-pass",
+      "type": "concept",
+      "label": "Per-file review pass"
+    },
+    {
+      "id": "independent-review-design:cross-file-pass",
+      "type": "concept",
+      "label": "Cross-file review pass"
+    },
+    {
+      "id": "independent-review-design:no-quorum",
+      "type": "concept",
+      "label": "No N-of-M quorum"
+    },
+    {
+      "id": "independent-review-design:self-review-quorum",
+      "type": "anti_pattern",
+      "label": "Self-review in same session + 2-of-3 quorum"
+    },
+    {
+      "id": "independent-review-design:ontology",
+      "type": "ontology",
+      "label": "Domain: prompt-structured-output"
+    },
+    {
+      "id": "independent-review-design:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "independent-review-design:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
+    }
+  ],
+  "edges": [
+    {
+      "from": "independent-review-design",
+      "to": "independent-review-design:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "independent-review-design",
+      "to": "independent-review-design:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "independent-review-design",
+      "to": "independent-review-design:quality",
+      "type": "validated_by"
+    },
+    {
+      "from": "independent-review-design",
+      "to": "independent-review-design:clean-session-reviewer",
+      "type": "applies"
+    },
+    {
+      "from": "independent-review-design",
+      "to": "independent-review-design:per-file-pass",
+      "type": "applies"
+    },
+    {
+      "from": "independent-review-design",
+      "to": "independent-review-design:cross-file-pass",
+      "type": "applies"
+    },
+    {
+      "from": "independent-review-design",
+      "to": "independent-review-design:no-quorum",
+      "type": "applies"
+    },
+    {
+      "from": "independent-review-design:per-file-pass",
+      "to": "independent-review-design:cross-file-pass",
+      "type": "separated_from"
+    },
+    {
+      "from": "independent-review-design:no-quorum",
+      "to": "independent-review-design:self-review-quorum",
+      "type": "contradicts"
+    },
+    {
+      "from": "independent-review-design:clean-session-reviewer",
+      "to": "independent-review-design:self-review-quorum",
+      "type": "contradicts"
+    },
+    {
+      "from": "independent-review-design",
+      "to": "independent-review-design:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "independent-review-design",
+      "to": "independent-review-design:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "independent-review-design",
+      "to": "independent-review-design:antipattern",
+      "type": "guards_against"
+    }
+  ]
+}

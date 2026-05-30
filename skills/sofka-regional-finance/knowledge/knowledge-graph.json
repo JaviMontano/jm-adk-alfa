@@ -23,6 +23,21 @@
       "id": "sofka-regional-finance:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "sofka-regional-finance:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "sofka-regional-finance:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "sofka-regional-finance:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "sofka-regional-finance",
       "to": "sofka-regional-finance:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "sofka-regional-finance",
+      "to": "sofka-regional-finance:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "sofka-regional-finance",
+      "to": "sofka-regional-finance:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "sofka-regional-finance",
+      "to": "sofka-regional-finance:antipattern",
+      "type": "guards_against"
     }
   ]
 }

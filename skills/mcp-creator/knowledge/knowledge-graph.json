@@ -23,6 +23,21 @@
       "id": "mcp-creator:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "mcp-creator:ontology",
+      "type": "ontology",
+      "label": "Domain: tool-design-mcp"
+    },
+    {
+      "id": "mcp-creator:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "mcp-creator:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "mcp-creator",
       "to": "mcp-creator:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "mcp-creator",
+      "to": "mcp-creator:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "mcp-creator",
+      "to": "mcp-creator:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "mcp-creator",
+      "to": "mcp-creator:antipattern",
+      "type": "guards_against"
     }
   ]
 }

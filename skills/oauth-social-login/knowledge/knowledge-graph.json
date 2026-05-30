@@ -23,6 +23,21 @@
       "id": "oauth-social-login:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "oauth-social-login:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "oauth-social-login:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "oauth-social-login:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "oauth-social-login",
       "to": "oauth-social-login:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "oauth-social-login",
+      "to": "oauth-social-login:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "oauth-social-login",
+      "to": "oauth-social-login:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "oauth-social-login",
+      "to": "oauth-social-login:antipattern",
+      "type": "guards_against"
     }
   ]
 }

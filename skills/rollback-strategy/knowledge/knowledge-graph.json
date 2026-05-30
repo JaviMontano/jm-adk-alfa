@@ -23,6 +23,21 @@
       "id": "rollback-strategy:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "rollback-strategy:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "rollback-strategy:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "rollback-strategy:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "rollback-strategy",
       "to": "rollback-strategy:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "rollback-strategy",
+      "to": "rollback-strategy:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "rollback-strategy",
+      "to": "rollback-strategy:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "rollback-strategy",
+      "to": "rollback-strategy:antipattern",
+      "type": "guards_against"
     }
   ]
 }

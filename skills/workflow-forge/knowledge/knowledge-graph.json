@@ -23,6 +23,21 @@
       "id": "workflow-forge:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "workflow-forge:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "workflow-forge:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "workflow-forge:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "workflow-forge",
       "to": "workflow-forge:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "workflow-forge",
+      "to": "workflow-forge:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "workflow-forge",
+      "to": "workflow-forge:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "workflow-forge",
+      "to": "workflow-forge:antipattern",
+      "type": "guards_against"
     }
   ]
 }

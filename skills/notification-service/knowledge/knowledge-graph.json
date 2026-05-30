@@ -23,6 +23,21 @@
       "id": "notification-service:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "notification-service:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "notification-service:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "notification-service:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "notification-service",
       "to": "notification-service:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "notification-service",
+      "to": "notification-service:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "notification-service",
+      "to": "notification-service:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "notification-service",
+      "to": "notification-service:antipattern",
+      "type": "guards_against"
     }
   ]
 }

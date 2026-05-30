@@ -68,6 +68,21 @@
       "id": "kata:20-provenance",
       "type": "related_kata",
       "label": "Kata 20 - preservacion de provenance"
+    },
+    {
+      "id": "katas-multipass-prompt-chaining:ontology",
+      "type": "ontology",
+      "label": "Domain: prompt-structured-output"
+    },
+    {
+      "id": "katas-multipass-prompt-chaining:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "katas-multipass-prompt-chaining:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -135,6 +150,21 @@
       "from": "concept:integration-pass",
       "to": "kata:20-provenance",
       "type": "related_to"
+    },
+    {
+      "from": "katas-multipass-prompt-chaining",
+      "to": "katas-multipass-prompt-chaining:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "katas-multipass-prompt-chaining",
+      "to": "katas-multipass-prompt-chaining:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "katas-multipass-prompt-chaining",
+      "to": "katas-multipass-prompt-chaining:antipattern",
+      "type": "guards_against"
     }
   ]
 }

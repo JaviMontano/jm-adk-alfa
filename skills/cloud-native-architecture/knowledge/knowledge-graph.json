@@ -23,6 +23,21 @@
       "id": "cloud-native-architecture:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "cloud-native-architecture:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "cloud-native-architecture:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "cloud-native-architecture:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "cloud-native-architecture",
       "to": "cloud-native-architecture:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "cloud-native-architecture",
+      "to": "cloud-native-architecture:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "cloud-native-architecture",
+      "to": "cloud-native-architecture:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "cloud-native-architecture",
+      "to": "cloud-native-architecture:antipattern",
+      "type": "guards_against"
     }
   ]
 }

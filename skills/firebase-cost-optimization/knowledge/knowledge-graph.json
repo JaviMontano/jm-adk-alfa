@@ -23,6 +23,21 @@
       "id": "firebase-cost-optimization:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "firebase-cost-optimization:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "firebase-cost-optimization:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "firebase-cost-optimization:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "firebase-cost-optimization",
       "to": "firebase-cost-optimization:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "firebase-cost-optimization",
+      "to": "firebase-cost-optimization:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "firebase-cost-optimization",
+      "to": "firebase-cost-optimization:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "firebase-cost-optimization",
+      "to": "firebase-cost-optimization:antipattern",
+      "type": "guards_against"
     }
   ]
 }

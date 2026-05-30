@@ -1,0 +1,145 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-30",
+  "skill": "few-shot-engineering",
+  "nodes": [
+    {
+      "id": "few-shot-engineering",
+      "type": "skill",
+      "label": "few-shot-engineering"
+    },
+    {
+      "id": "few-shot-engineering:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "few-shot-engineering:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "few-shot-engineering:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    },
+    {
+      "id": "concept:edge-calibration",
+      "type": "concept",
+      "label": "Calibracion de bordes (no centro)"
+    },
+    {
+      "id": "concept:output-schema",
+      "type": "concept",
+      "label": "Mismo schema de salida"
+    },
+    {
+      "id": "concept:example-budget",
+      "type": "concept",
+      "label": "Presupuesto 2-4 ejemplos"
+    },
+    {
+      "id": "concept:static-zone-placement",
+      "type": "concept",
+      "label": "Colocacion al inicio (zona estatica)"
+    },
+    {
+      "id": "concept:prefix-cache",
+      "type": "concept",
+      "label": "Prefix cache cache-friendly"
+    },
+    {
+      "id": "concept:complementarity",
+      "type": "concept",
+      "label": "Complementar sin contradecir el schema"
+    },
+    {
+      "id": "antipattern:abstract-prose",
+      "type": "antipattern",
+      "label": "Criterio en prosa abstracta o >5 ejemplos"
+    },
+    {
+      "id": "few-shot-engineering:ontology",
+      "type": "ontology",
+      "label": "Domain: prompt-structured-output"
+    },
+    {
+      "id": "few-shot-engineering:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "few-shot-engineering:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
+    }
+  ],
+  "edges": [
+    {
+      "from": "few-shot-engineering",
+      "to": "few-shot-engineering:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "few-shot-engineering",
+      "to": "few-shot-engineering:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "few-shot-engineering",
+      "to": "few-shot-engineering:quality",
+      "type": "validated_by"
+    },
+    {
+      "from": "few-shot-engineering",
+      "to": "concept:edge-calibration",
+      "type": "applies"
+    },
+    {
+      "from": "few-shot-engineering",
+      "to": "concept:output-schema",
+      "type": "applies"
+    },
+    {
+      "from": "few-shot-engineering",
+      "to": "concept:example-budget",
+      "type": "applies"
+    },
+    {
+      "from": "few-shot-engineering",
+      "to": "concept:static-zone-placement",
+      "type": "applies"
+    },
+    {
+      "from": "concept:static-zone-placement",
+      "to": "concept:prefix-cache",
+      "type": "enables"
+    },
+    {
+      "from": "concept:edge-calibration",
+      "to": "concept:complementarity",
+      "type": "requires"
+    },
+    {
+      "from": "few-shot-engineering:quality",
+      "to": "antipattern:abstract-prose",
+      "type": "rejects"
+    },
+    {
+      "from": "few-shot-engineering",
+      "to": "few-shot-engineering:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "few-shot-engineering",
+      "to": "few-shot-engineering:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "few-shot-engineering",
+      "to": "few-shot-engineering:antipattern",
+      "type": "guards_against"
+    }
+  ]
+}

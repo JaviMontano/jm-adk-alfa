@@ -23,6 +23,21 @@
       "id": "iic-constitution:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "iic-constitution:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "iic-constitution:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "iic-constitution:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "iic-constitution",
       "to": "iic-constitution:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "iic-constitution",
+      "to": "iic-constitution:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "iic-constitution",
+      "to": "iic-constitution:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "iic-constitution",
+      "to": "iic-constitution:antipattern",
+      "type": "guards_against"
     }
   ]
 }

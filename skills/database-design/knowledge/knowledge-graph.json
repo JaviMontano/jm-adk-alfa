@@ -23,6 +23,21 @@
       "id": "database-design:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "database-design:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "database-design:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "database-design:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "database-design",
       "to": "database-design:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "database-design",
+      "to": "database-design:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "database-design",
+      "to": "database-design:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "database-design",
+      "to": "database-design:antipattern",
+      "type": "guards_against"
     }
   ]
 }

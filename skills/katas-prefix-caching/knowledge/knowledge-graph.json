@@ -48,6 +48,21 @@
       "id": "katas-prefix-caching:anti-pattern",
       "type": "anti_pattern",
       "label": "Dato dinamico al inicio invalida el cache cada llamada"
+    },
+    {
+      "id": "katas-prefix-caching:ontology",
+      "type": "ontology",
+      "label": "Domain: context-reliability"
+    },
+    {
+      "id": "katas-prefix-caching:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "katas-prefix-caching:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -90,6 +105,21 @@
       "from": "katas-prefix-caching:anti-pattern",
       "to": "katas-prefix-caching:static-prefix",
       "type": "violates"
+    },
+    {
+      "from": "katas-prefix-caching",
+      "to": "katas-prefix-caching:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "katas-prefix-caching",
+      "to": "katas-prefix-caching:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "katas-prefix-caching",
+      "to": "katas-prefix-caching:antipattern",
+      "type": "guards_against"
     }
   ]
 }

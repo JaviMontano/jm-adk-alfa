@@ -23,6 +23,21 @@
       "id": "capacity-planning:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "capacity-planning:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "capacity-planning:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "capacity-planning:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "capacity-planning",
       "to": "capacity-planning:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "capacity-planning",
+      "to": "capacity-planning:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "capacity-planning",
+      "to": "capacity-planning:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "capacity-planning",
+      "to": "capacity-planning:antipattern",
+      "type": "guards_against"
     }
   ]
 }

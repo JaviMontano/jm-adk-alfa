@@ -23,6 +23,21 @@
       "id": "internal-memo:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "internal-memo:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "internal-memo:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "internal-memo:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "internal-memo",
       "to": "internal-memo:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "internal-memo",
+      "to": "internal-memo:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "internal-memo",
+      "to": "internal-memo:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "internal-memo",
+      "to": "internal-memo:antipattern",
+      "type": "guards_against"
     }
   ]
 }

@@ -23,6 +23,21 @@
       "id": "post-tool-use-validator:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "post-tool-use-validator:ontology",
+      "type": "ontology",
+      "label": "Domain: tool-design-mcp"
+    },
+    {
+      "id": "post-tool-use-validator:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "post-tool-use-validator:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "post-tool-use-validator",
       "to": "post-tool-use-validator:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "post-tool-use-validator",
+      "to": "post-tool-use-validator:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "post-tool-use-validator",
+      "to": "post-tool-use-validator:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "post-tool-use-validator",
+      "to": "post-tool-use-validator:antipattern",
+      "type": "guards_against"
     }
   ]
 }

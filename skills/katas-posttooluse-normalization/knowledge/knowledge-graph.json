@@ -53,6 +53,21 @@
       "id": "argument:runtime-responsibility",
       "type": "argument",
       "label": "La normalizacion es responsabilidad del runtime, no de cada tool"
+    },
+    {
+      "id": "katas-posttooluse-normalization:ontology",
+      "type": "ontology",
+      "label": "Domain: agentic-architecture/hooks"
+    },
+    {
+      "id": "katas-posttooluse-normalization:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "katas-posttooluse-normalization:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -100,6 +115,21 @@
       "from": "argument:runtime-responsibility",
       "to": "concept:posttooluse-hook",
       "type": "justifies"
+    },
+    {
+      "from": "katas-posttooluse-normalization",
+      "to": "katas-posttooluse-normalization:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "katas-posttooluse-normalization",
+      "to": "katas-posttooluse-normalization:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "katas-posttooluse-normalization",
+      "to": "katas-posttooluse-normalization:antipattern",
+      "type": "guards_against"
     }
   ]
 }

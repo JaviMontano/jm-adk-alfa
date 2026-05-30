@@ -23,6 +23,21 @@
       "id": "iic-tasks-to-issues:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "iic-tasks-to-issues:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "iic-tasks-to-issues:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "iic-tasks-to-issues:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "iic-tasks-to-issues",
       "to": "iic-tasks-to-issues:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "iic-tasks-to-issues",
+      "to": "iic-tasks-to-issues:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "iic-tasks-to-issues",
+      "to": "iic-tasks-to-issues:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "iic-tasks-to-issues",
+      "to": "iic-tasks-to-issues:antipattern",
+      "type": "guards_against"
     }
   ]
 }

@@ -48,6 +48,21 @@
       "id": "antipattern:prose-json-parse",
       "type": "antipattern",
       "label": "Prompt en prosa + json.loads(resp.text)"
+    },
+    {
+      "id": "katas-defensive-structured-extraction:ontology",
+      "type": "ontology",
+      "label": "Domain: tool-design-mcp"
+    },
+    {
+      "id": "katas-defensive-structured-extraction:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "katas-defensive-structured-extraction:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -90,6 +105,21 @@
       "from": "katas-defensive-structured-extraction",
       "to": "antipattern:prose-json-parse",
       "type": "avoids"
+    },
+    {
+      "from": "katas-defensive-structured-extraction",
+      "to": "katas-defensive-structured-extraction:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "katas-defensive-structured-extraction",
+      "to": "katas-defensive-structured-extraction:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "katas-defensive-structured-extraction",
+      "to": "katas-defensive-structured-extraction:antipattern",
+      "type": "guards_against"
     }
   ]
 }

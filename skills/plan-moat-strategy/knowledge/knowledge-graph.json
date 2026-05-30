@@ -23,6 +23,21 @@
       "id": "plan-moat-strategy:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "plan-moat-strategy:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "plan-moat-strategy:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "plan-moat-strategy:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "plan-moat-strategy",
       "to": "plan-moat-strategy:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "plan-moat-strategy",
+      "to": "plan-moat-strategy:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "plan-moat-strategy",
+      "to": "plan-moat-strategy:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "plan-moat-strategy",
+      "to": "plan-moat-strategy:antipattern",
+      "type": "guards_against"
     }
   ]
 }

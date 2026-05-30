@@ -63,6 +63,21 @@
       "id": "antipattern:user-scope-no-fork-no-tools",
       "type": "antipattern",
       "label": "Skill en user scope, sin context: fork, sin allowed-tools"
+    },
+    {
+      "id": "katas-custom-commands-skills:ontology",
+      "type": "ontology",
+      "label": "Domain: claude-code-config"
+    },
+    {
+      "id": "katas-custom-commands-skills:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "katas-custom-commands-skills:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -135,6 +150,21 @@
       "from": "katas-custom-commands-skills:quality",
       "to": "antipattern:user-scope-no-fork-no-tools",
       "type": "rejects"
+    },
+    {
+      "from": "katas-custom-commands-skills",
+      "to": "katas-custom-commands-skills:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "katas-custom-commands-skills",
+      "to": "katas-custom-commands-skills:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "katas-custom-commands-skills",
+      "to": "katas-custom-commands-skills:antipattern",
+      "type": "guards_against"
     }
   ]
 }

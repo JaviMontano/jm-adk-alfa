@@ -23,6 +23,21 @@
       "id": "dynamic-sme:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "dynamic-sme:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "dynamic-sme:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "dynamic-sme:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "dynamic-sme",
       "to": "dynamic-sme:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "dynamic-sme",
+      "to": "dynamic-sme:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "dynamic-sme",
+      "to": "dynamic-sme:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "dynamic-sme",
+      "to": "dynamic-sme:antipattern",
+      "type": "guards_against"
     }
   ]
 }

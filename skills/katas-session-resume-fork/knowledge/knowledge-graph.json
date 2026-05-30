@@ -23,6 +23,21 @@
       "id": "katas-session-resume-fork:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "katas-session-resume-fork:ontology",
+      "type": "ontology",
+      "label": "Domain: claude-code-config"
+    },
+    {
+      "id": "katas-session-resume-fork:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "katas-session-resume-fork:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "katas-session-resume-fork",
       "to": "katas-session-resume-fork:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "katas-session-resume-fork",
+      "to": "katas-session-resume-fork:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "katas-session-resume-fork",
+      "to": "katas-session-resume-fork:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "katas-session-resume-fork",
+      "to": "katas-session-resume-fork:antipattern",
+      "type": "guards_against"
     }
   ]
 }

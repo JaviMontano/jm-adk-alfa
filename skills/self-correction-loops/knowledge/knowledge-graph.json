@@ -1,0 +1,145 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-30",
+  "skill": "self-correction-loops",
+  "nodes": [
+    {
+      "id": "self-correction-loops",
+      "type": "skill",
+      "label": "self-correction-loops"
+    },
+    {
+      "id": "self-correction-loops:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "self-correction-loops:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "self-correction-loops:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    },
+    {
+      "id": "self-correction-loops:declared-vs-computed",
+      "type": "concept",
+      "label": "Declarado vs calculado (recomputo independiente)"
+    },
+    {
+      "id": "self-correction-loops:epsilon",
+      "type": "concept",
+      "label": "Epsilon justificado por tipo de dato"
+    },
+    {
+      "id": "self-correction-loops:mismatch-flag",
+      "type": "concept",
+      "label": "Mismatch tipado con declared y computed"
+    },
+    {
+      "id": "self-correction-loops:escalation",
+      "type": "concept",
+      "label": "Escalada a humano sin sobreescribir"
+    },
+    {
+      "id": "self-correction-loops:structural-test",
+      "type": "gate",
+      "label": "Test estructural de mismatch inyectado"
+    },
+    {
+      "id": "self-correction-loops:silent-correction",
+      "type": "anti_pattern",
+      "label": "total=computed silencioso / confiar en lo declarado"
+    },
+    {
+      "id": "katas-critical-self-correction",
+      "type": "kata",
+      "label": "katas-critical-self-correction"
+    },
+    {
+      "id": "self-correction-loops:ontology",
+      "type": "ontology",
+      "label": "Domain: agentic-architecture"
+    },
+    {
+      "id": "self-correction-loops:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "self-correction-loops:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
+    }
+  ],
+  "edges": [
+    {
+      "from": "self-correction-loops",
+      "to": "self-correction-loops:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "self-correction-loops",
+      "to": "self-correction-loops:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "self-correction-loops",
+      "to": "self-correction-loops:quality",
+      "type": "validated_by"
+    },
+    {
+      "from": "self-correction-loops",
+      "to": "self-correction-loops:declared-vs-computed",
+      "type": "applies"
+    },
+    {
+      "from": "self-correction-loops:declared-vs-computed",
+      "to": "self-correction-loops:epsilon",
+      "type": "requires"
+    },
+    {
+      "from": "self-correction-loops:declared-vs-computed",
+      "to": "self-correction-loops:mismatch-flag",
+      "type": "produces"
+    },
+    {
+      "from": "self-correction-loops:mismatch-flag",
+      "to": "self-correction-loops:escalation",
+      "type": "triggers"
+    },
+    {
+      "from": "self-correction-loops:mismatch-flag",
+      "to": "self-correction-loops:structural-test",
+      "type": "validated_by"
+    },
+    {
+      "from": "self-correction-loops:escalation",
+      "to": "self-correction-loops:silent-correction",
+      "type": "prevents"
+    },
+    {
+      "from": "self-correction-loops",
+      "to": "katas-critical-self-correction",
+      "type": "trained_by"
+    },
+    {
+      "from": "self-correction-loops",
+      "to": "self-correction-loops:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "self-correction-loops",
+      "to": "self-correction-loops:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "self-correction-loops",
+      "to": "self-correction-loops:antipattern",
+      "type": "guards_against"
+    }
+  ]
+}

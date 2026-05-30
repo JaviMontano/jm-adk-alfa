@@ -23,6 +23,21 @@
       "id": "linting-formatting:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "linting-formatting:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "linting-formatting:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "linting-formatting:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "linting-formatting",
       "to": "linting-formatting:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "linting-formatting",
+      "to": "linting-formatting:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "linting-formatting",
+      "to": "linting-formatting:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "linting-formatting",
+      "to": "linting-formatting:antipattern",
+      "type": "guards_against"
     }
   ]
 }

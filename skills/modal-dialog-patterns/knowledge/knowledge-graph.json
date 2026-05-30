@@ -23,6 +23,21 @@
       "id": "modal-dialog-patterns:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "modal-dialog-patterns:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "modal-dialog-patterns:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "modal-dialog-patterns:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "modal-dialog-patterns",
       "to": "modal-dialog-patterns:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "modal-dialog-patterns",
+      "to": "modal-dialog-patterns:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "modal-dialog-patterns",
+      "to": "modal-dialog-patterns:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "modal-dialog-patterns",
+      "to": "modal-dialog-patterns:antipattern",
+      "type": "guards_against"
     }
   ]
 }

@@ -23,6 +23,21 @@
       "id": "build-moat-assets:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "build-moat-assets:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "build-moat-assets:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "build-moat-assets:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "build-moat-assets",
       "to": "build-moat-assets:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "build-moat-assets",
+      "to": "build-moat-assets:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "build-moat-assets",
+      "to": "build-moat-assets:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "build-moat-assets",
+      "to": "build-moat-assets:antipattern",
+      "type": "guards_against"
     }
   ]
 }

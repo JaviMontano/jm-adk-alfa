@@ -23,6 +23,21 @@
       "id": "cross-platform-convert:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "cross-platform-convert:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "cross-platform-convert:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "cross-platform-convert:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "cross-platform-convert",
       "to": "cross-platform-convert:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "cross-platform-convert",
+      "to": "cross-platform-convert:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "cross-platform-convert",
+      "to": "cross-platform-convert:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "cross-platform-convert",
+      "to": "cross-platform-convert:antipattern",
+      "type": "guards_against"
     }
   ]
 }

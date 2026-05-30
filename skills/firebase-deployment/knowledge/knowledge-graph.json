@@ -23,6 +23,21 @@
       "id": "firebase-deployment:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "firebase-deployment:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "firebase-deployment:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "firebase-deployment:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "firebase-deployment",
       "to": "firebase-deployment:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "firebase-deployment",
+      "to": "firebase-deployment:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "firebase-deployment",
+      "to": "firebase-deployment:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "firebase-deployment",
+      "to": "firebase-deployment:antipattern",
+      "type": "guards_against"
     }
   ]
 }

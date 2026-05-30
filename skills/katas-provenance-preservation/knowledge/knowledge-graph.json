@@ -68,6 +68,21 @@
       "id": "kata:16-human-escalation",
       "type": "related_kata",
       "label": "Kata 16 · escalado a humano"
+    },
+    {
+      "id": "katas-provenance-preservation:ontology",
+      "type": "ontology",
+      "label": "Domain: context-reliability"
+    },
+    {
+      "id": "katas-provenance-preservation:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "katas-provenance-preservation:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -125,6 +140,21 @@
       "from": "katas-provenance-preservation",
       "to": "kata:15-numeric-verification",
       "type": "complements"
+    },
+    {
+      "from": "katas-provenance-preservation",
+      "to": "katas-provenance-preservation:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "katas-provenance-preservation",
+      "to": "katas-provenance-preservation:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "katas-provenance-preservation",
+      "to": "katas-provenance-preservation:antipattern",
+      "type": "guards_against"
     }
   ]
 }

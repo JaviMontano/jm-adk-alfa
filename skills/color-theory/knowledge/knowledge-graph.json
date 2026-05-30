@@ -23,6 +23,21 @@
       "id": "color-theory:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "color-theory:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "color-theory:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "color-theory:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "color-theory",
       "to": "color-theory:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "color-theory",
+      "to": "color-theory:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "color-theory",
+      "to": "color-theory:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "color-theory",
+      "to": "color-theory:antipattern",
+      "type": "guards_against"
     }
   ]
 }

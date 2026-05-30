@@ -23,6 +23,21 @@
       "id": "rest-api-development:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "rest-api-development:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "rest-api-development:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "rest-api-development:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "rest-api-development",
       "to": "rest-api-development:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "rest-api-development",
+      "to": "rest-api-development:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "rest-api-development",
+      "to": "rest-api-development:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "rest-api-development",
+      "to": "rest-api-development:antipattern",
+      "type": "guards_against"
     }
   ]
 }

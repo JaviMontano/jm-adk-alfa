@@ -1,0 +1,165 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-30",
+  "skill": "persistent-memory-design",
+  "nodes": [
+    {
+      "id": "persistent-memory-design",
+      "type": "skill",
+      "label": "persistent-memory-design"
+    },
+    {
+      "id": "persistent-memory-design:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "persistent-memory-design:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "persistent-memory-design:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    },
+    {
+      "id": "concept:persistent-scratchpad",
+      "type": "concept",
+      "label": "Persistent scratchpad on disk"
+    },
+    {
+      "id": "concept:fixed-schema",
+      "type": "concept",
+      "label": "Fixed sections: Hypotheses/Decisions/Findings/Open"
+    },
+    {
+      "id": "concept:validated-conclusions",
+      "type": "concept",
+      "label": "Validated conclusions only, with evidence"
+    },
+    {
+      "id": "concept:read-once-reference",
+      "type": "concept",
+      "label": "Read once, reference after (cache-safe)"
+    },
+    {
+      "id": "concept:compact-survival",
+      "type": "concept",
+      "label": "Survives /compact and session reset"
+    },
+    {
+      "id": "anti:conversation-memory",
+      "type": "anti_pattern",
+      "label": "Memory in conversation, unstructured, re-read each turn"
+    },
+    {
+      "id": "related:katas-persistent-scratchpad",
+      "type": "related_skill",
+      "label": "katas-persistent-scratchpad"
+    },
+    {
+      "id": "related:session-lifecycle-management",
+      "type": "related_skill",
+      "label": "session-lifecycle-management"
+    },
+    {
+      "id": "related:provenance-engineering",
+      "type": "related_skill",
+      "label": "provenance-engineering"
+    },
+    {
+      "id": "persistent-memory-design:ontology",
+      "type": "ontology",
+      "label": "Domain: claude-code-config"
+    },
+    {
+      "id": "persistent-memory-design:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "persistent-memory-design:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
+    }
+  ],
+  "edges": [
+    {
+      "from": "persistent-memory-design",
+      "to": "persistent-memory-design:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "persistent-memory-design",
+      "to": "persistent-memory-design:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "persistent-memory-design",
+      "to": "persistent-memory-design:quality",
+      "type": "validated_by"
+    },
+    {
+      "from": "persistent-memory-design",
+      "to": "concept:persistent-scratchpad",
+      "type": "builds"
+    },
+    {
+      "from": "concept:persistent-scratchpad",
+      "to": "concept:fixed-schema",
+      "type": "structured_by"
+    },
+    {
+      "from": "concept:persistent-scratchpad",
+      "to": "concept:validated-conclusions",
+      "type": "contains_only"
+    },
+    {
+      "from": "concept:persistent-scratchpad",
+      "to": "concept:read-once-reference",
+      "type": "accessed_via"
+    },
+    {
+      "from": "concept:persistent-scratchpad",
+      "to": "concept:compact-survival",
+      "type": "guarantees"
+    },
+    {
+      "from": "concept:read-once-reference",
+      "to": "anti:conversation-memory",
+      "type": "prevents"
+    },
+    {
+      "from": "concept:validated-conclusions",
+      "to": "related:provenance-engineering",
+      "type": "supported_by"
+    },
+    {
+      "from": "concept:compact-survival",
+      "to": "related:session-lifecycle-management",
+      "type": "complements"
+    },
+    {
+      "from": "persistent-memory-design",
+      "to": "related:katas-persistent-scratchpad",
+      "type": "practiced_by"
+    },
+    {
+      "from": "persistent-memory-design",
+      "to": "persistent-memory-design:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "persistent-memory-design",
+      "to": "persistent-memory-design:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "persistent-memory-design",
+      "to": "persistent-memory-design:antipattern",
+      "type": "guards_against"
+    }
+  ]
+}

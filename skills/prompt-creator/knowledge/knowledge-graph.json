@@ -23,6 +23,21 @@
       "id": "prompt-creator:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "prompt-creator:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "prompt-creator:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "prompt-creator:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "prompt-creator",
       "to": "prompt-creator:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "prompt-creator",
+      "to": "prompt-creator:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "prompt-creator",
+      "to": "prompt-creator:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "prompt-creator",
+      "to": "prompt-creator:antipattern",
+      "type": "guards_against"
     }
   ]
 }

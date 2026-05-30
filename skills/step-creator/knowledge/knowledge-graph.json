@@ -23,6 +23,21 @@
       "id": "step-creator:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "step-creator:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "step-creator:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "step-creator:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "step-creator",
       "to": "step-creator:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "step-creator",
+      "to": "step-creator:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "step-creator",
+      "to": "step-creator:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "step-creator",
+      "to": "step-creator:antipattern",
+      "type": "guards_against"
     }
   ]
 }

@@ -23,6 +23,21 @@
       "id": "proposal-writing:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "proposal-writing:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "proposal-writing:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "proposal-writing:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "proposal-writing",
       "to": "proposal-writing:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "proposal-writing",
+      "to": "proposal-writing:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "proposal-writing",
+      "to": "proposal-writing:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "proposal-writing",
+      "to": "proposal-writing:antipattern",
+      "type": "guards_against"
     }
   ]
 }

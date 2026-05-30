@@ -23,6 +23,21 @@
       "id": "state-management:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "state-management:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "state-management:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "state-management:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "state-management",
       "to": "state-management:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "state-management",
+      "to": "state-management:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "state-management",
+      "to": "state-management:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "state-management",
+      "to": "state-management:antipattern",
+      "type": "guards_against"
     }
   ]
 }

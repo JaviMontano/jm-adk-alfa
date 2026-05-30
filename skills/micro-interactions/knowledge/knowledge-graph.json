@@ -23,6 +23,21 @@
       "id": "micro-interactions:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "micro-interactions:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "micro-interactions:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "micro-interactions:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "micro-interactions",
       "to": "micro-interactions:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "micro-interactions",
+      "to": "micro-interactions:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "micro-interactions",
+      "to": "micro-interactions:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "micro-interactions",
+      "to": "micro-interactions:antipattern",
+      "type": "guards_against"
     }
   ]
 }

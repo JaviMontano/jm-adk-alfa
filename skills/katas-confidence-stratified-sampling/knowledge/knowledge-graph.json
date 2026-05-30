@@ -53,6 +53,21 @@
       "id": "antipattern:blind-trust-and-aggregate",
       "type": "antipattern",
       "label": "Blind trust on raw score + aggregate accuracy"
+    },
+    {
+      "id": "katas-confidence-stratified-sampling:ontology",
+      "type": "ontology",
+      "label": "Domain: prompt-structured-output"
+    },
+    {
+      "id": "katas-confidence-stratified-sampling:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "katas-confidence-stratified-sampling:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -95,6 +110,21 @@
       "from": "concept:routing",
       "to": "concept:stratified-sampling",
       "type": "uses"
+    },
+    {
+      "from": "katas-confidence-stratified-sampling",
+      "to": "katas-confidence-stratified-sampling:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "katas-confidence-stratified-sampling",
+      "to": "katas-confidence-stratified-sampling:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "katas-confidence-stratified-sampling",
+      "to": "katas-confidence-stratified-sampling:antipattern",
+      "type": "guards_against"
     }
   ]
 }

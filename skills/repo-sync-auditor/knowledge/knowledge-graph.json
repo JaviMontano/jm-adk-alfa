@@ -23,6 +23,21 @@
       "id": "repo-sync-auditor:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "repo-sync-auditor:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "repo-sync-auditor:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "repo-sync-auditor:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "repo-sync-auditor",
       "to": "repo-sync-auditor:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "repo-sync-auditor",
+      "to": "repo-sync-auditor:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "repo-sync-auditor",
+      "to": "repo-sync-auditor:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "repo-sync-auditor",
+      "to": "repo-sync-auditor:antipattern",
+      "type": "guards_against"
     }
   ]
 }

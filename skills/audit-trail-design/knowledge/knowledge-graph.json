@@ -23,6 +23,21 @@
       "id": "audit-trail-design:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "audit-trail-design:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "audit-trail-design:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "audit-trail-design:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "audit-trail-design",
       "to": "audit-trail-design:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "audit-trail-design",
+      "to": "audit-trail-design:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "audit-trail-design",
+      "to": "audit-trail-design:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "audit-trail-design",
+      "to": "audit-trail-design:antipattern",
+      "type": "guards_against"
     }
   ]
 }

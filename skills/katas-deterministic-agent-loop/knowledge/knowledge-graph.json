@@ -53,6 +53,21 @@
       "id": "katas-deterministic-agent-loop:prose-parsing",
       "type": "anti_pattern",
       "label": "Parsear prosa del modelo para decidir halt"
+    },
+    {
+      "id": "katas-deterministic-agent-loop:ontology",
+      "type": "ontology",
+      "label": "Domain: agentic-architecture"
+    },
+    {
+      "id": "katas-deterministic-agent-loop:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "katas-deterministic-agent-loop:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -100,6 +115,21 @@
       "from": "katas-deterministic-agent-loop:prose-parsing",
       "to": "katas-deterministic-agent-loop:stop-reason",
       "type": "violates"
+    },
+    {
+      "from": "katas-deterministic-agent-loop",
+      "to": "katas-deterministic-agent-loop:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "katas-deterministic-agent-loop",
+      "to": "katas-deterministic-agent-loop:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "katas-deterministic-agent-loop",
+      "to": "katas-deterministic-agent-loop:antipattern",
+      "type": "guards_against"
     }
   ]
 }

@@ -23,6 +23,21 @@
       "id": "log-management:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "log-management:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "log-management:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "log-management:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "log-management",
       "to": "log-management:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "log-management",
+      "to": "log-management:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "log-management",
+      "to": "log-management:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "log-management",
+      "to": "log-management:antipattern",
+      "type": "guards_against"
     }
   ]
 }

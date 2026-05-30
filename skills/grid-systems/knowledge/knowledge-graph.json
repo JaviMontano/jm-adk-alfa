@@ -23,6 +23,21 @@
       "id": "grid-systems:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "grid-systems:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "grid-systems:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "grid-systems:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "grid-systems",
       "to": "grid-systems:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "grid-systems",
+      "to": "grid-systems:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "grid-systems",
+      "to": "grid-systems:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "grid-systems",
+      "to": "grid-systems:antipattern",
+      "type": "guards_against"
     }
   ]
 }

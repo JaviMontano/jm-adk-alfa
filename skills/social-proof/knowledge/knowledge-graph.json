@@ -23,6 +23,21 @@
       "id": "social-proof:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "social-proof:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "social-proof:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "social-proof:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "social-proof",
       "to": "social-proof:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "social-proof",
+      "to": "social-proof:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "social-proof",
+      "to": "social-proof:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "social-proof",
+      "to": "social-proof:antipattern",
+      "type": "guards_against"
     }
   ]
 }

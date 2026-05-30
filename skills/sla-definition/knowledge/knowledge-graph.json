@@ -23,6 +23,21 @@
       "id": "sla-definition:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "sla-definition:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "sla-definition:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "sla-definition:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "sla-definition",
       "to": "sla-definition:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "sla-definition",
+      "to": "sla-definition:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "sla-definition",
+      "to": "sla-definition:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "sla-definition",
+      "to": "sla-definition:antipattern",
+      "type": "guards_against"
     }
   ]
 }

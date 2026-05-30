@@ -23,6 +23,21 @@
       "id": "google-workspace-apis:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "google-workspace-apis:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "google-workspace-apis:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "google-workspace-apis:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "google-workspace-apis",
       "to": "google-workspace-apis:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "google-workspace-apis",
+      "to": "google-workspace-apis:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "google-workspace-apis",
+      "to": "google-workspace-apis:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "google-workspace-apis",
+      "to": "google-workspace-apis:antipattern",
+      "type": "guards_against"
     }
   ]
 }

@@ -23,6 +23,21 @@
       "id": "maturity-assessment:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "maturity-assessment:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "maturity-assessment:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "maturity-assessment:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "maturity-assessment",
       "to": "maturity-assessment:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "maturity-assessment",
+      "to": "maturity-assessment:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "maturity-assessment",
+      "to": "maturity-assessment:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "maturity-assessment",
+      "to": "maturity-assessment:antipattern",
+      "type": "guards_against"
     }
   ]
 }

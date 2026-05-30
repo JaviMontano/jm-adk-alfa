@@ -58,6 +58,21 @@
       "id": "katas-provenance-preservation",
       "type": "skill",
       "label": "katas-provenance-preservation"
+    },
+    {
+      "id": "katas-critical-self-correction:ontology",
+      "type": "ontology",
+      "label": "Domain: prompt-structured-output"
+    },
+    {
+      "id": "katas-critical-self-correction:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "katas-critical-self-correction:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -110,6 +125,21 @@
       "from": "katas-critical-self-correction",
       "to": "katas-critical-self-correction:anti-pattern",
       "type": "rejects"
+    },
+    {
+      "from": "katas-critical-self-correction",
+      "to": "katas-critical-self-correction:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "katas-critical-self-correction",
+      "to": "katas-critical-self-correction:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "katas-critical-self-correction",
+      "to": "katas-critical-self-correction:antipattern",
+      "type": "guards_against"
     }
   ]
 }

@@ -23,6 +23,21 @@
       "id": "pristino-calibration:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "pristino-calibration:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "pristino-calibration:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "pristino-calibration:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "pristino-calibration",
       "to": "pristino-calibration:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "pristino-calibration",
+      "to": "pristino-calibration:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "pristino-calibration",
+      "to": "pristino-calibration:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "pristino-calibration",
+      "to": "pristino-calibration:antipattern",
+      "type": "guards_against"
     }
   ]
 }

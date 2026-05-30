@@ -23,6 +23,21 @@
       "id": "iic-bugfix:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "iic-bugfix:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "iic-bugfix:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "iic-bugfix:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "iic-bugfix",
       "to": "iic-bugfix:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "iic-bugfix",
+      "to": "iic-bugfix:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "iic-bugfix",
+      "to": "iic-bugfix:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "iic-bugfix",
+      "to": "iic-bugfix:antipattern",
+      "type": "guards_against"
     }
   ]
 }

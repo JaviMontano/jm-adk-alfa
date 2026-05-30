@@ -23,6 +23,21 @@
       "id": "project-program-management:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "project-program-management:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "project-program-management:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "project-program-management:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "project-program-management",
       "to": "project-program-management:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "project-program-management",
+      "to": "project-program-management:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "project-program-management",
+      "to": "project-program-management:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "project-program-management",
+      "to": "project-program-management:antipattern",
+      "type": "guards_against"
     }
   ]
 }

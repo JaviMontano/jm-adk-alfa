@@ -23,6 +23,21 @@
       "id": "software-viability:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "software-viability:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "software-viability:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "software-viability:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "software-viability",
       "to": "software-viability:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "software-viability",
+      "to": "software-viability:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "software-viability",
+      "to": "software-viability:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "software-viability",
+      "to": "software-viability:antipattern",
+      "type": "guards_against"
     }
   ]
 }

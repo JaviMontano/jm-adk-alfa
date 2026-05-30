@@ -23,6 +23,21 @@
       "id": "data-flow-architecture:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "data-flow-architecture:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "data-flow-architecture:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "data-flow-architecture:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "data-flow-architecture",
       "to": "data-flow-architecture:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "data-flow-architecture",
+      "to": "data-flow-architecture:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "data-flow-architecture",
+      "to": "data-flow-architecture:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "data-flow-architecture",
+      "to": "data-flow-architecture:antipattern",
+      "type": "guards_against"
     }
   ]
 }

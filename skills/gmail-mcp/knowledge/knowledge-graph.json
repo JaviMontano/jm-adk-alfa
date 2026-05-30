@@ -23,6 +23,21 @@
       "id": "gmail-mcp:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "gmail-mcp:ontology",
+      "type": "ontology",
+      "label": "Domain: tool-design-mcp"
+    },
+    {
+      "id": "gmail-mcp:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "gmail-mcp:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "gmail-mcp",
       "to": "gmail-mcp:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "gmail-mcp",
+      "to": "gmail-mcp:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "gmail-mcp",
+      "to": "gmail-mcp:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "gmail-mcp",
+      "to": "gmail-mcp:antipattern",
+      "type": "guards_against"
     }
   ]
 }

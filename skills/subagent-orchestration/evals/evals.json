@@ -1,0 +1,108 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-30",
+  "skill": "subagent-orchestration",
+  "cases": [
+    {
+      "id": "happy_path",
+      "input": "Design a hub-and-spoke coordinator that fans out one search subagent per query and aggregates the results.",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "explicit_trigger",
+      "input": "/subagent-orchestration build a coordinator with AgentDefinition and Task for parallel extraction.",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "error_propagation",
+      "input": "My subagents return empty lists both when the source is missing and when it is genuinely empty. How do I make the coordinator distinguish access_failure from valid_empty and report coverage gaps?",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "cheap_model_extraction",
+      "input": "I want to enrich 200 records: a Haiku spoke per record for extraction and a Sonnet hub for final ranking, where one record failing must not abort the batch.",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "rich_context",
+      "input": "Coordinator agents with goals, per-spoke tools and model, latency tolerance, cost budget, and an aggregated result shape that lists uncovered branches.",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "false_positive",
+      "input": "Help me write a SQL query to count rows in a single table.",
+      "expected_activation": false,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "empty_input",
+      "input": "",
+      "expected_activation": false,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "conflicting_requirements",
+      "input": "Build a coordinator but swallow every subagent error and just return an empty results list so it never fails.",
+      "expected_activation": false,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "single_pass_better",
+      "input": "Summarize one short document in a single sequential pass with no subtasks.",
+      "expected_activation": false,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "upgrade_safety_case",
+      "input": "Complete missing files for subagent-orchestration without overwriting local edits.",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    }
+  ]
+}

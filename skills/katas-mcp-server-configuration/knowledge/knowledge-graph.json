@@ -58,6 +58,21 @@
       "id": "remedy:rotate-and-purge",
       "type": "remedy",
       "label": "Rotar credencial + ${ENV} + purgar historial (git filter-repo)"
+    },
+    {
+      "id": "katas-mcp-server-configuration:ontology",
+      "type": "ontology",
+      "label": "Domain: tool-design-mcp"
+    },
+    {
+      "id": "katas-mcp-server-configuration:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "katas-mcp-server-configuration:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -110,6 +125,21 @@
       "from": "antipattern:hardcoded-token",
       "to": "remedy:rotate-and-purge",
       "type": "remediated_by"
+    },
+    {
+      "from": "katas-mcp-server-configuration",
+      "to": "katas-mcp-server-configuration:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "katas-mcp-server-configuration",
+      "to": "katas-mcp-server-configuration:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "katas-mcp-server-configuration",
+      "to": "katas-mcp-server-configuration:antipattern",
+      "type": "guards_against"
     }
   ]
 }

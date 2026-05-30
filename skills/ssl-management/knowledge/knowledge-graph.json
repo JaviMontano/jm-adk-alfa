@@ -23,6 +23,21 @@
       "id": "ssl-management:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "ssl-management:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "ssl-management:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "ssl-management:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "ssl-management",
       "to": "ssl-management:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "ssl-management",
+      "to": "ssl-management:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "ssl-management",
+      "to": "ssl-management:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "ssl-management",
+      "to": "ssl-management:antipattern",
+      "type": "guards_against"
     }
   ]
 }

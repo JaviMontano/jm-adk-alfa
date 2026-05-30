@@ -23,6 +23,21 @@
       "id": "socratic-debate:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "socratic-debate:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "socratic-debate:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "socratic-debate:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "socratic-debate",
       "to": "socratic-debate:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "socratic-debate",
+      "to": "socratic-debate:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "socratic-debate",
+      "to": "socratic-debate:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "socratic-debate",
+      "to": "socratic-debate:antipattern",
+      "type": "guards_against"
     }
   ]
 }

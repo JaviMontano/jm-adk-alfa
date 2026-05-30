@@ -23,6 +23,21 @@
       "id": "official-source-verifier:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "official-source-verifier:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "official-source-verifier:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "official-source-verifier:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "official-source-verifier",
       "to": "official-source-verifier:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "official-source-verifier",
+      "to": "official-source-verifier:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "official-source-verifier",
+      "to": "official-source-verifier:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "official-source-verifier",
+      "to": "official-source-verifier:antipattern",
+      "type": "guards_against"
     }
   ]
 }

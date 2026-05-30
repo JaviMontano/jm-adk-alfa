@@ -53,6 +53,21 @@
       "id": "katas-plan-mode-exploration:bypass-antipattern",
       "type": "antipattern",
       "label": "bypassPermissions con write desde el inicio"
+    },
+    {
+      "id": "katas-plan-mode-exploration:ontology",
+      "type": "ontology",
+      "label": "Domain: claude-code-config"
+    },
+    {
+      "id": "katas-plan-mode-exploration:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "katas-plan-mode-exploration:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -105,6 +120,21 @@
       "from": "katas-plan-mode-exploration:bypass-antipattern",
       "to": "katas-plan-mode-exploration:two-mode-contract",
       "type": "violates"
+    },
+    {
+      "from": "katas-plan-mode-exploration",
+      "to": "katas-plan-mode-exploration:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "katas-plan-mode-exploration",
+      "to": "katas-plan-mode-exploration:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "katas-plan-mode-exploration",
+      "to": "katas-plan-mode-exploration:antipattern",
+      "type": "guards_against"
     }
   ]
 }

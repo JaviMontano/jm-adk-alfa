@@ -23,6 +23,21 @@
       "id": "context-window-management:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "context-window-management:ontology",
+      "type": "ontology",
+      "label": "Domain: context-reliability"
+    },
+    {
+      "id": "context-window-management:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "context-window-management:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "context-window-management",
       "to": "context-window-management:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "context-window-management",
+      "to": "context-window-management:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "context-window-management",
+      "to": "context-window-management:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "context-window-management",
+      "to": "context-window-management:antipattern",
+      "type": "guards_against"
     }
   ]
 }

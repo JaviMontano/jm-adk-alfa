@@ -23,6 +23,21 @@
       "id": "pre-tool-use-guard:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "pre-tool-use-guard:ontology",
+      "type": "ontology",
+      "label": "Domain: tool-design-mcp"
+    },
+    {
+      "id": "pre-tool-use-guard:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "pre-tool-use-guard:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "pre-tool-use-guard",
       "to": "pre-tool-use-guard:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "pre-tool-use-guard",
+      "to": "pre-tool-use-guard:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "pre-tool-use-guard",
+      "to": "pre-tool-use-guard:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "pre-tool-use-guard",
+      "to": "pre-tool-use-guard:antipattern",
+      "type": "guards_against"
     }
   ]
 }

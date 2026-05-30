@@ -23,6 +23,21 @@
       "id": "react-component-library:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "react-component-library:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "react-component-library:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "react-component-library:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "react-component-library",
       "to": "react-component-library:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "react-component-library",
+      "to": "react-component-library:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "react-component-library",
+      "to": "react-component-library:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "react-component-library",
+      "to": "react-component-library:antipattern",
+      "type": "guards_against"
     }
   ]
 }

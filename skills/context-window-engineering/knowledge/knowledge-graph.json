@@ -1,0 +1,150 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-30",
+  "skill": "context-window-engineering",
+  "nodes": [
+    {
+      "id": "context-window-engineering",
+      "type": "skill",
+      "label": "context-window-engineering"
+    },
+    {
+      "id": "context-window-engineering:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "context-window-engineering:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "context-window-engineering:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    },
+    {
+      "id": "concept:static-first",
+      "type": "concept",
+      "label": "Estatico-first / dinamico-last"
+    },
+    {
+      "id": "concept:prefix-cache",
+      "type": "concept",
+      "label": "Prefix cache (KV ~10x)"
+    },
+    {
+      "id": "concept:softmax-dilution",
+      "type": "concept",
+      "label": "Dilucion softmax (curva en U)"
+    },
+    {
+      "id": "concept:edge-placement",
+      "type": "concept",
+      "label": "Edge placement de reglas criticas"
+    },
+    {
+      "id": "concept:dynamic-reminder",
+      "type": "concept",
+      "label": "Bloque reminder dinamico al final"
+    },
+    {
+      "id": "concept:compaction-threshold",
+      "type": "concept",
+      "label": "Compactacion por umbral (>55%)"
+    },
+    {
+      "id": "antipattern:timestamp-prefix",
+      "type": "antipattern",
+      "label": "Timestamp al inicio invalida cache; regla critica enterrada"
+    },
+    {
+      "id": "context-window-engineering:ontology",
+      "type": "ontology",
+      "label": "Domain: context-reliability"
+    },
+    {
+      "id": "context-window-engineering:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "context-window-engineering:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
+    }
+  ],
+  "edges": [
+    {
+      "from": "context-window-engineering",
+      "to": "context-window-engineering:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "context-window-engineering",
+      "to": "context-window-engineering:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "context-window-engineering",
+      "to": "context-window-engineering:quality",
+      "type": "validated_by"
+    },
+    {
+      "from": "context-window-engineering",
+      "to": "concept:static-first",
+      "type": "applies"
+    },
+    {
+      "from": "concept:static-first",
+      "to": "concept:prefix-cache",
+      "type": "enables"
+    },
+    {
+      "from": "concept:edge-placement",
+      "to": "concept:softmax-dilution",
+      "type": "mitigates"
+    },
+    {
+      "from": "concept:dynamic-reminder",
+      "to": "concept:prefix-cache",
+      "type": "protects"
+    },
+    {
+      "from": "concept:compaction-threshold",
+      "to": "concept:edge-placement",
+      "type": "preserves"
+    },
+    {
+      "from": "antipattern:timestamp-prefix",
+      "to": "concept:prefix-cache",
+      "type": "violates"
+    },
+    {
+      "from": "antipattern:timestamp-prefix",
+      "to": "concept:edge-placement",
+      "type": "violates"
+    },
+    {
+      "from": "context-window-engineering:quality",
+      "to": "antipattern:timestamp-prefix",
+      "type": "rejects"
+    },
+    {
+      "from": "context-window-engineering",
+      "to": "context-window-engineering:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "context-window-engineering",
+      "to": "context-window-engineering:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "context-window-engineering",
+      "to": "context-window-engineering:antipattern",
+      "type": "guards_against"
+    }
+  ]
+}

@@ -23,6 +23,21 @@
       "id": "team-topology:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "team-topology:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "team-topology:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "team-topology:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "team-topology",
       "to": "team-topology:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "team-topology",
+      "to": "team-topology:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "team-topology",
+      "to": "team-topology:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "team-topology",
+      "to": "team-topology:antipattern",
+      "type": "guards_against"
     }
   ]
 }

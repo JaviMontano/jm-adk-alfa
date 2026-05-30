@@ -53,6 +53,21 @@
       "id": "system-prompt-bias",
       "type": "failure",
       "label": "Keywords del system prompt sesgan el routing"
+    },
+    {
+      "id": "katas-tool-description-quality:ontology",
+      "type": "ontology",
+      "label": "Domain: tool-design-mcp"
+    },
+    {
+      "id": "katas-tool-description-quality:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "katas-tool-description-quality:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -100,6 +115,21 @@
       "from": "system-prompt-bias",
       "to": "reciprocal-boundary",
       "type": "mitigated_by"
+    },
+    {
+      "from": "katas-tool-description-quality",
+      "to": "katas-tool-description-quality:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "katas-tool-description-quality",
+      "to": "katas-tool-description-quality:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "katas-tool-description-quality",
+      "to": "katas-tool-description-quality:antipattern",
+      "type": "guards_against"
     }
   ]
 }

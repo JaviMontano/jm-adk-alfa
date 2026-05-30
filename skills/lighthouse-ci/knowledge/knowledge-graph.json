@@ -23,6 +23,21 @@
       "id": "lighthouse-ci:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "lighthouse-ci:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "lighthouse-ci:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "lighthouse-ci:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "lighthouse-ci",
       "to": "lighthouse-ci:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "lighthouse-ci",
+      "to": "lighthouse-ci:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "lighthouse-ci",
+      "to": "lighthouse-ci:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "lighthouse-ci",
+      "to": "lighthouse-ci:antipattern",
+      "type": "guards_against"
     }
   ]
 }

@@ -63,6 +63,21 @@
       "id": "katas-context-dilution-mitigation",
       "type": "skill",
       "label": "Kata 11 dilucion softmax"
+    },
+    {
+      "id": "katas-fewshot-edge-calibration:ontology",
+      "type": "ontology",
+      "label": "Domain: prompt-structured-output"
+    },
+    {
+      "id": "katas-fewshot-edge-calibration:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "katas-fewshot-edge-calibration:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -115,6 +130,21 @@
       "from": "katas-fewshot-edge-calibration:static-prefix",
       "to": "katas-context-dilution-mitigation",
       "type": "leverages"
+    },
+    {
+      "from": "katas-fewshot-edge-calibration",
+      "to": "katas-fewshot-edge-calibration:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "katas-fewshot-edge-calibration",
+      "to": "katas-fewshot-edge-calibration:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "katas-fewshot-edge-calibration",
+      "to": "katas-fewshot-edge-calibration:antipattern",
+      "type": "guards_against"
     }
   ]
 }

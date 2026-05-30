@@ -23,6 +23,21 @@
       "id": "workspace-setup:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "workspace-setup:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "workspace-setup:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "workspace-setup:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "workspace-setup",
       "to": "workspace-setup:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "workspace-setup",
+      "to": "workspace-setup:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "workspace-setup",
+      "to": "workspace-setup:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "workspace-setup",
+      "to": "workspace-setup:antipattern",
+      "type": "guards_against"
     }
   ]
 }

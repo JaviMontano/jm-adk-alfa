@@ -23,6 +23,21 @@
       "id": "trade-off-analysis:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "trade-off-analysis:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "trade-off-analysis:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "trade-off-analysis:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "trade-off-analysis",
       "to": "trade-off-analysis:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "trade-off-analysis",
+      "to": "trade-off-analysis:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "trade-off-analysis",
+      "to": "trade-off-analysis:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "trade-off-analysis",
+      "to": "trade-off-analysis:antipattern",
+      "type": "guards_against"
     }
   ]
 }

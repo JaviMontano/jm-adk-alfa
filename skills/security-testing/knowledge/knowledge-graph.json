@@ -23,6 +23,21 @@
       "id": "security-testing:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "security-testing:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "security-testing:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "security-testing:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "security-testing",
       "to": "security-testing:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "security-testing",
+      "to": "security-testing:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "security-testing",
+      "to": "security-testing:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "security-testing",
+      "to": "security-testing:antipattern",
+      "type": "guards_against"
     }
   ]
 }

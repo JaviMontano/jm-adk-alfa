@@ -23,6 +23,21 @@
       "id": "sprint-report:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "sprint-report:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "sprint-report:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "sprint-report:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "sprint-report",
       "to": "sprint-report:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "sprint-report",
+      "to": "sprint-report:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "sprint-report",
+      "to": "sprint-report:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "sprint-report",
+      "to": "sprint-report:antipattern",
+      "type": "guards_against"
     }
   ]
 }

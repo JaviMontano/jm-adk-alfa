@@ -23,6 +23,21 @@
       "id": "audit-content-quality:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "audit-content-quality:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "audit-content-quality:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "audit-content-quality:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "audit-content-quality",
       "to": "audit-content-quality:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "audit-content-quality",
+      "to": "audit-content-quality:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "audit-content-quality",
+      "to": "audit-content-quality:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "audit-content-quality",
+      "to": "audit-content-quality:antipattern",
+      "type": "guards_against"
     }
   ]
 }

@@ -23,6 +23,21 @@
       "id": "multi-model-routing:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "multi-model-routing:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "multi-model-routing:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "multi-model-routing:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "multi-model-routing",
       "to": "multi-model-routing:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "multi-model-routing",
+      "to": "multi-model-routing:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "multi-model-routing",
+      "to": "multi-model-routing:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "multi-model-routing",
+      "to": "multi-model-routing:antipattern",
+      "type": "guards_against"
     }
   ]
 }

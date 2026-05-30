@@ -23,6 +23,21 @@
       "id": "animation-motion:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "animation-motion:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "animation-motion:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "animation-motion:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "animation-motion",
       "to": "animation-motion:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "animation-motion",
+      "to": "animation-motion:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "animation-motion",
+      "to": "animation-motion:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "animation-motion",
+      "to": "animation-motion:antipattern",
+      "type": "guards_against"
     }
   ]
 }

@@ -1,0 +1,145 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-30",
+  "skill": "human-escalation-design",
+  "nodes": [
+    {
+      "id": "human-escalation-design",
+      "type": "skill",
+      "label": "human-escalation-design"
+    },
+    {
+      "id": "human-escalation-design:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "human-escalation-design:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "human-escalation-design:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    },
+    {
+      "id": "human-escalation-design:escalation-preconditions",
+      "type": "concept",
+      "label": "Escalation preconditions (limit, irreversible, conflict)"
+    },
+    {
+      "id": "human-escalation-design:typed-payload",
+      "type": "concept",
+      "label": "Typed self-contained payload"
+    },
+    {
+      "id": "human-escalation-design:escalate-to-human-tool",
+      "type": "tool",
+      "label": "escalate_to_human tool call"
+    },
+    {
+      "id": "human-escalation-design:end-state",
+      "type": "concept",
+      "label": "Loop end-state (cut generation, no resume until human)"
+    },
+    {
+      "id": "human-escalation-design:structural-test",
+      "type": "gate",
+      "label": "Structural test: payload complete + no continuation prose"
+    },
+    {
+      "id": "human-escalation-design:anti-pattern",
+      "type": "anti_pattern",
+      "label": "Courtesy prose then keep generating"
+    },
+    {
+      "id": "katas-human-handoff-protocol",
+      "type": "kata",
+      "label": "Kata 16 human handoff protocol"
+    },
+    {
+      "id": "human-escalation-design:ontology",
+      "type": "ontology",
+      "label": "Domain: agentic-architecture"
+    },
+    {
+      "id": "human-escalation-design:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "human-escalation-design:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
+    }
+  ],
+  "edges": [
+    {
+      "from": "human-escalation-design",
+      "to": "human-escalation-design:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "human-escalation-design",
+      "to": "human-escalation-design:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "human-escalation-design",
+      "to": "human-escalation-design:quality",
+      "type": "validated_by"
+    },
+    {
+      "from": "human-escalation-design",
+      "to": "human-escalation-design:escalation-preconditions",
+      "type": "triggered_by"
+    },
+    {
+      "from": "human-escalation-design:escalation-preconditions",
+      "to": "human-escalation-design:escalate-to-human-tool",
+      "type": "invokes"
+    },
+    {
+      "from": "human-escalation-design:escalate-to-human-tool",
+      "to": "human-escalation-design:typed-payload",
+      "type": "emits"
+    },
+    {
+      "from": "human-escalation-design:escalate-to-human-tool",
+      "to": "human-escalation-design:end-state",
+      "type": "produces"
+    },
+    {
+      "from": "human-escalation-design:typed-payload",
+      "to": "human-escalation-design:structural-test",
+      "type": "validated_by"
+    },
+    {
+      "from": "human-escalation-design:anti-pattern",
+      "to": "human-escalation-design:end-state",
+      "type": "violates"
+    },
+    {
+      "from": "human-escalation-design",
+      "to": "katas-human-handoff-protocol",
+      "type": "related_to"
+    },
+    {
+      "from": "human-escalation-design",
+      "to": "human-escalation-design:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "human-escalation-design",
+      "to": "human-escalation-design:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "human-escalation-design",
+      "to": "human-escalation-design:antipattern",
+      "type": "guards_against"
+    }
+  ]
+}

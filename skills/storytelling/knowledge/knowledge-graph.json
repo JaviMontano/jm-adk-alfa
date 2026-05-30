@@ -23,6 +23,21 @@
       "id": "storytelling:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "storytelling:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "storytelling:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "storytelling:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "storytelling",
       "to": "storytelling:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "storytelling",
+      "to": "storytelling:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "storytelling",
+      "to": "storytelling:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "storytelling",
+      "to": "storytelling:antipattern",
+      "type": "guards_against"
     }
   ]
 }

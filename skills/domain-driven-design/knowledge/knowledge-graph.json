@@ -23,6 +23,21 @@
       "id": "domain-driven-design:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "domain-driven-design:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "domain-driven-design:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "domain-driven-design:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "domain-driven-design",
       "to": "domain-driven-design:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "domain-driven-design",
+      "to": "domain-driven-design:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "domain-driven-design",
+      "to": "domain-driven-design:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "domain-driven-design",
+      "to": "domain-driven-design:antipattern",
+      "type": "guards_against"
     }
   ]
 }

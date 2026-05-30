@@ -23,6 +23,21 @@
       "id": "excellence-loop:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "excellence-loop:ontology",
+      "type": "ontology",
+      "label": "Domain: agentic-architecture"
+    },
+    {
+      "id": "excellence-loop:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "excellence-loop:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "excellence-loop",
       "to": "excellence-loop:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "excellence-loop",
+      "to": "excellence-loop:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "excellence-loop",
+      "to": "excellence-loop:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "excellence-loop",
+      "to": "excellence-loop:antipattern",
+      "type": "guards_against"
     }
   ]
 }

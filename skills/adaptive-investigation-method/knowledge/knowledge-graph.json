@@ -1,0 +1,150 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-30",
+  "skill": "adaptive-investigation-method",
+  "nodes": [
+    {
+      "id": "adaptive-investigation-method",
+      "type": "skill",
+      "label": "adaptive-investigation-method"
+    },
+    {
+      "id": "adaptive-investigation-method:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "adaptive-investigation-method:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "adaptive-investigation-method:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    },
+    {
+      "id": "adaptive-investigation-method:budget",
+      "type": "concept",
+      "label": "Hard exploration budget"
+    },
+    {
+      "id": "adaptive-investigation-method:cheap-map",
+      "type": "concept",
+      "label": "Cheap surface mapping"
+    },
+    {
+      "id": "adaptive-investigation-method:ranked-hypotheses",
+      "type": "concept",
+      "label": "Prioritized hypotheses"
+    },
+    {
+      "id": "adaptive-investigation-method:selective-deep-dive",
+      "type": "concept",
+      "label": "Selective deep-dive"
+    },
+    {
+      "id": "adaptive-investigation-method:disciplined-replan",
+      "type": "concept",
+      "label": "Disciplined replan on invalidation"
+    },
+    {
+      "id": "adaptive-investigation-method:scratchpad",
+      "type": "concept",
+      "label": "Typed scratchpad (plan/hypotheses/findings)"
+    },
+    {
+      "id": "adaptive-investigation-method:anti-pattern",
+      "type": "anti_pattern",
+      "label": "Rigid plan + read_all_files + reflexive replan"
+    },
+    {
+      "id": "adaptive-investigation-method:ontology",
+      "type": "ontology",
+      "label": "Domain: agentic-architecture"
+    },
+    {
+      "id": "adaptive-investigation-method:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "adaptive-investigation-method:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
+    }
+  ],
+  "edges": [
+    {
+      "from": "adaptive-investigation-method",
+      "to": "adaptive-investigation-method:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "adaptive-investigation-method",
+      "to": "adaptive-investigation-method:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "adaptive-investigation-method",
+      "to": "adaptive-investigation-method:quality",
+      "type": "validated_by"
+    },
+    {
+      "from": "adaptive-investigation-method",
+      "to": "adaptive-investigation-method:budget",
+      "type": "uses"
+    },
+    {
+      "from": "adaptive-investigation-method",
+      "to": "adaptive-investigation-method:cheap-map",
+      "type": "uses"
+    },
+    {
+      "from": "adaptive-investigation-method:cheap-map",
+      "to": "adaptive-investigation-method:ranked-hypotheses",
+      "type": "feeds"
+    },
+    {
+      "from": "adaptive-investigation-method:ranked-hypotheses",
+      "to": "adaptive-investigation-method:selective-deep-dive",
+      "type": "prioritizes"
+    },
+    {
+      "from": "adaptive-investigation-method:selective-deep-dive",
+      "to": "adaptive-investigation-method:budget",
+      "type": "decrements"
+    },
+    {
+      "from": "adaptive-investigation-method:selective-deep-dive",
+      "to": "adaptive-investigation-method:disciplined-replan",
+      "type": "may_trigger"
+    },
+    {
+      "from": "adaptive-investigation-method:scratchpad",
+      "to": "adaptive-investigation-method:disciplined-replan",
+      "type": "persists"
+    },
+    {
+      "from": "adaptive-investigation-method:anti-pattern",
+      "to": "adaptive-investigation-method:quality",
+      "type": "blocked_by"
+    },
+    {
+      "from": "adaptive-investigation-method",
+      "to": "adaptive-investigation-method:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "adaptive-investigation-method",
+      "to": "adaptive-investigation-method:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "adaptive-investigation-method",
+      "to": "adaptive-investigation-method:antipattern",
+      "type": "guards_against"
+    }
+  ]
+}

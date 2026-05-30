@@ -23,6 +23,21 @@
       "id": "skill-forge:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "skill-forge:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "skill-forge:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "skill-forge:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "skill-forge",
       "to": "skill-forge:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "skill-forge",
+      "to": "skill-forge:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "skill-forge",
+      "to": "skill-forge:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "skill-forge",
+      "to": "skill-forge:antipattern",
+      "type": "guards_against"
     }
   ]
 }

@@ -23,6 +23,21 @@
       "id": "subagent-monitor:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "subagent-monitor:ontology",
+      "type": "ontology",
+      "label": "Domain: agentic-architecture"
+    },
+    {
+      "id": "subagent-monitor:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "subagent-monitor:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "subagent-monitor",
       "to": "subagent-monitor:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "subagent-monitor",
+      "to": "subagent-monitor:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "subagent-monitor",
+      "to": "subagent-monitor:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "subagent-monitor",
+      "to": "subagent-monitor:antipattern",
+      "type": "guards_against"
     }
   ]
 }

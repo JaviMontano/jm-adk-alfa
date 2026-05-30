@@ -1,0 +1,145 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-30",
+  "skill": "prompt-chaining-design",
+  "nodes": [
+    {
+      "id": "prompt-chaining-design",
+      "type": "skill",
+      "label": "prompt-chaining-design"
+    },
+    {
+      "id": "prompt-chaining-design:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "prompt-chaining-design:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "prompt-chaining-design:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    },
+    {
+      "id": "prompt-chaining-design:atomic-unit",
+      "type": "concept",
+      "label": "Unidad atomica procesable de forma independiente"
+    },
+    {
+      "id": "prompt-chaining-design:local-pass",
+      "type": "concept",
+      "label": "Pase local tipado (map) sobre una sola unidad"
+    },
+    {
+      "id": "prompt-chaining-design:transition-schema",
+      "type": "concept",
+      "label": "Schema de transicion: coleccion tipada de resumenes"
+    },
+    {
+      "id": "prompt-chaining-design:integration-pass",
+      "type": "concept",
+      "label": "Pase de integracion (reduce) solo sobre resumenes"
+    },
+    {
+      "id": "prompt-chaining-design:typed-error-state",
+      "type": "concept",
+      "label": "Estado de error tipado por unidad"
+    },
+    {
+      "id": "prompt-chaining-design:single-pass-justification",
+      "type": "gate",
+      "label": "Justificacion vs single-pass"
+    },
+    {
+      "id": "prompt-chaining-design:mega-prompt",
+      "type": "anti-pattern",
+      "label": "Mega-prompt concatenando crudos sin schema ni error por unidad"
+    },
+    {
+      "id": "prompt-chaining-design:ontology",
+      "type": "ontology",
+      "label": "Domain: prompt-structured-output"
+    },
+    {
+      "id": "prompt-chaining-design:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "prompt-chaining-design:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
+    }
+  ],
+  "edges": [
+    {
+      "from": "prompt-chaining-design",
+      "to": "prompt-chaining-design:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "prompt-chaining-design",
+      "to": "prompt-chaining-design:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "prompt-chaining-design",
+      "to": "prompt-chaining-design:quality",
+      "type": "validated_by"
+    },
+    {
+      "from": "prompt-chaining-design",
+      "to": "prompt-chaining-design:atomic-unit",
+      "type": "decomposes_into"
+    },
+    {
+      "from": "prompt-chaining-design:atomic-unit",
+      "to": "prompt-chaining-design:local-pass",
+      "type": "processed_by"
+    },
+    {
+      "from": "prompt-chaining-design:local-pass",
+      "to": "prompt-chaining-design:transition-schema",
+      "type": "emits"
+    },
+    {
+      "from": "prompt-chaining-design:transition-schema",
+      "to": "prompt-chaining-design:integration-pass",
+      "type": "consumed_by"
+    },
+    {
+      "from": "prompt-chaining-design:local-pass",
+      "to": "prompt-chaining-design:typed-error-state",
+      "type": "encodes"
+    },
+    {
+      "from": "prompt-chaining-design",
+      "to": "prompt-chaining-design:single-pass-justification",
+      "type": "validated_by"
+    },
+    {
+      "from": "prompt-chaining-design",
+      "to": "prompt-chaining-design:mega-prompt",
+      "type": "avoids"
+    },
+    {
+      "from": "prompt-chaining-design",
+      "to": "prompt-chaining-design:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "prompt-chaining-design",
+      "to": "prompt-chaining-design:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "prompt-chaining-design",
+      "to": "prompt-chaining-design:antipattern",
+      "type": "guards_against"
+    }
+  ]
+}

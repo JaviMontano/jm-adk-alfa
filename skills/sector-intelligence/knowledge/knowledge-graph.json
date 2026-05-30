@@ -23,6 +23,21 @@
       "id": "sector-intelligence:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "sector-intelligence:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "sector-intelligence:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "sector-intelligence:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "sector-intelligence",
       "to": "sector-intelligence:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "sector-intelligence",
+      "to": "sector-intelligence:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "sector-intelligence",
+      "to": "sector-intelligence:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "sector-intelligence",
+      "to": "sector-intelligence:antipattern",
+      "type": "guards_against"
     }
   ]
 }

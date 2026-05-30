@@ -1,0 +1,118 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-05-30",
+  "skill": "message-batch-orchestration",
+  "cases": [
+    {
+      "id": "happy_path",
+      "input": "Tengo 8000 tickets con ticket_id unico para clasificar offline esta noche; usa message-batch-orchestration y reintenta solo los que fallen.",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "explicit_trigger",
+      "input": "/message-batch-orchestration construye el orquestador create -> poll processing_status -> results para este backfill.",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "custom_id_correlation",
+      "input": "Necesito correlacionar inputs y outputs de un batch grande por custom_id para deduplicar; how do I model custom_id correlation?",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "partial_failure_retry",
+      "input": "Un 3% de mi batch offline falla por timeouts; quiero reintentar solo los failed por custom_id sin reprocesar todo (partial failure retry).",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "rich_context",
+      "input": "Dataset de 50k filas, latency-tolerant, modelo claude-sonnet-4-5, max 2 reintentos, persistir exitos en jsonl: orquesta el offline batch.",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "false_positive_realtime",
+      "input": "Necesito un chatbot en tiempo real que responda al usuario mientras escribe, con streaming.",
+      "expected_activation": false,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "false_positive_unrelated",
+      "input": "Ayudame a disenar el esquema de una base de datos relacional para un CRM.",
+      "expected_activation": false,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "empty_input",
+      "input": "",
+      "expected_activation": false,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "conflicting_requirements",
+      "input": "Usa message-batch-orchestration pero ignora la validacion, no uses custom_id y no aisles los fallos.",
+      "expected_activation": false,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "upgrade_safety_case",
+      "input": "Completa los archivos faltantes de message-batch-orchestration sin sobrescribir mis ediciones locales del batch-runner.",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "false_positive",
+      "input": "This request is unrelated to the skill domain.",
+      "expected_activation": false,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    }
+  ]
+}

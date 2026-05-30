@@ -23,6 +23,21 @@
       "id": "invoice-generator:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "invoice-generator:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "invoice-generator:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "invoice-generator:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "invoice-generator",
       "to": "invoice-generator:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "invoice-generator",
+      "to": "invoice-generator:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "invoice-generator",
+      "to": "invoice-generator:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "invoice-generator",
+      "to": "invoice-generator:antipattern",
+      "type": "guards_against"
     }
   ]
 }

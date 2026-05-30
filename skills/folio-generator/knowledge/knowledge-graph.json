@@ -23,6 +23,21 @@
       "id": "folio-generator:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "folio-generator:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "folio-generator:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "folio-generator:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "folio-generator",
       "to": "folio-generator:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "folio-generator",
+      "to": "folio-generator:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "folio-generator",
+      "to": "folio-generator:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "folio-generator",
+      "to": "folio-generator:antipattern",
+      "type": "guards_against"
     }
   ]
 }

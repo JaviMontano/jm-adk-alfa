@@ -23,6 +23,21 @@
       "id": "http-headers:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "http-headers:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "http-headers:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "http-headers:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "http-headers",
       "to": "http-headers:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "http-headers",
+      "to": "http-headers:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "http-headers",
+      "to": "http-headers:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "http-headers",
+      "to": "http-headers:antipattern",
+      "type": "guards_against"
     }
   ]
 }

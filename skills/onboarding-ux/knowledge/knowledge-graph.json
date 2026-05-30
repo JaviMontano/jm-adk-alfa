@@ -23,6 +23,21 @@
       "id": "onboarding-ux:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "onboarding-ux:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "onboarding-ux:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "onboarding-ux:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "onboarding-ux",
       "to": "onboarding-ux:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "onboarding-ux",
+      "to": "onboarding-ux:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "onboarding-ux",
+      "to": "onboarding-ux:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "onboarding-ux",
+      "to": "onboarding-ux:antipattern",
+      "type": "guards_against"
     }
   ]
 }

@@ -23,6 +23,21 @@
       "id": "bilingual-doc:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "bilingual-doc:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "bilingual-doc:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "bilingual-doc:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "bilingual-doc",
       "to": "bilingual-doc:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "bilingual-doc",
+      "to": "bilingual-doc:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "bilingual-doc",
+      "to": "bilingual-doc:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "bilingual-doc",
+      "to": "bilingual-doc:antipattern",
+      "type": "guards_against"
     }
   ]
 }

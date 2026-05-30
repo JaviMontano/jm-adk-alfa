@@ -23,6 +23,21 @@
       "id": "funnel-analytics:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "funnel-analytics:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "funnel-analytics:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "funnel-analytics:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "funnel-analytics",
       "to": "funnel-analytics:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "funnel-analytics",
+      "to": "funnel-analytics:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "funnel-analytics",
+      "to": "funnel-analytics:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "funnel-analytics",
+      "to": "funnel-analytics:antipattern",
+      "type": "guards_against"
     }
   ]
 }

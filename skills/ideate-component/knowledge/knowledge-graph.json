@@ -23,6 +23,21 @@
       "id": "ideate-component:quality",
       "type": "gate",
       "label": "Quality criteria"
+    },
+    {
+      "id": "ideate-component:ontology",
+      "type": "ontology",
+      "label": "Domain: general"
+    },
+    {
+      "id": "ideate-component:evidence",
+      "type": "gate",
+      "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "ideate-component:antipattern",
+      "type": "risk",
+      "label": "Canonical anti-pattern to avoid"
     }
   ],
   "edges": [
@@ -40,6 +55,21 @@
       "from": "ideate-component",
       "to": "ideate-component:quality",
       "type": "validated_by"
+    },
+    {
+      "from": "ideate-component",
+      "to": "ideate-component:ontology",
+      "type": "classified_as"
+    },
+    {
+      "from": "ideate-component",
+      "to": "ideate-component:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "ideate-component",
+      "to": "ideate-component:antipattern",
+      "type": "guards_against"
     }
   ]
 }
