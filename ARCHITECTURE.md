@@ -10,7 +10,7 @@ jm-adk-alfa/
 ├── .jm-adk.json                    # Shared kit config
 ├── .jm-adk.local.json              # Local override config, ignored
 ├── agents/                         # 260 specialist agents
-├── commands/                       # 266 user-invocable commands
+├── commands/                       # 267 user-invocable commands
 ├── prompts/                        # 256 top-level prompt files
 ├── skills/                         # 585 skill modules
 │   └── {skill}/
@@ -73,6 +73,18 @@ python3 scripts/validate-onboarding.py
 python3 scripts/check-devkit-readiness.py
 bash scripts/generate-pristino-index.sh
 ```
+
+## Architect Katas Layer
+
+The 30 Claude Certified Architect katas ship as `katas-*` skills (one per kata, 5 exam domains) backed by systemic reliability infrastructure:
+
+- Skills: `skills/katas-*` (30 dirs, full 16-file skill contract each).
+- Hooks: `scripts/pre-tool-guard.sh` enforces `references/guardrails/tool-policy.json` (hot-reloaded, deterministic deny) — katas 02/03.
+- Reliability refs: `references/reliability/{prefix-caching,context-dilution,posttooluse-normalization}.md` — katas 03/10/11.
+- Structured output: `references/schemas/annotations.schema.json` + `scripts/post_annotations.py` + `.github/workflows/validate.yml` — katas 05/13.
+- Batch: `scripts/batch/batch-runner.py` (Message Batches API + custom_id) — kata 17.
+- QA: `scripts/qa/{run-adversarial-tests,run-confidence-fp-tests}.py` — katas 29/30.
+- Inventories: `docs/katas/{katas-content.md,practices-inventory.md,skill-inventory.md}`.
 
 ## Sync Model
 
