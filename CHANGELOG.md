@@ -20,7 +20,12 @@ Systemic upgrades + 30 new skills derived from the 30-kata "Claude Certified Arc
 - **Path-conditional rules (Kata 09)**: `references/path-rules.md` manifest.
 - **Confidence + false positives (Kata 29/30)**: `scripts/qa/run-confidence-fp-tests.py` (calibration, stratified sampling, categorical FP criteria) wired into CI.
 - **Tool description quality (Kata 21)**: `validate-skills.py` adds a WARN-only check for generic/empty descriptions.
-- Counts → 563 skills (1346 components).
+
+### Added — Competency skills + deterministic skill improver
+
+- **22 competency skills** (`docs/competencies/`, `scripts/scaffold-competencies.sh`): the buildable capability behind the katas — `hook-engineering`, `agentic-loop-engineering`, `subagent-orchestration`, `structured-output-design`, `mcp-engineering`, `tool-use-design`, `plan-mode-workflow`, `claude-md-architecture`, `context-window-engineering`, `prompt-chaining-design`, `few-shot-engineering`, `self-correction-loops`, `human-escalation-design`, `message-batch-orchestration`, `persistent-memory-design`, `adaptive-investigation-method`, `provenance-engineering`, `custom-tooling-extension`, `session-lifecycle-management`, `validation-retry-design`, `independent-review-design`, `evaluation-confidence-design`. Each is a full 16-file CI-valid skill (filled via parallel fan-out).
+- **Deterministic skill improver** (`scripts/improve-skills.py`): additive, idempotent quality pass over every skill — enriches each `knowledge-graph.json` with ontology/evidence/anti-pattern nodes+edges and guarantees the canonical eval edge cases (false-positive, empty input). Dry-run by default; re-running is a no-op. Applied across all skills.
+- Counts → 585 skills (1368 components).
 
 ### Added — Pristino Persona Calibration (Phase 1)
 
