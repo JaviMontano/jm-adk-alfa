@@ -3,12 +3,21 @@ name: admin-dashboards
 author: JM Labs (Javier Montaño)
 version: 1.0.0
 description: >
-  Build admin dashboard interfaces with data tables, filters, charts, CRUD
-  operations, real-time data updates, RBAC, auditability, and operational UI
-  states. Covers layout patterns, data contracts, state management, and
-  safety gates. [EXPLICIT]
-  Trigger: "admin panel", "dashboard", "data table", "CRUD interface",
-  "back-office", "RBAC dashboard", "admin console"
+  Architect and implement back-office admin dashboards: dense data tables
+  (server-side sort/filter/search/pagination, bulk actions, saved views),
+  CRUD with conflict/rollback handling, KPI cards and charts, realtime/polling,
+  RBAC enforced on UI and backend, audit trails, exports, and the full
+  empty/loading/error/permission/stale state matrix. Produces an
+  evidence-first spec or scoped patch; never invents APIs, schemas, KPI
+  formulas, permissions, or realtime channels without repo evidence. [EXPLICIT]
+  USE WHEN the deliverable is an internal operational UI driven by structured
+  data and roles. DO NOT USE for public/marketing landing pages or decorative
+  charts (route to landing/brand/data-visualization skills), nor for pure
+  backend API or auth-policy authoring (route to api-design / api-security).
+  Boundary: this skill owns the operator-facing surface and its data/RBAC
+  contracts; it consumes — not authors — backend endpoints and policies.
+  Trigger: "admin panel", "admin dashboard", "data table", "back-office",
+  "RBAC dashboard", "admin console", "CRUD interface", "internal tool"
 allowed-tools:
   - Read
   - Write
@@ -23,7 +32,15 @@ allowed-tools:
 
 ## TL;DR
 
-Guides the architecture and implementation of admin dashboard interfaces featuring sortable/filterable data tables, CRUD operations, charts/metrics, real-time updates, audit trails, empty/loading/error states, responsive dense layouts, and role-based access control enforced beyond the UI. Use when building back-office tools, content management systems, or operational dashboards. Do not invent APIs, schemas, metrics, permissions, or realtime channels without repo evidence or explicit user input. [EXPLICIT]
+Architects and implements admin/back-office UIs: filterable/sortable data tables, CRUD with recovery, KPI cards and charts, realtime updates, audit trails, exports, the full state matrix, dense responsive layouts, and RBAC enforced beyond the UI. Output is an evidence-tagged spec or scoped patch. The non-negotiable rule: do not invent APIs, schemas, metrics, permissions, or realtime channels — cite repo evidence or mark `not verified`. [EXPLICIT]
+
+## Routing Gate (run first)
+
+Before any work, classify the request to avoid misroute and pick depth:
+
+- **Is it an operator-facing tool over structured data + roles?** If no (public/marketing page, decorative chart) → stop and route to landing/brand/`data-visualization`. If the ask is pure backend endpoint or auth-policy authoring → route to `api-design` / `api-security`; this skill consumes those contracts.
+- **Depth:** `quick` when APIs, RBAC, states, and acceptance are already known and the change is small and non-destructive. `deep` for new dashboards, sensitive data, destructive/bulk actions, exports, unclear RBAC, large datasets, or realtime. Otherwise `standard`.
+- **Write vs analysis-only:** if the user asks for a design/spec, do not mutate files even when Write/Bash are allowed.
 
 ## Procedure
 
@@ -81,19 +98,25 @@ Guides the architecture and implementation of admin dashboard interfaces featuri
 
 ## Anti-Patterns
 
-- Loading all records client-side instead of server-side pagination
-- Building custom data tables from scratch when libraries like TanStack Table exist
-- Hiding menu items but not protecting API routes for unauthorized roles
-- Inventing `/api/*`, Firestore collections, WebSocket/SSE channels, or KPI formulas without evidence
-- Treating admin dashboards as marketing pages instead of dense operational tools
-- Logging full sensitive payloads in audit trails
-- Exporting raw PII or spreadsheet formulas without governance
-- Reporting performance targets without dataset and measurement context
+| Anti-pattern | Why it fails | Correct move |
+|--------------|--------------|--------------|
+| Load all records client-side | Freezes UI past a few thousand rows; leaks unfiltered data | Server-side pagination; virtualize only when the full set is intentionally client-held |
+| Hand-roll the table from scratch | Reimplements sort/filter/a11y bugs | Reuse a repo-present table lib (e.g. TanStack Table); document the choice if adding one |
+| Hide the button but leave the API open | RBAC bypassed by deep-link or direct call | Enforce on backend; UI visibility is cosmetic; add a negative test |
+| Invent `/api/*`, collections, channels, or KPI formulas | Silent fiction passed off as a contract | Cite repo evidence or mark `not verified` |
+| Ship marketing-style hero layout | Wastes density operators need | Dense, scannable, repeated-work-first layout |
+| Log full payloads / secrets in audit | Audit becomes a breach surface | Log actor, action, entity, before/after summary, correlation ID; minimize PII |
+| Export raw PII or live spreadsheet formulas | Data leak + CSV/formula injection | Apply PII policy by role; neutralize `=+-@` formula prefixes |
+| Quote a perf target with no context | Unfalsifiable claim | State dataset size, environment, and measurement method |
 
 ## Related Skills
 
-- `firestore-queries` — efficient data fetching for dashboard tables
-- `cloud-functions` — API endpoints backing CRUD operations
+- `api-design` — authoring/inspecting the endpoints this dashboard consumes
+- `api-security` — backend authorization and IDOR checks behind RBAC
+- `audit-trail-design` — actor/action/correlation audit schemas
+- `form-engineering` — CRUD validation, optimistic updates, conflict UX
+- `accessibility-testing` — keyboard, `aria-sort`, focus-trap verification
+- `data-visualization` — chart data contracts and KPI rendering
 
 ## Usage
 

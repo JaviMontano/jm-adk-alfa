@@ -1,6 +1,6 @@
 ---
 name: accessibility-audit
-description: WCAG 2.1 AA automated scanning with axe-core plus manual checklist for keyboard, screen reader, and contrast
+description: Audit a digital UI (web app, route list, React/HTML component, or static markup) against WCAG 2.1 AA. Combines automated axe-core scanning with manual verification of keyboard, screen reader, contrast, forms, focus, dynamic content, and motion, then emits an evidence-backed report with a pass/conditional/fail/not-verified verdict and owner-ready remediation tickets. USE when the request is about web/app accessibility, WCAG, a11y, axe, keyboard-only or screen-reader behavior, color contrast, or ARIA. DO NOT use for physical-space accessibility, financial/credit access, API rate-limit "accessibility", or pure code remediation without an audit (it reports findings by default and only patches code on explicit request).
 version: 1.0.0
 status: production
 owner: Javier Montaño
@@ -55,10 +55,20 @@ The default output is an evidence-backed accessibility audit report, not a code 
 
 | Input | Output |
 |-------|--------|
-| React/HTML component | axe-core violation report (JSON/HTML) |
-| Route list | Full-site automated scan results |
-| Manual audit checklist | Completed checklist with pass/fail per criterion |
-| Violation report | Remediation tickets with WCAG reference |
+| React/HTML component | axe-core violation report (JSON/HTML) + manual checklist for that component |
+| Route list | Per-route automated scan results + scope coverage table |
+| Running app URL or app command | Full automated + manual audit with environment record |
+| Manual audit checklist | Completed checklist with pass/fail/not-verified per criterion |
+| Violation report | Remediation tickets with WCAG reference and acceptance check |
+| No runnable target or artifact | Gap report listing required inputs, status `not verified` |
+
+## Routing Boundary
+
+Activate ONLY for digital WCAG/a11y audits. Hard non-matches (ask for clarification or decline, do NOT audit):
+- Physical accessibility (building entrances, ramps, parking). [EXPLICIT]
+- Financial/credit "access" (SMB credit access, banking inclusion). [EXPLICIT]
+- API/network "accessibility" (uptime, rate limits, reachability). [EXPLICIT]
+- A bare "fix accessibility" with no target and no evidence → return a gap report, do not invent findings. [EXPLICIT]
 
 ## Quality Gates — 5 Checks
 
@@ -76,6 +86,15 @@ The default output is an evidence-backed accessibility audit report, not a code 
 - **SVG icons**: Add `aria-hidden="true"` for decorative. `role="img"` + `aria-label` for meaningful.
 - **ARIA overuse**: Prefer native HTML before adding ARIA. Remove redundant or misleading roles.
 - **Clean axe report with manual failure**: Overall status remains `fail` or `conditional`; automation cannot override manual blockers.
+
+## Anti-Patterns
+
+- **"axe is clean, so we are WCAG AA compliant."** Automated scans cover roughly 30-40% of WCAG criteria. A clean scan with skipped manual checks is `conditional` or `not verified`, never `pass`. [EXPLICIT]
+- **ARIA-as-default.** Adding `role`/`aria-*` to native elements (`<button>`, `<h2>`, `<nav>`) is a regression, not a fix. Prefer native HTML; reach for ARIA only to repair semantics native elements cannot provide. [EXPLICIT]
+- **Severity = axe impact.** axe `critical/serious/moderate/minor` is a starting signal, not the priority. Re-rank by user-task blocking, WCAG level, and recurrence across components. [EXPLICIT]
+- **Findings without a reproducer.** "Contrast is low somewhere" is not a ticket. Every finding names target, selector/component, steps, expected behavior, and acceptance check. [EXPLICIT]
+- **Auditing the design mock instead of the rendered DOM.** Contrast, focus order, and announcements must be verified on the running build or supplied markup, not inferred from a Figma frame. [EXPLICIT]
+- **Silent scope shrink.** Routes/components that could not be run are recorded as `not verified`, never dropped to make the report look green. [EXPLICIT]
 
 ## Self-Correction Triggers
 

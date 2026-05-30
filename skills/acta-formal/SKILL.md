@@ -3,10 +3,19 @@ name: acta-formal
 author: JM Labs (Javier Montano)
 version: 1.0.0
 description: >
-  Generates formal meeting records (actas) with legal/corporate format,
-  numbered sections, signatures block, and branded HTML output. [EXPLICIT]
+  Drafts formal corporate/legal meeting records (actas) from supplied facts:
+  Roman-numbered sections I-VIII, attendance + quorum table, agreements with
+  owner/deadline/status, president-secretary signature block, and Markdown +
+  branded HTML output. Use WHEN the user asks for an "acta formal / corporativa
+  / de junta / de consejo / de asamblea / de comite", needs minutes with firmas,
+  quorum, folio, or wants the record uploaded to Drive / emailed to attendees.
+  Do NOT use for informal standup notes or a plain meeting summary (route to
+  meeting-notes), for the pre-meeting agenda, or to certify legal validity. Never
+  invents attendees, votes, quorum, folio, deadlines or signers; distribution is
+  draft-only until explicit human confirmation. [EXPLICIT]
   Trigger: "acta formal", "formal minutes", "acta corporativa",
-  "acta de junta", "acta de consejo", "acta con firmas", "quorum"
+  "acta de junta", "acta de consejo", "acta de asamblea", "acta de comite",
+  "acta con firmas", "minutas oficiales", "quorum"
 status: production
 tags: [documents, meetings, formal, corporate, office]
 mcp-server: workspace-mcp
@@ -39,6 +48,18 @@ Genera borradores de actas formales de reunion con formato legal/corporativo: se
 | Firmas / quorum / folio | "Necesito acta con firmas, quorum y numero de folio" |
 
 No activar para notas informales, resumen de standup o "acta de la reunion" sin senales formales; usar `meeting-notes`. Para preparar temas antes de la reunion, generar una agenda simple o derivar a una skill de agenda disponible; no referenciar una skill inexistente.
+
+**Frontera de routing (decision rapida):**
+
+| Senal de entrada | Skill correcta |
+|---|---|
+| Junta/consejo/asamblea/comite + firmas/quorum/folio | `acta-formal` (esta) |
+| "notas", "resumen", "minuta rapida", standup, 1:1 | `meeting-notes` |
+| Solo temas a tratar antes de la reunion | skill de agenda (no inventar) |
+| Numeracion secuencial de documentos | `folio-generator` (fuente de folio) |
+| Distribuir borrador ya aprobado | `office-workflow-runner` con gates |
+
+**Selector de profundidad:** input completo (metadata + asistentes + quorum + acuerdos + firmantes) -> `prompts/variations/quick.md`. Impacto legal, quorum ambiguo, muchos asistentes/acuerdos, o requisitos de marca/distribucion -> `prompts/variations/deep.md`.
 
 ## S1 — Recopilar Metadata
 
@@ -82,14 +103,30 @@ VIII. **Firmas** — Bloque de firmas del presidente y secretario
 - [ ] Distribucion externa bloqueada hasta confirmacion humana explicita
 - [ ] Evidence tags aplicados fuera del texto final del acta
 
+## Edge Cases (resolucion canonica)
+
+| Caso | Regla |
+|---|---|
+| Quorum no alcanzado o sin fuente | Marcar `no alcanzado` / `no verificable`; los temas votados pasan a Pendientes/Asuntos Varios, nunca a Acuerdos vinculantes |
+| Falta presidente o secretario | Firmas `por_confirmar`; nunca inferir un firmante |
+| Acuerdo sin responsable o sin fecha | Registrar acuerdo con `por_confirmar` en la celda faltante + nota en validation appendix |
+| No hubo orden del dia formal | Declarar "no hubo orden del dia formal" y listar temas tratados sin fabricar agenda aprobada |
+| Pendiente confundido con acuerdo | Un pendiente solo es acuerdo si el input dice que fue aprobado/acordado |
+| Numero de acta desconocido | `por_confirmar` salvo que exista fuente de folio (`folio-generator` o instruccion del usuario) |
+| Asistente ausente | No asignarle firma ni alterar su presencia para completar quorum |
+| Reunion virtual | Registrar canal en Datos Generales; valida igual que presencial |
+
 ## Quality Criteria
 
 - [ ] Formato legal/corporativo valido
 - [ ] Secciones numeradas con romanos (I-VIII)
-- [ ] Tabla de asistentes completa
-- [ ] Acuerdos con responsable y deadline
-- [ ] Bloque de firmas al final
+- [ ] Tabla de asistentes completa (con columna Firma, paridad Markdown/HTML)
+- [ ] Acuerdos con responsable y deadline (o `por_confirmar` explicito)
+- [ ] Quorum en estado controlado (`validado` / `no verificable` / `no aplica` / `no alcanzado`)
+- [ ] Bloque de firmas al final (presidente + secretario)
 - [ ] Placeholders `por_confirmar` visibles para datos faltantes
+- [ ] Validation appendix fuera del cuerpo del acta; cero hechos formales inventados
+- [ ] Distribucion externa en estado borrador hasta confirmacion humana
 
 ## Anti-Patterns
 

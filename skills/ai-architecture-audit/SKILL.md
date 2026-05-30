@@ -2,11 +2,18 @@
 name: ai-architecture-audit
 version: 1.0.0
 description: >
-  Audits existing AI system architectures against best practices — structural integrity, AI quality attributes,
-  pattern adherence, anti-pattern detection, security compliance, and technical debt inventory. This skill should
-  be used when the user asks to "audit AI architecture", "review ML system quality", "assess AI technical debt",
-  "evaluate AI compliance", "detect AI anti-patterns", "review AI security posture", or mentions AI architecture
-  review, AI system assessment, AI quality audit, drift monitoring audit, or AI governance review. [EXPLICIT]
+  Audits an EXISTING AI/ML system architecture and returns an evidence-tagged findings report plus a
+  prioritized remediation roadmap across 6 dimensions: structural integrity (6-layer model), AI quality
+  attributes vs thresholds, pattern/anti-pattern detection (Training-Serving Skew, YOLO Deploy, Silent
+  Degradation, Pipeline Jungle, Unguarded LLM), security & compliance (OWASP LLM Top 10, PII, RBAC), AI
+  technical debt inventory, and a phased fix plan. Use when the user says "audit AI architecture", "review
+  ML system quality", "assess AI technical debt", "detect AI anti-patterns", "review AI/LLM security
+  posture", "AI due diligence", "is our ML system production-ready", "drift monitoring audit", or "AI
+  governance review". Operates on a system that ALREADY EXISTS (code, configs, metrics, docs) — it diagnoses
+  and prioritizes, it does NOT design new systems and does NOT implement fixes. Boundary: NEW design →
+  ai-software-architecture / genai-architecture; pipeline design → ai-pipeline-architecture; pattern
+  selection → ai-design-patterns; AWS-specific Well-Architected review → aws-architecture-audit; executing
+  the remediation roadmap → ai-architecture-implementation. [EXPLICIT]
 model: opus
 context: fork
 allowed-tools:
@@ -33,6 +40,19 @@ evidencia por cada hallazgo, y un roadmap de remediación priorizado por impacto
 2. **Severity drives priority, not sequence.** No auditar linealmente de arriba a abajo. Empezar por las dimensiones de mayor riesgo para el sistema específico (seguridad en regulados, quality attributes en producción, deuda en sistemas legacy). [EXPLICIT]
 
 3. **Remediation is part of the audit.** Un informe que solo lista problemas sin soluciones ejecutables es un documento de quejas. Cada finding incluye patrón de remediación, esfuerzo estimado, y dependencias. [EXPLICIT]
+
+---
+
+## Anti-Patrones del Auditor (qué NO hacer)
+
+| Anti-patrón | Síntoma | Corrección |
+|-------------|---------|------------|
+| **Opinion dressed as finding** | "El pipeline parece frágil" sin evidencia | Adjuntar `[CÓDIGO]`/`[MÉTRICA]`/`[CONFIG]`; si no hay evidencia, baja a `[OPEN]` o entrevista pendiente |
+| **Severity inflation** | Todo es CRITICAL → nada es CRITICAL | Severidad = (impacto en producción × explotabilidad/probabilidad). Reservar CRITICAL para riesgo de outage, fuga de datos, o multa regulatoria activa |
+| **Checklist theater** | Marcar las 6 dimensiones sin medir | Una dimensión sin medición se reporta como gap de observabilidad, no como "PASS" |
+| **Findings sin dueño ni DoD** | Lista de problemas sin remediación accionable | Cada finding lleva patrón de remediación, esfuerzo (S/M/L/XL), dependencias y Definition of Done |
+| **Linear sweep** | Auditar S1→S6 ignorando el perfil de riesgo | Empezar por la dimensión de mayor riesgo del sistema (security en regulados, quality en producción, debt en legacy) |
+| **Inventar métricas** | Rellenar la tabla de quality attributes sin fuente | Si no hay threshold o medición, escribir "desconocido" + finding MEDIUM, nunca un número fabricado |
 
 ---
 

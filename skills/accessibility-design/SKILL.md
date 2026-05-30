@@ -3,12 +3,21 @@ name: accessibility-design
 author: JM Labs (Javier Montaño)
 version: 1.0.0
 description: >
-  Designs and implements WCAG 2.1 AA accessibility patterns for web
-  applications using native HTML first, targeted ARIA only when needed,
-  keyboard interaction maps, focus management, screen reader semantics,
-  contrast tokens, accessible forms, reduced motion, and inclusive interaction
-  requirements. [EXPLICIT]
-  Trigger: "accessibility", "WCAG", "ARIA", "a11y", "screen reader", "inclusive design"
+  Designs the accessible interaction contract for a web UI component or flow
+  BEFORE or DURING build: native-HTML-first semantics, targeted ARIA only when
+  native is insufficient, keyboard interaction maps, focus management (initial,
+  trap, return, route-change), screen reader name/role/value/state expectations,
+  contrast and focus-indicator token requirements, accessible forms with error
+  recovery, live regions, reduced motion, and WCAG 2.1 AA acceptance criteria.
+  [EXPLICIT]
+  Use WHEN the deliverable is a design/implementation spec a developer or tester
+  can build and verify against (e.g. "make this modal/tabs/combobox/form
+  accessible", "spec keyboard and focus behavior", "what ARIA does this widget
+  need"). Do NOT use to scan an existing app for violations or to write/run test
+  automation: route those to `accessibility-audit` and `accessibility-testing`.
+  Out of scope: physical/built-environment accessibility, non-web platforms
+  unless explicitly web-rendered, and general visual design unrelated to a11y.
+  Trigger: "accessibility", "WCAG", "ARIA", "a11y", "screen reader", "keyboard navigation", "focus management", "inclusive design", "accessible component/form/modal"
 allowed-tools:
   - Read
   - Write
@@ -43,6 +52,12 @@ to discover/report violations rather than design the solution. [EXPLICIT]
   specifications. [EXPLICIT]
 
 ### Step 2: Analyze
+- Apply the native-first ladder in order; stop at the first rung that satisfies
+  the requirement: (1) native HTML element, (2) native element + minimal
+  attributes (`type`, `for`, `required`, `disabled`), (3) native element + one
+  ARIA state/relationship (`aria-expanded`, `aria-describedby`, `aria-current`),
+  (4) full ARIA widget pattern from APG only when no native element exists
+  (combobox, tablist, tree). [EXPLICIT]
 - Choose native HTML semantics first: buttons, links, headings, labels, fieldsets,
   lists, tables, landmarks, and form controls before custom ARIA widgets. [EXPLICIT]
 - For every custom component, define name, role, value/state, keyboard model,
@@ -95,6 +110,11 @@ to discover/report violations rather than design the solution. [EXPLICIT]
 - `aria-label` that hides or contradicts visible text
 - Focusable content inside `aria-hidden="true"`
 - Custom widgets without a keyboard interaction model
+- `div`/`span` with click handlers instead of a `button` (loses role, keyboard, focus)
+- Placeholder used as the only label
+- `tabindex` greater than 0 to reorder focus
+- Live region added after content changes (must exist in the DOM before the update)
+- Claiming "WCAG AA compliant" without contrast measurement or AT verification evidence
 
 ## Related Skills
 
@@ -126,3 +146,8 @@ Example invocations:
 | Empty or minimal input | Request clarification before proceeding |
 | Conflicting requirements | Flag conflicts explicitly, propose resolution |
 | Out-of-scope request | Redirect to appropriate skill or escalate |
+| Request to find/report violations | Route to `accessibility-audit` (report) or `accessibility-testing` (automation) |
+| Physical/built-environment accessibility | Out of scope; this skill owns digital web UI behavior only |
+| Contrast ratios or AT output not measurable | Mark `not verified`, state the evidence needed; never overclaim compliance |
+| Native element exists for the need | Stop at the native rung; do not author a full ARIA widget pattern |
+| Drag-and-drop or pointer-only gesture | Require a keyboard/single-pointer alternative (WCAG 2.5.7 / 2.1.1) |

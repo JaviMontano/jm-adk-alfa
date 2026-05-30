@@ -3,11 +3,18 @@ name: accessibility-testing
 author: JM Labs (Javier Montaño)
 version: 1.0.0
 description: >
-  Plan, execute, and report web accessibility tests with axe-core,
-  Playwright/Jest evidence, keyboard scripts, screen reader smoke checks,
-  color contrast validation, and explicit WCAG target scope. [EXPLICIT]
-  Trigger: "accessibility test", "a11y test", "WCAG test", "screen reader",
-  "axe-core", "keyboard accessibility"
+  Plan, execute, and report web accessibility tests as reproducible evidence:
+  stateful axe-core scans (@axe-core/playwright, jest-axe), keyboard-only
+  matrices, screen reader smoke scripts (VoiceOver/Safari, NVDA/Firefox),
+  color and non-text contrast checks, reduced-motion and zoom/reflow regression,
+  governed suppressions, and an explicit WCAG target with pass/fail/conditional/
+  not-verified status. Use when someone needs a11y test plans, regression suites,
+  QA reports, or retest evidence on a web UI. NOT for compliance governance/policy
+  audits (use accessibility-audit), NOT for designing accessible patterns (use
+  accessibility-design), and never emits a WCAG-conformance claim without target,
+  scope, tested technologies, date, and evidence. [EXPLICIT]
+  Trigger: "accessibility test", "a11y test", "WCAG test", "screen reader test",
+  "axe-core run", "keyboard accessibility test", "contrast check"
 allowed-tools:
   - Read
   - Write
@@ -24,6 +31,20 @@ allowed-tools:
 
 Guides accessibility testing as an evidence-producing workflow: define scope, run automated checks where possible, execute manual keyboard and assistive-technology smoke tests, record contrast and motion results, and produce a pass/fail/not-verified report. Use for test plans, regression suites, QA reports, and retest evidence. Do not claim WCAG compliance without explicit target, scope, date, tested technologies, and evidence. [EXPLICIT]
 
+## Inputs Required (resolve before Step 3)
+
+| Input | If missing | Default if user defers |
+|-------|-----------|------------------------|
+| WCAG target version + level | Ask once | WCAG 2.2 AA (test target, not a claim) |
+| Routes / components / flows in scope | Ask once | Refuse a blanket pass; scope only what is named |
+| Dynamic states to open | Inventory from code/DOM | Mark unopened states `not verified` |
+| Browser + viewport set | Ask once | Chromium desktop; note mobile as `not verified` |
+| AT pairings | Ask once | VoiceOver/Safari + NVDA/Firefox scripts, execution `not verified` |
+| Remediation authorized? | Ask once | No — produce findings + retest only |
+| Available tooling | Detect from lockfile/config | Document scripts as runnable-pending |
+
+Treat the answers as a signed contract. Echo them back in the Scope table verbatim; every later status inherits from this scope.
+
 ## Procedure
 
 ### Step 1: Discover
@@ -39,11 +60,14 @@ Guides accessibility testing as an evidence-producing workflow: define scope, ru
 - Choose manual scripts for focus order, focus trapping/restoration, keyboard activation, screen reader announcements, contrast, zoom/reflow, reduced motion, and dynamic content.
 
 ### Step 3: Execute
-- Produce or run automated tests with route/component/state coverage; scan after interactions, not just first page load.
-- Produce keyboard scripts covering Tab, Shift+Tab, Enter, Space, Escape, arrow keys where relevant, skip links, focus visibility, focus trap, and focus restoration.
-- Produce screen reader smoke scripts with OS/browser/AT pairing, expected announcement, observed announcement, and pass/fail status.
-- Record contrast evidence for normal text, large text, non-text UI, placeholder, disabled, focus, hover, and error states, or mark gaps as `not verified`.
+- Produce or run automated tests with route/component/state coverage; scan **after** each interaction, not just first page load. Stateful pattern: `await page.getByRole('button', { name: 'Pay now' }).click(); const r = await new AxeBuilder({ page }).include('[role=dialog]').analyze(); expect(r.violations).toEqual([])`. For component semantics use `expect(await axe(container)).toHaveNoViolations()` (jest-axe), and flag that jest-axe does NOT cover browser-rendered contrast or live keyboard behavior.
+- Produce keyboard scripts covering Tab, Shift+Tab, Enter, Space, Escape, arrow keys where relevant, skip links, focus visibility, focus trap, and focus restoration. Each row is one step with explicit keys and an expected focus target by accessible name.
+- Produce screen reader smoke scripts with OS/browser/AT pairing, expected announcement, observed announcement, and pass/fail status. Cover landmarks, headings, name/role/value, form errors, live regions, dialog semantics, and reading order.
+- Record contrast evidence for normal text, large text, non-text UI, placeholder, disabled, focus, hover, and error states, or mark gaps as `not verified`. State the threshold used (4.5:1 normal text, 3:1 large text and non-text UI) next to each ratio.
+- Test `prefers-reduced-motion: reduce` for non-essential motion (Playwright: `browser.newContext({ reducedMotion: 'reduce' })`) and 200% zoom / 320 CSS px reflow where in scope.
 - Create remediation tickets or backlog items only when remediation is requested; otherwise report issues with evidence and recommended owner.
+
+**Status decision rule** (apply per row, then roll up): evidence collected + no issue → `pass`; evidence collected + ≥1 issue → `fail`; partial/blocked with documented mitigation → `conditional`; no evidence collected → `not verified`. The overall status is the worst not-`pass` state present; a report containing any `not verified` in-scope item is at best `conditional`, never `pass`.
 
 ### Step 4: Validate
 - Every claim has a command, artifact, observation, or explicit `not verified` marker.
