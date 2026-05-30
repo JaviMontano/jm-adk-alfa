@@ -1,17 +1,23 @@
 ---
 name: agent-creator
 version: 1.0.0
-description:  [EXPLICIT]
-  This skill should be used when the user asks to "create an agent", [EXPLICIT]
-  "add a subagent", "make a custom agent", "define agent definition", [EXPLICIT]
-  or "build an agent for X". Creates Claude Code custom agent definitions [EXPLICIT]
-  with system prompts, tool restrictions, model selection, and reasoning [EXPLICIT]
-  discipline. Use this skill whenever someone needs a new autonomous [EXPLICIT]
-  subprocess for their project, even if they just say "I need something [EXPLICIT]
-  to handle X automatically". [EXPLICIT]
-argument-hint: agent-name [description] [EXPLICIT]
-model: opus [EXPLICIT]
-context: fork [EXPLICIT]
+description: >-
+  Authors Claude Code custom subagent definition files (.claude/agents/{name}.md):
+  YAML frontmatter (name, description, model, color, tools) plus a self-sufficient
+  system prompt with bounded scope, concrete process, explicit output format, and
+  negative constraints. USE WHEN the user asks to "create an agent", "add a
+  subagent", "make a custom agent", "define an agent", or "build an agent for X" —
+  including indirect phrasings like "I need something to handle X automatically".
+  FIRST screens whether a subagent is even the right primitive: routes one-off
+  instructions to CLAUDE.md, reusable multi-step workflows to a forked Skill, output
+  reshaping to an output style, and always-run automation to a Hook. DO NOT use for
+  writing application code, building Skills/Hooks/MCP servers themselves, or editing
+  an existing agent's behavior at runtime (that is just file editing). Boundary vs
+  skill-creator: this produces agent definitions (an autonomous subprocess with
+  isolated context), not Skills (reusable instruction packs the parent runs inline).
+argument-hint: agent-name [description]
+model: opus
+context: fork
 allowed-tools:
   - Read
   - Write
@@ -23,7 +29,26 @@ allowed-tools:
 
 # Agent Creator
 
-Create custom Claude Code agents — autonomous subprocesses with isolated context, specific tools, and tailored system prompts. [EXPLICIT]
+Create custom Claude Code agents — autonomous subprocesses with isolated context, specific tools, and tailored system prompts. The deliverable is a single `.claude/agents/{name}.md` file whose system prompt is the entire universe the spawned agent will see. [EXPLICIT]
+
+## When to Activate
+
+Activate when the user wants a **reusable autonomous subprocess** — something the parent agent can spawn with a fresh context window to do a bounded job and report back. Concrete signals:
+
+- Explicit: "create/add/make/build an agent (or subagent) for X", "define an agent that …".
+- Indirect: "I want something that automatically reviews/audits/generates X", "a dedicated helper for Y".
+
+**Gate before authoring** (the most valuable thing this skill does is say "no, use a different primitive"):
+
+| Signal in the request | Right primitive | Why |
+|---|---|---|
+| "Always do X before/after Y" | Hook | Deterministic, runs every time — an agent is non-deterministic |
+| "Format my output as …" | Output style | Presentation, not autonomous work |
+| "A one-off rule for this repo" | CLAUDE.md | No isolation or tool scoping needed |
+| "A repeatable multi-step workflow I invoke" | Skill (`context: fork`) | Parent runs it inline; no separate identity/permissions |
+| "An autonomous reviewer/auditor/generator that runs in its own context" | **Agent (this skill)** | Needs isolated context + scoped tools + own system prompt |
+
+If the request fails the gate, name the better primitive and stop — do not author an agent.
 
 ## Assumptions & Limits
 
@@ -53,11 +78,16 @@ Parse `$1` as agent name (kebab-case), `$2` as description. If `$2` absent, ask:
 2. Should it modify files or only read/report?
 3. What complexity level? (haiku=simple, sonnet=balanced, opus=complex reasoning)
 
-## Before Creating
+## Procedure
 
-1. **Read official spec**: `Read ~/.claude/plugins/marketplaces/claude-plugins-official/plugins/plugin-dev/skills/agent-development/SKILL.md`
-2. **Check existing**: `Glob .claude/agents/*.md` and `Glob ~/.claude/agents/*.md`
-3. **Verify no name collision** with built-in agents
+1. **Gate** — Apply the `## When to Activate` table. If a Hook/Skill/output-style/CLAUDE.md fits better, recommend it and stop.
+2. **Read the official spec** — `Read ~/.claude/plugins/marketplaces/claude-plugins-official/plugins/plugin-dev/skills/agent-development/SKILL.md` so the frontmatter you emit matches the current contract.
+3. **Survey existing agents** — `Glob .claude/agents/*.md` and `Glob ~/.claude/agents/*.md`. Reuse naming conventions and color palette; avoid duplicating an agent that already exists.
+4. **Resolve name** — kebab-case, descriptive of the job (`security-reviewer`, not `helper`). Verify no collision with built-ins `Explore`, `Plan`, `general-purpose`, or an existing file. On collision, propose an alternative and confirm.
+5. **Choose scope** — pick the minimum tool set from the Tool Restriction Patterns table; default read-only. Choose the model from the Frontmatter Decision Matrix and justify it in one line.
+6. **Draft the system prompt** — fill the anatomy below. Every section must be self-sufficient: the agent sees none of this conversation.
+7. **Run the Validation Gate** — every box must be checked before you write the file.
+8. **Write the file** — to project (`.claude/agents/`) or global (`~/.claude/agents/`) scope, then tell the user how it will be triggered.
 
 ## Agent File Anatomy
 
@@ -139,12 +169,34 @@ Apply structured thinking to every analysis and recommendation. [EXPLICIT]
 | Concrete process steps | Reproducible behavior | "Use your best judgment" |
 | Negative constraints | Prevents common mistakes | No constraints section |
 
+## Context Economy & Determinism
+
+The spawned agent starts with an empty window; its system prompt is its only context. Engineer it like a contract, not an essay:
+
+- **Front-load the stable contract.** Put invariant instructions (role, process, output format, constraints) first; they are identical across every spawn and benefit from prefix caching. Keep anything variable out of the static file — inject it at spawn time.
+- **Structure over prose.** Tables, numbered steps, and explicit output schemas reduce variance far more than adjectives. A 40-line structured prompt beats a 200-line narrative.
+- **Right-size the model.** Over-provisioning to `opus` for a formatting check wastes latency and budget; under-provisioning `haiku` for an architecture audit fails silently. Match model to the hardest reasoning the agent must do (see matrix).
+- **Bound the output.** Specify a hard size limit ("Max 60 lines", "one table") so the parent can consume the result deterministically.
+- **Least-privilege tools.** Every extra tool widens the action surface and the failure surface. Grant only what the process steps actually invoke.
+
 ## Edge Cases
 
-- **Agent needs project-specific context**: Use `!command` in the skill that spawns it to inject dynamic state
-- **Agent spawns too often**: Narrow the description trigger conditions; add "Only spawn when X AND Y"
-- **Agent output too verbose**: Add token/line limits in system prompt ("Max 50 lines")
-- **Multiple agents for related tasks**: Create an agent "team" with clear ownership boundaries per file/module
+- **Agent needs project-specific context**: It cannot read this conversation. Inject dynamic state via `!command` in the spawning skill, or instruct the agent to discover it (`Glob`/`Grep`) — never reference "the file we discussed".
+- **Agent spawns too often**: Narrow the `description` trigger conditions; add "Only spawn when X AND Y" and an explicit "Do NOT spawn for …" clause.
+- **Agent output too verbose**: Add a token/line cap in the system prompt and a fixed output schema.
+- **Multiple agents for related tasks**: Create an agent "team" with non-overlapping ownership (per file/module/concern) so two agents never both claim the same work.
+- **Agent must mutate state**: Keep read and write in separate agents when possible (a read-only auditor + a separate writer) so review is never tempted to "fix" silently.
+
+## Anti-Patterns (reject or rewrite)
+
+| Anti-pattern | Why it fails | Fix |
+|---|---|---|
+| Description says only WHAT ("Reviews code") | Claude can't decide WHEN to auto-spawn | State trigger conditions explicitly |
+| `tools` omitted (inherits everything) | Unbounded action surface; least-privilege violated | Enumerate the minimum set |
+| "Use your best judgment" process | Non-reproducible behavior | Numbered concrete steps |
+| "Summarize your findings" output | Undefined shape; parent can't consume | Fixed table/schema with size cap |
+| System prompt references parent chat | Agent has no parent context — instruction is dead | Make every section self-sufficient |
+| Agent created for a one-off / formatting / always-run need | Wrong primitive | Route to CLAUDE.md / output style / Hook |
 
 ## Example: Production-Quality Agent
 

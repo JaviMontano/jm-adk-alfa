@@ -3,12 +3,23 @@ name: accessibility-writing
 author: JM Labs (Javier Montaño)
 version: 1.0.0
 description: >
-  Rewrite and review content so it is accessible, understandable, inclusive,
-  and safe to publish: alt text, plain language, reading-level estimates,
-  descriptive links, helpful errors, non-sensory instructions, localization,
-  and evidence-backed limits. [EXPLICIT]
+  Rewrite and review reader-facing TEXT so it is accessible, understandable,
+  inclusive, and safe to publish — alt text, plain-language copy, descriptive
+  link text, accessible error messages, non-sensory instructions, inclusive
+  wording, localization fit, and reading-burden estimates — and returns the
+  clean copy separate from a validation table of assumptions, evidence, and
+  not-verified items. [EXPLICIT]
+  Use when the deliverable is the WORDS: image descriptions, UI microcopy,
+  docs, onboarding, disclosures, form errors, CTAs, or an inclusive-language
+  pass over existing text.
+  Do NOT use for runtime/automated checks (axe, keyboard, screen-reader,
+  contrast → accessibility-testing), for component behavior, focus order, or
+  ARIA markup (→ accessibility-design), for WCAG governance evidence
+  (→ accessibility-audit), or for persuasion/brand campaign copy
+  (→ copywriting / brand-voice).
   Trigger: "accessibility writing", "accessible copy", "alt text",
-  "plain language", "inclusive language", "reading level", "descriptive links"
+  "plain language", "inclusive language", "reading level", "descriptive links",
+  "accessible error message", "rewrite for accessibility"
 allowed-tools:
   - Read
   - Write
@@ -22,6 +33,28 @@ allowed-tools:
 ## TL;DR
 
 Use this skill to turn copy, UI text, docs, image descriptions, error messages, and instructions into accessible writing. It produces clean reader-facing copy plus a separate validation note with assumptions, evidence, unresolved questions, and not-verified items. Do not invent visual details, reading-level measurements, audience facts, legal claims, or cultural context. [EXPLICIT]
+
+## When this skill owns the work (and when it hands off)
+
+| Signal in the request | Owns it here? | If not, route to |
+|---|---|---|
+| "Write/fix the wording, alt text, error text, link text" | Yes | — |
+| "Make this readable / plain language / inclusive" | Yes | — |
+| "Run axe / test keyboard / check contrast / screen reader" | No | `accessibility-testing` |
+| "Fix focus order / ARIA roles / component behavior" | No | `accessibility-design` |
+| "Produce WCAG conformance evidence / audit report" | No | `accessibility-audit` |
+| "Make it punchier / on-brand / persuasive" (no a11y goal) | No | `copywriting` / `brand-voice` |
+
+If a request mixes copy work with a handoff item (e.g. "rewrite errors AND test them"), do the copy here and explicitly name the follow-up skill for the rest.
+
+## Output contract
+
+Always return two clearly separated blocks, in this order:
+
+1. **Reader-facing copy** — publish-ready, no evidence tags, no `not verified` markers inline.
+2. **Validation table** — one row per changed item: `Item | Issue | Rewrite | Rationale | Evidence/Source | Assumption | Residual risk`.
+
+Then a one-line **confidence** statement, capped by source completeness (missing image/chart/locale/measurement lowers it).
 
 ## Procedure
 
