@@ -48,6 +48,11 @@ fi
 [ -f references/guardrails/placement-policy.json ] || fail "placement-policy.json missing"
 grep -q 'artifact-placement-guard.sh' hooks/hooks.json || fail "placement guard not registered in hooks.json"
 
+# Naming standard + contract must remain installed.
+[ -f scripts/lib/naming.sh ] || fail "scripts/lib/naming.sh missing"
+[ -f references/ontology/placement-naming-contract.md ] || fail "placement-naming-contract.md missing"
+grep -q '"naming"' references/guardrails/placement-policy.json || fail "naming block missing from placement-policy.json"
+
 if [ "$ERRORS" -gt 0 ]; then
   exit 1
 fi

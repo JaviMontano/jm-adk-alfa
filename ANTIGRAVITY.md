@@ -24,6 +24,10 @@ Alfa exposes an Antigravity-compatible derived view through `.agent/` and `scrip
 - Do not route secrets through Antigravity or any generated adapter.
 - Keep Alfa's source of truth in root repo files; `.agent/` is a derived view.
 
+## Placement & Naming Contract
+
+Task deliverables → `workspace/{active}/artifacts/` (never mixed with system files); kit internals → maintainer mode only; filenames + slugs = kebab-case, concise, mnemonic. No hooks here → apply manually. Full contract: `references/ontology/placement-naming-contract.md`.
+
 ## Validation
 
 ```bash

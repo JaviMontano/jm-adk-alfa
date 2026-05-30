@@ -31,6 +31,11 @@ run 2 Write  "{\"file_path\":\"$ROOT/skills/foo/SKILL.md\"}"             task   
 run 0 Write  "{\"file_path\":\"$ROOT/skills/foo/SKILL.md\"}"             maintainer "kit path allowed in maintainer mode"
 run 2 Write  "{\"file_path\":\"$ROOT/random-output.txt\"}"               task       "ad-hoc root file blocked + routed"
 run 2 Write  "{\"file_path\":\"$ROOT/output/report.pdf\"}"               task       "ad-hoc nested file blocked + routed"
+run 0 Write  '{"file_path":"/Users/someone/elsewhere/note.md"}'          task       "write outside repo root ignored"
+run 2 Write  "{\"file_path\":\"$ROOT/workspace/$WS/artifacts/Bad Name.md\"}" task    "new non-kebab filename blocked (naming)"
+run 0 Write  "{\"file_path\":\"$ROOT/workspace/$WS/artifacts/good-name.md\"}" task    "new kebab filename allowed"
+run 2 Write  "{\"file_path\":\"$ROOT/workspace/$WS/loose-note.md\"}"      task       "deliverable at task root routed to artifacts/"
+run 0 Write  "{\"file_path\":\"$ROOT/workspace/$WS/plan.md\"}"            task       "canonical task file allowed"
 
 echo "---"
 echo "RESULT: $PASS passed, $FAIL failed"

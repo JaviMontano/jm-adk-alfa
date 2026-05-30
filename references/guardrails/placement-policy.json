@@ -31,6 +31,16 @@
     "LICENSE",
     ".gitignore"
   ],
+  "naming": {
+    "enabled": true,
+    "standard": "kebab-case ^[a-z0-9]+(-[a-z0-9]+)*$ con extension minuscula. Validado solo en archivos NUEVOS; los existentes no se tocan.",
+    "allow_exact": [
+      "CLAUDE.md", "README.md", "SKILL.md", "AGENTS.md", "GEMINI.md", "CODEX.md",
+      "ANTIGRAVITY.md", "MEMORY.md", "TAREAS.md", "LICENSE", "CHANGELOG.md",
+      "CONTRIBUTING.md", "SECURITY.md", "ARCHITECTURE.md", "PRISTINO.md",
+      "PRISTINO-INDEX.md", "_INDICE.md", "_ESTRUCTURA.md", "_DASHBOARD.md"
+    ]
+  },
   "notes": {
     "maintainer_mode": "Set JM_ADK_MODE=maintainer or create a ./.maintainer sentinel file to edit kit internals. Without it, writes to system_globs are blocked so end-user task work cannot silently mutate the kit.",
     "fail_open": "If python3 or this file is missing, the guard exits 0 (allow). A broken guard must never brick the session.",

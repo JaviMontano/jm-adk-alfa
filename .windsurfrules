@@ -1,7 +1,7 @@
-# JM-ADK v4.0.0 — Windsurf IDE Rules
+# JM-ADK v5.2.0 — Windsurf IDE Rules
 
 # Environment: windsurf | Triad: checklist | Tools: Read/Write/Edit/Bash | MCP: no | Multimodal: limited
-# Components: 264 skills · 256 agents · 260 commands
+# Components: 585 skills · 260 agents · 267 commands
 
 # Awakening: load PRISTINO.md → Constitution v6.0.0 → PRISTINO-INDEX.md → greet
 
@@ -24,5 +24,11 @@
 # Quality Gates: G0 (pre-flight) → G1 (post-spec) → G2 (post-plan) → G3 (deploy-ready)
 # Stack: Firebase + HTML/CSS/JS + Angular/React + Hostinger
 # Soul: PRISTINO.md | Index: PRISTINO-INDEX.md
+
+# Placement & Naming Contract
+# - Task deliverables → workspace/{active}/artifacts/. Never mix system files with deliverables.
+# - Kit internals (skills/agents/scripts) → maintainer mode only.
+# - Filenames + slugs = kebab-case, concise, mnemonic, no spaces/accents/CamelCase.
+# - Full: references/ontology/placement-naming-contract.md
 
 # Requires: Windsurf IDE. Not supported: Agent tool, hooks, MCP, workspace management.

@@ -18,6 +18,10 @@ NOW_ISO=$(date -u +%Y-%m-%dT%H:%M:%SZ)
 NOW_TIME=$(date +"%H:%M")
 ACTION="${1:-help}"
 
+# Canonical naming (single source of truth). Provides slugify().
+# shellcheck disable=SC1091
+[ -f "$(dirname "$0")/lib/naming.sh" ] && . "$(dirname "$0")/lib/naming.sh"
+
 # ── Helpers ──
 
 ensure_registry() {
@@ -41,13 +45,17 @@ json_num() {
   echo "${VAL:-0}"
 }
 
-slugify() {
-  local SLUG
-  SLUG=$(echo "$1" | tr '[:upper:]' '[:lower:]' | \
-    sed 's/[áàäâã]/a/g; s/[éèëê]/e/g; s/[íìïî]/i/g; s/[óòöôõ]/o/g; s/[úùüû]/u/g; s/ñ/n/g; s/ç/c/g' | \
-    sed 's/[^a-z0-9]/-/g; s/--*/-/g; s/^-//; s/-$//' | cut -c1-40)
-  echo "${SLUG:-unnamed}"
-}
+# slugify() comes from lib/naming.sh when sourced. Fallback kept for resilience
+# if the lib is missing (degraded but functional).
+if ! type slugify >/dev/null 2>&1; then
+  slugify() {
+    local SLUG
+    SLUG=$(echo "$1" | tr '[:upper:]' '[:lower:]' | \
+      sed 's/[áàäâã]/a/g; s/[éèëê]/e/g; s/[íìïî]/i/g; s/[óòöôõ]/o/g; s/[úùüû]/u/g; s/ñ/n/g; s/ç/c/g' | \
+      sed 's/[^a-z0-9]/-/g; s/--*/-/g; s/^-//; s/-$//' | cut -c1-40)
+    echo "${SLUG:-unnamed}"
+  }
+fi
 
 get_active() {
   [ ! -f "$REGISTRY" ] && echo "" && return

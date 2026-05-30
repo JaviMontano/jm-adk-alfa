@@ -40,7 +40,7 @@ MODE="task"
 DECISION="$(
   CLAUDE_TOOL_INPUT="$INPUT" ROOT="$ROOT" POLICY="$POLICY" MODE="$MODE" \
   python3 - <<'PY'
-import json, os, sys, fnmatch
+import json, os, re, sys, fnmatch, unicodedata
 
 inp    = os.environ.get("CLAUDE_TOOL_INPUT", "")
 root   = os.environ.get("ROOT", "")
@@ -56,10 +56,17 @@ target = d.get("file_path") or d.get("notebook_path") or ""
 if not target:
     print("OK"); sys.exit()
 
+# Resolve symlinks on both sides (macOS /tmp → /private/tmp, etc.) before compare.
+if root:
+    root = os.path.realpath(root)
+abs_target = os.path.realpath(target) if os.path.isabs(target) else os.path.realpath(os.path.join(root, target))
+
+# Writes outside the project root are out of scope for this guard.
+if root and not abs_target.startswith(root + os.sep):
+    print("OK"); sys.exit()
+
 # Normalise to a repo-relative path.
-rel = target
-if root and target.startswith(root):
-    rel = target[len(root):].lstrip("/")
+rel = abs_target[len(root):].lstrip("/") if root else target
 rel = rel.lstrip("./")
 
 try:
@@ -68,7 +75,36 @@ except Exception:
     print("OK"); sys.exit()
 
 def match(globs):
-    return any(fnmatch.fnmatch(rel, g) for g in globs)
+    # A glob without "/" is a root-level pattern: it must only match a top-level
+    # file, never a nested path (Python fnmatch lets "*" span "/", so anchor it).
+    for g in globs:
+        if "/" in g:
+            if fnmatch.fnmatch(rel, g):
+                return True
+        elif "/" not in rel and fnmatch.fnmatch(rel, g):
+            return True
+    return False
+
+# ── Naming check (new files only; never break existing names) ──
+def suggest(name):
+    s = unicodedata.normalize("NFKD", name).encode("ascii", "ignore").decode().lower()
+    if "." in s:
+        stem, ext = s.rsplit(".", 1)
+        return "%s.%s" % (re.sub(r"[^a-z0-9]+", "-", stem).strip("-") or "archivo", ext)
+    return re.sub(r"[^a-z0-9]+", "-", s).strip("-") or "archivo"
+
+naming = p.get("naming", {})
+if naming.get("enabled") and not os.path.exists(abs_target):
+    base = os.path.basename(rel)
+    allow = base in set(naming.get("allow_exact", [])) or base.startswith(".") \
+        or base.startswith("_TEMPLATE-") or base.endswith(".gitkeep")
+    stem = base.rsplit(".", 1)[0] if "." in base else base
+    ext_ok = (("." not in base) or re.match(r"^[a-z0-9]+$", base.rsplit(".",1)[1] or ""))
+    kebab = bool(re.match(r"^[a-z0-9]+(-[a-z0-9]+)*$", stem)) and ext_ok
+    if not (allow or kebab):
+        print("DENY:nombre '%s' no es kebab-case. Renombra a '%s' "
+              "(minusculas, guiones, sin espacios/acentos)." % (base, suggest(base)))
+        sys.exit()
 
 # 1. Correct task artifact location.
 if match(p.get("task_artifact_globs", [])):
