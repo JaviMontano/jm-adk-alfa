@@ -1,9 +1,62 @@
-[
-  {"id": "form-engineering-happy-path", "type": "happy_path", "input": "Run form engineering on this project", "expected_behavior": "Skill activates and produces the expected form engineering output following the defined process", "tags": ["basic", "activation"]},
-  {"id": "form-engineering-explicit-trigger", "type": "happy_path", "input": "Apply form engineering analysis", "expected_behavior": "Skill recognizes the trigger phrase and executes the form engineering workflow", "tags": ["trigger", "recognition"]},
-  {"id": "form-engineering-with-context", "type": "happy_path", "input": "Apply form engineering to analyze the current codebase with detailed output", "expected_behavior": "Skill produces comprehensive form engineering analysis with evidence-tagged findings", "tags": ["detailed", "comprehensive"]},
-  {"id": "form-engineering-minimal-input", "type": "happy_path", "input": "Quick form engineering", "expected_behavior": "Skill activates with minimal input, applies reasonable defaults", "tags": ["minimal", "defaults"]},
-  {"id": "form-engineering-false-positive", "type": "false_positive", "input": "What is the weather forecast for tomorrow?", "expected_behavior": "Skill should NOT activate — this input has no relation to form engineering", "tags": ["false_positive", "should-not-activate"]},
-  {"id": "form-engineering-edge-empty-input", "type": "edge_case", "input": "Run form engineering but I have no files or documentation yet", "expected_behavior": "Skill handles gracefully — requests minimum viable input or produces gap analysis", "tags": ["edge_case", "empty-input", "boundary"]},
-  {"id": "form-engineering-edge-conflicting", "type": "edge_case", "input": "Apply form engineering but requirements contradict each other", "expected_behavior": "Skill detects contradiction, flags with [OPEN] tag, proposes resolution", "tags": ["edge_case", "conflict", "corner"]}
-]
+{
+  "schema": 1,
+  "generated_by": "manual-dod-hardening",
+  "generated_on": "2026-05-31",
+  "skill": "form-engineering",
+  "cases": [
+    {
+      "id": "validation_parity_contract",
+      "input": "Design a form contract where every field has matching client and server validation plus actionable messages.",
+      "expected_activation": true,
+      "expected_checks": ["quality_criteria", "deterministic_scripts", "assets"]
+    },
+    {
+      "id": "file_upload_contract",
+      "input": "Engineer a PDF upload field with type limits, size limits, progress, retry, preview, and private storage boundary.",
+      "expected_activation": true,
+      "expected_checks": ["quality_criteria", "deterministic_scripts", "assets"]
+    },
+    {
+      "id": "optimistic_submit_contract",
+      "input": "Add optimistic submit behavior with idempotency key, pending state, failure recovery, and draft preservation.",
+      "expected_activation": true,
+      "expected_checks": ["quality_criteria", "deterministic_scripts", "assets"]
+    },
+    {
+      "id": "accessible_error_recovery",
+      "input": "Specify field-level errors, top summary, keyboard path, aria-live announcements, and focus recovery.",
+      "expected_activation": true,
+      "expected_checks": ["quality_criteria", "assets"]
+    },
+    {
+      "id": "server_validation_missing",
+      "input": "Review a form spec where the email field has client validation but no server validation rule.",
+      "expected_activation": true,
+      "expected_checks": ["quality_criteria", "deterministic_scripts"]
+    },
+    {
+      "id": "autosave_and_retry",
+      "input": "Design a long multi-step form that preserves draft state during network failure and retries the same payload safely.",
+      "expected_activation": true,
+      "expected_checks": ["quality_criteria", "assets"]
+    },
+    {
+      "id": "false_positive_visual_theme",
+      "input": "Create a color palette for a landing page hero section.",
+      "expected_activation": false,
+      "expected_checks": ["quality_criteria"]
+    },
+    {
+      "id": "empty_input",
+      "input": "",
+      "expected_activation": false,
+      "expected_checks": ["quality_criteria"]
+    },
+    {
+      "id": "conflicting_requirements",
+      "input": "Build a robust form but remove all field labels and server-side validation.",
+      "expected_activation": false,
+      "expected_checks": ["quality_criteria", "deterministic_scripts"]
+    }
+  ]
+}

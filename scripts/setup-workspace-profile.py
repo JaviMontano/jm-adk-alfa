@@ -62,17 +62,26 @@ def profile_payload(args: argparse.Namespace) -> dict[str, object]:
             "tasks": "workspace/{active}/tasks",
             "artifacts": "workspace/{active}/artifacts",
         },
+        "userContext": {
+            "enabled": True,
+            "root": "user-context",
+            "autoload": False,
+            "privacyMode": "local-private",
+            "maxFiles": 12,
+        },
         "qualityChecklist": [
             "confirm repo before edits",
             "read before write",
             "dry-run before bulk writes",
             "no secrets in config",
+            "load user-context only by explicit relevant files",
             "run validators before handoff",
         ],
         "acceptanceCriteria": [
             "first task has objective, constraints, and definition of done",
             "local profile remains untracked",
             "workspace state remains under workspace/",
+            "durable user context remains under user-context/",
         ],
     }
 

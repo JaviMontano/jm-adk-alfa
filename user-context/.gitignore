@@ -1,0 +1,27 @@
+# User-owned context content is private by default.
+*
+
+# Tracked context-repo contract and scaffold.
+!.gitignore
+!.jm-adk-context.json
+!README.md
+!AGENTS.md
+!_INDICE.md
+!manifest.example.json
+
+# Tracked directories and their public scaffold docs.
+!context/
+!context/README.md
+!context/.gitkeep
+!preferences/
+!preferences/README.md
+!preferences/.gitkeep
+!memory/
+!memory/README.md
+!memory/.gitkeep
+!sources/
+!sources/README.md
+!sources/.gitkeep
+!schemas/
+!schemas/README.md
+!schemas/*.schema.json

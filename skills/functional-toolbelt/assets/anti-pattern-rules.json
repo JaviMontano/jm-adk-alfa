@@ -1,0 +1,13 @@
+{
+  "schema": 1,
+  "categories": [
+    "ambiguity",
+    "untestability",
+    "over-specification",
+    "missing-exception",
+    "scope-creep",
+    "gold-plating"
+  ],
+  "severities": ["low", "medium", "high", "blocker"],
+  "required_fields": ["id", "category", "severity", "text", "fix"]
+}

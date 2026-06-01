@@ -6,6 +6,7 @@ from __future__ import annotations
 import argparse
 import json
 import subprocess
+import sys
 from pathlib import Path
 
 
@@ -113,6 +114,33 @@ def has_task_context(root: Path) -> bool:
     return bool(active_workspace(root)) or any((root / item).exists() for item in candidates)
 
 
+def user_context_status(root: Path) -> dict[str, object]:
+    script = root / "scripts" / "diagnose-user-context.py"
+    if not script.exists():
+        return {"status": "missing", "enabled": False, "error": "diagnose-user-context.py missing"}
+    result = subprocess.run(
+        [sys.executable, str(script), "--root", str(root), "--json", "--dry-run"],
+        text=True,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        check=False,
+    )
+    try:
+        data = json.loads(result.stdout)
+    except json.JSONDecodeError:
+        return {
+            "status": "degraded",
+            "enabled": True,
+            "error": result.stderr.strip() or result.stdout.strip() or "invalid user-context diagnosis",
+        }
+    return {
+        "status": data.get("status"),
+        "enabled": data.get("enabled"),
+        "context_root": data.get("context_root"),
+        "problems": data.get("problems", []),
+    }
+
+
 def classify_input(text: str) -> dict[str, bool]:
     normalized = " ".join(text.lower().strip().split())
     if not normalized:
@@ -133,6 +161,7 @@ def diagnose(root: Path, user_input: str) -> dict[str, object]:
     workspace_empty = not workspace_has_user_state(root)
     active = active_workspace(root)
     task_context = has_task_context(root)
+    context = user_context_status(root) if is_alfa else {"status": "unknown", "enabled": False}
 
     if not is_alfa:
         status = "requires_confirmation"
@@ -172,6 +201,7 @@ def diagnose(root: Path, user_input: str) -> dict[str, object]:
             "active_workspace": active,
             "task_context": task_context,
         },
+        "user_context": context,
         "next_action": next_action(status, onboarding_mode),
     }
 

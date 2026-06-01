@@ -1,0 +1,51 @@
+{
+  "title": "Lead intake",
+  "submit_label": "Enviar solicitud",
+  "steps": [
+    {
+      "id": "contact",
+      "title": "Datos de contacto",
+      "fields": [
+        {
+          "name": "full_name",
+          "label": "Nombre completo",
+          "type": "text",
+          "required": true,
+          "autocomplete": "name",
+          "hint": "Usa el nombre de la persona responsable."
+        },
+        {
+          "name": "email",
+          "label": "Correo",
+          "type": "email",
+          "required": true,
+          "autocomplete": "email"
+        }
+      ]
+    },
+    {
+      "id": "project",
+      "title": "Proyecto",
+      "fields": [
+        {
+          "name": "project_type",
+          "label": "Tipo de proyecto",
+          "type": "select",
+          "required": true,
+          "options": [
+            {"value": "", "label": "Selecciona una opcion"},
+            {"value": "automation", "label": "Automatizacion"},
+            {"value": "training", "label": "Formacion"}
+          ]
+        },
+        {
+          "name": "automation_scope",
+          "label": "Alcance de automatizacion",
+          "type": "textarea",
+          "required": true,
+          "show_if": {"field": "project_type", "equals": "automation"}
+        }
+      ]
+    }
+  ]
+}

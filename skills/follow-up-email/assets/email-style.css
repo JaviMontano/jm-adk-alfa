@@ -1,0 +1,36 @@
+body {
+  font-family: Arial, sans-serif;
+  color: #202124;
+  line-height: 1.5;
+  margin: 0;
+  padding: 24px;
+}
+
+.email {
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.meta {
+  color: #5f6368;
+  font-size: 13px;
+  border-bottom: 1px solid #dadce0;
+  padding-bottom: 12px;
+  margin-bottom: 18px;
+}
+
+.action-item {
+  border-left: 3px solid #1a73e8;
+  padding-left: 12px;
+  margin: 12px 0;
+}
+
+.deadline {
+  font-weight: 700;
+}
+
+.footer {
+  color: #5f6368;
+  font-size: 12px;
+  margin-top: 24px;
+}

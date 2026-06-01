@@ -1,0 +1,13 @@
+{
+  "schema": 1,
+  "patterns": {
+    "required": "{label} is required.",
+    "email": "Enter an email address with an @ sign.",
+    "max_length": "{label} must be {limit} characters or fewer.",
+    "file_type": "Upload one of the allowed file types: {allowed}.",
+    "file_size": "Keep the file under {max_mb} MB.",
+    "server_conflict": "We could not save the latest version. Review the highlighted fields and try again.",
+    "network": "Connection lost. Your draft is preserved and can be retried.",
+    "summary": "Fix {count} field issue(s) before submitting."
+  }
+}

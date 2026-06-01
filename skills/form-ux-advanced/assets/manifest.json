@@ -1,0 +1,42 @@
+{
+  "schema": 1,
+  "skill": "form-ux-advanced",
+  "assets": [
+    {
+      "path": "assets/ux-heuristics.json",
+      "type": "scoring-policy",
+      "purpose": "Deterministic friction scoring thresholds for multi-step form UX.",
+      "used_by": [
+        "scripts/audit-form-ux.py",
+        "knowledge/body-of-knowledge.md"
+      ]
+    },
+    {
+      "path": "assets/inline-validation-copy.json",
+      "type": "copy-policy",
+      "purpose": "Actionable inline validation copy patterns.",
+      "used_by": [
+        "scripts/audit-form-ux.py",
+        "examples/example-output.md"
+      ]
+    },
+    {
+      "path": "assets/wizard-progress-template.html",
+      "type": "html-template",
+      "purpose": "Accessible progress indicator for multi-step forms.",
+      "used_by": [
+        "scripts/audit-form-ux.py",
+        "templates/output.html"
+      ]
+    },
+    {
+      "path": "assets/error-recovery-checklist.md",
+      "type": "checklist",
+      "purpose": "Recovery baseline for validation, network, server, and upload failures.",
+      "used_by": [
+        "scripts/audit-form-ux.py",
+        "templates/output.md"
+      ]
+    }
+  ]
+}

@@ -7,4 +7,19 @@ overwrite-policy: missing-only unless --force
 
 # Example Input
 
-Use `follow-up-email` to produce a concise deliverable for a realistic project request.
+Genera drafts de seguimiento para la reunion `Q2 Planning` del `2026-05-31`.
+
+Participantes:
+
+- Ana, `ana@example.com`
+- Carlos, `carlos@example.com`
+
+Action items:
+
+- Ana: preparar minuta ejecutiva antes del `2026-06-03`; contexto: acuerdos de presupuesto y lanzamiento.
+- Ana: confirmar asistentes del kickoff antes del `2026-06-04`; contexto: la lista final habilita invitaciones.
+- Carlos: publicar dashboard de metricas antes del `2026-06-05`; contexto: seguimiento semanal.
+
+Next steps comunes: compartir avance el viernes y cerrar bloqueos antes del siguiente comite.
+
+Crear drafts separados. No enviar sin confirmacion explicita.

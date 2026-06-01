@@ -1,0 +1,15 @@
+{
+  "schema": 1,
+  "skill": "follow-up-email",
+  "tokens": {
+    "subject_prefix": "Seguimiento",
+    "default_signoff": "Saludos",
+    "tone": [
+      "professional",
+      "warm",
+      "action-oriented",
+      "privacy-preserving"
+    ],
+    "send_policy": "draft-first"
+  }
+}

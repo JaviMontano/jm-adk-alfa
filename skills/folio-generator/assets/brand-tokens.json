@@ -1,0 +1,14 @@
+{
+  "schema": 1,
+  "skill": "folio-generator",
+  "tokens": {
+    "font_family": "'Segoe UI', Arial, sans-serif",
+    "color_text": "#1a1a2e",
+    "color_primary": "#16213e",
+    "color_muted": "#666666",
+    "color_border": "#dddddd",
+    "color_surface": "#f5f5f5",
+    "page_max_width_px": 800,
+    "page_padding_px": 40
+  }
+}

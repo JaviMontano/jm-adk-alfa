@@ -1,0 +1,7 @@
+{
+  "prefix": "COT",
+  "date": "2026-05-31",
+  "tracker": "tracker.json",
+  "expected_folio": "COT-2026-043",
+  "expected_counter_after_apply": 43
+}

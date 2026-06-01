@@ -4,7 +4,7 @@
 
 ## Environment
 
-IDE: claude-code | Triad: full | Tools: all | Hooks: yes | MCP: yes | Multimodal: yes
+IDE family: claude | Targets: Claude Desktop, Claude Code, Claude Cowork | Triad: full where supported | Tools/Hooks/MCP/Multimodal: runtime-dependent
 
 ## Awakening Protocol
 
@@ -21,6 +21,29 @@ Full protocol: `PRISTINO.md` → Awakening Protocol section.
 ## Identity
 
 **Plugin**: `jm-adk` | **Orchestrator**: Pristino v6.0 | **Brand**: MetodologIA · JM Labs
+
+## Runtime Mirror Topology
+
+`CLAUDE.md`, `GEMINI.md`, and `AGENTS.md` are homologated runtime mirrors. They share the same orchestration contract and differ only where runtime capabilities differ.
+
+| Mirror | Runtime family | Role |
+|---|---|---|
+| `CLAUDE.md` | Claude Desktop · Claude Code · Claude Cowork | Claude-family orchestration mirror |
+| `GEMINI.md` | Gemini CLI · Gemini Code Assist · Antigravity | Gemini-family orchestration mirror |
+| `AGENTS.md` | OpenAI Codex · Visual Studio-family agents | Agents-family orchestration mirror |
+
+Derived bridge files (`.agent/rules/GEMINI.md`, `.github/copilot-instructions.md`, `.cursorrules`, `.windsurfrules`) must preserve this contract and point back to the relevant mirror.
+
+## Runtime Context Contract
+
+- Confirm repo identity before edits; if Alfa is not confirmed, report `Dato requerido` and do not edit.
+- Run `python3 scripts/diagnose-first-use.py --dry-run` for first-use or cold-start diagnosis.
+- Run `python3 scripts/diagnose-user-context.py --dry-run` before relying on durable user context.
+- Treat `user-context/` as the in-kit context repo because `user-context/.jm-adk-context.json` declares `jm-adk-user-context`; private files do not define the role.
+- Read `user-context/_INDICE.md` first, then only task-relevant context files; never bulk-load `user-context/sources/`.
+- Write to `user-context/` only after an explicit remember/update-context instruction from the user; hook-enabled writes require `JM_ADK_CONTEXT_WRITE=1`.
+- Put task artifacts in `workspace/{active}/artifacts/`; never mix workspace runtime state, kit internals, and durable context.
+- Do not commit private state: `.jm-adk.local.json`, `.env*`, `.local/`, `.codex/`, `workspace/`, or private `user-context/` content.
 
 ## Workspace Protocol (MANDATORY)
 
@@ -124,6 +147,7 @@ bash scripts/workspace-manager.sh log <tool> [input]      # Manual tasklog entry
 | Local path | Rule |
 |----------|------|
 | `.jm-adk.local.json` | Local-only config. Never commit. |
+| `user-context/` | In-kit context repo. Marker/docs/schemas tracked; private user content ignored. Read `_INDICE.md` first and write only after explicit context-update instruction. |
 | `.local/skills/` | Experimental local skills. Never commit. |
 | `.codex/` | Codex local state. Never commit. |
 | `workspace/` | Runtime state. Only `workspace/.gitkeep` is tracked. |
@@ -144,6 +168,25 @@ Pristino auto-selects the best skill/prompt for the user's intent (full protocol
 - Confidence 0.60-0.84 → present top 3 options
 - Confidence < 0.60 → ask clarifying question
 - Official `/jm-adk:command` → skip matching, execute directly
+
+## Triad Pattern
+
+- Lead: produce the primary domain answer or implementation.
+- Support: review for security, accessibility, maintainability, and cross-cutting risks.
+- Guardian: validate evidence, Constitution compliance, quality gates, and residual assumptions.
+- In Claude runtimes with subagents, run the triad through available orchestration; otherwise apply the three perspectives in one response.
+
+## Request Classification
+
+| Type | Action |
+|------|--------|
+| QUESTION | Direct answer with evidence tags when making claims |
+| ANALYSIS | Discovery first, then concise report |
+| SIMPLE CODE | Read before write, make the smallest safe edit |
+| COMPLEX CODE | Plan, then implement, then verify |
+| DESIGN/UI | Use brand tokens, accessibility, and validation |
+| SCAFFOLD | Dry-run or preview first, then apply only when intended |
+| DEPLOY | Build, validate, then deploy or provide deploy-ready output |
 
 ## Maintainer Quality Gates
 
@@ -243,6 +286,9 @@ Every deliverable includes: the ask (baseline) + 1 insight (non-obvious finding)
 | `references/brand/design-tokens.json` | MetodologIA visual identity |
 | `hooks/hooks.json` | 5 hooks: SessionStart, UserPromptSubmit, PreToolUse, PostToolUse, Stop |
 | `.jm-adk.json` | Plugin config: workspace settings, hook toggles |
+| `user-context/.jm-adk-context.json` | In-kit context repo marker |
+| `references/ontology/user-context-contract.md` | Durable context boundary and load/write rules |
 | `scripts/workspace-manager.sh` | Workspace CRUD + gate + report operations |
+| `scripts/diagnose-user-context.py` | Read-only user-context diagnosis |
 | `.mcp.json` | MCP servers: Gmail (19 tools) + Google Workspace (Drive/Docs/Sheets/Slides/Calendar) |
 | `docs/google-workspace-mcp-setup.md` | OAuth2 setup pipeline for Google Workspace MCPs |

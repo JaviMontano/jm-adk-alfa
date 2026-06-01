@@ -1,9 +1,62 @@
-[
-  {"id": "font-optimization-happy-path", "type": "happy_path", "input": "Run font optimization on this project", "expected_behavior": "Skill activates and produces the expected font optimization output following the defined process", "tags": ["basic", "activation"]},
-  {"id": "font-optimization-explicit-trigger", "type": "happy_path", "input": "Apply font optimization analysis", "expected_behavior": "Skill recognizes the trigger phrase and executes the font optimization workflow", "tags": ["trigger", "recognition"]},
-  {"id": "font-optimization-with-context", "type": "happy_path", "input": "Apply font optimization to analyze the current codebase with detailed output", "expected_behavior": "Skill produces comprehensive font optimization analysis with evidence-tagged findings", "tags": ["detailed", "comprehensive"]},
-  {"id": "font-optimization-minimal-input", "type": "happy_path", "input": "Quick font optimization", "expected_behavior": "Skill activates with minimal input, applies reasonable defaults", "tags": ["minimal", "defaults"]},
-  {"id": "font-optimization-false-positive", "type": "false_positive", "input": "What is the weather forecast for tomorrow?", "expected_behavior": "Skill should NOT activate — this input has no relation to font optimization", "tags": ["false_positive", "should-not-activate"]},
-  {"id": "font-optimization-edge-empty-input", "type": "edge_case", "input": "Run font optimization but I have no files or documentation yet", "expected_behavior": "Skill handles gracefully — requests minimum viable input or produces gap analysis", "tags": ["edge_case", "empty-input", "boundary"]},
-  {"id": "font-optimization-edge-conflicting", "type": "edge_case", "input": "Apply font optimization but requirements contradict each other", "expected_behavior": "Skill detects contradiction, flags with [OPEN] tag, proposes resolution", "tags": ["edge_case", "conflict", "corner"]}
-]
+{
+  "schema": 1,
+  "generated_by": "manual-dod-hardening",
+  "generated_on": "2026-05-31",
+  "skill": "font-optimization",
+  "cases": [
+    {
+      "id": "font_detect_google_fonts",
+      "input": "Audita una pagina que carga fonts.googleapis.com en el head.",
+      "expected_activation": true,
+      "expected_checks": ["quality_criteria", "deterministic_scripts", "assets"]
+    },
+    {
+      "id": "font_replace_import",
+      "input": "Reemplaza @import de Google Fonts por @font-face self-hosted.",
+      "expected_activation": true,
+      "expected_checks": ["quality_criteria", "deterministic_scripts", "assets"]
+    },
+    {
+      "id": "font_preload_woff2",
+      "input": "Genera preload y @font-face para /fonts/inter-var-latin.woff2.",
+      "expected_activation": true,
+      "expected_checks": ["assets", "quality_criteria", "deterministic_scripts"]
+    },
+    {
+      "id": "font_payload_budget",
+      "input": "Evalua si tres archivos criticos de fuente superan el presupuesto de 100KB.",
+      "expected_activation": true,
+      "expected_checks": ["assets", "quality_criteria", "evidence"]
+    },
+    {
+      "id": "font_legacy_ttf",
+      "input": "Detecta referencias a /fonts/legacy.ttf y propone WOFF2 subset.",
+      "expected_activation": true,
+      "expected_checks": ["quality_criteria", "deterministic_scripts"]
+    },
+    {
+      "id": "font_missing_project_files",
+      "input": "Optimiza fuentes pero no tengo HTML, CSS ni inventario de fuentes.",
+      "expected_activation": true,
+      "expected_checks": ["quality_criteria", "evidence"]
+    },
+    {
+      "id": "false_positive",
+      "input": "Escribe un email de seguimiento despues de una reunion.",
+      "expected_activation": false,
+      "expected_checks": ["quality_criteria"]
+    },
+    {
+      "id": "empty_input",
+      "input": "",
+      "expected_activation": false,
+      "expected_checks": ["quality_criteria"]
+    },
+    {
+      "id": "conflicting_requirements",
+      "input": "Optimiza fuentes pero conserva @import y font-display:block.",
+      "expected_activation": false,
+      "expected_checks": ["quality_criteria", "deterministic_scripts"]
+    }
+  ]
+}

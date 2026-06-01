@@ -1,0 +1,33 @@
+{
+  "schema": 1,
+  "skill": "font-optimization",
+  "assets": [
+    {
+      "path": "assets/font-face-template.css",
+      "type": "css-template",
+      "purpose": "Self-hosted WOFF2 @font-face snippet with explicit font-display and unicode-range.",
+      "used_by": [
+        "templates/output.html",
+        "scripts/audit-font-loading.py"
+      ]
+    },
+    {
+      "path": "assets/preload-snippet.html",
+      "type": "html-snippet",
+      "purpose": "Critical font preload pattern using as=font, type=font/woff2, and crossorigin.",
+      "used_by": [
+        "templates/output.html",
+        "scripts/audit-font-loading.py"
+      ]
+    },
+    {
+      "path": "assets/font-budget.json",
+      "type": "budget-policy",
+      "purpose": "Default font loading budgets and required optimization patterns.",
+      "used_by": [
+        "scripts/audit-font-loading.py",
+        "knowledge/body-of-knowledge.md"
+      ]
+    }
+  ]
+}

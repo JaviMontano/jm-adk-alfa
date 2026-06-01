@@ -29,9 +29,9 @@ Expected component inventory:
 
 | Component | Count |
 |---|---:|
-| Skills | 524 |
-| Agents | 256 |
-| Commands | 260 |
+| Skills | 585 |
+| Agents | 260 |
+| Commands | 267 |
 | Prompts | 256 |
 
 ## Initialize Local Workspace
@@ -43,6 +43,19 @@ bash scripts/workspace-manager.sh create "first-local-session"
 ```
 
 Use `.jm-adk.local.json` for local overrides. Do not commit it.
+
+## Initialize User Context
+
+`user-context/` is durable user context inside the kit. It is recognized by
+`user-context/.jm-adk-context.json`, independent of what private files the user
+adds later.
+
+```bash
+python3 scripts/diagnose-user-context.py --dry-run
+python3 scripts/scaffold-user-context.py --dry-run
+```
+
+Private user context content is ignored by git by default.
 
 ## Create a Skill
 

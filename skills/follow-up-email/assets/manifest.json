@@ -1,0 +1,23 @@
+{
+  "schema": 1,
+  "skill": "follow-up-email",
+  "assets": [
+    {
+      "path": "assets/email-style.css",
+      "type": "stylesheet",
+      "purpose": "HTML preview styling for individual follow-up emails.",
+      "used_by": [
+        "scripts/render-follow-up-email.py"
+      ]
+    },
+    {
+      "path": "assets/email-copy-tokens.json",
+      "type": "copy-tokens",
+      "purpose": "Default subject, sign-off, tone, and draft-first send policy.",
+      "used_by": [
+        "scripts/render-follow-up-email.py",
+        "templates/follow-up-action-items.md"
+      ]
+    }
+  ]
+}

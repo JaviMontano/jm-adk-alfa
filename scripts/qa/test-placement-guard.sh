@@ -11,8 +11,10 @@ PASS=0; FAIL=0
 run() {
   local exp="$1" tool="$2" inp="$3" mode="$4" label="$5"
   local env_mode=""
+  local context_write=""
   [ "$mode" = "maintainer" ] && env_mode="maintainer"
-  CLAUDE_TOOL_NAME="$tool" CLAUDE_TOOL_INPUT="$inp" JM_ADK_MODE="$env_mode" \
+  [ "$mode" = "context" ] && context_write="1"
+  CLAUDE_TOOL_NAME="$tool" CLAUDE_TOOL_INPUT="$inp" JM_ADK_MODE="$env_mode" JM_ADK_CONTEXT_WRITE="$context_write" \
     bash "$GUARD" >/dev/null 2>&1
   local got=$?
   if [ "$got" = "$exp" ]; then
@@ -38,6 +40,8 @@ run 2 Write  "{\"file_path\":\"$ROOT/workspace/$WS/loose-note.md\"}"      task  
 run 0 Write  "{\"file_path\":\"$ROOT/workspace/$WS/plan.md\"}"            task       "canonical task file allowed"
 run 2 Write  "{\"file_path\":\"$ROOT/workspace/$WS/artifacts/Bad Dir/x.md\"}" task   "new dir with space blocked"
 run 0 Write  "{\"file_path\":\"$ROOT/workspace/$WS/artifacts/sub-zone/x.md\"}" task  "new kebab dir allowed"
+run 2 Write  "{\"file_path\":\"$ROOT/user-context/context/test-note.md\"}" task      "context repo blocked without explicit context mode"
+run 0 Write  "{\"file_path\":\"$ROOT/user-context/context/test-note.md\"}" context   "context repo allowed with explicit context mode"
 
 # Stdin contract (Claude Code runtime) must work too.
 echo "{\"tool_name\":\"Write\",\"tool_input\":{\"file_path\":\"$ROOT/skills/foo/SKILL.md\"}}" \

@@ -1,0 +1,17 @@
+{
+  "schema": 1,
+  "skill": "font-optimization",
+  "budgets": {
+    "critical_font_payload_kb": 100,
+    "max_critical_families": 2,
+    "max_critical_files": 3
+  },
+  "required_patterns": {
+    "format": "woff2",
+    "font_display_body": "swap",
+    "font_display_non_critical": "optional",
+    "critical_preload": true,
+    "avoid_css_import": true,
+    "avoid_runtime_font_cdn": true
+  }
+}

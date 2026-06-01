@@ -1,0 +1,20 @@
+{
+  "title": "Broken Intake",
+  "steps": [
+    {
+      "id": "contact",
+      "fields": [
+        {
+          "name": "work_email",
+          "label": "Work email",
+          "required": true,
+          "validation_timing": "keypress"
+        }
+      ]
+    }
+  ],
+  "capabilities": {
+    "progress": true,
+    "back_navigation": false
+  }
+}

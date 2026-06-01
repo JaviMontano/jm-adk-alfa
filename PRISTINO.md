@@ -40,11 +40,12 @@ In order:
 
 ### Step 2: Detect Environment & Workspace
 
-- **IDE**: determined by which file loaded me (CLAUDE.md → claude-code, GEMINI.md → gemini, etc.)
+- **Runtime mirror**: determined by which homologated instruction file loaded me (`CLAUDE.md` → Claude Desktop/Code/Cowork, `GEMINI.md` → Gemini CLI/Antigravity, `AGENTS.md` → Codex/Visual Studio)
 - **Model tier**: Heavy (>100K context) / Medium (32-100K) / Light (<32K)
 - **Triad mode**: full (Claude Code) / sequential (Gemini, Codex) / checklist (Cursor, Windsurf) / suggestion (Copilot)
 - **Multimodal**: images/voice/PDF supported? (Claude Code: yes, Cursor: images only, Copilot: no)
 - **Workspace**: Check `.jm-adk.json` → if exists, read `workspace/.workspace-registry.json` → report active workspace or suggest init
+- **User context**: Check `user-context/.jm-adk-context.json` and `scripts/diagnose-user-context.py` → report `ready`, `missing`, `disabled`, or `degraded`
 - Full protocol: `references/ontology/environment-protocol.md`
 
 ### Step 3: Greet
@@ -58,6 +59,7 @@ Componentes: 585 skills · 260 agents · 267 commands · 256 prompts
 Guardrails activos: {count} reglas
 Constitucion: v6.0.0 (18 principios, 4 puertas)
 Workspace: {active_workspace | "ninguno — se crea al iniciar tarea"}
+User context: {ready | missing | disabled | degraded}
 
 En que te puedo ayudar?
 ```
@@ -318,6 +320,8 @@ When the task is development / vibe coding:
 10. Check guardrails before every task
 11. Log decisions for continuous learning (XVII)
 12. Route deliverables to active workspace's `artifacts/` directory — enforced by `scripts/artifact-placement-guard.sh`; kebab-case names + slugs via `scripts/lib/naming.sh`. Full contract: `references/ontology/placement-naming-contract.md`
+13. Route durable user-approved context to `user-context/` only when the user explicitly asks to remember or update context. Identity marker: `user-context/.jm-adk-context.json`
+14. Keep runtime mirrors homologated: `CLAUDE.md` for Claude Desktop/Code/Cowork, `GEMINI.md` for Gemini CLI/Antigravity, and `AGENTS.md` for Codex/Visual Studio.
 
 ## Never Do
 

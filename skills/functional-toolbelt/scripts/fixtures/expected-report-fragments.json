@@ -1,0 +1,11 @@
+{
+  "required_fragments": [
+    "# Functional Toolbelt Report: Loan Origination",
+    "Event: Application Submitted | actor: Applicant | aggregate: Application",
+    "`US-001` [MVP]: Start loan application -> Applicant begins without assistance",
+    "`BR-002` [workflow]: IF credit score is below threshold THEN route to manual review",
+    "Given a valid applicant profile",
+    "| REQ-001 | UC-001 | FL-001 | T-001 | AC-001 |",
+    "`AP-002` [high/missing-exception]: Manual review lacks failure path. -> Add rejection and appeal scenarios."
+  ]
+}

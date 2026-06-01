@@ -11,12 +11,15 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 DIAGNOSE = ROOT / "scripts/diagnose-first-use.py"
+DIAGNOSE_CONTEXT = ROOT / "scripts/diagnose-user-context.py"
+SCAFFOLD_CONTEXT = ROOT / "scripts/scaffold-user-context.py"
 SETUP = ROOT / "scripts/setup-workspace-profile.py"
+RUNTIME_INSTRUCTIONS = ROOT / "scripts/validate-runtime-instructions.py"
 
 
 def run_json(args: list[str]) -> tuple[int, dict[str, object]]:
     result = subprocess.run(args, text=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    if result.returncode not in (0, 2):
+    if result.returncode not in (0, 1, 2):
         return result.returncode, {"stderr": result.stderr, "stdout": result.stdout}
     try:
         return result.returncode, json.loads(result.stdout)
@@ -64,6 +67,20 @@ def main() -> int:
         "tarea explícita no queda bloqueada por onboarding completo",
         failures,
     )
+    check(
+        "USER-CONTEXT-001",
+        explicit.get("user_context", {}).get("status") in {"ready", "missing", "disabled"},
+        "diagnose-first-use reports user_context state",
+        failures,
+    )
+
+    runtime = run(["python3", str(RUNTIME_INSTRUCTIONS)])
+    check(
+        "RUNTIME-INSTRUCTIONS-001",
+        runtime.returncode == 0,
+        "runtime mirrors are homologated across CLAUDE, GEMINI, AGENTS, and bridges",
+        failures,
+    )
 
     with tempfile.TemporaryDirectory(prefix="jm-adk-onboarding-") as tmp:
         code, non_repo = run_json(["python3", str(DIAGNOSE), "--root", tmp, "--input", "hola", "--json"])
@@ -86,6 +103,75 @@ def main() -> int:
             post_clone.get("status") == "empty_workspace"
             and post_clone.get("onboarding_mode") == "guided_first_use",
             "post-clone workspace vacío muestra ruta first-use segura",
+            failures,
+        )
+
+        missing_context = run_json(
+            ["python3", str(DIAGNOSE_CONTEXT), "--root", str(alfa_like), "--context-root", "user-context", "--json"]
+        )[1]
+        check(
+            "USER-CONTEXT-002",
+            missing_context.get("status") == "missing",
+            "missing context repo is reported without mutating files",
+            failures,
+        )
+
+        context_root = Path(tmp) / "context-ready"
+        context_root.mkdir()
+        scaffold = run(["python3", str(SCAFFOLD_CONTEXT), "--root", str(context_root), "--apply"])
+        ready_context = run_json(["python3", str(DIAGNOSE_CONTEXT), "--root", str(context_root), "--json"])[1]
+        check(
+            "USER-CONTEXT-003",
+            scaffold.returncode == 0 and ready_context.get("status") == "ready",
+            "scaffolded context repo is ready",
+            failures,
+        )
+
+        run(["python3", str(SCAFFOLD_CONTEXT), "--root", str(context_root), "--context-root", "workspace/context", "--apply"])
+        inside_workspace = run_json(
+            [
+                "python3",
+                str(DIAGNOSE_CONTEXT),
+                "--root",
+                str(context_root),
+                "--context-root",
+                "workspace/context",
+                "--json",
+            ]
+        )[1]
+        check(
+            "USER-CONTEXT-004",
+            inside_workspace.get("status") == "degraded",
+            "context inside workspace is degraded",
+            failures,
+        )
+
+        manifest = context_root / "user-context" / "manifest.json"
+        manifest.write_text("{not json}\n", encoding="utf-8")
+        invalid_manifest = run_json(["python3", str(DIAGNOSE_CONTEXT), "--root", str(context_root), "--json"])[1]
+        check(
+            "USER-CONTEXT-005",
+            invalid_manifest.get("status") == "degraded",
+            "invalid context manifest degrades diagnosis",
+            failures,
+        )
+        manifest.write_text(
+            json.dumps(
+                {
+                    "schema": 1,
+                    "kind": "jm-adk-user-context-manifest",
+                    "autoload": ["_INDICE.md"],
+                    "privacy": {"mode": "local-private", "externalConnectors": "deny-by-default"},
+                    "notes": "api_key should not be stored here",
+                }
+            ),
+            encoding="utf-8",
+        )
+        secret_context = run_json(["python3", str(DIAGNOSE_CONTEXT), "--root", str(context_root), "--json"])[1]
+        check(
+            "USER-CONTEXT-006",
+            secret_context.get("status") == "degraded",
+            "secret-like content in autoload files degrades diagnosis",
             failures,
         )
 

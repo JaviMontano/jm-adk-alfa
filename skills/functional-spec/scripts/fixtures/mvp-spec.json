@@ -1,0 +1,38 @@
+{
+  "product_name": "Field Service MVP",
+  "evidence": {
+    "DOC": 12,
+    "INFERENCE": 4,
+    "ASSUMPTION": 2
+  },
+  "mvp_modules": [
+    {"id": "M-001", "name": "Customer Intake", "purpose": "Capture service requests and contact data."},
+    {"id": "M-002", "name": "Scheduling", "purpose": "Assign visits to technicians."},
+    {"id": "M-003", "name": "Work Orders", "purpose": "Track service execution and status."},
+    {"id": "M-004", "name": "Notifications", "purpose": "Notify customers and technicians."}
+  ],
+  "use_cases": [
+    {"id": "UC-001", "actor": "Customer", "goal": "Submit a service request", "trigger": "Customer opens intake form", "preconditions": ["Customer has contact information"], "main_flow": ["Enter contact data", "Describe issue", "Submit request"], "acceptance": ["Given valid intake data, when submitted, then a request record is created."]},
+    {"id": "UC-002", "actor": "Dispatcher", "goal": "Review incoming request", "trigger": "New request arrives", "preconditions": ["Request exists"], "main_flow": ["Open queue", "Review details", "Set priority"], "acceptance": ["Given a new request, when priority is set, then the queue reflects the priority."]},
+    {"id": "UC-003", "actor": "Dispatcher", "goal": "Schedule a visit", "trigger": "Request is approved", "preconditions": ["Technician availability exists"], "main_flow": ["Pick technician", "Pick slot", "Confirm visit"], "acceptance": ["Given an available slot, when confirmed, then a visit is scheduled."]},
+    {"id": "UC-004", "actor": "Technician", "goal": "View assigned work", "trigger": "Visit is scheduled", "preconditions": ["Technician is authenticated"], "main_flow": ["Open assignments", "Review address", "Review notes"], "acceptance": ["Given an assigned visit, when opened, then visit details are visible."]},
+    {"id": "UC-005", "actor": "Technician", "goal": "Update work order status", "trigger": "Work begins", "preconditions": ["Work order exists"], "main_flow": ["Open work order", "Set status", "Save"], "acceptance": ["Given a valid status, when saved, then the work order timeline updates."]},
+    {"id": "UC-006", "actor": "Customer", "goal": "Receive appointment notification", "trigger": "Visit is confirmed", "preconditions": ["Customer contact channel exists"], "main_flow": ["System sends message", "Customer opens message"], "acceptance": ["Given a confirmed visit, when notification runs, then the customer receives appointment details."]},
+    {"id": "UC-007", "actor": "Manager", "goal": "Monitor open work", "trigger": "Manager opens dashboard", "preconditions": ["Work orders exist"], "main_flow": ["Open dashboard", "Filter by status", "Inspect aging"], "acceptance": ["Given open work orders, when filtered, then counts match selected status."]},
+    {"id": "UC-008", "actor": "Dispatcher", "goal": "Close completed work", "trigger": "Technician marks complete", "preconditions": ["Completion notes exist"], "main_flow": ["Review notes", "Confirm closure", "Archive work"], "acceptance": ["Given completion notes, when closure is confirmed, then work order status becomes closed."]}
+  ],
+  "business_rules": [
+    {"id": "BR-001", "type": "validation", "statement": "Service requests require customer name, contact channel, issue category, and location.", "source": "DOC:intake-workshop", "use_cases": ["UC-001"]},
+    {"id": "BR-002", "type": "workflow", "statement": "Only approved requests can be scheduled.", "source": "DOC:dispatch-policy", "use_cases": ["UC-002", "UC-003"]},
+    {"id": "BR-003", "type": "authorization", "statement": "Technicians can view only assigned work orders.", "source": "DOC:role-policy", "use_cases": ["UC-004", "UC-005"]},
+    {"id": "BR-004", "type": "notification", "statement": "Customers receive appointment details after a visit is confirmed.", "source": "DOC:notification-policy", "use_cases": ["UC-006"]}
+  ],
+  "firestore_model": {
+    "collections": [
+      {"name": "serviceRequests", "purpose": "Customer intake and prioritization.", "owner": "operations", "pii": "contact_name, phone, address", "required_fields": ["customerId", "issueCategory", "status", "createdAt"], "indexes": ["status_createdAt", "customerId_createdAt"], "retention": "24 months"},
+      {"name": "workOrders", "purpose": "Scheduled and executed service work.", "owner": "operations", "pii": "address, technician notes", "required_fields": ["requestId", "technicianId", "status", "scheduledAt"], "indexes": ["technicianId_status", "status_scheduledAt"], "retention": "36 months"}
+    ]
+  },
+  "out_of_scope": ["Billing automation", "Inventory management", "Native mobile offline mode"],
+  "open_questions": ["Should customers reschedule visits themselves?", "Which notification channels are mandatory for MVP?"]
+}

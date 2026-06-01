@@ -138,7 +138,18 @@ if naming.get("enabled"):
 if match(p.get("task_artifact_globs", [])):
     print("OK"); sys.exit()
 
-# 2. Kit-internal system path: allowed only when maintaining the kit.
+# 2. In-kit user context repo: allowed only for explicit context updates.
+if match(p.get("context_repo_globs", [])):
+    env_name = p.get("context_repo_write_env", "JM_ADK_CONTEXT_WRITE")
+    if os.environ.get(env_name) == "1":
+        print("OK")
+    else:
+        print("DENY:ruta de contexto '%s' requiere actualizacion explicita. "
+              "Si el usuario pidio recordar/actualizar contexto, reintenta con %s=1. "
+              "Los entregables de tarea siguen yendo a workspace/{active}/artifacts/." % (rel, env_name))
+    sys.exit()
+
+# 3. Kit-internal system path: allowed only when maintaining the kit.
 if match(p.get("system_globs", [])):
     if mode == "maintainer":
         print("OK")
@@ -148,7 +159,7 @@ if match(p.get("system_globs", [])):
               "Si es un entregable de tarea, va en workspace/{active}/artifacts/." % rel)
     sys.exit()
 
-# 3. Ad-hoc destination: route to the active workspace.
+# 4. Ad-hoc destination: route to the active workspace.
 active = ""
 reg = os.path.join(root, "workspace", ".workspace-registry.json")
 if os.path.exists(reg):

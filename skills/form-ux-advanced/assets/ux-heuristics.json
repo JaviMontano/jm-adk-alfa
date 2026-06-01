@@ -1,0 +1,33 @@
+{
+  "schema": 1,
+  "score_thresholds": {
+    "pass": 75,
+    "watch": 55,
+    "fail": 54
+  },
+  "friction_penalties": {
+    "field": 2,
+    "required_field": 4,
+    "step_after_three": 6,
+    "missing_progress": 12,
+    "missing_back_navigation": 10,
+    "missing_smart_default": 8,
+    "keypress_validation": 8,
+    "missing_draft_preservation": 14,
+    "missing_error_summary": 10,
+    "missing_retry": 10
+  },
+  "required_capabilities": [
+    "progress",
+    "back_navigation",
+    "draft_preservation",
+    "error_summary",
+    "retry"
+  ],
+  "allowed_validation_timing": [
+    "blur",
+    "debounced",
+    "submit",
+    "server_response"
+  ]
+}

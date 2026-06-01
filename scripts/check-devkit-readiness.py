@@ -27,6 +27,15 @@ REQUIRED_FILES = [
     "docs/TROUBLESHOOTING.md",
     "docs/ARCHIVE_POLICY.md",
     "docs/audits/local-pattern-inventory.md",
+    "references/ontology/user-context-contract.md",
+    "user-context/.jm-adk-context.json",
+    "user-context/README.md",
+    "user-context/AGENTS.md",
+    "user-context/_INDICE.md",
+    "user-context/schemas/user-context-manifest.schema.json",
+    "scripts/diagnose-user-context.py",
+    "scripts/scaffold-user-context.py",
+    "scripts/validate-runtime-instructions.py",
     "evals/onboarding/evals.json",
     "agents/first-use-onboarding-agent.md",
     "agents/workspace-diagnostic-agent.md",
@@ -92,6 +101,17 @@ def main() -> int:
     for local in [".jm-adk.local.json", ".env", ".env.local"]:
         if tracked(local):
             errors.append(f"local or secret-bearing file is tracked: {local}")
+
+    runtime = subprocess.run(
+        ["python3", str(ROOT / "scripts/validate-runtime-instructions.py")],
+        text=True,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        check=False,
+    )
+    if runtime.returncode != 0:
+        detail = runtime.stdout.strip() or runtime.stderr.strip()
+        errors.append(f"runtime instruction validation failed: {detail}")
 
     if errors:
         for error in errors:

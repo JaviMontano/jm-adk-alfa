@@ -1,0 +1,20 @@
+{
+  "product_name": "Broken MVP",
+  "evidence": {"DOC": 1},
+  "mvp_modules": [
+    {"id": "M-001", "name": "Intake", "purpose": "Capture requests."}
+  ],
+  "use_cases": [
+    {"id": "UC-001", "actor": "Customer", "goal": "Submit request", "trigger": "Open form", "preconditions": ["Has issue"], "main_flow": ["Submit"], "acceptance": ["Given data, when submitted, then request exists."]}
+  ],
+  "business_rules": [
+    {"id": "BR-001", "type": "validation", "statement": "Request requires contact.", "source": "DOC", "use_cases": ["UC-001"]}
+  ],
+  "firestore_model": {
+    "collections": [
+      {"name": "serviceRequests", "purpose": "Requests", "owner": "ops", "pii": "contact", "required_fields": ["status"], "indexes": ["status"], "retention": "24 months"}
+    ]
+  },
+  "out_of_scope": ["Billing"],
+  "open_questions": ["Channels?"]
+}

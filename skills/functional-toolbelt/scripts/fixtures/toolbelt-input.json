@@ -1,0 +1,53 @@
+{
+  "domain": "Loan Origination",
+  "event_storming": {
+    "events": [
+      {"name": "Application Submitted", "actor": "Applicant", "aggregate": "Application"},
+      {"name": "Credit Checked", "actor": "Credit Service", "aggregate": "Risk Profile"},
+      {"name": "Offer Accepted", "actor": "Applicant", "aggregate": "Loan Offer"}
+    ],
+    "commands": [
+      {"name": "Submit Application", "actor": "Applicant"},
+      {"name": "Run Credit Check", "actor": "Loan System"}
+    ],
+    "actors": ["Applicant", "Loan Officer", "Credit Service"],
+    "aggregates": ["Application", "Risk Profile", "Loan Offer"],
+    "hot_spots": [
+      {"name": "Manual exception review", "reason": "Policy threshold unclear"}
+    ]
+  },
+  "story_mapping": {
+    "activities": [
+      {
+        "name": "Apply",
+        "stories": [
+          {"id": "US-001", "title": "Start loan application", "release": "MVP", "value": "Applicant begins without assistance"},
+          {"id": "US-002", "title": "Upload income evidence", "release": "MVP", "value": "Applicant proves affordability"}
+        ]
+      },
+      {
+        "name": "Review",
+        "stories": [
+          {"id": "US-003", "title": "Review risk profile", "release": "MVP", "value": "Loan officer sees decision inputs"},
+          {"id": "US-004", "title": "Resolve exception", "release": "Phase 2", "value": "Risky cases get controlled review"}
+        ]
+      }
+    ]
+  },
+  "business_rules": [
+    {"id": "BR-001", "type": "validation", "condition": "income evidence is missing", "action": "application cannot move to credit review", "use_cases": ["UC-001"]},
+    {"id": "BR-002", "type": "workflow", "condition": "credit score is below threshold", "action": "route to manual review", "use_cases": ["UC-002"]}
+  ],
+  "acceptance_criteria": [
+    {"id": "AC-001", "title": "Submit complete application", "given": "a valid applicant profile", "when": "the applicant submits all required fields", "then": "the application status becomes submitted"},
+    {"id": "AC-002", "title": "Block incomplete evidence", "given": "income evidence is missing", "when": "the applicant tries to continue", "then": "the system shows a blocking validation message"}
+  ],
+  "traceability_matrix": [
+    {"requirement": "REQ-001", "use_cases": ["UC-001"], "flows": ["FL-001"], "tests": ["T-001"], "acceptance": ["AC-001"]},
+    {"requirement": "REQ-002", "use_cases": ["UC-002"], "flows": ["FL-002"], "tests": ["T-002"], "acceptance": ["AC-002"]}
+  ],
+  "anti_pattern_detection": [
+    {"id": "AP-001", "category": "ambiguity", "severity": "medium", "text": "Qualified applicant is not measurable.", "fix": "Define qualification using income, debt ratio, and credit score."},
+    {"id": "AP-002", "category": "missing-exception", "severity": "high", "text": "Manual review lacks failure path.", "fix": "Add rejection and appeal scenarios."}
+  ]
+}

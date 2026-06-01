@@ -1,0 +1,8 @@
+<div class="upload-field">
+  <label for="{{FIELD_ID}}">{{LABEL}}</label>
+  <input id="{{FIELD_ID}}" name="{{FIELD_NAME}}" type="file" accept="{{ACCEPT}}" aria-describedby="{{FIELD_ID}}_hint {{FIELD_ID}}_error">
+  <p id="{{FIELD_ID}}_hint">{{HINT}}</p>
+  <progress value="0" max="100" hidden>{{LABEL}} upload progress</progress>
+  <p id="{{FIELD_ID}}_error" role="alert"></p>
+  <button type="button" data-retry-upload="{{FIELD_NAME}}" hidden>Retry upload</button>
+</div>

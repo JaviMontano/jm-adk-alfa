@@ -34,9 +34,11 @@ Do not commit these paths:
 .local/
 .codex/
 workspace/
+user-context/ private content
 ```
 
 `workspace/.gitkeep` is the only workspace file that should be tracked.
+`user-context/` tracks only its marker, docs, schemas, and scaffold files.
 
 Do not use `git reset --hard`, `git clean -fdx`, force push to `main`, or manual deletion to fix a validation failure.
 Use a branch, inspect the diff, and prefer additive fixes.
@@ -49,6 +51,8 @@ Use a branch, inspect the diff, and prefer additive fixes.
 | `nested git repository detected` | A clone or `.git` directory exists inside the kit. | Move the nested repo outside JM-ADK; do not delete blindly. |
 | `tracked .codex state detected` | Codex local config was staged or tracked. | Unstage it, keep it local, and rerun boundary checks. |
 | `tracked workspace state detected` | Runtime files entered `workspace/`. | Move or unstage them; only `workspace/.gitkeep` belongs in Git. |
+| `tracked private user-context content detected` | User-owned durable context was staged or tracked. | Unstage it, keep only the context scaffold tracked, and rerun `diagnose-user-context.py --dry-run`. |
+| `USER_CONTEXT_STATUS: degraded` | Marker, location, manifest, tracked-private-file, or secret-like checks failed. | Run `python3 scripts/diagnose-user-context.py --json --dry-run` and fix the reported problem. |
 | `skill already exists` | Scaffold target slug is already present. | Pick a new name, use `--all-existing`, or use `--force` only after reviewing the diff. |
 | `unknown allowed tool` | A skill declares a tool outside the supported contract. | Use one of the supported tools or an `mcp__server__tool` name. |
 | `invalid JSON` | `evals/evals.json` or `knowledge/knowledge-graph.json` is malformed. | Fix the file shown in the error and rerun strict validation. |
@@ -79,6 +83,7 @@ What I need preserved:
 - .codex/
 - .jm-adk.local.json
 - .env*
+- private user-context/ content
 ```
 
 The agent should read before writing, avoid destructive commands, reproduce the failure, apply the smallest fix, and rerun the relevant quality gate.

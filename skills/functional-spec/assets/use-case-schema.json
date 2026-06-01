@@ -1,0 +1,14 @@
+{
+  "schema": 1,
+  "minimum_count": 8,
+  "required_fields": [
+    "id",
+    "actor",
+    "goal",
+    "trigger",
+    "preconditions",
+    "main_flow",
+    "acceptance"
+  ],
+  "id_pattern": "UC-[0-9]{3}"
+}

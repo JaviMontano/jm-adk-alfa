@@ -11,7 +11,7 @@ TODAY=$(date +%Y-%m-%d)
 
 P="false"; C="false"; I="false"; H="false"
 [ -f "$PROJECT_ROOT/PRISTINO.md" ] && P="true"
-[ -f "$PROJECT_ROOT/references/ontology/constitution-v5.2.0.md" ] && C="true"
+[ -f "$PROJECT_ROOT/references/ontology/constitution-v6.0.0.md" ] && C="true"
 [ -f "$PROJECT_ROOT/PRISTINO-INDEX.md" ] && I="true"
 [ -f "$PROJECT_ROOT/hooks/hooks.json" ] && H="true"
 

@@ -1,0 +1,69 @@
+{
+  "schema": 1,
+  "skill": "functional-toolbelt",
+  "assets": [
+    {
+      "path": "assets/toolbelt-tools.json",
+      "type": "tool-registry",
+      "purpose": "Canonical registry of the six functional analysis tools.",
+      "used_by": [
+        "scripts/compile-functional-toolbelt.py",
+        "knowledge/body-of-knowledge.md"
+      ]
+    },
+    {
+      "path": "assets/event-storming-card-template.md",
+      "type": "markdown-template",
+      "purpose": "Reusable event storming card format.",
+      "used_by": [
+        "scripts/compile-functional-toolbelt.py",
+        "templates/output.md"
+      ]
+    },
+    {
+      "path": "assets/story-map-lane-template.md",
+      "type": "markdown-template",
+      "purpose": "Reusable story map lane format.",
+      "used_by": [
+        "scripts/compile-functional-toolbelt.py",
+        "templates/output.md"
+      ]
+    },
+    {
+      "path": "assets/decision-table-template.md",
+      "type": "markdown-template",
+      "purpose": "Reusable decision table format for business rule extraction.",
+      "used_by": [
+        "scripts/compile-functional-toolbelt.py",
+        "templates/output.md"
+      ]
+    },
+    {
+      "path": "assets/gwt-scenario-template.md",
+      "type": "markdown-template",
+      "purpose": "Reusable Given/When/Then acceptance criteria format.",
+      "used_by": [
+        "scripts/compile-functional-toolbelt.py",
+        "examples/example-output.md"
+      ]
+    },
+    {
+      "path": "assets/traceability-matrix-schema.json",
+      "type": "schema",
+      "purpose": "Required traceability fields and coverage rules.",
+      "used_by": [
+        "scripts/compile-functional-toolbelt.py",
+        "knowledge/body-of-knowledge.md"
+      ]
+    },
+    {
+      "path": "assets/anti-pattern-rules.json",
+      "type": "ruleset",
+      "purpose": "Requirements anti-pattern categories and severities.",
+      "used_by": [
+        "scripts/compile-functional-toolbelt.py",
+        "references/functional-tools-patterns.md"
+      ]
+    }
+  ]
+}

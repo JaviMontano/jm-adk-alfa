@@ -1,0 +1,51 @@
+{
+  "schema": 1,
+  "skill": "functional-spec",
+  "assets": [
+    {
+      "path": "assets/functional-spec-template.md",
+      "type": "markdown-template",
+      "purpose": "Canonical section order for generated functional specifications.",
+      "used_by": [
+        "scripts/compile-functional-spec.py",
+        "templates/output.md"
+      ]
+    },
+    {
+      "path": "assets/use-case-schema.json",
+      "type": "schema",
+      "purpose": "Required fields and minimum count for use cases.",
+      "used_by": [
+        "scripts/compile-functional-spec.py",
+        "knowledge/body-of-knowledge.md"
+      ]
+    },
+    {
+      "path": "assets/business-rule-taxonomy.json",
+      "type": "taxonomy",
+      "purpose": "Stable business rule categories for functional specifications.",
+      "used_by": [
+        "scripts/compile-functional-spec.py",
+        "knowledge/body-of-knowledge.md"
+      ]
+    },
+    {
+      "path": "assets/acceptance-criteria-patterns.json",
+      "type": "criteria-patterns",
+      "purpose": "Deterministic acceptance criteria formats.",
+      "used_by": [
+        "scripts/compile-functional-spec.py",
+        "examples/example-output.md"
+      ]
+    },
+    {
+      "path": "assets/firestore-model-template.json",
+      "type": "data-model-template",
+      "purpose": "Required Firestore collection metadata for functional specs.",
+      "used_by": [
+        "scripts/compile-functional-spec.py",
+        "templates/output.md"
+      ]
+    }
+  ]
+}

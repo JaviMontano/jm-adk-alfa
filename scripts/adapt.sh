@@ -2,12 +2,12 @@
 # adapt.sh v4.0.0 — Master adapter orchestrator
 #
 # Architecture:
-#   Core (SKILL.md, CLAUDE.md, PRISTINO.md)
+#   Core (skills/, PRISTINO.md, Constitution, runtime contracts)
 #     ↓ ACL boundary (acl.sh — only reader of core files)
 #     ↓ Adapters (antigravity.sh, vscode.sh, cursor.sh, codex.sh)
-#     ↓ IDE-specific outputs (.agent/, .github/, .cursorrules, etc.)
+#     ↓ Runtime mirrors and bridge outputs (AGENTS.md, GEMINI.md, .agent/, .github/, .cursorrules, etc.)
 #
-# The core NEVER changes. Adapters derive views. If core changes, run this to sync.
+# Runtime mirrors are derived views where practical. If core contracts change, run this to sync.
 # Anti-Corruption Layer: adapters read via acl.sh functions, never touch SKILL.md directly.
 
 set -euo pipefail
@@ -38,14 +38,14 @@ case "$TARGET" in
   codex)       run_adapter "codex" ;;
   all)
     echo "=== JM-ADK Adapter System v4.0.0 ==="
-    echo "Core → IDE adapters via Anti-Corruption Layer"
+    echo "Core → runtime mirrors/adapters via Anti-Corruption Layer"
     run_adapter "antigravity"
     run_adapter "vscode"
     run_adapter "cursor"
     run_adapter "codex"
     echo ""
     echo "=== All adapters complete ==="
-    echo "Files regenerated from canonical core (skills/, CLAUDE.md, PRISTINO.md)"
+    echo "Files regenerated from canonical contracts (skills/, PRISTINO.md, runtime mirrors)"
     echo "Core files were NOT modified."
     ;;
   *)

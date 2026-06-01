@@ -1,9 +1,62 @@
-[
-  {"id": "form-builder-happy-path", "type": "happy_path", "input": "Run form builder on this project", "expected_behavior": "Skill activates and produces the expected form builder output following the defined process", "tags": ["basic", "activation"]},
-  {"id": "form-builder-explicit-trigger", "type": "happy_path", "input": "Apply form builder analysis", "expected_behavior": "Skill recognizes the trigger phrase and executes the form builder workflow", "tags": ["trigger", "recognition"]},
-  {"id": "form-builder-with-context", "type": "happy_path", "input": "Apply form builder to analyze the current codebase with detailed output", "expected_behavior": "Skill produces comprehensive form builder analysis with evidence-tagged findings", "tags": ["detailed", "comprehensive"]},
-  {"id": "form-builder-minimal-input", "type": "happy_path", "input": "Quick form builder", "expected_behavior": "Skill activates with minimal input, applies reasonable defaults", "tags": ["minimal", "defaults"]},
-  {"id": "form-builder-false-positive", "type": "false_positive", "input": "What is the weather forecast for tomorrow?", "expected_behavior": "Skill should NOT activate — this input has no relation to form builder", "tags": ["false_positive", "should-not-activate"]},
-  {"id": "form-builder-edge-empty-input", "type": "edge_case", "input": "Run form builder but I have no files or documentation yet", "expected_behavior": "Skill handles gracefully — requests minimum viable input or produces gap analysis", "tags": ["edge_case", "empty-input", "boundary"]},
-  {"id": "form-builder-edge-conflicting", "type": "edge_case", "input": "Apply form builder but requirements contradict each other", "expected_behavior": "Skill detects contradiction, flags with [OPEN] tag, proposes resolution", "tags": ["edge_case", "conflict", "corner"]}
-]
+{
+  "schema": 1,
+  "generated_by": "manual-dod-hardening",
+  "generated_on": "2026-05-31",
+  "skill": "form-builder",
+  "cases": [
+    {
+      "id": "form_multistep_intake",
+      "input": "Crea un formulario multi-step de lead intake con contacto y datos de proyecto.",
+      "expected_activation": true,
+      "expected_checks": ["quality_criteria", "deterministic_scripts", "assets"]
+    },
+    {
+      "id": "form_conditional_field",
+      "input": "Agrega un campo condicional que aparece solo cuando project_type es automation.",
+      "expected_activation": true,
+      "expected_checks": ["quality_criteria", "deterministic_scripts", "assets"]
+    },
+    {
+      "id": "form_accessibility_labels",
+      "input": "Valida que todos los campos renderizados tengan label y hints accesibles.",
+      "expected_activation": true,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria"]
+    },
+    {
+      "id": "form_invalid_schema",
+      "input": "Detecta un schema donde show_if referencia un campo inexistente.",
+      "expected_activation": true,
+      "expected_checks": ["quality_criteria", "deterministic_scripts"]
+    },
+    {
+      "id": "form_firebase_submission",
+      "input": "Disena el contrato de submit para guardar el formulario en Firebase.",
+      "expected_activation": true,
+      "expected_checks": ["quality_criteria", "evidence"]
+    },
+    {
+      "id": "form_missing_requirements",
+      "input": "Construye un formulario sin campos ni objetivo definido.",
+      "expected_activation": true,
+      "expected_checks": ["quality_criteria", "evidence"]
+    },
+    {
+      "id": "false_positive",
+      "input": "Optimiza la carga de fuentes WOFF2 del sitio.",
+      "expected_activation": false,
+      "expected_checks": ["quality_criteria"]
+    },
+    {
+      "id": "empty_input",
+      "input": "",
+      "expected_activation": false,
+      "expected_checks": ["quality_criteria"]
+    },
+    {
+      "id": "conflicting_requirements",
+      "input": "Crea un formulario accesible pero sin labels ni fieldsets.",
+      "expected_activation": false,
+      "expected_checks": ["quality_criteria", "deterministic_scripts"]
+    }
+  ]
+}

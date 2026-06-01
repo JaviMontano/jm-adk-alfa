@@ -10,7 +10,7 @@ jm-adk-alfa/
 ├── .jm-adk.json                    # Shared kit config
 ├── .jm-adk.local.json              # Local override config, ignored
 ├── agents/                         # 260 specialist agents
-├── commands/                       # 266 user-invocable commands
+├── commands/                       # 267 user-invocable commands
 ├── prompts/                        # 256 top-level prompt files
 ├── skills/                         # 585 skill modules
 │   └── {skill}/
@@ -23,6 +23,14 @@ jm-adk-alfa/
 │       ├── evals/evals.json
 │       └── examples/{example-input.md,example-output.md}
 ├── workspace/                      # Local runtime state, ignored except .gitkeep
+├── user-context/                    # In-kit durable user context repo, scaffold tracked and private content ignored
+│   ├── .jm-adk-context.json         # Context repo identity marker
+│   ├── _INDICE.md                   # First file to read before loading context
+│   ├── context/                     # Durable user background
+│   ├── preferences/                 # Stable user preferences
+│   ├── memory/                      # User-approved long-lived notes
+│   ├── sources/                     # Private source files or source indexes
+│   └── schemas/                     # Manifest and context-card schemas
 ├── .local/                         # Local experiments, ignored
 ├── references/                     # Ontology and guardrails
 ├── scripts/                        # Scaffolding, validation, sync, and hooks
@@ -33,11 +41,23 @@ jm-adk-alfa/
 ## Upgrade-Safe Boundaries
 
 - Kit core is versioned and reviewable.
+- `CLAUDE.md`, `GEMINI.md`, and `AGENTS.md` are homologated runtime mirrors for Claude, Gemini, and Agents families respectively.
 - `workspace/` is local session state and must not be committed except `workspace/.gitkeep`.
+- `user-context/` is the in-kit durable context repo. Its marker, docs, and schemas are tracked; private user-authored contents are ignored by default.
 - `.jm-adk.local.json` is for local configuration and must not be committed.
 - `.local/skills/` is for experimental local skills and must not be committed.
 - Generated files identify their generator and overwrite policy where practical.
 - Scripts that operate on the repo use `git rev-parse --show-toplevel` or an equivalent `git -C` root lookup.
+
+## User Context Layer
+
+`user-context/` is recognized by `user-context/.jm-adk-context.json`, not by the
+user files stored inside it. Alfa diagnostics treat it as a context repo as
+long as the marker and scaffold contract remain intact.
+
+The layer is separate from `workspace/`: `workspace/` stores task runtime state;
+`user-context/` stores durable user-approved context. Agents load `_INDICE.md`
+first and then only relevant files.
 
 ## Skill Contract
 

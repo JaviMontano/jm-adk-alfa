@@ -5,24 +5,43 @@ generated-on: 2026-05-28
 overwrite-policy: missing-only unless --force
 -->
 
-# Form Ux Advanced Output
+# Form UX Advanced Audit
 
 ## Summary
 
-{summary}
+{{SUMMARY}}
 
-## Evidence
+## Friction Score
 
-{evidence}
+{{FRICTION_SCORE}}
 
-## Result
+## Journey Findings
 
-{result}
+{{JOURNEY_FINDINGS}}
+
+## Inline Validation
+
+{{INLINE_VALIDATION}}
+
+## Smart Defaults
+
+{{SMART_DEFAULTS}}
+
+## Error Recovery
+
+{{ERROR_RECOVERY}}
+
+## Assets Used
+
+- `assets/ux-heuristics.json`
+- `assets/inline-validation-copy.json`
+- `assets/wizard-progress-template.html`
+- `assets/error-recovery-checklist.md`
 
 ## Validation
 
-{validation}
+{{VALIDATION}}
 
 ## Risks and Limits
 
-{risks}
+{{RISKS}}

@@ -1,12 +1,12 @@
 #!/bin/bash
 # acl.sh — Anti-Corruption Layer for JM-ADK
 #
-# Reads the canonical core format (SKILL.md, CLAUDE.md, PRISTINO.md) and exposes
+# Reads canonical skill/runtime-contract sources and exposes
 # a clean API for adapters. Adapters NEVER read core files directly — they call
 # these functions. This protects the core from IDE-specific concerns leaking in.
 #
-# Design: The core is SKILL.md YAML frontmatter + markdown. That's the source of truth.
-# Everything else is a derived view. If it can't be derived from core, it doesn't exist.
+# Design: skills/ and Pristino contracts are the source of truth. Runtime
+# mirrors stay homologated through shared ACL sections.
 
 # shellcheck source=/dev/null
 set -euo pipefail
@@ -68,7 +68,7 @@ acl_skill_tools() {
   sed -n '/^allowed-tools:/,/^[a-z]/{/^allowed-tools:/d;/^[a-z]/d;s/^[[:space:]]*-[[:space:]]*//;p}' "$SKILL_FILE" | tr '\n' ',' | sed 's/,$//'
 }
 
-# Read core rules from CLAUDE.md (IDE-agnostic extraction)
+# Read core rules from the homologated CLAUDE mirror (IDE-agnostic extraction)
 acl_core_rules() {
   awk '/^## Core Rules$/,/^## [^C]/' "$PROJECT_ROOT/CLAUDE.md" | grep -E '^[0-9]+\.' | sed 's/\*\*//g'
 }
@@ -84,4 +84,49 @@ acl_quality_gates() {
   echo "G0 (pre-flight) → G1 (post-spec) → G2 (post-plan) → G3 (deploy-ready)"
 }
 
-export -f acl_skill_field acl_skill_description acl_list_skills acl_count_skills acl_count_agents acl_count_commands acl_count_prompts acl_version acl_constitution_version acl_skill_tools acl_core_rules acl_brand_palette acl_quality_gates 2>/dev/null || true
+acl_input_tolerance() {
+  cat <<'EOF'
+- Typos: fuzzy-match intent, never correct the user's spelling.
+- Voice or rough transcription: strip filler, handle phonetic spelling, and preserve intent.
+- Dyslexia: prefer short sentences, clear bullets, and stable structure.
+- Multilingual: respond in the user's language unless the deliverable requires another language.
+EOF
+}
+
+acl_sequential_triad() {
+  cat <<'EOF'
+- Lead: produce the primary domain answer or implementation.
+- Support: review for security, accessibility, maintainability, and cross-cutting risks.
+- Guardian: validate evidence, Constitution compliance, quality gates, and residual assumptions.
+- If the runtime has no subagent tool, apply the three perspectives in one response.
+EOF
+}
+
+acl_request_classification() {
+  cat <<'EOF'
+| Type | Action |
+|------|--------|
+| QUESTION | Direct answer with evidence tags when making claims |
+| ANALYSIS | Discovery first, then concise report |
+| SIMPLE CODE | Read before write, make the smallest safe edit |
+| COMPLEX CODE | Plan, then implement, then verify |
+| DESIGN/UI | Use brand tokens, accessibility, and validation |
+| SCAFFOLD | Dry-run or preview first, then apply only when intended |
+| DEPLOY | Build, validate, then deploy or provide deploy-ready output |
+EOF
+}
+
+acl_runtime_context_contract() {
+  cat <<'EOF'
+- Confirm repo identity before edits; if Alfa is not confirmed, report `Dato requerido` and do not edit.
+- Run `python3 scripts/diagnose-first-use.py --dry-run` for first-use or cold-start diagnosis.
+- Run `python3 scripts/diagnose-user-context.py --dry-run` before relying on durable user context.
+- Treat `user-context/` as the in-kit context repo because `user-context/.jm-adk-context.json` declares `jm-adk-user-context`; private files do not define the role.
+- Read `user-context/_INDICE.md` first, then only task-relevant context files; never bulk-load `user-context/sources/`.
+- Write to `user-context/` only after an explicit remember/update-context instruction from the user; hook-enabled writes require `JM_ADK_CONTEXT_WRITE=1`.
+- Put task artifacts in `workspace/{active}/artifacts/`; never mix workspace runtime state, kit internals, and durable context.
+- Do not commit private state: `.jm-adk.local.json`, `.env*`, `.local/`, `.codex/`, `workspace/`, or private `user-context/` content.
+EOF
+}
+
+export -f acl_skill_field acl_skill_description acl_list_skills acl_count_skills acl_count_agents acl_count_commands acl_count_prompts acl_version acl_constitution_version acl_skill_tools acl_core_rules acl_brand_palette acl_quality_gates acl_input_tolerance acl_sequential_triad acl_request_classification acl_runtime_context_contract 2>/dev/null || true

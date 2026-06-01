@@ -35,6 +35,7 @@ Guides web font optimization to eliminate invisible text (FOIT) and layout shift
 - Evaluate variable font availability (one file replaces multiple weight files)
 - Plan font-display strategy (`swap` for body, `optional` for non-critical)
 - Calculate total font payload and compare with subsetting savings
+- Use `assets/font-budget.json` for default payload and critical-file thresholds
 
 ### Step 3: Execute
 - Self-host fonts for better performance (eliminate third-party DNS lookup)
@@ -43,12 +44,14 @@ Guides web font optimization to eliminate invisible text (FOIT) and layout shift
 - Preload critical fonts: `<link rel="preload" href="font.woff2" as="font" crossorigin>`
 - Use WOFF2 format exclusively (best compression, 95%+ browser support)
 - Replace multiple weight files with a single variable font where possible
+- Use `assets/font-face-template.css` and `assets/preload-snippet.html` for reusable implementation snippets
 
 ### Step 4: Validate
 - Confirm no FOIT — text is always visible during font loading
 - Measure CLS impact — font swap should cause minimal layout shift
 - Verify font files are cached with long-lived Cache-Control headers
 - Check total font payload is under 100KB for all critical fonts
+- Run `scripts/audit-font-loading.py <html-or-css-files>` on changed templates or pages
 
 ## Quality Criteria
 
@@ -56,6 +59,9 @@ Guides web font optimization to eliminate invisible text (FOIT) and layout shift
 - [ ] Critical fonts preloaded with `rel="preload"`
 - [ ] `font-display` set appropriately for each font family
 - [ ] Font files subsetted to required character ranges only
+- [ ] No runtime Google Fonts/CDN import remains in optimized output
+- [ ] `assets/manifest.json` declares every reusable output asset
+- [ ] `scripts/audit-font-loading.py` returns zero findings on optimized fixtures
 - [ ] Evidence tags applied to all claims
 
 ## Anti-Patterns
@@ -75,6 +81,21 @@ Example invocations:
 
 - "/font-optimization" — Run the full font optimization workflow
 - "font optimization on this project" — Apply to current context
+
+## Deterministic Script Contract
+
+- Runtime script: `scripts/audit-font-loading.py`
+- Contract check: `scripts/check.sh`
+- Validation command: `python3 scripts/validate-skill-scripts.py --strict --run-checks --skill font-optimization`
+- Default behavior: read-only audit, no network calls, nonzero exit on findings.
+
+## Assets Contract
+
+- Output assets live in `assets/`.
+- `assets/manifest.json` lists every reusable asset and where it is used.
+- `assets/font-face-template.css` is the canonical self-hosted WOFF2 `@font-face` pattern.
+- `assets/preload-snippet.html` is the canonical critical preload snippet.
+- `assets/font-budget.json` carries default performance budgets and required patterns.
 
 
 ## Assumptions & Limits
