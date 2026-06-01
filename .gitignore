@@ -33,7 +33,7 @@ __pycache__/
 *.py[cod]
 .pytest_cache/
 
-# Local overrides and experiments
+# Local overrides, mirrors, and experiments
 .local/
 *.bak
 *.tmp
@@ -63,6 +63,12 @@ user-context/memory/*
 user-context/sources/*
 !user-context/sources/README.md
 !user-context/sources/.gitkeep
+user-context/resources/*
+!user-context/resources/README.md
+!user-context/resources/.gitkeep
+user-context/personal-skills/manifest.json
+user-context/personal-skills/skills/*
+!user-context/personal-skills/skills/.gitkeep
 
 # SDD sentinel state
 .specify/sentinel-state.json
