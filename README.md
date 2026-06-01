@@ -52,12 +52,13 @@ Alfa includes an in-kit context repo at `user-context/`. It is identified by
 `user-context/.jm-adk-context.json`, so it remains recognizable as the user
 context area regardless of what files the user later adds there.
 
-Use it for durable user background, preferences, and reusable context that
-should survive across workspaces. It is separate from `workspace/`, which is
-task runtime state.
+Use it for durable user background, preferences, memory, curated `resources/`,
+and `personal-skills/` that should survive across workspaces. It is separate
+from `workspace/`, which is task runtime state.
 
 ```bash
 python3 scripts/diagnose-user-context.py --dry-run
+python3 scripts/diagnose-personal-skills.py --dry-run
 python3 scripts/scaffold-user-context.py --dry-run
 ```
 
@@ -71,19 +72,21 @@ Versioned kit files live in the repo. Local runtime state does not.
 Tracked:
 
 - `.jm-adk.json`
-- `skills/`
+- `skills/` for SDK skills only
 - `agents/`
 - `commands/`
 - `prompts/`
 - `references/`
 - `scripts/`
 - `docs/`
-- `user-context/` scaffold, marker, schemas, and docs only
+- `user-context/` scaffold, markers, schemas, and docs only
 
 Ignored:
 
 - `workspace/` except `workspace/.gitkeep`
 - private `user-context/` content
+- `user-context/resources/*` private resources
+- `user-context/personal-skills/skills/*` private personal skills
 - `.jm-adk.local.json`
 - `.local/`
 - `.codex/`
@@ -117,7 +120,22 @@ python3 scripts/scaffold-skill.py \
   --version 0.1.0
 ```
 
-Create an experimental local skill without tracking it:
+Create a personal skill without writing into the SDK root `skills/`:
+
+```bash
+python3 scripts/scaffold-skill.py --name my-personal-skill --description "Personal skill" --personal --dry-run
+python3 scripts/scaffold-skill.py --name my-personal-skill --description "Personal skill" --personal
+```
+
+Validate and sync personal skills by copy mirror:
+
+```bash
+python3 scripts/validate-skills.py --strict --skills-dir user-context/personal-skills/skills
+python3 scripts/sync-personal-skills.py --dry-run
+python3 scripts/sync-personal-skills.py --apply
+```
+
+Create an experimental local skill without tracking it. This is scratch or mirror cache, not durable source:
 
 ```bash
 python3 scripts/scaffold-skill.py --name my-experiment --description "Local experiment" --local
@@ -149,6 +167,8 @@ python3 scripts/validate-skill-dod.py --skill form-ux-advanced
 python3 scripts/validate-skill-dod.py --skill functional-spec
 python3 scripts/validate-skill-dod.py --skill functional-toolbelt
 python3 scripts/diagnose-user-context.py --dry-run
+python3 scripts/diagnose-personal-skills.py --dry-run
+python3 scripts/sync-personal-skills.py --dry-run --target /tmp/alfa-personal-skills-target
 python3 scripts/validate-runtime-instructions.py
 python3 scripts/count-components.py --check-docs
 bash scripts/check-repo-boundaries.sh
