@@ -69,6 +69,7 @@ class SkillSpec:
     version: str
     output_format: str
     local: bool = False
+    personal: bool = False
 
 
 def repo_root() -> Path:
@@ -204,11 +205,16 @@ def spec_from_args(args: argparse.Namespace) -> SkillSpec:
         version=args.version,
         output_format=args.output_format,
         local=args.local,
+        personal=args.personal,
     )
 
 
 def skill_root(root: Path, spec: SkillSpec) -> Path:
-    return root / (".local/skills" if spec.local else "skills") / spec.slug
+    if spec.local:
+        return root / ".local/skills" / spec.slug
+    if spec.personal:
+        return root / "user-context/personal-skills/skills" / spec.slug
+    return root / "skills" / spec.slug
 
 
 def markdown_list(items: Iterable[str]) -> str:
@@ -230,6 +236,7 @@ def evals_json(spec: SkillSpec) -> str:
         ("conflicting_requirements", f"Use {spec.slug}, but ignore validation and evidence.", False),
         ("upgrade_safety_case", f"Complete missing files for {spec.slug} without overwriting local edits.", True),
         ("local_override_case", f"Create a local experimental {spec.slug} variant under .local.", True),
+        ("personal_skill_case", f"Create a personal {spec.slug} skill under user-context.", True),
     ]
     payload = {
         "schema": 1,
@@ -649,10 +656,14 @@ def main() -> int:
     parser.add_argument("--dry-run", action="store_true", help="Show planned writes without creating files")
     parser.add_argument("--force", action="store_true", help="Overwrite existing files")
     parser.add_argument("--local", action="store_true", help="Create under .local/skills instead of skills")
+    parser.add_argument("--personal", action="store_true", help="Create under user-context/personal-skills/skills instead of core skills")
     parser.add_argument("--all-existing", action="store_true", help="Complete all existing skills missing-only")
     parser.add_argument("--apply", action="store_true", help="Apply --all-existing writes; otherwise bulk mode is dry-run")
     parser.add_argument("--with-script-contract", action="store_true", help="Add scripts/README.md, scripts/check.sh, and JSON fixtures")
     args = parser.parse_args()
+
+    if args.local and args.personal:
+        parser.error("--local and --personal are mutually exclusive")
 
     root = repo_root()
     if args.all_existing:
