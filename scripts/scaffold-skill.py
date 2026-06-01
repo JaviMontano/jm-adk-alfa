@@ -350,7 +350,66 @@ Check quality criteria, edge cases, assumptions, and evidence requirements befor
 """
 
 
-def render_files(spec: SkillSpec, include_skill_md: bool) -> dict[str, str]:
+def script_contract_files(spec: SkillSpec) -> dict[str, str]:
+    return {
+        "scripts/README.md": generated_header("scripts/README.md", spec.slug) + f"""# {title_from_slug(spec.slug)} Scripts
+
+This directory contains deterministic local automation for `{spec.slug}`.
+
+## Contract
+
+- Scripts are non-destructive by default.
+- Runtime checks live in `check.sh`.
+- Fixtures in `fixtures/` are stable and valid JSON.
+- Any script that mutates files must require an explicit apply flag.
+
+## Validate
+
+```bash
+python3 scripts/validate-skill-scripts.py --strict --run-checks
+```
+""",
+        "scripts/check.sh": f"""#!/usr/bin/env bash
+# Deterministic script contract check for {spec.slug}.
+
+set -euo pipefail
+
+script_dir="$(cd "$(dirname "${{BASH_SOURCE[0]}}")" && pwd)"
+
+python3 -m json.tool "$script_dir/fixtures/example-input.json" >/dev/null
+python3 -m json.tool "$script_dir/fixtures/expected-output.json" >/dev/null
+
+echo "OK: {spec.slug} script fixtures validated"
+""",
+        "scripts/fixtures/example-input.json": json.dumps(
+            {
+                "schema": 1,
+                "skill": spec.slug,
+                "mode": "dry-run",
+                "input": {"goal": f"Run deterministic automation for {spec.slug}."},
+            },
+            indent=2,
+            ensure_ascii=False,
+        )
+        + "\n",
+        "scripts/fixtures/expected-output.json": json.dumps(
+            {
+                "schema": 1,
+                "skill": spec.slug,
+                "expected": {
+                    "mutates_files_by_default": False,
+                    "requires_apply_for_writes": True,
+                    "validates_fixtures": True,
+                },
+            },
+            indent=2,
+            ensure_ascii=False,
+        )
+        + "\n",
+    }
+
+
+def render_files(spec: SkillSpec, include_skill_md: bool, include_script_contract: bool = False) -> dict[str, str]:
     title = title_from_slug(spec.slug)
     files: dict[str, str] = {}
     if include_skill_md:
@@ -513,12 +572,26 @@ Example output for `{spec.slug}`.
 - Risks and assumptions are explicit.
 """
 
+    if include_script_contract:
+        files.update(script_contract_files(spec))
+
     return files
 
 
-def write_scaffold(root: Path, spec: SkillSpec, dry_run: bool, force: bool, include_skill_md: bool) -> tuple[int, int]:
+def write_scaffold(
+    root: Path,
+    spec: SkillSpec,
+    dry_run: bool,
+    force: bool,
+    include_skill_md: bool,
+    include_script_contract: bool,
+) -> tuple[int, int]:
     base = skill_root(root, spec)
-    files = render_files(spec, include_skill_md=include_skill_md)
+    files = render_files(
+        spec,
+        include_skill_md=include_skill_md,
+        include_script_contract=include_script_contract,
+    )
     planned = 0
     written = 0
     for rel, content in files.items():
@@ -549,7 +622,14 @@ def complete_existing(root: Path, args: argparse.Namespace) -> int:
         if not (skill_dir / "SKILL.md").exists():
             continue
         spec = spec_from_existing(skill_dir, args)
-        planned, written = write_scaffold(root, spec, dry_run=dry_run, force=False, include_skill_md=False)
+        planned, written = write_scaffold(
+            root,
+            spec,
+            dry_run=dry_run,
+            force=False,
+            include_skill_md=False,
+            include_script_contract=args.with_script_contract,
+        )
         total_planned += planned
         total_written += written
     mode = "dry-run" if dry_run else "applied"
@@ -571,6 +651,7 @@ def main() -> int:
     parser.add_argument("--local", action="store_true", help="Create under .local/skills instead of skills")
     parser.add_argument("--all-existing", action="store_true", help="Complete all existing skills missing-only")
     parser.add_argument("--apply", action="store_true", help="Apply --all-existing writes; otherwise bulk mode is dry-run")
+    parser.add_argument("--with-script-contract", action="store_true", help="Add scripts/README.md, scripts/check.sh, and JSON fixtures")
     args = parser.parse_args()
 
     root = repo_root()
@@ -590,7 +671,14 @@ def main() -> int:
             file=sys.stderr,
         )
         return 1
-    planned, written = write_scaffold(root, spec, dry_run=args.dry_run, force=args.force, include_skill_md=True)
+    planned, written = write_scaffold(
+        root,
+        spec,
+        dry_run=args.dry_run,
+        force=args.force,
+        include_skill_md=True,
+        include_script_contract=args.with_script_contract,
+    )
     mode = "dry-run" if args.dry_run else "applied"
     print(f"{mode}: planned={planned} written={written}")
     return 0

@@ -1,0 +1,85 @@
+{
+  "name": "enterprise_intake",
+  "title": "Enterprise Intake",
+  "fields": [
+    {
+      "name": "contact_email",
+      "type": "email",
+      "label": "Work email",
+      "rules": [
+        {
+          "client": "type=email and required",
+          "server": "normalize, require corporate domain, and verify MX format",
+          "message": "Enter a valid work email address."
+        }
+      ]
+    },
+    {
+      "name": "company_size",
+      "type": "select",
+      "label": "Company size",
+      "rules": [
+        {
+          "client": "required option from controlled list",
+          "server": "allowlist submitted value",
+          "message": "Choose the company size that best matches your team."
+        }
+      ]
+    },
+    {
+      "name": "security_brief",
+      "type": "file",
+      "label": "Security brief",
+      "rules": [
+        {
+          "client": "require PDF under 10 MB",
+          "server": "scan MIME type, size, malware status, and ownership",
+          "message": "Upload a PDF security brief under 10 MB."
+        }
+      ],
+      "upload": {
+        "accept": [".pdf", "application/pdf"],
+        "max_mb": 10,
+        "preview": true,
+        "progress": true,
+        "retry": true,
+        "storage_boundary": "private/prospect/security-briefs"
+      }
+    }
+  ],
+  "steps": [
+    {
+      "id": "contact",
+      "fields": ["contact_email"]
+    },
+    {
+      "id": "qualification",
+      "fields": ["company_size", "security_brief"]
+    }
+  ],
+  "submission": {
+    "endpoint": "/api/enterprise-intake",
+    "method": "POST",
+    "server_validation": "shared schema plus upload ownership checks",
+    "idempotency": "idempotency_key"
+  },
+  "errors": {
+    "field": "Render below the field and connect with aria-describedby.",
+    "summary": "Focus a top summary with links to invalid fields.",
+    "server": "Preserve user input and map server errors back to fields.",
+    "network": "Preserve draft and retry the same payload."
+  },
+  "accessibility": {
+    "labels": true,
+    "field_errors": true,
+    "summary": true,
+    "keyboard": true,
+    "aria_live": true
+  },
+  "optimistic_submission": {
+    "pending_label": "Sending intake...",
+    "success_message": "Intake received.",
+    "failure_message": "We could not submit the intake. Your draft is still available.",
+    "retry_strategy": "idempotency_key"
+  }
+}

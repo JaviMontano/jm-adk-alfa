@@ -1,0 +1,32 @@
+{
+  "schema": 1,
+  "skill": "form-builder",
+  "assets": [
+    {
+      "path": "assets/form-control.css",
+      "type": "stylesheet",
+      "purpose": "Accessible baseline styling for generated form HTML.",
+      "used_by": [
+        "templates/output.html",
+        "scripts/render-form-schema.py"
+      ]
+    },
+    {
+      "path": "assets/form-step-template.html",
+      "type": "html-template",
+      "purpose": "Semantic fieldset/legend wrapper for multi-step forms.",
+      "used_by": [
+        "scripts/render-form-schema.py"
+      ]
+    },
+    {
+      "path": "assets/validation-policy.json",
+      "type": "validation-policy",
+      "purpose": "Default field type, accessibility, and conditional logic policy.",
+      "used_by": [
+        "scripts/render-form-schema.py",
+        "knowledge/body-of-knowledge.md"
+      ]
+    }
+  ]
+}

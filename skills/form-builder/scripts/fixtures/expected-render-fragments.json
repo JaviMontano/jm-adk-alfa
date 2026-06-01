@@ -1,0 +1,10 @@
+{
+  "required_fragments": [
+    "<form class=\"form-shell\"",
+    "<fieldset class=\"form-step\" data-step=\"contact\">",
+    "<label for=\"full_name\">Nombre completo",
+    "aria-describedby=\"full_name_hint\"",
+    "data-show-if=\"project_type\"",
+    "<button type=\"submit\">Enviar solicitud</button>"
+  ]
+}

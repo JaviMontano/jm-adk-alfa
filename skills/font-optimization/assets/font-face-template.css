@@ -1,0 +1,8 @@
+@font-face {
+  font-family: "{{FONT_FAMILY}}";
+  src: url("{{FONT_PATH}}") format("woff2");
+  font-weight: {{FONT_WEIGHT}};
+  font-style: {{FONT_STYLE}};
+  font-display: swap;
+  unicode-range: {{UNICODE_RANGE}};
+}

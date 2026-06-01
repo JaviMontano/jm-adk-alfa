@@ -1,0 +1,31 @@
+{
+  "schema": 1,
+  "required_tools": [
+    "event_storming",
+    "story_mapping",
+    "business_rules",
+    "acceptance_criteria",
+    "traceability_matrix",
+    "anti_pattern_detection"
+  ],
+  "tools": {
+    "event_storming": {
+      "output": "events, commands, actors, aggregates, hot spots"
+    },
+    "story_mapping": {
+      "output": "activities, stories, releases"
+    },
+    "business_rules": {
+      "output": "typed rule catalog and decision table rows"
+    },
+    "acceptance_criteria": {
+      "output": "Given/When/Then scenarios"
+    },
+    "traceability_matrix": {
+      "output": "requirement to use case to flow to test to acceptance coverage"
+    },
+    "anti_pattern_detection": {
+      "output": "quality findings with severity and fix"
+    }
+  }
+}

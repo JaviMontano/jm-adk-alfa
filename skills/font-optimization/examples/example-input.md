@@ -7,4 +7,18 @@ overwrite-policy: missing-only unless --force
 
 # Example Input
 
-Use `font-optimization` to produce a concise deliverable for a realistic project request.
+Optimiza la carga de fuentes del landing `index.html`.
+
+Contexto:
+
+- Actualmente usa Google Fonts con `Poppins`, `Montserrat` y `JetBrains Mono`.
+- El CSS usa `@import` en una hoja secundaria.
+- Hay archivos `.ttf` legacy en `/fonts`.
+- La pagina necesita mantener una fuente de encabezados, una de cuerpo y una mono para metadata.
+
+Entrega:
+
+- Hallazgos de auditoria.
+- Snippets `@font-face` y preload.
+- Recomendacion de subset/variable font.
+- Checklist de validacion.

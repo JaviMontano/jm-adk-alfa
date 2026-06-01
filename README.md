@@ -46,6 +46,24 @@ python3 scripts/setup-workspace-profile.py --apply
 
 The profile lives in `.jm-adk.local.json` and must remain untracked.
 
+## User Context Repo
+
+Alfa includes an in-kit context repo at `user-context/`. It is identified by
+`user-context/.jm-adk-context.json`, so it remains recognizable as the user
+context area regardless of what files the user later adds there.
+
+Use it for durable user background, preferences, and reusable context that
+should survive across workspaces. It is separate from `workspace/`, which is
+task runtime state.
+
+```bash
+python3 scripts/diagnose-user-context.py --dry-run
+python3 scripts/scaffold-user-context.py --dry-run
+```
+
+Personal context content is ignored by git by default. Only the scaffold,
+marker, schemas, and docs are tracked.
+
 ## Local State
 
 Versioned kit files live in the repo. Local runtime state does not.
@@ -60,10 +78,12 @@ Tracked:
 - `references/`
 - `scripts/`
 - `docs/`
+- `user-context/` scaffold, marker, schemas, and docs only
 
 Ignored:
 
 - `workspace/` except `workspace/.gitkeep`
+- private `user-context/` content
 - `.jm-adk.local.json`
 - `.local/`
 - `.codex/`
@@ -103,10 +123,33 @@ Create an experimental local skill without tracking it:
 python3 scripts/scaffold-skill.py --name my-experiment --description "Local experiment" --local
 ```
 
+Add a deterministic `scripts/` contract when the skill needs local automation:
+
+```bash
+python3 scripts/scaffold-skill.py \
+  --name my-skill \
+  --description "Short description" \
+  --triggers my-skill \
+  --allowed-tools Read,Grep,Glob,Bash \
+  --with-script-contract \
+  --dry-run
+```
+
 ## Validate
 
 ```bash
 python3 scripts/validate-skills.py --strict
+python3 scripts/validate-skill-scripts.py --strict --run-checks
+python3 scripts/validate-skill-dod.py --skill folio-generator
+python3 scripts/validate-skill-dod.py --skill follow-up-email
+python3 scripts/validate-skill-dod.py --skill font-optimization
+python3 scripts/validate-skill-dod.py --skill form-builder
+python3 scripts/validate-skill-dod.py --skill form-engineering
+python3 scripts/validate-skill-dod.py --skill form-ux-advanced
+python3 scripts/validate-skill-dod.py --skill functional-spec
+python3 scripts/validate-skill-dod.py --skill functional-toolbelt
+python3 scripts/diagnose-user-context.py --dry-run
+python3 scripts/validate-runtime-instructions.py
 python3 scripts/count-components.py --check-docs
 bash scripts/check-repo-boundaries.sh
 python3 scripts/validate-onboarding.py

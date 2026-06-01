@@ -1,0 +1,8 @@
+{
+  "required_codes": [
+    "google_fonts_runtime",
+    "css_import",
+    "font_display_block",
+    "non_woff2_font"
+  ]
+}

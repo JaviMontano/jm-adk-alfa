@@ -11,6 +11,10 @@
     "workspace/.workspace-registry.json",
     "workspace/.gitkeep"
   ],
+  "context_repo_globs": [
+    "user-context/**"
+  ],
+  "context_repo_write_env": "JM_ADK_CONTEXT_WRITE",
   "system_globs": [
     "skills/**",
     "agents/**",
@@ -44,6 +48,7 @@
   },
   "notes": {
     "maintainer_mode": "Set JM_ADK_MODE=maintainer or create a ./.maintainer sentinel file to edit kit internals. Without it, writes to system_globs are blocked so end-user task work cannot silently mutate the kit.",
+    "context_repo": "user-context/ is an in-kit context repo identified by user-context/.jm-adk-context.json. Writes require explicit context mode via JM_ADK_CONTEXT_WRITE=1 or maintainer mode.",
     "fail_open": "If python3 or this file is missing, the guard exits 0 (allow). A broken guard must never brick the session.",
     "deny_to_create": "A write with no active workspace is denied with an instruction to run 'workspace-manager.sh ensure'. The model creates the workspace then retries — a deterministic, self-healing loop."
   }

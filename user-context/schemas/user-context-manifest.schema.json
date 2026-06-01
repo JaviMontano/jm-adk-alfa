@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://jm-adk.local/schemas/user-context-manifest.schema.json",
+  "title": "JM-ADK User Context Manifest",
+  "description": "Optional private manifest for local context loading. Repo identity is defined by .jm-adk-context.json, not by this file.",
+  "type": "object",
+  "required": ["schema", "kind", "autoload", "privacy"],
+  "properties": {
+    "schema": {"const": 1},
+    "kind": {"const": "jm-adk-user-context-manifest"},
+    "owner": {"type": "string"},
+    "updated": {"type": "string"},
+    "autoload": {
+      "type": "array",
+      "items": {"type": "string"},
+      "maxItems": 12
+    },
+    "privacy": {
+      "type": "object",
+      "required": ["mode", "externalConnectors"],
+      "properties": {
+        "mode": {"enum": ["local-private", "pii-safe", "public-safe"]},
+        "externalConnectors": {"enum": ["deny-by-default", "allow-explicit"]}
+      },
+      "additionalProperties": false
+    },
+    "notes": {"type": "string"}
+  },
+  "additionalProperties": true
+}

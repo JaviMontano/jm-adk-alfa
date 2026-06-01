@@ -1,0 +1,13 @@
+{
+  "schema": 1,
+  "required_collection_fields": [
+    "name",
+    "purpose",
+    "owner",
+    "pii",
+    "required_fields",
+    "indexes",
+    "retention"
+  ],
+  "index_required_when": ["query_by_status", "query_by_owner", "query_by_date"]
+}

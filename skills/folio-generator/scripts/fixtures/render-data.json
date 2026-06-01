@@ -1,0 +1,18 @@
+{
+  "folio_id": "COT-2026-043",
+  "subject": "Propuesta de automatizacion documental",
+  "company_name": "JM Labs",
+  "company_address": "Direccion de referencia",
+  "date": "2026-05-31",
+  "validity": "15 dias",
+  "recipient_name": "Cliente Ejemplo",
+  "recipient_company": "Empresa Ejemplo",
+  "reference": "REF-ALFA-DOD",
+  "body_content": "<h3>Alcance</h3><p>Automatizacion de folios con trazabilidad y validacion deterministica.</p>",
+  "currency": "COP",
+  "total_amount": "1.000.000",
+  "total_notes": "Valor de ejemplo sin uso comercial.",
+  "signer_name": "Javier Montano",
+  "signer_role": "Founder",
+  "validity_days": "15"
+}

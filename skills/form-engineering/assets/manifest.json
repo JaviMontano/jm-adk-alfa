@@ -1,0 +1,42 @@
+{
+  "schema": 1,
+  "skill": "form-engineering",
+  "assets": [
+    {
+      "path": "assets/form-engineering-policy.json",
+      "type": "validation-policy",
+      "purpose": "Required sections and parity rules for robust form implementations.",
+      "used_by": [
+        "scripts/compile-form-contract.py",
+        "knowledge/body-of-knowledge.md"
+      ]
+    },
+    {
+      "path": "assets/error-message-patterns.json",
+      "type": "copy-policy",
+      "purpose": "Deterministic field and form-level error message patterns.",
+      "used_by": [
+        "scripts/compile-form-contract.py",
+        "knowledge/body-of-knowledge.md"
+      ]
+    },
+    {
+      "path": "assets/optimistic-submit-template.ts",
+      "type": "typescript-template",
+      "purpose": "Reference implementation skeleton for optimistic submit state handling.",
+      "used_by": [
+        "scripts/compile-form-contract.py",
+        "templates/output.md"
+      ]
+    },
+    {
+      "path": "assets/upload-control-template.html",
+      "type": "html-template",
+      "purpose": "Accessible file upload control baseline with hint, progress, and retry hooks.",
+      "used_by": [
+        "scripts/compile-form-contract.py",
+        "templates/output.html"
+      ]
+    }
+  ]
+}

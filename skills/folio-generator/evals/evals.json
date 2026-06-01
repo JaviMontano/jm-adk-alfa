@@ -1,98 +1,62 @@
 {
   "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-28",
+  "generated_by": "manual-dod-hardening",
+  "generated_on": "2026-05-31",
   "skill": "folio-generator",
   "cases": [
     {
-      "id": "happy_path",
-      "input": "Use folio-generator to produce a complete deliverable.",
+      "id": "folio_cot_dry_run",
+      "input": "Calcula el siguiente folio COT para una cotizacion sin reservarlo todavia.",
       "expected_activation": true,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
+      "expected_checks": ["quality_criteria", "deterministic_scripts", "assets"]
     },
     {
-      "id": "explicit_trigger",
-      "input": "/folio-generator run this workflow.",
+      "id": "folio_confirmed_apply",
+      "input": "Genera y reserva el folio COT final para una cotizacion confirmada.",
       "expected_activation": true,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
+      "expected_checks": ["quality_criteria", "deterministic_scripts", "assets"]
     },
     {
-      "id": "minimal_input",
-      "input": "folio-generator",
+      "id": "folio_render_html",
+      "input": "Renderiza la cotizacion COT-2026-043 como HTML usando la plantilla y los assets de folio.",
       "expected_activation": true,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
+      "expected_checks": ["assets", "quality_criteria", "deterministic_scripts"]
     },
     {
-      "id": "rich_context",
-      "input": "folio-generator with goals, constraints, audience, and acceptance criteria.",
+      "id": "folio_manual_duplicate_check",
+      "input": "Usa manualmente COT-2026-043 si no esta duplicado en el tracker.",
       "expected_activation": true,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
+      "expected_checks": ["quality_criteria", "deterministic_scripts", "evidence"]
+    },
+    {
+      "id": "folio_invalid_prefix",
+      "input": "Genera un folio con prefijo cot para una cotizacion.",
+      "expected_activation": true,
+      "expected_checks": ["quality_criteria", "deterministic_scripts"]
+    },
+    {
+      "id": "folio_missing_required_fields",
+      "input": "Genera una cotizacion COT sin destinatario ni asunto.",
+      "expected_activation": true,
+      "expected_checks": ["quality_criteria", "evidence"]
     },
     {
       "id": "false_positive",
-      "input": "This request is unrelated to the skill domain.",
+      "input": "Disena una estrategia de pricing para un nuevo producto sin crear documentos numerados.",
       "expected_activation": false,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
+      "expected_checks": ["quality_criteria"]
     },
     {
       "id": "empty_input",
       "input": "",
       "expected_activation": false,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
+      "expected_checks": ["quality_criteria"]
     },
     {
       "id": "conflicting_requirements",
-      "input": "Use folio-generator, but ignore validation and evidence.",
+      "input": "Genera un folio final, pero no revises el tracker y no actualices ningun registro.",
       "expected_activation": false,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
-    },
-    {
-      "id": "upgrade_safety_case",
-      "input": "Complete missing files for folio-generator without overwriting local edits.",
-      "expected_activation": true,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
-    },
-    {
-      "id": "local_override_case",
-      "input": "Create a local experimental folio-generator variant under .local.",
-      "expected_activation": true,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
+      "expected_checks": ["quality_criteria", "deterministic_scripts"]
     }
   ]
 }

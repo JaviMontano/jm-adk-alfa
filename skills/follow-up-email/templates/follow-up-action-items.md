@@ -1,3 +1,5 @@
+Subject: {{subject_prefix}}: {{meeting_title}}
+
 # Follow-Up: {{meeting_title}}
 
 Hola {{name}},
@@ -18,5 +20,5 @@ Gracias por participar en la reunion "{{meeting_title}}" del {{date}}.
 
 Si tienes dudas sobre alguno de estos puntos, no dudes en responder a este correo.
 
-Saludos,
+{{signoff}},
 {{sender_name}}

@@ -131,6 +131,7 @@ Then refine `skills/my-custom-skill/SKILL.md` following the MOAT pattern above.
 
 ```bash
 python3 scripts/validate-skills.py --strict
+python3 scripts/validate-skill-dod.py --skill my-custom-skill
 ```
 
 This checks:
@@ -139,6 +140,7 @@ This checks:
 - `allowed-tools` only contains valid tools
 - Body has required sections (Procedure, Quality Criteria)
 - Evals and knowledge graph JSON are valid
+- Assets are present, manifest-backed, referenced, and used by the skill when the skill is marked complete
 
 ### 5. Update the Index
 

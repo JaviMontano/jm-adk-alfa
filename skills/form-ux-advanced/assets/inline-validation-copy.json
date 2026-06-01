@@ -1,0 +1,11 @@
+{
+  "schema": 1,
+  "patterns": {
+    "required": "Add {label} to continue.",
+    "format": "Use the expected format for {label}: {example}.",
+    "range": "{label} must be between {min} and {max}.",
+    "upload": "Choose a supported file and keep it under {max_mb} MB.",
+    "server": "We found an issue after checking the server. Review {label} and try again.",
+    "network": "Connection lost. Your answers are saved, and you can retry."
+  }
+}

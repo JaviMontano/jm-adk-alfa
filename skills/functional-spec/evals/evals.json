@@ -1,9 +1,62 @@
-[
-  {"id": "functional-spec-happy-path", "type": "happy_path", "input": "Run functional spec on this project", "expected_behavior": "Skill activates and produces the expected functional spec output following the defined process", "tags": ["basic", "activation"]},
-  {"id": "functional-spec-explicit-trigger", "type": "happy_path", "input": "Apply functional spec analysis", "expected_behavior": "Skill recognizes the trigger phrase and executes the functional spec workflow", "tags": ["trigger", "recognition"]},
-  {"id": "functional-spec-with-context", "type": "happy_path", "input": "Apply functional spec to analyze the current codebase with detailed output", "expected_behavior": "Skill produces comprehensive functional spec analysis with evidence-tagged findings", "tags": ["detailed", "comprehensive"]},
-  {"id": "functional-spec-minimal-input", "type": "happy_path", "input": "Quick functional spec", "expected_behavior": "Skill activates with minimal input, applies reasonable defaults", "tags": ["minimal", "defaults"]},
-  {"id": "functional-spec-false-positive", "type": "false_positive", "input": "What is the weather forecast for tomorrow?", "expected_behavior": "Skill should NOT activate — this input has no relation to functional spec", "tags": ["false_positive", "should-not-activate"]},
-  {"id": "functional-spec-edge-empty-input", "type": "edge_case", "input": "Run functional spec but I have no files or documentation yet", "expected_behavior": "Skill handles gracefully — requests minimum viable input or produces gap analysis", "tags": ["edge_case", "empty-input", "boundary"]},
-  {"id": "functional-spec-edge-conflicting", "type": "edge_case", "input": "Apply functional spec but requirements contradict each other", "expected_behavior": "Skill detects contradiction, flags with [OPEN] tag, proposes resolution", "tags": ["edge_case", "conflict", "corner"]}
-]
+{
+  "schema": 1,
+  "generated_by": "manual-dod-hardening",
+  "generated_on": "2026-05-31",
+  "skill": "functional-spec",
+  "cases": [
+    {
+      "id": "mvp_functional_spec",
+      "input": "Create a functional spec for a Field Service MVP with modules, use cases, business rules, acceptance criteria, and Firestore model notes.",
+      "expected_activation": true,
+      "expected_checks": ["quality_criteria", "deterministic_scripts", "assets"]
+    },
+    {
+      "id": "eight_use_cases",
+      "input": "Validate that the MVP spec contains at least eight actor-goal use cases.",
+      "expected_activation": true,
+      "expected_checks": ["quality_criteria", "deterministic_scripts"]
+    },
+    {
+      "id": "business_rule_traceability",
+      "input": "Ensure every business rule links to one or more known use cases.",
+      "expected_activation": true,
+      "expected_checks": ["quality_criteria", "deterministic_scripts", "assets"]
+    },
+    {
+      "id": "acceptance_criteria_coverage",
+      "input": "Convert use cases into Given/When/Then acceptance criteria.",
+      "expected_activation": true,
+      "expected_checks": ["quality_criteria", "assets"]
+    },
+    {
+      "id": "firestore_model_notes",
+      "input": "Add Firestore collection notes with PII, indexes, owner, required fields, and retention.",
+      "expected_activation": true,
+      "expected_checks": ["quality_criteria", "deterministic_scripts", "assets"]
+    },
+    {
+      "id": "open_questions_and_scope",
+      "input": "Separate out-of-scope items and unresolved product questions before architecture handoff.",
+      "expected_activation": true,
+      "expected_checks": ["quality_criteria", "assets"]
+    },
+    {
+      "id": "false_positive_ui_theme",
+      "input": "Create a visual theme for a checkout page.",
+      "expected_activation": false,
+      "expected_checks": ["quality_criteria"]
+    },
+    {
+      "id": "empty_input",
+      "input": "",
+      "expected_activation": false,
+      "expected_checks": ["quality_criteria"]
+    },
+    {
+      "id": "conflicting_requirements",
+      "input": "Create a complete functional spec but include only two use cases and no acceptance criteria.",
+      "expected_activation": false,
+      "expected_checks": ["quality_criteria", "deterministic_scripts"]
+    }
+  ]
+}

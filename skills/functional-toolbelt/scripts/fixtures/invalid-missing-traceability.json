@@ -1,0 +1,24 @@
+{
+  "domain": "Broken Domain",
+  "event_storming": {
+    "events": [{"name": "Thing Happened", "actor": "User", "aggregate": "Thing"}],
+    "commands": [{"name": "Do Thing", "actor": "User"}],
+    "actors": ["User"],
+    "aggregates": ["Thing"],
+    "hot_spots": [{"name": "Unknown policy", "reason": "No owner"}]
+  },
+  "story_mapping": {
+    "activities": [
+      {"name": "Do", "stories": [{"id": "US-001", "title": "Do thing", "release": "MVP", "value": "Value"}]}
+    ]
+  },
+  "business_rules": [
+    {"id": "BR-001", "type": "validation", "condition": "missing data", "action": "block flow", "use_cases": ["UC-001"]}
+  ],
+  "acceptance_criteria": [
+    {"id": "AC-001", "title": "Do thing", "given": "data", "when": "submitted", "then": "saved"}
+  ],
+  "anti_pattern_detection": [
+    {"id": "AP-001", "category": "ambiguity", "severity": "medium", "text": "Thing is vague.", "fix": "Name the domain entity."}
+  ]
+}

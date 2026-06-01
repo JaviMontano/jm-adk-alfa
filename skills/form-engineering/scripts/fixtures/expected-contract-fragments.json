@@ -1,0 +1,12 @@
+{
+  "required_fragments": [
+    "# Enterprise Intake Form Engineering Contract",
+    "`contact_email` (email): Work email",
+    "Server: normalize, require corporate domain, and verify MX format",
+    "`security_brief` (file): Security brief",
+    "Upload: accept .pdf, application/pdf; max 10 MB; storage private/prospect/security-briefs",
+    "Retry strategy: idempotency_key",
+    "`assets/optimistic-submit-template.ts`",
+    "`assets/upload-control-template.html`"
+  ]
+}

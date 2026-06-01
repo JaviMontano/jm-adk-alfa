@@ -9,16 +9,36 @@ overwrite-policy: missing-only unless --force
 
 ## Canon
 
-Use this file for stable domain knowledge, standards, and reusable heuristics for `follow-up-email`.
+Follow-up emails convert meeting decisions into private, recipient-specific drafts. Each recipient should receive only the action items assigned to them, plus shared next steps and relevant meeting context.
+
+## Extraction Rules
+
+| Signal | Meaning |
+|---|---|
+| `ACTION:`, `TODO:`, `- [ ]` | Explicit task marker |
+| `Name will...`, `Name se encarga...` | Assignee pattern |
+| `by`, `para`, `deadline`, date literal | Deadline candidate |
+| `decision`, `agreed`, `se acordo` | Context that may affect tasks |
+
+## Privacy Rules
+
+- Render one recipient at a time.
+- Never include another person's action items in the current recipient draft.
+- Skip recipients with no action items unless the user requests a summary-only note.
+- Never send directly from scripts; scripts produce drafts/previews only.
+
+## Asset Rules
+
+- Use `assets/email-copy-tokens.json` for subject prefix, default sign-off, tone, and send policy.
+- Use `assets/email-style.css` for HTML previews.
+- Keep `assets/manifest.json` updated when output assets change.
 
 ## Quality Signals
 
 | Signal | Target |
 |---|---|
-| Evidence coverage | Claims are grounded or marked as assumptions |
-| Scope control | Output stays inside the requested domain |
-| Update safety | Existing manual work is preserved |
-
-## Open Knowledge
-
-- Add project-specific references as they become stable.
+| Completeness | Every action item appears in exactly one responsible recipient draft |
+| Privacy | No cross-recipient leakage |
+| Determinism | Same structured JSON input produces same draft |
+| Safety | Send action requires explicit user confirmation outside scripts |
+| Tone | Warm, professional, and action-oriented |

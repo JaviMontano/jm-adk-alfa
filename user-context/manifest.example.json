@@ -1,0 +1,14 @@
+{
+  "schema": 1,
+  "kind": "jm-adk-user-context-manifest",
+  "owner": "local-user",
+  "updated": "YYYY-MM-DD",
+  "autoload": [
+    "_INDICE.md"
+  ],
+  "privacy": {
+    "mode": "local-private",
+    "externalConnectors": "deny-by-default"
+  },
+  "notes": "Copy to manifest.json for local private use. manifest.json is ignored by git."
+}

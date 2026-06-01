@@ -1,0 +1,38 @@
+{
+  "meeting_title": "Q2 Planning",
+  "date": "2026-05-31",
+  "sender_name": "Javier",
+  "next_steps": "Compartiremos avance el viernes y cerraremos bloqueos antes del siguiente comite.",
+  "recipients": [
+    {
+      "name": "Ana",
+      "email": "ana@example.com",
+      "action_items": [
+        {
+          "task": "Preparar minuta ejecutiva",
+          "deadline": "2026-06-03",
+          "context": "Debe resumir acuerdos de presupuesto y lanzamiento.",
+          "priority": "high"
+        },
+        {
+          "task": "Confirmar asistentes del kickoff",
+          "deadline": "2026-06-04",
+          "context": "La lista final habilita invitaciones de calendario.",
+          "priority": "medium"
+        }
+      ]
+    },
+    {
+      "name": "Carlos",
+      "email": "carlos@example.com",
+      "action_items": [
+        {
+          "task": "Publicar dashboard de metricas",
+          "deadline": "2026-06-05",
+          "context": "El dashboard soporta seguimiento semanal.",
+          "priority": "high"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://jm-adk.local/schemas/context-card.schema.json",
+  "title": "JM-ADK Context Card",
+  "description": "Optional durable context card. It may describe user-approved context but never defines the repo identity.",
+  "type": "object",
+  "required": ["schema", "kind", "title", "summary", "privacy"],
+  "properties": {
+    "schema": {"const": 1},
+    "kind": {"const": "jm-adk-context-card"},
+    "title": {"type": "string"},
+    "summary": {"type": "string"},
+    "privacy": {"enum": ["local-private", "pii-safe", "public-safe"]},
+    "updated": {"type": "string"},
+    "tags": {
+      "type": "array",
+      "items": {"type": "string"}
+    },
+    "sourceFiles": {
+      "type": "array",
+      "items": {"type": "string"}
+    }
+  },
+  "additionalProperties": true
+}

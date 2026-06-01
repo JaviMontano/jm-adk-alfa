@@ -7,4 +7,13 @@ overwrite-policy: missing-only unless --force
 
 # Example Input
 
-Use `functional-toolbelt` to produce a concise deliverable for a realistic project request.
+Run the full functional toolbelt for a Loan Origination domain:
+
+- Event storming: application submitted, credit checked, offer accepted.
+- Story mapping: applicant starts an application, uploads income evidence, officer reviews risk, officer resolves exceptions.
+- Business rules: missing income evidence blocks credit review; low score routes to manual review.
+- Acceptance criteria: complete applications become submitted; incomplete evidence is blocked.
+- Traceability: map each requirement to use case, flow, test, and acceptance criteria.
+- Anti-pattern scan: flag ambiguous "qualified applicant" and missing manual-review exception paths.
+
+Run the deterministic compiler if the toolbelt input can be represented as JSON.

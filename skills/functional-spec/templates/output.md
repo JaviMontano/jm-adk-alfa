@@ -5,24 +5,48 @@ generated-on: 2026-05-28
 overwrite-policy: missing-only unless --force
 -->
 
-# Functional Spec Output
+# Functional Specification
 
-## Summary
+## Evidence Summary
 
-{summary}
+{{EVIDENCE_SUMMARY}}
 
-## Evidence
+## MVP Modules
 
-{evidence}
+{{MVP_MODULES}}
 
-## Result
+## Use Cases
 
-{result}
+{{USE_CASES}}
+
+## Business Rules
+
+{{BUSINESS_RULES}}
+
+## Acceptance Criteria
+
+{{ACCEPTANCE_CRITERIA}}
+
+## Firestore Data Model
+
+{{FIRESTORE_MODEL}}
+
+## Out of Scope
+
+{{OUT_OF_SCOPE}}
+
+## Open Questions
+
+{{OPEN_QUESTIONS}}
+
+## Assets Used
+
+- `assets/functional-spec-template.md`
+- `assets/use-case-schema.json`
+- `assets/business-rule-taxonomy.json`
+- `assets/acceptance-criteria-patterns.json`
+- `assets/firestore-model-template.json`
 
 ## Validation
 
-{validation}
-
-## Risks and Limits
-
-{risks}
+{{VALIDATION}}

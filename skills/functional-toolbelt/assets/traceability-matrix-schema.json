@@ -1,0 +1,16 @@
+{
+  "schema": 1,
+  "required_fields": [
+    "requirement",
+    "use_cases",
+    "flows",
+    "tests",
+    "acceptance"
+  ],
+  "coverage_rules": {
+    "requirement_requires_use_case": true,
+    "use_case_requires_flow": true,
+    "flow_requires_test": true,
+    "test_requires_acceptance": true
+  }
+}

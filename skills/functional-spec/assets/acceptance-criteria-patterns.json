@@ -1,0 +1,10 @@
+{
+  "schema": 1,
+  "patterns": {
+    "given_when_then": "Given {context}, when {action}, then {outcome}.",
+    "checklist": "- [ ] {outcome}",
+    "negative": "Given {context}, when {invalid_action}, then {error_outcome}."
+  },
+  "required_per_use_case": 1,
+  "recommended_tags": ["happy_path", "negative", "edge_case"]
+}

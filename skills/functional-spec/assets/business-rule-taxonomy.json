@@ -1,0 +1,21 @@
+{
+  "schema": 1,
+  "rule_types": [
+    "eligibility",
+    "validation",
+    "workflow",
+    "authorization",
+    "notification",
+    "data-retention",
+    "billing",
+    "audit"
+  ],
+  "required_fields": [
+    "id",
+    "type",
+    "statement",
+    "source",
+    "use_cases"
+  ],
+  "id_pattern": "BR-[0-9]{3}"
+}

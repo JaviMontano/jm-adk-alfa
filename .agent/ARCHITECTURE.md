@@ -6,21 +6,25 @@
 
 | Component | Count |
 |---|---:|
-| Skills | 529 |
+| Skills | 585 |
 | Agents | 260 |
-| Commands | 266 |
+| Commands | 267 |
 | Prompts | 256 |
 
 ## Source Of Truth
 
-- Core repo instructions: `PRISTINO.md`, `CLAUDE.md`, `AGENTS.md`, `GEMINI.md`.
-- Antigravity rules: `.agent/rules/GEMINI.md`.
+- Runtime mirrors: `CLAUDE.md` for Claude family, `GEMINI.md` for Gemini/Antigravity family, `AGENTS.md` for Codex/Visual Studio family.
+- Antigravity bridge: `.agent/rules/GEMINI.md` mirrors the GEMINI runtime contract.
 - Skill index: `.agent/skills_index.json`.
 - Canonical skills: root `skills/`.
 
 ## Runtime Boundary
 
 This directory is a derived adapter view. Runtime support for Antigravity-specific execution, function calling, multimodal behavior, hooks, MCP, and workspace management is validation pending until checked in the target Antigravity environment.
+
+## User Context Boundary
+
+`user-context/` is the in-kit durable context repo. It is recognized by `user-context/.jm-adk-context.json`; private contents never define the role and remain ignored by default.
 
 ## First Use
 

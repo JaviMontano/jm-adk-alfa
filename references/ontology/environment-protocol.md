@@ -1,37 +1,41 @@
 # Environment Detection Protocol
 
 Pristino adapts to the runtime environment by detecting two independent axes:
-**IDE** (where it runs) and **Model** (what powers it).
+**runtime mirror** (which instruction family loaded it) and **model** (what
+powers it).
 
-## IDE Detection
+## Runtime Mirror Detection
 
-The IDE is determined by which instruction file loaded the agent:
+The runtime family is determined by which homologated instruction mirror loaded
+the agent:
 
-| Instruction File | IDE | Detection |
+| Instruction File | Runtime family | Detection |
 |-----------------|-----|-----------|
-| `CLAUDE.md` | claude-code | Claude Code native plugin |
-| `GEMINI.md` | gemini | Gemini Code Assist |
+| `CLAUDE.md` | claude-family | Claude Desktop, Claude Code, Claude Cowork |
+| `GEMINI.md` | gemini-family | Gemini CLI, Gemini Code Assist, Antigravity family |
+| `AGENTS.md` | agents-family | OpenAI Codex, Visual Studio-family agents |
 | `.cursorrules` | cursor | Cursor IDE |
 | `.windsurfrules` | windsurf | Windsurf IDE |
-| `.github/copilot-instructions.md` | copilot | VS Code + GitHub Copilot |
-| `.agent/rules/GEMINI.md` | antigravity | Antigravity Kit (Gemini) |
-| `AGENTS.md` | codex | OpenAI Codex CLI |
+| `.github/copilot-instructions.md` | copilot | Visual Studio / VS Code bridge to AGENTS.md |
+| `.agent/rules/GEMINI.md` | antigravity | Antigravity bridge to GEMINI.md |
 
-## IDE Capability Matrix
+## Runtime Capability Matrix
 
-| IDE | Triad Mode | Agent Tool | Subagents | Hooks | MCP | Skill Loading |
+| Runtime | Triad Mode | Agent Tool | Subagents | Hooks | MCP | Skill Loading |
 |-----|-----------|------------|-----------|-------|-----|--------------|
 | **claude-code** | Full (parallel subagents) | Yes | Yes | Yes | Yes | SKILL.md via Read |
-| **gemini** | Sequential prompts | No | No | No | No | Context injection |
+| **claude-desktop/cowork** | Claude-family, runtime-dependent | Runtime-dependent | Runtime-dependent | Runtime-dependent | Runtime-dependent | CLAUDE.md |
+| **gemini-cli/code-assist** | Sequential prompts | Runtime-dependent | Runtime-dependent | Runtime-dependent | Runtime-dependent | GEMINI.md |
 | **cursor** | Checklist | No | No | No | Yes | .cursorrules inline |
 | **windsurf** | Checklist | No | No | No | No | .windsurfrules inline |
 | **copilot** | Suggestion | No | No | No | No | Instructions inline |
-| **antigravity** | Full (Gemini agents) | Yes | Yes | No | No | skills_index.json |
+| **antigravity** | Adapter-guided, validation pending | Pending | Pending | No | No | skills_index.json |
 | **codex** | Sequential prompts | No | No | No | No | AGENTS.md inline |
+| **visual-studio** | Suggestion/checklist | No | No | No | Runtime-dependent | AGENTS.md / Copilot bridge |
 
-## Triad Adaptation by IDE
+## Triad Adaptation by Runtime
 
-### Full Mode (claude-code, antigravity)
+### Full Mode (claude-code)
 
 The Agent tool is available. Pristino launches 3 subagents sequentially:
 
@@ -40,6 +44,19 @@ The Agent tool is available. Pristino launches 3 subagents sequentially:
 2. Pass Lead output to Support agent (cross-cutting review)
 3. Pass combined output to Guardian agent (quality validation)
 4. Synthesize final output
+```
+
+### Adapter-Guided Mode (antigravity)
+
+Antigravity loads the Gemini-family mirror through `.agent/rules/GEMINI.md`.
+Runtime support for subagents, function calling, and multimodal behavior is
+validation pending until checked in the target environment.
+
+```
+1. Load GEMINI-family contract
+2. Load skills_index.json
+3. Apply Lead → Support → Guardian as runtime capabilities allow
+4. Fall back to sequential triad in one response when subagents are unavailable
 ```
 
 ### Sequential Prompts Mode (gemini, codex)
@@ -88,8 +105,8 @@ The model tier determines how much context can be loaded:
 ### Context Budget by Tier
 
 ```
-Heavy:  Load PRISTINO.md + constitution-v5.2.0.md + PRISTINO-INDEX.md + full history
-Medium: Load PRISTINO.md + constitution-v5.2.0.md + relevant skills only
+Heavy:  Load PRISTINO.md + constitution-v6.0.0.md + PRISTINO-INDEX.md + full history
+Medium: Load PRISTINO.md + constitution-v6.0.0.md + relevant skills only
 Light:  Load PRISTINO.md summary + active skill only
 ```
 
@@ -108,17 +125,19 @@ Light:  Load PRISTINO.md summary + active skill only
 
 At session start, after bootstrap (PRISTINO.md → Constitution → Index):
 
-1. **Detect IDE** from instruction file
+1. **Detect runtime mirror** from instruction file
 2. **Detect model tier** from available context window
 3. **Set triad mode** (full / sequential / checklist / suggestion)
-4. **Load skills** appropriate to the tier
-5. **Report** environment to user:
+4. **Diagnose user context** via `scripts/diagnose-user-context.py --dry-run`
+5. **Load skills** appropriate to the tier
+6. **Report** environment to user:
 
 ```
 Environment detected:
-  IDE: claude-code | Triad: full | Model tier: heavy
+  Runtime: claude-code | Triad: full | Model tier: heavy
   Tools: Read, Write, Edit, Glob, Grep, Bash, Agent
   Skills loaded: 116 | Agents available: 103
+  User context: ready
   Ready to orchestrate.
 ```
 

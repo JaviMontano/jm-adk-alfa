@@ -1,9 +1,62 @@
-[
-  {"id": "functional-toolbelt-happy-path", "type": "happy_path", "input": "Run functional toolbelt on this project", "expected_behavior": "Skill activates and produces the expected functional toolbelt output following the defined process", "tags": ["basic", "activation"]},
-  {"id": "functional-toolbelt-explicit-trigger", "type": "happy_path", "input": "Apply functional toolbelt analysis", "expected_behavior": "Skill recognizes the trigger phrase and executes the functional toolbelt workflow", "tags": ["trigger", "recognition"]},
-  {"id": "functional-toolbelt-with-context", "type": "happy_path", "input": "Apply functional toolbelt to analyze the current codebase with detailed output", "expected_behavior": "Skill produces comprehensive functional toolbelt analysis with evidence-tagged findings", "tags": ["detailed", "comprehensive"]},
-  {"id": "functional-toolbelt-minimal-input", "type": "happy_path", "input": "Quick functional toolbelt", "expected_behavior": "Skill activates with minimal input, applies reasonable defaults", "tags": ["minimal", "defaults"]},
-  {"id": "functional-toolbelt-false-positive", "type": "false_positive", "input": "What is the weather forecast for tomorrow?", "expected_behavior": "Skill should NOT activate — this input has no relation to functional toolbelt", "tags": ["false_positive", "should-not-activate"]},
-  {"id": "functional-toolbelt-edge-empty-input", "type": "edge_case", "input": "Run functional toolbelt but I have no files or documentation yet", "expected_behavior": "Skill handles gracefully — requests minimum viable input or produces gap analysis", "tags": ["edge_case", "empty-input", "boundary"]},
-  {"id": "functional-toolbelt-edge-conflicting", "type": "edge_case", "input": "Apply functional toolbelt but requirements contradict each other", "expected_behavior": "Skill detects contradiction, flags with [OPEN] tag, proposes resolution", "tags": ["edge_case", "conflict", "corner"]}
-]
+{
+  "schema": 1,
+  "generated_by": "manual-dod-hardening",
+  "generated_on": "2026-05-31",
+  "skill": "functional-toolbelt",
+  "cases": [
+    {
+      "id": "full_six_tool_package",
+      "input": "Run event storming, story mapping, rule extraction, GWT acceptance criteria, traceability, and anti-pattern detection for loan origination.",
+      "expected_activation": true,
+      "expected_checks": ["quality_criteria", "deterministic_scripts", "assets"]
+    },
+    {
+      "id": "event_storming",
+      "input": "Run event storming for an order lifecycle and identify events, commands, aggregates, actors, and hot spots.",
+      "expected_activation": true,
+      "expected_checks": ["quality_criteria", "assets"]
+    },
+    {
+      "id": "story_mapping",
+      "input": "Create a story map with activities, user stories, release slices, and user value.",
+      "expected_activation": true,
+      "expected_checks": ["quality_criteria", "deterministic_scripts", "assets"]
+    },
+    {
+      "id": "business_rules",
+      "input": "Extract business rules with conditions, actions, types, and linked use cases.",
+      "expected_activation": true,
+      "expected_checks": ["quality_criteria", "deterministic_scripts", "assets"]
+    },
+    {
+      "id": "acceptance_criteria",
+      "input": "Write Given/When/Then acceptance criteria for a registration story.",
+      "expected_activation": true,
+      "expected_checks": ["quality_criteria", "assets"]
+    },
+    {
+      "id": "traceability_matrix",
+      "input": "Create a traceability matrix from requirements to use cases, flows, tests, and acceptance criteria.",
+      "expected_activation": true,
+      "expected_checks": ["quality_criteria", "deterministic_scripts", "assets"]
+    },
+    {
+      "id": "anti_pattern_detection",
+      "input": "Scan requirements for ambiguity, untestability, over-specification, missing exceptions, scope creep, and gold plating.",
+      "expected_activation": true,
+      "expected_checks": ["quality_criteria", "assets"]
+    },
+    {
+      "id": "false_positive_weather",
+      "input": "What is the weather forecast tomorrow?",
+      "expected_activation": false,
+      "expected_checks": ["quality_criteria"]
+    },
+    {
+      "id": "conflicting_traceability",
+      "input": "Create a full traceability matrix but leave every test and acceptance field empty.",
+      "expected_activation": false,
+      "expected_checks": ["quality_criteria", "deterministic_scripts"]
+    }
+  ]
+}

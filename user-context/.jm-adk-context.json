@@ -1,0 +1,19 @@
+{
+  "schema": 1,
+  "kind": "jm-adk-user-context",
+  "version": "1.0.0",
+  "root": "user-context",
+  "privacy": "local-private",
+  "trackedPolicy": "scaffold-only",
+  "autoload": {
+    "enabled": false,
+    "entrypoints": [
+      "_INDICE.md",
+      "context/README.md",
+      "preferences/README.md",
+      "memory/README.md"
+    ],
+    "maxFiles": 12
+  },
+  "writePolicy": "explicit-context-update-only"
+}

@@ -6,6 +6,13 @@
 - [ ] Explicit tasks are not blocked by full onboarding.
 - [ ] First-use protocol exists in docs, agents, skills, scripts, commands, and evals.
 - [ ] Scripts are non-destructive by default.
+- [ ] Skill scripts pass `python3 scripts/validate-skill-scripts.py --strict --run-checks`.
+- [ ] Skill scripts include `scripts/README.md`, `scripts/check.sh`, JSON fixtures, and SKILL.md references when a skill owns local automation.
+- [ ] Completed skills pass `python3 scripts/validate-skill-dod.py --skill <skill>`.
+- [ ] User context repo passes `python3 scripts/diagnose-user-context.py --dry-run`.
+- [ ] Runtime mirrors pass `python3 scripts/validate-runtime-instructions.py`.
+- [ ] Adapter outputs are fresh after `bash scripts/adapt.sh all`.
+- [ ] Completed skills include `assets/README.md`, `assets/manifest.json`, concrete assets, skill-specific examples, and skill-specific evals.
 - [ ] Profile setup requires `--apply`.
 - [ ] Existing local profile is preserved unless `--force`.
 - [ ] Secrets are not requested, stored, printed, or committed.
@@ -13,6 +20,17 @@
 - [ ] Process evidence stays in audits or archives, not runtime instructions.
 - [ ] Component counts and indexes are current.
 - [ ] `validate-skills.py --strict` passes.
+- [ ] `validate-skill-scripts.py --strict --run-checks` passes.
+- [ ] `validate-skill-dod.py --skill folio-generator` passes.
+- [ ] `validate-skill-dod.py --skill follow-up-email` passes.
+- [ ] `validate-skill-dod.py --skill font-optimization` passes.
+- [ ] `validate-skill-dod.py --skill form-builder` passes.
+- [ ] `validate-skill-dod.py --skill form-engineering` passes.
+- [ ] `validate-skill-dod.py --skill form-ux-advanced` passes.
+- [ ] `validate-skill-dod.py --skill functional-spec` passes.
+- [ ] `validate-skill-dod.py --skill functional-toolbelt` passes.
+- [ ] `diagnose-user-context.py --dry-run` passes without tracking private context files.
+- [ ] `validate-runtime-instructions.py` confirms `CLAUDE.md`, `GEMINI.md`, `AGENTS.md`, and bridge files are homologated.
 - [ ] `count-components.py --check-docs` passes.
 - [ ] `check-repo-boundaries.sh` passes.
 - [ ] `validate-personas.py` passes (8 personas, exactly one default, all capability_agents exist).

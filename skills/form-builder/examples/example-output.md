@@ -9,10 +9,23 @@ overwrite-policy: missing-only unless --force
 
 ## Summary
 
-Example output for `form-builder`.
+Se genero un formulario multi-step semantico para lead intake.
+
+## Assets Used
+
+- `assets/form-control.css`
+- `assets/form-step-template.html`
+- `assets/validation-policy.json`
+
+## Render Evidence
+
+- `scripts/render-form-schema.py --schema scripts/fixtures/intake-form.json` produce HTML con `form`, `fieldset`, `legend`, labels y submit explicito.
+- El campo `automation_scope` queda condicionado por `project_type=automation`.
+- El schema invalido falla cuando una condicion referencia un campo inexistente.
 
 ## Validation
 
-- Skill activated intentionally.
-- Output follows the requested format.
-- Risks and assumptions are explicit.
+- Todos los controles tienen label.
+- Los hints usan `aria-describedby`.
+- Los campos condicionales dependen de campos previos.
+- El renderer no escribe archivos salvo que se use `--output`.

@@ -1,0 +1,12 @@
+{
+  "required_fragments": [
+    "# Field Service MVP Functional Specification",
+    "`M-001`: Customer Intake",
+    "### UC-001 — Submit a service request",
+    "### UC-008 — Close completed work",
+    "`BR-003` [authorization]",
+    "`UC-006`: Given a confirmed visit, when notification runs, then the customer receives appointment details.",
+    "`serviceRequests`: Customer intake and prioritization.",
+    "Which notification channels are mandatory for MVP?"
+  ]
+}

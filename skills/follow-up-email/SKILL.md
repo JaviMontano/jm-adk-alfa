@@ -55,10 +55,12 @@ Parse the meeting notes (provided as text, file, or document link) to identify: 
 For each attendee with action items: [EXPLICIT]
 
 1. Use the `templates/follow-up-action-items.md` template
-2. Include ONLY that person's action items (never leak others' tasks)
-3. Add relevant context from meeting decisions that affect their tasks
-4. Include next steps that apply to everyone
-5. Set appropriate tone: professional but warm, action-oriented
+2. Use `assets/email-copy-tokens.json` for default subject, sign-off, tone, and draft-first policy
+3. Use `scripts/render-follow-up-email.py --data <meeting.json> --recipient <email>` when the meeting notes have been normalized into JSON
+4. Include ONLY that person's action items (never leak others' tasks)
+5. Add relevant context from meeting decisions that affect their tasks
+6. Include next steps that apply to everyone
+7. Set appropriate tone: professional but warm, action-oriented
 
 **Personalization rules:**
 - Address by first name
@@ -103,6 +105,8 @@ Default behavior: **draft first, send after user approval.** [EXPLICIT]
 | Timing | Follow-up sent within 24h of meeting (best practice) |
 | Template | Uses branded template consistently |
 | Confirmation | User approves before any email is sent |
+| Assets | `assets/manifest.json` declares every reusable output asset |
+| Determinism | Scripted rendering is one-recipient-at-a-time and privacy tested |
 
 ## Anti-Patterns
 
@@ -146,3 +150,18 @@ Action items:
 ## Example Output
 
 Three personalized emails, each containing only the recipient's items, with meeting context and next steps.
+
+## Deterministic Script Contract
+
+- Runtime script: `scripts/render-follow-up-email.py`
+- Contract check: `scripts/check.sh`
+- Validation command: `python3 scripts/validate-skill-scripts.py --strict --run-checks --skill follow-up-email`
+- Default behavior: render to stdout; write files only with `--output`.
+- Safety boundary: scripts render drafts only; they never send email.
+
+## Assets Contract
+
+- Output assets live in `assets/`.
+- `assets/manifest.json` lists every asset and where it is used.
+- `assets/email-style.css` styles HTML previews.
+- `assets/email-copy-tokens.json` carries subject, sign-off, tone, and draft-first policy defaults.

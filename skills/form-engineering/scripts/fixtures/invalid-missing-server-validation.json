@@ -1,0 +1,48 @@
+{
+  "name": "broken_intake",
+  "title": "Broken Intake",
+  "fields": [
+    {
+      "name": "contact_email",
+      "type": "email",
+      "label": "Work email",
+      "rules": [
+        {
+          "client": "type=email and required",
+          "message": "Enter a valid work email address."
+        }
+      ]
+    }
+  ],
+  "steps": [
+    {
+      "id": "contact",
+      "fields": ["contact_email"]
+    }
+  ],
+  "submission": {
+    "endpoint": "/api/intake",
+    "method": "POST",
+    "server_validation": "missing parity",
+    "idempotency": "idempotency_key"
+  },
+  "errors": {
+    "field": "below field",
+    "summary": "top summary",
+    "server": "map errors",
+    "network": "retry"
+  },
+  "accessibility": {
+    "labels": true,
+    "field_errors": true,
+    "summary": true,
+    "keyboard": true,
+    "aria_live": true
+  },
+  "optimistic_submission": {
+    "pending_label": "Sending...",
+    "success_message": "Done.",
+    "failure_message": "Failed.",
+    "retry_strategy": "idempotency_key"
+  }
+}

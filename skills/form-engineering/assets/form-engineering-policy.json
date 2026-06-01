@@ -1,0 +1,42 @@
+{
+  "schema": 1,
+  "required_sections": [
+    "fields",
+    "steps",
+    "submission",
+    "errors",
+    "accessibility",
+    "optimistic_submission"
+  ],
+  "allowed_field_types": [
+    "text",
+    "email",
+    "tel",
+    "number",
+    "textarea",
+    "select",
+    "checkbox",
+    "radio",
+    "file",
+    "date"
+  ],
+  "validation_parity": {
+    "required_rule_keys": ["client", "server", "message"],
+    "server_must_be_authoritative": true
+  },
+  "file_upload": {
+    "required_keys": ["accept", "max_mb", "preview", "progress", "retry", "storage_boundary"],
+    "max_default_mb": 10
+  },
+  "accessibility": {
+    "required_keys": ["labels", "field_errors", "summary", "keyboard", "aria_live"],
+    "minimum_standard": "WCAG 2.1 AA"
+  },
+  "optimistic_submission": {
+    "required_keys": ["pending_label", "success_message", "failure_message", "retry_strategy"],
+    "retry_strategies": ["same_payload", "idempotency_key", "autosaved_draft"]
+  },
+  "telemetry": {
+    "recommended_events": ["form_started", "field_error", "upload_failed", "submit_attempted", "submit_succeeded", "submit_failed"]
+  }
+}

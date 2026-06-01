@@ -1,0 +1,12 @@
+{
+  "required_fragments": [
+    "# Enterprise Intake Form UX Audit",
+    "- Score: 86",
+    "- Rating: pass",
+    "- Steps: 2",
+    "No blocking UX issues detected by the heuristic audit.",
+    "`assets/wizard-progress-template.html`",
+    "`assets/inline-validation-copy.json`",
+    "`assets/error-recovery-checklist.md`"
+  ]
+}

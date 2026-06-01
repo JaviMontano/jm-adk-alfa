@@ -1,0 +1,26 @@
+{
+  "schema": 1,
+  "skill": "form-builder",
+  "required_accessibility": {
+    "label_for_every_control": true,
+    "hint_id_for_descriptions": true,
+    "aria_describedby_for_hints": true,
+    "fieldset_for_steps": true,
+    "button_type_submit": true
+  },
+  "allowed_field_types": [
+    "text",
+    "email",
+    "tel",
+    "number",
+    "date",
+    "select",
+    "textarea",
+    "checkbox"
+  ],
+  "conditional_policy": {
+    "syntax": "show_if.field + show_if.equals",
+    "missing_driver_field": "error",
+    "render_attribute": "data-show-if"
+  }
+}

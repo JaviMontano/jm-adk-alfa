@@ -1,0 +1,42 @@
+{
+  "title": "Enterprise Intake",
+  "steps": [
+    {
+      "id": "contact",
+      "fields": [
+        {
+          "name": "work_email",
+          "label": "Work email",
+          "required": true,
+          "validation_timing": "blur",
+          "smart_default": "known_account_email"
+        }
+      ]
+    },
+    {
+      "id": "qualification",
+      "fields": [
+        {
+          "name": "company_size",
+          "label": "Company size",
+          "required": true,
+          "validation_timing": "submit",
+          "smart_default": "crm_company_size"
+        },
+        {
+          "name": "security_brief",
+          "label": "Security brief",
+          "required": false,
+          "validation_timing": "debounced"
+        }
+      ]
+    }
+  ],
+  "capabilities": {
+    "progress": true,
+    "back_navigation": true,
+    "draft_preservation": true,
+    "error_summary": true,
+    "retry": true
+  }
+}

@@ -32,6 +32,7 @@ Mental models, techniques, and validation tools for producing better functional 
 1. **Técnica correcta para el contexto.** Event storming para descubrir dominios, story mapping para planificar releases, acceptance criteria para validar. No usar martillo para todo. [EXPLICIT]
 2. **Formalismo proporcional.** Business rules críticas en pseudo-código. Rules simples en lenguaje natural. El nivel de formalismo depende de la severidad. [EXPLICIT]
 3. **Traceability end-to-end.** Cada requirement tiene un origen (stakeholder, rule, flow) y un destino (test, acceptance criteria). Sin trazabilidad, los requirements son declaraciones sueltas. [EXPLICIT]
+4. **Assets before improvisation.** Use `assets/` templates and schemas when producing repeatable toolbelt artifacts. [EXPLICIT]
 
 ## $ARGUMENTS
 
@@ -46,6 +47,7 @@ Examples:
 
 - If no tool specified → show 6-tool menu with one-line descriptions
 - If tool specified without context → ask for the input artifact
+- If structured input exists → run `scripts/compile-functional-toolbelt.py --input <toolbelt.json>` to validate the six-tool package before writing the final artifact
 
 ### Parámetros de Pipeline
 
@@ -248,6 +250,9 @@ Before delivering toolbelt output, verify: [EXPLICIT]
 - [ ] MODO/FORMATO/VARIANTE params respected in output
 - [ ] Traceability links present (requirement origin → test destination)
 - [ ] Domain glossary terms used consistently across all outputs
+- [ ] `assets/manifest.json` declares every reusable toolbelt asset
+- [ ] `scripts/compile-functional-toolbelt.py` rejects missing six-tool sections and traceability gaps
+- [ ] Generated output includes event storming, story map, business rules, acceptance criteria, traceability, and anti-pattern findings
 
 ## Cross-References
 
@@ -257,6 +262,26 @@ Before delivering toolbelt output, verify: [EXPLICIT]
 - `design-system` — when FORMATO=html, applies brand tokens to toolbelt outputs
 
 ## Output Artifact
+
+## Deterministic Script Contract
+
+- Runtime script: `scripts/compile-functional-toolbelt.py`
+- Contract check: `scripts/check.sh`
+- Validation command: `python3 scripts/validate-skill-scripts.py --strict --run-checks --skill functional-toolbelt`
+- Default behavior: render Markdown to stdout; write files only when `--output` is explicit.
+- Safety boundary: incomplete toolbelt inputs fail nonzero instead of producing partial requirements analysis.
+
+## Assets Contract
+
+- Output assets live in `assets/`.
+- `assets/manifest.json` lists every reusable asset and where it is used.
+- `assets/toolbelt-tools.json` defines the six canonical tools and required sections.
+- `assets/event-storming-card-template.md` defines event storming card output.
+- `assets/story-map-lane-template.md` defines story map lane output.
+- `assets/decision-table-template.md` defines business rule table output.
+- `assets/gwt-scenario-template.md` defines acceptance criteria output.
+- `assets/traceability-matrix-schema.json` defines required traceability fields.
+- `assets/anti-pattern-rules.json` defines anti-pattern categories and severities.
 
 **Primary:** `D-01_Functional_Toolbelt_{project}.md` (o `.html` si `{FORMATO}=html|dual`) — Functional patterns catalog, composition strategies, implementation guidelines.
 
@@ -274,4 +299,3 @@ Example invocations: [EXPLICIT]
 
 - "/functional-toolbelt" — Run the full functional toolbelt workflow
 - "functional toolbelt on this project" — Apply to current context
-

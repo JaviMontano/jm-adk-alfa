@@ -1,0 +1,17 @@
+{
+  "title": "Broken form",
+  "steps": [
+    {
+      "id": "bad",
+      "title": "Broken",
+      "fields": [
+        {
+          "name": "later_field",
+          "label": "Later field",
+          "type": "text",
+          "show_if": {"field": "missing_driver", "equals": "yes"}
+        }
+      ]
+    }
+  ]
+}

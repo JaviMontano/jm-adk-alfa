@@ -11,6 +11,13 @@
     "archiveAfterDays": 30,
     "cleanupStaleAfterDays": 7
   },
+  "userContext": {
+    "root": "user-context",
+    "marker": "user-context/.jm-adk-context.json",
+    "trackedPolicy": "scaffold-only",
+    "autoloadDefault": false,
+    "personalContentTracked": false
+  },
   "localConfig": {
     "path": ".jm-adk.local.json",
     "tracked": false,

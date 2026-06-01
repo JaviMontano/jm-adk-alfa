@@ -28,11 +28,61 @@ jobs:
       - name: Validate skill scaffolds
         run: python3 scripts/validate-skills.py --strict
 
+      - name: Validate skill script contracts
+        run: python3 scripts/validate-skill-scripts.py --strict --run-checks
+
+      - name: Validate completed skill DoD
+        run: |
+          set -euo pipefail
+          for skill in \
+            folio-generator \
+            follow-up-email \
+            font-optimization \
+            form-builder \
+            form-engineering \
+            form-ux-advanced \
+            functional-spec \
+            functional-toolbelt; do
+            python3 scripts/validate-skill-dod.py --skill "$skill"
+          done
+
       - name: Verify component counts and docs
         run: python3 scripts/count-components.py --check-docs
 
       - name: Check repository boundaries
         run: bash scripts/check-repo-boundaries.sh
+
+      - name: Validate runtime instruction homology
+        run: python3 scripts/validate-runtime-instructions.py
+
+      - name: Verify adapter freshness
+        run: |
+          set -euo pipefail
+          bash scripts/adapt.sh all
+          if ! git diff --quiet -- \
+            AGENTS.md \
+            GEMINI.md \
+            .agent/rules/GEMINI.md \
+            .agent/ARCHITECTURE.md \
+            .agent/skills_index.json \
+            .github/copilot-instructions.md \
+            .cursorrules \
+            .windsurfrules; then
+            echo "::error::Runtime adapter outputs are stale. Run bash scripts/adapt.sh all"
+            git diff -- \
+              AGENTS.md \
+              GEMINI.md \
+              .agent/rules/GEMINI.md \
+              .agent/ARCHITECTURE.md \
+              .agent/skills_index.json \
+              .github/copilot-instructions.md \
+              .cursorrules \
+              .windsurfrules
+            exit 1
+          fi
+
+      - name: Diagnose user context repo
+        run: python3 scripts/diagnose-user-context.py --dry-run
 
       - name: Run safe adversarial guardrail tests
         run: python3 scripts/qa/run-adversarial-tests.py
@@ -58,7 +108,7 @@ jobs:
         run: |
           set -euo pipefail
           if command -v shellcheck >/dev/null 2>&1; then
-            shellcheck -S error scripts/*.sh scripts/adapters/*.sh
+            shellcheck -S error scripts/*.sh scripts/adapters/*.sh skills/*/scripts/*.sh
           else
             echo "shellcheck not installed; skipping shell lint"
           fi

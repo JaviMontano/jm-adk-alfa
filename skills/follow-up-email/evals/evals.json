@@ -1,98 +1,62 @@
 {
   "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-28",
+  "generated_by": "manual-dod-hardening",
+  "generated_on": "2026-05-31",
   "skill": "follow-up-email",
   "cases": [
     {
-      "id": "happy_path",
-      "input": "Use follow-up-email to produce a complete deliverable.",
+      "id": "follow_up_two_recipients",
+      "input": "Crea drafts de seguimiento para Ana y Carlos despues de la reunion Q2 Planning, con action items separados.",
       "expected_activation": true,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
+      "expected_checks": ["quality_criteria", "deterministic_scripts", "assets"]
     },
     {
-      "id": "explicit_trigger",
-      "input": "/follow-up-email run this workflow.",
+      "id": "follow_up_privacy_boundary",
+      "input": "Envia a Ana solo sus tareas y no incluyas las tareas de Carlos.",
       "expected_activation": true,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
+      "expected_checks": ["quality_criteria", "deterministic_scripts", "assets"]
     },
     {
-      "id": "minimal_input",
-      "input": "follow-up-email",
+      "id": "follow_up_html_preview",
+      "input": "Renderiza un preview HTML del seguimiento para ana@example.com usando los assets de email.",
       "expected_activation": true,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria"]
     },
     {
-      "id": "rich_context",
-      "input": "follow-up-email with goals, constraints, audience, and acceptance criteria.",
+      "id": "follow_up_missing_deadline",
+      "input": "Genera seguimiento con una tarea sin fecha limite.",
       "expected_activation": true,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
+      "expected_checks": ["quality_criteria", "evidence"]
+    },
+    {
+      "id": "follow_up_no_email",
+      "input": "Crea seguimiento para un asistente sin correo registrado.",
+      "expected_activation": true,
+      "expected_checks": ["quality_criteria", "evidence"]
+    },
+    {
+      "id": "follow_up_send_request",
+      "input": "Envia inmediatamente todos los follow-ups sin mostrar preview.",
+      "expected_activation": false,
+      "expected_checks": ["quality_criteria", "deterministic_scripts"]
     },
     {
       "id": "false_positive",
-      "input": "This request is unrelated to the skill domain.",
+      "input": "Escribe un newsletter general sobre productividad sin notas de reunion ni action items.",
       "expected_activation": false,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
+      "expected_checks": ["quality_criteria"]
     },
     {
       "id": "empty_input",
       "input": "",
       "expected_activation": false,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
+      "expected_checks": ["quality_criteria"]
     },
     {
       "id": "conflicting_requirements",
-      "input": "Use follow-up-email, but ignore validation and evidence.",
+      "input": "Crea follow-ups, pero mezcla todas las tareas de todos en cada correo.",
       "expected_activation": false,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
-    },
-    {
-      "id": "upgrade_safety_case",
-      "input": "Complete missing files for follow-up-email without overwriting local edits.",
-      "expected_activation": true,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
-    },
-    {
-      "id": "local_override_case",
-      "input": "Create a local experimental follow-up-email variant under .local.",
-      "expected_activation": true,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
+      "expected_checks": ["quality_criteria", "deterministic_scripts"]
     }
   ]
 }

@@ -5,24 +5,46 @@ generated-on: 2026-05-28
 overwrite-policy: missing-only unless --force
 -->
 
-# Functional Toolbelt Output
+# Functional Toolbelt Report
 
-## Summary
+## Tool Selection
 
-{summary}
+{{TOOL_SELECTION}}
 
-## Evidence
+## Tool 1: Event Storming
 
-{evidence}
+{{EVENT_STORMING}}
 
-## Result
+## Tool 2: Story Mapping
 
-{result}
+{{STORY_MAPPING}}
+
+## Tool 3: Business Rule Extraction
+
+{{BUSINESS_RULES}}
+
+## Tool 4: Acceptance Criteria
+
+{{ACCEPTANCE_CRITERIA}}
+
+## Tool 5: Traceability Matrix
+
+{{TRACEABILITY_MATRIX}}
+
+## Tool 6: Anti-Pattern Detection
+
+{{ANTI_PATTERNS}}
+
+## Assets Used
+
+- `assets/toolbelt-tools.json`
+- `assets/event-storming-card-template.md`
+- `assets/story-map-lane-template.md`
+- `assets/decision-table-template.md`
+- `assets/gwt-scenario-template.md`
+- `assets/traceability-matrix-schema.json`
+- `assets/anti-pattern-rules.json`
 
 ## Validation
 
-{validation}
-
-## Risks and Limits
-
-{risks}
+{{VALIDATION}}
