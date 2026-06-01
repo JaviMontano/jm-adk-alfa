@@ -28,10 +28,15 @@ Load: PRISTINO.md → Constitution v6.0.0 → PRISTINO-INDEX.md → diagnose fir
 - Confirm repo identity before edits; if Alfa is not confirmed, report `Dato requerido` and do not edit.
 - Run `python3 scripts/diagnose-first-use.py --dry-run` for first-use or cold-start diagnosis.
 - Run `python3 scripts/diagnose-user-context.py --dry-run` before relying on durable user context.
+- Run `python3 scripts/diagnose-personal-skills.py --dry-run` before relying on personal skills.
 - Treat `user-context/` as the in-kit context repo because `user-context/.jm-adk-context.json` declares `jm-adk-user-context`; private files do not define the role.
-- Read `user-context/_INDICE.md` first, then only task-relevant context files; never bulk-load `user-context/sources/`.
+- Read `user-context/_INDICE.md` first, then only task-relevant context files; never bulk-load `user-context/sources/` or `user-context/resources/`.
+- Treat `user-context/resources/` as private curated resources and open only indexed, task-relevant items.
+- Treat `user-context/personal-skills/skills/` as the canonical private source for user-authored skills; never store them in root `skills/`.
+- Create or improve personal skills with `python3 scripts/scaffold-skill.py --personal`; sync copies with `python3 scripts/sync-personal-skills.py --dry-run` before `--apply`.
+- Keep `.local/skills/` as an ignored experiment or mirror cache, not durable source.
 - Write to `user-context/` only after an explicit remember/update-context instruction from the user; hook-enabled writes require `JM_ADK_CONTEXT_WRITE=1`.
-- Put task artifacts in `workspace/{active}/artifacts/`; never mix workspace runtime state, kit internals, and durable context.
+- Put task artifacts in `workspace/{active}/artifacts/`; never mix workspace runtime state, kit internals, durable context, and personal skill mirrors.
 - Do not commit private state: `.jm-adk.local.json`, `.env*`, `.local/`, `.codex/`, `workspace/`, or private `user-context/` content.
 
 ## Input Tolerance

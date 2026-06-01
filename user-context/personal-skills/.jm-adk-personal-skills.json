@@ -1,0 +1,18 @@
+{
+  "schema": 1,
+  "kind": "jm-adk-personal-skills",
+  "version": "1.0.0",
+  "root": "user-context/personal-skills",
+  "skillsRoot": "user-context/personal-skills/skills",
+  "syncMode": "copy",
+  "trackedPolicy": "scaffold-only",
+  "runtimes": [
+    "alfa-local",
+    "codex",
+    "claude",
+    "gemini",
+    "antigravity",
+    "visual-studio"
+  ],
+  "writePolicy": "explicit-personal-skill-update-only"
+}

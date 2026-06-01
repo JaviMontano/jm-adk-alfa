@@ -31,9 +31,16 @@ REQUIRED_SCAFFOLD = [
     "preferences/README.md",
     "memory/README.md",
     "sources/README.md",
+    "resources/README.md",
+    "personal-skills/README.md",
+    "personal-skills/_INDICE.md",
+    "personal-skills/.jm-adk-personal-skills.json",
+    "personal-skills/skills/.gitkeep",
     "schemas/README.md",
     "schemas/user-context-manifest.schema.json",
     "schemas/context-card.schema.json",
+    "schemas/resource-card.schema.json",
+    "schemas/personal-skills-manifest.schema.json",
 ]
 TRACKED_ALLOWLIST = set(REQUIRED_SCAFFOLD) | {
     "manifest.example.json",
@@ -41,6 +48,7 @@ TRACKED_ALLOWLIST = set(REQUIRED_SCAFFOLD) | {
     "preferences/.gitkeep",
     "memory/.gitkeep",
     "sources/.gitkeep",
+    "resources/.gitkeep",
 }
 
 
@@ -159,8 +167,10 @@ def diagnose(root: Path, args: argparse.Namespace) -> dict[str, Any]:
     workspace_path = (root / "workspace").resolve()
     checks: dict[str, Any] = {
         "required_scaffold": "unknown",
+        "known_buckets": "unknown",
         "marker": "unknown",
         "manifest": "not_present",
+        "personal_skills_marker": "unknown",
         "inside_repo": is_inside(context_path, root.resolve()),
         "outside_workspace": not is_inside(context_path, workspace_path),
         "private_tracked_files": [],
@@ -200,6 +210,13 @@ def diagnose(root: Path, args: argparse.Namespace) -> dict[str, Any]:
 
     missing = [rel for rel in REQUIRED_SCAFFOLD if not (context_path / rel).exists()]
     checks["required_scaffold"] = "pass" if not missing else {"missing": missing}
+    if missing:
+        problems.append("user-context scaffold is incomplete")
+
+    bucket_missing = [rel for rel in ["context", "preferences", "memory", "sources", "resources", "personal-skills", "schemas"] if not (context_path / rel).is_dir()]
+    checks["known_buckets"] = "pass" if not bucket_missing else {"missing": bucket_missing}
+    if bucket_missing:
+        problems.append("known user-context buckets are missing")
 
     marker_path = context_path / MARKER
     marker, marker_error = read_json(marker_path)
@@ -211,6 +228,17 @@ def diagnose(root: Path, args: argparse.Namespace) -> dict[str, Any]:
         problems.append(f"{MARKER} kind must be {EXPECTED_KIND}")
     else:
         checks["marker"] = "pass"
+
+    personal_marker_path = context_path / "personal-skills/.jm-adk-personal-skills.json"
+    personal_marker, personal_error = read_json(personal_marker_path)
+    if personal_error:
+        checks["personal_skills_marker"] = f"invalid: {personal_error}"
+        problems.append(f"personal skills marker invalid: {personal_error}")
+    elif personal_marker.get("kind") != "jm-adk-personal-skills":
+        checks["personal_skills_marker"] = f"invalid kind: {personal_marker.get('kind')}"
+        problems.append("personal skills marker kind must be jm-adk-personal-skills")
+    else:
+        checks["personal_skills_marker"] = "pass"
 
     manifest_path = context_path / "manifest.json"
     if manifest_path.exists():
@@ -237,7 +265,7 @@ def diagnose(root: Path, args: argparse.Namespace) -> dict[str, Any]:
             scan_candidates.append(context_path / str(rel))
     unique_candidates = []
     seen: set[Path] = set()
-    for candidate in scan_candidates[: int(config["maxFiles"])]:
+    for candidate in scan_candidates[: int(config["maxFiles"] )]:
         resolved = candidate.resolve()
         if resolved not in seen:
             seen.add(resolved)

@@ -38,9 +38,17 @@ if git ls-files | grep -E '^workspace/' | grep -v '^workspace/\.gitkeep$' >/dev/
   fail "tracked workspace state detected outside workspace/.gitkeep"
 fi
 
-USER_CONTEXT_ALLOWED='^user-context/(\.gitignore|\.jm-adk-context\.json|README\.md|AGENTS\.md|_INDICE\.md|manifest\.example\.json|context/README\.md|context/\.gitkeep|preferences/README\.md|preferences/\.gitkeep|memory/README\.md|memory/\.gitkeep|sources/README\.md|sources/\.gitkeep|schemas/README\.md|schemas/[^/]+\.schema\.json)$'
+USER_CONTEXT_ALLOWED='^user-context/(\.gitignore|\.jm-adk-context\.json|README\.md|AGENTS\.md|_INDICE\.md|manifest\.example\.json|context/README\.md|context/\.gitkeep|preferences/README\.md|preferences/\.gitkeep|memory/README\.md|memory/\.gitkeep|sources/README\.md|sources/\.gitkeep|resources/README\.md|resources/\.gitkeep|personal-skills/README\.md|personal-skills/_INDICE\.md|personal-skills/\.jm-adk-personal-skills\.json|personal-skills/skills/\.gitkeep|schemas/README\.md|schemas/[^/]+\.schema\.json)$'
 if git ls-files user-context | grep -Ev "$USER_CONTEXT_ALLOWED" >/dev/null; then
   fail "tracked private user-context content detected"
+fi
+
+if git ls-files user-context/resources | grep -Ev '^user-context/resources/(README\.md|\.gitkeep)$' >/dev/null; then
+  fail "tracked private user resources detected"
+fi
+
+if git ls-files user-context/personal-skills/skills | grep -v '^user-context/personal-skills/skills/\.gitkeep$' >/dev/null; then
+  fail "tracked private personal skills detected"
 fi
 
 if find . -path './.git' -prune -o -type d \( -name 'jm-adk-alfa' -o -name 'jm-agentic-development-kit' \) -print | grep . >/dev/null; then
@@ -55,8 +63,10 @@ grep -q 'artifact-placement-guard.sh' hooks/hooks.json || fail "placement guard 
 
 # User context repo identity must remain explicit and private-by-default.
 [ -f user-context/.jm-adk-context.json ] || fail "user-context marker missing"
+[ -f user-context/personal-skills/.jm-adk-personal-skills.json ] || fail "personal skills marker missing"
 [ -f references/ontology/user-context-contract.md ] || fail "user-context contract missing"
 grep -q 'jm-adk-user-context' user-context/.jm-adk-context.json || fail "user-context marker kind missing"
+grep -q 'jm-adk-personal-skills' user-context/personal-skills/.jm-adk-personal-skills.json || fail "personal skills marker kind missing"
 grep -q 'context_repo_globs' references/guardrails/placement-policy.json || fail "user-context placement policy missing"
 
 if ! python3 scripts/validate-runtime-instructions.py >/tmp/jm-adk-runtime-instructions.log 2>&1; then

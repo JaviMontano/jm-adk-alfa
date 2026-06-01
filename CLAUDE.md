@@ -39,10 +39,15 @@ Derived bridge files (`.agent/rules/GEMINI.md`, `.github/copilot-instructions.md
 - Confirm repo identity before edits; if Alfa is not confirmed, report `Dato requerido` and do not edit.
 - Run `python3 scripts/diagnose-first-use.py --dry-run` for first-use or cold-start diagnosis.
 - Run `python3 scripts/diagnose-user-context.py --dry-run` before relying on durable user context.
+- Run `python3 scripts/diagnose-personal-skills.py --dry-run` before relying on personal skills.
 - Treat `user-context/` as the in-kit context repo because `user-context/.jm-adk-context.json` declares `jm-adk-user-context`; private files do not define the role.
-- Read `user-context/_INDICE.md` first, then only task-relevant context files; never bulk-load `user-context/sources/`.
+- Read `user-context/_INDICE.md` first, then only task-relevant context files; never bulk-load `user-context/sources/` or `user-context/resources/`.
+- Treat `user-context/resources/` as private curated resources and open only indexed, task-relevant items.
+- Treat `user-context/personal-skills/skills/` as the canonical private source for user-authored skills; never store them in root `skills/`.
+- Create or improve personal skills with `python3 scripts/scaffold-skill.py --personal`; sync copies with `python3 scripts/sync-personal-skills.py --dry-run` before `--apply`.
+- Keep `.local/skills/` as an ignored experiment or mirror cache, not durable source.
 - Write to `user-context/` only after an explicit remember/update-context instruction from the user; hook-enabled writes require `JM_ADK_CONTEXT_WRITE=1`.
-- Put task artifacts in `workspace/{active}/artifacts/`; never mix workspace runtime state, kit internals, and durable context.
+- Put task artifacts in `workspace/{active}/artifacts/`; never mix workspace runtime state, kit internals, durable context, and personal skill mirrors.
 - Do not commit private state: `.jm-adk.local.json`, `.env*`, `.local/`, `.codex/`, `workspace/`, or private `user-context/` content.
 
 ## Workspace Protocol (MANDATORY)
@@ -148,7 +153,9 @@ bash scripts/workspace-manager.sh log <tool> [input]      # Manual tasklog entry
 |----------|------|
 | `.jm-adk.local.json` | Local-only config. Never commit. |
 | `user-context/` | In-kit context repo. Marker/docs/schemas tracked; private user content ignored. Read `_INDICE.md` first and write only after explicit context-update instruction. |
-| `.local/skills/` | Experimental local skills. Never commit. |
+| `user-context/resources/` | Private curated resources. Open only indexed, task-relevant items; never bulk-load. |
+| `user-context/personal-skills/skills/` | Canonical private source for user-authored skills. Use `scaffold-skill.py --personal`; never write these into root `skills/`. |
+| `.local/skills/` | Experimental local skills and copy-mirror cache. Never commit; not durable source. |
 | `.codex/` | Codex local state. Never commit. |
 | `workspace/` | Runtime state. Only `workspace/.gitkeep` is tracked. |
 
@@ -192,6 +199,9 @@ Pristino auto-selects the best skill/prompt for the user's intent (full protocol
 
 ```bash
 python3 scripts/scaffold-skill.py --name scaffold-smoke-test --description "Smoke test skill" --triggers smoke-test --allowed-tools Read,Grep --owner "JM Labs" --version 0.1.0 --dry-run
+python3 scripts/scaffold-skill.py --name personal-smoke-test --description "Personal smoke test" --personal --dry-run
+python3 scripts/diagnose-personal-skills.py --dry-run
+python3 scripts/sync-personal-skills.py --dry-run
 python3 scripts/validate-skills.py --strict
 python3 scripts/count-components.py --check-docs
 bash scripts/check-repo-boundaries.sh
@@ -285,10 +295,13 @@ Every deliverable includes: the ask (baseline) + 1 insight (non-obvious finding)
 | `references/guardrails/*.json` | User-declared rules (loaded as RAG) |
 | `references/brand/design-tokens.json` | MetodologIA visual identity |
 | `hooks/hooks.json` | 5 hooks: SessionStart, UserPromptSubmit, PreToolUse, PostToolUse, Stop |
-| `.jm-adk.json` | Plugin config: workspace settings, hook toggles |
+| `.jm-adk.json` | Plugin config: workspace settings, hook toggles, user-context and personal-skills defaults |
 | `user-context/.jm-adk-context.json` | In-kit context repo marker |
+| `user-context/personal-skills/.jm-adk-personal-skills.json` | Personal skills marker and copy-mirror contract |
 | `references/ontology/user-context-contract.md` | Durable context boundary and load/write rules |
 | `scripts/workspace-manager.sh` | Workspace CRUD + gate + report operations |
 | `scripts/diagnose-user-context.py` | Read-only user-context diagnosis |
+| `scripts/diagnose-personal-skills.py` | Read-only personal skills diagnosis |
+| `scripts/sync-personal-skills.py` | Copy-mirror sync from personal skills to runtime targets |
 | `.mcp.json` | MCP servers: Gmail (19 tools) + Google Workspace (Drive/Docs/Sheets/Slides/Calendar) |
 | `docs/google-workspace-mcp-setup.md` | OAuth2 setup pipeline for Google Workspace MCPs |

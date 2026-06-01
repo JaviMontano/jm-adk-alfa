@@ -18,6 +18,14 @@
     "autoloadDefault": false,
     "personalContentTracked": false
   },
+  "personalSkills": {
+    "root": "user-context/personal-skills",
+    "marker": "user-context/personal-skills/.jm-adk-personal-skills.json",
+    "skillsRoot": "user-context/personal-skills/skills",
+    "syncMode": "copy",
+    "trackedPolicy": "scaffold-only",
+    "personalContentTracked": false
+  },
   "localConfig": {
     "path": ".jm-adk.local.json",
     "tracked": false,

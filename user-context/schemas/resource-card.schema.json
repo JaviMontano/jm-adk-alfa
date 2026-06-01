@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://jm-adk.local/schemas/resource-card.schema.json",
+  "title": "JM-ADK Resource Card",
+  "description": "Optional index card for a private user resource. It describes how to load a resource without making the resource itself public.",
+  "type": "object",
+  "required": ["schema", "kind", "title", "resourceType", "privacy"],
+  "properties": {
+    "schema": {"const": 1},
+    "kind": {"const": "jm-adk-resource-card"},
+    "title": {"type": "string"},
+    "resourceType": {"enum": ["cv", "identification", "url", "document", "reference", "other"]},
+    "summary": {"type": "string"},
+    "path": {"type": "string"},
+    "url": {"type": "string"},
+    "privacy": {"enum": ["local-private", "pii-safe", "public-safe"]},
+    "updated": {"type": "string"},
+    "tags": {
+      "type": "array",
+      "items": {"type": "string"}
+    }
+  },
+  "additionalProperties": true
+}

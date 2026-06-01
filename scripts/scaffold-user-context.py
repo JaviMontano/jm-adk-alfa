@@ -27,6 +27,21 @@ def repo_root(start: Path) -> Path:
     return start.resolve()
 
 
+def schema(title: str, description: str, required: list[str], properties: dict[str, object]) -> str:
+    return json.dumps(
+        {
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "title": title,
+            "description": description,
+            "type": "object",
+            "required": required,
+            "properties": properties,
+            "additionalProperties": True,
+        },
+        indent=2,
+    ) + "\n"
+
+
 def scaffold_files(context_root_name: str = DEFAULT_ROOT) -> dict[str, str]:
     today = date.today().isoformat()
     return {
@@ -45,23 +60,27 @@ def scaffold_files(context_root_name: str = DEFAULT_ROOT) -> dict[str, str]:
                         "context/README.md",
                         "preferences/README.md",
                         "memory/README.md",
+                        "resources/README.md",
+                        "personal-skills/_INDICE.md",
                     ],
                     "maxFiles": 12,
                 },
                 "writePolicy": "explicit-context-update-only",
             },
             indent=2,
-        )
-        + "\n",
+        ) + "\n",
         ".gitignore": """# User-owned context content is private by default.
 *
 
+# Tracked context-repo contract and scaffold.
 !.gitignore
 !.jm-adk-context.json
 !README.md
 !AGENTS.md
 !_INDICE.md
 !manifest.example.json
+
+# Tracked directories and their public scaffold docs.
 !context/
 !context/README.md
 !context/.gitkeep
@@ -74,6 +93,15 @@ def scaffold_files(context_root_name: str = DEFAULT_ROOT) -> dict[str, str]:
 !sources/
 !sources/README.md
 !sources/.gitkeep
+!resources/
+!resources/README.md
+!resources/.gitkeep
+!personal-skills/
+!personal-skills/README.md
+!personal-skills/_INDICE.md
+!personal-skills/.jm-adk-personal-skills.json
+!personal-skills/skills/
+!personal-skills/skills/.gitkeep
 !schemas/
 !schemas/README.md
 !schemas/*.schema.json
@@ -86,8 +114,8 @@ It is identified by `.jm-adk-context.json`, not by whatever files the user adds
 later. Keep the marker intact so Alfa recognizes this directory even when
 private contents change.
 
-Read `_INDICE.md` first. Never bulk-load `sources/`. Write here only after an
-explicit remember/update-context instruction from the user.
+Read `_INDICE.md` first. Never bulk-load `sources/` or `resources/`. Write here
+only after an explicit remember/update-context instruction from the user.
 """,
         "AGENTS.md": """# AGENTS.md · JM-ADK User Context
 
@@ -96,9 +124,9 @@ This directory is the user's durable context repo inside Alfa.
 The role of this directory comes from `.jm-adk-context.json`, not from private
 files the user may add later.
 
-Read `_INDICE.md` first. Do not bulk-load `sources/`. Write here only after
-explicit context-update instructions from the user. Task artifacts belong in
-`workspace/{active}/artifacts/`.
+Read `_INDICE.md` first. Do not bulk-load `sources/` or `resources/`. Personal
+skills belong under `personal-skills/skills/` and sync out by copy mirror only.
+Task artifacts belong in `workspace/{active}/artifacts/`.
 """,
         "_INDICE.md": """# _INDICE.md · User Context
 
@@ -107,6 +135,16 @@ they are created locally.
 
 Identity is defined by `.jm-adk-context.json`; private files listed here may
 change without changing this directory's role as the Alfa context repo.
+
+| Area | Purpose |
+|---|---|
+| `context/` | Durable background and reusable user context |
+| `preferences/` | Stable preferences for output, tooling, autonomy, and privacy |
+| `memory/` | Long-lived notes explicitly approved by the user |
+| `sources/` | Private source files or source indexes |
+| `resources/` | Curated persistent user resources |
+| `personal-skills/` | Canonical private source for user-authored skills |
+| `schemas/` | Context schemas and validation references |
 """,
         "manifest.example.json": json.dumps(
             {
@@ -115,72 +153,92 @@ change without changing this directory's role as the Alfa context repo.
                 "owner": "local-user",
                 "updated": today,
                 "autoload": ["_INDICE.md"],
-                "privacy": {
-                    "mode": "local-private",
-                    "externalConnectors": "deny-by-default",
-                },
+                "privacy": {"mode": "local-private", "externalConnectors": "deny-by-default"},
                 "notes": "Copy to manifest.json for local private use. manifest.json is ignored by git.",
             },
             indent=2,
-        )
-        + "\n",
+        ) + "\n",
         "context/README.md": "# Context\n\nStore durable user background here only after explicit user approval.\n",
         "context/.gitkeep": "\n",
         "preferences/README.md": "# Preferences\n\nStore stable user preferences here only after explicit user approval.\n",
         "preferences/.gitkeep": "\n",
         "memory/README.md": "# Memory\n\nStore durable notes that should outlive task workspaces.\n",
         "memory/.gitkeep": "\n",
-        "sources/README.md": "# Sources\n\nStore private source files or source indexes here.\n",
+        "sources/README.md": "# Sources\n\nStore private source files or source indexes here. Do not bulk-load this directory.\n",
         "sources/.gitkeep": "\n",
+        "resources/README.md": "# Resources\n\nStore curated, persistent user resources here only after explicit user approval.\n",
+        "resources/.gitkeep": "\n",
+        "personal-skills/README.md": "# Personal Skills\n\nCanonical private source for user-authored skills. Use `scripts/scaffold-skill.py --personal`.\n",
+        "personal-skills/_INDICE.md": "# _INDICE.md · Personal Skills\n\nList private user-authored skills here when the user creates them locally.\n",
+        "personal-skills/.jm-adk-personal-skills.json": json.dumps(
+            {
+                "schema": 1,
+                "kind": "jm-adk-personal-skills",
+                "version": "1.0.0",
+                "root": f"{context_root_name}/personal-skills",
+                "skillsRoot": f"{context_root_name}/personal-skills/skills",
+                "syncMode": "copy",
+                "trackedPolicy": "scaffold-only",
+                "runtimes": ["alfa-local", "codex", "claude", "gemini", "antigravity", "visual-studio"],
+                "writePolicy": "explicit-personal-skill-update-only",
+            },
+            indent=2,
+        ) + "\n",
+        "personal-skills/skills/.gitkeep": "\n",
         "schemas/README.md": "# Schemas\n\nPublic schemas for the local user-context repo.\n",
-        "schemas/user-context-manifest.schema.json": json.dumps(
+        "schemas/user-context-manifest.schema.json": schema(
+            "JM-ADK User Context Manifest",
+            "Optional private manifest for local context loading. Repo identity is defined by .jm-adk-context.json, not by this file.",
+            ["schema", "kind", "autoload", "privacy"],
             {
-                "$schema": "https://json-schema.org/draft/2020-12/schema",
-                "title": "JM-ADK User Context Manifest",
-                "description": "Optional private manifest for local context loading. Repo identity is defined by .jm-adk-context.json, not by this file.",
-                "type": "object",
-                "required": ["schema", "kind", "autoload", "privacy"],
-                "properties": {
-                    "schema": {"const": 1},
-                    "kind": {"const": "jm-adk-user-context-manifest"},
-                    "autoload": {"type": "array", "items": {"type": "string"}, "maxItems": 12},
-                    "privacy": {"type": "object"},
-                },
-                "additionalProperties": True,
+                "schema": {"const": 1},
+                "kind": {"const": "jm-adk-user-context-manifest"},
+                "autoload": {"type": "array", "items": {"type": "string"}, "maxItems": 12},
+                "privacy": {"type": "object"},
             },
-            indent=2,
-        )
-        + "\n",
-        "schemas/context-card.schema.json": json.dumps(
+        ),
+        "schemas/context-card.schema.json": schema(
+            "JM-ADK Context Card",
+            "Optional durable context card. It may describe user-approved context but never defines the repo identity.",
+            ["schema", "kind", "title", "summary", "privacy"],
             {
-                "$schema": "https://json-schema.org/draft/2020-12/schema",
-                "title": "JM-ADK Context Card",
-                "description": "Optional durable context card. It may describe user-approved context but never defines the repo identity.",
-                "type": "object",
-                "required": ["schema", "kind", "title", "summary", "privacy"],
-                "properties": {
-                    "schema": {"const": 1},
-                    "kind": {"const": "jm-adk-context-card"},
-                    "title": {"type": "string"},
-                    "summary": {"type": "string"},
-                    "privacy": {"enum": ["local-private", "pii-safe", "public-safe"]},
-                },
-                "additionalProperties": True,
+                "schema": {"const": 1},
+                "kind": {"const": "jm-adk-context-card"},
+                "title": {"type": "string"},
+                "summary": {"type": "string"},
+                "privacy": {"enum": ["local-private", "pii-safe", "public-safe"]},
             },
-            indent=2,
-        )
-        + "\n",
+        ),
+        "schemas/resource-card.schema.json": schema(
+            "JM-ADK Resource Card",
+            "Optional index card for a private user resource.",
+            ["schema", "kind", "title", "resourceType", "privacy"],
+            {
+                "schema": {"const": 1},
+                "kind": {"const": "jm-adk-resource-card"},
+                "title": {"type": "string"},
+                "resourceType": {"enum": ["cv", "identification", "url", "document", "reference", "other"]},
+                "privacy": {"enum": ["local-private", "pii-safe", "public-safe"]},
+            },
+        ),
+        "schemas/personal-skills-manifest.schema.json": schema(
+            "JM-ADK Personal Skills Manifest",
+            "Marker and sync contract for private user-authored skills inside user-context.",
+            ["schema", "kind", "root", "skillsRoot", "syncMode", "trackedPolicy"],
+            {
+                "schema": {"const": 1},
+                "kind": {"const": "jm-adk-personal-skills"},
+                "root": {"type": "string"},
+                "skillsRoot": {"type": "string"},
+                "syncMode": {"const": "copy"},
+                "trackedPolicy": {"const": "scaffold-only"},
+            },
+        ),
     }
 
 
 def local_profile_payload(path: str) -> dict[str, object]:
-    return {
-        "enabled": True,
-        "root": path,
-        "autoload": False,
-        "privacyMode": "local-private",
-        "maxFiles": 12,
-    }
+    return {"enabled": True, "root": path, "autoload": False, "privacyMode": "local-private", "maxFiles": 12}
 
 
 def merge_local_config(root: Path, context_root: str, force: bool) -> tuple[str, str]:
@@ -192,6 +250,7 @@ def merge_local_config(root: Path, context_root: str, force: bool) -> tuple[str,
     if "userContext" in data and not force:
         return "skip", ".jm-adk.local.json already has userContext; use --force to replace it"
     data["userContext"] = local_profile_payload(context_root)
+    data.setdefault("personalSkills", {"targets": {}})
     target.write_text(json.dumps(data, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     return "write", str(target)
 

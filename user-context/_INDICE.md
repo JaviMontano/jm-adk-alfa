@@ -13,11 +13,16 @@ context repo.
 | `preferences/` | Stable preferences for output, tooling, autonomy, and privacy |
 | `memory/` | Long-lived notes explicitly approved by the user |
 | `sources/` | Private source files or source indexes |
+| `resources/` | Curated persistent resources: CVs, IDs, URLs, reference documents |
+| `personal-skills/` | Canonical private source for user-authored skills |
 | `schemas/` | Context schemas and validation references |
 
 ## Loading Rule
 
 Start here, then load only the files needed for the current request.
 
-Do not bulk-load `sources/`. Link to source indexes or specific files only when
-the current task needs them.
+Do not bulk-load `sources/` or `resources/`. Link to source indexes, resource
+cards, or specific files only when the current task needs them.
+
+Load a personal skill only when its trigger or an explicit user request requires
+it. Never scan all personal skills as default context.

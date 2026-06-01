@@ -22,6 +22,15 @@
 !sources/
 !sources/README.md
 !sources/.gitkeep
+!resources/
+!resources/README.md
+!resources/.gitkeep
+!personal-skills/
+!personal-skills/README.md
+!personal-skills/_INDICE.md
+!personal-skills/.jm-adk-personal-skills.json
+!personal-skills/skills/
+!personal-skills/skills/.gitkeep
 !schemas/
 !schemas/README.md
 !schemas/*.schema.json

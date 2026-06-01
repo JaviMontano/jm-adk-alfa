@@ -33,7 +33,6 @@ if [ -f "$AGENT_DIR/scripts/generate_index.py" ]; then
     --output "$AGENT_DIR/skills_index.json" 2>&1 | sed 's/^/  /'
 else
   echo "  WARN: generate_index.py not found, building JSON manually"
-  # Fallback: build index from ACL
   echo "[" > "$AGENT_DIR/skills_index.json"
   FIRST=true
   acl_list_skills | while read -r SKILL_ID; do
@@ -166,7 +165,8 @@ cat > "$AGENT_DIR/ARCHITECTURE.md" << AGARCH
 - Runtime mirrors: \`CLAUDE.md\` for Claude family, \`GEMINI.md\` for Gemini/Antigravity family, \`AGENTS.md\` for Codex/Visual Studio family.
 - Antigravity bridge: \`.agent/rules/GEMINI.md\` mirrors the GEMINI runtime contract.
 - Skill index: \`.agent/skills_index.json\`.
-- Canonical skills: root \`skills/\`.
+- Canonical SDK skills: root \`skills/\`.
+- Canonical personal skills: \`user-context/personal-skills/skills/\`, synced by copy mirror only.
 
 ## Runtime Boundary
 
@@ -176,12 +176,16 @@ This directory is a derived adapter view. Runtime support for Antigravity-specif
 
 \`user-context/\` is the in-kit durable context repo. It is recognized by \`user-context/.jm-adk-context.json\`; private contents never define the role and remain ignored by default.
 
+\`user-context/resources/\` contains private curated resources. \`user-context/personal-skills/skills/\` contains private user-authored skills and must not be copied into root \`skills/\` or versioned \`.agent/skills\`.
+
 ## First Use
 
 Run:
 
 \`\`\`bash
 python3 scripts/diagnose-first-use.py --dry-run
+python3 scripts/diagnose-user-context.py --dry-run
+python3 scripts/diagnose-personal-skills.py --dry-run
 \`\`\`
 
 Greeting-only or empty input routes to \`/jm-adk:first-use\`. Explicit tasks route through minimal task intake and should not be blocked by full onboarding.

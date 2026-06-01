@@ -12,7 +12,7 @@ jm-adk-alfa/
 ├── agents/                         # 260 specialist agents
 ├── commands/                       # 267 user-invocable commands
 ├── prompts/                        # 256 top-level prompt files
-├── skills/                         # 585 skill modules
+├── skills/                         # 585 SDK skill modules
 │   └── {skill}/
 │       ├── SKILL.md
 │       ├── README.md
@@ -30,8 +30,12 @@ jm-adk-alfa/
 │   ├── preferences/                 # Stable user preferences
 │   ├── memory/                      # User-approved long-lived notes
 │   ├── sources/                     # Private source files or source indexes
-│   └── schemas/                     # Manifest and context-card schemas
-├── .local/                         # Local experiments, ignored
+│   ├── resources/                   # Curated private resources: CVs, IDs, URLs, reference docs
+│   ├── personal-skills/             # Canonical private source for user-authored skills
+│   │   ├── .jm-adk-personal-skills.json
+│   │   └── skills/                  # Private skills copied to runtime mirrors, never SDK root
+│   └── schemas/                     # Manifest, context, resource, and personal-skill schemas
+├── .local/                         # Local experiments and mirror caches, ignored
 ├── references/                     # Ontology and guardrails
 ├── scripts/                        # Scaffolding, validation, sync, and hooks
 ├── docs/                           # User and maintainer documentation
@@ -44,8 +48,10 @@ jm-adk-alfa/
 - `CLAUDE.md`, `GEMINI.md`, and `AGENTS.md` are homologated runtime mirrors for Claude, Gemini, and Agents families respectively.
 - `workspace/` is local session state and must not be committed except `workspace/.gitkeep`.
 - `user-context/` is the in-kit durable context repo. Its marker, docs, and schemas are tracked; private user-authored contents are ignored by default.
+- `user-context/resources/` stores curated private resources and must not be bulk-loaded.
+- `user-context/personal-skills/skills/` is the canonical private source for user-authored skills; it is ignored by default and never copied into root `skills/`.
 - `.jm-adk.local.json` is for local configuration and must not be committed.
-- `.local/skills/` is for experimental local skills and must not be committed.
+- `.local/skills/` is an ignored experiment or copy-mirror cache and must not be treated as durable source.
 - Generated files identify their generator and overwrite policy where practical.
 - Scripts that operate on the repo use `git rev-parse --show-toplevel` or an equivalent `git -C` root lookup.
 
@@ -59,9 +65,14 @@ The layer is separate from `workspace/`: `workspace/` stores task runtime state;
 `user-context/` stores durable user-approved context. Agents load `_INDICE.md`
 first and then only relevant files.
 
+`resources/` is for curated persistent user resources such as CVs,
+identification, URLs, and private reference documents. `personal-skills/` is for
+user-authored skills that should survive SDK upgrades and sync to runtime skill
+roots by copy mirror.
+
 ## Skill Contract
 
-Every root skill must include:
+Every SDK or personal skill must include:
 
 - `SKILL.md` with `name`, `version`, and `description` frontmatter.
 - `README.md`.
@@ -71,6 +82,9 @@ Every root skill must include:
 - Output template.
 - Eval suite.
 - Example input and output.
+
+Personal skills use the same contract but live under
+`user-context/personal-skills/skills/{slug}/`, not root `skills/{slug}/`.
 
 ## First-Use Layer
 
@@ -86,6 +100,10 @@ The post-clone protocol is implemented as docs, agents, skills, commands, script
 
 ```bash
 python3 scripts/scaffold-skill.py --name scaffold-smoke-test --description "Smoke test skill" --triggers smoke-test --allowed-tools Read,Grep --owner "JM Labs" --version 0.1.0 --dry-run
+python3 scripts/scaffold-skill.py --name personal-smoke-test --description "Personal smoke test" --personal --dry-run
+python3 scripts/diagnose-user-context.py --dry-run
+python3 scripts/diagnose-personal-skills.py --dry-run
+python3 scripts/sync-personal-skills.py --dry-run
 python3 scripts/validate-skills.py --strict
 python3 scripts/count-components.py --check-docs
 bash scripts/check-repo-boundaries.sh
@@ -97,3 +115,5 @@ bash scripts/generate-pristino-index.sh
 ## Sync Model
 
 Use `docs/git-sync-local-safe.md` and `scripts/sync-upstream-safe.sh` for GitHub synchronization. The sync script refuses dirty working trees, fetches remotes, fast-forwards only when safe, and never resets hard.
+
+Use `scripts/sync-personal-skills.py` for personal skill copy mirrors. It defaults to dry-run, rejects unsafe targets, detects conflicts, and never treats `.local/skills/` as the canonical source.

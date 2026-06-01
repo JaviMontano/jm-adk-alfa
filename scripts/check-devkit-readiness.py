@@ -32,8 +32,17 @@ REQUIRED_FILES = [
     "user-context/README.md",
     "user-context/AGENTS.md",
     "user-context/_INDICE.md",
+    "user-context/resources/README.md",
+    "user-context/personal-skills/README.md",
+    "user-context/personal-skills/_INDICE.md",
+    "user-context/personal-skills/.jm-adk-personal-skills.json",
+    "user-context/personal-skills/skills/.gitkeep",
     "user-context/schemas/user-context-manifest.schema.json",
+    "user-context/schemas/resource-card.schema.json",
+    "user-context/schemas/personal-skills-manifest.schema.json",
     "scripts/diagnose-user-context.py",
+    "scripts/diagnose-personal-skills.py",
+    "scripts/sync-personal-skills.py",
     "scripts/scaffold-user-context.py",
     "scripts/validate-runtime-instructions.py",
     "evals/onboarding/evals.json",
@@ -91,7 +100,12 @@ def main() -> int:
         if not (ROOT / "skills" / skill / "SKILL.md").exists():
             errors.append(f"missing required skill: {skill}")
 
-    for rel in [".jm-adk.json", ".claude-plugin/plugin.json", "evals/onboarding/evals.json"]:
+    for rel in [
+        ".jm-adk.json",
+        ".claude-plugin/plugin.json",
+        "evals/onboarding/evals.json",
+        "user-context/personal-skills/.jm-adk-personal-skills.json",
+    ]:
         path = ROOT / rel
         if path.exists():
             ok, detail = valid_json(path)
@@ -112,6 +126,17 @@ def main() -> int:
     if runtime.returncode != 0:
         detail = runtime.stdout.strip() or runtime.stderr.strip()
         errors.append(f"runtime instruction validation failed: {detail}")
+
+    personal = subprocess.run(
+        ["python3", str(ROOT / "scripts/diagnose-personal-skills.py"), "--dry-run"],
+        text=True,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        check=False,
+    )
+    if personal.returncode != 0:
+        detail = personal.stdout.strip() or personal.stderr.strip()
+        errors.append(f"personal skills diagnosis failed: {detail}")
 
     if errors:
         for error in errors:

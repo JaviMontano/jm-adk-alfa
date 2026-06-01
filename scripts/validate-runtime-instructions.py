@@ -16,20 +16,26 @@ PRIMARY_MIRRORS = {
 
 BRIDGE_FILES = {
     "ANTIGRAVITY.md": ["GEMINI.md", "Antigravity", "diagnose-user-context.py --dry-run", "user-context/.jm-adk-context.json"],
-    ".agent/rules/GEMINI.md": ["GEMINI.md", "Antigravity"],
-    ".github/copilot-instructions.md": ["AGENTS.md", "Visual Studio"],
-    ".cursorrules": ["Runtime Context Contract", "user-context/.jm-adk-context.json"],
-    ".windsurfrules": ["Runtime Context Contract", "user-context/.jm-adk-context.json"],
+    ".agent/rules/GEMINI.md": ["GEMINI.md", "Antigravity", "diagnose-personal-skills.py --dry-run"],
+    ".github/copilot-instructions.md": ["AGENTS.md", "Visual Studio", "diagnose-personal-skills.py --dry-run"],
+    ".cursorrules": ["Runtime Context Contract", "user-context/.jm-adk-context.json", "user-context/personal-skills/skills/"],
+    ".windsurfrules": ["Runtime Context Contract", "user-context/.jm-adk-context.json", "user-context/personal-skills/skills/"],
 }
 
 COMMON_RUNTIME_TOKENS = [
     "Runtime Context Contract",
     "diagnose-first-use.py --dry-run",
     "diagnose-user-context.py --dry-run",
+    "diagnose-personal-skills.py --dry-run",
     "user-context/.jm-adk-context.json",
     "jm-adk-user-context",
     "user-context/_INDICE.md",
     "user-context/sources/",
+    "user-context/resources/",
+    "user-context/personal-skills/skills/",
+    "scaffold-skill.py --personal",
+    "sync-personal-skills.py --dry-run",
+    ".local/skills/",
     "workspace/{active}/artifacts/",
     ".jm-adk.local.json",
     ".env*",
@@ -93,7 +99,15 @@ def main() -> int:
     require_tokens(
         "CODEX.md",
         codex,
-        ["AGENTS.md", "Codex", "Visual Studio", "diagnose-user-context.py --dry-run", "user-context/.jm-adk-context.json"],
+        [
+            "AGENTS.md",
+            "Codex",
+            "Visual Studio",
+            "diagnose-user-context.py --dry-run",
+            "diagnose-personal-skills.py --dry-run",
+            "user-context/.jm-adk-context.json",
+            "user-context/personal-skills/skills/",
+        ],
         errors,
     )
 

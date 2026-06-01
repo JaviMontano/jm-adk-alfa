@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://jm-adk.local/schemas/personal-skills-manifest.schema.json",
+  "title": "JM-ADK Personal Skills Manifest",
+  "description": "Marker and sync contract for private user-authored skills inside user-context.",
+  "type": "object",
+  "required": ["schema", "kind", "root", "skillsRoot", "syncMode", "trackedPolicy"],
+  "properties": {
+    "schema": {"const": 1},
+    "kind": {"const": "jm-adk-personal-skills"},
+    "version": {"type": "string"},
+    "root": {"const": "user-context/personal-skills"},
+    "skillsRoot": {"const": "user-context/personal-skills/skills"},
+    "syncMode": {"const": "copy"},
+    "trackedPolicy": {"const": "scaffold-only"},
+    "runtimes": {
+      "type": "array",
+      "items": {"type": "string"}
+    },
+    "writePolicy": {"type": "string"}
+  },
+  "additionalProperties": true
+}
