@@ -5,25 +5,25 @@
 - Overall score: `{{average}}/10`
 - Gate: `{{gate_status}} ({{gate_passed}}/13)`
 - Certification readiness: `{{certification}}`
-- Files: `{{file_count}}` files, `{{total_lines}}` total lines
+- Files: `{{file_count}}`
 - Skill type: `{{skill_type}}`
 
 ## Rubric Scores
 
-{{rubric_scores_table}}
+Table columns: criterion, score, key finding, evidence.
 
 ## Gate Results
 
-{{gate_results_table}}
+Table columns: checkpoint, result, evidence.
 
 ## Top Issues
 
-{{top_issues_table}}
+Prioritized blockers, warnings, and info items.
 
 ## Component Classification
 
-{{component_classification_table}}
+Table columns: component, status, tag.
 
 ## Recommended Next Step
 
-{{recommended_next_step}}
+One action that matches the certification state.

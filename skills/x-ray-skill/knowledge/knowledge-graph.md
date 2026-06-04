@@ -1,13 +1,14 @@
-# X Ray Skill — Knowledge Graph
+# X-Ray Skill -- Knowledge Graph
 
 ## Core Concepts
-- x-ray-skill: primary capability
-- validation-gate: quality control checkpoint
-- evidence-tagging: [EXPLICIT]/[INFERRED]/[OPEN] claims
 
-## Dependencies
-- Upstream: input-analysis, context-optimization
-- Downstream: output-engineering, rendering-engine
+- [[rubric-score]] -- 10 quality dimensions scored from 1 to 10.
+- [[validation-gate]] -- 13 binary checkpoints that gate certification readiness.
+- [[component-classification]] -- directory and file inventory tagged as strength or gap.
+- [[certification-readiness]] -- `CERTIFIED`, `CONDITIONAL`, or `BLOCKED`.
+- [[deterministic-compiler]] -- `scripts/compile-x-ray-report.py` read-only report generator.
 
 ## Skill Relationships
-Part of the JM Labs canonical skill registry.
+
+- Upstream: `skill-creator` and `creator-moat-skill` provide quality standards.
+- Downstream: `surgeon-skill` fixes issues and `certify-skill` finalizes readiness.

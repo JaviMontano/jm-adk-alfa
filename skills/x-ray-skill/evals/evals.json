@@ -1,9 +1,115 @@
-[
-  {"id": "x-ray-skill-happy-path", "type": "happy_path", "input": "Run x ray skill on this project", "expected_behavior": "Skill activates and produces the expected x ray skill output following the defined process", "tags": ["basic", "activation"]},
-  {"id": "x-ray-skill-explicit-trigger", "type": "happy_path", "input": "Apply x ray skill analysis", "expected_behavior": "Skill recognizes the trigger phrase and executes the x ray skill workflow", "tags": ["trigger", "recognition"]},
-  {"id": "x-ray-skill-with-context", "type": "happy_path", "input": "Apply x ray skill to analyze the current codebase with detailed output", "expected_behavior": "Skill produces comprehensive x ray skill analysis with evidence-tagged findings", "tags": ["detailed", "comprehensive"]},
-  {"id": "x-ray-skill-minimal-input", "type": "happy_path", "input": "Quick x ray skill", "expected_behavior": "Skill activates with minimal input, applies reasonable defaults", "tags": ["minimal", "defaults"]},
-  {"id": "x-ray-skill-false-positive", "type": "false_positive", "input": "What is the weather forecast for tomorrow?", "expected_behavior": "Skill should NOT activate — this input has no relation to x ray skill", "tags": ["false_positive", "should-not-activate"]},
-  {"id": "x-ray-skill-edge-empty-input", "type": "edge_case", "input": "Run x ray skill but I have no files or documentation yet", "expected_behavior": "Skill handles gracefully — requests minimum viable input or produces gap analysis", "tags": ["edge_case", "empty-input", "boundary"]},
-  {"id": "x-ray-skill-edge-conflicting", "type": "edge_case", "input": "Apply x ray skill but requirements contradict each other", "expected_behavior": "Skill detects contradiction, flags with [OPEN] tag, proposes resolution", "tags": ["edge_case", "conflict", "corner"]}
-]
+{
+  "cases": [
+    {
+      "id": "x-ray-skill-activation",
+      "type": "happy_path",
+      "input": "Audit this skill directory and tell me whether it is certification-ready.",
+      "expected_behavior": "Activates x-ray-skill, inventories the target directory, and returns a scorecard with rubric scores and gate results.",
+      "expected_checks": [
+        "assets",
+        "quality_criteria"
+      ],
+      "tags": [
+        "activation",
+        "scorecard"
+      ]
+    },
+    {
+      "id": "x-ray-skill-directory-compiler",
+      "type": "happy_path",
+      "input": "Run the deterministic X-Ray compiler against skills/x-ray-skill.",
+      "expected_behavior": "Uses scripts/compile-x-ray-report.py and produces a stable Markdown or JSON report.",
+      "expected_checks": [
+        "assets",
+        "deterministic_scripts",
+        "quality_criteria"
+      ],
+      "tags": [
+        "compiler",
+        "determinism"
+      ]
+    },
+    {
+      "id": "x-ray-skill-certified-fixture",
+      "type": "script_fixture",
+      "input": "Validate the certified-skill virtual fixture.",
+      "expected_behavior": "The compiler reports CERTIFIED with a PASS gate and no blocker issues.",
+      "expected_checks": [
+        "deterministic_scripts",
+        "quality_criteria"
+      ],
+      "tags": [
+        "fixture",
+        "certified"
+      ]
+    },
+    {
+      "id": "x-ray-skill-draft-fixture",
+      "type": "negative_fixture",
+      "input": "Validate the draft-skill virtual fixture.",
+      "expected_behavior": "The compiler returns a BLOCKED scorecard with failed gate evidence rather than guessing readiness.",
+      "expected_checks": [
+        "deterministic_scripts",
+        "quality_criteria"
+      ],
+      "tags": [
+        "fixture",
+        "blocked"
+      ]
+    },
+    {
+      "id": "x-ray-skill-no-skill-fixture",
+      "type": "negative_fixture",
+      "input": "Validate a virtual fixture without SKILL.md.",
+      "expected_behavior": "The compiler exits non-zero and reports SKILL.md not found at skill root.",
+      "expected_checks": [
+        "deterministic_scripts",
+        "quality_criteria"
+      ],
+      "tags": [
+        "fail-closed",
+        "missing-skill"
+      ]
+    },
+    {
+      "id": "x-ray-skill-zip-edge",
+      "type": "edge_case",
+      "input": "X-ray this .skill archive before publishing it.",
+      "expected_behavior": "The skill extracts or requests extraction to a temporary directory, then audits only the skill root.",
+      "expected_checks": [
+        "assets",
+        "quality_criteria"
+      ],
+      "tags": [
+        "archive",
+        "edge-case"
+      ]
+    },
+    {
+      "id": "x-ray-skill-large-skill-edge",
+      "type": "edge_case",
+      "input": "Audit a skill with more than 50 files.",
+      "expected_behavior": "Prioritizes SKILL.md, evals, references, and sampled coherence checks while disclosing sampling limits.",
+      "expected_checks": [
+        "quality_criteria"
+      ],
+      "tags": [
+        "large-skill",
+        "sampling"
+      ]
+    },
+    {
+      "id": "x-ray-skill-false-positive",
+      "type": "false_positive",
+      "input": "Create a customer workshop agenda.",
+      "expected_behavior": "Does not activate unless the user asks to audit a skill, score a skill, or review skill quality.",
+      "expected_checks": [
+        "quality_criteria"
+      ],
+      "tags": [
+        "routing",
+        "should-not-activate"
+      ]
+    }
+  ]
+}
