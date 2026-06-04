@@ -1,7 +1,7 @@
 ---
 name: xlsx-template-creator
 version: 1.0.0
-description: "Generates deterministic XLSX template specifications for tracking matrices and metrics dashboards. Use when the user asks to create a spreadsheet template, build a tracking matrix, design a KPI dashboard, generate an XLSX spec, define workbook columns, or validate spreadsheet formulas and dropdown ranges before rendering."
+description: "[EXPLICIT]"
 argument-hint: "tracking-matrix|metrics-dashboard title"
 allowed-tools:
   - Read
