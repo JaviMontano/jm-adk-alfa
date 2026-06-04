@@ -1,0 +1,78 @@
+{
+  "schema": 1,
+  "priority_order": [
+    "emotional",
+    "context",
+    "scope",
+    "expertise",
+    "vocabulary"
+  ],
+  "gap_types": {
+    "vocabulary": {
+      "description": "The user uses an imprecise or borrowed term for the outcome.",
+      "signals": [
+        "ai",
+        "ml",
+        "algorithm",
+        "smart",
+        "smarter",
+        "strategy",
+        "solution"
+      ],
+      "default_real_ask": "Replace vague terminology with a concrete capability and measurable outcome."
+    },
+    "scope": {
+      "description": "The typed request understates the real scope or hides dependencies.",
+      "signals": [
+        "just",
+        "quickly",
+        "quick",
+        "simple",
+        "fix",
+        "bug",
+        "also",
+        "maybe"
+      ],
+      "default_real_ask": "Clarify affected systems, success criteria, and minimum safe scope."
+    },
+    "expertise": {
+      "description": "The user proposes a solution that may not fit the actual need.",
+      "signals": [
+        "kafka",
+        "cqrs",
+        "event sourcing",
+        "microservices",
+        "blockchain",
+        "machine learning"
+      ],
+      "default_real_ask": "Focus on the outcome and choose the simplest viable approach."
+    },
+    "emotional": {
+      "description": "The request contains frustration, fear, blame, or uncertainty that affects execution.",
+      "signals": [
+        "disaster",
+        "incompetent",
+        "worried",
+        "terrible",
+        "broken",
+        "stupid",
+        "maybe",
+        "probably"
+      ],
+      "default_real_ask": "Add safety mechanisms and separate emotional context from the work item."
+    },
+    "context": {
+      "description": "The request assumes missing shared context or uses dangling references.",
+      "signals": [
+        "this",
+        "that",
+        "thing",
+        "it",
+        "they",
+        "meeting",
+        "changes"
+      ],
+      "default_real_ask": "Ask for the missing antecedent, audience, deadline, and deliverable."
+    }
+  }
+}
