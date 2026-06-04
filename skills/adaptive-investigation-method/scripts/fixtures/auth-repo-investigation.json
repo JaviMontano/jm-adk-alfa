@@ -1,0 +1,98 @@
+{
+  "goal": "Locate incoming request authentication and expired-token handling in an unknown monorepo.",
+  "budget": {
+    "total": 8,
+    "used": 3,
+    "unit": "reads"
+  },
+  "surfaceMap": [
+    {
+      "id": "map-auth-grep",
+      "tool": "Grep",
+      "query": "verifyToken|authenticate|TokenExpiredError",
+      "candidateNodes": [
+        "packages/api/middleware/auth.ts",
+        "packages/auth/token.ts",
+        "packages/gateway/guards/auth.ts"
+      ],
+      "evidence": "Hits cluster around API middleware and token utilities."
+    },
+    {
+      "id": "map-middleware-glob",
+      "tool": "Glob",
+      "query": "**/middleware/*.ts",
+      "candidateNodes": [
+        "packages/api/middleware/auth.ts",
+        "packages/api/middleware/session.ts"
+      ],
+      "evidence": "Middleware paths are cheap structural candidates before full reads."
+    }
+  ],
+  "hypotheses": [
+    {
+      "id": "H1",
+      "claim": "Request authentication is centralized in API middleware.",
+      "priority": 1,
+      "cost": 1,
+      "status": "confirmed",
+      "candidateNodes": [
+        "packages/api/middleware/auth.ts"
+      ]
+    },
+    {
+      "id": "H2",
+      "claim": "Expired-token behavior is implemented in token utilities.",
+      "priority": 2,
+      "cost": 1,
+      "status": "confirmed",
+      "candidateNodes": [
+        "packages/auth/token.ts"
+      ]
+    },
+    {
+      "id": "H3",
+      "claim": "Gateway guards duplicate auth validation.",
+      "priority": 3,
+      "cost": 1,
+      "status": "open",
+      "candidateNodes": [
+        "packages/gateway/guards/auth.ts"
+      ]
+    }
+  ],
+  "deepDives": [
+    {
+      "id": "D1",
+      "hypothesisId": "H1",
+      "node": "packages/api/middleware/auth.ts",
+      "tool": "Read",
+      "finding": "authenticate() calls verifyToken() and rejects failed verification with HTTP 401.",
+      "effect": "confirms"
+    },
+    {
+      "id": "D2",
+      "hypothesisId": "H2",
+      "node": "packages/auth/token.ts",
+      "tool": "Read",
+      "finding": "verifyToken() raises TokenExpiredError when exp has passed.",
+      "effect": "confirms"
+    },
+    {
+      "id": "D3",
+      "hypothesisId": "H2",
+      "node": "packages/api/middleware/auth.ts",
+      "tool": "Read",
+      "finding": "The middleware maps TokenExpiredError to 401 with code TOKEN_EXPIRED.",
+      "effect": "confirms"
+    }
+  ],
+  "replanLog": [],
+  "stopCondition": {
+    "reason": "goal_resolved",
+    "evidence": "H1 and H2 confirmed the validation location and expired-token behavior."
+  },
+  "deliverable": "Authentication is validated in packages/api/middleware/auth.ts through authenticate(). Expired tokens originate in packages/auth/token.ts and return HTTP 401 with code TOKEN_EXPIRED.",
+  "risks": [
+    "Gateway duplicate guard H3 remains open because the goal was resolved before spending the remaining budget."
+  ]
+}

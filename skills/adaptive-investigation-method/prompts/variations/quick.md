@@ -1,10 +1,3 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: adaptive-investigation-method
-generated-on: 2026-05-30
-overwrite-policy: missing-only unless --force
--->
-
 # Adaptive Investigation Method Quick Variation
 
 Usar cuando el dominio es acotado y el objetivo claro: un budget pequeno (3-5 lecturas) basta.

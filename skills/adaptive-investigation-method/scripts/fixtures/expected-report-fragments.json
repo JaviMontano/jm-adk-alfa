@@ -1,0 +1,13 @@
+{
+  "auth_markdown": [
+    "# Adaptive Investigation Report: Locate incoming request authentication and expired-token handling in an unknown monorepo.",
+    "Budget: `3/8 reads`",
+    "| H1 | 1 | 1 | confirmed | Request authentication is centralized in API middleware.",
+    "Gateway duplicate guard H3 remains open"
+  ],
+  "corpus_json": [
+    "\"goal\": \"Find where a large document corpus defines renewal policy exceptions.\"",
+    "\"trigger\": \"hypothesis_invalidated\"",
+    "\"reason\": \"goal_resolved\""
+  ]
+}

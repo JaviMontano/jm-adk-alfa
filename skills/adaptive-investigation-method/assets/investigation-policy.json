@@ -1,0 +1,56 @@
+{
+  "budget": {
+    "minTotal": 1,
+    "maxTotal": 50,
+    "allowedUnits": [
+      "reads",
+      "tokens"
+    ]
+  },
+  "cheapMapTools": [
+    "Glob",
+    "Grep",
+    "rg",
+    "find",
+    "ls"
+  ],
+  "expensiveDiveTools": [
+    "Read",
+    "sed",
+    "open",
+    "cat"
+  ],
+  "allowedHypothesisStatuses": [
+    "active",
+    "confirmed",
+    "invalidated",
+    "open"
+  ],
+  "allowedDeepDiveEffects": [
+    "confirms",
+    "invalidates",
+    "neutral"
+  ],
+  "allowedReplanTriggers": [
+    "hypothesis_invalidated"
+  ],
+  "allowedStopReasons": [
+    "goal_resolved",
+    "budget_exhausted",
+    "escalated"
+  ],
+  "blockedAntiPatterns": [
+    "read_all_files",
+    "read-all-files",
+    "full_repo_read",
+    "replan_every_turn",
+    "reflexive_replan",
+    "rigid_upfront_plan"
+  ],
+  "minimums": {
+    "surfaceMapEntries": 1,
+    "hypotheses": 1,
+    "deepDives": 1,
+    "risks": 1
+  }
+}

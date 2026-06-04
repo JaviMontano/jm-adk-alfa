@@ -1,0 +1,50 @@
+{
+  "skill": "adaptive-investigation-method",
+  "version": "1.0.0-dod",
+  "assets": [
+    {
+      "path": "assets/README.md",
+      "type": "documentation",
+      "purpose": "Explains the adaptive investigation asset bundle and runtime contract.",
+      "used_by": [
+        "SKILL.md",
+        "scripts/check.sh"
+      ]
+    },
+    {
+      "path": "assets/manifest.json",
+      "type": "asset-index",
+      "purpose": "Declares assets so DoD validators can verify the deterministic bundle.",
+      "used_by": [
+        "scripts/check.sh"
+      ]
+    },
+    {
+      "path": "assets/investigation-schema.json",
+      "type": "json-schema-lite",
+      "purpose": "Defines required fields for adaptive investigation loop specs.",
+      "used_by": [
+        "scripts/compile-adaptive-investigation.py",
+        "scripts/check.sh"
+      ]
+    },
+    {
+      "path": "assets/investigation-policy.json",
+      "type": "policy",
+      "purpose": "Defines budget, cheap-map, deep-dive, replan, stop-condition, and anti-pattern rules.",
+      "used_by": [
+        "scripts/compile-adaptive-investigation.py",
+        "scripts/check.sh"
+      ]
+    },
+    {
+      "path": "assets/report-template.md",
+      "type": "template",
+      "purpose": "Documents the stable Markdown report structure produced by the compiler.",
+      "used_by": [
+        "scripts/compile-adaptive-investigation.py",
+        "templates/output.md"
+      ]
+    }
+  ]
+}

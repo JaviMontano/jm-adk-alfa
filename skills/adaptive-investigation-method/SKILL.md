@@ -41,6 +41,25 @@ NO la uses cuando el dominio es pequeno y leerlo entero es mas barato que mapear
 5. **Re-plan disciplinado.** Tras cada deep-dive evalua: si la evidencia invalida la hipotesis activa, re-prioriza la lista. Si solo la confirma o la deja intacta, continua con el siguiente nodo sin re-planificar.
 6. **Cierra al agotar budget o resolver el objetivo.** Emite el deliverable desde `findings`, no desde memoria de trabajo difusa.
 
+## Paquete deterministico
+
+Usa el compilador local cuando el loop de investigacion deba quedar validado antes de entregarse o integrarse en otro agente.
+
+```bash
+python3 scripts/compile-adaptive-investigation.py --input path/to/investigation.json --format markdown
+python3 scripts/compile-adaptive-investigation.py --input path/to/investigation.json --format json --output investigation-report.json
+```
+
+El compilador carga:
+
+| Archivo | Proposito |
+|---|---|
+| `assets/investigation-schema.json` | Campos requeridos para objetivo, budget, mapa, hipotesis, deep-dives, replans, stop condition y deliverable. |
+| `assets/investigation-policy.json` | Reglas de budget, herramientas baratas/caras, triggers de re-plan, motivos de paro y anti-patrones bloqueados. |
+| `assets/report-template.md` | Forma estable del reporte Markdown. |
+
+Ejecuta `bash scripts/check.sh` despues de editar esta skill, sus assets o fixtures. El check valida casos positivos y rechaza investigaciones sin budget duro o con re-plan reflejo.
+
 ## Patron correcto
 
 ```python

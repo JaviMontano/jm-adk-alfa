@@ -1,10 +1,3 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: adaptive-investigation-method
-generated-on: 2026-05-30
-overwrite-policy: missing-only unless --force
--->
-
 # Adaptive Investigation Method Deep Variation
 
 Usar cuando el dominio es amplio, el objetivo ambiguo o las consecuencias cruzan muchos archivos.
