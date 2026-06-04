@@ -1,0 +1,62 @@
+{
+  "schema": 1,
+  "budget": {
+    "minIterations": 1,
+    "maxIterations": 100
+  },
+  "requiredStopReasons": [
+    "end_turn",
+    "tool_use"
+  ],
+  "allowedStopReasons": [
+    "end_turn",
+    "tool_use",
+    "max_tokens",
+    "stop_sequence",
+    "pause_turn"
+  ],
+  "allowedActions": [
+    "return_response",
+    "dispatch_tools",
+    "raise_unhandled_stop",
+    "raise_budget_exceeded",
+    "retry_transport"
+  ],
+  "requiredActions": {
+    "end_turn": "return_response",
+    "tool_use": "dispatch_tools"
+  },
+  "toolResult": {
+    "role": "user",
+    "type": "tool_result",
+    "correlationField": "tool_use_id",
+    "blockIdField": "id",
+    "handlerLookup": "handlers[block.name]"
+  },
+  "instrumentation": {
+    "minimumEvents": 5,
+    "requiredEvents": [
+      "iteration_started",
+      "stop_reason",
+      "tool_dispatched",
+      "tool_result_injected",
+      "budget_exceeded"
+    ]
+  },
+  "errors": {
+    "failurePolicy": "raise",
+    "requiredExceptions": [
+      "UnhandledStop",
+      "BudgetExceeded"
+    ]
+  },
+  "blockedAntiPatterns": [
+    "done in text",
+    "use tool in text",
+    "break silently",
+    "halt silently",
+    "no budget",
+    "without budget",
+    "while true forever"
+  ]
+}

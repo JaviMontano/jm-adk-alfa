@@ -1,0 +1,43 @@
+{
+  "schema": 1,
+  "requiredTopLevel": [
+    "name",
+    "modelConstant",
+    "clientCall",
+    "messagesVariable",
+    "toolsVariable",
+    "handlersVariable",
+    "maxIterations",
+    "stopHandlers",
+    "toolUse",
+    "handlers",
+    "instrumentation",
+    "errors",
+    "resultContract"
+  ],
+  "requiredStopHandlerFields": [
+    "stopReason",
+    "action",
+    "observable"
+  ],
+  "requiredToolUseFields": [
+    "resultRole",
+    "resultType",
+    "correlationField",
+    "blockIdField",
+    "handlerLookup",
+    "emitEvent"
+  ],
+  "requiredHandlerFields": [
+    "name",
+    "callable"
+  ],
+  "requiredInstrumentationFields": [
+    "emitter",
+    "events"
+  ],
+  "requiredErrorFields": [
+    "failurePolicy",
+    "exceptionNames"
+  ]
+}

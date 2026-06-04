@@ -1,0 +1,14 @@
+{
+  "schema": 1,
+  "basic-loop.py": [
+    "for iteration in range(max_iterations):",
+    "resp = client.messages.create(model=MODEL, messages=messages, tools=tools)",
+    "if resp.stop_reason == \"end_turn\":",
+    "if resp.stop_reason == \"tool_use\":",
+    "handler = handlers[name]",
+    "\"type\": \"tool_result\"",
+    "\"tool_use_id\": _field(block, \"id\")",
+    "raise UnhandledStop(resp.stop_reason)",
+    "raise BudgetExceeded(max_iterations)"
+  ]
+}
