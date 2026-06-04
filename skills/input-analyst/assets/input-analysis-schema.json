@@ -1,0 +1,47 @@
+{
+  "schema": "input-analysis.v1",
+  "required_root_fields": [
+    "schema_version",
+    "raw_input",
+    "routing_policy"
+  ],
+  "required_routing_policy_fields": [
+    "offline_only",
+    "allow_external_apis"
+  ],
+  "optional_root_fields": [
+    "context",
+    "requested_passes",
+    "downstream_candidates"
+  ],
+  "supported_passes": [
+    "surface",
+    "five_whys",
+    "seven_so_whats",
+    "intent",
+    "reformulation"
+  ],
+  "required_output_sections": [
+    "surface_errors",
+    "five_whys",
+    "seven_so_whats",
+    "intent_gap_analysis",
+    "ambiguity_register",
+    "actionability_score",
+    "clarified_prompt",
+    "routing_hints",
+    "user_safety_privacy_flags",
+    "confidence"
+  ],
+  "confidence_levels": [
+    "high",
+    "medium",
+    "low"
+  ],
+  "quality_levels": [
+    "Standard",
+    "Premium",
+    "Flagship"
+  ],
+  "output_schema_version": "input-analysis-output.v1"
+}
