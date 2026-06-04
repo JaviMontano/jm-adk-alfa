@@ -1,0 +1,57 @@
+{
+  "goal": "Investigate a repo with reflexive replanning.",
+  "budget": {
+    "total": 3,
+    "used": 1,
+    "unit": "reads"
+  },
+  "surfaceMap": [
+    {
+      "id": "map",
+      "tool": "Grep",
+      "query": "auth",
+      "candidateNodes": [
+        "src/auth.ts"
+      ],
+      "evidence": "Auth term found."
+    }
+  ],
+  "hypotheses": [
+    {
+      "id": "H1",
+      "claim": "Auth lives in src/auth.ts.",
+      "priority": 1,
+      "cost": 1,
+      "status": "active",
+      "candidateNodes": [
+        "src/auth.ts"
+      ]
+    }
+  ],
+  "deepDives": [
+    {
+      "id": "D1",
+      "hypothesisId": "H1",
+      "node": "src/auth.ts",
+      "tool": "Read",
+      "finding": "Auth function exists.",
+      "effect": "confirms"
+    }
+  ],
+  "replanLog": [
+    {
+      "trigger": "every_turn",
+      "hypothesisId": "H1",
+      "decision": "Replan from scratch after each read.",
+      "evidence": "Reflexive replan requested."
+    }
+  ],
+  "stopCondition": {
+    "reason": "goal_resolved",
+    "evidence": "Auth found."
+  },
+  "deliverable": "Auth lives in src/auth.ts.",
+  "risks": [
+    "Reflexive replan wastes budget."
+  ]
+}

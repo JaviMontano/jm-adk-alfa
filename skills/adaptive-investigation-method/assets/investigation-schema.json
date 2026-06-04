@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "requiredTopLevel": [
+    "goal",
+    "budget",
+    "surfaceMap",
+    "hypotheses",
+    "deepDives",
+    "replanLog",
+    "stopCondition",
+    "deliverable",
+    "risks"
+  ],
+  "requiredBudgetFields": [
+    "total",
+    "used",
+    "unit"
+  ],
+  "requiredSurfaceMapFields": [
+    "id",
+    "tool",
+    "query",
+    "candidateNodes",
+    "evidence"
+  ],
+  "requiredHypothesisFields": [
+    "id",
+    "claim",
+    "priority",
+    "cost",
+    "status",
+    "candidateNodes"
+  ],
+  "requiredDeepDiveFields": [
+    "id",
+    "hypothesisId",
+    "node",
+    "tool",
+    "finding",
+    "effect"
+  ],
+  "requiredReplanFields": [
+    "trigger",
+    "hypothesisId",
+    "decision",
+    "evidence"
+  ],
+  "requiredStopConditionFields": [
+    "reason",
+    "evidence"
+  ]
+}

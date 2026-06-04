@@ -1,10 +1,3 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: adaptive-investigation-method
-generated-on: 2026-05-30
-overwrite-policy: missing-only unless --force
--->
-
 # Adaptive Investigation Method Body of Knowledge
 
 ## Canon de la capacidad

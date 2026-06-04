@@ -1,10 +1,3 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: adaptive-investigation-method
-generated-on: 2026-05-30
-overwrite-policy: missing-only unless --force
--->
-
 # Example Input
 
 Construye un agente que use `adaptive-investigation-method` para responder esta pregunta sobre un monorepo desconocido de ~4.000 archivos:

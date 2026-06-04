@@ -1,0 +1,76 @@
+{
+  "goal": "Find where a large document corpus defines renewal policy exceptions.",
+  "budget": {
+    "total": 5,
+    "used": 2,
+    "unit": "reads"
+  },
+  "surfaceMap": [
+    {
+      "id": "map-renewal-grep",
+      "tool": "rg",
+      "query": "renewal exception|non-renewal|manual override",
+      "candidateNodes": [
+        "policies/renewals/renewal-policy.md",
+        "policies/operations/manual-overrides.md"
+      ],
+      "evidence": "Relevant terms appear in renewal and operations policy folders."
+    }
+  ],
+  "hypotheses": [
+    {
+      "id": "H1",
+      "claim": "Renewal exceptions are defined in the renewal policy.",
+      "priority": 1,
+      "cost": 1,
+      "status": "invalidated",
+      "candidateNodes": [
+        "policies/renewals/renewal-policy.md"
+      ]
+    },
+    {
+      "id": "H2",
+      "claim": "Manual override policy owns exception procedure.",
+      "priority": 1,
+      "cost": 1,
+      "status": "confirmed",
+      "candidateNodes": [
+        "policies/operations/manual-overrides.md"
+      ]
+    }
+  ],
+  "deepDives": [
+    {
+      "id": "D1",
+      "hypothesisId": "H1",
+      "node": "policies/renewals/renewal-policy.md",
+      "tool": "Read",
+      "finding": "Renewal policy references exceptions but delegates procedure to manual override policy.",
+      "effect": "invalidates"
+    },
+    {
+      "id": "D2",
+      "hypothesisId": "H2",
+      "node": "policies/operations/manual-overrides.md",
+      "tool": "Read",
+      "finding": "Manual override policy defines exception criteria, approval owner, and audit evidence.",
+      "effect": "confirms"
+    }
+  ],
+  "replanLog": [
+    {
+      "trigger": "hypothesis_invalidated",
+      "hypothesisId": "H1",
+      "decision": "Promote H2 because H1 delegated the procedure to manual overrides.",
+      "evidence": "D1 found explicit delegation instead of local exception rules."
+    }
+  ],
+  "stopCondition": {
+    "reason": "goal_resolved",
+    "evidence": "H2 confirmed the exception procedure owner and rules."
+  },
+  "deliverable": "Renewal exception procedure lives in policies/operations/manual-overrides.md, not in the renewal policy itself.",
+  "risks": [
+    "Only two policy files were read; downstream implementation docs may contain additional examples."
+  ]
+}

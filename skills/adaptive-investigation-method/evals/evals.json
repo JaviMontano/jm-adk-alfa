@@ -1,127 +1,117 @@
 {
   "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-30",
   "skill": "adaptive-investigation-method",
   "cases": [
     {
-      "id": "happy_path_unknown_repo",
+      "id": "happy-path-unknown-repo",
+      "type": "happy_path",
       "input": "Use adaptive-investigation-method to find where auth is validated in a 4000-file monorepo, with a hard budget of 8 reads, mapping cheaply before any deep read.",
-      "expected_activation": true,
+      "expected_behavior": "Activates the skill, defines a hard budget, maps with cheap tools, ranks hypotheses, deep-dives selectively, and returns a traceable deliverable.",
       "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
+        "assets",
+        "deterministic_scripts",
+        "quality_criteria"
+      ],
+      "tags": [
+        "unknown-repo",
+        "budget"
       ]
     },
     {
-      "id": "explicit_trigger",
+      "id": "explicit-trigger",
+      "type": "happy_path",
       "input": "/adaptive-investigation-method investigate this unknown dataset within an exploration budget.",
-      "expected_activation": true,
+      "expected_behavior": "Uses the adaptive investigation workflow and asks for missing budget or goal only if absent.",
       "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
+        "assets",
+        "quality_criteria"
+      ],
+      "tags": [
+        "trigger",
+        "dataset"
       ]
     },
     {
-      "id": "exploration_budget_constraint",
-      "input": "I have an exploration budget of 200k tokens to understand this codebase; map cheaply, prioritize hypotheses, deep-dive only the top candidates.",
-      "expected_activation": true,
+      "id": "compiler-valid-auth",
+      "type": "script_fixture",
+      "input": "Run compile-adaptive-investigation.py on auth-repo-investigation.json.",
+      "expected_behavior": "The compiler exits zero and renders budget, surface map, hypotheses, deep-dives, replan log, deliverable, and risks.",
       "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
+        "deterministic_scripts",
+        "quality_criteria"
+      ],
+      "tags": [
+        "compiler",
+        "markdown"
       ]
     },
     {
-      "id": "disciplined_replan",
-      "input": "Build an investigation agent that only replans when a hypothesis is invalidated, not every turn.",
-      "expected_activation": true,
+      "id": "compiler-valid-corpus",
+      "type": "script_fixture",
+      "input": "Run compile-adaptive-investigation.py on corpus-investigation.json with JSON output.",
+      "expected_behavior": "The compiler exits zero and preserves hypothesis_invalidated replan evidence in JSON output.",
       "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
+        "deterministic_scripts",
+        "quality_criteria"
+      ],
+      "tags": [
+        "compiler",
+        "json"
       ]
     },
     {
-      "id": "dynamic_decomposition",
-      "input": "adaptive investigation method with dynamic decomposition over an unknown corpus and a persisted plan/findings scratchpad.",
-      "expected_activation": true,
+      "id": "negative-no-budget",
+      "type": "negative_fixture",
+      "input": "Validate an investigation spec without budget.total.",
+      "expected_behavior": "The compiler exits non-zero and reports that budget.total is required.",
       "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
+        "deterministic_scripts",
+        "quality_criteria"
+      ],
+      "tags": [
+        "fail-closed",
+        "budget"
       ]
     },
     {
-      "id": "anti_pattern_request",
-      "input": "Just read_all_files() and write a rigid upfront plan, then replan from scratch every turn.",
-      "expected_activation": false,
+      "id": "negative-reflexive-replan",
+      "type": "negative_fixture",
+      "input": "Validate an investigation spec that replans every turn.",
+      "expected_behavior": "The compiler exits non-zero because replan is only allowed on hypothesis_invalidated.",
       "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
+        "deterministic_scripts",
+        "quality_criteria"
+      ],
+      "tags": [
+        "fail-closed",
+        "replan"
       ]
     },
     {
-      "id": "tiny_domain_not_worth_mapping",
-      "input": "I have a single 30-line config file; just read it and tell me the value.",
-      "expected_activation": false,
+      "id": "tiny-domain-false-positive",
+      "type": "false_positive",
+      "input": "I have one 30-line config file; read it and tell me the configured port.",
+      "expected_behavior": "Does not activate; reading one small file is cheaper than adaptive mapping.",
       "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
+        "quality_criteria"
+      ],
+      "tags": [
+        "routing",
+        "small-domain"
       ]
     },
     {
-      "id": "false_positive_unrelated",
-      "input": "Translate this paragraph into French.",
-      "expected_activation": false,
+      "id": "conflicting-requirements",
+      "type": "edge_case",
+      "input": "Use adaptive-investigation-method, but skip the budget and read everything.",
+      "expected_behavior": "Rejects the unsafe instruction, preserves the hard-budget requirement, and proposes a bounded alternative.",
       "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
-    },
-    {
-      "id": "empty_input",
-      "input": "",
-      "expected_activation": false,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
-    },
-    {
-      "id": "conflicting_requirements",
-      "input": "Use adaptive-investigation-method, but skip the budget and just read everything.",
-      "expected_activation": false,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
-    },
-    {
-      "id": "upgrade_safety_case",
-      "input": "Complete missing files for adaptive-investigation-method without overwriting local edits.",
-      "expected_activation": true,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
-    },
-    {
-      "id": "false_positive",
-      "input": "This request is unrelated to the skill domain.",
-      "expected_activation": false,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
+        "assets",
+        "quality_criteria"
+      ],
+      "tags": [
+        "conflict",
+        "anti-pattern"
       ]
     }
   ]

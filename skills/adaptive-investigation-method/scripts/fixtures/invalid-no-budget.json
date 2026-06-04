@@ -1,0 +1,40 @@
+{
+  "goal": "Investigate a large repo without defining exploration limits.",
+  "budget": {
+    "used": 0,
+    "unit": "reads"
+  },
+  "surfaceMap": [
+    {
+      "id": "map",
+      "tool": "Grep",
+      "query": "auth",
+      "candidateNodes": [
+        "src/auth.ts"
+      ],
+      "evidence": "Auth term found."
+    }
+  ],
+  "hypotheses": [
+    {
+      "id": "H1",
+      "claim": "Auth lives in src/auth.ts.",
+      "priority": 1,
+      "cost": 1,
+      "status": "open",
+      "candidateNodes": [
+        "src/auth.ts"
+      ]
+    }
+  ],
+  "deepDives": [],
+  "replanLog": [],
+  "stopCondition": {
+    "reason": "escalated",
+    "evidence": "No budget."
+  },
+  "deliverable": "Escalated because no hard budget was provided.",
+  "risks": [
+    "Unbounded investigation."
+  ]
+}

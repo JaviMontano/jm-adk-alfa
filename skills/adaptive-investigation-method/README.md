@@ -1,10 +1,3 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: adaptive-investigation-method
-generated-on: 2026-05-30
-overwrite-policy: missing-only unless --force
--->
-
 # Adaptive Investigation Method
 
 Capacidad de ingenieria para construir agentes que investigan dominios desconocidos con **mapeo barato, budget de exploracion acotado y re-plan disciplinado** (solo al invalidar una hipotesis). Evita los dos fallos clasicos: el plan rigido upfront que no se adapta y el `read_all_files()` que quema el contexto.

@@ -1,10 +1,3 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: adaptive-investigation-method
-generated-on: 2026-05-30
-overwrite-policy: missing-only unless --force
--->
-
 # Adaptive Investigation Method Meta Prompt
 
 Decide si `adaptive-investigation-method` debe activarse, si el alcance es seguro y que agentes de apoyo participan.
