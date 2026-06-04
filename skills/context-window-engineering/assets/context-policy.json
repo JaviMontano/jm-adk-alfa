@@ -1,0 +1,54 @@
+{
+  "schema": 1,
+  "staticPrefix": {
+    "requiredPosition": "start",
+    "allowedKinds": [
+      "role",
+      "tools",
+      "policy",
+      "schema",
+      "stable_context"
+    ],
+    "mustBeStable": true,
+    "blockedVolatileTokens": [
+      "current time",
+      "timestamp",
+      "turn_state",
+      "request_id",
+      "session_id",
+      "uuid",
+      "counter",
+      "random",
+      "{now}",
+      "{timestamp}"
+    ]
+  },
+  "dynamicTail": {
+    "requiredPosition": "final",
+    "requiredKind": "reminder",
+    "mustContainVolatileState": true
+  },
+  "criticalRules": {
+    "requiredPlacements": [
+      "static_prefix",
+      "dynamic_tail"
+    ]
+  },
+  "compaction": {
+    "minThreshold": 0.55,
+    "maxThreshold": 0.9,
+    "mustPreserve": [
+      "static_prefix",
+      "dynamic_tail"
+    ]
+  },
+  "blockedAntiPatterns": [
+    "timestamp in prefix",
+    "current time in header",
+    "critical rule in middle only",
+    "no compaction threshold",
+    "dynamic value in static prefix",
+    "compact edges",
+    "rewrite prefix each turn"
+  ]
+}

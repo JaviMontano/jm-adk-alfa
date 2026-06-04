@@ -80,6 +80,13 @@ def build_context(turn_state, history):
 - ¿Hay un umbral de compactación fijado y aplicado (>55% u otro valor explícito)?
 - ¿Se midió el cache-hit rate y se probó la retención de la regla crítica en contexto largo?
 
+## Paquete deterministico
+
+- Usa `assets/context-assembly-schema.json` y `assets/context-policy.json` para declarar el ensamblado antes de escribir prompts o adapters.
+- Ejecuta `scripts/compile-context-window.py <contexto.json> --output <reporte.md>` para generar un reporte reproducible de prefijo, zona compactable, cola dinamica, reglas criticas y validaciones.
+- Ejecuta `bash skills/context-window-engineering/scripts/check.sh` antes de marcar la skill como lista.
+- Rechaza timestamps en prefijo, reglas criticas solo en el centro, falta de compactacion, dynamic tail que no sea final y compactacion que toque bordes.
+
 ## Katas y skills relacionadas
 
 - Katas: `katas-10`, `katas-11`.

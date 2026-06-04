@@ -1,0 +1,90 @@
+{
+  "application": "support-agent",
+  "contextWindow": {
+    "maxTokens": 200000,
+    "expectedSteadyStateTokens": 120000
+  },
+  "staticPrefix": {
+    "blocks": [
+      {
+        "id": "role",
+        "kind": "role",
+        "content": "Support agent role, tools, and escalation policy.",
+        "stable": true
+      },
+      {
+        "id": "critical-policy",
+        "kind": "policy",
+        "content": "Never close a support ticket without explicit customer confirmation.",
+        "stable": true
+      },
+      {
+        "id": "output-schema",
+        "kind": "schema",
+        "content": "Response schema with status, evidence, next action, and confirmation state.",
+        "stable": true
+      }
+    ]
+  },
+  "middle": {
+    "compactable": true,
+    "blocks": [
+      {
+        "id": "conversation-history",
+        "kind": "history",
+        "content": "Long ticket transcript and retrieved knowledge snippets.",
+        "stable": false
+      }
+    ]
+  },
+  "dynamicTail": {
+    "position": "final",
+    "blocks": [
+      {
+        "id": "turn-reminder",
+        "kind": "reminder",
+        "content": "Final reminder with volatile ticket state and the critical confirmation rule restated.",
+        "stable": false,
+        "volatileFields": [
+          "ticket_state",
+          "customer_confirmation_state"
+        ]
+      }
+    ]
+  },
+  "criticalRules": [
+    {
+      "id": "confirm-before-close",
+      "text": "Never close a support ticket without explicit customer confirmation.",
+      "placements": [
+        "static_prefix",
+        "dynamic_tail"
+      ]
+    }
+  ],
+  "compaction": {
+    "enabled": true,
+    "threshold": 0.55,
+    "preserveBlockIds": [
+      "role",
+      "critical-policy",
+      "turn-reminder"
+    ],
+    "summarizeBlockKinds": [
+      "history"
+    ]
+  },
+  "validation": {
+    "prefixByteIdentical": true,
+    "noVolatileInPrefix": true,
+    "dynamicOnlyInReminder": true,
+    "criticalRulesAtEdges": true,
+    "compactionPreservesEdges": true,
+    "cacheHitMeasuredOrEstimated": true,
+    "retentionTestDefined": true
+  },
+  "risks": [
+    "Client-side rendering changes can alter prefix bytes and reduce cache reuse.",
+    "Compaction must summarize only the middle history block."
+  ]
+}

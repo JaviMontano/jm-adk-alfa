@@ -1,0 +1,32 @@
+{
+  "schema": 1,
+  "skill": "context-window-engineering",
+  "assets": [
+    {
+      "path": "assets/context-assembly-schema.json",
+      "type": "contract-schema",
+      "purpose": "Structured input contract for context assembly specs",
+      "used_by": [
+        "scripts/compile-context-window.py",
+        "scripts/check.sh"
+      ]
+    },
+    {
+      "path": "assets/context-policy.json",
+      "type": "policy",
+      "purpose": "Deterministic policy for cache safety, edge placement, compaction, and validation",
+      "used_by": [
+        "scripts/compile-context-window.py",
+        "scripts/check.sh"
+      ]
+    },
+    {
+      "path": "assets/context-report-template.md",
+      "type": "template",
+      "purpose": "Markdown template for reproducible context assembly reports",
+      "used_by": [
+        "scripts/compile-context-window.py"
+      ]
+    }
+  ]
+}

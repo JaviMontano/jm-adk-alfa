@@ -1,0 +1,52 @@
+{
+  "schema": 1,
+  "requiredTopLevel": [
+    "application",
+    "contextWindow",
+    "staticPrefix",
+    "middle",
+    "dynamicTail",
+    "criticalRules",
+    "compaction",
+    "validation",
+    "risks"
+  ],
+  "requiredContextWindowFields": [
+    "maxTokens",
+    "expectedSteadyStateTokens"
+  ],
+  "requiredBlockFields": [
+    "id",
+    "kind",
+    "content",
+    "stable"
+  ],
+  "requiredMiddleFields": [
+    "blocks",
+    "compactable"
+  ],
+  "requiredDynamicTailFields": [
+    "blocks",
+    "position"
+  ],
+  "requiredCriticalRuleFields": [
+    "id",
+    "text",
+    "placements"
+  ],
+  "requiredCompactionFields": [
+    "enabled",
+    "threshold",
+    "preserveBlockIds",
+    "summarizeBlockKinds"
+  ],
+  "requiredValidationFields": [
+    "prefixByteIdentical",
+    "noVolatileInPrefix",
+    "dynamicOnlyInReminder",
+    "criticalRulesAtEdges",
+    "compactionPreservesEdges",
+    "cacheHitMeasuredOrEstimated",
+    "retentionTestDefined"
+  ]
+}
