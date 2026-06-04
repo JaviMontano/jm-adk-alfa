@@ -1,35 +1,23 @@
-# Domain Knowledge — xlsx template creator
+# Domain Knowledge -- XLSX Template Creator
 
-## Overview
+## Workbook Specification Pattern
 
-This reference provides foundational knowledge for the xlsx template creator skill. [EXPLICIT]
+A stable workbook spec separates spreadsheet intent from binary rendering. The skill should first produce a JSON-compatible contract, validate it locally, and only then hand the contract to a renderer.
 
-## Key Concepts
+## Required Template Families
 
-| Concept | Definition | Relevance |
-|---------|-----------|-----------|
-| Primary domain | The core domain that xlsx template creator operates within | Direct input to skill execution [EXPLICIT] |
-| Quality criteria | Standards that output must meet | Validation gate alignment [EXPLICIT] |
-| Evidence taxonomy | [EXPLICIT]/[INFERRED]/[OPEN] classification | Required for all factual claims [EXPLICIT] |
+| Template | Main Use | Required Sheets |
+|---|---|---|
+| `tracking-matrix` | Row-level work tracking, compliance matrices, status reviews | `Tracker`, `Summary`, `Config` |
+| `metrics-dashboard` | KPI monitoring, thresholds, alert queues, executive summaries | `KPIs`, `Trends`, `Alerts`, `Config` |
 
-## Best Practices
+## Formula Safety
 
-1. Always start with evidence gathering before analysis [EXPLICIT]
-2. Tag every factual claim with appropriate evidence marker [EXPLICIT]
-3. Separate observations from inferences explicitly [EXPLICIT]
-4. Document assumptions that could invalidate conclusions [EXPLICIT]
-5. Provide actionable recommendations with priority levels [EXPLICIT]
+- Start formulas with `=`.
+- Guard division formulas with `IF`, for example `=IF(C2=0,0,B2/C2)`.
+- Avoid volatile or external functions in templates unless a renderer policy explicitly allows them.
+- Prefer named ranges and `Config` references for values users edit.
 
-## Anti-Patterns
+## Spreadsheet Handoff
 
-| Anti-Pattern | Why It Fails | Better Alternative |
-|-------------|-------------|-------------------|
-| Untaged claims | Readers cannot assess confidence | Tag with [EXPLICIT]/[INFERRED]/[OPEN] |
-| Generic output | Fails to address specific context | Adapt to project-specific inputs |
-| Missing edge cases | Breaks on non-standard inputs | Document handling for edge scenarios |
-
-## Integration Points
-
-- This skill may be invoked by orchestrator skills in the pipeline [EXPLICIT]
-- Output format follows MetodologIA markdown conventions [EXPLICIT]
-- Evidence tags enable downstream quality validation [EXPLICIT]
+The final response should make clear which features are structural and which belong to the renderer. Structural features include sheets, columns, formulas, dropdown sources, named ranges, and validation evidence. Renderer features include binary workbook generation, native charts, freeze panes, Excel table styles, and file metadata.

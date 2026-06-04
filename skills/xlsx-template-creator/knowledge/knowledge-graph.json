@@ -1,75 +1,73 @@
 {
   "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-28",
   "skill": "xlsx-template-creator",
   "nodes": [
     {
       "id": "xlsx-template-creator",
       "type": "skill",
-      "label": "xlsx-template-creator"
+      "label": "XLSX template specification generator"
     },
     {
-      "id": "xlsx-template-creator:inputs",
+      "id": "workbook-spec",
       "type": "contract",
-      "label": "Expected inputs"
+      "label": "Workbook JSON specification"
     },
     {
-      "id": "xlsx-template-creator:outputs",
-      "type": "contract",
-      "label": "Expected outputs"
+      "id": "template-policy",
+      "type": "policy",
+      "label": "Required sheets and formatting rules"
     },
     {
-      "id": "xlsx-template-creator:quality",
+      "id": "formula-policy",
+      "type": "policy",
+      "label": "Formula and dropdown safety rules"
+    },
+    {
+      "id": "compiler",
+      "type": "script",
+      "label": "compile-xlsx-template.py"
+    },
+    {
+      "id": "renderer-handoff",
+      "type": "output",
+      "label": "Renderer-ready Markdown or YAML-like spec"
+    },
+    {
+      "id": "validation-gate",
       "type": "gate",
-      "label": "Quality criteria"
-    },
-    {
-      "id": "xlsx-template-creator:ontology",
-      "type": "ontology",
-      "label": "Domain: general"
-    },
-    {
-      "id": "xlsx-template-creator:evidence",
-      "type": "gate",
-      "label": "Evidence / provenance requirements"
-    },
-    {
-      "id": "xlsx-template-creator:antipattern",
-      "type": "risk",
-      "label": "Canonical anti-pattern to avoid"
+      "label": "Workbook structure and safety validation"
     }
   ],
   "edges": [
     {
       "from": "xlsx-template-creator",
-      "to": "xlsx-template-creator:inputs",
-      "type": "requires"
+      "to": "workbook-spec",
+      "type": "creates"
     },
     {
-      "from": "xlsx-template-creator",
-      "to": "xlsx-template-creator:outputs",
-      "type": "produces"
-    },
-    {
-      "from": "xlsx-template-creator",
-      "to": "xlsx-template-creator:quality",
+      "from": "workbook-spec",
+      "to": "compiler",
       "type": "validated_by"
     },
     {
-      "from": "xlsx-template-creator",
-      "to": "xlsx-template-creator:ontology",
-      "type": "classified_as"
+      "from": "template-policy",
+      "to": "compiler",
+      "type": "loaded_by"
     },
     {
-      "from": "xlsx-template-creator",
-      "to": "xlsx-template-creator:evidence",
-      "type": "validated_by"
+      "from": "formula-policy",
+      "to": "compiler",
+      "type": "loaded_by"
     },
     {
-      "from": "xlsx-template-creator",
-      "to": "xlsx-template-creator:antipattern",
-      "type": "guards_against"
+      "from": "compiler",
+      "to": "renderer-handoff",
+      "type": "renders"
+    },
+    {
+      "from": "compiler",
+      "to": "validation-gate",
+      "type": "enforces"
     }
   ]
 }

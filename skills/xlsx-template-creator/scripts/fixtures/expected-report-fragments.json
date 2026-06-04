@@ -1,0 +1,14 @@
+{
+  "tracking_markdown": [
+    "# XLSX Template Spec: Workflow Execution Tracker",
+    "Template type: `tracking-matrix`",
+    "| Tracker | Owner | dropdown | 20 | Config!A2:A50 |",
+    "| OwnerList | Config!$A$2:$A$50 | Dropdown source for owners. |"
+  ],
+  "dashboard_yaml": [
+    "templateType: \"metrics-dashboard\"",
+    "title: \"Agent Performance Dashboard\"",
+    "formula: \"=IF(C2=0,0,B2/C2)\"",
+    "namedRanges:"
+  ]
+}

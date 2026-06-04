@@ -1,0 +1,59 @@
+{
+  "skill": "xlsx-template-creator",
+  "version": "1.0.0-dod",
+  "assets": [
+    {
+      "path": "assets/README.md",
+      "type": "documentation",
+      "purpose": "Explains the XLSX template asset bundle and runtime contract.",
+      "used_by": [
+        "SKILL.md",
+        "scripts/check.sh"
+      ]
+    },
+    {
+      "path": "assets/manifest.json",
+      "type": "asset-index",
+      "purpose": "Declares assets so DoD validators can verify the deterministic bundle.",
+      "used_by": [
+        "scripts/check.sh"
+      ]
+    },
+    {
+      "path": "assets/xlsx-template-schema.json",
+      "type": "json-schema-lite",
+      "purpose": "Defines required fields for workbook specs, sheets, columns, named ranges, and validations.",
+      "used_by": [
+        "scripts/compile-xlsx-template.py",
+        "scripts/check.sh"
+      ]
+    },
+    {
+      "path": "assets/template-policy.json",
+      "type": "policy",
+      "purpose": "Defines accepted template types, required sheets, formatting rules, and semantic colors.",
+      "used_by": [
+        "scripts/compile-xlsx-template.py",
+        "scripts/check.sh"
+      ]
+    },
+    {
+      "path": "assets/formula-policy.json",
+      "type": "policy",
+      "purpose": "Defines formula safety checks, dropdown source rules, and named range requirements.",
+      "used_by": [
+        "scripts/compile-xlsx-template.py",
+        "scripts/check.sh"
+      ]
+    },
+    {
+      "path": "assets/report-template.md",
+      "type": "template",
+      "purpose": "Documents the stable Markdown report structure produced by the compiler.",
+      "used_by": [
+        "scripts/compile-xlsx-template.py",
+        "templates/output.md"
+      ]
+    }
+  ]
+}

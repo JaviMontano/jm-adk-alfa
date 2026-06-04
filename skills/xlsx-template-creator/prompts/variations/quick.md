@@ -3,7 +3,7 @@ name: xlsx-template-creator-quick
 type: variation
 variant: quick
 ---
-# Xlsx Template Creator — Quick Mode
 
-Streamlined execution. Focus on TL;DR and primary output only.
-Apply Validation Gate but skip extended evidence tagging.
+# XLSX Template Creator -- Quick Mode
+
+Use when the user already provided template type, title, and columns or KPIs. Build the minimum valid spec, compile it, and return the validated Markdown summary plus handoff notes.

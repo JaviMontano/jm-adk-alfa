@@ -1,0 +1,207 @@
+{
+  "templateType": "metrics-dashboard",
+  "title": "Agent Performance Dashboard",
+  "locale": "en-US",
+  "sheets": [
+    {
+      "name": "KPIs",
+      "purpose": "Current KPI values, targets, target attainment, and status.",
+      "printArea": "A1:F100",
+      "autoFilter": true,
+      "mergedCellsInDataArea": false,
+      "columns": [
+        {
+          "header": "KPI",
+          "width": 30,
+          "type": "text",
+          "description": "KPI name."
+        },
+        {
+          "header": "Current",
+          "width": 12,
+          "type": "number",
+          "description": "Current KPI value."
+        },
+        {
+          "header": "Target",
+          "width": 12,
+          "type": "number",
+          "description": "Target KPI value."
+        },
+        {
+          "header": "% of Target",
+          "width": 14,
+          "type": "formula",
+          "formula": "=IF(C2=0,0,B2/C2)",
+          "description": "Guarded target attainment percentage.",
+          "conditionalFormat": {
+            "good": {
+              "bg": "#c6efce"
+            },
+            "warning": {
+              "bg": "#ffeb9c"
+            },
+            "critical": {
+              "bg": "#ffc7ce"
+            }
+          }
+        },
+        {
+          "header": "Trend",
+          "width": 15,
+          "type": "text",
+          "description": "Trend placeholder for downstream sparkline renderer."
+        },
+        {
+          "header": "Status",
+          "width": 12,
+          "type": "formula",
+          "formula": "=IF(D2>=1,\"OK\",IF(D2>=0.7,\"WARNING\",\"CRITICAL\"))",
+          "description": "Status based on target attainment."
+        }
+      ]
+    },
+    {
+      "name": "Trends",
+      "purpose": "Historical monthly values for charting and sparklines.",
+      "printArea": "A1:M100",
+      "autoFilter": false,
+      "mergedCellsInDataArea": false,
+      "columns": [
+        {
+          "header": "KPI",
+          "width": 30,
+          "type": "text",
+          "description": "KPI name."
+        },
+        {
+          "header": "Jan",
+          "width": 8,
+          "type": "number",
+          "description": "January value."
+        },
+        {
+          "header": "Feb",
+          "width": 8,
+          "type": "number",
+          "description": "February value."
+        }
+      ]
+    },
+    {
+      "name": "Alerts",
+      "purpose": "Auto-filtered KPI exceptions that require action.",
+      "printArea": "A1:E100",
+      "autoFilter": true,
+      "mergedCellsInDataArea": false,
+      "columns": [
+        {
+          "header": "KPI",
+          "width": 30,
+          "type": "text",
+          "description": "KPI name."
+        },
+        {
+          "header": "Severity",
+          "width": 14,
+          "type": "formula",
+          "formula": "=IF(KPIs!D2<Config!D2,\"Critical\",IF(KPIs!D2<Config!C2,\"Warning\",\"OK\"))",
+          "description": "Alert severity."
+        },
+        {
+          "header": "Current",
+          "width": 12,
+          "type": "number",
+          "description": "Current KPI value."
+        },
+        {
+          "header": "Threshold",
+          "width": 12,
+          "type": "number",
+          "description": "Relevant threshold."
+        },
+        {
+          "header": "Action Required",
+          "width": 50,
+          "type": "text",
+          "description": "Owner action."
+        }
+      ]
+    },
+    {
+      "name": "Config",
+      "purpose": "Edit here to update KPI targets and thresholds.",
+      "printArea": "A1:D100",
+      "columns": [
+        {
+          "header": "KPI",
+          "width": 30,
+          "type": "text",
+          "description": "KPI name."
+        },
+        {
+          "header": "Target",
+          "width": 12,
+          "type": "number",
+          "description": "Target value."
+        },
+        {
+          "header": "Warning Threshold",
+          "width": 18,
+          "type": "percentage",
+          "description": "Warning threshold."
+        },
+        {
+          "header": "Critical Threshold",
+          "width": 18,
+          "type": "percentage",
+          "description": "Critical threshold."
+        }
+      ]
+    }
+  ],
+  "namedRanges": [
+    {
+      "name": "KpiTargets",
+      "refersTo": "Config!$B$2:$B$100",
+      "purpose": "Target lookup range."
+    },
+    {
+      "name": "KpiWarning",
+      "refersTo": "Config!$C$2:$C$100",
+      "purpose": "Warning threshold range."
+    }
+  ],
+  "validation": [
+    {
+      "check": "required-sheets",
+      "status": "pass",
+      "evidence": "KPIs, Trends, Alerts, and Config sheets are present."
+    },
+    {
+      "check": "formula-guards",
+      "status": "pass",
+      "evidence": "Target attainment formula guards division by zero."
+    },
+    {
+      "check": "alerts",
+      "status": "pass",
+      "evidence": "Alerts sheet has severity formula and action column."
+    },
+    {
+      "check": "threshold-config",
+      "status": "pass",
+      "evidence": "Config sheet owns target and threshold values."
+    },
+    {
+      "check": "print-areas",
+      "status": "pass",
+      "evidence": "Each sheet declares a print area."
+    }
+  ],
+  "handoff": {
+    "renderer": "xlsx-renderer",
+    "outputFormat": ".xlsx",
+    "notes": "Renderer may add native charts after spec validation."
+  }
+}

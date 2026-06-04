@@ -1,0 +1,152 @@
+{
+  "templateType": "metrics-dashboard",
+  "title": "Broken Dashboard",
+  "locale": "en-US",
+  "sheets": [
+    {
+      "name": "KPIs",
+      "purpose": "Current KPI values.",
+      "printArea": "A1:D10",
+      "autoFilter": true,
+      "mergedCellsInDataArea": false,
+      "columns": [
+        {
+          "header": "KPI",
+          "width": 30,
+          "type": "text",
+          "description": "KPI name."
+        },
+        {
+          "header": "Current",
+          "width": 12,
+          "type": "number",
+          "description": "Current value."
+        },
+        {
+          "header": "% of Target",
+          "width": 14,
+          "type": "formula",
+          "formula": "=B2/C2",
+          "description": "Unguarded division."
+        }
+      ]
+    },
+    {
+      "name": "Trends",
+      "purpose": "Historical values.",
+      "printArea": "A1:C10",
+      "autoFilter": false,
+      "mergedCellsInDataArea": false,
+      "columns": [
+        {
+          "header": "KPI",
+          "width": 20,
+          "type": "text",
+          "description": "KPI."
+        },
+        {
+          "header": "Jan",
+          "width": 8,
+          "type": "number",
+          "description": "January."
+        },
+        {
+          "header": "Feb",
+          "width": 8,
+          "type": "number",
+          "description": "February."
+        }
+      ]
+    },
+    {
+      "name": "Alerts",
+      "purpose": "Exceptions.",
+      "printArea": "A1:C10",
+      "autoFilter": true,
+      "mergedCellsInDataArea": false,
+      "columns": [
+        {
+          "header": "KPI",
+          "width": 20,
+          "type": "text",
+          "description": "KPI."
+        },
+        {
+          "header": "Severity",
+          "width": 12,
+          "type": "text",
+          "description": "Severity."
+        },
+        {
+          "header": "Action",
+          "width": 40,
+          "type": "text",
+          "description": "Action."
+        }
+      ]
+    },
+    {
+      "name": "Config",
+      "purpose": "Edit here for thresholds.",
+      "printArea": "A1:B10",
+      "columns": [
+        {
+          "header": "KPI",
+          "width": 20,
+          "type": "text",
+          "description": "KPI."
+        },
+        {
+          "header": "Target",
+          "width": 12,
+          "type": "number",
+          "description": "Target."
+        }
+      ]
+    }
+  ],
+  "namedRanges": [
+    {
+      "name": "KpiTargets",
+      "refersTo": "Config!$B$2:$B$10",
+      "purpose": "Targets."
+    },
+    {
+      "name": "KpiNames",
+      "refersTo": "Config!$A$2:$A$10",
+      "purpose": "Names."
+    }
+  ],
+  "validation": [
+    {
+      "check": "formula-guards",
+      "status": "fail",
+      "evidence": "Formula divides without IF guard."
+    },
+    {
+      "check": "required-sheets",
+      "status": "pass",
+      "evidence": "Required sheets exist."
+    },
+    {
+      "check": "columns",
+      "status": "pass",
+      "evidence": "Columns are complete."
+    },
+    {
+      "check": "print-areas",
+      "status": "pass",
+      "evidence": "Print areas exist."
+    },
+    {
+      "check": "named-ranges",
+      "status": "pass",
+      "evidence": "Named ranges exist."
+    }
+  ],
+  "handoff": {
+    "renderer": "xlsx-renderer",
+    "outputFormat": ".xlsx",
+    "notes": "Invalid fixture."
+  }
+}
