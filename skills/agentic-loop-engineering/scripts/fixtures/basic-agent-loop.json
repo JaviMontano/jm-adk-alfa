@@ -1,0 +1,64 @@
+{
+  "name": "research_agent_loop",
+  "modelConstant": "MODEL",
+  "clientCall": "client.messages.create",
+  "messagesVariable": "messages",
+  "toolsVariable": "tools",
+  "handlersVariable": "handlers",
+  "maxIterations": 20,
+  "unknownStopAction": "raise_unhandled_stop",
+  "stopHandlers": [
+    {
+      "stopReason": "end_turn",
+      "action": "return_response",
+      "observable": true
+    },
+    {
+      "stopReason": "tool_use",
+      "action": "dispatch_tools",
+      "observable": true
+    },
+    {
+      "stopReason": "max_tokens",
+      "action": "raise_unhandled_stop",
+      "observable": true
+    }
+  ],
+  "toolUse": {
+    "resultRole": "user",
+    "resultType": "tool_result",
+    "correlationField": "tool_use_id",
+    "blockIdField": "id",
+    "handlerLookup": "handlers[block.name]",
+    "emitEvent": true
+  },
+  "handlers": [
+    {
+      "name": "search",
+      "callable": "run_search"
+    },
+    {
+      "name": "read_file",
+      "callable": "run_read_file"
+    }
+  ],
+  "instrumentation": {
+    "emitter": "emit_loop_event",
+    "events": [
+      "iteration_started",
+      "stop_reason",
+      "tool_dispatched",
+      "tool_result_injected",
+      "halted",
+      "budget_exceeded"
+    ]
+  },
+  "errors": {
+    "failurePolicy": "raise",
+    "exceptionNames": [
+      "UnhandledStop",
+      "BudgetExceeded"
+    ]
+  },
+  "resultContract": "return_response_on_end_turn"
+}

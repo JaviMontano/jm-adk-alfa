@@ -1,7 +1,5 @@
 {
   "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-30",
   "skill": "agentic-loop-engineering",
   "cases": [
     {
@@ -9,7 +7,8 @@
       "input": "Construye el bucle de control de mi agente Anthropic: que enrute por stop_reason, despache tool_use y reinyecte tool_result, con un techo de iteraciones.",
       "expected_activation": true,
       "expected_checks": [
-        "evidence",
+        "assets",
+        "deterministic_scripts",
         "quality_criteria",
         "upgrade_safety"
       ]
@@ -19,7 +18,8 @@
       "input": "/agentic-loop-engineering refactoriza este loop para que use stop_reason routing en vez de leer texto.",
       "expected_activation": true,
       "expected_checks": [
-        "evidence",
+        "assets",
+        "deterministic_scripts",
         "quality_criteria",
         "upgrade_safety"
       ]
@@ -29,7 +29,8 @@
       "input": "Mi agente entra en bucle infinito porque nunca llega a imprimir 'done'. Necesito control loop con budget duro.",
       "expected_activation": true,
       "expected_checks": [
-        "evidence",
+        "assets",
+        "deterministic_scripts",
         "quality_criteria",
         "upgrade_safety"
       ]
@@ -39,7 +40,8 @@
       "input": "Tengo handlers {search, read_file}, uso el SDK de Anthropic y quiero max_iterations=20 con BudgetExceeded y fallo fuerte para señales no contempladas. Define el agent control loop completo.",
       "expected_activation": true,
       "expected_checks": [
-        "evidence",
+        "assets",
+        "deterministic_scripts",
         "quality_criteria",
         "upgrade_safety"
       ]
@@ -49,7 +51,8 @@
       "input": "Migra mi agente de control por prosa ('done' in text) a loop budget y stop_reason routing tipado.",
       "expected_activation": true,
       "expected_checks": [
-        "evidence",
+        "assets",
+        "deterministic_scripts",
         "quality_criteria",
         "upgrade_safety"
       ]
@@ -59,7 +62,8 @@
       "input": "Ayúdame a redactar el correo de bienvenida para un nuevo cliente.",
       "expected_activation": false,
       "expected_checks": [
-        "evidence",
+        "assets",
+        "deterministic_scripts",
         "quality_criteria",
         "upgrade_safety"
       ]
@@ -69,7 +73,8 @@
       "input": "",
       "expected_activation": false,
       "expected_checks": [
-        "evidence",
+        "assets",
+        "deterministic_scripts",
         "quality_criteria",
         "upgrade_safety"
       ]
@@ -79,7 +84,8 @@
       "input": "Construye el loop pero sin budget y deciendo el halt leyendo el texto de la respuesta.",
       "expected_activation": false,
       "expected_checks": [
-        "evidence",
+        "assets",
+        "deterministic_scripts",
         "quality_criteria",
         "upgrade_safety"
       ]
@@ -89,7 +95,8 @@
       "input": "Mejora el wording de mi system prompt para que suene más cordial.",
       "expected_activation": false,
       "expected_checks": [
-        "evidence",
+        "assets",
+        "deterministic_scripts",
         "quality_criteria",
         "upgrade_safety"
       ]
@@ -99,7 +106,8 @@
       "input": "Completa los archivos faltantes de agentic-loop-engineering sin sobreescribir mis ediciones locales del loop.",
       "expected_activation": true,
       "expected_checks": [
-        "evidence",
+        "assets",
+        "deterministic_scripts",
         "quality_criteria",
         "upgrade_safety"
       ]
@@ -109,7 +117,8 @@
       "input": "Crea una variante experimental local de agentic-loop-engineering bajo .local con budget por tokens.",
       "expected_activation": true,
       "expected_checks": [
-        "evidence",
+        "assets",
+        "deterministic_scripts",
         "quality_criteria",
         "upgrade_safety"
       ]

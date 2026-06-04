@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Agentic Loop Engineering Output</title>
+    <style>
+      body { font-family: system-ui, sans-serif; margin: 2rem; line-height: 1.5; color: #17202a; }
+      main { max-width: 960px; margin: 0 auto; }
+      section { border-top: 1px solid #d5d8dc; padding-top: 1rem; margin-top: 1rem; }
+      pre { background: #f4f6f7; padding: 1rem; overflow: auto; }
+      code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Agentic Loop Engineering</h1>
+      <section>
+        <h2>Summary</h2>
+        <p>{{summary}}</p>
+      </section>
+      <section>
+        <h2>Generated Loop</h2>
+        <pre><code>{{generated_loop}}</code></pre>
+      </section>
+      <section>
+        <h2>Validation</h2>
+        <ul>
+          <li>Routes by typed <code>stop_reason</code>.</li>
+          <li>Dispatches <code>tool_use</code> blocks through explicit handlers.</li>
+          <li>Reinjects <code>tool_result</code> as user content with correlation id.</li>
+          <li>Raises on unknown stop reasons and exhausted budget.</li>
+          <li>Emits loop transition events.</li>
+        </ul>
+      </section>
+    </main>
+  </body>
+</html>

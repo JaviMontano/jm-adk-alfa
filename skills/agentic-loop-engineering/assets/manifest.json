@@ -1,0 +1,32 @@
+{
+  "schema": 1,
+  "skill": "agentic-loop-engineering",
+  "assets": [
+    {
+      "path": "assets/loop-contract.schema.json",
+      "type": "contract-schema",
+      "purpose": "Defines required structured fields for an agentic control loop.",
+      "used_by": [
+        "scripts/compile-agentic-loop.py",
+        "scripts/check.sh"
+      ]
+    },
+    {
+      "path": "assets/loop-policy.json",
+      "type": "policy",
+      "purpose": "Defines allowed stop reasons, handler actions, budgets, and rejected anti-patterns.",
+      "used_by": [
+        "scripts/compile-agentic-loop.py",
+        "scripts/check.sh"
+      ]
+    },
+    {
+      "path": "assets/loop-report-template.md",
+      "type": "template",
+      "purpose": "Provides a stable review format for loop design decisions and validation evidence.",
+      "used_by": [
+        "scripts/compile-agentic-loop.py"
+      ]
+    }
+  ]
+}

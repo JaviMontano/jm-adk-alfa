@@ -1,10 +1,3 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: agentic-loop-engineering
-generated-on: 2026-05-30
-overwrite-policy: missing-only unless --force
--->
-
 # Agentic Loop Engineering Body of Knowledge
 
 ## Canon
@@ -43,3 +36,7 @@ Enrutar el control parseando prosa (`"done" in text`). Consecuencias: halt silen
 
 - Budget por tokens usando el campo `usage` de la respuesta, además del techo de iteraciones.
 - Manejo de `pause_turn` y transporte degradado (`Transport closed`).
+
+## Deterministic package
+
+La skill ahora incluye un contrato ejecutable para convertir decisiones de arquitectura del loop en artefactos verificables. `assets/loop-contract.schema.json` define campos requeridos, `assets/loop-policy.json` define acciones permitidas y anti-patrones bloqueados, y `scripts/compile-agentic-loop.py` genera codigo Python solo si el contrato cumple budget, stop handlers, reinyeccion de `tool_result`, fallos fuertes e instrumentacion.

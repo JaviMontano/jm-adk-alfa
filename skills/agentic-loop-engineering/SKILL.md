@@ -90,6 +90,13 @@ while True:
 - ¿Los fallos son fuertes y observables, no halts silenciosos?
 - ¿Cada transición del loop queda instrumentada para auditoría?
 
+## Paquete deterministico
+
+- Usa `assets/loop-contract.schema.json` y `assets/loop-policy.json` para declarar el contrato estructurado del loop antes de escribir codigo.
+- Ejecuta `scripts/compile-agentic-loop.py <contrato.json> --output <loop.py> --report <reporte.md>` cuando necesites convertir el contrato en un esqueleto Python verificable.
+- Ejecuta `bash skills/agentic-loop-engineering/scripts/check.sh` antes de marcar la skill como lista.
+- Rechaza contratos sin budget, con control por prosa, con `tool_result` fuera del rol `user`, o con senales desconocidas que no terminen en `UnhandledStop`.
+
 ## Katas y skills relacionadas
 
 - Kata fundacional: `katas-01`.
