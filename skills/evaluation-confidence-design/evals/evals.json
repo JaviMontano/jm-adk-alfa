@@ -1,7 +1,5 @@
 {
   "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-30",
   "skill": "evaluation-confidence-design",
   "cases": [
     {
@@ -9,6 +7,8 @@
       "input": "Our contract-review agent emits findings with a raw confidence score. We cut at confidence >= 0.7 and report 88% aggregate accuracy. Design the evaluation: calibrate confidence against our 600-item labeled set, stratify by document_type, and report false-positive rate per category.",
       "expected_activation": true,
       "expected_checks": [
+        "assets",
+        "deterministic_scripts",
         "evidence",
         "quality_criteria",
         "upgrade_safety"
@@ -19,6 +19,8 @@
       "input": "/evaluation-confidence-design calibrate the classifier threshold and add stratified sampling by document_type.",
       "expected_activation": true,
       "expected_checks": [
+        "assets",
+        "deterministic_scripts",
         "evidence",
         "quality_criteria",
         "upgrade_safety"
@@ -29,6 +31,8 @@
       "input": "confidence calibration and false positive criteria for our evaluator",
       "expected_activation": true,
       "expected_checks": [
+        "assets",
+        "deterministic_scripts",
         "evidence",
         "quality_criteria",
         "upgrade_safety"
@@ -39,6 +43,8 @@
       "input": "We have a labeled set of 600 findings tagged by document_type (contract, NDA, DPA) and category (indemnity, termination, data_privacy, payment_terms). data_privacy on NDA shows many false positives but aggregate accuracy looks fine. Build calibrated cutoff, stratified sampling, categorical criteria with +/- examples per severity, FP rate per category, and a temporal disable for noisy categories.",
       "expected_activation": true,
       "expected_checks": [
+        "assets",
+        "deterministic_scripts",
         "evidence",
         "quality_criteria",
         "upgrade_safety"
@@ -49,6 +55,8 @@
       "input": "Our evaluation uses a single global random sample, so rare document_types disappear from the metric. Make the sampling stratified with a minimum per stratum.",
       "expected_activation": true,
       "expected_checks": [
+        "assets",
+        "deterministic_scripts",
         "evidence",
         "quality_criteria",
         "upgrade_safety"
@@ -59,6 +67,8 @@
       "input": "Help me write release notes for this sprint.",
       "expected_activation": false,
       "expected_checks": [
+        "assets",
+        "deterministic_scripts",
         "evidence",
         "quality_criteria",
         "upgrade_safety"
@@ -69,6 +79,8 @@
       "input": "",
       "expected_activation": false,
       "expected_checks": [
+        "assets",
+        "deterministic_scripts",
         "evidence",
         "quality_criteria",
         "upgrade_safety"
@@ -79,6 +91,8 @@
       "input": "Just cut on the raw confidence score and report one aggregate accuracy number; skip calibration and per-category FP.",
       "expected_activation": false,
       "expected_checks": [
+        "assets",
+        "deterministic_scripts",
         "evidence",
         "quality_criteria",
         "upgrade_safety"
@@ -89,6 +103,8 @@
       "input": "Train a new classifier model and label raw documents from scratch.",
       "expected_activation": false,
       "expected_checks": [
+        "assets",
+        "deterministic_scripts",
         "evidence",
         "quality_criteria",
         "upgrade_safety"
@@ -99,6 +115,8 @@
       "input": "Complete missing files for evaluation-confidence-design without overwriting local edits.",
       "expected_activation": true,
       "expected_checks": [
+        "assets",
+        "deterministic_scripts",
         "evidence",
         "quality_criteria",
         "upgrade_safety"
@@ -109,6 +127,8 @@
       "input": "Create a local experimental evaluation-confidence-design variant under .local.",
       "expected_activation": true,
       "expected_checks": [
+        "assets",
+        "deterministic_scripts",
         "evidence",
         "quality_criteria",
         "upgrade_safety"
@@ -119,6 +139,8 @@
       "input": "This request is unrelated to the skill domain.",
       "expected_activation": false,
       "expected_checks": [
+        "assets",
+        "deterministic_scripts",
         "evidence",
         "quality_criteria",
         "upgrade_safety"
