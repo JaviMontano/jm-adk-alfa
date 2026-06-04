@@ -1,0 +1,126 @@
+{
+  "templateType": "tracking-matrix",
+  "title": "Broken Tracker",
+  "locale": "es-CO",
+  "sheets": [
+    {
+      "name": "Tracker",
+      "purpose": "Track items.",
+      "printArea": "A1:C20",
+      "autoFilter": true,
+      "mergedCellsInDataArea": false,
+      "columns": [
+        {
+          "header": "ID",
+          "width": 8,
+          "type": "auto-increment",
+          "description": "ID."
+        },
+        {
+          "header": "Owner",
+          "width": 20,
+          "type": "dropdown",
+          "source": "Owners!A:A",
+          "description": "Owner dropdown from wrong sheet."
+        },
+        {
+          "header": "Status",
+          "width": 16,
+          "type": "dropdown",
+          "source": "Config!B2:B20",
+          "description": "Status."
+        }
+      ]
+    },
+    {
+      "name": "Summary",
+      "purpose": "Summary.",
+      "printArea": "A1:C20",
+      "autoFilter": false,
+      "mergedCellsInDataArea": false,
+      "columns": [
+        {
+          "header": "Metric",
+          "width": 20,
+          "type": "text",
+          "description": "Metric."
+        },
+        {
+          "header": "Value",
+          "width": 12,
+          "type": "number",
+          "description": "Value."
+        },
+        {
+          "header": "Notes",
+          "width": 20,
+          "type": "text",
+          "description": "Notes."
+        }
+      ]
+    },
+    {
+      "name": "Config",
+      "purpose": "Edit here for dropdowns.",
+      "printArea": "A1:B20",
+      "columns": [
+        {
+          "header": "Owner",
+          "width": 20,
+          "type": "text",
+          "description": "Owner."
+        },
+        {
+          "header": "Status",
+          "width": 20,
+          "type": "text",
+          "description": "Status."
+        }
+      ]
+    }
+  ],
+  "namedRanges": [
+    {
+      "name": "OwnerList",
+      "refersTo": "Config!$A$2:$A$20",
+      "purpose": "Owners."
+    },
+    {
+      "name": "StatusList",
+      "refersTo": "Config!$B$2:$B$20",
+      "purpose": "Statuses."
+    }
+  ],
+  "validation": [
+    {
+      "check": "dropdown-sources",
+      "status": "fail",
+      "evidence": "Owner dropdown points outside Config."
+    },
+    {
+      "check": "required-sheets",
+      "status": "pass",
+      "evidence": "Required sheets exist."
+    },
+    {
+      "check": "columns",
+      "status": "pass",
+      "evidence": "Columns are complete."
+    },
+    {
+      "check": "print-areas",
+      "status": "pass",
+      "evidence": "Print areas exist."
+    },
+    {
+      "check": "named-ranges",
+      "status": "pass",
+      "evidence": "Named ranges exist."
+    }
+  ],
+  "handoff": {
+    "renderer": "xlsx-renderer",
+    "outputFormat": ".xlsx",
+    "notes": "Invalid fixture."
+  }
+}

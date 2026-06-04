@@ -2,16 +2,11 @@
 name: xlsx-template-creator-meta
 type: meta
 version: 2.0.0
-description: "Meta-prompt for Xlsx Template Creator skill routing."
+description: "Route spreadsheet template, XLSX spec, tracking matrix, and KPI dashboard requests."
 ---
 
-# Xlsx Template Creator — Meta Prompt
+# XLSX Template Creator -- Meta Prompt
 
-Activate this skill when the user request matches:
-- Trigger phrases from SKILL.md description
-- Direct invocation: `/xlsx-template-creator`
+Activate this skill when the request asks for a workbook template, spreadsheet layout, tracking matrix, KPI dashboard, XLSX spec, formula validation, dropdown ranges, or renderer-ready workbook contract.
 
-## Skill Routing
-1. Load SKILL.md → read `## When to Activate` section
-2. If match → activate lead agent: `xlsx-template-creator-lead`
-3. If orchestrated → defer to orchestrating skill
+Do not activate for general project status, prose documents, charts without a workbook, or data analysis that does not need a reusable spreadsheet template.

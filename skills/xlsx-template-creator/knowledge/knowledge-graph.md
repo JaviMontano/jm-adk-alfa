@@ -1,13 +1,14 @@
-# Xlsx Template Creator — Knowledge Graph
+# XLSX Template Creator -- Knowledge Graph
 
 ## Core Concepts
-- xlsx-template-creator: primary capability
-- validation-gate: quality control checkpoint
-- evidence-tagging: [EXPLICIT]/[INFERRED]/[OPEN] claims
 
-## Dependencies
-- Upstream: input-analysis, context-optimization
-- Downstream: output-engineering, rendering-engine
+- `xlsx-template-creator`: creates renderer-ready workbook specifications.
+- `workbook-spec`: JSON source contract for the compiler.
+- `template-policy`: required sheets, semantic colors, and formatting minimums.
+- `formula-policy`: guarded formulas, blocked volatile functions, dropdown sources, and named range patterns.
+- `compiler`: deterministic validation and Markdown/YAML renderer.
+- `renderer-handoff`: final artifact passed to an XLSX renderer.
 
-## Skill Relationships
-Part of the JM Labs canonical skill registry.
+## Flow
+
+`User workbook request` -> `workbook-spec` -> `compile-xlsx-template.py` -> `validated report` -> `XLSX renderer handoff`

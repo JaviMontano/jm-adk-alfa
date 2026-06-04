@@ -1,0 +1,32 @@
+{
+  "formulaPrefix": "=",
+  "divisionRequiresIfGuard": true,
+  "acceptedDropdownSourcePrefixes": [
+    "Config!",
+    "="
+  ],
+  "blockedFormulaTokens": [
+    "INDIRECT(",
+    "OFFSET(",
+    "NOW(",
+    "RAND(",
+    "RANDBETWEEN(",
+    "WEBSERVICE(",
+    "HYPERLINK(\"http"
+  ],
+  "requiredFormulaSignals": [
+    "COUNTIF(",
+    "COUNTIFS(",
+    "COUNTA(",
+    "IF(",
+    "SUM(",
+    "AVERAGE("
+  ],
+  "namedRangePattern": "^[A-Za-z][A-Za-z0-9_]{2,60}$",
+  "cellRangePattern": "^[A-Za-z][A-Za-z0-9_ ]*!\\$?[A-Z]{1,3}\\$?\\d{1,7}:\\$?[A-Z]{1,3}\\$?\\d{1,7}$",
+  "allowedValidationStatuses": [
+    "pass",
+    "warn",
+    "fail"
+  ]
+}

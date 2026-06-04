@@ -1,0 +1,186 @@
+{
+  "templateType": "tracking-matrix",
+  "title": "Workflow Execution Tracker",
+  "locale": "es-CO",
+  "sheets": [
+    {
+      "name": "Tracker",
+      "purpose": "Track work items, owners, status, priority, dates, and completion.",
+      "printArea": "A1:I200",
+      "autoFilter": true,
+      "mergedCellsInDataArea": false,
+      "columns": [
+        {
+          "header": "ID",
+          "width": 8,
+          "type": "auto-increment",
+          "description": "Unique row identifier."
+        },
+        {
+          "header": "Item",
+          "width": 40,
+          "type": "text",
+          "description": "Task or work item."
+        },
+        {
+          "header": "Owner",
+          "width": 20,
+          "type": "dropdown",
+          "source": "Config!A2:A50",
+          "description": "Responsible person or agent."
+        },
+        {
+          "header": "Status",
+          "width": 16,
+          "type": "dropdown",
+          "source": "Config!B2:B20",
+          "description": "Current workflow state.",
+          "conditionalFormat": {
+            "Completado": {
+              "bg": "#c6efce",
+              "font": "#c6efce"
+            },
+            "Bloqueado": {
+              "bg": "#ffc7ce",
+              "font": "#ffc7ce"
+            }
+          }
+        },
+        {
+          "header": "Priority",
+          "width": 12,
+          "type": "dropdown",
+          "source": "Config!C2:C10",
+          "description": "Business priority."
+        },
+        {
+          "header": "Start Date",
+          "width": 14,
+          "type": "date",
+          "description": "Start date in ISO format."
+        },
+        {
+          "header": "Due Date",
+          "width": 14,
+          "type": "date",
+          "description": "Due date in ISO format."
+        },
+        {
+          "header": "% Complete",
+          "width": 12,
+          "type": "percentage",
+          "description": "Completion percentage.",
+          "conditionalFormat": {
+            "dataBar": {
+              "color": "#4472c4"
+            }
+          }
+        },
+        {
+          "header": "Notes",
+          "width": 50,
+          "type": "text",
+          "description": "Free-form notes."
+        }
+      ]
+    },
+    {
+      "name": "Summary",
+      "purpose": "Auto-calculated dashboard from Tracker data.",
+      "printArea": "A1:D20",
+      "autoFilter": false,
+      "mergedCellsInDataArea": false,
+      "columns": [
+        {
+          "header": "Metric",
+          "width": 24,
+          "type": "text",
+          "description": "Summary metric label."
+        },
+        {
+          "header": "Value",
+          "width": 16,
+          "type": "formula",
+          "formula": "=COUNTA(Tracker!A:A)-1",
+          "description": "Calculated metric value."
+        },
+        {
+          "header": "Rate",
+          "width": 16,
+          "type": "formula",
+          "formula": "=IF(B3=0,0,B4/B3)",
+          "description": "Guarded percentage calculation."
+        }
+      ]
+    },
+    {
+      "name": "Config",
+      "purpose": "Edit here to update dropdown values and labels.",
+      "printArea": "A1:C50",
+      "columns": [
+        {
+          "header": "Owners",
+          "width": 20,
+          "type": "text",
+          "description": "Allowed owner values."
+        },
+        {
+          "header": "Status",
+          "width": 20,
+          "type": "text",
+          "description": "Allowed status values."
+        },
+        {
+          "header": "Priority",
+          "width": 20,
+          "type": "text",
+          "description": "Allowed priority values."
+        }
+      ]
+    }
+  ],
+  "namedRanges": [
+    {
+      "name": "OwnerList",
+      "refersTo": "Config!$A$2:$A$50",
+      "purpose": "Dropdown source for owners."
+    },
+    {
+      "name": "StatusList",
+      "refersTo": "Config!$B$2:$B$20",
+      "purpose": "Dropdown source for statuses."
+    }
+  ],
+  "validation": [
+    {
+      "check": "required-sheets",
+      "status": "pass",
+      "evidence": "Tracker, Summary, and Config sheets are present."
+    },
+    {
+      "check": "column-contract",
+      "status": "pass",
+      "evidence": "Every column has header, width, type, and description."
+    },
+    {
+      "check": "dropdown-sources",
+      "status": "pass",
+      "evidence": "Dropdowns reference Config sheet ranges."
+    },
+    {
+      "check": "formula-guards",
+      "status": "pass",
+      "evidence": "Division formulas use IF guards."
+    },
+    {
+      "check": "print-areas",
+      "status": "pass",
+      "evidence": "Each sheet declares a print area."
+    }
+  ],
+  "handoff": {
+    "renderer": "xlsx-renderer",
+    "outputFormat": ".xlsx",
+    "notes": "Render from this YAML-like spec after owner values are finalized."
+  }
+}

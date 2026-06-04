@@ -1,9 +1,117 @@
-[
-  {"id": "xlsx-template-creator-happy-path", "type": "happy_path", "input": "Run xlsx template creator on this project", "expected_behavior": "Skill activates and produces the expected xlsx template creator output following the defined process", "tags": ["basic", "activation"]},
-  {"id": "xlsx-template-creator-explicit-trigger", "type": "happy_path", "input": "Apply xlsx template creator analysis", "expected_behavior": "Skill recognizes the trigger phrase and executes the xlsx template creator workflow", "tags": ["trigger", "recognition"]},
-  {"id": "xlsx-template-creator-with-context", "type": "happy_path", "input": "Apply xlsx template creator to analyze the current codebase with detailed output", "expected_behavior": "Skill produces comprehensive xlsx template creator analysis with evidence-tagged findings", "tags": ["detailed", "comprehensive"]},
-  {"id": "xlsx-template-creator-minimal-input", "type": "happy_path", "input": "Quick xlsx template creator", "expected_behavior": "Skill activates with minimal input, applies reasonable defaults", "tags": ["minimal", "defaults"]},
-  {"id": "xlsx-template-creator-false-positive", "type": "false_positive", "input": "What is the weather forecast for tomorrow?", "expected_behavior": "Skill should NOT activate — this input has no relation to xlsx template creator", "tags": ["false_positive", "should-not-activate"]},
-  {"id": "xlsx-template-creator-edge-empty-input", "type": "edge_case", "input": "Run xlsx template creator but I have no files or documentation yet", "expected_behavior": "Skill handles gracefully — requests minimum viable input or produces gap analysis", "tags": ["edge_case", "empty-input", "boundary"]},
-  {"id": "xlsx-template-creator-edge-conflicting", "type": "edge_case", "input": "Apply xlsx template creator but requirements contradict each other", "expected_behavior": "Skill detects contradiction, flags with [OPEN] tag, proposes resolution", "tags": ["edge_case", "conflict", "corner"]}
-]
+{
+  "cases": [
+    {
+      "id": "xlsx-template-creator-tracking-matrix",
+      "type": "happy_path",
+      "input": "Create a spreadsheet template for tracking owners, status, priority, due dates, and completion across a workflow.",
+      "expected_behavior": "Activates xlsx-template-creator, chooses tracking-matrix, defines Tracker/Summary/Config sheets, and validates the spec before handoff.",
+      "expected_checks": [
+        "assets",
+        "deterministic_scripts",
+        "quality_criteria"
+      ],
+      "tags": [
+        "tracking-matrix",
+        "activation"
+      ]
+    },
+    {
+      "id": "xlsx-template-creator-metrics-dashboard",
+      "type": "happy_path",
+      "input": "Design a KPI dashboard workbook with current values, targets, trends, thresholds, and alert rows.",
+      "expected_behavior": "Chooses metrics-dashboard, creates KPIs/Trends/Alerts/Config sheets, guards target attainment formulas, and emits renderer handoff notes.",
+      "expected_checks": [
+        "assets",
+        "deterministic_scripts",
+        "quality_criteria"
+      ],
+      "tags": [
+        "metrics-dashboard",
+        "kpi"
+      ]
+    },
+    {
+      "id": "xlsx-template-creator-compiler-markdown",
+      "type": "script_fixture",
+      "input": "Run the compiler on tracking-matrix.json and render Markdown.",
+      "expected_behavior": "The compiler exits zero and returns Summary, Sheets, Columns, Named Ranges, Validation, and Handoff sections.",
+      "expected_checks": [
+        "deterministic_scripts",
+        "quality_criteria"
+      ],
+      "tags": [
+        "compiler",
+        "markdown"
+      ]
+    },
+    {
+      "id": "xlsx-template-creator-compiler-yaml",
+      "type": "script_fixture",
+      "input": "Run the compiler on metrics-dashboard.json and render YAML.",
+      "expected_behavior": "The compiler exits zero and returns machine-oriented YAML-like output with required sheets, formulas, and named ranges.",
+      "expected_checks": [
+        "deterministic_scripts",
+        "quality_criteria"
+      ],
+      "tags": [
+        "compiler",
+        "yaml"
+      ]
+    },
+    {
+      "id": "xlsx-template-creator-unguarded-formula",
+      "type": "negative_fixture",
+      "input": "Validate a workbook spec that contains =B2/C2 without an IF guard.",
+      "expected_behavior": "The compiler exits non-zero and reports that division formulas require an IF guard.",
+      "expected_checks": [
+        "deterministic_scripts",
+        "quality_criteria"
+      ],
+      "tags": [
+        "formula-safety",
+        "fail-closed"
+      ]
+    },
+    {
+      "id": "xlsx-template-creator-invalid-dropdown",
+      "type": "negative_fixture",
+      "input": "Validate a workbook spec whose dropdown source points to Owners!A:A.",
+      "expected_behavior": "The compiler exits non-zero and reports that dropdown sources must reference Config or a named range.",
+      "expected_checks": [
+        "deterministic_scripts",
+        "quality_criteria"
+      ],
+      "tags": [
+        "dropdowns",
+        "fail-closed"
+      ]
+    },
+    {
+      "id": "xlsx-template-creator-missing-values",
+      "type": "edge_case",
+      "input": "Create a tracker template, but the final owner list is not known yet.",
+      "expected_behavior": "Creates editable Config placeholders, marks the uncertainty in validation evidence, and keeps dropdown formulas tied to Config ranges.",
+      "expected_checks": [
+        "assets",
+        "quality_criteria"
+      ],
+      "tags": [
+        "missing-inputs",
+        "config"
+      ]
+    },
+    {
+      "id": "xlsx-template-creator-false-positive",
+      "type": "false_positive",
+      "input": "Write a project status email summarizing this week's work.",
+      "expected_behavior": "Does not activate unless the user requests a spreadsheet template, XLSX spec, tracking matrix, workbook layout, or KPI dashboard.",
+      "expected_checks": [
+        "quality_criteria"
+      ],
+      "tags": [
+        "routing",
+        "should-not-activate"
+      ]
+    }
+  ]
+}

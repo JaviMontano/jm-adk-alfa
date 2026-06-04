@@ -1,10 +1,5 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: xlsx-template-creator
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
-
 # Example Input
 
-Use `xlsx-template-creator` to produce a concise deliverable for a realistic project request.
+Create a spreadsheet template for a delivery workflow tracker.
+
+The workbook must track work item, owner, status, priority, start date, due date, completion percentage, and notes. It needs a summary sheet with completion rate and blocked count, plus an editable config sheet for owners, statuses, and priorities. Use Spanish labels and prepare it for an XLSX renderer.

@@ -1,0 +1,54 @@
+{
+  "acceptedTemplateTypes": [
+    "tracking-matrix",
+    "metrics-dashboard"
+  ],
+  "requiredSheets": {
+    "tracking-matrix": [
+      "Tracker",
+      "Summary",
+      "Config"
+    ],
+    "metrics-dashboard": [
+      "KPIs",
+      "Trends",
+      "Alerts",
+      "Config"
+    ]
+  },
+  "allowedColumnTypes": [
+    "auto-increment",
+    "text",
+    "number",
+    "percentage",
+    "currency",
+    "date",
+    "dropdown",
+    "formula",
+    "boolean"
+  ],
+  "columnWidth": {
+    "min": 6,
+    "max": 80
+  },
+  "semanticColors": {
+    "good": "#c6efce",
+    "warning": "#ffeb9c",
+    "critical": "#ffc7ce",
+    "neutral": "#f2f2f2",
+    "progress": "#4472c4"
+  },
+  "requiredFormatting": [
+    "frozen-header",
+    "autofilter-data-sheets",
+    "config-sheet-dropdowns",
+    "print-area-per-sheet",
+    "no-merged-cells-in-data-areas"
+  ],
+  "minimums": {
+    "sheets": 3,
+    "namedRanges": 2,
+    "validationChecks": 5,
+    "columnsPerDataSheet": 3
+  }
+}

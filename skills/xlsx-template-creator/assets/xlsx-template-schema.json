@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "requiredTopLevel": [
+    "templateType",
+    "title",
+    "locale",
+    "sheets",
+    "namedRanges",
+    "validation",
+    "handoff"
+  ],
+  "requiredSheetFields": [
+    "name",
+    "purpose",
+    "columns",
+    "printArea"
+  ],
+  "requiredColumnFields": [
+    "header",
+    "width",
+    "type",
+    "description"
+  ],
+  "requiredNamedRangeFields": [
+    "name",
+    "refersTo",
+    "purpose"
+  ],
+  "requiredValidationFields": [
+    "check",
+    "status",
+    "evidence"
+  ],
+  "requiredHandoffFields": [
+    "renderer",
+    "outputFormat",
+    "notes"
+  ]
+}

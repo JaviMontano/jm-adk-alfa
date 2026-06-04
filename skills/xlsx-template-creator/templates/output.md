@@ -1,28 +1,39 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: xlsx-template-creator
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
-
-# Xlsx Template Creator Output
+# XLSX Template Spec: {title}
 
 ## Summary
 
-{summary}
+- Template type: `{template_type}`
+- Locale: `{locale}`
+- Sheets: `{sheet_count}`
+- Named ranges: `{named_range_count}`
+- Validation checks: `{validation_count}`
 
-## Evidence
+## Sheets
 
-{evidence}
+| Sheet | Purpose | Columns | Print area |
+|---|---|---|---|
+| {sheet} | {purpose} | {column_count} | {print_area} |
 
-## Result
+## Columns
 
-{result}
+| Sheet | Header | Type | Width | Formula/source |
+|---|---|---|---|---|
+| {sheet} | {header} | {type} | {width} | {formula_or_source} |
+
+## Named Ranges
+
+| Name | Reference | Purpose |
+|---|---|---|
+| {name} | {refers_to} | {purpose} |
 
 ## Validation
 
-{validation}
+| Status | Check | Evidence |
+|---|---|---|
+| {status} | {check} | {evidence} |
 
-## Risks and Limits
+## Handoff
 
-{risks}
+- Renderer: `{renderer}`
+- Output format: `{output_format}`
+- Notes: {notes}

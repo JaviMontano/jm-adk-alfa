@@ -1,272 +1,129 @@
 ---
 name: xlsx-template-creator
 version: 1.0.0
-description:  [EXPLICIT]
-  Generates XLSX template specifications with columns, formulas, conditional formatting, and dashboard layouts for tracking and metrics. [EXPLICIT]
-  Use when the user asks to "create a spreadsheet template", "build a tracking matrix", "design a metrics dashboard", [EXPLICIT]
-  "generate an XLSX spec", or mentions xlsx template, spreadsheet layout, or KPI dashboard. [EXPLICIT]
-argument-hint: tracking-matrix|metrics-dashboard title [EXPLICIT]
-model: opus [EXPLICIT]
-context: fork [EXPLICIT]
+description: "Generates deterministic XLSX template specifications for tracking matrices and metrics dashboards. Use when the user asks to create a spreadsheet template, build a tracking matrix, design a KPI dashboard, generate an XLSX spec, define workbook columns, or validate spreadsheet formulas and dropdown ranges before rendering."
+argument-hint: "tracking-matrix|metrics-dashboard title"
 allowed-tools:
   - Read
   - Write
   - Edit
   - Glob
+  - Grep
+  - Bash
+model: opus
+context: fork
 ---
-# XLSX Template Creator [EXPLICIT]
- [EXPLICIT]
-Generate XLSX template specifications — YAML definitions that describe spreadsheet structure, formulas, validation rules, and conditional formatting for a rendering skill to produce .xlsx files. [EXPLICIT]
- [EXPLICIT]
-## Assumptions & Limits [EXPLICIT]
- [EXPLICIT]
-- **Assumes**: A rendering skill/tool converts the YAML spec to actual .xlsx (this skill defines structure) [EXPLICIT]
-- **Limit**: Complex chart types (waterfall, Gantt) require post-render configuration [EXPLICIT]
-- **Limit**: Sparklines depend on renderer support — degrade to text trends if unavailable [EXPLICIT]
-- **Trade-off**: YAML spec = version-controllable, auditable; direct .xlsx = exact formatting but binary [EXPLICIT]
- [EXPLICIT]
-### When to use each type [EXPLICIT]
- [EXPLICIT]
-| Signal | Tracking Matrix | Metrics Dashboard | [EXPLICIT]
-|---|---|---| [EXPLICIT]
-| Individual task/item tracking | Yes | No | [EXPLICIT]
-| KPI monitoring over time | No | Yes | [EXPLICIT]
-| Compliance checklist | Yes | No | [EXPLICIT]
-| Executive summary | No | Yes | [EXPLICIT]
-| Both | Create one of each, cross-reference | [EXPLICIT]
- [EXPLICIT]
-## Usage [EXPLICIT]
- [EXPLICIT]
-``` [EXPLICIT]
-/xlsx-template-creator tracking-matrix "Workflow Execution Tracker" [EXPLICIT]
-/xlsx-template-creator metrics-dashboard "Agent Performance Dashboard" [EXPLICIT]
-``` [EXPLICIT]
- [EXPLICIT]
-Parse `$1` as type, `$2` as title. If missing, interview. [EXPLICIT]
- [EXPLICIT]
-## Before Generating [EXPLICIT]
- [EXPLICIT]
-1. **Read column spec**: `Read references/xlsx-columns-spec.md` if available [EXPLICIT]
-2. **Read source KPIs**: If linked to a skill/workflow, read its metrics [EXPLICIT]
-3. **Check existing**: `Glob **/templates/*.xlsx.md` for consistency [EXPLICIT]
- [EXPLICIT]
-## Tracking Matrix Spec [EXPLICIT]
- [EXPLICIT]
-3 sheets: **Tracker** (data), **Summary** (aggregation), **Config** (dropdowns) [EXPLICIT]
- [EXPLICIT]
-```yaml [EXPLICIT]
-templateType: tracking-matrix [EXPLICIT]
-title: "{{title}}" [EXPLICIT]
- [EXPLICIT]
-sheets: [EXPLICIT]
-  - name: Tracker [EXPLICIT]
-    frozenRows: 1 [EXPLICIT]
-    frozenCols: 2 [EXPLICIT]
-    autoFilter: true [EXPLICIT]
-    columns: [EXPLICIT]
-      - header: "ID" [EXPLICIT]
-        width: 8 [EXPLICIT]
-        type: auto-increment [EXPLICIT]
-        description: "Unique row identifier" [EXPLICIT]
-      - header: "Item" [EXPLICIT]
-        width: 40 [EXPLICIT]
-        type: text [EXPLICIT]
-        description: "Task or item being tracked" [EXPLICIT]
-      - header: "Owner" [EXPLICIT]
-        width: 20 [EXPLICIT]
-        type: dropdown [EXPLICIT]
-        source: "Config!A2:A50" [EXPLICIT]
-        description: "Responsible person/agent" [EXPLICIT]
-      - header: "Status" [EXPLICIT]
-        width: 15 [EXPLICIT]
-        type: dropdown [EXPLICIT]
-        source: "Config!B2:B10" [EXPLICIT]
-        conditionalFormat: [EXPLICIT]
-          "Completado": { bg: "#c6efce", font: "#006100" } [EXPLICIT]
-          "En Progreso": { bg: "#ffeb9c", font: "#9c5700" } [EXPLICIT]
-          "Bloqueado": { bg: "#ffc7ce", font: "#9c0006" } [EXPLICIT]
-          "Pendiente": { bg: "#f2f2f2", font: "#666666" } [EXPLICIT]
-      - header: "Priority" [EXPLICIT]
-        width: 12 [EXPLICIT]
-        type: dropdown [EXPLICIT]
-        source: "Config!C2:C5" [EXPLICIT]
-        conditionalFormat: [EXPLICIT]
-          "Critica": { bg: "#ffc7ce", font: "#9c0006" } [EXPLICIT]
-          "Alta": { bg: "#ffeb9c", font: "#9c5700" } [EXPLICIT]
-      - header: "Start Date" [EXPLICIT]
-        width: 12 [EXPLICIT]
-        type: date [EXPLICIT]
-        format: "YYYY-MM-DD" [EXPLICIT]
-      - header: "Due Date" [EXPLICIT]
-        width: 12 [EXPLICIT]
-        type: date [EXPLICIT]
-        format: "YYYY-MM-DD" [EXPLICIT]
-        conditionalFormat: [EXPLICIT]
-          overdue: { bg: "#ffc7ce" }  # Due date  today AND status != Completado [EXPLICIT]
-      - header: "% Complete" [EXPLICIT]
-        width: 10 [EXPLICIT]
-        type: percentage [EXPLICIT]
-        conditionalFormat: [EXPLICIT]
-          dataBar: { color: "#4472c4", min: 0, max: 1 } [EXPLICIT]
-      - header: "Notes" [EXPLICIT]
-        width: 50 [EXPLICIT]
-        type: text [EXPLICIT]
-        wrapText: true [EXPLICIT]
- [EXPLICIT]
-  - name: Summary [EXPLICIT]
-    purpose: "Auto-calculated dashboard from Tracker data" [EXPLICIT]
-    layout: [EXPLICIT]
-      - cell: "A1" [EXPLICIT]
-        value: "Dashboard" [EXPLICIT]
-        style: { font: "16pt bold" } [EXPLICIT]
-      - cell: "A3" [EXPLICIT]
-        label: "Total Items" [EXPLICIT]
-        formula: "=COUNTA(Tracker!A:A)-1" [EXPLICIT]
-      - cell: "A4" [EXPLICIT]
-        label: "Completed" [EXPLICIT]
-        formula: "=COUNTIF(Tracker!D:D,\"Completado\")" [EXPLICIT]
-      - cell: "A5" [EXPLICIT]
-        label: "In Progress" [EXPLICIT]
-        formula: "=COUNTIF(Tracker!D:D,\"En Progreso\")" [EXPLICIT]
-      - cell: "A6" [EXPLICIT]
-        label: "Blocked" [EXPLICIT]
-        formula: "=COUNTIF(Tracker!D:D,\"Bloqueado\")" [EXPLICIT]
-      - cell: "A8" [EXPLICIT]
-        label: "Completion Rate" [EXPLICIT]
-        formula: "=IF(B30,B4/B3,0)" [EXPLICIT]
-        format: "0.0%" [EXPLICIT]
-      - cell: "A9" [EXPLICIT]
-        label: "Overdue Items" [EXPLICIT]
-        formula: "=COUNTIFS(Tracker!G:G,\"\"&TODAY(),Tracker!D:D,\"Completado\")" [EXPLICIT]
- [EXPLICIT]
-  - name: Config [EXPLICIT]
-    purpose: "Dropdown values — edit here to update all dropdowns" [EXPLICIT]
-    columns: [EXPLICIT]
-      - header: "Owners (A)" [EXPLICIT]
-        values: ["{{owner1}}", "{{owner2}}", "{{owner3}}"] [EXPLICIT]
-      - header: "Status (B)" [EXPLICIT]
-        values: ["Pendiente", "En Progreso", "En Revision", "Completado", "Bloqueado", "Cancelado"] [EXPLICIT]
-      - header: "Priority (C)" [EXPLICIT]
-        values: ["Critica", "Alta", "Media", "Baja"] [EXPLICIT]
-``` [EXPLICIT]
- [EXPLICIT]
-## Metrics Dashboard Spec [EXPLICIT]
- [EXPLICIT]
-4 sheets: **KPIs** (current vs target), **Trends** (historical), **Alerts** (out-of-range), **Config** (thresholds) [EXPLICIT]
- [EXPLICIT]
-```yaml [EXPLICIT]
-templateType: metrics-dashboard [EXPLICIT]
-title: "{{title}}" [EXPLICIT]
- [EXPLICIT]
-sheets: [EXPLICIT]
-  - name: KPIs [EXPLICIT]
-    frozenRows: 1 [EXPLICIT]
-    columns: [EXPLICIT]
-      - header: "KPI" [EXPLICIT]
-        width: 30 [EXPLICIT]
-      - header: "Current" [EXPLICIT]
-        width: 12 [EXPLICIT]
-        type: number [EXPLICIT]
-      - header: "Target" [EXPLICIT]
-        width: 12 [EXPLICIT]
-        type: number [EXPLICIT]
-        source: "Config!B:B" [EXPLICIT]
-      - header: "% of Target" [EXPLICIT]
-        width: 12 [EXPLICIT]
-        formula: "=IF(C{row}0,B{row}/C{row},0)" [EXPLICIT]
-        format: "0.0%" [EXPLICIT]
-        conditionalFormat: [EXPLICIT]
-          "= 1.0": { bg: "#c6efce", font: "#006100" } [EXPLICIT]
-          "= 0.7": { bg: "#ffeb9c", font: "#9c5700" } [EXPLICIT]
-          " 0.7": { bg: "#ffc7ce", font: "#9c0006" } [EXPLICIT]
-      - header: "Trend (12mo)" [EXPLICIT]
-        width: 15 [EXPLICIT]
-        sparkline: "Trends!B{row}:M{row}" [EXPLICIT]
-      - header: "Status" [EXPLICIT]
-        width: 10 [EXPLICIT]
-        formula: "=IF(D{row}=1,\"OK\",IF(D{row}=0.7,\"WARNING\",\"CRITICAL\"))" [EXPLICIT]
- [EXPLICIT]
-  - name: Trends [EXPLICIT]
-    purpose: "12-month historical data for sparklines" [EXPLICIT]
-    columns: [EXPLICIT]
-      - header: "KPI" [EXPLICIT]
-        width: 30 [EXPLICIT]
-      - headers: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"] [EXPLICIT]
-        width: 8 [EXPLICIT]
-        type: number [EXPLICIT]
- [EXPLICIT]
-  - name: Alerts [EXPLICIT]
-    purpose: "Auto-filtered: KPIs outside acceptable range" [EXPLICIT]
-    autoFilter: true [EXPLICIT]
-    conditionalFormat: [EXPLICIT]
-      row: [EXPLICIT]
-        "Critical": { bg: "#ffc7ce" } [EXPLICIT]
-        "Warning": { bg: "#ffeb9c" } [EXPLICIT]
-    columns: [EXPLICIT]
-      - header: "KPI" [EXPLICIT]
-        width: 30 [EXPLICIT]
-      - header: "Severity" [EXPLICIT]
-        width: 12 [EXPLICIT]
-        formula: "=IF(KPIs!D{row}Config!D{row},\"Critical\",IF(KPIs!D{row}Config!C{row},\"Warning\",\"OK\"))" [EXPLICIT]
-      - header: "Current" [EXPLICIT]
-        width: 12 [EXPLICIT]
-      - header: "Threshold" [EXPLICIT]
-        width: 12 [EXPLICIT]
-      - header: "Gap" [EXPLICIT]
-        width: 12 [EXPLICIT]
-        formula: "=C{row}-D{row}" [EXPLICIT]
-      - header: "Action Required" [EXPLICIT]
-        width: 50 [EXPLICIT]
-        type: text [EXPLICIT]
- [EXPLICIT]
-  - name: Config [EXPLICIT]
-    purpose: "Thresholds and targets — edit here" [EXPLICIT]
-    columns: [EXPLICIT]
-      - header: "KPI" [EXPLICIT]
-      - header: "Target" [EXPLICIT]
-        type: number [EXPLICIT]
-      - header: "Warning Threshold" [EXPLICIT]
-        type: number [EXPLICIT]
-        description: "% of target that triggers warning (e.g., 0.7)" [EXPLICIT]
-      - header: "Critical Threshold" [EXPLICIT]
-        type: number [EXPLICIT]
-        description: "% of target that triggers critical (e.g., 0.5)" [EXPLICIT]
-      - header: "Unit" [EXPLICIT]
-        type: text [EXPLICIT]
-``` [EXPLICIT]
- [EXPLICIT]
-## Formatting Standards [EXPLICIT]
- [EXPLICIT]
-| Element | Standard | Rationale | [EXPLICIT]
-|---|---|---| [EXPLICIT]
-| Header row | Bold, frozen, #f2f2f2 background | Always visible while scrolling | [EXPLICIT]
-| Data validation | Dropdowns reference Config sheet | Single source of truth for allowed values | [EXPLICIT]
-| Conditional formatting | Semantic: green=good, yellow=warning, red=critical | Universal understanding | [EXPLICIT]
-| Data bars | For percentage columns | Visual progress indicator | [EXPLICIT]
-| Named ranges | All Config columns | Clean formula references | [EXPLICIT]
-| Print area | Set per sheet | Predictable print output | [EXPLICIT]
-| No merged cells | Data areas only (header merges OK) | Prevents sort/filter issues | [EXPLICIT]
-| Column widths | Explicit per column | No auto-width surprises | [EXPLICIT]
- [EXPLICIT]
-## Edge Cases [EXPLICIT]
- [EXPLICIT]
-- **More than 10 dropdown values**: Config sheet handles unlimited rows — formula ranges should use full column (e.g., `Config!A:A`) [EXPLICIT]
-- **Cross-sheet references break on rename**: Use named ranges instead of sheet!cell references [EXPLICIT]
-- **Percentage column with 0 denominator**: All formulas use `IF(denominator0, calc, 0)` guard [EXPLICIT]
-- **Dashboard with 20 KPIs**: Split into category sub-tables with subtotals [EXPLICIT]
- [EXPLICIT]
-## Validation Gate [EXPLICIT]
- [EXPLICIT]
-- [ ] All required sheets present for chosen type [EXPLICIT]
-- [ ] Every column has header, width, and type [EXPLICIT]
-- [ ] Dropdown columns reference Config sheet [EXPLICIT]
-- [ ] Conditional formatting uses semantic colors (green/yellow/red) [EXPLICIT]
-- [ ] Formulas guard against division by zero [EXPLICIT]
-- [ ] Summary/dashboard formulas reference correct sheet ranges [EXPLICIT]
-- [ ] No merged cells in data areas [EXPLICIT]
-- [ ] Named ranges defined for cross-sheet references [EXPLICIT]
-- [ ] Print area set per sheet [EXPLICIT]
-- [ ] Config sheet is clearly labeled as "edit here" [EXPLICIT]
- [EXPLICIT]
----
-**Author:** Javier Montano | **Last updated:** 2026-03-12 [EXPLICIT]
+
+# XLSX Template Creator
+
+Generate a renderer-ready workbook specification, not a binary `.xlsx` file. The output is a structured Markdown or YAML-like spec that defines sheets, columns, formulas, dropdowns, named ranges, validation evidence, and handoff notes for a downstream XLSX renderer.
+
+## Deterministic Bundle
+
+Use the local compiler whenever the user needs a repeatable template contract, validation before handoff, or a diffable workbook spec.
+
+```bash
+python3 scripts/compile-xlsx-template.py --input path/to/workbook-spec.json --format markdown
+python3 scripts/compile-xlsx-template.py --input path/to/workbook-spec.json --format yaml --output workbook-template.yml
+```
+
+The compiler loads:
+
+| File | Purpose |
+|---|---|
+| `assets/xlsx-template-schema.json` | Required workbook, sheet, column, named range, validation, and handoff fields. |
+| `assets/template-policy.json` | Accepted template types, required sheets, semantic colors, and formatting minimums. |
+| `assets/formula-policy.json` | Formula safety rules, dropdown source prefixes, blocked functions, and named range patterns. |
+| `assets/report-template.md` | Stable Markdown report shape. |
+
+Run `bash scripts/check.sh` after changing this skill, its assets, or fixtures.
+
+## Workflow
+
+1. Identify the template type: `tracking-matrix` for task/compliance/item tracking, or `metrics-dashboard` for KPI monitoring and thresholds.
+2. Ask only for missing essentials: title, locale, workbook audience, required fields, dropdown values, KPI names, targets, thresholds, and renderer constraints.
+3. Create a JSON workbook spec that follows `assets/xlsx-template-schema.json`.
+4. Validate the spec with `scripts/compile-xlsx-template.py`; fix every error before returning the template.
+5. Return the compiled Markdown for human review, or YAML when the next step is machine rendering.
+6. Include handoff notes that name the intended renderer and any features that renderer must add natively, such as charts or sparklines.
+
+## Template Types
+
+| Signal | Choose | Required sheets |
+|---|---|---|
+| Tasks, owners, due dates, priorities, compliance rows, status tracking | `tracking-matrix` | `Tracker`, `Summary`, `Config` |
+| KPIs, current vs target, trends, thresholds, alert queues | `metrics-dashboard` | `KPIs`, `Trends`, `Alerts`, `Config` |
+
+If the user needs both, produce two specs and give them distinct titles.
+
+## Workbook Rules
+
+- Every sheet must declare `purpose`, `columns`, and `printArea`.
+- Data sheets must enable `autoFilter` when they are `Tracker`, `KPIs`, or `Alerts`.
+- Data areas must set `mergedCellsInDataArea: false`.
+- Dropdown columns must source values from `Config!` ranges or an explicit named range formula.
+- Division formulas must use an `IF` guard, for example `=IF(C2=0,0,B2/C2)`.
+- Do not use volatile or external formulas such as `INDIRECT`, `OFFSET`, `NOW`, `RAND`, `WEBSERVICE`, or HTTP hyperlinks.
+- Conditional formatting must use semantic colors from `assets/template-policy.json`.
+- Named ranges must point to sheet cell ranges such as `Config!$A$2:$A$50`.
+- `Config` must clearly tell users it is editable.
+
+## Output Shape
+
+For human review, return Markdown with these sections:
+
+1. `Summary`
+2. `Sheets`
+3. `Columns`
+4. `Named Ranges`
+5. `Validation`
+6. `Handoff`
+
+For renderer handoff, return YAML-like output from the compiler and do not add prose inside the machine block.
+
+## Edge Cases
+
+- Missing dropdown values: create placeholder `Config` columns and mark the validation row as `warn` with the missing source named.
+- Unknown renderer: set `handoff.renderer` to `xlsx-renderer` and put renderer assumptions in `handoff.notes`.
+- KPI target can be zero: every attainment formula must guard the denominator with `IF(C2=0,0,...)`.
+- Too many KPI categories for one dashboard: keep required sheets and add category columns instead of creating ad hoc sheet names unless the user asks.
+- Requested charts or sparklines: document them as renderer handoff notes; this skill validates structure and formulas, not binary chart objects.
+
+## Good vs Bad
+
+Good formula:
+
+```text
+=IF(C2=0,0,B2/C2)
+```
+
+Bad formula:
+
+```text
+=B2/C2
+```
+
+Good dropdown source:
+
+```text
+Config!A2:A50
+```
+
+Bad dropdown source:
+
+```text
+Owners!A:A
+```
+
+## Validation Gate
+
+- [ ] Required sheets exist for the chosen template type.
+- [ ] Every column has `header`, `width`, `type`, and `description`.
+- [ ] Dropdown columns reference `Config!` or a named range formula.
+- [ ] Formula columns start with `=` and pass formula-policy checks.
+- [ ] Division formulas use `IF` guards.
+- [ ] Conditional formatting uses approved semantic colors.
+- [ ] Data sheets avoid merged cells and declare print areas.
+- [ ] Named ranges are workbook-safe and point to cell ranges.
+- [ ] Validation rows include status and evidence.
+- [ ] Handoff names the renderer, output format, and rendering notes.
