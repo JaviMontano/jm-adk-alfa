@@ -1,0 +1,60 @@
+{
+  "schema": 1,
+  "skill": "input-analyst",
+  "assets": [
+    {
+      "path": "assets/input-analysis-schema.json",
+      "type": "schema",
+      "purpose": "Stable input and output contract for offline input analysis.",
+      "used_by": [
+        "scripts/compile-input-analysis.py",
+        "knowledge/body-of-knowledge.md"
+      ]
+    },
+    {
+      "path": "assets/surface-patterns.json",
+      "type": "pattern-library",
+      "purpose": "Deterministic surface error, language, and privacy signal patterns.",
+      "used_by": [
+        "scripts/compile-input-analysis.py",
+        "examples/example-output.md"
+      ]
+    },
+    {
+      "path": "assets/intent-gap-taxonomy.json",
+      "type": "taxonomy",
+      "purpose": "Canonical gap types, signal words, and priority order.",
+      "used_by": [
+        "scripts/compile-input-analysis.py",
+        "prompts/primary.md"
+      ]
+    },
+    {
+      "path": "assets/quality-calibration.json",
+      "type": "quality-model",
+      "purpose": "Actionability score, quality level, confidence, and routing thresholds.",
+      "used_by": [
+        "scripts/compile-input-analysis.py",
+        "evals/evals.json"
+      ]
+    },
+    {
+      "path": "assets/input-analysis-template.md",
+      "type": "markdown-template",
+      "purpose": "Canonical deterministic report template.",
+      "used_by": [
+        "scripts/compile-input-analysis.py",
+        "templates/output.md"
+      ]
+    },
+    {
+      "path": "assets/source-map.md",
+      "type": "source-map",
+      "purpose": "Local documentation references for the five-pass workflow.",
+      "used_by": [
+        "knowledge/body-of-knowledge.md",
+        "SKILL.md"
+      ]
+    }
+  ]
+}

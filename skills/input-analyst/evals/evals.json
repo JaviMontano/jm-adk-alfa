@@ -1,190 +1,58 @@
 {
-  "skill_name": "input-analyst",
-  "description": "Evaluates the five-pass input analysis pipeline across different input quality levels, gap types, and edge cases. Each eval targets a specific capability to avoid trivial pass-through.",
-  "evals": [
+  "cases": [
     {
-      "id": 1,
-      "name": "full-pipeline-messy-vague",
-      "prompt": "i need somthing for teh meeting tmrw about that thing we talked about",
-      "expected_output": "Full 5-pass analysis: Pass 1 corrects typos, Pass 2 attempts root cause but hits open questions due to missing context, Pass 3 skipped or minimal (no root to trace forward from), Pass 4 identifies multiple context gaps, Pass 5 produces a reformulation that flags open questions instead of fabricating answers.",
-      "files": [],
-      "expectations": [
-        "Pass 1 corrects 'somthing' to 'something' and 'teh' to 'the' with HIGH confidence",
-        "Pass 1 preserves 'tmrw' as-is or flags as abbreviation (not a misspelling)",
-        "Pass 2 identifies 'that thing' and 'the meeting' as dangling references that block root cause analysis",
-        "Pass 4 identifies at least 2 context gaps: 'that thing' (no antecedent) and 'the meeting' (unspecified)",
-        "Pass 5 reformulation includes open questions rather than fabricated context",
-        "Overall confidence rated as 'low' due to insufficient context",
-        "Analysis runs all 5 passes (input matches 'messy + vague' in scaling table)"
-      ]
+      "id": "input-analyst-full-pipeline-messy-vague",
+      "type": "happy_path",
+      "input": "i need somthing for teh meeting tmrw about that thing we talked about",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "surface_errors", "ambiguity_register"]
     },
     {
-      "id": 2,
-      "name": "scaling-clear-specific",
-      "prompt": "Create a Python function that sorts a list of dictionaries by the 'date' key in descending order",
-      "expected_output": "Minimal analysis: Pass 4 only confirms no gap between typed and meant. Reformulated prompt is nearly identical to original. No over-analysis.",
-      "files": [],
-      "expectations": [
-        "Does not run Pass 1 (no surface errors to correct)",
-        "Does not run Pass 2 or Pass 3 (input is clear and specific — no root cause needed)",
-        "Pass 4 confirms alignment: explicit matches implicit, no gap detected in any of 5 types",
-        "Reformulated prompt is functionally identical to original (may add 'descending order' if implicit)",
-        "Analysis depth matches 'clear + specific' row in scaling table",
-        "Overall confidence rated as 'high'",
-        "Total analysis completes in minimal steps — this tests that the skill does NOT over-analyze"
-      ]
+      "id": "input-analyst-clear-specific-scaling",
+      "type": "quality_gate",
+      "input": "Create a Python function that sorts dictionaries by date descending.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "no_overanalysis"]
     },
     {
-      "id": 3,
-      "name": "emotional-gap-detection",
-      "prompt": "This code is a DISASTER. The previous dev was INCOMPETENT and now everything is broken and I'm worried I'll make it worse",
-      "expected_output": "Emotional gap detection: identifies frustration, blame language, fear of action, and ALL-CAPS emphasis. Reformulation addresses both the technical repair and the emotional need for safety/confidence.",
-      "files": [],
-      "expectations": [
-        "Pass 4 detects emotional gap: frustration (DISASTER), blame language (INCOMPETENT), fear (worried I'll make it worse)",
-        "Pass 4 detects scope gap: 'everything is broken' is symptom language hiding actual scope",
-        "Reformulated prompt separates emotional context from technical requirement",
-        "Reformulation does NOT mirror blame language ('incompetent') — reframes constructively",
-        "Reformulation includes safety mechanisms: phased approach, tests first, or backup strategy",
-        "Emotional gap is prioritized over scope gap (per priority framework: emotional > scope)",
-        "The real ask identified is closer to 'safe code repair with risk mitigation' than 'fix everything'"
-      ]
+      "id": "input-analyst-emotional-gap",
+      "type": "quality_gate",
+      "input": "This code is a DISASTER and I am worried I will make it worse.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "intent_gap_analysis", "safety_mechanisms"]
     },
     {
-      "id": 4,
-      "name": "scope-gap-minimizing-language",
-      "prompt": "Just quickly fix the login bug",
-      "expected_output": "Scope gap detection: identifies minimizing language and symptom language. Reformulation investigates root cause while respecting stated urgency.",
-      "files": [],
-      "expectations": [
-        "Pass 4 detects scope gap: 'just' and 'quickly' are minimizing language",
-        "Pass 4 detects scope gap: 'fix the bug' is symptom language (which bug? what causes it?)",
-        "Reformulation expands scope to include root cause investigation, not just symptom fix",
-        "Reformulation preserves urgency signal as a constraint (timeline), not scope reduction",
-        "Reformulation identifies missing context: which login bug? reproduction steps? affected users?",
-        "Does not over-expand beyond what signals support — no 'redesign the auth system' without evidence"
-      ]
+      "id": "input-analyst-scope-gap",
+      "type": "quality_gate",
+      "input": "Just quickly fix the login bug.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "five_whys", "ambiguity_register"]
     },
     {
-      "id": 5,
-      "name": "mixed-language-code-switching",
-      "prompt": "Necesito hacer un feature para el dashboard que muestre los users activos",
-      "expected_output": "Mixed-language handling: detects Spanish-English code-switching, preserves technical terms in original language, reformulates consistently.",
-      "files": [],
-      "expectations": [
-        "Pass 1 detects mixed language (Spanish primary with English technical terms)",
-        "Preserves technical terms unchanged: 'dashboard', 'users', 'feature'",
-        "Does not 'correct' Spanglish terms if present (e.g., 'deployear' should not become 'deploy')",
-        "Reformulated prompt is in consistent language (either full Spanish or full English based on context)",
-        "Notes language preference for downstream skill awareness",
-        "Does not lose meaning during language normalization"
-      ]
+      "id": "input-analyst-mixed-language",
+      "type": "quality_gate",
+      "input": "Necesito hacer un feature para el dashboard que muestre los users activos.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "surface_errors", "language_signal"]
     },
     {
-      "id": 6,
-      "name": "expertise-gap-over-engineering",
-      "prompt": "We need to set up Kafka with event sourcing and CQRS for our todo app that has 50 users",
-      "expected_output": "Expertise gap detection: proposed architecture (Kafka + event sourcing + CQRS) is massively over-engineered for a 50-user todo app. Reformulation recommends simpler approach.",
-      "files": [],
-      "expectations": [
-        "Pass 4 detects expertise gap: architecture complexity vs actual scale (50 users)",
-        "Reformulation ignores the proposed solution and focuses on the actual need",
-        "Recommends simpler alternative (e.g., direct DB writes, simple REST API)",
-        "Explains WHY simpler is better for this scale (maintenance burden, team size, learning curve)",
-        "Does not dismiss the user — acknowledges the technologies are valid at scale, just not here",
-        "Provides a threshold for when to revisit the original approach (e.g., 10k+ users, event-driven requirements)"
-      ]
+      "id": "input-analyst-expertise-gap",
+      "type": "quality_gate",
+      "input": "We need Kafka, event sourcing, and CQRS for our 50-user todo app.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "intent_gap_analysis", "routing_hints"]
     },
     {
-      "id": 7,
-      "name": "no-gap-pass-through",
-      "prompt": "Write a bash script that monitors /var/log/syslog for lines containing 'ERROR', sends an email alert via sendmail when found, and rotates the alert log weekly using logrotate",
-      "expected_output": "No gap detected. Input is clear, specific, uses correct terminology, and defines scope. Pass 4 confirms intent matches literal request. Minimal or no reformulation needed.",
-      "files": [],
-      "expectations": [
-        "Pass 4 finds no significant gaps across all 5 types",
-        "Vocabulary: correct use of bash, syslog, sendmail, logrotate",
-        "Scope: well-defined (three specific requirements)",
-        "Expertise: appropriate technology choices for the task",
-        "Reformulated prompt is nearly identical to original",
-        "Analysis correctly identifies this as 'clear + specific' — does not force unnecessary depth",
-        "This eval tests that the skill avoids false positives (detecting gaps that don't exist)"
-      ]
+      "id": "input-analyst-privacy-flag",
+      "type": "security",
+      "input": "Use api_key abc123 and email me at admin@example.com.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "privacy_flags"]
     },
     {
-      "id": 8,
-      "name": "vocabulary-gap-ai-buzzword",
-      "prompt": "We need AI to make our customer support smarter",
-      "expected_output": "Vocabulary gap detection: 'AI' and 'smarter' are vague buzzwords. Root cause analysis reveals actual need is likely automation of repetitive support tasks, not artificial intelligence.",
-      "files": [],
-      "expectations": [
-        "Pass 4 detects vocabulary gap: 'AI' is a borrowed buzzword, not a precise requirement",
-        "Pass 4 detects scope gap: 'smarter' is vague — smarter how? faster? more accurate? fewer escalations?",
-        "Pass 2 (if run) uncovers actual pain point behind the request",
-        "Reformulation replaces 'AI' with specific capability (e.g., 'automated response suggestions', 'ticket classification')",
-        "Reformulation defines 'smarter' in measurable terms (e.g., 'reduce first-response time by 50%')",
-        "Does not dismiss the user's framing — explains what they're actually describing in precise terms"
-      ]
+      "id": "input-analyst-offline-routing-rejection",
+      "type": "negative",
+      "input": "Analyze this with internet research and external APIs.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "offline_policy"]
     },
     {
-      "id": 9,
-      "name": "contradictory-signals",
-      "prompt": "Just a quick thing — I need to refactor the authentication module, update the session handling, migrate the user table schema, and add OAuth support for Google and GitHub",
-      "expected_output": "Contradictory signals: 'just a quick thing' (minimizing) contradicts a 4-system scope (auth module, session handling, DB schema, OAuth). Analysis trusts concrete details over framing language and notes the contradiction.",
-      "files": [],
-      "expectations": [
-        "Pass 4 detects scope gap: 'just a quick thing' is minimizing language contradicting multi-system scope",
-        "Analysis trusts the concrete details (4 distinct work items) over the framing language ('quick')",
-        "Reformulation notes the contradiction explicitly: stated urgency vs actual scope",
-        "Reformulation proposes phasing if scope is large (does not accept 'quick' framing at face value)",
-        "Does not dismiss the user's urgency — preserves it as a constraint while expanding scope realistically",
-        "Each of the 4 work items appears in the reformulated prompt as a distinct requirement"
-      ]
-    },
-    {
-      "id": 10,
-      "name": "ultra-short-input",
-      "prompt": "help",
-      "expected_output": "Minimal input handling: single word, no context, no signals beyond a request for assistance. Analysis skips passes 1-3, runs Pass 4 with low confidence, and requests elaboration.",
-      "files": [],
-      "expectations": [
-        "Does not run Pass 1 (no surface errors in a single word)",
-        "Does not run Pass 2 or Pass 3 (insufficient context for root cause or value chain)",
-        "Pass 4 identifies context gap: no antecedent, no scope, no deliverable specified",
-        "Confidence rated as 'low' — cannot determine intent from a single word",
-        "Reformulation is a request for elaboration, not a fabricated interpretation",
-        "Does not project meaning onto 'help' (e.g., does not assume 'help with code' or 'help with writing')"
-      ]
-    },
-    {
-      "id": 11,
-      "name": "confidence-aggregation",
-      "prompt": "I think maybe we should probably look into possibly improving the onboarding flow, or something like that, if it's not too much trouble",
-      "expected_output": "Multiple hedging signals produce medium-to-low confidence. Confidence aggregation takes the minimum across passes. The reformulation flags the hedging pattern and asks for commitment before investing analysis depth.",
-      "files": [],
-      "expectations": [
-        "Pass 4 detects emotional gap: hedging language ('I think maybe', 'probably', 'possibly', 'if it's not too much trouble')",
-        "Pass 4 detects scope gap: 'or something like that' is vague scope",
-        "Per-pass confidence is documented: Pass 4 = low (hedging dominates), overall = low",
-        "Confidence aggregation follows min() rule from SKILL.md: overall = min(pass confidences) = low",
-        "Reformulation acknowledges low confidence and requests clarification rather than fabricating precision",
-        "Output JSON includes analysis_trace with per-pass confidence values"
-      ]
-    },
-    {
-      "id": 12,
-      "name": "backtrack-after-rejection",
-      "prompt": "Optimize the database queries. [After initial analysis, user responds: 'No, I don't care about the acquisition deal. I just want the queries to be faster for my own sanity.']",
-      "expected_output": "Backtrack test: initial analysis may have expanded scope beyond user's stated intent. After rejection, the skill re-runs from Pass 4 with the user's correction, drops the inferred business context, and produces a simpler reformulation focused on personal developer experience.",
-      "files": [],
-      "expectations": [
-        "Initial analysis may infer business context (retention, acquisition) from 'optimize'",
-        "After user rejection, the skill does NOT re-argue the gap analysis",
-        "Backtrack re-runs Pass 4 and 5 only (not the full pipeline)",
-        "Revised reformulation uses the user's stated motivation ('my own sanity' = developer experience)",
-        "Revised quality level drops to Standard (personal preference, not business-critical)",
-        "The original gap analysis is preserved as context annotation, not primary directive"
-      ]
+      "id": "input-analyst-ultra-short",
+      "type": "quality_gate",
+      "input": "help",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "actionability_score", "confidence"]
     }
   ]
 }

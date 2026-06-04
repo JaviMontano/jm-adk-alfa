@@ -16,6 +16,27 @@ allowed-tools:
 
 Transform messy human input into precise, actionable prompts. Catch what the user meant, not just what they typed. [EXPLICIT]
 
+## Deterministic Offline Compiler
+
+Use `scripts/compile-input-analysis.py` when the task needs a reproducible
+artifact or a stable schema. The compiler reads only local `assets/` JSON files
+and a JSON input file; it never calls APIs, MCP tools, model providers, or the
+network. [EXPLICIT]
+
+```bash
+python3 skills/input-analyst/scripts/compile-input-analysis.py \
+  --input skills/input-analyst/scripts/fixtures/input-analysis-input.json \
+  --output /tmp/input-analysis.md
+```
+
+For machine-readable output, add `--json`. The stable output sections are:
+`surface_errors`, `five_whys`, `seven_so_whats`, `intent_gap_analysis`,
+`ambiguity_register`, `actionability_score`, `clarified_prompt`,
+`routing_hints`, `user_safety_privacy_flags`, and `confidence`. [EXPLICIT]
+
+Read `assets/source-map.md` for the local source map and
+`assets/input-analysis-schema.json` for the input/output contract. [EXPLICIT]
+
 ## When to Activate
 
 This is a pre-processing layer. It runs BEFORE other skills activate. [EXPLICIT]
@@ -176,6 +197,8 @@ Before passing the reformulated prompt downstream, confirm:
 - [ ] Reformulated prompt has: objective, constraints, context, and expected output
 - [ ] Ambiguities that could not be resolved are explicitly flagged
 - [ ] Analysis depth matches input quality (no over-analysis on clear inputs)
+- [ ] If using the offline compiler, `routing_policy.offline_only=true` and `allow_external_apis=false`
+- [ ] Output includes actionability score, routing hints, privacy flags, and confidence
 
 ## Reference Files
 
@@ -183,6 +206,8 @@ Before passing the reformulated prompt downstream, confirm:
 - `references/five-whys-guide.md` — Complete 5 Whys protocol with cross-domain examples
 - `references/seven-so-whats-guide.md` — Complete 7 So Whats protocol with value chain examples
 - `references/intent-detection.md` — Gap analysis framework, signal detection, reformulation strategies
+- `assets/` — Stable local schema, pattern libraries, taxonomy, quality calibration, and templates
+- `scripts/` — Offline compiler, deterministic fixtures, and `check.sh`
 
 ---
-**Author:** Javier Montaño | **Last updated:** 2026-03-12
+**Author:** Javier Montaño | **Last updated:** 2026-06-02

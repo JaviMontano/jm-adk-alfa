@@ -1,4 +1,4 @@
-# Input Analyst Output
+# Input Analysis Report
 
 ## Summary
 
@@ -44,6 +44,7 @@
 
 {{CONFIDENCE}}
 
-## Risks And Limits
+## Limits
 
-{{RISKS}}
+- [CODE] Offline heuristic analysis only; no external APIs, network calls, MCP tools, or hidden context are used.
+- [INFERENCE] Inferred intent remains provisional until the user confirms or rejects it.

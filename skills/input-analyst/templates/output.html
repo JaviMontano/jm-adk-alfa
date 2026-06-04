@@ -1,33 +1,41 @@
-<!-- JM Labs Brand Template: Input Analyst -->
-<!-- Uses: brand/jmlabs/brand-config.json + brand/jmlabs/corporate-template.css -->
-<!-- Replace: {{TITLE}}, {{SUBTITLE}}, {{CONTENT}}, {{DATE}} -->
 <!DOCTYPE html>
-<html lang="es" class="dark">
+<html lang="en">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>{{TITLE}} | Input Analyst | JM Labs</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>{{TITLE}} | Input Analyst</title>
 <style>
-:root{--navy:#122562;--gold:#FFD700;--blue:#137DC5;--bg:#0B1120;--bg-alt:#0F1929;--heading:#F1F5F9;--text-s:#94A3B8}
-body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--heading);margin:0;padding:2rem}
-.c{max-width:1000px;margin:0 auto}
-h1{font-family:'Poppins',sans-serif;font-weight:900;font-size:clamp(2rem,5vw,3rem)}
-h1 .gold{color:var(--gold)}
-h2{font-family:'Poppins',sans-serif;color:var(--gold);border-bottom:1px solid rgba(255,255,255,.05);padding-bottom:.5rem}
-.card{background:var(--bg-alt);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:1.5rem;margin:1rem 0}
-table{width:100%;border-collapse:collapse}
-th{font-family:'Poppins',sans-serif;color:var(--gold);text-align:left;padding:.75rem;border-bottom:2px solid var(--gold)}
-td{padding:.75rem;border-bottom:1px solid rgba(255,255,255,.05)}
-footer{text-align:center;margin-top:3rem;border-top:2px solid var(--gold);padding:1.5rem;font-size:.75rem;color:var(--text-s)}
+:root{--bg:#0b1120;--panel:#101827;--line:#263244;--text:#e5e7eb;--muted:#94a3b8;--accent:#f5c542;--code:#8bd3ff}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,Arial,sans-serif;line-height:1.55}
+main{max-width:1040px;margin:0 auto;padding:32px 20px}
+header{border-bottom:1px solid var(--line);margin-bottom:24px;padding-bottom:18px}
+h1{font-size:32px;margin:0 0 8px}
+h2{font-size:18px;color:var(--accent);margin:24px 0 10px}
+.meta{color:var(--muted);font-size:14px}
+.section{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:16px;margin:14px 0}
+code{color:var(--code)}
+footer{border-top:1px solid var(--line);color:var(--muted);font-size:13px;margin-top:28px;padding-top:14px}
 </style>
 </head>
 <body>
-<div class="c">
-  <h1>JM <span class="gold">Labs</span></h1>
-  <h2>{{TITLE}}</h2>
-  <p style="color:var(--text-s)">{{SUBTITLE}}</p>
-  <div class="card">{{CONTENT}}</div>
-  <footer>JM Labs · Input Analyst · {{DATE}}</footer>
-</div>
+<main>
+  <header>
+    <h1>{{TITLE}}</h1>
+    <div class="meta">{{SUBTITLE}}</div>
+  </header>
+  <section class="section">{{SUMMARY}}</section>
+  <section class="section">{{SURFACE_ERRORS}}</section>
+  <section class="section">{{FIVE_WHYS}}</section>
+  <section class="section">{{SEVEN_SO_WHATS}}</section>
+  <section class="section">{{INTENT_GAP_ANALYSIS}}</section>
+  <section class="section">{{AMBIGUITY_REGISTER}}</section>
+  <section class="section">{{ACTIONABILITY_SCORE}}</section>
+  <section class="section">{{CLARIFIED_PROMPT}}</section>
+  <section class="section">{{ROUTING_HINTS}}</section>
+  <section class="section">{{SAFETY_PRIVACY_FLAGS}}</section>
+  <section class="section">{{CONFIDENCE}}</section>
+  <footer>Input Analyst · Offline deterministic template · {{DATE}}</footer>
+</main>
 </body>
 </html>

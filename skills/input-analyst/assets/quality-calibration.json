@@ -1,0 +1,41 @@
+{
+  "schema": 1,
+  "actionability": {
+    "base": 100,
+    "surface_error_penalty": 4,
+    "gap_penalty": 8,
+    "open_question_penalty": 10,
+    "very_short_penalty": 35,
+    "missing_deliverable_penalty": 12,
+    "minimum": 0,
+    "maximum": 100
+  },
+  "confidence": {
+    "high_min_score": 76,
+    "medium_min_score": 45,
+    "low_max_score": 44
+  },
+  "quality_calibration": {
+    "Standard": {
+      "max_so_what_depth": 2,
+      "description": "Small blast radius; focus on correctness and concise clarification."
+    },
+    "Premium": {
+      "min_so_what_depth": 3,
+      "max_so_what_depth": 4,
+      "description": "Team or operational impact; include stronger validation and phasing."
+    },
+    "Flagship": {
+      "min_so_what_depth": 5,
+      "description": "Strategic impact; require explicit quality gates, stakeholders, and residual risks."
+    }
+  },
+  "routing": {
+    "ask_clarification_below": 55,
+    "execute_at_or_above": 70,
+    "default_downstream": [
+      "task-engine",
+      "excellence-loop"
+    ]
+  }
+}

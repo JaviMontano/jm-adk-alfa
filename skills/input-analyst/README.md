@@ -1,10 +1,3 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: input-analyst
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
-
 # Input Analyst
 
 Pre-processing layer that analyzes raw user input — detecting surface errors, performing root-cause analysis (5 Whys), impact tracing (7 So-Whats), and intent gap analysis — then reformulates into a precise, actionable prompt.
@@ -22,8 +15,19 @@ Pre-processing layer that analyzes raw user input — detecting surface errors, 
 
 ## Quick Use
 
-Use this skill when the request clearly matches the triggers and requires the `input-analyst` capability.
+Use this skill when raw input is vague, typo-heavy, emotionally loaded,
+under-scoped, or likely to route downstream work incorrectly.
+
+For a deterministic offline artifact:
+
+```bash
+python3 skills/input-analyst/scripts/compile-input-analysis.py \
+  --input skills/input-analyst/scripts/fixtures/input-analysis-input.json \
+  --output /tmp/input-analysis.md
+```
 
 ## Output Format
 
-Markdown with summary, evidence, result, validation, and risks.
+Markdown or JSON with surface errors, 5 Whys, 7 So-Whats, intent gaps,
+ambiguity register, actionability score, clarified prompt, routing hints,
+privacy flags, and confidence.
