@@ -1,7 +1,5 @@
 {
   "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-30",
   "skill": "evaluation-confidence-design",
   "nodes": [
     {
