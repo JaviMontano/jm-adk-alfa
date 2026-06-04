@@ -1,0 +1,10 @@
+{
+  "contract-review.md": [
+    "# Evaluation Confidence Design Report: contract-review-risk-evaluator",
+    "Decision threshold: `0.8` on `calibrated_confidence`.",
+    "Disabled categories: `data_privacy`.",
+    "raw <= `0.75` -> observed precision `0.61`.",
+    "### data_privacy (disabled)",
+    "High-FP categories can be disabled temporarily."
+  ]
+}
