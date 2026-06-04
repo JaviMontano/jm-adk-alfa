@@ -1,0 +1,93 @@
+{
+  "repo": "product-monorepo",
+  "root": {
+    "path": "CLAUDE.md",
+    "lineCount": 120,
+    "imports": [
+      {
+        "target": "~/.claude/CLAUDE.md",
+        "scope": "user",
+        "stable": true
+      },
+      {
+        "target": "./frontend/CLAUDE.md",
+        "scope": "module",
+        "stable": true
+      },
+      {
+        "target": "./sap/CLAUDE.md",
+        "scope": "module",
+        "stable": true
+      }
+    ],
+    "universalRules": [
+      "Use conventional commits.",
+      "Never push directly to main."
+    ],
+    "pathScopedImports": [
+      {
+        "glob": "frontend/**",
+        "target": "./frontend/CLAUDE.md",
+        "reason": "Design-system and component rules only apply to frontend work."
+      },
+      {
+        "glob": "sap/**",
+        "target": "./sap/CLAUDE.md",
+        "reason": "Legacy SAP naming only applies to SAP work."
+      }
+    ]
+  },
+  "modules": [
+    {
+      "name": "frontend",
+      "path": "frontend",
+      "glob": "frontend/**",
+      "claudeMd": "frontend/CLAUDE.md",
+      "rules": [
+        "Use design-system tokens.",
+        "Co-locate component tests next to components."
+      ]
+    },
+    {
+      "name": "sap",
+      "path": "sap",
+      "glob": "sap/**",
+      "claudeMd": "sap/CLAUDE.md",
+      "rules": [
+        "ABAP custom objects use the Z prefix.",
+        "Document transport impact before handoff."
+      ]
+    }
+  ],
+  "userScope": {
+    "path": "~/.claude/CLAUDE.md",
+    "preferences": [
+      "Prefer pnpm for local experiments."
+    ],
+    "versionedInRepo": false
+  },
+  "precedence": {
+    "mode": "most_specific_subpath_wins",
+    "levels": [
+      "user",
+      "team",
+      "module"
+    ],
+    "conflictResolution": "For a touched path, apply the most specific module rule after stable team rules."
+  },
+  "cachePolicy": {
+    "stablePrefix": true,
+    "noTurnSpecificValues": true,
+    "rootOnlyUniversalRules": true
+  },
+  "validation": {
+    "separatedScopes": true,
+    "pathScopedRules": true,
+    "personalPrefsOutOfRepo": true,
+    "mostSpecificWins": true
+  },
+  "risks": [
+    "Nested modules need explicit glob ordering.",
+    "Manual imports must avoid cycles."
+  ]
+}

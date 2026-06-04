@@ -76,6 +76,13 @@ Diseñar la memoria persistente de un proyecto Claude Code como una jerarquía e
 - ¿La precedencia por subpath está definida y es predecible (más específico gana)?
 - ¿Las preferencias personales están fuera del repo de equipo (user scope)?
 
+## Paquete deterministico
+
+- Usa `assets/architecture-schema.json` y `assets/architecture-policy.json` para declarar la arquitectura antes de escribir archivos.
+- Ejecuta `scripts/compile-claude-md-architecture.py <arquitectura.json> --output <reporte.md>` para generar un reporte reproducible con `CLAUDE.md` raíz y módulos.
+- Ejecuta `bash skills/claude-md-architecture/scripts/check.sh` antes de marcar la skill como lista.
+- Rechaza raíces monolíticas, imports inestables, globs no recursivos, precedencia ambigua y preferencias personales versionadas en el repo.
+
 ## Katas y skills relacionadas
 
 - Katas: `katas-08`, `katas-09`.

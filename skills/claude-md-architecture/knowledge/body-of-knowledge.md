@@ -1,10 +1,3 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: claude-md-architecture
-generated-on: 2026-05-30
-overwrite-policy: missing-only unless --force
--->
-
 # Claude Md Architecture Body of Knowledge
 
 ## Canon
@@ -40,3 +33,7 @@ Los `@imports` conectan niveles y deben mantenerse cache-friendly: el raíz impo
 ## Anti-patrón
 
 `CLAUDE.md` monolítico de cientos o miles de líneas que se carga en cada turno, mezclando universales, reglas de un solo módulo y preferencias personales. Resultado: rompe el cache KV, diluye atención y filtra preferencias individuales al repo de equipo.
+
+## Deterministic package
+
+La skill ahora incluye un contrato ejecutable para pasar de inventario de reglas a arquitectura verificable. `assets/architecture-schema.json` define los campos requeridos, `assets/architecture-policy.json` define jerarquia, imports, globs y precedencia, y `scripts/compile-claude-md-architecture.py` genera un reporte solo si el plan separa user/team/module, conserva prefijo estable, activa modulos por glob y deja preferencias personales fuera del repo.

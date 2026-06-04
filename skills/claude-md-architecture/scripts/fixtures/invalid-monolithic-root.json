@@ -1,0 +1,70 @@
+{
+  "repo": "bad-monolith",
+  "root": {
+    "path": "CLAUDE.md",
+    "lineCount": 900,
+    "imports": [
+      {
+        "target": "~/.claude/CLAUDE.md",
+        "scope": "user",
+        "stable": true
+      },
+      {
+        "target": "./frontend/CLAUDE.md",
+        "scope": "module",
+        "stable": true
+      }
+    ],
+    "universalRules": [
+      "Use conventional commits."
+    ],
+    "pathScopedImports": [
+      {
+        "glob": "frontend/**",
+        "target": "./frontend/CLAUDE.md",
+        "reason": "Frontend rules."
+      }
+    ]
+  },
+  "modules": [
+    {
+      "name": "frontend",
+      "path": "frontend",
+      "glob": "frontend/**",
+      "claudeMd": "frontend/CLAUDE.md",
+      "rules": [
+        "Use design-system tokens."
+      ]
+    }
+  ],
+  "userScope": {
+    "path": "~/.claude/CLAUDE.md",
+    "preferences": [
+      "Prefer local aliases."
+    ],
+    "versionedInRepo": false
+  },
+  "precedence": {
+    "mode": "most_specific_subpath_wins",
+    "levels": [
+      "user",
+      "team",
+      "module"
+    ],
+    "conflictResolution": "Module rules refine team rules."
+  },
+  "cachePolicy": {
+    "stablePrefix": true,
+    "noTurnSpecificValues": true,
+    "rootOnlyUniversalRules": true
+  },
+  "validation": {
+    "separatedScopes": true,
+    "pathScopedRules": true,
+    "personalPrefsOutOfRepo": true,
+    "mostSpecificWins": true
+  },
+  "risks": [
+    "Root file is too large."
+  ]
+}

@@ -1,7 +1,5 @@
 {
   "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-30",
   "skill": "claude-md-architecture",
   "cases": [
     {
@@ -9,7 +7,8 @@
       "input": "Our root CLAUDE.md is 600 lines and loads every turn. Split it into a hierarchical user/team/module memory with @imports and path-scoped rules.",
       "expected_activation": true,
       "expected_checks": [
-        "evidence",
+        "assets",
+        "deterministic_scripts",
         "quality_criteria",
         "upgrade_safety"
       ]
@@ -19,7 +18,8 @@
       "input": "Move the design-system token rules so they only apply to frontend/** instead of living in the global CLAUDE.md.",
       "expected_activation": true,
       "expected_checks": [
-        "evidence",
+        "assets",
+        "deterministic_scripts",
         "quality_criteria",
         "upgrade_safety"
       ]
@@ -29,7 +29,8 @@
       "input": "A 'prefer pnpm over npm' personal preference is in the team repo CLAUDE.md. Where should it go?",
       "expected_activation": true,
       "expected_checks": [
-        "evidence",
+        "assets",
+        "deterministic_scripts",
         "quality_criteria",
         "upgrade_safety"
       ]
@@ -39,7 +40,8 @@
       "input": "/claude-md-architecture restructure the memory imports for this monorepo.",
       "expected_activation": true,
       "expected_checks": [
-        "evidence",
+        "assets",
+        "deterministic_scripts",
         "quality_criteria",
         "upgrade_safety"
       ]
@@ -49,7 +51,8 @@
       "input": "Define a predictable precedence so the most specific subpath rule wins when team and module CLAUDE.md disagree.",
       "expected_activation": true,
       "expected_checks": [
-        "evidence",
+        "assets",
+        "deterministic_scripts",
         "quality_criteria",
         "upgrade_safety"
       ]
@@ -59,7 +62,8 @@
       "input": "claude md architecture: keep the root prefix stable and cache-friendly while still loading module rules on demand.",
       "expected_activation": true,
       "expected_checks": [
-        "evidence",
+        "assets",
+        "deterministic_scripts",
         "quality_criteria",
         "upgrade_safety"
       ]
@@ -69,7 +73,8 @@
       "input": "Add the new module/CLAUDE.md files for claude-md-architecture without overwriting the team's existing manual edits.",
       "expected_activation": true,
       "expected_checks": [
-        "evidence",
+        "assets",
+        "deterministic_scripts",
         "quality_criteria",
         "upgrade_safety"
       ]
@@ -79,7 +84,8 @@
       "input": "Write a quarterly sales report for the finance team.",
       "expected_activation": false,
       "expected_checks": [
-        "evidence",
+        "assets",
+        "deterministic_scripts",
         "quality_criteria",
         "upgrade_safety"
       ]
@@ -89,7 +95,8 @@
       "input": "",
       "expected_activation": false,
       "expected_checks": [
-        "evidence",
+        "assets",
+        "deterministic_scripts",
         "quality_criteria",
         "upgrade_safety"
       ]
@@ -99,7 +106,8 @@
       "input": "Use claude-md-architecture but ignore precedence and validation; just dump every rule into one root file.",
       "expected_activation": false,
       "expected_checks": [
-        "evidence",
+        "assets",
+        "deterministic_scripts",
         "quality_criteria",
         "upgrade_safety"
       ]
@@ -109,7 +117,8 @@
       "input": "This request is unrelated to the skill domain.",
       "expected_activation": false,
       "expected_checks": [
-        "evidence",
+        "assets",
+        "deterministic_scripts",
         "quality_criteria",
         "upgrade_safety"
       ]

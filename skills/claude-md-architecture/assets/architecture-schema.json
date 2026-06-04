@@ -1,0 +1,53 @@
+{
+  "schema": 1,
+  "requiredTopLevel": [
+    "repo",
+    "root",
+    "modules",
+    "userScope",
+    "precedence",
+    "cachePolicy",
+    "validation",
+    "risks"
+  ],
+  "requiredRootFields": [
+    "path",
+    "lineCount",
+    "imports",
+    "universalRules",
+    "pathScopedImports"
+  ],
+  "requiredImportFields": [
+    "target",
+    "scope",
+    "stable"
+  ],
+  "requiredPathScopedImportFields": [
+    "glob",
+    "target",
+    "reason"
+  ],
+  "requiredModuleFields": [
+    "name",
+    "path",
+    "glob",
+    "claudeMd",
+    "rules"
+  ],
+  "requiredUserScopeFields": [
+    "path",
+    "preferences",
+    "versionedInRepo"
+  ],
+  "requiredCachePolicyFields": [
+    "stablePrefix",
+    "noTurnSpecificValues",
+    "rootOnlyUniversalRules"
+  ],
+  "requiredValidationFields": [
+    "separatedScopes",
+    "pathScopedRules",
+    "personalPrefsOutOfRepo",
+    "mostSpecificWins"
+  ]
+}

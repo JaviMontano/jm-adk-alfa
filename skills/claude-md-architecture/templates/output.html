@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Claude Md Architecture Output</title>
+    <style>
+      body { font-family: system-ui, sans-serif; margin: 2rem; line-height: 1.5; color: #17202a; }
+      main { max-width: 960px; margin: 0 auto; }
+      section { border-top: 1px solid #d5d8dc; padding-top: 1rem; margin-top: 1rem; }
+      pre { background: #f4f6f7; padding: 1rem; overflow: auto; }
+      code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Claude Md Architecture</h1>
+      <section>
+        <h2>Summary</h2>
+        <p>{{summary}}</p>
+      </section>
+      <section>
+        <h2>Root CLAUDE.md</h2>
+        <pre><code>{{root_claude_md}}</code></pre>
+      </section>
+      <section>
+        <h2>Module Files</h2>
+        <pre><code>{{module_claude_md}}</code></pre>
+      </section>
+      <section>
+        <h2>Validation</h2>
+        <ul>
+          <li>User, team, and module scopes are separated.</li>
+          <li>Imports are stable and cache-friendly.</li>
+          <li>Module rules are activated by glob.</li>
+          <li>Most-specific subpath precedence is documented.</li>
+        </ul>
+      </section>
+    </main>
+  </body>
+</html>
