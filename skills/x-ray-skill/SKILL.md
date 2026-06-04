@@ -48,6 +48,16 @@ Each skill is standalone. Use assembly-skill to run the full pipeline in one com
 
 Parse the argument as the path to a skill directory containing SKILL.md. If the path points to a .skill ZIP file, extract it to a temp directory first. [EXPLICIT]
 
+## Deterministic Assets
+
+Use the bundled compiler when a repeatable first-pass scorecard is needed before human review. [EXPLICIT]
+
+```bash
+python3 scripts/compile-x-ray-report.py --skill-dir /path/to/skill --format markdown
+```
+
+Load `assets/rubric-policy.json` for scoring thresholds, `assets/gate-policy.json` for binary checkpoints, and `assets/report-template.md` for the report shape. Run `scripts/check.sh` after editing this skill or its fixtures. [EXPLICIT]
+
 ## The Diagnostic Process
 
 ### Step 1: Inventory
@@ -283,6 +293,9 @@ Before delivering the X-Ray report:
 |------|---------|-----------|
 | `references/gold-standard-anatomy.md` | What a 10/10 skill looks like: directory structure, frontmatter contract, body sections, progressive disclosure, writing rules, systemic requirements, evals schema | Always — needed for structural comparison |
 | `references/quality-rubric.md` | 10-criterion rubric with 4-level scoring guides + detection methods, 13-point gate with verification commands, certification formula | Always — needed for scoring |
+| `assets/rubric-policy.json` | Deterministic score thresholds and heuristic signals used by the compiler | Load before running script-backed scoring |
+| `assets/gate-policy.json` | Deterministic 13-point gate and component classification rules | Load before checking binary gates |
+| `scripts/compile-x-ray-report.py` | Read-only compiler for directory or fixture-backed X-Ray scorecards | Run when the user needs a repeatable scorecard |
 
 ---
 **Author:** Javier Montano | **Last updated:** March 18, 2026

@@ -1,0 +1,134 @@
+{
+  "schemaVersion": 1,
+  "passThresholds": {
+    "dimensionMinimum": 7,
+    "averageMinimum": 8.0,
+    "conditionalGateMinimum": 11,
+    "certifiedGateMinimum": 13
+  },
+  "scoreBands": {
+    "certified": "All dimensions >= 7, average >= 8.0, and gate 13/13.",
+    "conditional": "Average >= 8.0 with gate 11-12 or one dimension at 6.",
+    "blocked": "Any dimension < 6, average < 8.0, or gate below 11."
+  },
+  "dimensions": [
+    {
+      "id": 1,
+      "key": "foundation",
+      "label": "Foundation",
+      "signals": [
+        "rationale",
+        "trade-off",
+        "because",
+        "why"
+      ]
+    },
+    {
+      "id": 2,
+      "key": "truthfulness",
+      "label": "Truthfulness",
+      "signals": [
+        "explicit estimates",
+        "no unsupported percentages",
+        "bounded claims"
+      ]
+    },
+    {
+      "id": 3,
+      "key": "quality",
+      "label": "Quality",
+      "signals": [
+        "resolved references",
+        "valid frontmatter",
+        "clean structure"
+      ]
+    },
+    {
+      "id": 4,
+      "key": "density",
+      "label": "Density",
+      "signals": [
+        "no scaffold markers",
+        "low duplication",
+        "substantive sections"
+      ]
+    },
+    {
+      "id": 5,
+      "key": "simplicity",
+      "label": "Simplicity",
+      "signals": [
+        "concise sections",
+        "tables for structure",
+        "few vague qualifiers"
+      ]
+    },
+    {
+      "id": 6,
+      "key": "clarity",
+      "label": "Clarity",
+      "signals": [
+        "defined output",
+        "usage examples",
+        "unambiguous gates"
+      ]
+    },
+    {
+      "id": 7,
+      "key": "precision",
+      "label": "Precision",
+      "signals": [
+        "numeric thresholds",
+        "named deliverables",
+        "testable criteria"
+      ]
+    },
+    {
+      "id": 8,
+      "key": "depth",
+      "label": "Depth",
+      "signals": [
+        "edge cases",
+        "failure modes",
+        "anti-patterns"
+      ]
+    },
+    {
+      "id": 9,
+      "key": "coherence",
+      "label": "Coherence",
+      "signals": [
+        "terminology consistency",
+        "cross-reference integrity",
+        "schema alignment"
+      ]
+    },
+    {
+      "id": 10,
+      "key": "value",
+      "label": "Value",
+      "signals": [
+        "actionable issues",
+        "specific next step",
+        "no boilerplate"
+      ]
+    }
+  ],
+  "vagueTerms": [
+    "appropriate",
+    "reasonable",
+    "good",
+    "some",
+    "many",
+    "various",
+    "several",
+    "enough"
+  ],
+  "genericMarkers": [
+    "Skill scaffold generated",
+    "Use `x-ray-skill` to produce a concise deliverable",
+    "Example output for `x-ray-skill`",
+    "Industry standards and best practices for this domain",
+    "produces the expected x ray skill output"
+  ]
+}

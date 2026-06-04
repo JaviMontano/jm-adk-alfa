@@ -1,0 +1,79 @@
+{
+  "schemaVersion": 1,
+  "components": [
+    "SKILL.md",
+    "references/",
+    "scripts/",
+    "agents/",
+    "evals/evals.json",
+    "assets/",
+    "examples/",
+    "templates/",
+    "prompts/"
+  ],
+  "componentStatus": [
+    "PRESENT",
+    "MISSING-CRITICAL",
+    "MISSING-OPTIONAL",
+    "N/A"
+  ],
+  "issueSeverity": [
+    "BLOCKER",
+    "WARNING",
+    "INFO"
+  ],
+  "gate": [
+    {
+      "id": 1,
+      "checkpoint": "One SKILL.md in top-level directory"
+    },
+    {
+      "id": 2,
+      "checkpoint": "Frontmatter has name and description"
+    },
+    {
+      "id": 3,
+      "checkpoint": "Description is third person, trigger-rich, and pushy"
+    },
+    {
+      "id": 4,
+      "checkpoint": "Body uses imperative form"
+    },
+    {
+      "id": 5,
+      "checkpoint": "SKILL.md under 500 lines"
+    },
+    {
+      "id": 6,
+      "checkpoint": "One or more Good vs Bad examples"
+    },
+    {
+      "id": 7,
+      "checkpoint": "Validation gate has five or more criteria"
+    },
+    {
+      "id": 8,
+      "checkpoint": "Assumptions and Limits section is specific"
+    },
+    {
+      "id": 9,
+      "checkpoint": "Edge Cases section has three or more scenarios"
+    },
+    {
+      "id": 10,
+      "checkpoint": "All referenced files exist"
+    },
+    {
+      "id": 11,
+      "checkpoint": "Progressive disclosure mechanism is present"
+    },
+    {
+      "id": 12,
+      "checkpoint": "No security-compromising content"
+    },
+    {
+      "id": 13,
+      "checkpoint": "Intent matches user-facing description"
+    }
+  ]
+}

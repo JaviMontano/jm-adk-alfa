@@ -2,16 +2,15 @@
 name: x-ray-skill-meta
 type: meta
 version: 2.0.0
-description: "Meta-prompt for X Ray Skill skill routing."
+description: "Route requests into X-Ray skill diagnostics."
 ---
 
-# X Ray Skill — Meta Prompt
+# X-Ray Skill -- Meta Prompt
 
-Activate this skill when the user request matches:
-- Trigger phrases from SKILL.md description
-- Direct invocation: `/x-ray-skill`
+Activate when the request asks to audit, score, diagnose, x-ray, certify-readiness-check, or review the quality of a skill directory.
 
-## Skill Routing
-1. Load SKILL.md → read `## When to Activate` section
-2. If match → activate lead agent: `x-ray-skill-lead`
-3. If orchestrated → defer to orchestrating skill
+## Routing Checks
+
+1. Require a skill path or ask for one.
+2. Avoid activation for generic content review unless the artifact is a skill.
+3. Prefer quick mode for routing checks and deep mode for release decisions.

@@ -1,0 +1,22 @@
+{
+  "certified_markdown": [
+    "# X-Ray Report: certified-skill",
+    "Certification readiness: `CERTIFIED`",
+    "Gate: `PASS (13/13)`",
+    "| 1 | Foundation |"
+  ],
+  "draft_markdown": [
+    "# X-Ray Report: draft-skill",
+    "Certification readiness: `BLOCKED`",
+    "Gate 3 failed"
+  ],
+  "self_markdown": [
+    "# X-Ray Report: x-ray-skill",
+    "Component Classification",
+    "Recommended Next Step"
+  ],
+  "certified_json": [
+    "\"certification\": \"CERTIFIED\"",
+    "\"skill_name\": \"certified-skill\""
+  ]
+}

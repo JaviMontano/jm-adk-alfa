@@ -1,0 +1,6 @@
+{
+  "files": {
+    "SKILL.md": "---\nname: draft-skill\ndescription: Draft helper.\nallowed-tools:\n  - Read\n---\n\n# Draft Skill\n\nThis is an early draft.\n\n## Usage\n\nRun it.\n\n## Validation Gate\n\n- [ ] Output exists.\n",
+    "README.md": "# Draft\n\nPlaceholder.\n"
+  }
+}

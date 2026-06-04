@@ -1,75 +1,68 @@
 {
   "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-28",
   "skill": "x-ray-skill",
   "nodes": [
     {
       "id": "x-ray-skill",
       "type": "skill",
-      "label": "x-ray-skill"
+      "label": "X-Ray Skill"
     },
     {
-      "id": "x-ray-skill:inputs",
-      "type": "contract",
-      "label": "Expected inputs"
+      "id": "rubric-score",
+      "type": "metric",
+      "label": "10-dimension rubric score"
     },
     {
-      "id": "x-ray-skill:outputs",
-      "type": "contract",
-      "label": "Expected outputs"
-    },
-    {
-      "id": "x-ray-skill:quality",
+      "id": "validation-gate",
       "type": "gate",
-      "label": "Quality criteria"
+      "label": "13-point validation gate"
     },
     {
-      "id": "x-ray-skill:ontology",
-      "type": "ontology",
-      "label": "Domain: general"
+      "id": "component-classification",
+      "type": "inventory",
+      "label": "component classification"
     },
     {
-      "id": "x-ray-skill:evidence",
-      "type": "gate",
-      "label": "Evidence / provenance requirements"
+      "id": "certification-readiness",
+      "type": "decision",
+      "label": "CERTIFIED / CONDITIONAL / BLOCKED"
     },
     {
-      "id": "x-ray-skill:antipattern",
-      "type": "risk",
-      "label": "Canonical anti-pattern to avoid"
+      "id": "deterministic-compiler",
+      "type": "script",
+      "label": "compile-x-ray-report.py"
     }
   ],
   "edges": [
     {
       "from": "x-ray-skill",
-      "to": "x-ray-skill:inputs",
-      "type": "requires"
-    },
-    {
-      "from": "x-ray-skill",
-      "to": "x-ray-skill:outputs",
+      "to": "rubric-score",
       "type": "produces"
     },
     {
       "from": "x-ray-skill",
-      "to": "x-ray-skill:quality",
-      "type": "validated_by"
+      "to": "validation-gate",
+      "type": "produces"
     },
     {
       "from": "x-ray-skill",
-      "to": "x-ray-skill:ontology",
-      "type": "classified_as"
+      "to": "component-classification",
+      "type": "produces"
     },
     {
-      "from": "x-ray-skill",
-      "to": "x-ray-skill:evidence",
-      "type": "validated_by"
+      "from": "rubric-score",
+      "to": "certification-readiness",
+      "type": "informs"
     },
     {
-      "from": "x-ray-skill",
-      "to": "x-ray-skill:antipattern",
-      "type": "guards_against"
+      "from": "validation-gate",
+      "to": "certification-readiness",
+      "type": "gates"
+    },
+    {
+      "from": "deterministic-compiler",
+      "to": "x-ray-skill",
+      "type": "implements_subset"
     }
   ]
 }
