@@ -1,0 +1,8 @@
+{
+  "schema_version": "input-analysis.v1",
+  "raw_input": "",
+  "routing_policy": {
+    "offline_only": true,
+    "allow_external_apis": false
+  }
+}
