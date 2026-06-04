@@ -1,0 +1,32 @@
+{
+  "schema": 1,
+  "skill": "evaluation-confidence-design",
+  "assets": [
+    {
+      "path": "assets/evaluation-schema.json",
+      "type": "contract-schema",
+      "purpose": "Defines required structured fields for calibrated evaluation specs.",
+      "used_by": [
+        "scripts/compile-evaluation-confidence.py",
+        "scripts/check.sh"
+      ]
+    },
+    {
+      "path": "assets/confidence-policy.json",
+      "type": "policy",
+      "purpose": "Defines calibration, stratification, false-positive, and category-disable policy gates.",
+      "used_by": [
+        "scripts/compile-evaluation-confidence.py",
+        "scripts/check.sh"
+      ]
+    },
+    {
+      "path": "assets/confidence-report-template.md",
+      "type": "template",
+      "purpose": "Provides a stable report format for generated evaluation confidence plans.",
+      "used_by": [
+        "scripts/compile-evaluation-confidence.py"
+      ]
+    }
+  ]
+}

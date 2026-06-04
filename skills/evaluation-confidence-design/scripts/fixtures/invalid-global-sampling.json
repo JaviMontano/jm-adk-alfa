@@ -1,0 +1,77 @@
+{
+  "evaluator": "global-sampling",
+  "labeledSet": {
+    "totalExamples": 40,
+    "labelField": "human_label",
+    "stratificationField": "document_type",
+    "categoryField": "category",
+    "strata": [
+      {
+        "name": "contract",
+        "examples": 40,
+        "positive": 20,
+        "negative": 20
+      }
+    ]
+  },
+  "sampling": {
+    "method": "global_random",
+    "perStratumMinimum": 5,
+    "stratificationField": "document_type"
+  },
+  "calibration": {
+    "method": "binning",
+    "rawScoreField": "raw_confidence",
+    "calibratedScoreField": "calibrated_confidence",
+    "bins": [
+      {
+        "rawUpper": 0.7,
+        "observedPrecision": 0.5
+      },
+      {
+        "rawUpper": 1.01,
+        "observedPrecision": 0.9
+      }
+    ]
+  },
+  "categories": [
+    {
+      "name": "indemnity",
+      "enabled": true,
+      "severityCriteria": {
+        "low": "minor",
+        "medium": "moderate",
+        "high": "severe"
+      },
+      "positiveExamples": [
+        "uncapped liability"
+      ],
+      "negativeExamples": [
+        "mutual cap"
+      ],
+      "fpRate": 0.1
+    }
+  ],
+  "decision": {
+    "threshold": 0.8,
+    "thresholdOn": "calibrated_confidence",
+    "disabledCategories": []
+  },
+  "metrics": {
+    "reportAggregateAccuracy": "secondary",
+    "reportByStratum": true,
+    "reportFpByCategory": true
+  },
+  "validation": {
+    "thresholdUsesCalibratedConfidence": true,
+    "labeledSetPresent": true,
+    "stratifiedSampling": true,
+    "categoricalCriteriaWithExamples": true,
+    "fpRateByCategory": true,
+    "temporalDisableSupported": true,
+    "aggregateAccuracySecondary": true
+  },
+  "risks": [
+    "Invalid fixture should fail."
+  ]
+}

@@ -1,0 +1,132 @@
+{
+  "evaluator": "contract-review-risk-evaluator",
+  "labeledSet": {
+    "totalExamples": 600,
+    "labelField": "human_label",
+    "stratificationField": "document_type",
+    "categoryField": "category",
+    "strata": [
+      {
+        "name": "contract",
+        "examples": 410,
+        "positive": 190,
+        "negative": 220
+      },
+      {
+        "name": "NDA",
+        "examples": 120,
+        "positive": 52,
+        "negative": 68
+      },
+      {
+        "name": "DPA",
+        "examples": 70,
+        "positive": 30,
+        "negative": 40
+      }
+    ]
+  },
+  "sampling": {
+    "method": "stratified",
+    "perStratumMinimum": 50,
+    "stratificationField": "document_type"
+  },
+  "calibration": {
+    "method": "binning",
+    "rawScoreField": "raw_confidence",
+    "calibratedScoreField": "calibrated_confidence",
+    "bins": [
+      {
+        "rawUpper": 0.6,
+        "observedPrecision": 0.4
+      },
+      {
+        "rawUpper": 0.75,
+        "observedPrecision": 0.61
+      },
+      {
+        "rawUpper": 0.9,
+        "observedPrecision": 0.82
+      },
+      {
+        "rawUpper": 1.01,
+        "observedPrecision": 0.93
+      }
+    ]
+  },
+  "categories": [
+    {
+      "name": "indemnity",
+      "enabled": true,
+      "severityCriteria": {
+        "low": "minor ambiguity",
+        "medium": "unbalanced obligation",
+        "high": "uncapped unilateral exposure"
+      },
+      "positiveExamples": [
+        "uncapped indemnity for all third-party claims"
+      ],
+      "negativeExamples": [
+        "mutual indemnity capped at fees"
+      ],
+      "fpRate": 0.06
+    },
+    {
+      "name": "termination",
+      "enabled": true,
+      "severityCriteria": {
+        "low": "notice ambiguity",
+        "medium": "asymmetric notice",
+        "high": "termination for convenience without cure"
+      },
+      "positiveExamples": [
+        "vendor may terminate immediately without cause"
+      ],
+      "negativeExamples": [
+        "mutual 30 day cure period"
+      ],
+      "fpRate": 0.09
+    },
+    {
+      "name": "data_privacy",
+      "enabled": false,
+      "severityCriteria": {
+        "low": "missing subprocessors list",
+        "medium": "unclear cross-border transfer mechanism",
+        "high": "no DPA for personal data processing"
+      },
+      "positiveExamples": [
+        "processing personal data without DPA"
+      ],
+      "negativeExamples": [
+        "NDA only covers confidentiality and no personal data processing"
+      ],
+      "fpRate": 0.34
+    }
+  ],
+  "decision": {
+    "threshold": 0.8,
+    "thresholdOn": "calibrated_confidence",
+    "disabledCategories": [
+      "data_privacy"
+    ]
+  },
+  "metrics": {
+    "reportAggregateAccuracy": "secondary",
+    "reportByStratum": true,
+    "reportFpByCategory": true
+  },
+  "validation": {
+    "thresholdUsesCalibratedConfidence": true,
+    "labeledSetPresent": true,
+    "stratifiedSampling": true,
+    "categoricalCriteriaWithExamples": true,
+    "fpRateByCategory": true,
+    "temporalDisableSupported": true,
+    "aggregateAccuracySecondary": true
+  },
+  "risks": [
+    "Calibration map must be refit when the model changes.",
+    "Disabled categories require a dated remediation owner before production release."
+  ]
+}

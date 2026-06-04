@@ -1,10 +1,3 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: evaluation-confidence-design
-generated-on: 2026-05-30
-overwrite-policy: missing-only unless --force
--->
-
 # Example Input
 
 Tenemos un agente que revisa contratos y emite hallazgos de riesgo con un campo `confidence` (0-1) por hallazgo, en categorías `indemnity`, `termination`, `data_privacy`, `payment_terms`. Hoy aceptamos todo hallazgo con `confidence >= 0.7` y reportamos una accuracy global del 88%.
