@@ -1,28 +1,49 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: input-analyst
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
-
 # Input Analyst Output
 
 ## Summary
 
-{summary}
+{{SUMMARY}}
 
-## Evidence
+## Surface Errors
 
-{evidence}
+{{SURFACE_ERRORS}}
 
-## Result
+## Five Whys
 
-{result}
+{{FIVE_WHYS}}
 
-## Validation
+## Seven So Whats
 
-{validation}
+{{SEVEN_SO_WHATS}}
 
-## Risks and Limits
+## Intent Gap Analysis
 
-{risks}
+{{INTENT_GAP_ANALYSIS}}
+
+## Ambiguity Register
+
+{{AMBIGUITY_REGISTER}}
+
+## Actionability Score
+
+{{ACTIONABILITY_SCORE}}
+
+## Clarified Prompt
+
+{{CLARIFIED_PROMPT}}
+
+## Routing Hints
+
+{{ROUTING_HINTS}}
+
+## User Safety And Privacy Flags
+
+{{SAFETY_PRIVACY_FLAGS}}
+
+## Confidence
+
+{{CONFIDENCE}}
+
+## Risks And Limits
+
+{{RISKS}}
