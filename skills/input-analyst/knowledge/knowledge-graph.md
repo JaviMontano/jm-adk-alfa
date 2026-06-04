@@ -3,11 +3,15 @@
 ## Core Concepts
 - input-analyst: primary capability
 - validation-gate: quality control checkpoint
-- evidence-tagging: [EXPLICIT]/[INFERRED]/[OPEN] claims
+- evidence-tagging: [CODE]/[INFERENCE]/[OPEN]/[DOC] claims
+- offline-compiler: deterministic local analysis contract
+- actionability-score: execution readiness signal
+- ambiguity-register: blocking questions and impact
 
 ## Dependencies
-- Upstream: input-analysis, context-optimization
-- Downstream: output-engineering, rendering-engine
+- Upstream: raw user input, local context, routing policy
+- Downstream: task-engine, excellence-loop, selected specialist skill
 
 ## Skill Relationships
-Part of the JM Labs canonical skill registry.
+`scripts/compile-input-analysis.py` depends on local `assets/` and emits a
+stable Markdown or JSON report for downstream routing.
