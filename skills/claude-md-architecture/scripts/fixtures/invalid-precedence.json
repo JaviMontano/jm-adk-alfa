@@ -1,0 +1,69 @@
+{
+  "repo": "bad-precedence",
+  "root": {
+    "path": "CLAUDE.md",
+    "lineCount": 120,
+    "imports": [
+      {
+        "target": "~/.claude/CLAUDE.md",
+        "scope": "user",
+        "stable": true
+      },
+      {
+        "target": "./frontend/CLAUDE.md",
+        "scope": "module",
+        "stable": true
+      }
+    ],
+    "universalRules": [
+      "Use conventional commits."
+    ],
+    "pathScopedImports": [
+      {
+        "glob": "frontend/**",
+        "target": "./frontend/CLAUDE.md",
+        "reason": "Frontend rules."
+      }
+    ]
+  },
+  "modules": [
+    {
+      "name": "frontend",
+      "path": "frontend",
+      "glob": "frontend/**",
+      "claudeMd": "frontend/CLAUDE.md",
+      "rules": [
+        "Use design-system tokens."
+      ]
+    }
+  ],
+  "userScope": {
+    "path": "~/.claude/CLAUDE.md",
+    "preferences": [
+      "Prefer local aliases."
+    ],
+    "versionedInRepo": false
+  },
+  "precedence": {
+    "mode": "root_wins",
+    "levels": [
+      "team",
+      "module"
+    ],
+    "conflictResolution": "Root wins."
+  },
+  "cachePolicy": {
+    "stablePrefix": true,
+    "noTurnSpecificValues": true,
+    "rootOnlyUniversalRules": true
+  },
+  "validation": {
+    "separatedScopes": true,
+    "pathScopedRules": true,
+    "personalPrefsOutOfRepo": true,
+    "mostSpecificWins": false
+  },
+  "risks": [
+    "Precedence is ambiguous."
+  ]
+}

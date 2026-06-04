@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "root": {
+    "maxRecommendedLines": 300,
+    "teamPath": "CLAUDE.md"
+  },
+  "allowedScopes": [
+    "team",
+    "user",
+    "module"
+  ],
+  "requiredScopes": [
+    "team",
+    "user",
+    "module"
+  ],
+  "module": {
+    "minCount": 1,
+    "claudeMdBasename": "CLAUDE.md",
+    "requiredGlobSuffix": "/**"
+  },
+  "imports": {
+    "userTargetPrefixes": [
+      "~/.claude/"
+    ],
+    "moduleTargetSuffix": "/CLAUDE.md",
+    "requireStable": true
+  },
+  "precedence": {
+    "requiredMode": "most_specific_subpath_wins",
+    "minimumLevels": [
+      "user",
+      "team",
+      "module"
+    ]
+  },
+  "blockedAntiPatterns": [
+    "dump every rule into one root file",
+    "monolithic root",
+    "personal preference in team root",
+    "ignore precedence",
+    "turn-specific root value",
+    "copy module rules into root"
+  ]
+}

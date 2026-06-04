@@ -1,0 +1,71 @@
+{
+  "repo": "platform-repo",
+  "root": {
+    "path": "CLAUDE.md",
+    "lineCount": 90,
+    "imports": [
+      {
+        "target": "~/.claude/CLAUDE.md",
+        "scope": "user",
+        "stable": true
+      },
+      {
+        "target": "./services/CLAUDE.md",
+        "scope": "module",
+        "stable": true
+      }
+    ],
+    "universalRules": [
+      "Keep public APIs backward compatible."
+    ],
+    "pathScopedImports": [
+      {
+        "glob": "services/**",
+        "target": "./services/CLAUDE.md",
+        "reason": "Service ownership and deployment rules only apply under services."
+      }
+    ]
+  },
+  "modules": [
+    {
+      "name": "services",
+      "path": "services",
+      "glob": "services/**",
+      "claudeMd": "services/CLAUDE.md",
+      "rules": [
+        "Every service change includes owner and rollback notes.",
+        "Contract tests live under services/*/tests."
+      ]
+    }
+  ],
+  "userScope": {
+    "path": "~/.claude/CLAUDE.md",
+    "preferences": [
+      "Use terse status summaries locally."
+    ],
+    "versionedInRepo": false
+  },
+  "precedence": {
+    "mode": "most_specific_subpath_wins",
+    "levels": [
+      "user",
+      "team",
+      "module"
+    ],
+    "conflictResolution": "Module rules refine team rules for touched service paths."
+  },
+  "cachePolicy": {
+    "stablePrefix": true,
+    "noTurnSpecificValues": true,
+    "rootOnlyUniversalRules": true
+  },
+  "validation": {
+    "separatedScopes": true,
+    "pathScopedRules": true,
+    "personalPrefsOutOfRepo": true,
+    "mostSpecificWins": true
+  },
+  "risks": [
+    "Service submodules may later need narrower globs."
+  ]
+}

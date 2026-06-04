@@ -1,0 +1,13 @@
+{
+  "schema": 1,
+  "monorepo.md": [
+    "# Claude Md Architecture Report: product-monorepo",
+    "@import ~/.claude/CLAUDE.md",
+    "- apply to: \"frontend/**\" -> @import ./frontend/CLAUDE.md",
+    "- Mode: `most_specific_subpath_wins`",
+    "### frontend/CLAUDE.md",
+    "apply to: \"frontend/**\"",
+    "- Use design-system tokens.",
+    "Personal preferences stay outside the versioned repo."
+  ]
+}
