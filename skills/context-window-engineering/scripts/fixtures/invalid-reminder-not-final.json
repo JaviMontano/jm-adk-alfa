@@ -1,0 +1,75 @@
+{
+  "application": "bad-reminder",
+  "contextWindow": {
+    "maxTokens": 128000,
+    "expectedSteadyStateTokens": 64000
+  },
+  "staticPrefix": {
+    "blocks": [
+      {
+        "id": "role",
+        "kind": "role",
+        "content": "Stable role.",
+        "stable": true
+      }
+    ]
+  },
+  "middle": {
+    "compactable": true,
+    "blocks": [
+      {
+        "id": "history",
+        "kind": "history",
+        "content": "Long history.",
+        "stable": false
+      }
+    ]
+  },
+  "dynamicTail": {
+    "position": "middle",
+    "blocks": [
+      {
+        "id": "volatile-state",
+        "kind": "stable_context",
+        "content": "Dynamic state in the wrong position.",
+        "stable": false,
+        "volatileFields": [
+          "latest_message"
+        ]
+      }
+    ]
+  },
+  "criticalRules": [
+    {
+      "id": "rule",
+      "text": "Do not delete files without confirmation.",
+      "placements": [
+        "static_prefix",
+        "dynamic_tail"
+      ]
+    }
+  ],
+  "compaction": {
+    "enabled": true,
+    "threshold": 0.55,
+    "preserveBlockIds": [
+      "role",
+      "volatile-state"
+    ],
+    "summarizeBlockKinds": [
+      "history"
+    ]
+  },
+  "validation": {
+    "prefixByteIdentical": true,
+    "noVolatileInPrefix": true,
+    "dynamicOnlyInReminder": true,
+    "criticalRulesAtEdges": true,
+    "compactionPreservesEdges": true,
+    "cacheHitMeasuredOrEstimated": true,
+    "retentionTestDefined": true
+  },
+  "risks": [
+    "Invalid fixture should fail."
+  ]
+}

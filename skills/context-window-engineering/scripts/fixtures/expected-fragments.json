@@ -1,0 +1,10 @@
+{
+  "support-agent.md": [
+    "# Context Window Engineering Report: support-agent",
+    "Static prefix blocks: `role, critical-policy, output-schema`.",
+    "Dynamic tail blocks: `turn-reminder`.",
+    "`confirm-before-close`: Never close a support ticket without explicit customer confirmation.",
+    "Compaction",
+    "Prefix byte-identical."
+  ]
+}

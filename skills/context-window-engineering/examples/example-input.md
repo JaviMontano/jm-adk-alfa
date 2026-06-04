@@ -1,10 +1,3 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: context-window-engineering
-generated-on: 2026-05-30
-overwrite-policy: missing-only unless --force
--->
-
 # Example Input
 
 Tenemos un agente de soporte en producción. Cada turno construimos el contexto así:

@@ -1,0 +1,91 @@
+{
+  "application": "coding-agent",
+  "contextWindow": {
+    "maxTokens": 128000,
+    "expectedSteadyStateTokens": 82000
+  },
+  "staticPrefix": {
+    "blocks": [
+      {
+        "id": "developer-role",
+        "kind": "role",
+        "content": "Senior coding agent role and repository workflow.",
+        "stable": true
+      },
+      {
+        "id": "safety-policy",
+        "kind": "policy",
+        "content": "Never delete or overwrite user work without explicit confirmation.",
+        "stable": true
+      },
+      {
+        "id": "tool-schema",
+        "kind": "tools",
+        "content": "Stable tool affordances and allowed edit operations.",
+        "stable": true
+      }
+    ]
+  },
+  "middle": {
+    "compactable": true,
+    "blocks": [
+      {
+        "id": "repo-history",
+        "kind": "history",
+        "content": "Conversation history, file summaries, and command outputs.",
+        "stable": false
+      }
+    ]
+  },
+  "dynamicTail": {
+    "position": "final",
+    "blocks": [
+      {
+        "id": "working-state-reminder",
+        "kind": "reminder",
+        "content": "Final turn state and restated safety policy.",
+        "stable": false,
+        "volatileFields": [
+          "active_branch",
+          "dirty_files",
+          "latest_user_request"
+        ]
+      }
+    ]
+  },
+  "criticalRules": [
+    {
+      "id": "protect-user-work",
+      "text": "Never delete or overwrite user work without explicit confirmation.",
+      "placements": [
+        "static_prefix",
+        "dynamic_tail"
+      ]
+    }
+  ],
+  "compaction": {
+    "enabled": true,
+    "threshold": 0.65,
+    "preserveBlockIds": [
+      "developer-role",
+      "safety-policy",
+      "working-state-reminder"
+    ],
+    "summarizeBlockKinds": [
+      "history"
+    ]
+  },
+  "validation": {
+    "prefixByteIdentical": true,
+    "noVolatileInPrefix": true,
+    "dynamicOnlyInReminder": true,
+    "criticalRulesAtEdges": true,
+    "compactionPreservesEdges": true,
+    "cacheHitMeasuredOrEstimated": true,
+    "retentionTestDefined": true
+  },
+  "risks": [
+    "Repository state reminders must stay in the final dynamic tail.",
+    "History summaries must preserve unresolved user constraints."
+  ]
+}
