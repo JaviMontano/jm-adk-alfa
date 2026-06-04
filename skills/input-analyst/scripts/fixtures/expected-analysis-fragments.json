@@ -1,0 +1,14 @@
+{
+  "fragments": [
+    "schema=input-analysis-output.v1",
+    "selected_passes=surface, five_whys, seven_so_whats, intent, reformulation",
+    "misspelling \\bsomthing\\b -> something confidence=high",
+    "transposition \\bteh\\b -> the confidence=very_high",
+    "tmrw is likely an intentional abbreviation",
+    "context gap evidence=['that', 'thing', 'meeting']",
+    "Clarify the missing context before executing",
+    "next_action=ask_clarification",
+    "external_api_required=false",
+    "overall=medium"
+  ]
+}
