@@ -95,6 +95,13 @@ def evaluate_bad(findings, raw_threshold=0.7):
 - ¿Existe **disable temporal** para categorías con FP alto?
 - ¿Corre `scripts/qa/run-confidence-fp-tests.py` y pasa como gate?
 
+## Paquete deterministico
+
+- Usa `assets/evaluation-schema.json` y `assets/confidence-policy.json` para declarar el evaluador antes de fijar umbrales o disabled categories.
+- Ejecuta `scripts/compile-evaluation-confidence.py <evaluacion.json> --output <reporte.md>` para generar un reporte reproducible con labeled set, muestreo, calibration map, criterios, metricas y riesgos.
+- Ejecuta `bash skills/evaluation-confidence-design/scripts/check.sh` antes de marcar la skill como lista.
+- Rechaza corte sobre confidence cruda, muestreo global, categorias sin ejemplos +/-, high-FP activo y accuracy agregada como metrica primaria.
+
 ## Katas y skills relacionadas
 
 - Katas: 29, 30.
