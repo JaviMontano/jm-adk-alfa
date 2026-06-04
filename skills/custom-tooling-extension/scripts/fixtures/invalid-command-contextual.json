@@ -1,0 +1,44 @@
+{
+  "name": "bad-command",
+  "intent": "Contextual trigger incorrectly modeled as command.",
+  "artifact": {
+    "type": "slash_command",
+    "trigger": "contextual",
+    "path": ".claude/commands/bad-command.md"
+  },
+  "scope": {
+    "type": "project",
+    "replicatesToTeam": true
+  },
+  "interface": {
+    "description": "This command claims contextual routing and should be rejected by policy.",
+    "argumentHint": "<input>"
+  },
+  "security": {
+    "allowedTools": [
+      "Read"
+    ],
+    "mutates": false,
+    "bashJustification": ""
+  },
+  "context": {
+    "fork": false,
+    "reason": "Invalid fixture should fail."
+  },
+  "conventions": {
+    "permanentRulesInClaudeMd": true,
+    "skillContainsOnlyConditionalCapability": true
+  },
+  "validation": {
+    "artifactMatchesTrigger": true,
+    "scopeMatchesReplication": true,
+    "contextForkForNonTrivialSkill": true,
+    "allowedToolsMinimal": true,
+    "argumentHintPresent": true,
+    "descriptionRoutesClearly": true,
+    "permanentConventionsOutsideSkill": true
+  },
+  "risks": [
+    "Invalid fixture should fail."
+  ]
+}

@@ -88,6 +88,13 @@ description: "hace cosas con git"   # ANTI: description vaga, no es contrato de 
 - ¿`description`/`argument-hint` funcionan como contrato de activación e interfaz?
 - ¿Las **convenciones permanentes** viven en `CLAUDE.md` y NO dentro de la skill?
 
+## Paquete deterministico
+
+- Usa `assets/extension-schema.json` y `assets/extension-policy.json` para declarar la extension antes de escribir `.claude/commands/` o `.claude/skills/`.
+- Ejecuta `scripts/compile-custom-tooling.py <extension.json> --output <plan.md>` para generar un plan reproducible con artefacto, scope, frontmatter, seguridad y validaciones.
+- Ejecuta `bash skills/custom-tooling-extension/scripts/check.sh` antes de marcar la skill como lista.
+- Rechaza artefactos de equipo en user scope, skills contextuales sin `context: fork`, herramientas irrestrictas, commands con trigger contextual y frontmatter sin interfaz clara.
+
 ## Katas y skills relacionadas
 
 - Kata: `katas-custom-commands-skills`

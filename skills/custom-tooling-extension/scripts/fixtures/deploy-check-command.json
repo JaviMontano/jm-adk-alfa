@@ -1,0 +1,46 @@
+{
+  "name": "deploy-check",
+  "intent": "Provide an explicit deploy readiness command invoked by the user.",
+  "artifact": {
+    "type": "slash_command",
+    "trigger": "explicit",
+    "path": ".claude/commands/deploy-check.md"
+  },
+  "scope": {
+    "type": "project",
+    "replicatesToTeam": true
+  },
+  "interface": {
+    "description": "Runs a read-only deploy readiness checklist for the requested environment when invoked explicitly.",
+    "argumentHint": "<env>"
+  },
+  "security": {
+    "allowedTools": [
+      "Read",
+      "Grep",
+      "Glob"
+    ],
+    "mutates": false,
+    "bashJustification": "No Bash is used; command stays read-only with file/search tools."
+  },
+  "context": {
+    "fork": false,
+    "reason": "Slash command is explicit and short; it does not need a separate skill fork."
+  },
+  "conventions": {
+    "permanentRulesInClaudeMd": true,
+    "skillContainsOnlyConditionalCapability": true
+  },
+  "validation": {
+    "artifactMatchesTrigger": true,
+    "scopeMatchesReplication": true,
+    "contextForkForNonTrivialSkill": true,
+    "allowedToolsMinimal": true,
+    "argumentHintPresent": true,
+    "descriptionRoutesClearly": true,
+    "permanentConventionsOutsideSkill": true
+  },
+  "risks": [
+    "Command should remain read-only unless a separate approval gate is added."
+  ]
+}
