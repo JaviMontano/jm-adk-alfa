@@ -1,0 +1,44 @@
+{
+  "name": "team-release-notes",
+  "intent": "Team release notes helper.",
+  "artifact": {
+    "type": "skill",
+    "trigger": "contextual",
+    "path": ".claude/skills/team-release-notes/SKILL.md"
+  },
+  "scope": {
+    "type": "user",
+    "replicatesToTeam": true
+  },
+  "interface": {
+    "description": "Generates release notes from git history for a shared team repository.",
+    "argumentHint": "<from-tag> <to-tag>"
+  },
+  "security": {
+    "allowedTools": [
+      "Read"
+    ],
+    "mutates": false,
+    "bashJustification": ""
+  },
+  "context": {
+    "fork": true,
+    "reason": "Non-trivial synthesis."
+  },
+  "conventions": {
+    "permanentRulesInClaudeMd": true,
+    "skillContainsOnlyConditionalCapability": true
+  },
+  "validation": {
+    "artifactMatchesTrigger": true,
+    "scopeMatchesReplication": true,
+    "contextForkForNonTrivialSkill": true,
+    "allowedToolsMinimal": true,
+    "argumentHintPresent": true,
+    "descriptionRoutesClearly": true,
+    "permanentConventionsOutsideSkill": true
+  },
+  "risks": [
+    "Invalid fixture should fail."
+  ]
+}

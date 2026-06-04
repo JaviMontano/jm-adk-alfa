@@ -1,0 +1,10 @@
+{
+  "release-notes.md": [
+    "# Custom Tooling Extension Plan: release-notes",
+    "Artifact: `skill`.",
+    "Scope: `project`.",
+    "context: fork",
+    "allowed-tools:",
+    "Bash must stay limited to read-only git commands."
+  ]
+}

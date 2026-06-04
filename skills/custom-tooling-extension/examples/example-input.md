@@ -1,10 +1,3 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: custom-tooling-extension
-generated-on: 2026-05-30
-overwrite-policy: missing-only unless --force
--->
-
 # Example Input
 
 > "Quiero que todo el equipo pueda generar las notas de versión de nuestro repo pidiéndoselo a Claude. Debe leer el `git log` entre dos tags y producir el changelog. Que no infle la sesión y que no pueda borrar nada del repo. Hoy tengo una versión que armé en mi `~/.claude` personal."

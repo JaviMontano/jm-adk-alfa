@@ -1,7 +1,5 @@
 {
   "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-30",
   "skill": "custom-tooling-extension",
   "cases": [
     {
@@ -9,6 +7,8 @@
       "input": "Quiero que todo el equipo pueda pedirle a Claude que genere las notas de versión desde el git log entre dos tags, sin inflar la sesión ni poder borrar nada.",
       "expected_activation": true,
       "expected_checks": [
+        "assets",
+        "deterministic_scripts",
         "evidence",
         "quality_criteria",
         "upgrade_safety"
@@ -19,6 +19,8 @@
       "input": "Necesito un comando que yo invoque a mano como /deploy-check <env> para verificar readiness de deploy en solo lectura.",
       "expected_activation": true,
       "expected_checks": [
+        "assets",
+        "deterministic_scripts",
         "evidence",
         "quality_criteria",
         "upgrade_safety"
@@ -29,6 +31,8 @@
       "input": "Mi skill de auditoría de dependencias está inflando la sesión principal; ¿cómo la aíslo para que no contamine el contexto?",
       "expected_activation": true,
       "expected_checks": [
+        "assets",
+        "deterministic_scripts",
         "evidence",
         "quality_criteria",
         "upgrade_safety"
@@ -39,6 +43,8 @@
       "input": "Revisa el frontmatter de esta skill que ejecuta git y npm; quiero acotar allowed-tools al mínimo y mantenerla segura.",
       "expected_activation": true,
       "expected_checks": [
+        "assets",
+        "deterministic_scripts",
         "evidence",
         "quality_criteria",
         "upgrade_safety"
@@ -49,6 +55,8 @@
       "input": "Tengo una skill que repite siempre nuestras convenciones de naming del repo; ¿debería ir en la skill o en CLAUDE.md?",
       "expected_activation": true,
       "expected_checks": [
+        "assets",
+        "deterministic_scripts",
         "evidence",
         "quality_criteria",
         "upgrade_safety"
@@ -59,6 +67,8 @@
       "input": "custom tooling extension: skill vs slash command",
       "expected_activation": true,
       "expected_checks": [
+        "assets",
+        "deterministic_scripts",
         "evidence",
         "quality_criteria",
         "upgrade_safety"
@@ -69,6 +79,8 @@
       "input": "Ayúdame a redactar el correo de cierre trimestral para un cliente.",
       "expected_activation": false,
       "expected_checks": [
+        "assets",
+        "deterministic_scripts",
         "evidence",
         "quality_criteria",
         "upgrade_safety"
@@ -79,6 +91,8 @@
       "input": "",
       "expected_activation": false,
       "expected_checks": [
+        "assets",
+        "deterministic_scripts",
         "evidence",
         "quality_criteria",
         "upgrade_safety"
@@ -89,6 +103,8 @@
       "input": "Crea la skill en user scope, sin context fork y sin allowed-tools para que pueda hacer cualquier cosa rápido.",
       "expected_activation": false,
       "expected_checks": [
+        "assets",
+        "deterministic_scripts",
         "evidence",
         "quality_criteria",
         "upgrade_safety"
@@ -99,6 +115,8 @@
       "input": "This request is unrelated to the skill domain.",
       "expected_activation": false,
       "expected_checks": [
+        "assets",
+        "deterministic_scripts",
         "evidence",
         "quality_criteria",
         "upgrade_safety"
@@ -109,6 +127,8 @@
       "input": "",
       "expected_activation": false,
       "expected_checks": [
+        "assets",
+        "deterministic_scripts",
         "evidence",
         "quality_criteria",
         "upgrade_safety"

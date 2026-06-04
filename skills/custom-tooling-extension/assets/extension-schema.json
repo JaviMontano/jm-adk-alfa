@@ -1,0 +1,50 @@
+{
+  "schema": 1,
+  "requiredTopLevel": [
+    "name",
+    "intent",
+    "artifact",
+    "scope",
+    "interface",
+    "security",
+    "context",
+    "conventions",
+    "validation",
+    "risks"
+  ],
+  "requiredArtifactFields": [
+    "type",
+    "trigger",
+    "path"
+  ],
+  "requiredScopeFields": [
+    "type",
+    "replicatesToTeam"
+  ],
+  "requiredInterfaceFields": [
+    "description",
+    "argumentHint"
+  ],
+  "requiredSecurityFields": [
+    "allowedTools",
+    "mutates",
+    "bashJustification"
+  ],
+  "requiredContextFields": [
+    "fork",
+    "reason"
+  ],
+  "requiredConventionsFields": [
+    "permanentRulesInClaudeMd",
+    "skillContainsOnlyConditionalCapability"
+  ],
+  "requiredValidationFields": [
+    "artifactMatchesTrigger",
+    "scopeMatchesReplication",
+    "contextForkForNonTrivialSkill",
+    "allowedToolsMinimal",
+    "argumentHintPresent",
+    "descriptionRoutesClearly",
+    "permanentConventionsOutsideSkill"
+  ]
+}

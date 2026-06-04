@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "artifact": {
+    "allowedTypes": [
+      "slash_command",
+      "skill"
+    ],
+    "explicitTriggerType": "slash_command",
+    "contextualTriggerType": "skill",
+    "commandPathPrefix": ".claude/commands/",
+    "skillPathPrefix": ".claude/skills/",
+    "skillPathSuffix": "/SKILL.md"
+  },
+  "scope": {
+    "teamScope": "project",
+    "personalScope": "user"
+  },
+  "tools": {
+    "readOnly": [
+      "Read",
+      "Grep",
+      "Glob"
+    ],
+    "allowedWithJustification": [
+      "Bash"
+    ],
+    "blocked": [
+      "Destroy",
+      "Unrestricted",
+      "All"
+    ]
+  },
+  "context": {
+    "nonTrivialSkillRequiresFork": true
+  },
+  "blockedAntiPatterns": [
+    "user scope for team artifact",
+    "skill without context fork",
+    "missing allowed-tools",
+    "vague description",
+    "permanent conventions inside skill",
+    "unrestricted tools",
+    "no argument hint"
+  ]
+}

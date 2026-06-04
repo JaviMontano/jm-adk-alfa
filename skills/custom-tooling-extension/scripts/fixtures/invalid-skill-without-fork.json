@@ -1,0 +1,45 @@
+{
+  "name": "dependency-audit",
+  "intent": "Audit dependencies with a long report.",
+  "artifact": {
+    "type": "skill",
+    "trigger": "contextual",
+    "path": ".claude/skills/dependency-audit/SKILL.md"
+  },
+  "scope": {
+    "type": "project",
+    "replicatesToTeam": true
+  },
+  "interface": {
+    "description": "Audits dependency manifests and produces a long dependency risk report.",
+    "argumentHint": "<package-manager>"
+  },
+  "security": {
+    "allowedTools": [
+      "Read",
+      "Grep"
+    ],
+    "mutates": false,
+    "bashJustification": ""
+  },
+  "context": {
+    "fork": false,
+    "reason": "Invalid fixture should fail because skill work is non-trivial."
+  },
+  "conventions": {
+    "permanentRulesInClaudeMd": true,
+    "skillContainsOnlyConditionalCapability": true
+  },
+  "validation": {
+    "artifactMatchesTrigger": true,
+    "scopeMatchesReplication": true,
+    "contextForkForNonTrivialSkill": true,
+    "allowedToolsMinimal": true,
+    "argumentHintPresent": true,
+    "descriptionRoutesClearly": true,
+    "permanentConventionsOutsideSkill": true
+  },
+  "risks": [
+    "Invalid fixture should fail."
+  ]
+}

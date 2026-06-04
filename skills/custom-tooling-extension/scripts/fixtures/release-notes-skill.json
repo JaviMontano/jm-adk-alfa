@@ -1,0 +1,47 @@
+{
+  "name": "release-notes",
+  "intent": "Generate release notes from git log between two tags for the whole team.",
+  "artifact": {
+    "type": "skill",
+    "trigger": "contextual",
+    "path": ".claude/skills/release-notes/SKILL.md"
+  },
+  "scope": {
+    "type": "project",
+    "replicatesToTeam": true
+  },
+  "interface": {
+    "description": "Generates release notes from git log between two tags when the user asks for changelog or release notes.",
+    "argumentHint": "<from-tag> <to-tag>"
+  },
+  "security": {
+    "allowedTools": [
+      "Read",
+      "Grep",
+      "Bash"
+    ],
+    "mutates": false,
+    "bashJustification": "Read-only git log and git diff commands."
+  },
+  "context": {
+    "fork": true,
+    "reason": "Release note synthesis can be long and should not inflate the main session."
+  },
+  "conventions": {
+    "permanentRulesInClaudeMd": true,
+    "skillContainsOnlyConditionalCapability": true
+  },
+  "validation": {
+    "artifactMatchesTrigger": true,
+    "scopeMatchesReplication": true,
+    "contextForkForNonTrivialSkill": true,
+    "allowedToolsMinimal": true,
+    "argumentHintPresent": true,
+    "descriptionRoutesClearly": true,
+    "permanentConventionsOutsideSkill": true
+  },
+  "risks": [
+    "Bash must stay limited to read-only git commands.",
+    "Tag names must be supplied by the user or discovered read-only."
+  ]
+}

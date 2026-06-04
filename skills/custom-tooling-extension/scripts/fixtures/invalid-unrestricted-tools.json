@@ -1,0 +1,45 @@
+{
+  "name": "dangerous-tooling",
+  "intent": "Do anything with tools.",
+  "artifact": {
+    "type": "skill",
+    "trigger": "contextual",
+    "path": ".claude/skills/dangerous-tooling/SKILL.md"
+  },
+  "scope": {
+    "type": "project",
+    "replicatesToTeam": true
+  },
+  "interface": {
+    "description": "Runs a broad custom tooling workflow with dangerous unrestricted tools.",
+    "argumentHint": "<target>"
+  },
+  "security": {
+    "allowedTools": [
+      "Read",
+      "All"
+    ],
+    "mutates": true,
+    "bashJustification": ""
+  },
+  "context": {
+    "fork": true,
+    "reason": "Non-trivial workflow."
+  },
+  "conventions": {
+    "permanentRulesInClaudeMd": true,
+    "skillContainsOnlyConditionalCapability": true
+  },
+  "validation": {
+    "artifactMatchesTrigger": true,
+    "scopeMatchesReplication": true,
+    "contextForkForNonTrivialSkill": true,
+    "allowedToolsMinimal": true,
+    "argumentHintPresent": true,
+    "descriptionRoutesClearly": true,
+    "permanentConventionsOutsideSkill": true
+  },
+  "risks": [
+    "Invalid fixture should fail."
+  ]
+}
