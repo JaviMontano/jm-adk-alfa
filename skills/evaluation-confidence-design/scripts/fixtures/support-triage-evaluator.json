@@ -1,0 +1,93 @@
+{
+  "evaluator": "support-triage-evaluator",
+  "labeledSet": {
+    "totalExamples": 90,
+    "labelField": "human_label",
+    "stratificationField": "ticket_type",
+    "categoryField": "category",
+    "strata": [
+      {
+        "name": "billing",
+        "examples": 30,
+        "positive": 14,
+        "negative": 16
+      },
+      {
+        "name": "technical",
+        "examples": 30,
+        "positive": 15,
+        "negative": 15
+      },
+      {
+        "name": "account",
+        "examples": 30,
+        "positive": 12,
+        "negative": 18
+      }
+    ]
+  },
+  "sampling": {
+    "method": "stratified",
+    "perStratumMinimum": 10,
+    "stratificationField": "ticket_type"
+  },
+  "calibration": {
+    "method": "isotonic",
+    "rawScoreField": "raw_confidence",
+    "calibratedScoreField": "calibrated_confidence",
+    "bins": [
+      {
+        "rawUpper": 0.5,
+        "observedPrecision": 0.35
+      },
+      {
+        "rawUpper": 0.8,
+        "observedPrecision": 0.72
+      },
+      {
+        "rawUpper": 1.01,
+        "observedPrecision": 0.91
+      }
+    ]
+  },
+  "categories": [
+    {
+      "name": "billing_refund",
+      "enabled": true,
+      "severityCriteria": {
+        "low": "refund status question",
+        "medium": "duplicate charge",
+        "high": "fraud or disputed transaction"
+      },
+      "positiveExamples": [
+        "duplicate card charge with matching invoice"
+      ],
+      "negativeExamples": [
+        "customer asks for payment method update"
+      ],
+      "fpRate": 0.08
+    }
+  ],
+  "decision": {
+    "threshold": 0.72,
+    "thresholdOn": "calibrated_confidence",
+    "disabledCategories": []
+  },
+  "metrics": {
+    "reportAggregateAccuracy": "secondary",
+    "reportByStratum": true,
+    "reportFpByCategory": true
+  },
+  "validation": {
+    "thresholdUsesCalibratedConfidence": true,
+    "labeledSetPresent": true,
+    "stratifiedSampling": true,
+    "categoricalCriteriaWithExamples": true,
+    "fpRateByCategory": true,
+    "temporalDisableSupported": true,
+    "aggregateAccuracySecondary": true
+  },
+  "risks": [
+    "Small labeled set requires periodic expansion."
+  ]
+}
