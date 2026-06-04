@@ -1,0 +1,44 @@
+{
+  "schema": 1,
+  "labeledSet": {
+    "minTotalExamples": 30,
+    "minExamplesPerStratum": 5,
+    "requiredLabels": [
+      "positive",
+      "negative"
+    ]
+  },
+  "sampling": {
+    "requiredMethod": "stratified",
+    "defaultStratificationField": "document_type"
+  },
+  "calibration": {
+    "allowedMethods": [
+      "binning",
+      "isotonic",
+      "platt"
+    ],
+    "requiredThresholdOn": "calibrated_confidence",
+    "minThreshold": 0.5,
+    "maxThreshold": 0.99
+  },
+  "categories": {
+    "maxFpRateBeforeDisable": 0.25,
+    "minPositiveExamples": 1,
+    "minNegativeExamples": 1,
+    "requiredSeverityLevels": [
+      "low",
+      "medium",
+      "high"
+    ]
+  },
+  "blockedAntiPatterns": [
+    "raw confidence cutoff",
+    "aggregate accuracy only",
+    "global random sample",
+    "be conservative",
+    "skip calibration",
+    "no labeled set",
+    "ignore false positives"
+  ]
+}
