@@ -1,0 +1,106 @@
+{
+  "schema": 1,
+  "corrections": [
+    {
+      "pattern": "\\bteh\\b",
+      "replacement": "the",
+      "confidence": "very_high",
+      "category": "transposition"
+    },
+    {
+      "pattern": "\\badn\\b",
+      "replacement": "and",
+      "confidence": "very_high",
+      "category": "transposition"
+    },
+    {
+      "pattern": "\\bsomthing\\b",
+      "replacement": "something",
+      "confidence": "high",
+      "category": "misspelling"
+    },
+    {
+      "pattern": "\\bbugg\\b",
+      "replacement": "bug",
+      "confidence": "high",
+      "category": "misspelling"
+    },
+    {
+      "pattern": "\\brecieve\\b",
+      "replacement": "receive",
+      "confidence": "high",
+      "category": "misspelling"
+    },
+    {
+      "pattern": "\\bdefinately\\b",
+      "replacement": "definitely",
+      "confidence": "high",
+      "category": "misspelling"
+    },
+    {
+      "pattern": "\\bdont\\b",
+      "replacement": "don't",
+      "confidence": "high",
+      "category": "missing_apostrophe"
+    },
+    {
+      "pattern": "\\bcant\\b",
+      "replacement": "can't",
+      "confidence": "high",
+      "category": "missing_apostrophe"
+    }
+  ],
+  "flags": [
+    {
+      "pattern": "\\btmrw\\b",
+      "label": "chat_abbreviation",
+      "message": "tmrw is likely an intentional abbreviation for tomorrow; flag instead of autocorrecting."
+    },
+    {
+      "pattern": "[!?]{3,}|\\.{4,}",
+      "label": "excessive_punctuation",
+      "message": "Excessive punctuation may signal emotion or dictation artifacts."
+    },
+    {
+      "pattern": "^\\s*[a-z]",
+      "label": "lowercase_start",
+      "message": "Lowercase sentence start can indicate fast mobile input."
+    }
+  ],
+  "mixed_language_markers": {
+    "spanish": [
+      "necesito",
+      "hacer",
+      "para",
+      "que",
+      "muestre",
+      "usuarios",
+      "activo",
+      "activos"
+    ],
+    "english_technical": [
+      "api",
+      "dashboard",
+      "feature",
+      "users",
+      "deploy",
+      "login",
+      "bug",
+      "prompt"
+    ]
+  },
+  "privacy_patterns": [
+    {
+      "pattern": "[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}",
+      "label": "email_address"
+    },
+    {
+      "pattern": "\\b(?:\\+?\\d[\\d .-]{7,}\\d)\\b",
+      "label": "phone_like_number"
+    },
+    {
+      "pattern": "\\b(?:api[_-]?key|token|password|secret)\\b",
+      "label": "secret_keyword"
+    }
+  ]
+}
