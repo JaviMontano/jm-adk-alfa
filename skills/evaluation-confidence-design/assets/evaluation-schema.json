@@ -1,0 +1,69 @@
+{
+  "schema": 1,
+  "requiredTopLevel": [
+    "evaluator",
+    "labeledSet",
+    "sampling",
+    "calibration",
+    "categories",
+    "decision",
+    "metrics",
+    "validation",
+    "risks"
+  ],
+  "requiredLabeledSetFields": [
+    "totalExamples",
+    "labelField",
+    "stratificationField",
+    "categoryField",
+    "strata"
+  ],
+  "requiredStratumFields": [
+    "name",
+    "examples",
+    "positive",
+    "negative"
+  ],
+  "requiredSamplingFields": [
+    "method",
+    "perStratumMinimum",
+    "stratificationField"
+  ],
+  "requiredCalibrationFields": [
+    "method",
+    "rawScoreField",
+    "calibratedScoreField",
+    "bins"
+  ],
+  "requiredCalibrationBinFields": [
+    "rawUpper",
+    "observedPrecision"
+  ],
+  "requiredCategoryFields": [
+    "name",
+    "enabled",
+    "severityCriteria",
+    "positiveExamples",
+    "negativeExamples",
+    "fpRate"
+  ],
+  "requiredDecisionFields": [
+    "threshold",
+    "thresholdOn",
+    "disabledCategories"
+  ],
+  "requiredMetricsFields": [
+    "reportAggregateAccuracy",
+    "reportByStratum",
+    "reportFpByCategory"
+  ],
+  "requiredValidationFields": [
+    "thresholdUsesCalibratedConfidence",
+    "labeledSetPresent",
+    "stratifiedSampling",
+    "categoricalCriteriaWithExamples",
+    "fpRateByCategory",
+    "temporalDisableSupported",
+    "aggregateAccuracySecondary"
+  ]
+}
