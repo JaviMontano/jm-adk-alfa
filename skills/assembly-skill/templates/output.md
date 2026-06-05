@@ -1,28 +1,15 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: assembly-skill
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
-
 # Assembly Skill Output
 
-## Summary
-
-{summary}
-
-## Evidence
-
-{evidence}
-
-## Result
-
-{result}
+Use `assets/assembly-report-template.md` for the final report.
 
 ## Validation
 
-{validation}
+- `scripts/validate_assembly_contract.py --contract assets/assembly-report-contract.json --report <report> --mode <mode>`
 
-## Risks and Limits
+## Required Evidence
 
-{risks}
+- Mode policy source.
+- Phase A scorecard source.
+- Gate B state.
+- Phase C certification formula source.
+- Files modified, or `No files modified`.

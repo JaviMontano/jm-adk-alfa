@@ -1,16 +1,24 @@
 # Assembly Skill — Body of Knowledge
 
 ## Canon
-Key standards, references, and best practices for Assembly Skill.
 
-## Quality Metrics
-| Metric | Target | How to Measure |
-|--------|--------|---------------|
-| Accuracy | >= 90% | Correct outputs / total |
-| Evidence coverage | >= 80% | Claims tagged [EXPLICIT]/[INFERRED]/[OPEN] |
-| Constitution compliance | 100% | Principles respected |
-| Validation Gate pass | 100% | All checklist items satisfied |
+Assembly is an orchestration contract for one skill at a time. It sequences diagnostic, intervention, certification, optional trigger optimization, and reporting without hiding decision gates.
 
-## References
-- See `references/` folder in canonical skill for detailed references
-- Industry standards and best practices for this domain
+## Deterministic Principles
+
+| Principle | Rule | Validator Surface |
+|---|---|---|
+| Single target | One skill directory per run | Report target field |
+| Exact mode | Mode follows `mode-policy.json` | Scorecard fixtures |
+| No hidden writes | Gate B before edits | Report validation |
+| Formula verdict | Certification cites formula source | Report validation |
+| Deep recertifies | Trigger optimization is followed by re-certification | Deep mode contract |
+
+## Anti-Patterns
+
+| Anti-Pattern | Risk | Corrective Action |
+|---|---|---|
+| Multi-skill assembly run | Produces wide risky PRs | Split into one skill per PR |
+| CERTIFIED without Phase C | False closure | Fail report validation |
+| Quick mode writes files | Hidden mutation | Block delivery |
+| Unrecorded trigger queries | Non-repeatable deep mode | Store fixed query set |

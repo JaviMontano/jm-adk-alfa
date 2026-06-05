@@ -237,7 +237,7 @@
     "id": "assembly-skill",
     "path": "skills/assembly-skill",
     "name": "Assembly Skill",
-    "description": "One-command skill engineering pipeline. Runs diagnostic → intervention → certification in sequence, adapting depth to the skill's current state — so a single invocation takes a skill from whatever sta"
+    "description": "Use when the user asks to run the full skill quality pipeline, improve a skill end to end, take a skill to production, run x-ray plus surgeon plus certify, or assembly-line one skill. Orchestrates one target skill through deterministic diagnostic, intervention, certification, and optional trigger optimization gates."
   },
   {
     "id": "assumption-log",

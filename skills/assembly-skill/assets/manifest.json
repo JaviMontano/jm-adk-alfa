@@ -1,0 +1,47 @@
+{
+  "skill": "assembly-skill",
+  "assets": [
+    {
+      "path": "assets/mode-policy.json",
+      "type": "policy",
+      "purpose": "Exact mode selection thresholds, phase sets, side-effect rules, and context fallback behavior.",
+      "used_by": [
+        "SKILL.md",
+        "references/pipeline-modes.md",
+        "scripts/validate_assembly_contract.py",
+        "evals/evals.json"
+      ]
+    },
+    {
+      "path": "assets/assembly-report-contract.json",
+      "type": "schema",
+      "purpose": "Machine-readable requirements for Assembly Report Markdown packets.",
+      "used_by": [
+        "SKILL.md",
+        "templates/output.md",
+        "scripts/validate_assembly_contract.py",
+        "evals/evals.json"
+      ]
+    },
+    {
+      "path": "assets/assembly-report-template.md",
+      "type": "template",
+      "purpose": "Canonical output skeleton for quick, standard, and deep assembly runs.",
+      "used_by": [
+        "SKILL.md",
+        "templates/output.md",
+        "examples/example-output.md"
+      ]
+    },
+    {
+      "path": "assets/phase-gate-checklist.md",
+      "type": "checklist",
+      "purpose": "Manual verification checklist for Gate A, Gate B, Gate C, and ledger closure.",
+      "used_by": [
+        "SKILL.md",
+        "README.md",
+        "templates/output.md"
+      ]
+    }
+  ]
+}

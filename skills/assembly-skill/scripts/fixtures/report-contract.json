@@ -1,0 +1,16 @@
+{
+  "schema": 1,
+  "skill": "assembly-skill",
+  "valid_reports": [
+    "valid-standard-report.md",
+    "valid-quick-report.md"
+  ],
+  "invalid_reports": [
+    "invalid-premature-certified.md"
+  ],
+  "mode_fixtures": [
+    "scorecard-polish.json",
+    "scorecard-certified.json",
+    "scorecard-blocked.json"
+  ]
+}
