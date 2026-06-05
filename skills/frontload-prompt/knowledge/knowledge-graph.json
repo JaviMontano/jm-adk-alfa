@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-06-05",
+  "skill": "frontload-prompt",
+  "nodes": [
+    {
+      "id": "frontload-prompt",
+      "type": "skill",
+      "label": "frontload-prompt"
+    },
+    {
+      "id": "frontload-prompt:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "frontload-prompt:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "frontload-prompt:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "frontload-prompt",
+      "to": "frontload-prompt:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "frontload-prompt",
+      "to": "frontload-prompt:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "frontload-prompt",
+      "to": "frontload-prompt:quality",
+      "type": "validated_by"
+    }
+  ]
+}

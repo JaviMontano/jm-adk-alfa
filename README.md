@@ -12,8 +12,8 @@ The authoritative counts come from `python3 scripts/count-components.py`.
 
 | Component | Count |
 |---|---:|
-| Skills | 585 |
-| Agents | 260 |
+| Skills | 600 |
+| Agents | 261 |
 | Commands | 267 |
 | Prompts | 256 |
 | Total physical components | 1368 |

@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-06-05",
+  "skill": "revisor-veracidad",
+  "nodes": [
+    {
+      "id": "revisor-veracidad",
+      "type": "skill",
+      "label": "revisor-veracidad"
+    },
+    {
+      "id": "revisor-veracidad:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "revisor-veracidad:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "revisor-veracidad:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "revisor-veracidad",
+      "to": "revisor-veracidad:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "revisor-veracidad",
+      "to": "revisor-veracidad:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "revisor-veracidad",
+      "to": "revisor-veracidad:quality",
+      "type": "validated_by"
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-06-05",
+  "skill": "weekly-retro",
+  "nodes": [
+    {
+      "id": "weekly-retro",
+      "type": "skill",
+      "label": "weekly-retro"
+    },
+    {
+      "id": "weekly-retro:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "weekly-retro:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "weekly-retro:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "weekly-retro",
+      "to": "weekly-retro:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "weekly-retro",
+      "to": "weekly-retro:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "weekly-retro",
+      "to": "weekly-retro:quality",
+      "type": "validated_by"
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 # JM-ADK Architecture v5.2.0
 
-> 585 Skills · 260 Agents · 267 Commands · 256 Prompts · 1368 physical components
+> 600 Skills · 261 Agents · 267 Commands · 256 Prompts · 1384 physical components
 
 ## Directory Structure
 
@@ -9,10 +9,10 @@ jm-adk-alfa/
 ├── .claude-plugin/plugin.json      # Plugin manifest
 ├── .jm-adk.json                    # Shared kit config
 ├── .jm-adk.local.json              # Local override config, ignored
-├── agents/                         # 260 specialist agents
+├── agents/                         # 261 specialist agents
 ├── commands/                       # 267 user-invocable commands
 ├── prompts/                        # 256 top-level prompt files
-├── skills/                         # 585 SDK skill modules
+├── skills/                         # 600 SDK skill modules
 │   └── {skill}/
 │       ├── SKILL.md
 │       ├── README.md

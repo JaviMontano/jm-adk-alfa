@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-06-05",
+  "skill": "wbr-weekly-review",
+  "nodes": [
+    {
+      "id": "wbr-weekly-review",
+      "type": "skill",
+      "label": "wbr-weekly-review"
+    },
+    {
+      "id": "wbr-weekly-review:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "wbr-weekly-review:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "wbr-weekly-review:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "wbr-weekly-review",
+      "to": "wbr-weekly-review:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "wbr-weekly-review",
+      "to": "wbr-weekly-review:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "wbr-weekly-review",
+      "to": "wbr-weekly-review:quality",
+      "type": "validated_by"
+    }
+  ]
+}

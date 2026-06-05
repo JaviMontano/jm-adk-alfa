@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-06-05",
+  "skill": "cierre-conversacion",
+  "nodes": [
+    {
+      "id": "cierre-conversacion",
+      "type": "skill",
+      "label": "cierre-conversacion"
+    },
+    {
+      "id": "cierre-conversacion:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "cierre-conversacion:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "cierre-conversacion:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "cierre-conversacion",
+      "to": "cierre-conversacion:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "cierre-conversacion",
+      "to": "cierre-conversacion:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "cierre-conversacion",
+      "to": "cierre-conversacion:quality",
+      "type": "validated_by"
+    }
+  ]
+}

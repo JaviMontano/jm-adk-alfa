@@ -1,0 +1,9 @@
+{
+  "schema": 1,
+  "skill": "revisor-veracidad",
+  "expected": {
+    "mutates_files_by_default": false,
+    "requires_apply_for_writes": true,
+    "validates_fixtures": true
+  }
+}

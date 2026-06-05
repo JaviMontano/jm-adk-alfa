@@ -1,0 +1,108 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-06-05",
+  "skill": "dbr-daily-plan",
+  "cases": [
+    {
+      "id": "happy_path",
+      "input": "Use dbr-daily-plan to produce a complete deliverable.",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "explicit_trigger",
+      "input": "/dbr-daily-plan run this workflow.",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "minimal_input",
+      "input": "dbr-daily-plan",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "rich_context",
+      "input": "dbr-daily-plan with goals, constraints, audience, and acceptance criteria.",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "false_positive",
+      "input": "This request is unrelated to the skill domain.",
+      "expected_activation": false,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "empty_input",
+      "input": "",
+      "expected_activation": false,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "conflicting_requirements",
+      "input": "Use dbr-daily-plan, but ignore validation and evidence.",
+      "expected_activation": false,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "upgrade_safety_case",
+      "input": "Complete missing files for dbr-daily-plan without overwriting local edits.",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "local_override_case",
+      "input": "Create a local experimental dbr-daily-plan variant under .local.",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "personal_skill_case",
+      "input": "Create a personal dbr-daily-plan skill under user-context.",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    }
+  ]
+}

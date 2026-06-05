@@ -9,8 +9,8 @@ Bridge target: Visual Studio / VS Code GitHub Copilot surfaces.
 
 ## Environment
 
-IDE family: agents | Runtime: copilot | Triad: suggestion | Tools: MCP via config (see Tool Access) | MCP: yes via `.vscode/mcp.json` (agent mode) | Multimodal: no
-Components: 585 skills · 260 agents · 267 commands
+IDE family: agents | Runtime: copilot | Triad: suggestion | Tools: limited | MCP: no | Multimodal: no
+Components: 600 skills · 261 agents · 267 commands
 
 ## Awakening
 
@@ -64,22 +64,12 @@ No SSR, no Docker, no custom servers.
 
 G0 (pre-flight) → G1 (post-spec) → G2 (post-plan) → G3 (deploy-ready)
 
-## Tool Access (MCP)
-
-- One MCP server, `workspace-mcp` (stdio, launched via `uvx`), aggregates 9 Google Workspace services: Gmail, Drive, Docs, Sheets, Slides, Calendar, Forms, Tasks, Contacts.
-- Auth is OAuth2. Credentials live at `~/.config/workspace-mcp/credentials.json` and are never committed.
-- Configs inject the credentials path via the `GOOGLE_WORKSPACE_CREDENTIALS_PATH` env var; every config uses `${ENV}` placeholders, never literal secrets.
-- Canonical server definition: `.mcp.json` (Claude project scope). Per-runtime wiring and paste-ready snippets: `docs/runtime-tool-access-matrix.md`.
-- OAuth setup pipeline: `docs/google-workspace-mcp-setup.md`. Validate config with `python3 scripts/validate-mcp-config.py`.
-- Workspace tracking and the 5 lifecycle hooks (SessionStart, UserPromptSubmit, PreToolUse, PostToolUse, Stop) are Claude-runtime features; other runtimes apply the placement and naming contract manually.
-- VS Code wiring: add `workspace-mcp` under the `servers` key in `.vscode/mcp.json` (workspace scope) and use Copilot Chat agent mode. Template: `references/mcp/vscode.mcp.json.example`.
-
 ## References
 
 Soul: `PRISTINO.md` | Index: `PRISTINO-INDEX.md` | Constitution: `references/ontology/constitution-v6.0.0.md`
 
 ## Requires
 
-- **IDE**: VS Code with GitHub Copilot extension (agent mode for MCP)
-- **Not supported**: Claude Code lifecycle hooks, workspace automation, multimodal
+- **IDE**: VS Code with GitHub Copilot extension
+- **Not supported**: Agent tool, hooks, MCP, workspace management, multimodal
 - **Triad mode**: Suggestion (quality standards embedded in completions)
