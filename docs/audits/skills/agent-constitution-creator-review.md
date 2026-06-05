@@ -80,6 +80,8 @@ bash scripts/check-repo-boundaries.sh
 python3 -B scripts/qa/run-adversarial-tests.py
 python3 -B scripts/validate-skill-scripts.py --strict --run-checks
 bash scripts/doc-factory/check.sh
+bash scripts/adapt.sh all
+git diff --quiet -- AGENTS.md GEMINI.md .agent/rules/GEMINI.md .agent/ARCHITECTURE.md .agent/skills_index.json .github/copilot-instructions.md .cursorrules .windsurfrules
 git diff --check
 ```
 
@@ -93,6 +95,7 @@ Results:
 - [CÓDIGO] `summary: passed=11 failed=0 total=11`
 - [CÓDIGO] `skills_with_scripts=32 warnings=0 errors=0`
 - [CÓDIGO] `OK: doc-factory deterministic smoke check passed`
+- [CÓDIGO] Runtime adapters refreshed after CI exposed stale `.agent/skills_index.json` output.
 - [CÓDIGO] `git diff --check` produced no output
 
 ## Decision

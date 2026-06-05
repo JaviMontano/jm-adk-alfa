@@ -1,12 +1,7 @@
 ---
 name: agent-constitution-creator
 version: 1.0.0
-description: >-
-  Use when the user asks to create an agent constitution, define persistent
-  agent identity, write agent.md, generate an agent governance spec, or add a
-  constitution-grade agent to a multi-agent ecosystem. Produces deterministic
-  agent.md constitutions with 22 required fields covering identity, authority,
-  governance, quality, validation, and version control.
+description: "Use when the user asks to create an agent constitution, define persistent agent identity, write agent.md, generate an agent governance spec, or add a constitution-grade agent to a multi-agent ecosystem. Produces deterministic agent.md constitutions with 22 required fields covering identity, authority, governance, quality, validation, and version control."
 argument-hint: agent-id [role-description]
 model: opus
 context: fork
