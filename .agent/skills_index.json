@@ -621,7 +621,7 @@
     "id": "constitution-compliance",
     "path": "skills/constitution-compliance",
     "name": "Constitution Compliance",
-    "description": ">"
+    "description": "Validates outputs, plans, PRs, reports, or workflows against JM-ADK Constitution v6.0.0 using an 18-principle matrix, G0-G3 gate impact, evidence tags, severity, remediation, and fail-closed missing-evidence handling. Use when the user asks for constitution compliance, constitutional audit, Pristino governance validation, pre-delivery compliance, or whether an artifact violates JM-ADK principles."
   },
   {
     "id": "contact-database",

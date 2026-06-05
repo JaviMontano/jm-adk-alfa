@@ -1,0 +1,53 @@
+{
+  "artifact": {
+    "name": "stale constitution audit packet",
+    "type": "release-packet",
+    "evidence": "[CODE] Artifact text cites Constitution v5.2.0 and omits gate evidence."
+  },
+  "summary": {
+    "constitution_version": "v6.0.0",
+    "overall_status": "blocked",
+    "gate": "G0",
+    "confidence": 0.82,
+    "blocking_findings": 1,
+    "not_verified_count": 1
+  },
+  "principle_matrix": [
+    {"principle_id": 1, "principle_name": "Think First, Act Next", "status": "fail", "severity": "P1", "evidence": "[CODE] Artifact cites stale Constitution v5.2.0 instead of v6.0.0.", "missing_evidence": [], "remediation": "Update target to Constitution v6.0.0 and rerun compliance check.", "gate_impact": ["G0"]},
+    {"principle_id": 2, "principle_name": "Simple First, Robust Next", "status": "pass", "severity": "none", "evidence": "[DOC] No unnecessary abstraction is requested in the packet.", "missing_evidence": [], "remediation": "none", "gate_impact": ["G0"]},
+    {"principle_id": 3, "principle_name": "Client-Rendered, Cloud-Backed", "status": "not_applicable", "severity": "none", "evidence": "[DOC] Artifact is not an application deployment.", "missing_evidence": [], "remediation": "none", "gate_impact": ["G2"]},
+    {"principle_id": 4, "principle_name": "Accessibility-First", "status": "not_applicable", "severity": "none", "evidence": "[DOC] Artifact has no interactive UI.", "missing_evidence": [], "remediation": "none", "gate_impact": ["G3"]},
+    {"principle_id": 5, "principle_name": "SEO Integrity", "status": "not_applicable", "severity": "none", "evidence": "[DOC] Artifact has no public page.", "missing_evidence": [], "remediation": "none", "gate_impact": ["G3"]},
+    {"principle_id": 6, "principle_name": "Offline Resilience", "status": "pass", "severity": "none", "evidence": "[CODE] No network dependency appears in the report fixtures.", "missing_evidence": [], "remediation": "none", "gate_impact": ["G3"]},
+    {"principle_id": 7, "principle_name": "Component Consistency", "status": "pass", "severity": "none", "evidence": "[DOC] Report uses a single matrix contract.", "missing_evidence": [], "remediation": "none", "gate_impact": ["G2"]},
+    {"principle_id": 8, "principle_name": "Test-Driven Development", "status": "not_verified", "severity": "P1", "evidence": "[DOC] The packet does not include test command output.", "missing_evidence": ["test command output"], "remediation": "Run required tests and attach command output before release.", "gate_impact": ["G2"]},
+    {"principle_id": 9, "principle_name": "BDD Full-Spectrum Quality", "status": "pass", "severity": "none", "evidence": "[DOC] The packet includes a checklist reference.", "missing_evidence": [], "remediation": "none", "gate_impact": ["G1"]},
+    {"principle_id": 10, "principle_name": "Sequential-First, Parallel-Ready Workflow", "status": "pass", "severity": "none", "evidence": "[CONFIG] Packet describes one active PR.", "missing_evidence": [], "remediation": "none", "gate_impact": ["G0"]},
+    {"principle_id": 11, "principle_name": "Code Sustainability", "status": "pass", "severity": "none", "evidence": "[DOC] File naming is stable in the packet.", "missing_evidence": [], "remediation": "none", "gate_impact": ["G3"]},
+    {"principle_id": 12, "principle_name": "Indexable & Self-Organizing Repository", "status": "pass", "severity": "none", "evidence": "[DOC] README paths are listed in the packet.", "missing_evidence": [], "remediation": "none", "gate_impact": ["G3"]},
+    {"principle_id": 13, "principle_name": "Design System Governance", "status": "not_applicable", "severity": "none", "evidence": "[DOC] No visual artifact is included.", "missing_evidence": [], "remediation": "none", "gate_impact": ["G2"]},
+    {"principle_id": 14, "principle_name": "Brand Voice Integrity", "status": "pass", "severity": "none", "evidence": "[DOC] Packet avoids red-list terms in the excerpt reviewed.", "missing_evidence": [], "remediation": "none", "gate_impact": ["G3"]},
+    {"principle_id": 15, "principle_name": "Brand Separation", "status": "pass", "severity": "none", "evidence": "[CONFIG] Packet is scoped to JM Labs.", "missing_evidence": [], "remediation": "none", "gate_impact": ["G3"]},
+    {"principle_id": 16, "principle_name": "Content Authority", "status": "pass", "severity": "none", "evidence": "[DOC] Packet names the constitution source file.", "missing_evidence": [], "remediation": "none", "gate_impact": ["G2"]},
+    {"principle_id": 17, "principle_name": "Secure by Default", "status": "pass", "severity": "none", "evidence": "[CODE] No secret-like token appears in the fixture excerpt.", "missing_evidence": [], "remediation": "none", "gate_impact": ["G0"]},
+    {"principle_id": 18, "principle_name": "Continuous Learning Loop", "status": "pass", "severity": "none", "evidence": "[DOC] Packet lists follow-up learning capture.", "missing_evidence": [], "remediation": "none", "gate_impact": ["G3"]}
+  ],
+  "gate_impact": [
+    {"gate": "G0", "status": "blocked", "blocking": true, "evidence": "[CODE] Version drift blocks pre-flight compliance."},
+    {"gate": "G1", "status": "pass", "blocking": false, "evidence": "[DOC] Checklist evidence is present."},
+    {"gate": "G2", "status": "not_verified", "blocking": true, "evidence": "[DOC] Test command output is missing."},
+    {"gate": "G3", "status": "not_applicable", "blocking": false, "evidence": "[DOC] Artifact is not deploy-ready UI."}
+  ],
+  "violations": [{"principle_id": 1, "evidence": "[CODE] Stale v5.2.0 target found.", "severity": "P1"}],
+  "missing_evidence": [{"principle_id": 8, "evidence": "[DOC] Test command output absent."}],
+  "remediation_plan": [
+    {"item": "version drift", "action": "Update target to v6.0.0."},
+    {"item": "test evidence", "action": "Run tests and attach output."}
+  ],
+  "decision": {
+    "release_decision": "block",
+    "reason": "[CODE] P1 version drift and missing test evidence remain.",
+    "next_action": "patch and rerun compliance"
+  },
+  "caveats": ["[INFERENCE] The report is valid as a blocked decision, not as a release pass."]
+}

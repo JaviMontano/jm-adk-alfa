@@ -376,7 +376,7 @@
 | 101 | `compliance-framework` | — |
 | 102 | `component-architecture` | — |
 | 103 | `component-designer` | UI component architecture. Atomic design (atoms/molecules/organisms). Props cont |
-| 104 | `constitution-compliance` | — |
+| 104 | `constitution-compliance` | Validates outputs, plans, PRs, reports, or workflows against JM-ADK Constitution |
 | 105 | `contact-database` | — |
 | 106 | `content-calendar` | — |
 | 107 | `context-optimization` | — |

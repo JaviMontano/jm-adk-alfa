@@ -1,9 +1,136 @@
-[
-  {"id": "constitution-compliance-happy-path", "type": "happy_path", "input": "Run constitution compliance on this project", "expected_behavior": "Skill activates and produces the expected constitution compliance output following the defined process", "tags": ["basic", "activation"]},
-  {"id": "constitution-compliance-explicit-trigger", "type": "happy_path", "input": "Apply constitution compliance analysis", "expected_behavior": "Skill recognizes the trigger phrase and executes the constitution compliance workflow", "tags": ["trigger", "recognition"]},
-  {"id": "constitution-compliance-with-context", "type": "happy_path", "input": "Apply constitution compliance to analyze the current codebase with detailed output", "expected_behavior": "Skill produces comprehensive constitution compliance analysis with evidence-tagged findings", "tags": ["detailed", "comprehensive"]},
-  {"id": "constitution-compliance-minimal-input", "type": "happy_path", "input": "Quick constitution compliance", "expected_behavior": "Skill activates with minimal input, applies reasonable defaults", "tags": ["minimal", "defaults"]},
-  {"id": "constitution-compliance-false-positive", "type": "false_positive", "input": "What is the weather forecast for tomorrow?", "expected_behavior": "Skill should NOT activate — this input has no relation to constitution compliance", "tags": ["false_positive", "should-not-activate"]},
-  {"id": "constitution-compliance-edge-empty-input", "type": "edge_case", "input": "Run constitution compliance but I have no files or documentation yet", "expected_behavior": "Skill handles gracefully — requests minimum viable input or produces gap analysis", "tags": ["edge_case", "empty-input", "boundary"]},
-  {"id": "constitution-compliance-edge-conflicting", "type": "edge_case", "input": "Apply constitution compliance but requirements contradict each other", "expected_behavior": "Skill detects contradiction, flags with [OPEN] tag, proposes resolution", "tags": ["edge_case", "conflict", "corner"]}
-]
+{
+  "schema": 1,
+  "skill": "constitution-compliance",
+  "cases": [
+    {
+      "id": "fully-compliant-release-packet",
+      "type": "happy_path",
+      "input": "Run constitution compliance on this skill-release packet with DoD, script checks, Quality Gates, and no missing evidence.",
+      "expected_activation": true,
+      "expected_outputs": [
+        "Constitution v6.0.0",
+        "18-principle matrix",
+        "G0-G3 gate impact",
+        "overall_status pass",
+        "release_decision allow"
+      ],
+      "forbidden_outputs": ["v5.2.0 target", "probably compliant", "no issues found"],
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "18_principles", "gate_impact"]
+    },
+    {
+      "id": "stale-version-blocks",
+      "type": "negative_contract",
+      "input": "Audit a report that still says Constitution v5.2.0 is the target.",
+      "expected_activation": true,
+      "expected_outputs": [
+        "version drift finding",
+        "severity P1",
+        "overall_status blocked",
+        "remediation to v6.0.0"
+      ],
+      "forbidden_outputs": ["overall_status pass", "release_decision allow"],
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "version_drift"]
+    },
+    {
+      "id": "missing-evidence-not-verified",
+      "type": "edge_case",
+      "input": "Run G2 compliance but the artifact does not include test command output or security-rule evidence.",
+      "expected_activation": true,
+      "expected_outputs": [
+        "not_verified status",
+        "missing evidence table",
+        "gate impact G2",
+        "release_decision block"
+      ],
+      "forbidden_outputs": ["marks missing evidence as pass", "assumes tests ran"],
+      "expected_checks": ["quality_criteria", "missing_evidence_policy", "gate_impact"]
+    },
+    {
+      "id": "p0-secret-blocks",
+      "type": "negative_contract",
+      "input": "Audit an artifact whose evidence excerpt includes a client-side secret token.",
+      "expected_activation": true,
+      "expected_outputs": [
+        "Secure by Default failure",
+        "severity P0",
+        "overall_status blocked",
+        "secret removal remediation"
+      ],
+      "forbidden_outputs": ["release_decision allow", "severity none"],
+      "expected_checks": ["quality_criteria", "severity_policy", "gate_impact"]
+    },
+    {
+      "id": "conflicting-requirements",
+      "type": "edge_case",
+      "input": "Audit a plan that requires custom SSR server deployment while also claiming Hostinger shared hosting compatibility.",
+      "expected_activation": true,
+      "expected_outputs": [
+        "Client-Rendered, Cloud-Backed finding",
+        "conflict explanation",
+        "remediation decision required"
+      ],
+      "forbidden_outputs": ["hides conflict", "marks both requirements pass"],
+      "expected_checks": ["quality_criteria", "remediation_required"]
+    },
+    {
+      "id": "all-18-principles-required",
+      "type": "negative_contract",
+      "input": "Validate a compliance report with only 17 principle rows.",
+      "expected_activation": true,
+      "expected_outputs": [
+        "fails validation",
+        "missing principle row"
+      ],
+      "forbidden_outputs": ["accepts partial matrix"],
+      "expected_checks": ["deterministic_scripts", "18_principles", "quality_criteria"]
+    },
+    {
+      "id": "invalid-evidence-tags",
+      "type": "negative_contract",
+      "input": "Validate a report that uses untagged claims and unsupported evidence language.",
+      "expected_activation": true,
+      "expected_outputs": [
+        "fails validation",
+        "missing evidence tag"
+      ],
+      "forbidden_outputs": ["accepts untagged factual claims"],
+      "expected_checks": ["deterministic_scripts", "evidence_tags", "quality_criteria"]
+    },
+    {
+      "id": "false-positive-agent-constitution",
+      "type": "false_positive",
+      "input": "Create a full agent constitution for a finance reviewer.",
+      "expected_activation": false,
+      "expected_outputs": [
+        "redirects to agent-constitution-creator",
+        "does not run compliance report"
+      ],
+      "forbidden_outputs": ["18-principle compliance matrix"],
+      "expected_checks": ["activation_policy", "false_positive"]
+    },
+    {
+      "id": "false-positive-view-constitution",
+      "type": "false_positive",
+      "input": "Open the Constitution so I can read or amend it.",
+      "expected_activation": false,
+      "expected_outputs": [
+        "redirects to /jm-adk:constitution",
+        "does not audit an artifact"
+      ],
+      "forbidden_outputs": ["release_decision", "principle_matrix"],
+      "expected_checks": ["activation_policy", "false_positive"]
+    },
+    {
+      "id": "false-positive-generic-politics",
+      "type": "false_positive",
+      "input": "Explain the constitution of another country.",
+      "expected_activation": false,
+      "expected_outputs": [
+        "does not activate JM-ADK constitution compliance",
+        "routes to a general answer or legal/research skill"
+      ],
+      "forbidden_outputs": ["JM-ADK G0", "Pristino governance"],
+      "expected_checks": ["activation_policy", "false_positive"]
+    }
+  ]
+}

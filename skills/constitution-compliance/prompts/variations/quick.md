@@ -1,12 +1,13 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: constitution-compliance
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
-
 # Constitution Compliance Quick Variation
 
-Use when the task is low risk and well specified.
+Use when the artifact is small, the target gate is explicit, and evidence
+sources are already provided. [EXPLICIT]
 
-Return only the requested deliverable, validation status, and residual risks.
+Return a compact report with:
+
+- Summary and release decision.
+- 18-row principle matrix.
+- G0-G3 impact.
+- Violations, missing evidence, remediation, and caveats.
+
+Do not shorten the matrix or turn missing evidence into a pass.

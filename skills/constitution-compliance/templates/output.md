@@ -1,28 +1,56 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: constitution-compliance
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
-
 # Constitution Compliance Output
 
 ## Summary
 
-{summary}
+| Field | Value |
+|---|---|
+| Constitution | v6.0.0 |
+| Artifact | `{artifact}` |
+| Gate | `{gate}` |
+| Overall status | `{pass|blocked|not_verified}` |
+| Blocking findings | `{count}` |
+| Not verified | `{count}` |
+| Confidence | `{0.00-1.00}` |
 
-## Evidence
+## Principle Matrix
 
-{evidence}
+| # | Principle | Status | Severity | Gate | Evidence | Remediation |
+|---:|---|---|---|---|---|---|
+| 1 | Think First, Act Next | `{status}` | `{severity}` | `{gate}` | `{tagged evidence}` | `{remediation or none}` |
+| ... | ... | ... | ... | ... | ... | ... |
+| 18 | Continuous Learning Loop | `{status}` | `{severity}` | `{gate}` | `{tagged evidence}` | `{remediation or none}` |
 
-## Result
+## Gate Impact
 
-{result}
+| Gate | Status | Blocking | Evidence |
+|---|---|---:|---|
+| G0 | `{status}` | `{true|false}` | `{tagged evidence}` |
+| G1 | `{status}` | `{true|false}` | `{tagged evidence}` |
+| G2 | `{status}` | `{true|false}` | `{tagged evidence}` |
+| G3 | `{status}` | `{true|false}` | `{tagged evidence}` |
 
-## Validation
+## Violations
 
-{validation}
+| Principle | Finding | Severity | Remediation |
+|---|---|---|---|
+| `{principle}` | `{tagged finding}` | `{severity}` | `{action}` |
 
-## Risks and Limits
+## Missing Evidence
 
-{risks}
+| Principle | Missing | Next Step |
+|---|---|---|
+| `{principle}` | `{missing evidence}` | `{file, command, or decision}` |
+
+## Remediation Plan
+
+{ordered remediation plan}
+
+## Decision
+
+- release_decision: `{allow|block|needs_evidence}`
+- reason: `{tagged reason}`
+- next_action: `{next command, file, or decision}`
+
+## Caveats
+
+{explicit caveats}

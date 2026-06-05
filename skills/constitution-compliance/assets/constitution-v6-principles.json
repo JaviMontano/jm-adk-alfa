@@ -1,0 +1,48 @@
+{
+  "schema": 1,
+  "constitution_version": "v6.0.0",
+  "source": "references/ontology/constitution-v6.0.0.md",
+  "principles": [
+    {"id": 1, "v5_id": "XIII", "name": "Think First, Act Next", "domain": "Foundation", "default_gate": "G0"},
+    {"id": 2, "v5_id": "XIV", "name": "Simple First, Robust Next", "domain": "Foundation", "default_gate": "G0"},
+    {"id": 3, "v5_id": "I", "name": "Client-Rendered, Cloud-Backed", "domain": "Product Architecture", "default_gate": "G2"},
+    {"id": 4, "v5_id": "II", "name": "Accessibility-First", "domain": "Product Architecture", "default_gate": "G3"},
+    {"id": 5, "v5_id": "III", "name": "SEO Integrity", "domain": "Product Architecture", "default_gate": "G3"},
+    {"id": 6, "v5_id": "VIII", "name": "Offline Resilience", "domain": "Product Architecture", "default_gate": "G3"},
+    {"id": 7, "v5_id": "IV", "name": "Component Consistency", "domain": "Product Architecture", "default_gate": "G2"},
+    {"id": 8, "v5_id": "IX", "name": "Test-Driven Development", "domain": "Engineering Discipline", "default_gate": "G2"},
+    {"id": 9, "v5_id": "XV", "name": "BDD Full-Spectrum Quality", "domain": "Engineering Discipline", "default_gate": "G1"},
+    {"id": 10, "v5_id": "XVI", "name": "Sequential-First, Parallel-Ready Workflow", "domain": "Engineering Discipline", "default_gate": "G0"},
+    {"id": 11, "v5_id": "XII", "name": "Code Sustainability", "domain": "Engineering Discipline", "default_gate": "G3"},
+    {"id": 12, "v5_id": "XVIII", "name": "Indexable & Self-Organizing Repository", "domain": "Engineering Discipline", "default_gate": "G3"},
+    {"id": 13, "v5_id": "X", "name": "Design System Governance", "domain": "Identity & Content", "default_gate": "G2"},
+    {"id": 14, "v5_id": "XI", "name": "Brand Voice Integrity", "domain": "Identity & Content", "default_gate": "G3"},
+    {"id": 15, "v5_id": "V", "name": "Brand Separation", "domain": "Identity & Content", "default_gate": "G3"},
+    {"id": 16, "v5_id": "VI", "name": "Content Authority", "domain": "Identity & Content", "default_gate": "G2"},
+    {"id": 17, "v5_id": "VII", "name": "Secure by Default", "domain": "Security & Trust", "default_gate": "G0"},
+    {"id": 18, "v5_id": "XVII", "name": "Continuous Learning Loop", "domain": "Evolution", "default_gate": "G3"}
+  ],
+  "gates": [
+    {
+      "id": "G0",
+      "when": "Pre-flight",
+      "criteria": ["secrets scan", "branch created", "constitution compliance"]
+    },
+    {
+      "id": "G1",
+      "when": "After spec",
+      "criteria": ["spec complete", "evidence tags", "checklist"]
+    },
+    {
+      "id": "G2",
+      "when": "After plan",
+      "criteria": ["data model", "API contracts", "security rules", "BDD hash-locked", "tokens"]
+    },
+    {
+      "id": "G3",
+      "when": "Deploy-ready",
+      "criteria": ["all tests pass", "Lighthouse >= 90", "emulator tests", "accessibility audit", "brand voice scan"]
+    }
+  ],
+  "statuses": ["pass", "fail", "not_verified", "not_applicable"]
+}
