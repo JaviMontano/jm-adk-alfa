@@ -1,0 +1,20 @@
+{
+  "schema": 1,
+  "skill": "code-review",
+  "mode": "read_only",
+  "allowed_sources": [
+    "user supplied diff, patch, PR, branch, commit range, file path, source file, test output, CI output, issue, requirement, or acceptance criteria"
+  ],
+  "forbidden_behaviors": [
+    "editing target code",
+    "inventing files or line numbers",
+    "using current date without caller input",
+    "using web research as review evidence unless explicitly supplied",
+    "blocking style-only feedback without cited policy"
+  ],
+  "allowed_bash": [
+    "read-only git inspection",
+    "tests or validators explicitly requested or already part of the repository",
+    "skill-local deterministic checks"
+  ]
+}

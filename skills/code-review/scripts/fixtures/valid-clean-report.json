@@ -1,0 +1,31 @@
+{
+  "schema": 1,
+  "skill": "code-review",
+  "mode": "read_only",
+  "scope": {
+    "review_type": "changed_files",
+    "sources_reviewed": ["src/reporting/formatter.py", "tests/test_formatter.py", "pytest output"],
+    "minimum_inputs_missing": [],
+    "depth": "quick"
+  },
+  "findings": [],
+  "positive_patterns": [
+    {
+      "file": "tests/test_formatter.py",
+      "line": 12,
+      "pattern": "The supplied tests cover the new empty-input branch. [CÓDIGO]",
+      "evidence_tag": "[CÓDIGO]"
+    }
+  ],
+  "validation": {
+    "checks_run": ["inspected changed files", "inspected supplied pytest output"],
+    "coverage_notes": ["new branch has direct test coverage"],
+    "not_verified": []
+  },
+  "decision": {
+    "release_decision": "approve",
+    "reason": "No findings and one positive pattern are supported by supplied evidence. [CÓDIGO]",
+    "next_action": "Merge when repository gates remain green."
+  },
+  "risks_and_limits": ["Runtime behavior outside supplied tests was not independently executed. [CONFIG]"]
+}

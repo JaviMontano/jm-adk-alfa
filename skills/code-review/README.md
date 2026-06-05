@@ -1,30 +1,48 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: code-review
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
-
 # Code Review
 
->
+Deterministic code review for supplied diffs, pull requests, patches, or file
+excerpts. The skill is read-only, evidence-bound, and validates its report
+contract with local fixtures. [CONFIG]
 
 ## Triggers
 
-- code-review
+- "code review"
+- "PR review"
+- "pull request review"
+- "review this diff"
+- "review this patch"
+- "review these changed files"
 
-## Allowed Tools
+## Assets
 
-- Read
-- Write
-- Glob
-- Grep
-- Bash
+- `assets/activation-policy.json`: activation and non-code refusal rules.
+- `assets/review-taxonomy.json`: severities, categories, and decisions.
+- `assets/evidence-policy.json`: allowed evidence tags and citation rules.
+- `assets/report-contract.json`: required report sections and fields.
+- `assets/source-boundary-policy.json`: read-only review boundaries.
 
-## Quick Use
+## Scripts
 
-Use this skill when the request clearly matches the triggers and requires the `code-review` capability.
+Run the deterministic fixture check:
 
-## Output Format
+```bash
+bash skills/code-review/scripts/check.sh
+```
 
-Markdown with summary, evidence, result, validation, and risks.
+The check validates report JSON fixtures, rejects false approvals with blockers,
+and rejects untagged or unevidenced findings. [CÓDIGO]
+
+## Output
+
+Reports use:
+
+- `# Code Review Report`
+- `## Scope`
+- `## Findings`
+- `## Positive Patterns`
+- `## Validation`
+- `## Decision`
+- `## Risks and Limits`
+
+For machine validation, use the JSON shape in
+`assets/report-contract.json`. [CONFIG]

@@ -1,0 +1,35 @@
+{
+  "schema": 1,
+  "skill": "code-review",
+  "mode": "read_only",
+  "scope": {
+    "review_type": "pull_request_diff",
+    "sources_reviewed": ["src/auth/middleware.ts diff"],
+    "minimum_inputs_missing": [],
+    "depth": "standard"
+  },
+  "findings": [
+    {
+      "id": "CR-001",
+      "severity": "BLOCKER",
+      "category": "security",
+      "file": "src/auth/middleware.ts",
+      "line": 19,
+      "claim": "Admin requests bypass authentication. [CÓDIGO]",
+      "evidence_tag": "[CÓDIGO]",
+      "suggested_action": "Require authentication before admin route handling."
+    }
+  ],
+  "positive_patterns": [],
+  "validation": {
+    "checks_run": ["inspected supplied diff"],
+    "coverage_notes": [],
+    "not_verified": []
+  },
+  "decision": {
+    "release_decision": "approve",
+    "reason": "The finding is acceptable.",
+    "next_action": "Merge."
+  },
+  "risks_and_limits": []
+}

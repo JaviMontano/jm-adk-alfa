@@ -1,0 +1,35 @@
+{
+  "schema": 1,
+  "skill": "code-review",
+  "mode": "read_only",
+  "scope": {
+    "review_type": "pull_request_diff",
+    "sources_reviewed": ["src/orders/repository.py diff"],
+    "minimum_inputs_missing": [],
+    "depth": "standard"
+  },
+  "findings": [
+    {
+      "id": "CR-001",
+      "severity": "MAJOR",
+      "category": "performance",
+      "file": "src/orders/repository.py",
+      "line": 42,
+      "claim": "The query inside the loop can create an N+1 pattern.",
+      "evidence_tag": "[GUESS]",
+      "suggested_action": "Batch the query or prefetch totals."
+    }
+  ],
+  "positive_patterns": [],
+  "validation": {
+    "checks_run": ["inspected supplied diff"],
+    "coverage_notes": [],
+    "not_verified": []
+  },
+  "decision": {
+    "release_decision": "approve_with_comments",
+    "reason": "One non-blocking finding exists.",
+    "next_action": "Consider batching."
+  },
+  "risks_and_limits": []
+}

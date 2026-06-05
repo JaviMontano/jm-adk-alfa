@@ -1,44 +1,28 @@
 ---
 name: code-review-deep
 type: variation
-version: 2.0.0
-description: "Code Review — deep analysis mode. Exhaustive coverage."
+version: 2.1.0
+description: "Deep deterministic Code Review for high-risk changes."
 ---
 
-# Code Review — Deep Mode
+# Code Review - Deep Mode
 
-## When to Use
+## When To Use
 
-Use deep mode when thoroughness matters more than speed: architecture decisions, security audits, compliance reviews, critical deliverables.
+Use deep mode for security-sensitive, high-blast-radius, data, auth,
+compliance, migration, or architecture changes.
 
-## Dynamic Parameters
+## Execution
 
-| Parameter | Required | Filled By |
-|-----------|----------|-----------|
-| `{{task}}` | Yes | User input |
-| `{{context}}` | Yes | User + codebase scan |
-| `{{depth}}` | No | Set to "deep" |
-
-## Execution (Deep)
-
-1. Load ALL knowledge: `knowledge/body-of-knowledge.md` + cross-referenced skills
-2. Check guardrails: `references/guardrails/*.json`
-3. Lead executes with exhaustive analysis:
-   - Cover ALL edge cases, not just common path
-   - Research: check standards, best practices, recent changes
-   - Document every assumption with `[ASSUMPTION]` tag
-4. Support reviews with expanded scope:
-   - Security, accessibility, performance, business viability
-   - Adversarial scenarios: what could go wrong?
-5. Guardian validates with strict criteria:
-   - Evidence tags 100% coverage (no untagged claims)
-   - Quality gate fully met
-   - Confidence >= 0.95 with evidence support
+1. Confirm scope and source boundaries.
+2. Inspect changed code, adjacent contracts, tests, and supplied CI/log output.
+3. Evaluate all taxonomy categories relevant to the diff.
+4. Separate verified code facts from risk inference.
+5. Flag missing evidence instead of assuming tests or policies pass.
+6. Apply the same severity decision rules as standard mode.
 
 ## Output
 
-- Exhaustive deliverable with full evidence trail
-- Edge cases documented
-- Risk assessment included
-- Recommendations with priority ranking
-- Confidence score with justification
+Use the standard report sections and include `not_verified` items for any
+missing tests, missing policy docs, unavailable runtime behavior, or inaccessible
+context.

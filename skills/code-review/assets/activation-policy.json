@@ -1,0 +1,24 @@
+{
+  "schema": 1,
+  "skill": "code-review",
+  "activate_when": [
+    "user asks for code review",
+    "user asks for PR or pull request review",
+    "user asks to review a diff, patch, branch, commit, or changed files",
+    "user asks for implementation review with code artifacts"
+  ],
+  "do_not_activate_when": [
+    "user asks for a product, book, course, restaurant, or service review without code",
+    "user asks for proofreading or UX copy critique without code artifacts",
+    "user asks for security audit depth better handled by audit-security"
+  ],
+  "minimum_inputs": [
+    "code excerpt",
+    "file path",
+    "diff or patch",
+    "pull request URL",
+    "branch or commit range",
+    "repository context plus requested review scope"
+  ],
+  "missing_input_behavior": "return needs_context with minimum_inputs_missing and no fabricated findings"
+}

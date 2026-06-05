@@ -1,0 +1,30 @@
+{
+  "schema": 1,
+  "skill": "code-review",
+  "severities": ["BLOCKER", "MAJOR", "MINOR", "NIT"],
+  "severity_order": {
+    "BLOCKER": 1,
+    "MAJOR": 2,
+    "MINOR": 3,
+    "NIT": 4
+  },
+  "categories": [
+    "correctness",
+    "security",
+    "tests",
+    "performance",
+    "maintainability",
+    "accessibility",
+    "api_contract",
+    "observability",
+    "style",
+    "positive"
+  ],
+  "decision_rules": {
+    "request_changes": "required when any BLOCKER finding exists",
+    "approve_with_comments": "allowed when findings exist but no BLOCKER exists",
+    "approve": "allowed when no blocking or material findings exist and positive patterns are recorded",
+    "needs_context": "required when minimum inputs are missing"
+  },
+  "finding_id_format": "CR-NNN"
+}

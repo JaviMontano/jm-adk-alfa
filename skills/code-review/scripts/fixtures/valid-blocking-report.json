@@ -1,0 +1,42 @@
+{
+  "schema": 1,
+  "skill": "code-review",
+  "mode": "read_only",
+  "scope": {
+    "review_type": "pull_request_diff",
+    "sources_reviewed": ["app/billing/address.py diff", "pytest excerpt"],
+    "minimum_inputs_missing": ["full test suite output"],
+    "depth": "standard"
+  },
+  "findings": [
+    {
+      "id": "CR-001",
+      "severity": "BLOCKER",
+      "category": "correctness",
+      "file": "app/billing/address.py",
+      "line": 3,
+      "claim": "The removed None guard lets anonymous calls dereference user.id before authorization is proven. [CÓDIGO]",
+      "evidence_tag": "[CÓDIGO]",
+      "suggested_action": "Restore the guard and add a failure-path test for user is None."
+    }
+  ],
+  "positive_patterns": [
+    {
+      "file": "app/billing/address.py",
+      "line": 4,
+      "pattern": "Address normalization remains before persistence. [CÓDIGO]",
+      "evidence_tag": "[CÓDIGO]"
+    }
+  ],
+  "validation": {
+    "checks_run": ["inspected supplied diff", "inspected supplied pytest excerpt"],
+    "coverage_notes": ["happy-path test supplied"],
+    "not_verified": ["full suite output"]
+  },
+  "decision": {
+    "release_decision": "request_changes",
+    "reason": "One BLOCKER finding exists. [CÓDIGO]",
+    "next_action": "Restore authorization guard and add regression test."
+  },
+  "risks_and_limits": ["Review is limited to supplied diff and pytest excerpt. [CONFIG]"]
+}

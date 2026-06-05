@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "skill": "code-review",
+  "assets": [
+    {
+      "path": "assets/activation-policy.json",
+      "type": "policy",
+      "purpose": "Defines when code-review activates and how missing inputs are handled.",
+      "used_by": ["SKILL.md", "prompts/primary.md", "evals/evals.json"]
+    },
+    {
+      "path": "assets/review-taxonomy.json",
+      "type": "taxonomy",
+      "purpose": "Defines fixed severities, categories, decisions, and ordering rules.",
+      "used_by": ["SKILL.md", "templates/output.md", "scripts/validate_code_review_report.py"]
+    },
+    {
+      "path": "assets/evidence-policy.json",
+      "type": "policy",
+      "purpose": "Defines evidence tags, required citation fields, and secret redaction rules.",
+      "used_by": ["SKILL.md", "templates/output.md", "scripts/validate_code_review_report.py"]
+    },
+    {
+      "path": "assets/report-contract.json",
+      "type": "schema",
+      "purpose": "Defines the machine-checkable JSON report contract.",
+      "used_by": ["SKILL.md", "templates/output.md", "scripts/validate_code_review_report.py"]
+    },
+    {
+      "path": "assets/source-boundary-policy.json",
+      "type": "policy",
+      "purpose": "Defines read-only source boundaries and forbidden review behaviors.",
+      "used_by": ["SKILL.md", "agents/guardian.md", "scripts/validate_code_review_report.py"]
+    }
+  ]
+}
