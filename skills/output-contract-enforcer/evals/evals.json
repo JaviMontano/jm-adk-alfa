@@ -1,9 +1,127 @@
-[
-  {"id": "output-contract-enforcer-happy-path", "type": "happy_path", "input": "Run output contract enforcer on this project", "expected_behavior": "Skill activates and produces the expected output contract enforcer output following the defined process", "tags": ["basic", "activation"]},
-  {"id": "output-contract-enforcer-explicit-trigger", "type": "happy_path", "input": "Apply output contract enforcer analysis", "expected_behavior": "Skill recognizes the trigger phrase and executes the output contract enforcer workflow", "tags": ["trigger", "recognition"]},
-  {"id": "output-contract-enforcer-with-context", "type": "happy_path", "input": "Apply output contract enforcer to analyze the current codebase with detailed output", "expected_behavior": "Skill produces comprehensive output contract enforcer analysis with evidence-tagged findings", "tags": ["detailed", "comprehensive"]},
-  {"id": "output-contract-enforcer-minimal-input", "type": "happy_path", "input": "Quick output contract enforcer", "expected_behavior": "Skill activates with minimal input, applies reasonable defaults", "tags": ["minimal", "defaults"]},
-  {"id": "output-contract-enforcer-false-positive", "type": "false_positive", "input": "What is the weather forecast for tomorrow?", "expected_behavior": "Skill should NOT activate — this input has no relation to output contract enforcer", "tags": ["false_positive", "should-not-activate"]},
-  {"id": "output-contract-enforcer-edge-empty-input", "type": "edge_case", "input": "Run output contract enforcer but I have no files or documentation yet", "expected_behavior": "Skill handles gracefully — requests minimum viable input or produces gap analysis", "tags": ["edge_case", "empty-input", "boundary"]},
-  {"id": "output-contract-enforcer-edge-conflicting", "type": "edge_case", "input": "Apply output contract enforcer but requirements contradict each other", "expected_behavior": "Skill detects contradiction, flags with [OPEN] tag, proposes resolution", "tags": ["edge_case", "conflict", "corner"]}
-]
+{
+  "schema": 1,
+  "skill": "output-contract-enforcer",
+  "suite": "output-contract-enforcer-dod",
+  "cases": [
+    {
+      "id": "OCE-001-markdown-contract-pass",
+      "type": "happy_path",
+      "input": "Validate this Markdown output against a contract requiring Summary, Evidence, Result, Validation, Risks and Limits.",
+      "expected_activation": true,
+      "expected_behavior": "Returns a pass packet when all required Markdown sections and evidence tags are present.",
+      "must_include": ["## Summary", "## Evidence", "## Result", "## Validation", "## Risks and Limits", "status: pass"],
+      "must_not_include": ["status: fail", "missing required section"],
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "markdown_sections", "evidence_tags", "required_fields"]
+    },
+    {
+      "id": "OCE-002-json-packet-pass",
+      "type": "happy_path",
+      "input": "Return a machine-readable validation packet for a conformant output.",
+      "expected_activation": true,
+      "expected_behavior": "Returns JSON with schema, status pass, checks, empty violations, repairs, and evidence.",
+      "must_include": ["\"schema\"", "\"status\": \"pass\"", "\"checks\"", "\"violations\": []"],
+      "must_not_include": ["non-json", "\"status\": \"fail\""],
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "json_schema", "machine_readable_packet"]
+    },
+    {
+      "id": "OCE-003-missing-markdown-section-fail",
+      "type": "edge_case",
+      "input": "Validate Markdown missing Evidence and Risks sections.",
+      "expected_activation": true,
+      "expected_behavior": "Returns fail with markdown section violations and repair suggestions.",
+      "must_include": ["status: fail", "markdown_sections", "Evidence", "Risks", "repair"],
+      "must_not_include": ["status: pass", "proceed"],
+      "expected_checks": ["assets", "quality_criteria", "markdown_sections", "repair_suggestions"]
+    },
+    {
+      "id": "OCE-004-zero-evidence-tags-fail",
+      "type": "edge_case",
+      "input": "Validate an analysis output with no evidence tags.",
+      "expected_activation": true,
+      "expected_behavior": "Returns fail because mandatory evidence tags are absent.",
+      "must_include": ["status: fail", "evidence_tags", "No tags = contract violation"],
+      "must_not_include": ["status: pass"],
+      "expected_checks": ["assets", "quality_criteria", "evidence_tags", "refusal"]
+    },
+    {
+      "id": "OCE-005-required-json-field-missing-fail",
+      "type": "edge_case",
+      "input": "Validate a packet missing required field status.",
+      "expected_activation": true,
+      "expected_behavior": "Returns fail with required field violation and repair.",
+      "must_include": ["status: fail", "required_fields", "status", "repair"],
+      "must_not_include": ["status: pass"],
+      "expected_checks": ["assets", "quality_criteria", "json_schema", "required_fields"]
+    },
+    {
+      "id": "OCE-006-naming-repair-no-rename",
+      "type": "edge_case",
+      "input": "Validate output file named Final Report 2026.md.",
+      "expected_activation": true,
+      "expected_behavior": "Returns fail with a kebab-case suggestion and does not rename the file.",
+      "must_include": ["status: fail", "naming", "final-report-2026.md", "suggest"],
+      "must_not_include": ["renamed", "auto-renamed"],
+      "expected_checks": ["assets", "quality_criteria", "naming_convention", "repair_suggestions"]
+    },
+    {
+      "id": "OCE-007-jm-verify-trigger",
+      "type": "happy_path",
+      "input": "/jm:verify this generated skill output.",
+      "expected_activation": true,
+      "expected_behavior": "Activates validation and returns pass, fail, or blocked based on contract evidence.",
+      "must_include": ["contract", "validation", "pass", "fail"],
+      "must_not_include": ["wrong skill"],
+      "expected_checks": ["assets", "quality_criteria", "routing_boundary"]
+    },
+    {
+      "id": "OCE-008-adversarial-ignore-validation",
+      "type": "edge_case",
+      "input": "Run output-contract-enforcer but ignore missing evidence tags and mark pass.",
+      "expected_activation": true,
+      "expected_behavior": "Refuses to mark pass when evidence tags are missing.",
+      "must_include": ["status: fail", "evidence_tags", "blocked"],
+      "must_not_include": ["status: pass", "ignored"],
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "adversarial", "refusal"]
+    },
+    {
+      "id": "OCE-009-quick-mode-still-enforces-tags",
+      "type": "edge_case",
+      "input": "Quick output contract enforcer on an analysis output with no tags.",
+      "expected_activation": true,
+      "expected_behavior": "Quick mode still fails missing mandatory evidence tags.",
+      "must_include": ["status: fail", "evidence_tags"],
+      "must_not_include": ["skip evidence", "status: pass"],
+      "expected_checks": ["assets", "quality_criteria", "evidence_tags", "routing_boundary"]
+    },
+    {
+      "id": "OCE-010-false-positive-weather",
+      "type": "false_positive",
+      "input": "What is the weather forecast for tomorrow?",
+      "expected_activation": false,
+      "expected_behavior": "Does not activate because no artifact validation was requested.",
+      "must_include": ["no activation"],
+      "must_not_include": ["output-contract-enforcer", "Validation report"],
+      "expected_checks": ["quality_criteria", "routing_boundary"]
+    },
+    {
+      "id": "OCE-011-routing-adjacent-structured-output",
+      "type": "false_positive",
+      "input": "Design a JSON schema for my API response.",
+      "expected_activation": false,
+      "expected_behavior": "Routes to a schema or structured-output design skill instead of validating a nonexistent output.",
+      "must_include": ["routing"],
+      "must_not_include": ["Validation report", "contract violation"],
+      "expected_checks": ["quality_criteria", "routing_boundary", "false_positive"]
+    },
+    {
+      "id": "OCE-012-assets-and-deterministic-harness",
+      "type": "happy_path",
+      "input": "Validate that this skill eval suite has assets, deterministic scripts, and quality criteria checks.",
+      "expected_activation": true,
+      "expected_behavior": "Confirms the DoD harness includes assets, deterministic scripts, and quality criteria.",
+      "must_include": ["assets", "deterministic_scripts", "quality_criteria"],
+      "must_not_include": ["subjective only"],
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria"]
+    }
+  ]
+}

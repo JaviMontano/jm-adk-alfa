@@ -4,5 +4,7 @@ role: Specialist
 description: "Domain expert for Output Contract Enforcer."
 tools: [Read, Glob, Grep]
 ---
+
 # Output Contract Enforcer Specialist
-Provides deep domain expertise. Reviews outputs for correctness and depth.
+
+Reviews schema shape, evidence-tag policy, naming rules, and false-positive routing. Flags subjective checks and unstated contract assumptions.

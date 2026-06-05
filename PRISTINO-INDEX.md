@@ -660,7 +660,7 @@
 | 386 | `openclaw-isolation` | — |
 | 387 | `openclaw-personal-deploy` | — |
 | 388 | `openclaw-tool-auth` | — |
-| 389 | `output-contract-enforcer` | Validates that every skill output matches its declared contract (format, complet |
+| 389 | `output-contract-enforcer` | Validate generated outputs against declared contracts for format, required secti |
 | 390 | `output-engineering` | — |
 | 391 | `parallel-workflow` | — |
 | 392 | `partnership-strategy` | — |

@@ -1,118 +1,146 @@
 ---
 name: output-contract-enforcer
-description: Validates that every skill output matches its declared contract (format, completeness, evidence tags). Rejects non-conformant outputs. [EXPLICIT]
+description: Validate generated outputs against declared contracts for format, required sections, required fields, evidence tags, naming conventions, machine-readable validation packets, and repair suggestions. Use after a skill produces an output, before gate evaluation, when `/jm:verify` is invoked, or when the user asks to validate an artifact against its output contract. [EXPLICIT]
 version: 1.0.0
-status: production
+status: hardened
 owner: Javier Montaño
 tags: [core, validation, contracts, output]
 allowed-tools:
   - Read
-  - Write
-  - Edit
   - Bash
   - Glob
   - Grep
 ---
 
-# output-contract-enforcer {Core} (v1.0)
+# Output Contract Enforcer
 
-> **"If the contract says 5 sections, I count 5 sections. Not 4. Not 6."**
+Post-execution validator for generated artifacts. It checks that an output matches the contract it claims to satisfy, then returns a deterministic pass/fail packet with exact violations and repairs.
 
-## Purpose
+## When to Activate
 
-Post-execution validator that checks every skill's output against its declared Inputs/Outputs table. Verifies format compliance (markdown structure, evidence tags, naming conventions) and completeness (all required sections present). [EXPLICIT]
+Activate when:
 
-**When to use:**
+- A skill output needs validation before delivery or gate evaluation.
+- The user invokes `/jm:verify`.
+- The user asks whether an artifact matches a declared contract, schema, template, required section list, evidence-tag rule, or naming convention.
+- An orchestrator needs a post-run blocker before merge, publish, or handoff.
 
-- After every skill execution (implicit validation)
-- Before gate evaluation (pre-gate check)
-- When `/jm:verify` is invoked
+Do not activate when the user only asks to design a JSON schema, format a new response, explain output contracts conceptually, or create a fresh artifact. Route those to the owning creation or design skill unless validation of an existing output is explicitly requested.
 
----
+## Required Inputs
 
-## Core Principles (Immutable Laws)
+- Contract source: skill `SKILL.md`, `templates/schema.json`, JSON contract, or explicit required fields.
+- Generated output: file path or pasted output.
+- Output type: markdown, json, html, docx-report, or unknown.
+- Required sections or required fields.
+- Evidence policy: whether evidence tags are required and which vocabulary is allowed.
+- Naming policy: target file path and expected style when file output is involved.
 
-1. **Law of Contract:** Every skill declares its outputs in the I/O table. The output MUST match. [EXPLICIT]
-2. **Law of Evidence:** Analysis outputs MUST contain evidence tags. No tags = contract violation. [EXPLICIT]
-3. **Law of Naming:** Files follow conventions: kebab-case for files, PascalCase for components, camelCase for functions. [EXPLICIT]
+If a required input is missing, return `status: blocked` and list the missing input. Do not guess a contract.
 
----
+## Deterministic Contract
 
-## Core Process (Step-by-Step)
+- Validate only against declared contract evidence, never against unstated preferences.
+- Use one evidence-tag vocabulary: `[CÓDIGO]`, `[CONFIG]`, `[DOC]`, `[INFERENCIA]`, `[SUPUESTO]`.
+- Quick mode still enforces mandatory evidence tags.
+- Do not auto-rename files. Suggest the corrected name.
+- Do not mark pass if any required section, field, evidence tag, format, or naming check fails.
+- Report every violation with path, check id, expected value, observed value, and repair.
+- For machine-readable validation, use `templates/schema.json`.
+- Use `scripts/validate_output_contract.py` for deterministic fixture-backed checks.
 
-### Phase 1: Contract Loading
+## Assets And Scripts
 
-1. **Read the skill's SKILL.md** Outputs table. [EXPLICIT]
-2. **Extract expected outputs:** file type, name pattern, required sections. [EXPLICIT]
+- `assets/output-contract-checklist.md` - validation checklist.
+- `assets/contract-rules.json` - canonical checks, statuses, formats, and evidence tags.
+- `assets/evidence-tag-policy.json` - allowed evidence tags and failure behavior.
+- `assets/markdown-section-contract.json` - default report section contract.
+- `templates/schema.json` - validation packet schema.
+- `scripts/validate_output_contract.py` - local validator for fixture-backed output checks.
 
-### Phase 2: Validation
+## Validation Process
 
-1. **Check existence:** Does the output file exist?
-2. **Check format:** Does it match the declared type (Markdown, JSON, HTML, etc.)?
-3. **Check sections:** For Markdown outputs, are all required sections present?
-4. **Check evidence tags:** For analysis outputs, are `[CODE]`/`[CONFIG]`/`[DOC]`/`[INFERENCE]`/`[ASSUMPTION]` present?
-5. **Check naming:** Does the file follow naming conventions (R-008)?
+1. Load the declared contract.
+2. Normalize the output type and output path.
+3. Run checks in this order: existence, format, required sections or fields, evidence tags, naming, and packet shape.
+4. Emit `status: pass` only when every required check passes.
+5. Emit `status: fail` when the output exists but violates the contract.
+6. Emit `status: blocked` when the contract or output is missing.
+7. Include deterministic repairs for each violation.
 
-### Phase 3: Verdict
+## Validation Packet
 
-1. **Pass:** Output matches contract → proceed. [EXPLICIT]
-2. **Fail:** List specific violations → block until fixed. [EXPLICIT]
+Return a Markdown report or JSON packet with:
 
----
+```json
+{
+  "schema": 1,
+  "skill": "output-contract-enforcer",
+  "status": "pass|fail|blocked",
+  "contract_id": "contract identifier",
+  "artifact": "path or inline artifact label",
+  "checks": [
+    {
+      "id": "markdown_sections",
+      "status": "pass|fail|blocked",
+      "expected": "declared expectation",
+      "observed": "observed output",
+      "repair": "deterministic repair"
+    }
+  ],
+  "violations": [],
+  "repair_suggestions": [],
+  "evidence": []
+}
+```
 
-## 3. Inputs / Outputs
+## Required Checks
 
-### Inputs
+| Check | Pass Condition | Failure |
+|---|---|---|
+| `contract_loaded` | Contract source is present and parseable. | `blocked`. |
+| `format` | Output type matches declared type. | `fail`. |
+| `markdown_sections` | Every required section heading exists exactly once or as allowed by contract. | `fail`. |
+| `json_schema` | JSON parses and required fields exist. | `fail`. |
+| `evidence_tags` | Required evidence tags are present and use allowed vocabulary. | `fail`. |
+| `naming` | File name matches declared convention. | `fail` with suggestion, never rename. |
+| `machine_readable_packet` | Packet follows `templates/schema.json`. | `fail`. |
 
-| Input | Type | Required | Description |
-|-------|------|----------|-------------|
-| Skill SKILL.md | File | Yes | The skill definition with I/O table |
-| Generated output | File(s) | Yes | The output to validate |
+## Output Template
 
-### Outputs
+```markdown
+# Output Contract Validation
 
-| Output | Type | Description |
-|--------|------|-------------|
-| Validation report | Text | Pass/fail per check with specifics |
+status: pass|fail|blocked
+contract_id: <id>
+artifact: <path or label>
 
----
+## Checks
 
-## Validation Gate (10x Checklist)
+| Check | Status | Expected | Observed | Repair |
+|---|---|---|---|---|
 
-- [ ] **Contract loaded** from skill's I/O table
-- [ ] **All declared outputs** exist
-- [ ] **Format matches** declared type
-- [ ] **Evidence tags present** in analysis outputs
-- [ ] **Naming conventions** followed (R-008)
+## Violations
 
----
+- None, or exact violation records.
 
-## 5. Self-Correction Triggers
+## Evidence
 
-> [!WARNING]
-> IF output has zero evidence tags but skill is in analysis category THEN **FAIL**. Evidence tags are mandatory for analysis.
+- [CÓDIGO] File and command evidence.
 
-> [!WARNING]
-> IF output file uses wrong naming convention THEN auto-suggest the correct name but don't rename without user approval.
+## Repair Suggestions
 
-## Usage
+- Deterministic next edits.
+```
 
-Example invocations:
+## Validation Gate
 
-- "/output-contract-enforcer" — Run the full output contract enforcer workflow
-- "output contract enforcer on this project" — Apply to current context
+Before marking pass:
 
-
-## Assumptions & Limits
-
-- Assumes access to project artifacts (code, docs, configs) [EXPLICIT]
-- Requires English-language output unless otherwise specified [EXPLICIT]
-- Does not replace domain expert judgment for final decisions [EXPLICIT]
-
-## Edge Cases
-
-| Scenario | Handling |
-|----------|----------|
-| Empty or minimal input | Request clarification before proceeding |
-| Conflicting requirements | Flag conflicts explicitly, propose resolution |
-| Out-of-scope request | Redirect to appropriate skill or escalate |
+- Contract is loaded from explicit evidence.
+- Required sections or fields are checked.
+- Evidence-tag policy is enforced.
+- Naming policy is checked when an output path exists.
+- The verdict is fail when any mandatory check fails.
+- Repairs are specific and actionable.
+- The validation packet itself matches `templates/schema.json`.

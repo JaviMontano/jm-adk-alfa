@@ -1,29 +1,31 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: output-contract-enforcer
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
-
 # Output Contract Enforcer
 
-Validates that every skill output matches its declared contract (format, completeness, evidence tags). Rejects non-conformant outputs. [EXPLICIT]
+`output-contract-enforcer` validates generated artifacts against declared contracts and blocks non-conformant outputs.
 
 ## Triggers
 
-- output-contract-enforcer
+- `/jm:verify`
+- "Validate this output against its contract"
+- "Check required sections"
+- "Does this JSON packet match the schema?"
+- "Confirm evidence tags and naming"
 
-## Allowed Tools
+## Minimum Inputs
 
-- Read
-- Grep
-- Glob
-- Bash
+- Contract source or explicit required fields.
+- Generated output or file path.
+- Output type: markdown, json, html, or unknown.
+- Evidence-tag requirement.
+- Naming policy when a file path is involved.
 
-## Quick Use
+## Output
 
-Use this skill when the request clearly matches the triggers and requires the `output-contract-enforcer` capability.
+The skill returns a deterministic validation packet with `status`, `checks`, `violations`, `repair_suggestions`, and `evidence`.
 
-## Output Format
+## Deterministic Gate
 
-Markdown with summary, evidence, result, validation, and risks.
+```bash
+bash skills/output-contract-enforcer/scripts/check.sh
+python3 -B scripts/validate-skill-dod.py --skill output-contract-enforcer
+python3 -B scripts/validate-skill-scripts.py --strict --run-checks --skill output-contract-enforcer
+```

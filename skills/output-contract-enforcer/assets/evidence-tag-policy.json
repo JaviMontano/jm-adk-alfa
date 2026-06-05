@@ -1,0 +1,8 @@
+{
+  "schema": 1,
+  "skill": "output-contract-enforcer",
+  "allowed_tags": ["[CÓDIGO]", "[CONFIG]", "[DOC]", "[INFERENCIA]", "[SUPUESTO]"],
+  "aliases_not_allowed": ["[CODE]", "[INFERENCE]", "[ASSUMPTION]", "[EXPLICIT]", "[INFERRED]", "[OPEN]"],
+  "missing_required_behavior": "fail",
+  "wrong_vocabulary_behavior": "fail"
+}

@@ -1,28 +1,23 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: output-contract-enforcer
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
+# Output Contract Validation
 
-# Output Contract Enforcer Output
+status: {{status}}
+contract_id: {{contract_id}}
+artifact: {{artifact}}
 
-## Summary
+## Checks
 
-{summary}
+| Check | Status | Expected | Observed | Repair |
+|---|---|---|---|---|
+{{checks_table}}
+
+## Violations
+
+{{violations}}
 
 ## Evidence
 
-{evidence}
+{{evidence}}
 
-## Result
+## Repair Suggestions
 
-{result}
-
-## Validation
-
-{validation}
-
-## Risks and Limits
-
-{risks}
+{{repair_suggestions}}

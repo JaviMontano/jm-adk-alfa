@@ -1,18 +1,28 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: output-contract-enforcer
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
+# Output Contract Validation
 
-# Example Output
+status: pass
+contract_id: billing-summary-markdown
+artifact: artifacts/billing-summary.md
 
-## Summary
+## Checks
 
-Example output for `output-contract-enforcer`.
+| Check | Status | Expected | Observed | Repair |
+|---|---|---|---|---|
+| contract_loaded | pass | JSON contract parses | contract_id present | none |
+| format | pass | markdown | markdown headings detected | none |
+| markdown_sections | pass | Summary, Evidence, Result, Validation, Risks and Limits | all present | none |
+| evidence_tags | pass | at least one allowed tag | `[CÓDIGO]`, `[DOC]` | none |
+| naming | pass | kebab-case | billing-summary.md | none |
 
-## Validation
+## Violations
 
-- Skill activated intentionally.
-- Output follows the requested format.
-- Risks and assumptions are explicit.
+- None.
+
+## Evidence
+
+- [CÓDIGO] Contract required five Markdown sections.
+- [CÓDIGO] Artifact path used kebab-case.
+
+## Repair Suggestions
+
+- None.

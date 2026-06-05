@@ -1,0 +1,29 @@
+{
+  "skill": "output-contract-enforcer",
+  "assets": [
+    {
+      "path": "assets/output-contract-checklist.md",
+      "type": "checklist",
+      "purpose": "Reusable deterministic gate for validating generated outputs against declared contracts.",
+      "used_by": ["SKILL.md", "templates/output.md", "scripts/validate_output_contract.py"]
+    },
+    {
+      "path": "assets/contract-rules.json",
+      "type": "contract",
+      "purpose": "Canonical statuses, formats, check IDs, naming styles, and validation packet fields.",
+      "used_by": ["SKILL.md", "scripts/validate_output_contract.py", "evals/evals.json"]
+    },
+    {
+      "path": "assets/evidence-tag-policy.json",
+      "type": "policy",
+      "purpose": "Allowed evidence tag vocabulary and failure behavior for analysis outputs.",
+      "used_by": ["SKILL.md", "scripts/validate_output_contract.py", "knowledge/body-of-knowledge.md"]
+    },
+    {
+      "path": "assets/markdown-section-contract.json",
+      "type": "contract",
+      "purpose": "Default Markdown section contract used by examples, fixtures, and output templates.",
+      "used_by": ["SKILL.md", "templates/output.md", "scripts/validate_output_contract.py"]
+    }
+  ]
+}

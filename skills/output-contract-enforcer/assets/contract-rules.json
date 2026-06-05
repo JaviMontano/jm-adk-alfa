@@ -1,0 +1,18 @@
+{
+  "schema": 1,
+  "skill": "output-contract-enforcer",
+  "statuses": ["pass", "fail", "blocked"],
+  "formats": ["markdown", "json", "html", "docx-report", "unknown"],
+  "checks": [
+    "contract_loaded",
+    "format",
+    "markdown_sections",
+    "json_schema",
+    "required_fields",
+    "evidence_tags",
+    "naming",
+    "machine_readable_packet"
+  ],
+  "naming_styles": ["kebab-case"],
+  "validation_packet_required_fields": ["schema", "skill", "status", "contract_id", "artifact", "checks", "violations", "repair_suggestions", "evidence"]
+}

@@ -1,0 +1,9 @@
+{
+  "schema": 1,
+  "contract_id": "default-output-validation-markdown",
+  "format": "markdown",
+  "required_sections": ["Checks", "Violations", "Evidence", "Repair Suggestions"],
+  "evidence_tags_required": true,
+  "allowed_evidence_tags": ["[CÓDIGO]", "[CONFIG]", "[DOC]", "[INFERENCIA]", "[SUPUESTO]"],
+  "naming": {"style": "kebab-case"}
+}

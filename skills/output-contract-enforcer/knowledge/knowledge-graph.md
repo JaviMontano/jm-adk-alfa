@@ -1,13 +1,32 @@
-# Output Contract Enforcer — Knowledge Graph
+# Output Contract Enforcer - Knowledge Graph
 
 ## Core Concepts
-- output-contract-enforcer: primary capability
-- validation-gate: quality control checkpoint
-- evidence-tagging: [EXPLICIT]/[INFERRED]/[OPEN] claims
 
-## Dependencies
-- Upstream: input-analysis, context-optimization
-- Downstream: output-engineering, rendering-engine
+- [[declared-contract]] - explicit rules the artifact must satisfy
+- [[generated-artifact]] - output being validated
+- [[validation-packet]] - pass/fail/blocked result with checks
+- [[repair-suggestions]] - deterministic next edits
+- [[evidence-tag-policy]] - allowed claim support vocabulary
 
-## Skill Relationships
-Part of the JM Labs canonical skill registry.
+## Relationships
+
+```text
+declared-contract + generated-artifact
+├── format check
+├── markdown section check
+├── json required field check
+├── evidence tag check
+├── naming check
+└── validation packet schema check
+
+checks
+├── pass -> proceed
+├── fail -> repair required
+└── blocked -> missing contract or artifact
+```
+
+## Routing Boundaries
+
+- `structured-output`: design schemas or output formats before generation.
+- `quality-gatekeeper`: make broader release decisions after contract validation.
+- `prompt-creator`: generate durable prompt files.
