@@ -1,75 +1,63 @@
 {
   "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-28",
   "skill": "agent-constitution-creator",
   "nodes": [
     {
       "id": "agent-constitution-creator",
       "type": "skill",
-      "label": "agent-constitution-creator"
+      "label": "Agent Constitution Creator"
     },
     {
-      "id": "agent-constitution-creator:inputs",
+      "id": "field-contract",
       "type": "contract",
-      "label": "Expected inputs"
+      "label": "22 required constitution headings"
     },
     {
-      "id": "agent-constitution-creator:outputs",
-      "type": "contract",
-      "label": "Expected outputs"
+      "id": "authority-policy",
+      "type": "policy",
+      "label": "Registry-only tools and approval boundaries"
     },
     {
-      "id": "agent-constitution-creator:quality",
+      "id": "source-map",
+      "type": "evidence",
+      "label": "Explicit, inferred, and open context"
+    },
+    {
+      "id": "validator",
       "type": "gate",
-      "label": "Quality criteria"
+      "label": "Offline constitution validator"
     },
     {
-      "id": "agent-constitution-creator:ontology",
-      "type": "ontology",
-      "label": "Domain: general"
-    },
-    {
-      "id": "agent-constitution-creator:evidence",
-      "type": "gate",
-      "label": "Evidence / provenance requirements"
-    },
-    {
-      "id": "agent-constitution-creator:antipattern",
-      "type": "risk",
-      "label": "Canonical anti-pattern to avoid"
+      "id": "agent-md",
+      "type": "output",
+      "label": "agents/{id}/agent.md"
     }
   ],
   "edges": [
     {
       "from": "agent-constitution-creator",
-      "to": "agent-constitution-creator:inputs",
+      "to": "field-contract",
       "type": "requires"
     },
     {
       "from": "agent-constitution-creator",
-      "to": "agent-constitution-creator:outputs",
+      "to": "authority-policy",
+      "type": "requires"
+    },
+    {
+      "from": "agent-constitution-creator",
+      "to": "source-map",
+      "type": "requires"
+    },
+    {
+      "from": "agent-constitution-creator",
+      "to": "agent-md",
       "type": "produces"
     },
     {
-      "from": "agent-constitution-creator",
-      "to": "agent-constitution-creator:quality",
+      "from": "agent-md",
+      "to": "validator",
       "type": "validated_by"
-    },
-    {
-      "from": "agent-constitution-creator",
-      "to": "agent-constitution-creator:ontology",
-      "type": "classified_as"
-    },
-    {
-      "from": "agent-constitution-creator",
-      "to": "agent-constitution-creator:evidence",
-      "type": "validated_by"
-    },
-    {
-      "from": "agent-constitution-creator",
-      "to": "agent-constitution-creator:antipattern",
-      "type": "guards_against"
     }
   ]
 }

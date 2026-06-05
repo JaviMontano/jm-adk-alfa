@@ -1,10 +1,19 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: agent-constitution-creator
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
-
 # Example Input
 
-Use `agent-constitution-creator` to produce a concise deliverable for a realistic project request.
+Create an agent constitution for `customer-intake-agent`.
+
+Context:
+
+- [EXPLICIT] Existing agents are `orchestrator`, `support-triage-agent`, and `privacy-gatekeeper`.
+- [EXPLICIT] Tool registry contains `Read`, `Grep`, and `Glob`.
+- [EXPLICIT] The agent may classify incoming customer requests and draft intake summaries.
+- [EXPLICIT] The agent must not contact customers, change tickets, access network systems, approve refunds, or write files.
+- [EXPLICIT] Escalate to `privacy-gatekeeper` when PII appears, and to `support-triage-agent` when product severity is unclear.
+- [OPEN] Memory write approval is not confirmed.
+
+Expected behavior:
+
+- Produce Markdown suitable for `agents/customer-intake-agent/agent.md`.
+- Preserve all 22 constitution sections.
+- Mark missing memory write policy as `[OPEN]`.
+- Put unavailable tools in `Forbidden Tools`.

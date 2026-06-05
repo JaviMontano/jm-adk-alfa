@@ -1,28 +1,23 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: agent-constitution-creator
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
+# Agent Constitution Delivery
 
-# Agent Constitution Creator Output
+## Constitution
 
-## Summary
+Use the Markdown produced from `assets/agent-constitution-template.md`.
 
-{summary}
+## Source Map
 
-## Evidence
-
-{evidence}
-
-## Result
-
-{result}
+| Claim | Evidence Tag | Source |
+|---|---|---|
+| Agent role | [EXPLICIT] | User request |
+| Tool registry | [EXPLICIT] or [OPEN] | Supplied registry or missing context |
+| Peer agents | [EXPLICIT] or [OPEN] | Existing `agents/*/agent.md` files |
 
 ## Validation
 
-{validation}
+- Validator: `scripts/validate_agent_constitution.py`
+- Result: `pass` or `fail`
+- Open items: list unresolved `[OPEN]` fields
 
 ## Risks and Limits
 
-{risks}
+- Do not grant tools, agents, memory, or approval rights not present in supplied context.

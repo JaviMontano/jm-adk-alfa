@@ -1,0 +1,48 @@
+{
+  "skill": "agent-constitution-creator",
+  "assets": [
+    {
+      "path": "assets/agent-constitution-template.md",
+      "type": "template",
+      "purpose": "Canonical Markdown skeleton for a 22-field agent.md constitution.",
+      "used_by": [
+        "SKILL.md",
+        "templates/output.md",
+        "evals/evals.json",
+        "scripts/validate_agent_constitution.py"
+      ]
+    },
+    {
+      "path": "assets/agent-constitution-schema.json",
+      "type": "schema",
+      "purpose": "Machine-readable field contract, evidence tags, minimum row counts, and blocked phrases.",
+      "used_by": [
+        "SKILL.md",
+        "scripts/validate_agent_constitution.py",
+        "scripts/check.sh",
+        "evals/evals.json"
+      ]
+    },
+    {
+      "path": "assets/authority-policy.json",
+      "type": "policy",
+      "purpose": "Least-privilege authority policy for tools, agents, memory, decisions, and escalation.",
+      "used_by": [
+        "SKILL.md",
+        "scripts/validate_agent_constitution.py",
+        "evals/evals.json"
+      ]
+    },
+    {
+      "path": "assets/constitution-checklist.md",
+      "type": "checklist",
+      "purpose": "Human-readable validation checklist for generated agent constitutions.",
+      "used_by": [
+        "SKILL.md",
+        "README.md",
+        "templates/output.md",
+        "examples/example-output.md"
+      ]
+    }
+  ]
+}

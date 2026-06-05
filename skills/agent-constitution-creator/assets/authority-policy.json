@@ -1,0 +1,30 @@
+{
+  "schema": 1,
+  "skill": "agent-constitution-creator",
+  "tool_policy": {
+    "mode": "registry_only",
+    "wildcards_allowed": false,
+    "invented_tools_allowed": false,
+    "default_when_registry_missing": "interview_mode"
+  },
+  "agent_policy": {
+    "invented_peer_agents_allowed": false,
+    "overlap_threshold": "material_overlap_requires_clarification",
+    "default_when_peer_context_missing": "mark_open_or_ask"
+  },
+  "authority_policy": {
+    "financial_decisions": "human_approval_required",
+    "production_deploys": "human_or_release_lead_approval_required",
+    "destructive_operations": "explicit_approval_required",
+    "memory_writes": "keyed_scope_and_retention_required",
+    "network_access": "forbidden_unless_registry_backed"
+  },
+  "required_clarification_triggers": [
+    "missing role",
+    "missing tool registry",
+    "conflicting autonomous and approval-required authority",
+    "scope overlap with existing agent",
+    "request for all tools",
+    "request to invent peer agents"
+  ]
+}

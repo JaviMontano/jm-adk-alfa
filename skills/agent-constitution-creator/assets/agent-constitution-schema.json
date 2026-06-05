@@ -1,0 +1,72 @@
+{
+  "schema": 1,
+  "skill": "agent-constitution-creator",
+  "frontmatter_required": [
+    "id",
+    "name",
+    "role",
+    "version"
+  ],
+  "required_sections": [
+    "Mission",
+    "Mandate",
+    "Scope",
+    "Non-Goals",
+    "Inputs",
+    "Outputs",
+    "Decision Rights",
+    "Allowed Tools",
+    "Forbidden Tools",
+    "Memory Policy",
+    "Security Policy",
+    "Orchestration Policy",
+    "Delegation Rules",
+    "Escalation Rules",
+    "Tone / Output Style",
+    "Validation Discipline",
+    "Meta-Cognition Protocol",
+    "Failure Handling",
+    "Completion Criteria",
+    "KPIs",
+    "Dependencies",
+    "Version"
+  ],
+  "allowed_evidence_tags": [
+    "[EXPLICIT]",
+    "[INFERRED]",
+    "[OPEN]"
+  ],
+  "minimums": {
+    "non_goals": 3,
+    "failure_modes": 3,
+    "kpis": 3
+  },
+  "required_decision_terms": [
+    "Autonomous",
+    "Requires approval"
+  ],
+  "required_security_checkpoints": [
+    "CP1",
+    "CP2",
+    "CP3"
+  ],
+  "required_escalation_terms": [
+    "Trigger",
+    "Target",
+    "Context"
+  ],
+  "blocked_phrases": [
+    "TODO",
+    "TBD",
+    "{{",
+    "}}",
+    "all tools",
+    "any available tool",
+    "full system access",
+    "full release authority",
+    "can approve production deploys",
+    "can autonomously approve vendor payments",
+    "escalate when appropriate",
+    "handle errors appropriately"
+  ]
+}

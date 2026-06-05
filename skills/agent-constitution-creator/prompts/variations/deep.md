@@ -3,7 +3,15 @@ name: agent-constitution-creator-deep
 type: variation
 variant: deep
 ---
-# Agent Constitution Creator — Deep Analysis
+# Agent Constitution Creator — Deep Mode
 
-Full depth execution. Load all `references/` files from canonical. Run L3 progressive loading.
-Apply all Validation Gate criteria strictly.
+Use deep mode when the ecosystem already has multiple agents, known overlap risk, memory policies, security checkpoints, or approval boundaries.
+
+Load only the needed resources:
+
+- `assets/agent-constitution-schema.json`
+- `assets/authority-policy.json`
+- `references/domain-knowledge.md`
+- Existing peer `agents/*/agent.md` files that overlap the requested role
+
+Stop generation when authority conflicts or material overlap remains unresolved.

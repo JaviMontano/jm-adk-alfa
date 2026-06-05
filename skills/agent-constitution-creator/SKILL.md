@@ -1,17 +1,10 @@
 ---
 name: agent-constitution-creator
 version: 1.0.0
-description:  [EXPLICIT]
-  This skill should be used when the user asks to "create an agent constitution", [EXPLICIT]
-  "define agent identity", "write agent.md", "generate agent spec", or "design [EXPLICIT]
-  agent governance". Generates constitutional agent.md documents with 22 mandatory [EXPLICIT]
-  fields covering identity, authority, governance, and quality for multi-agent [EXPLICIT]
-  ecosystems. Use this skill whenever someone is building or extending an agentic [EXPLICIT]
-  system and needs a persistent operational identity for a new agent, even if they [EXPLICIT]
-  just say "add an agent" or "I need a new agent for X". [EXPLICIT]
-argument-hint: agent-id [role-description] [EXPLICIT]
-model: opus [EXPLICIT]
-context: fork [EXPLICIT]
+description: "Use when the user asks to create an agent constitution, define persistent agent identity, write agent.md, generate an agent governance spec, or add a constitution-grade agent to a multi-agent ecosystem. Produces deterministic agent.md constitutions with 22 required fields covering identity, authority, governance, quality, validation, and version control."
+argument-hint: agent-id [role-description]
+model: opus
+context: fork
 allowed-tools:
   - Read
   - Write
@@ -19,227 +12,114 @@ allowed-tools:
   - Glob
   - Grep
 ---
-# Agent Constitution Creator [EXPLICIT]
- [EXPLICIT]
-Generate constitutional `agent.md` documents — the persistent system prompt and operational identity for agents in any multi-agent ecosystem. Each constitution defines 22 fields covering identity, scope, security, delegation, meta-cognition, and completion criteria. [EXPLICIT]
- [EXPLICIT]
-> **Scope**: This creates comprehensive agent constitutions for agentic frameworks (multi-agent systems, tool-calling architectures). For lightweight Claude Code subagent definitions, use `/agent-creator`. [EXPLICIT]
- [EXPLICIT]
-## Assumptions & Limits [EXPLICIT]
- [EXPLICIT]
-- **Assumes** a multi-agent ecosystem exists or is being designed (single-agent systems don't need constitutions) [EXPLICIT]
-- **Assumes** the ecosystem has shared concepts: tool registry, security checkpoints, delegation patterns [EXPLICIT]
-- **Limit**: Constitutions are static documents — they don't enforce behavior at runtime (enforcement is the orchestrator's job) [EXPLICIT]
-- **Trade-off**: More specific constitutions = less agent autonomy but more predictable behavior. More general = flexible but prone to scope creep. [EXPLICIT]
- [EXPLICIT]
-## Usage [EXPLICIT]
- [EXPLICIT]
-``` [EXPLICIT]
-/agent-constitution-creator data-analyst "Transforms raw data into structured insights" [EXPLICIT]
-/agent-constitution-creator onboarding-agent   # interview mode [EXPLICIT]
-``` [EXPLICIT]
- [EXPLICIT]
-Parse `$1` as agent ID (kebab-case), `$2` as role. If `$2` absent, ask: [EXPLICIT]
-1. What is this agent's primary responsibility? [EXPLICIT]
-2. What other agents exist in the ecosystem? (for delegation/escalation context) [EXPLICIT]
-3. What tools should it have access to? [EXPLICIT]
- [EXPLICIT]
-## Before Generating [EXPLICIT]
- [EXPLICIT]
-1. **Read ecosystem context**: `Glob agents/*/agent.md` — understand existing agents, their roles, and boundaries [EXPLICIT]
-2. **Check for overlap**: If another agent's scope overlaps >30%, consider merging or adding explicit boundary delineation [EXPLICIT]
-3. **Read tool registry**: Identify available tools for the Allowed Tools section [EXPLICIT]
-4. **Read security spec**: If the ecosystem has security checkpoints, load them [EXPLICIT]
- [EXPLICIT]
-## The 22 Fields [EXPLICIT]
- [EXPLICIT]
-Organized in 4 categories for coherence: [EXPLICIT]
- [EXPLICIT]
-### Identity (3 fields) [EXPLICIT]
-| # | Field | Purpose | Quality Bar | [EXPLICIT]
-|---|---|---|---| [EXPLICIT]
-| 1 | Mission | Reason for existing | Specific to THIS agent; 1-2 sentences; includes measurable outcome | [EXPLICIT]
-| 2 | Mandate | What it MUST do | Concrete, verifiable actions (not aspirational) | [EXPLICIT]
-| 3 | Scope | Operational boundaries | Clear in/out list; no grey areas | [EXPLICIT]
- [EXPLICIT]
-### Authority (6 fields) [EXPLICIT]
-| # | Field | Purpose | Quality Bar | [EXPLICIT]
-|---|---|---|---| [EXPLICIT]
-| 4 | Non-Goals | Explicit exclusions | ≥3 items users might wrongly expect | [EXPLICIT]
-| 5 | Inputs | Data it receives | Typed: `{name}: {type} — {description}` | [EXPLICIT]
-| 6 | Outputs | What it produces | Format specified: JSON, Markdown, file path | [EXPLICIT]
-| 7 | Decision Rights | Autonomous decisions | Clear boundary: "can X without approval; must escalate Y" | [EXPLICIT]
-| 8 | Allowed Tools | Authorized tools | Specific names from registry; no wildcards | [EXPLICIT]
-| 9 | Forbidden Tools | Prohibited tools | Explicit denials prevent scope creep | [EXPLICIT]
- [EXPLICIT]
-### Governance (6 fields) [EXPLICIT]
-| # | Field | Purpose | Quality Bar | [EXPLICIT]
-|---|---|---|---| [EXPLICIT]
-| 10 | Memory Policy | Read/write rules | Keys, formats, retention periods, size limits | [EXPLICIT]
-| 11 | Security Policy | Security controls | References specific checkpoints (CP1/input, CP2/prompt, CP3/output) | [EXPLICIT]
-| 12 | Orchestration Policy | Multi-agent participation | Role in delegation chains: initiator, delegate, observer | [EXPLICIT]
-| 13 | Delegation Rules | When/how to delegate | Criteria for single-agent, panel (terna), committee modes | [EXPLICIT]
-| 14 | Escalation Rules | When to escalate | Triggers, target agent/human, context to include | [EXPLICIT]
-| 15 | Tone / Output Style | Communication style | Language, formality, formatting conventions | [EXPLICIT]
- [EXPLICIT]
-### Quality (7 fields) [EXPLICIT]
-| # | Field | Purpose | Quality Bar | [EXPLICIT]
-|---|---|---|---| [EXPLICIT]
-| 16 | Validation Discipline | Output verification | Method: self-check, peer review, automated test | [EXPLICIT]
-| 17 | Meta-Cognition Protocol | Reasoning discipline | FULL (triad: 3 patterns + confidence + bias scan) or LIGHT (decompose + evidence-check + bias scan) | [EXPLICIT]
-| 18 | Failure Handling | Error recovery | Per-failure-mode: detection → response → fallback | [EXPLICIT]
-| 19 | Completion Criteria | Done definition | Verifiable assertions, not "task is done" | [EXPLICIT]
-| 20 | KPIs | Performance metrics | ≥3 metrics with targets and units | [EXPLICIT]
-| 21 | Dependencies | Required services | Other agents, APIs, data sources needed | [EXPLICIT]
-| 22 | Version | Document version | Semver; change log in commit or footer | [EXPLICIT]
- [EXPLICIT]
-## Output Template [EXPLICIT]
- [EXPLICIT]
-Write to `agents/{id}/agent.md`: [EXPLICIT]
- [EXPLICIT]
-```markdown [EXPLICIT]
----
-id: "{id}" [EXPLICIT]
-name: agent-constitution-creator
-role: "{role}" [EXPLICIT]
-version: "1.0.0" [EXPLICIT]
----
-# Mission [EXPLICIT]
-{1-2 sentences with measurable outcome} [EXPLICIT]
- [EXPLICIT]
-# Mandate [EXPLICIT]
-- {Concrete action 1} [EXPLICIT]
-- {Concrete action 2} [EXPLICIT]
- [EXPLICIT]
-# Scope [EXPLICIT]
-**In scope:** [EXPLICIT]
-- {boundary 1} [EXPLICIT]
- [EXPLICIT]
-**Out of scope:** [EXPLICIT]
-- {boundary 1} → {responsible agent} [EXPLICIT]
- [EXPLICIT]
-# Non-Goals [EXPLICIT]
-- {Exclusion 1} (→ {who handles it instead}) [EXPLICIT]
-- {Exclusion 2} [EXPLICIT]
-- {Exclusion 3} [EXPLICIT]
- [EXPLICIT]
-# Inputs [EXPLICIT]
-- `{inputName}`: {type} — {description} [EXPLICIT]
- [EXPLICIT]
-# Outputs [EXPLICIT]
-- `{outputName}`: {format} — {description} [EXPLICIT]
- [EXPLICIT]
-# Decision Rights [EXPLICIT]
-**Autonomous:** {decisions this agent makes alone} [EXPLICIT]
-**Requires approval:** {decisions needing human or lead-agent sign-off} [EXPLICIT]
- [EXPLICIT]
-# Allowed Tools [EXPLICIT]
-- `{tool_name}` — {why this agent needs it} [EXPLICIT]
- [EXPLICIT]
-# Forbidden Tools [EXPLICIT]
-- `{tool_name}` — {why it's forbidden} [EXPLICIT]
- [EXPLICIT]
-# Memory Policy [EXPLICIT]
-- **Reads:** `{key}` — {purpose} [EXPLICIT]
-- **Writes:** `{key}` — {what, when, retention} [EXPLICIT]
-- **Size limit:** {max per entry} [EXPLICIT]
- [EXPLICIT]
-# Security Policy [EXPLICIT]
-- **CP1 (Input):** {sanitization rules} [EXPLICIT]
-- **CP2 (Prompt):** {hardening rules} [EXPLICIT]
-- **CP3 (Output):** {validation rules} [EXPLICIT]
- [EXPLICIT]
-# Orchestration Policy [EXPLICIT]
-{Role in delegation: initiator | delegate | both. How it participates in chains.} [EXPLICIT]
- [EXPLICIT]
-# Delegation Rules [EXPLICIT]
-- **Single:** {when to delegate to one agent} [EXPLICIT]
-- **Panel:** {when to use 3-agent panel} [EXPLICIT]
-- **Committee:** {when to convene full committee} [EXPLICIT]
- [EXPLICIT]
-# Escalation Rules [EXPLICIT]
-- **Trigger:** {condition} [EXPLICIT]
-- **Target:** {agent-id or human role} [EXPLICIT]
-- **Context:** {what to include in escalation} [EXPLICIT]
- [EXPLICIT]
-# Tone / Output Style [EXPLICIT]
-{Language, formality, format preferences} [EXPLICIT]
- [EXPLICIT]
-# Validation Discipline [EXPLICIT]
-{Method and criteria for self-validation before delivery} [EXPLICIT]
- [EXPLICIT]
-# Meta-Cognition Protocol [EXPLICIT]
-{FULL for triad/orchestrator agents, LIGHT for all others} [EXPLICIT]
- [EXPLICIT]
-**LIGHT (default):** [EXPLICIT]
-1. Decompose — max 5 sub-problems before solving [EXPLICIT]
-2. Evidence-check — tag claims with confidence [CONFIANZA: alta|media|baja] [EXPLICIT]
-3. Bias scan — check anchoring, confirmation, availability [EXPLICIT]
-4. Structure-first — bullet skeleton before prose [EXPLICIT]
-5. Escalate — when confidence is baja, flag and present alternatives [EXPLICIT]
- [EXPLICIT]
-**FULL (triad only):** adds Structured Reasoning, Skeleton-of-Thought, Chain-of-Code patterns + 0.0–1.0 confidence scoring [EXPLICIT]
- [EXPLICIT]
-# Failure Handling [EXPLICIT]
-| Failure Mode | Detection | Response | Fallback | [EXPLICIT]
-|---|---|---|---| [EXPLICIT]
-| {mode 1} | {signal} | {action} | {alternative} | [EXPLICIT]
- [EXPLICIT]
-# Completion Criteria [EXPLICIT]
-- [ ] {Verifiable assertion 1} [EXPLICIT]
-- [ ] {Verifiable assertion 2} [EXPLICIT]
- [EXPLICIT]
-# KPIs [EXPLICIT]
-| Metric | Target | Unit | [EXPLICIT]
-|---|---|---| [EXPLICIT]
-| {metric 1} | {value} | {unit} | [EXPLICIT]
- [EXPLICIT]
-# Dependencies [EXPLICIT]
-- `{agent-id}` — {what for} [EXPLICIT]
-- `{service}` — {what for} [EXPLICIT]
-``` [EXPLICIT]
- [EXPLICIT]
-## Example: Good vs Bad [EXPLICIT]
- [EXPLICIT]
-**Bad Mission:** "This agent helps with data tasks." [EXPLICIT]
-**Good Mission:** "Transform raw CSV/JSON datasets into validated, typed schemas with anomaly detection, producing structured analysis within 60 seconds per 10K rows." [EXPLICIT]
- [EXPLICIT]
-**Bad Non-Goals:** "Doesn't do other things." [EXPLICIT]
-**Good Non-Goals:** [EXPLICIT]
-- Does NOT handle real-time streaming data (→ `stream-processor` agent) [EXPLICIT]
-- Does NOT perform ML model training (→ `ml-trainer` agent) [EXPLICIT]
-- Does NOT make business decisions from data (→ escalate to human analyst) [EXPLICIT]
- [EXPLICIT]
-**Bad Failure Handling:** "Handle errors appropriately." [EXPLICIT]
-**Good Failure Handling:** [EXPLICIT]
- [EXPLICIT]
-| Mode | Detection | Response | Fallback | [EXPLICIT]
-|---|---|---|---| [EXPLICIT]
-| Malformed input | Schema validation fails | Log error, return structured error message | Ask user to provide sample row | [EXPLICIT]
-| Tool unavailable | Tool call timeout > 30s | Retry once, then escalate | Use alternative tool or manual approach | [EXPLICIT]
-| Conflicting data | >5% rows with contradictory values | Flag conflicts, proceed with majority value | Escalate to human with conflict report | [EXPLICIT]
- [EXPLICIT]
-## Edge Cases [EXPLICIT]
- [EXPLICIT]
-- **Single-agent system:** The user says they only have one agent. A constitution is still valuable for documenting scope, tools, and completion criteria — but delegation, escalation, and orchestration fields can be marked N/A with a note: "No peer agents in current ecosystem." [EXPLICIT]
-- **Agent that wraps an external API:** Inputs/outputs are dictated by the API contract. Derive fields 5-6 from the API spec. Decision rights are limited to request formatting and error handling. [EXPLICIT]
-- **Agent with overlapping scope to an existing one:** Do not create the constitution without resolving the overlap first. Either merge the agents, split responsibilities with explicit boundaries, or add mutual non-goals referencing each other. [EXPLICIT]
-- **User provides a vague role ("handles data"):** Enter interview mode. Ask: what data? what operations? what decisions can it make alone? what should it never touch? The role must be specific enough that two different people would write similar constitutions from it. [EXPLICIT]
-- **Agent that needs all tools:** Suspicious — most agents need 3-5 tools. If the user claims "all," push back: "Which operations require which tools? Overly broad tool access is a security and scope risk." [EXPLICIT]
- [EXPLICIT]
-## Validation Gate [EXPLICIT]
- [EXPLICIT]
-- [ ] All 22 fields present and non-empty [EXPLICIT]
-- [ ] Mission is specific to THIS agent (not reusable for any agent) [EXPLICIT]
-- [ ] Mission includes a measurable outcome [EXPLICIT]
-- [ ] Non-Goals has ≥3 items with responsible alternative agent/human named [EXPLICIT]
-- [ ] Allowed Tools lists specific names (no wildcards) [EXPLICIT]
-- [ ] Security Policy references specific checkpoints with rules [EXPLICIT]
-- [ ] Delegation Rules specify criteria for each mode [EXPLICIT]
-- [ ] Failure Handling has ≥3 failure modes with detection→response→fallback [EXPLICIT]
-- [ ] Completion Criteria are verifiable assertions (testable, not subjective) [EXPLICIT]
-- [ ] KPIs include ≥3 metrics with units [EXPLICIT]
-- [ ] No two agents in the ecosystem have overlapping Scope [EXPLICIT]
- [EXPLICIT]
----
-**Author:** Javier Montano | **Last updated:** March 18, 2026 [EXPLICIT]
+# Agent Constitution Creator
+
+Create deterministic `agents/{id}/agent.md` constitutions for multi-agent ecosystems. A valid constitution has exactly the 22 required field sections, traceable context, explicit authority boundaries, least-privilege tools, and a versioned completion contract.
+
+## When to Activate
+
+Activate for requests such as:
+
+- "create an agent constitution"
+- "define agent identity"
+- "write agent.md"
+- "generate agent spec"
+- "design agent governance"
+- "add an agent for X" when the user needs persistent operating identity, tools, authority, and governance
+
+Do not activate for lightweight Claude Code subagent metadata only. Route that request to `agent-creator` and explain the routing boundary.
+
+## Deterministic Contract
+
+- Use `assets/agent-constitution-template.md` as the output skeleton.
+- Use `assets/agent-constitution-schema.json` as the 22-field contract.
+- Use `assets/authority-policy.json` before assigning tools, agents, memory rights, escalation targets, or autonomous decisions.
+- Run `scripts/validate_agent_constitution.py` on any generated `agent.md` before marking the work complete.
+- Never invent tools, peer agents, registries, memory keys, security checkpoints, APIs, or approval rights. If context is missing, ask for it or mark the field `[OPEN]`.
+- Use a caller-provided `{{CONSTITUTION_DATE}}` token for rendered templates; do not derive dates from wall-clock time inside the skill.
+
+## Required Inputs
+
+Minimum context before generation:
+
+1. Agent id in kebab-case.
+2. Primary role or responsibility.
+3. Known peer agents or confirmation that none exist.
+4. Tool registry or explicit statement that no tools are available.
+5. Security, memory, and escalation constraints.
+
+If any item is absent, enter interview mode and ask only for the missing fields. Do not produce `agents/{id}/agent.md` prematurely.
+
+## Context Harvest
+
+1. Search existing constitutions with `Glob agents/*/agent.md`.
+2. Read matching peer agent files to identify scope overlap and escalation paths.
+3. Read tool registry, security policy, memory policy, or project `AGENTS.md` when present.
+4. Build a source map with `[EXPLICIT]`, `[INFERRED]`, and `[OPEN]` tags.
+5. If another agent's scope overlaps materially, stop generation and propose merge, split, or explicit mutual non-goals.
+
+## The 22 Fields
+
+Identity:
+
+1. Mission
+2. Mandate
+3. Scope
+
+Authority:
+
+4. Non-Goals
+5. Inputs
+6. Outputs
+7. Decision Rights
+8. Allowed Tools
+9. Forbidden Tools
+
+Governance:
+
+10. Memory Policy
+11. Security Policy
+12. Orchestration Policy
+13. Delegation Rules
+14. Escalation Rules
+15. Tone / Output Style
+
+Quality:
+
+16. Validation Discipline
+17. Meta-Cognition Protocol
+18. Failure Handling
+19. Completion Criteria
+20. KPIs
+21. Dependencies
+22. Version
+
+## Generation Rules
+
+- Write to `agents/{id}/agent.md` only when the user asks for a file update. Otherwise return the Markdown body.
+- The frontmatter must include `id`, `name`, `role`, and semver `version`.
+- Each required field must be a top-level Markdown heading and contain specific, non-placeholder content.
+- `Decision Rights` must separate `Autonomous` from `Requires approval`.
+- `Allowed Tools` must list only explicit names from the supplied registry. No wildcards, "all tools", or invented tools.
+- `Forbidden Tools` must explicitly deny likely overreach such as network, shell, write, payment, deploy, or deletion powers when those are not in scope.
+- `Security Policy` must cover CP1 input, CP2 prompt/instruction, and CP3 output validation.
+- `Escalation Rules` must include trigger, target, and context.
+- `Failure Handling` must include at least three rows with detection, response, and fallback.
+- `KPIs` must include at least three metrics with target and unit.
+- `Version` must include current semver and change-control rule.
+
+## Output Template
+
+Use `assets/agent-constitution-template.md`. Keep its 22 headings intact. Substitute only from user-provided or repo-observed context and retain `[OPEN]` where context is missing.
+
+## Validation Gate
+
+Before delivery:
+
+- [ ] `scripts/validate_agent_constitution.py --schema assets/agent-constitution-schema.json --constitution <agent.md>` passes.
+- [ ] All 22 fields are present and non-empty.
+- [ ] Frontmatter is valid and semver is present.
+- [ ] No placeholder tokens, `TODO`, `TBD`, wildcards, or "all tools" claims remain.
+- [ ] All tools are registry-backed and least privilege.
+- [ ] Overlap, missing context, and conflicting authority are handled by clarification, not invention.
+- [ ] Evidence tags distinguish `[EXPLICIT]`, `[INFERRED]`, and `[OPEN]` claims.
