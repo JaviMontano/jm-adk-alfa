@@ -1,0 +1,68 @@
+{
+  "schema": 1,
+  "skill": "prompt-creator",
+  "types": [
+    {
+      "type": "agent_system_prompt",
+      "action": "redirect",
+      "redirect_to": "agent-constitution-creator",
+      "reason": "Full agent constitutions belong to the agent constitution skill."
+    },
+    {
+      "type": "meta_prompt",
+      "action": "generate",
+      "file_pattern": "prompts/meta-{topic}.md",
+      "required_sections": ["Purpose", "Inputs", "Framework", "Constraints", "Output Contract", "Validation Gate", "Failure Handling", "Downstream Boundary"],
+      "type_specific_checks": ["exactly_one_behavioral_aspect", "no_reasoning_formatting_mix"]
+    },
+    {
+      "type": "system_user_pair",
+      "action": "generate",
+      "file_pattern": "prompts/pair-{scenario}.md",
+      "required_sections": ["Purpose", "Inputs", "System", "User", "Output Contract", "Validation Gate", "Failure Handling", "Downstream Boundary"],
+      "type_specific_checks": ["one_scenario_only", "system_and_user_sections"]
+    },
+    {
+      "type": "workflow_step_prompt",
+      "action": "redirect",
+      "redirect_to": "workflow-creator",
+      "reason": "Workflow step prompts belong inside workflow definitions."
+    },
+    {
+      "type": "handoff_prompt",
+      "action": "generate",
+      "file_pattern": "prompts/handoff.md",
+      "required_sections": ["Purpose", "Inputs", "Context to Pass", "Context to Omit", "Procedure", "Output Contract", "Success Criteria", "Validation Gate", "Failure Handling", "Downstream Boundary"],
+      "type_specific_checks": ["pass_and_omit_split", "target_agent_id", "success_criteria"]
+    },
+    {
+      "type": "committee_deliberation",
+      "action": "generate",
+      "file_pattern": "prompts/deliberation.md",
+      "required_sections": ["Purpose", "Inputs", "Independent Evaluation", "Rubric", "Procedure", "Output Contract", "Validation Gate", "Failure Handling", "Downstream Boundary"],
+      "type_specific_checks": ["independent_first", "weighted_rubric", "no_peer_answers_before_first_pass"]
+    },
+    {
+      "type": "committee_synthesis",
+      "action": "generate",
+      "file_pattern": "prompts/synthesis.md",
+      "required_sections": ["Purpose", "Inputs", "Redundancy Removal", "Conflict Resolution", "Confidence Weighting", "Output Contract", "Validation Gate", "Failure Handling", "Downstream Boundary"],
+      "type_specific_checks": ["conflict_resolution", "confidence_weighting", "trace_minority_views"]
+    },
+    {
+      "type": "validation_prompt",
+      "action": "generate",
+      "file_pattern": "prompts/validation.md",
+      "required_sections": ["Purpose", "Inputs", "Procedure", "Severity Levels", "Output Contract", "Validation Gate", "Failure Handling", "Downstream Boundary"],
+      "type_specific_checks": ["critical_major_minor", "actionable_findings", "originating_dod_reference"]
+    },
+    {
+      "type": "fallback_prompt",
+      "action": "generate",
+      "file_pattern": "prompts/fallback.md",
+      "required_sections": ["Purpose", "Inputs", "Trigger Conditions", "Preservation Priorities", "User Communication", "Escalation Path", "Output Contract", "Validation Gate", "Failure Handling", "Downstream Boundary"],
+      "type_specific_checks": ["trigger_conditions", "preservation_priorities", "escalation_path"]
+    }
+  ]
+}
+

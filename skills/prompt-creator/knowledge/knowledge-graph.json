@@ -1,75 +1,83 @@
 {
   "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-28",
   "skill": "prompt-creator",
   "nodes": [
     {
       "id": "prompt-creator",
       "type": "skill",
-      "label": "prompt-creator"
+      "label": "Prompt Creator"
     },
     {
-      "id": "prompt-creator:inputs",
-      "type": "contract",
-      "label": "Expected inputs"
+      "id": "prompt-creator:prompt-type-matrix",
+      "type": "asset",
+      "label": "Prompt type matrix"
     },
     {
-      "id": "prompt-creator:outputs",
-      "type": "contract",
-      "label": "Expected outputs"
+      "id": "prompt-creator:prompt-contract-checklist",
+      "type": "asset",
+      "label": "Prompt contract checklist"
     },
     {
-      "id": "prompt-creator:quality",
+      "id": "prompt-creator:source-agent",
+      "type": "source",
+      "label": "Source agent evidence"
+    },
+    {
+      "id": "prompt-creator:generated-artifact",
+      "type": "output",
+      "label": "Generated prompt artifact"
+    },
+    {
+      "id": "prompt-creator:script-validator",
       "type": "gate",
-      "label": "Quality criteria"
+      "label": "Prompt artifact validator"
     },
     {
-      "id": "prompt-creator:ontology",
-      "type": "ontology",
-      "label": "Domain: general"
+      "id": "prompt-creator:no-invention",
+      "type": "risk-control",
+      "label": "No invented agents, tools, or paths"
     },
     {
-      "id": "prompt-creator:evidence",
+      "id": "prompt-creator:downstream-boundary",
       "type": "gate",
-      "label": "Evidence / provenance requirements"
-    },
-    {
-      "id": "prompt-creator:antipattern",
-      "type": "risk",
-      "label": "Canonical anti-pattern to avoid"
+      "label": "Prompt artifact does not execute downstream task"
     }
   ],
   "edges": [
     {
       "from": "prompt-creator",
-      "to": "prompt-creator:inputs",
+      "to": "prompt-creator:prompt-type-matrix",
+      "type": "uses"
+    },
+    {
+      "from": "prompt-creator",
+      "to": "prompt-creator:source-agent",
       "type": "requires"
     },
     {
-      "from": "prompt-creator",
-      "to": "prompt-creator:outputs",
-      "type": "produces"
+      "from": "prompt-creator:prompt-type-matrix",
+      "to": "prompt-creator:generated-artifact",
+      "type": "shapes"
+    },
+    {
+      "from": "prompt-creator:prompt-contract-checklist",
+      "to": "prompt-creator:generated-artifact",
+      "type": "validates"
+    },
+    {
+      "from": "prompt-creator:script-validator",
+      "to": "prompt-creator:generated-artifact",
+      "type": "validates"
     },
     {
       "from": "prompt-creator",
-      "to": "prompt-creator:quality",
-      "type": "validated_by"
-    },
-    {
-      "from": "prompt-creator",
-      "to": "prompt-creator:ontology",
-      "type": "classified_as"
-    },
-    {
-      "from": "prompt-creator",
-      "to": "prompt-creator:evidence",
-      "type": "validated_by"
-    },
-    {
-      "from": "prompt-creator",
-      "to": "prompt-creator:antipattern",
+      "to": "prompt-creator:no-invention",
       "type": "guards_against"
+    },
+    {
+      "from": "prompt-creator:generated-artifact",
+      "to": "prompt-creator:downstream-boundary",
+      "type": "validated_by"
     }
   ]
 }

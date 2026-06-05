@@ -2559,7 +2559,7 @@
     "id": "prompt-creator",
     "path": "skills/prompt-creator",
     "name": "Prompt Creator",
-    "description": "[EXPLICIT]"
+    "description": "Generates deterministic prompt files for agentic ecosystems using the canonical prompt-type matrix, including meta prompts, system-user pairs, handoffs, committee deliberation, synthesis, validation, fallback, and redirects for agent constitutions and workflow steps. Use when the user asks to create a prompt, write a handoff prompt, generate a meta prompt, build a committee deliberation prompt, make a fallback prompt, or design agent prompts. If prompt type or owning agent is missing, interview for the minimum required inputs before writing. [EXPLICIT]"
   },
   {
     "id": "prompt-engineering",

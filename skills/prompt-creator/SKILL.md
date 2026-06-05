@@ -1,32 +1,39 @@
 ---
 name: prompt-creator
 version: 1.0.0
-description:  [EXPLICIT]
-  Generates structured prompts for 9 prompt types in agentic ecosystems — meta, handoff, deliberation, [EXPLICIT]
-  synthesis, validation, and fallback. Activates when the user says "create a prompt", "write a handoff prompt", [EXPLICIT]
-  "generate a meta prompt", "build a committee deliberation prompt", or "make a fallback prompt". Also triggers [EXPLICIT]
-  on mentions of prompt types, agent prompts, or multi-agent prompt design. Use this skill even if the user [EXPLICIT]
-  only names the agent — it interviews for prompt type and context. [EXPLICIT]
-argument-hint: prompt-type owning-agent-id [EXPLICIT]
-model: opus [EXPLICIT]
-context: fork [EXPLICIT]
+description: Generates deterministic prompt files for agentic ecosystems using the canonical prompt-type matrix, including meta prompts, system-user pairs, handoffs, committee deliberation, synthesis, validation, fallback, and redirects for agent constitutions and workflow steps. Use when the user asks to create a prompt, write a handoff prompt, generate a meta prompt, build a committee deliberation prompt, make a fallback prompt, or design agent prompts. If prompt type or owning agent is missing, interview for the minimum required inputs before writing. [EXPLICIT]
+argument-hint: prompt-type owning-agent-id
+model: opus
+context: fork
 allowed-tools:
   - Read
   - Write
   - Edit
   - Glob
   - Grep
+  - Bash
 ---
 
 # Prompt Creator
 
-Generate structured prompt files for multi-agent ecosystems. Covers 9 prompt types from system prompts to committee deliberation to fallback recovery. [EXPLICIT]
+Generate deterministic prompt files for multi-agent ecosystems. The output is a prompt artifact plus a validation packet, not a free-form writing exercise. Covers 9 prompt types from system prompts to committee deliberation to fallback recovery. [EXPLICIT]
+
+## When to Activate
+
+Use this skill when the user requests one of these actions:
+
+- create, write, generate, or improve a reusable prompt for an agent
+- create a meta prompt, handoff prompt, validation prompt, fallback prompt, committee deliberation prompt, or synthesis prompt
+- design a prompt contract for multi-agent routing, execution, validation, recovery, or handoff
+- the user names an agent but omits prompt type; interview for prompt type, target agent, source files, and success criteria
+
+Do not use this skill for the downstream work the prompt will perform. For full agent constitutions, route to `agent-constitution-creator`. For workflow step definitions, route to `workflow-creator`.
 
 ## Assumptions & Limits
 
-- **Assumes** an agentic ecosystem with defined agents (prompts reference agent constitutions)
-- **Limit**: Prompts are templates, not runtime — placeholders (`{{var}}`) are filled by the orchestrator
-- **Limit**: Committee prompts (deliberation/synthesis) require ≥3 agents to be meaningful
+- **Assumes** an agentic ecosystem with defined agents; generated prompts must reference real source agent files or report the gap.
+- **Limit**: Prompts are templates, not runtime; placeholders (`{{var}}`) are filled by the orchestrator.
+- **Limit**: Committee prompts (deliberation/synthesis) require at least 3 agents to be meaningful.
 - **Trade-off**: More detailed prompts = more predictable agent behavior but less adaptability. For creative tasks, keep prompts loose.
 
 ## Usage
@@ -41,9 +48,34 @@ Parse `$1` as prompt type, `$2` as owning agent ID. If missing, ask. [EXPLICIT]
 
 ## Before Generating
 
-1. **Read the agent**: `Read agents/$2/agent.md` — ground prompt in agent identity, tone, and constraints
-2. **Check existing prompts**: `Glob agents/$2/prompts/*.md` — avoid duplicates
-3. **Read prompt spec**: `Read references/prompt-types-spec.md` if available
+1. **Read the agent**: `Read agents/$2/agent.md` or the user-provided source path. If absent, emit `missing_source_agent` and ask before writing.
+2. **Check existing prompts**: `Glob agents/$2/prompts/*.md` to avoid duplicates and name collisions.
+3. **Read prompt spec**: `Read references/prompt-types-spec.md` if available, then apply `assets/prompt-type-matrix.json`.
+4. **Apply checklist**: use `assets/prompt-contract-checklist.md` before finalizing.
+5. **Freeze nondeterminism**: do not invent dates, estimates, tool names, agent IDs, quality gates, or external URLs. Use user-provided values or explicit placeholders.
+
+## Deterministic Contract
+
+- Candidate prompt type must be one of the 9 rows in `assets/prompt-type-matrix.json`.
+- The owning agent ID must come from a source file, explicit user input, or a clearly marked placeholder.
+- Generated frontmatter must include `type`, `owningAgent`, `sourceAgentMd`, `version`, `createdBy`, and `validationStatus`.
+- Every placeholder must be descriptive snake_case inside `{{...}}`; reject `{{x}}`, `{{var}}`, and unlabeled placeholders.
+- Every generated prompt must include: purpose, inputs, procedure, output contract, validation gate, failure handling, and handoff/next-action boundary.
+- If required context is missing, return a gap packet instead of filling creatively.
+
+## Source and No-Invention Rules
+
+- Do not invent agents, tools, commands, files, quality gates, brand constraints, or time estimates.
+- Do not claim an agent constitution was read unless a path was inspected.
+- Do not overwrite an existing prompt path unless the user explicitly asks for an update.
+- Do not execute the prompt's downstream task.
+- If external knowledge is needed, ask for it or cite the missing source as `coverage_gap`.
+
+## Time, Network, and Randomness Policy
+
+- Use the session date only when the user or runtime provides it; otherwise use `{{created_date}}`.
+- Do not fetch remote fonts, templates, or examples for prompt generation.
+- Do not use random names, randomized examples, or nondeterministic ordering; sort candidates by prompt type then slug.
 
 ## The 9 Types
 
@@ -71,6 +103,8 @@ type: "{promptType}"
 owningAgent: "{agentId}"
 sourceAgentMd: "agents/{agentId}/agent.md"
 version: "1.0.0"
+createdBy: "prompt-creator"
+validationStatus: "draft|validated"
 ---
 
 # {Title}
@@ -171,13 +205,32 @@ The handoff is complete when {{target_agent}} confirms: [EXPLICIT]
 - [ ] YAML frontmatter has type, owningAgent, sourceAgentMd, version
 - [ ] Type is one of the 9 defined types (or redirects to appropriate skill)
 - [ ] Agent.md was read and prompt references agent identity
+- [ ] Missing agent/spec/context emits a gap packet instead of invented content
 - [ ] Type-specific rules followed (see table above)
 - [ ] No empty sections
 - [ ] All `{{placeholders}}` are named descriptively (not `{{x}}`)
+- [ ] Duplicate existing prompt path was checked
 - [ ] Committee prompts require independent evaluation before comparison
 - [ ] Handoff prompts specify both what to pass AND what to omit
 - [ ] Validation prompts include severity levels
 - [ ] Fallback prompts include escalation path
+- [ ] `assets/prompt-contract-checklist.md` was applied
+
+## Downstream Boundaries
+
+- Prompt files may be consumed by orchestrators, agents, validators, and renderers.
+- The prompt artifact must not include hidden reasoning, secrets, private user context, or unverified runtime state.
+- The validation packet must list unresolved gaps so the next workflow can stop or ask before execution.
+
+## Assets
+
+- `assets/prompt-contract-checklist.md` defines the reusable deterministic prompt gate.
+- `assets/prompt-type-matrix.json` defines type-specific required sections, redirects, and failure modes.
+
+## Scripts
+
+- `scripts/validate_prompt_artifact.py` validates generated prompt markdown frontmatter, required sections, placeholders, and type-specific gates.
+- `scripts/check.sh` runs deterministic fixtures and must pass before ledger closure.
 
 ---
 **Author:** Javier Montaño | **Last updated:** March 12, 2026

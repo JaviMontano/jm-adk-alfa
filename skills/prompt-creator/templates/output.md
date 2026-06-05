@@ -1,28 +1,59 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: prompt-creator
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
-
 # Prompt Creator Output
 
-## Summary
+## Decision
 
-{summary}
+- Decision: write_prompt / ask / redirect / decline
+- Prompt type:
+- Owning agent:
+- Target path:
+- Next action:
 
-## Evidence
+## Sources
 
-{evidence}
+| Source | Status | Evidence |
+|---|---|---|
+| source agent | inspected / missing |  |
+| existing prompts | inspected / missing |  |
+| prompt type matrix | applied | `assets/prompt-type-matrix.json` |
 
-## Result
+## Prompt Artifact
 
-{result}
+```markdown
+---
+type: ""
+owningAgent: ""
+sourceAgentMd: ""
+version: "1.0.0"
+createdBy: "prompt-creator"
+validationStatus: "draft"
+---
+
+# Title
+
+## Purpose
+
+## Inputs
+
+## Procedure
+
+## Output Contract
+
+## Validation Gate
+
+## Failure Handling
+
+## Downstream Boundary
+```
 
 ## Validation
 
-{validation}
+- `assets/prompt-contract-checklist.md` applied:
+- `scripts/validate_prompt_artifact.py` pass/fail:
+- Type-specific rules satisfied:
+- Placeholder inventory:
 
 ## Risks and Limits
 
-{risks}
+- Coverage gaps:
+- Duplicate path risk:
+- Missing source context:

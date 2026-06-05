@@ -3,7 +3,15 @@ name: prompt-creator-quick
 type: variation
 variant: quick
 ---
-# Prompt Creator — Quick Mode
+# Prompt Creator - Quick Mode
 
-Streamlined execution. Focus on TL;DR and primary output only.
-Apply Validation Gate but skip extended evidence tagging.
+Use when prompt type, owning agent, and source file are explicit.
+
+Return only:
+
+- decision
+- target path
+- generated prompt artifact or redirect/gap
+- validation result
+
+Evidence tags remain mandatory; quick mode shortens narrative only.
