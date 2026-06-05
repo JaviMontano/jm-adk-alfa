@@ -243,7 +243,7 @@
     "id": "assumption-log",
     "path": "skills/assumption-log",
     "name": "Assumption Log",
-    "description": "Track and validate assumptions. Format: A-NNN assumption, status (unvalidated/validated/invalidated), evidence tag. [EXPLICIT]"
+    "description": "Track and validate project assumptions with A-NNN identifiers, allowed statuses, evidence tags, contradiction links, decision links, and a validation queue. [EXPLICIT]"
   },
   {
     "id": "audit-content-quality",

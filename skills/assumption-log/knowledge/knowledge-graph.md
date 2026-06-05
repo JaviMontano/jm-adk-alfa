@@ -1,13 +1,18 @@
-# Assumption Log — Knowledge Graph
+# Assumption Log Knowledge Graph
 
-## Core Concepts
-- assumption-log: primary capability
-- validation-gate: quality control checkpoint
-- evidence-tagging: [EXPLICIT]/[INFERRED]/[OPEN] claims
+## Core Nodes
 
-## Dependencies
-- Upstream: input-analysis, context-optimization
-- Downstream: output-engineering, rendering-engine
+- `assumption-log`: read-only skill for assumption tracking.
+- `activation-policy`: positive, negative, and clarification routing.
+- `status-policy`: ID, status, impact, and risk taxonomy.
+- `evidence-policy`: accepted evidence tags and proof requirements.
+- `log-contract`: required output sections and fields.
+- `offline-validator`: deterministic report validation script.
+- `validation-queue`: required output for high-impact open assumptions.
 
-## Skill Relationships
-Part of the JM Labs canonical skill registry.
+## Relationships
+
+- The skill uses activation, status, and evidence policies.
+- The skill produces a log that must match the contract.
+- The validator checks the contract and policy requirements.
+- High-impact open assumptions require validation queue entries.

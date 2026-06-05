@@ -1,0 +1,102 @@
+{
+  "summary": {
+    "scope": "Payment onboarding modernization",
+    "total_assumptions": 4,
+    "open_count": 2,
+    "validated_count": 1,
+    "invalidated_count": 1,
+    "high_impact_open_count": 1,
+    "assumption_ratio": 0.5,
+    "overall_risk": "high"
+  },
+  "assumptions": [
+    {
+      "id": "A-001",
+      "statement": "Enterprise customers can complete onboarding without assisted data migration.",
+      "status": "unvalidated",
+      "evidence_tag": "[ASSUMPTION]",
+      "evidence": "Stakeholder workshop stated this as a target outcome but provided no usage data.",
+      "impact": "high",
+      "validation_action": "Review last 20 enterprise onboarding tickets and migration requests.",
+      "owner": "Product",
+      "decision_link": "DL-014"
+    },
+    {
+      "id": "A-002",
+      "statement": "The current service exposes onboarding events needed by the new dashboard.",
+      "status": "validated",
+      "evidence_tag": "[CODE]",
+      "evidence": "events/onboarding.py defines account_created and data_import_completed events.",
+      "source_ref": "services/events/onboarding.py",
+      "impact": "medium",
+      "validation_action": "No action required until event contract changes.",
+      "owner": "Engineering",
+      "decision_link": "ADR-003"
+    },
+    {
+      "id": "A-003",
+      "statement": "The program must use Firebase as the only persistence layer.",
+      "status": "invalidated",
+      "evidence_tag": "[DOC]",
+      "evidence": "Architecture decision ADR-003 approves Supabase for operational analytics.",
+      "source_ref": "docs/adr/ADR-003.md",
+      "impact": "critical",
+      "validation_action": "Update planning docs to remove Firebase-only constraint.",
+      "owner": "Architecture",
+      "decision_link": "ADR-003"
+    },
+    {
+      "id": "A-004",
+      "statement": "Marketing can supply localized onboarding copy before launch freeze.",
+      "status": "blocked",
+      "evidence_tag": "[ASSUMPTION]",
+      "evidence": "Launch plan names Marketing as owner but has no due date.",
+      "impact": "low",
+      "validation_action": "Request copy freeze date from Marketing lead.",
+      "owner": "Marketing",
+      "decision_link": "DL-015"
+    }
+  ],
+  "contradictions": [
+    {
+      "id": "C-001",
+      "assumption_ids": ["A-003"],
+      "description": "Firebase-only persistence conflicts with ADR-003 Supabase analytics approval.",
+      "resolution_action": "Treat A-003 as invalidated and update architecture assumptions."
+    }
+  ],
+  "decision_links": [
+    {
+      "decision_id": "DL-014",
+      "assumption_ids": ["A-001"],
+      "decision": "Decide whether assisted migration remains in launch scope.",
+      "status": "open"
+    },
+    {
+      "decision_id": "ADR-003",
+      "assumption_ids": ["A-002", "A-003"],
+      "decision": "Authorize Supabase for operational analytics.",
+      "status": "accepted"
+    }
+  ],
+  "validation_queue": [
+    {
+      "assumption_id": "A-001",
+      "action": "Review onboarding tickets and quantify migration demand.",
+      "owner": "Product",
+      "due_basis": "Before scope freeze"
+    },
+    {
+      "assumption_id": "A-004",
+      "action": "Request localized copy freeze date.",
+      "owner": "Marketing",
+      "due_basis": "Before launch readiness review"
+    }
+  ],
+  "warnings": [
+    {
+      "code": "HIGH_ASSUMPTION_RATIO",
+      "message": "50% of entries use [ASSUMPTION]; do not ship implementation scope until high-impact open assumptions are validated."
+    }
+  ]
+}

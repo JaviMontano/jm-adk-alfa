@@ -1,0 +1,20 @@
+{
+  "schema": 1,
+  "skill": "assumption-log",
+  "statuses": ["unvalidated", "validating", "validated", "invalidated", "superseded", "blocked", "stale"],
+  "open_statuses": ["unvalidated", "validating", "blocked", "stale"],
+  "closed_statuses": ["validated", "invalidated", "superseded"],
+  "allowed_transitions": {
+    "unvalidated": ["validating", "validated", "invalidated", "blocked", "superseded"],
+    "validating": ["validated", "invalidated", "blocked", "stale", "superseded"],
+    "validated": ["stale", "superseded"],
+    "invalidated": ["superseded"],
+    "superseded": [],
+    "blocked": ["validating", "validated", "invalidated", "superseded"],
+    "stale": ["validating", "validated", "invalidated", "superseded"]
+  },
+  "impact_levels": ["low", "medium", "high", "critical"],
+  "id_pattern": "^A-[0-9]{3}$",
+  "id_sequence": "ascending_unique_gapless_within_report",
+  "risk_levels": ["low", "medium", "high", "critical"]
+}

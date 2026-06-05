@@ -1,0 +1,19 @@
+{
+  "schema": 1,
+  "skill": "assumption-log",
+  "allowed_tags": ["[CODE]", "[CONFIG]", "[DOC]", "[INFERENCE]", "[ASSUMPTION]"],
+  "strong_evidence_tags": ["[CODE]", "[CONFIG]", "[DOC]"],
+  "weak_evidence_tags": ["[INFERENCE]", "[ASSUMPTION]"],
+  "entry_requirements": {
+    "all_entries": ["id", "statement", "status", "evidence_tag", "evidence", "impact", "validation_action"],
+    "validated_or_invalidated": ["source_ref", "evidence"],
+    "unvalidated_or_stale": ["validation_action"],
+    "high_impact_open": ["validation_queue_entry"]
+  },
+  "rules": [
+    "Every assumption entry must carry exactly one allowed evidence tag.",
+    "Validated and invalidated assumptions require a strong evidence tag.",
+    "Unvalidated assumptions must not be described as facts.",
+    "High-impact open assumptions must appear in validation_queue."
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "summary": {
+    "scope": "Broken validation",
+    "total_assumptions": 1,
+    "open_count": 0,
+    "validated_count": 1,
+    "invalidated_count": 0,
+    "high_impact_open_count": 0,
+    "assumption_ratio": 0.0,
+    "overall_risk": "low"
+  },
+  "assumptions": [
+    {
+      "id": "A-001",
+      "statement": "The plan is validated without a source.",
+      "status": "validated",
+      "evidence_tag": "[ASSUMPTION]",
+      "evidence": "No evidence needed.",
+      "impact": "medium",
+      "validation_action": "None.",
+      "owner": "Product",
+      "decision_link": "DL-001"
+    }
+  ],
+  "contradictions": [],
+  "decision_links": [
+    {
+      "decision_id": "DL-001",
+      "assumption_ids": ["A-001"],
+      "decision": "Trust a validated label without proof.",
+      "status": "accepted"
+    }
+  ],
+  "validation_queue": [],
+  "warnings": []
+}

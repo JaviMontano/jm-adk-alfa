@@ -1,10 +1,11 @@
-# Assumption Log — DOCX Template
+# Assumption Log DOCX Template
 
-## Document Structure
-- Title: Assumption Log — [Client/Project Name]
-- Author: JM Labs
-- Date: {{DATE}}
+Use the same section order as `templates/output.md`.
 
-## Sections (mirror SKILL.md structure)
-See canonical SKILL.md for section blueprints.
-Use brand-config.json tokens: Navy #122562 · Gold #FFD700 · Blue #137DC5
+DOCX production rules:
+
+- Use system fonts only.
+- Use the caller-provided date or omit the date.
+- Keep the assumption table columns in the canonical order.
+- Do not use external images, remote fonts, or live brand assets.
+- Preserve exact IDs and evidence tags when converting from Markdown or JSON.

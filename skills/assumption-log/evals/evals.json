@@ -1,9 +1,110 @@
-[
-  {"id": "assumption-log-happy-path", "type": "happy_path", "input": "Run assumption log on this project", "expected_behavior": "Skill activates and produces the expected assumption log output following the defined process", "tags": ["basic", "activation"]},
-  {"id": "assumption-log-explicit-trigger", "type": "happy_path", "input": "Apply assumption log analysis", "expected_behavior": "Skill recognizes the trigger phrase and executes the assumption log workflow", "tags": ["trigger", "recognition"]},
-  {"id": "assumption-log-with-context", "type": "happy_path", "input": "Apply assumption log to analyze the current codebase with detailed output", "expected_behavior": "Skill produces comprehensive assumption log analysis with evidence-tagged findings", "tags": ["detailed", "comprehensive"]},
-  {"id": "assumption-log-minimal-input", "type": "happy_path", "input": "Quick assumption log", "expected_behavior": "Skill activates with minimal input, applies reasonable defaults", "tags": ["minimal", "defaults"]},
-  {"id": "assumption-log-false-positive", "type": "false_positive", "input": "What is the weather forecast for tomorrow?", "expected_behavior": "Skill should NOT activate — this input has no relation to assumption log", "tags": ["false_positive", "should-not-activate"]},
-  {"id": "assumption-log-edge-empty-input", "type": "edge_case", "input": "Run assumption log but I have no files or documentation yet", "expected_behavior": "Skill handles gracefully — requests minimum viable input or produces gap analysis", "tags": ["edge_case", "empty-input", "boundary"]},
-  {"id": "assumption-log-edge-conflicting", "type": "edge_case", "input": "Apply assumption log but requirements contradict each other", "expected_behavior": "Skill detects contradiction, flags with [OPEN] tag, proposes resolution", "tags": ["edge_case", "conflict", "corner"]}
-]
+{
+  "schema": 1,
+  "skill": "assumption-log",
+  "deterministic_checks": {
+    "id_regex": "^A-[0-9]{3}$",
+    "allowed_statuses": ["unvalidated", "validating", "validated", "invalidated", "superseded", "blocked", "stale"],
+    "allowed_evidence_tags": ["[CODE]", "[CONFIG]", "[DOC]", "[INFERENCE]", "[ASSUMPTION]"],
+    "must_not_include": ["[OPEN]", "A-1", "A-01", "assume as fact", "no evidence needed"]
+  },
+  "cases": [
+    {
+      "id": "AL-001-a-nnn-baseline",
+      "type": "happy_path",
+      "input": "Create an assumption log for a project with three unverified planning claims.",
+      "expected_activation": true,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "id_regex", "evidence_tags"],
+      "must_include": ["A-001", "status: unvalidated", "[ASSUMPTION]", "Validation Queue"]
+    },
+    {
+      "id": "AL-002-validate-existing",
+      "type": "lifecycle",
+      "input": "Update A-001 after source code proves the onboarding event exists.",
+      "expected_activation": true,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "id_preservation", "strong_evidence"],
+      "must_include": ["A-001", "status: validated", "[CODE]", "source_ref"]
+    },
+    {
+      "id": "AL-003-invalidate-contradicted",
+      "type": "lifecycle",
+      "input": "A planning assumption conflicts with ADR-003 documentation.",
+      "expected_activation": true,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "contradictions"],
+      "must_include": ["status: invalidated", "[DOC]", "Contradictions", "resolution_action"]
+    },
+    {
+      "id": "AL-004-missing-evidence",
+      "type": "edge_case",
+      "input": "Track an assumption where no source is available yet.",
+      "expected_activation": true,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "missing_evidence"],
+      "must_include": ["status: unvalidated", "[ASSUMPTION]", "validation_action"]
+    },
+    {
+      "id": "AL-005-conflicting-artifacts",
+      "type": "edge_case",
+      "input": "README says Firebase-only, but ADR says Supabase is approved.",
+      "expected_activation": true,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "source_conflict"],
+      "must_include": ["Contradictions", "Firebase", "Supabase", "[DOC]"]
+    },
+    {
+      "id": "AL-006-decision-log-linkage",
+      "type": "traceability",
+      "input": "Link assumptions to DL-014 and ADR-003 decisions.",
+      "expected_activation": true,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "decision_links"],
+      "must_include": ["Decision Links", "DL-014", "ADR-003"]
+    },
+    {
+      "id": "AL-007-stale-review",
+      "type": "edge_case",
+      "input": "A validated assumption has a supplied review date that is now outdated in project evidence.",
+      "expected_activation": true,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "stale_status"],
+      "must_include": ["status: stale", "validation_action"]
+    },
+    {
+      "id": "AL-008-assumption-threshold-warning",
+      "type": "edge_case",
+      "input": "More than 30% of entries are unvalidated assumptions.",
+      "expected_activation": true,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "warning_threshold"],
+      "must_include": ["HIGH_ASSUMPTION_RATIO", "assumption_ratio"]
+    },
+    {
+      "id": "AL-009-empty-input",
+      "type": "edge_case",
+      "input": "Run an assumption log, but I have no files, decisions, or claims yet.",
+      "expected_activation": true,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "minimum_input"],
+      "must_include": ["minimum missing input"],
+      "must_not_include": ["A-001"]
+    },
+    {
+      "id": "AL-010-phase-separation",
+      "type": "edge_case",
+      "input": "Log assumptions and then implement the feature.",
+      "expected_activation": true,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "phase_separation"],
+      "must_include": ["Assumptions", "Validation Queue"],
+      "must_not_include": ["implementation completed"]
+    },
+    {
+      "id": "AL-011-false-positive-statistics",
+      "type": "false_positive",
+      "input": "Explain the assumptions of linear regression.",
+      "expected_activation": false,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "false_positive"],
+      "must_not_include": ["A-001", "Validation Queue"]
+    },
+    {
+      "id": "AL-012-false-positive-weather",
+      "type": "false_positive",
+      "input": "What is the weather forecast for tomorrow?",
+      "expected_activation": false,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "false_positive"],
+      "must_not_include": ["A-001", "assumption_ratio"]
+    }
+  ]
+}

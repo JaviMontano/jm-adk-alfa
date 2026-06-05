@@ -1,0 +1,24 @@
+{
+  "schema": 1,
+  "skill": "assumption-log",
+  "activate_when": [
+    "The user asks to identify, list, track, validate, invalidate, or review assumptions.",
+    "The user asks for an assumption register, assumption log, risk assumptions, hypothesis tracker, or evidence gaps.",
+    "The task requires separating verified facts from unvalidated assumptions before planning or delivery."
+  ],
+  "do_not_activate_when": [
+    "The request is only about grammar, weather, generic summaries, certificates, or unrelated logging.",
+    "The user asks for implementation without needing assumption tracking.",
+    "The input has no assumption, hypothesis, uncertainty, decision, risk, or evidence-gap context."
+  ],
+  "routing_decisions": ["activate", "do_not_activate", "needs_clarification"],
+  "minimum_input": [
+    "scope_or_project",
+    "at_least_one_claim_or_decision_or_uncertainty"
+  ],
+  "clarification_required_when": [
+    "No project scope is supplied.",
+    "The user asks to validate assumptions but provides no evidence source.",
+    "The request could mean activity logging instead of assumption logging."
+  ]
+}

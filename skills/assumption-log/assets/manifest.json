@@ -1,0 +1,30 @@
+{
+  "schema": 1,
+  "skill": "assumption-log",
+  "assets": [
+    {
+      "path": "assets/activation-policy.json",
+      "type": "policy",
+      "purpose": "Deterministic activation and false-positive routing rules.",
+      "used_by": ["SKILL.md", "prompts/meta.md", "evals/evals.json"]
+    },
+    {
+      "path": "assets/status-policy.json",
+      "type": "policy",
+      "purpose": "Allowed statuses, transitions, impacts, risks, and ID pattern.",
+      "used_by": ["SKILL.md", "scripts/validate_assumption_log.py", "evals/evals.json"]
+    },
+    {
+      "path": "assets/log-contract.json",
+      "type": "schema-contract",
+      "purpose": "Required assumption log sections and fields.",
+      "used_by": ["SKILL.md", "scripts/validate_assumption_log.py", "templates/output.md"]
+    },
+    {
+      "path": "assets/evidence-policy.json",
+      "type": "policy",
+      "purpose": "Evidence tags and proof requirements by status.",
+      "used_by": ["SKILL.md", "scripts/validate_assumption_log.py", "examples/example-output.md"]
+    }
+  ]
+}
