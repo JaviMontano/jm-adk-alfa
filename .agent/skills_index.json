@@ -2565,7 +2565,7 @@
     "id": "prompt-engineering",
     "path": "skills/prompt-engineering",
     "name": "Prompt Engineering",
-    "description": ">"
+    "description": "Design, evaluate, and optimize LLM instruction packages using deterministic pattern selection, source-grounded context, structured output contracts, guardrails, adversarial test cases, and script-backed evaluation packets. Use when the user asks for prompt engineering, system instruction design, few-shot examples, prompt optimization, prompt evaluation, guardrails, meta-prompting, or prompt design. [EXPLICIT]"
   },
   {
     "id": "prompt-forge",

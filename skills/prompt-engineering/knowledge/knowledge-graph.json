@@ -1,75 +1,83 @@
 {
   "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-28",
   "skill": "prompt-engineering",
   "nodes": [
     {
       "id": "prompt-engineering",
       "type": "skill",
-      "label": "prompt-engineering"
+      "label": "Prompt Engineering"
     },
     {
-      "id": "prompt-engineering:inputs",
+      "id": "prompt-engineering:pattern-matrix",
+      "type": "asset",
+      "label": "Pattern decision matrix"
+    },
+    {
+      "id": "prompt-engineering:checklist",
+      "type": "asset",
+      "label": "Prompt engineering checklist"
+    },
+    {
+      "id": "prompt-engineering:packet",
+      "type": "output",
+      "label": "Prompt engineering packet"
+    },
+    {
+      "id": "prompt-engineering:test-cases",
       "type": "contract",
-      "label": "Expected inputs"
+      "label": "Happy, edge, and adversarial test cases"
     },
     {
-      "id": "prompt-engineering:outputs",
+      "id": "prompt-engineering:guardrails",
       "type": "contract",
-      "label": "Expected outputs"
+      "label": "Injection and unsupported-source guardrails"
     },
     {
-      "id": "prompt-engineering:quality",
+      "id": "prompt-engineering:script-validator",
       "type": "gate",
-      "label": "Quality criteria"
+      "label": "Prompt packet validator"
     },
     {
-      "id": "prompt-engineering:ontology",
-      "type": "ontology",
-      "label": "Domain: general"
-    },
-    {
-      "id": "prompt-engineering:evidence",
-      "type": "gate",
-      "label": "Evidence / provenance requirements"
-    },
-    {
-      "id": "prompt-engineering:antipattern",
-      "type": "risk",
-      "label": "Canonical anti-pattern to avoid"
+      "id": "prompt-engineering:downstream-handoff",
+      "type": "boundary",
+      "label": "Durable prompt files handled by prompt-creator"
     }
   ],
   "edges": [
     {
       "from": "prompt-engineering",
-      "to": "prompt-engineering:inputs",
+      "to": "prompt-engineering:pattern-matrix",
+      "type": "uses"
+    },
+    {
+      "from": "prompt-engineering:pattern-matrix",
+      "to": "prompt-engineering:packet",
+      "type": "shapes"
+    },
+    {
+      "from": "prompt-engineering:checklist",
+      "to": "prompt-engineering:packet",
+      "type": "validates"
+    },
+    {
+      "from": "prompt-engineering:packet",
+      "to": "prompt-engineering:test-cases",
       "type": "requires"
     },
     {
-      "from": "prompt-engineering",
-      "to": "prompt-engineering:outputs",
-      "type": "produces"
+      "from": "prompt-engineering:packet",
+      "to": "prompt-engineering:guardrails",
+      "type": "requires"
+    },
+    {
+      "from": "prompt-engineering:script-validator",
+      "to": "prompt-engineering:packet",
+      "type": "validates"
     },
     {
       "from": "prompt-engineering",
-      "to": "prompt-engineering:quality",
-      "type": "validated_by"
-    },
-    {
-      "from": "prompt-engineering",
-      "to": "prompt-engineering:ontology",
-      "type": "classified_as"
-    },
-    {
-      "from": "prompt-engineering",
-      "to": "prompt-engineering:evidence",
-      "type": "validated_by"
-    },
-    {
-      "from": "prompt-engineering",
-      "to": "prompt-engineering:antipattern",
-      "type": "guards_against"
+      "to": "prompt-engineering:downstream-handoff",
+      "type": "routes_to"
     }
   ]
 }

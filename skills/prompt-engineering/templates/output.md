@@ -1,28 +1,57 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: prompt-engineering
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
-
 # Prompt Engineering Output
 
-## Summary
+## Decision
 
-{summary}
+- Decision: write_packet / ask / handoff / decline
+- Pattern:
+- Target model:
+- Source boundary:
+- Downstream handoff:
 
-## Evidence
+## Sources
 
-{evidence}
+| Source | Status | Evidence |
+|---|---|---|
+| task context | provided / missing |  |
+| source material | inspected / missing |  |
+| pattern matrix | applied | `assets/pattern-decision-matrix.json` |
 
-## Result
+## Pattern Selection
 
-{result}
+| Candidate | Fit | Risks | Decision |
+|---|---|---|---|
+|  |  |  |  |
+
+## Instruction Package
+
+```text
+Role:
+Context:
+Task:
+Constraints:
+Output Contract:
+Examples:
+Guardrails:
+```
+
+## Test Matrix
+
+| ID | Type | Input | Expected Checks |
+|---|---|---|---|
+| PE-001 | happy_path |  |  |
+| PE-002 | edge_case |  |  |
+| PE-003 | adversarial |  |  |
 
 ## Validation
 
-{validation}
+- `assets/prompt-engineering-checklist.md` applied:
+- `scripts/validate_prompt_packet.py` pass/fail:
+- Injection resistance:
+- Format compliance:
+- Coverage gaps:
 
 ## Risks and Limits
 
-{risks}
+- Source gaps:
+- Model-specific uncertainty:
+- Downstream assumptions:

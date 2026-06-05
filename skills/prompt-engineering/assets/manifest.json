@@ -1,0 +1,25 @@
+{
+  "skill": "prompt-engineering",
+  "assets": [
+    {
+      "path": "assets/prompt-engineering-checklist.md",
+      "type": "checklist",
+      "purpose": "Reusable deterministic review gate for prompt engineering packets, including sources, pattern selection, guardrails, test cases, and downstream boundaries.",
+      "used_by": [
+        "SKILL.md",
+        "templates/output.md",
+        "scripts/validate_prompt_packet.py"
+      ]
+    },
+    {
+      "path": "assets/pattern-decision-matrix.json",
+      "type": "matrix",
+      "purpose": "Canonical pattern decision matrix for selecting prompt engineering patterns with required evidence and risk controls.",
+      "used_by": [
+        "SKILL.md",
+        "scripts/validate_prompt_packet.py",
+        "evals/evals.json"
+      ]
+    }
+  ]
+}

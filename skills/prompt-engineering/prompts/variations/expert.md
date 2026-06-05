@@ -15,3 +15,5 @@ Patterns covered:
 3. Multi-agent prompt routing (different prompts per agent role)
 4. Dynamic few-shot selection based on input similarity
 5. Structured output with JSON schema validation
+
+All advanced patterns must include source boundary, output contract, failure handling, and deterministic test cases.

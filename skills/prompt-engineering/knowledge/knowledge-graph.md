@@ -1,4 +1,4 @@
-# Prompt Engineering — Knowledge Graph
+# Prompt Engineering - Knowledge Graph
 
 <!-- Zettelkasten-ready: use [[wikilinks]] for Obsidian compatibility -->
 
@@ -7,10 +7,12 @@
 - [[prompt-pattern]] — A reusable structure for prompting LLMs
 - [[zero-shot]] — No examples, relies on model's training
 - [[few-shot]] — 2-5 examples calibrate output format and style
-- [[chain-of-thought]] — "Think step by step" decomposition
-- [[system-prompt]] — Persistent behavioral constraints
+- [[reasoning-scaffold]] — Private multi-step decomposition with concise rationale
+- [[system-instruction]] — Persistent behavioral constraints
 - [[meta-prompt]] — Prompt that generates prompts
 - [[constitutional-ai]] — Self-correcting with value alignment
+- [[structured-output]] — Schema-bound prompt output
+- [[prompt-packet]] — Pattern, prompt, guardrails, tests, metrics, and risks
 
 ## Relationships
 
@@ -19,12 +21,10 @@ prompt-pattern
 ├── zero-shot (simplest, when task is well-defined)
 ├── few-shot (adds examples for calibration)
 │   └── depends-on: example-quality
-├── chain-of-thought (multi-step reasoning)
-│   ├── variant: zero-shot-cot ("think step by step")
-│   └── variant: few-shot-cot (examples with reasoning)
-├── system-prompt (persistent constraints)
+├── reasoning-scaffold (multi-step reasoning without hidden transcript)
+├── system-instruction (persistent constraints)
 │   ├── composes-with: few-shot
-│   └── composes-with: chain-of-thought
+│   └── composes-with: reasoning-scaffold
 ├── meta-prompt (generates prompts)
 │   └── requires: prompt-evaluation
 └── constitutional-ai (self-correction)
@@ -42,6 +42,7 @@ prompt-pattern
 - [[ai-safety]] — Guardrails and injection prevention
 - [[context-window-management]] — Token budgeting for prompts
 - [[llm-evaluation]] — Measuring prompt effectiveness
+- [[prompt-creator]] — Durable prompt file generation
 
 ## Decision Heuristics
 
@@ -49,7 +50,7 @@ prompt-pattern
 |-------|------------|-----------|
 | Task is well-defined, model knows the domain | Zero-shot | Simplest, lowest cost |
 | Output format matters but task is clear | Few-shot (2-3 examples) | Examples calibrate format |
-| Task requires reasoning or math | Chain-of-thought | Decomposition improves accuracy |
-| Agent needs persistent behavior | System prompt | Constraints survive across turns |
+| Task requires reasoning or math | Reasoning scaffold | Decomposition improves accuracy without exposing hidden reasoning |
+| Agent needs persistent behavior | System instruction | Constraints survive across turns |
 | Need to generate prompts at scale | Meta-prompt | One prompt generates many |
 | Output must align with values | Constitutional | Self-correction loop |

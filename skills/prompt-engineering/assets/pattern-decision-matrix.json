@@ -1,0 +1,54 @@
+{
+  "schema": 1,
+  "skill": "prompt-engineering",
+  "patterns": [
+    {
+      "pattern": "zero_shot",
+      "use_when": ["task is narrow", "output format is simple", "source context is sufficient"],
+      "requires": ["task", "output_contract", "guardrails"],
+      "risk_controls": ["no invented facts", "unsupported-source refusal"]
+    },
+    {
+      "pattern": "few_shot",
+      "use_when": ["output style must be calibrated", "examples are available", "format drift risk is high"],
+      "requires": ["task", "examples", "output_contract", "guardrails"],
+      "risk_controls": ["label synthetic fixtures", "examples match schema"]
+    },
+    {
+      "pattern": "reasoning_scaffold",
+      "use_when": ["task requires multi-step reasoning", "intermediate reasoning should remain private", "decision trace is enough"],
+      "requires": ["task", "steps", "output_contract", "guardrails"],
+      "risk_controls": ["do not request hidden chain-of-thought", "return concise rationale"]
+    },
+    {
+      "pattern": "system_instruction",
+      "use_when": ["persistent behavior is needed", "constraints must survive turns", "role and authority are explicit"],
+      "requires": ["identity", "scope", "constraints", "output_contract"],
+      "risk_controls": ["no invented authority", "explicit refusal boundary"]
+    },
+    {
+      "pattern": "structured_output",
+      "use_when": ["machine-readable output is required", "schema compliance is critical"],
+      "requires": ["schema", "validation_criteria", "error_handling"],
+      "risk_controls": ["schema mismatch fallback", "no extra prose"]
+    },
+    {
+      "pattern": "rag_grounded",
+      "use_when": ["answers must come from provided context", "source boundary is explicit"],
+      "requires": ["retrieved_context", "citation_policy", "unsupported-source behavior"],
+      "risk_controls": ["answer only from provided context", "coverage gap reporting"]
+    },
+    {
+      "pattern": "meta_prompt",
+      "use_when": ["the task is to create or improve prompts", "prompt generation process must be specified"],
+      "requires": ["prompt_goal", "constraints", "evaluation_criteria"],
+      "risk_controls": ["route durable prompt files to prompt-creator"]
+    },
+    {
+      "pattern": "constitutional_self_critique",
+      "use_when": ["value alignment or policy checking is required", "principles are explicit"],
+      "requires": ["principles", "critique_steps", "revision_policy"],
+      "risk_controls": ["principles must be source-backed", "critique output is bounded"]
+    }
+  ]
+}
