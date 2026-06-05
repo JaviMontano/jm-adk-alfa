@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "skill": "prompt-forge",
+  "modes": ["create", "review", "evolve", "repair", "port"],
+  "target_platforms": ["claude-project", "custom-gpt", "gemini-gem", "api", "unknown"],
+  "playbook_sections": [
+    "Role & Archetype",
+    "Objective",
+    "Parameters",
+    "Interaction Flow",
+    "Constraints",
+    "Key Questions",
+    "Output Template",
+    "Self-Correction Triggers"
+  ],
+  "rubric_criteria": [
+    "Foundation",
+    "Accuracy",
+    "Quality",
+    "Density",
+    "Simplicity",
+    "Clarity",
+    "Precision",
+    "Depth",
+    "Coherence",
+    "Value"
+  ],
+  "required_test_types": ["happy_path", "edge_case", "adversarial"],
+  "banned_behaviors": [
+    "invented sources",
+    "unsupported platform claims",
+    "hidden reasoning transcript",
+    "contract drift without rationale",
+    "same text across platforms without mapping"
+  ]
+}

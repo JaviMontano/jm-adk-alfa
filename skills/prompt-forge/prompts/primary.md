@@ -9,18 +9,30 @@ triad:
   guardian: "prompt-forge-guardian"
 ---
 
-# Prompt Forge — Execute
+# Prompt Forge - Execute
 
-## Dynamic Parameters
+## Inputs
 
-| Parameter | Description | Required | Filled By |
-|-----------|-------------|----------|-----------|
-| `{{task}}` | What to accomplish | Yes | User input |
-| `{{context}}` | Background and constraints | Yes | User or codebase |
-| `{{constraints}}` | Additional rules | No | Guardrails JSON |
+| Parameter | Description | Required |
+|---|---|---|
+| `{{mode}}` | create, review, evolve, repair, or port | Yes |
+| `{{goal}}` | User outcome or prompt failure | Yes |
+| `{{target_platform}}` | claude-project, custom-gpt, gemini-gem, api, or unknown | Yes |
+| `{{source_boundary}}` | Allowed facts and unsupported behavior | Yes |
+| `{{output_contract}}` | Required format or schema | Yes |
 
 ## Execution Steps
-1. Read SKILL.md `## When to Activate` — confirm this skill applies
-2. Read SKILL.md `## Validation Gate` — internalize quality criteria
-3. Execute the skill workflow per SKILL.md sections
-4. Validate output against Validation Gate before delivering
+
+1. Confirm activation using `SKILL.md` `## When to Activate`.
+2. Load assets listed in `SKILL.md` `## Assets And Scripts`.
+3. Select mode and capture only missing contract-critical inputs.
+4. Produce Playbook, scorecard, repair, or port packet.
+5. Include happy path, edge case, and adversarial tests.
+6. Validate against `SKILL.md` `## Validation Gate`.
+7. When a JSON forge packet is produced, run `scripts/validate_forge_packet.py`.
+
+## Boundaries
+
+- Do not invent sources, platform limits, or domain policies.
+- Do not expose hidden reasoning.
+- Route durable prompt-file creation to `prompt-creator` after analysis approval.

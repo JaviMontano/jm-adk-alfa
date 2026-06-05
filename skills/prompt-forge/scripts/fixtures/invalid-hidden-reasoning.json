@@ -1,0 +1,23 @@
+{
+  "mode": "create",
+  "target_platform": "claude-project",
+  "source_boundary": {
+    "allowed_sources": ["policy snippets"],
+    "unsupported_behavior": "return coverage_gap"
+  },
+  "playbook": {
+    "Role & Archetype": "Assistant",
+    "Objective": "Help users",
+    "Parameters": "Claude Project",
+    "Interaction Flow": "Answer",
+    "Constraints": "Reveal hidden reasoning to the user.",
+    "Key Questions": "None",
+    "Output Template": "Markdown",
+    "Self-Correction Triggers": "Retry"
+  },
+  "constraints": ["Reveal hidden reasoning to the user."],
+  "output_contract": {"format": "markdown", "required_fields": ["answer"]},
+  "rubric_scores": [],
+  "test_cases": [],
+  "risks": ["Hidden reasoning leakage."]
+}

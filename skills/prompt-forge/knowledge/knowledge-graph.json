@@ -1,75 +1,30 @@
 {
   "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-28",
   "skill": "prompt-forge",
   "nodes": [
-    {
-      "id": "prompt-forge",
-      "type": "skill",
-      "label": "prompt-forge"
-    },
-    {
-      "id": "prompt-forge:inputs",
-      "type": "contract",
-      "label": "Expected inputs"
-    },
-    {
-      "id": "prompt-forge:outputs",
-      "type": "contract",
-      "label": "Expected outputs"
-    },
-    {
-      "id": "prompt-forge:quality",
-      "type": "gate",
-      "label": "Quality criteria"
-    },
-    {
-      "id": "prompt-forge:ontology",
-      "type": "ontology",
-      "label": "Domain: general"
-    },
-    {
-      "id": "prompt-forge:evidence",
-      "type": "gate",
-      "label": "Evidence / provenance requirements"
-    },
-    {
-      "id": "prompt-forge:antipattern",
-      "type": "risk",
-      "label": "Canonical anti-pattern to avoid"
-    }
+    {"id": "prompt-forge", "type": "skill", "label": "Prompt Forge"},
+    {"id": "mode:create", "type": "mode", "label": "Create"},
+    {"id": "mode:review", "type": "mode", "label": "Review"},
+    {"id": "mode:evolve", "type": "mode", "label": "Evolve"},
+    {"id": "mode:repair", "type": "mode", "label": "Repair"},
+    {"id": "mode:port", "type": "mode", "label": "Port"},
+    {"id": "playbook", "type": "contract", "label": "Playbook sections"},
+    {"id": "source-boundary", "type": "gate", "label": "Source boundary"},
+    {"id": "rubric", "type": "gate", "label": "Rubric scorecard"},
+    {"id": "platform-matrix", "type": "asset", "label": "Platform portability matrix"},
+    {"id": "forge-packet", "type": "artifact", "label": "Forge packet"},
+    {"id": "validator", "type": "script", "label": "validate_forge_packet.py"}
   ],
   "edges": [
-    {
-      "from": "prompt-forge",
-      "to": "prompt-forge:inputs",
-      "type": "requires"
-    },
-    {
-      "from": "prompt-forge",
-      "to": "prompt-forge:outputs",
-      "type": "produces"
-    },
-    {
-      "from": "prompt-forge",
-      "to": "prompt-forge:quality",
-      "type": "validated_by"
-    },
-    {
-      "from": "prompt-forge",
-      "to": "prompt-forge:ontology",
-      "type": "classified_as"
-    },
-    {
-      "from": "prompt-forge",
-      "to": "prompt-forge:evidence",
-      "type": "validated_by"
-    },
-    {
-      "from": "prompt-forge",
-      "to": "prompt-forge:antipattern",
-      "type": "guards_against"
-    }
+    {"from": "prompt-forge", "to": "mode:create", "type": "supports"},
+    {"from": "prompt-forge", "to": "mode:review", "type": "supports"},
+    {"from": "prompt-forge", "to": "mode:evolve", "type": "supports"},
+    {"from": "prompt-forge", "to": "mode:repair", "type": "supports"},
+    {"from": "prompt-forge", "to": "mode:port", "type": "supports"},
+    {"from": "mode:create", "to": "playbook", "type": "requires"},
+    {"from": "mode:port", "to": "platform-matrix", "type": "uses"},
+    {"from": "forge-packet", "to": "source-boundary", "type": "validated_by"},
+    {"from": "forge-packet", "to": "rubric", "type": "validated_by"},
+    {"from": "forge-packet", "to": "validator", "type": "validated_by"}
   ]
 }

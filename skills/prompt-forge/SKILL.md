@@ -1,12 +1,7 @@
 ---
 name: prompt-forge
 version: 1.0.0
-description: 
-  Creates, reviews, evolves, repairs, and ports system prompts across LLM platforms using the Playbook format,
-  a 10-criterion evaluation rubric, and context engineering principles. Activates when the user says "create a
-  system prompt", "review this prompt", "optimize this prompt", "port this prompt to GPT", or "fix my prompt". [EXPLICIT]
-  Also triggers on mentions of prompt engineering, prompt evaluation, prompt porting, or Playbook format. [EXPLICIT]
-  Use this skill even if the user just pastes a prompt without instructions — it defaults to review mode. [EXPLICIT]
+description: Create, review, evolve, repair, and port system prompts using a deterministic Playbook format, source-boundary rules, platform portability notes, rubric scorecards, adversarial test cases, and script-backed forge packet validation. Use when the user asks to create a system prompt, review a prompt, optimize or repair prompt behavior, port prompts across Claude, ChatGPT, Gemini, or API runtimes, or apply Prompt Forge / Playbook format. [EXPLICIT]
 argument-hint: "mode: create|review|evolve|repair|port domain or prompt-path [--platform claude-project|custom-gpt|gemini-gem|api]"
 model: opus
 context: fork
@@ -17,208 +12,155 @@ allowed-tools:
   - Bash
   - Glob
   - Grep
-  - WebSearch
-  - WebFetch
 ---
 
 # Prompt Forge
 
-Turn vague assistant ideas into structured, high-performance system prompts — portable across Claude, GPT, and Gemini. [EXPLICIT]
+Turn assistant ideas or existing prompts into structured, production-ready instruction packages. The skill works in five modes: create, review, evolve, repair, and port. Every mode produces a deterministic forge packet before delivery.
+
+## When to Activate
+
+Activate when the user requests any of the following:
+
+- Create a system prompt, project instruction, Custom GPT instruction, Gemini Gem instruction, or API system message.
+- Review, score, optimize, repair, or port an existing prompt.
+- Apply Prompt Forge, Playbook format, prompt rubric, prompt portability, prompt repair, or prompt deployment instructions.
+- Paste a prompt and ask whether it is good, why it fails, or how to improve it.
+
+Do not activate for reminders such as "prompt me tomorrow", conceptual Q&A such as "what is a system prompt?", or durable prompt-file generation that belongs to `prompt-creator` unless Prompt Forge analysis is explicitly requested first.
+
+## Required Inputs
+
+Capture the minimum viable context before writing final output:
+
+- Mode: create, review, evolve, repair, or port.
+- Prompt goal and primary user outcome.
+- Target platform: `claude-project`, `custom-gpt`, `gemini-gem`, `api`, or `unknown`.
+- Source boundary: what facts, files, policies, or retrieved snippets the assistant may rely on.
+- Output contract: expected format, required fields, and refusal or coverage-gap behavior.
+- Constraints: safety, brand, tone, workflow, and tool boundaries.
+
+If input is incomplete, ask only the missing questions that affect the Playbook contract. Do not ask a broad interview before producing a useful draft or review.
+
+## Deterministic Contract
+
+- Do not invent domain facts, platform limits, policies, citations, tools, or source material.
+- Treat current platform limits as unknown unless supplied by the user or cited from a dated source.
+- Keep hidden reasoning private. Use concise rationale, decision trace, or checklist evidence instead of exposed reasoning transcripts.
+- Make every source-grounded prompt define unsupported-source behavior, usually `coverage_gap` or refusal.
+- Preserve machine-readable output contracts exactly when evolving or repairing prompts.
+- For porting, state source platform, target platform, mapped features, unsupported features, and losses.
+- Run `scripts/validate_forge_packet.py` for JSON forge packets when producing or changing a structured artifact.
+
+## Assets And Scripts
+
+Use these local assets before drafting:
+
+- `assets/prompt-forge-checklist.md` - deterministic review checklist.
+- `assets/playbook-contract.json` - required Playbook sections, modes, platforms, rubric criteria, and test coverage.
+- `assets/platform-portability-matrix.json` - local platform mapping for Claude Project, Custom GPT, Gemini Gem, and API deployment.
+- `scripts/validate_forge_packet.py` - deterministic forge packet validator.
 
 ## Operation Modes
 
-| Mode | Trigger | Action |
-|------|---------|--------|
-| **Create** | "Create a prompt for...", "I need an assistant that..." | Full forge cycle: capture, draft, evaluate, refine, deliver |
-| **Review** | "Review this prompt", "Is this any good?" | Evaluate against rubric, deliver scorecard + prioritized fixes |
-| **Evolve** | "Make this better", "Optimize this prompt" | Identify weaknesses, apply targeted improvements |
-| **Repair** | "This isn't working", "The AI keeps doing X" | Diagnose failure pattern, apply surgical fix |
-| **Port** | "Convert this for Claude/GPT/Gemini" | Adapt format, constraints, and features for target platform |
+| Mode | Trigger | Deterministic Output |
+|------|---------|----------------------|
+| Create | "Create a prompt for...", "I need an assistant that..." | Full Playbook plus source boundary, output contract, rubric, tests, and risks. |
+| Review | "Review this prompt", "Is this any good?" | Rubric scorecard, blockers, prioritized fixes, and validation gaps. |
+| Evolve | "Make this better", "Optimize this prompt" | Before/after changes, preserved contracts, rubric delta, and regression tests. |
+| Repair | "This is not working", "The AI keeps doing X" | Failure diagnosis, surgical fix, self-correction trigger, and adversarial test. |
+| Port | "Convert this for Claude/GPT/Gemini/API" | Platform mapping, adapted prompt, unsupported features, losses, and validation checklist. |
 
-**Default behavior:** Generate first, confirm after. Produce a strong v1, then iterate on feedback. Do not ask 20 questions before writing.
+Default pasted-prompt behavior is review mode unless the user explicitly asks to create, evolve, repair, or port.
 
-## Core Design Principles
+## Playbook Format
 
-1. **Hybrid Role** — Composite expert identity (domain + methodology + communication style). Not "You are a marketing expert" but a specific archetype with boundaries. [EXPLICIT]
-2. **Conversational Flow** — Structure interaction in phases (discovery, execution, delivery) with entry/exit criteria. [EXPLICIT]
-3. **Deliverable-Oriented** — Define what the user walks away with. Concrete output format, not vague "help with X". [EXPLICIT]
-4. **Dynamic Intelligence** — Build reasoning techniques (chain-of-thought, structured analysis) into the prompt natively. [EXPLICIT]
-5. **Executive Tone** — Professional, decisive. The AI sounds like a senior consultant, not a cautious intern. [EXPLICIT]
-6. **Complete Structure** — Use the Playbook format as canonical output. [EXPLICIT]
-7. **Iterative Co-Design** — Build self-correction triggers into the prompt. [EXPLICIT]
-
-For deep explanations and examples, read `references/design-principles.md`. [EXPLICIT]
-
-## The Playbook Format
-
-Universal output template for generated prompts:
+Generated prompts use this canonical section set unless a non-conversational batch/API use case requires an explicitly documented omission:
 
 ```markdown
-# [Assistant Name] — v[X.Y]
+# [Assistant Name] - v[X.Y]
 
 ## Role & Archetype
-[Composite expert identity: domain + methodology + communication style]
+[Composite expert identity: domain + method + communication style]
 
 ## Objective
-[What the user achieves — 1-2 sentences]
+[What the user achieves]
 
 ## Parameters
-- Model: [Target model(s)]
-- Temperature: [Recommended setting]
-- Context window usage: [Strategy]
+- Platform:
+- Source boundary:
+- Output contract:
+- Temperature or determinism note:
 
 ## Interaction Flow
 ### Phase 1: Discovery
-[How the assistant gathers context]
-
 ### Phase 2: Execution
-[How it processes and produces output]
-
 ### Phase 3: Delivery
-[How it formats and presents results]
 
 ## Constraints
-[Hard boundaries — what the assistant must NOT do]
+[Hard boundaries, including what the assistant must not do]
 
 ## Key Questions
-[3-5 questions for ambiguous context]
+[Only questions needed to complete the contract]
 
 ## Output Template
 [Exact format with placeholders]
 
 ## Self-Correction Triggers
-[Patterns that signal recalibration]
+[Observable failure patterns and recovery actions]
 ```
-
-For per-section guidance, read `references/playbook-template.md`. [EXPLICIT]
 
 ## Evaluation Rubric
 
-Every prompt scored 1-10 on each dimension. Target: 8+ on all for production quality. [EXPLICIT]
+Score every generated or reviewed prompt on these criteria. Scores below 8 require a repair note.
 
-| # | Criterion | Measures |
-|---|-----------|----------|
-| 1 | Foundation | Clear archetype, objective, and constraints? |
-| 2 | Accuracy | All claims, frameworks, and techniques correct? |
-| 3 | Quality | Writing professional, precise, filler-free? |
-| 4 | Density | Maximum value per token? |
-| 5 | Simplicity | Non-expert could understand structure? |
-| 6 | Clarity | Instructions unambiguous? One interpretation? |
-| 7 | Precision | Constraints specific enough to enforce? |
-| 8 | Depth | Handles edge cases, failures, advanced scenarios? |
-| 9 | Coherence | All sections reinforce each other? |
-| 10 | Value | User gets meaningfully better results? |
+| Criterion | Measures |
+|---|---|
+| Foundation | Clear archetype, objective, and constraints. |
+| Accuracy | Claims, sources, and methods are supported. |
+| Quality | Professional, precise, filler-free writing. |
+| Density | High value per token without losing constraints. |
+| Simplicity | Structure remains understandable. |
+| Clarity | Instructions have one practical interpretation. |
+| Precision | Boundaries are enforceable. |
+| Depth | Edge cases and failure modes are handled. |
+| Coherence | Sections reinforce each other. |
+| Value | User receives a materially better prompt. |
 
-For detailed scoring and repair protocols, read `references/evaluation-rubric.md`. [EXPLICIT]
+## Output Packet
 
-## Context Engineering
+When responding, include:
 
-Modern prompt design manages everything the model sees, not just instruction text. [EXPLICIT]
-
-| Layer | Scope | Example |
-|-------|-------|---------|
-| L1: Hot | System prompt + current turn | The Playbook itself |
-| L2: Warm | Uploaded docs, knowledge base | Reference PDFs, style guides |
-| L3: Cold | RAG retrieval, tool outputs | Dynamic data from APIs |
-
-Design for all three layers. A great L1 with poor L2 design underperforms. [EXPLICIT]
-
-For context hierarchy patterns and token optimization, read `references/context-engineering.md`. [EXPLICIT]
-
-## Multi-Platform Deployment
-
-| Platform | System Prompt | Knowledge Base | Tools |
-|----------|--------------|----------------|-------|
-| Claude Projects | Project instructions | Project knowledge files | MCP servers |
-| ChatGPT Custom GPTs | Instructions field | Uploaded files | Actions (API) |
-| Gemini Gems | System instructions | Google Docs/Drive | Extensions |
-| API / Code | `system` parameter | RAG pipeline | Function calling |
-
-For platform-specific limits and deployment guides, read `references/platform-guides.md`. [EXPLICIT]
-
-## Workflow by Mode
-
-### Create (most common)
-1. **Capture** — domain, user outcome, target platform. [EXPLICIT]
-2. **Draft** — fill every Playbook section. Generate first, confirm after. [EXPLICIT]
-3. **Evaluate** — score against rubric. Fix anything below 8. [EXPLICIT]
-4. **Deliver** — format for target platform with deployment instructions. [EXPLICIT]
-
-### Review
-1. Read the prompt completely. [EXPLICIT]
-2. Score against rubric. [EXPLICIT]
-3. Deliver scorecard + prioritized fix list. [EXPLICIT]
-
-### Evolve
-1. Identify weakest rubric dimensions. [EXPLICIT]
-2. Apply targeted improvements (density compression, constraint sharpening, flow restructuring). [EXPLICIT]
-3. Re-evaluate to confirm improvement. [EXPLICIT]
-
-### Repair
-1. Diagnose the failure pattern. [EXPLICIT]
-2. Apply surgical fix to the specific section causing issues. [EXPLICIT]
-3. Add a self-correction trigger to prevent recurrence. [EXPLICIT]
-
-### Port
-1. Identify source platform features and constraints. [EXPLICIT]
-2. Map to target platform equivalents. [EXPLICIT]
-3. Adapt format, adjust for token limits, replace unsupported features. [EXPLICIT]
-
-## Antipatterns
-
-| Problem | Bad Pattern | Fix |
-|---------|-------------|-----|
-| Wall of text | 2000-word flat instruction | Break into Playbook sections with flow |
-| Vague role | "You are helpful" | Composite archetype: domain + method + style |
-| No output format | "Help users with X" | Define exact deliverable template |
-| Over-constraining | 50 rules in ALL CAPS | Explain *why* behind each constraint |
-| Platform-blind | Same text everywhere | Adapt to each platform's affordances |
-| No feedback loop | Static, never improved | Build self-correction triggers + versioning |
-
-## Assumptions & Limits
-
-- Prompt quality is platform-dependent. A perfect Claude Project prompt may underperform on GPT without adaptation.
-- The Playbook format is a starting point, not a cage. Some domains need additional sections; others need fewer.
-- Evaluation scores are relative to the prompt's purpose. A chatbot prompt and a data analysis prompt have different ceilings on "Depth."
-- Context window limits vary by platform and model. Always check current limits before optimizing token usage.
-- Self-correction triggers work best in models with strong instruction-following. On weaker models, constraints may be ignored.
-
-## Edge Cases
-
-- **Prompt for a non-conversational use case (batch processing, API-only):** Omit Interaction Flow. Focus on Constraints and Output Template.
-- **User provides a prompt in a language other than English:** Write the Playbook in the user's language. Criterion names in the rubric remain universal.
-- **Extremely long knowledge base (100+ pages):** Design for L2/L3 context. The system prompt should reference, not contain, the knowledge.
-- **User wants a prompt that breaks platform rules:** Decline. Note the specific platform policy it would violate.
-- **Evolve mode finds no weaknesses:** Possible for well-crafted prompts. Report that all criteria meet threshold, suggest testing with adversarial inputs.
-- **Porting between very different platforms (e.g., Claude to a fine-tuned open model):** Some features (tool use, retrieval) may not translate. Document what was lost in porting.
+1. Mode and activation decision.
+2. Source boundary and assumptions.
+3. Playbook or scorecard.
+4. Rubric scores and required repairs.
+5. Test cases: happy path, edge case, adversarial.
+6. Platform notes when applicable.
+7. Validation result from checklist or script.
+8. Risks and coverage gaps.
 
 ## Validation Gate
 
-Before delivering a prompt, confirm:
+Before delivery, confirm:
 
-- [ ] Playbook format is complete (all mandatory sections present)
-- [ ] Role is a composite archetype, not a generic label
-- [ ] At least one constraint defines what the assistant must NOT do
-- [ ] Output template includes concrete format with placeholders
-- [ ] All rubric criteria score 8+ (or deficits are documented)
-- [ ] Platform-specific formatting applied if a target was specified
-- [ ] Self-correction triggers are present and testable
+- Playbook sections match `assets/playbook-contract.json`.
+- Source boundary and unsupported-source behavior are explicit.
+- Constraints include no-invention and hidden-reasoning privacy.
+- Output contract is preserved or intentionally revised with rationale.
+- Rubric has all criteria and every score below 8 has a repair.
+- Test cases include happy path, edge case, and adversarial coverage.
+- Porting outputs document unsupported features and losses.
+- No remote assets, unstated current-platform claims, or hidden reasoning transcripts are included.
 
-## Reference Files
+## References
 
-- `references/design-principles.md` — Deep dive into the 7 principles with examples and antipatterns
-- `references/evaluation-rubric.md` — Full scoring parameters, failure criteria, repair protocols
-- `references/playbook-template.md` — Complete template with per-section guidance
-- `references/platform-guides.md` — Platform-specific formatting, limits, deployment for Claude, GPT, Gemini, API
-- `references/context-engineering.md` — Context hierarchy, token optimization, RAG integration
-
----
-**Author:** Javier Montaño | **Last updated:** March 12, 2026
-
-## Usage
-
-Example invocations:
-
-- "/prompt-forge" — Run the full prompt forge workflow
-- "prompt forge on this project" — Apply to current context
-
+- `assets/prompt-forge-checklist.md`
+- `assets/playbook-contract.json`
+- `assets/platform-portability-matrix.json`
+- `references/design-principles.md`
+- `references/evaluation-rubric.md`
+- `references/playbook-template.md`
+- `references/platform-guides.md`
+- `references/context-engineering.md`
+- `references/domain-knowledge.md`

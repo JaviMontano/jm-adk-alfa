@@ -1,10 +1,21 @@
-# Prompt Forge — DOCX Template
+# Prompt Forge - DOCX Template
 
-## Document Structure
-- Title: Prompt Forge — [Client/Project Name]
+## Document Metadata
+
+- Title: Prompt Forge - {{project_name}}
 - Author: JM Labs
-- Date: {{DATE}}
+- Created date: {{created_date}}
 
-## Sections (mirror SKILL.md structure)
-See canonical SKILL.md for section blueprints.
-Use brand-config.json tokens: Navy #122562 · Gold #FFD700 · Blue #137DC5
+## Sections
+
+1. Mode and activation decision
+2. Source boundary
+3. Target platform
+4. Playbook or scorecard
+5. Rubric scores and repairs
+6. Test cases
+7. Platform notes
+8. Validation
+9. Risks and coverage gaps
+
+Use system fonts and local brand colors only; do not fetch remote fonts or assets.

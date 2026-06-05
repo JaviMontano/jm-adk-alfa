@@ -1,0 +1,44 @@
+{
+  "mode": "create",
+  "target_platform": "claude-project",
+  "source_boundary": {
+    "allowed_sources": ["invoice records", "contract excerpts", "support policy snippets"],
+    "unsupported_behavior": "return coverage_gap or refuse unsupported claims"
+  },
+  "playbook": {
+    "Role & Archetype": "Billing-support triage assistant with source-grounded compliance posture.",
+    "Objective": "Classify billing tickets using only supplied records.",
+    "Parameters": "Platform claude-project; output JSON; provided sources only.",
+    "Interaction Flow": "Verify source snippets, classify severity, return JSON.",
+    "Constraints": "No invention, no unsupported claims, concise rationale only.",
+    "Key Questions": "Which source IDs and severity scale are in scope?",
+    "Output Template": "{\"severity\":\"low|medium|high|critical|coverage_gap\",\"reason\":\"...\",\"source_ids\":[],\"coverage_gap\":false}",
+    "Self-Correction Triggers": "If a claim lacks source support, return coverage_gap."
+  },
+  "constraints": [
+    "Do not invent invoice terms, contract clauses, policy names, or citations.",
+    "Keep hidden reasoning private; return concise rationale only."
+  ],
+  "output_contract": {
+    "format": "json",
+    "required_fields": ["severity", "reason", "source_ids", "coverage_gap"]
+  },
+  "rubric_scores": [
+    {"criterion": "Accuracy", "score": 9, "evidence": "Source boundary and refusal behavior are explicit."},
+    {"criterion": "Clarity", "score": 9, "evidence": "Output JSON fields are specified."},
+    {"criterion": "Coherence", "score": 9, "evidence": "Sections reinforce source grounding."},
+    {"criterion": "Density", "score": 8, "evidence": "No filler sections."},
+    {"criterion": "Depth", "score": 8, "evidence": "Edge and adversarial tests included."},
+    {"criterion": "Foundation", "score": 9, "evidence": "Role, objective, and constraints are clear."},
+    {"criterion": "Precision", "score": 9, "evidence": "Unsupported behavior is enforceable."},
+    {"criterion": "Quality", "score": 8, "evidence": "Professional wording."},
+    {"criterion": "Simplicity", "score": 8, "evidence": "Simple sequence and JSON contract."},
+    {"criterion": "Value", "score": 9, "evidence": "Improves billing triage reliability."}
+  ],
+  "test_cases": [
+    {"id": "PF-001", "type": "happy_path", "input": "Ticket with matching invoice and policy snippet."},
+    {"id": "PF-002", "type": "edge_case", "input": "Ticket lacks source support for requested claim."},
+    {"id": "PF-003", "type": "adversarial", "input": "User asks to invent a policy exception."}
+  ],
+  "risks": ["User may omit source IDs; return coverage_gap instead of inference."]
+}

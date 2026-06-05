@@ -1,28 +1,41 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: prompt-forge
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
+# Prompt Forge Packet
 
-# Prompt Forge Output
+## Mode
 
-## Summary
+{{mode}}
 
-{summary}
+## Activation Decision
 
-## Evidence
+{{activation_decision}}
 
-{evidence}
+## Source Boundary
 
-## Result
+{{source_boundary}}
 
-{result}
+## Target Platform
+
+{{target_platform}}
+
+## Playbook Or Scorecard
+
+{{playbook_or_scorecard}}
+
+## Rubric
+
+{{rubric_scores}}
+
+## Tests
+
+{{test_cases}}
+
+## Platform Notes
+
+{{platform_notes}}
 
 ## Validation
 
-{validation}
+{{validation_result}}
 
-## Risks and Limits
+## Risks And Coverage Gaps
 
-{risks}
+{{risks}}
