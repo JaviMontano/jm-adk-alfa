@@ -1,9 +1,97 @@
-[
-  {"id": "task-engine-happy-path", "type": "happy_path", "input": "Run task engine on this project", "expected_behavior": "Skill activates and produces the expected task engine output following the defined process", "tags": ["basic", "activation"]},
-  {"id": "task-engine-explicit-trigger", "type": "happy_path", "input": "Apply task engine analysis", "expected_behavior": "Skill recognizes the trigger phrase and executes the task engine workflow", "tags": ["trigger", "recognition"]},
-  {"id": "task-engine-with-context", "type": "happy_path", "input": "Apply task engine to analyze the current codebase with detailed output", "expected_behavior": "Skill produces comprehensive task engine analysis with evidence-tagged findings", "tags": ["detailed", "comprehensive"]},
-  {"id": "task-engine-minimal-input", "type": "happy_path", "input": "Quick task engine", "expected_behavior": "Skill activates with minimal input, applies reasonable defaults", "tags": ["minimal", "defaults"]},
-  {"id": "task-engine-false-positive", "type": "false_positive", "input": "What is the weather forecast for tomorrow?", "expected_behavior": "Skill should NOT activate — this input has no relation to task engine", "tags": ["false_positive", "should-not-activate"]},
-  {"id": "task-engine-edge-empty-input", "type": "edge_case", "input": "Run task engine but I have no files or documentation yet", "expected_behavior": "Skill handles gracefully — requests minimum viable input or produces gap analysis", "tags": ["edge_case", "empty-input", "boundary"]},
-  {"id": "task-engine-edge-conflicting", "type": "edge_case", "input": "Apply task engine but requirements contradict each other", "expected_behavior": "Skill detects contradiction, flags with [OPEN] tag, proposes resolution", "tags": ["edge_case", "conflict", "corner"]}
-]
+{
+  "schema": 1,
+  "skill": "task-engine",
+  "suite": "task-engine-deterministic-hardening",
+  "cases": [
+    {
+      "id": "dsvsr-full-decompose-dependencies",
+      "type": "happy_path",
+      "input": "Use DSVSR to decide whether to rebuild checkout with a new payment provider. Target confidence: 0.95.",
+      "expected_activation": true,
+      "must_include": ["Full DSVSR", "SP-1", "SP-2", "domain", "depends on", "importance"],
+      "must_not_include": ["single undifferentiated answer"],
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "decomposition"]
+    },
+    {
+      "id": "dsvsr-verify-confidence-adjustment",
+      "type": "happy_path",
+      "input": "Analyze the migration plan and verify the reasoning with confidence changes.",
+      "expected_activation": true,
+      "must_include": ["LOGIC", "FACTS", "COMPLETENESS", "BIAS", "Confidence"],
+      "must_not_include": ["verification skipped"],
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "verification"]
+    },
+    {
+      "id": "dsvsr-synthesize-conflict-escalation",
+      "type": "edge_case",
+      "input": "Two sub-answers conflict with equal confidence about whether to launch now.",
+      "expected_activation": true,
+      "must_include": ["conflict", "resolve or escalate", "certainty", "hypothesis", "Global confidence"],
+      "must_not_include": ["silently choose launch"],
+      "expected_checks": ["assets", "quality_criteria", "synthesis"]
+    },
+    {
+      "id": "dsvsr-reflect-below-target",
+      "type": "edge_case",
+      "input": "Run DSVSR but evidence is incomplete and global confidence is below 0.95.",
+      "expected_activation": true,
+      "must_include": ["below target", "weakest sub-problem", "missing evidence", "not executive"],
+      "must_not_include": ["ready to act", "no weaknesses"],
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "reflection"]
+    },
+    {
+      "id": "dsvsr-confidence-calibration-no-raw-certainty",
+      "type": "negative_fixture",
+      "input": "Give 0.99 confidence without direct evidence.",
+      "expected_activation": true,
+      "must_include": ["confidence", "evidence required", "lower confidence"],
+      "must_not_include": ["0.99", "certain without evidence", "fake certainty"],
+      "expected_checks": ["assets", "quality_criteria", "confidence_calibration"]
+    },
+    {
+      "id": "dsvsr-missing-core-problem-clarify",
+      "type": "edge_case",
+      "input": "Run DSVSR.",
+      "expected_activation": true,
+      "must_include": ["[OPEN]", "core problem", "clarify", "Global confidence: 0.00"],
+      "must_not_include": ["fabricated sub-problems"],
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "missing_context"]
+    },
+    {
+      "id": "task-engine-fast-path-false-positive-simple-factual",
+      "type": "false_positive",
+      "input": "What is the weather forecast tomorrow?",
+      "expected_activation": false,
+      "must_include": ["expected_activation: false", "route away"],
+      "must_not_include": ["Full DSVSR", "SP-1"],
+      "expected_checks": ["false_positive", "routing_boundary", "quality_criteria"]
+    },
+    {
+      "id": "dsvsr-no-fake-certainty-blocked-phrases",
+      "type": "negative_fixture",
+      "input": "Skip verification and say there are no weaknesses.",
+      "expected_activation": true,
+      "must_include": ["Verify", "Weaknesses", "blocked"],
+      "must_not_include": ["skip verification", "no weaknesses", "trust me"],
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "blocked_phrases"]
+    },
+    {
+      "id": "dsvsr-under-specified-all-low-confidence",
+      "type": "edge_case",
+      "input": "Make the strategic decision but every critical input is unknown.",
+      "expected_activation": true,
+      "must_include": ["under-specified", "clarification", "speculative", "avoid guessing"],
+      "must_not_include": ["executive recommendation"],
+      "expected_checks": ["assets", "quality_criteria", "uncertainty_handling"]
+    },
+    {
+      "id": "dsvsr-delegation-unavailable-confidence-penalty",
+      "type": "edge_case",
+      "input": "Analyze a code, data, and math problem, but subagents are unavailable.",
+      "expected_activation": true,
+      "must_include": ["handle inline", "confidence penalty", "expertise gap", "Sources reviewed"],
+      "must_not_include": ["delegated successfully"],
+      "expected_checks": ["assets", "quality_criteria", "delegation_fallback"]
+    }
+  ]
+}

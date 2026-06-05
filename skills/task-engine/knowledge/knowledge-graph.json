@@ -1,75 +1,19 @@
 {
   "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-28",
   "skill": "task-engine",
   "nodes": [
-    {
-      "id": "task-engine",
-      "type": "skill",
-      "label": "task-engine"
-    },
-    {
-      "id": "task-engine:inputs",
-      "type": "contract",
-      "label": "Expected inputs"
-    },
-    {
-      "id": "task-engine:outputs",
-      "type": "contract",
-      "label": "Expected outputs"
-    },
-    {
-      "id": "task-engine:quality",
-      "type": "gate",
-      "label": "Quality criteria"
-    },
-    {
-      "id": "task-engine:ontology",
-      "type": "ontology",
-      "label": "Domain: general"
-    },
-    {
-      "id": "task-engine:evidence",
-      "type": "gate",
-      "label": "Evidence / provenance requirements"
-    },
-    {
-      "id": "task-engine:antipattern",
-      "type": "risk",
-      "label": "Canonical anti-pattern to avoid"
-    }
+    {"id": "task-engine", "type": "skill", "label": "Task Engine"},
+    {"id": "activation-policy", "type": "asset", "label": "Activation policy"},
+    {"id": "confidence-scale", "type": "asset", "label": "Confidence scale"},
+    {"id": "reflection-policy", "type": "asset", "label": "Reflection policy"},
+    {"id": "dsvsr-packet-contract", "type": "asset", "label": "DSVSR packet contract"},
+    {"id": "verify", "type": "stage", "label": "LOGIC FACTS COMPLETENESS BIAS"}
   ],
   "edges": [
-    {
-      "from": "task-engine",
-      "to": "task-engine:inputs",
-      "type": "requires"
-    },
-    {
-      "from": "task-engine",
-      "to": "task-engine:outputs",
-      "type": "produces"
-    },
-    {
-      "from": "task-engine",
-      "to": "task-engine:quality",
-      "type": "validated_by"
-    },
-    {
-      "from": "task-engine",
-      "to": "task-engine:ontology",
-      "type": "classified_as"
-    },
-    {
-      "from": "task-engine",
-      "to": "task-engine:evidence",
-      "type": "validated_by"
-    },
-    {
-      "from": "task-engine",
-      "to": "task-engine:antipattern",
-      "type": "guards_against"
-    }
+    {"from": "task-engine", "to": "activation-policy", "type": "uses"},
+    {"from": "task-engine", "to": "confidence-scale", "type": "uses"},
+    {"from": "task-engine", "to": "reflection-policy", "type": "uses"},
+    {"from": "task-engine", "to": "dsvsr-packet-contract", "type": "validated_by"},
+    {"from": "dsvsr-packet-contract", "to": "verify", "type": "requires"}
   ]
 }

@@ -815,7 +815,7 @@
 | 540 | `system-design` | End-to-end system design. Frontend + Firebase backend + Google APIs + third-part |
 | 541 | `table-ux` | — |
 | 542 | `task-automation` | — |
-| 543 | `task-engine` | — |
+| 543 | `task-engine` | Meta-cognitive reasoning engine that decomposes complex problems using determini |
 | 544 | `task-subfolder` | Crea una sub-tarea T-NNN multi-sesion con CLAUDE.md, task.md y log.md (P33). |
 | 545 | `tasklog-management` | — |
 | 546 | `team-topology` | — |

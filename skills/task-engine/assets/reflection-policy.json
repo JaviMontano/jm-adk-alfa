@@ -1,0 +1,23 @@
+{
+  "schema": 1,
+  "skill": "task-engine",
+  "target_confidence_default": 0.95,
+  "max_retries": 3,
+  "retry_when": [
+    "global_confidence_below_target",
+    "critical_subproblem_below_0.70",
+    "verification_finds_unresolved_logic_fact_completeness_or_bias_issue"
+  ],
+  "stop_when": [
+    "information_gap_not_retrievable",
+    "target_confidence_unachievable",
+    "max_retries_reached",
+    "problem_under_specified"
+  ],
+  "required_when_stopping_below_target": [
+    "state global confidence",
+    "name weakest subproblem",
+    "name missing evidence",
+    "avoid executive certainty"
+  ]
+}

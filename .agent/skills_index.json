@@ -3255,7 +3255,7 @@
     "id": "task-engine",
     "path": "skills/task-engine",
     "name": "Task Engine",
-    "description": "Decompose, solve with confidence, verify, synthesize, and reflect — until the answer earns its confidence score. [EXPLICIT]"
+    "description": "Meta-cognitive reasoning engine that decomposes complex problems using deterministic DSVSR (Decompose-Solve-Verify-Synthesize-Reflect), explicit confidence calibration, activation thresholds, reflection retry policy, and no-fake-certainty metadata. Use when the user asks to break down a problem, analyze with confidence scores, decompose and verify, run DSVSR, reason step by step, calibrate uncertainty, or identify weakest assumptions."
   },
   {
     "id": "task-subfolder",

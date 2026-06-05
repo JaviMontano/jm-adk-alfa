@@ -1,0 +1,12 @@
+{
+  "schema": 1,
+  "skill": "task-engine",
+  "validator": "scripts/validate_dsvsr_packet.py",
+  "fixtures": [
+    {"path": "valid-full-dsvsr-packet.md", "scenario": "full-dsvsr", "expect": "pass"},
+    {"path": "valid-missing-context-packet.md", "scenario": "missing-context", "expect": "pass"},
+    {"path": "valid-low-confidence-packet.md", "scenario": "low-confidence", "expect": "pass"},
+    {"path": "valid-false-positive-packet.md", "scenario": "false-positive", "expect": "pass"},
+    {"path": "invalid-no-verify-packet.md", "scenario": "invalid-no-verify", "expect": "fail"}
+  ]
+}

@@ -1,11 +1,7 @@
 ---
 name: task-engine
 version: 1.0.0
-description: 
-  Meta-cognitive reasoning engine that decomposes complex problems using the DSVSR protocol
-  (Decompose-Solve-Verify-Synthesize-Reflect) with explicit confidence calibration. [EXPLICIT]
-  Use when the user asks to "break down this problem", "analyze with confidence scores",
-  "decompose and verify", "run DSVSR", or "reason through this step by step". [EXPLICIT]
+description: "Meta-cognitive reasoning engine that decomposes complex problems using deterministic DSVSR (Decompose-Solve-Verify-Synthesize-Reflect), explicit confidence calibration, activation thresholds, reflection retry policy, and no-fake-certainty metadata. Use when the user asks to break down a problem, analyze with confidence scores, decompose and verify, run DSVSR, reason step by step, calibrate uncertainty, or identify weakest assumptions."
 argument-hint: "problem description [--target 0.95] [--fast]"
 model: opus
 context: fork
@@ -16,13 +12,29 @@ allowed-tools:
   - Bash
   - Edit
   - Write
-  - WebSearch
-  - WebFetch
 ---
 
 # Task Engine
 
 Decompose, solve with confidence, verify, synthesize, and reflect — until the answer earns its confidence score. [EXPLICIT]
+
+## Deterministic Guardrails
+
+Before applying DSVSR, load the relevant assets:
+
+- `assets/activation-policy.json` for full DSVSR vs fast path routing.
+- `assets/confidence-scale.json` for score bands and evidence requirements.
+- `assets/reflection-policy.json` for retry limits and below-target delivery.
+- `assets/dsvsr-packet-contract.json` before delivering a DSVSR packet.
+
+Validate packet examples with:
+
+```bash
+bash skills/task-engine/scripts/check.sh
+python3 -B skills/task-engine/scripts/validate_dsvsr_packet.py --contract skills/task-engine/assets/dsvsr-packet-contract.json --packet <packet.md> --scenario full-dsvsr
+```
+
+Do not use network research unless the user explicitly requests it and approves sources. If evidence is unavailable, lower confidence and name the gap instead of fabricating certainty. [EXPLICIT]
 
 ## When to Activate
 
@@ -212,11 +224,11 @@ Before delivering a DSVSR response, confirm:
 
 ## Reference Files
 
-- `references/dsvsr-protocol.md` — Worked examples per stage
-- `references/confidence-calibration.md` — Calibration methodology and common mis-calibration patterns
-- `references/complexity-heuristics.md` — When to activate full DSVSR vs fast path
-- `references/recursion-protocol.md` — Thread and attachment scanning protocol
-- `references/agent-delegation-patterns.md` — Subagent routing and confidence aggregation
+- `references/domain-knowledge.md` — DSVSR heuristics, confidence calibration, verification checklist, and stop conditions
+- `assets/activation-policy.json` — Full DSVSR vs fast path routing
+- `assets/confidence-scale.json` — Confidence score bands and evidence requirements
+- `assets/reflection-policy.json` — Retry and below-target handling
+- `assets/dsvsr-packet-contract.json` — Required packet sections and blocked phrases
 
 ---
 **Author:** Javier Montaño | **Last updated:** 2026-03-18

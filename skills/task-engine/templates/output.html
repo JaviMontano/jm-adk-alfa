@@ -1,33 +1,75 @@
-<!-- JM Labs Brand Template: Task Engine -->
-<!-- Uses: brand/jmlabs/brand-config.json + brand/jmlabs/corporate-template.css -->
-<!-- Replace: {{TITLE}}, {{SUBTITLE}}, {{CONTENT}}, {{DATE}} -->
 <!DOCTYPE html>
-<html lang="es" class="dark">
+<html lang="en">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>{{TITLE}} | Task Engine | JM Labs</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>DSVSR Packet | JM Labs</title>
 <style>
-:root{--navy:#122562;--gold:#FFD700;--blue:#137DC5;--bg:#0B1120;--bg-alt:#0F1929;--heading:#F1F5F9;--text-s:#94A3B8}
-body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--heading);margin:0;padding:2rem}
-.c{max-width:1000px;margin:0 auto}
-h1{font-family:'Poppins',sans-serif;font-weight:900;font-size:clamp(2rem,5vw,3rem)}
-h1 .gold{color:var(--gold)}
-h2{font-family:'Poppins',sans-serif;color:var(--gold);border-bottom:1px solid rgba(255,255,255,.05);padding-bottom:.5rem}
-.card{background:var(--bg-alt);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:1.5rem;margin:1rem 0}
+:root{--navy:#122562;--gold:#FFD700;--blue:#137DC5;--bg:#F8FAFC;--ink:#0F172A;--muted:#475569;--line:#CBD5E1}
+body{font-family:Inter,Arial,sans-serif;background:var(--bg);color:var(--ink);margin:0;padding:32px}
+main{max-width:980px;margin:0 auto}
+h1,h2{font-family:Arial,sans-serif;margin:0 0 12px}
+h1{color:var(--navy);font-size:32px}
+h2{border-bottom:2px solid var(--gold);padding-bottom:8px;margin-top:28px}
+.panel{background:#fff;border:1px solid var(--line);border-radius:8px;padding:20px;margin:16px 0}
+.meta{color:var(--muted)}
 table{width:100%;border-collapse:collapse}
-th{font-family:'Poppins',sans-serif;color:var(--gold);text-align:left;padding:.75rem;border-bottom:2px solid var(--gold)}
-td{padding:.75rem;border-bottom:1px solid rgba(255,255,255,.05)}
-footer{text-align:center;margin-top:3rem;border-top:2px solid var(--gold);padding:1.5rem;font-size:.75rem;color:var(--text-s)}
+th,td{padding:10px;border-bottom:1px solid var(--line);text-align:left}
+th{color:var(--navy)}
+code{background:#E2E8F0;padding:2px 4px;border-radius:4px}
+footer{margin-top:32px;color:var(--muted);font-size:12px}
 </style>
 </head>
 <body>
-<div class="c">
-  <h1>JM <span class="gold">Labs</span></h1>
-  <h2>{{TITLE}}</h2>
-  <p style="color:var(--text-s)">{{SUBTITLE}}</p>
-  <div class="card">{{CONTENT}}</div>
-  <footer>JM Labs · Task Engine · {{DATE}}</footer>
-</div>
+<main>
+  <h1>DSVSR Packet</h1>
+  <p class="meta">Report date source: caller-provided value</p>
+
+  <section class="panel">
+    <h2>Activation Decision</h2>
+    <p>[EXPLICIT] Mode: [MODE]</p>
+    <p>[EXPLICIT] Complexity signals: [SIGNALS]</p>
+    <p>[EXPLICIT] Target confidence: [TARGET_CONFIDENCE]</p>
+  </section>
+
+  <section class="panel">
+    <h2>Decompose</h2>
+    <p>SP-1: [SUB_PROBLEM] (domain: [DOMAIN], depends on: [DEPENDENCY], importance: [WEIGHT])</p>
+  </section>
+
+  <section class="panel">
+    <h2>Solve</h2>
+    <p>SP-1: [EVIDENCE_TAG] [ANSWER]. Confidence: [CONFIDENCE].</p>
+  </section>
+
+  <section class="panel">
+    <h2>Verify</h2>
+    <ul>
+      <li>LOGIC: [STATUS]</li>
+      <li>FACTS: [STATUS]</li>
+      <li>COMPLETENESS: [STATUS]</li>
+      <li>BIAS: [STATUS]</li>
+    </ul>
+  </section>
+
+  <section class="panel">
+    <h2>Synthesize</h2>
+    <p>[EVIDENCE_TAG] [SYNTHESIS]. Global confidence: [GLOBAL_CONFIDENCE].</p>
+  </section>
+
+  <section class="panel">
+    <h2>Reflect</h2>
+    <p>[EVIDENCE_TAG] [WEAKEST_POINT_AND_NEXT_STEP]</p>
+  </section>
+
+  <section class="panel">
+    <h2>Reasoning Metadata</h2>
+    <p>Sources reviewed: [SOURCES_REVIEWED]</p>
+    <p>Information gaps: [INFORMATION_GAPS]</p>
+    <p>Verification status: [VERIFICATION_STATUS]</p>
+  </section>
+
+  <footer>JM Labs | Task Engine | Offline template</footer>
+</main>
 </body>
 </html>
