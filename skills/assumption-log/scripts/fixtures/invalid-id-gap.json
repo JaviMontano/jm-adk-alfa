@@ -1,0 +1,59 @@
+{
+  "summary": {
+    "scope": "Broken report",
+    "total_assumptions": 2,
+    "open_count": 2,
+    "validated_count": 0,
+    "invalidated_count": 0,
+    "high_impact_open_count": 1,
+    "assumption_ratio": 1.0,
+    "overall_risk": "high"
+  },
+  "assumptions": [
+    {
+      "id": "A-001",
+      "statement": "A high-impact claim has no proof.",
+      "status": "unvalidated",
+      "evidence_tag": "[ASSUMPTION]",
+      "evidence": "No source.",
+      "impact": "high",
+      "validation_action": "Find a source.",
+      "owner": "Product",
+      "decision_link": "DL-001"
+    },
+    {
+      "id": "A-003",
+      "statement": "The sequence skips A-002.",
+      "status": "unvalidated",
+      "evidence_tag": "[ASSUMPTION]",
+      "evidence": "No source.",
+      "impact": "low",
+      "validation_action": "Renumber gapless IDs.",
+      "owner": "Product",
+      "decision_link": "DL-001"
+    }
+  ],
+  "contradictions": [],
+  "decision_links": [
+    {
+      "decision_id": "DL-001",
+      "assumption_ids": ["A-001", "A-003"],
+      "decision": "Broken decision link for fixture.",
+      "status": "open"
+    }
+  ],
+  "validation_queue": [
+    {
+      "assumption_id": "A-001",
+      "action": "Find source.",
+      "owner": "Product",
+      "due_basis": "Before delivery"
+    }
+  ],
+  "warnings": [
+    {
+      "code": "HIGH_ASSUMPTION_RATIO",
+      "message": "All entries are assumptions."
+    }
+  ]
+}

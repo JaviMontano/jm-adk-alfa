@@ -1,17 +1,19 @@
 ---
 name: assumption-log-meta
 type: meta
-version: 2.0.0
-description: "Meta-prompt for Assumption Log skill routing."
+version: 2.0.1
+description: "Meta-prompt for Assumption Log routing."
 ---
 
-# Assumption Log — Meta Prompt
+# Assumption Log Meta Prompt
 
-Activate this skill when the user request matches:
-- Trigger phrases from SKILL.md description
-- Direct invocation: `/assumption-log`
+Use `assets/activation-policy.json` and `SKILL.md ## When To Activate` before
+activating this skill.
 
-## Skill Routing
-1. Load SKILL.md → read `## When to Activate` section
-2. If match → activate lead agent: `assumption-log-lead`
-3. If orchestrated → defer to orchestrating skill
+Activate for assumption registers, assumption validation, hypothesis tracking,
+evidence-gap tracking, contradiction review, and decision-linked assumption
+management.
+
+Do not activate for statistical assumptions, weather, generic logging,
+certificate documents, or unrelated summaries. If the request is ambiguous,
+return `needs_clarification` with the minimum missing input.

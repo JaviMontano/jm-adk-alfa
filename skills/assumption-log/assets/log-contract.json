@@ -1,0 +1,43 @@
+{
+  "schema": 1,
+  "skill": "assumption-log",
+  "required_sections": [
+    "summary",
+    "assumptions",
+    "contradictions",
+    "decision_links",
+    "validation_queue",
+    "warnings"
+  ],
+  "summary_fields": [
+    "scope",
+    "total_assumptions",
+    "open_count",
+    "validated_count",
+    "invalidated_count",
+    "high_impact_open_count",
+    "assumption_ratio",
+    "overall_risk"
+  ],
+  "assumption_fields": [
+    "id",
+    "statement",
+    "status",
+    "evidence_tag",
+    "evidence",
+    "impact",
+    "validation_action",
+    "owner",
+    "decision_link"
+  ],
+  "contradiction_fields": ["id", "assumption_ids", "description", "resolution_action"],
+  "decision_link_fields": ["decision_id", "assumption_ids", "decision", "status"],
+  "validation_queue_fields": ["assumption_id", "action", "owner", "due_basis"],
+  "blocked_phrases": [
+    "probably true",
+    "seems validated",
+    "trust me",
+    "no evidence needed",
+    "assume as fact"
+  ]
+}

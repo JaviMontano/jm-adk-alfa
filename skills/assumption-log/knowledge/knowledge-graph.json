@@ -1,75 +1,73 @@
 {
   "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-28",
   "skill": "assumption-log",
   "nodes": [
     {
       "id": "assumption-log",
       "type": "skill",
-      "label": "assumption-log"
+      "label": "Assumption Log"
     },
     {
-      "id": "assumption-log:inputs",
-      "type": "contract",
-      "label": "Expected inputs"
+      "id": "assumption-log:activation",
+      "type": "policy",
+      "label": "Activation Policy"
     },
     {
-      "id": "assumption-log:outputs",
-      "type": "contract",
-      "label": "Expected outputs"
-    },
-    {
-      "id": "assumption-log:quality",
-      "type": "gate",
-      "label": "Quality criteria"
-    },
-    {
-      "id": "assumption-log:ontology",
-      "type": "ontology",
-      "label": "Domain: general"
+      "id": "assumption-log:status",
+      "type": "policy",
+      "label": "Status Policy"
     },
     {
       "id": "assumption-log:evidence",
-      "type": "gate",
-      "label": "Evidence / provenance requirements"
+      "type": "policy",
+      "label": "Evidence Policy"
     },
     {
-      "id": "assumption-log:antipattern",
-      "type": "risk",
-      "label": "Canonical anti-pattern to avoid"
+      "id": "assumption-log:contract",
+      "type": "contract",
+      "label": "Log Contract"
+    },
+    {
+      "id": "assumption-log:validator",
+      "type": "script",
+      "label": "Offline Validator"
+    },
+    {
+      "id": "assumption-log:queue",
+      "type": "output",
+      "label": "Validation Queue"
     }
   ],
   "edges": [
     {
       "from": "assumption-log",
-      "to": "assumption-log:inputs",
-      "type": "requires"
+      "to": "assumption-log:activation",
+      "type": "uses"
     },
     {
       "from": "assumption-log",
-      "to": "assumption-log:outputs",
-      "type": "produces"
-    },
-    {
-      "from": "assumption-log",
-      "to": "assumption-log:quality",
-      "type": "validated_by"
-    },
-    {
-      "from": "assumption-log",
-      "to": "assumption-log:ontology",
-      "type": "classified_as"
+      "to": "assumption-log:status",
+      "type": "uses"
     },
     {
       "from": "assumption-log",
       "to": "assumption-log:evidence",
-      "type": "validated_by"
+      "type": "uses"
     },
     {
       "from": "assumption-log",
-      "to": "assumption-log:antipattern",
-      "type": "guards_against"
+      "to": "assumption-log:contract",
+      "type": "produces"
+    },
+    {
+      "from": "assumption-log:contract",
+      "to": "assumption-log:validator",
+      "type": "validated_by"
+    },
+    {
+      "from": "assumption-log:status",
+      "to": "assumption-log:queue",
+      "type": "requires_for_high_impact_open"
     }
   ]
 }

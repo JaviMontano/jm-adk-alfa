@@ -3,7 +3,12 @@ name: assumption-log-deep
 type: variation
 variant: deep
 ---
-# Assumption Log — Deep Analysis
 
-Full depth execution. Load all `references/` files from canonical. Run L3 progressive loading.
-Apply all Validation Gate criteria strictly.
+# Assumption Log Deep Analysis
+
+Use full lifecycle review. Inspect all supplied sources, preserve existing
+assumption IDs, detect contradictions, link decisions, calculate evidence-tag
+percentages, and build validation actions for every open assumption.
+
+Load only local assets declared in `assets/manifest.json`; do not require a
+missing `references/` directory.
