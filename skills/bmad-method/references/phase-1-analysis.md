@@ -291,7 +291,7 @@ Phase 1 is complete when the product brief passes the following gate:
 ## Assumptions
 
 - The team has access to at least one source of user/stakeholder input (interviews, transcripts, analytics, or domain documentation)
-- The Analyst agent has domain research capability (web search or provided reference material)
+- The Analyst agent has user-supplied reference material or explicit approval to perform domain research
 - Phase 1 output will be consumed by a PM agent or human product manager in Phase 2
 
 ## Limits
@@ -309,7 +309,7 @@ Phase 1 is complete when the product brief passes the following gate:
 ## Acceptance Criteria
 
 - [ ] Product brief exists with all 9 required sections populated
-- [ ] >80% of factual claims carry evidence tags (spot-check 10 random claims)
+- [ ] >80% of factual claims carry evidence tags (spot-check the first 10 factual claims in document order)
 - [ ] Phase 1 completed within the time-box for the project size category
 - [ ] Handoff summary delivered to Phase 2 receiving agent
 

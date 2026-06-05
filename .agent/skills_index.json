@@ -357,7 +357,7 @@
     "id": "bmad-method",
     "path": "skills/bmad-method",
     "name": "Bmad Method",
-    "description": ">"
+    "description": "Teach and apply the BMAD methodology for AI-driven software development with deterministic phase routing, persona ownership, artifact chain, Quick Flow criteria, and implementation readiness gate. Use when the user mentions BMAD, documentation-first development, PRD, architecture, stories from PRD, sprint planning with AI agents, implementation readiness, or agent-as-code workflow setup."
   },
   {
     "id": "brand-docx",

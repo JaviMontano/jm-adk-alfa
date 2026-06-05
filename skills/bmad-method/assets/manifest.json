@@ -1,0 +1,41 @@
+{
+  "skill": "bmad-method",
+  "assets": [
+    {
+      "path": "assets/persona-matrix.json",
+      "type": "routing",
+      "purpose": "Canonical BMAD persona routing for phases, artifacts, conflicts, and ownership.",
+      "used_by": ["SKILL.md", "scripts/validate_bmad_packet.py", "evals/evals.json"]
+    },
+    {
+      "path": "assets/artifact-chain.json",
+      "type": "schema",
+      "purpose": "Required artifact order for greenfield, brownfield, and quick-flow BMAD runs.",
+      "used_by": ["SKILL.md", "scripts/validate_bmad_packet.py", "evals/evals.json"]
+    },
+    {
+      "path": "assets/readiness-gate-policy.json",
+      "type": "policy",
+      "purpose": "Single readiness gate vocabulary and Phase 4 entry rule.",
+      "used_by": ["SKILL.md", "scripts/validate_bmad_packet.py", "evals/evals.json"]
+    },
+    {
+      "path": "assets/quick-flow-policy.json",
+      "type": "policy",
+      "purpose": "Deterministic criteria for Barry Quick Flow routing.",
+      "used_by": ["SKILL.md", "scripts/validate_bmad_packet.py", "evals/evals.json"]
+    },
+    {
+      "path": "assets/bmad-packet-contract.json",
+      "type": "schema",
+      "purpose": "Machine-readable contract for BMAD output packets.",
+      "used_by": ["SKILL.md", "templates/output.md", "scripts/validate_bmad_packet.py", "evals/evals.json"]
+    },
+    {
+      "path": "assets/deterministic-source-policy.md",
+      "type": "policy",
+      "purpose": "Offline source, date, network, and sampling policy.",
+      "used_by": ["SKILL.md", "README.md", "references/methodology-overview.md"]
+    }
+  ]
+}

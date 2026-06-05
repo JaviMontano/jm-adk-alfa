@@ -1,0 +1,24 @@
+{
+  "schema": 1,
+  "skill": "bmad-method",
+  "required_sections": [
+    "BMAD Plan",
+    "Lifecycle Routing",
+    "Persona Routing",
+    "Artifact Chain",
+    "Readiness Gate",
+    "Validation",
+    "Risks and Open Questions"
+  ],
+  "allowed_evidence_tags": ["[EXPLICIT]", "[INFERRED]", "[OPEN]"],
+  "blocked_phrases": [
+    "TODO",
+    "TBD",
+    "{{",
+    "}}",
+    "skip docs and code",
+    "Phase 4 approved despite FAIL",
+    "random claims",
+    "use web search by default"
+  ]
+}

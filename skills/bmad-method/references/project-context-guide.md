@@ -305,7 +305,7 @@ When reviewing project-context.md, validate each section independently:
 | Vision | Does it match current product scope? Is the phase correct? |
 | Tech Stack | Run `diff` against dependency manifests. Versions must match. |
 | Constraints | Are all constraints still relevant? Any new ones discovered? |
-| Conventions | Do 3 random source files follow the stated conventions? |
+| Conventions | Do the first 3 source files in stable path order follow the stated conventions? |
 | Exclusion Zones | Are all listed paths still valid? Any new paths needed? |
 | Environment | Can a new developer set up the environment from this section alone? |
 

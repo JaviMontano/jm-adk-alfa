@@ -1,75 +1,19 @@
 {
   "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-28",
   "skill": "bmad-method",
   "nodes": [
-    {
-      "id": "bmad-method",
-      "type": "skill",
-      "label": "bmad-method"
-    },
-    {
-      "id": "bmad-method:inputs",
-      "type": "contract",
-      "label": "Expected inputs"
-    },
-    {
-      "id": "bmad-method:outputs",
-      "type": "contract",
-      "label": "Expected outputs"
-    },
-    {
-      "id": "bmad-method:quality",
-      "type": "gate",
-      "label": "Quality criteria"
-    },
-    {
-      "id": "bmad-method:ontology",
-      "type": "ontology",
-      "label": "Domain: general"
-    },
-    {
-      "id": "bmad-method:evidence",
-      "type": "gate",
-      "label": "Evidence / provenance requirements"
-    },
-    {
-      "id": "bmad-method:antipattern",
-      "type": "risk",
-      "label": "Canonical anti-pattern to avoid"
-    }
+    {"id": "bmad-method", "type": "skill", "label": "BMAD Method"},
+    {"id": "persona-matrix", "type": "routing", "label": "Persona matrix"},
+    {"id": "artifact-chain", "type": "schema", "label": "Artifact chain"},
+    {"id": "readiness-gate", "type": "gate", "label": "Implementation readiness gate"},
+    {"id": "quick-flow", "type": "policy", "label": "Barry Quick Flow"},
+    {"id": "phase4", "type": "phase", "label": "Implementation"}
   ],
   "edges": [
-    {
-      "from": "bmad-method",
-      "to": "bmad-method:inputs",
-      "type": "requires"
-    },
-    {
-      "from": "bmad-method",
-      "to": "bmad-method:outputs",
-      "type": "produces"
-    },
-    {
-      "from": "bmad-method",
-      "to": "bmad-method:quality",
-      "type": "validated_by"
-    },
-    {
-      "from": "bmad-method",
-      "to": "bmad-method:ontology",
-      "type": "classified_as"
-    },
-    {
-      "from": "bmad-method",
-      "to": "bmad-method:evidence",
-      "type": "validated_by"
-    },
-    {
-      "from": "bmad-method",
-      "to": "bmad-method:antipattern",
-      "type": "guards_against"
-    }
+    {"from": "bmad-method", "to": "persona-matrix", "type": "requires"},
+    {"from": "bmad-method", "to": "artifact-chain", "type": "requires"},
+    {"from": "artifact-chain", "to": "readiness-gate", "type": "feeds"},
+    {"from": "readiness-gate", "to": "phase4", "type": "allows_only_on_pass"},
+    {"from": "quick-flow", "to": "phase4", "type": "scopes"}
   ]
 }

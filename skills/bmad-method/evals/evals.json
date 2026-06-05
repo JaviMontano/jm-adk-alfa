@@ -1,9 +1,115 @@
-[
-  {"id": "bmad-method-happy-path", "type": "happy_path", "input": "Run bmad method on this project", "expected_behavior": "Skill activates and produces the expected bmad method output following the defined process", "tags": ["basic", "activation"]},
-  {"id": "bmad-method-explicit-trigger", "type": "happy_path", "input": "Apply bmad method analysis", "expected_behavior": "Skill recognizes the trigger phrase and executes the bmad method workflow", "tags": ["trigger", "recognition"]},
-  {"id": "bmad-method-with-context", "type": "happy_path", "input": "Apply bmad method to analyze the current codebase with detailed output", "expected_behavior": "Skill produces comprehensive bmad method analysis with evidence-tagged findings", "tags": ["detailed", "comprehensive"]},
-  {"id": "bmad-method-minimal-input", "type": "happy_path", "input": "Quick bmad method", "expected_behavior": "Skill activates with minimal input, applies reasonable defaults", "tags": ["minimal", "defaults"]},
-  {"id": "bmad-method-false-positive", "type": "false_positive", "input": "What is the weather forecast for tomorrow?", "expected_behavior": "Skill should NOT activate — this input has no relation to bmad method", "tags": ["false_positive", "should-not-activate"]},
-  {"id": "bmad-method-edge-empty-input", "type": "edge_case", "input": "Run bmad method but I have no files or documentation yet", "expected_behavior": "Skill handles gracefully — requests minimum viable input or produces gap analysis", "tags": ["edge_case", "empty-input", "boundary"]},
-  {"id": "bmad-method-edge-conflicting", "type": "edge_case", "input": "Apply bmad method but requirements contradict each other", "expected_behavior": "Skill detects contradiction, flags with [OPEN] tag, proposes resolution", "tags": ["edge_case", "conflict", "corner"]}
-]
+{
+  "schema": 1,
+  "skill": "bmad-method",
+  "suite": "bmad-method-deterministic-hardening",
+  "cases": [
+    {
+      "id": "BMAD-001-greenfield-full-flow",
+      "type": "happy_path",
+      "input": "Start a new SaaS product from zero using BMAD.",
+      "expected_activation": true,
+      "must_include": ["Phase 1", "product-brief.md", "PRD.md", "architecture.md", "stories/*.md"],
+      "must_not_include": ["immediate code", "skip docs and code"],
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "artifact_chain"]
+    },
+    {
+      "id": "BMAD-002-brownfield-adoption",
+      "type": "happy_path",
+      "input": "Adopt BMAD in an existing production repo with codebase constraints.",
+      "expected_activation": true,
+      "must_include": ["project-context.md", "codebase-inventory.md", "architecture-inventory.md", "exclusion zones"],
+      "must_not_include": ["force Phase 1 from scratch"],
+      "expected_checks": ["brownfield_routing", "artifact_chain", "quality_criteria"]
+    },
+    {
+      "id": "BMAD-003-prd-quality",
+      "type": "happy_path",
+      "input": "Create a PRD from this product brief.",
+      "expected_activation": true,
+      "must_include": ["FR", "NFR", "personas", "SMART metrics", "open questions"],
+      "must_not_include": ["should be fast"],
+      "expected_checks": ["prd_quality", "persona_routing", "quality_criteria"]
+    },
+    {
+      "id": "BMAD-004-architecture-from-prd",
+      "type": "happy_path",
+      "input": "Design architecture from the approved PRD.",
+      "expected_activation": true,
+      "must_include": ["C4", "ADRs", "data model", "API contracts", "NFR mapping"],
+      "must_not_include": ["invent requirements outside PRD"],
+      "expected_checks": ["architecture_traceability", "quality_criteria"]
+    },
+    {
+      "id": "BMAD-005-story-generation",
+      "type": "happy_path",
+      "input": "Create stories from PRD and architecture.",
+      "expected_activation": true,
+      "must_include": ["INVEST", "Given/When/Then", "Fibonacci", "dependencies", "FR traceability"],
+      "must_not_include": ["13-point story"],
+      "expected_checks": ["story_quality", "artifact_chain", "quality_criteria"]
+    },
+    {
+      "id": "BMAD-006-readiness-gate-fail",
+      "type": "negative_fixture",
+      "input": "Gate lacks rollback, security review, and API contracts.",
+      "expected_activation": true,
+      "must_include": ["FAIL", "remediation", "Phase 4 blocked"],
+      "must_not_include": ["Implementation may begin", "Phase 4 approved despite FAIL"],
+      "expected_checks": ["readiness_gate", "no_premature_implementation", "deterministic_scripts"]
+    },
+    {
+      "id": "BMAD-007-persona-routing",
+      "type": "edge_case",
+      "input": "Create user personas and UX journeys for the product.",
+      "expected_activation": true,
+      "must_include": ["Sally", "John", "persona-to-FR mapping"],
+      "must_not_include": ["Amelia", "code implementation"],
+      "expected_checks": ["persona_routing", "quality_criteria"]
+    },
+    {
+      "id": "BMAD-008-conflict-resolution",
+      "type": "edge_case",
+      "input": "PM wants real-time notifications, architecture is REST-only.",
+      "expected_activation": true,
+      "must_include": ["conflict type", "owner", "escalation", "ADR"],
+      "must_not_include": ["silently choose implementation"],
+      "expected_checks": ["conflict_resolution", "quality_criteria"]
+    },
+    {
+      "id": "BMAD-009-missing-context",
+      "type": "edge_case",
+      "input": "Run BMAD.",
+      "expected_activation": true,
+      "must_include": ["minimum viable context", "[OPEN]"],
+      "must_not_include": ["fabricated PRD", "fabricated architecture"],
+      "expected_checks": ["missing_context", "quality_criteria"]
+    },
+    {
+      "id": "BMAD-010-no-premature-implementation",
+      "type": "negative_fixture",
+      "input": "Skip docs and code it now for a new feature.",
+      "expected_activation": true,
+      "must_include": ["readiness gate", "Phase 4 blocked"],
+      "must_not_include": ["code implementation"],
+      "expected_checks": ["readiness_gate", "no_premature_implementation", "deterministic_scripts"]
+    },
+    {
+      "id": "BMAD-011-quick-flow-valid",
+      "type": "happy_path",
+      "input": "Use BMAD for a one-file typo fix.",
+      "expected_activation": true,
+      "must_include": ["Barry", "triage", "rapid spec", "test or self-review"],
+      "must_not_include": ["full PRD", "full architecture"],
+      "expected_checks": ["quick_flow", "quality_criteria"]
+    },
+    {
+      "id": "BMAD-012-false-positive-weather",
+      "type": "false_positive",
+      "input": "What is the weather tomorrow?",
+      "expected_activation": false,
+      "must_include": ["no BMAD activation"],
+      "must_not_include": ["PRD.md", "architecture.md"],
+      "expected_checks": ["false_positive", "routing_boundary"]
+    }
+  ]
+}

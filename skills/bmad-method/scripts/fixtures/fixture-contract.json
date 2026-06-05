@@ -1,0 +1,11 @@
+{
+  "schema": 1,
+  "skill": "bmad-method",
+  "valid_packets": [
+    "valid-greenfield-packet.md",
+    "valid-quick-flow-packet.md"
+  ],
+  "invalid_packets": [
+    "invalid-gate-fail-packet.md"
+  ]
+}

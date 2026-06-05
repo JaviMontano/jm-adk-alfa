@@ -206,7 +206,7 @@ Before the architecture document exits Phase 3, verify against this checklist:
 | 2 | Every NFR has an architectural response | NFR-PERF -> caching layer, NFR-SEC -> auth service, etc. |
 | 3 | No orphan components | Every component serves at least one FR |
 | 4 | Communication paths are explicit | Every arrow in C4 diagrams has a protocol (REST, gRPC, AMQP) |
-| 5 | Data model covers all entities referenced in FRs | Spot-check 5 random FRs for entity coverage |
+| 5 | Data model covers all entities referenced in FRs | Spot-check the first 5 FRs in document order for entity coverage |
 | 6 | Security boundaries are drawn | Auth/authz is not an afterthought — it has a component |
 | 7 | Failure modes are documented | What happens when each external dependency is unavailable? |
 | 8 | ADRs exist for every non-obvious choice | If a future developer would ask "why?", an ADR must exist |

@@ -1,15 +1,7 @@
 ---
 name: bmad-method
 version: 1.0.0
-description: >
-  Teach and apply the BMAD (Breakthrough Method for Agile AI-Driven Development)
-  methodology for AI-driven software development. Covers the full 4-phase lifecycle:
-  Analysis, Planning, Solutioning, and Implementation with 8 specialized agent personas.
-  Use when: user mentions BMAD, wants AI-driven development workflow, needs PRD or
-  architecture document, wants sprint planning with AI agents, asks about documentation-first
-  development, needs implementation readiness gate, wants to scaffold a project with
-  agent-as-code patterns, says "new project", "set up development workflow", "create stories
-  from PRD", "check implementation readiness", or "run a sprint".
+description: "Teach and apply the BMAD methodology for AI-driven software development with deterministic phase routing, persona ownership, artifact chain, Quick Flow criteria, and implementation readiness gate. Use when the user mentions BMAD, documentation-first development, PRD, architecture, stories from PRD, sprint planning with AI agents, implementation readiness, or agent-as-code workflow setup."
 license: MIT
 metadata:
   version: "1.0.0"
@@ -22,8 +14,6 @@ allowed-tools:
   - Glob
   - Grep
   - Task
-  - WebFetch
-  - WebSearch
   - TodoWrite
 context:
   - type: file
@@ -31,6 +21,34 @@ context:
 ---
 
 # BMAD Method — Breakthrough Method for Agile AI-Driven Development
+
+## When to Activate
+
+Activate this skill when the user asks for BMAD, documentation-first software delivery, PRD-to-architecture-to-story flow, implementation readiness gates, Quick Flow triage, sprint planning with AI personas, agent-as-code setup, or deterministic handoff artifacts. [EXPLICIT]
+
+Do not activate it for generic agile coaching, generic code review, deployment execution, or document formatting unless the user also asks for the BMAD lifecycle or BMAD artifacts. [EXPLICIT]
+
+## Deterministic Guardrails
+
+Before applying BMAD, load the relevant assets:
+
+- `assets/persona-matrix.json` for persona routing.
+- `assets/artifact-chain.json` for artifact order.
+- `assets/readiness-gate-policy.json` for PASS/CONCERNS/FAIL vocabulary and Phase 4 entry.
+- `assets/quick-flow-policy.json` for Barry Quick Flow eligibility.
+- `assets/bmad-packet-contract.json` before delivering a BMAD packet.
+- `assets/deterministic-source-policy.md` before research, date, or sampling claims.
+
+Validate deliverables with:
+
+```bash
+bash skills/bmad-method/scripts/check.sh
+python3 -B skills/bmad-method/scripts/validate_bmad_packet.py --contract skills/bmad-method/assets/bmad-packet-contract.json --packet <packet.md> --scenario greenfield
+```
+
+Alfa provides the local assets, references, examples, evals, templates, and packet validator in this skill. Other BMAD runtime scripts, workflow prompts, checklists, personas, and project templates may exist in the user's target project; use them only after verifying the file path with `Read`, `Glob`, or `Grep`. If a referenced BMAD runtime file is absent, report it as an artifact to create and produce a structured markdown artifact from the local contracts instead of pretending the helper exists. Do not use network research unless the user explicitly requests it and supplies or approves sources. Replace non-deterministic sampling with stable-order sampling.
+
+Phase 4 implementation is allowed only when the readiness gate result is `PASS`.
 
 ## 1. What is BMAD
 
@@ -84,22 +102,22 @@ Reference Index: Section 10. [EXPLICIT]
 
 ### Entry Point A — New Project (Full Flow)
 ```
-1. Run: python scripts/init_project.py <project-name> --greenfield
-2. Activate Mary (Analyst) → produce product-brief.md
-3. Follow phase-by-phase workflow in workflows/full-flow/
+1. Verify whether the target project already has `.bmad/`, planning artifacts, architecture docs, stories, and any BMAD runtime scripts.
+2. If no runtime script exists, create the BMAD artifact folders and start Phase 1 with Mary/Analyst.
+3. Produce `product-brief.md`, then continue phase by phase through PRD, architecture, stories, readiness gate, and implementation.
 ```
 
 ### Entry Point B — Specific Phase
 ```
 1. Identify your current phase (1-4)
-2. Read the corresponding prompt: prompts/phase-N-to-M-handoff.md
-3. Activate the phase agent and produce the required artifact
+2. Load the upstream artifacts required by `assets/artifact-chain.json`
+3. Route to the phase persona from `assets/persona-matrix.json` and produce the required artifact
 ```
 
 ### Entry Point C — Quick Fix / Small Feature
 ```
 1. Activate Barry (Quick Flow) agent
-2. Follow workflows/quick-flow/ (triage → implement → verify)
+2. Apply `assets/quick-flow-policy.json` (triage -> rapid spec -> implement -> verify)
 3. No PRD/architecture needed — story-level documentation only
 ```
 
@@ -107,9 +125,9 @@ Reference Index: Section 10. [EXPLICIT]
 
 ### 4.1 Project Initialization
 
-Run the init script to scaffold a BMAD project: [EXPLICIT]
+If the target project provides a BMAD init script, run it after verifying the path. Otherwise create the folders manually: [EXPLICIT]
 ```bash
-python scripts/init_project.py <project-name> [--greenfield|--brownfield]
+mkdir -p <project-name>/.bmad <project-name>/planning_artifacts <project-name>/architecture <project-name>/epics <project-name>/stories <project-name>/sprints <project-name>/project-knowledge
 ```
 
 This creates: [EXPLICIT]
@@ -129,18 +147,13 @@ This creates: [EXPLICIT]
 
 ### 4.2 Project Context (Constitution)
 
-The `project-context.md` file is your project's constitution. Every workflow loads it automatically. Create from template: [EXPLICIT]
-- Template: `templates/project-context.md.tmpl`
-- Guide: `references/project-context-guide.md`
+The `project-context.md` file is your project's constitution. Every BMAD workflow must load it before generating downstream artifacts. If the target project has a template, use it; otherwise create the file from `references/project-context-guide.md`. [EXPLICIT]
 
 Key sections: Vision, Tech Stack, Constraints, Conventions, Team, Links. [EXPLICIT]
 
 ### 4.3 Agent Definition
 
-Agents are defined as YAML files with persona, menu, and prompts. To create a custom agent: [EXPLICIT]
-```bash
-python scripts/scaffold_agent.py <agent-name> --role "<role description>"
-```
+Agents are defined as YAML or markdown files with persona, menu, and prompts. If the target project has a scaffold script, verify and use it; otherwise create the file manually from `references/agent-as-code.md` and `assets/persona-matrix.json`. [EXPLICIT]
 
 Agent YAML structure — see `references/agent-as-code.md`: [EXPLICIT]
 ```yaml
@@ -161,18 +174,13 @@ menu:
 
 ### 4.4 Workflow Configuration
 
-Workflows are sharded into step files for sequential execution. To scaffold a new workflow: [EXPLICIT]
-```bash
-python scripts/scaffold_workflow.py <workflow-name> --steps 5
-```
-
-This creates `step-01-init.md` through `step-05-name.md` with HALT commands preventing AI read-ahead. See `references/schemas.md` for the step file schema. [EXPLICIT]
+Workflows are sharded into step files for sequential execution. If no scaffold script exists in the target project, create `step-01-*.md` through `step-N-*.md` manually, one deterministic step per file, with explicit HALT instructions preventing read-ahead. See `references/schemas.md` for the step file schema. [EXPLICIT]
 
 ## 5. USE — Operating BMAD Phase by Phase
 
 ### 5.1 Phase 1: Analysis
 
-**Agent**: Mary (Analyst) — `agents/mary-analyst.md` | **Goal**: Explore problem space before committing to planning.
+**Agent**: Mary (Analyst), routed by `assets/persona-matrix.json` | **Goal**: Explore problem space before committing to planning.
 
 | Workflow | Output | Required |
 |----------|--------|----------|
@@ -192,11 +200,11 @@ This creates `step-01-init.md` through `step-05-name.md` with HALT commands prev
 - **Mary cannot validate assumptions** (no data available): Document as `[ASSUMPTION]` with Low confidence, proceed with explicit risk acknowledgment in brief. Flag to John/PM that these assumptions must be validated before PRD is finalized.
 - **Brainstorming yields no viable direction**: Narrow the problem scope — split into sub-problems and research each independently. If still blocked, escalate to user for additional domain context.
 
-**Transition**: Use `prompts/phase-1-to-2-handoff.md` to hand off to Phase 2.
+**Transition**: Produce a Phase 1 to Phase 2 handoff that names the brief sections, open assumptions, and required PM decisions.
 
 ### 5.2 Phase 2: Planning
 
-**Agents**: John (PM) + Sally (UX) — `agents/john-pm.md`, `agents/sally-ux.md`
+**Agents**: John (PM) + Sally (UX), routed by `assets/persona-matrix.json`
 **Goal**: Define what to build and for whom.
 
 **Workflows**:
@@ -208,7 +216,7 @@ This creates `step-01-init.md` through `step-05-name.md` with HALT commands prev
 **Procedure**:
 1. Read `references/phase-2-planning.md`
 2. Load `product-brief.md` as input context
-3. As John/PM: Create PRD using `templates/prd.md.tmpl`
+3. As John/PM: Create PRD using the target project's PRD template if present; otherwise use the PRD requirements in `references/phase-2-planning.md`
    - Define functional requirements (FRs) and non-functional requirements (NFRs)
    - Set success metrics (measurable, SMART)
    - Map user personas and journeys
@@ -219,11 +227,11 @@ This creates `step-01-init.md` through `step-05-name.md` with HALT commands prev
 - **PRD requirements conflict with brief**: Surface conflicts to user with specific brief sections vs. PRD sections. User must resolve before proceeding.
 - **UX spec cannot satisfy all PRD requirements**: Document which FRs are UX-constrained, propose trade-offs to John/PM. Never silently drop requirements.
 
-**Transition**: Use `prompts/phase-2-to-3-handoff.md`.
+**Transition**: Produce a Phase 2 to Phase 3 handoff that lists PRD requirements, UX constraints, unresolved decisions, and required architecture inputs.
 
 ### 5.3 Phase 3: Solutioning
 
-**Agents**: Winston (Architect) + Bob (Scrum Master) — `agents/winston-architect.md`, `agents/bob-scrum-master.md`
+**Agents**: Winston (Architect) + Bob (Scrum Master), routed by `assets/persona-matrix.json`
 **Goal**: Decide how to build it and break work into implementable stories.
 
 **Workflows**:
@@ -237,12 +245,12 @@ This creates `step-01-init.md` through `step-05-name.md` with HALT commands prev
 1. Read `references/phase-3-solutioning.md`
 2. Load PRD.md + ux-spec.md as input context
 3. As Winston/Architect:
-   - Create architecture using `templates/architecture-doc.md.tmpl`
+   - Create architecture using the target project's architecture template if present; otherwise use `references/phase-3-solutioning.md`
    - Document ADRs (Architecture Decision Records)
    - Define component diagram, data model, API contracts, deployment strategy
 4. As Bob/Scrum Master:
-   - Decompose into epics using `templates/epic.md.tmpl`
-   - Write stories using `templates/user-story.md.tmpl`
+   - Decompose into epics using the target project's epic template if present; otherwise create deterministic markdown epics
+   - Write stories using the target project's user-story template if present; otherwise create deterministic markdown stories with acceptance criteria
    - Sequence stories by dependency, estimate complexity
 5. **Run Implementation Readiness Gate** (Section 7)
 
@@ -251,11 +259,11 @@ This creates `step-01-init.md` through `step-05-name.md` with HALT commands prev
 - **Story decomposition reveals PRD gaps**: Escalate to John/PM with specific missing requirements. Do not invent requirements — return to Phase 2 for PRD amendment.
 - **Gate returns FAIL**: See Section 7 for concrete remediation steps.
 
-**Transition**: Only proceed if gate returns PASS. Use `prompts/phase-3-to-4-handoff.md`.
+**Transition**: Only proceed if gate returns PASS. Produce a Phase 3 to Phase 4 handoff with gate evidence, story order, test obligations, and blocked concerns.
 
 ### 5.4 Phase 4: Implementation
 
-**Agents**: Amelia (Developer) + Quinn (QA) — `agents/amelia-developer.md`, `agents/quinn-qa.md`
+**Agents**: Amelia (Developer) + Quinn (QA), routed by `assets/persona-matrix.json`
 **Goal**: Build it, one story at a time, with continuous validation.
 
 **Workflows**:
@@ -271,16 +279,16 @@ This creates `step-01-init.md` through `step-05-name.md` with HALT commands prev
 1. Read `references/phase-4-implementation.md`
 2. Sprint Planning:
    - Select stories for sprint from prioritized backlog
-   - Create sprint-status.yaml using `scripts/generate_sprint_status.py`
-   - Use `prompts/sprint-kickoff-prompt.md`
+   - Create `sprint-status.yaml` manually or with a verified target-project helper
+   - Produce a sprint kickoff packet from selected stories, constraints, and acceptance criteria
 3. Per Story:
    - Load story file + architecture.md + project-context.md as context
    - As Amelia/Developer: Implement on branch, write tests, follow project conventions
    - As Quinn/QA: Review code against acceptance criteria, run tests
-   - Use `templates/code-review-checklist.md.tmpl`
+   - Use the target project's code-review checklist if present; otherwise derive review checks from story acceptance criteria and architecture constraints
 4. Sprint Close:
    - Update sprint-status.yaml (mark stories complete/needs-fixes)
-   - Run retrospective using `prompts/retrospective-prompt.md`
+   - Run retrospective with explicit completed stories, unresolved risks, and lessons learned
    - Archive completed epics
 
 **Failure Recovery**:
@@ -290,7 +298,7 @@ This creates `step-01-init.md` through `step-05-name.md` with HALT commands prev
 
 ### 5.5 Quick Flow (Barry Agent)
 
-**Agent**: Barry (Quick Flow Dev) — `agents/barry-quick-flow.md`
+**Agent**: Barry (Quick Flow Dev), routed by `assets/persona-matrix.json`
 **When to use**: Bug fixes, small features in established codebases, prototypes, single-story changes.
 
 **Procedure**:
@@ -298,7 +306,7 @@ This creates `step-01-init.md` through `step-05-name.md` with HALT commands prev
 2. Triage: Confirm scope is small enough for quick flow (no PRD/arch needed)
 3. Write a lightweight tech spec (story-level)
 4. Implement directly with tests
-5. Self-review against `templates/code-review-checklist.md.tmpl`
+5. Self-review against the target project's checklist if present; otherwise verify changed scope, tests or manual checks, and no architecture/security/data-contract impact
 
 ## 6. USE — Artifact Flow Chain
 
@@ -314,18 +322,13 @@ product-brief.md ──→ PRD.md ──→ architecture.md ──→ epics/*.md
 - Cross-reference: PRD references brief, architecture references PRD, stories reference epics
 - When upstream changes, downstream must be reviewed for impact
 
-**Validate the chain**:
-```bash
-python scripts/check_artifact_flow.py <project-root>
-```
-
-This reports: broken references, orphaned artifacts, missing cross-links. [EXPLICIT]
+**Validate the chain** by checking the artifacts in document order against `assets/artifact-chain.json`. If the target project provides `scripts/check_artifact_flow.py`, verify the path and run it; otherwise inspect links manually and report broken references, orphaned artifacts, and missing cross-links. [EXPLICIT]
 
 See `references/artifact-flow-chain.md` for the full dependency model. [EXPLICIT]
 
 ## 7. USE — Implementation Readiness Gate
 
-The gate is a **mandatory checkpoint** before Phase 4. It validates that planning and solutioning artifacts are complete and aligned. Run with `python scripts/validate_prd.py <project-root>`. Output: `PASS` / `CONCERNS` / `FAIL`. See `references/implementation-gate-details.md` for the 13 validation steps, gate result actions, FAIL remediation routing, and agent roster. [EXPLICIT]
+The gate is a **mandatory checkpoint** before Phase 4. It validates that planning and solutioning artifacts are complete and aligned. Use `assets/readiness-gate-policy.json` for result vocabulary and Phase 4 entry. If the target project provides a gate validator, verify and run it; otherwise apply the 13 validation steps in `references/implementation-gate-details.md`. Output: `PASS` / `CONCERNS` / `FAIL`. [EXPLICIT]
 
 ## 8. APPLY — Real Project Patterns
 
@@ -365,8 +368,8 @@ See `references/customization-guide.md`: [EXPLICIT]
 
 | Need | Tool |
 |------|------|
-| Lint all artifacts | `scripts/lint_artifacts.py <project-root>` |
-| Diagnose project health | `scripts/diagnose_project.py <project-root>` |
+| Lint all artifacts | Verified target-project linter or manual artifact-chain inspection |
+| Diagnose project health | Verified target-project diagnostic script or manual BMAD packet review |
 | Troubleshoot a stalled workflow | `references/troubleshooting.md` |
 | Resolve inter-agent conflicts | `references/conflict-resolution-protocol.md` |
 | Measure BMAD effectiveness | `references/metrics-framework.md` |
@@ -374,17 +377,17 @@ See `references/customization-guide.md`: [EXPLICIT]
 
 ### 8.6 Operational Checklists
 
-Standalone checklists for quick operational verification: [EXPLICIT]
+Standalone checklists may exist in a target BMAD runtime. If they are absent, synthesize them from `assets/artifact-chain.json`, `assets/readiness-gate-policy.json`, and the phase references. [EXPLICIT]
 
 | Checklist | Use when |
 |-----------|----------|
-| `checklists/phase-1-complete.md` | Before handing off from Mary to John |
-| `checklists/phase-2-complete.md` | Before handing off from John/Sally to Winston/Bob |
-| `checklists/phase-3-complete.md` | Before running the 13-step gate |
-| `checklists/sprint-ready.md` | Before starting a sprint |
-| `checklists/story-ready.md` | Before picking up a story for development |
-| `checklists/story-done.md` | Before marking a story as complete |
-| `checklists/quick-flow-triage.md` | Before starting a quick flow |
+| Phase 1 complete | Before handing off from Mary to John |
+| Phase 2 complete | Before handing off from John/Sally to Winston/Bob |
+| Phase 3 complete | Before running the 13-step gate |
+| Sprint ready | Before starting a sprint |
+| Story ready | Before picking up a story for development |
+| Story done | Before marking a story as complete |
+| Quick Flow triage | Before starting a quick flow |
 
 ## 9. Agent Roster
 
@@ -423,7 +426,7 @@ Standalone checklists for quick operational verification: [EXPLICIT]
 - The project uses Git for version control
 - AI agents operate within a single-session context window (artifacts must be file-based, not memory-based)
 - The user can provide domain knowledge when Mary/Analyst cannot find sufficient data
-- Templates (`.tmpl` files) exist and are accessible at `templates/` relative to the skill directory
+- External BMAD runtime templates, checklists, personas, and scripts are optional and must be verified before use
 - The project has or will have a test framework — BMAD does not prescribe which one
 - One user operates all agents (BMAD does not currently support multi-user concurrent agent sessions)
 
@@ -439,7 +442,7 @@ Example invocations: [EXPLICIT]
 
 - [ ] Output follows the defined structure and format [EXPLICIT]
 - [ ] All claims are tagged with evidence markers [EXPLICIT]
-- [ ] No placeholder content (TBD, TODO) [EXPLICIT]
+- [ ] No placeholder markers or unresolved template variables [EXPLICIT]
 - [ ] Actionable recommendations with priority levels [EXPLICIT]
 - [ ] Assumptions explicitly documented [EXPLICIT]
 

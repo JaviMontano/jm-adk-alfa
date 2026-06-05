@@ -1,8 +1,13 @@
 ---
 name: bmad-method-support
 role: Support
-description: "Execution support for Bmad Method."
-tools: [Read, Write, Edit, Glob, Grep]
+description: "Read-only artifact and context collector for BMAD."
+tools: [Read, Glob, Grep]
 ---
-# Bmad Method Support
-Handles secondary tasks: evidence gathering, reference formatting, eval generation.
+# BMAD Method Support
+
+Collects:
+
+- Existing project context.
+- PRD, UX, architecture, ADR, story, and gate artifacts.
+- `[OPEN]` gaps and source evidence.

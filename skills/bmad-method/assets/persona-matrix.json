@@ -1,0 +1,28 @@
+{
+  "schema": 1,
+  "skill": "bmad-method",
+  "core_personas": [
+    {"id": "mary", "name": "Mary", "role": "Analyst", "phase": 1, "owns": ["problem discovery", "product-brief.md"]},
+    {"id": "john", "name": "John", "role": "Product Manager", "phase": 2, "owns": ["PRD.md", "functional requirements"]},
+    {"id": "sally", "name": "Sally", "role": "UX", "phase": 2, "owns": ["ux-spec.md", "user journeys"]},
+    {"id": "winston", "name": "Winston", "role": "Architect", "phase": 3, "owns": ["architecture.md", "ADRs"]},
+    {"id": "bob", "name": "Bob", "role": "Scrum Master", "phase": 3, "owns": ["epics", "stories"]},
+    {"id": "amelia", "name": "Amelia", "role": "Developer", "phase": 4, "owns": ["implementation"]},
+    {"id": "quinn", "name": "Quinn", "role": "QA", "phase": 4, "owns": ["tests", "quality review"]},
+    {"id": "barry", "name": "Barry", "role": "Quick Flow", "phase": 0, "owns": ["small changes", "rapid spec"]}
+  ],
+  "auxiliary_personas": [
+    {"id": "stakeholder", "name": "Stakeholder", "role": "Decision owner"},
+    {"id": "security", "name": "Security Reviewer", "role": "Security gate owner"},
+    {"id": "release", "name": "Release Lead", "role": "Release readiness owner"}
+  ],
+  "routing_rules": [
+    {"trigger": "prd", "persona": "john"},
+    {"trigger": "ux", "persona": "sally"},
+    {"trigger": "architecture", "persona": "winston"},
+    {"trigger": "stories", "persona": "bob"},
+    {"trigger": "implementation", "persona": "amelia", "requires_gate": "PASS"},
+    {"trigger": "qa", "persona": "quinn"},
+    {"trigger": "quick-flow", "persona": "barry"}
+  ]
+}

@@ -1,28 +1,29 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: bmad-method
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
+# BMAD Method Output
 
-# Bmad Method Output
+## BMAD Plan
 
-## Summary
+State project type, routing, and evidence tag.
 
-{summary}
+## Lifecycle Routing
 
-## Evidence
+List phase, persona, artifact, and whether the phase is allowed now.
 
-{evidence}
+## Persona Routing
 
-## Result
+Use `assets/persona-matrix.json`.
 
-{result}
+## Artifact Chain
+
+Use `assets/artifact-chain.json`.
+
+## Readiness Gate
+
+Use `assets/readiness-gate-policy.json`; Phase 4 is allowed only on `PASS`.
 
 ## Validation
 
-{validation}
+Run `scripts/validate_bmad_packet.py` for formal packets.
 
-## Risks and Limits
+## Risks and Open Questions
 
-{risks}
+Mark missing context as `[OPEN]`; do not fabricate artifacts.

@@ -145,7 +145,7 @@ When the implementation readiness gate fails, use this targeted lookup to route 
 
 ## Validation Script Reference
 
-When diagnosing issues, these scripts provide automated checks:
+When diagnosing issues, these scripts provide automated checks only if they exist in the target BMAD project. Verify each path before running it; when absent, perform the corresponding manual check from this table.
 
 | Script | Purpose | When to Run | Typical Output |
 |--------|---------|-------------|----------------|
@@ -205,7 +205,7 @@ When a problem occurs, answer these questions in order to locate the root cause:
 ## Assumptions
 
 - All BMAD artifacts are version-controlled in Git and recoverable from history
-- The team has access to the BMAD validation scripts (`scripts/validate_prd.py`, `scripts/check_artifact_flow.py`)
+- The team either has access to BMAD validation scripts or can run the corresponding manual checks from this guide
 - At least one team member can interpret diagnostic output and route fixes to the correct phase
 
 ## Limits

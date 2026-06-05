@@ -1,0 +1,25 @@
+{
+  "schema": 1,
+  "skill": "bmad-method",
+  "allowed_results": ["PASS", "CONCERNS", "FAIL"],
+  "phase4_entry": "PASS_ONLY",
+  "checks": [
+    "requirements_traceability",
+    "architecture_complete",
+    "stories_invest",
+    "acceptance_criteria_given_when_then",
+    "dependencies_mapped",
+    "security_review",
+    "rollback_plan",
+    "test_strategy",
+    "nfr_mapping",
+    "owner_approval",
+    "open_questions_closed",
+    "data_contracts",
+    "release_constraints"
+  ],
+  "failure_behavior": {
+    "CONCERNS": "Do not enter Phase 4 until concerns are resolved or explicitly accepted by a human owner.",
+    "FAIL": "Do not enter Phase 4. Return remediation routing."
+  }
+}
