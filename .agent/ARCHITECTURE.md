@@ -6,7 +6,7 @@
 
 | Component | Count |
 |---|---:|
-| Skills | 585 |
+| Skills | 591 |
 | Agents | 260 |
 | Commands | 267 |
 | Prompts | 256 |

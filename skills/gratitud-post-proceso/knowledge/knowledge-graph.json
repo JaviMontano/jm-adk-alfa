@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-06-05",
+  "skill": "gratitud-post-proceso",
+  "nodes": [
+    {
+      "id": "gratitud-post-proceso",
+      "type": "skill",
+      "label": "gratitud-post-proceso"
+    },
+    {
+      "id": "gratitud-post-proceso:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "gratitud-post-proceso:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "gratitud-post-proceso:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "gratitud-post-proceso",
+      "to": "gratitud-post-proceso:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "gratitud-post-proceso",
+      "to": "gratitud-post-proceso:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "gratitud-post-proceso",
+      "to": "gratitud-post-proceso:quality",
+      "type": "validated_by"
+    }
+  ]
+}

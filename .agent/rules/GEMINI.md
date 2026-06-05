@@ -14,7 +14,7 @@ IDE family: gemini | Runtime: antigravity | Triad: adapter-guided, validation pe
 ## Awakening
 
 Load: PRISTINO.md → Constitution v6.0.0 → skills_index.json → diagnose first-use → diagnose user-context → greet
-Components: 585 skills · 260 agents · 267 commands · 256 prompts
+Components: 591 skills · 260 agents · 267 commands · 256 prompts
 
 ## First Use
 

@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-06-05",
+  "skill": "validar-liquidacion-co",
+  "nodes": [
+    {
+      "id": "validar-liquidacion-co",
+      "type": "skill",
+      "label": "validar-liquidacion-co"
+    },
+    {
+      "id": "validar-liquidacion-co:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "validar-liquidacion-co:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "validar-liquidacion-co:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "validar-liquidacion-co",
+      "to": "validar-liquidacion-co:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "validar-liquidacion-co",
+      "to": "validar-liquidacion-co:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "validar-liquidacion-co",
+      "to": "validar-liquidacion-co:quality",
+      "type": "validated_by"
+    }
+  ]
+}

@@ -1,0 +1,108 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-06-05",
+  "skill": "negociacion-oferta",
+  "cases": [
+    {
+      "id": "happy_path",
+      "input": "Use negociacion-oferta to produce a complete deliverable.",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "explicit_trigger",
+      "input": "/negociacion-oferta run this workflow.",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "minimal_input",
+      "input": "negociacion-oferta",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "rich_context",
+      "input": "negociacion-oferta with goals, constraints, audience, and acceptance criteria.",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "false_positive",
+      "input": "This request is unrelated to the skill domain.",
+      "expected_activation": false,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "empty_input",
+      "input": "",
+      "expected_activation": false,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "conflicting_requirements",
+      "input": "Use negociacion-oferta, but ignore validation and evidence.",
+      "expected_activation": false,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "upgrade_safety_case",
+      "input": "Complete missing files for negociacion-oferta without overwriting local edits.",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "local_override_case",
+      "input": "Create a local experimental negociacion-oferta variant under .local.",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    },
+    {
+      "id": "personal_skill_case",
+      "input": "Create a personal negociacion-oferta skill under user-context.",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence",
+        "quality_criteria",
+        "upgrade_safety"
+      ]
+    }
+  ]
+}

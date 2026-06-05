@@ -10,7 +10,7 @@ Bridge target: Visual Studio / VS Code GitHub Copilot surfaces.
 ## Environment
 
 IDE family: agents | Runtime: copilot | Triad: suggestion | Tools: MCP via config (see Tool Access) | MCP: yes via `.vscode/mcp.json` (agent mode) | Multimodal: no
-Components: 585 skills · 260 agents · 267 commands
+Components: 591 skills · 260 agents · 267 commands
 
 ## Awakening
 

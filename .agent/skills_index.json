@@ -1266,6 +1266,12 @@
     "description": "Rules authoring: request.auth, request.resource, resource.data. Custom claims. Role-based. Rate limiting in rules. [EXPLICIT]"
   },
   {
+    "id": "firma-pdf-legal",
+    "path": "skills/firma-pdf-legal",
+    "name": "Firma Pdf Legal",
+    "description": "Coloca una firma manuscrita sobre la linea correcta de un PDF legal con mencion y verificacion por render."
+  },
+  {
     "id": "first-use-onboarding",
     "path": "skills/first-use-onboarding",
     "name": "First Use Onboarding",
@@ -1444,6 +1450,12 @@
     "path": "skills/governance-framework",
     "name": "Governance Framework",
     "description": ">"
+  },
+  {
+    "id": "gratitud-post-proceso",
+    "path": "skills/gratitud-post-proceso",
+    "name": "Gratitud Post Proceso",
+    "description": "Redacta agradecimientos diferenciados por persona en voz de marca y los linta contra trademarks apiladas/FOMO/hustle."
   },
   {
     "id": "grid-systems",
@@ -2220,6 +2232,12 @@
     "description": ">"
   },
   {
+    "id": "negociacion-oferta",
+    "path": "skills/negociacion-oferta",
+    "name": "Negociacion Oferta",
+    "description": "Compara y puntua ofertas con filtros de aceptacion y P.I.V.O.T.E. para una contrapropuesta digna."
+  },
+  {
     "id": "newsletter-design",
     "path": "skills/newsletter-design",
     "name": "Newsletter Design",
@@ -2518,6 +2536,12 @@
     "path": "skills/privacy-compliance",
     "name": "Privacy Compliance",
     "description": "GDPR consent banner, data export, right to deletion. CCPA. Cookie policy. Firebase data deletion pipeline. [EXPLICIT]"
+  },
+  {
+    "id": "proceso-seleccion-orchestrator",
+    "path": "skills/proceso-seleccion-orchestrator",
+    "name": "Proceso Seleccion Orchestrator",
+    "description": "Rastrea un proceso de seleccion: extrae entrevistadores/roles/fechas de correos y mantiene tablero de estado."
   },
   {
     "id": "product-roadmapping",
@@ -2958,6 +2982,12 @@
     "description": ">"
   },
   {
+    "id": "simulador-entrevista",
+    "path": "skills/simulador-entrevista",
+    "name": "Simulador Entrevista",
+    "description": "Simula entrevista una pregunta a la vez con feedback en 3 rubricas separadas: sustancia, ingles, presencia."
+  },
+  {
     "id": "skill-forge",
     "path": "skills/skill-forge",
     "name": "Skill Forge",
@@ -3334,6 +3364,12 @@
     "path": "skills/ux-writing",
     "name": "Ux Writing",
     "description": "Ensures deliverables are business-readable, scannable, and cognitively accessible. Provides 5 standards: information hierarchy, cognitive load reduction, scannability, microcopy, and readability heuri"
+  },
+  {
+    "id": "validar-liquidacion-co",
+    "path": "skills/validar-liquidacion-co",
+    "name": "Validar Liquidacion Co",
+    "description": "Recomputa y valida una liquidacion laboral colombiana (cesantias, intereses, prima, vacaciones) y marca paz y salvo."
   },
   {
     "id": "validate-components",

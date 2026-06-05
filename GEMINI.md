@@ -10,7 +10,7 @@ Role: homologated GEMINI mirror for runtimes that load `GEMINI.md` or a Gemini a
 ## Environment
 
 IDE family: gemini | Triad: sequential/adapter-guided by runtime | Tools: MCP via config (see Tool Access) | Hooks: runtime-dependent | MCP: yes via `~/.gemini/settings.json` | Multimodal: runtime-dependent
-Components: 585 skills · 260 agents · 267 commands · 256 prompts
+Components: 591 skills · 260 agents · 267 commands · 256 prompts
 
 ## Awakening
 
