@@ -369,7 +369,7 @@
     "id": "brand-html",
     "path": "skills/brand-html",
     "name": "Brand Html",
-    "description": "Generate brand-compliant HTML/CSS for any brand. Reads brand tokens (colors, fonts, spacing) from a config file and produces self-contained, accessible, responsive web pages. [EXPLICIT]"
+    "description": ">"
   },
   {
     "id": "brand-voice",

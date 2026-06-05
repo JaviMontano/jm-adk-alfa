@@ -1,0 +1,25 @@
+{
+  "schema": 1,
+  "skill": "brand-html",
+  "favicon": {
+    "required": true,
+    "rel": "icon",
+    "type": "image/svg+xml",
+    "default_asset": "assets/favicon.svg",
+    "allowed_href_forms": [
+      "url_encoded_data_image_svg_xml",
+      "relative_svg_path"
+    ],
+    "forbidden": [
+      "remote_href",
+      "base64_data_uri",
+      "bitmap_icon",
+      "inline_body_icon"
+    ]
+  },
+  "notes": [
+    "Use a browser favicon link in head; do not place the favicon in the document body.",
+    "For single-file HTML, prefer a URL-encoded SVG data URI derived from brand tokens.",
+    "For asset-package delivery, reference a local favicon.svg file and keep it square and self-contained."
+  ]
+}

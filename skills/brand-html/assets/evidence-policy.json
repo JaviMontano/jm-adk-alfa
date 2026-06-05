@@ -1,0 +1,7 @@
+{
+  "schema": 1,
+  "skill": "brand-html",
+  "allowed_tags": ["[CÓDIGO]", "[CONFIG]", "[DOC]", "[INFERENCIA]", "[SUPUESTO]"],
+  "validation_report_fields": ["artifact_type", "checks", "violations", "evidence"],
+  "evidence_policy": "Every validation claim must identify inspected HTML, supplied config, fallback config, or deterministic validator output."
+}

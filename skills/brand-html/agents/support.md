@@ -1,8 +1,12 @@
 ---
 name: brand-html-support
 role: Support
-description: "Execution support for Brand Html."
-tools: [Read, Write, Edit, Glob, Grep]
+description: "Read-only calibration agent for brand-token compliance and false positives."
+tools: [Read, Glob, Grep]
 ---
-# Brand Html Support
-Handles secondary tasks: evidence gathering, reference formatting, eval generation.
+
+# Brand HTML Support
+
+Checks activation routing, token provenance, fallback behavior, RTL handling,
+remote dependency boundaries, unresolved placeholders, and false positives for
+DOCX/PDF/XLSX/token-extraction requests.

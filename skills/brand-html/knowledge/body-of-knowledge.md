@@ -1,16 +1,32 @@
-# Brand Html — Body of Knowledge
+# Brand HTML - Body of Knowledge
 
 ## Canon
-Key standards, references, and best practices for Brand Html.
 
-## Quality Metrics
-| Metric | Target | How to Measure |
-|--------|--------|---------------|
-| Accuracy | >= 90% | Correct outputs / total |
-| Evidence coverage | >= 80% | Claims tagged [EXPLICIT]/[INFERRED]/[OPEN] |
-| Constitution compliance | 100% | Principles respected |
-| Validation Gate pass | 100% | All checklist items satisfied |
+Brand HTML is deterministic when every visible style decision traces to a brand
+token, fallback token, or explicit user instruction. A valid artifact is
+single-file HTML with inline CSS, semantic landmarks, responsive CSS, and no
+unapproved remote dependencies. Browser favicons are SVG-only and must be
+declared in the document head.
 
-## References
-- See `references/` folder in canonical skill for detailed references
-- Industry standards and best practices for this domain
+## Required Invariants
+
+- CSS variables define brand colors and fonts.
+- Color use after `:root` references variables.
+- HTML has semantic landmarks and a viewport meta tag.
+- HTML includes `<link rel="icon" type="image/svg+xml" href="...">`.
+- Responsive CSS includes at least one media query.
+- Unresolved template placeholders are not allowed.
+- Base64 images and external JavaScript are not allowed.
+- Bitmap, remote, or base64 favicons are not allowed.
+- Current date/time is not inferred.
+
+## False Positives
+
+- DOCX, XLSX, PDF, slide, or image requests should route away.
+- Token extraction without an HTML artifact should route away.
+- Missing brand config is not a failure when fallback tokens are allowed.
+
+## Validation
+
+Use `scripts/validate_brand_html.py` and fixture HTML to verify contract
+behavior before marking DoD complete.

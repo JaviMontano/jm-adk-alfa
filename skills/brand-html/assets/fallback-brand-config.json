@@ -1,0 +1,32 @@
+{
+  "schema": 1,
+  "brand": {
+    "name": "Fallback Brand",
+    "wordmark": "Fallback",
+    "tagline": "Deterministic branded HTML fallback"
+  },
+  "colors": {
+    "primary": "#2563EB",
+    "black": "#0F172A",
+    "white": "#FFFFFF",
+    "background": "#F8FAFC",
+    "muted": "#475569"
+  },
+  "typography": {
+    "display": "system-ui, sans-serif",
+    "body": "system-ui, sans-serif",
+    "mono": "ui-monospace, monospace",
+    "fontLinks": []
+  },
+  "spacing": {
+    "radiusSm": "8px",
+    "radiusMd": "12px",
+    "radiusLg": "16px",
+    "maxWidth": "1120px"
+  },
+  "dependencies": {
+    "allowRemoteFonts": false,
+    "allowExternalScripts": false,
+    "allowBase64Images": false
+  }
+}
