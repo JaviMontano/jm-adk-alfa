@@ -12,11 +12,11 @@ The authoritative counts come from `python3 scripts/count-components.py`.
 
 | Component | Count |
 |---|---:|
-| Skills | 591 |
+| Skills | 595 |
 | Agents | 260 |
 | Commands | 267 |
 | Prompts | 256 |
-| Total physical components | 1374 |
+| Total physical components | 1378 |
 
 ## Claude Certified Architect Katas
 

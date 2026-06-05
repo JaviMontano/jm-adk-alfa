@@ -738,6 +738,12 @@
     "description": "Extender Claude Code con slash commands y skills usando context fork, allowed-tools whitelist y argument-hint, con scope correcto."
   },
   {
+    "id": "cv-cover-optimizer",
+    "path": "skills/cv-cover-optimizer",
+    "name": "Cv Cover Optimizer",
+    "description": "Optimiza CV y cover para ATS y voz de marca; extiende cv-transformer con lint de keywords y secciones."
+  },
+  {
     "id": "cv-enhancement",
     "path": "skills/cv-enhancement",
     "name": "Cv Enhancement",
@@ -2256,6 +2262,12 @@
     "description": ">"
   },
   {
+    "id": "notebook-curator-seleccion",
+    "path": "skills/notebook-curator-seleccion",
+    "name": "Notebook Curator Seleccion",
+    "description": "Cura un notebook archetype SEL-EMPRESA por proceso de seleccion y valida que tenga las fuentes canonicas."
+  },
+  {
     "id": "notification-handler",
     "path": "skills/notification-handler",
     "name": "Notification Handler",
@@ -2302,6 +2314,12 @@
     "path": "skills/okr-design",
     "name": "Okr Design",
     "description": ">"
+  },
+  {
+    "id": "onboarding-90-dias",
+    "path": "skills/onboarding-90-dias",
+    "name": "Onboarding 90 Dias",
+    "description": "Genera un plan 30/60/90 sostenible anti-burnout para un nuevo rol."
   },
   {
     "id": "onboarding-playbook",
@@ -2704,6 +2722,12 @@
     "path": "skills/recaptcha-integration",
     "name": "Recaptcha Integration",
     "description": ">"
+  },
+  {
+    "id": "red-y-referencias",
+    "path": "skills/red-y-referencias",
+    "name": "Red Y Referencias",
+    "description": "Gestiona referencias con consentimiento explicito, follow-ups y mapa de red."
   },
   {
     "id": "release-strategy",

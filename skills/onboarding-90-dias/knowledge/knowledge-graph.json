@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-06-05",
+  "skill": "onboarding-90-dias",
+  "nodes": [
+    {
+      "id": "onboarding-90-dias",
+      "type": "skill",
+      "label": "onboarding-90-dias"
+    },
+    {
+      "id": "onboarding-90-dias:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "onboarding-90-dias:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "onboarding-90-dias:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "onboarding-90-dias",
+      "to": "onboarding-90-dias:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "onboarding-90-dias",
+      "to": "onboarding-90-dias:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "onboarding-90-dias",
+      "to": "onboarding-90-dias:quality",
+      "type": "validated_by"
+    }
+  ]
+}

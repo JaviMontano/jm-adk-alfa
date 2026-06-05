@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-06-05",
+  "skill": "notebook-curator-seleccion",
+  "nodes": [
+    {
+      "id": "notebook-curator-seleccion",
+      "type": "skill",
+      "label": "notebook-curator-seleccion"
+    },
+    {
+      "id": "notebook-curator-seleccion:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "notebook-curator-seleccion:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "notebook-curator-seleccion:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "notebook-curator-seleccion",
+      "to": "notebook-curator-seleccion:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "notebook-curator-seleccion",
+      "to": "notebook-curator-seleccion:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "notebook-curator-seleccion",
+      "to": "notebook-curator-seleccion:quality",
+      "type": "validated_by"
+    }
+  ]
+}

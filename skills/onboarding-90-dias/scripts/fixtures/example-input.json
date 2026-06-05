@@ -1,0 +1,8 @@
+{
+  "schema": 1,
+  "skill": "onboarding-90-dias",
+  "mode": "dry-run",
+  "input": {
+    "goal": "Run deterministic automation for onboarding-90-dias."
+  }
+}
