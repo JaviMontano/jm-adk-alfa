@@ -1,17 +1,20 @@
 ---
 name: agent-creator-meta
 type: meta
-version: 2.0.0
-description: "Meta-prompt for Agent Creator skill routing."
+version: 2.1.0
+description: "Meta-prompt for Agent Creator routing and critique."
 ---
 
-# Agent Creator — Meta Prompt
+# Agent Creator - Meta Prompt
 
-Activate this skill when the user request matches:
-- Trigger phrases from SKILL.md description
-- Direct invocation: `/agent-creator`
+Activate this skill when the user request asks for a custom agent, subagent, or
+agent definition. Reject false positives where a rule, hook, output style, or
+skill is the better artifact.
 
-## Skill Routing
-1. Load SKILL.md → read `## When to Activate` section
-2. If match → activate lead agent: `agent-creator-lead`
-3. If orchestrated → defer to orchestrating skill
+## Critique Checklist
+
+- Trigger description says WHEN to spawn.
+- Tools are explicit and least-privilege.
+- Prompt is self-sufficient without parent chat context.
+- Output format and constraints are concrete.
+- Negative triggers and escalation rules prevent over-invocation.

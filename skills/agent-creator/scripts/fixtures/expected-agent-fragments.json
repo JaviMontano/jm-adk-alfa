@@ -1,0 +1,12 @@
+{
+  "fragments": [
+    "name: dependency-auditor",
+    "Spawn when the user asks to audit dependencies",
+    "tools: [\"Read\", \"Glob\", \"Grep\", \"Bash\"]",
+    "# Dependency Auditor",
+    "## Your Task",
+    "## Output Format",
+    "Do not modify dependency files or lockfiles.",
+    "## Escalation Triggers"
+  ]
+}

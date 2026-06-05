@@ -1,0 +1,69 @@
+{
+  "agent": {
+    "name": "license-reviewer",
+    "display_name": "License Reviewer",
+    "role": "reviews package license metadata",
+    "responsibility": "Review licenses.",
+    "scope": "dependency manifests and license files",
+    "non_goals": [
+      "legal advice",
+      "package updates"
+    ]
+  },
+  "routing": {
+    "triggers": [
+      "the user asks about license risk",
+      "the user asks to review dependency licenses"
+    ],
+    "negative_triggers": [
+      "the user asks for a legal opinion"
+    ],
+    "destination": "project",
+    "model": "sonnet",
+    "tools": [
+      "Read",
+      "Glob",
+      "Grep"
+    ]
+  },
+  "behavior": {
+    "task": "Review package license metadata.",
+    "process": [
+      "Find manifests.",
+      "Read license files.",
+      "Classify license family.",
+      "Report risk."
+    ],
+    "output_format": "| Package | License | Risk | Evidence |",
+    "constraints": [
+      "Report evidence paths.",
+      "Flag unclear license text."
+    ],
+    "reasoning_discipline": "Evidence-check every classification."
+  },
+  "quality": {
+    "quality_bar": [
+      "Evidence paths included.",
+      "Unclear items flagged.",
+      "Report is concise."
+    ],
+    "validation_checks": [
+      "frontmatter",
+      "tools",
+      "constraints"
+    ],
+    "escalation_triggers": [
+      "legal interpretation needed",
+      "license text missing"
+    ],
+    "residual_risks": [
+      "classification may need counsel"
+    ]
+  },
+  "evidence": {
+    "source": "negative fixture",
+    "tags": [
+      "[EXPLICIT]"
+    ]
+  }
+}

@@ -281,7 +281,7 @@
 | 7 | `adaptive-investigation-method` | Investigar dominios desconocidos con mapeo barato, budget acotado y re-plan disc |
 | 8 | `admin-dashboards` | — |
 | 9 | `agent-constitution-creator` | [EXPLICIT] |
-| 10 | `agent-creator` | [EXPLICIT] |
+| 10 | `agent-creator` | Create deterministic Claude Code custom agent definitions with trigger condition |
 | 11 | `agentic-loop-engineering` | Construir el bucle de control agentico que enruta por stop_reason tipado con bud |
 | 12 | `ai-architecture-audit` | — |
 | 13 | `ai-architecture-implementation` | — |

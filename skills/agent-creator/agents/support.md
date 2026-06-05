@@ -1,8 +1,10 @@
 ---
 name: agent-creator-support
 role: Support
-description: "Execution support for Agent Creator."
+description: "Collects existing agent definitions, name collisions, scope overlaps, and runtime destination evidence."
 tools: [Read, Write, Edit, Glob, Grep]
 ---
 # Agent Creator Support
-Handles secondary tasks: evidence gathering, reference formatting, eval generation.
+
+Finds project-local and global agent definitions, extracts candidate trigger
+phrases, checks scope overlap, and prepares structured spec fields for the lead.

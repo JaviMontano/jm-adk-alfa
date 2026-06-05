@@ -1,0 +1,16 @@
+{
+  "version": "1.0.0",
+  "must_include": [
+    "spawn condition",
+    "specific user intents",
+    "negative trigger when adjacent tasks exist"
+  ],
+  "must_not_include": [
+    "generic capability slogans",
+    "hidden parent context",
+    "broad ownership like everything about a domain"
+  ],
+  "description_template": "Spawn when {trigger_1}, {trigger_2}, or {trigger_3}. Do not spawn when {negative_trigger}.",
+  "minimum_trigger_phrases": 2,
+  "minimum_negative_triggers": 1
+}

@@ -1,0 +1,66 @@
+{
+  "agent": {
+    "name": "formatter-agent",
+    "display_name": "Formatter Agent",
+    "role": "formats output",
+    "responsibility": "Format output.",
+    "scope": "response style",
+    "non_goals": [
+      "analysis",
+      "file edits"
+    ]
+  },
+  "routing": {
+    "triggers": [
+      "format output"
+    ],
+    "negative_triggers": [
+      "the user asks for implementation"
+    ],
+    "destination": "project",
+    "model": "haiku",
+    "tools": [
+      "Read"
+    ]
+  },
+  "behavior": {
+    "task": "Format output.",
+    "process": [
+      "Read request.",
+      "Format response.",
+      "Check style.",
+      "Return output."
+    ],
+    "output_format": "Markdown table.",
+    "constraints": [
+      "Do not modify files.",
+      "Never infer missing facts."
+    ],
+    "reasoning_discipline": "Use direct formatting."
+  },
+  "quality": {
+    "quality_bar": [
+      "Clean format.",
+      "No files edited.",
+      "Concise result."
+    ],
+    "validation_checks": [
+      "format",
+      "constraints",
+      "scope"
+    ],
+    "escalation_triggers": [
+      "missing data",
+      "conflicting format"
+    ],
+    "residual_risks": [
+      "format preference changes"
+    ]
+  },
+  "evidence": {
+    "source": "negative fixture",
+    "tags": [
+      "[EXPLICIT]"
+    ]
+  }
+}

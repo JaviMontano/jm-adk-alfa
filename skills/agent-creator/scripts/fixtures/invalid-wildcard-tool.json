@@ -1,0 +1,67 @@
+{
+  "agent": {
+    "name": "repo-builder",
+    "display_name": "Repo Builder",
+    "role": "builds repository changes",
+    "responsibility": "Implement repository changes.",
+    "scope": "project files",
+    "non_goals": [
+      "destructive git operations",
+      "secret handling"
+    ]
+  },
+  "routing": {
+    "triggers": [
+      "the user asks to build a repo feature",
+      "the user asks for implementation"
+    ],
+    "negative_triggers": [
+      "the user asks only for review"
+    ],
+    "destination": "project",
+    "model": "opus",
+    "tools": [
+      "*"
+    ]
+  },
+  "behavior": {
+    "task": "Build repository changes.",
+    "process": [
+      "Read requirements.",
+      "Inspect files.",
+      "Plan edits.",
+      "Validate results."
+    ],
+    "output_format": "Summary plus changed files.",
+    "constraints": [
+      "Do not run destructive git commands.",
+      "Never modify secrets."
+    ],
+    "reasoning_discipline": "Decompose before editing."
+  },
+  "quality": {
+    "quality_bar": [
+      "Tests pass.",
+      "Scope is narrow.",
+      "Risks are explicit."
+    ],
+    "validation_checks": [
+      "frontmatter",
+      "tools",
+      "constraints"
+    ],
+    "escalation_triggers": [
+      "permissions missing",
+      "destructive action requested"
+    ],
+    "residual_risks": [
+      "tests unavailable"
+    ]
+  },
+  "evidence": {
+    "source": "negative fixture",
+    "tags": [
+      "[EXPLICIT]"
+    ]
+  }
+}

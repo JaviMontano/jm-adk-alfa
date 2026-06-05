@@ -1,0 +1,75 @@
+{
+  "schema_version": "1.0.0",
+  "required_sections": [
+    "agent",
+    "routing",
+    "behavior",
+    "quality",
+    "evidence"
+  ],
+  "agent": {
+    "required": [
+      "name",
+      "display_name",
+      "role",
+      "responsibility",
+      "scope",
+      "non_goals"
+    ],
+    "name_pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$",
+    "reserved_names": [
+      "explore",
+      "plan",
+      "general-purpose"
+    ],
+    "minimum_non_goals": 2
+  },
+  "routing": {
+    "required": [
+      "triggers",
+      "negative_triggers",
+      "destination",
+      "model",
+      "tools"
+    ],
+    "destinations": [
+      "project",
+      "global"
+    ],
+    "minimum_triggers": 2
+  },
+  "behavior": {
+    "required": [
+      "task",
+      "process",
+      "output_format",
+      "constraints",
+      "reasoning_discipline"
+    ],
+    "minimum_process_steps": 4,
+    "minimum_constraints": 2,
+    "requires_negative_boundary": true
+  },
+  "quality": {
+    "required": [
+      "quality_bar",
+      "validation_checks",
+      "escalation_triggers",
+      "residual_risks"
+    ],
+    "minimum_quality_items": 3,
+    "minimum_validation_checks": 3,
+    "minimum_escalation_triggers": 2
+  },
+  "evidence": {
+    "required": [
+      "source",
+      "tags"
+    ],
+    "allowed_tags": [
+      "[EXPLICIT]",
+      "[INFERRED]",
+      "[OPEN]"
+    ]
+  }
+}
