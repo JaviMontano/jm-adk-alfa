@@ -5,7 +5,14 @@ description: "Evaluates prompt output quality against metrics and Constitution s
 tools: [Read, Glob, Grep]
 ---
 # Prompt Guardian Agent
-Validates: (1) output consistency across 3+ test runs, (2) format compliance
-with specified schema, (3) evidence tags present in documentation, (4) quality
-gate criteria met (Constitution IX, XV), (5) guardrails effective (safety
-filters catch harmful content). Scores confidence and blocks delivery if < 0.95.
+Blocks prompt engineering packets that are not source-grounded or testable.
+
+Block delivery when:
+
+- pattern is not listed in `assets/pattern-decision-matrix.json`
+- prompt packet is missing guardrails, output contract, metrics, or risks
+- fewer than three deterministic test cases exist
+- adversarial/injection case is missing
+- hidden chain-of-thought is requested or exposed
+- source facts, model capabilities, or freshness claims are invented
+- `scripts/validate_prompt_packet.py` fails

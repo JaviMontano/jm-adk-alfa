@@ -1,4 +1,4 @@
-# XLSX Output Template — Prompt Evaluation Matrix
+# XLSX Output Template - Prompt Evaluation Matrix
 
 ## Sheet 1: Prompt Catalog
 
@@ -6,7 +6,7 @@
 |--------|------|-------------|
 | A: Prompt ID | Text | PE-001, PE-002... |
 | B: Name | Text | Descriptive name |
-| C: Pattern | Dropdown | Zero-shot/Few-shot/CoT/System/Meta |
+| C: Pattern | Dropdown | Zero-shot/Few-shot/Reasoning scaffold/System instruction/Meta |
 | D: Target Model | Dropdown | Claude/Gemini/GPT/Llama |
 | E: Prompt Text | Long text | Full prompt content |
 | F: Status | Dropdown | Draft/Testing/Active/Deprecated |
@@ -32,6 +32,6 @@
 - Conditional formatting: red < 80%, yellow 80-90%, green > 90%
 
 ## Formatting
-- Header row: Gold background #FFD700, Poppins Bold
+- Header row: Gold background #FFD700, Arial Bold
 - Data rows: Alternating Navy #0A122A / Surface #1E293B
 - Freeze top row and first column

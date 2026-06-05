@@ -21,7 +21,12 @@ Review the prompt against these criteria:
 - [ ] Refusal patterns for out-of-scope requests
 
 ## Quality
-- [ ] Tested with 3+ diverse inputs
+- [ ] Tested with at least three deterministic inputs
 - [ ] Consistent output format across runs
 - [ ] Accuracy >= 90% on test cases
 - [ ] Token-efficient (prompt:output ratio < 3:1)
+
+## Deterministic Evidence
+- [ ] Source facts are path-backed or marked as gaps
+- [ ] Hidden reasoning is not requested or exposed
+- [ ] Output contract and refusal policy are explicit

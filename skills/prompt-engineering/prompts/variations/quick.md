@@ -4,14 +4,14 @@ type: variation
 version: 2.0.0
 description: "Prompt Engineering — quick mode execution."
 ---
-# Prompt Engineering — Quick Mode
+# Prompt Engineering - Quick Mode
 ## When to Use
-Use quick mode when time-constrained. Skip deep analysis, apply most common pattern.
+Use quick mode when task, source boundary, output contract, and target model are explicit.
 ## Execution
 1. Load skill: `knowledge/body-of-knowledge.md`
-2. Execute at quick depth with evidence tags
-3. Lead → Support → Guardian validation
-4. Confidence >= 0.95
+2. Apply `assets/pattern-decision-matrix.json`
+3. Return a compact packet with evidence tags
+4. Validate guardrails, output contract, and test-case coverage
 ## Output
 - Deliverable calibrated to quick depth
-- Evidence-tagged, Constitution-compliant
+- Evidence-tagged, source-grounded, and clear about gaps

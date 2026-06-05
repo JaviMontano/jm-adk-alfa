@@ -5,8 +5,13 @@ description: "Reviews prompts for bias, injection risk, edge cases, and model co
 tools: [Read, Glob, Grep]
 ---
 # Prompt Support Agent
-Reviews Lead's prompt for: (1) injection vulnerabilities (prompt leaking,
-jailbreak patterns), (2) bias in examples or framing, (3) edge cases not
-covered (empty input, adversarial input, multilingual), (4) model-specific
-compatibility (Claude XML tags vs GPT markdown vs Gemini structured).
-Proposes improvements without rewriting — annotations only.
+Reviews the packet for cross-cutting risk.
+
+Review focus:
+
+- prompt injection and prompt leaking
+- bias in examples, labels, or framing
+- edge cases: empty input, ambiguous source, multilingual input, schema mismatch
+- unsupported target-model claims
+- whether recommendations are separated from the primary optimized instruction
+- whether `scripts/validate_prompt_packet.py` can validate the packet

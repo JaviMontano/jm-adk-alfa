@@ -5,7 +5,7 @@ version: 2.0.0
 description: "Evaluate and improve the Prompt Engineering skill."
 ---
 
-# Prompt Engineering — Self-Improvement
+# Prompt Engineering - Self-Improvement
 
 ## Evaluate
 
@@ -13,7 +13,7 @@ description: "Evaluate and improve the Prompt Engineering skill."
 2. Are the 4 sub-agents (lead, support, guardian, specialist) covering all perspectives?
 3. Are templates producing useful deliverables? Test with a real scenario.
 4. What edge cases have been encountered that aren't documented?
-5. Are there new insights from `insights/` that apply to this skill?
+5. Are there source-backed insights from project files that apply to this skill?
 6. Has the related skill landscape changed? New cross-references needed?
 
 ## Improve
@@ -24,6 +24,12 @@ description: "Evaluate and improve the Prompt Engineering skill."
 4. Update knowledge graph: new concepts, new `[[wikilinks]]`
 5. Test templates with edge-case inputs to verify robustness
 6. Propose Constitution amendment if recurring ambiguity found (XVII)
+
+## Determinism Guard
+
+- Do not claim recency unless the source and retrieval date are explicit.
+- Keep runtime-generated prompt files in `prompt-creator`; this skill owns optimization packets.
+- Preserve no-invention and source-boundary rules.
 
 ## Trigger
 

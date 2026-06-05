@@ -9,7 +9,7 @@ triad:
   guardian: "prompt-engineering-guardian"
 ---
 
-# Prompt Engineering — Execute
+# Prompt Engineering - Execute
 
 ## Dynamic Parameters
 
@@ -24,7 +24,7 @@ triad:
 ## Execution
 
 1. **Load knowledge**: Read `knowledge/body-of-knowledge.md`
-2. **Check guardrails**: Read `references/guardrails/*.json`
+2. **Check assets**: Read `assets/pattern-decision-matrix.json` and `assets/prompt-engineering-checklist.md`
 3. **Lead** (`prompt-engineering-lead`): Execute SKILL.md Steps 1-4 for `{{task}}`
    - Discover → Analyze → Execute → Validate
    - Apply evidence tags on all claims
@@ -34,11 +34,11 @@ triad:
    - Evidence tags complete
    - Quality gate met
    - Constitution XIII + XIV respected
-   - Output exceeds expectations
+   - Prompt packet passes deterministic validation
 
 ## Output
 
-- Primary deliverable for `{{task}}` in `{{output_format}}`
+- Prompt engineering packet for `{{task}}` in `{{output_format}}`
 - Evidence tags on every claim
-- Recommendations beyond the ask
-- Confidence score (>= 0.95)
+- Recommendations kept in a separate backlog section
+- Validation result from `scripts/validate_prompt_packet.py` when JSON packet is produced
