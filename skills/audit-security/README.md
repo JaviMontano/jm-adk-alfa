@@ -1,29 +1,30 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: audit-security
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
-
 # Audit Security
 
->
+Deterministic read-only static security audit for plugin artifacts.
 
-## Triggers
+Use this skill when a plugin, skill bundle, hook directory, or explicit file
+list needs a security report for secrets, unsafe paths, hook injection,
+sensitive files, script safety, or external network risks.
 
-- audit-security
+## Local Resources
 
-## Allowed Tools
+- `assets/activation-policy.json`: activation and refusal routing
+- `assets/scan-policy.json`: six categories, severities, statuses, placeholders
+- `assets/report-contract.json`: required report sections and fields
+- `assets/evidence-policy.json`: evidence and remediation requirements
+- `references/security-patterns.md`: human-readable pattern catalog
+- `scripts/validate_security_report.py`: offline report validator
+- `scripts/check.sh`: deterministic fixture test
 
-- Read
-- Glob
-- Grep
-- Bash
+## Local Checks
 
-## Quick Use
+```bash
+bash skills/audit-security/scripts/check.sh
+python3 -B scripts/validate-skill-dod.py --skill audit-security
+python3 -B scripts/validate-skill-scripts.py --strict --run-checks --skill audit-security
+```
 
-Use this skill when the request clearly matches the triggers and requires the `audit-security` capability.
+## Decision Rule
 
-## Output Format
-
-Markdown with summary, evidence, result, validation, and risks.
+All six categories must be executed. CRITICAL/WARNING findings require
+remediation plan entries. Placeholder secrets are INFO, not CRITICAL.

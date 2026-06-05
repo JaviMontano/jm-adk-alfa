@@ -1,75 +1,73 @@
 {
   "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-28",
   "skill": "audit-security",
   "nodes": [
     {
       "id": "audit-security",
       "type": "skill",
-      "label": "audit-security"
+      "label": "Audit Security"
     },
     {
-      "id": "audit-security:inputs",
+      "id": "audit-security:activation",
+      "type": "policy",
+      "label": "Activation Policy"
+    },
+    {
+      "id": "audit-security:scan-policy",
+      "type": "policy",
+      "label": "Scan Policy"
+    },
+    {
+      "id": "audit-security:report-contract",
       "type": "contract",
-      "label": "Expected inputs"
+      "label": "Report Contract"
     },
     {
-      "id": "audit-security:outputs",
-      "type": "contract",
-      "label": "Expected outputs"
+      "id": "audit-security:evidence-policy",
+      "type": "policy",
+      "label": "Evidence Policy"
     },
     {
-      "id": "audit-security:quality",
-      "type": "gate",
-      "label": "Quality criteria"
+      "id": "audit-security:validator",
+      "type": "script",
+      "label": "Offline Security Report Validator"
     },
     {
-      "id": "audit-security:ontology",
-      "type": "ontology",
-      "label": "Domain: general"
-    },
-    {
-      "id": "audit-security:evidence",
-      "type": "gate",
-      "label": "Evidence / provenance requirements"
-    },
-    {
-      "id": "audit-security:antipattern",
-      "type": "risk",
-      "label": "Canonical anti-pattern to avoid"
+      "id": "audit-security:remediation",
+      "type": "output",
+      "label": "Remediation Plan"
     }
   ],
   "edges": [
     {
       "from": "audit-security",
-      "to": "audit-security:inputs",
-      "type": "requires"
+      "to": "audit-security:activation",
+      "type": "uses"
     },
     {
       "from": "audit-security",
-      "to": "audit-security:outputs",
+      "to": "audit-security:scan-policy",
+      "type": "uses"
+    },
+    {
+      "from": "audit-security",
+      "to": "audit-security:evidence-policy",
+      "type": "uses"
+    },
+    {
+      "from": "audit-security",
+      "to": "audit-security:report-contract",
       "type": "produces"
     },
     {
-      "from": "audit-security",
-      "to": "audit-security:quality",
+      "from": "audit-security:report-contract",
+      "to": "audit-security:validator",
       "type": "validated_by"
     },
     {
-      "from": "audit-security",
-      "to": "audit-security:ontology",
-      "type": "classified_as"
-    },
-    {
-      "from": "audit-security",
-      "to": "audit-security:evidence",
-      "type": "validated_by"
-    },
-    {
-      "from": "audit-security",
-      "to": "audit-security:antipattern",
-      "type": "guards_against"
+      "from": "audit-security:scan-policy",
+      "to": "audit-security:remediation",
+      "type": "requires_for_critical_warning"
     }
   ]
 }

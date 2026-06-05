@@ -1,0 +1,20 @@
+{
+  "schema": 1,
+  "skill": "audit-security",
+  "activate_when": [
+    "The user asks to audit, scan, review, or check a plugin for security issues.",
+    "The request mentions secrets, leaked keys, unsafe paths, hook injection, sensitive files, unsafe scripts, or insecure downloads.",
+    "The target is a plugin root, skill bundle, hooks directory, or explicit files to scan statically."
+  ],
+  "do_not_activate_when": [
+    "The request is general cybersecurity advice with no target artifact.",
+    "The request is code review, factuality review, content quality, or legal compliance without security scanning.",
+    "The request asks to exploit, weaponize, exfiltrate, or bypass security controls."
+  ],
+  "routing_decisions": ["activate", "do_not_activate", "needs_clarification", "refuse"],
+  "minimum_input": ["plugin_root_or_file_list"],
+  "clarification_required_when": [
+    "No target path or file list is supplied.",
+    "The user asks for a security audit but the scope could mean cloud infrastructure, application code, or plugin static scan."
+  ]
+}

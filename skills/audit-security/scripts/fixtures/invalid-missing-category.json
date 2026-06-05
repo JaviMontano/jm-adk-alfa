@@ -1,0 +1,27 @@
+{
+  "summary": {
+    "target_root": "evals/fixtures/clean-plugin",
+    "overall_status": "pass",
+    "total_findings": 0,
+    "critical_count": 0,
+    "warning_count": 0,
+    "info_count": 0,
+    "categories_executed_count": 5
+  },
+  "categories_executed": [
+    "secret_exposure",
+    "path_security",
+    "hook_injection",
+    "sensitive_files",
+    "script_safety"
+  ],
+  "findings": [],
+  "false_positive_notes": [],
+  "remediation_plan": [],
+  "coverage": {
+    "files_scanned": 4,
+    "files_skipped": [],
+    "scan_scope": "plugin root only"
+  },
+  "warnings": []
+}

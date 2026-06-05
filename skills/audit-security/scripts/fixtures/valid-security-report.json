@@ -1,0 +1,142 @@
+{
+  "summary": {
+    "target_root": "evals/fixtures/security-sample-plugin",
+    "overall_status": "blocked",
+    "total_findings": 7,
+    "critical_count": 5,
+    "warning_count": 1,
+    "info_count": 1,
+    "categories_executed_count": 6
+  },
+  "categories_executed": [
+    "secret_exposure",
+    "path_security",
+    "hook_injection",
+    "sensitive_files",
+    "script_safety",
+    "external_network"
+  ],
+  "findings": [
+    {
+      "id": "SEC-001",
+      "category": "secret_exposure",
+      "severity": "CRITICAL",
+      "status": "confirmed",
+      "path": "plugin.json",
+      "line": 6,
+      "pattern": "sk-proj-*",
+      "evidence": "[CODE] `sk-proj-live-value` appears in plugin metadata.",
+      "remediation": "Remove and rotate the secret, then read it from an environment variable."
+    },
+    {
+      "id": "SEC-002",
+      "category": "secret_exposure",
+      "severity": "INFO",
+      "status": "placeholder",
+      "path": "README.md",
+      "line": 4,
+      "pattern": "<YOUR_TOKEN>",
+      "evidence": "[DOC] Placeholder token appears in documentation example.",
+      "remediation": "Keep placeholder syntax and avoid real tokens in examples."
+    },
+    {
+      "id": "SEC-003",
+      "category": "path_security",
+      "severity": "CRITICAL",
+      "status": "confirmed",
+      "path": ".claude-plugin/plugin.json",
+      "line": 9,
+      "pattern": "../",
+      "evidence": "[CONFIG] Hook command references a parent directory traversal.",
+      "remediation": "Resolve paths under the plugin root and reject parent directory traversal."
+    },
+    {
+      "id": "SEC-004",
+      "category": "path_security",
+      "severity": "WARNING",
+      "status": "confirmed",
+      "path": "hooks/hooks.json",
+      "line": 5,
+      "pattern": "/Users/",
+      "evidence": "[CONFIG] Hook path hardcodes a user-specific absolute path.",
+      "remediation": "Use `${CLAUDE_PLUGIN_ROOT}` or a relative plugin-root path."
+    },
+    {
+      "id": "SEC-005",
+      "category": "hook_injection",
+      "severity": "CRITICAL",
+      "status": "confirmed",
+      "path": "hooks/hooks.json",
+      "line": 7,
+      "pattern": "eval $USER_INPUT",
+      "evidence": "[CONFIG] Hook command evaluates unquoted user-controlled input.",
+      "remediation": "Remove eval and pass arguments through a quoted array or validated parser."
+    },
+    {
+      "id": "SEC-006",
+      "category": "sensitive_files",
+      "severity": "CRITICAL",
+      "status": "confirmed",
+      "path": "credentials.json",
+      "line": 1,
+      "pattern": "credentials.json",
+      "evidence": "[CODE] Credential file is present inside the plugin root.",
+      "remediation": "Remove the file from the plugin and load credentials from external secret storage."
+    },
+    {
+      "id": "SEC-007",
+      "category": "script_safety",
+      "severity": "CRITICAL",
+      "status": "confirmed",
+      "path": "scripts/install.sh",
+      "line": 3,
+      "pattern": "curl",
+      "evidence": "[CODE] Script downloads executable content without checksum or signature verification.",
+      "remediation": "Pin the download, verify checksum or signature, and fail closed on mismatch."
+    }
+  ],
+  "false_positive_notes": [
+    {
+      "finding_id": "SEC-002",
+      "reason": "Placeholder token is documentation, not a live credential."
+    }
+  ],
+  "remediation_plan": [
+    {
+      "finding_id": "SEC-001",
+      "priority": "P0",
+      "action": "Rotate the leaked key and remove it from plugin metadata."
+    },
+    {
+      "finding_id": "SEC-003",
+      "priority": "P0",
+      "action": "Replace traversal with plugin-root-bounded path resolution."
+    },
+    {
+      "finding_id": "SEC-004",
+      "priority": "P2",
+      "action": "Replace user-specific absolute path with `${CLAUDE_PLUGIN_ROOT}`."
+    },
+    {
+      "finding_id": "SEC-005",
+      "priority": "P0",
+      "action": "Remove eval and quote user-controlled arguments."
+    },
+    {
+      "finding_id": "SEC-006",
+      "priority": "P0",
+      "action": "Remove credential file and purge it from distributed plugin artifacts."
+    },
+    {
+      "finding_id": "SEC-007",
+      "priority": "P0",
+      "action": "Add checksum or signature verification for downloads."
+    }
+  ],
+  "coverage": {
+    "files_scanned": 9,
+    "files_skipped": [],
+    "scan_scope": "plugin root only; symlink targets outside root are not followed"
+  },
+  "warnings": []
+}

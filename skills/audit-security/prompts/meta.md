@@ -1,17 +1,19 @@
 ---
 name: audit-security-meta
 type: meta
-version: 2.0.0
-description: "Meta-prompt for Audit Security skill routing."
+version: 2.0.1
+description: "Meta-prompt for Audit Security routing."
 ---
 
-# Audit Security — Meta Prompt
+# Audit Security Meta Prompt
 
-Activate this skill when the user request matches:
-- Trigger phrases from SKILL.md description
-- Direct invocation: `/audit-security`
+Use `assets/activation-policy.json` and `SKILL.md ## When To Activate` before
+activating this skill.
 
-## Skill Routing
-1. Load SKILL.md → read `## When to Activate` section
-2. If match → activate lead agent: `audit-security-lead`
-3. If orchestrated → defer to orchestrating skill
+Activate for plugin static security audits, leaked-key scans, unsafe path
+checks, hook injection review, sensitive file detection, script safety review,
+and external network risk review.
+
+Do not activate for generic advice, code review, factuality review, content
+quality, or legal compliance without a static plugin/file target. Refuse exploit,
+weaponization, exfiltration, or bypass requests.

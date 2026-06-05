@@ -1,10 +1,16 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: audit-security
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
-
 # Example Input
 
-Use `audit-security` to produce a concise deliverable for a realistic project request.
+Run a static plugin security audit for `evals/fixtures/security-sample-plugin`.
+
+Observed files:
+
+- `plugin.json` line 6 contains a live-looking `sk-proj-*` value.
+- `.claude-plugin/plugin.json` line 9 calls a parent directory with `../`.
+- `hooks/hooks.json` line 5 has `/Users/deonto/plugin-hook.sh`.
+- `hooks/hooks.json` line 7 uses `eval $USER_INPUT`.
+- `credentials.json` exists at the plugin root.
+- `scripts/install.sh` line 3 uses `curl` without checksum verification.
+- `README.md` line 4 contains documentation placeholder `<YOUR_TOKEN>`.
+
+Return a read-only report with all six scan categories, severity counts,
+findings, false-positive notes, remediation plan, and coverage.

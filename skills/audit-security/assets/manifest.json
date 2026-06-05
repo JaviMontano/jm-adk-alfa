@@ -1,0 +1,30 @@
+{
+  "schema": 1,
+  "skill": "audit-security",
+  "assets": [
+    {
+      "path": "assets/activation-policy.json",
+      "type": "policy",
+      "purpose": "Activation, false-positive, clarification, and refusal routing.",
+      "used_by": ["SKILL.md", "prompts/meta.md", "evals/evals.json"]
+    },
+    {
+      "path": "assets/scan-policy.json",
+      "type": "policy",
+      "purpose": "Canonical scan categories, severity taxonomy, and placeholder handling.",
+      "used_by": ["SKILL.md", "scripts/validate_security_report.py", "evals/evals.json"]
+    },
+    {
+      "path": "assets/report-contract.json",
+      "type": "schema-contract",
+      "purpose": "Required security report sections and fields.",
+      "used_by": ["SKILL.md", "scripts/validate_security_report.py", "templates/output.md"]
+    },
+    {
+      "path": "assets/evidence-policy.json",
+      "type": "policy",
+      "purpose": "Evidence tag and remediation requirements.",
+      "used_by": ["SKILL.md", "scripts/validate_security_report.py", "examples/example-output.md"]
+    }
+  ]
+}

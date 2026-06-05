@@ -1,28 +1,48 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: audit-security
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
-
-# Audit Security Output
+# Audit Security Report
 
 ## Summary
 
-{summary}
+| Metric | Value |
+|---|---:|
+| Target root | `{target_root}` |
+| Overall status | `{overall_status}` |
+| Total findings | `{total_findings}` |
+| CRITICAL | `{critical_count}` |
+| WARNING | `{warning_count}` |
+| INFO | `{info_count}` |
+| Categories executed | `{categories_executed_count}` |
 
-## Evidence
+## Categories Executed
 
-{evidence}
+1. secret_exposure
+2. path_security
+3. hook_injection
+4. sensitive_files
+5. script_safety
+6. external_network
 
-## Result
+## Findings
 
-{result}
+| ID | Category | Severity | Status | Path | Line | Pattern | Evidence | Remediation |
+|---|---|---|---|---|---:|---|---|---|
+| SEC-001 | `{category}` | `{severity}` | `{status}` | `{path}` | `{line}` | `{pattern}` | `{evidence}` | `{remediation}` |
 
-## Validation
+## False Positive Notes
 
-{validation}
+- `{finding_id}`: `{reason}`
 
-## Risks and Limits
+## Remediation Plan
 
-{risks}
+| Finding | Priority | Action |
+|---|---|---|
+| SEC-001 | `{priority}` | `{action}` |
+
+## Coverage
+
+| Files scanned | Files skipped | Scope |
+|---:|---:|---|
+| `{files_scanned}` | `{files_skipped_count}` | `{scan_scope}` |
+
+## Warnings
+
+- `{warning_code}`: `{warning_message}`
