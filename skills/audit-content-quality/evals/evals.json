@@ -1,9 +1,141 @@
-[
-  {"id": "audit-content-quality-happy-path", "type": "happy_path", "input": "Run audit content quality on this project", "expected_behavior": "Skill activates and produces the expected audit content quality output following the defined process", "tags": ["basic", "activation"]},
-  {"id": "audit-content-quality-explicit-trigger", "type": "happy_path", "input": "Apply audit content quality analysis", "expected_behavior": "Skill recognizes the trigger phrase and executes the audit content quality workflow", "tags": ["trigger", "recognition"]},
-  {"id": "audit-content-quality-with-context", "type": "happy_path", "input": "Apply audit content quality to analyze the current codebase with detailed output", "expected_behavior": "Skill produces comprehensive audit content quality analysis with evidence-tagged findings", "tags": ["detailed", "comprehensive"]},
-  {"id": "audit-content-quality-minimal-input", "type": "happy_path", "input": "Quick audit content quality", "expected_behavior": "Skill activates with minimal input, applies reasonable defaults", "tags": ["minimal", "defaults"]},
-  {"id": "audit-content-quality-false-positive", "type": "false_positive", "input": "What is the weather forecast for tomorrow?", "expected_behavior": "Skill should NOT activate — this input has no relation to audit content quality", "tags": ["false_positive", "should-not-activate"]},
-  {"id": "audit-content-quality-edge-empty-input", "type": "edge_case", "input": "Run audit content quality but I have no files or documentation yet", "expected_behavior": "Skill handles gracefully — requests minimum viable input or produces gap analysis", "tags": ["edge_case", "empty-input", "boundary"]},
-  {"id": "audit-content-quality-edge-conflicting", "type": "edge_case", "input": "Apply audit content quality but requirements contradict each other", "expected_behavior": "Skill detects contradiction, flags with [OPEN] tag, proposes resolution", "tags": ["edge_case", "conflict", "corner"]}
-]
+{
+  "schema": 1,
+  "skill": "audit-content-quality",
+  "deterministic_checks": {
+    "dimensions": [
+      "completeness",
+      "description_quality",
+      "procedure_clarity",
+      "quality_criteria",
+      "anti_patterns",
+      "edge_cases"
+    ],
+    "score_bounds": [0, 10],
+    "total_max": 60,
+    "systematic_gap_threshold": 6.0,
+    "grade_thresholds": {
+      "A": [90, 100],
+      "B": [80, 89.999],
+      "C": [70, 79.999],
+      "D": [60, 69.999],
+      "F": [0, 59.999]
+    }
+  },
+  "cases": [
+    {
+      "id": "plugin-scorecard-golden-path",
+      "type": "happy_path",
+      "input": "Audit content quality for a plugin with three SKILL.md files.",
+      "expected_activation": true,
+      "fixture": "scripts/fixtures/valid-content-quality-report.json",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "plugin_average", "bottom_three"],
+      "must_include": ["Scorecards", "Bottom Skills", "Systematic Gaps", "Coverage"]
+    },
+    {
+      "id": "six-criteria-rubric-exact",
+      "type": "happy_path",
+      "input": "Score skills using the content quality rubric.",
+      "expected_activation": true,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "six_dimensions", "rationales"],
+      "must_include": ["completeness", "description_quality", "procedure_clarity", "quality_criteria", "anti_patterns", "edge_cases"]
+    },
+    {
+      "id": "grade-threshold-edges",
+      "type": "edge_case",
+      "input": "Classify totals at A/B/C/D/F boundaries and dimension average 5.99 versus 6.00.",
+      "expected_activation": true,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "grade_formula", "gap_threshold"],
+      "must_include": ["90", "80", "70", "60", "systematic_gap_threshold"]
+    },
+    {
+      "id": "malformed-frontmatter-still-scored",
+      "type": "edge_case",
+      "input": "Audit a SKILL.md with malformed YAML frontmatter but readable body sections.",
+      "expected_activation": true,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "no_silent_skip"],
+      "must_include": ["coverage", "completeness", "description_quality"]
+    },
+    {
+      "id": "missing-evidence-and-rationales",
+      "type": "negative",
+      "input": "Validate an audit report with missing rationales and no evidence tags.",
+      "expected_activation": true,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "rationale_required"],
+      "must_include": ["rationales", "evidence tag"],
+      "must_not_include": ["skip rationale"]
+    },
+    {
+      "id": "scaffold-detection",
+      "type": "negative",
+      "input": "Audit skills that still contain scaffold markers and generic examples.",
+      "expected_activation": true,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "scaffold_detection"],
+      "must_include": ["generated-by", "specific remediation"],
+      "must_not_include": ["generic improvement"]
+    },
+    {
+      "id": "bottom-three-and-priority-order",
+      "type": "happy_path",
+      "input": "Audit five skills and identify the bottom 3 by total score.",
+      "expected_activation": true,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "bottom_order", "priority_policy"],
+      "must_include": ["P1", "P2", "P3"]
+    },
+    {
+      "id": "single-skill-plugin-policy",
+      "type": "edge_case",
+      "input": "Audit a plugin with only one SKILL.md file.",
+      "expected_activation": true,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "single_skill_bottom"],
+      "must_include": ["total_skills", "bottom_skills"],
+      "must_not_include": ["bottom 3 required"]
+    },
+    {
+      "id": "empty-plugin-no-skills",
+      "type": "negative",
+      "input": "Audit content quality for a directory with zero SKILL.md files.",
+      "expected_activation": true,
+      "expected_route": "blocked",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "zero_skill_block"],
+      "must_include": ["zero SKILL.md", "blocked"],
+      "must_not_include": ["scorecards"]
+    },
+    {
+      "id": "missing-target-needs-clarification",
+      "type": "edge_case",
+      "input": "Score skills.",
+      "expected_activation": false,
+      "expected_route": "needs_clarification",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "minimum_input"],
+      "must_include": ["plugin_root_or_skill_paths"]
+    },
+    {
+      "id": "website-content-quality-false-positive",
+      "type": "false_positive",
+      "input": "Review the content quality of this landing page.",
+      "expected_activation": false,
+      "expected_route": "do_not_activate",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "false_positive"],
+      "must_not_include": ["Scorecards", "SKILL.md"]
+    },
+    {
+      "id": "security-or-code-review-false-positive",
+      "type": "false_positive",
+      "input": "Audit this repository for security vulnerabilities and code quality.",
+      "expected_activation": false,
+      "expected_route": "do_not_activate",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "false_positive"],
+      "must_not_include": ["content quality rubric", "bottom_skills"]
+    },
+    {
+      "id": "edit-request-read-only-clarification",
+      "type": "edge_case",
+      "input": "Improve all SKILL.md files and commit the changes.",
+      "expected_activation": false,
+      "expected_route": "needs_clarification",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "read_only_boundary"],
+      "must_include": ["read-only audit"],
+      "must_not_include": ["patch applied", "committed"]
+    }
+  ]
+}

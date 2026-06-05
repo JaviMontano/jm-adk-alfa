@@ -1,0 +1,21 @@
+{
+  "schema": 1,
+  "skill": "audit-content-quality",
+  "activate_when": [
+    "The user asks to audit, score, rank, compare, or improve SKILL.md content quality.",
+    "The request names a plugin or skill directory and asks for content quality, rubric scoring, or weakest skills.",
+    "The task requires per-skill scorecards, plugin averages, or systematic content gap detection."
+  ],
+  "do_not_activate_when": [
+    "The user asks for security, factuality, code review, design critique, or grammar-only review without skill-content scoring.",
+    "The request is about generic website/article content quality rather than SKILL.md files.",
+    "No plugin root, skill directory, or SKILL.md artifact is supplied or inferable."
+  ],
+  "routing_decisions": ["activate", "do_not_activate", "needs_clarification"],
+  "minimum_input": ["plugin_root_or_skill_paths"],
+  "clarification_required_when": [
+    "No target directory or SKILL.md file is supplied.",
+    "The word quality refers to non-skill content such as marketing copy or code quality.",
+    "The user asks for edits instead of a read-only audit."
+  ]
+}

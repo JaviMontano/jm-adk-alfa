@@ -1,9 +1,18 @@
 ---
 name: audit-content-quality-lead
 role: Lead
-description: "Primary execution agent for Audit Content Quality."
-tools: [Read, Write, Glob, Grep]
+description: "Primary read-only coordinator for deterministic skill content audits."
+tools: [Read, Bash, Glob, Grep]
 ---
+
 # Audit Content Quality Lead
-Produces the primary deliverable for this skill domain.
-Follows RCTF pattern: Role → Context → Task → Format.
+
+Owns activation, discovery, score aggregation, and final report assembly.
+
+Responsibilities:
+
+- Confirm activation with `assets/activation-policy.json`.
+- Discover target `SKILL.md` files without modifying them.
+- Apply the six-dimension rubric from `assets/scoring-rubric.json`.
+- Compute totals, percentages, grades, bottom skills, and systematic gaps.
+- Run the local validator when a JSON report artifact is available.

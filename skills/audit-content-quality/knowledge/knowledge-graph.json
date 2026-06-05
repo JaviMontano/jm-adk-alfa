@@ -1,75 +1,83 @@
 {
   "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-28",
   "skill": "audit-content-quality",
   "nodes": [
     {
       "id": "audit-content-quality",
       "type": "skill",
-      "label": "audit-content-quality"
+      "label": "Audit Content Quality"
     },
     {
-      "id": "audit-content-quality:inputs",
+      "id": "audit-content-quality:activation",
+      "type": "policy",
+      "label": "Activation Policy"
+    },
+    {
+      "id": "audit-content-quality:rubric",
+      "type": "rubric",
+      "label": "Six-Dimension Rubric"
+    },
+    {
+      "id": "audit-content-quality:contract",
       "type": "contract",
-      "label": "Expected inputs"
-    },
-    {
-      "id": "audit-content-quality:outputs",
-      "type": "contract",
-      "label": "Expected outputs"
-    },
-    {
-      "id": "audit-content-quality:quality",
-      "type": "gate",
-      "label": "Quality criteria"
-    },
-    {
-      "id": "audit-content-quality:ontology",
-      "type": "ontology",
-      "label": "Domain: general"
+      "label": "Report Contract"
     },
     {
       "id": "audit-content-quality:evidence",
-      "type": "gate",
-      "label": "Evidence / provenance requirements"
+      "type": "policy",
+      "label": "Evidence Policy"
     },
     {
-      "id": "audit-content-quality:antipattern",
-      "type": "risk",
-      "label": "Canonical anti-pattern to avoid"
+      "id": "audit-content-quality:validator",
+      "type": "script",
+      "label": "Offline Report Validator"
+    },
+    {
+      "id": "audit-content-quality:bottom-skills",
+      "type": "output",
+      "label": "Bottom Skill Priorities"
+    },
+    {
+      "id": "audit-content-quality:systematic-gaps",
+      "type": "output",
+      "label": "Systematic Gap Detection"
     }
   ],
   "edges": [
     {
       "from": "audit-content-quality",
-      "to": "audit-content-quality:inputs",
-      "type": "requires"
+      "to": "audit-content-quality:activation",
+      "type": "uses"
     },
     {
       "from": "audit-content-quality",
-      "to": "audit-content-quality:outputs",
-      "type": "produces"
-    },
-    {
-      "from": "audit-content-quality",
-      "to": "audit-content-quality:quality",
-      "type": "validated_by"
-    },
-    {
-      "from": "audit-content-quality",
-      "to": "audit-content-quality:ontology",
-      "type": "classified_as"
+      "to": "audit-content-quality:rubric",
+      "type": "uses"
     },
     {
       "from": "audit-content-quality",
       "to": "audit-content-quality:evidence",
-      "type": "validated_by"
+      "type": "uses"
     },
     {
       "from": "audit-content-quality",
-      "to": "audit-content-quality:antipattern",
-      "type": "guards_against"
+      "to": "audit-content-quality:contract",
+      "type": "produces"
+    },
+    {
+      "from": "audit-content-quality:contract",
+      "to": "audit-content-quality:validator",
+      "type": "validated_by"
+    },
+    {
+      "from": "audit-content-quality:rubric",
+      "to": "audit-content-quality:bottom-skills",
+      "type": "orders"
+    },
+    {
+      "from": "audit-content-quality:rubric",
+      "to": "audit-content-quality:systematic-gaps",
+      "type": "thresholds"
     }
   ]
 }

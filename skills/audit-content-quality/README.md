@@ -1,29 +1,30 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: audit-content-quality
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
-
 # Audit Content Quality
 
->
+Deterministic structural quality audit for `SKILL.md` files.
 
-## Triggers
+Use this skill when a plugin or skill directory needs per-skill scorecards,
+plugin averages, bottom-skill priorities, and systematic content gap detection.
 
-- audit-content-quality
+## Local Resources
 
-## Allowed Tools
+- `assets/activation-policy.json`: activation and false-positive routing
+- `assets/scoring-rubric.json`: six dimensions, formula, thresholds, priorities
+- `assets/report-contract.json`: required report sections and fields
+- `assets/evidence-policy.json`: rationale and evidence-tag requirements
+- `references/content-quality-rubric.md`: human-readable rubric mirror
+- `scripts/validate_content_quality_report.py`: offline report validator
+- `scripts/check.sh`: deterministic fixture test
 
-- Read
-- Glob
-- Grep
-- Bash
+## Local Checks
 
-## Quick Use
+```bash
+bash skills/audit-content-quality/scripts/check.sh
+python3 -B scripts/validate-skill-dod.py --skill audit-content-quality
+python3 -B scripts/validate-skill-scripts.py --strict --run-checks --skill audit-content-quality
+```
 
-Use this skill when the request clearly matches the triggers and requires the `audit-content-quality` capability.
+## Decision Rule
 
-## Output Format
-
-Markdown with summary, evidence, result, validation, and risks.
+All score math is formula-derived. Any discovered skill must be scored or
+explicitly listed in coverage. Weak skills need specific remediation, not
+generic advice.

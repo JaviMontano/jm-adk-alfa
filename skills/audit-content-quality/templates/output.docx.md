@@ -1,10 +1,11 @@
-# Audit Content Quality — DOCX Template
+# Audit Content Quality DOCX Template
 
-## Document Structure
-- Title: Audit Content Quality — [Client/Project Name]
-- Author: JM Labs
-- Date: {{DATE}}
+Use the same section order as `templates/output.md`.
 
-## Sections (mirror SKILL.md structure)
-See canonical SKILL.md for section blueprints.
-Use brand-config.json tokens: Navy #122562 · Gold #FFD700 · Blue #137DC5
+DOCX production rules:
+
+- Use system fonts only.
+- Use a caller-supplied date or omit the date.
+- Keep scorecard columns in the canonical six-dimension order.
+- Preserve exact numeric scores, percentages, grades, and evidence tags.
+- Do not use external images, remote fonts, or live brand assets.

@@ -1,0 +1,124 @@
+{
+  "summary": {
+    "plugin_root": "skills/sample-plugin",
+    "total_skills": 3,
+    "average_score": 42.0,
+    "average_percentage": 70.0,
+    "grade": "C",
+    "systematic_gap_count": 1
+  },
+  "scorecards": [
+    {
+      "skill": "alpha",
+      "path": "skills/sample-plugin/alpha/SKILL.md",
+      "scores": {
+        "completeness": 10,
+        "description_quality": 8,
+        "procedure_clarity": 8,
+        "quality_criteria": 10,
+        "anti_patterns": 8,
+        "edge_cases": 8
+      },
+      "rationales": {
+        "completeness": "[CODE] Frontmatter and all required body sections are present.",
+        "description_quality": "[DOC] Description has clear purpose and trigger phrases.",
+        "procedure_clarity": "[DOC] Numbered procedure names concrete tools and outputs.",
+        "quality_criteria": "[DOC] Five measurable criteria are listed.",
+        "anti_patterns": "[DOC] Four anti-patterns include explanations.",
+        "edge_cases": "[DOC] Four edge cases include handling strategies."
+      },
+      "total_score": 52,
+      "percentage": 86.67,
+      "grade": "B",
+      "lowest_dimension": "description_quality",
+      "recommendation": "Add negative activation guidance to move Description Quality toward 10."
+    },
+    {
+      "skill": "beta",
+      "path": "skills/sample-plugin/beta/SKILL.md",
+      "scores": {
+        "completeness": 6,
+        "description_quality": 6,
+        "procedure_clarity": 5,
+        "quality_criteria": 6,
+        "anti_patterns": 5,
+        "edge_cases": 6
+      },
+      "rationales": {
+        "completeness": "[CODE] Frontmatter exists but anti-patterns are thin.",
+        "description_quality": "[DOC] Description says what but not when to avoid activation.",
+        "procedure_clarity": "[DOC] Procedure has steps but limited tool-aware outputs.",
+        "quality_criteria": "[DOC] Three criteria are measurable and one is vague.",
+        "anti_patterns": "[DOC] Two anti-patterns lack why-it-matters explanations.",
+        "edge_cases": "[DOC] Three edge cases are present with limited variety."
+      },
+      "total_score": 34,
+      "percentage": 56.67,
+      "grade": "F",
+      "lowest_dimension": "procedure_clarity",
+      "recommendation": "Add tool-aware procedure outputs and explain at least three anti-patterns."
+    },
+    {
+      "skill": "gamma",
+      "path": "skills/sample-plugin/gamma/SKILL.md",
+      "scores": {
+        "completeness": 8,
+        "description_quality": 8,
+        "procedure_clarity": 7,
+        "quality_criteria": 8,
+        "anti_patterns": 4,
+        "edge_cases": 5
+      },
+      "rationales": {
+        "completeness": "[CODE] Required sections exist but edge cases are thin.",
+        "description_quality": "[DOC] Description includes purpose and triggers.",
+        "procedure_clarity": "[DOC] Steps are ordered but branch logic is weak.",
+        "quality_criteria": "[DOC] Four criteria are mostly testable.",
+        "anti_patterns": "[DOC] Only two anti-patterns are listed.",
+        "edge_cases": "[DOC] Two edge cases exist with minimal handling."
+      },
+      "total_score": 40,
+      "percentage": 66.67,
+      "grade": "D",
+      "lowest_dimension": "anti_patterns",
+      "recommendation": "Add three explained anti-patterns and two edge cases with handling."
+    }
+  ],
+  "bottom_skills": [
+    {
+      "skill": "beta",
+      "total_score": 34,
+      "grade": "F",
+      "priority": "P1",
+      "recommendation": "Add tool-aware procedure outputs and explain at least three anti-patterns."
+    },
+    {
+      "skill": "gamma",
+      "total_score": 40,
+      "grade": "D",
+      "priority": "P2",
+      "recommendation": "Add three explained anti-patterns and two edge cases with handling."
+    },
+    {
+      "skill": "alpha",
+      "total_score": 52,
+      "grade": "B",
+      "priority": "P3",
+      "recommendation": "Add negative activation guidance to move Description Quality toward 10."
+    }
+  ],
+  "systematic_gaps": [
+    {
+      "dimension": "anti_patterns",
+      "average_score": 5.67,
+      "priority": "P2",
+      "recommendation": "Add at least three anti-patterns with why-it-matters explanations to every low-scoring skill."
+    }
+  ],
+  "coverage": {
+    "discovered_skills": 3,
+    "scored_skills": 3,
+    "skipped_skills": []
+  },
+  "warnings": []
+}
