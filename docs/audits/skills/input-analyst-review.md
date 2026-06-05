@@ -58,3 +58,10 @@ system.
 [INFERENCE] The full-worktree whitespace check currently fails because of
 `skills/validate-hooks/**`, which is outside this review's ownership boundary.
 The scoped whitespace check for `input-analyst` and its review passes.
+
+## Ledger Completion 2026-06-05
+
+- [CODE] `bash skills/input-analyst/scripts/check.sh` passed in `codex/complete-script-backed-ledger-20260605` validation.
+- [CODE] `python3 -B scripts/validate-skill-dod.py --skill input-analyst` passed with `skill=input-analyst dod=pass errors=0`.
+- [CODE] `python3 -B scripts/validate-skill-scripts.py --strict --run-checks --skill input-analyst` passed with `skills_with_scripts=1 warnings=0 errors=0`.
+- [CONFIG] `docs/audits/skill-review-ledger.csv` now records `input-analyst` as `dod-complete`.

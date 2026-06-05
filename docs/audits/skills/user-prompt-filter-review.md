@@ -60,3 +60,10 @@ PASS
   in depth remains required.
 - [INFERENCE] The filter intentionally escalates ambiguous authority instead of
   treating claimed authorization as proof.
+
+## Ledger Completion 2026-06-05
+
+- [CODE] `bash skills/user-prompt-filter/scripts/check.sh` passed in `codex/complete-script-backed-ledger-20260605` validation.
+- [CODE] `python3 -B scripts/validate-skill-dod.py --skill user-prompt-filter` passed with `skill=user-prompt-filter dod=pass errors=0`.
+- [CODE] `python3 -B scripts/validate-skill-scripts.py --strict --run-checks --skill user-prompt-filter` passed with `skills_with_scripts=1 warnings=0 errors=0`.
+- [CONFIG] `docs/audits/skill-review-ledger.csv` now records `user-prompt-filter` as `dod-complete`.

@@ -19,3 +19,10 @@
 - `bash skills/agentic-loop-engineering/scripts/check.sh` passed.
 - `python3 -B scripts/validate-skill-dod.py --skill agentic-loop-engineering` passed.
 - `python3 -B scripts/validate-skill-scripts.py --strict --run-checks --skill agentic-loop-engineering` passed.
+
+## Ledger Completion 2026-06-05
+
+- [CODE] `bash skills/agentic-loop-engineering/scripts/check.sh` passed in `codex/complete-script-backed-ledger-20260605` validation.
+- [CODE] `python3 -B scripts/validate-skill-dod.py --skill agentic-loop-engineering` passed with `skill=agentic-loop-engineering dod=pass errors=0`.
+- [CODE] `python3 -B scripts/validate-skill-scripts.py --strict --run-checks --skill agentic-loop-engineering` passed with `skills_with_scripts=1 warnings=0 errors=0`.
+- [CONFIG] `docs/audits/skill-review-ledger.csv` now records `agentic-loop-engineering` as `dod-complete`.
