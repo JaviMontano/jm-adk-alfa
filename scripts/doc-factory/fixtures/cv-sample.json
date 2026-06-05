@@ -1,0 +1,63 @@
+{
+  "name": "Javier Montano",
+  "title": "AI Solutions Architect & Agentic Development Lead",
+  "email": "javier@metodologia.info",
+  "location": "LATAM (Remote)",
+  "linkedin": "https://linkedin.com/in/javimontano",
+  "website": "https://metodologia.info",
+  "summary": "15+ years leading digital transformation with AI-first methodologies. Creator of MetodologIA and JM Agentic Development Kit (524 skills). Expert in agentic architectures, Firebase ecosystems, and spec-driven development.",
+  "experience": [
+    {
+      "company": "JM Labs / MetodologIA",
+      "role": "Founder & AI Architect",
+      "period": "2023 — Presente",
+      "achievements": [
+        "Created JM-ADK with 524 skills, 256 agents, and 4 workflow pipelines",
+        "Designed Pristino v6.0 orchestrator for multi-agent coordination",
+        "Built Doc Factory engine supporting 6 deterministic output formats",
+        "Deployed Google Workspace MCP integration with 90+ tools"
+      ]
+    },
+    {
+      "company": "Sofka Technologies",
+      "role": "Senior Solutions Architect",
+      "period": "2020 — 2023",
+      "location": "Colombia",
+      "achievements": [
+        "Led AI pre-sales discovery framework (SAGE) generating $2M+ pipeline",
+        "Architected enterprise SAP integration plugin with tariff analysis",
+        "Designed 107-agent discovery platform for client assessments"
+      ]
+    },
+    {
+      "company": "Digital Agency MX",
+      "role": "Tech Lead",
+      "period": "2017 — 2020",
+      "achievements": [
+        "Managed team of 12 developers across 3 client projects",
+        "Implemented Firebase-native architecture reducing hosting costs 60%",
+        "Achieved Lighthouse scores > 95 across all client properties"
+      ]
+    }
+  ],
+  "education": [
+    {
+      "institution": "Universidad Nacional",
+      "degree": "Ingenieria en Sistemas Computacionales",
+      "period": "2005 — 2010"
+    }
+  ],
+  "skills": [
+    "AI/ML Architecture", "Claude Code", "Firebase", "Angular 18+", "React 19+",
+    "Node.js", "Python", "TypeScript", "Google Cloud", "MCP Servers",
+    "Spec-Driven Development", "BMAD Method", "Agentic Systems"
+  ],
+  "certifications": [
+    {"name": "Google Cloud Professional Architect", "issuer": "Google", "year": "2024"},
+    {"name": "AWS Solutions Architect Associate", "issuer": "Amazon", "year": "2022"}
+  ],
+  "languages": [
+    {"language": "Espanol", "level": "Nativo"},
+    {"language": "Ingles", "level": "Avanzado (C1)"}
+  ]
+}

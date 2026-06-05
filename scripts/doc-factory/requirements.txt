@@ -1,0 +1,17 @@
+# Doc Factory — Document Generation Engine
+# Install: pip install -r requirements.txt
+
+# Core (always needed)
+jinja2>=3.1.0           # Template rendering for HTML, MD
+
+# Office formats (install as needed)
+docxtpl>=0.16.0         # DOCX from templates (Jinja2 + python-docx)
+python-docx>=1.0.0      # DOCX programmatic generation (fallback)
+openpyxl>=3.1.0         # XLSX spreadsheet generation
+python-pptx>=1.0.0      # PPTX presentation generation
+
+# PDF (optional — requires system libs: cairo, pango)
+# weasyprint>=60.0      # HTML → PDF (uncomment if system libs available)
+
+# Utilities
+# jsonschema>=4.0.0     # Full JSON Schema validation (optional, basic validation built-in)

@@ -1,0 +1,15 @@
+{
+  "folio": "FAC-2026-003",
+  "title": "Factura",
+  "date": "2026-04-02",
+  "client_name": "Acme Corp",
+  "client_email": "contacto@acme.com",
+  "currency": "$",
+  "items": [
+    {"description": "Consultoria AI Strategy", "quantity": 10, "unit_price": 150.00},
+    {"description": "Workshop Design Thinking", "quantity": 1, "unit_price": 2500.00},
+    {"description": "Documentacion tecnica", "quantity": 5, "unit_price": 80.00}
+  ],
+  "tax_rate": 0.16,
+  "notes": "Pago a 30 dias. Transferencia bancaria."
+}

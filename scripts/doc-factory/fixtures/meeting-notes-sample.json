@@ -1,0 +1,27 @@
+{
+  "title": "Sprint Planning Q2 — Semana 14",
+  "date": "2026-04-02",
+  "time": "10:00",
+  "location": "Google Meet",
+  "facilitator": "Javier Montano",
+  "attendees": ["Javier Montano", "Ana Lopez", "Carlos Ruiz", "Sofia Martinez"],
+  "absent": ["Pedro Sanchez"],
+  "agenda": [
+    "Revision de sprint anterior",
+    "Backlog grooming",
+    "Asignacion de tareas Q2"
+  ],
+  "discussion_points": [
+    {"topic": "Sprint anterior", "summary": "Se completaron 8 de 10 stories. 2 se movieron al siguiente sprint por dependencias externas.", "decision": "Las 2 stories pendientes son prioridad P0 para este sprint."},
+    {"topic": "Backlog grooming", "summary": "Se revisaron 15 stories del backlog. 5 requieren refinamiento adicional.", "decision": "Carlos y Sofia refinaran las 5 stories antes del jueves."},
+    {"topic": "Asignacion Q2", "summary": "Se distribuyo la carga de trabajo. Ana toma el modulo de reportes, Carlos el de integraciones.", "decision": "Cada quien tiene ownership de su modulo."}
+  ],
+  "action_items": [
+    {"task": "Refinar las 5 stories del backlog", "owner": "Carlos Ruiz", "deadline": "2026-04-04", "priority": "Alta"},
+    {"task": "Completar las 2 stories pendientes del sprint anterior", "owner": "Ana Lopez", "deadline": "2026-04-03", "priority": "Alta"},
+    {"task": "Preparar demo de reportes para stakeholders", "owner": "Sofia Martinez", "deadline": "2026-04-09", "priority": "Media"},
+    {"task": "Configurar pipeline CI/CD para modulo integraciones", "owner": "Javier Montano", "deadline": "2026-04-07", "priority": "Media"}
+  ],
+  "next_meeting": "2026-04-09 10:00 — Sprint Review",
+  "notes": "Sofia solicita acceso al ambiente de staging."
+}
