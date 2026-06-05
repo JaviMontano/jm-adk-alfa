@@ -33,7 +33,7 @@ Role: homologated AGENTS mirror for runtimes that load \`AGENTS.md\`.
 
 ## Environment
 
-IDE family: agents | Triad: sequential/checklist by runtime | Tools: runtime-dependent | MCP: runtime-dependent | Multimodal: runtime-dependent
+IDE family: agents | Triad: sequential/checklist by runtime | Tools: MCP via config (see Tool Access) | MCP: yes via \`~/.codex/config.toml\` | Multimodal: runtime-dependent
 Components: $SKILLS_COUNT skills · $AGENTS_COUNT agents · $COMMANDS_COUNT commands · $PROMPTS_COUNT prompts
 
 ## Awakening
@@ -75,6 +75,11 @@ $(acl_core_rules | head -6 | sed 's/^/- /')
 
 $(acl_quality_gates)
 
+## Tool Access (MCP)
+
+$(acl_tool_access_contract)
+- Codex CLI wiring: define \`[mcp_servers.workspace-mcp]\` in \`~/.codex/config.toml\` (or project \`.codex/config.toml\`), or run \`codex mcp add workspace-mcp -- uvx workspace-mcp\`. Template: \`references/mcp/codex.config.toml.example\`.
+
 ## Placement & Naming Contract
 
 - Task deliverables → \`workspace/{active}/artifacts/\`. Task scaffolding stays at task root. Never mix system files with deliverables.
@@ -109,7 +114,7 @@ Role: homologated GEMINI mirror for runtimes that load \`GEMINI.md\` or a Gemini
 
 ## Environment
 
-IDE family: gemini | Triad: sequential/adapter-guided by runtime | Tools: runtime-dependent | Hooks: runtime-dependent | MCP: runtime-dependent | Multimodal: runtime-dependent
+IDE family: gemini | Triad: sequential/adapter-guided by runtime | Tools: MCP via config (see Tool Access) | Hooks: runtime-dependent | MCP: yes via \`~/.gemini/settings.json\` | Multimodal: runtime-dependent
 Components: $SKILLS_COUNT skills · $AGENTS_COUNT agents · $COMMANDS_COUNT commands · $PROMPTS_COUNT prompts
 
 ## Awakening
@@ -150,6 +155,11 @@ $(acl_core_rules | head -6 | sed 's/^/- /')
 ## Quality Gates
 
 $(acl_quality_gates)
+
+## Tool Access (MCP)
+
+$(acl_tool_access_contract)
+- Gemini CLI wiring: add \`workspace-mcp\` under \`mcpServers\` in \`~/.gemini/settings.json\` (or project \`.gemini/settings.json\`); optionally gate with \`mcp.allowed\`. Template: \`references/mcp/gemini.settings.json.example\`.
 
 ## Placement & Naming Contract
 

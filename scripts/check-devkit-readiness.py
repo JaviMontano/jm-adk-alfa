@@ -138,6 +138,17 @@ def main() -> int:
         detail = personal.stdout.strip() or personal.stderr.strip()
         errors.append(f"personal skills diagnosis failed: {detail}")
 
+    mcp = subprocess.run(
+        ["python3", str(ROOT / "scripts/validate-mcp-config.py")],
+        text=True,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        check=False,
+    )
+    if mcp.returncode != 0:
+        detail = mcp.stdout.strip() or mcp.stderr.strip()
+        errors.append(f"mcp config validation failed: {detail}")
+
     if errors:
         for error in errors:
             print(f"ERROR: {error}")
@@ -147,6 +158,7 @@ def main() -> int:
     print("required files: present")
     print("required skills: present")
     print("local override files: untracked")
+    print("mcp config: validated")
     return 0
 
 

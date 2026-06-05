@@ -21,7 +21,7 @@
 
 ## Runtime Boundary
 
-This directory is a derived adapter view. Runtime support for Antigravity-specific execution, function calling, multimodal behavior, hooks, MCP, and workspace management is validation pending until checked in the target Antigravity environment.
+This directory is a derived adapter view. MCP tool access is wired via `~/.gemini/config/mcp_config.json` or the MCP Store (see `.agent/rules/GEMINI.md` → Tool Access). Runtime support for Antigravity-specific execution, function calling, multimodal behavior, hooks, and workspace management is validation pending until checked in the target Antigravity environment.
 
 ## User Context Boundary
 

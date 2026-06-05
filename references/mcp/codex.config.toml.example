@@ -1,0 +1,12 @@
+# OpenAI Codex CLI — ~/.codex/config.toml (or project .codex/config.toml)
+# Wire with: codex mcp add workspace-mcp -- uvx workspace-mcp
+
+[mcp_servers.workspace-mcp]
+command = "uvx"
+args = ["workspace-mcp", "--tool-tier", "extended", "--tools", "gmail", "drive", "calendar", "docs", "sheets", "slides", "forms", "tasks", "contacts"]
+startup_timeout_sec = 30
+default_tools_approval_mode = "prompt"
+
+[mcp_servers.workspace-mcp.env]
+GOOGLE_OAUTH_CREDENTIALS = "${GOOGLE_WORKSPACE_CREDENTIALS_PATH}"
+OAUTHLIB_INSECURE_TRANSPORT = "1"

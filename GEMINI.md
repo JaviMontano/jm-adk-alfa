@@ -9,7 +9,7 @@ Role: homologated GEMINI mirror for runtimes that load `GEMINI.md` or a Gemini a
 
 ## Environment
 
-IDE family: gemini | Triad: sequential/adapter-guided by runtime | Tools: runtime-dependent | Hooks: runtime-dependent | MCP: runtime-dependent | Multimodal: runtime-dependent
+IDE family: gemini | Triad: sequential/adapter-guided by runtime | Tools: MCP via config (see Tool Access) | Hooks: runtime-dependent | MCP: yes via `~/.gemini/settings.json` | Multimodal: runtime-dependent
 Components: 585 skills · 260 agents · 267 commands · 256 prompts
 
 ## Awakening
@@ -81,6 +81,16 @@ Auto-select the best skill for intent. Confidence ≥ 0.85 → execute. 0.60-0.8
 ## Quality Gates
 
 G0 (pre-flight) → G1 (post-spec) → G2 (post-plan) → G3 (deploy-ready)
+
+## Tool Access (MCP)
+
+- One MCP server, `workspace-mcp` (stdio, launched via `uvx`), aggregates 9 Google Workspace services: Gmail, Drive, Docs, Sheets, Slides, Calendar, Forms, Tasks, Contacts.
+- Auth is OAuth2. Credentials live at `~/.config/workspace-mcp/credentials.json` and are never committed.
+- Configs inject the credentials path via the `GOOGLE_WORKSPACE_CREDENTIALS_PATH` env var; every config uses `${ENV}` placeholders, never literal secrets.
+- Canonical server definition: `.mcp.json` (Claude project scope). Per-runtime wiring and paste-ready snippets: `docs/runtime-tool-access-matrix.md`.
+- OAuth setup pipeline: `docs/google-workspace-mcp-setup.md`. Validate config with `python3 scripts/validate-mcp-config.py`.
+- Workspace tracking and the 5 lifecycle hooks (SessionStart, UserPromptSubmit, PreToolUse, PostToolUse, Stop) are Claude-runtime features; other runtimes apply the placement and naming contract manually.
+- Gemini CLI wiring: add `workspace-mcp` under `mcpServers` in `~/.gemini/settings.json` (or project `.gemini/settings.json`); optionally gate with `mcp.allowed`. Template: `references/mcp/gemini.settings.json.example`.
 
 ## Placement & Naming Contract
 

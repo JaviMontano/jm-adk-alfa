@@ -58,7 +58,33 @@ python3 scripts/setup-workspace-profile.py --dry-run
 python3 scripts/setup-workspace-profile.py --apply
 ```
 
-The profile lives in `.jm-adk.local.json` and must remain untracked.
+Declare which runtimes you will drive the kit from (validated against the known
+set: `claude-code`, `claude-desktop`, `claude-cowork`, `codex`, `gemini-cli`,
+`antigravity`, `cursor`, `windsurf`, `vscode-copilot`):
+
+```bash
+python3 scripts/setup-workspace-profile.py \
+  --runtime claude-code \
+  --runtime-targets claude-code,claude-desktop,codex,antigravity \
+  --apply
+```
+
+The profile lives in `.jm-adk.local.json` (schema 2, with `preferredRuntime` +
+`runtimeTargets`) and must remain untracked.
+
+## Tool Access (MCP)
+
+The kit ships one MCP server, `workspace-mcp` (Gmail + Google Workspace, OAuth2).
+It runs on every supported runtime; the config file and snippet differ per runtime.
+
+```bash
+python3 scripts/generate-mcp-configs.py --apply   # write references/mcp/*.example
+python3 scripts/validate-mcp-config.py            # check wiring is coherent + secret-free
+```
+
+Per-tool × per-runtime wiring (Claude Code, Claude Desktop, Codex, Gemini CLI,
+Antigravity, Cursor, Windsurf, VS Code): `docs/runtime-tool-access-matrix.md`.
+OAuth setup: `docs/google-workspace-mcp-setup.md`.
 
 ## User Context Repo
 
@@ -184,6 +210,7 @@ python3 scripts/diagnose-user-context.py --dry-run
 python3 scripts/diagnose-personal-skills.py --dry-run
 python3 scripts/sync-personal-skills.py --dry-run --target /tmp/alfa-personal-skills-target
 python3 scripts/validate-runtime-instructions.py
+python3 scripts/validate-mcp-config.py
 python3 scripts/count-components.py --check-docs
 bash scripts/check-repo-boundaries.sh
 python3 scripts/validate-onboarding.py
