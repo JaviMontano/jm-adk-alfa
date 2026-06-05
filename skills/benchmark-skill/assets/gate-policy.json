@@ -1,0 +1,104 @@
+{
+  "schema": 1,
+  "skill": "benchmark-skill",
+  "gates": [
+    {
+      "id": 1,
+      "key": "skill_md_exists",
+      "label": "SKILL.md exists",
+      "severity": "blocker"
+    },
+    {
+      "id": 2,
+      "key": "frontmatter_valid",
+      "label": "Frontmatter has name and description",
+      "severity": "blocker"
+    },
+    {
+      "id": 3,
+      "key": "activation_specific",
+      "label": "Activation triggers are specific",
+      "severity": "high"
+    },
+    {
+      "id": 4,
+      "key": "allowed_tools_minimal",
+      "label": "Allowed tools match actual workflow",
+      "severity": "high"
+    },
+    {
+      "id": 5,
+      "key": "assets_manifest",
+      "label": "Assets manifest present and referenced",
+      "severity": "high"
+    },
+    {
+      "id": 6,
+      "key": "eval_cases",
+      "label": "Evals use cases with false positives and edge cases",
+      "severity": "high"
+    },
+    {
+      "id": 7,
+      "key": "examples_specific",
+      "label": "Examples are realistic and non-scaffold",
+      "severity": "medium"
+    },
+    {
+      "id": 8,
+      "key": "validation_gate",
+      "label": "Validation gate is testable",
+      "severity": "high"
+    },
+    {
+      "id": 9,
+      "key": "failure_modes",
+      "label": "Failure modes have recovery paths",
+      "severity": "medium"
+    },
+    {
+      "id": 10,
+      "key": "progressive_disclosure",
+      "label": "Reference files are loaded only when needed",
+      "severity": "medium"
+    },
+    {
+      "id": 11,
+      "key": "agent_prompt_alignment",
+      "label": "Agents and prompts match root skill contract",
+      "severity": "high"
+    },
+    {
+      "id": 12,
+      "key": "template_offline",
+      "label": "Templates do not require network or dynamic time",
+      "severity": "medium"
+    },
+    {
+      "id": 13,
+      "key": "script_checks",
+      "label": "Script-backed deterministic checks pass when scripts exist",
+      "severity": "blocker"
+    }
+  ],
+  "gate_entry_fields": [
+    "gate",
+    "state_a",
+    "state_b",
+    "change",
+    "evidence"
+  ],
+  "outcomes": [
+    "PASS",
+    "FAIL",
+    "N/A"
+  ],
+  "changes": [
+    "Fixed",
+    "Regressed",
+    "Same",
+    "New",
+    "Removed",
+    "N/A"
+  ]
+}

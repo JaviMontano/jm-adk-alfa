@@ -1,0 +1,29 @@
+{
+  "compared": {
+    "mode": "version",
+    "state_a": "",
+    "state_b": "skills/example-skill@after",
+    "evidence": "[CÓDIGO] State A baseline path was not provided."
+  },
+  "summary": {
+    "mode": "version",
+    "net_assessment": "IMPROVED",
+    "average_a": 0,
+    "average_b": 8,
+    "average_delta": 8,
+    "dimensions_improved": 0,
+    "dimensions_regressed": 0,
+    "gate_regressions": 0,
+    "transformed": false
+  },
+  "inventory": [],
+  "dimension_scores": [],
+  "gate_changes": [],
+  "regressions": [],
+  "top_improvements": [],
+  "tradeoffs": [],
+  "recommendation": "[CONFIG] Ask for a valid State A baseline.",
+  "caveats": [
+    "[INFERENCIA] A benchmark cannot prove improvement without a baseline."
+  ]
+}

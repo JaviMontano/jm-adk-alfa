@@ -1,0 +1,261 @@
+{
+  "compared": {
+    "mode": "version",
+    "state_a": "skills/example-skill@before",
+    "state_b": "skills/example-skill@after",
+    "evidence": "[CÓDIGO] Both states include SKILL.md and comparable skill folders."
+  },
+  "summary": {
+    "mode": "version",
+    "net_assessment": "IMPROVED",
+    "average_a": 7.1,
+    "average_b": 8.3,
+    "average_delta": 1.2,
+    "dimensions_improved": 8,
+    "dimensions_regressed": 0,
+    "gate_regressions": 0,
+    "transformed": false
+  },
+  "inventory": [
+    {
+      "files": 15,
+      "lines": 420,
+      "skill_md_lines": 170,
+      "references": 1,
+      "eval_cases": 7,
+      "agents": 4,
+      "scripts": 0,
+      "assets": 0,
+      "examples": 2,
+      "templates": 3
+    },
+    {
+      "files": 28,
+      "lines": 690,
+      "skill_md_lines": 230,
+      "references": 1,
+      "eval_cases": 10,
+      "agents": 4,
+      "scripts": 2,
+      "assets": 4,
+      "examples": 2,
+      "templates": 3
+    }
+  ],
+  "dimension_scores": [
+    {
+      "dimension": "foundation",
+      "state_a": 7,
+      "state_b": 8,
+      "delta": 1,
+      "direction": "Better",
+      "evidence": "[CÓDIGO] After state adds explicit activation boundaries and assumptions."
+    },
+    {
+      "dimension": "truthfulness",
+      "state_a": 7,
+      "state_b": 8,
+      "delta": 1,
+      "direction": "Better",
+      "evidence": "[CÓDIGO] After state marks missing catalog context as open."
+    },
+    {
+      "dimension": "quality",
+      "state_a": 7,
+      "state_b": 8,
+      "delta": 1,
+      "direction": "Better",
+      "evidence": "[CÓDIGO] After state adds asset-backed output contract and validation gate."
+    },
+    {
+      "dimension": "density",
+      "state_a": 8,
+      "state_b": 8,
+      "delta": 0,
+      "direction": "Same",
+      "evidence": "[CÓDIGO] Added detail is offset by removal of scaffold filler."
+    },
+    {
+      "dimension": "simplicity",
+      "state_a": 8,
+      "state_b": 8,
+      "delta": 0,
+      "direction": "Same",
+      "evidence": "[CÓDIGO] The main process remains one linear scoring flow."
+    },
+    {
+      "dimension": "clarity",
+      "state_a": 7,
+      "state_b": 9,
+      "delta": 2,
+      "direction": "Better",
+      "evidence": "[CÓDIGO] After state defines exact labels and report sections."
+    },
+    {
+      "dimension": "precision",
+      "state_a": 7,
+      "state_b": 9,
+      "delta": 2,
+      "direction": "Better",
+      "evidence": "[CÓDIGO] After state adds numeric deltas, gate outcomes, and assessment policy."
+    },
+    {
+      "dimension": "depth",
+      "state_a": 6,
+      "state_b": 8,
+      "delta": 2,
+      "direction": "Better",
+      "evidence": "[CÓDIGO] After state covers regressions, trade-offs, transformed states, and missing baselines."
+    },
+    {
+      "dimension": "coherence",
+      "state_a": 7,
+      "state_b": 9,
+      "delta": 2,
+      "direction": "Better",
+      "evidence": "[CÓDIGO] Agents, prompts, evals, assets, and scripts now use the same benchmark terms."
+    },
+    {
+      "dimension": "value",
+      "state_a": 7,
+      "state_b": 8,
+      "delta": 1,
+      "direction": "Better",
+      "evidence": "[CÓDIGO] Script-backed checks make benchmark reports reproducible."
+    }
+  ],
+  "gate_changes": [
+    {
+      "gate": "skill_md_exists",
+      "state_a": "PASS",
+      "state_b": "PASS",
+      "change": "Same",
+      "evidence": "[CÓDIGO] SKILL.md exists in both states."
+    },
+    {
+      "gate": "frontmatter_valid",
+      "state_a": "PASS",
+      "state_b": "PASS",
+      "change": "Same",
+      "evidence": "[CÓDIGO] Frontmatter parses in both states."
+    },
+    {
+      "gate": "activation_specific",
+      "state_a": "PASS",
+      "state_b": "PASS",
+      "change": "Same",
+      "evidence": "[CÓDIGO] Both states include benchmark triggers."
+    },
+    {
+      "gate": "allowed_tools_minimal",
+      "state_a": "PASS",
+      "state_b": "PASS",
+      "change": "Same",
+      "evidence": "[CÓDIGO] Root skill remains read-only."
+    },
+    {
+      "gate": "assets_manifest",
+      "state_a": "FAIL",
+      "state_b": "PASS",
+      "change": "Fixed",
+      "evidence": "[CÓDIGO] After state adds assets/manifest.json."
+    },
+    {
+      "gate": "eval_cases",
+      "state_a": "FAIL",
+      "state_b": "PASS",
+      "change": "Fixed",
+      "evidence": "[CÓDIGO] After state converts evals to cases."
+    },
+    {
+      "gate": "examples_specific",
+      "state_a": "FAIL",
+      "state_b": "PASS",
+      "change": "Fixed",
+      "evidence": "[CÓDIGO] After state replaces scaffold examples."
+    },
+    {
+      "gate": "validation_gate",
+      "state_a": "PASS",
+      "state_b": "PASS",
+      "change": "Same",
+      "evidence": "[CÓDIGO] Both states include a validation gate."
+    },
+    {
+      "gate": "failure_modes",
+      "state_a": "PASS",
+      "state_b": "PASS",
+      "change": "Same",
+      "evidence": "[CÓDIGO] Both states discuss missing baselines and invalid paths."
+    },
+    {
+      "gate": "progressive_disclosure",
+      "state_a": "PASS",
+      "state_b": "PASS",
+      "change": "Same",
+      "evidence": "[CÓDIGO] Reference loading is explicit."
+    },
+    {
+      "gate": "agent_prompt_alignment",
+      "state_a": "FAIL",
+      "state_b": "PASS",
+      "change": "Fixed",
+      "evidence": "[CÓDIGO] After state aligns agents and prompts with read-only benchmark contract."
+    },
+    {
+      "gate": "template_offline",
+      "state_a": "FAIL",
+      "state_b": "PASS",
+      "change": "Fixed",
+      "evidence": "[CÓDIGO] After state removes live font dependency."
+    },
+    {
+      "gate": "script_checks",
+      "state_a": "N/A",
+      "state_b": "PASS",
+      "change": "New",
+      "evidence": "[CÓDIGO] After state adds deterministic script checks."
+    }
+  ],
+  "regressions": [
+    {
+      "dimension_or_gate": "none",
+      "delta_or_change": "0",
+      "cause": "[CÓDIGO] No lower score or gate regression was observed.",
+      "severity": "none",
+      "tradeoff": "false"
+    }
+  ],
+  "top_improvements": [
+    {
+      "dimension_or_gate": "clarity",
+      "delta_or_change": "+2",
+      "driver": "[CÓDIGO] Report sections and labels became explicit.",
+      "genuine": true
+    },
+    {
+      "dimension_or_gate": "precision",
+      "delta_or_change": "+2",
+      "driver": "[CÓDIGO] Numeric deltas and policy-backed assessment were added.",
+      "genuine": true
+    },
+    {
+      "dimension_or_gate": "depth",
+      "delta_or_change": "+2",
+      "driver": "[CÓDIGO] Missing baseline and transformed-state cases were added.",
+      "genuine": true
+    }
+  ],
+  "tradeoffs": [
+    {
+      "dimension_or_gate": "density",
+      "delta_or_change": "0",
+      "driver": "[INFERENCIA] Added content was offset by removing scaffold filler.",
+      "accepted": true
+    }
+  ],
+  "recommendation": "[CONFIG] Merge after Quality Gates pass because no regressions remain.",
+  "caveats": [
+    "[INFERENCIA] The benchmark validates report consistency and structural quality, not runtime behavior."
+  ]
+}

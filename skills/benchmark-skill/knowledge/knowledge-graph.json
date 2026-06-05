@@ -1,75 +1,83 @@
 {
   "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-28",
   "skill": "benchmark-skill",
   "nodes": [
     {
       "id": "benchmark-skill",
       "type": "skill",
-      "label": "benchmark-skill"
+      "label": "Benchmark Skill"
     },
     {
-      "id": "benchmark-skill:inputs",
-      "type": "contract",
-      "label": "Expected inputs"
+      "id": "benchmark-rubric",
+      "type": "rubric",
+      "label": "10-dimension skill quality rubric"
     },
     {
-      "id": "benchmark-skill:outputs",
-      "type": "contract",
-      "label": "Expected outputs"
+      "id": "gate-policy",
+      "type": "policy",
+      "label": "13 gate benchmark policy"
     },
     {
-      "id": "benchmark-skill:quality",
-      "type": "gate",
-      "label": "Quality criteria"
+      "id": "net-assessment-policy",
+      "type": "policy",
+      "label": "Net assessment classifier"
     },
     {
-      "id": "benchmark-skill:ontology",
-      "type": "ontology",
-      "label": "Domain: general"
+      "id": "report-contract",
+      "type": "schema",
+      "label": "Benchmark report contract"
     },
     {
-      "id": "benchmark-skill:evidence",
-      "type": "gate",
-      "label": "Evidence / provenance requirements"
+      "id": "comparison-framework",
+      "type": "reference",
+      "label": "Scoring consistency and trade-off framework"
     },
     {
-      "id": "benchmark-skill:antipattern",
-      "type": "risk",
-      "label": "Canonical anti-pattern to avoid"
+      "id": "deterministic-validator",
+      "type": "script",
+      "label": "Local benchmark report validator"
+    },
+    {
+      "id": "benchmark-report",
+      "type": "output",
+      "label": "Benchmark report"
     }
   ],
   "edges": [
     {
       "from": "benchmark-skill",
-      "to": "benchmark-skill:inputs",
-      "type": "requires"
-    },
-    {
-      "from": "benchmark-skill",
-      "to": "benchmark-skill:outputs",
+      "to": "benchmark-report",
       "type": "produces"
     },
     {
-      "from": "benchmark-skill",
-      "to": "benchmark-skill:quality",
+      "from": "benchmark-report",
+      "to": "report-contract",
       "type": "validated_by"
     },
     {
-      "from": "benchmark-skill",
-      "to": "benchmark-skill:ontology",
-      "type": "classified_as"
+      "from": "benchmark-report",
+      "to": "benchmark-rubric",
+      "type": "scores_with"
     },
     {
-      "from": "benchmark-skill",
-      "to": "benchmark-skill:evidence",
-      "type": "validated_by"
+      "from": "benchmark-report",
+      "to": "gate-policy",
+      "type": "checks_with"
     },
     {
-      "from": "benchmark-skill",
-      "to": "benchmark-skill:antipattern",
-      "type": "guards_against"
+      "from": "benchmark-report",
+      "to": "net-assessment-policy",
+      "type": "classified_by"
+    },
+    {
+      "from": "benchmark-rubric",
+      "to": "comparison-framework",
+      "type": "calibrated_by"
+    },
+    {
+      "from": "deterministic-validator",
+      "to": "report-contract",
+      "type": "enforces"
     }
   ]
 }

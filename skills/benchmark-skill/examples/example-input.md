@@ -1,10 +1,14 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: benchmark-skill
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
-
 # Example Input
 
-Use `benchmark-skill` to produce a concise deliverable for a realistic project request.
+Benchmark `skills/example-skill-before` against
+`skills/example-skill-after`.
+
+Decide whether the hardening improved the skill. Include:
+
+- inventory deltas
+- 10-dimension scorecard
+- 13 gate changes
+- regressions and trade-offs
+- top improvements
+- net assessment
+- recommendation for merge or further hardening

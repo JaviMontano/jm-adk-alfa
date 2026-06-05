@@ -327,7 +327,7 @@
 | 52 | `backup-recovery` | gcloud firestore export. Scheduled backups via Cloud Scheduler. Point-in-time re |
 | 53 | `backup-strategy` | — |
 | 54 | `bdd-full-spectrum` | — |
-| 55 | `benchmark-skill` | — |
+| 55 | `benchmark-skill` | Compares two skill states or one skill against a benchmark standard using a dete |
 | 56 | `benchmarking-analysis` | — |
 | 57 | `bi-architecture` | — |
 | 58 | `bilingual-doc` | — |

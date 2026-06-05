@@ -1,0 +1,58 @@
+{
+  "schema": 1,
+  "skill": "benchmark-skill",
+  "required_sections": [
+    "compared",
+    "summary",
+    "inventory",
+    "dimension_scores",
+    "gate_changes",
+    "regressions",
+    "top_improvements",
+    "tradeoffs",
+    "recommendation",
+    "caveats"
+  ],
+  "required_evidence_tags": [
+    "[CÓDIGO]",
+    "[DOC]",
+    "[CONFIG]",
+    "[INFERENCIA]",
+    "[SUPUESTO]"
+  ],
+  "blocked_phrases": [
+    "good job",
+    "looks better",
+    "probably improved",
+    "seems fine",
+    "reasonable defaults",
+    "comprehensive analysis",
+    "trust me",
+    "no issues found"
+  ],
+  "inventory_fields": [
+    "files",
+    "lines",
+    "skill_md_lines",
+    "references",
+    "eval_cases",
+    "agents",
+    "scripts",
+    "assets",
+    "examples",
+    "templates"
+  ],
+  "regression_fields": [
+    "dimension_or_gate",
+    "delta_or_change",
+    "cause",
+    "severity",
+    "tradeoff"
+  ],
+  "improvement_fields": [
+    "dimension_or_gate",
+    "delta_or_change",
+    "driver",
+    "genuine"
+  ]
+}

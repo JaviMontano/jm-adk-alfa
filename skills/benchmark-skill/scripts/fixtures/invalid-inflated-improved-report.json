@@ -1,0 +1,237 @@
+{
+  "compared": {
+    "mode": "version",
+    "state_a": "skills/example-skill@before",
+    "state_b": "skills/example-skill@after",
+    "evidence": "[CÓDIGO] Both states include SKILL.md."
+  },
+  "summary": {
+    "mode": "version",
+    "net_assessment": "IMPROVED",
+    "average_a": 7.5,
+    "average_b": 7.4,
+    "average_delta": -0.1,
+    "dimensions_improved": 1,
+    "dimensions_regressed": 2,
+    "gate_regressions": 1,
+    "transformed": false
+  },
+  "inventory": [
+    {
+      "files": 10,
+      "lines": 200,
+      "skill_md_lines": 100,
+      "references": 1,
+      "eval_cases": 8,
+      "agents": 4,
+      "scripts": 0,
+      "assets": 1,
+      "examples": 2,
+      "templates": 3
+    }
+  ],
+  "dimension_scores": [
+    {
+      "dimension": "foundation",
+      "state_a": 8,
+      "state_b": 8,
+      "delta": 0,
+      "direction": "Same",
+      "evidence": "[CÓDIGO] Same foundation."
+    },
+    {
+      "dimension": "truthfulness",
+      "state_a": 8,
+      "state_b": 8,
+      "delta": 0,
+      "direction": "Same",
+      "evidence": "[CÓDIGO] Same evidence policy."
+    },
+    {
+      "dimension": "quality",
+      "state_a": 8,
+      "state_b": 7,
+      "delta": -1,
+      "direction": "Worse",
+      "evidence": "[CÓDIGO] Validation gate lost a check."
+    },
+    {
+      "dimension": "density",
+      "state_a": 7,
+      "state_b": 7,
+      "delta": 0,
+      "direction": "Same",
+      "evidence": "[CÓDIGO] Same density."
+    },
+    {
+      "dimension": "simplicity",
+      "state_a": 7,
+      "state_b": 7,
+      "delta": 0,
+      "direction": "Same",
+      "evidence": "[CÓDIGO] Same process."
+    },
+    {
+      "dimension": "clarity",
+      "state_a": 8,
+      "state_b": 9,
+      "delta": 1,
+      "direction": "Better",
+      "evidence": "[CÓDIGO] Better section names."
+    },
+    {
+      "dimension": "precision",
+      "state_a": 8,
+      "state_b": 7,
+      "delta": -1,
+      "direction": "Worse",
+      "evidence": "[CÓDIGO] Removed numeric threshold."
+    },
+    {
+      "dimension": "depth",
+      "state_a": 7,
+      "state_b": 7,
+      "delta": 0,
+      "direction": "Same",
+      "evidence": "[CÓDIGO] Same edge cases."
+    },
+    {
+      "dimension": "coherence",
+      "state_a": 7,
+      "state_b": 7,
+      "delta": 0,
+      "direction": "Same",
+      "evidence": "[CÓDIGO] Same file alignment."
+    },
+    {
+      "dimension": "value",
+      "state_a": 7,
+      "state_b": 7,
+      "delta": 0,
+      "direction": "Same",
+      "evidence": "[CÓDIGO] Same behavior."
+    }
+  ],
+  "gate_changes": [
+    {
+      "gate": "skill_md_exists",
+      "state_a": "PASS",
+      "state_b": "PASS",
+      "change": "Same",
+      "evidence": "[CÓDIGO] Present."
+    },
+    {
+      "gate": "frontmatter_valid",
+      "state_a": "PASS",
+      "state_b": "PASS",
+      "change": "Same",
+      "evidence": "[CÓDIGO] Present."
+    },
+    {
+      "gate": "activation_specific",
+      "state_a": "PASS",
+      "state_b": "PASS",
+      "change": "Same",
+      "evidence": "[CÓDIGO] Present."
+    },
+    {
+      "gate": "allowed_tools_minimal",
+      "state_a": "PASS",
+      "state_b": "PASS",
+      "change": "Same",
+      "evidence": "[CÓDIGO] Present."
+    },
+    {
+      "gate": "assets_manifest",
+      "state_a": "PASS",
+      "state_b": "PASS",
+      "change": "Same",
+      "evidence": "[CÓDIGO] Present."
+    },
+    {
+      "gate": "eval_cases",
+      "state_a": "PASS",
+      "state_b": "FAIL",
+      "change": "Regressed",
+      "evidence": "[CÓDIGO] Evals lost cases."
+    },
+    {
+      "gate": "examples_specific",
+      "state_a": "PASS",
+      "state_b": "PASS",
+      "change": "Same",
+      "evidence": "[CÓDIGO] Present."
+    },
+    {
+      "gate": "validation_gate",
+      "state_a": "PASS",
+      "state_b": "PASS",
+      "change": "Same",
+      "evidence": "[CÓDIGO] Present."
+    },
+    {
+      "gate": "failure_modes",
+      "state_a": "PASS",
+      "state_b": "PASS",
+      "change": "Same",
+      "evidence": "[CÓDIGO] Present."
+    },
+    {
+      "gate": "progressive_disclosure",
+      "state_a": "PASS",
+      "state_b": "PASS",
+      "change": "Same",
+      "evidence": "[CÓDIGO] Present."
+    },
+    {
+      "gate": "agent_prompt_alignment",
+      "state_a": "PASS",
+      "state_b": "PASS",
+      "change": "Same",
+      "evidence": "[CÓDIGO] Present."
+    },
+    {
+      "gate": "template_offline",
+      "state_a": "PASS",
+      "state_b": "PASS",
+      "change": "Same",
+      "evidence": "[CÓDIGO] Present."
+    },
+    {
+      "gate": "script_checks",
+      "state_a": "PASS",
+      "state_b": "PASS",
+      "change": "Same",
+      "evidence": "[CÓDIGO] Present."
+    }
+  ],
+  "regressions": [
+    {
+      "dimension_or_gate": "eval_cases",
+      "delta_or_change": "PASS to FAIL",
+      "cause": "[CÓDIGO] Evals lost deterministic cases.",
+      "severity": "high",
+      "tradeoff": "false"
+    }
+  ],
+  "top_improvements": [
+    {
+      "dimension_or_gate": "clarity",
+      "delta_or_change": "+1",
+      "driver": "[CÓDIGO] Better labels.",
+      "genuine": true
+    }
+  ],
+  "tradeoffs": [
+    {
+      "dimension_or_gate": "none",
+      "delta_or_change": "0",
+      "driver": "[INFERENCIA] No valid trade-off offsets the gate regression.",
+      "accepted": false
+    }
+  ],
+  "recommendation": "[CONFIG] Do not merge because gate regression contradicts IMPROVED.",
+  "caveats": [
+    "[INFERENCIA] This fixture must fail validation because the label is inflated."
+  ]
+}
