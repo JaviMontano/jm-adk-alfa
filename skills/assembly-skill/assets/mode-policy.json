@@ -1,0 +1,51 @@
+{
+  "schema": 1,
+  "skill": "assembly-skill",
+  "modes": {
+    "quick": {
+      "phases": ["A", "D"],
+      "modifies_files": false,
+      "requires_gate_b": false,
+      "allowed_results": ["DIAGNOSTIC", "BLOCKED"]
+    },
+    "standard": {
+      "phases": ["A", "B", "C", "D"],
+      "modifies_files": true,
+      "requires_gate_b": true,
+      "allowed_results": ["CERTIFIED", "CONDITIONAL", "BLOCKED"]
+    },
+    "deep": {
+      "phases": ["A", "B", "C", "C+", "RE-CERTIFY", "D"],
+      "modifies_files": true,
+      "requires_gate_b": true,
+      "allowed_results": ["CERTIFIED", "CONDITIONAL", "BLOCKED"]
+    }
+  },
+  "auto_selection": [
+    {
+      "when": "score < 5",
+      "mode": "standard"
+    },
+    {
+      "when": "score >= 5 and score < 7",
+      "mode": "standard"
+    },
+    {
+      "when": "score >= 7 and score < 8",
+      "mode": "deep"
+    },
+    {
+      "when": "score >= 8 and gate_passed == true and user_requested_changes == false",
+      "mode": "quick"
+    },
+    {
+      "when": "score >= 8 and user_requested_changes == true",
+      "mode": "standard"
+    }
+  ],
+  "fallbacks": {
+    "context_pressure_mode": "standard",
+    "missing_skill_md_result": "BLOCKED",
+    "gate_b_denied_result": "DIAGNOSTIC"
+  }
+}

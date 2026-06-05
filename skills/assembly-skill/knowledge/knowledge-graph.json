@@ -1,75 +1,19 @@
 {
   "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-28",
   "skill": "assembly-skill",
   "nodes": [
-    {
-      "id": "assembly-skill",
-      "type": "skill",
-      "label": "assembly-skill"
-    },
-    {
-      "id": "assembly-skill:inputs",
-      "type": "contract",
-      "label": "Expected inputs"
-    },
-    {
-      "id": "assembly-skill:outputs",
-      "type": "contract",
-      "label": "Expected outputs"
-    },
-    {
-      "id": "assembly-skill:quality",
-      "type": "gate",
-      "label": "Quality criteria"
-    },
-    {
-      "id": "assembly-skill:ontology",
-      "type": "ontology",
-      "label": "Domain: general"
-    },
-    {
-      "id": "assembly-skill:evidence",
-      "type": "gate",
-      "label": "Evidence / provenance requirements"
-    },
-    {
-      "id": "assembly-skill:antipattern",
-      "type": "risk",
-      "label": "Canonical anti-pattern to avoid"
-    }
+    {"id": "assembly-skill", "type": "skill", "label": "Assembly Skill"},
+    {"id": "mode-policy", "type": "policy", "label": "Exact mode selection"},
+    {"id": "phase-a", "type": "phase", "label": "X-Ray diagnostic"},
+    {"id": "gate-b", "type": "gate", "label": "Approval before writes"},
+    {"id": "phase-c", "type": "phase", "label": "Certification"},
+    {"id": "assembly-report", "type": "output", "label": "Validated Assembly Report"}
   ],
   "edges": [
-    {
-      "from": "assembly-skill",
-      "to": "assembly-skill:inputs",
-      "type": "requires"
-    },
-    {
-      "from": "assembly-skill",
-      "to": "assembly-skill:outputs",
-      "type": "produces"
-    },
-    {
-      "from": "assembly-skill",
-      "to": "assembly-skill:quality",
-      "type": "validated_by"
-    },
-    {
-      "from": "assembly-skill",
-      "to": "assembly-skill:ontology",
-      "type": "classified_as"
-    },
-    {
-      "from": "assembly-skill",
-      "to": "assembly-skill:evidence",
-      "type": "validated_by"
-    },
-    {
-      "from": "assembly-skill",
-      "to": "assembly-skill:antipattern",
-      "type": "guards_against"
-    }
+    {"from": "assembly-skill", "to": "mode-policy", "type": "requires"},
+    {"from": "mode-policy", "to": "phase-a", "type": "selects"},
+    {"from": "phase-a", "to": "gate-b", "type": "feeds"},
+    {"from": "gate-b", "to": "phase-c", "type": "enables"},
+    {"from": "phase-c", "to": "assembly-report", "type": "proves"}
   ]
 }

@@ -1,0 +1,77 @@
+{
+  "schema": 1,
+  "skill": "assembly-skill",
+  "required_sections": [
+    "Assembly Report",
+    "Phase Evidence",
+    "Before -> After",
+    "Interventions Applied",
+    "Certification",
+    "Files Modified",
+    "Next Steps"
+  ],
+  "allowed_results": [
+    "DIAGNOSTIC",
+    "CERTIFIED",
+    "CONDITIONAL",
+    "BLOCKED"
+  ],
+  "allowed_evidence_tags": [
+    "[EXPLICIT]",
+    "[INFERRED]",
+    "[OPEN]"
+  ],
+  "required_gate_terms": [
+    "Gate A",
+    "Gate B",
+    "Gate C"
+  ],
+  "blocked_phrases": [
+    "TODO",
+    "TBD",
+    "{{",
+    "}}",
+    "certified by feel",
+    "modified files unknown",
+    "duration: real time",
+    "trust me"
+  ],
+  "mode_requirements": {
+    "quick": {
+      "must_include": [
+        "Phase A",
+        "Phase D",
+        "No files modified"
+      ],
+      "must_not_include": [
+        "Phase B",
+        "Phase C+",
+        "CERTIFIED"
+      ]
+    },
+    "standard": {
+      "must_include": [
+        "Phase A",
+        "Phase B",
+        "Gate B",
+        "Phase C",
+        "Files Modified"
+      ],
+      "must_not_include": [
+        "Phase C+"
+      ]
+    },
+    "deep": {
+      "must_include": [
+        "Phase A",
+        "Phase B",
+        "Gate B",
+        "Phase C",
+        "Phase C+",
+        "RE-CERTIFY",
+        "Trigger Optimization"
+      ],
+      "must_not_include": []
+    }
+  }
+}

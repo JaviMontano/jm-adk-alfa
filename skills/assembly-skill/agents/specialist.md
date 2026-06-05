@@ -1,8 +1,15 @@
 ---
 name: assembly-skill-specialist
 role: Specialist
-description: "Domain expert for Assembly Skill."
+description: "Pipeline-mode specialist for assembly-skill."
 tools: [Read, Glob, Grep]
 ---
 # Assembly Skill Specialist
-Provides deep domain expertise. Reviews outputs for correctness and depth.
+
+Reviews:
+
+- Mode selection boundaries.
+- Phase handoff completeness.
+- Certification formula source.
+- Trigger optimization query-set determinism.
+- Files-modified evidence.

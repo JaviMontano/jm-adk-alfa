@@ -1,9 +1,106 @@
-[
-  {"id": "assembly-skill-happy-path", "type": "happy_path", "input": "Run assembly skill on this project", "expected_behavior": "Skill activates and produces the expected assembly skill output following the defined process", "tags": ["basic", "activation"]},
-  {"id": "assembly-skill-explicit-trigger", "type": "happy_path", "input": "Apply assembly skill analysis", "expected_behavior": "Skill recognizes the trigger phrase and executes the assembly skill workflow", "tags": ["trigger", "recognition"]},
-  {"id": "assembly-skill-with-context", "type": "happy_path", "input": "Apply assembly skill to analyze the current codebase with detailed output", "expected_behavior": "Skill produces comprehensive assembly skill analysis with evidence-tagged findings", "tags": ["detailed", "comprehensive"]},
-  {"id": "assembly-skill-minimal-input", "type": "happy_path", "input": "Quick assembly skill", "expected_behavior": "Skill activates with minimal input, applies reasonable defaults", "tags": ["minimal", "defaults"]},
-  {"id": "assembly-skill-false-positive", "type": "false_positive", "input": "What is the weather forecast for tomorrow?", "expected_behavior": "Skill should NOT activate — this input has no relation to assembly skill", "tags": ["false_positive", "should-not-activate"]},
-  {"id": "assembly-skill-edge-empty-input", "type": "edge_case", "input": "Run assembly skill but I have no files or documentation yet", "expected_behavior": "Skill handles gracefully — requests minimum viable input or produces gap analysis", "tags": ["edge_case", "empty-input", "boundary"]},
-  {"id": "assembly-skill-edge-conflicting", "type": "edge_case", "input": "Apply assembly skill but requirements contradict each other", "expected_behavior": "Skill detects contradiction, flags with [OPEN] tag, proposes resolution", "tags": ["edge_case", "conflict", "corner"]}
-]
+{
+  "schema": 1,
+  "skill": "assembly-skill",
+  "suite": "deterministic-assembly-hardening",
+  "cases": [
+    {
+      "id": "assembly-standard-handoff",
+      "type": "happy_path",
+      "input": "/assembly-skill skills/prompt-creator --mode standard",
+      "expected_activation": true,
+      "must_include": ["Phase A", "Phase B", "Gate B", "Phase C", "Before -> After", "Files Modified"],
+      "must_not_include": ["Phase C+", "modified files unknown"],
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "phase_handoff", "gate_b"]
+    },
+    {
+      "id": "assembly-quick-no-write",
+      "type": "happy_path",
+      "input": "/assembly-skill skills/prompt-creator --mode quick",
+      "expected_activation": true,
+      "must_include": ["Phase A", "Phase D", "No files modified", "DIAGNOSTIC"],
+      "must_not_include": ["Phase B", "CERTIFIED"],
+      "expected_checks": ["quick_mode", "no_write_before_gate", "quality_criteria"]
+    },
+    {
+      "id": "assembly-deep-trigger-recertify",
+      "type": "happy_path",
+      "input": "/assembly-skill skills/prompt-creator --mode deep with fixed trigger query set",
+      "expected_activation": true,
+      "must_include": ["Phase C+", "Trigger Optimization", "RE-CERTIFY", "Gate B"],
+      "must_not_include": ["probabilistic trigger result"],
+      "expected_checks": ["deep_mode", "trigger_recertify", "deterministic_scripts", "assets"]
+    },
+    {
+      "id": "assembly-auto-certified-quick",
+      "type": "script_fixture",
+      "input": "scorecard score=8.6 gate=13/13 user_requested_changes=false",
+      "expected_activation": true,
+      "must_include": ["quick"],
+      "must_not_include": ["standard", "deep"],
+      "expected_checks": ["mode_policy", "deterministic_scripts", "quality_criteria"]
+    },
+    {
+      "id": "assembly-auto-polish-deep",
+      "type": "script_fixture",
+      "input": "scorecard score=7.4 gate=11/13 user_requested_changes=false",
+      "expected_activation": true,
+      "must_include": ["deep"],
+      "must_not_include": ["quick"],
+      "expected_checks": ["mode_policy", "threshold_boundaries", "deterministic_scripts"]
+    },
+    {
+      "id": "assembly-missing-skill-md",
+      "type": "negative_fixture",
+      "input": "/assembly-skill skills/no-skill-md",
+      "expected_activation": true,
+      "must_include": ["BLOCKED", "SKILL.md"],
+      "must_not_include": ["Phase B", "CERTIFIED"],
+      "expected_checks": ["fail_closed", "missing_context", "quality_criteria"]
+    },
+    {
+      "id": "assembly-gate-b-denied",
+      "type": "negative_fixture",
+      "input": "Run standard mode but user rejects Gate B intervention plan",
+      "expected_activation": true,
+      "must_include": ["Gate B", "DIAGNOSTIC", "No files modified"],
+      "must_not_include": ["CERTIFIED", "Files modified unknown"],
+      "expected_checks": ["no_write_before_gate", "gate_b_denied", "quality_criteria"]
+    },
+    {
+      "id": "assembly-no-premature-certification",
+      "type": "negative_fixture",
+      "input": "Report says CERTIFIED without Phase C evidence or Formula Source",
+      "expected_activation": true,
+      "must_include": ["BLOCKED", "Phase C evidence"],
+      "must_not_include": ["certified by feel"],
+      "expected_checks": ["certification_formula", "deterministic_scripts", "quality_criteria"]
+    },
+    {
+      "id": "assembly-evidence-required",
+      "type": "edge_case",
+      "input": "/assembly-skill skills/user-representative --mode standard with incomplete phase evidence",
+      "expected_activation": true,
+      "must_include": ["[EXPLICIT]", "[OPEN]", "Phase Evidence"],
+      "must_not_include": ["trust me"],
+      "expected_checks": ["evidence_tags", "phase_evidence", "quality_criteria"]
+    },
+    {
+      "id": "assembly-false-positive-ci",
+      "type": "false_positive",
+      "input": "Fix my CI assembly line so packages build faster",
+      "expected_activation": false,
+      "must_include": ["not a skill-quality pipeline"],
+      "must_not_include": ["assembly-skill report"],
+      "expected_checks": ["false_positive", "routing_boundary"]
+    },
+    {
+      "id": "assembly-false-positive-deck",
+      "type": "false_positive",
+      "input": "Assemble this presentation deck from the attached slides",
+      "expected_activation": false,
+      "must_include": ["route to document or presentation workflow"],
+      "must_not_include": ["x-ray-skill", "certify-skill"],
+      "expected_checks": ["false_positive", "routing_boundary"]
+    }
+  ]
+}

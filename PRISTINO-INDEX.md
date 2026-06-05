@@ -312,7 +312,7 @@
 | 37 | `api-security` | Firebase App Check (reCAPTCHA v3). API key restrictions. Rate limiting in Cloud  |
 | 38 | `architecture-tobe` | TO-BE architecture blueprint from AS-IS analysis. Gap analysis, migration path,  |
 | 39 | `asis-analysis` | Current-state 10-section assessment: stack, architecture, code quality, testing, |
-| 40 | `assembly-skill` | — |
+| 40 | `assembly-skill` | Use when the user asks to run the full skill quality pipeline, improve a skill e |
 | 41 | `assumption-log` | Track and validate assumptions. Format: A-NNN assumption, status (unvalidated/va |
 | 42 | `audit-content-quality` | — |
 | 43 | `audit-security` | — |

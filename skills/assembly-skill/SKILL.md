@@ -1,16 +1,7 @@
 ---
 name: assembly-skill
 version: 1.0.0
-description: 
-  This skill should be used when the user asks to "run the full skill
-  pipeline", "improve this skill end to end", "take this skill to
-  production", "one-command skill upgrade", or "assembly line this skill". [EXPLICIT]
-  Orchestrates the complete skill quality pipeline — from diagnostic
-  through intervention to certification — in a single invocation with
-  configurable depth. Use this skill whenever someone wants the full
-  x-ray → surgeon → certify workflow without running each skill
-  separately, or when they say "make this skill great" without
-  specifying which step to run. [EXPLICIT]
+description: "Use when the user asks to run the full skill quality pipeline, improve a skill end to end, take a skill to production, run x-ray plus surgeon plus certify, or assembly-line one skill. Orchestrates one target skill through deterministic diagnostic, intervention, certification, and optional trigger optimization gates."
 argument-hint: "path-to-skill [--mode quick|standard|deep]"
 model: opus
 context: fork
@@ -22,191 +13,128 @@ allowed-tools:
   - Grep
   - Bash
   - Task
-model: opus
 ---
-
 # Skill Assembly Line
 
-One-command skill engineering pipeline. Runs diagnostic → intervention → certification in sequence, adapting depth to the skill's current state — so a single invocation takes a skill from whatever state it's in to production-certified. [EXPLICIT]
+Run the skill-quality pipeline for exactly one target skill: Phase A diagnostic, Phase B intervention, Phase C certification, optional Phase C+ trigger optimization, and Phase D report.
 
-## Why This Exists
+## When to Activate
 
-Running x-ray-skill, surgeon-skill, and certify-skill separately requires 3 invocations, manual handoff between steps, and context switching. The assembly line eliminates that friction: one command, one report, one result. [EXPLICIT]
+Activate when the user asks to:
 
-The trade-off: less granular control than running each skill individually. Use individual skills when you want to inspect or approve each phase. Use assembly-skill when you trust the pipeline and want results. [EXPLICIT]
+- run the full skill pipeline
+- improve this skill end to end
+- take this skill to production
+- run x-ray -> surgeon -> certify
+- assembly-line a skill
+- make one skill production-ready without separately invoking each phase
 
-## Usage
+Do not activate for general "assembly" work such as assembling a deck, product, CI pipeline, package, or document bundle.
 
+## Deterministic Contract
+
+- Scope is one target skill directory. Never process multiple skills in one run.
+- Read `assets/mode-policy.json` before selecting a mode.
+- Read `assets/assembly-report-contract.json` before producing the final report.
+- Use `assets/assembly-report-template.md` for report shape.
+- Run `scripts/validate_assembly_contract.py` against any final report before delivery.
+- Use caller-supplied elapsed buckets or `not-measured`; do not derive durations from wall-clock time.
+- Use only fixed trigger-query fixtures for deep mode, or record generated query sets before scoring.
+- Do not modify files before Gate B approval is explicit.
+
+## Required Inputs
+
+1. Exactly one target skill path.
+2. Mode: `quick`, `standard`, `deep`, or absent for deterministic auto-selection.
+3. User intent: diagnostic-only, improve, certify, or optimize triggers.
+4. Write approval for Phase B if files may change.
+
+If the target path is missing, multiple skill paths are supplied, or `SKILL.md` is absent, return `BLOCKED` and do not proceed.
+
+## Modes
+
+| Mode | Phases | Writes | Use |
+|---|---|---|---|
+| quick | A + D | No | Diagnostic snapshot only |
+| standard | A + B + C + D | After Gate B | Production-readiness repair |
+| deep | A + B + C + C+ + re-certify + D | After Gate B | Trigger optimization after structural repair |
+
+## Auto-Selection
+
+Use the Phase A scorecard as the only score source:
+
+| Condition | Mode |
+|---|---|
+| score < 5 | standard |
+| score >= 5 and score < 7 | standard |
+| score >= 7 and score < 8 | deep |
+| score >= 8 and gate 13/13 and user did not request changes | quick |
+| score >= 8 and user requested changes | standard |
+
+If context pressure is high, fall back to `standard` and report the fallback.
+
+## Phase Protocol
+
+### Phase A: Diagnostic
+
+Apply `x-ray-skill` logic to produce a scorecard, gate count, top gaps, and recommended mode. If Phase A cannot run, report `BLOCKED`.
+
+### Gate A: Intervention Decision
+
+Skip intervention only when auto-selection returns `quick` and the user did not ask for changes.
+
+### Phase B: Intervention
+
+Apply `surgeon-skill` logic only after Gate B approval. Present the intervention plan first:
+
+```markdown
+Assembly Line Intervention Plan
+Target: {skill}
+Current score: {score}
+Projected score: {score}
+Interventions: {count}
+Gate B: approve / trim / reject
 ```
-/assembly-skill /path/to/skill                    # standard mode (default)
-/assembly-skill /path/to/skill --mode quick        # diagnostic only
-/assembly-skill /path/to/skill --mode deep         # full pipeline + trigger optimization
-```
 
-## Pipeline Modes
+If Gate B is rejected, stop writes and produce a diagnostic-only report.
 
-| Mode | Phases | Time | When to Use |
-|------|--------|------|-------------|
-| **quick** | X-Ray only | 3-5 min | "What's the state of this skill?" — diagnostic, no changes |
-| **standard** | X-Ray → Surgeon → Certify | 10-20 min | "Make this skill production-ready" — the default |
-| **deep** | X-Ray → Surgeon → Certify → Trigger optimization → Re-certify | 20-40 min | "Make this skill excellent" — includes description optimization |
+### Phase C: Certification
 
-### Mode Selection Logic
+Apply `certify-skill` logic to the post-intervention state. The final verdict must come from certification evidence, not from wording.
 
-If no mode specified, auto-select based on initial assessment: [EXPLICIT]
+### Phase C+: Trigger Optimization
 
-| Initial State | Auto-Selected Mode | Reasoning |
-|--------------|-------------------|-----------|
-| Score < 5 (BLOCKED) | standard | Needs structural work before optimization makes sense |
-| Score 5-7 (needs work) | standard | Infrastructure + content fixes are the priority |
-| Score 7-8 (polish) | deep | Structure is solid; trigger optimization has highest marginal value |
-| Score 8+ (minor tweaks) | quick | Already strong; report the state, don't over-intervene |
-
-## The Assembly Process
-
-### Phase A: Diagnostic (all modes)
-
-Run x-ray-skill internally. Produce the full scorecard: [EXPLICIT]
-- Inventory all files
-- Validate frontmatter
-- Audit body sections
-- Score 10 rubric dimensions
-- Run 13-point gate
-- Check systemic coherence
-
-**Gate A:** If score >= 8 and gate passes 13/13, skip to Phase D (certification). No intervention needed.
-
-**Output:** X-Ray scorecard (kept as internal artifact for Phase B).
-
-### Phase B: Intervention (standard + deep modes)
-
-Run surgeon-skill internally using Phase A's scorecard: [EXPLICIT]
-- Select applicable improvement patterns based on gap analysis
-- Present the plan to the user:
-
-```
-Assembly Line — Intervention Plan: [EXPLICIT]
-Score: {current}/10 → projected {projected}/10 [EXPLICIT]
-Interventions: {N} across {M} layers [EXPLICIT]
-{numbered list with pattern IDs and descriptions}
-Proceed? [Y/n]
-```
-
-**Gate B:** Wait for user confirmation before modifying files. The assembly line automates sequencing, not decision-making.
-
-After confirmation, execute all interventions with snapshot-verify-document protocol. [EXPLICIT]
-
-### Phase C: Certification (standard + deep modes)
-
-Run certify-skill internally on the improved skill: [EXPLICIT]
-- All structural checks
-- All content checks
-- Rubric re-scoring
-- Produce certification verdict
-
-**Gate C:** If CERTIFIED, proceed to Phase D (report) or Phase C+ (if deep mode). If CONDITIONAL or BLOCKED, report the remaining issues.
-
-### Phase C+ : Trigger Optimization (deep mode only)
-
-Run trigger-skill internally to optimize the description: [EXPLICIT]
-- Generate 15-20 test queries (should-trigger + should-not-trigger)
-- Test triggering accuracy
-- Iterate on description (up to 3 iterations)
-- Produce optimized description
-
-Then re-run certification to verify the optimization didn't degrade other dimensions. [EXPLICIT]
+Deep mode only. Apply `trigger-skill` logic with a recorded query set, then re-certify. If trigger optimization degrades certification, report `CONDITIONAL` or `BLOCKED`.
 
 ### Phase D: Assembly Report
 
-Synthesize all phases into a single unified report: [EXPLICIT]
+Use `assets/assembly-report-template.md`. The report must include:
 
-```markdown
-# Assembly Report: {skill-name}
-
-**Mode:** {quick/standard/deep}
-**Duration:** {time}
-**Result:** {CERTIFIED / CONDITIONAL / BLOCKED}
-
-## Before → After
-| Dimension | Before | After | Delta |
-|-----------|--------|-------|-------|
-| {1-10} | /10 | /10 | +N |
-| Average | /10 | /10 | +N |
-| Gate | N/13 | N/13 | +N |
-
-## Interventions Applied
-{changelog from Phase B, if run}
-
-## Certification
-{certification report from Phase C}
-
-## Trigger Optimization (deep mode)
-{trigger report from Phase C+, if run}
-
-## Files Modified
-| File | Action | Lines Changed |
-|------|--------|--------------|
-{list of every file touched}
-
-## Next Steps
-{what the user should do next, if anything}
-```
-
-## Gate Protocol
-
-The assembly line has 3 decision gates. Each is explicit — the pipeline never makes destructive decisions autonomously. [EXPLICIT]
-
-| Gate | Question | Options |
-|------|----------|---------|
-| A | Should we intervene? | Auto-skip if score >= 8 + gate 13/13. Otherwise proceed. |
-| B | Approve the intervention plan? | User confirms. User can remove specific interventions. |
-| C | Did certification pass? | If yes: report success. If no: report remaining issues. |
-
-**Why gates matter:** Automation without checkpoints produces surprises. The assembly line is fast, not reckless. Each gate ensures the user stays in control of what changes.
-
-## Assumptions & Limits
-
-- This skill orchestrates x-ray-skill, surgeon-skill, certify-skill, and optionally trigger-skill. It doesn't contain its own diagnostic or improvement logic — it delegates.
-- Requires Agent tool permission to spawn internal skill executions.
-- The user must confirm the intervention plan (Gate B) before any files are modified. No auto-apply.
-- Deep mode adds 10-20 minutes for trigger optimization. Use standard mode when time is constrained.
-- Cannot orchestrate across multiple skills simultaneously. Run assembly-skill once per skill directory.
-- Context window pressure: a deep-mode run on a 10+ file skill may approach context limits. If so, the pipeline falls back to standard mode and reports the limitation.
-
-### Failure Modes
-
-| Failure | Signal | Recovery |
-|---------|--------|----------|
-| Phase A score >= 8 but user wants improvements | User says "improve anyway" | Override Gate A auto-skip. Run Phase B with user-specified focus areas. |
-| Phase B plan rejected | User rejects the plan | Ask what to change. Re-plan with user constraints. |
-| Phase C fails after Phase B | Certification BLOCKED despite interventions | Report what improved and what still blocks. Suggest manual fixes. |
-| Context window exhaustion | Pipeline stalls mid-phase | Save progress. Report what completed. Suggest continuing in a new session. |
-| Skill has no SKILL.md | Phase A can't start | Report immediately. Suggest creating SKILL.md first. |
-
-## Edge Cases
-
-- **Skill already CERTIFIED:** Quick mode auto-selected. Report: "Skill meets production standards. Score: {N}/10." No changes made.
-- **Skill in terrible state (score < 3):** Standard mode. Focus Phase B entirely on Layer A (infrastructure). Don't attempt content or DX fixes until structure exists.
-- **User wants to skip phases:** Respect it. `/assembly-skill ./path --mode quick` is just x-ray. The modes are the control mechanism.
-- **Deep mode trigger optimization degrades rubric scores:** Re-certify catches this. Report the regression and revert the description change.
-- **Mid-pipeline user abort:** Save all progress to that point. Phase A report is still useful even if Phase B was skipped.
+- target skill
+- mode
+- result
+- phase evidence
+- before/after score and gate delta
+- Gate B status
+- certification formula source
+- every modified file, or `No files modified`
+- specific next step
 
 ## Validation Gate
 
-Before delivering the assembly report: [EXPLICIT]
-
-- [ ] Every phase that ran produced a complete output
-- [ ] User confirmed the intervention plan before files were modified (Gate B)
-- [ ] Before/After delta table shows accurate scores from Phase A and Phase C
-- [ ] Every modified file is listed in the Files Modified table
-- [ ] Certification result matches the formula (not assigned by feel)
-- [ ] Next Steps are specific and actionable
+- [ ] `scripts/validate_assembly_contract.py` passes for the final report.
+- [ ] Mode selection follows `assets/mode-policy.json`.
+- [ ] Gate B approval appears before any write action.
+- [ ] Quick mode is read-only and does not claim `CERTIFIED`.
+- [ ] Standard/deep modes include Phase B and Phase C evidence.
+- [ ] Deep mode includes Phase C+ trigger metrics and re-certification.
+- [ ] Missing target path or missing `SKILL.md` fails closed.
+- [ ] The final report uses `[EXPLICIT]`, `[INFERRED]`, or `[OPEN]` evidence tags.
 
 ## Reference Files
 
-| File | Content | Load When |
-|------|---------|-----------|
-| `references/pipeline-modes.md` | Detailed mode configurations, auto-selection logic, phase dependencies, timing estimates | Always — needed to configure the pipeline run |
-
----
-**Author:** Javier Montano | **Last updated:** March 18, 2026
+| File | Load When |
+|---|---|
+| `assets/mode-policy.json` | Always, before mode selection |
+| `assets/assembly-report-contract.json` | Always, before reporting |
+| `references/pipeline-modes.md` | When explaining mode behavior |
