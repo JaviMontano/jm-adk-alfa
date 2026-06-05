@@ -669,7 +669,7 @@
 | 394 | `openclaw-isolation` | — |
 | 395 | `openclaw-personal-deploy` | — |
 | 396 | `openclaw-tool-auth` | — |
-| 397 | `output-contract-enforcer` | Validates that every skill output matches its declared contract (format, complet |
+| 397 | `output-contract-enforcer` | Validate generated outputs against declared contracts for format, required secti |
 | 398 | `output-engineering` | — |
 | 399 | `parallel-workflow` | — |
 | 400 | `partnership-strategy` | — |
@@ -708,9 +708,9 @@
 | 433 | `project-create` | Crea un proyecto P-NNN-slug del Jarvis OS con CLAUDE.md, MEMORY.md y TAREAS.md ( |
 | 434 | `project-program-management` | — |
 | 435 | `prompt-chaining-design` | Descomponer tareas grandes en pase local tipado y pase de integracion sobre resu |
-| 436 | `prompt-creator` | [EXPLICIT] |
-| 437 | `prompt-engineering` | — |
-| 438 | `prompt-forge` | — |
+| 436 | `prompt-creator` | Generates deterministic prompt files for agentic ecosystems using the canonical  |
+| 437 | `prompt-engineering` | Design, evaluate, and optimize LLM instruction packages using deterministic patt |
+| 438 | `prompt-forge` | Create, review, evolve, repair, and port system prompts using a deterministic Pl |
 | 439 | `prompting-and-meta-prompting` | Transform intentions into durable prompts, meta-prompts, acceptance criteria, an |
 | 440 | `proposal-writing` | — |
 | 441 | `prototyping` | — |

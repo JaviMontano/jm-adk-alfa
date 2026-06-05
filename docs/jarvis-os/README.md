@@ -45,12 +45,20 @@ agents, and scripts.
 ## Quick start
 
 ```bash
-# Scaffold a Jarvis OS structure at a destination
+# Scaffold a fresh Jarvis OS structure at a destination
 python3 scripts/scaffold-jarvis-os.py --dest "/path/to/jarvis" --dry-run
 python3 scripts/scaffold-jarvis-os.py --dest "/path/to/jarvis" --apply
+
+# Import an EXISTING Jarvis OS tree into Alfa's user-context (re-syncable mirror,
+# local-private/gitignored; excludes .git/.obsidian/.codex). --source is required.
+python3 scripts/import-jarvis-context.py --source "/path/to/your/jarvis" --dry-run
+python3 scripts/import-jarvis-context.py --source "/path/to/your/jarvis" --apply
 
 # Health check
 python3 scripts/jarvis-status.py --root "/path/to/jarvis"
 ```
+
+Imported content lands under `user-context/jarvis-os/` and is loaded per
+`user-context/jarvis-os/_ALFA-BRIDGE.md` (rule-stacking, no bulk-load, PII-safe).
 
 Sources: playbook + runbook at https://javimontano.github.io/trabajar-amplificado/ `[DOC]`.

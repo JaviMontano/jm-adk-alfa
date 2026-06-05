@@ -70,6 +70,9 @@ user-context/personal-skills/manifest.json
 user-context/personal-skills/skills/*
 !user-context/personal-skills/skills/.gitkeep
 
+# Imported Jarvis OS content (local-private mirror via scripts/import-jarvis-context.py)
+user-context/jarvis-os/
+
 # SDD sentinel state
 .specify/sentinel-state.json
 .specify/session-log.json
