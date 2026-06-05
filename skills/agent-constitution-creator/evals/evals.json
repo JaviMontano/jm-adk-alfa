@@ -1,9 +1,247 @@
-[
-  {"id": "agent-constitution-creator-happy-path", "type": "happy_path", "input": "Run agent constitution creator on this project", "expected_behavior": "Skill activates and produces the expected agent constitution creator output following the defined process", "tags": ["basic", "activation"]},
-  {"id": "agent-constitution-creator-explicit-trigger", "type": "happy_path", "input": "Apply agent constitution creator analysis", "expected_behavior": "Skill recognizes the trigger phrase and executes the agent constitution creator workflow", "tags": ["trigger", "recognition"]},
-  {"id": "agent-constitution-creator-with-context", "type": "happy_path", "input": "Apply agent constitution creator to analyze the current codebase with detailed output", "expected_behavior": "Skill produces comprehensive agent constitution creator analysis with evidence-tagged findings", "tags": ["detailed", "comprehensive"]},
-  {"id": "agent-constitution-creator-minimal-input", "type": "happy_path", "input": "Quick agent constitution creator", "expected_behavior": "Skill activates with minimal input, applies reasonable defaults", "tags": ["minimal", "defaults"]},
-  {"id": "agent-constitution-creator-false-positive", "type": "false_positive", "input": "What is the weather forecast for tomorrow?", "expected_behavior": "Skill should NOT activate — this input has no relation to agent constitution creator", "tags": ["false_positive", "should-not-activate"]},
-  {"id": "agent-constitution-creator-edge-empty-input", "type": "edge_case", "input": "Run agent constitution creator but I have no files or documentation yet", "expected_behavior": "Skill handles gracefully — requests minimum viable input or produces gap analysis", "tags": ["edge_case", "empty-input", "boundary"]},
-  {"id": "agent-constitution-creator-edge-conflicting", "type": "edge_case", "input": "Apply agent constitution creator but requirements contradict each other", "expected_behavior": "Skill detects contradiction, flags with [OPEN] tag, proposes resolution", "tags": ["edge_case", "conflict", "corner"]}
-]
+{
+  "schema": 1,
+  "skill": "agent-constitution-creator",
+  "suite": "deterministic-constitution-hardening",
+  "cases": [
+    {
+      "id": "ACC-001-required-22-fields",
+      "type": "happy_path",
+      "input": "/agent-constitution-creator data-analyst \"Transforms raw datasets into validated insights\" with tool registry Read, Grep, Glob and existing agents orchestrator, security-reviewer.",
+      "expected_activation": true,
+      "must_include": [
+        "# Mission",
+        "# Mandate",
+        "# Scope",
+        "# Non-Goals",
+        "# Inputs",
+        "# Outputs",
+        "# Decision Rights",
+        "# Allowed Tools",
+        "# Forbidden Tools",
+        "# Memory Policy",
+        "# Security Policy",
+        "# Orchestration Policy",
+        "# Delegation Rules",
+        "# Escalation Rules",
+        "# Tone / Output Style",
+        "# Validation Discipline",
+        "# Meta-Cognition Protocol",
+        "# Failure Handling",
+        "# Completion Criteria",
+        "# KPIs",
+        "# Dependencies",
+        "# Version"
+      ],
+      "must_not_include": [
+        "TODO",
+        "TBD",
+        "all tools"
+      ],
+      "expected_checks": [
+        "assets",
+        "deterministic_scripts",
+        "quality_criteria",
+        "constitution_field_contract",
+        "non_empty_sections"
+      ]
+    },
+    {
+      "id": "ACC-002-authority-boundaries",
+      "type": "happy_path",
+      "input": "Create an agent constitution for release-reviewer. It may approve documentation wording but must not approve production deploys.",
+      "expected_activation": true,
+      "must_include": [
+        "# Decision Rights",
+        "Autonomous",
+        "Requires approval",
+        "production deploy"
+      ],
+      "must_not_include": [
+        "can approve production deploys",
+        "full release authority"
+      ],
+      "expected_checks": [
+        "authority_boundaries",
+        "decision_rights",
+        "approval_required",
+        "quality_criteria"
+      ]
+    },
+    {
+      "id": "ACC-003-allowed-tools-registry-only",
+      "type": "edge_case",
+      "input": "Create a constitution for repo-auditor. Tool registry contains only Read, Grep, Glob. The user asks to add Bash and WebFetch too.",
+      "expected_activation": true,
+      "must_include": [
+        "# Allowed Tools",
+        "Read",
+        "Grep",
+        "Glob",
+        "# Forbidden Tools",
+        "Bash",
+        "WebFetch"
+      ],
+      "must_not_include": [
+        "all tools",
+        "*",
+        "any available tool"
+      ],
+      "expected_checks": [
+        "allowed_tools",
+        "tool_registry_only",
+        "no_wildcards",
+        "no_invented_permissions",
+        "assets"
+      ]
+    },
+    {
+      "id": "ACC-004-escalation-trigger-target-context",
+      "type": "happy_path",
+      "input": "Create a constitution for privacy-gatekeeper that escalates when PII is detected or confidence is low.",
+      "expected_activation": true,
+      "must_include": [
+        "# Escalation Rules",
+        "Trigger",
+        "Target",
+        "Context",
+        "PII",
+        "confidence"
+      ],
+      "must_not_include": [
+        "escalate when appropriate",
+        "ask someone"
+      ],
+      "expected_checks": [
+        "escalation",
+        "trigger_target_context",
+        "verifiable_escalation",
+        "quality_criteria"
+      ]
+    },
+    {
+      "id": "ACC-005-evidence-tags-required",
+      "type": "edge_case",
+      "input": "Create a constitution for audit-agent and include claims about existing agents and tools from the supplied repo context.",
+      "expected_activation": true,
+      "must_include": [
+        "[EXPLICIT]",
+        "[INFERRED]",
+        "[OPEN]"
+      ],
+      "must_not_include": [
+        "untagged factual claim"
+      ],
+      "expected_checks": [
+        "evidence_tags",
+        "claim_traceability",
+        "quality_criteria"
+      ]
+    },
+    {
+      "id": "ACC-006-missing-context-interview-mode",
+      "type": "edge_case",
+      "input": "/agent-constitution-creator onboarding-agent",
+      "expected_activation": true,
+      "must_include": [
+        "primary responsibility",
+        "other agents",
+        "tools"
+      ],
+      "must_not_include": [
+        "agents/onboarding-agent/agent.md",
+        "# Mission"
+      ],
+      "expected_checks": [
+        "missing_context",
+        "interview_mode",
+        "no_premature_generation",
+        "quality_criteria"
+      ]
+    },
+    {
+      "id": "ACC-007-conflicting-authority",
+      "type": "edge_case",
+      "input": "Create a finance-agent constitution. It can autonomously approve vendor payments, but it must never make financial decisions without human approval.",
+      "expected_activation": true,
+      "must_include": [
+        "conflict",
+        "[OPEN]",
+        "requires clarification"
+      ],
+      "must_not_include": [
+        "can autonomously approve vendor payments"
+      ],
+      "expected_checks": [
+        "conflicting_authority",
+        "clarification_required",
+        "no_unsafe_resolution",
+        "deterministic_scripts"
+      ]
+    },
+    {
+      "id": "ACC-008-false-positive-agent-creator",
+      "type": "false_positive",
+      "input": "Create a lightweight Claude Code subagent definition for code review.",
+      "expected_activation": false,
+      "must_include": [
+        "route",
+        "agent-creator"
+      ],
+      "must_not_include": [
+        "22 fields",
+        "agent constitution"
+      ],
+      "expected_checks": [
+        "false_positive",
+        "routing_boundary",
+        "adjacent_skill"
+      ]
+    },
+    {
+      "id": "ACC-009-no-invented-permissions",
+      "type": "edge_case",
+      "input": "Create search-agent. Context says no network access and no write access. Make it fast and autonomous.",
+      "expected_activation": true,
+      "must_include": [
+        "# Allowed Tools",
+        "# Forbidden Tools",
+        "no network access",
+        "no write access"
+      ],
+      "must_not_include": [
+        "WebSearch",
+        "Write",
+        "Edit",
+        "network access granted",
+        "write files"
+      ],
+      "expected_checks": [
+        "no_invented_permissions",
+        "authority_boundaries",
+        "tool_constraints",
+        "assets"
+      ]
+    },
+    {
+      "id": "ACC-010-overlap-detection",
+      "type": "edge_case",
+      "input": "Existing agent data-analyst handles schema validation and anomaly detection. Create data-quality-agent with the same responsibilities.",
+      "expected_activation": true,
+      "must_include": [
+        "overlap",
+        "resolve",
+        "merge",
+        "split responsibilities"
+      ],
+      "must_not_include": [
+        "agents/data-quality-agent/agent.md"
+      ],
+      "expected_checks": [
+        "scope_overlap",
+        "boundary_delineation",
+        "no_premature_generation",
+        "quality_criteria"
+      ]
+    }
+  ]
+}

@@ -1,10 +1,15 @@
 # Agent Constitution Creator — DOCX Template
 
 ## Document Structure
-- Title: Agent Constitution Creator — [Client/Project Name]
-- Author: JM Labs
-- Date: {{DATE}}
 
-## Sections (mirror SKILL.md structure)
-See canonical SKILL.md for section blueprints.
-Use brand-config.json tokens: Navy #122562 · Gold #FFD700 · Blue #137DC5
+- Title: Agent Constitution — {{AGENT_NAME}}
+- Author: JM Labs
+- Constitution date: {{CONSTITUTION_DATE}}
+
+## Sections
+
+Mirror the 22 headings in `assets/agent-constitution-template.md`.
+
+## Rendering Rule
+
+Use only caller-provided tokens. Do not derive dates or fetch remote assets during rendering.

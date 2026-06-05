@@ -5,5 +5,12 @@ variant: quick
 ---
 # Agent Constitution Creator — Quick Mode
 
-Streamlined execution. Focus on TL;DR and primary output only.
-Apply Validation Gate but skip extended evidence tagging.
+Use quick mode only when all required inputs are supplied.
+
+Return:
+
+1. The completed 22-heading constitution.
+2. A short validation summary.
+3. Any `[OPEN]` items.
+
+Do not skip evidence tags, tool-registry checks, or the validator.

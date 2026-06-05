@@ -1,0 +1,15 @@
+{
+  "schema": 1,
+  "skill": "agent-constitution-creator",
+  "valid_fixture": "valid-constitution.md",
+  "invalid_fixtures": [
+    "invalid-missing-section.md",
+    "invalid-overbroad-authority.md",
+    "invalid-missing-evidence.md"
+  ],
+  "tool_registry": [
+    "Read",
+    "Grep",
+    "Glob"
+  ]
+}

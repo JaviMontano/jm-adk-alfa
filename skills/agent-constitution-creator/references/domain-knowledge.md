@@ -1,35 +1,34 @@
-# Domain Knowledge — agent constitution creator
+# Domain Knowledge — Agent Constitution Creator
 
-## Overview
+## Purpose
 
-This reference provides foundational knowledge for the agent constitution creator skill. [EXPLICIT]
+An agent constitution converts a requested role into durable governance. It is stricter than a prompt because it records authority, tool access, memory rules, escalation paths, validation discipline, and version control.
 
-## Key Concepts
+## Evidence Tags
 
-| Concept | Definition | Relevance |
-|---------|-----------|-----------|
-| Primary domain | The core domain that agent constitution creator operates within | Direct input to skill execution [EXPLICIT] |
-| Quality criteria | Standards that output must meet | Validation gate alignment [EXPLICIT] |
-| Evidence taxonomy | [EXPLICIT]/[INFERRED]/[OPEN] classification | Required for all factual claims [EXPLICIT] |
+| Tag | Use |
+|---|---|
+| `[EXPLICIT]` | Directly supplied by the user or observed in repository files |
+| `[INFERRED]` | Reasonable conclusion from explicit context |
+| `[OPEN]` | Missing, conflicting, or unresolved context |
 
-## Best Practices
+## Authority Rules
 
-1. Always start with evidence gathering before analysis [EXPLICIT]
-2. Tag every factual claim with appropriate evidence marker [EXPLICIT]
-3. Separate observations from inferences explicitly [EXPLICIT]
-4. Document assumptions that could invalidate conclusions [EXPLICIT]
-5. Provide actionable recommendations with priority levels [EXPLICIT]
+- Never grant a tool absent from the registry.
+- Never invent a peer agent to own a non-goal or escalation.
+- Financial, production, destructive, network, and memory-write authority require explicit approval.
+- A conflict between autonomous authority and approval-required authority blocks generation until clarified.
 
-## Anti-Patterns
+## Interview Mode
 
-| Anti-Pattern | Why It Fails | Better Alternative |
-|-------------|-------------|-------------------|
-| Untaged claims | Readers cannot assess confidence | Tag with [EXPLICIT]/[INFERRED]/[OPEN] |
-| Generic output | Fails to address specific context | Adapt to project-specific inputs |
-| Missing edge cases | Breaks on non-standard inputs | Document handling for edge scenarios |
+Ask for missing:
 
-## Integration Points
+1. Primary responsibility.
+2. Peer agents or confirmation that none exist.
+3. Tool registry.
+4. Forbidden actions.
+5. Memory, security, and escalation constraints.
 
-- This skill may be invoked by orchestrator skills in the pipeline [EXPLICIT]
-- Output format follows MetodologIA markdown conventions [EXPLICIT]
-- Evidence tags enable downstream quality validation [EXPLICIT]
+## Completion Standard
+
+A constitution is complete only when the validator passes and unresolved context is explicitly marked `[OPEN]`.
