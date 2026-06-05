@@ -1,0 +1,19 @@
+{
+  "schema_version": "1.0.0",
+  "required": [
+    "decision",
+    "risk_score",
+    "severity",
+    "confidence",
+    "matched_threats",
+    "sanitized_prompt",
+    "downstream_constraints",
+    "residual_risk"
+  ],
+  "decisions": [
+    "allow",
+    "allow_with_constraints",
+    "escalate",
+    "block"
+  ]
+}

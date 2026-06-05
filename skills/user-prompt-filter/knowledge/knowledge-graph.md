@@ -1,13 +1,13 @@
-# User Prompt Filter — Knowledge Graph
-<!-- Zettelkasten-ready: use [[wikilinks]] for Obsidian -->
+# User Prompt Filter Knowledge Graph
 
-## Core Concepts
-- [[user-prompt-filter]] — Primary concept
-- [[user-prompt-filter-patterns]] — Common patterns and approaches
-- [[user-prompt-filter-anti-patterns]] — What to avoid
-
-## Tags
-#user-prompt-filter #jm-adk #zettelkasten
-
-## Cross-References
-- Related skills in this domain
+```mermaid
+flowchart LR
+  Skill["user-prompt-filter"] --> Input["filter input schema"]
+  Skill --> Taxonomy["threat taxonomy"]
+  Skill --> Scoring["risk scoring policy"]
+  Skill --> Sanitize["sanitization policy"]
+  Taxonomy --> Script["filter-prompt.py"]
+  Scoring --> Script
+  Sanitize --> Script
+  Script --> Report["filter report"]
+```

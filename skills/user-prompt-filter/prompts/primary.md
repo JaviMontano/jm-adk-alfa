@@ -1,44 +1,29 @@
 ---
 name: user-prompt-filter-primary
 type: execution
-version: 2.0.0
-description: "Execute the User Prompt Filter workflow with triad orchestration."
+version: 2.1.0
+description: "Execute deterministic prompt filtering before agent or tool execution."
 triad:
   lead: "user-prompt-filter-lead"
   support: "user-prompt-filter-support"
   guardian: "user-prompt-filter-guardian"
 ---
 
-# User Prompt Filter — Execute
+# User Prompt Filter - Execute
 
 ## Dynamic Parameters
 
 | Parameter | Description | Required | Filled By |
 |-----------|-------------|----------|-----------|
-| `{{task}}` | What to accomplish | Yes | User input |
-| `{{context}}` | Background and constraints | Yes | User or codebase |
-| `{{constraints}}` | Additional rules | No | Guardrails JSON |
-| `{{depth}}` | quick / standard / deep | No | Auto |
-| `{{output_format}}` | html / docx / xlsx / md | No | Auto |
+| `{{prompt}}` | Raw incoming user prompt | Yes | User input |
+| `{{surface}}` | chat / agent / tool / shell / browser / mcp / hook / automation | Yes | User or context |
+| `{{protected_assets}}` | Assets that must not be exposed or mutated | Yes | Context |
+| `{{allowed_actions}}` | Permitted downstream actions | Yes | Context |
 
 ## Execution
 
-1. **Load knowledge**: Read `knowledge/body-of-knowledge.md`
-2. **Check guardrails**: Read `references/guardrails/*.json`
-3. **Lead** (`user-prompt-filter-lead`): Execute SKILL.md Steps 1-4 for `{{task}}`
-   - Discover → Analyze → Execute → Validate
-   - Apply evidence tags on all claims
-4. **Support** (`user-prompt-filter-support`): Review for cross-cutting concerns
-   - Edge cases, security, accessibility, performance
-5. **Guardian** (`user-prompt-filter-guardian`): Validate
-   - Evidence tags complete
-   - Quality gate met
-   - Constitution XIII + XIV respected
-   - Output exceeds expectations
-
-## Output
-
-- Primary deliverable for `{{task}}` in `{{output_format}}`
-- Evidence tags on every claim
-- Recommendations beyond the ask
-- Confidence score (>= 0.95)
+1. Normalize the input into `assets/filter-input-schema.json`.
+2. Classify against `assets/threat-taxonomy.json`.
+3. Score with `assets/risk-scoring-policy.json`.
+4. Sanitize with `assets/sanitization-policy.json`.
+5. Return decision, evidence, sanitized prompt, constraints, and residual risk.

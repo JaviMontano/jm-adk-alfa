@@ -1,28 +1,25 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: user-prompt-filter
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
+# User Prompt Filter Report
 
-# User Prompt Filter Output
+## Decision
 
-## Summary
+- Decision: `{allow|allow_with_constraints|escalate|block}`
+- Severity: `{none|low|medium|high|critical}`
+- Risk score: `{0-10}`
+- Confidence: `{low|medium|high}`
 
-{summary}
+## Matched Threats
 
-## Evidence
+| Threat | Evidence | Action |
+|---|---|---|
 
-{evidence}
+## Sanitized Prompt
 
-## Result
+{sanitized_prompt}
 
-{result}
+## Downstream Constraints
 
-## Validation
+- {constraint}
 
-{validation}
+## Residual Risk
 
-## Risks and Limits
-
-{risks}
+- {risk}

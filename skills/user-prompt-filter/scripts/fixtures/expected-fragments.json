@@ -1,0 +1,9 @@
+{
+  "prompt_injection": [
+    "Decision: `block`",
+    "prompt_injection",
+    "protected_context_leakage",
+    "Sanitized Prompt",
+    "Do not reveal secrets or protected context."
+  ]
+}

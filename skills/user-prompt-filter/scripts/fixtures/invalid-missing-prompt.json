@@ -1,0 +1,9 @@
+{
+  "surface": "chat",
+  "protected_assets": [
+    "private memory"
+  ],
+  "allowed_actions": [
+    "summarize"
+  ]
+}

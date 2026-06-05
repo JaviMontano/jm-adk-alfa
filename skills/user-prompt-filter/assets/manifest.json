@@ -1,0 +1,63 @@
+{
+  "skill": "user-prompt-filter",
+  "version": "1.0.0",
+  "assets": [
+    {
+      "path": "assets/filter-input-schema.json",
+      "type": "schema",
+      "purpose": "Defines required fields for deterministic prompt filter input.",
+      "used_by": [
+        "SKILL.md",
+        "README.md",
+        "scripts/filter-prompt.py"
+      ]
+    },
+    {
+      "path": "assets/threat-taxonomy.json",
+      "type": "taxonomy",
+      "purpose": "Defines prompt threat classes, patterns, base scores, and actions.",
+      "used_by": [
+        "SKILL.md",
+        "knowledge/body-of-knowledge.md",
+        "scripts/filter-prompt.py"
+      ]
+    },
+    {
+      "path": "assets/risk-scoring-policy.json",
+      "type": "policy",
+      "purpose": "Maps matched threats to severity, confidence, and routing decision.",
+      "used_by": [
+        "SKILL.md",
+        "scripts/filter-prompt.py"
+      ]
+    },
+    {
+      "path": "assets/sanitization-policy.json",
+      "type": "policy",
+      "purpose": "Defines unsafe text removal, protected-term redaction, and downstream constraints.",
+      "used_by": [
+        "SKILL.md",
+        "references/domain-knowledge.md",
+        "scripts/filter-prompt.py"
+      ]
+    },
+    {
+      "path": "assets/output-schema.json",
+      "type": "schema",
+      "purpose": "Defines the report fields emitted by the filter script.",
+      "used_by": [
+        "templates/output.md",
+        "scripts/filter-prompt.py"
+      ]
+    },
+    {
+      "path": "assets/source-map.md",
+      "type": "traceability",
+      "purpose": "Documents asset consumers for review and maintenance.",
+      "used_by": [
+        "README.md",
+        "scripts/README.md"
+      ]
+    }
+  ]
+}
