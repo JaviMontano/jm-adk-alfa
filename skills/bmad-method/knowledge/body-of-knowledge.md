@@ -1,16 +1,24 @@
-# Bmad Method — Body of Knowledge
+# BMAD Method — Body of Knowledge
 
 ## Canon
-Key standards, references, and best practices for Bmad Method.
 
-## Quality Metrics
-| Metric | Target | How to Measure |
-|--------|--------|---------------|
-| Accuracy | >= 90% | Correct outputs / total |
-| Evidence coverage | >= 80% | Claims tagged [EXPLICIT]/[INFERRED]/[OPEN] |
-| Constitution compliance | 100% | Principles respected |
-| Validation Gate pass | 100% | All checklist items satisfied |
+BMAD is a documentation-first lifecycle for AI-driven development. It routes work through artifacts and specialized personas before implementation.
 
-## References
-- See `references/` folder in canonical skill for detailed references
-- Industry standards and best practices for this domain
+## Deterministic Principles
+
+| Principle | Rule |
+|---|---|
+| Artifact chain | Each phase consumes prior approved artifacts |
+| Persona routing | Use `assets/persona-matrix.json` |
+| Phase 4 gate | Implementation starts only after readiness `PASS` |
+| Quick Flow | Barry applies only to small, low-risk changes |
+| Source policy | Use local/user-supplied sources unless external research is explicit |
+
+## Anti-Patterns
+
+| Anti-Pattern | Corrective Action |
+|---|---|
+| Skip docs and code | Block Phase 4 and route to readiness gate |
+| Invent scripts/templates | Mark required artifact as missing |
+| Random checks | Use stable-order sampling |
+| God agent | Route to persona owner |

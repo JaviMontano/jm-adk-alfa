@@ -1,10 +1,15 @@
-# Bmad Method — DOCX Template
+# BMAD Method — DOCX Template
 
 ## Document Structure
-- Title: Bmad Method — [Client/Project Name]
-- Author: JM Labs
-- Date: {{DATE}}
 
-## Sections (mirror SKILL.md structure)
-See canonical SKILL.md for section blueprints.
-Use brand-config.json tokens: Navy #122562 · Gold #FFD700 · Blue #137DC5
+- Title: BMAD Plan — {{PROJECT_NAME}}
+- Author: JM Labs
+- Report date: {{REPORT_DATE}}
+
+## Sections
+
+Mirror `templates/output.md`.
+
+## Rendering Rule
+
+Use only caller-provided tokens. Do not derive dates or fetch remote assets.

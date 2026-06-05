@@ -1,0 +1,24 @@
+{
+  "schema": 1,
+  "skill": "bmad-method",
+  "persona": "barry",
+  "eligible_when": {
+    "story_points_max": 3,
+    "architectural_impact": false,
+    "new_security_boundary": false,
+    "new_data_contract": false
+  },
+  "required_steps": [
+    "triage",
+    "rapid spec",
+    "change",
+    "test or self-review"
+  ],
+  "escalate_to_full_bmad_when": [
+    "story_points > 3",
+    "architecture changes",
+    "security boundary changes",
+    "data contract changes",
+    "requirements unclear"
+  ]
+}

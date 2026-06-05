@@ -1,0 +1,37 @@
+{
+  "schema": 1,
+  "skill": "bmad-method",
+  "greenfield": [
+    "project-context.md",
+    "product-brief.md",
+    "PRD.md",
+    "ux-spec.md",
+    "architecture.md",
+    "ADRs",
+    "epics/*.md",
+    "stories/*.md",
+    "readiness-gate.md",
+    "code-and-tests"
+  ],
+  "brownfield": [
+    "project-context.md",
+    "codebase-inventory.md",
+    "architecture-inventory.md",
+    "PRD-amendment.md",
+    "architecture-delta.md",
+    "stories/*.md",
+    "readiness-gate.md",
+    "code-and-tests"
+  ],
+  "quick_flow": [
+    "quick-triage.md",
+    "rapid-spec.md",
+    "change.md",
+    "test-or-self-review.md"
+  ],
+  "phase4_requires": [
+    "stories/*.md",
+    "readiness-gate.md",
+    "gate_result: PASS"
+  ]
+}

@@ -161,13 +161,14 @@ jobs:
         run: pip install pyyaml jsonschema
 
       - name: Validate story schemas
-        run: python scripts/validate_project.py --stories
+        run: test -f scripts/validate_project.py && python scripts/validate_project.py --stories
 
       - name: Validate artifact flow
-        run: python scripts/check_artifact_flow.py
+        run: test -f scripts/check_artifact_flow.py && python scripts/check_artifact_flow.py
 
       - name: Check for orphan stories
         run: |
+          test -f scripts/check_artifact_flow.py
           python scripts/check_artifact_flow.py --orphans
           if [ $? -ne 0 ]; then
             echo "::error::Orphan stories detected. Run check_artifact_flow.py locally for details."
@@ -181,7 +182,7 @@ Create a workflow triggered on PRs to `develop`/`main` with path filters for `st
 
 ### Automated Sprint Status Updates
 
-Create a GitHub Actions workflow triggered on push to `develop`. Extract story IDs from merge commit messages since the last `sprint-status.yaml` update using `git log`. Pass the list to `scripts/generate_sprint_status.py --mark-complete` to auto-update story statuses. Requires `fetch-depth: 0` in the checkout step for full Git history access.
+Create a GitHub Actions workflow triggered on push to `develop`. Extract story IDs from merge commit messages since the last `sprint-status.yaml` update using `git log`. If `scripts/generate_sprint_status.py` exists in the target project, pass the list to it with `--mark-complete`; otherwise write an explicit manual sprint-status update step. Requires `fetch-depth: 0` in the checkout step for full Git history access.
 
 ---
 

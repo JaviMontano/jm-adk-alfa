@@ -2,10 +2,7 @@
 
 The gate is a **mandatory checkpoint** before Phase 4. It validates that planning and solutioning artifacts are complete and aligned. [EXPLICIT]
 
-**Run the gate**:
-```bash
-python scripts/validate_prd.py <project-root>
-```
+**Run the gate** by applying the 13 validation steps below. If the target BMAD project provides `scripts/validate_prd.py`, verify the path first and run it as an accelerator; otherwise perform the checks manually and record evidence in the gate report.
 
 ## The 13 Validation Steps
 
@@ -45,22 +42,22 @@ python scripts/validate_prd.py <project-root>
 | 6 (Risk register) | John/PM + Winston/Architect | Add risks with mitigations |
 | 7-13 (NFRs, API, data, security, etc.) | Winston/Architect | Update architecture.md |
 
-Use `templates/implementation-readiness.md.tmpl` as the gate checklist. [EXPLICIT]
+Use the target project's implementation-readiness template if it exists; otherwise create a gate checklist from the 13 validation steps and `assets/readiness-gate-policy.json`. [EXPLICIT]
 
 ## Agent Roster
 
-| Agent | Role | Phase | File | Conflict Resolution |
-|-------|------|-------|------|---------------------|
-| Mary | Analyst | 1 | `agents/mary-analyst.md` | Defers to data; if data conflicts, escalates to user |
-| John | Product Manager | 2 | `agents/john-pm.md` | Owns scope decisions; defers technical feasibility to Winston |
-| Sally | UX Designer | 2 | `agents/sally-ux.md` | Advocates for user; defers to John on scope, Winston on feasibility |
-| Winston | Architect | 3 | `agents/winston-architect.md` | Owns technical decisions; defers to John on requirements, creates ADR for disputes |
-| Bob | Scrum Master | 3-4 | `agents/bob-scrum-master.md` | Owns process/decomposition; defers to Winston on technical sizing |
-| Amelia | Developer | 4 | `agents/amelia-developer.md` | Follows story spec; escalates ambiguity to Bob, architectural gaps to Winston |
-| Quinn | QA Engineer | 4 | `agents/quinn-qa.md` | Quality is non-negotiable; escalates unresolved findings to Bob/SM |
-| Barry | Quick Flow Dev | Any | `agents/barry-quick-flow.md` | Self-contained; escalates to full BMAD flow if scope exceeds threshold |
-| Orchestrator | Meta-router | Any | `agents/orchestrator.md` | Routes disputes to the agent who owns that artifact |
-| Gate Reviewer | Gate evaluator | 3->4 | `agents/gate-reviewer.md` | Impartial; cannot be overridden by other agents |
-| Retro Facilitator | Sprint retro | 4 | `agents/retrospective-facilitator.md` | Facilitates resolution; does not take sides |
+| Agent | Role | Phase | Definition Source | Conflict Resolution |
+|-------|------|-------|-------------------|---------------------|
+| Mary | Analyst | 1 | `assets/persona-matrix.json` or verified target-project persona | Defers to data; if data conflicts, escalates to user |
+| John | Product Manager | 2 | `assets/persona-matrix.json` or verified target-project persona | Owns scope decisions; defers technical feasibility to Winston |
+| Sally | UX Designer | 2 | `assets/persona-matrix.json` or verified target-project persona | Advocates for user; defers to John on scope, Winston on feasibility |
+| Winston | Architect | 3 | `assets/persona-matrix.json` or verified target-project persona | Owns technical decisions; defers to John on requirements, creates ADR for disputes |
+| Bob | Scrum Master | 3-4 | `assets/persona-matrix.json` or verified target-project persona | Owns process/decomposition; defers to Winston on technical sizing |
+| Amelia | Developer | 4 | `assets/persona-matrix.json` or verified target-project persona | Follows story spec; escalates ambiguity to Bob, architectural gaps to Winston |
+| Quinn | QA Engineer | 4 | `assets/persona-matrix.json` or verified target-project persona | Quality is non-negotiable; escalates unresolved findings to Bob/SM |
+| Barry | Quick Flow Dev | Any | `assets/persona-matrix.json` or verified target-project persona | Self-contained; escalates to full BMAD flow if scope exceeds threshold |
+| Orchestrator | Meta-router | Any | `assets/persona-matrix.json` or verified target-project persona | Routes disputes to the agent who owns that artifact |
+| Gate Reviewer | Gate evaluator | 3->4 | `assets/persona-matrix.json` or verified target-project persona | Impartial; cannot be overridden by other agents |
+| Retro Facilitator | Sprint retro | 4 | `assets/persona-matrix.json` or verified target-project persona | Facilitates resolution; does not take sides |
 
 [EXPLICIT]

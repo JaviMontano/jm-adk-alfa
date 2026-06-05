@@ -1,13 +1,14 @@
-# Bmad Method — Knowledge Graph
+# BMAD Method — Knowledge Graph
 
 ## Core Concepts
-- bmad-method: primary capability
-- validation-gate: quality control checkpoint
-- evidence-tagging: [EXPLICIT]/[INFERRED]/[OPEN] claims
+
+- bmad-method: documentation-first AI development lifecycle
+- persona-matrix: deterministic owner routing
+- artifact-chain: approved document sequence
+- readiness-gate: PASS/CONCERNS/FAIL blocker before Phase 4
+- quick-flow: Barry route for small low-risk changes
 
 ## Dependencies
-- Upstream: input-analysis, context-optimization
-- Downstream: output-engineering, rendering-engine
 
-## Skill Relationships
-Part of the JM Labs canonical skill registry.
+- Upstream: user goal, project context, existing repo artifacts
+- Downstream: PRD, architecture, stories, readiness gate, implementation

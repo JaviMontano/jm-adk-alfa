@@ -332,7 +332,7 @@
 | 57 | `bi-architecture` | — |
 | 58 | `bilingual-doc` | — |
 | 59 | `blog-cms` | — |
-| 60 | `bmad-method` | — |
+| 60 | `bmad-method` | Teach and apply the BMAD methodology for AI-driven software development with det |
 | 61 | `brand-docx` | [EXPLICIT] |
 | 62 | `brand-html` | — |
 | 63 | `brand-voice` | — |

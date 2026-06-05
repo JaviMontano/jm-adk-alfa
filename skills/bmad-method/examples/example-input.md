@@ -1,10 +1,17 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: bmad-method
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
-
 # Example Input
 
-Use `bmad-method` to produce a concise deliverable for a realistic project request.
+Apply BMAD to a greenfield subscription analytics product.
+
+Context:
+
+- [EXPLICIT] Goal: help finance teams detect revenue leakage from billing exports.
+- [EXPLICIT] Build type: SaaS dashboard.
+- [EXPLICIT] User wants documentation-first workflow, not immediate code.
+- [EXPLICIT] Use the full BMAD lifecycle unless Quick Flow criteria are met.
+- [OPEN] Security and rollback constraints are not yet defined.
+
+Expected behavior:
+
+- Route Mary, John, Sally, Winston, Bob, Amelia, and Quinn by phase.
+- Produce artifact chain from `project-context.md` through readiness gate.
+- Block Phase 4 until readiness gate returns `PASS`.

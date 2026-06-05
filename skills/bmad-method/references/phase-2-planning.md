@@ -398,7 +398,7 @@ Phase 2 is complete when the PRD passes the following gate:
 
 | Criterion | Verification |
 |-----------|-------------|
-| All FRs have unique IDs, priorities, and acceptance criteria | Spot-check 10 random FRs |
+| All FRs have unique IDs, priorities, and acceptance criteria | Spot-check the first 10 FRs in document order |
 | NFRs have quantitative targets | Every NFR has a number |
 | At least 2 personas exist | Each with goals, frustrations, scenarios |
 | Success metrics pass SMART test | Review each metric against 5 dimensions |
