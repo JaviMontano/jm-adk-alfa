@@ -1,75 +1,23 @@
 {
   "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-29",
   "skill": "repo-sync-auditor",
   "nodes": [
-    {
-      "id": "repo-sync-auditor",
-      "type": "skill",
-      "label": "repo-sync-auditor"
-    },
-    {
-      "id": "repo-sync-auditor:inputs",
-      "type": "contract",
-      "label": "Expected inputs"
-    },
-    {
-      "id": "repo-sync-auditor:outputs",
-      "type": "contract",
-      "label": "Expected outputs"
-    },
-    {
-      "id": "repo-sync-auditor:quality",
-      "type": "gate",
-      "label": "Quality criteria"
-    },
-    {
-      "id": "repo-sync-auditor:ontology",
-      "type": "ontology",
-      "label": "Domain: general"
-    },
-    {
-      "id": "repo-sync-auditor:evidence",
-      "type": "gate",
-      "label": "Evidence / provenance requirements"
-    },
-    {
-      "id": "repo-sync-auditor:antipattern",
-      "type": "risk",
-      "label": "Canonical anti-pattern to avoid"
-    }
+    {"id": "repo", "type": "system", "label": "Git repository"},
+    {"id": "working_tree", "type": "state", "label": "Working tree"},
+    {"id": "origin_main", "type": "state", "label": "origin/main local ref"},
+    {"id": "ledger", "type": "artifact", "label": "Skill review ledger"},
+    {"id": "reviews", "type": "artifact", "label": "Skill review docs"},
+    {"id": "scripts", "type": "artifact", "label": "Deterministic skill scripts"},
+    {"id": "generated", "type": "artifact", "label": "Generated adapter/index files"},
+    {"id": "plan", "type": "output", "label": "Safe reconciliation plan"}
   ],
   "edges": [
-    {
-      "from": "repo-sync-auditor",
-      "to": "repo-sync-auditor:inputs",
-      "type": "requires"
-    },
-    {
-      "from": "repo-sync-auditor",
-      "to": "repo-sync-auditor:outputs",
-      "type": "produces"
-    },
-    {
-      "from": "repo-sync-auditor",
-      "to": "repo-sync-auditor:quality",
-      "type": "validated_by"
-    },
-    {
-      "from": "repo-sync-auditor",
-      "to": "repo-sync-auditor:ontology",
-      "type": "classified_as"
-    },
-    {
-      "from": "repo-sync-auditor",
-      "to": "repo-sync-auditor:evidence",
-      "type": "validated_by"
-    },
-    {
-      "from": "repo-sync-auditor",
-      "to": "repo-sync-auditor:antipattern",
-      "type": "guards_against"
-    }
+    {"from": "repo", "to": "working_tree", "type": "has_state"},
+    {"from": "repo", "to": "origin_main", "type": "tracks"},
+    {"from": "repo", "to": "ledger", "type": "contains"},
+    {"from": "ledger", "to": "reviews", "type": "should_match"},
+    {"from": "ledger", "to": "scripts", "type": "should_match"},
+    {"from": "generated", "to": "plan", "type": "informs"},
+    {"from": "working_tree", "to": "plan", "type": "blocks_when_dirty"}
   ]
 }

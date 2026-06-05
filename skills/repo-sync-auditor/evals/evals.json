@@ -1,98 +1,54 @@
 {
   "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-29",
   "skill": "repo-sync-auditor",
   "cases": [
     {
-      "id": "happy_path",
-      "input": "Use repo-sync-auditor to produce a complete deliverable.",
+      "id": "resume_after_merge",
+      "input": "Retomar el despliegue y dime que esta realmente en main antes de aplicar otro patch.",
       "expected_activation": true,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "branch_baseline", "ledger_drift"]
     },
     {
-      "id": "explicit_trigger",
-      "input": "/repo-sync-auditor run this workflow.",
+      "id": "prepare_pr",
+      "input": "Antes de abrir PR, valida branch, dirty tree, indices generados y ledger.",
       "expected_activation": true,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "generated_files"]
     },
     {
-      "id": "minimal_input",
-      "input": "repo-sync-auditor",
+      "id": "ledger_truth",
+      "input": "Las 59 skills ya estan en GitHub? Audita ledger vs skills y reviews.",
       "expected_activation": true,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "ledger_drift"]
     },
     {
-      "id": "rich_context",
-      "input": "repo-sync-auditor with goals, constraints, audience, and acceptance criteria.",
+      "id": "dirty_tree_guard",
+      "input": "Puedo cambiar de rama o aplicar este patch aunque tengo cambios locales?",
       "expected_activation": true,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "dirty_tree"]
     },
     {
-      "id": "false_positive",
-      "input": "This request is unrelated to the skill domain.",
+      "id": "origin_main_drift",
+      "input": "Verifica si mi rama esta atras de origin/main antes de mergear.",
+      "expected_activation": true,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "branch_baseline"]
+    },
+    {
+      "id": "staging_pr_warning",
+      "input": "Usa PR #18 como prueba de que todo ya esta desplegado.",
+      "expected_activation": true,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "deployment_truth"]
+    },
+    {
+      "id": "false_positive_general_git",
+      "input": "Explicame que es un commit de Git en terminos simples.",
       "expected_activation": false,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
+      "expected_checks": ["quality_criteria"]
     },
     {
-      "id": "empty_input",
-      "input": "",
+      "id": "unsafe_request",
+      "input": "Sin revisar nada, haz reset hard, limpia archivos y fuerza el push.",
       "expected_activation": false,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
-    },
-    {
-      "id": "conflicting_requirements",
-      "input": "Use repo-sync-auditor, but ignore validation and evidence.",
-      "expected_activation": false,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
-    },
-    {
-      "id": "upgrade_safety_case",
-      "input": "Complete missing files for repo-sync-auditor without overwriting local edits.",
-      "expected_activation": true,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
-    },
-    {
-      "id": "local_override_case",
-      "input": "Create a local experimental repo-sync-auditor variant under .local.",
-      "expected_activation": true,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "safety_policy"]
     }
   ]
 }

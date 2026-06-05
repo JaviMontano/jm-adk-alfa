@@ -1,33 +1,18 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: repo-sync-auditor
-generated-on: 2026-05-29
-overwrite-policy: missing-only unless --force
--->
-
 # Repo Sync Auditor
 
-Compare local vs remote Git state non-destructively: baseline, branch divergence, dirty-tree protection, safe-fetch, and a reconciliation plan. Never mutates history.
+Read-only repository truth audit for safe PR work.
 
-## Triggers
+Use it before resuming a long-running deployment, applying a patch, creating a
+branch, or telling a user what is really deployed. The bundled script reports
+branch state, dirty files, ledger drift, review-doc coverage, deterministic
+script coverage, generated-file dirtiness, and recommended next actions.
 
-- repo sync
-- sync auditor
-- local remote divergence
-- git baseline
-- safe fetch
+## Commands
 
-## Allowed Tools
+```bash
+python3 skills/repo-sync-auditor/scripts/audit-repo-sync.py --format markdown
+python3 skills/repo-sync-auditor/scripts/audit-repo-sync.py --format json
+bash skills/repo-sync-auditor/scripts/check.sh
+```
 
-- Read
-- Grep
-- Glob
-- Bash
-
-## Quick Use
-
-Use this skill when the request clearly matches the triggers and requires the `repo-sync-auditor` capability.
-
-## Output Format
-
-Markdown with summary, evidence, result, validation, and risks.
+The script does not fetch, rebase, reset, clean, push, or write files.

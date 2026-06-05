@@ -721,7 +721,7 @@
 | 447 | `recaptcha-integration` | — |
 | 448 | `release-strategy` | Semantic versioning, conventional commits, auto-changelog, feature flags via Rem |
 | 449 | `rendering-engine` | — |
-| 450 | `repo-sync-auditor` | Compare local vs remote Git state non-destructively: baseline, branch divergence |
+| 450 | `repo-sync-auditor` | Audit local and remote Git repository sync state without mutating history, inclu |
 | 451 | `reporting-templates` | — |
 | 452 | `repository-organization` | — |
 | 453 | `requirements-engineering` | — |
