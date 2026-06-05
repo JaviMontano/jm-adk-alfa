@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "skill": "quality-gatekeeper",
+  "assets": [
+    {
+      "path": "assets/gate-criteria.json",
+      "type": "policy",
+      "purpose": "Canonical G0-G3 criteria, required evidence, and sequential gate order.",
+      "used_by": ["SKILL.md", "scripts/validate_gate_report.py", "evals/evals.json"]
+    },
+    {
+      "path": "assets/report-contract.json",
+      "type": "schema",
+      "purpose": "Required gate report sections, statuses, severities, and decision rules.",
+      "used_by": ["SKILL.md", "templates/output.md", "scripts/validate_gate_report.py"]
+    },
+    {
+      "path": "assets/evidence-policy.json",
+      "type": "policy",
+      "purpose": "Evidence tag vocabulary and assumption-ratio warning policy.",
+      "used_by": ["SKILL.md", "scripts/validate_gate_report.py", "prompts/primary.md"]
+    },
+    {
+      "path": "assets/score-history-schema.json",
+      "type": "schema",
+      "purpose": "Score-history entry fields emitted by a gate report.",
+      "used_by": ["SKILL.md", "scripts/validate_gate_report.py", "templates/output.md"]
+    },
+    {
+      "path": "assets/activation-policy.json",
+      "type": "policy",
+      "purpose": "Activation, routing, and false-positive rules.",
+      "used_by": ["SKILL.md", "prompts/meta.md", "evals/evals.json"]
+    }
+  ]
+}

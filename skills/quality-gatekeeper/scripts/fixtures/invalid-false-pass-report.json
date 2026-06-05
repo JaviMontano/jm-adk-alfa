@@ -1,0 +1,55 @@
+{
+  "summary": {
+    "gate_scope": ["G0"],
+    "source_stage": "unverified",
+    "target_stage": "analysis",
+    "overall_status": "pass",
+    "blocking_findings": 0,
+    "not_verified_count": 0,
+    "assumption_ratio": 0.0,
+    "confidence": 0.99
+  },
+  "previous_gates_passed": [],
+  "warning_banner": "",
+  "gate_results": [
+    {
+      "gate": "G0",
+      "status": "pass",
+      "blocking": false,
+      "evidence": "[CONFIG] Gate was approved by request."
+    }
+  ],
+  "criteria_results": [
+    {
+      "gate": "G0",
+      "criterion_id": "G0-01",
+      "criterion_name": "secrets_scan_clean",
+      "status": "fail",
+      "severity": "P0",
+      "required": true,
+      "evidence": "[CODE] Secret-like value was found.",
+      "missing_evidence": [],
+      "remediation": ""
+    }
+  ],
+  "violations": [],
+  "missing_evidence": [],
+  "remediation_plan": [],
+  "score_history_entry": {
+    "gate_scope": ["G0"],
+    "source_stage": "unverified",
+    "target_stage": "analysis",
+    "overall_status": "pass",
+    "blocked": false,
+    "evaluator": "quality-gatekeeper",
+    "evidence_summary": "[CODE] Secret-like value found.",
+    "commands": [],
+    "decision": "allow"
+  },
+  "decision": {
+    "release_decision": "allow",
+    "reason": "[CONFIG] Proceed anyway.",
+    "next_action": "advance"
+  },
+  "caveats": ["[ASSUMPTION] Invalid fixture should fail validation."]
+}

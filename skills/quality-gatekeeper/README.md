@@ -1,29 +1,37 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: quality-gatekeeper
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
-
 # Quality Gatekeeper
 
-Validates deliverables at quality gates G0-G3. Blocks phase transitions until criteria are met. Produces pass/fail reports with evidence. [EXPLICIT]
+Deterministic JM-ADK G0-G3 gate validator. It evaluates scoped gate criteria,
+blocks phase transitions when required evidence is missing or failed, and emits
+a score-history entry contract. [EXPLICIT]
 
-## Triggers
+## Activation
 
-- quality-gatekeeper
+- `/jm:advance`
+- "can this pass G0/G1/G2/G3?"
+- "quality gate report"
+- "release/PR gate readiness"
+- "validate score-history entry"
 
-## Allowed Tools
+## Deterministic Resources
 
-- Read
-- Grep
-- Glob
-- Bash
+| Path | Purpose |
+|---|---|
+| `assets/gate-criteria.json` | G0-G3 criteria and sequential order |
+| `assets/report-contract.json` | Report schema and decision rules |
+| `assets/evidence-policy.json` | Evidence tags and assumption warning threshold |
+| `assets/score-history-schema.json` | Proposed score-history entry contract |
+| `scripts/validate_gate_report.py` | Offline JSON report validator |
+| `scripts/check.sh` | Pass/block/fail fixture runner |
 
-## Quick Use
+## Local Checks
 
-Use this skill when the request clearly matches the triggers and requires the `quality-gatekeeper` capability.
+```bash
+bash skills/quality-gatekeeper/scripts/check.sh
+python3 -B scripts/validate-skill-scripts.py --strict --run-checks --skill quality-gatekeeper
+python3 -B scripts/validate-skill-dod.py --skill quality-gatekeeper
+```
 
-## Output Format
+## Decision Rule
 
-Markdown with summary, evidence, result, validation, and risks.
+No gate advances unless every required criterion in scope has tagged evidence
+and no required criterion is `fail` or `not_verified`. [EXPLICIT]

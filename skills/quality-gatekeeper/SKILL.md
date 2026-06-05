@@ -1,140 +1,161 @@
 ---
 name: quality-gatekeeper
-description: Validates deliverables at quality gates G0-G3. Blocks phase transitions until criteria are met. Produces pass/fail reports with evidence. [EXPLICIT]
-version: 1.0.0
+description: Validates deliverables at JM-ADK quality gates G0-G3 using deterministic criteria, evidence tags, sequential gate order, score-history entry contracts, remediation, and fail-closed missing-evidence handling. Use before phase transitions, release decisions, `/jm:advance`, PR readiness, or any request asking whether a gate can pass.
+version: 1.0.1
 status: production
 owner: Javier Montaño
 tags: [core, quality, gates, validation]
 allowed-tools:
   - Read
-  - Write
-  - Edit
   - Bash
   - Glob
   - Grep
 ---
 
-# quality-gatekeeper {Core} (v1.0)
+# Quality Gatekeeper
 
-> **"No gate, no advance. No evidence, no pass."**
+Validate one artifact or release packet against JM-ADK G0-G3 quality gates. A
+valid gate report evaluates every required criterion for the scoped gate(s),
+uses evidence tags, blocks on failures or missing evidence, and emits a
+score-history entry contract without mutating project state unless an
+orchestrator explicitly requests a write. [EXPLICIT]
 
-## Purpose
+## Deterministic Assets
 
-Enforces the 4 quality gates (G0-G3) that govern phase transitions in the JM-ADK pipeline. Validates that deliverables meet defined criteria before allowing advancement. [EXPLICIT]
+Use these local assets before producing or validating a report. [EXPLICIT]
 
-**When to use:**
+| Path | Use |
+|---|---|
+| `assets/gate-criteria.json` | Canonical G0-G3 criteria, required evidence, and phase order |
+| `assets/report-contract.json` | Required report sections, statuses, severities, and decision rules |
+| `assets/evidence-policy.json` | Evidence tag vocabulary and assumption-ratio warning policy |
+| `assets/score-history-schema.json` | Required score-history entry fields |
+| `assets/activation-policy.json` | Activation and false-positive routing rules |
+| `scripts/validate_gate_report.py` | Offline JSON gate report validator |
+| `scripts/check.sh` | Deterministic fixture check for pass, block, and false-pass cases |
 
-- Before transitioning between pipeline phases
-- When `/jm:advance` is invoked
-- When manually checking gate readiness
+The validator reads only explicit local JSON paths. It does not call the
+network, current time, model providers, MCP tools, or random sources. [EXPLICIT]
 
----
+## When To Activate
 
-## Core Principles (Immutable Laws)
+Activate for JM-ADK quality gate decisions, phase transitions, `/jm:advance`,
+release readiness, PR gate readiness, score-history entry validation, or
+requests asking whether G0, G1, G2, or G3 can pass. [EXPLICIT]
 
-1. **Law of Gates:** G0 (pre-flight) → G1 (analysis) → G2 (architecture) → G3 (deploy). No skipping. [EXPLICIT]
-2. **Law of Evidence:** Every pass requires tagged evidence `[CODE]`/`[CONFIG]`/`[DOC]`. No evidence = no pass. [EXPLICIT]
-3. **Law of Blocking:** A failed gate BLOCKS all downstream work. Fix → re-evaluate → pass. [EXPLICIT]
+Do not activate for:
 
----
+- generic writing quality review without JM-ADK gate scope
+- generic CI log explanation unless the user asks for a G0-G3 decision
+- Lighthouse-only audits; route to performance/accessibility skills unless tied
+  to G3
+- creating or editing the Constitution; route to constitution workflows
+- human role assignment such as "find a gatekeeper"
 
-## Core Process (Step-by-Step)
+## Required Inputs
 
-### Phase 1: Gate Identification
+At least one artifact or explicit missing-evidence statement is required.
+[EXPLICIT]
 
-1. **Determine current phase** from `.specify/context.json` stage field. [EXPLICIT]
-2. **Select gate criteria** from the gate table below. [EXPLICIT]
+| Input | Rule |
+|---|---|
+| `gate_id` | `G0`, `G1`, `G2`, `G3`, or a scoped list; if absent, infer from artifact type and mark inference |
+| `source_stage` | Current phase before transition; used to enforce sequential gate order |
+| `target_stage` | Requested phase after gate approval |
+| `artifacts` | Files, PR checks, reports, commands, or user-provided evidence |
+| `score_history` | Existing entry when re-evaluating; otherwise emit a proposed `score_history_entry` |
 
-### Phase 2: Evaluation
+If required evidence is absent, mark the criterion `not_verified`. Never mark a
+criterion `pass` from silence. [EXPLICIT]
 
-| Gate | Criteria | Pass Condition |
-|------|----------|---------------|
-| G0 | Secrets scan, stack compliance (R-002/R-003) | Zero violations |
-| G1 | Analysis deliverables complete, evidence tags present, stakeholder map exists | All artifacts exist with evidence |
-| G2 | Firebase architecture documented, data model validated, security rules drafted | Architecture review passed |
-| G3 | Tests pass, Lighthouse > 90, security audit clean, monitoring configured | All checks green |
+## Gate Process
 
-1. **Run checks** for each criterion. [EXPLICIT]
-2. **Tag results** with evidence source. [EXPLICIT]
-3. **Score:** Pass (all criteria met) or Fail (list failures). [EXPLICIT]
+1. Load `assets/gate-criteria.json`, `assets/report-contract.json`,
+   `assets/evidence-policy.json`, and `assets/score-history-schema.json`.
+2. Identify the requested gate(s) and enforce order `G0 -> G1 -> G2 -> G3`.
+3. Evaluate every required criterion for each scoped gate.
+4. Require evidence tags on every factual criterion row.
+5. Classify criterion status as `pass`, `fail`, `not_verified`, or
+   `not_applicable`.
+6. Block advancement when any required criterion is `fail` or `not_verified`.
+7. Add remediation for every `fail` or `not_verified` criterion.
+8. Emit a score-history entry contract with gate, branch/commit when available,
+   evidence summary, blocked flag, decision, and evaluator.
+9. If a JSON report is available, run `scripts/validate_gate_report.py` before
+   final delivery.
 
-### Phase 3: Report
+## Gate Criteria Summary
 
-1. **Produce gate report** with pass/fail per criterion. [EXPLICIT]
-2. **Update** `.specify/score-history.json` with findings. [EXPLICIT]
-3. **If pass:** Allow phase transition. [EXPLICIT]
-4. **If fail:** Block advancement, list remediation steps. [EXPLICIT]
+| Gate | Required Criteria | Pass Condition |
+|---|---|---|
+| G0 Pre-flight | secrets scan, branch isolation, Constitution compliance | zero blocking findings |
+| G1 Analysis | spec complete, evidence tags, stakeholder/checklist coverage | all analysis artifacts evidenced |
+| G2 Architecture | data model, API/contracts, security rules, BDD traceability, design tokens | architecture evidence complete |
+| G3 Deploy-ready | tests, Lighthouse >= 90, emulator/security checks, accessibility audit, brand voice/monitoring | all release checks green |
 
----
+Use `assets/gate-criteria.json` as the canonical criterion list. [EXPLICIT]
 
-## 3. Inputs / Outputs
+## Report Contract
 
-### Inputs
+Every report must include: [EXPLICIT]
 
-| Input | Type | Required | Description |
-|-------|------|----------|-------------|
-| Gate ID | Enum | Yes | G0, G1, G2, or G3 |
-| Artifacts | Files | Yes | Deliverables to evaluate |
+1. Summary with `gate_scope`, `source_stage`, `target_stage`,
+   `overall_status`, `blocking_findings`, `not_verified_count`,
+   `assumption_ratio`, and confidence.
+2. Gate results for all scoped gates.
+3. Criterion results for every required criterion in scoped gates.
+4. Violations table.
+5. Missing evidence table.
+6. Remediation plan.
+7. Proposed `score_history_entry`.
+8. Decision: `allow`, `block`, or `needs_evidence`.
+9. Caveats and explicit assumptions.
 
-### Outputs
+## Validation Gate
 
-| Output | Type | Description |
-|--------|------|-------------|
-| Gate Report | Markdown | Pass/fail per criterion with evidence |
-| Score Update | JSON | Updated score-history.json entry |
+- [ ] Gate scope is explicit.
+- [ ] Sequential gate order is checked.
+- [ ] Every required criterion for scoped gates is represented exactly once.
+- [ ] Every `pass` row has tagged evidence.
+- [ ] Every `fail` row has severity and remediation.
+- [ ] Every `not_verified` row lists missing evidence and remediation.
+- [ ] Overall status is `blocked` when required criteria fail or are missing.
+- [ ] Assumption ratio above 0.30 emits a warning banner.
+- [ ] Score-history entry includes required fields.
+- [ ] No external network, clock, or random value is needed to validate the
+  report.
 
----
+## Severity Policy
 
-## Validation Gate (10x Checklist)
-
-- [ ] **Gate identified** correctly from context
-- [ ] **All criteria evaluated** with evidence tags
-- [ ] **Score updated** in score-history.json
-- [ ] **Remediation steps** listed for any failures
-- [ ] **Advancement blocked** if any criterion fails
-
----
-
-## 5. Edge Cases & Antipatterns
-
-### Antipatterns
-
-- **Rubber-stamping:** Passing a gate without checking criteria → **BAD**
-- **Partial pass:** "Most criteria met, let's proceed" → **BAD**. All must pass.
-
-### Edge Cases
-
-- **G0 on empty project:** Still requires stack compliance check (no AWS/Azure in CLAUDE.md).
-- **Re-evaluation:** After fixing failures, re-run the gate — don't assume it passes.
-
----
-
-## 6. Self-Correction Triggers
-
-> [!WARNING]
-> IF gate evaluation finds >30% `[ASSUMPTION]` tags THEN add WARNING banner to gate report.
-
-> [!WARNING]
-> IF G3 is requested but G1 hasn't passed THEN **STOP**. Gates are sequential.
-
-## Usage
-
-Example invocations:
-
-- "/quality-gatekeeper" — Run the full quality gatekeeper workflow
-- "quality gatekeeper on this project" — Apply to current context
-
-
-## Assumptions & Limits
-
-- Assumes access to project artifacts (code, docs, configs) [EXPLICIT]
-- Requires English-language output unless otherwise specified [EXPLICIT]
-- Does not replace domain expert judgment for final decisions [EXPLICIT]
+| Severity | Meaning | Delivery Decision |
+|---|---|---|
+| `P0` | Secret, security, data integrity, or forbidden stack breach | Block |
+| `P1` | Required gate criterion failed, missing, or out-of-sequence | Block |
+| `P2` | Important gap with bounded workaround outside the current gate | Conditional |
+| `P3` | Low-risk wording or documentation gap | Warn |
+| `none` | Criterion passes or does not apply | Allow |
 
 ## Edge Cases
 
-| Scenario | Handling |
-|----------|----------|
-| Empty or minimal input | Request clarification before proceeding |
-| Conflicting requirements | Flag conflicts explicitly, propose resolution |
-| Out-of-scope request | Redirect to appropriate skill or escalate |
+- **G3 requested before G1:** block with sequential gate violation.
+- **No files or docs yet:** return `not_verified`, not `pass`.
+- **Partial green checks:** block the gate; no "mostly pass" language.
+- **Assumption-heavy report:** if more than 30% of criterion evidence is
+  `[ASSUMPTION]`, add a warning banner and avoid `allow`.
+- **Score-history file absent:** emit a valid proposed entry; do not invent that
+  it was written.
+- **Explicit write request:** only update `.specify/score-history.json` after
+  the user/orchestrator permits writes and a valid report exists.
+
+## Reference Files
+
+| File | Content | Load When |
+|---|---|---|
+| `assets/gate-criteria.json` | G0-G3 criteria and sequence | Always |
+| `assets/report-contract.json` | Report schema and decision rules | Always |
+| `assets/evidence-policy.json` | Evidence tags and warning thresholds | Always |
+| `assets/score-history-schema.json` | Score-history entry requirements | When emitting score history |
+| `scripts/check.sh` | Fixture-backed deterministic check | When local scripts can run |
+
+---
+**Author:** Javier Montano | **Last updated:** 2026-06-05

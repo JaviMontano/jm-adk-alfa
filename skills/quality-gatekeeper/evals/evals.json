@@ -1,9 +1,100 @@
-[
-  {"id": "quality-gatekeeper-happy-path", "type": "happy_path", "input": "Run quality gatekeeper on this project", "expected_behavior": "Skill activates and produces the expected quality gatekeeper output following the defined process", "tags": ["basic", "activation"]},
-  {"id": "quality-gatekeeper-explicit-trigger", "type": "happy_path", "input": "Apply quality gatekeeper analysis", "expected_behavior": "Skill recognizes the trigger phrase and executes the quality gatekeeper workflow", "tags": ["trigger", "recognition"]},
-  {"id": "quality-gatekeeper-with-context", "type": "happy_path", "input": "Apply quality gatekeeper to analyze the current codebase with detailed output", "expected_behavior": "Skill produces comprehensive quality gatekeeper analysis with evidence-tagged findings", "tags": ["detailed", "comprehensive"]},
-  {"id": "quality-gatekeeper-minimal-input", "type": "happy_path", "input": "Quick quality gatekeeper", "expected_behavior": "Skill activates with minimal input, applies reasonable defaults", "tags": ["minimal", "defaults"]},
-  {"id": "quality-gatekeeper-false-positive", "type": "false_positive", "input": "What is the weather forecast for tomorrow?", "expected_behavior": "Skill should NOT activate — this input has no relation to quality gatekeeper", "tags": ["false_positive", "should-not-activate"]},
-  {"id": "quality-gatekeeper-edge-empty-input", "type": "edge_case", "input": "Run quality gatekeeper but I have no files or documentation yet", "expected_behavior": "Skill handles gracefully — requests minimum viable input or produces gap analysis", "tags": ["edge_case", "empty-input", "boundary"]},
-  {"id": "quality-gatekeeper-edge-conflicting", "type": "edge_case", "input": "Apply quality gatekeeper but requirements contradict each other", "expected_behavior": "Skill detects contradiction, flags with [OPEN] tag, proposes resolution", "tags": ["edge_case", "conflict", "corner"]}
-]
+{
+  "schema": 1,
+  "skill": "quality-gatekeeper",
+  "cases": [
+    {
+      "id": "g0-clean-preflight-pass",
+      "type": "happy_path",
+      "input": "Validate G0 for a branch with clean secrets scan, isolated branch, and constitution compliance evidence.",
+      "fixture": "scripts/fixtures/g1-pass-report.json",
+      "expected_activation": true,
+      "expected_outputs": ["gate_scope", "criterion rows", "score_history_entry", "release_decision"],
+      "forbidden_outputs": ["mostly pass", "skip evidence", "advance without evidence"],
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "activation_policy", "gate_identification", "criterion_coverage", "evidence_tags", "blocking_policy", "score_history_contract", "report_schema"]
+    },
+    {
+      "id": "g0-secret-blocks",
+      "type": "negative",
+      "input": "Validate G0 when a secret-like token appears in the scan output.",
+      "expected_activation": true,
+      "expected_outputs": ["blocked", "P0", "secret remediation", "no downstream advance"],
+      "forbidden_outputs": ["allow", "partial pass"],
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "gate_identification", "evidence_tags", "fail_closed_missing_evidence", "blocking_policy", "remediation_steps", "score_history_contract"]
+    },
+    {
+      "id": "g1-complete-analysis-pass",
+      "type": "happy_path",
+      "input": "Run a G1 analysis gate with spec, evidence tags, and stakeholder checklist present.",
+      "fixture": "scripts/fixtures/g1-pass-report.json",
+      "expected_activation": true,
+      "expected_outputs": ["G1 pass", "three G1 criteria", "score history allow entry"],
+      "forbidden_outputs": ["missing analysis ignored"],
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "sequential_gate_order", "criterion_coverage", "evidence_tags", "report_schema"]
+    },
+    {
+      "id": "g1-missing-evidence-blocks",
+      "type": "negative",
+      "input": "Run G1 where spec exists but stakeholder coverage and evidence tags are missing.",
+      "expected_activation": true,
+      "expected_outputs": ["not_verified", "blocked", "missing evidence table", "remediation"],
+      "forbidden_outputs": ["mostly pass", "allow"],
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "fail_closed_missing_evidence", "blocking_policy", "remediation_steps"]
+    },
+    {
+      "id": "g2-architecture-pass",
+      "type": "happy_path",
+      "input": "Validate G2 with data model, API contracts, security rules, and BDD traceability evidence.",
+      "expected_activation": true,
+      "expected_outputs": ["G2", "architecture criteria", "security rules", "allow if all evidenced"],
+      "forbidden_outputs": ["architecture review assumed"],
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "criterion_coverage", "evidence_tags", "score_history_contract"]
+    },
+    {
+      "id": "g2-missing-security-rules-blocks",
+      "type": "negative",
+      "input": "Validate G2 where security rules are only promised but no artifact exists.",
+      "expected_activation": true,
+      "expected_outputs": ["blocked", "not_verified", "P0", "security rule remediation"],
+      "forbidden_outputs": ["allow", "security okay by assumption"],
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "fail_closed_missing_evidence", "blocking_policy", "remediation_steps"]
+    },
+    {
+      "id": "g3-all-green-pass",
+      "type": "happy_path",
+      "input": "Validate G3 after G0-G2 passed with tests, Lighthouse >= 90, security, accessibility, brand voice, and monitoring evidence.",
+      "expected_activation": true,
+      "expected_outputs": ["G3 pass", "all G3 criteria", "release_decision allow"],
+      "forbidden_outputs": ["release without checks"],
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "sequential_gate_order", "criterion_coverage", "evidence_tags", "report_schema"]
+    },
+    {
+      "id": "g3-before-g1-stops",
+      "type": "edge_case",
+      "input": "User asks to pass G3 while only G0 is recorded as passed.",
+      "fixture": "scripts/fixtures/g3-blocked-report.json",
+      "expected_activation": true,
+      "expected_outputs": ["blocked", "sequential gate violation", "no release"],
+      "forbidden_outputs": ["G3 pass", "allow"],
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "sequential_gate_order", "blocking_policy", "remediation_steps", "score_history_contract"]
+    },
+    {
+      "id": "assumption-warning-banner",
+      "type": "edge_case",
+      "input": "Gate report has more than 30 percent assumption-tagged evidence rows.",
+      "fixture": "scripts/fixtures/g3-blocked-report.json",
+      "expected_activation": true,
+      "expected_outputs": ["warning_banner", "assumption_ratio", "blocked or needs_evidence"],
+      "forbidden_outputs": ["high confidence allow"],
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "evidence_tags", "report_schema", "blocking_policy"]
+    },
+    {
+      "id": "false-positive-generic-quality",
+      "type": "false_positive",
+      "input": "Improve the writing quality of this email and make it warmer.",
+      "expected_activation": false,
+      "expected_outputs": ["route away from G0-G3 gate report"],
+      "forbidden_outputs": ["gate_scope", "score_history_entry", "release_decision"],
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "activation_policy"]
+    }
+  ]
+}

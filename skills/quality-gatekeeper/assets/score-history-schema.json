@@ -1,0 +1,18 @@
+{
+  "schema": 1,
+  "skill": "quality-gatekeeper",
+  "entry_type": "proposed_score_history_entry",
+  "required_fields": [
+    "gate_scope",
+    "source_stage",
+    "target_stage",
+    "overall_status",
+    "blocked",
+    "evaluator",
+    "evidence_summary",
+    "commands",
+    "decision"
+  ],
+  "optional_fields": ["branch", "commit", "pr", "ci_run", "review_doc"],
+  "write_policy": "emit proposed entry by default; write only after explicit user or orchestrator permission"
+}
