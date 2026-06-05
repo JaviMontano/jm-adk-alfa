@@ -1,35 +1,39 @@
-# Domain Knowledge — workflow forge
+# Domain Knowledge - Workflow Forge
 
 ## Overview
 
-This reference provides foundational knowledge for the workflow forge skill. [EXPLICIT]
+Workflow Forge creates repeatable slash-command workflows. It is strongest when
+the user needs a reusable operational sequence with agent accountability,
+phase-level checkpoints, and a deployable workflow definition.
 
-## Key Concepts
+## Workflow vs Nearby Artifacts
 
-| Concept | Definition | Relevance |
-|---------|-----------|-----------|
-| Primary domain | The core domain that workflow forge operates within | Direct input to skill execution [EXPLICIT] |
-| Quality criteria | Standards that output must meet | Validation gate alignment [EXPLICIT] |
-| Evidence taxonomy | [EXPLICIT]/[INFERRED]/[OPEN] classification | Required for all factual claims [EXPLICIT] |
+| Artifact | Use when | Not enough when |
+|---|---|---|
+| Checklist | One-off task completion | Agents, handoffs, or command routing matter |
+| Runbook | Human operational procedure | Slash-command activation and agent routing matter |
+| Workflow | Repeatable command flow with phases | The request is only a simple answer |
+| Skill | Reusable capability and trigger contract | The user only needs one workflow inside a skill |
 
-## Best Practices
+## Evidence Taxonomy
 
-1. Always start with evidence gathering before analysis [EXPLICIT]
-2. Tag every factual claim with appropriate evidence marker [EXPLICIT]
-3. Separate observations from inferences explicitly [EXPLICIT]
-4. Document assumptions that could invalidate conclusions [EXPLICIT]
-5. Provide actionable recommendations with priority levels [EXPLICIT]
+- `[EXPLICIT]`: directly stated in user input, repo files, or workflow spec.
+- `[INFERRED]`: derived from available evidence and marked as a hypothesis.
+- `[OPEN]`: unresolved dependency requiring user or catalog confirmation.
+
+## Design Heuristics
+
+1. Start with the command and deliverable.
+2. Keep the phase map small enough to execute.
+3. Make every checkpoint observable.
+4. Assign agents to work, not vibes.
+5. End with verification of the deliverable, not a summary of effort.
 
 ## Anti-Patterns
 
-| Anti-Pattern | Why It Fails | Better Alternative |
-|-------------|-------------|-------------------|
-| Untaged claims | Readers cannot assess confidence | Tag with [EXPLICIT]/[INFERRED]/[OPEN] |
-| Generic output | Fails to address specific context | Adapt to project-specific inputs |
-| Missing edge cases | Breaks on non-standard inputs | Document handling for edge scenarios |
-
-## Integration Points
-
-- This skill may be invoked by orchestrator skills in the pipeline [EXPLICIT]
-- Output format follows MetodologIA markdown conventions [EXPLICIT]
-- Evidence tags enable downstream quality validation [EXPLICIT]
+| Anti-pattern | Risk | Safer alternative |
+|---|---|---|
+| Monolithic workflow | No control point between work chunks | Split into phase map |
+| Agent placeholders | No accountability | Use real agent IDs or `[OPEN]` |
+| Untestable gates | False readiness | Rewrite as binary evidence checks |
+| Hidden stack assumptions | Policy drift | Validate with workflow policy |

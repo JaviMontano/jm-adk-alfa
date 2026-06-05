@@ -1,75 +1,63 @@
 {
   "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-28",
   "skill": "workflow-forge",
   "nodes": [
     {
       "id": "workflow-forge",
       "type": "skill",
-      "label": "workflow-forge"
+      "label": "Workflow Forge"
     },
     {
-      "id": "workflow-forge:inputs",
+      "id": "workflow-spec",
       "type": "contract",
-      "label": "Expected inputs"
+      "label": "Structured workflow specification"
     },
     {
-      "id": "workflow-forge:outputs",
-      "type": "contract",
-      "label": "Expected outputs"
+      "id": "phase-map",
+      "type": "artifact",
+      "label": "Ordered phase map"
     },
     {
-      "id": "workflow-forge:quality",
+      "id": "verification-phase",
       "type": "gate",
-      "label": "Quality criteria"
+      "label": "Final verification phase"
     },
     {
-      "id": "workflow-forge:ontology",
-      "type": "ontology",
-      "label": "Domain: general"
+      "id": "workflow-policy",
+      "type": "policy",
+      "label": "Local workflow policy"
     },
     {
-      "id": "workflow-forge:evidence",
-      "type": "gate",
-      "label": "Evidence / provenance requirements"
-    },
-    {
-      "id": "workflow-forge:antipattern",
-      "type": "risk",
-      "label": "Canonical anti-pattern to avoid"
+      "id": "deterministic-compiler",
+      "type": "script",
+      "label": "Offline workflow compiler"
     }
   ],
   "edges": [
     {
       "from": "workflow-forge",
-      "to": "workflow-forge:inputs",
+      "to": "workflow-spec",
       "type": "requires"
     },
     {
-      "from": "workflow-forge",
-      "to": "workflow-forge:outputs",
+      "from": "workflow-spec",
+      "to": "phase-map",
       "type": "produces"
     },
     {
-      "from": "workflow-forge",
-      "to": "workflow-forge:quality",
-      "type": "validated_by"
+      "from": "phase-map",
+      "to": "verification-phase",
+      "type": "ends_with"
     },
     {
-      "from": "workflow-forge",
-      "to": "workflow-forge:ontology",
-      "type": "classified_as"
+      "from": "workflow-policy",
+      "to": "workflow-spec",
+      "type": "validates"
     },
     {
-      "from": "workflow-forge",
-      "to": "workflow-forge:evidence",
-      "type": "validated_by"
-    },
-    {
-      "from": "workflow-forge",
-      "to": "workflow-forge:antipattern",
-      "type": "guards_against"
+      "from": "deterministic-compiler",
+      "to": "workflow-policy",
+      "type": "applies"
     }
   ]
 }

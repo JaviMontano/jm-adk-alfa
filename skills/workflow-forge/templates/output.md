@@ -1,28 +1,40 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: workflow-forge
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
-
-# Workflow Forge Output
+# {{title}}
 
 ## Summary
 
-{summary}
+{{summary}}
 
-## Evidence
+## Frontmatter
 
-{evidence}
+```yaml
+description: {{description}}
+command: {{command}}
+skills_involved:
+{{skills_involved}}
+agents_coordinated:
+{{agents_coordinated}}
+```
 
-## Result
+## Phase Map
 
-{result}
+{{phase_map}}
+
+## Checkpoints
+
+{{checkpoints}}
+
+## Quality Gates
+
+{{quality_gates}}
+
+## Failure Handling
+
+{{failure_handling}}
+
+## Example Dialogue
+
+{{example_dialogue}}
 
 ## Validation
 
-{validation}
-
-## Risks and Limits
-
-{risks}
+{{validation}}

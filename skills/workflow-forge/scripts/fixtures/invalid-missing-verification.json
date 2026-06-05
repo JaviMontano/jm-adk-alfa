@@ -1,0 +1,60 @@
+{
+  "workflow_id": "missing-verification",
+  "title": "Missing Verification Workflow",
+  "command": "/jm:missing-verification",
+  "description": "Invalid workflow without final verification.",
+  "deliverable": "invalid output",
+  "skills_involved": [
+    "workflow-forge"
+  ],
+  "agents_coordinated": [
+    "workflow-forge-lead",
+    "workflow-forge-support"
+  ],
+  "phases": [
+    {
+      "id": "clarify",
+      "kind": "clarification",
+      "title": "Clarify",
+      "agents": [
+        "workflow-forge-lead"
+      ],
+      "inputs": [
+        "request"
+      ],
+      "outputs": [
+        "brief"
+      ],
+      "checkpoint": [
+        "brief is explicit"
+      ]
+    },
+    {
+      "id": "execute",
+      "kind": "execution",
+      "title": "Execute",
+      "agents": [
+        "workflow-forge-support"
+      ],
+      "inputs": [
+        "brief"
+      ],
+      "outputs": [
+        "workflow"
+      ],
+      "checkpoint": [
+        "workflow exists"
+      ]
+    }
+  ],
+  "quality_gates": [
+    "frontmatter exists",
+    "phase map exists"
+  ],
+  "example_dialogue": [
+    {
+      "user": "Create a workflow without verification.",
+      "assistant": "This should fail validation."
+    }
+  ]
+}

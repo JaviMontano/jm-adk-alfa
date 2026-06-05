@@ -1,0 +1,42 @@
+{
+  "schema": 1,
+  "skill": "workflow-forge",
+  "assets": [
+    {
+      "path": "assets/workflow-forge-schema.json",
+      "type": "schema",
+      "purpose": "Stable input and output contract for offline workflow compilation.",
+      "used_by": [
+        "scripts/compile-workflow-forge.py",
+        "knowledge/body-of-knowledge.md"
+      ]
+    },
+    {
+      "path": "assets/workflow-policy.json",
+      "type": "policy",
+      "purpose": "Local rules for phase count, first/final phase kinds, checkpoints, and prohibited stack terms.",
+      "used_by": [
+        "scripts/compile-workflow-forge.py",
+        "SKILL.md"
+      ]
+    },
+    {
+      "path": "assets/workflow-output-template.md",
+      "type": "markdown-template",
+      "purpose": "Canonical workflow definition section order.",
+      "used_by": [
+        "scripts/compile-workflow-forge.py",
+        "templates/output.md"
+      ]
+    },
+    {
+      "path": "assets/source-map.md",
+      "type": "source-map",
+      "purpose": "Local documentation references for workflow design and validation.",
+      "used_by": [
+        "knowledge/body-of-knowledge.md",
+        "SKILL.md"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schema": 1,
+  "min_phases": 2,
+  "recommended_min_phases": 3,
+  "recommended_max_phases": 7,
+  "allowed_first_phase_kinds": [
+    "clarification",
+    "planning",
+    "intake"
+  ],
+  "required_final_phase_kind": "verification",
+  "required_frontmatter_fields": [
+    "description",
+    "command",
+    "skills_involved",
+    "agents_coordinated"
+  ],
+  "phase_required_fields": [
+    "id",
+    "kind",
+    "title",
+    "agents",
+    "inputs",
+    "outputs",
+    "checkpoint"
+  ],
+  "prohibited_stack_terms": [
+    "AWS",
+    "Azure",
+    "Docker"
+  ],
+  "quality_gate_keywords": [
+    "frontmatter",
+    "phase",
+    "checkpoint",
+    "verification"
+  ]
+}

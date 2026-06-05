@@ -3459,7 +3459,7 @@
     "id": "workflow-forge",
     "path": "skills/workflow-forge",
     "name": "Workflow Forge",
-    "description": "Creates new workflows (slash commands) following the Antigravity format with phases, agent coordination, and verification checkpoints. [EXPLICIT]"
+    "description": "Creates slash-command workflow definitions with phase maps, agent handoffs, verification checkpoints, and deterministic validation. Use when the user asks to create a workflow, forge a slash command, turn a process into phases, define an agent workflow, or prepare a repeatable command flow."
   },
   {
     "id": "workflow-orchestration",
