@@ -1,75 +1,83 @@
 {
   "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-28",
   "skill": "auto-prompt-matching",
   "nodes": [
     {
       "id": "auto-prompt-matching",
       "type": "skill",
-      "label": "auto-prompt-matching"
+      "label": "Auto Prompt Matching"
     },
     {
-      "id": "auto-prompt-matching:inputs",
+      "id": "auto-prompt-matching:routing-source",
       "type": "contract",
-      "label": "Expected inputs"
+      "label": "Routing source"
     },
     {
-      "id": "auto-prompt-matching:outputs",
+      "id": "auto-prompt-matching:candidate-score",
       "type": "contract",
-      "label": "Expected outputs"
+      "label": "Candidate score"
     },
     {
-      "id": "auto-prompt-matching:quality",
+      "id": "auto-prompt-matching:confidence-band",
       "type": "gate",
-      "label": "Quality criteria"
+      "label": "Route / ask / decline"
     },
     {
-      "id": "auto-prompt-matching:ontology",
-      "type": "ontology",
-      "label": "Domain: general"
+      "id": "auto-prompt-matching:tie-break",
+      "type": "policy",
+      "label": "Stable tie-break"
     },
     {
-      "id": "auto-prompt-matching:evidence",
+      "id": "auto-prompt-matching:coverage-gap",
       "type": "gate",
-      "label": "Evidence / provenance requirements"
+      "label": "Coverage gap"
     },
     {
-      "id": "auto-prompt-matching:antipattern",
+      "id": "auto-prompt-matching:non-invention",
       "type": "risk",
-      "label": "Canonical anti-pattern to avoid"
+      "label": "No invented capability"
+    },
+    {
+      "id": "auto-prompt-matching:downstream-separation",
+      "type": "gate",
+      "label": "Downstream separation"
     }
   ],
   "edges": [
     {
       "from": "auto-prompt-matching",
-      "to": "auto-prompt-matching:inputs",
+      "to": "auto-prompt-matching:routing-source",
       "type": "requires"
     },
     {
-      "from": "auto-prompt-matching",
-      "to": "auto-prompt-matching:outputs",
-      "type": "produces"
+      "from": "auto-prompt-matching:routing-source",
+      "to": "auto-prompt-matching:candidate-score",
+      "type": "informs"
+    },
+    {
+      "from": "auto-prompt-matching:candidate-score",
+      "to": "auto-prompt-matching:confidence-band",
+      "type": "validated_by"
+    },
+    {
+      "from": "auto-prompt-matching:candidate-score",
+      "to": "auto-prompt-matching:tie-break",
+      "type": "resolved_by"
     },
     {
       "from": "auto-prompt-matching",
-      "to": "auto-prompt-matching:quality",
+      "to": "auto-prompt-matching:coverage-gap",
       "type": "validated_by"
     },
     {
       "from": "auto-prompt-matching",
-      "to": "auto-prompt-matching:ontology",
-      "type": "classified_as"
-    },
-    {
-      "from": "auto-prompt-matching",
-      "to": "auto-prompt-matching:evidence",
-      "type": "validated_by"
-    },
-    {
-      "from": "auto-prompt-matching",
-      "to": "auto-prompt-matching:antipattern",
+      "to": "auto-prompt-matching:non-invention",
       "type": "guards_against"
+    },
+    {
+      "from": "auto-prompt-matching",
+      "to": "auto-prompt-matching:downstream-separation",
+      "type": "validated_by"
     }
   ]
 }

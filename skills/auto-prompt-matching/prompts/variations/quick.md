@@ -1,12 +1,10 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: auto-prompt-matching
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
-
 # Auto Prompt Matching Quick Variation
 
-Use when the task is low risk and well specified.
+Use when the user provides an explicit prefix, exact skill name, or unambiguous artifact type.
 
-Return only the requested deliverable, validation status, and residual risks.
+Return only:
+
+- decision
+- selected route or clarification
+- one-line evidence
+- next action

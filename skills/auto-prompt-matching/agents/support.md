@@ -5,4 +5,12 @@ description: "Execution support for Auto Prompt Matching."
 tools: [Read, Write, Edit, Glob, Grep]
 ---
 # Auto Prompt Matching Support
-Handles secondary tasks: evidence gathering, reference formatting, eval generation.
+Checks source coverage and ambiguity.
+
+Review focus:
+
+- missing/stale indexes and resulting `coverage_gap`
+- nonexistent or deprecated candidate names
+- broad-vs-narrow skill conflicts
+- exact trigger, explicit prefix, and artifact-type evidence
+- false positives where routing was not requested
