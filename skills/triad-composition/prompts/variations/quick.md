@@ -1,12 +1,11 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: triad-composition
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
+---
+name: triad-composition-quick
+type: variation
+variant: quick
+---
 
-# Triad Composition Quick Variation
+# Triad Composition — Quick Mode
 
-Use when the task is low risk and well specified.
+Use quick mode only when Goal, Context, Constraints, Definition of done, and confidence band are already explicit.
 
-Return only the requested deliverable, validation status, and residual risks.
+Return the selected domain, Lead, Support, Guardian, execution mode, G0-G3 gates, and residual risks. Keep Guardian validation mandatory.

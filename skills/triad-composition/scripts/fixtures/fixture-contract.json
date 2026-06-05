@@ -1,0 +1,32 @@
+{
+  "schema": 1,
+  "skill": "triad-composition",
+  "validator": "scripts/validate_triad_packet.py",
+  "fixtures": [
+    {
+      "path": "valid-requirements-packet.md",
+      "scenario": "requirements",
+      "expect": "pass"
+    },
+    {
+      "path": "valid-ambiguous-packet.md",
+      "scenario": "ambiguous",
+      "expect": "pass"
+    },
+    {
+      "path": "valid-missing-context-packet.md",
+      "scenario": "missing-context",
+      "expect": "pass"
+    },
+    {
+      "path": "valid-false-positive-packet.md",
+      "scenario": "false-positive",
+      "expect": "pass"
+    },
+    {
+      "path": "invalid-no-guardian-packet.md",
+      "scenario": "invalid-no-guardian",
+      "expect": "fail"
+    }
+  ]
+}

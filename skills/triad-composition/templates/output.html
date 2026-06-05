@@ -1,33 +1,71 @@
-<!-- JM Labs Brand Template: Triad Composition -->
-<!-- Uses: brand/jmlabs/brand-config.json + brand/jmlabs/corporate-template.css -->
-<!-- Replace: {{TITLE}}, {{SUBTITLE}}, {{CONTENT}}, {{DATE}} -->
 <!DOCTYPE html>
-<html lang="es" class="dark">
+<html lang="en">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>{{TITLE}} | Triad Composition | JM Labs</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Triad Composition Packet | JM Labs</title>
 <style>
-:root{--navy:#122562;--gold:#FFD700;--blue:#137DC5;--bg:#0B1120;--bg-alt:#0F1929;--heading:#F1F5F9;--text-s:#94A3B8}
-body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--heading);margin:0;padding:2rem}
-.c{max-width:1000px;margin:0 auto}
-h1{font-family:'Poppins',sans-serif;font-weight:900;font-size:clamp(2rem,5vw,3rem)}
-h1 .gold{color:var(--gold)}
-h2{font-family:'Poppins',sans-serif;color:var(--gold);border-bottom:1px solid rgba(255,255,255,.05);padding-bottom:.5rem}
-.card{background:var(--bg-alt);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:1.5rem;margin:1rem 0}
+:root{--navy:#122562;--gold:#FFD700;--blue:#137DC5;--bg:#F8FAFC;--ink:#0F172A;--muted:#475569;--line:#CBD5E1}
+body{font-family:Inter,Arial,sans-serif;background:var(--bg);color:var(--ink);margin:0;padding:32px}
+main{max-width:980px;margin:0 auto}
+h1,h2{font-family:Arial,sans-serif;margin:0 0 12px}
+h1{color:var(--navy);font-size:32px}
+h2{border-bottom:2px solid var(--gold);padding-bottom:8px;margin-top:28px}
+.meta{color:var(--muted)}
+.panel{background:#fff;border:1px solid var(--line);border-radius:8px;padding:20px;margin:16px 0}
 table{width:100%;border-collapse:collapse}
-th{font-family:'Poppins',sans-serif;color:var(--gold);text-align:left;padding:.75rem;border-bottom:2px solid var(--gold)}
-td{padding:.75rem;border-bottom:1px solid rgba(255,255,255,.05)}
-footer{text-align:center;margin-top:3rem;border-top:2px solid var(--gold);padding:1.5rem;font-size:.75rem;color:var(--text-s)}
+th,td{padding:10px;border-bottom:1px solid var(--line);text-align:left}
+th{color:var(--navy)}
+code{background:#E2E8F0;padding:2px 4px;border-radius:4px}
+footer{margin-top:32px;color:var(--muted);font-size:12px}
 </style>
 </head>
 <body>
-<div class="c">
-  <h1>JM <span class="gold">Labs</span></h1>
-  <h2>{{TITLE}}</h2>
-  <p style="color:var(--text-s)">{{SUBTITLE}}</p>
-  <div class="card">{{CONTENT}}</div>
-  <footer>JM Labs · Triad Composition · {{DATE}}</footer>
-</div>
+<main>
+  <h1>Triad Composition Packet</h1>
+  <p class="meta">Report date source: caller-provided value</p>
+
+  <section class="panel">
+    <h2>Input Classification</h2>
+    <p>[EXPLICIT] Domain: [DOMAIN]</p>
+    <p>[EXPLICIT] Confidence band: [CONFIDENCE_BAND]</p>
+    <p>[EXPLICIT] Action: [CLASSIFICATION_ACTION]</p>
+  </section>
+
+  <section class="panel">
+    <h2>Selected Triad</h2>
+    <table>
+      <thead><tr><th>Role</th><th>Agent</th><th>Evidence</th></tr></thead>
+      <tbody>
+        <tr><td>Lead</td><td>[LEAD_AGENT]</td><td>[EXPLICIT] [LEAD_REASON]</td></tr>
+        <tr><td>Support</td><td>[SUPPORT_AGENT]</td><td>[EXPLICIT] [SUPPORT_REASON]</td></tr>
+        <tr><td>Guardian</td><td>[GUARDIAN_AGENT]</td><td>[EXPLICIT] [GUARDIAN_REASON]</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="panel">
+    <h2>Execution Mode</h2>
+    <p>[EXPLICIT] Mode: [EXECUTION_MODE]</p>
+    <p>[EXPLICIT] Sequence: [SEQUENCE]</p>
+  </section>
+
+  <section class="panel">
+    <h2>Validation Gates</h2>
+    <ul>
+      <li>[EXPLICIT] G0 pre-flight: [G0_STATUS]</li>
+      <li>[EXPLICIT] G1 post-spec: [G1_STATUS]</li>
+      <li>[EXPLICIT] G2 post-plan: [G2_STATUS]</li>
+      <li>[EXPLICIT] G3 delivery: [G3_STATUS]</li>
+    </ul>
+  </section>
+
+  <section class="panel">
+    <h2>Risks and Assumptions</h2>
+    <p>[OPEN] [RISK_OR_ASSUMPTION]</p>
+  </section>
+
+  <footer>JM Labs | Triad Composition | Offline template</footer>
+</main>
 </body>
 </html>

@@ -1,75 +1,63 @@
 {
   "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-28",
   "skill": "triad-composition",
   "nodes": [
     {
       "id": "triad-composition",
       "type": "skill",
-      "label": "triad-composition"
+      "label": "Triad Composition"
     },
     {
-      "id": "triad-composition:inputs",
-      "type": "contract",
-      "label": "Expected inputs"
+      "id": "composition-matrix",
+      "type": "asset",
+      "label": "Domain to Lead/Support/Guardian matrix"
     },
     {
-      "id": "triad-composition:outputs",
-      "type": "contract",
-      "label": "Expected outputs"
+      "id": "classification-policy",
+      "type": "asset",
+      "label": "Confidence bands and stable tie-breakers"
     },
     {
-      "id": "triad-composition:quality",
+      "id": "degraded-mode-policy",
+      "type": "asset",
+      "label": "Partial delivery policy"
+    },
+    {
+      "id": "triad-output-contract",
+      "type": "asset",
+      "label": "Packet contract"
+    },
+    {
+      "id": "g0-g3",
       "type": "gate",
-      "label": "Quality criteria"
-    },
-    {
-      "id": "triad-composition:ontology",
-      "type": "ontology",
-      "label": "Domain: general"
-    },
-    {
-      "id": "triad-composition:evidence",
-      "type": "gate",
-      "label": "Evidence / provenance requirements"
-    },
-    {
-      "id": "triad-composition:antipattern",
-      "type": "risk",
-      "label": "Canonical anti-pattern to avoid"
+      "label": "G0-G3 validation gates"
     }
   ],
   "edges": [
     {
       "from": "triad-composition",
-      "to": "triad-composition:inputs",
+      "to": "composition-matrix",
+      "type": "uses"
+    },
+    {
+      "from": "triad-composition",
+      "to": "classification-policy",
+      "type": "uses"
+    },
+    {
+      "from": "triad-composition",
+      "to": "degraded-mode-policy",
+      "type": "uses"
+    },
+    {
+      "from": "triad-composition",
+      "to": "triad-output-contract",
+      "type": "validated_by"
+    },
+    {
+      "from": "triad-output-contract",
+      "to": "g0-g3",
       "type": "requires"
-    },
-    {
-      "from": "triad-composition",
-      "to": "triad-composition:outputs",
-      "type": "produces"
-    },
-    {
-      "from": "triad-composition",
-      "to": "triad-composition:quality",
-      "type": "validated_by"
-    },
-    {
-      "from": "triad-composition",
-      "to": "triad-composition:ontology",
-      "type": "classified_as"
-    },
-    {
-      "from": "triad-composition",
-      "to": "triad-composition:evidence",
-      "type": "validated_by"
-    },
-    {
-      "from": "triad-composition",
-      "to": "triad-composition:antipattern",
-      "type": "guards_against"
     }
   ]
 }

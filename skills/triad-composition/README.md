@@ -1,30 +1,25 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: triad-composition
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
-
 # Triad Composition
 
->
+`triad-composition` selects Lead, Support, and Guardian roles from the PRISTINO composition matrix.
 
-## Triggers
+## Activation
 
-- triad-composition
+Use for Pristino orchestration, Lead/Support/Guardian routing, domain-to-agent mapping, multiagent execution planning, committee escalation, and degraded-mode decisions.
 
-## Allowed Tools
+Do not use for unrelated "triad" meanings such as music chords.
 
-- Read
-- Write
-- Glob
-- Grep
-- Bash
+## Deterministic Resources
 
-## Quick Use
+- `assets/composition-matrix.json`: canonical domain-to-triad matrix.
+- `assets/classification-policy.json`: confidence bands and tie-breakers.
+- `assets/degraded-mode-policy.json`: fail-explicit partial delivery.
+- `assets/triad-output-contract.json`: packet section contract.
+- `scripts/validate_triad_packet.py`: offline packet validator.
 
-Use this skill when the request clearly matches the triggers and requires the `triad-composition` capability.
+## Local Checks
 
-## Output Format
-
-Markdown with summary, evidence, result, validation, and risks.
+```bash
+bash skills/triad-composition/scripts/check.sh
+python3 -B scripts/validate-skill-dod.py --skill triad-composition
+python3 -B scripts/validate-skill-scripts.py --strict --run-checks --skill triad-composition
+```

@@ -1,9 +1,97 @@
-[
-  {"id": "triad-composition-happy-path", "type": "happy_path", "input": "Run triad composition on this project", "expected_behavior": "Skill activates and produces the expected triad composition output following the defined process", "tags": ["basic", "activation"]},
-  {"id": "triad-composition-explicit-trigger", "type": "happy_path", "input": "Apply triad composition analysis", "expected_behavior": "Skill recognizes the trigger phrase and executes the triad composition workflow", "tags": ["trigger", "recognition"]},
-  {"id": "triad-composition-with-context", "type": "happy_path", "input": "Apply triad composition to analyze the current codebase with detailed output", "expected_behavior": "Skill produces comprehensive triad composition analysis with evidence-tagged findings", "tags": ["detailed", "comprehensive"]},
-  {"id": "triad-composition-minimal-input", "type": "happy_path", "input": "Quick triad composition", "expected_behavior": "Skill activates with minimal input, applies reasonable defaults", "tags": ["minimal", "defaults"]},
-  {"id": "triad-composition-false-positive", "type": "false_positive", "input": "What is the weather forecast for tomorrow?", "expected_behavior": "Skill should NOT activate — this input has no relation to triad composition", "tags": ["false_positive", "should-not-activate"]},
-  {"id": "triad-composition-edge-empty-input", "type": "edge_case", "input": "Run triad composition but I have no files or documentation yet", "expected_behavior": "Skill handles gracefully — requests minimum viable input or produces gap analysis", "tags": ["edge_case", "empty-input", "boundary"]},
-  {"id": "triad-composition-edge-conflicting", "type": "edge_case", "input": "Apply triad composition but requirements contradict each other", "expected_behavior": "Skill detects contradiction, flags with [OPEN] tag, proposes resolution", "tags": ["edge_case", "conflict", "corner"]}
-]
+{
+  "schema": 1,
+  "skill": "triad-composition",
+  "suite": "triad-composition-deterministic-hardening",
+  "cases": [
+    {
+      "id": "TC-REQ-001-requirements-auto-select",
+      "type": "happy_path",
+      "input": "Elicit user stories and acceptance criteria for payroll onboarding. Match confidence: 0.91.",
+      "expected_activation": true,
+      "must_include": ["Requirements", "requirements-analyst", "domain-modeler", "quality-guardian", ">=0.85"],
+      "must_not_include": ["apply reasonable defaults", "skip guardian"],
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "triad_matrix"]
+    },
+    {
+      "id": "TC-ARCH-002-architecture",
+      "type": "happy_path",
+      "input": "Design target architecture for a multi-tenant SaaS with threat model. Match confidence: 0.89.",
+      "expected_activation": true,
+      "must_include": ["Architecture", "architecture-designer", "security-architect", "quality-guardian"],
+      "must_not_include": ["frontend-craftsman"],
+      "expected_checks": ["assets", "triad_matrix", "quality_criteria"]
+    },
+    {
+      "id": "TC-FE-003-frontend",
+      "type": "happy_path",
+      "input": "Build a React checkout UI with responsive layout and WCAG review. Match confidence: 0.88.",
+      "expected_activation": true,
+      "must_include": ["Frontend", "frontend-craftsman", "accessibility-designer", "quality-engineer"],
+      "must_not_include": ["firebase-specialist"],
+      "expected_checks": ["assets", "triad_matrix", "quality_criteria"]
+    },
+    {
+      "id": "TC-BE-004-backend-firebase",
+      "type": "happy_path",
+      "input": "Implement Firebase Auth rules and Firestore role checks. Match confidence: 0.90.",
+      "expected_activation": true,
+      "must_include": ["Backend/Firebase", "firebase-specialist", "security-architect", "quality-engineer"],
+      "must_not_include": ["domain-modeler"],
+      "expected_checks": ["assets", "triad_matrix", "quality_criteria"]
+    },
+    {
+      "id": "TC-TEST-005-testing",
+      "type": "happy_path",
+      "input": "Create e2e coverage for signup, login, and password reset. Match confidence: 0.92.",
+      "expected_activation": true,
+      "must_include": ["Testing", "quality-engineer", "e2e-test-writer", "code-reviewer"],
+      "must_not_include": ["marketing-context-specialist"],
+      "expected_checks": ["assets", "triad_matrix", "quality_criteria"]
+    },
+    {
+      "id": "TC-FP-006-jazz-triad",
+      "type": "false_positive",
+      "input": "Explain triad chords in jazz composition.",
+      "expected_activation": false,
+      "must_include": ["expected_activation: false", "domain fit failed"],
+      "must_not_include": ["requirements-analyst", "quality-guardian"],
+      "expected_checks": ["false_positive", "routing_boundary", "quality_criteria"]
+    },
+    {
+      "id": "TC-TIE-007-ambiguous-frontend-backend",
+      "type": "edge_case",
+      "input": "Implement login: React screens, Firebase Auth, and Firestore rules. Match confidence: 0.72.",
+      "expected_activation": true,
+      "must_include": ["0.60-0.84", "top 3", "needs_disambiguation", "Frontend", "Backend/Firebase"],
+      "must_not_include": ["Execute sequentially"],
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "tie_breaker"]
+    },
+    {
+      "id": "TC-ESC-008-medium-confidence",
+      "type": "edge_case",
+      "input": "Make the app enterprise-ready. Match confidence: 0.72.",
+      "expected_activation": true,
+      "must_include": ["0.60-0.84", "present top 3", "ask user to choose"],
+      "must_not_include": ["auto-select and execute"],
+      "expected_checks": ["assets", "confidence_thresholds", "quality_criteria"]
+    },
+    {
+      "id": "TC-MISS-009-missing-context",
+      "type": "edge_case",
+      "input": "Run triad composition.",
+      "expected_activation": true,
+      "must_include": ["Goal", "Context", "Constraints", "Definition of done", "[OPEN]"],
+      "must_not_include": ["apply reasonable defaults", "auto-select"],
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "missing_context"]
+    },
+    {
+      "id": "TC-CRIT-010-committee-escalation",
+      "type": "edge_case",
+      "input": "Set production data-retention policy across legal, security, analytics, and compliance.",
+      "expected_activation": true,
+      "must_include": ["committee", "critical cross-cutting", "max 5 agents", "Pristino tiebreaker"],
+      "must_not_include": ["normal triad is sufficient"],
+      "expected_checks": ["assets", "quality_criteria", "committee_escalation"]
+    }
+  ]
+}

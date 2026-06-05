@@ -830,7 +830,7 @@
 | 555 | `tool-use-design` | Disenar descripciones de tools como contrato de routing y aplicar la estrategia  |
 | 556 | `trade-off-analysis` | — |
 | 557 | `training-material` | — |
-| 558 | `triad-composition` | — |
+| 558 | `triad-composition` | Select a deterministic Lead + Support + Guardian triad from the PRISTINO composi |
 | 559 | `trigger-skill` | — |
 | 560 | `typescript-patterns` | — |
 | 561 | `typography-advanced` | — |

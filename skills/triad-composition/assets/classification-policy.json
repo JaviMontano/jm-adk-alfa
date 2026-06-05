@@ -1,0 +1,54 @@
+{
+  "schema": 1,
+  "skill": "triad-composition",
+  "confidence_bands": [
+    {
+      "range": ">=0.85",
+      "action": "auto_select_skill_compose_triad_execute"
+    },
+    {
+      "range": "0.60-0.84",
+      "action": "present_top_3_domain_options"
+    },
+    {
+      "range": "<0.60",
+      "action": "ask_clarifying_question"
+    }
+  ],
+  "execution_modes": [
+    {
+      "mode": "single",
+      "use_when": "trivial question, clarification, or lookup"
+    },
+    {
+      "mode": "triad",
+      "use_when": "non-trivial request needing analysis, design, implementation, or review"
+    },
+    {
+      "mode": "committee",
+      "use_when": "critical cross-cutting decision; maximum 5 agents with Pristino tiebreaker"
+    }
+  ],
+  "stable_tie_breakers": [
+    "exact domain phrase match",
+    "highest keyword hit count",
+    "highest confidence score",
+    "earliest domain order in composition-matrix.json"
+  ],
+  "required_output": [
+    "classification confidence",
+    "selected domain or top 3 options",
+    "lead",
+    "support",
+    "guardian",
+    "execution mode",
+    "validation gates",
+    "risks and assumptions"
+  ],
+  "forbidden_behavior": [
+    "skip guardian silently",
+    "invent unknown agents",
+    "select by nondeterministic sampling",
+    "claim confidence above 0.95 without evidence"
+  ]
+}

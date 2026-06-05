@@ -1,0 +1,29 @@
+{
+  "skill": "triad-composition",
+  "assets": [
+    {
+      "path": "assets/composition-matrix.json",
+      "type": "routing",
+      "purpose": "Canonical PRISTINO domain-to-triad matrix.",
+      "used_by": ["SKILL.md", "scripts/validate_triad_packet.py", "evals/evals.json"]
+    },
+    {
+      "path": "assets/classification-policy.json",
+      "type": "policy",
+      "purpose": "Confidence thresholds, execution modes, and stable tie-breakers.",
+      "used_by": ["SKILL.md", "scripts/validate_triad_packet.py", "evals/evals.json"]
+    },
+    {
+      "path": "assets/degraded-mode-policy.json",
+      "type": "policy",
+      "purpose": "Fail-explicit behavior when Lead, Support, or Guardian cannot complete.",
+      "used_by": ["SKILL.md", "scripts/validate_triad_packet.py", "evals/evals.json"]
+    },
+    {
+      "path": "assets/triad-output-contract.json",
+      "type": "schema",
+      "purpose": "Machine-readable contract for triad composition packets.",
+      "used_by": ["SKILL.md", "templates/output.md", "scripts/validate_triad_packet.py", "evals/evals.json"]
+    }
+  ]
+}

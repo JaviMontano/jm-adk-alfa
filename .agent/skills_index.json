@@ -3345,7 +3345,7 @@
     "id": "triad-composition",
     "path": "skills/triad-composition",
     "name": "Triad Composition",
-    "description": ">"
+    "description": "Select a deterministic Lead + Support + Guardian triad from the PRISTINO composition matrix using domain classification, confidence thresholds, stable tie-breakers, execution-mode routing, degraded-mode policy, and Guardian validation. Use when the user or orchestrator asks for triad composition, agent role selection, Lead/Support/Guardian routing, Pristino orchestration, domain-to-agent mapping, committee escalation, or quality-gated multiagent execution planning."
   },
   {
     "id": "trigger-skill",
