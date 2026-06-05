@@ -1,0 +1,25 @@
+{
+  "schema": 1,
+  "skill": "task-engine",
+  "required_sections": [
+    "DSVSR Packet",
+    "Activation Decision",
+    "Decompose",
+    "Solve",
+    "Verify",
+    "Synthesize",
+    "Reflect",
+    "Reasoning Metadata"
+  ],
+  "allowed_evidence_tags": ["[EXPLICIT]", "[INFERRED]", "[OPEN]", "[ASSUMPTION]"],
+  "blocked_phrases": [
+    "TODO",
+    "TBD",
+    "{{",
+    "}}",
+    "trust me",
+    "certain without evidence",
+    "skip verification",
+    "no weaknesses"
+  ]
+}

@@ -1,35 +1,26 @@
-# Domain Knowledge — task engine
+# Domain Knowledge — Task Engine
 
-## Overview
+## DSVSR Heuristics
 
-This reference provides foundational knowledge for the task engine skill. [EXPLICIT]
+Use full DSVSR when the problem has at least two complexity signals, an explicit confidence target, or high-stakes consequences. Use fast path when the request is simple and the user did not ask for confidence calibration.
 
-## Key Concepts
+## Confidence Calibration
 
-| Concept | Definition | Relevance |
-|---------|-----------|-----------|
-| Primary domain | The core domain that task engine operates within | Direct input to skill execution [EXPLICIT] |
-| Quality criteria | Standards that output must meet | Validation gate alignment [EXPLICIT] |
-| Evidence taxonomy | [EXPLICIT]/[INFERRED]/[OPEN] classification | Required for all factual claims [EXPLICIT] |
+| Signal | Confidence impact |
+|---|---|
+| Direct evidence or mathematical proof | May support 0.95+ |
+| Strong but incomplete evidence | Usually 0.85-0.94 |
+| Inference without source documents | Usually 0.70-0.84 |
+| Missing core input | Clarify instead of scoring |
+| Missing expert capability | Apply confidence penalty and note expertise gap |
 
-## Best Practices
+## Verification Checklist
 
-1. Always start with evidence gathering before analysis [EXPLICIT]
-2. Tag every factual claim with appropriate evidence marker [EXPLICIT]
-3. Separate observations from inferences explicitly [EXPLICIT]
-4. Document assumptions that could invalidate conclusions [EXPLICIT]
-5. Provide actionable recommendations with priority levels [EXPLICIT]
+- LOGIC: conclusion follows from premises.
+- FACTS: factual claims have source or are tagged `[OPEN]`.
+- COMPLETENESS: major dimensions are covered or named as gaps.
+- BIAS: anchoring, confirmation, availability, and authority bias considered.
 
-## Anti-Patterns
+## Stop Conditions
 
-| Anti-Pattern | Why It Fails | Better Alternative |
-|-------------|-------------|-------------------|
-| Untaged claims | Readers cannot assess confidence | Tag with [EXPLICIT]/[INFERRED]/[OPEN] |
-| Generic output | Fails to address specific context | Adapt to project-specific inputs |
-| Missing edge cases | Breaks on non-standard inputs | Document handling for edge scenarios |
-
-## Integration Points
-
-- This skill may be invoked by orchestrator skills in the pipeline [EXPLICIT]
-- Output format follows MetodologIA markdown conventions [EXPLICIT]
-- Evidence tags enable downstream quality validation [EXPLICIT]
+Stop and disclose uncertainty when target confidence is unachievable, max reflection retries are reached, or the missing evidence cannot be retrieved in the current task.

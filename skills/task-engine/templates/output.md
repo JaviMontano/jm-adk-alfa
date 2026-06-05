@@ -1,28 +1,40 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: task-engine
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
+# DSVSR Packet
 
-# Task Engine Output
+[EXPLICIT] Purpose: [PROBLEM]
 
-## Summary
+# Activation Decision
 
-{summary}
+- [EXPLICIT] Mode: [MODE]
+- [EXPLICIT] Complexity signals: [SIGNALS]
+- [EXPLICIT] Target confidence: [TARGET_CONFIDENCE]
 
-## Evidence
+# Decompose
 
-{evidence}
+- SP-1: [SUB_PROBLEM] (domain: [DOMAIN], depends on: [DEPENDENCY], importance: [WEIGHT])
 
-## Result
+# Solve
 
-{result}
+- SP-1: [EVIDENCE_TAG] [ANSWER]. Confidence: [CONFIDENCE].
 
-## Validation
+# Verify
 
-{validation}
+- LOGIC: [STATUS]
+- FACTS: [STATUS]
+- COMPLETENESS: [STATUS]
+- BIAS: [STATUS]
 
-## Risks and Limits
+# Synthesize
 
-{risks}
+[EVIDENCE_TAG] [SYNTHESIS]. Global confidence: [GLOBAL_CONFIDENCE].
+
+# Reflect
+
+[EVIDENCE_TAG] [WEAKEST_POINT_AND_NEXT_STEP]
+
+# Reasoning Metadata
+
+- Global confidence: [GLOBAL_CONFIDENCE]
+- Sub-problem confidence: [SUB_CONFIDENCE_LIST]
+- Sources reviewed: [SOURCES_REVIEWED]
+- Information gaps: [INFORMATION_GAPS]
+- Verification status: [VERIFICATION_STATUS]

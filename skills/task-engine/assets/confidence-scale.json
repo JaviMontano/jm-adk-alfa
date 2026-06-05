@@ -1,0 +1,33 @@
+{
+  "schema": 1,
+  "skill": "task-engine",
+  "bands": [
+    {
+      "range": "0.95-1.00",
+      "label": "certain",
+      "evidence_required": "verifiable facts, direct evidence, mathematical proof"
+    },
+    {
+      "range": "0.85-0.94",
+      "label": "high",
+      "evidence_required": "strong evidence or stable expert consensus"
+    },
+    {
+      "range": "0.70-0.84",
+      "label": "moderate",
+      "evidence_required": "reasonable inference with partial evidence"
+    },
+    {
+      "range": "0.50-0.69",
+      "label": "low",
+      "evidence_required": "educated guess with significant assumptions"
+    },
+    {
+      "range": "<0.50",
+      "label": "speculative",
+      "evidence_required": "mark as hypothesis and avoid recommendation certainty"
+    }
+  ],
+  "global_formula": "sum(sub_confidence * sub_importance) / sum(sub_importance)",
+  "blocked": ["unjustified 0.95", "confidence without evidence", "fake certainty"]
+}

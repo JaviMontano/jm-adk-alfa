@@ -2,16 +2,18 @@
 name: task-engine-meta
 type: meta
 version: 2.0.0
-description: "Meta-prompt for Task Engine skill routing."
+description: "Routes deterministic DSVSR reasoning requests."
 ---
 
 # Task Engine — Meta Prompt
 
-Activate this skill when the user request matches:
-- Trigger phrases from SKILL.md description
-- Direct invocation: `/task-engine`
+Activate for complex, ambiguous, high-stakes, multi-domain, confidence-calibrated, or explicitly step-by-step reasoning tasks.
 
-## Skill Routing
-1. Load SKILL.md → read `## When to Activate` section
-2. If match → activate lead agent: `task-engine-lead`
-3. If orchestrated → defer to orchestrating skill
+Do not activate full DSVSR for simple factual lookups, live-data questions, or single-step commands unless the user explicitly requests DSVSR or confidence calibration.
+
+Routing:
+
+1. Load `SKILL.md` `## When to Activate`.
+2. Load `assets/activation-policy.json`.
+3. If complexity signals are fewer than 2 and no confidence target exists, use fast path or route away.
+4. If the core problem is missing, ask one clarification question before DSVSR.

@@ -1,0 +1,26 @@
+{
+  "schema": 1,
+  "skill": "task-engine",
+  "complexity_signals": ["multi-domain", "high-stakes", "ambiguous", "50+ words", "multiple dependencies", "explicit confidence target"],
+  "routes": [
+    {
+      "condition": "complexity_signals >= 2",
+      "mode": "full_dsvsr"
+    },
+    {
+      "condition": "explicit confidence target",
+      "mode": "full_dsvsr"
+    },
+    {
+      "condition": "complexity_signals < 2",
+      "mode": "fast_path"
+    },
+    {
+      "condition": "missing core problem",
+      "mode": "clarify"
+    }
+  ],
+  "default_target_confidence": 0.95,
+  "max_reflect_retries": 3,
+  "network_policy": "Do not use network research unless the user explicitly requests it and approves sources."
+}

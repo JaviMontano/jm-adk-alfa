@@ -1,0 +1,29 @@
+{
+  "skill": "task-engine",
+  "assets": [
+    {
+      "path": "assets/activation-policy.json",
+      "type": "policy",
+      "purpose": "Full DSVSR vs fast path routing and network policy.",
+      "used_by": ["SKILL.md", "scripts/validate_dsvsr_packet.py", "evals/evals.json"]
+    },
+    {
+      "path": "assets/confidence-scale.json",
+      "type": "policy",
+      "purpose": "Confidence bands, evidence requirements, and global confidence formula.",
+      "used_by": ["SKILL.md", "scripts/validate_dsvsr_packet.py", "evals/evals.json"]
+    },
+    {
+      "path": "assets/dsvsr-packet-contract.json",
+      "type": "schema",
+      "purpose": "Machine-readable DSVSR output packet contract.",
+      "used_by": ["SKILL.md", "templates/output.md", "scripts/validate_dsvsr_packet.py", "evals/evals.json"]
+    },
+    {
+      "path": "assets/reflection-policy.json",
+      "type": "policy",
+      "purpose": "Reflect retry and uncertainty handling rules.",
+      "used_by": ["SKILL.md", "scripts/validate_dsvsr_packet.py", "evals/evals.json"]
+    }
+  ]
+}

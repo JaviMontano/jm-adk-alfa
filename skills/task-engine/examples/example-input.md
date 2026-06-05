@@ -1,10 +1,18 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: task-engine
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
-
 # Example Input
 
-Use `task-engine` to produce a concise deliverable for a realistic project request.
+Use DSVSR to decide whether we should rebuild the checkout flow around a new payment provider.
+
+Context:
+
+- The current checkout has intermittent payment failures.
+- The new provider promises better fraud tooling.
+- We have no provider API docs attached yet.
+- Target confidence: 0.95.
+
+Definition of done:
+
+- Decompose into sub-problems.
+- Score each sub-problem.
+- Verify logic, facts, completeness, and bias.
+- Compute global confidence.
+- Name weakest assumptions before recommending next steps.
