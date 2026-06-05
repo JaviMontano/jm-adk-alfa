@@ -1,9 +1,54 @@
-[
-  {"id": "workflow-orchestration-happy-path", "type": "happy_path", "input": "Run workflow orchestration on this project", "expected_behavior": "Skill activates and produces the expected workflow orchestration output following the defined process", "tags": ["basic", "activation"]},
-  {"id": "workflow-orchestration-explicit-trigger", "type": "happy_path", "input": "Apply workflow orchestration analysis", "expected_behavior": "Skill recognizes the trigger phrase and executes the workflow orchestration workflow", "tags": ["trigger", "recognition"]},
-  {"id": "workflow-orchestration-with-context", "type": "happy_path", "input": "Apply workflow orchestration to analyze the current codebase with detailed output", "expected_behavior": "Skill produces comprehensive workflow orchestration analysis with evidence-tagged findings", "tags": ["detailed", "comprehensive"]},
-  {"id": "workflow-orchestration-minimal-input", "type": "happy_path", "input": "Quick workflow orchestration", "expected_behavior": "Skill activates with minimal input, applies reasonable defaults", "tags": ["minimal", "defaults"]},
-  {"id": "workflow-orchestration-false-positive", "type": "false_positive", "input": "What is the weather forecast for tomorrow?", "expected_behavior": "Skill should NOT activate — this input has no relation to workflow orchestration", "tags": ["false_positive", "should-not-activate"]},
-  {"id": "workflow-orchestration-edge-empty-input", "type": "edge_case", "input": "Run workflow orchestration but I have no files or documentation yet", "expected_behavior": "Skill handles gracefully — requests minimum viable input or produces gap analysis", "tags": ["edge_case", "empty-input", "boundary"]},
-  {"id": "workflow-orchestration-edge-conflicting", "type": "edge_case", "input": "Apply workflow orchestration but requirements contradict each other", "expected_behavior": "Skill detects contradiction, flags with [OPEN] tag, proposes resolution", "tags": ["edge_case", "conflict", "corner"]}
-]
+{
+  "schema": 1,
+  "skill": "workflow-orchestration",
+  "cases": [
+    {
+      "id": "workflow-orchestration-product-launch",
+      "input": "Create a resumable product launch orchestration plan with checkpoints, agents, retry policy, observability, and completion criteria.",
+      "expected_activation": true,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "resume_contract", "checkpoint_log"]
+    },
+    {
+      "id": "workflow-orchestration-incident-recovery",
+      "input": "Coordinate an incident recovery workflow that can resume from mitigation if the health check fails.",
+      "expected_activation": true,
+      "expected_checks": ["resume_from_checkpoint", "failure_signals", "recovery_actions", "audit_trail"]
+    },
+    {
+      "id": "workflow-orchestration-structured-json",
+      "input": "Use structured JSON to compile a workflow orchestration report.",
+      "expected_activation": true,
+      "expected_checks": ["compile_orchestration_plan_script", "markdown_report", "state_store"]
+    },
+    {
+      "id": "workflow-orchestration-missing-resume",
+      "input": "Create an orchestration plan without a resume token or idempotency key.",
+      "expected_activation": true,
+      "expected_checks": ["reject_missing_resume_token", "reject_missing_idempotency", "require_state_store"]
+    },
+    {
+      "id": "workflow-orchestration-missing-checkpoint",
+      "input": "Create a multi-step plan with no checkpoint evidence between stages.",
+      "expected_activation": true,
+      "expected_checks": ["require_checkpoint_criteria", "require_checkpoint_evidence", "require_on_fail_action"]
+    },
+    {
+      "id": "workflow-orchestration-vague-stage",
+      "input": "Create a plan where step two says to handle the work and move on as needed.",
+      "expected_activation": true,
+      "expected_checks": ["reject_vague_actions", "require_observable_actions"]
+    },
+    {
+      "id": "workflow-orchestration-observability",
+      "input": "Create a plan with checkpoints but no logs, metrics, or audit trail.",
+      "expected_activation": true,
+      "expected_checks": ["require_logs", "require_metrics", "require_audit_trail"]
+    },
+    {
+      "id": "workflow-orchestration-false-positive",
+      "input": "What is the weather forecast for tomorrow?",
+      "expected_activation": false,
+      "expected_checks": ["trigger_specificity"]
+    }
+  ]
+}

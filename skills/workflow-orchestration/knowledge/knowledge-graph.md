@@ -1,13 +1,9 @@
-# Workflow Orchestration — Knowledge Graph
-<!-- Zettelkasten-ready: use [[wikilinks]] for Obsidian -->
+# Workflow Orchestration Knowledge Graph
 
-## Core Concepts
-- [[workflow-orchestration]] — Primary concept
-- [[workflow-orchestration-patterns]] — Common patterns and approaches
-- [[workflow-orchestration-anti-patterns]] — What to avoid
-
-## Tags
-#workflow-orchestration #jm-adk #zettelkasten
-
-## Cross-References
-- Related skills in this domain
+- workflow-orchestration -> coordinates -> stage
+- stage -> blocked_by -> checkpoint
+- checkpoint -> records -> resume-token
+- resume-token -> pairs_with -> idempotency-key
+- stage -> detects -> failure-signal
+- failure-signal -> triggers -> recovery-action
+- workflow-orchestration -> requires -> observability

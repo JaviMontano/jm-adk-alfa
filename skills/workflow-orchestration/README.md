@@ -7,7 +7,7 @@ overwrite-policy: missing-only unless --force
 
 # Workflow Orchestration
 
->
+Multi-step workflow execution with checkpoint and resume capability.
 
 ## Triggers
 
@@ -23,8 +23,15 @@ overwrite-policy: missing-only unless --force
 
 ## Quick Use
 
-Use this skill when the request clearly matches the triggers and requires the `workflow-orchestration` capability.
+Use this skill when the request needs a resumable execution plan with stage checkpoints, durable state, retry policy, and observability.
 
 ## Output Format
 
-Markdown with summary, evidence, result, validation, and risks.
+Markdown orchestration plan with objective, trigger, agents, inputs, stages, resume contract, observability, and completion criteria.
+
+## Deterministic Compiler
+
+```bash
+python3 skills/workflow-orchestration/scripts/compile-orchestration-plan.py \
+  --input skills/workflow-orchestration/scripts/fixtures/product-launch-orchestration.json
+```

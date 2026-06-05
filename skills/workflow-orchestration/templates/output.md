@@ -5,24 +5,24 @@ generated-on: 2026-05-28
 overwrite-policy: missing-only unless --force
 -->
 
-# Workflow Orchestration Output
+# Orchestration Plan Output
 
-## Summary
+## Objective
 
-{summary}
+{objective}
 
-## Evidence
+## Stages
 
-{evidence}
+{stages}
 
-## Result
+## Resume Contract
 
-{result}
+{resume_contract}
 
-## Validation
+## Observability
 
-{validation}
+{observability}
 
-## Risks and Limits
+## Completion Criteria
 
-{risks}
+{completion}

@@ -1,0 +1,43 @@
+{
+  "id": "bad-orchestration",
+  "title": "Bad Orchestration",
+  "objective": "Coordinate work.",
+  "trigger": "When needed.",
+  "agents": ["team"],
+  "inputs": ["input"],
+  "outputs": ["output"],
+  "stages": [
+    {
+      "number": 1,
+      "name": "Execute",
+      "agent": "someone",
+      "status": "pending",
+      "inputs": ["input"],
+      "actions": ["Handle the work."],
+      "outputs": ["output"],
+      "checkpoint": {
+        "name": "Check",
+        "criteria": ["Looks done."],
+        "evidence": [],
+        "onPass": "next",
+        "onFail": "stop"
+      },
+      "resumeState": {"stageKey": "n/a"},
+      "failureSignals": [],
+      "recoveryActions": []
+    }
+  ],
+  "resume": {
+    "token": "later",
+    "stateStore": "unknown",
+    "idempotencyKey": "",
+    "retryPolicy": "sometimes",
+    "resumeFrom": 0
+  },
+  "observability": {
+    "logs": [],
+    "metrics": [],
+    "auditTrail": []
+  },
+  "completionCriteria": ["Done."]
+}

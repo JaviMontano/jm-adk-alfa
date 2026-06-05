@@ -1,0 +1,14 @@
+{
+  "product": [
+    "# Product Launch Orchestration",
+    "## Resume Contract",
+    "Token: `launch-ready-001`",
+    "Go/no-go checkpoint"
+  ],
+  "incident": [
+    "# Incident Recovery Orchestration",
+    "Token: `incident-recovery-002`",
+    "Mitigation checkpoint",
+    "Resume from triage checkpoint"
+  ]
+}
