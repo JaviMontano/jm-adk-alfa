@@ -1,0 +1,46 @@
+{
+  "schema": 1,
+  "skill": "workflow-creator",
+  "assets": [
+    {
+      "path": "assets/workflow-definition-contract.json",
+      "type": "schema",
+      "purpose": "Machine-readable contract for validating 17-field workflow definitions.",
+      "used_by": [
+        "SKILL.md",
+        "scripts/validate_workflow_spec.py",
+        "evals/evals.json"
+      ]
+    },
+    {
+      "path": "assets/activation-policy.json",
+      "type": "policy",
+      "purpose": "Activation, decline, clarification, and network rules for workflow creation.",
+      "used_by": [
+        "SKILL.md",
+        "prompts/meta.md",
+        "evals/evals.json"
+      ]
+    },
+    {
+      "path": "assets/quality-gates.json",
+      "type": "policy",
+      "purpose": "Blocking quality gates for workflow outputs.",
+      "used_by": [
+        "SKILL.md",
+        "agents/guardian.md",
+        "scripts/validate_workflow_spec.py"
+      ]
+    },
+    {
+      "path": "assets/workflow-output-template.md",
+      "type": "markdown-template",
+      "purpose": "Stable Markdown and workflow.yaml section order.",
+      "used_by": [
+        "SKILL.md",
+        "templates/output.md",
+        "examples/example-output.md"
+      ]
+    }
+  ]
+}

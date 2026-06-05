@@ -1,33 +1,75 @@
-<!-- JM Labs Brand Template: Workflow Creator -->
-<!-- Uses: brand/jmlabs/brand-config.json + brand/jmlabs/corporate-template.css -->
-<!-- Replace: {{TITLE}}, {{SUBTITLE}}, {{CONTENT}}, {{DATE}} -->
 <!DOCTYPE html>
-<html lang="es" class="dark">
+<html lang="es">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>{{TITLE}} | Workflow Creator | JM Labs</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<style>
-:root{--navy:#122562;--gold:#FFD700;--blue:#137DC5;--bg:#0B1120;--bg-alt:#0F1929;--heading:#F1F5F9;--text-s:#94A3B8}
-body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--heading);margin:0;padding:2rem}
-.c{max-width:1000px;margin:0 auto}
-h1{font-family:'Poppins',sans-serif;font-weight:900;font-size:clamp(2rem,5vw,3rem)}
-h1 .gold{color:var(--gold)}
-h2{font-family:'Poppins',sans-serif;color:var(--gold);border-bottom:1px solid rgba(255,255,255,.05);padding-bottom:.5rem}
-.card{background:var(--bg-alt);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:1.5rem;margin:1rem 0}
-table{width:100%;border-collapse:collapse}
-th{font-family:'Poppins',sans-serif;color:var(--gold);text-align:left;padding:.75rem;border-bottom:2px solid var(--gold)}
-td{padding:.75rem;border-bottom:1px solid rgba(255,255,255,.05)}
-footer{text-align:center;margin-top:3rem;border-top:2px solid var(--gold);padding:1.5rem;font-size:.75rem;color:var(--text-s)}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{TITLE}} | Workflow Creator | JM Labs</title>
+  <style>
+    :root {
+      --navy: #122562;
+      --gold: #ffd700;
+      --blue: #137dc5;
+      --bg: #0b1120;
+      --panel: #111827;
+      --text: #f8fafc;
+      --muted: #cbd5e1;
+      --line: #334155;
+    }
+    body {
+      margin: 0;
+      padding: 32px;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.55;
+    }
+    main {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    h1, h2 {
+      color: var(--text);
+      letter-spacing: 0;
+    }
+    h1 span {
+      color: var(--gold);
+    }
+    section {
+      border-top: 1px solid var(--line);
+      padding: 20px 0;
+    }
+    pre {
+      overflow: auto;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 16px;
+    }
+    .muted {
+      color: var(--muted);
+    }
+  </style>
 </head>
 <body>
-<div class="c">
-  <h1>JM <span class="gold">Labs</span></h1>
-  <h2>{{TITLE}}</h2>
-  <p style="color:var(--text-s)">{{SUBTITLE}}</p>
-  <div class="card">{{CONTENT}}</div>
-  <footer>JM Labs · Workflow Creator · {{DATE}}</footer>
-</div>
+  <main>
+    <h1>JM <span>Labs</span> · Workflow Creator</h1>
+    <p class="muted">{{SUBTITLE}}</p>
+    <section>
+      <h2>Activation Decision</h2>
+      <p>{{ACTIVATION_DECISION}}</p>
+    </section>
+    <section>
+      <h2>Workflow Spec</h2>
+      <pre>{{WORKFLOW_YAML}}</pre>
+    </section>
+    <section>
+      <h2>Validation Evidence</h2>
+      <p>{{VALIDATION_EVIDENCE}}</p>
+    </section>
+    <section>
+      <h2>Risks And Open Items</h2>
+      <p>{{RISKS_AND_OPEN_ITEMS}}</p>
+    </section>
+  </main>
 </body>
 </html>

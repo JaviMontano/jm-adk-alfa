@@ -3543,7 +3543,7 @@
     "id": "workflow-creator",
     "path": "skills/workflow-creator",
     "name": "Workflow Creator",
-    "description": "Generate complete workflow definitions — sequential step-by-step operational procedures for agent skills. Each workflow has 17 fields including steps (12 fields each), RACI, KPIs, and failure routes."
+    "description": "Generates deterministic 17-field workflow definitions with step contracts, DoD, RACI, KPIs, validation rules, and failure handling for agentic ecosystems. Use when the user asks to create a workflow, define workflow steps, build workflow YAML, generate a workflow spec, design a RACI-backed procedure, or convert an agentic process into a repeatable workflow."
   },
   {
     "id": "workflow-forge",

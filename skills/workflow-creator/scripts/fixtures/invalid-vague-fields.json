@@ -1,0 +1,99 @@
+{
+  "workflow": {
+    "id": "vague-workflow",
+    "title": "Vague Workflow",
+    "objective": "Handle the workflow when needed.",
+    "trigger": "when needed",
+    "preconditions": [
+      "TBD"
+    ],
+    "inputs": [
+      {
+        "name": "request",
+        "type": "string",
+        "required": true,
+        "description": "User request."
+      }
+    ],
+    "steps": [
+      {
+        "stepNumber": 1,
+        "title": "Check Everything",
+        "desc": "Check everything.",
+        "whyThisMatters": "Check Everything",
+        "inputNeeded": "request:string",
+        "actionInstruction": "Do the work.",
+        "promptToUse": "Check the text.",
+        "expectedOutput": "Output.",
+        "validationRule": "Looks good.",
+        "failureSignal": "It fails.",
+        "recoveryAction": "Try again.",
+        "handoffIfNeeded": "someone"
+      },
+      {
+        "stepNumber": 2,
+        "title": "Do Work",
+        "desc": "Do the work.",
+        "whyThisMatters": "Do Work",
+        "inputNeeded": "request:string",
+        "actionInstruction": "Handle it.",
+        "promptToUse": "Do it.",
+        "expectedOutput": "Done.",
+        "validationRule": "Quality is good.",
+        "failureSignal": "Problem.",
+        "recoveryAction": "Try again.",
+        "handoffIfNeeded": "team"
+      },
+      {
+        "stepNumber": 3,
+        "title": "Finish Work",
+        "desc": "Finish work.",
+        "whyThisMatters": "Finish Work",
+        "inputNeeded": "request:string",
+        "actionInstruction": "Finalize.",
+        "promptToUse": "Finish.",
+        "expectedOutput": "Final.",
+        "validationRule": "Done.",
+        "failureSignal": "Fail.",
+        "recoveryAction": "Try again.",
+        "handoffIfNeeded": "owner"
+      }
+    ],
+    "mainOutput": "Output.",
+    "secondaryOutputs": [
+      "Logs."
+    ],
+    "DoD": [
+      "Done.",
+      "Quality is good."
+    ],
+    "qaChecklist": [
+      "Looks good.",
+      "Check everything."
+    ],
+    "raci": {
+      "responsible": "someone",
+      "accountable": "owner",
+      "consulted": "team",
+      "informed": "N/A"
+    },
+    "kpis": [
+      {
+        "metric": "quality",
+        "target": "good",
+        "unit": "count",
+        "measurement": "Look at it."
+      },
+      {
+        "metric": "completion",
+        "target": "done",
+        "unit": "count",
+        "measurement": "Ask someone."
+      }
+    ],
+    "cadence": "on-demand",
+    "errorHandling": "Try again.",
+    "fallbackRoute": "N/A",
+    "escalationRoute": "someone"
+  }
+}

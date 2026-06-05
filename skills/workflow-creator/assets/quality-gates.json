@@ -1,0 +1,46 @@
+{
+  "schema": 1,
+  "skill": "workflow-creator",
+  "gates": [
+    {
+      "id": "top_level_contract",
+      "severity": "blocker",
+      "rule": "All 17 top-level fields are present and non-empty."
+    },
+    {
+      "id": "step_contract",
+      "severity": "blocker",
+      "rule": "The workflow has 3-7 sequential steps and every step contains all 12 required fields."
+    },
+    {
+      "id": "observable_validation",
+      "severity": "blocker",
+      "rule": "Every validationRule, failureSignal, and recoveryAction is observable enough to fail closed."
+    },
+    {
+      "id": "raci_accountability",
+      "severity": "blocker",
+      "rule": "RACI values name concrete agents or roles, not anonymous owners."
+    },
+    {
+      "id": "kpi_measurement",
+      "severity": "blocker",
+      "rule": "KPIs have bounded targets, allowed units, and measurement methods."
+    },
+    {
+      "id": "route_specificity",
+      "severity": "blocker",
+      "rule": "fallbackRoute and escalationRoute name concrete destinations."
+    },
+    {
+      "id": "no_placeholders",
+      "severity": "blocker",
+      "rule": "No placeholder or vague phrases from the contract blocked list remain."
+    },
+    {
+      "id": "offline_determinism",
+      "severity": "blocker",
+      "rule": "Validation uses local assets and scripts only unless the user explicitly requests sourced research."
+    }
+  ]
+}

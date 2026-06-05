@@ -1,28 +1,23 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: workflow-creator
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
+# {{TITLE}}
 
-# Workflow Creator Output
+## Activation Decision
 
-## Summary
+- expected_activation: {{expected_activation}}
+- reason: {{activation_reason}}
+- missing_inputs: {{missing_inputs}}
 
-{summary}
+## Workflow Spec
 
-## Evidence
+```yaml
+{{workflow_yaml}}
+```
 
-{evidence}
+## Validation Evidence
 
-## Result
+- [CÓDIGO] Contract: `assets/workflow-definition-contract.json`
+- [CÓDIGO] Quality gates: `assets/quality-gates.json`
+- [CÓDIGO] Local check: {{local_check}}
 
-{result}
+## Risks And Open Items
 
-## Validation
-
-{validation}
-
-## Risks and Limits
-
-{risks}
+{{risks_and_open_items}}
