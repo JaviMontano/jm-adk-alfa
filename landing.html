@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JM Agentic Development Kit — Convierte intención en resultados</title>
-    <meta name="description" content="264 habilidades, 256 agentes, workspace automático. Describe lo que quieres. El kit analiza, diseña, construye, prueba y despliega. Cada tarea con trazabilidad completa.">
+    <meta name="description" content="585 skills, 260 agentes, 267 comandos, workspace automático. Incluye las 30 katas del Claude Certified Architect como skills ejecutables. Describe lo que quieres. El kit analiza, diseña, construye, prueba y despliega. Cada tarea con trazabilidad completa.">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Montserrat:wght@300;400;600;800&family=Poppins:wght@400;600;700;800&display=swap');
         :root {
@@ -75,11 +75,11 @@
 <body>
 
 <section class="hero">
-    <div class="badge">JM-ADK v4.0.0 Workspace · 1035 componentes · 7 IDEs · Auto-Tracking</div>
+    <div class="badge">JM-ADK v5.2.0 · 1368 componentes · 30 Architect Katas · 7 IDEs · Auto-Tracking</div>
     <h1>Convierte <em>intención</em><br>en resultados</h1>
     <p class="sub">
         Un entorno agéntico listo para trabajar. Describe lo que necesitas.
-        256 agentes especializados analizan, diseñan, construyen y despliegan.
+        260 agentes especializados analizan, diseñan, construyen y despliegan.
         Sin ser experto. Con método.
     </p>
     <div>
@@ -94,9 +94,9 @@
     <p class="lead">JM-ADK convierte tu asistente de IA en un equipo de desarrollo gobernado. Tú das la dirección. El kit ejecuta con método, calidad y trazabilidad.</p>
 
     <div class="cg">
-        <div class="c"><span class="n">264</span><h3>Habilidades</h3><p>Cada una es un paquete completo: 4 sub-agentes, grafo de conocimiento, prompts y templates de output en HTML/DOCX.</p></div>
-        <div class="c"><span class="n">256</span><h3>Agentes</h3><p>Especialistas de dominio: seguridad, frontend, Firebase, marketing, contenido, AI/ML, DevOps, UX, gobernanza.</p></div>
-        <div class="c"><span class="n">18</span><h3>Principios</h3><p>Constitución v6.0.0. Think First. Simple First. TDD. BDD. Sequential-first. Continuous Learning. Indexable Repo.</p></div>
+        <div class="c"><span class="n">585</span><h3>Habilidades</h3><p>Cada una es un paquete completo: 4 sub-agentes, grafo de conocimiento, prompts y templates de output en HTML/DOCX.</p></div>
+        <div class="c"><span class="n">260</span><h3>Agentes</h3><p>Especialistas de dominio: seguridad, frontend, Firebase, marketing, contenido, AI/ML, DevOps, UX, gobernanza.</p></div>
+        <div class="c"><span class="n">30</span><h3>Architect Katas</h3><p>Las 30 katas del Claude Certified Architect como skills ejecutables: bucles deterministas, hooks, MCP, aislamiento multi-agente, fiabilidad de contexto.</p></div>
         <div class="c"><span class="n">AUTO</span><h3>Workspace</h3><p>Cada tarea crea su carpeta con tasklog, changelog, plan y artefactos. Trazabilidad automática sin esfuerzo.</p></div>
     </div>
 </div>
@@ -133,6 +133,7 @@
         <tr><td>Dashboard admin</td><td>Tablas, gráficos, filtros, CRUD</td><td>Código → Firebase</td></tr>
         <tr><td>Prompt engineering</td><td>Biblioteca de prompts evaluados y documentados</td><td>HTML/XLSX branded</td></tr>
         <tr><td>Prompt para IA</td><td>Prompt optimizado con few-shot, CoT, guardrails</td><td>Markdown/Obsidian</td></tr>
+        <tr><td>Diseño agéntico robusto</td><td>30 Architect Katas: bucle por stop_reason, hooks PreToolUse/PostToolUse, aislamiento hub-and-spoke, extracción con JSON Schema</td><td>Skills + referencias</td></tr>
     </table>
 </div>
 </section>
@@ -143,9 +144,9 @@
 
     <div class="cg">
         <div class="c"><h3>Emprendedores</h3><p>Tienes la idea pero no el equipo técnico. El kit convierte tu visión en producto funcional sin que toques código.</p></div>
-        <div class="c"><h3>Desarrolladores</h3><p>Ya sabes código. El kit te da gobernanza, calidad y velocidad. 264 skills listas para usar, cada una con knowledge graph y templates.</p></div>
+        <div class="c"><h3>Desarrolladores</h3><p>Ya sabes código. El kit te da gobernanza, calidad y velocidad. 585 skills listas para usar, cada una con knowledge graph y templates.</p></div>
         <div class="c"><h3>Consultores y presales</h3><p>Necesitas analizar, proponer y entregar. Discovery → desarrollo → deploy. Prospecting, dossiers, propuestas — todo con tu marca.</p></div>
-        <div class="c"><h3>Equipos</h3><p>256 agentes que trabajan bajo la misma Constitución. Consistencia sin fricción. Cada decisión documentada y trazable.</p></div>
+        <div class="c"><h3>Equipos</h3><p>260 agentes que trabajan bajo la misma Constitución. Consistencia sin fricción. Cada decisión documentada y trazable.</p></div>
     </div>
 </div>
 </section>
@@ -175,7 +176,7 @@
 
     <div class="steps">
         <div class="st"><div><h3>Instala Claude Code</h3><p>Descárgalo en <code>claude.ai/claude-code</code>. Es el entorno recomendado. También funciona en Cursor, VS Code, Gemini, Windsurf, Codex.</p></div></div>
-        <div class="st"><div><h3>Clona e instala</h3><p><code>git clone https://github.com/JaviMontano/jm-agentic-development-kit.git</code><br><code>claude plugin add ./jm-agentic-development-kit</code></p></div></div>
+        <div class="st"><div><h3>Clona e instala</h3><p><code>git clone https://github.com/JaviMontano/jm-adk-alfa.git</code><br><code>claude plugin add ./jm-adk-alfa</code></p></div></div>
         <div class="st"><div><h3>Arranca</h3><p><code>/jm-adk:init</code> configura workspace automático + Constitución + tríada.<br><code>/jm-adk:onboarding</code> te guía paso a paso.<br><code>/jm-adk:demo</code> te muestra el kit en acción.</p></div></div>
     </div>
 
@@ -205,12 +206,12 @@
 
 <footer>
 <div class="w">
-    <p><span class="b">JM Agentic Development Kit</span> — v4.0.0 Workspace — 1035 componentes</p>
+    <p><span class="b">JM Agentic Development Kit</span> — v5.2.0 — 1368 componentes — 30 Architect Katas</p>
     <p style="margin-top:.5rem">Creado por <span class="b">Javier Montaño</span> · MetodologIA · JM Labs</p>
     <p style="margin-top:.3rem;font-size:.65rem">Agradecimiento especial: <a href="https://github.com/KatherinOquendo" style="color:var(--gold);text-decoration:none">Katherin Oquendo</a> — aliada en la reconstrucción de skills, QA incansable, y creyente desde el inicio</p>
     <p style="margin-top:.5rem">Made with Claude Code and Tons of Love with the Help of Pristino Agent</p>
     <p style="margin-top:.8rem">
-        <a href="https://github.com/JaviMontano/jm-agentic-development-kit" style="color:var(--gold);text-decoration:none">GitHub</a> ·
+        <a href="https://github.com/JaviMontano/jm-adk-alfa" style="color:var(--gold);text-decoration:none">GitHub</a> ·
         <a href="README.md" style="color:var(--gold);text-decoration:none">README</a> ·
         <a href="PRISTINO.md" style="color:var(--gold);text-decoration:none">Pristino</a> ·
         <a href="references/ontology/constitution-v6.0.0.md" style="color:var(--gold);text-decoration:none">Constitución</a> ·

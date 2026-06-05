@@ -18,6 +18,20 @@ The authoritative counts come from `python3 scripts/count-components.py`.
 | Prompts | 256 |
 | Total physical components | 1368 |
 
+## Claude Certified Architect Katas
+
+JM-ADK ships the 30 Claude Certified Architect katas as first-class, executable `katas-*` skills (one per kata) across the 5 exam domains:
+
+| Domain | Weight | Katas |
+|---|---|---|
+| D1 · Agentic Architecture | 27% | deterministic-agent-loop, pretooluse-guardrails, posttooluse-normalization, hub-and-spoke-isolation, headless-code-review, human-handoff-protocol, adaptive-investigation, multiagent-error-propagation |
+| D2 · Tool Design & MCP | 18% | defensive-structured-extraction, mcp-structured-errors, tool-description-quality, mcp-server-configuration, builtin-tool-selection |
+| D3 · Claude Code Config | 20% | plan-mode-exploration, hierarchical-claude-memory, path-conditional-rules, custom-commands-skills, session-resume-fork |
+| D4 · Prompt & Structured Output | 20% | fewshot-edge-calibration, critical-self-correction, message-batch-processing, validation-retry-feedback, independent-reviewer-multipass, confidence-stratified-sampling, false-positive-criteria |
+| D5 · Context & Reliability | 15% | prefix-caching, context-dilution-mitigation, multipass-prompt-chaining, persistent-scratchpad, provenance-preservation |
+
+The katas are backed by systemic reliability infrastructure: a policy-driven `PreToolUse` guard (`references/guardrails/tool-policy.json`), reliability references (`references/reliability/`), a structured-annotation schema + headless CI workflow (`.github/workflows/validate.yml`), a Message Batches runner (`scripts/batch/`), and QA suites (`scripts/qa/`). Source inventories live in `docs/katas/`.
+
 ## Install
 
 ```bash

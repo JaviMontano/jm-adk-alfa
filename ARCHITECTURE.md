@@ -112,6 +112,18 @@ python3 scripts/check-devkit-readiness.py
 bash scripts/generate-pristino-index.sh
 ```
 
+## Architect Katas Layer
+
+The 30 Claude Certified Architect katas ship as `katas-*` skills (one per kata, 5 exam domains) backed by systemic reliability infrastructure:
+
+- Skills: `skills/katas-*` (30 dirs, full 16-file skill contract each).
+- Hooks: `scripts/pre-tool-guard.sh` enforces `references/guardrails/tool-policy.json` (hot-reloaded, deterministic deny) — katas 02/03.
+- Reliability refs: `references/reliability/{prefix-caching,context-dilution,posttooluse-normalization}.md` — katas 03/10/11.
+- Structured output: `references/schemas/annotations.schema.json` + `scripts/post_annotations.py` + `.github/workflows/validate.yml` — katas 05/13.
+- Batch: `scripts/batch/batch-runner.py` (Message Batches API + custom_id) — kata 17.
+- QA: `scripts/qa/{run-adversarial-tests,run-confidence-fp-tests}.py` — katas 29/30.
+- Inventories: `docs/katas/{katas-content.md,practices-inventory.md,skill-inventory.md}`.
+
 ## Sync Model
 
 Use `docs/git-sync-local-safe.md` and `scripts/sync-upstream-safe.sh` for GitHub synchronization. The sync script refuses dirty working trees, fetches remotes, fast-forwards only when safe, and never resets hard.
