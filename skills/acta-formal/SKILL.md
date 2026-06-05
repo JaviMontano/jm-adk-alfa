@@ -119,3 +119,7 @@ VIII. **Firmas** — Bloque de firmas del presidente y secretario
 - Requiere input de la reunion (notas, transcript, o datos) [EXPLICIT]
 - Formato latinoamericano corporativo por defecto [EXPLICIT]
 - Numeracion secuencial requiere tracking manual o folio-generator [EXPLICIT]
+
+## Assets
+
+- `assets/deliverable-checklist.md` provides the reusable checklist for final deliverable and guardian review.

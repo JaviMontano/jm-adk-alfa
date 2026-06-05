@@ -10,6 +10,11 @@
       "tags": [
         "experiment-design",
         "ready-check"
+      ],
+      "expected_checks": [
+        "assets",
+        "deterministic_scripts",
+        "quality_criteria"
       ]
     },
     {
@@ -20,6 +25,11 @@
       "tags": [
         "audit",
         "blocked"
+      ],
+      "expected_checks": [
+        "assets",
+        "deterministic_scripts",
+        "quality_criteria"
       ]
     },
     {
@@ -30,6 +40,11 @@
       "tags": [
         "sample-size",
         "missing-inputs"
+      ],
+      "expected_checks": [
+        "assets",
+        "deterministic_scripts",
+        "quality_criteria"
       ]
     },
     {
@@ -40,6 +55,11 @@
       "tags": [
         "interpretation",
         "guardrails"
+      ],
+      "expected_checks": [
+        "assets",
+        "deterministic_scripts",
+        "quality_criteria"
       ]
     },
     {
@@ -50,6 +70,11 @@
       "tags": [
         "false-positive",
         "should-not-activate"
+      ],
+      "expected_checks": [
+        "assets",
+        "deterministic_scripts",
+        "quality_criteria"
       ]
     },
     {
@@ -60,6 +85,11 @@
       "tags": [
         "peeking",
         "stopping-rule"
+      ],
+      "expected_checks": [
+        "assets",
+        "deterministic_scripts",
+        "quality_criteria"
       ]
     },
     {
@@ -69,8 +99,12 @@
       "expected_checks": [
         "evidence",
         "quality_criteria",
-        "upgrade_safety"
-      ]
+        "upgrade_safety",
+        "assets",
+        "deterministic_scripts"
+      ],
+      "tags": [],
+      "expected_behavior": false
     },
     {
       "id": "empty_input",
@@ -79,8 +113,12 @@
       "expected_checks": [
         "evidence",
         "quality_criteria",
-        "upgrade_safety"
-      ]
+        "upgrade_safety",
+        "assets",
+        "deterministic_scripts"
+      ],
+      "tags": [],
+      "expected_behavior": false
     }
   ]
 }

@@ -1,110 +1,321 @@
-[
-  {
-    "id": "admin-dashboards-api-no-invention",
-    "type": "edge_case",
-    "input": "Design an admin dashboard for users, orders, and metrics. No endpoints are documented. Use only APIs that exist in the repo.",
-    "expected_behavior": "Skill inventories available APIs/schemas or marks gaps as not verified; it must not invent /api/users, Firestore collections, WebSocket channels, or KPI formulas without evidence.",
-    "must_include": ["not verified", "data contract", "API evidence"],
-    "must_not_include": ["/api/users assumed", "Firestore collection assumed", "WebSocket assumed"],
-    "tags": ["data-contract", "no-invention", "api", "evidence"]
-  },
-  {
-    "id": "admin-dashboards-table-server-contract",
-    "type": "happy_path",
-    "input": "Specify a table for 10k orders with sort, filter, search, pagination, saved views, and bulk actions.",
-    "expected_behavior": "Skill requires server-side pagination or justified virtualization, debounce/abort stale requests, URL/query state, bulk confirmation, and clear empty/loading/error states.",
-    "must_include": ["server-side pagination", "filters", "bulk confirmation", "URL state"],
-    "must_not_include": ["load all rows client-side"],
-    "tags": ["table", "pagination", "filters", "bulk-actions", "performance"]
-  },
-  {
-    "id": "admin-dashboards-crud-failure-modes",
-    "type": "happy_path",
-    "input": "Design CRUD for customers with 409 conflict, timeout, validation failure, and irreversible delete.",
-    "expected_behavior": "Skill covers validation, loading/disabled submit, conflict handling, retry, rollback or recovery notes, destructive confirmation, success feedback, and audit event.",
-    "must_include": ["409", "timeout", "validation", "destructive confirmation", "audit"],
-    "must_not_include": ["happy path only"],
-    "tags": ["CRUD", "error", "audit", "destructive-actions"]
-  },
-  {
-    "id": "admin-dashboards-rbac-deeplink",
-    "type": "edge_case",
-    "input": "Viewer deep-links to /admin/users/123/edit, editor tries delete, admin exports CSV.",
-    "expected_behavior": "Skill distinguishes UI visibility, route guards, backend/API authorization, 403 UX, negative tests, and export permission.",
-    "must_include": ["RBAC matrix", "backend enforcement", "403", "negative test"],
-    "must_not_include": ["hide button only"],
-    "tags": ["RBAC", "permission", "route-guard", "api-security"]
-  },
-  {
-    "id": "admin-dashboards-security-injection-export",
-    "type": "edge_case",
-    "input": "Rows contain <script>, CSV formula =IMPORTXML(...), manipulated IDs, and arbitrary filters.",
-    "expected_behavior": "Skill requires escaping, no raw innerHTML, CSV formula neutralization, server-side validation, IDOR checks, and export governance.",
-    "must_include": ["escaping", "CSV formula", "IDOR", "server-side validation"],
-    "must_not_include": ["innerHTML", "trust client filters"],
-    "tags": ["security", "export", "PII", "injection"]
-  },
-  {
-    "id": "admin-dashboards-empty-loading-error",
-    "type": "happy_path",
-    "input": "Dashboard has no data, metrics are null, chart API fails, and table returns permission-denied.",
-    "expected_behavior": "Skill defines empty states, skeleton/loading, partial error, permission denied, retry, chart fallback, and prevents invented metrics.",
-    "must_include": ["empty state", "loading", "permission denied", "retry", "not verified"],
-    "must_not_include": ["blank screen", "invented metric"],
-    "tags": ["states", "empty", "loading", "error"]
-  },
-  {
-    "id": "admin-dashboards-chart-data-integrity",
-    "type": "edge_case",
-    "input": "Add revenue, conversion rate, and active user KPI cards, but formulas, denominators, timezone, and data owner are missing.",
-    "expected_behavior": "Skill marks formulas and metrics not verified, requests source/owner/unit/time range/timezone, and refuses to present KPI values as truth.",
-    "must_include": ["formula", "timezone", "owner", "not verified"],
-    "must_not_include": ["calculated revenue", "guaranteed KPI"],
-    "tags": ["metrics", "charts", "data-integrity", "timezone"]
-  },
-  {
-    "id": "admin-dashboards-audit-trail",
-    "type": "happy_path",
-    "input": "Every create, update, delete, and export requires an audit trail and investigable rollback notes.",
-    "expected_behavior": "Skill specifies actor, action, entity, before/after summary, timestamp, correlation ID, retention, and PII/secret minimization.",
-    "must_include": ["actor", "before/after", "correlation ID", "PII"],
-    "must_not_include": ["log full payload", "log secrets"],
-    "tags": ["audit", "CRUD", "security"]
-  },
-  {
-    "id": "admin-dashboards-responsive-accessibility",
-    "type": "happy_path",
-    "input": "Admin table must work at 320px, tablet, and desktop, including keyboard-only filters, sorting, modal edit, and bulk delete.",
-    "expected_behavior": "Skill defines responsive column priority, filter drawer, touch targets, keyboard focus order, aria-sort, labels, modal focus trap, Escape/cancel, and error association.",
-    "must_include": ["320px", "keyboard", "aria-sort", "focus trap", "column priority"],
-    "must_not_include": ["hover only", "desktop only"],
-    "tags": ["responsive", "accessibility", "keyboard", "table"]
-  },
-  {
-    "id": "admin-dashboards-realtime-fallback",
-    "type": "edge_case",
-    "input": "Make the dashboard realtime, but the repo has no WebSocket, SSE, Firestore, or polling implementation documented.",
-    "expected_behavior": "Skill marks realtime channel not verified, proposes fallback polling only as an explicit design choice, and defines stale state/freshness target.",
-    "must_include": ["not verified", "fallback", "stale", "freshness"],
-    "must_not_include": ["WebSocket assumed", "Firestore assumed"],
-    "tags": ["realtime", "fallback", "no-invention"]
-  },
-  {
-    "id": "admin-dashboards-no-write-analysis-mode",
-    "type": "edge_case",
-    "input": "Analyze this admin dashboard and return a design/spec only. Do not edit or generate files.",
-    "expected_behavior": "Skill respects analysis-only mode despite Write/Bash availability and produces a spec plus gaps instead of mutating files.",
-    "must_include": ["analysis-only", "spec", "gaps"],
-    "must_not_include": ["file edited", "created file"],
-    "tags": ["guardrail", "no-write", "human-in-the-loop"]
-  },
-  {
-    "id": "admin-dashboards-false-positive-marketing-dashboard",
-    "type": "false_positive",
-    "input": "Create a public landing page hero with decorative charts for our product launch.",
-    "expected_behavior": "Skill should not activate as the primary workflow; route to landing page, brand, or data visualization skills because this is not an admin dashboard.",
-    "must_include": ["route away"],
-    "must_not_include": ["admin CRUD spec"],
-    "tags": ["false_positive", "routing"]
-  }
-]
+{
+  "schema": 1,
+  "skill": "admin-dashboards",
+  "cases": [
+    {
+      "id": "admin-dashboards-api-no-invention",
+      "type": "edge_case",
+      "input": "Design an admin dashboard for users, orders, and metrics. No endpoints are documented. Use only APIs that exist in the repo.",
+      "expected_behavior": "Skill inventories available APIs/schemas or marks gaps as not verified; it must not invent /api/users, Firestore collections, WebSocket channels, or KPI formulas without evidence.",
+      "must_include": [
+        "not verified",
+        "data contract",
+        "API evidence"
+      ],
+      "must_not_include": [
+        "/api/users assumed",
+        "Firestore collection assumed",
+        "WebSocket assumed"
+      ],
+      "tags": [
+        "data-contract",
+        "no-invention",
+        "api",
+        "evidence"
+      ],
+      "expected_checks": [
+        "assets",
+        "deterministic_scripts",
+        "quality_criteria"
+      ]
+    },
+    {
+      "id": "admin-dashboards-table-server-contract",
+      "type": "happy_path",
+      "input": "Specify a table for 10k orders with sort, filter, search, pagination, saved views, and bulk actions.",
+      "expected_behavior": "Skill requires server-side pagination or justified virtualization, debounce/abort stale requests, URL/query state, bulk confirmation, and clear empty/loading/error states.",
+      "must_include": [
+        "server-side pagination",
+        "filters",
+        "bulk confirmation",
+        "URL state"
+      ],
+      "must_not_include": [
+        "load all rows client-side"
+      ],
+      "tags": [
+        "table",
+        "pagination",
+        "filters",
+        "bulk-actions",
+        "performance"
+      ],
+      "expected_checks": [
+        "assets",
+        "deterministic_scripts",
+        "quality_criteria"
+      ]
+    },
+    {
+      "id": "admin-dashboards-crud-failure-modes",
+      "type": "happy_path",
+      "input": "Design CRUD for customers with 409 conflict, timeout, validation failure, and irreversible delete.",
+      "expected_behavior": "Skill covers validation, loading/disabled submit, conflict handling, retry, rollback or recovery notes, destructive confirmation, success feedback, and audit event.",
+      "must_include": [
+        "409",
+        "timeout",
+        "validation",
+        "destructive confirmation",
+        "audit"
+      ],
+      "must_not_include": [
+        "happy path only"
+      ],
+      "tags": [
+        "CRUD",
+        "error",
+        "audit",
+        "destructive-actions"
+      ],
+      "expected_checks": [
+        "assets",
+        "deterministic_scripts",
+        "quality_criteria"
+      ]
+    },
+    {
+      "id": "admin-dashboards-rbac-deeplink",
+      "type": "edge_case",
+      "input": "Viewer deep-links to /admin/users/123/edit, editor tries delete, admin exports CSV.",
+      "expected_behavior": "Skill distinguishes UI visibility, route guards, backend/API authorization, 403 UX, negative tests, and export permission.",
+      "must_include": [
+        "RBAC matrix",
+        "backend enforcement",
+        "403",
+        "negative test"
+      ],
+      "must_not_include": [
+        "hide button only"
+      ],
+      "tags": [
+        "RBAC",
+        "permission",
+        "route-guard",
+        "api-security"
+      ],
+      "expected_checks": [
+        "assets",
+        "deterministic_scripts",
+        "quality_criteria"
+      ]
+    },
+    {
+      "id": "admin-dashboards-security-injection-export",
+      "type": "edge_case",
+      "input": "Rows contain <script>, CSV formula =IMPORTXML(...), manipulated IDs, and arbitrary filters.",
+      "expected_behavior": "Skill requires escaping, no raw innerHTML, CSV formula neutralization, server-side validation, IDOR checks, and export governance.",
+      "must_include": [
+        "escaping",
+        "CSV formula",
+        "IDOR",
+        "server-side validation"
+      ],
+      "must_not_include": [
+        "innerHTML",
+        "trust client filters"
+      ],
+      "tags": [
+        "security",
+        "export",
+        "PII",
+        "injection"
+      ],
+      "expected_checks": [
+        "assets",
+        "deterministic_scripts",
+        "quality_criteria"
+      ]
+    },
+    {
+      "id": "admin-dashboards-empty-loading-error",
+      "type": "happy_path",
+      "input": "Dashboard has no data, metrics are null, chart API fails, and table returns permission-denied.",
+      "expected_behavior": "Skill defines empty states, skeleton/loading, partial error, permission denied, retry, chart fallback, and prevents invented metrics.",
+      "must_include": [
+        "empty state",
+        "loading",
+        "permission denied",
+        "retry",
+        "not verified"
+      ],
+      "must_not_include": [
+        "blank screen",
+        "invented metric"
+      ],
+      "tags": [
+        "states",
+        "empty",
+        "loading",
+        "error"
+      ],
+      "expected_checks": [
+        "assets",
+        "deterministic_scripts",
+        "quality_criteria"
+      ]
+    },
+    {
+      "id": "admin-dashboards-chart-data-integrity",
+      "type": "edge_case",
+      "input": "Add revenue, conversion rate, and active user KPI cards, but formulas, denominators, timezone, and data owner are missing.",
+      "expected_behavior": "Skill marks formulas and metrics not verified, requests source/owner/unit/time range/timezone, and refuses to present KPI values as truth.",
+      "must_include": [
+        "formula",
+        "timezone",
+        "owner",
+        "not verified"
+      ],
+      "must_not_include": [
+        "calculated revenue",
+        "guaranteed KPI"
+      ],
+      "tags": [
+        "metrics",
+        "charts",
+        "data-integrity",
+        "timezone"
+      ],
+      "expected_checks": [
+        "assets",
+        "deterministic_scripts",
+        "quality_criteria"
+      ]
+    },
+    {
+      "id": "admin-dashboards-audit-trail",
+      "type": "happy_path",
+      "input": "Every create, update, delete, and export requires an audit trail and investigable rollback notes.",
+      "expected_behavior": "Skill specifies actor, action, entity, before/after summary, timestamp, correlation ID, retention, and PII/secret minimization.",
+      "must_include": [
+        "actor",
+        "before/after",
+        "correlation ID",
+        "PII"
+      ],
+      "must_not_include": [
+        "log full payload",
+        "log secrets"
+      ],
+      "tags": [
+        "audit",
+        "CRUD",
+        "security"
+      ],
+      "expected_checks": [
+        "assets",
+        "deterministic_scripts",
+        "quality_criteria"
+      ]
+    },
+    {
+      "id": "admin-dashboards-responsive-accessibility",
+      "type": "happy_path",
+      "input": "Admin table must work at 320px, tablet, and desktop, including keyboard-only filters, sorting, modal edit, and bulk delete.",
+      "expected_behavior": "Skill defines responsive column priority, filter drawer, touch targets, keyboard focus order, aria-sort, labels, modal focus trap, Escape/cancel, and error association.",
+      "must_include": [
+        "320px",
+        "keyboard",
+        "aria-sort",
+        "focus trap",
+        "column priority"
+      ],
+      "must_not_include": [
+        "hover only",
+        "desktop only"
+      ],
+      "tags": [
+        "responsive",
+        "accessibility",
+        "keyboard",
+        "table"
+      ],
+      "expected_checks": [
+        "assets",
+        "deterministic_scripts",
+        "quality_criteria"
+      ]
+    },
+    {
+      "id": "admin-dashboards-realtime-fallback",
+      "type": "edge_case",
+      "input": "Make the dashboard realtime, but the repo has no WebSocket, SSE, Firestore, or polling implementation documented.",
+      "expected_behavior": "Skill marks realtime channel not verified, proposes fallback polling only as an explicit design choice, and defines stale state/freshness target.",
+      "must_include": [
+        "not verified",
+        "fallback",
+        "stale",
+        "freshness"
+      ],
+      "must_not_include": [
+        "WebSocket assumed",
+        "Firestore assumed"
+      ],
+      "tags": [
+        "realtime",
+        "fallback",
+        "no-invention"
+      ],
+      "expected_checks": [
+        "assets",
+        "deterministic_scripts",
+        "quality_criteria"
+      ]
+    },
+    {
+      "id": "admin-dashboards-no-write-analysis-mode",
+      "type": "edge_case",
+      "input": "Analyze this admin dashboard and return a design/spec only. Do not edit or generate files.",
+      "expected_behavior": "Skill respects analysis-only mode despite Write/Bash availability and produces a spec plus gaps instead of mutating files.",
+      "must_include": [
+        "analysis-only",
+        "spec",
+        "gaps"
+      ],
+      "must_not_include": [
+        "file edited",
+        "created file"
+      ],
+      "tags": [
+        "guardrail",
+        "no-write",
+        "human-in-the-loop"
+      ],
+      "expected_checks": [
+        "assets",
+        "deterministic_scripts",
+        "quality_criteria"
+      ]
+    },
+    {
+      "id": "admin-dashboards-false-positive-marketing-dashboard",
+      "type": "false_positive",
+      "input": "Create a public landing page hero with decorative charts for our product launch.",
+      "expected_behavior": "Skill should not activate as the primary workflow; route to landing page, brand, or data visualization skills because this is not an admin dashboard.",
+      "must_include": [
+        "route away"
+      ],
+      "must_not_include": [
+        "admin CRUD spec"
+      ],
+      "tags": [
+        "false_positive",
+        "routing"
+      ],
+      "expected_checks": [
+        "assets",
+        "deterministic_scripts",
+        "quality_criteria"
+      ]
+    }
+  ]
+}

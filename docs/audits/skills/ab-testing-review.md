@@ -63,3 +63,11 @@ Expected:
 
 Improved now.
 Next skill in default order: `accessibility-audit`.
+
+## Ledger Completion 2026-06-05
+
+- [CODE] `python3 -B scripts/validate-skill-dod.py --skill ab-testing` returned `dod=pass errors=0`.
+- [CODE] Added `assets/README.md`, `assets/manifest.json`, and `assets/deliverable-checklist.md` to satisfy the Alfa DoD asset contract.
+- [CODE] `skills/ab-testing/evals/evals.json` now uses the `cases` contract and includes `assets`, `deterministic_scripts`, and `quality_criteria` in `expected_checks` coverage.
+- [CODE] `python3 -B scripts/validate-skills.py --strict` returned `skills=585 warnings=0 errors=0` after this closure batch.
+- [CONFIG] Ledger status updated to `dod-complete` with decision `completed-assets-dod`.

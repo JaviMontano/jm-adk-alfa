@@ -1,100 +1,240 @@
-[
-  {
-    "id": "accessibility-writing-alt-text-mixed-images",
-    "type": "happy_path",
-    "input": "Create accessible image descriptions for a landing page with a decorative background pattern, a search icon button, a product screenshot, and a conversion chart.",
-    "expected_behavior": "Skill classifies each asset as decorative, functional, informative, or complex; recommends empty alt for decoration, functional alt for controls, concise alt for screenshot context, and short alt plus long description structure for the chart without inventing values.",
-    "tags": ["alt-text", "image", "complex-image", "no-hallucination"]
-  },
-  {
-    "id": "accessibility-writing-alt-text-chart-no-context",
-    "type": "edge_case",
-    "input": "Write alt text for this chart, but no chart image or data is attached.",
-    "expected_behavior": "Skill asks for the chart or data, marks visual details not verified, and refuses to invent values, colors, trends, or conclusions.",
-    "tags": ["alt-text", "chart", "not-verified", "no-hallucination"]
-  },
-  {
-    "id": "accessibility-writing-plain-language-jargon",
-    "type": "happy_path",
-    "input": "Rewrite this enterprise paragraph for accessibility: 'Operationalize cross-functional enablement by leveraging an omnichannel paradigm to unlock synergies across stakeholder journeys.'",
-    "expected_behavior": "Skill rewrites in plain language, preserves meaning, removes unnecessary jargon, defines any necessary terms, and notes assumptions about audience and business context.",
-    "tags": ["plain-language", "jargon", "reading-level", "meaning-preservation"]
-  },
-  {
-    "id": "accessibility-writing-reading-level-claim-safety",
-    "type": "edge_case",
-    "input": "Guarantee this legal disclosure is sixth-grade reading level without using any measurement tool.",
-    "expected_behavior": "Skill refuses to guarantee an exact reading level without measurement, offers an estimated simplification, preserves legal meaning, and recommends measured validation.",
-    "tags": ["reading-level", "claim-safety", "legal", "not-verified"]
-  },
-  {
-    "id": "accessibility-writing-inclusive-language-context",
-    "type": "happy_path",
-    "input": "Review this copy for inclusive language: 'Blacklist inactive users. Master accounts can disable access for the elderly and the disabled.'",
-    "expected_behavior": "Skill proposes contextual alternatives, explains why, avoids dehumanizing labels, and warns before changing technical identifiers if any term is an API or product name.",
-    "tags": ["inclusive-language", "bias", "technical-terms", "context"]
-  },
-  {
-    "id": "accessibility-writing-structure-scanability",
-    "type": "happy_path",
-    "input": "Turn this long paragraph of setup instructions into accessible steps with prerequisites, warnings, and done criteria.",
-    "expected_behavior": "Skill outputs headings, prerequisites, numbered steps, warnings preserved, one main action per step, and completion criteria.",
-    "tags": ["structure", "instructions", "plain-language", "scanability"]
-  },
-  {
-    "id": "accessibility-writing-link-text",
-    "type": "happy_path",
-    "input": "Rewrite links labeled 'click here', 'learn more', and three repeated 'download' links on a billing page.",
-    "expected_behavior": "Skill creates descriptive link text that makes sense out of context and distinguishes repeated destinations or file types.",
-    "tags": ["links", "descriptive-links", "navigation"]
-  },
-  {
-    "id": "accessibility-writing-error-copy",
-    "type": "happy_path",
-    "input": "Improve form errors that currently say 'Invalid', 'Oops', and 'Failed'.",
-    "expected_behavior": "Skill rewrites each error with the problem, recovery action, non-blaming tone, and preserves any known validation constraint.",
-    "tags": ["errors", "recovery", "microcopy", "plain-language"]
-  },
-  {
-    "id": "accessibility-writing-non-sensory-instructions",
-    "type": "edge_case",
-    "input": "Rewrite this instruction: 'Press the green button on the right to continue.'",
-    "expected_behavior": "Skill removes dependence on color and position alone by using visible label, role, heading, or stable identifier.",
-    "tags": ["instructions", "non-sensory", "color", "position"]
-  },
-  {
-    "id": "accessibility-writing-localization-es-co",
-    "type": "happy_path",
-    "input": "Localize this English onboarding copy for users in Colombia, including dates, currency, and idioms.",
-    "expected_behavior": "Skill asks for or infers only safe locale details, rewrites in clear Spanish when source is supplied, adapts idioms, dates, currency, and tone, and marks unknown source text as missing if not provided.",
-    "tags": ["localization", "locale", "plain-language", "es-co"]
-  },
-  {
-    "id": "accessibility-writing-seo-vs-alt-text-conflict",
-    "type": "edge_case",
-    "input": "Write alt text with these SEO keywords even if they do not describe the image.",
-    "expected_behavior": "Skill rejects keyword stuffing, prioritizes useful image purpose, and documents the SEO-accessibility conflict.",
-    "tags": ["alt-text", "seo", "conflict", "claim-safety"]
-  },
-  {
-    "id": "accessibility-writing-final-copy-no-evidence-noise",
-    "type": "edge_case",
-    "input": "Rewrite this help page for users. Include your validation, but keep the final copy ready to publish.",
-    "expected_behavior": "Skill separates reader-facing copy from validation notes so evidence tags and assumptions do not pollute the final publishable text.",
-    "tags": ["structure", "evidence", "reader-facing-copy"]
-  },
-  {
-    "id": "accessibility-writing-false-positive-testing",
-    "type": "false_positive",
-    "input": "Run axe-core, test keyboard navigation, and verify screen reader announcements.",
-    "expected_behavior": "Skill should not activate as the primary workflow and should route to accessibility-testing.",
-    "tags": ["false_positive", "routing", "accessibility-testing"]
-  },
-  {
-    "id": "accessibility-writing-false-positive-copywriting",
-    "type": "false_positive",
-    "input": "Give me 10 aggressive slogans for a campaign.",
-    "expected_behavior": "Skill should not activate unless the user asks for accessible writing; route to copywriting or brand voice instead.",
-    "tags": ["false_positive", "routing", "copywriting"]
-  }
-]
+{
+  "schema": 1,
+  "skill": "accessibility-writing",
+  "cases": [
+    {
+      "id": "accessibility-writing-alt-text-mixed-images",
+      "type": "happy_path",
+      "input": "Create accessible image descriptions for a landing page with a decorative background pattern, a search icon button, a product screenshot, and a conversion chart.",
+      "expected_behavior": "Skill classifies each asset as decorative, functional, informative, or complex; recommends empty alt for decoration, functional alt for controls, concise alt for screenshot context, and short alt plus long description structure for the chart without inventing values.",
+      "tags": [
+        "alt-text",
+        "image",
+        "complex-image",
+        "no-hallucination"
+      ],
+      "expected_checks": [
+        "assets",
+        "deterministic_scripts",
+        "quality_criteria"
+      ]
+    },
+    {
+      "id": "accessibility-writing-alt-text-chart-no-context",
+      "type": "edge_case",
+      "input": "Write alt text for this chart, but no chart image or data is attached.",
+      "expected_behavior": "Skill asks for the chart or data, marks visual details not verified, and refuses to invent values, colors, trends, or conclusions.",
+      "tags": [
+        "alt-text",
+        "chart",
+        "not-verified",
+        "no-hallucination"
+      ],
+      "expected_checks": [
+        "assets",
+        "deterministic_scripts",
+        "quality_criteria"
+      ]
+    },
+    {
+      "id": "accessibility-writing-plain-language-jargon",
+      "type": "happy_path",
+      "input": "Rewrite this enterprise paragraph for accessibility: 'Operationalize cross-functional enablement by leveraging an omnichannel paradigm to unlock synergies across stakeholder journeys.'",
+      "expected_behavior": "Skill rewrites in plain language, preserves meaning, removes unnecessary jargon, defines any necessary terms, and notes assumptions about audience and business context.",
+      "tags": [
+        "plain-language",
+        "jargon",
+        "reading-level",
+        "meaning-preservation"
+      ],
+      "expected_checks": [
+        "assets",
+        "deterministic_scripts",
+        "quality_criteria"
+      ]
+    },
+    {
+      "id": "accessibility-writing-reading-level-claim-safety",
+      "type": "edge_case",
+      "input": "Guarantee this legal disclosure is sixth-grade reading level without using any measurement tool.",
+      "expected_behavior": "Skill refuses to guarantee an exact reading level without measurement, offers an estimated simplification, preserves legal meaning, and recommends measured validation.",
+      "tags": [
+        "reading-level",
+        "claim-safety",
+        "legal",
+        "not-verified"
+      ],
+      "expected_checks": [
+        "assets",
+        "deterministic_scripts",
+        "quality_criteria"
+      ]
+    },
+    {
+      "id": "accessibility-writing-inclusive-language-context",
+      "type": "happy_path",
+      "input": "Review this copy for inclusive language: 'Blacklist inactive users. Master accounts can disable access for the elderly and the disabled.'",
+      "expected_behavior": "Skill proposes contextual alternatives, explains why, avoids dehumanizing labels, and warns before changing technical identifiers if any term is an API or product name.",
+      "tags": [
+        "inclusive-language",
+        "bias",
+        "technical-terms",
+        "context"
+      ],
+      "expected_checks": [
+        "assets",
+        "deterministic_scripts",
+        "quality_criteria"
+      ]
+    },
+    {
+      "id": "accessibility-writing-structure-scanability",
+      "type": "happy_path",
+      "input": "Turn this long paragraph of setup instructions into accessible steps with prerequisites, warnings, and done criteria.",
+      "expected_behavior": "Skill outputs headings, prerequisites, numbered steps, warnings preserved, one main action per step, and completion criteria.",
+      "tags": [
+        "structure",
+        "instructions",
+        "plain-language",
+        "scanability"
+      ],
+      "expected_checks": [
+        "assets",
+        "deterministic_scripts",
+        "quality_criteria"
+      ]
+    },
+    {
+      "id": "accessibility-writing-link-text",
+      "type": "happy_path",
+      "input": "Rewrite links labeled 'click here', 'learn more', and three repeated 'download' links on a billing page.",
+      "expected_behavior": "Skill creates descriptive link text that makes sense out of context and distinguishes repeated destinations or file types.",
+      "tags": [
+        "links",
+        "descriptive-links",
+        "navigation"
+      ],
+      "expected_checks": [
+        "assets",
+        "deterministic_scripts",
+        "quality_criteria"
+      ]
+    },
+    {
+      "id": "accessibility-writing-error-copy",
+      "type": "happy_path",
+      "input": "Improve form errors that currently say 'Invalid', 'Oops', and 'Failed'.",
+      "expected_behavior": "Skill rewrites each error with the problem, recovery action, non-blaming tone, and preserves any known validation constraint.",
+      "tags": [
+        "errors",
+        "recovery",
+        "microcopy",
+        "plain-language"
+      ],
+      "expected_checks": [
+        "assets",
+        "deterministic_scripts",
+        "quality_criteria"
+      ]
+    },
+    {
+      "id": "accessibility-writing-non-sensory-instructions",
+      "type": "edge_case",
+      "input": "Rewrite this instruction: 'Press the green button on the right to continue.'",
+      "expected_behavior": "Skill removes dependence on color and position alone by using visible label, role, heading, or stable identifier.",
+      "tags": [
+        "instructions",
+        "non-sensory",
+        "color",
+        "position"
+      ],
+      "expected_checks": [
+        "assets",
+        "deterministic_scripts",
+        "quality_criteria"
+      ]
+    },
+    {
+      "id": "accessibility-writing-localization-es-co",
+      "type": "happy_path",
+      "input": "Localize this English onboarding copy for users in Colombia, including dates, currency, and idioms.",
+      "expected_behavior": "Skill asks for or infers only safe locale details, rewrites in clear Spanish when source is supplied, adapts idioms, dates, currency, and tone, and marks unknown source text as missing if not provided.",
+      "tags": [
+        "localization",
+        "locale",
+        "plain-language",
+        "es-co"
+      ],
+      "expected_checks": [
+        "assets",
+        "deterministic_scripts",
+        "quality_criteria"
+      ]
+    },
+    {
+      "id": "accessibility-writing-seo-vs-alt-text-conflict",
+      "type": "edge_case",
+      "input": "Write alt text with these SEO keywords even if they do not describe the image.",
+      "expected_behavior": "Skill rejects keyword stuffing, prioritizes useful image purpose, and documents the SEO-accessibility conflict.",
+      "tags": [
+        "alt-text",
+        "seo",
+        "conflict",
+        "claim-safety"
+      ],
+      "expected_checks": [
+        "assets",
+        "deterministic_scripts",
+        "quality_criteria"
+      ]
+    },
+    {
+      "id": "accessibility-writing-final-copy-no-evidence-noise",
+      "type": "edge_case",
+      "input": "Rewrite this help page for users. Include your validation, but keep the final copy ready to publish.",
+      "expected_behavior": "Skill separates reader-facing copy from validation notes so evidence tags and assumptions do not pollute the final publishable text.",
+      "tags": [
+        "structure",
+        "evidence",
+        "reader-facing-copy"
+      ],
+      "expected_checks": [
+        "assets",
+        "deterministic_scripts",
+        "quality_criteria"
+      ]
+    },
+    {
+      "id": "accessibility-writing-false-positive-testing",
+      "type": "false_positive",
+      "input": "Run axe-core, test keyboard navigation, and verify screen reader announcements.",
+      "expected_behavior": "Skill should not activate as the primary workflow and should route to accessibility-testing.",
+      "tags": [
+        "false_positive",
+        "routing",
+        "accessibility-testing"
+      ],
+      "expected_checks": [
+        "assets",
+        "deterministic_scripts",
+        "quality_criteria"
+      ]
+    },
+    {
+      "id": "accessibility-writing-false-positive-copywriting",
+      "type": "false_positive",
+      "input": "Give me 10 aggressive slogans for a campaign.",
+      "expected_behavior": "Skill should not activate unless the user asks for accessible writing; route to copywriting or brand voice instead.",
+      "tags": [
+        "false_positive",
+        "routing",
+        "copywriting"
+      ],
+      "expected_checks": [
+        "assets",
+        "deterministic_scripts",
+        "quality_criteria"
+      ]
+    }
+  ]
+}
