@@ -1,0 +1,105 @@
+{
+  "schema": 1,
+  "source": "PRISTINO.md#triad-composition-matrix",
+  "default_guardian": "quality-guardian",
+  "matrix": [
+    {
+      "domain": "Requirements",
+      "lead": "requirements-analyst",
+      "support": "domain-modeler",
+      "guardian": "quality-guardian",
+      "keywords": ["requirements", "prd", "scope", "acceptance criteria", "functional requirements"]
+    },
+    {
+      "domain": "Architecture",
+      "lead": "architecture-designer",
+      "support": "security-architect",
+      "guardian": "quality-guardian",
+      "keywords": ["architecture", "system design", "adr", "component", "integration"]
+    },
+    {
+      "domain": "Frontend",
+      "lead": "frontend-craftsman",
+      "support": "accessibility-designer",
+      "guardian": "quality-engineer",
+      "keywords": ["frontend", "react", "ui", "screen", "component", "responsive"]
+    },
+    {
+      "domain": "Backend/Firebase",
+      "lead": "firebase-specialist",
+      "support": "security-architect",
+      "guardian": "quality-engineer",
+      "keywords": ["backend", "firebase", "api", "cloud function", "server"]
+    },
+    {
+      "domain": "Testing",
+      "lead": "quality-engineer",
+      "support": "e2e-test-writer",
+      "guardian": "code-reviewer",
+      "keywords": ["test", "qa", "e2e", "playwright", "coverage", "regression"]
+    },
+    {
+      "domain": "Deployment",
+      "lead": "deployment-specialist",
+      "support": "security-scanner",
+      "guardian": "quality-guardian",
+      "keywords": ["deploy", "release", "hosting", "production", "rollback"]
+    },
+    {
+      "domain": "Marketing/Business",
+      "lead": "marketing-context-specialist",
+      "support": "competitive-positioning-specialist",
+      "guardian": "quality-guardian",
+      "keywords": ["marketing", "business", "positioning", "campaign", "go to market"]
+    },
+    {
+      "domain": "AI/ML",
+      "lead": "prompt-engineering-specialist",
+      "support": "ai-safety-specialist",
+      "guardian": "quality-guardian",
+      "keywords": ["ai", "ml", "prompt", "agent", "model", "llm"]
+    },
+    {
+      "domain": "DevOps",
+      "lead": "ci-pipeline-design-specialist",
+      "support": "monitoring-setup-specialist",
+      "guardian": "quality-guardian",
+      "keywords": ["devops", "ci", "pipeline", "observability", "monitoring"]
+    },
+    {
+      "domain": "Data/Analytics",
+      "lead": "kpi-framework-specialist",
+      "support": "data-privacy-patterns-specialist",
+      "guardian": "quality-guardian",
+      "keywords": ["data", "analytics", "kpi", "metrics", "dashboard"]
+    },
+    {
+      "domain": "UX/Design",
+      "lead": "user-testing-specialist",
+      "support": "accessibility-designer",
+      "guardian": "quality-guardian",
+      "keywords": ["ux", "design", "user testing", "research", "journey"]
+    },
+    {
+      "domain": "Content",
+      "lead": "technical-writing-patterns-specialist",
+      "support": "accessibility-writing-specialist",
+      "guardian": "quality-guardian",
+      "keywords": ["content", "documentation", "writing", "copy", "technical writing"]
+    },
+    {
+      "domain": "Enterprise",
+      "lead": "compliance-framework-specialist",
+      "support": "audit-trail-design-specialist",
+      "guardian": "quality-guardian",
+      "keywords": ["enterprise", "compliance", "audit", "governance", "policy"]
+    },
+    {
+      "domain": "Vibe Coding",
+      "lead": "best-fit specialist",
+      "support": "architecture-designer",
+      "guardian": "quality-guardian + Constitution",
+      "keywords": ["vibe coding", "build this", "make an app", "coding task", "implementation"]
+    }
+  ]
+}

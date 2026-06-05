@@ -1,0 +1,35 @@
+{
+  "schema": 1,
+  "skill": "triad-composition",
+  "rules": [
+    {
+      "failure": "lead_failed",
+      "response": "support_produces_best_effort",
+      "required_marker": "[PARTIAL]",
+      "required_risk": "lower_quality_primary_deliverable"
+    },
+    {
+      "failure": "support_failed",
+      "response": "lead_output_delivered_without_cross_cutting_review",
+      "required_marker": "[PARTIAL]",
+      "required_risk": "blind_spots_not_reviewed"
+    },
+    {
+      "failure": "guardian_failed",
+      "response": "deliver_with_manual_review_warning",
+      "required_marker": "[PARTIAL]",
+      "required_risk": "not_quality_validated"
+    },
+    {
+      "failure": "all_failed",
+      "response": "stop_and_explain_failure",
+      "required_marker": "[OPEN]",
+      "required_risk": "triad_unavailable"
+    }
+  ],
+  "blocked": [
+    "silent degradation",
+    "unmarked partial delivery",
+    "guardian bypass without warning"
+  ]
+}

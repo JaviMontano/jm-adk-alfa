@@ -1,10 +1,17 @@
-# Triad Composition — DOCX Template
+# Triad Composition Packet
 
-## Document Structure
-- Title: Triad Composition — [Client/Project Name]
+Document metadata:
+
+- Title: Triad Composition Packet
 - Author: JM Labs
-- Date: {{DATE}}
+- Report date source: caller-provided value
 
-## Sections (mirror SKILL.md structure)
-See canonical SKILL.md for section blueprints.
-Use brand-config.json tokens: Navy #122562 · Gold #FFD700 · Blue #137DC5
+Required sections:
+
+1. Input Classification
+2. Selected Triad
+3. Execution Mode
+4. Validation Gates
+5. Risks and Assumptions
+
+The document body must preserve evidence tags and the Lead/Support/Guardian table from `templates/output.md`.

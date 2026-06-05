@@ -1,0 +1,23 @@
+{
+  "schema": 1,
+  "skill": "triad-composition",
+  "required_sections": [
+    "Triad Composition Packet",
+    "Input Classification",
+    "Selected Triad",
+    "Execution Mode",
+    "Validation Gates",
+    "Risks and Assumptions"
+  ],
+  "allowed_evidence_tags": ["[EXPLICIT]", "[INFERRED]", "[OPEN]", "[PARTIAL]"],
+  "blocked_phrases": [
+    "TODO",
+    "TBD",
+    "{{",
+    "}}",
+    "skip guardian",
+    "apply reasonable defaults",
+    "random triad",
+    "quality validation not needed"
+  ]
+}

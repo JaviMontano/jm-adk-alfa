@@ -1,11 +1,19 @@
 ---
 name: triad-composition-deep
 type: variation
-version: 2.0.0
-description: "Triad Composition — deep analysis mode."
+variant: deep
 ---
+
 # Triad Composition — Deep Mode
-## Execution
-1. Exhaustive analysis with full evidence trail
-2. Cover all edge cases
-3. Confidence >= 0.95 with justification
+
+Use deep mode when the request spans multiple domains, has critical business or safety impact, or may require committee escalation.
+
+Deep mode adds:
+
+- full matrix comparison in stable domain order,
+- confidence rationale per top 3 domain,
+- committee escalation analysis,
+- degraded-mode fallback check,
+- and explicit Constitution XIII/XIV/XVI validation.
+
+Deep mode does not relax thresholds and does not skip Guardian.
