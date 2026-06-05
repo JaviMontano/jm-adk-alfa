@@ -1,9 +1,96 @@
-[
-  {"id": "auto-prompt-matching-happy-path", "type": "happy_path", "input": "Run auto prompt matching on this project", "expected_behavior": "Skill activates and produces the expected auto prompt matching output following the defined process", "tags": ["basic", "activation"]},
-  {"id": "auto-prompt-matching-explicit-trigger", "type": "happy_path", "input": "Apply auto prompt matching analysis", "expected_behavior": "Skill recognizes the trigger phrase and executes the auto prompt matching workflow", "tags": ["trigger", "recognition"]},
-  {"id": "auto-prompt-matching-with-context", "type": "happy_path", "input": "Apply auto prompt matching to analyze the current codebase with detailed output", "expected_behavior": "Skill produces comprehensive auto prompt matching analysis with evidence-tagged findings", "tags": ["detailed", "comprehensive"]},
-  {"id": "auto-prompt-matching-minimal-input", "type": "happy_path", "input": "Quick auto prompt matching", "expected_behavior": "Skill activates with minimal input, applies reasonable defaults", "tags": ["minimal", "defaults"]},
-  {"id": "auto-prompt-matching-false-positive", "type": "false_positive", "input": "What is the weather forecast for tomorrow?", "expected_behavior": "Skill should NOT activate — this input has no relation to auto prompt matching", "tags": ["false_positive", "should-not-activate"]},
-  {"id": "auto-prompt-matching-edge-empty-input", "type": "edge_case", "input": "Run auto prompt matching but I have no files or documentation yet", "expected_behavior": "Skill handles gracefully — requests minimum viable input or produces gap analysis", "tags": ["edge_case", "empty-input", "boundary"]},
-  {"id": "auto-prompt-matching-edge-conflicting", "type": "edge_case", "input": "Apply auto prompt matching but requirements contradict each other", "expected_behavior": "Skill detects contradiction, flags with [OPEN] tag, proposes resolution", "tags": ["edge_case", "conflict", "corner"]}
-]
+{
+  "schema": 1,
+  "skill": "auto-prompt-matching",
+  "cases": [
+    {
+      "id": "auto-prompt-matching-explicit-prefix",
+      "type": "happy_path",
+      "input": "Route `/brand-html` for this request: create a branded HTML report. The skill exists in the index.",
+      "expected_behavior": "Routes to the explicit existing skill, lists source evidence, and does not execute the downstream report generation.",
+      "must_include": ["brand-html", "explicit prefix", "source", "next action"],
+      "must_not_include": ["executed report", "invented skill"],
+      "tags": ["routing", "explicit-prefix"],
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria"]
+    },
+    {
+      "id": "auto-prompt-matching-xlsx-narrow-skill",
+      "type": "happy_path",
+      "input": "Route a request for deterministic XLSX workbook generation with formulas, validation lists, summary sheet, and fixtures.",
+      "expected_behavior": "Selects the narrow XLSX template skill over broader data export or brand spreadsheet skills, showing score components and tie-breaks.",
+      "must_include": ["xlsx", "score", "tie-break", "narrower scope"],
+      "must_not_include": ["data-export selected", "brand-xlsx selected"],
+      "tags": ["routing", "artifact-type", "tie-break"],
+      "expected_checks": ["assets", "quality_criteria"]
+    },
+    {
+      "id": "auto-prompt-matching-ambiguous-prompting",
+      "type": "edge_case",
+      "input": "Route this: improve my prompt. Available candidates include prompt-engineering, prompt-creator, and prompt-forge.",
+      "expected_behavior": "Returns ask when intent is underspecified, names the plausible candidates, and asks one targeted clarification.",
+      "must_include": ["ask", "prompt-engineering", "prompt-creator", "prompt-forge", "clarification"],
+      "must_not_include": ["forced route", "guaranteed best"],
+      "tags": ["ambiguity", "prompting", "ask"],
+      "expected_checks": ["quality_criteria"]
+    },
+    {
+      "id": "auto-prompt-matching-missing-index",
+      "type": "edge_case",
+      "input": "Route this request, but PRISTINO-INDEX.md cannot be read while .agent/skills_index.json is available.",
+      "expected_behavior": "Reports a coverage_gap for the missing index, uses available sources, and avoids memory-only claims.",
+      "must_include": ["coverage_gap", ".agent/skills_index.json", "missing", "source"],
+      "must_not_include": ["from memory", "complete coverage"],
+      "tags": ["coverage-gap", "source"],
+      "expected_checks": ["assets", "quality_criteria"]
+    },
+    {
+      "id": "auto-prompt-matching-nonexistent-skill",
+      "type": "edge_case",
+      "input": "Route this to `quantum-prompt-alchemist`, but that skill is not present in any inspected source.",
+      "expected_behavior": "Declines or asks for an alternative; it must not route to a nonexistent skill.",
+      "must_include": ["decline", "not found", "inspected source"],
+      "must_not_include": ["quantum-prompt-alchemist selected", "invented capability"],
+      "tags": ["no-invention", "missing-skill"],
+      "expected_checks": ["quality_criteria"]
+    },
+    {
+      "id": "auto-prompt-matching-broad-vs-narrow",
+      "type": "happy_path",
+      "input": "Route a request for resumable multi-step execution with checkpoints, retry policy, idempotency key, and audit trail.",
+      "expected_behavior": "Selects workflow-orchestration over broad agentic or task skills because the request matches resume/checkpoint contract terms.",
+      "must_include": ["workflow-orchestration", "checkpoint", "idempotency", "narrower scope"],
+      "must_not_include": ["task-engine selected as default", "generic orchestration"],
+      "tags": ["narrow-scope", "workflow"],
+      "expected_checks": ["assets", "quality_criteria"]
+    },
+    {
+      "id": "auto-prompt-matching-false-positive-weather",
+      "type": "false_positive",
+      "input": "What is the weather forecast for tomorrow in Medellin?",
+      "expected_behavior": "Does not activate as auto-prompt-matching unless the user explicitly asks for routing.",
+      "must_include": ["no activation"],
+      "must_not_include": ["routing decision", "skill selected"],
+      "tags": ["false-positive", "weather"],
+      "expected_checks": ["quality_criteria"]
+    },
+    {
+      "id": "auto-prompt-matching-downstream-separation",
+      "type": "edge_case",
+      "input": "Find the best skill for creating an API documentation page and then write the page now.",
+      "expected_behavior": "Returns the route and next action, and clearly separates routing from downstream execution unless a separate execution step is requested after routing.",
+      "must_include": ["route", "api-documentation", "next action", "not executed"],
+      "must_not_include": ["full documentation page", "downstream deliverable"],
+      "tags": ["separation", "documentation"],
+      "expected_checks": ["quality_criteria"]
+    },
+    {
+      "id": "auto-prompt-matching-script-readiness",
+      "type": "happy_path",
+      "input": "Complete the auto-prompt-matching DoD and verify whether deterministic scripts are required.",
+      "expected_behavior": "Records that no skill-specific script is required unless routing logic is automated; still covers deterministic_scripts in eval checks and repo-wide script validation.",
+      "must_include": ["deterministic_scripts", "DoD", "assets", "ledger"],
+      "must_not_include": ["unchecked script", "skip validation"],
+      "tags": ["dod", "scripts", "ledger"],
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria"]
+    }
+  ]
+}

@@ -1,13 +1,6 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: auto-prompt-matching
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
-
 # Auto Prompt Matching Meta Prompt
 
-Review whether `auto-prompt-matching` should activate, whether the scope is safe, and which support agents should participate.
+Review whether routing was necessary, source-backed, and deterministic.
 
 ## Activation Check
 
@@ -15,3 +8,11 @@ Review whether `auto-prompt-matching` should activate, whether the scope is safe
 - Domain fit
 - Sufficient input
 - No safer specialized skill available
+
+## Improvement Check
+
+- Were all candidates found in inspected sources?
+- Did score components explain the confidence band?
+- Did tie-breakers avoid arbitrary choice?
+- Were unsupported capabilities declined?
+- Did the output avoid executing the downstream task?

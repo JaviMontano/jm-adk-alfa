@@ -1,28 +1,41 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: auto-prompt-matching
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
-
 # Auto Prompt Matching Output
 
-## Summary
+## Routing Decision
 
-{summary}
+- Decision: route / ask / decline
+- Selected skill or prompt:
+- Confidence band:
+- Next action:
 
-## Evidence
+## Sources Inspected
 
-{evidence}
+| Source | Status | Evidence |
+|---|---|---|
+|  | inspected / missing / stale |  |
 
-## Result
+## Candidate Scores
 
-{result}
+| Candidate | Source | Trigger Evidence | Purpose Evidence | Scope Fit | Penalties | Score | Decision |
+|---|---|---:|---:|---:|---|---:|---|
+|  |  |  |  |  |  |  |  |
+
+## Tie-Breaks
+
+- Explicit prefix:
+- Exact trigger:
+- Exact slug/name:
+- Narrower scope:
+- Alphabetical fallback:
 
 ## Validation
 
-{validation}
+- Candidate exists in inspected source:
+- `assets/routing-checklist.md` applied:
+- Ambiguity handled as `ask` when needed:
+- Unsupported capabilities not invented:
 
 ## Risks and Limits
 
-{risks}
+- Coverage gaps:
+- Residual ambiguity:
+- Downstream assumptions:

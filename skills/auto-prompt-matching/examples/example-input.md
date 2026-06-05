@@ -1,10 +1,13 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: auto-prompt-matching
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
-
 # Example Input
 
-Use `auto-prompt-matching` to produce a concise deliverable for a realistic project request.
+Route this request without executing it:
+
+> "Necesito generar un workbook XLSX deterministico con formulas, validaciones y una hoja de resumen. Debe poder verificarse con fixtures."
+
+Available sources:
+
+- `.agent/skills_index.json`
+- `PRISTINO-INDEX.md`
+- `skills/xlsx-template-creator/SKILL.md`
+- `skills/brand-xlsx/SKILL.md`
+- `skills/data-export/SKILL.md`

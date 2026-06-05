@@ -1,0 +1,14 @@
+{
+  "skill": "auto-prompt-matching",
+  "assets": [
+    {
+      "path": "assets/routing-checklist.md",
+      "type": "checklist",
+      "purpose": "Reusable deterministic scoring, tie-break, and validation checklist for skill/prompt routing decisions.",
+      "used_by": [
+        "SKILL.md",
+        "templates/output.md"
+      ]
+    }
+  ]
+}
