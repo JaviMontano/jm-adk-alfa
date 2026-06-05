@@ -3,7 +3,7 @@ name: ux-writing-quick
 type: variation
 variant: quick
 ---
-# Ux Writing — Quick Mode
+# UX Writing — Quick Mode
 
 Streamlined execution. Focus on TL;DR and primary output only.
-Apply Validation Gate but skip extended evidence tagging.
+Keep required packet sections, evidence tags, concrete before/after rewrites, and no-invention validation. Shorten explanations, not the contract.

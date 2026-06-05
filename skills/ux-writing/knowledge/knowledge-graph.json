@@ -1,75 +1,23 @@
 {
   "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-28",
   "skill": "ux-writing",
   "nodes": [
-    {
-      "id": "ux-writing",
-      "type": "skill",
-      "label": "ux-writing"
-    },
-    {
-      "id": "ux-writing:inputs",
-      "type": "contract",
-      "label": "Expected inputs"
-    },
-    {
-      "id": "ux-writing:outputs",
-      "type": "contract",
-      "label": "Expected outputs"
-    },
-    {
-      "id": "ux-writing:quality",
-      "type": "gate",
-      "label": "Quality criteria"
-    },
-    {
-      "id": "ux-writing:ontology",
-      "type": "ontology",
-      "label": "Domain: general"
-    },
-    {
-      "id": "ux-writing:evidence",
-      "type": "gate",
-      "label": "Evidence / provenance requirements"
-    },
-    {
-      "id": "ux-writing:antipattern",
-      "type": "risk",
-      "label": "Canonical anti-pattern to avoid"
-    }
+    {"id": "ux-writing", "type": "skill", "label": "UX Writing"},
+    {"id": "source-copy", "type": "input", "label": "Source copy and constraints"},
+    {"id": "audience", "type": "input", "label": "Audience and reading context"},
+    {"id": "findings", "type": "output", "label": "UX writing findings"},
+    {"id": "rewrites", "type": "output", "label": "Before/after rewrites"},
+    {"id": "readability", "type": "rubric", "label": "Readability and accessibility rubric"},
+    {"id": "microcopy-patterns", "type": "asset", "label": "Microcopy patterns"},
+    {"id": "validator", "type": "script", "label": "validate_ux_writing_packet.py"}
   ],
   "edges": [
-    {
-      "from": "ux-writing",
-      "to": "ux-writing:inputs",
-      "type": "requires"
-    },
-    {
-      "from": "ux-writing",
-      "to": "ux-writing:outputs",
-      "type": "produces"
-    },
-    {
-      "from": "ux-writing",
-      "to": "ux-writing:quality",
-      "type": "validated_by"
-    },
-    {
-      "from": "ux-writing",
-      "to": "ux-writing:ontology",
-      "type": "classified_as"
-    },
-    {
-      "from": "ux-writing",
-      "to": "ux-writing:evidence",
-      "type": "validated_by"
-    },
-    {
-      "from": "ux-writing",
-      "to": "ux-writing:antipattern",
-      "type": "guards_against"
-    }
+    {"from": "ux-writing", "to": "source-copy", "type": "requires"},
+    {"from": "source-copy", "to": "findings", "type": "grounds"},
+    {"from": "audience", "to": "readability", "type": "calibrates"},
+    {"from": "findings", "to": "rewrites", "type": "drives"},
+    {"from": "microcopy-patterns", "to": "rewrites", "type": "guides"},
+    {"from": "rewrites", "to": "validator", "type": "checked_by"},
+    {"from": "readability", "to": "validator", "type": "checked_by"}
   ]
 }

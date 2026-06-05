@@ -1,0 +1,19 @@
+{
+  "schema": 1,
+  "skill": "ux-writing",
+  "targets": {
+    "executive_grade": "<= 12",
+    "technical_grade": "<= 16",
+    "average_sentence_words": "15-20",
+    "max_sentence_words": 35,
+    "paragraph_sentences": "3-4",
+    "max_paragraph_sentences": 6,
+    "jargon_density": "max 2 unexplained terms per paragraph"
+  },
+  "rules": [
+    "Label uncomputed numeric readability metrics as estimated.",
+    "Explain acronyms on first use.",
+    "Use Spanish-first wording when Spanish is the primary audience.",
+    "Avoid unsupported product, compliance, automation, or performance claims."
+  ]
+}

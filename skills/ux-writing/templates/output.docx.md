@@ -1,10 +1,17 @@
-# Ux Writing — DOCX Template
+# UX Writing Audit - DOCX Template
 
-## Document Structure
-- Title: Ux Writing — [Client/Project Name]
+## Document Metadata
+
+- Title: UX Writing Audit - {{PROJECT_NAME}}
 - Author: JM Labs
-- Date: {{DATE}}
+- Review date: {{REVIEW_DATE}}
 
-## Sections (mirror SKILL.md structure)
-See canonical SKILL.md for section blueprints.
-Use brand-config.json tokens: Navy #122562 · Gold #FFD700 · Blue #137DC5
+Use `{{REVIEW_DATE}}` only when the source request provides a date. Otherwise omit the date field; do not fill it from current time.
+
+## Required Sections
+
+1. Audience And Source
+2. Findings
+3. Rewrites
+4. Accessibility And Readability
+5. Validation

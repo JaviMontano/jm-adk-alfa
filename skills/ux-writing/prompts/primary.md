@@ -9,7 +9,7 @@ triad:
   guardian: "ux-writing-guardian"
 ---
 
-# Ux Writing — Execute
+# UX Writing — Execute
 
 ## Dynamic Parameters
 
@@ -20,7 +20,8 @@ triad:
 | `{{constraints}}` | Additional rules | No | Guardrails JSON |
 
 ## Execution Steps
-1. Read SKILL.md `## When to Activate` — confirm this skill applies
-2. Read SKILL.md `## Validation Gate` — internalize quality criteria
-3. Execute the skill workflow per SKILL.md sections
-4. Validate output against Validation Gate before delivering
+1. Read SKILL.md `## When to Activate` and confirm this skill applies.
+2. Read SKILL.md `## Deterministic Contract` and `## Validation Gate`.
+3. Extract source copy and constraints before proposing rewrites.
+4. Produce the exact packet sections from `templates/output.md`.
+5. Validate the packet against the local contract before delivering when a Markdown packet is produced.

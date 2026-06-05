@@ -1,28 +1,29 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: ux-writing
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
+# UX Writing Audit
 
-# Ux Writing Output
+## Audience And Source
 
-## Summary
+- {audience_with_evidence_tag}
+- {source_context_with_evidence_tag}
 
-{summary}
+## Findings
 
-## Evidence
+| Finding | Evidence | UX Writing Risk |
+|---|---|---|
+| {specific_finding} | {tagged_source_evidence} | {risk} |
 
-{evidence}
+## Rewrites
 
-## Result
+| ID | Type | Before | After | Why |
+|---|---|---|---|---|
+| RW-1 | {CTA/error/empty-state/helper/heading/body} | {before} | {after} | {why} |
+| RW-2 | {type} | {before} | {after} | {why} |
+| RW-3 | {type} | {before} | {after} | {why} |
 
-{result}
+## Accessibility And Readability
+
+- {tagged_accessibility_or_readability_note}
 
 ## Validation
 
-{validation}
-
-## Risks and Limits
-
-{risks}
+- {validation_check}
+- Open Questions: {missing_facts_or_none}
