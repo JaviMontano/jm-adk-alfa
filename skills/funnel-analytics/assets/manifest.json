@@ -1,0 +1,14 @@
+{
+  "skill": "funnel-analytics",
+  "assets": [
+    {
+      "path": "assets/deliverable-checklist.md",
+      "type": "checklist",
+      "purpose": "Reusable checklist for funnel definition, drop-off analysis, instrumentation gaps, and experiment-ready recommendations.",
+      "used_by": [
+        "SKILL.md",
+        "templates/output.md"
+      ]
+    }
+  ]
+}

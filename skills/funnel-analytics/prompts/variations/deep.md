@@ -5,11 +5,11 @@ version: 2.0.0
 description: "Funnel Analytics — deep analysis mode. Exhaustive coverage."
 ---
 
-# Funnel Analytics — Deep Mode
+# Funnel Analytics - Deep Mode
 
 ## When to Use
 
-Use deep mode when thoroughness matters more than speed: architecture decisions, security audits, compliance reviews, critical deliverables.
+Use deep mode when funnel decisions affect roadmap, revenue, instrumentation, experimentation, compliance, or executive reporting.
 
 ## Dynamic Parameters
 
@@ -21,24 +21,22 @@ Use deep mode when thoroughness matters more than speed: architecture decisions,
 
 ## Execution (Deep)
 
-1. Load ALL knowledge: `knowledge/body-of-knowledge.md` + cross-referenced skills
-2. Check guardrails: `references/guardrails/*.json`
+1. Load `knowledge/body-of-knowledge.md`, `assets/deliverable-checklist.md`, and relevant project artifacts
+2. Check guardrails: `references/guardrails/*.json` when present
 3. Lead executes with exhaustive analysis:
-   - Cover ALL edge cases, not just common path
-   - Research: check standards, best practices, recent changes
-   - Document every assumption with `[ASSUMPTION]` tag
+   - Cover event taxonomy, denominators, identity stitching, segment mix, data quality, and privacy
+   - Document every assumption as `not verified` or with the requested evidence tag
 4. Support reviews with expanded scope:
-   - Security, accessibility, performance, business viability
-   - Adversarial scenarios: what could go wrong?
+   - Attribution, causal inference, experiment readiness, and governance
+   - Adversarial scenarios: what could make the funnel conclusion false?
 5. Guardian validates with strict criteria:
-   - Evidence tags 100% coverage (no untagged claims)
-   - Quality gate fully met
-   - Confidence >= 0.95 with evidence support
+   - Evidence tags cover every claim
+   - No invented event, metric, source, or causal explanation
+   - Asset checklist fully met
 
 ## Output
 
 - Exhaustive deliverable with full evidence trail
-- Edge cases documented
+- Edge cases and evidence gaps documented
 - Risk assessment included
-- Recommendations with priority ranking
-- Confidence score with justification
+- Recommendations with priority, dependency, and validation method

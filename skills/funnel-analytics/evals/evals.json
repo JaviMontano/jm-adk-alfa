@@ -1,9 +1,271 @@
-[
-  {"id": "funnel-analytics-happy-path", "type": "happy_path", "input": "Run funnel analytics on this project", "expected_behavior": "Skill activates and produces the expected funnel analytics output following the defined process", "tags": ["basic", "activation"]},
-  {"id": "funnel-analytics-explicit-trigger", "type": "happy_path", "input": "Apply funnel analytics analysis", "expected_behavior": "Skill recognizes the trigger phrase and executes the funnel analytics workflow", "tags": ["trigger", "recognition"]},
-  {"id": "funnel-analytics-with-context", "type": "happy_path", "input": "Apply funnel analytics to analyze the current codebase with detailed output", "expected_behavior": "Skill produces comprehensive funnel analytics analysis with evidence-tagged findings", "tags": ["detailed", "comprehensive"]},
-  {"id": "funnel-analytics-minimal-input", "type": "happy_path", "input": "Quick funnel analytics", "expected_behavior": "Skill activates with minimal input, applies reasonable defaults", "tags": ["minimal", "defaults"]},
-  {"id": "funnel-analytics-false-positive", "type": "false_positive", "input": "What is the weather forecast for tomorrow?", "expected_behavior": "Skill should NOT activate — this input has no relation to funnel analytics", "tags": ["false_positive", "should-not-activate"]},
-  {"id": "funnel-analytics-edge-empty-input", "type": "edge_case", "input": "Run funnel analytics but I have no files or documentation yet", "expected_behavior": "Skill handles gracefully — requests minimum viable input or produces gap analysis", "tags": ["edge_case", "empty-input", "boundary"]},
-  {"id": "funnel-analytics-edge-conflicting", "type": "edge_case", "input": "Apply funnel analytics but requirements contradict each other", "expected_behavior": "Skill detects contradiction, flags with [OPEN] tag, proposes resolution", "tags": ["edge_case", "conflict", "corner"]}
-]
+{
+  "schema": 1,
+  "skill": "funnel-analytics",
+  "cases": [
+    {
+      "id": "funnel-analytics-verified-saas-funnel",
+      "type": "happy_path",
+      "input": "Analyze a signup-to-activation funnel with provided event taxonomy, UTC date window, user counts for each step, employee/test exclusions, and acquisition-channel segments.",
+      "expected_behavior": "Skill defines the funnel, calculates only evidence-backed drop-off rates, lists source status, and separates optimization hypotheses from causal claims.",
+      "must_include": [
+        "funnel definition",
+        "denominator",
+        "drop-off",
+        "not verified"
+      ],
+      "must_not_include": [
+        "guaranteed cause",
+        "invented event",
+        "unverified conversion rate"
+      ],
+      "tags": [
+        "happy_path",
+        "saas",
+        "drop-off",
+        "evidence"
+      ],
+      "expected_checks": [
+        "assets",
+        "deterministic_scripts",
+        "quality_criteria"
+      ]
+    },
+    {
+      "id": "funnel-analytics-missing-instrumentation",
+      "type": "edge_case",
+      "input": "Audit a checkout funnel where product_viewed and purchase_completed exist, but add_to_cart and payment_started events are absent from the tracking plan.",
+      "expected_behavior": "Skill marks missing steps as instrumentation gaps, avoids calculating unsupported conversion rates, and recommends tracking fixes before optimization.",
+      "must_include": [
+        "instrumentation gap",
+        "tracking plan",
+        "not verified",
+        "required fix"
+      ],
+      "must_not_include": [
+        "assumed add_to_cart count",
+        "payment friction caused the drop"
+      ],
+      "tags": [
+        "instrumentation",
+        "checkout",
+        "no-invention"
+      ],
+      "expected_checks": [
+        "assets",
+        "quality_criteria"
+      ]
+    },
+    {
+      "id": "funnel-analytics-denominator-mismatch",
+      "type": "edge_case",
+      "input": "Dashboard A reports signup_started by sessions for last 7 days and Dashboard B reports signup_completed by users for a rolling 30-day cohort.",
+      "expected_behavior": "Skill stops direct rate comparison until unit, window, and deduplication rules are reconciled.",
+      "must_include": [
+        "unit",
+        "time window",
+        "deduplication",
+        "reconcile"
+      ],
+      "must_not_include": [
+        "computed signup conversion",
+        "valid comparison"
+      ],
+      "tags": [
+        "denominator",
+        "cohort",
+        "data-quality"
+      ],
+      "expected_checks": [
+        "quality_criteria"
+      ]
+    },
+    {
+      "id": "funnel-analytics-identity-stitching-ambiguity",
+      "type": "edge_case",
+      "input": "Analyze onboarding where anonymous visitors become authenticated users after signup, but the source does not document identity stitching.",
+      "expected_behavior": "Skill flags identity stitching as not verified, requests anonymous/authenticated join rules, and avoids attributing pre-signup behavior to users as fact.",
+      "must_include": [
+        "identity stitching",
+        "anonymous",
+        "authenticated",
+        "not verified"
+      ],
+      "must_not_include": [
+        "same user guaranteed",
+        "attributed as fact"
+      ],
+      "tags": [
+        "identity",
+        "dedupe",
+        "attribution"
+      ],
+      "expected_checks": [
+        "quality_criteria"
+      ]
+    },
+    {
+      "id": "funnel-analytics-segment-mix-risk",
+      "type": "edge_case",
+      "input": "Aggregate conversion improved, but mobile conversion fell and the channel mix shifted toward paid search. Segment counts are provided by device and channel.",
+      "expected_behavior": "Skill highlights segment-mix risk, compares only comparable cohorts, and avoids declaring the overall funnel fixed.",
+      "must_include": [
+        "segment",
+        "cohort",
+        "channel mix",
+        "sample size"
+      ],
+      "must_not_include": [
+        "funnel fixed",
+        "single aggregate conclusion"
+      ],
+      "tags": [
+        "segments",
+        "simpson-risk",
+        "cohort"
+      ],
+      "expected_checks": [
+        "quality_criteria"
+      ]
+    },
+    {
+      "id": "funnel-analytics-small-sample",
+      "type": "edge_case",
+      "input": "A B2B enterprise funnel has 28 qualified leads, 9 demos, 3 proposals, and 1 closed deal. The user asks for aggressive optimization based on conversion rates.",
+      "expected_behavior": "Skill reports small-sample limits, prefers qualitative follow-up and instrumentation review, and does not over-prioritize tiny rate differences.",
+      "must_include": [
+        "small sample",
+        "confidence",
+        "qualitative",
+        "limit"
+      ],
+      "must_not_include": [
+        "statistically proven",
+        "aggressive optimization guaranteed"
+      ],
+      "tags": [
+        "small-sample",
+        "b2b",
+        "risk"
+      ],
+      "expected_checks": [
+        "quality_criteria"
+      ]
+    },
+    {
+      "id": "funnel-analytics-optimization-without-data",
+      "type": "edge_case",
+      "input": "Recommend conversion experiments for an activation funnel, but no event counts, research notes, or analytics sources are available.",
+      "expected_behavior": "Skill creates a measurement-first plan with minimum data needed, tracking checklist, and research questions instead of presenting ranked optimization as evidence-backed.",
+      "must_include": [
+        "measurement-first",
+        "minimum data",
+        "research question",
+        "not verified"
+      ],
+      "must_not_include": [
+        "ranked by impact from data",
+        "known conversion issue"
+      ],
+      "tags": [
+        "missing-data",
+        "experiments",
+        "measurement"
+      ],
+      "expected_checks": [
+        "assets",
+        "quality_criteria"
+      ]
+    },
+    {
+      "id": "funnel-analytics-privacy-constraints",
+      "type": "edge_case",
+      "input": "The user includes raw emails, phone numbers, and user IDs in funnel exports and asks to include them in the report.",
+      "expected_behavior": "Skill minimizes or redacts direct identifiers, uses aggregate metrics where possible, and documents privacy constraints.",
+      "must_include": [
+        "PII",
+        "aggregate",
+        "redact",
+        "privacy"
+      ],
+      "must_not_include": [
+        "raw email",
+        "phone number",
+        "full user ID"
+      ],
+      "tags": [
+        "privacy",
+        "PII",
+        "reporting"
+      ],
+      "expected_checks": [
+        "quality_criteria"
+      ]
+    },
+    {
+      "id": "funnel-analytics-script-backed-readiness",
+      "type": "happy_path",
+      "input": "Complete the funnel analytics DoD and verify whether the skill has scripts before final delivery.",
+      "expected_behavior": "Skill runs the per-skill DoD, runs script validation if scripts exist, and records asset/checklist coverage in the ledger.",
+      "must_include": [
+        "validate-skill-dod.py",
+        "validate-skill-scripts.py",
+        "assets",
+        "ledger"
+      ],
+      "must_not_include": [
+        "skip validation",
+        "unchecked script"
+      ],
+      "tags": [
+        "dod",
+        "scripts",
+        "ledger"
+      ],
+      "expected_checks": [
+        "assets",
+        "deterministic_scripts",
+        "quality_criteria"
+      ]
+    },
+    {
+      "id": "funnel-analytics-false-positive-weather",
+      "type": "false_positive",
+      "input": "What is the weather forecast for tomorrow in Bogota?",
+      "expected_behavior": "Skill does not activate because the request is unrelated to funnel analytics.",
+      "must_include": [
+        "no activation"
+      ],
+      "must_not_include": [
+        "funnel",
+        "drop-off analysis"
+      ],
+      "tags": [
+        "false_positive",
+        "weather"
+      ],
+      "expected_checks": [
+        "quality_criteria"
+      ]
+    },
+    {
+      "id": "funnel-analytics-false-positive-physical-funnel",
+      "type": "false_positive",
+      "input": "Which kitchen funnel should I buy to pour oil into a bottle?",
+      "expected_behavior": "Skill does not activate because the request is about a physical funnel, not conversion analytics.",
+      "must_include": [
+        "no activation"
+      ],
+      "must_not_include": [
+        "conversion funnel",
+        "tracking plan"
+      ],
+      "tags": [
+        "false_positive",
+        "physical-object"
+      ],
+      "expected_checks": [
+        "quality_criteria"
+      ]
+    }
+  ]
+}

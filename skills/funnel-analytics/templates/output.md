@@ -1,28 +1,67 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: funnel-analytics
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
-
 # Funnel Analytics Output
 
-## Summary
+## Scope
 
-{summary}
+- Objective:
+- Funnel unit:
+- Audience/cohort:
+- Time window and timezone:
+- Source owner:
 
-## Evidence
+## Evidence Inventory
 
-{evidence}
+| Artifact | Source | What It Proves | Status |
+|---|---|---|---|
+|  |  |  | verified / not verified |
 
-## Result
+## Funnel Definition
 
-{result}
+| Step | Event or State | Unit | Numerator | Denominator | Exclusions | Owner | Evidence Status |
+|---|---|---|---|---|---|---|---|
+|  |  |  |  |  |  |  |  |
+
+## Formulas
+
+- Step conversion:
+- Drop-off:
+- Overall conversion:
+- Segment comparison:
+- Deduplication rule:
+
+## Drop-Off Analysis
+
+| Step Pair | Entered | Converted | Drop-Off | Evidence | Interpretation |
+|---|---:|---:|---:|---|---|
+|  |  |  |  |  |  |
+
+## Segment Analysis
+
+| Segment | Sample Size | Conversion Pattern | Confidence Limit | Action |
+|---|---:|---|---|---|
+|  |  |  |  |  |
+
+## Instrumentation Gaps
+
+| Gap | Impact | Required Fix | Owner | Priority |
+|---|---|---|---|---|
+|  |  |  |  |  |
+
+## Optimization Backlog
+
+| Hypothesis | Evidence | Expected Metric | Guardrail Metric | Validation Method | Priority |
+|---|---|---|---|---|---|
+|  |  |  |  |  |  |
 
 ## Validation
 
-{validation}
+- Quantitative claims have source, unit, window, and denominator:
+- Data-quality gaps marked `not verified`:
+- Privacy/PII constraints respected:
+- `assets/deliverable-checklist.md` reviewed:
 
 ## Risks and Limits
 
-{risks}
+- Unverified sources:
+- Small-sample or segment-mix risks:
+- Causal inference limits:
+- Next evidence needed:

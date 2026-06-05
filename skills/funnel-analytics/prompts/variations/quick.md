@@ -5,11 +5,11 @@ version: 2.0.0
 description: "Funnel Analytics in quick mode."
 ---
 
-# Funnel Analytics — quick Mode
+# Funnel Analytics - Quick Mode
 
 ## When to Use
 
-Use quick mode when you need adjusted depth for the Funnel Analytics workflow.
+Use quick mode when the user needs a fast funnel sanity check, tracking gap list, or next-step brief from limited evidence.
 
 ## Dynamic Parameters
 
@@ -22,13 +22,13 @@ Use quick mode when you need adjusted depth for the Funnel Analytics workflow.
 ## Execution
 
 1. Load skill: `skills/funnel-analytics/knowledge/body-of-knowledge.md`
-2. Check guardrails: `references/guardrails/*.json`
-3. Execute at quick depth with evidence tags
-4. Lead → Support → Guardian validation
-5. Confidence >= 0.95
+2. Load `assets/deliverable-checklist.md`
+3. Check guardrails: `references/guardrails/*.json` when present
+4. Produce a compact scope, funnel definition, gaps, and next actions
+5. Lead -> Support -> Guardian validation
 
 ## Output
 
-- Deliverable calibrated to quick depth
-- Evidence-tagged, Constitution-compliant
-- Recommendations beyond the ask
+- Compact report calibrated to quick depth
+- Evidence-tagged facts and `not verified` gaps
+- Measurement-first next actions
