@@ -2697,7 +2697,7 @@
     "id": "repo-sync-auditor",
     "path": "skills/repo-sync-auditor",
     "name": "Repo Sync Auditor",
-    "description": "Compare local vs remote Git state non-destructively: baseline, branch divergence, dirty-tree protection, safe-fetch, and a reconciliation plan. Never mutates history."
+    "description": "Audit local and remote Git repository sync state without mutating history, including branch/base drift, dirty-tree risk, ledger-vs-skill mismatches, review-doc coverage, generated index freshness signals, and a safe reconciliation plan. Use when the user asks to resume work, prepare a PR, reconcile local vs remote state, verify what is really deployed, or diagnose repo drift before writing or merging. [EXPLICIT]"
   },
   {
     "id": "reporting-templates",

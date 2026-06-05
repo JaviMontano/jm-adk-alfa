@@ -1,14 +1,16 @@
 ---
 name: repo-sync-auditor
-version: 1.0.0
-description: "Compare local vs remote Git state non-destructively: baseline, branch divergence, dirty-tree protection, safe-fetch, and a reconciliation plan. Never mutates history."
-owner: "JM Labs (Javier Montaño)"
+version: 1.1.0
+description: Audit local and remote Git repository sync state without mutating history, including branch/base drift, dirty-tree risk, ledger-vs-skill mismatches, review-doc coverage, generated index freshness signals, and a safe reconciliation plan. Use when the user asks to resume work, prepare a PR, reconcile local vs remote state, verify what is really deployed, or diagnose repo drift before writing or merging. [EXPLICIT]
+owner: "JM Labs (Javier Montano)"
 triggers:
   - repo sync
   - sync auditor
   - local remote divergence
   - git baseline
   - safe fetch
+  - resume repo work
+  - verify deployed skills
 allowed-tools:
   - Read
   - Grep
@@ -18,66 +20,105 @@ allowed-tools:
 
 # Repo Sync Auditor
 
-## Inputs Expected
+Audit repository truth before editing, publishing, or merging. The skill is
+read-only by default and focuses on preventing false state: stale branches,
+dirty worktrees, ledger drift, missing review docs, stale generated indexes, or
+staging PRs being treated as deployed code.
 
-- Goal or task to complete.
-- Relevant context, constraints, and audience.
-- Existing files or references when the request depends on a codebase or document.
+## Deterministic Contract
 
-## Outputs Expected
-
-- A concise deliverable in the requested format.
-- Evidence notes for non-obvious claims.
-- Validation status and remaining risks.
+- Use `assets/git-safety-policy.json` before running any Git command.
+- Use `assets/ledger-risk-policy.json` to classify ledger drift and review-doc
+  mismatches.
+- Use `assets/sync-audit-schema.json` as the report shape.
+- Use `assets/remediation-plan-template.md` for the repair plan.
+- Run `scripts/audit-repo-sync.py --format markdown` for a human report.
+- Run `scripts/audit-repo-sync.py --format json` when another process will
+  consume the result.
+- Run `scripts/check.sh` before shipping changes to this skill.
+- Do not run `git reset`, `git clean`, force-push, rebase, checkout over user
+  work, or update remote refs from this skill.
 
 ## Procedure
 
-### Discover
+### Step 1: Establish Baseline
 
-Read the user request, inspect relevant project artifacts, and identify missing critical information.
+1. Identify the repository root with `git rev-parse --show-toplevel`.
+2. Read current branch, `HEAD`, upstream, and local `origin/main` if present.
+3. Check dirty/untracked files with `git status --porcelain=v1`.
+4. Check ahead/behind against upstream and `origin/main` with local refs only.
+5. Do not fetch unless the user explicitly asks for network refresh.
 
-### Analyze
+### Step 2: Compare Repository Truth
 
-Map intent to the skill domain, choose the smallest viable approach, and identify risks before execution.
+Audit these surfaces:
 
-### Execute
+- `docs/audits/skill-review-ledger.csv` row count, statuses, and untracked
+  skill directories.
+- `docs/audits/skills/*-review.md` coverage vs ledger status.
+- `skills/*/scripts/check.sh` coverage vs ledger status.
+- generated-file dirtiness for `.agent/skills_index.json`,
+  `PRISTINO-INDEX.md`, `AGENTS.md`, `GEMINI.md`, `.github/copilot-instructions.md`,
+  `.cursorrules`, and `.windsurfrules`.
+- known staging branches or PRs that must not be used as deployment evidence.
 
-Produce the deliverable using the allowed tools and keep changes scoped to the request.
+### Step 3: Classify Risk
 
-### Validate
+Classify blockers without mutating the repo:
 
-Check quality criteria, edge cases, assumptions, and evidence requirements before final delivery.
+- dirty tree before branch switch or patch apply
+- branch behind `origin/main`
+- ledger rows missing for skills
+- review docs present while ledger status remains `pending`
+- skills with deterministic scripts while ledger status remains `pending`
+- generated files already dirty before PR
 
-## Quality Criteria
+### Step 4: Produce Plan
 
-- The output directly addresses the user goal.
-- Claims are tagged with evidence when required by the host environment.
-- No local overrides or generated files are overwritten without explicit force.
-- The result is actionable and has clear acceptance criteria.
+Return a concise report with evidence tags:
 
-## Edge Cases
+- `[CODE]` for command output, files, refs, paths, counts, and diffs.
+- `[CONFIG]` for policies, remote names, branch conventions, and intentional
+  exclusions.
+- `[DOC]` for briefs, PR descriptions, review docs, and process records.
+- `[INFERENCE]` for recommended ordering, risk classification, and next action.
 
-- Empty input: ask for the missing objective.
-- Conflicting requirements: state the conflict and choose the safer interpretation.
-- Local customization: preserve local files and prefer additive changes.
+## Output
 
-## Assumptions and Limits
+Use `templates/output.md` for the human report:
 
-- This skill does not replace expert review for high-risk legal, medical, financial, or security decisions.
-- If evidence is unavailable, mark the claim as an assumption or open question.
+```bash
+python3 skills/repo-sync-auditor/scripts/audit-repo-sync.py --format markdown
+```
+
+For machine consumers:
+
+```bash
+python3 skills/repo-sync-auditor/scripts/audit-repo-sync.py --format json
+```
+
+## Validation
+
+Run:
+
+```bash
+bash skills/repo-sync-auditor/scripts/check.sh
+python3 -B scripts/validate-skill-dod.py --skill repo-sync-auditor
+python3 -B scripts/validate-skill-scripts.py --strict --run-checks --skill repo-sync-auditor
+```
+
+## Limits
+
+- The audit uses local refs. If a fresh network baseline is required, run a
+  separate explicit `git fetch --prune origin` before invoking the skill.
+- The audit reports ledger drift; it does not edit the ledger.
+- The audit can identify likely deployment truth from files and review docs,
+  but GitHub PR state still needs `gh pr view` or API verification when exact
+  merge metadata matters.
 
 ## Related Skills
 
+- `git-workflow`
 - `workspace-governance`
-- `workflow-forge`
-- `quality-guardian`
-
-## Evidence Requirements
-
-- Cite code, config, docs, or tests used to justify findings.
-- Mark inferences and assumptions explicitly.
-
-## Update-Safety Notes
-
-- Generated support files are missing-only by default.
-- Use `--force` only after reviewing diffs.
+- `workflow-orchestration`
+- `agent-creator`

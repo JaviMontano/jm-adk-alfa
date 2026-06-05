@@ -1,0 +1,24 @@
+{
+  "schema": 1,
+  "mode": "read_only_by_default",
+  "allowed_commands": [
+    "git rev-parse",
+    "git status --porcelain=v1",
+    "git branch --show-current",
+    "git rev-list --left-right --count",
+    "git show-ref --verify",
+    "git ls-tree",
+    "git log --oneline"
+  ],
+  "forbidden_commands": [
+    "git reset --hard",
+    "git checkout --",
+    "git clean -fd",
+    "git rebase",
+    "git push --force",
+    "git merge",
+    "git pull"
+  ],
+  "network_policy": "Do not fetch by default. Fetch only when the user explicitly asks for a fresh remote baseline.",
+  "dirty_tree_policy": "If dirty or untracked files exist, report them before any branch switch or patch apply."
+}

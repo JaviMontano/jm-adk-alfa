@@ -1,0 +1,32 @@
+{
+  "schema": 1,
+  "required_top_level": [
+    "schema",
+    "skill",
+    "root",
+    "git",
+    "ledger",
+    "generated_files",
+    "blockers",
+    "recommendations",
+    "evidence"
+  ],
+  "git": {
+    "fields": ["branch", "head", "upstream", "origin_main", "dirty_count", "ahead_behind"]
+  },
+  "ledger": {
+    "fields": [
+      "ledger_path",
+      "ledger_rows",
+      "skill_count",
+      "untracked_skill_count",
+      "review_doc_count",
+      "review_docs_pending_count",
+      "script_skill_count",
+      "script_skills_pending_count"
+    ]
+  },
+  "blocker": {
+    "fields": ["id", "severity", "message", "evidence"]
+  }
+}

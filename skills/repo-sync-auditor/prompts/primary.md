@@ -1,27 +1,11 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: repo-sync-auditor
-generated-on: 2026-05-29
-overwrite-policy: missing-only unless --force
--->
-
 # Repo Sync Auditor Primary Prompt
 
-## Objective
+Audit the repository before any write, branch switch, PR creation, or merge.
 
-Execute `repo-sync-auditor` for the user's task.
-
-## Required Inputs
-
-- Goal
-- Context
-- Constraints
-- Definition of done
-
-## Process
-
-Discover -> Analyze -> Execute -> Validate.
-
-## Output
-
-Return the deliverable in this shape: Markdown with summary, evidence, result, validation, and risks.
+1. Run the read-only script when a local repository is available.
+2. Report branch, `HEAD`, upstream, `origin/main`, dirty count, ledger drift,
+   review-doc drift, script-backed skill drift, generated-file dirtiness, and
+   blockers.
+3. Use evidence tags on every claim.
+4. Recommend the smallest safe next action.
+5. Do not repair the repo unless the user explicitly asks for a follow-up PR.

@@ -1,0 +1,30 @@
+{
+  "schema": 1,
+  "statuses": {
+    "dod-complete": "Skill has review evidence and deterministic DoD materials.",
+    "reviewed": "Skill has been reviewed or improved but may not have deterministic scripts.",
+    "pending": "Skill is not yet certified in the ledger."
+  },
+  "risk_rules": [
+    {
+      "id": "missing_ledger_rows",
+      "severity": "high",
+      "condition": "skills directory contains slugs that are absent from docs/audits/skill-review-ledger.csv"
+    },
+    {
+      "id": "review_doc_pending",
+      "severity": "medium",
+      "condition": "docs/audits/skills/<slug>-review.md exists while ledger status is pending or absent"
+    },
+    {
+      "id": "script_skill_pending",
+      "severity": "medium",
+      "condition": "skills/<slug>/scripts/check.sh exists while ledger status is pending or absent"
+    },
+    {
+      "id": "generated_files_dirty",
+      "severity": "medium",
+      "condition": "adapter or PRISTINO generated files are dirty before creating a PR"
+    }
+  ]
+}

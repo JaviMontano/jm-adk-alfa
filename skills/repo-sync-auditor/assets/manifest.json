@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "skill": "repo-sync-auditor",
+  "assets": [
+    {
+      "path": "assets/README.md",
+      "type": "documentation",
+      "purpose": "Explains bundled assets for the repo sync audit contract.",
+      "used_by": ["SKILL.md", "scripts/check.sh"]
+    },
+    {
+      "path": "assets/git-safety-policy.json",
+      "type": "policy",
+      "purpose": "Defines allowed read-only Git commands and forbidden destructive operations.",
+      "used_by": ["SKILL.md", "scripts/audit-repo-sync.py", "scripts/check.sh"]
+    },
+    {
+      "path": "assets/ledger-risk-policy.json",
+      "type": "policy",
+      "purpose": "Classifies ledger, review-doc, and deterministic-script drift.",
+      "used_by": ["SKILL.md", "scripts/audit-repo-sync.py", "scripts/check.sh"]
+    },
+    {
+      "path": "assets/sync-audit-schema.json",
+      "type": "schema",
+      "purpose": "Documents the stable JSON report shape emitted by the audit script.",
+      "used_by": ["SKILL.md", "scripts/audit-repo-sync.py", "scripts/check.sh"]
+    },
+    {
+      "path": "assets/remediation-plan-template.md",
+      "type": "template",
+      "purpose": "Provides a markdown skeleton for safe follow-up repair plans.",
+      "used_by": ["SKILL.md", "templates/output.md"]
+    }
+  ]
+}
