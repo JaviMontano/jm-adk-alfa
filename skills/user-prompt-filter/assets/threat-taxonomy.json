@@ -1,0 +1,103 @@
+{
+  "version": "1.0.0",
+  "threats": [
+    {
+      "id": "prompt_injection",
+      "label": "Prompt injection or policy override",
+      "base_score": 8,
+      "patterns": [
+        "ignore previous",
+        "ignore all previous",
+        "disregard previous",
+        "override system",
+        "override developer",
+        "bypass policy",
+        "forget your instructions"
+      ],
+      "action": "remove control instruction and block when paired with protected assets"
+    },
+    {
+      "id": "tool_override",
+      "label": "Tool or permission override",
+      "base_score": 8,
+      "patterns": [
+        "grant yourself",
+        "bypass approval",
+        "use bash",
+        "run shell",
+        "call the tool",
+        "without asking",
+        "disable sandbox"
+      ],
+      "action": "block unauthorized tool grant or escalate explicit tool request"
+    },
+    {
+      "id": "secret_exfiltration",
+      "label": "Credential or secret exfiltration",
+      "base_score": 10,
+      "patterns": [
+        "api key",
+        "api keys",
+        "token",
+        "password",
+        ".env",
+        "credentials",
+        "secret",
+        "private key"
+      ],
+      "action": "block and redact evidence"
+    },
+    {
+      "id": "protected_context_leakage",
+      "label": "Protected context leakage",
+      "base_score": 9,
+      "patterns": [
+        "system prompt",
+        "developer instructions",
+        "hidden policy",
+        "private memory",
+        "internal context",
+        "chain of thought"
+      ],
+      "action": "block or escalate with redacted evidence"
+    },
+    {
+      "id": "destructive_action",
+      "label": "Destructive or irreversible action",
+      "base_score": 9,
+      "patterns": [
+        "delete",
+        "remove all",
+        "rm -rf",
+        "wipe",
+        "reset --hard",
+        "clean -fd",
+        "drop database"
+      ],
+      "action": "block or require explicit approval"
+    },
+    {
+      "id": "ambiguous_authority",
+      "label": "Ambiguous authority or impersonation",
+      "base_score": 6,
+      "patterns": [
+        "said I can",
+        "authorized me",
+        "pretend to be",
+        "act as owner",
+        "without confirmation"
+      ],
+      "action": "escalate for authority verification"
+    }
+  ],
+  "benign_indicators": [
+    "redacted",
+    "training example",
+    "defensive",
+    "secure coding",
+    "summarize",
+    "extract",
+    "rewrite",
+    "plan"
+  ]
+}

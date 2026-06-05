@@ -1,0 +1,40 @@
+{
+  "schema_version": "1.0.0",
+  "required": [
+    "prompt",
+    "surface",
+    "protected_assets",
+    "allowed_actions"
+  ],
+  "properties": {
+    "prompt": {
+      "type": "string",
+      "minimum_length": 1
+    },
+    "surface": {
+      "type": "string",
+      "allowed": [
+        "chat",
+        "agent",
+        "tool",
+        "shell",
+        "browser",
+        "mcp",
+        "hook",
+        "automation"
+      ]
+    },
+    "protected_assets": {
+      "type": "array",
+      "minimum_items": 1
+    },
+    "allowed_actions": {
+      "type": "array",
+      "minimum_items": 1
+    },
+    "context_notes": {
+      "type": "array",
+      "minimum_items": 0
+    }
+  }
+}

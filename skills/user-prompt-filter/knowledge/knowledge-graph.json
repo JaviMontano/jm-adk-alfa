@@ -1,75 +1,68 @@
 {
   "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-28",
   "skill": "user-prompt-filter",
   "nodes": [
     {
       "id": "user-prompt-filter",
       "type": "skill",
-      "label": "user-prompt-filter"
+      "label": "User Prompt Filter"
     },
     {
-      "id": "user-prompt-filter:inputs",
+      "id": "input-schema",
       "type": "contract",
-      "label": "Expected inputs"
+      "label": "filter input schema"
     },
     {
-      "id": "user-prompt-filter:outputs",
-      "type": "contract",
-      "label": "Expected outputs"
+      "id": "threat-taxonomy",
+      "type": "taxonomy",
+      "label": "prompt threat taxonomy"
     },
     {
-      "id": "user-prompt-filter:quality",
-      "type": "gate",
-      "label": "Quality criteria"
+      "id": "risk-policy",
+      "type": "policy",
+      "label": "risk scoring policy"
     },
     {
-      "id": "user-prompt-filter:ontology",
-      "type": "ontology",
-      "label": "Domain: general"
+      "id": "sanitization-policy",
+      "type": "policy",
+      "label": "sanitization policy"
     },
     {
-      "id": "user-prompt-filter:evidence",
-      "type": "gate",
-      "label": "Evidence / provenance requirements"
+      "id": "filter-script",
+      "type": "script",
+      "label": "filter-prompt.py"
     },
     {
-      "id": "user-prompt-filter:antipattern",
-      "type": "risk",
-      "label": "Canonical anti-pattern to avoid"
+      "id": "output-report",
+      "type": "deliverable",
+      "label": "filter report"
     }
   ],
   "edges": [
     {
       "from": "user-prompt-filter",
-      "to": "user-prompt-filter:inputs",
-      "type": "requires"
+      "to": "input-schema",
+      "type": "normalizes"
     },
     {
       "from": "user-prompt-filter",
-      "to": "user-prompt-filter:outputs",
+      "to": "threat-taxonomy",
+      "type": "classifies_with"
+    },
+    {
+      "from": "user-prompt-filter",
+      "to": "risk-policy",
+      "type": "scores_with"
+    },
+    {
+      "from": "user-prompt-filter",
+      "to": "sanitization-policy",
+      "type": "sanitizes_with"
+    },
+    {
+      "from": "filter-script",
+      "to": "output-report",
       "type": "produces"
-    },
-    {
-      "from": "user-prompt-filter",
-      "to": "user-prompt-filter:quality",
-      "type": "validated_by"
-    },
-    {
-      "from": "user-prompt-filter",
-      "to": "user-prompt-filter:ontology",
-      "type": "classified_as"
-    },
-    {
-      "from": "user-prompt-filter",
-      "to": "user-prompt-filter:evidence",
-      "type": "validated_by"
-    },
-    {
-      "from": "user-prompt-filter",
-      "to": "user-prompt-filter:antipattern",
-      "type": "guards_against"
     }
   ]
 }

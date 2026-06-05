@@ -1,0 +1,56 @@
+{
+  "version": "1.0.0",
+  "severity": [
+    {
+      "name": "none",
+      "min": 0,
+      "max": 0
+    },
+    {
+      "name": "low",
+      "min": 1,
+      "max": 3
+    },
+    {
+      "name": "medium",
+      "min": 4,
+      "max": 6
+    },
+    {
+      "name": "high",
+      "min": 7,
+      "max": 8
+    },
+    {
+      "name": "critical",
+      "min": 9,
+      "max": 10
+    }
+  ],
+  "decisions": {
+    "allow": {
+      "max_score": 0,
+      "requires_threats": 0
+    },
+    "allow_with_constraints": {
+      "max_score": 5,
+      "allowed_when_benign_indicators": true
+    },
+    "escalate": {
+      "min_score": 6,
+      "applies_to": [
+        "ambiguous_authority",
+        "destructive_action"
+      ]
+    },
+    "block": {
+      "min_score": 8,
+      "applies_to": [
+        "prompt_injection",
+        "tool_override",
+        "secret_exfiltration",
+        "protected_context_leakage"
+      ]
+    }
+  }
+}
