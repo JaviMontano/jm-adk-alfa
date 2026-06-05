@@ -116,6 +116,17 @@ acl_request_classification() {
 EOF
 }
 
+acl_tool_access_contract() {
+  cat <<'EOF'
+- One MCP server, `workspace-mcp` (stdio, launched via `uvx`), aggregates 9 Google Workspace services: Gmail, Drive, Docs, Sheets, Slides, Calendar, Forms, Tasks, Contacts.
+- Auth is OAuth2. Credentials live at `~/.config/workspace-mcp/credentials.json` and are never committed.
+- Configs inject the credentials path via the `GOOGLE_WORKSPACE_CREDENTIALS_PATH` env var; every config uses `${ENV}` placeholders, never literal secrets.
+- Canonical server definition: `.mcp.json` (Claude project scope). Per-runtime wiring and paste-ready snippets: `docs/runtime-tool-access-matrix.md`.
+- OAuth setup pipeline: `docs/google-workspace-mcp-setup.md`. Validate config with `python3 scripts/validate-mcp-config.py`.
+- Workspace tracking and the 5 lifecycle hooks (SessionStart, UserPromptSubmit, PreToolUse, PostToolUse, Stop) are Claude-runtime features; other runtimes apply the placement and naming contract manually.
+EOF
+}
+
 acl_runtime_context_contract() {
   cat <<'EOF'
 - Confirm repo identity before edits; if Alfa is not confirmed, report `Dato requerido` and do not edit.
@@ -134,4 +145,4 @@ acl_runtime_context_contract() {
 EOF
 }
 
-export -f acl_skill_field acl_skill_description acl_list_skills acl_count_skills acl_count_agents acl_count_commands acl_count_prompts acl_version acl_constitution_version acl_skill_tools acl_core_rules acl_brand_palette acl_quality_gates acl_input_tolerance acl_sequential_triad acl_request_classification acl_runtime_context_contract 2>/dev/null || true
+export -f acl_skill_field acl_skill_description acl_list_skills acl_count_skills acl_count_agents acl_count_commands acl_count_prompts acl_version acl_constitution_version acl_skill_tools acl_core_rules acl_brand_palette acl_quality_gates acl_input_tolerance acl_sequential_triad acl_request_classification acl_runtime_context_contract acl_tool_access_contract 2>/dev/null || true

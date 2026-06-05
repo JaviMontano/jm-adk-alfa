@@ -1,0 +1,26 @@
+{
+  "mcpServers": {
+    "workspace-mcp": {
+      "command": "uvx",
+      "args": [
+        "workspace-mcp",
+        "--tool-tier",
+        "extended",
+        "--tools",
+        "gmail",
+        "drive",
+        "calendar",
+        "docs",
+        "sheets",
+        "slides",
+        "forms",
+        "tasks",
+        "contacts"
+      ],
+      "env": {
+        "GOOGLE_OAUTH_CREDENTIALS": "${GOOGLE_WORKSPACE_CREDENTIALS_PATH}",
+        "OAUTHLIB_INSECURE_TRANSPORT": "1"
+      }
+    }
+  }
+}

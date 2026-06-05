@@ -73,7 +73,7 @@ Bridge target: Antigravity-family Gemini agents that load \`.agent/rules/GEMINI.
 
 ## Environment
 
-IDE family: gemini | Runtime: antigravity | Triad: adapter-guided, validation pending | Tools: target-runtime dependent | Hooks: no | MCP: no | Multimodal: validation pending
+IDE family: gemini | Runtime: antigravity | Triad: adapter-guided, validation pending | Tools: MCP via config (see Tool Access) | Hooks: no | MCP: yes via \`~/.gemini/config/mcp_config.json\` or MCP Store | Multimodal: validation pending
 
 ## Awakening
 
@@ -117,6 +117,11 @@ $(acl_core_rules | sed 's/^/- /')
 
 $(acl_quality_gates)
 
+## Tool Access (MCP)
+
+$(acl_tool_access_contract)
+- Antigravity wiring: add \`workspace-mcp\` under \`mcpServers\` in \`~/.gemini/config/mcp_config.json\` (shared across Antigravity 2.0, IDE, and CLI) or install via the MCP Store. OAuth is handled automatically for DCR servers; for Google services you may set \`authProviderType: google_credentials\`. Template: \`references/mcp/antigravity.mcp_config.json.example\`.
+
 ## Stack
 
 Firebase + HTML/CSS/JS + Angular/React + Hostinger
@@ -140,7 +145,8 @@ $(acl_brand_palette | tr ' ' '\n' | paste - - | sed 's/^/- /')
 - **IDE**: Antigravity-compatible Gemini agent environment
 - **Model**: configured by the target runtime
 - **Capability**: validation pending until executed in the target runtime
-- **Not supported by this bridge**: hooks, MCP servers, and Claude Code workspace automation
+- **MCP**: supported via \`~/.gemini/config/mcp_config.json\` or the MCP Store — see Tool Access (MCP).
+- **Not supported by this bridge**: Claude Code lifecycle hooks and workspace automation.
 GEMRULES
 
 echo "  Rules: .agent/rules/GEMINI.md regenerated"
@@ -170,7 +176,7 @@ cat > "$AGENT_DIR/ARCHITECTURE.md" << AGARCH
 
 ## Runtime Boundary
 
-This directory is a derived adapter view. Runtime support for Antigravity-specific execution, function calling, multimodal behavior, hooks, MCP, and workspace management is validation pending until checked in the target Antigravity environment.
+This directory is a derived adapter view. MCP tool access is wired via \`~/.gemini/config/mcp_config.json\` or the MCP Store (see \`.agent/rules/GEMINI.md\` → Tool Access). Runtime support for Antigravity-specific execution, function calling, multimodal behavior, hooks, and workspace management is validation pending until checked in the target Antigravity environment.
 
 ## User Context Boundary
 

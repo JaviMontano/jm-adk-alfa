@@ -44,6 +44,15 @@
 # Brand: navy #122562 gold #FFD700 cyan #137DC5 dark #1F2833 lavender #BBA0CC gray #808080 text #FFFFFF 
 # Soul: PRISTINO.md | Index: PRISTINO-INDEX.md
 
+# Tool Access (MCP)
+# - One MCP server, `workspace-mcp` (stdio, launched via `uvx`), aggregates 9 Google Workspace services: Gmail, Drive, Docs, Sheets, Slides, Calendar, Forms, Tasks, Contacts.
+# - Auth is OAuth2. Credentials live at `~/.config/workspace-mcp/credentials.json` and are never committed.
+# - Configs inject the credentials path via the `GOOGLE_WORKSPACE_CREDENTIALS_PATH` env var; every config uses `${ENV}` placeholders, never literal secrets.
+# - Canonical server definition: `.mcp.json` (Claude project scope). Per-runtime wiring and paste-ready snippets: `docs/runtime-tool-access-matrix.md`.
+# - OAuth setup pipeline: `docs/google-workspace-mcp-setup.md`. Validate config with `python3 scripts/validate-mcp-config.py`.
+# - Workspace tracking and the 5 lifecycle hooks (SessionStart, UserPromptSubmit, PreToolUse, PostToolUse, Stop) are Claude-runtime features; other runtimes apply the placement and naming contract manually.
+# - Cursor wiring: add workspace-mcp under mcpServers in .cursor/mcp.json. Template: references/mcp/cursor.mcp.json.example.
+
 # Placement & Naming Contract
 # - Task deliverables → workspace/{active}/artifacts/. Never mix system files with deliverables.
 # - Kit internals (skills/agents/scripts) → maintainer mode only.

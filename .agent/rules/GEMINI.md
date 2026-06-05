@@ -9,7 +9,7 @@ Bridge target: Antigravity-family Gemini agents that load `.agent/rules/GEMINI.m
 
 ## Environment
 
-IDE family: gemini | Runtime: antigravity | Triad: adapter-guided, validation pending | Tools: target-runtime dependent | Hooks: no | MCP: no | Multimodal: validation pending
+IDE family: gemini | Runtime: antigravity | Triad: adapter-guided, validation pending | Tools: MCP via config (see Tool Access) | Hooks: no | MCP: yes via `~/.gemini/config/mcp_config.json` or MCP Store | Multimodal: validation pending
 
 ## Awakening
 
@@ -89,6 +89,16 @@ This bridge exposes Alfa's triad pattern to Antigravity-compatible rules. Runtim
 
 G0 (pre-flight) → G1 (post-spec) → G2 (post-plan) → G3 (deploy-ready)
 
+## Tool Access (MCP)
+
+- One MCP server, `workspace-mcp` (stdio, launched via `uvx`), aggregates 9 Google Workspace services: Gmail, Drive, Docs, Sheets, Slides, Calendar, Forms, Tasks, Contacts.
+- Auth is OAuth2. Credentials live at `~/.config/workspace-mcp/credentials.json` and are never committed.
+- Configs inject the credentials path via the `GOOGLE_WORKSPACE_CREDENTIALS_PATH` env var; every config uses `${ENV}` placeholders, never literal secrets.
+- Canonical server definition: `.mcp.json` (Claude project scope). Per-runtime wiring and paste-ready snippets: `docs/runtime-tool-access-matrix.md`.
+- OAuth setup pipeline: `docs/google-workspace-mcp-setup.md`. Validate config with `python3 scripts/validate-mcp-config.py`.
+- Workspace tracking and the 5 lifecycle hooks (SessionStart, UserPromptSubmit, PreToolUse, PostToolUse, Stop) are Claude-runtime features; other runtimes apply the placement and naming contract manually.
+- Antigravity wiring: add `workspace-mcp` under `mcpServers` in `~/.gemini/config/mcp_config.json` (shared across Antigravity 2.0, IDE, and CLI) or install via the MCP Store. OAuth is handled automatically for DCR servers; for Google services you may set `authProviderType: google_credentials`. Template: `references/mcp/antigravity.mcp_config.json.example`.
+
 ## Stack
 
 Firebase + HTML/CSS/JS + Angular/React + Hostinger
@@ -118,4 +128,5 @@ No SSR, no Docker, no custom servers.
 - **IDE**: Antigravity-compatible Gemini agent environment
 - **Model**: configured by the target runtime
 - **Capability**: validation pending until executed in the target runtime
-- **Not supported by this bridge**: hooks, MCP servers, and Claude Code workspace automation
+- **MCP**: supported via `~/.gemini/config/mcp_config.json` or the MCP Store — see Tool Access (MCP).
+- **Not supported by this bridge**: Claude Code lifecycle hooks and workspace automation.

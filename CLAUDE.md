@@ -284,6 +284,15 @@ Auto-selected by deliverable type. Code → inline. Analysis → markdown. Repor
 
 Every deliverable includes: the ask (baseline) + 1 insight (non-obvious finding) + 1 recommendation (actionable next step) + risk flags (`[ASSUMPTION]` tags).
 
+## Tool Access (MCP)
+
+One MCP server, `workspace-mcp` (stdio via `uvx`), aggregates 9 Google Workspace services: Gmail, Drive, Docs, Sheets, Slides, Calendar, Forms, Tasks, Contacts. Auth is OAuth2; credentials live at `~/.config/workspace-mcp/credentials.json` (never committed) and are injected via `GOOGLE_WORKSPACE_CREDENTIALS_PATH`. Canonical definition: `.mcp.json`.
+
+- **Claude Code**: auto-discovers project `.mcp.json`; manage with `claude mcp list` / `claude mcp add`.
+- **Claude Desktop**: local servers in `claude_desktop_config.json`; remote servers via the **Connectors** menu (`+` in chat); packaged servers via `.mcpb` Desktop Extensions.
+- **Other runtimes** (Codex, Gemini CLI, Antigravity, Cursor, Windsurf, VS Code): per-runtime config files, paste-ready snippets, and status in **`docs/runtime-tool-access-matrix.md`**.
+- Setup: `docs/google-workspace-mcp-setup.md`. Validate: `python3 scripts/validate-mcp-config.py`. Generate per-runtime templates: `python3 scripts/generate-mcp-configs.py`.
+
 ## Reference Architecture
 
 | File | Purpose |

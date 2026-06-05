@@ -32,7 +32,7 @@ Bridge target: Visual Studio / VS Code GitHub Copilot surfaces.
 
 ## Environment
 
-IDE family: agents | Runtime: copilot | Triad: suggestion | Tools: limited | MCP: no | Multimodal: no
+IDE family: agents | Runtime: copilot | Triad: suggestion | Tools: MCP via config (see Tool Access) | MCP: yes via \`.vscode/mcp.json\` (agent mode) | Multimodal: no
 Components: $SKILLS_COUNT skills · $AGENTS_COUNT agents · $COMMANDS_COUNT commands
 
 ## Awakening
@@ -67,14 +67,19 @@ No SSR, no Docker, no custom servers.
 
 $(acl_quality_gates)
 
+## Tool Access (MCP)
+
+$(acl_tool_access_contract)
+- VS Code wiring: add \`workspace-mcp\` under the \`servers\` key in \`.vscode/mcp.json\` (workspace scope) and use Copilot Chat agent mode. Template: \`references/mcp/vscode.mcp.json.example\`.
+
 ## References
 
 Soul: \`PRISTINO.md\` | Index: \`PRISTINO-INDEX.md\` | Constitution: \`references/ontology/constitution-$CONSTITUTION.md\`
 
 ## Requires
 
-- **IDE**: VS Code with GitHub Copilot extension
-- **Not supported**: Agent tool, hooks, MCP, workspace management, multimodal
+- **IDE**: VS Code with GitHub Copilot extension (agent mode for MCP)
+- **Not supported**: Claude Code lifecycle hooks, workspace automation, multimodal
 - **Triad mode**: Suggestion (quality standards embedded in completions)
 COPILOT
 
