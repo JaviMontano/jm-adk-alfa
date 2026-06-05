@@ -1,0 +1,14 @@
+{
+  "skill": "ab-testing",
+  "assets": [
+    {
+      "path": "assets/deliverable-checklist.md",
+      "type": "checklist",
+      "purpose": "Reusable checklist for the A/B experiment brief deliverable.",
+      "used_by": [
+        "SKILL.md",
+        "templates/output.md"
+      ]
+    }
+  ]
+}

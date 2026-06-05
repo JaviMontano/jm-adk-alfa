@@ -1,0 +1,14 @@
+{
+  "skill": "acta-formal",
+  "assets": [
+    {
+      "path": "assets/deliverable-checklist.md",
+      "type": "checklist",
+      "purpose": "Reusable checklist for the formal acta package deliverable.",
+      "used_by": [
+        "SKILL.md",
+        "templates/output.md"
+      ]
+    }
+  ]
+}

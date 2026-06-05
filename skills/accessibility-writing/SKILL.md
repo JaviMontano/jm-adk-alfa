@@ -111,3 +111,7 @@ Example invocations:
 | Reading level requested without measurement tool | Provide estimate and measurement recommendation, not a guaranteed score |
 | Inclusive language conflicts with code/API/legal names | Preserve required terms, suggest aliases or explanatory copy |
 | Sensory-only instruction | Rewrite using label, role, heading, or stable identifier |
+
+## Assets
+
+- `assets/deliverable-checklist.md` provides the reusable checklist for final deliverable and guardian review.

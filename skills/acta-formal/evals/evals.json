@@ -26,6 +26,11 @@
         "signatures",
         "numbering",
         "evidence"
+      ],
+      "expected_checks": [
+        "assets",
+        "deterministic_scripts",
+        "quality_criteria"
       ]
     },
     {
@@ -47,6 +52,11 @@
         "agreements",
         "pending",
         "no_invention"
+      ],
+      "expected_checks": [
+        "assets",
+        "deterministic_scripts",
+        "quality_criteria"
       ]
     },
     {
@@ -66,6 +76,11 @@
         "signatures",
         "no_invention",
         "evidence"
+      ],
+      "expected_checks": [
+        "assets",
+        "deterministic_scripts",
+        "quality_criteria"
       ]
     },
     {
@@ -90,6 +105,11 @@
         "signatures",
         "quorum",
         "no_invention"
+      ],
+      "expected_checks": [
+        "assets",
+        "deterministic_scripts",
+        "quality_criteria"
       ]
     },
     {
@@ -110,6 +130,11 @@
         "agenda",
         "no_invention",
         "evidence"
+      ],
+      "expected_checks": [
+        "assets",
+        "deterministic_scripts",
+        "quality_criteria"
       ]
     },
     {
@@ -129,6 +154,11 @@
         "agreements",
         "pending",
         "no_invention"
+      ],
+      "expected_checks": [
+        "assets",
+        "deterministic_scripts",
+        "quality_criteria"
       ]
     },
     {
@@ -148,6 +178,11 @@
         "pending",
         "agreements",
         "no_invention"
+      ],
+      "expected_checks": [
+        "assets",
+        "deterministic_scripts",
+        "quality_criteria"
       ]
     },
     {
@@ -167,6 +202,11 @@
         "numbering",
         "no_invention",
         "evidence"
+      ],
+      "expected_checks": [
+        "assets",
+        "deterministic_scripts",
+        "quality_criteria"
       ]
     },
     {
@@ -187,6 +227,11 @@
         "html_brand",
         "signatures",
         "evidence"
+      ],
+      "expected_checks": [
+        "assets",
+        "deterministic_scripts",
+        "quality_criteria"
       ]
     },
     {
@@ -204,6 +249,11 @@
         "signatures",
         "attendees",
         "html_brand"
+      ],
+      "expected_checks": [
+        "assets",
+        "deterministic_scripts",
+        "quality_criteria"
       ]
     },
     {
@@ -220,6 +270,11 @@
       "tags": [
         "false_positive",
         "routing"
+      ],
+      "expected_checks": [
+        "assets",
+        "deterministic_scripts",
+        "quality_criteria"
       ]
     },
     {
@@ -239,6 +294,11 @@
         "distribution",
         "evidence",
         "safety"
+      ],
+      "expected_checks": [
+        "assets",
+        "deterministic_scripts",
+        "quality_criteria"
       ]
     },
     {
@@ -248,8 +308,12 @@
       "expected_checks": [
         "evidence",
         "quality_criteria",
-        "upgrade_safety"
-      ]
+        "upgrade_safety",
+        "assets",
+        "deterministic_scripts"
+      ],
+      "tags": [],
+      "expected_behavior": false
     },
     {
       "id": "empty_input",
@@ -258,8 +322,12 @@
       "expected_checks": [
         "evidence",
         "quality_criteria",
-        "upgrade_safety"
-      ]
+        "upgrade_safety",
+        "assets",
+        "deterministic_scripts"
+      ],
+      "tags": [],
+      "expected_behavior": false
     }
   ]
 }

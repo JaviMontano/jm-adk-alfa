@@ -1,0 +1,14 @@
+{
+  "skill": "accessibility-testing",
+  "assets": [
+    {
+      "path": "assets/deliverable-checklist.md",
+      "type": "checklist",
+      "purpose": "Reusable checklist for the accessibility testing report deliverable.",
+      "used_by": [
+        "SKILL.md",
+        "templates/output.md"
+      ]
+    }
+  ]
+}

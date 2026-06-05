@@ -1,0 +1,14 @@
+{
+  "skill": "accessibility-writing",
+  "assets": [
+    {
+      "path": "assets/deliverable-checklist.md",
+      "type": "checklist",
+      "purpose": "Reusable checklist for the accessible writing package deliverable.",
+      "used_by": [
+        "SKILL.md",
+        "templates/output.md"
+      ]
+    }
+  ]
+}

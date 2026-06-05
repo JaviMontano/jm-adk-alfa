@@ -1,0 +1,14 @@
+{
+  "skill": "admin-dashboards",
+  "assets": [
+    {
+      "path": "assets/deliverable-checklist.md",
+      "type": "checklist",
+      "purpose": "Reusable checklist for the admin dashboard specification deliverable.",
+      "used_by": [
+        "SKILL.md",
+        "templates/output.md"
+      ]
+    }
+  ]
+}

@@ -97,3 +97,7 @@ Example invocations:
 - Assumes access to project artifacts (code, docs, configs) [EXPLICIT]
 - Does not replace domain expert judgment for final decisions [EXPLICIT]
 - If no runnable target or artifact is available, produce a gap report with required inputs instead of an audit verdict. [EXPLICIT]
+
+## Assets
+
+- `assets/deliverable-checklist.md` provides the reusable checklist for final deliverable and guardian review.

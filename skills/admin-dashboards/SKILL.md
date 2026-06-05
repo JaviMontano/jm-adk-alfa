@@ -118,3 +118,7 @@ Example invocations:
 | Empty or minimal input | Request clarification before proceeding |
 | Conflicting requirements | Flag conflicts explicitly, propose resolution |
 | Out-of-scope request | Redirect to appropriate skill or escalate |
+
+## Assets
+
+- `assets/deliverable-checklist.md` provides the reusable checklist for final deliverable and guardian review.

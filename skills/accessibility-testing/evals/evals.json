@@ -1,79 +1,188 @@
-[
-  {
-    "id": "accessibility-testing-playwright-axe-stateful",
-    "type": "happy_path",
-    "input": "Create accessibility tests for /checkout covering the menu, payment modal, form validation errors, and success toast with Playwright and axe.",
-    "expected_behavior": "Skill produces stateful automated test guidance that opens each dynamic state before scanning, records command/tool/version, rule IDs, selectors, impacts, WCAG tags, artifacts, and refuses to treat a single initial page scan as full proof.",
-    "tags": ["axe", "playwright", "dynamic-state", "evidence"]
-  },
-  {
-    "id": "accessibility-testing-jest-axe-component-limits",
-    "type": "edge_case",
-    "input": "Use jest-axe to prove this React button component is accessible, including contrast and keyboard behavior.",
-    "expected_behavior": "Skill uses jest-axe for component semantics while marking browser-rendered contrast and keyboard behavior as needing browser/manual evidence instead of overclaiming.",
-    "tags": ["jest-axe", "limits", "component", "claim-safety"]
-  },
-  {
-    "id": "accessibility-testing-keyboard-script",
-    "type": "happy_path",
-    "input": "Build a keyboard-only test script for the account settings modal and navigation drawer.",
-    "expected_behavior": "Skill outputs a matrix with flow, step, keys, expected focus/action, observed result placeholder, pass/fail/not-verified status, and evidence fields covering Tab, Shift+Tab, Enter, Space, Escape, arrows where relevant, focus trap, and focus restoration.",
-    "tags": ["keyboard", "manual", "focus", "matrix"]
-  },
-  {
-    "id": "accessibility-testing-screen-reader-smoke",
-    "type": "happy_path",
-    "input": "Create screen reader smoke tests for the onboarding form using VoiceOver/Safari and NVDA/Firefox.",
-    "expected_behavior": "Skill provides smoke scripts with OS/browser/assistive-technology pairing, expected announcements, observed announcements, status, and coverage for landmarks, headings, names/roles/values, form errors, live regions, dialogs, and reading order.",
-    "tags": ["screen-reader", "voiceover", "nvda", "smoke"]
-  },
-  {
-    "id": "accessibility-testing-contrast-ratios",
-    "type": "happy_path",
-    "input": "Validate contrast for primary, disabled, hover, focus, placeholder, error, and icon-only states in our design tokens.",
-    "expected_behavior": "Skill produces a contrast matrix with selector/token, foreground/background, state, observed ratio, threshold, status, and explicitly distinguishes text, large text, and non-text UI checks.",
-    "tags": ["contrast", "tokens", "wcag", "states"]
-  },
-  {
-    "id": "accessibility-testing-reduced-motion",
-    "type": "happy_path",
-    "input": "Add reduced-motion accessibility regression coverage for the dashboard animation and auto-scrolling notification tray.",
-    "expected_behavior": "Skill specifies reduced-motion test setup, expected behavior under reduced motion, observed status, artifact path, and marks non-essential motion as a user-impact risk when it remains enabled.",
-    "tags": ["reduced-motion", "animation", "regression"]
-  },
-  {
-    "id": "accessibility-testing-missing-target-scope",
-    "type": "edge_case",
-    "input": "I ran axe on document.body before opening anything. Write the accessibility pass report.",
-    "expected_behavior": "Skill refuses a blanket pass, marks menus/dialogs/errors/toasts/tooltips as not verified, requests target scope, and explains that unopened dynamic states invalidate the report.",
-    "tags": ["scope", "not-verified", "dynamic-state", "claim-safety"]
-  },
-  {
-    "id": "accessibility-testing-known-issue-suppression",
-    "type": "edge_case",
-    "input": "Exclude .legacy-widget from all axe checks forever because it is noisy.",
-    "expected_behavior": "Skill rejects broad permanent suppression and requires issue ID, owner, expiry, selector, rule ID, reason, and re-enable criteria.",
-    "tags": ["suppression", "governance", "axe", "risk"]
-  },
-  {
-    "id": "accessibility-testing-remediation-boundary",
-    "type": "edge_case",
-    "input": "Run accessibility testing and fix everything you find.",
-    "expected_behavior": "Skill separates testing from remediation, asks or confirms whether code changes are authorized, and otherwise produces findings, recommended fixes, and retest criteria without silent edits.",
-    "tags": ["human-in-the-loop", "remediation", "boundary"]
-  },
-  {
-    "id": "accessibility-testing-false-positive-design",
-    "type": "false_positive",
-    "input": "Make this login screen look cleaner and more modern.",
-    "expected_behavior": "Skill should not take over as primary workflow; it may suggest accessibility testing as a follow-up but routes primary work to design or UI implementation skills.",
-    "tags": ["false_positive", "routing", "design"]
-  },
-  {
-    "id": "accessibility-testing-false-positive-weather",
-    "type": "false_positive",
-    "input": "What is the weather forecast for tomorrow?",
-    "expected_behavior": "Skill should not activate because the request is unrelated to accessibility testing.",
-    "tags": ["false_positive", "should-not-activate"]
-  }
-]
+{
+  "schema": 1,
+  "skill": "accessibility-testing",
+  "cases": [
+    {
+      "id": "accessibility-testing-playwright-axe-stateful",
+      "type": "happy_path",
+      "input": "Create accessibility tests for /checkout covering the menu, payment modal, form validation errors, and success toast with Playwright and axe.",
+      "expected_behavior": "Skill produces stateful automated test guidance that opens each dynamic state before scanning, records command/tool/version, rule IDs, selectors, impacts, WCAG tags, artifacts, and refuses to treat a single initial page scan as full proof.",
+      "tags": [
+        "axe",
+        "playwright",
+        "dynamic-state",
+        "evidence"
+      ],
+      "expected_checks": [
+        "assets",
+        "deterministic_scripts",
+        "quality_criteria"
+      ]
+    },
+    {
+      "id": "accessibility-testing-jest-axe-component-limits",
+      "type": "edge_case",
+      "input": "Use jest-axe to prove this React button component is accessible, including contrast and keyboard behavior.",
+      "expected_behavior": "Skill uses jest-axe for component semantics while marking browser-rendered contrast and keyboard behavior as needing browser/manual evidence instead of overclaiming.",
+      "tags": [
+        "jest-axe",
+        "limits",
+        "component",
+        "claim-safety"
+      ],
+      "expected_checks": [
+        "assets",
+        "deterministic_scripts",
+        "quality_criteria"
+      ]
+    },
+    {
+      "id": "accessibility-testing-keyboard-script",
+      "type": "happy_path",
+      "input": "Build a keyboard-only test script for the account settings modal and navigation drawer.",
+      "expected_behavior": "Skill outputs a matrix with flow, step, keys, expected focus/action, observed result placeholder, pass/fail/not-verified status, and evidence fields covering Tab, Shift+Tab, Enter, Space, Escape, arrows where relevant, focus trap, and focus restoration.",
+      "tags": [
+        "keyboard",
+        "manual",
+        "focus",
+        "matrix"
+      ],
+      "expected_checks": [
+        "assets",
+        "deterministic_scripts",
+        "quality_criteria"
+      ]
+    },
+    {
+      "id": "accessibility-testing-screen-reader-smoke",
+      "type": "happy_path",
+      "input": "Create screen reader smoke tests for the onboarding form using VoiceOver/Safari and NVDA/Firefox.",
+      "expected_behavior": "Skill provides smoke scripts with OS/browser/assistive-technology pairing, expected announcements, observed announcements, status, and coverage for landmarks, headings, names/roles/values, form errors, live regions, dialogs, and reading order.",
+      "tags": [
+        "screen-reader",
+        "voiceover",
+        "nvda",
+        "smoke"
+      ],
+      "expected_checks": [
+        "assets",
+        "deterministic_scripts",
+        "quality_criteria"
+      ]
+    },
+    {
+      "id": "accessibility-testing-contrast-ratios",
+      "type": "happy_path",
+      "input": "Validate contrast for primary, disabled, hover, focus, placeholder, error, and icon-only states in our design tokens.",
+      "expected_behavior": "Skill produces a contrast matrix with selector/token, foreground/background, state, observed ratio, threshold, status, and explicitly distinguishes text, large text, and non-text UI checks.",
+      "tags": [
+        "contrast",
+        "tokens",
+        "wcag",
+        "states"
+      ],
+      "expected_checks": [
+        "assets",
+        "deterministic_scripts",
+        "quality_criteria"
+      ]
+    },
+    {
+      "id": "accessibility-testing-reduced-motion",
+      "type": "happy_path",
+      "input": "Add reduced-motion accessibility regression coverage for the dashboard animation and auto-scrolling notification tray.",
+      "expected_behavior": "Skill specifies reduced-motion test setup, expected behavior under reduced motion, observed status, artifact path, and marks non-essential motion as a user-impact risk when it remains enabled.",
+      "tags": [
+        "reduced-motion",
+        "animation",
+        "regression"
+      ],
+      "expected_checks": [
+        "assets",
+        "deterministic_scripts",
+        "quality_criteria"
+      ]
+    },
+    {
+      "id": "accessibility-testing-missing-target-scope",
+      "type": "edge_case",
+      "input": "I ran axe on document.body before opening anything. Write the accessibility pass report.",
+      "expected_behavior": "Skill refuses a blanket pass, marks menus/dialogs/errors/toasts/tooltips as not verified, requests target scope, and explains that unopened dynamic states invalidate the report.",
+      "tags": [
+        "scope",
+        "not-verified",
+        "dynamic-state",
+        "claim-safety"
+      ],
+      "expected_checks": [
+        "assets",
+        "deterministic_scripts",
+        "quality_criteria"
+      ]
+    },
+    {
+      "id": "accessibility-testing-known-issue-suppression",
+      "type": "edge_case",
+      "input": "Exclude .legacy-widget from all axe checks forever because it is noisy.",
+      "expected_behavior": "Skill rejects broad permanent suppression and requires issue ID, owner, expiry, selector, rule ID, reason, and re-enable criteria.",
+      "tags": [
+        "suppression",
+        "governance",
+        "axe",
+        "risk"
+      ],
+      "expected_checks": [
+        "assets",
+        "deterministic_scripts",
+        "quality_criteria"
+      ]
+    },
+    {
+      "id": "accessibility-testing-remediation-boundary",
+      "type": "edge_case",
+      "input": "Run accessibility testing and fix everything you find.",
+      "expected_behavior": "Skill separates testing from remediation, asks or confirms whether code changes are authorized, and otherwise produces findings, recommended fixes, and retest criteria without silent edits.",
+      "tags": [
+        "human-in-the-loop",
+        "remediation",
+        "boundary"
+      ],
+      "expected_checks": [
+        "assets",
+        "deterministic_scripts",
+        "quality_criteria"
+      ]
+    },
+    {
+      "id": "accessibility-testing-false-positive-design",
+      "type": "false_positive",
+      "input": "Make this login screen look cleaner and more modern.",
+      "expected_behavior": "Skill should not take over as primary workflow; it may suggest accessibility testing as a follow-up but routes primary work to design or UI implementation skills.",
+      "tags": [
+        "false_positive",
+        "routing",
+        "design"
+      ],
+      "expected_checks": [
+        "assets",
+        "deterministic_scripts",
+        "quality_criteria"
+      ]
+    },
+    {
+      "id": "accessibility-testing-false-positive-weather",
+      "type": "false_positive",
+      "input": "What is the weather forecast for tomorrow?",
+      "expected_behavior": "Skill should not activate because the request is unrelated to accessibility testing.",
+      "tags": [
+        "false_positive",
+        "should-not-activate"
+      ],
+      "expected_checks": [
+        "assets",
+        "deterministic_scripts",
+        "quality_criteria"
+      ]
+    }
+  ]
+}
