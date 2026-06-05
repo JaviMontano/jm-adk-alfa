@@ -4,11 +4,11 @@
 
 - [CONFIG] Brand scope: JM Labs / Alfa.
 - [CÓDIGO] Active repo: `/Users/deonto/Documents/workspace/jm-adk-alfa`.
-- [CÓDIGO] Current audited baseline: `origin/main` at `4cd95eed1580ed8ebe14da28e9b3c743222b8ecb`.
+- [CÓDIGO] Current audited baseline: `origin/main` at `3d49ee54ec35520abe39839f0fcb35bc7e8d8344`.
 - [CÓDIGO] Current Alfa inventory: `585` skill directories, `585` ledger rows, `30` rows marked `dod-complete`, `555` rows still pending lifecycle review, and `0` non-complete rows with a mapped review doc.
 - [CÓDIGO] Script-backed inventory: `22` skills have `scripts/check.sh`, and `0` script-backed skills are pending DoD.
 - [CÓDIGO] Open pull requests after execution: `0`.
-- [CÓDIGO] Remaining remote branch with unique unmerged work: `origin/claude/doc-factory-engine`.
+- [CÓDIGO] Remaining remote source branch with unique historical work: `origin/claude/doc-factory-engine`.
 - [INFERENCIA] Recovery should use source inventory and selective reconstruction, not direct merges from old branches or old repositories.
 
 ## Executed Cleanup
@@ -17,6 +17,7 @@
 |---|---|---|
 | PR #39 `docs(skills): complete reviewed skill DoD` | [CÓDIGO] Merged into `main` before this inventory update. | [CONFIG] Seven reviewed skills moved to `dod-complete`. |
 | PR #40 `docs(skills): complete funnel analytics DoD` | [CÓDIGO] Merged with `Quality Gates` success. | [CONFIG] Real `funnel-analytics` DoD delivery replaced checkpoint PR #17. |
+| PR #42 `feat(scripts): recover deterministic doc factory` | [CÓDIGO] Merged with `Quality Gates` success. | [CONFIG] Core `scripts/doc-factory/**` was recovered selectively from the Claude branch with a deterministic CI gate. |
 | PR #17 `codex/predeploy-funnel-analytics-20260603` | [CÓDIGO] Closed as superseded after #40 merge. | [CONFIG] Checkpoint PR removed from active transit. |
 | `codex/predeploy-funnel-analytics-20260603` | [CÓDIGO] Remote branch deleted when PR #17 was closed. | [CONFIG] Stale checkpoint branch removed. |
 | `codex/deploy-funnel-analytics-dod-20260603` | [CÓDIGO] `git rev-list --left-right --count origin/main...origin/codex/deploy-funnel-analytics-dod-20260603` showed `23 0` before deletion. | [CONFIG] Remote branch deleted as contained/stale. |
@@ -32,14 +33,14 @@
 | `/Users/deonto/Documents/jm-adk` | [CÓDIGO] Previous inspection reported an empty local repo with no usable commits. | [INFERENCIA] Not a usable local source of old work. | [CONFIG] Do not recover from this local directory. |
 | `JaviMontano/jm-adk` | [CÓDIGO] GitHub tree inspection reports `160` remote `SKILL.md` files. | [INFERENCIA] Old repo with recoverable skill ideas. | [CONFIG] Normalize candidates into Alfa one batch at a time. |
 | `JaviMontano/skills` | [CÓDIGO] GitHub tree inspection reports `1` remote `SKILL.md` file. | [INFERENCIA] Private standalone skill source. | [CONFIG] Recover only after explicit privacy/brand review. |
-| `origin/claude/doc-factory-engine` | [CÓDIGO] Remote branch has `4` commits not in `origin/main` and is `63` commits behind current `origin/main`. | [INFERENCIA] High-value orphan branch with risky whole-branch drift. | [CONFIG] Cherry-pick selected files into a new PR from `origin/main`; never merge the branch wholesale. |
+| `origin/claude/doc-factory-engine` | [CÓDIGO] Remote branch has `4` commits not in `origin/main` and is `64` commits behind current `origin/main`. | [INFERENCIA] Core doc-factory code has been recovered, but the branch still contains historical schema/template material and broad drift. | [CONFIG] Treat as source-only reference; never merge the branch wholesale. |
 
 ## Transit PRs And Branches
 
 | Ref | Evidence | Status | Decision |
 |---|---|---|---|
 | Open PR list | [CÓDIGO] `gh pr list --state open` returned `[]`. | [CONFIG] No active PR transit remains. | [CONFIG] Continue with new scoped PRs only. |
-| `origin/claude/doc-factory-engine` | [CÓDIGO] Unique commits: `1bf12ea8`, `bbb78199`, `d1f54337`, `51d4042e`. | [INFERENCIA] Orphan branch with useful implementation paths and dangerous whole-branch drift. | [CONFIG] Recover via new branch and scoped file selection. |
+| `origin/claude/doc-factory-engine` | [CÓDIGO] Unique commits: `1bf12ea8`, `bbb78199`, `d1f54337`, `51d4042e`. | [INFERENCIA] Source-only historical branch after #42; remaining useful material should be extracted only through new scoped PRs. | [CONFIG] Do not merge or use as active delivery branch. |
 
 ## Candidate Skill Delta
 
@@ -64,8 +65,8 @@
 
 ## Recommended Next Delivery Order
 
-1. [CONFIG] Create `codex/recover-doc-factory-engine-20260605` from `origin/main` and copy only `scripts/doc-factory/**` plus the minimum schema/template files needed for validation.
-2. [CONFIG] Create the first old-repo skill recovery batch with 3 to 5 low-conflict skills from the `64` differentials, each converted to Alfa DoD.
+1. [CONFIG] Create the first old-repo skill recovery batch with 3 to 5 low-conflict skills from the `64` differentials, each converted to Alfa DoD.
+2. [CONFIG] If doc-factory needs skill-level schemas/templates, extract one skill-scoped slice from `origin/claude/doc-factory-engine` and validate it as a normal skill/content PR.
 3. [CONFIG] Reassess private `metodologia-brand-html` only after explicit privacy and brand review.
 4. [CONFIG] Continue one-skill or small-batch ledger closures from the remaining `555` non-DoD lifecycle rows.
 
