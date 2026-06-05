@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-06-05",
+  "skill": "daily-close",
+  "nodes": [
+    {
+      "id": "daily-close",
+      "type": "skill",
+      "label": "daily-close"
+    },
+    {
+      "id": "daily-close:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "daily-close:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "daily-close:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "daily-close",
+      "to": "daily-close:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "daily-close",
+      "to": "daily-close:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "daily-close",
+      "to": "daily-close:quality",
+      "type": "validated_by"
+    }
+  ]
+}

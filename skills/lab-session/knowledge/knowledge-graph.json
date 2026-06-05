@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-06-05",
+  "skill": "lab-session",
+  "nodes": [
+    {
+      "id": "lab-session",
+      "type": "skill",
+      "label": "lab-session"
+    },
+    {
+      "id": "lab-session:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "lab-session:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "lab-session:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "lab-session",
+      "to": "lab-session:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "lab-session",
+      "to": "lab-session:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "lab-session",
+      "to": "lab-session:quality",
+      "type": "validated_by"
+    }
+  ]
+}

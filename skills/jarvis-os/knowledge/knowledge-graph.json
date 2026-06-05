@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-06-05",
+  "skill": "jarvis-os",
+  "nodes": [
+    {
+      "id": "jarvis-os",
+      "type": "skill",
+      "label": "jarvis-os"
+    },
+    {
+      "id": "jarvis-os:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "jarvis-os:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "jarvis-os:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "jarvis-os",
+      "to": "jarvis-os:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "jarvis-os",
+      "to": "jarvis-os:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "jarvis-os",
+      "to": "jarvis-os:quality",
+      "type": "validated_by"
+    }
+  ]
+}

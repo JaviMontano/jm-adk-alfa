@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-06-05",
+  "skill": "station-create",
+  "nodes": [
+    {
+      "id": "station-create",
+      "type": "skill",
+      "label": "station-create"
+    },
+    {
+      "id": "station-create:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "station-create:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "station-create:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "station-create",
+      "to": "station-create:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "station-create",
+      "to": "station-create:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "station-create",
+      "to": "station-create:quality",
+      "type": "validated_by"
+    }
+  ]
+}

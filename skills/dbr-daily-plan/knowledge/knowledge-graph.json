@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-06-05",
+  "skill": "dbr-daily-plan",
+  "nodes": [
+    {
+      "id": "dbr-daily-plan",
+      "type": "skill",
+      "label": "dbr-daily-plan"
+    },
+    {
+      "id": "dbr-daily-plan:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "dbr-daily-plan:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "dbr-daily-plan:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "dbr-daily-plan",
+      "to": "dbr-daily-plan:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "dbr-daily-plan",
+      "to": "dbr-daily-plan:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "dbr-daily-plan",
+      "to": "dbr-daily-plan:quality",
+      "type": "validated_by"
+    }
+  ]
+}

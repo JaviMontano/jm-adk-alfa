@@ -498,6 +498,12 @@
     "description": ">"
   },
   {
+    "id": "cierre-conversacion",
+    "path": "skills/cierre-conversacion",
+    "name": "Cierre Conversacion",
+    "description": "Cosecha aprendizajes y cierra la conversacion al superar 15 turnos o por comando explicito."
+  },
+  {
     "id": "claude-md-architecture",
     "path": "skills/claude-md-architecture",
     "name": "Claude Md Architecture",
@@ -750,6 +756,12 @@
     "description": "Transform any CV/resume into 8 polished outputs: 3 visually stunning 'WOW' versions (DOCX, HTML, PPTX), 3 ATS-optimized versions (DOCX, HTML, PPTX), plus a tailored cover letter and an optimized LinkedIn profile summary. Works in English and Spanish. Accepts CVs in any format (PDF, DOCX, TXT, image, LinkedIn export, or even pasted text). Use this skill whenever the user mentions 'CV', 'resume', 'curriculum', 'hoja de vida', 'ATS', 'job application', 'cover letter', 'LinkedIn profile', 'career document', 'optimize my resume', 'improve my CV', 'transform my resume', 'make my CV stand out', 'aplicar a trabajo', 'mejorar curriculum', or anything related to professional career documents, job applications, or professional branding. Also trigger when the user uploads a document that looks like a CV/resume, even if they don't explicitly say so."
   },
   {
+    "id": "daily-close",
+    "path": "skills/daily-close",
+    "name": "Daily Close",
+    "description": "Cadencia de cierre diario: captura cerrado/pendiente/aprendido y siembra el dia siguiente (P10)."
+  },
+  {
     "id": "dark-mode",
     "path": "skills/dark-mode",
     "name": "Dark Mode",
@@ -850,6 +862,12 @@
     "path": "skills/database-design",
     "name": "Database Design",
     "description": ">"
+  },
+  {
+    "id": "dbr-daily-plan",
+    "path": "skills/dbr-daily-plan",
+    "name": "Dbr Daily Plan",
+    "description": "Cadencia DBR: selecciona <=3 prioridades del dia y produce el plan diario (P09)."
   },
   {
     "id": "dependency-analysis",
@@ -1320,6 +1338,12 @@
     "description": ">"
   },
   {
+    "id": "frontload-prompt",
+    "path": "skills/frontload-prompt",
+    "name": "Frontload Prompt",
+    "description": "Reformatea un input largo o ambiguo a estructura SPEC antes de procesarlo."
+  },
+  {
     "id": "functional-spec",
     "path": "skills/functional-spec",
     "name": "Functional Spec",
@@ -1788,6 +1812,18 @@
     "description": ">"
   },
   {
+    "id": "jarvis-bootstrap",
+    "path": "skills/jarvis-bootstrap",
+    "name": "Jarvis Bootstrap",
+    "description": "Bootstrap del Jarvis OS: CLAUDE.md y MEMORY.md raiz y estructura N0-N4 minima (P00/P01/P02)."
+  },
+  {
+    "id": "jarvis-os",
+    "path": "skills/jarvis-os",
+    "name": "Jarvis Os",
+    "description": "Pack paraguas del Personal Jarvis OS: COOL, 5 sectores, 12 niveles, 8 capacidades, cadencias y scaffolders. Enruta a las skills del pack."
+  },
+  {
     "id": "javascript-patterns",
     "path": "skills/javascript-patterns",
     "name": "Javascript Patterns",
@@ -1998,6 +2034,12 @@
     "description": ">"
   },
   {
+    "id": "lab-session",
+    "path": "skills/lab-session",
+    "name": "Lab Session",
+    "description": "Crea una sesion de Lab con los 4 archivos canonicos: notas, hipotesis, referencias, decision (P08)."
+  },
+  {
     "id": "landing-page-builder",
     "path": "skills/landing-page-builder",
     "name": "Landing Page Builder",
@@ -2194,6 +2236,12 @@
     "path": "skills/monitoring-setup",
     "name": "Monitoring Setup",
     "description": ">"
+  },
+  {
+    "id": "monthly-audit",
+    "path": "skills/monthly-audit",
+    "name": "Monthly Audit",
+    "description": "Auditoria mensual de salud del jarvis con rubrica de 6 preguntas (P22)."
   },
   {
     "id": "motion-design",
@@ -2544,6 +2592,12 @@
     "description": ">"
   },
   {
+    "id": "project-create",
+    "path": "skills/project-create",
+    "name": "Project Create",
+    "description": "Crea un proyecto P-NNN-slug del Jarvis OS con CLAUDE.md, MEMORY.md y TAREAS.md (P07)."
+  },
+  {
     "id": "project-program-management",
     "path": "skills/project-program-management",
     "name": "Project Program Management",
@@ -2608,6 +2662,12 @@
     "path": "skills/pwa-architecture",
     "name": "Pwa Architecture",
     "description": "Progressive Web App design. Service workers, Web App Manifest, offline-first, push notifications via FCM. [EXPLICIT]"
+  },
+  {
+    "id": "qbr-quarterly",
+    "path": "skills/qbr-quarterly",
+    "name": "Qbr Quarterly",
+    "description": "Cadencia QBR: auditoria trimestral y plan del proximo trimestre (P13)."
   },
   {
     "id": "quality-engineering",
@@ -2740,6 +2800,12 @@
     "path": "skills/retrospective-facilitation",
     "name": "Retrospective Facilitation",
     "description": ">"
+  },
+  {
+    "id": "revisor-veracidad",
+    "path": "skills/revisor-veracidad",
+    "name": "Revisor Veracidad",
+    "description": "Marca afirmaciones no verificables con tags de veracidad y propone el siguiente paso de verificacion."
   },
   {
     "id": "risk-assessment",
@@ -3096,6 +3162,12 @@
     "description": "Client-side state architecture. Redux/NgRx/Zustand/Context patterns adapted for Firebase real-time listeners and offline persistence. [EXPLICIT]"
   },
   {
+    "id": "station-create",
+    "path": "skills/station-create",
+    "name": "Station Create",
+    "description": "Crea una estacion del Jarvis OS (universal o dedicada) con su CLAUDE.md y estructura (P06/P23/P24)."
+  },
+  {
     "id": "step-creator",
     "path": "skills/step-creator",
     "name": "Step Creator",
@@ -3184,6 +3256,12 @@
     "path": "skills/task-engine",
     "name": "Task Engine",
     "description": "Decompose, solve with confidence, verify, synthesize, and reflect — until the answer earns its confidence score. [EXPLICIT]"
+  },
+  {
+    "id": "task-subfolder",
+    "path": "skills/task-subfolder",
+    "name": "Task Subfolder",
+    "description": "Crea una sub-tarea T-NNN multi-sesion con CLAUDE.md, task.md y log.md (P33)."
   },
   {
     "id": "tasklog-management",
@@ -3414,6 +3492,12 @@
     "description": ">"
   },
   {
+    "id": "wbr-weekly-review",
+    "path": "skills/wbr-weekly-review",
+    "name": "Wbr Weekly Review",
+    "description": "Cadencia WBR: repaso semanal de avances, estancado y friccion (P11)."
+  },
+  {
     "id": "web-components",
     "path": "skills/web-components",
     "name": "Web Components",
@@ -3442,6 +3526,12 @@
     "path": "skills/webhook-handling",
     "name": "Webhook Handling",
     "description": ">"
+  },
+  {
+    "id": "weekly-retro",
+    "path": "skills/weekly-retro",
+    "name": "Weekly Retro",
+    "description": "Cadencia de retro semanal: que ayudo, que friccion, que se vuelve regla (P12)."
   },
   {
     "id": "whitepaper-creation",

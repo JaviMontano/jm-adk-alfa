@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-06-05",
+  "skill": "qbr-quarterly",
+  "nodes": [
+    {
+      "id": "qbr-quarterly",
+      "type": "skill",
+      "label": "qbr-quarterly"
+    },
+    {
+      "id": "qbr-quarterly:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "qbr-quarterly:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "qbr-quarterly:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "qbr-quarterly",
+      "to": "qbr-quarterly:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "qbr-quarterly",
+      "to": "qbr-quarterly:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "qbr-quarterly",
+      "to": "qbr-quarterly:quality",
+      "type": "validated_by"
+    }
+  ]
+}

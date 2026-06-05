@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-06-05",
+  "skill": "monthly-audit",
+  "nodes": [
+    {
+      "id": "monthly-audit",
+      "type": "skill",
+      "label": "monthly-audit"
+    },
+    {
+      "id": "monthly-audit:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "monthly-audit:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "monthly-audit:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "monthly-audit",
+      "to": "monthly-audit:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "monthly-audit",
+      "to": "monthly-audit:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "monthly-audit",
+      "to": "monthly-audit:quality",
+      "type": "validated_by"
+    }
+  ]
+}

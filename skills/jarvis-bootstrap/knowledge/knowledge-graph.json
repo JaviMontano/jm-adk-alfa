@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-06-05",
+  "skill": "jarvis-bootstrap",
+  "nodes": [
+    {
+      "id": "jarvis-bootstrap",
+      "type": "skill",
+      "label": "jarvis-bootstrap"
+    },
+    {
+      "id": "jarvis-bootstrap:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "jarvis-bootstrap:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "jarvis-bootstrap:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "jarvis-bootstrap",
+      "to": "jarvis-bootstrap:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "jarvis-bootstrap",
+      "to": "jarvis-bootstrap:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "jarvis-bootstrap",
+      "to": "jarvis-bootstrap:quality",
+      "type": "validated_by"
+    }
+  ]
+}
