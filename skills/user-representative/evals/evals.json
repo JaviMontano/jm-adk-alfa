@@ -1,9 +1,106 @@
-[
-  {"id": "user-representative-happy-path", "type": "happy_path", "input": "Run user representative on this project", "expected_behavior": "Skill activates and produces the expected user representative output following the defined process", "tags": ["basic", "activation"]},
-  {"id": "user-representative-explicit-trigger", "type": "happy_path", "input": "Apply user representative analysis", "expected_behavior": "Skill recognizes the trigger phrase and executes the user representative workflow", "tags": ["trigger", "recognition"]},
-  {"id": "user-representative-with-context", "type": "happy_path", "input": "Apply user representative to analyze the current codebase with detailed output", "expected_behavior": "Skill produces comprehensive user representative analysis with evidence-tagged findings", "tags": ["detailed", "comprehensive"]},
-  {"id": "user-representative-minimal-input", "type": "happy_path", "input": "Quick user representative", "expected_behavior": "Skill activates with minimal input, applies reasonable defaults", "tags": ["minimal", "defaults"]},
-  {"id": "user-representative-false-positive", "type": "false_positive", "input": "What is the weather forecast for tomorrow?", "expected_behavior": "Skill should NOT activate — this input has no relation to user representative", "tags": ["false_positive", "should-not-activate"]},
-  {"id": "user-representative-edge-empty-input", "type": "edge_case", "input": "Run user representative but I have no files or documentation yet", "expected_behavior": "Skill handles gracefully — requests minimum viable input or produces gap analysis", "tags": ["edge_case", "empty-input", "boundary"]},
-  {"id": "user-representative-edge-conflicting", "type": "edge_case", "input": "Apply user representative but requirements contradict each other", "expected_behavior": "Skill detects contradiction, flags with [OPEN] tag, proposes resolution", "tags": ["edge_case", "conflict", "corner"]}
-]
+{
+  "schema": 1,
+  "skill": "user-representative",
+  "cases": [
+    {
+      "id": "user-representative-explicit-segment-model",
+      "type": "happy_path",
+      "input": "Act as user representative for nurses using a tablet medication app. Known facts: 8-hour shifts, gloves, unreliable Wi-Fi, success means scan medication in <=10 seconds and reduce missed-dose errors.",
+      "expected_behavior": "Models user needs, constraints, success criteria, risks, and open questions using only supplied facts.",
+      "must_include": ["Audience", "Evidence Map", "5-Dimension Scorecard", "nurses", "gloves", "unreliable Wi-Fi", "<=10 seconds"],
+      "must_not_include": ["senior nurses", "20% adoption", "EHR integration", "budget approved"],
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "evidence_tags", "no_fabricated_facts"],
+      "tags": ["modeling", "no-invention"]
+    },
+    {
+      "id": "user-representative-missing-context",
+      "type": "edge_case",
+      "input": "Be the user representative for our product. No user segment, task, constraints, or success metric is available yet.",
+      "expected_behavior": "Asks for minimum viable context and marks analysis limited instead of inventing a persona.",
+      "must_include": ["user segment", "task", "constraints", "success criteria", "Open Questions", "[SUPUESTO]"],
+      "must_not_include": ["millennials", "enterprise admins", "NPS target", "conversion rate"],
+      "expected_checks": ["ask_for_missing_context", "no_fabricated_facts", "quality_criteria"],
+      "tags": ["missing-context", "fail-closed"]
+    },
+    {
+      "id": "user-representative-conflicting-constraints",
+      "type": "edge_case",
+      "input": "Support agents need a flow under 30 seconds, but legal requires reading a 2-minute disclosure before submission.",
+      "expected_behavior": "Flags the constraint conflict, identifies adoption risk, and requests a decision or trade-off.",
+      "must_include": ["30 seconds", "2-minute disclosure", "conflict", "decision needed", "Adoption Risks"],
+      "must_not_include": ["resolved", "no risk", "compliant by default"],
+      "expected_checks": ["conflict_detection", "risk_modeling", "no_silent_resolution"],
+      "tags": ["constraints", "conflict"]
+    },
+    {
+      "id": "user-representative-evidence-map",
+      "type": "happy_path",
+      "input": "User quote: 'I cannot find the error reason.' Manager quote: 'We need a weekly export.' Model needs and risks.",
+      "expected_behavior": "Maps needs and risks to provided quotes while marking unknown causes as open.",
+      "must_include": ["I cannot find the error reason", "weekly export", "Evidence Map", "[DOC]", "[INFERENCIA]"],
+      "must_not_include": ["daily export", "users are angry", "root cause is navigation"],
+      "expected_checks": ["evidence_mapping", "no_fabricated_facts", "open_questions"],
+      "tags": ["evidence", "quotes"]
+    },
+    {
+      "id": "user-representative-open-success-targets",
+      "type": "edge_case",
+      "input": "Model onboarding users. Success criteria are activation rate and time-to-first-value, but no baseline or target is provided.",
+      "expected_behavior": "Keeps metric names, marks targets as open, and asks for baseline/target values.",
+      "must_include": ["activation rate", "time-to-first-value", "baseline", "target", "Open Questions"],
+      "must_not_include": ["20%", "30 days", "industry benchmark"],
+      "expected_checks": ["success_criteria", "no_numeric_invention", "open_questions"],
+      "tags": ["metrics", "success-criteria"]
+    },
+    {
+      "id": "user-representative-adoption-risk-from-facts",
+      "type": "happy_path",
+      "input": "Evaluate adoption risk for an internal expense tool. Facts: mobile-first, CFO sponsor, training not funded.",
+      "expected_behavior": "Derives risks from the stated facts and avoids unsupported adoption probability claims.",
+      "must_include": ["mobile-first", "CFO sponsor", "training not funded", "Adoption Risks", "mitigation"],
+      "must_not_include": ["85%", "20% likelihood", "approved training budget"],
+      "expected_checks": ["risk_modeling", "no_probability_invention", "quality_criteria"],
+      "tags": ["adoption-risk", "evidence"]
+    },
+    {
+      "id": "user-representative-review-packet-validation",
+      "type": "script_contract",
+      "input": "Validate a Markdown User Representative Review packet before delivery.",
+      "expected_behavior": "Runs the local validator and blocks packets missing sections, evidence tags, five scores, five micro-adjustments, or a correct verdict.",
+      "must_include": ["scripts/validate_user_representative_review.py", "review-contract.json", "CONDITIONAL"],
+      "must_not_include": ["best effort", "manual only"],
+      "expected_checks": ["deterministic_scripts", "quality_criteria", "assets"],
+      "tags": ["script", "validator"]
+    },
+    {
+      "id": "user-representative-false-positive-requirements",
+      "type": "false_positive",
+      "input": "Write Given/When/Then acceptance criteria for checkout payment failures.",
+      "expected_behavior": "Does not activate as primary workflow; routes or suggests requirements engineering.",
+      "must_include": ["requirements"],
+      "must_not_include": ["User Representative Review", "adoption risk assessment"],
+      "expected_checks": ["reject_false_positive", "routing"],
+      "tags": ["false_positive", "adjacent-skill"]
+    },
+    {
+      "id": "user-representative-false-positive-ux-writing",
+      "type": "false_positive",
+      "input": "Rewrite this button label and empty-state microcopy in a warmer tone.",
+      "expected_behavior": "Does not activate as primary workflow; routes to UX writing unless the user asks for review.",
+      "must_include": ["UX writing"],
+      "must_not_include": ["5-Dimension Scorecard", "Bias Flags"],
+      "expected_checks": ["reject_false_positive", "routing"],
+      "tags": ["false_positive", "adjacent-skill"]
+    },
+    {
+      "id": "user-representative-false-positive-weather",
+      "type": "false_positive",
+      "input": "What is the weather forecast for tomorrow?",
+      "expected_behavior": "Does not activate because the request is unrelated.",
+      "must_include": [],
+      "must_not_include": ["User Representative Review", "Scorecard", "Bias Flags"],
+      "expected_checks": ["reject_false_positive", "should-not-activate"],
+      "tags": ["false_positive", "unrelated"]
+    }
+  ]
+}

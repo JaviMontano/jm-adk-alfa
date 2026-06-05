@@ -1,0 +1,30 @@
+{
+  "schema": 1,
+  "skill": "user-representative",
+  "required_sections": [
+    "User Representative Review",
+    "Audience",
+    "Evidence Map",
+    "5-Dimension Scorecard",
+    "Top 5 Micro-Adjustments",
+    "Adoption Risks",
+    "Bias Flags",
+    "Verdict",
+    "Validation"
+  ],
+  "dimensions": [
+    "Comprehension",
+    "Cognitive Load",
+    "Scannability",
+    "Adoption Readiness",
+    "Bias Exposure"
+  ],
+  "minimum_micro_adjustments": 5,
+  "allowed_evidence_tags": ["[DOC]", "[CONFIG]", "[INFERENCIA]", "[SUPUESTO]"],
+  "blocked_evidence_tags": ["[EXPLICIT]", "[INFERRED]", "[OPEN]"],
+  "must_not_include": [
+    "85% adoption",
+    "budget approved",
+    "owner already assigned"
+  ]
+}
