@@ -1,0 +1,19 @@
+{
+  "schema": 1,
+  "skill": "certify-skill",
+  "levels": ["MOAT", "CERTIFIED", "CONDITIONAL", "BLOCKED"],
+  "rules": {
+    "MOAT": "CERTIFIED plus all M1-M5 pass",
+    "CERTIFIED": "All rubric dimensions >= 7, average >= 8.0, all structural checks pass",
+    "CONDITIONAL": "Average >= 8.0 with 1-2 dimensions at 6, or 1-2 non-S1 structural failures",
+    "BLOCKED": "Any dimension < 6, or 3+ structural failures, or S1 fails"
+  },
+  "thresholds": {
+    "certified_average_min": 8.0,
+    "certified_dimension_min": 7,
+    "conditional_dimension_value": 6,
+    "blocked_dimension_below": 6,
+    "conditional_structural_failures_max": 2,
+    "blocked_structural_failures_min": 3
+  }
+}

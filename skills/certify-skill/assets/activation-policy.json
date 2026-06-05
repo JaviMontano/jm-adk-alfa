@@ -1,0 +1,21 @@
+{
+  "schema": 1,
+  "skill": "certify-skill",
+  "activate_for": [
+    "certify a skill",
+    "validate this skill",
+    "is this skill ready",
+    "check skill quality",
+    "grade this skill",
+    "run quality gate on a skill",
+    "is this good enough to ship as a skill"
+  ],
+  "do_not_activate_for": [
+    "certificate document generation",
+    "employment certification",
+    "legal certification",
+    "generic quality review without a skill directory",
+    "quality gate for a product release"
+  ],
+  "false_positive_policy": "Do not produce a certification report unless the target is a skill directory or explicit skill artifact."
+}

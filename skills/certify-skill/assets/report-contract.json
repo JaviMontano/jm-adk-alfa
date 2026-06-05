@@ -1,0 +1,33 @@
+{
+  "schema": 1,
+  "skill": "certify-skill",
+  "required_sections": [
+    "summary",
+    "rubric_scores",
+    "structural_checks",
+    "content_checks",
+    "systemic_checks",
+    "moat_checks",
+    "blockers",
+    "recommendation",
+    "caveats"
+  ],
+  "allow_empty_sections": ["blockers"],
+  "summary_fields": [
+    "skill_name",
+    "certification",
+    "overall_score",
+    "structural_pass",
+    "structural_total",
+    "content_pass",
+    "content_total",
+    "systemic_status",
+    "moat_status"
+  ],
+  "check_fields": ["id", "result", "evidence", "severity"],
+  "rubric_fields": ["criterion", "score", "evidence"],
+  "blocker_fields": ["issue", "fix_required", "estimated_effort"],
+  "allowed_results": ["PASS", "FAIL", "N/A", "SKIPPED"],
+  "allowed_levels": ["MOAT", "CERTIFIED", "CONDITIONAL", "BLOCKED"],
+  "blocked_phrases": ["probably certified", "good enough", "ship anyway", "skip evidence"]
+}

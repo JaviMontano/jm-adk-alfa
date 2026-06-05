@@ -1,0 +1,22 @@
+{
+  "schema": 1,
+  "skill": "certify-skill",
+  "allowed_evidence_tags": [
+    "[CODE]",
+    "[CONFIG]",
+    "[DOC]",
+    "[INFERENCE]",
+    "[ASSUMPTION]",
+    "[CÓDIGO]",
+    "[CONFIG]",
+    "[DOC]",
+    "[INFERENCIA]",
+    "[SUPUESTO]",
+    "[EXPLICIT]",
+    "[INFERRED]",
+    "[OPEN]"
+  ],
+  "pass_requires_evidence": true,
+  "score_requires_evidence": true,
+  "blocker_requires_fix": true
+}

@@ -9,18 +9,20 @@ triad:
   guardian: "certify-skill-guardian"
 ---
 
-# Certify Skill — Execute
+# Certify Skill Execute
 
-## Dynamic Parameters
+## Objective
 
-| Parameter | Description | Required | Filled By |
-|-----------|-------------|----------|-----------|
-| `{{task}}` | What to accomplish | Yes | User input |
-| `{{context}}` | Background and constraints | Yes | User or codebase |
-| `{{constraints}}` | Additional rules | No | Guardrails JSON |
+Certify one skill directory with the deterministic phase inventory, rubric, and
+certification formula. [EXPLICIT]
 
 ## Execution Steps
-1. Read SKILL.md `## When to Activate` — confirm this skill applies
-2. Read SKILL.md `## Validation Gate` — internalize quality criteria
-3. Execute the skill workflow per SKILL.md sections
-4. Validate output against Validation Gate before delivering
+
+1. Confirm the target is a skill directory or explicit skill artifact.
+2. Load `assets/` contracts and `references/certification-checklist.md`.
+3. Run or inspect S1-S9 structural checks.
+4. Evaluate F/B/W content checks and C1-C5 systemic checks.
+5. Score all 10 rubric dimensions with evidence.
+6. Apply the exact certification formula.
+7. Evaluate M1-M5 only when phases 1-4 are CERTIFIED.
+8. Validate JSON reports with the local script when available.
