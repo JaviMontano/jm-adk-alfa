@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "skill": "brand-html",
+  "fixtures": [
+    {
+      "path": "scripts/fixtures/valid-landing.html",
+      "expect": "pass",
+      "purpose": "Tokenized single-file landing page with semantic landmarks and responsive CSS."
+    },
+    {
+      "path": "scripts/fixtures/valid-rtl.html",
+      "expect": "pass",
+      "purpose": "RTL single-file page using logical CSS and required brand tokens."
+    },
+    {
+      "path": "scripts/fixtures/invalid-hardcoded-color.html",
+      "expect": "fail",
+      "purpose": "Rejects off-token hardcoded hex colors outside the root token block."
+    },
+    {
+      "path": "scripts/fixtures/invalid-low-contrast.html",
+      "expect": "fail",
+      "purpose": "Rejects deterministic low-contrast text/background pairs."
+    },
+    {
+      "path": "scripts/fixtures/invalid-external-dependency.html",
+      "expect": "fail",
+      "purpose": "Rejects base64 images, remote links, and external scripts."
+    },
+    {
+      "path": "scripts/fixtures/invalid-favicon.html",
+      "expect": "fail",
+      "purpose": "Rejects non-SVG or bitmap favicon links."
+    }
+  ]
+}

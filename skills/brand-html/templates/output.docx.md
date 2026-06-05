@@ -1,10 +1,14 @@
-# Brand Html — DOCX Template
+# DOCX Template - Brand HTML
 
-## Document Structure
-- Title: Brand Html — [Client/Project Name]
-- Author: JM Labs
-- Date: {{DATE}}
+This skill outputs HTML, not DOCX. Use this template only for a handoff note
+that summarizes a generated HTML artifact.
 
-## Sections (mirror SKILL.md structure)
-See canonical SKILL.md for section blueprints.
-Use brand-config.json tokens: Navy #122562 · Gold #FFD700 · Blue #137DC5
+## Handoff Structure
+
+1. Artifact title
+2. Brand config source
+3. HTML file path or fenced HTML block reference
+4. Validation results
+5. Risks and limits
+
+No generated current date unless caller supplies `artifact_date`.

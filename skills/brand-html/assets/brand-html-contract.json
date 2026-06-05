@@ -1,0 +1,38 @@
+{
+  "schema": 1,
+  "skill": "brand-html",
+  "artifact_type": "single_file_html",
+  "required_tokens": [
+    "--brand-primary",
+    "--brand-black",
+    "--brand-white",
+    "--brand-bg",
+    "--brand-muted",
+    "--font-display",
+    "--font-body"
+  ],
+  "required_elements": ["!DOCTYPE html", "<html", "<head", "<link", "<style", "<main", "<footer"],
+  "required_checks": [
+    "css_variables",
+    "svg_favicon",
+    "semantic_landmarks",
+    "responsive_css",
+    "no_unresolved_placeholders",
+    "no_base64_images",
+    "no_external_javascript",
+    "no_unapproved_remote_assets",
+    "contrast_gate"
+  ],
+  "allowed_external_when_configured": ["font stylesheet"],
+  "forbidden_patterns": [
+    "data:image/png",
+    "data:image/jpeg",
+    "data:image/gif",
+    ";base64,",
+    "<script src=",
+    "Math.random(",
+    "new Date(",
+    "{{"
+  ],
+  "fallback_colors": ["#2563EB", "#0F172A", "#FFFFFF", "#F8FAFC", "#475569"]
+}

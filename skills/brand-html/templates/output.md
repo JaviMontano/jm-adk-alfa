@@ -1,28 +1,25 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: brand-html
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
-
-# Brand Html Output
+# Brand HTML Result
 
 ## Summary
 
-{summary}
+- `{{summary}}`
 
-## Evidence
+## HTML Artifact
 
-{evidence}
-
-## Result
-
-{result}
+```html
+{{html_artifact}}
+```
 
 ## Validation
 
-{validation}
+- CSS variables: `{{css_variables_status}}`
+- SVG favicon: `{{svg_favicon_status}}`
+- Semantic landmarks: `{{semantic_landmarks_status}}`
+- Responsive CSS: `{{responsive_css_status}}`
+- Dependency boundaries: `{{dependency_status}}`
+- Contrast gate: `{{contrast_status}}`
+- Placeholder check: `{{placeholder_status}}`
 
-## Risks and Limits
+## Risks And Limits
 
-{risks}
+- `{{risk_or_limit}}`

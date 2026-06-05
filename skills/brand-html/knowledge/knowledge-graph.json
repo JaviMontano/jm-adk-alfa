@@ -1,75 +1,23 @@
 {
   "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-28",
   "skill": "brand-html",
   "nodes": [
-    {
-      "id": "brand-html",
-      "type": "skill",
-      "label": "brand-html"
-    },
-    {
-      "id": "brand-html:inputs",
-      "type": "contract",
-      "label": "Expected inputs"
-    },
-    {
-      "id": "brand-html:outputs",
-      "type": "contract",
-      "label": "Expected outputs"
-    },
-    {
-      "id": "brand-html:quality",
-      "type": "gate",
-      "label": "Quality criteria"
-    },
-    {
-      "id": "brand-html:ontology",
-      "type": "ontology",
-      "label": "Domain: general"
-    },
-    {
-      "id": "brand-html:evidence",
-      "type": "gate",
-      "label": "Evidence / provenance requirements"
-    },
-    {
-      "id": "brand-html:antipattern",
-      "type": "risk",
-      "label": "Canonical anti-pattern to avoid"
-    }
+    {"id": "brand-html", "type": "skill", "label": "Deterministic Brand HTML"},
+    {"id": "brand-html:activation", "type": "policy", "label": "HTML artifact activation"},
+    {"id": "brand-html:contract", "type": "schema", "label": "Single-file HTML contract"},
+    {"id": "brand-html:tokens", "type": "policy", "label": "Brand token CSS variables"},
+    {"id": "brand-html:favicon", "type": "policy", "label": "SVG browser favicon"},
+    {"id": "brand-html:dependencies", "type": "policy", "label": "Remote dependency boundary"},
+    {"id": "brand-html:validator", "type": "script", "label": "Offline HTML validator"},
+    {"id": "brand-html:false-positive-controls", "type": "eval", "label": "DOCX and token-only routing controls"}
   ],
   "edges": [
-    {
-      "from": "brand-html",
-      "to": "brand-html:inputs",
-      "type": "requires"
-    },
-    {
-      "from": "brand-html",
-      "to": "brand-html:outputs",
-      "type": "produces"
-    },
-    {
-      "from": "brand-html",
-      "to": "brand-html:quality",
-      "type": "validated_by"
-    },
-    {
-      "from": "brand-html",
-      "to": "brand-html:ontology",
-      "type": "classified_as"
-    },
-    {
-      "from": "brand-html",
-      "to": "brand-html:evidence",
-      "type": "validated_by"
-    },
-    {
-      "from": "brand-html",
-      "to": "brand-html:antipattern",
-      "type": "guards_against"
-    }
+    {"from": "brand-html", "to": "brand-html:activation", "type": "requires"},
+    {"from": "brand-html", "to": "brand-html:contract", "type": "produces"},
+    {"from": "brand-html:contract", "to": "brand-html:tokens", "type": "requires"},
+    {"from": "brand-html:contract", "to": "brand-html:favicon", "type": "requires"},
+    {"from": "brand-html:contract", "to": "brand-html:dependencies", "type": "constrains"},
+    {"from": "brand-html:validator", "to": "brand-html:contract", "type": "validates"},
+    {"from": "brand-html:false-positive-controls", "to": "brand-html:activation", "type": "calibrates"}
   ]
 }

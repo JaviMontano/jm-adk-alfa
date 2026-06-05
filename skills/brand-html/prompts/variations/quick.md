@@ -3,7 +3,9 @@ name: brand-html-quick
 type: variation
 variant: quick
 ---
-# Brand Html — Quick Mode
 
-Streamlined execution. Focus on TL;DR and primary output only.
-Apply Validation Gate but skip extended evidence tagging.
+# Brand HTML - Quick Mode
+
+Use quick mode for a compact single-section page or report shell. Keep the same
+token, semantic, SVG favicon, responsive, dependency, and validation
+requirements. Quick mode does not skip evidence tagging or validation.

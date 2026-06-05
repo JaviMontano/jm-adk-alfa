@@ -1,0 +1,42 @@
+{
+  "schema": 1,
+  "skill": "brand-html",
+  "assets": [
+    {
+      "path": "assets/activation-policy.json",
+      "type": "policy",
+      "purpose": "Defines activation and routing boundaries for branded HTML requests.",
+      "used_by": ["SKILL.md", "prompts/primary.md", "evals/evals.json"]
+    },
+    {
+      "path": "assets/brand-html-contract.json",
+      "type": "schema",
+      "purpose": "Defines deterministic single-file HTML requirements and validator checks.",
+      "used_by": ["SKILL.md", "templates/output.md", "scripts/validate_brand_html.py"]
+    },
+    {
+      "path": "assets/favicon-policy.json",
+      "type": "policy",
+      "purpose": "Defines deterministic SVG favicon requirements for browser icon links.",
+      "used_by": ["SKILL.md", "templates/output.html", "scripts/validate_brand_html.py"]
+    },
+    {
+      "path": "assets/favicon.svg",
+      "type": "asset",
+      "purpose": "Provides a square, self-contained fallback SVG favicon.",
+      "used_by": ["SKILL.md", "assets/favicon-policy.json", "templates/output.html"]
+    },
+    {
+      "path": "assets/fallback-brand-config.json",
+      "type": "fixture",
+      "purpose": "Defines explicit fallback tokens for no-config requests.",
+      "used_by": ["SKILL.md", "examples/example-output.md", "scripts/check.sh"]
+    },
+    {
+      "path": "assets/evidence-policy.json",
+      "type": "policy",
+      "purpose": "Defines evidence tags and validation report evidence requirements.",
+      "used_by": ["SKILL.md", "templates/output.md", "scripts/validate_brand_html.py"]
+    }
+  ]
+}

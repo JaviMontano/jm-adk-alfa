@@ -3,7 +3,9 @@ name: brand-html-deep
 type: variation
 variant: deep
 ---
-# Brand Html — Deep Analysis
 
-Full depth execution. Load all `references/` files from canonical. Run L3 progressive loading.
-Apply all Validation Gate criteria strictly.
+# Brand HTML - Deep Mode
+
+Use deep mode for multi-section landing pages, dashboards, executive reports,
+RTL pages, or dark-mode variants. Validate every section against token,
+semantic, SVG favicon, contrast, responsive, and dependency rules.

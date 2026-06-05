@@ -1,0 +1,21 @@
+{
+  "schema": 1,
+  "skill": "brand-html",
+  "activate_when": [
+    "user asks to generate branded HTML",
+    "user asks for a landing page or responsive web page",
+    "user asks for styled HTML report",
+    "user asks for HTML using brand tokens or CSS variables"
+  ],
+  "do_not_activate_when": [
+    "user asks for DOCX, XLSX, PDF, slides, or images without HTML",
+    "user asks only to extract brand tokens to JSON",
+    "user asks for brand strategy without an HTML artifact"
+  ],
+  "minimum_inputs": [
+    "page type or report purpose",
+    "content outline or sections",
+    "brand config path, inline tokens, or permission to use fallback tokens"
+  ],
+  "missing_input_behavior": "use fallback tokens only when the user asked for HTML and no brand config is supplied"
+}

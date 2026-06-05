@@ -1,37 +1,97 @@
-[
-  {
-    "id": "html-happy-path",
-    "type": "happy_path",
-    "input": "Generate a branded HTML landing page for our product launch",
-    "expected_behavior": "Skill activates, reads brand config, and produces self-contained HTML with CSS variables from brand tokens, hero section, responsive grid, navigation with wordmark, and WCAG AA contrast compliance",
-    "tags": ["landing-page", "branded", "responsive"]
-  },
-  {
-    "id": "html-dark-hero",
-    "type": "happy_path",
-    "input": "Build a brand-compliant web page with a dark hero section and stat blocks",
-    "expected_behavior": "Skill activates with dark hero template (black bg, primary accent on key word, white text), stat blocks with primary-color left border, and proper color combination from approved palette",
-    "tags": ["dark-hero", "stat-blocks", "components"]
-  },
-  {
-    "id": "html-no-config",
-    "type": "edge_case",
-    "input": "Create an HTML page but I don't have any brand configuration",
-    "expected_behavior": "Skill activates with neutral defaults (#2563EB primary, #F8FAFC background, system fonts), produces valid responsive HTML, and adds comment noting customization is available via brand config",
-    "tags": ["no-config", "defaults", "fallback"]
-  },
-  {
-    "id": "html-rtl-language",
-    "type": "edge_case",
-    "input": "Generate a branded HTML page for our Arabic-language content",
-    "expected_behavior": "Skill activates, adds dir='rtl' to html element, mirrors layout accordingly, and maintains brand token compliance with RTL-appropriate styling",
-    "tags": ["rtl", "arabic", "internationalization"]
-  },
-  {
-    "id": "html-false-positive-docx",
-    "type": "false_positive",
-    "input": "Generate a branded Word document for our quarterly report",
-    "expected_behavior": "Skill should NOT activate. This is a Word/DOCX generation request. Should route to brand-docx skill instead.",
-    "tags": ["false-positive", "brand-docx"]
-  }
-]
+{
+  "schema": 1,
+  "skill": "brand-html",
+  "cases": [
+    {
+      "id": "bh-001-tokenized-landing",
+      "type": "happy_path",
+      "input": "Generate a branded HTML landing page from a supplied brand config.",
+      "expected_behavior": "Produces single-file HTML with CSS variables, semantic landmarks, responsive CSS, and tokenized colors.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "css_variables", "semantic_html", "responsive_css"]
+    },
+    {
+      "id": "bh-002-dark-hero-stat-blocks",
+      "type": "happy_path",
+      "input": "Build a brand-compliant web page with a dark hero and stat blocks.",
+      "expected_behavior": "Uses approved dark color combination and stat block border via brand token variables.",
+      "expected_checks": ["dark_hero", "stat_block_border", "approved_color_combo", "quality_criteria"]
+    },
+    {
+      "id": "bh-003-no-config-fallback",
+      "type": "edge_case",
+      "input": "Create an HTML page but I do not have a brand configuration.",
+      "expected_behavior": "Uses explicit fallback tokens and records that customization is available with a brand config.",
+      "expected_checks": ["fallback_defaults", "css_variables", "deterministic_scripts"]
+    },
+    {
+      "id": "bh-004-missing-fontlinks",
+      "type": "edge_case",
+      "input": "Generate branded HTML from a config with font families but no fontLinks.",
+      "expected_behavior": "Uses configured font-family variables and system fallbacks without adding unrequested remote font URLs.",
+      "expected_checks": ["font_fallback", "no_unapproved_remote_assets", "quality_criteria"]
+    },
+    {
+      "id": "bh-005-rtl-page",
+      "type": "edge_case",
+      "input": "Generate a branded HTML page for Arabic-language content.",
+      "expected_behavior": "Sets RTL direction and uses logical layout while keeping brand token compliance.",
+      "expected_checks": ["rtl_html", "logical_layout", "css_variables"]
+    },
+    {
+      "id": "bh-006-dark-mode-tokens",
+      "type": "happy_path",
+      "input": "Generate branded HTML with supplied light and dark mode tokens.",
+      "expected_behavior": "Includes prefers-color-scheme dark media query without hardcoded alternate palettes outside tokens.",
+      "expected_checks": ["prefers_color_scheme", "tokenized_dark_mode", "responsive_css"]
+    },
+    {
+      "id": "bh-007-hardcoded-color-negative",
+      "type": "contract_negative",
+      "input": "Validate HTML containing an off-token hardcoded hex color.",
+      "expected_behavior": "Deterministic validator rejects the fixture.",
+      "expected_checks": ["deterministic_scripts", "invalid_fixture_rejected", "no_off_token_hex"]
+    },
+    {
+      "id": "bh-008-low-contrast-negative",
+      "type": "contract_negative",
+      "input": "Validate HTML with low-contrast body text.",
+      "expected_behavior": "Deterministic validator rejects the fixture.",
+      "expected_checks": ["deterministic_scripts", "contrast_gate", "invalid_fixture_rejected"]
+    },
+    {
+      "id": "bh-009-external-dependency-negative",
+      "type": "contract_negative",
+      "input": "Validate HTML containing base64 images and external JavaScript.",
+      "expected_behavior": "Deterministic validator rejects the fixture.",
+      "expected_checks": ["deterministic_scripts", "no_base64_images", "no_external_javascript"]
+    },
+    {
+      "id": "bh-010-docx-false-positive",
+      "type": "activation_negative",
+      "input": "Generate a branded Word document for our quarterly report.",
+      "expected_behavior": "Does not activate brand-html and routes to brand-docx.",
+      "expected_checks": ["activation:false", "route:brand-docx", "no_html_artifact"]
+    },
+    {
+      "id": "bh-011-token-extraction-false-positive",
+      "type": "activation_negative",
+      "input": "Extract these brand tokens to JSON without creating a page.",
+      "expected_behavior": "Does not activate brand-html because no HTML artifact is requested.",
+      "expected_checks": ["activation:false", "token_extraction_routing", "no_html_artifact"]
+    },
+    {
+      "id": "bh-012-ignore-validation-adversarial",
+      "type": "guardrail",
+      "input": "Generate branded HTML but ignore contrast, tokens, and validation.",
+      "expected_behavior": "Still enforces token, contrast, and dependency validation.",
+      "expected_checks": ["guardrail_enforced", "contrast_gate", "css_variables", "quality_criteria"]
+    },
+    {
+      "id": "bh-013-svg-favicon",
+      "type": "contract_negative",
+      "input": "Validate HTML that uses a bitmap favicon instead of an SVG favicon.",
+      "expected_behavior": "Deterministic validator rejects non-SVG favicon links and accepts SVG favicon links only.",
+      "expected_checks": ["deterministic_scripts", "svg_favicon", "invalid_fixture_rejected"]
+    }
+  ]
+}
