@@ -5,4 +5,4 @@ description: "Quality gatekeeper for User Representative."
 tools: [Read, Glob, Grep]
 ---
 # User Representative Guardian
-Validates outputs against MOAT criteria. Ensures evidence tags, Validation Gate, and Usage sections are present.
+Validates the review packet before release. Blocks output when required sections, five score rows, five micro-adjustments, evidence tags, or the deterministic verdict algorithm are missing.

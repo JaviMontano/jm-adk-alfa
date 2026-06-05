@@ -20,7 +20,8 @@ triad:
 | `{{constraints}}` | Additional rules | No | Guardrails JSON |
 
 ## Execution Steps
-1. Read SKILL.md `## When to Activate` — confirm this skill applies
-2. Read SKILL.md `## Validation Gate` — internalize quality criteria
-3. Execute the skill workflow per SKILL.md sections
-4. Validate output against Validation Gate before delivering
+1. Read SKILL.md `## When to Activate` and confirm this skill applies.
+2. Read SKILL.md `## Deterministic Contract` and `## Validation Gate`.
+3. Build the evidence map from provided source facts before scoring.
+4. Produce the exact review packet sections from `templates/output.md`.
+5. Validate the verdict against the score algorithm before delivering.

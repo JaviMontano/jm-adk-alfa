@@ -1,28 +1,50 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: user-representative
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
+# User Representative Review
 
-# User Representative Output
+## Audience
 
-## Summary
+{audience_with_evidence_tags}
 
-{summary}
+## Evidence Map
 
-## Evidence
+| Evidence | Tag | Use In Review |
+|---|---|---|
+| {source_quote_or_fact} | [DOC] | {why_it_matters} |
 
-{evidence}
+## 5-Dimension Scorecard
 
-## Result
+| Dimension | Score | Evidence | Required Fix |
+|---|---:|---|---|
+| Comprehension | {0-10}/10 | {tagged_evidence} | {specific_fix} |
+| Cognitive Load | {0-10}/10 | {tagged_evidence} | {specific_fix} |
+| Scannability | {0-10}/10 | {tagged_evidence} | {specific_fix} |
+| Adoption Readiness | {0-10}/10 | {tagged_evidence} | {specific_fix} |
+| Bias Exposure | {0-10}/10 | {tagged_evidence} | {specific_fix} |
 
-{result}
+## Top 5 Micro-Adjustments
+
+| ID | Type | Current | Proposed | Why |
+|---|---|---|---|---|
+| MA-1 | {copy/structure/visual/navigation/simplification/adoption} | {current} | {proposed} | {why} |
+| MA-2 | {type} | {current} | {proposed} | {why} |
+| MA-3 | {type} | {current} | {proposed} | {why} |
+| MA-4 | {type} | {current} | {proposed} | {why} |
+| MA-5 | {type} | {current} | {proposed} | {why} |
+
+## Adoption Risks
+
+- {tagged_risk_and_mitigation}
+
+## Bias Flags
+
+- {tagged_bias_and_fix}
+
+## Verdict
+
+Verdict: {PASS|CONDITIONAL|FAIL}
+
+{one_sentence_verdict_reason_using_the_algorithm}
 
 ## Validation
 
-{validation}
-
-## Risks and Limits
-
-{risks}
+- {validation_check}
+- Open Questions: {missing_facts_or_none}

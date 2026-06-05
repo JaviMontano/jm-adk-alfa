@@ -1,75 +1,25 @@
 {
   "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-28",
   "skill": "user-representative",
   "nodes": [
-    {
-      "id": "user-representative",
-      "type": "skill",
-      "label": "user-representative"
-    },
-    {
-      "id": "user-representative:inputs",
-      "type": "contract",
-      "label": "Expected inputs"
-    },
-    {
-      "id": "user-representative:outputs",
-      "type": "contract",
-      "label": "Expected outputs"
-    },
-    {
-      "id": "user-representative:quality",
-      "type": "gate",
-      "label": "Quality criteria"
-    },
-    {
-      "id": "user-representative:ontology",
-      "type": "ontology",
-      "label": "Domain: general"
-    },
-    {
-      "id": "user-representative:evidence",
-      "type": "gate",
-      "label": "Evidence / provenance requirements"
-    },
-    {
-      "id": "user-representative:antipattern",
-      "type": "risk",
-      "label": "Canonical anti-pattern to avoid"
-    }
+    {"id": "user-representative", "type": "skill", "label": "User Representative"},
+    {"id": "audience", "type": "input", "label": "Target audience and time budget"},
+    {"id": "evidence-map", "type": "contract", "label": "Evidence map with tags"},
+    {"id": "scorecard", "type": "rubric", "label": "Five-dimension scorecard"},
+    {"id": "micro-adjustments", "type": "output", "label": "Top 5 micro-adjustments"},
+    {"id": "adoption-risks", "type": "output", "label": "Adoption risk assessment"},
+    {"id": "bias-flags", "type": "output", "label": "Bias flags"},
+    {"id": "verdict", "type": "gate", "label": "PASS / CONDITIONAL / FAIL algorithm"},
+    {"id": "validator", "type": "script", "label": "validate_user_representative_review.py"}
   ],
   "edges": [
-    {
-      "from": "user-representative",
-      "to": "user-representative:inputs",
-      "type": "requires"
-    },
-    {
-      "from": "user-representative",
-      "to": "user-representative:outputs",
-      "type": "produces"
-    },
-    {
-      "from": "user-representative",
-      "to": "user-representative:quality",
-      "type": "validated_by"
-    },
-    {
-      "from": "user-representative",
-      "to": "user-representative:ontology",
-      "type": "classified_as"
-    },
-    {
-      "from": "user-representative",
-      "to": "user-representative:evidence",
-      "type": "validated_by"
-    },
-    {
-      "from": "user-representative",
-      "to": "user-representative:antipattern",
-      "type": "guards_against"
-    }
+    {"from": "user-representative", "to": "audience", "type": "requires"},
+    {"from": "audience", "to": "scorecard", "type": "calibrates"},
+    {"from": "evidence-map", "to": "scorecard", "type": "supports"},
+    {"from": "scorecard", "to": "micro-adjustments", "type": "drives"},
+    {"from": "scorecard", "to": "verdict", "type": "validated_by"},
+    {"from": "adoption-risks", "to": "verdict", "type": "informs"},
+    {"from": "bias-flags", "to": "verdict", "type": "informs"},
+    {"from": "verdict", "to": "validator", "type": "checked_by"}
   ]
 }

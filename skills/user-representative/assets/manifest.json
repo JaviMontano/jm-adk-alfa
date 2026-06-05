@@ -1,0 +1,25 @@
+{
+  "skill": "user-representative",
+  "assets": [
+    {
+      "path": "assets/user-representative-checklist.md",
+      "type": "checklist",
+      "purpose": "Deterministic human-readable gate for User Representative review packets.",
+      "used_by": [
+        "SKILL.md",
+        "templates/output.md",
+        "evals/evals.json"
+      ]
+    },
+    {
+      "path": "assets/review-rubric.json",
+      "type": "rubric",
+      "purpose": "Machine-readable score dimensions, evidence tags, forbidden inventions, and verdict algorithm.",
+      "used_by": [
+        "SKILL.md",
+        "scripts/validate_user_representative_review.py",
+        "evals/evals.json"
+      ]
+    }
+  ]
+}

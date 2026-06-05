@@ -1,0 +1,46 @@
+{
+  "schema": 1,
+  "skill": "user-representative",
+  "evidence_tags": ["[DOC]", "[CONFIG]", "[INFERENCIA]", "[SUPUESTO]"],
+  "blocked_tags": ["[EXPLICIT]", "[INFERRED]", "[OPEN]"],
+  "dimensions": [
+    {
+      "name": "Comprehension",
+      "threshold": 7,
+      "checks": ["plain language", "jargon explained", "reader can understand without external help"]
+    },
+    {
+      "name": "Cognitive Load",
+      "threshold": 7,
+      "checks": ["chunked sections", "clear sequence", "tables summarized"]
+    },
+    {
+      "name": "Scannability",
+      "threshold": 7,
+      "checks": ["decision visible", "navigation clear", "key takeaways easy to find"]
+    },
+    {
+      "name": "Adoption Readiness",
+      "threshold": 7,
+      "checks": ["next action specific", "owners visible when provided", "dependencies explicit"]
+    },
+    {
+      "name": "Bias Exposure",
+      "threshold": 7,
+      "checks": ["technical bias flagged", "organizational bias flagged", "optimism bias checked"]
+    }
+  ],
+  "verdict_algorithm": {
+    "pass": "all scores >= 7",
+    "conditional": "one or two scores between 5 and 6 inclusive and no score below 5",
+    "fail": "any score < 5 or three or more scores between 5 and 6 inclusive"
+  },
+  "forbidden_inventions": [
+    "dates not present in the source",
+    "owners not present in the source",
+    "budgets not present in the source",
+    "demographics not present in the source",
+    "adoption probabilities not present in the source",
+    "baselines or targets not present in the source"
+  ]
+}

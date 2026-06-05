@@ -11,11 +11,8 @@ model: opus
 context: fork
 allowed-tools:
   - Read
-  - Write
-  - Edit
   - Glob
   - Grep
-  - Bash
 ---
 
 # User Representative: Voice of the User & Deliverable Quality Advocate
@@ -51,9 +48,27 @@ If reference materials exist, load them:
 Read ${CLAUDE_SKILL_DIR}/references/user-rep-patterns.md
 ```
 
+Load bundled deterministic assets only when needed:
+
+```
+Read ${CLAUDE_SKILL_DIR}/assets/user-representative-checklist.md
+Read ${CLAUDE_SKILL_DIR}/assets/review-rubric.json
+```
+
+## Deterministic Contract
+
+User Representative output is a review packet, not a rewrite. Use only facts from the provided deliverable, user request, or explicitly loaded references.
+
+- Evidence tags: `[DOC]` for source text or quoted user evidence, `[CONFIG]` for configured persona/rubric thresholds, `[INFERENCIA]` for reasoned user/adoption risk, and `[SUPUESTO]` for assumptions required because input is incomplete.
+- No invented demographics, adoption probabilities, budgets, dates, owners, baselines, or stakeholder names.
+- If a required fact is missing, keep the analysis limited and put the question under `Open Questions`.
+- Date handling is deterministic: use a provided `review_date`; otherwise omit the date instead of using current time.
+- Network/random/time dependencies are forbidden. Templates must render offline and scoring must follow the fixed verdict algorithm below.
+- If a Markdown review packet is produced or checked, validate it with `scripts/validate_user_representative_review.py`.
+
 ---
 
-## When to Use
+## When to Activate
 
 - Reviewing deliverables for clarity before stakeholder presentation
 - Evaluating cognitive load and readability of technical documents
@@ -107,24 +122,31 @@ Examples:
 - Tables > 5 rows have "key insight" callout above?
 - **Threshold:** >= 7 to pass
 
-### 3. Accessibility / Scannability (0-10)
+### 3. Scannability / Accessibility (0-10)
 - Can reader get 80% of value in 20% of reading time?
 - Key findings highlighted (callout boxes, bold, color)?
 - TL;DR or executive summary per section?
 - Navigation works (TOC, section links, back-to-top)?
 - **Threshold:** >= 7 to pass
 
-### 4. Adoption Risks (list)
-- What could prevent stakeholders from acting on this document?
-- Implicit assumptions about reader's technical level?
-- Is the call to action clear and specific?
-- Could any section create confusion or resistance?
+### 4. Adoption Readiness (0-10)
+- Is the next action specific, owned, and sequenced?
+- Are resistance points visible before the ask?
+- Are prerequisites, dependencies, and handoffs explicit?
+- **Threshold:** >= 7 to pass
 
-### 5. Detected Biases (list)
-- **Technical bias:** assuming reader knows X technology
-- **Organizational bias:** assuming reader has Y authority
-- **Cultural bias:** metaphors/references not universally understood
-- **Optimism bias:** underplaying risks or overstating benefits
+### 5. Bias Exposure (0-10)
+- Technical bias: assuming reader knows a technology or method.
+- Organizational bias: assuming reader has authority or context.
+- Cultural bias: using references that are not universal.
+- Optimism bias: underplaying risks or overstating benefits.
+- **Threshold:** >= 7 to pass
+
+### Verdict Algorithm
+
+- `PASS`: all five scores are >= 7.
+- `CONDITIONAL`: one or two scores are 5-6 and no score is < 5.
+- `FAIL`: any score is < 5, or three or more scores are 5-6.
 
 ## Micro-Adjustment Types
 
@@ -140,13 +162,19 @@ Propose specific changes, not vague feedback:
 
 ## Delivery Structure
 
-For each deliverable reviewed, produce:
+For each deliverable reviewed, produce this exact packet:
 
-1. **Scorecard** — 5 dimensions x 0-10 score with evidence for each
-2. **Top 5 Micro-Adjustments** — prioritized by impact on readability
-3. **Adoption Risk Assessment** — what could prevent action
-4. **Bias Flags** — detected biases with suggested fixes
-5. **Verdict** — PASS (all scores >= 7) / CONDITIONAL (1-2 scores 5-6, fixable) / FAIL (any score < 5, rework needed)
+1. `# User Representative Review`
+2. `## Audience`
+3. `## Evidence Map`
+4. `## 5-Dimension Scorecard`
+5. `## Top 5 Micro-Adjustments`
+6. `## Adoption Risks`
+7. `## Bias Flags`
+8. `## Verdict`
+9. `## Validation`
+
+The packet must include five score rows, five micro-adjustments, adoption risks, bias flags, a verdict derived from the algorithm, and open questions for missing facts.
 
 ## Assumptions & Limits
 
@@ -184,6 +212,9 @@ Before delivering user representative output:
 - [ ] Bias flags include both the bias and the fix
 - [ ] Verdict is clear with explicit next steps
 - [ ] Reader persona(s) identified and review tailored accordingly
+- [ ] Evidence tags use only `[DOC]`, `[CONFIG]`, `[INFERENCIA]`, or `[SUPUESTO]`
+- [ ] No unsupported numeric targets, dates, adoption probabilities, owners, or personas are invented
+- [ ] Markdown packets pass `python3 -B scripts/validate_user_representative_review.py --contract scripts/fixtures/review-contract.json --review <packet> --expect pass`
 
 ## Cross-References
 

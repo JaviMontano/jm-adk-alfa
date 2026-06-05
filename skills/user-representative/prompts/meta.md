@@ -12,6 +12,7 @@ Activate this skill when the user request matches:
 - Direct invocation: `/user-representative`
 
 ## Skill Routing
-1. Load SKILL.md → read `## When to Activate` section
-2. If match → activate lead agent: `user-representative-lead`
-3. If orchestrated → defer to orchestrating skill
+1. Load SKILL.md and read `## When to Activate`.
+2. If the request asks for review from the user or stakeholder perspective, activate lead agent: `user-representative-lead`.
+3. If the request asks to write requirements, UX copy, UI design, or technical validation, route to the adjacent skill instead.
+4. If orchestrated, defer to the orchestrating skill.
