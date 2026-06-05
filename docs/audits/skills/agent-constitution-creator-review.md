@@ -82,6 +82,8 @@ python3 -B scripts/validate-skill-scripts.py --strict --run-checks
 bash scripts/doc-factory/check.sh
 bash scripts/adapt.sh all
 git diff --quiet -- AGENTS.md GEMINI.md .agent/rules/GEMINI.md .agent/ARCHITECTURE.md .agent/skills_index.json .github/copilot-instructions.md .cursorrules .windsurfrules
+bash scripts/generate-pristino-index.sh
+git diff --quiet -- PRISTINO-INDEX.md
 git diff --check
 ```
 
@@ -96,6 +98,7 @@ Results:
 - [CÓDIGO] `skills_with_scripts=32 warnings=0 errors=0`
 - [CÓDIGO] `OK: doc-factory deterministic smoke check passed`
 - [CÓDIGO] Runtime adapters refreshed after CI exposed stale `.agent/skills_index.json` output.
+- [CÓDIGO] `PRISTINO-INDEX.md` regenerated after CI exposed stale generated index output.
 - [CÓDIGO] `git diff --check` produced no output
 
 ## Decision
