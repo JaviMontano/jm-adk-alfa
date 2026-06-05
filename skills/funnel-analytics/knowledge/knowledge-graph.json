@@ -1,75 +1,93 @@
 {
   "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-28",
   "skill": "funnel-analytics",
   "nodes": [
     {
       "id": "funnel-analytics",
       "type": "skill",
-      "label": "funnel-analytics"
+      "label": "Funnel Analytics"
     },
     {
-      "id": "funnel-analytics:inputs",
+      "id": "funnel-analytics:event-taxonomy",
       "type": "contract",
-      "label": "Expected inputs"
+      "label": "Event taxonomy"
     },
     {
-      "id": "funnel-analytics:outputs",
+      "id": "funnel-analytics:denominator",
       "type": "contract",
-      "label": "Expected outputs"
+      "label": "Denominator contract"
     },
     {
-      "id": "funnel-analytics:quality",
-      "type": "gate",
-      "label": "Quality criteria"
-    },
-    {
-      "id": "funnel-analytics:ontology",
-      "type": "ontology",
-      "label": "Domain: general"
-    },
-    {
-      "id": "funnel-analytics:evidence",
-      "type": "gate",
-      "label": "Evidence / provenance requirements"
-    },
-    {
-      "id": "funnel-analytics:antipattern",
+      "id": "funnel-analytics:identity",
       "type": "risk",
-      "label": "Canonical anti-pattern to avoid"
+      "label": "Identity stitching ambiguity"
+    },
+    {
+      "id": "funnel-analytics:drop-off",
+      "type": "analysis",
+      "label": "Drop-off analysis"
+    },
+    {
+      "id": "funnel-analytics:instrumentation",
+      "type": "gate",
+      "label": "Instrumentation quality"
+    },
+    {
+      "id": "funnel-analytics:segment-risk",
+      "type": "risk",
+      "label": "Segment mix risk"
+    },
+    {
+      "id": "funnel-analytics:experiment",
+      "type": "output",
+      "label": "Experiment-ready hypothesis"
+    },
+    {
+      "id": "funnel-analytics:privacy",
+      "type": "gate",
+      "label": "Privacy-safe analytics"
     }
   ],
   "edges": [
     {
       "from": "funnel-analytics",
-      "to": "funnel-analytics:inputs",
+      "to": "funnel-analytics:event-taxonomy",
       "type": "requires"
     },
     {
       "from": "funnel-analytics",
-      "to": "funnel-analytics:outputs",
+      "to": "funnel-analytics:denominator",
+      "type": "requires"
+    },
+    {
+      "from": "funnel-analytics",
+      "to": "funnel-analytics:identity",
+      "type": "guards_against"
+    },
+    {
+      "from": "funnel-analytics",
+      "to": "funnel-analytics:drop-off",
       "type": "produces"
     },
     {
       "from": "funnel-analytics",
-      "to": "funnel-analytics:quality",
+      "to": "funnel-analytics:instrumentation",
       "type": "validated_by"
     },
     {
       "from": "funnel-analytics",
-      "to": "funnel-analytics:ontology",
-      "type": "classified_as"
-    },
-    {
-      "from": "funnel-analytics",
-      "to": "funnel-analytics:evidence",
-      "type": "validated_by"
-    },
-    {
-      "from": "funnel-analytics",
-      "to": "funnel-analytics:antipattern",
+      "to": "funnel-analytics:segment-risk",
       "type": "guards_against"
+    },
+    {
+      "from": "funnel-analytics:drop-off",
+      "to": "funnel-analytics:experiment",
+      "type": "informs"
+    },
+    {
+      "from": "funnel-analytics",
+      "to": "funnel-analytics:privacy",
+      "type": "validated_by"
     }
   ]
 }

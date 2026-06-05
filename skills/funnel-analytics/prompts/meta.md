@@ -5,25 +5,25 @@ version: 2.0.0
 description: "Evaluate and improve the Funnel Analytics skill."
 ---
 
-# Funnel Analytics — Self-Improvement
+# Funnel Analytics - Self-Improvement
 
 ## Evaluate
 
-1. Is `knowledge/body-of-knowledge.md` current? New standards, deprecated practices?
-2. Are the 4 sub-agents (lead, support, guardian, specialist) covering all perspectives?
-3. Are templates producing useful deliverables? Test with a real scenario.
-4. What edge cases have been encountered that aren't documented?
-5. Are there new insights from `insights/` that apply to this skill?
-6. Has the related skill landscape changed? New cross-references needed?
+1. Does `knowledge/body-of-knowledge.md` still reflect current funnel-analysis evidence rules?
+2. Do the four sub-agents cover event taxonomy, denominators, identity stitching, privacy, and experiment readiness?
+3. Do templates force source, unit, window, denominator, and `not verified` gaps?
+4. Which real edge cases exposed weak eval coverage?
+5. Are there new analytics, experimentation, or privacy constraints to add?
+6. Has the related skill landscape changed?
 
 ## Improve
 
-1. Update body of knowledge with new findings (tag with `[DOC]`)
+1. Update body of knowledge with new findings and evidence tags
 2. Add prompt variations for newly discovered use cases
-3. Refine quality criteria based on real-world feedback
+3. Refine quality criteria based on real funnel-analysis failures
 4. Update knowledge graph: new concepts, new `[[wikilinks]]`
 5. Test templates with edge-case inputs to verify robustness
-6. Propose Constitution amendment if recurring ambiguity found (XVII)
+6. Add eval cases before marking a new behavior complete
 
 ## Trigger
 
