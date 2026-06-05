@@ -1,0 +1,46 @@
+{
+  "schema": 1,
+  "skill": "benchmark-skill",
+  "assets": [
+    {
+      "path": "assets/benchmark-rubric.json",
+      "type": "rubric",
+      "purpose": "Machine-readable 10-dimension scoring rubric and evidence policy.",
+      "used_by": [
+        "SKILL.md",
+        "scripts/validate_benchmark_report.py",
+        "evals/evals.json"
+      ]
+    },
+    {
+      "path": "assets/gate-policy.json",
+      "type": "policy",
+      "purpose": "Thirteen benchmark gates used to detect quality changes and regressions.",
+      "used_by": [
+        "SKILL.md",
+        "scripts/validate_benchmark_report.py",
+        "evals/evals.json"
+      ]
+    },
+    {
+      "path": "assets/net-assessment-policy.json",
+      "type": "policy",
+      "purpose": "Exact rules for IMPROVED, LATERAL, REGRESSED, TRANSFORMED, IDENTICAL, and GAP-TO-STANDARD labels.",
+      "used_by": [
+        "SKILL.md",
+        "scripts/validate_benchmark_report.py",
+        "references/comparison-framework.md"
+      ]
+    },
+    {
+      "path": "assets/report-contract.json",
+      "type": "schema",
+      "purpose": "Required report sections, evidence fields, and blocked vague phrases.",
+      "used_by": [
+        "SKILL.md",
+        "templates/output.md",
+        "scripts/validate_benchmark_report.py"
+      ]
+    }
+  ]
+}

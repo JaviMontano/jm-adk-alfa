@@ -1,0 +1,61 @@
+{
+  "schema": 1,
+  "skill": "benchmark-skill",
+  "labels": [
+    "IMPROVED",
+    "LATERAL",
+    "REGRESSED",
+    "TRANSFORMED",
+    "IDENTICAL",
+    "GAP-TO-STANDARD"
+  ],
+  "rules": {
+    "IMPROVED": {
+      "mode": "version",
+      "min_average_delta": 0.5,
+      "max_gate_regressions": 0,
+      "max_large_rubric_regressions": 0,
+      "large_regression_threshold": -2,
+      "min_improved_dimensions": 2
+    },
+    "LATERAL": {
+      "mode": "version",
+      "absolute_average_delta_lt": 0.5,
+      "max_gate_regressions": 0,
+      "requires_tradeoff_or_same_gate_change": true
+    },
+    "REGRESSED": {
+      "mode": "version",
+      "average_delta_lte": -0.5,
+      "gate_regressions_gte": 1,
+      "large_rubric_regressions_gte": 2
+    },
+    "TRANSFORMED": {
+      "mode": "version",
+      "requires_transformed_flag": true,
+      "direct_delta_is_misleading": true
+    },
+    "IDENTICAL": {
+      "mode": "version",
+      "average_delta": 0,
+      "gate_changes": 0,
+      "inventory_delta": 0
+    },
+    "GAP-TO-STANDARD": {
+      "mode": "against-standard",
+      "regressions_allowed": false,
+      "state_b_is_theoretical_standard": true
+    }
+  },
+  "required_summary_fields": [
+    "mode",
+    "net_assessment",
+    "average_a",
+    "average_b",
+    "average_delta",
+    "dimensions_improved",
+    "dimensions_regressed",
+    "gate_regressions",
+    "transformed"
+  ]
+}

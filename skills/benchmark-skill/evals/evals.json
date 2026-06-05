@@ -1,9 +1,208 @@
-[
-  {"id": "benchmark-skill-happy-path", "type": "happy_path", "input": "Run benchmark skill on this project", "expected_behavior": "Skill activates and produces the expected benchmark skill output following the defined process", "tags": ["basic", "activation"]},
-  {"id": "benchmark-skill-explicit-trigger", "type": "happy_path", "input": "Apply benchmark skill analysis", "expected_behavior": "Skill recognizes the trigger phrase and executes the benchmark skill workflow", "tags": ["trigger", "recognition"]},
-  {"id": "benchmark-skill-with-context", "type": "happy_path", "input": "Apply benchmark skill to analyze the current codebase with detailed output", "expected_behavior": "Skill produces comprehensive benchmark skill analysis with evidence-tagged findings", "tags": ["detailed", "comprehensive"]},
-  {"id": "benchmark-skill-minimal-input", "type": "happy_path", "input": "Quick benchmark skill", "expected_behavior": "Skill activates with minimal input, applies reasonable defaults", "tags": ["minimal", "defaults"]},
-  {"id": "benchmark-skill-false-positive", "type": "false_positive", "input": "What is the weather forecast for tomorrow?", "expected_behavior": "Skill should NOT activate — this input has no relation to benchmark skill", "tags": ["false_positive", "should-not-activate"]},
-  {"id": "benchmark-skill-edge-empty-input", "type": "edge_case", "input": "Run benchmark skill but I have no files or documentation yet", "expected_behavior": "Skill handles gracefully — requests minimum viable input or produces gap analysis", "tags": ["edge_case", "empty-input", "boundary"]},
-  {"id": "benchmark-skill-edge-conflicting", "type": "edge_case", "input": "Apply benchmark skill but requirements contradict each other", "expected_behavior": "Skill detects contradiction, flags with [OPEN] tag, proposes resolution", "tags": ["edge_case", "conflict", "corner"]}
-]
+{
+  "schema": 1,
+  "skill": "benchmark-skill",
+  "cases": [
+    {
+      "id": "improved-before-after-report",
+      "type": "happy_path",
+      "input": "Benchmark ./skills/example-skill-before against ./skills/example-skill-after and prove whether the hardening improved quality.",
+      "expected_activation": true,
+      "expected_outputs": [
+        "inventory table",
+        "10-dimension scorecard",
+        "13 gate changes",
+        "IMPROVED net assessment",
+        "regressions table",
+        "top improvements table"
+      ],
+      "forbidden_outputs": [
+        "looks better",
+        "good job",
+        "probably improved"
+      ],
+      "expected_checks": [
+        "assets",
+        "deterministic_scripts",
+        "quality_criteria",
+        "net_assessment",
+        "score_deltas"
+      ]
+    },
+    {
+      "id": "regressed-gate-report",
+      "type": "negative_contract",
+      "input": "Benchmark a before state that passed eval cases against an after state whose eval gate now fails.",
+      "expected_activation": true,
+      "expected_outputs": [
+        "REGRESSED net assessment",
+        "gate regression",
+        "root cause",
+        "do not merge recommendation"
+      ],
+      "forbidden_outputs": [
+        "IMPROVED",
+        "no issues found"
+      ],
+      "expected_checks": [
+        "quality_criteria",
+        "gate_regression",
+        "net_assessment"
+      ]
+    },
+    {
+      "id": "lateral-tradeoff-report",
+      "type": "edge_case",
+      "input": "Benchmark a version that adds edge cases but reduces density by one point with no gate changes.",
+      "expected_activation": true,
+      "expected_outputs": [
+        "LATERAL net assessment",
+        "trade-off analysis",
+        "depth improvement",
+        "density decrease"
+      ],
+      "forbidden_outputs": [
+        "REGRESSED only because density dropped",
+        "IMPROVED without trade-off evidence"
+      ],
+      "expected_checks": [
+        "tradeoffs",
+        "quality_criteria",
+        "score_deltas"
+      ]
+    },
+    {
+      "id": "transformed-restructure-report",
+      "type": "edge_case",
+      "input": "Compare a single-file skill against a multi-file rewrite with assets, scripts, agents, and evals.",
+      "expected_activation": true,
+      "expected_outputs": [
+        "TRANSFORMED net assessment",
+        "parallel scorecards",
+        "direct delta caveat"
+      ],
+      "forbidden_outputs": [
+        "claims direct score delta is conclusive",
+        "hides transformed caveat"
+      ],
+      "expected_checks": [
+        "transformed_state",
+        "quality_criteria",
+        "caveats"
+      ]
+    },
+    {
+      "id": "identical-states-report",
+      "type": "edge_case",
+      "input": "Benchmark the same skill directory against itself.",
+      "expected_activation": true,
+      "expected_outputs": [
+        "IDENTICAL net assessment",
+        "zero average delta",
+        "path verification warning"
+      ],
+      "forbidden_outputs": [
+        "fabricates improvement",
+        "fabricates regression"
+      ],
+      "expected_checks": [
+        "net_assessment",
+        "score_deltas",
+        "quality_criteria"
+      ]
+    },
+    {
+      "id": "against-standard-gap-report",
+      "type": "happy_path",
+      "input": "Benchmark ./skills/example-skill --against-standard.",
+      "expected_activation": true,
+      "expected_outputs": [
+        "GAP-TO-STANDARD net assessment",
+        "gap table",
+        "prioritized gaps",
+        "no regressions"
+      ],
+      "forbidden_outputs": [
+        "REGRESSED",
+        "State B is a real skill path"
+      ],
+      "expected_checks": [
+        "assets",
+        "quality_criteria",
+        "against_standard"
+      ]
+    },
+    {
+      "id": "missing-baseline-blocks",
+      "type": "edge_case",
+      "input": "Benchmark this hardened skill, but no before path or --against-standard mode is provided.",
+      "expected_activation": true,
+      "expected_outputs": [
+        "asks for State A baseline",
+        "does not score improvement",
+        "offers --against-standard alternative"
+      ],
+      "forbidden_outputs": [
+        "IMPROVED",
+        "numeric before score"
+      ],
+      "expected_checks": [
+        "missing_baseline",
+        "quality_criteria"
+      ]
+    },
+    {
+      "id": "missing-skill-md-blocks",
+      "type": "negative_contract",
+      "input": "Benchmark /tmp/not-a-skill against ./skills/example-skill-after.",
+      "expected_activation": true,
+      "expected_outputs": [
+        "blocks because SKILL.md is missing",
+        "asks for valid skill directory"
+      ],
+      "forbidden_outputs": [
+        "scores /tmp/not-a-skill",
+        "assumes a missing SKILL.md"
+      ],
+      "expected_checks": [
+        "quality_criteria",
+        "input_validation"
+      ]
+    },
+    {
+      "id": "false-positive-certify-request",
+      "type": "false_positive",
+      "input": "Certify this skill and tell me if it is ready to ship.",
+      "expected_activation": false,
+      "expected_outputs": [
+        "routes to certification skill",
+        "does not produce benchmark delta"
+      ],
+      "forbidden_outputs": [
+        "dimension delta table",
+        "before after benchmark"
+      ],
+      "expected_checks": [
+        "activation_policy",
+        "false_positive"
+      ]
+    },
+    {
+      "id": "false-positive-product-comparison",
+      "type": "false_positive",
+      "input": "Compare two CRM vendors and tell me which one is better.",
+      "expected_activation": false,
+      "expected_outputs": [
+        "does not activate benchmark-skill",
+        "asks for appropriate product comparison context if needed"
+      ],
+      "forbidden_outputs": [
+        "skill quality scorecard",
+        "SKILL.md inventory"
+      ],
+      "expected_checks": [
+        "activation_policy",
+        "false_positive"
+      ]
+    }
+  ]
+}

@@ -1,17 +1,30 @@
 ---
 name: benchmark-skill-meta
 type: meta
-version: 2.0.0
-description: "Meta-prompt for Benchmark Skill skill routing."
+version: 2.1.0
+description: "Route only skill-state benchmark requests to benchmark-skill."
 ---
 
-# Benchmark Skill — Meta Prompt
+# Benchmark Skill Meta Prompt
 
-Activate this skill when the user request matches:
-- Trigger phrases from SKILL.md description
-- Direct invocation: `/benchmark-skill`
+Activate for skill-state comparisons, before/after proof, gap-to-standard
+benchmarking, and regression analysis of a skill.
 
-## Skill Routing
-1. Load SKILL.md → read `## When to Activate` section
-2. If match → activate lead agent: `benchmark-skill-lead`
-3. If orchestrated → defer to orchestrating skill
+Do not activate for:
+
+- certification/readiness verdicts
+- one-state issue discovery
+- generic code review
+- product/vendor comparison
+- runtime behavior testing without skill-state evidence
+
+Routing output:
+
+```json
+{
+  "expected_activation": true,
+  "reason": "[EXPLICIT] request asks for before/after skill benchmark",
+  "mode": "version",
+  "missing_inputs": []
+}
+```

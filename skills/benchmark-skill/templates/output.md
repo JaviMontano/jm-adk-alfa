@@ -1,28 +1,41 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: benchmark-skill
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
+# Benchmark Report: {{SKILL_NAME}}
 
-# Benchmark Skill Output
+**Compared:** {{STATE_A}} vs {{STATE_B}}
+**Mode:** {{MODE}}
+**Net Assessment:** {{NET_ASSESSMENT}}
 
 ## Summary
 
-{summary}
+{{SUMMARY_TABLE}}
 
-## Evidence
+## Inventory
 
-{evidence}
+{{INVENTORY_TABLE}}
 
-## Result
+## Dimension-by-Dimension
 
-{result}
+{{DIMENSION_SCORE_TABLE}}
 
-## Validation
+## Gate Changes
 
-{validation}
+{{GATE_CHANGE_TABLE}}
 
-## Risks and Limits
+## Regressions
 
-{risks}
+{{REGRESSIONS_TABLE}}
+
+## Top Improvements
+
+{{TOP_IMPROVEMENTS_TABLE}}
+
+## Trade-Offs
+
+{{TRADEOFFS_TABLE}}
+
+## Recommendation
+
+{{RECOMMENDATION}}
+
+## Caveats
+
+{{CAVEATS}}

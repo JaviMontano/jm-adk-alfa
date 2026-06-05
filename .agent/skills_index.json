@@ -327,7 +327,7 @@
     "id": "benchmark-skill",
     "path": "skills/benchmark-skill",
     "name": "Benchmark Skill",
-    "description": "Quantified comparison between two skill states. Measures improvement dimension by dimension, identifies regressions, and produces evidence that changes actually made things better — or exposes that th"
+    "description": "Compares two skill states or one skill against a benchmark standard using a deterministic rubric, inventory deltas, gate changes, regression detection, trade-off analysis, and net assessment. Use when the user asks to compare skill versions, benchmark a skill, measure skill improvement, diff skill states, prove before/after quality, or evaluate a skill against a quality standard."
   },
   {
     "id": "benchmarking-analysis",

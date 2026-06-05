@@ -1,0 +1,94 @@
+{
+  "schema": 1,
+  "skill": "benchmark-skill",
+  "score_bounds": {
+    "min": 1,
+    "max": 10
+  },
+  "variance_policy": {
+    "same_session_required": true,
+    "unchanged_evidence_reuses_state_a_score": true,
+    "subjective_dimensions": [
+      "density",
+      "simplicity",
+      "value"
+    ],
+    "allowed_subjective_variance": 1
+  },
+  "dimensions": [
+    {
+      "id": 1,
+      "key": "foundation",
+      "label": "Foundation",
+      "evidence_required": "Purpose, activation, assumptions, and constraints are explicit."
+    },
+    {
+      "id": 2,
+      "key": "truthfulness",
+      "label": "Truthfulness",
+      "evidence_required": "Claims are evidence-tagged and unsupported claims are marked open."
+    },
+    {
+      "id": 3,
+      "key": "quality",
+      "label": "Quality",
+      "evidence_required": "Output contract, validation gate, and examples are specific."
+    },
+    {
+      "id": 4,
+      "key": "density",
+      "label": "Density",
+      "evidence_required": "Instructions avoid removable filler while preserving needed context."
+    },
+    {
+      "id": 5,
+      "key": "simplicity",
+      "label": "Simplicity",
+      "evidence_required": "Concepts are introduced once with minimal duplicate explanation."
+    },
+    {
+      "id": 6,
+      "key": "clarity",
+      "label": "Clarity",
+      "evidence_required": "Terms, activation, and outputs are unambiguous."
+    },
+    {
+      "id": 7,
+      "key": "precision",
+      "label": "Precision",
+      "evidence_required": "Thresholds, counts, schemas, and failure signals are measurable."
+    },
+    {
+      "id": 8,
+      "key": "depth",
+      "label": "Depth",
+      "evidence_required": "Edge cases, failure modes, and trade-offs are covered."
+    },
+    {
+      "id": 9,
+      "key": "coherence",
+      "label": "Coherence",
+      "evidence_required": "Files, prompts, agents, evals, examples, and templates align."
+    },
+    {
+      "id": 10,
+      "key": "value",
+      "label": "Value",
+      "evidence_required": "Every major section changes skill behavior or validation."
+    }
+  ],
+  "score_entry_fields": [
+    "dimension",
+    "state_a",
+    "state_b",
+    "delta",
+    "direction",
+    "evidence"
+  ],
+  "directions": [
+    "Better",
+    "Worse",
+    "Same",
+    "Gap"
+  ]
+}
