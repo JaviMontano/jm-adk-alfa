@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "skill": "certify-skill",
+  "phases": [
+    {
+      "id": "structural",
+      "required_count": 9,
+      "checks": ["S1", "S2", "S3", "S4", "S5", "S6", "S7", "S8", "S9"],
+      "abort_on_fail": ["S1"],
+      "deterministic": true
+    },
+    {
+      "id": "content",
+      "required_count": 18,
+      "checks": ["F1", "F2", "F3", "F4", "B1", "B2", "B3", "B4", "B5", "B6", "B7", "B8", "B9", "W1", "W2", "W3", "W4", "W5"],
+      "deterministic": false
+    },
+    {
+      "id": "systemic",
+      "required_count": 5,
+      "checks": ["C1", "C2", "C3", "C4", "C5"],
+      "single_file_status": "not_applicable",
+      "deterministic": false
+    },
+    {
+      "id": "moat",
+      "required_count": 5,
+      "checks": ["M1", "M2", "M3", "M4", "M5"],
+      "skip_unless": "CERTIFIED",
+      "deterministic": true
+    }
+  ],
+  "rubric_dimensions": [
+    "Foundation",
+    "Truthfulness",
+    "Quality",
+    "Density",
+    "Simplicity",
+    "Clarity",
+    "Precision",
+    "Depth",
+    "Coherence",
+    "Value"
+  ]
+}

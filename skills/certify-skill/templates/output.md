@@ -1,28 +1,59 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: certify-skill
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
-
 # Certify Skill Output
 
 ## Summary
 
-{summary}
+| Field | Value |
+|---|---|
+| Skill | `{skill_name}` |
+| Certification | `{MOAT|CERTIFIED|CONDITIONAL|BLOCKED}` |
+| Overall Score | `{average}/10` |
+| Structural | `{pass}/9 pass` |
+| Content | `{pass}/18 pass` |
+| Systemic | `{pass|fail|N/A}` |
+| MOAT | `{pass|fail|skipped}` |
 
-## Evidence
+## Rubric Scores
 
-{evidence}
+| # | Criterion | Score | Evidence |
+|---:|---|---:|---|
+| 1 | Foundation | `{score}` | `{tagged evidence}` |
+| ... | ... | ... | ... |
+| 10 | Value | `{score}` | `{tagged evidence}` |
 
-## Result
+## Structural Checks
 
-{result}
+| # | Check | Result | Evidence |
+|---|---|---|---|
+| S1-S9 | `{description}` | `{PASS|FAIL}` | `{command or file evidence}` |
 
-## Validation
+## Content Checks
 
-{validation}
+| # | Check | Result | Evidence |
+|---|---|---|---|
+| F/B/W | `{description}` | `{PASS|FAIL}` | `{tagged evidence}` |
 
-## Risks and Limits
+## Systemic Checks
 
-{risks}
+| # | Check | Result | Evidence |
+|---|---|---|---|
+| C1-C5 | `{description}` | `{PASS|FAIL|N/A}` | `{tagged evidence}` |
+
+## MOAT Checks
+
+| # | Check | Result | Evidence |
+|---|---|---|---|
+| M1-M5 | `{description}` | `{PASS|FAIL|SKIPPED}` | `{tagged evidence}` |
+
+## Blockers
+
+| Issue | Fix Required | Estimated Effort |
+|---|---|---|
+| `{specific issue}` | `{specific action}` | `{bounded estimate}` |
+
+## Recommendation
+
+{formula-derived recommendation}
+
+## Caveats
+
+{explicit caveats}

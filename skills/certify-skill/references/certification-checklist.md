@@ -16,7 +16,7 @@ No judgment required. Run commands, record results.
 | S6 | All referenced files exist | Grep file paths in SKILL.md → `ls` each | All resolve | BLOCKER — broken progressive disclosure |
 | S7 | No orphan files | `ls -R` all files → check each appears in SKILL.md | Zero orphans | WARNING — wasted context/space |
 | S8 | evals.json valid (if exists) | `python3 -m json.tool {path}/evals/evals.json` | Valid JSON | WARNING — eval loop won't work |
-| S9 | No old path patterns | `grep -r 'reference/\|tools/' {path}` | Zero matches | WARNING — stale references from rename |
+| S9 | No old path patterns | `grep -r 'reference/\|tools/' {path}` | Zero matches for singular `reference/` or old `tools/` paths; plural `references/` is valid | WARNING — stale references from rename |
 
 **Phase 1 abort rule:** If S1 fails, report BLOCKED with the single issue "SKILL.md not found at {path}" and skip all remaining phases. Everything depends on SKILL.md existing.
 
@@ -95,7 +95,7 @@ A skill that passes CERTIFIED must also pass these 5 checks to achieve MOAT stat
 | # | Check | Command | Pass Criteria | Severity if Fail |
 |---|-------|---------|---------------|-----------------|
 | M1 | evals/evals.json exists | `ls {path}/evals/evals.json` | File exists | BLOCKER — no automated quality assurance |
-| M1b | >= 5 distinct evals | Parse evals.json, count entries | >= 5 entries with distinct `name` fields | BLOCKER — insufficient coverage |
+| M1b | >= 5 distinct evals | Parse evals.json, count entries | >= 5 entries with distinct `id` or `name` fields | BLOCKER — insufficient coverage |
 | M2 | False-positive eval | Grep for `"false_positive"` or eval named `*false*` or `*negative*` | >= 1 match | WARNING — no guard against over-triggering |
 | M2b | Edge-case eval | Grep for `"edge_case"` or eval named `*edge*` or `*boundary*` | >= 1 match | WARNING — no edge coverage |
 | M3 | References substantive | For each file in references/: `wc -l` and `grep -c 'pending\|pending\|template'` | All files >= 20 lines AND zero pending/pending/template | BLOCKER — broken progressive disclosure |

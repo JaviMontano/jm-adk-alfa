@@ -1,9 +1,116 @@
-[
-  {"id": "certify-skill-happy-path", "type": "happy_path", "input": "Run certify skill on this project", "expected_behavior": "Skill activates and produces the expected certify skill output following the defined process", "tags": ["basic", "activation"]},
-  {"id": "certify-skill-explicit-trigger", "type": "happy_path", "input": "Apply certify skill analysis", "expected_behavior": "Skill recognizes the trigger phrase and executes the certify skill workflow", "tags": ["trigger", "recognition"]},
-  {"id": "certify-skill-with-context", "type": "happy_path", "input": "Apply certify skill to analyze the current codebase with detailed output", "expected_behavior": "Skill produces comprehensive certify skill analysis with evidence-tagged findings", "tags": ["detailed", "comprehensive"]},
-  {"id": "certify-skill-minimal-input", "type": "happy_path", "input": "Quick certify skill", "expected_behavior": "Skill activates with minimal input, applies reasonable defaults", "tags": ["minimal", "defaults"]},
-  {"id": "certify-skill-false-positive", "type": "false_positive", "input": "What is the weather forecast for tomorrow?", "expected_behavior": "Skill should NOT activate — this input has no relation to certify skill", "tags": ["false_positive", "should-not-activate"]},
-  {"id": "certify-skill-edge-empty-input", "type": "edge_case", "input": "Run certify skill but I have no files or documentation yet", "expected_behavior": "Skill handles gracefully — requests minimum viable input or produces gap analysis", "tags": ["edge_case", "empty-input", "boundary"]},
-  {"id": "certify-skill-edge-conflicting", "type": "edge_case", "input": "Apply certify skill but requirements contradict each other", "expected_behavior": "Skill detects contradiction, flags with [OPEN] tag, proposes resolution", "tags": ["edge_case", "conflict", "corner"]}
-]
+{
+  "schema": 1,
+  "skill": "certify-skill",
+  "cases": [
+    {
+      "id": "moat-golden-path",
+      "name": "MOAT golden path",
+      "type": "happy_path",
+      "input": "Certify a fully complete multi-file skill with all structural, content, systemic, rubric, and MOAT checks passing.",
+      "fixture": "scripts/fixtures/moat-report.json",
+      "expected_activation": true,
+      "expected_certification": "MOAT",
+      "expected_outputs": ["summary", "rubric_scores", "structural_checks", "moat_checks", "recommendation"],
+      "forbidden_outputs": ["probably certified", "skip evidence"],
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "activation_policy", "report_schema", "certification_formula", "rubric_scores", "structural_checks", "moat_checks", "evidence_tags"]
+    },
+    {
+      "id": "certified-not-moat",
+      "name": "Certified but not MOAT",
+      "type": "happy_path",
+      "input": "Certify a skill that passes phases 1-4 but fails one MOAT upgrade check.",
+      "expected_activation": true,
+      "expected_certification": "CERTIFIED",
+      "expected_outputs": ["upgrade note", "MOAT missing check", "no blockers"],
+      "forbidden_outputs": ["MOAT", "blocked"],
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "certification_formula", "moat_checks", "report_schema"]
+    },
+    {
+      "id": "conditional-one-structural-fail",
+      "name": "Conditional structural failure",
+      "type": "edge_case",
+      "input": "Certify a skill with one non-S1 structural failure and rubric average 8.0.",
+      "fixture": "scripts/fixtures/conditional-report.json",
+      "expected_activation": true,
+      "expected_certification": "CONDITIONAL",
+      "expected_outputs": ["blockers", "fix_required", "estimated_effort"],
+      "forbidden_outputs": ["ship it", "CERTIFIED"],
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "structural_checks", "certification_formula", "blocker_rows", "evidence_tags"]
+    },
+    {
+      "id": "conditional-one-rubric-six",
+      "name": "Conditional rubric six",
+      "type": "edge_case",
+      "input": "Certify a skill with one rubric dimension scored 6 and average >= 8.0.",
+      "expected_activation": true,
+      "expected_certification": "CONDITIONAL",
+      "expected_outputs": ["score < 7 fix", "conditional recommendation"],
+      "forbidden_outputs": ["CERTIFIED"],
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "rubric_scores", "certification_formula", "blocker_rows"]
+    },
+    {
+      "id": "blocked-missing-skill-md",
+      "name": "Blocked missing SKILL",
+      "type": "negative",
+      "input": "Certify a directory that has no SKILL.md.",
+      "expected_activation": true,
+      "expected_certification": "BLOCKED",
+      "expected_outputs": ["S1 fail", "abort after structural check", "no rubric score invented"],
+      "forbidden_outputs": ["CONDITIONAL", "CERTIFIED"],
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "structural_checks", "certification_formula", "blocking_policy"]
+    },
+    {
+      "id": "blocked-invalid-frontmatter",
+      "name": "Blocked invalid frontmatter",
+      "type": "negative",
+      "input": "Certify a skill whose YAML frontmatter cannot parse.",
+      "expected_activation": true,
+      "expected_certification": "BLOCKED",
+      "expected_outputs": ["frontmatter blocker", "specific fix"],
+      "forbidden_outputs": ["ship it"],
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "structural_checks", "blocker_rows", "evidence_tags"]
+    },
+    {
+      "id": "blocked-rubric-under-six",
+      "name": "Blocked rubric under six",
+      "type": "negative",
+      "input": "Certify a skill with a rubric dimension below 6.",
+      "fixture": "scripts/fixtures/invalid-false-certified-report.json",
+      "expected_activation": true,
+      "expected_certification": "BLOCKED",
+      "expected_outputs": ["rubric under six", "block recommendation"],
+      "forbidden_outputs": ["CERTIFIED", "ship anyway"],
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "rubric_scores", "certification_formula", "blocking_policy"]
+    },
+    {
+      "id": "threshold-average-8-vs-7-9",
+      "name": "Threshold 8.0 versus 7.9",
+      "type": "edge_case",
+      "input": "Compare two certification reports where one averages 8.0 and the other averages 7.9.",
+      "expected_activation": true,
+      "expected_outputs": ["8.0 can certify", "7.9 is conditional", "formula explanation"],
+      "forbidden_outputs": ["round 7.9 to 8"],
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "certification_formula", "rubric_scores", "report_schema"]
+    },
+    {
+      "id": "single-file-systemic-na",
+      "name": "Single file systemic N/A",
+      "type": "edge_case",
+      "input": "Certify a single-file skill with no references, scripts, or templates.",
+      "expected_activation": true,
+      "expected_outputs": ["C1-C5 N/A", "no systemic penalty", "formula still applied"],
+      "forbidden_outputs": ["fail coherence for no files"],
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "systemic_checks", "certification_formula", "report_schema"]
+    },
+    {
+      "id": "false-positive-non-skill-certify",
+      "name": "False positive non-skill certification",
+      "type": "false_positive",
+      "input": "Certify my employment letter and make it official.",
+      "expected_activation": false,
+      "expected_outputs": ["route away from skill certification"],
+      "forbidden_outputs": ["structural_checks", "rubric_scores", "certification report"],
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "activation_policy"]
+    }
+  ]
+}

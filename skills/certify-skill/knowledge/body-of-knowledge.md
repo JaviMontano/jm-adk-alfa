@@ -1,16 +1,33 @@
 # Certify Skill — Body of Knowledge
 
 ## Canon
-Key standards, references, and best practices for Certify Skill.
+
+`certify-skill` is the final read-only quality gate for a skill directory.
+Certification is formula-derived from local assets and the certification
+checklist, not assigned by feel. [EXPLICIT]
+
+Canonical local assets:
+
+- `assets/certification-phases.json`
+- `assets/certification-level-policy.json`
+- `assets/report-contract.json`
+- `assets/evidence-policy.json`
+- `references/certification-checklist.md`
 
 ## Quality Metrics
+
 | Metric | Target | How to Measure |
 |--------|--------|---------------|
-| Accuracy | >= 90% | Correct outputs / total |
-| Evidence coverage | >= 80% | Claims tagged [EXPLICIT]/[INFERRED]/[OPEN] |
-| Constitution compliance | 100% | Principles respected |
-| Validation Gate pass | 100% | All checklist items satisfied |
+| Structural coverage | 9/9 | S1-S9 rows present |
+| Content coverage | 18/18 | F/B/W rows present |
+| Rubric coverage | 10/10 | Every dimension has score and evidence |
+| Formula accuracy | 100% | Level matches level policy |
+| False-pass prevention | 100% | Negative fixtures fail validation |
 
-## References
-- See `references/` folder in canonical skill for detailed references
-- Industry standards and best practices for this domain
+## Anti-Patterns
+
+- Assigning CERTIFIED because the skill "looks good."
+- Skipping evidence in quick mode.
+- Penalizing single-file skills for systemic checks that are N/A.
+- Treating 7.9 as 8.0.
+- Claiming MOAT while any M-check is skipped or failed.

@@ -1,75 +1,74 @@
 {
   "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-28",
   "skill": "certify-skill",
+  "version": "1.0.1",
   "nodes": [
     {
       "id": "certify-skill",
       "type": "skill",
-      "label": "certify-skill"
+      "label": "Read-only skill certification gate"
     },
     {
-      "id": "certify-skill:inputs",
+      "id": "certify-skill:phases",
+      "type": "asset",
+      "label": "S/F/B/W/C/M check inventory"
+    },
+    {
+      "id": "certify-skill:level-policy",
+      "type": "policy",
+      "label": "Certification formulas"
+    },
+    {
+      "id": "certify-skill:report-contract",
       "type": "contract",
-      "label": "Expected inputs"
+      "label": "Certification report schema"
     },
     {
-      "id": "certify-skill:outputs",
-      "type": "contract",
-      "label": "Expected outputs"
+      "id": "certify-skill:rubric",
+      "type": "rubric",
+      "label": "10-dimension score table"
     },
     {
-      "id": "certify-skill:quality",
-      "type": "gate",
-      "label": "Quality criteria"
-    },
-    {
-      "id": "certify-skill:ontology",
-      "type": "ontology",
-      "label": "Domain: general"
-    },
-    {
-      "id": "certify-skill:evidence",
-      "type": "gate",
-      "label": "Evidence / provenance requirements"
-    },
-    {
-      "id": "certify-skill:antipattern",
+      "id": "certify-skill:false-pass",
       "type": "risk",
-      "label": "Canonical anti-pattern to avoid"
+      "label": "Formula-violating certification"
+    },
+    {
+      "id": "certify-skill:validator",
+      "type": "script",
+      "label": "validate_certification_report.py"
     }
   ],
   "edges": [
     {
       "from": "certify-skill",
-      "to": "certify-skill:inputs",
+      "to": "certify-skill:phases",
       "type": "requires"
     },
     {
       "from": "certify-skill",
-      "to": "certify-skill:outputs",
+      "to": "certify-skill:level-policy",
+      "type": "uses"
+    },
+    {
+      "from": "certify-skill",
+      "to": "certify-skill:report-contract",
       "type": "produces"
     },
     {
-      "from": "certify-skill",
-      "to": "certify-skill:quality",
-      "type": "validated_by"
+      "from": "certify-skill:rubric",
+      "to": "certify-skill:level-policy",
+      "type": "feeds"
     },
     {
-      "from": "certify-skill",
-      "to": "certify-skill:ontology",
-      "type": "classified_as"
-    },
-    {
-      "from": "certify-skill",
-      "to": "certify-skill:evidence",
-      "type": "validated_by"
-    },
-    {
-      "from": "certify-skill",
-      "to": "certify-skill:antipattern",
+      "from": "certify-skill:level-policy",
+      "to": "certify-skill:false-pass",
       "type": "guards_against"
+    },
+    {
+      "from": "certify-skill",
+      "to": "certify-skill:validator",
+      "type": "validated_by"
     }
   ]
 }

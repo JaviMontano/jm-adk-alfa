@@ -1,6 +1,6 @@
 ---
 name: certify-skill
-version: 1.0.0
+version: 1.0.1
 description: 
   This skill should be used when the user asks to "certify a skill",
   "validate this skill", "is this skill ready", "check skill quality",
@@ -28,6 +28,23 @@ Final quality gate for Claude Code skills. Runs every check and produces a certi
 
 Part of the Skill Quality Suite: x-ray-skill → surgeon-skill → **certify-skill** (+ trigger-skill, benchmark-skill, assembly-skill). Each skill is standalone. Use assembly-skill to run the full pipeline in one command. [EXPLICIT]
 
+## Deterministic Assets
+
+Use these local assets before producing a certification report. [EXPLICIT]
+
+| Path | Use |
+|---|---|
+| `assets/certification-phases.json` | Canonical S/F/B/W/C/M check inventory and rubric dimensions |
+| `assets/certification-level-policy.json` | Exact MOAT/CERTIFIED/CONDITIONAL/BLOCKED formulas |
+| `assets/report-contract.json` | Required report sections, fields, statuses, and blocked phrases |
+| `assets/evidence-policy.json` | Accepted evidence tags and evidence requirements |
+| `assets/activation-policy.json` | Activation and false-positive routing rules |
+| `scripts/validate_certification_report.py` | Offline JSON certification report validator |
+| `scripts/check.sh` | Deterministic positive and negative fixture check |
+
+The validator reads only explicit local JSON files. It does not call the
+network, current time, model providers, MCP tools, or random sources. [EXPLICIT]
+
 ## Difference from x-ray-skill
 
 x-ray-skill produces a diagnostic for exploration ("what's the state of this skill?"). certify-skill produces a verdict for decision-making ("can I ship this?"). The checks overlap, but the output differs:
@@ -48,6 +65,14 @@ x-ray-skill produces a diagnostic for exploration ("what's the state of this ski
 
 Parse the argument as the path to a skill directory containing SKILL.md. [EXPLICIT]
 
+## When To Activate
+
+Activate when the user asks to certify, validate, grade, or quality-gate a
+skill directory or explicit skill artifact. [EXPLICIT]
+
+Do not activate for certificate documents, employment certification, legal
+certification, or generic quality review without a skill directory. [EXPLICIT]
+
 ## The Certification Process
 
 Read `references/certification-checklist.md` for the complete checklist with verification methods and the report template. [EXPLICIT]
@@ -60,11 +85,15 @@ Verify the skill's file structure mechanically. Structural failures block all fu
 ls {path}/SKILL.md                                      # S1: exists?
 wc -l {path}/SKILL.md                                   # S2: under 500 lines?
 # Parse YAML frontmatter between --- markers             # S3-S5
-grep -oP '`[^`]*\.(md|py|json|html)`' {path}/SKILL.md   # S6: grep paths → ls each
+python3 -c 'import pathlib,re,sys; print("\n".join(re.findall(r"`([^`]+\\.(?:md|py|json|html))`", pathlib.Path(sys.argv[1]).read_text())))' {path}/SKILL.md  # S6
 ls -R {path}/ | grep -v SKILL.md                         # S7: list all files → check each referenced
 python3 -m json.tool {path}/evals/evals.json 2>/dev/null # S8: valid JSON?
-grep -r 'references/\|tools/' {path}                      # S9: no old paths?
+grep -r 'reference/\|tools/' {path}                       # S9: no old singular reference/ or tools/ paths?
 ```
+
+If no extractor script is available in the target runtime, parse Markdown code
+spans with a portable Python one-liner or manual file inspection; do not use
+`grep -P`, because not every runtime supports it. [EXPLICIT]
 
 **Abort condition:** If S1 fails (no SKILL.md), report BLOCKED immediately. No further phases.
 
@@ -123,7 +152,7 @@ Skip for single-file skills — report N/A. For multi-file skills, run 5 checks:
 
 ### Phase 4: Quality Rubric (10 dimensions)
 
-Score each dimension 1-10 using the detailed rubric in `references/certification-checklist.md` (which references x-ray-skill's `quality-rubric.md` for full scoring guides when available). [EXPLICIT]
+Score each dimension 1-10 using the detailed rubric in `references/certification-checklist.md`; if an adjacent `quality-rubric.md` exists in the active workspace, it may be used as a supplemental guide, but it is not required for this skill to certify. [EXPLICIT]
 
 For each dimension, provide:
 1. **Numeric score** (1-10)
@@ -158,6 +187,17 @@ Use the Certification Report Template from `references/certification-checklist.m
 | **BLOCKED** | Any dim < 6, or 3+ structural failures, or no SKILL.md | "Run `/surgeon-skill {path}`. {N} foundational issues." |
 
 **Certification is deterministic for structural checks and MOAT M-checks, judgment-based for rubric.** If two certifications of the same unchanged skill produce different verdicts, the structural and MOAT results should be identical — only rubric scores may vary by 1 point on subjective dimensions (density, simplicity, value).
+
+When a JSON report is available, run:
+
+```bash
+python3 -B skills/certify-skill/scripts/validate_certification_report.py \
+  --phases skills/certify-skill/assets/certification-phases.json \
+  --level-policy skills/certify-skill/assets/certification-level-policy.json \
+  --contract skills/certify-skill/assets/report-contract.json \
+  --evidence skills/certify-skill/assets/evidence-policy.json \
+  --report <certification-report.json>
+```
 
 ## Assumptions & Limits
 
