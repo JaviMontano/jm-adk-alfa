@@ -1,9 +1,126 @@
-[
-  {"id": "prompt-creator-happy-path", "type": "happy_path", "input": "Run prompt creator on this project", "expected_behavior": "Skill activates and produces the expected prompt creator output following the defined process", "tags": ["basic", "activation"]},
-  {"id": "prompt-creator-explicit-trigger", "type": "happy_path", "input": "Apply prompt creator analysis", "expected_behavior": "Skill recognizes the trigger phrase and executes the prompt creator workflow", "tags": ["trigger", "recognition"]},
-  {"id": "prompt-creator-with-context", "type": "happy_path", "input": "Apply prompt creator to analyze the current codebase with detailed output", "expected_behavior": "Skill produces comprehensive prompt creator analysis with evidence-tagged findings", "tags": ["detailed", "comprehensive"]},
-  {"id": "prompt-creator-minimal-input", "type": "happy_path", "input": "Quick prompt creator", "expected_behavior": "Skill activates with minimal input, applies reasonable defaults", "tags": ["minimal", "defaults"]},
-  {"id": "prompt-creator-false-positive", "type": "false_positive", "input": "What is the weather forecast for tomorrow?", "expected_behavior": "Skill should NOT activate — this input has no relation to prompt creator", "tags": ["false_positive", "should-not-activate"]},
-  {"id": "prompt-creator-edge-empty-input", "type": "edge_case", "input": "Run prompt creator but I have no files or documentation yet", "expected_behavior": "Skill handles gracefully — requests minimum viable input or produces gap analysis", "tags": ["edge_case", "empty-input", "boundary"]},
-  {"id": "prompt-creator-edge-conflicting", "type": "edge_case", "input": "Apply prompt creator but requirements contradict each other", "expected_behavior": "Skill detects contradiction, flags with [OPEN] tag, proposes resolution", "tags": ["edge_case", "conflict", "corner"]}
-]
+{
+  "schema": 1,
+  "skill": "prompt-creator",
+  "cases": [
+    {
+      "id": "prompt-creator-meta-prompt-one-aspect",
+      "type": "happy_path",
+      "input": "Create a meta_prompt for agent `data-analyst` that only governs evidence tagging. Source file: agents/data-analyst/agent.md.",
+      "expected_activation": true,
+      "expected_behavior": "Writes or returns a meta_prompt with exactly one behavioral aspect, Framework and Constraints sections, required frontmatter, descriptive placeholders, and no downstream analysis.",
+      "must_include": ["meta_prompt", "Framework", "Constraints", "validationStatus", "prompt-contract-checklist"],
+      "must_not_include": ["committee_deliberation", "run the analysis"],
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "frontmatter_contract", "type_specific_rules", "evidence"]
+    },
+    {
+      "id": "prompt-creator-system-user-pair",
+      "type": "happy_path",
+      "input": "Generate a system_user_pair for the `support-triage` agent for one scenario: classify inbound support tickets by severity.",
+      "expected_activation": true,
+      "expected_behavior": "Creates one scenario template with System and User sections, bounded inputs, output contract, and validation gate.",
+      "must_include": ["system_user_pair", "## System", "## User", "one scenario"],
+      "must_not_include": ["multiple unrelated scenarios", "{{x}}"],
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "frontmatter_contract", "type_specific_rules"]
+    },
+    {
+      "id": "prompt-creator-handoff-pass-omit",
+      "type": "happy_path",
+      "input": "Write a handoff_prompt from `sales-intake` to `customer-onboarding` that passes state/completed steps/pending decision and omits hidden reasoning/chat history.",
+      "expected_activation": true,
+      "expected_behavior": "Creates a handoff prompt with Context to Pass, Context to Omit, Success Criteria, target agent, and downstream boundary.",
+      "must_include": ["handoff_prompt", "Context to Pass", "Context to Omit", "Success Criteria", "Downstream Boundary"],
+      "must_not_include": ["entire conversation", "hidden reasoning to pass"],
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "frontmatter_contract", "type_specific_rules"]
+    },
+    {
+      "id": "prompt-creator-committee-deliberation-independent",
+      "type": "happy_path",
+      "input": "Build a committee_deliberation prompt for architecture review with independent first-pass scoring before agents see each other's answers.",
+      "expected_activation": true,
+      "expected_behavior": "Creates deliberation prompt requiring independent evaluation first, weighted rubric, structured comparison, and no peer answer leakage before first pass.",
+      "must_include": ["committee_deliberation", "Independent Evaluation", "Rubric", "weighted"],
+      "must_not_include": ["read other agents first", "premature consensus"],
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "type_specific_rules"]
+    },
+    {
+      "id": "prompt-creator-committee-synthesis-conflicts",
+      "type": "happy_path",
+      "input": "Create a committee_synthesis prompt that merges three reviewer responses with redundancy removal, conflict resolution, and confidence weighting.",
+      "expected_activation": true,
+      "expected_behavior": "Creates synthesis prompt with redundancy removal, conflict resolution, confidence weighting, minority view trace, and validation gate.",
+      "must_include": ["committee_synthesis", "Redundancy Removal", "Conflict Resolution", "Confidence Weighting"],
+      "must_not_include": ["simple summary only", "ignore dissent"],
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "type_specific_rules"]
+    },
+    {
+      "id": "prompt-creator-validation-severity",
+      "type": "happy_path",
+      "input": "Generate a validation_prompt for a generated PR description. It must classify findings as critical, major, or minor and produce actionable feedback.",
+      "expected_activation": true,
+      "expected_behavior": "Creates validation prompt with severity levels, actionable finding format, originating DoD reference, and failure handling.",
+      "must_include": ["validation_prompt", "critical", "major", "minor", "actionable"],
+      "must_not_include": ["could be better", "severity optional"],
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "type_specific_rules"]
+    },
+    {
+      "id": "prompt-creator-fallback-escalation",
+      "type": "happy_path",
+      "input": "Make a fallback_prompt for a report-generation agent when PDF export fails. Preserve source markdown and explain degradation to the user.",
+      "expected_activation": true,
+      "expected_behavior": "Creates fallback prompt with trigger conditions, preservation priorities, user communication, escalation path, output contract, and downstream boundary.",
+      "must_include": ["fallback_prompt", "Trigger Conditions", "Preservation Priorities", "User Communication", "Escalation Path"],
+      "must_not_include": ["silent fallback", "discard source markdown"],
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "type_specific_rules"]
+    },
+    {
+      "id": "prompt-creator-redirect-agent-system",
+      "type": "routing",
+      "input": "Create an agent_system_prompt / full constitution for a new finance reviewer agent.",
+      "expected_activation": true,
+      "expected_behavior": "Redirects to agent-constitution-creator instead of generating a full constitution here.",
+      "must_include": ["redirect", "agent-constitution-creator", "agent_system_prompt"],
+      "must_not_include": ["full agent constitution generated"],
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "routing"]
+    },
+    {
+      "id": "prompt-creator-redirect-workflow-step",
+      "type": "routing",
+      "input": "Create a workflow_step_prompt for step 3 of a YAML workflow definition.",
+      "expected_activation": true,
+      "expected_behavior": "Redirects to workflow-creator because workflow step prompts belong inside workflow definitions.",
+      "must_include": ["redirect", "workflow-creator", "workflow_step_prompt"],
+      "must_not_include": ["inline workflow step generated by prompt-creator"],
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "routing"]
+    },
+    {
+      "id": "prompt-creator-missing-agent-source",
+      "type": "edge_case",
+      "input": "Write a handoff_prompt for `unknown-agent`, but no agent file or explicit source context is available.",
+      "expected_activation": true,
+      "expected_behavior": "Returns ask or missing_source_agent gap packet instead of inventing agent identity, constraints, or tools.",
+      "must_include": ["missing_source_agent", "ask", "coverage_gap"],
+      "must_not_include": ["invented agent.md", "fabricated tool"],
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "no_invention"]
+    },
+    {
+      "id": "prompt-creator-duplicate-path",
+      "type": "edge_case",
+      "input": "Create prompts/handoff.md for `customer-onboarding`, but that exact prompt path already exists and the user did not ask to overwrite.",
+      "expected_activation": true,
+      "expected_behavior": "Blocks overwrite, reports duplicate path, and asks whether to update, rename, or abort.",
+      "must_include": ["duplicate", "ask", "overwrite"],
+      "must_not_include": ["silent overwrite"],
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "file_path_policy"]
+    },
+    {
+      "id": "prompt-creator-false-positive-weather",
+      "type": "false_positive",
+      "input": "What is the weather forecast tomorrow?",
+      "expected_activation": false,
+      "expected_behavior": "Does not activate prompt-creator; no prompt artifact is produced.",
+      "must_include": ["no activation"],
+      "must_not_include": ["prompt artifact", "handoff_prompt"],
+      "expected_checks": ["quality_criteria"]
+    }
+  ]
+}

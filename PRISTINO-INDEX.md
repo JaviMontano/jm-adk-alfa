@@ -698,7 +698,7 @@
 | 424 | `project-charter` | — |
 | 425 | `project-program-management` | — |
 | 426 | `prompt-chaining-design` | Descomponer tareas grandes en pase local tipado y pase de integracion sobre resu |
-| 427 | `prompt-creator` | [EXPLICIT] |
+| 427 | `prompt-creator` | Generates deterministic prompt files for agentic ecosystems using the canonical  |
 | 428 | `prompt-engineering` | — |
 | 429 | `prompt-forge` | — |
 | 430 | `prompting-and-meta-prompting` | Transform intentions into durable prompts, meta-prompts, acceptance criteria, an |

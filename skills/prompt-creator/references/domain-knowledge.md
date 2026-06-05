@@ -1,35 +1,38 @@
-# Domain Knowledge — prompt creator
+# Domain Knowledge - prompt creator
 
 ## Overview
 
-This reference provides foundational knowledge for the prompt creator skill. [EXPLICIT]
+This reference provides foundational knowledge for deterministic prompt artifact generation. [EXPLICIT]
 
 ## Key Concepts
 
 | Concept | Definition | Relevance |
 |---------|-----------|-----------|
-| Primary domain | The core domain that prompt creator operates within | Direct input to skill execution [EXPLICIT] |
-| Quality criteria | Standards that output must meet | Validation gate alignment [EXPLICIT] |
-| Evidence taxonomy | [EXPLICIT]/[INFERRED]/[OPEN] classification | Required for all factual claims [EXPLICIT] |
+| Prompt artifact | Reusable markdown prompt file with frontmatter, sections, placeholders, and validation gate | Direct output of the skill [EXPLICIT] |
+| Prompt type matrix | Canonical list of generated and redirected prompt types | Prevents arbitrary prompt categories [EXPLICIT] |
+| Source agent | Agent file or explicit user-provided source that grounds the prompt | Prevents invented identity and authority [EXPLICIT] |
+| Evidence taxonomy | [CÓDIGO]/[CONFIG]/[INFERENCIA]/[SUPUESTO] classification | Required for review and validation claims [EXPLICIT] |
 
 ## Best Practices
 
-1. Always start with evidence gathering before analysis [EXPLICIT]
-2. Tag every factual claim with appropriate evidence marker [EXPLICIT]
-3. Separate observations from inferences explicitly [EXPLICIT]
-4. Document assumptions that could invalidate conclusions [EXPLICIT]
-5. Provide actionable recommendations with priority levels [EXPLICIT]
+1. Always gather source agent evidence before writing. [EXPLICIT]
+2. Return `ask` or `coverage_gap` when a required source is missing. [EXPLICIT]
+3. Use descriptive snake_case placeholders. [EXPLICIT]
+4. Separate generated prompt content from validation evidence. [EXPLICIT]
+5. Validate generated artifacts with `scripts/validate_prompt_artifact.py` when available. [EXPLICIT]
 
 ## Anti-Patterns
 
 | Anti-Pattern | Why It Fails | Better Alternative |
 |-------------|-------------|-------------------|
-| Untaged claims | Readers cannot assess confidence | Tag with [EXPLICIT]/[INFERRED]/[OPEN] |
-| Generic output | Fails to address specific context | Adapt to project-specific inputs |
-| Missing edge cases | Breaks on non-standard inputs | Document handling for edge scenarios |
+| Invented agent identity | Prompt grants authority that does not exist | Require source file or gap packet |
+| Generic placeholders | Orchestrator cannot bind values reliably | Use descriptive snake_case placeholders |
+| Context explosion | Handoffs leak hidden reasoning or irrelevant history | Split pass vs omit sections |
+| Committee convergence | Agents lose independent judgment | Require independent first-pass evaluation |
+| Severity-free validation | Feedback cannot be triaged | Use critical/major/minor levels |
 
 ## Integration Points
 
-- This skill may be invoked by orchestrator skills in the pipeline [EXPLICIT]
-- Output format follows MetodologIA markdown conventions [EXPLICIT]
-- Evidence tags enable downstream quality validation [EXPLICIT]
+- This skill may be invoked by orchestrator skills in the pipeline. [EXPLICIT]
+- Prompt artifacts may be consumed by downstream agents or workflow definitions. [EXPLICIT]
+- Script validation provides deterministic regression coverage. [EXPLICIT]

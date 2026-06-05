@@ -1,0 +1,26 @@
+{
+  "skill": "prompt-creator",
+  "assets": [
+    {
+      "path": "assets/prompt-contract-checklist.md",
+      "type": "checklist",
+      "purpose": "Reusable deterministic gate for generated prompt files, including sources, frontmatter, placeholders, sections, and failure handling.",
+      "used_by": [
+        "SKILL.md",
+        "templates/output.md",
+        "scripts/validate_prompt_artifact.py"
+      ]
+    },
+    {
+      "path": "assets/prompt-type-matrix.json",
+      "type": "matrix",
+      "purpose": "Canonical prompt type matrix covering handled types, redirects, required sections, and type-specific validation checks.",
+      "used_by": [
+        "SKILL.md",
+        "scripts/validate_prompt_artifact.py",
+        "evals/evals.json"
+      ]
+    }
+  ]
+}
+

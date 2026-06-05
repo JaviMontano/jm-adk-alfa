@@ -1,10 +1,16 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: prompt-creator
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
-
 # Example Input
 
-Use `prompt-creator` to produce a concise deliverable for a realistic project request.
+Create a deterministic handoff prompt for the `customer-onboarding` agent.
+
+Sources available:
+
+- `agents/customer-onboarding/agent.md`
+- Existing prompts: none under `agents/customer-onboarding/prompts/`
+
+Requirements:
+
+- Source agent: `sales-intake`
+- Target agent: `customer-onboarding`
+- The handoff must pass task state, completed steps, and pending decision.
+- The handoff must omit hidden reasoning, irrelevant chat history, and failed attempts without reusable evidence.
+- The prompt must not execute the onboarding task.

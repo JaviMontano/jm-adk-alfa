@@ -1,0 +1,4 @@
+{
+  "name": "invalid generic placeholder",
+  "artifact": "---\ntype: \"meta_prompt\"\nowningAgent: \"analysis-agent\"\nsourceAgentMd: \"agents/analysis-agent/agent.md\"\nversion: \"1.0.0\"\ncreatedBy: \"prompt-creator\"\nvalidationStatus: \"validated\"\n---\n\n# Reasoning Meta Prompt\n\n## Purpose\nGuide {{x}}.\n\n## Inputs\n- {{var}}\n\n## Framework\n1. Inspect evidence.\n2. Report gaps.\n\n## Constraints\n- Do not invent source facts.\n\n## Output Contract\nReturn evidence and decision.\n\n## Validation Gate\n- Placeholders are descriptive.\n\n## Failure Handling\nAsk for missing source facts.\n\n## Downstream Boundary\nThis prompt guides reasoning only.\n"
+}
