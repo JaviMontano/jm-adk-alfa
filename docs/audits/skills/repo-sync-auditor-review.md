@@ -49,3 +49,10 @@ skills_with_scripts=1 warnings=0 errors=0
 - [INFERENCE] The script diagnoses ledger drift but does not update the ledger.
 - [INFERENCE] Exact GitHub PR merge state still requires `gh pr view` or API
   evidence when local refs are not enough.
+
+## Ledger Completion 2026-06-05
+
+- [CODE] `bash skills/repo-sync-auditor/scripts/check.sh` passed in `codex/complete-script-backed-ledger-20260605` validation.
+- [CODE] `python3 -B scripts/validate-skill-dod.py --skill repo-sync-auditor` passed with `skill=repo-sync-auditor dod=pass errors=0`.
+- [CODE] `python3 -B scripts/validate-skill-scripts.py --strict --run-checks --skill repo-sync-auditor` passed with `skills_with_scripts=1 warnings=0 errors=0`.
+- [CONFIG] `docs/audits/skill-review-ledger.csv` now records `repo-sync-auditor` as `dod-complete`.

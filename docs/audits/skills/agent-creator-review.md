@@ -61,3 +61,10 @@ PASS
   still requires explicit user-approved write action.
 - [INFERENCE] The compiler validates the agent definition contract; the parent
   orchestrator remains responsible for deciding when to spawn it.
+
+## Ledger Completion 2026-06-05
+
+- [CODE] `bash skills/agent-creator/scripts/check.sh` passed in `codex/complete-script-backed-ledger-20260605` validation.
+- [CODE] `python3 -B scripts/validate-skill-dod.py --skill agent-creator` passed with `skill=agent-creator dod=pass errors=0`.
+- [CODE] `python3 -B scripts/validate-skill-scripts.py --strict --run-checks --skill agent-creator` passed with `skills_with_scripts=1 warnings=0 errors=0`.
+- [CONFIG] `docs/audits/skill-review-ledger.csv` now records `agent-creator` as `dod-complete`.

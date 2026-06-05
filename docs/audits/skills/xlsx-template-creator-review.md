@@ -31,3 +31,10 @@
 - The compiler creates and validates specifications; it does not render binary `.xlsx` files.
 - Native charts, freeze panes, workbook metadata, and Excel table styles remain renderer responsibilities.
 - Formula validation is policy-based and does not execute workbook formulas in Excel.
+
+## Ledger Completion 2026-06-05
+
+- [CODE] `bash skills/xlsx-template-creator/scripts/check.sh` passed in `codex/complete-script-backed-ledger-20260605` validation.
+- [CODE] `python3 -B scripts/validate-skill-dod.py --skill xlsx-template-creator` passed with `skill=xlsx-template-creator dod=pass errors=0`.
+- [CODE] `python3 -B scripts/validate-skill-scripts.py --strict --run-checks --skill xlsx-template-creator` passed with `skills_with_scripts=1 warnings=0 errors=0`.
+- [CONFIG] `docs/audits/skill-review-ledger.csv` now records `xlsx-template-creator` as `dod-complete`.

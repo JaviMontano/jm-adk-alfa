@@ -31,3 +31,10 @@
 - The compiler evaluates structural quality; it does not prove runtime behavior of the target skill.
 - Large-skill deep review may still require manual sampling after deterministic scoring.
 - The script is read-only and never modifies the audited skill.
+
+## Ledger Completion 2026-06-05
+
+- [CODE] `bash skills/x-ray-skill/scripts/check.sh` passed in `codex/complete-script-backed-ledger-20260605` validation.
+- [CODE] `python3 -B scripts/validate-skill-dod.py --skill x-ray-skill` passed with `skill=x-ray-skill dod=pass errors=0`.
+- [CODE] `python3 -B scripts/validate-skill-scripts.py --strict --run-checks --skill x-ray-skill` passed with `skills_with_scripts=1 warnings=0 errors=0`.
+- [CONFIG] `docs/audits/skill-review-ledger.csv` now records `x-ray-skill` as `dod-complete`.
