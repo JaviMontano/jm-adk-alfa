@@ -1,0 +1,37 @@
+{
+  "schema": 1,
+  "required_input_fields": [
+    "workflow_id",
+    "title",
+    "command",
+    "description",
+    "deliverable",
+    "skills_involved",
+    "agents_coordinated",
+    "phases",
+    "quality_gates",
+    "example_dialogue"
+  ],
+  "phase_required_fields": [
+    "id",
+    "kind",
+    "title",
+    "agents",
+    "inputs",
+    "outputs",
+    "checkpoint"
+  ],
+  "output_sections": [
+    "frontmatter",
+    "phase_map",
+    "checkpoints",
+    "quality_gates",
+    "failure_handling",
+    "example_dialogue",
+    "validation"
+  ],
+  "formats": [
+    "markdown",
+    "json"
+  ]
+}

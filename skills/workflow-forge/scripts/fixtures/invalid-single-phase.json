@@ -1,0 +1,41 @@
+{
+  "workflow_id": "single-phase",
+  "title": "Single Phase Workflow",
+  "command": "/jm:single-phase",
+  "description": "Invalid one-phase workflow.",
+  "deliverable": "invalid output",
+  "skills_involved": [
+    "workflow-forge"
+  ],
+  "agents_coordinated": [
+    "workflow-forge-lead"
+  ],
+  "phases": [
+    {
+      "id": "do-everything",
+      "kind": "clarification",
+      "title": "Do Everything",
+      "agents": [
+        "workflow-forge-lead"
+      ],
+      "inputs": [
+        "request"
+      ],
+      "outputs": [
+        "result"
+      ],
+      "checkpoint": [
+        "result exists"
+      ]
+    }
+  ],
+  "quality_gates": [
+    "frontmatter exists"
+  ],
+  "example_dialogue": [
+    {
+      "user": "Create a single phase workflow.",
+      "assistant": "This should fail validation."
+    }
+  ]
+}

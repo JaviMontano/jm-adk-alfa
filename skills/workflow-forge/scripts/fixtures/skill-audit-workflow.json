@@ -1,0 +1,113 @@
+{
+  "workflow_id": "skill-audit-ready",
+  "title": "Skill Audit Ready Workflow",
+  "command": "/jm:skill-audit-ready",
+  "description": "Review one skill and prepare a granular PR readiness decision.",
+  "deliverable": "skill review report and PR readiness verdict",
+  "skills_involved": [
+    "x-ray-skill",
+    "certify-skill",
+    "workflow-forge"
+  ],
+  "agents_coordinated": [
+    "workflow-forge-lead",
+    "workflow-forge-support",
+    "workflow-forge-guardian"
+  ],
+  "phases": [
+    {
+      "id": "clarify-target",
+      "kind": "clarification",
+      "title": "Clarify Target",
+      "agents": [
+        "workflow-forge-lead"
+      ],
+      "inputs": [
+        "user request",
+        "repo path",
+        "target skill slug"
+      ],
+      "outputs": [
+        "confirmed branch, skill, and write scope"
+      ],
+      "checkpoint": [
+        "target skill and allowed write set are explicit"
+      ]
+    },
+    {
+      "id": "inspect-package",
+      "kind": "execution",
+      "title": "Inspect Package",
+      "agents": [
+        "workflow-forge-support"
+      ],
+      "inputs": [
+        "skill directory",
+        "existing review docs",
+        "validator scripts"
+      ],
+      "outputs": [
+        "gap list with file-backed evidence"
+      ],
+      "checkpoint": [
+        "all core files, assets, scripts, examples, evals, and templates are inspected"
+      ]
+    },
+    {
+      "id": "apply-improvements",
+      "kind": "execution",
+      "title": "Apply Scoped Improvements",
+      "agents": [
+        "workflow-forge-lead",
+        "workflow-forge-support"
+      ],
+      "inputs": [
+        "approved gap list",
+        "target skill files"
+      ],
+      "outputs": [
+        "updated skill package and review document"
+      ],
+      "checkpoint": [
+        "git diff contains only approved skill and review paths"
+      ]
+    },
+    {
+      "id": "verify-readiness",
+      "kind": "verification",
+      "title": "Verify Readiness",
+      "agents": [
+        "workflow-forge-guardian"
+      ],
+      "inputs": [
+        "updated files",
+        "DoD validators",
+        "script validators"
+      ],
+      "outputs": [
+        "PR readiness verdict with validation evidence"
+      ],
+      "checkpoint": [
+        "DoD, script checks, check.sh, and scoped diff checks pass"
+      ]
+    }
+  ],
+  "quality_gates": [
+    "frontmatter includes command, description, skills, and agents",
+    "every phase has agents, inputs, outputs, and checkpoint",
+    "final phase is verification",
+    "ledger remains untouched",
+    "scoped diff check passes"
+  ],
+  "failure_handling": [
+    "if the target skill is missing, switch to the fallback skill or stop",
+    "if a validator fails, report the exact command and failing output",
+    "if unrelated changes appear, leave them untouched and scope validation"
+  ],
+  "example_dialogue": [
+    {
+      "user": "Run /jm:skill-audit-ready for workflow-forge.",
+      "assistant": "I will clarify the target, inspect the package, apply scoped improvements, and verify PR readiness."
+    }
+  ]
+}

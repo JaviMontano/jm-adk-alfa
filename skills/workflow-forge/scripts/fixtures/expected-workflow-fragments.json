@@ -1,0 +1,20 @@
+{
+  "markdown": [
+    "# Skill Audit Ready Workflow",
+    "command: /jm:skill-audit-ready",
+    "## Phase Map",
+    "Clarify Target",
+    "Verify Readiness",
+    "valid: true",
+    "errors: none"
+  ],
+  "json_sections": [
+    "frontmatter",
+    "phase_map",
+    "checkpoints",
+    "quality_gates",
+    "failure_handling",
+    "example_dialogue",
+    "validation"
+  ]
+}

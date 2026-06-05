@@ -1,0 +1,60 @@
+{
+  "workflow_id": "docker-workflow",
+  "title": "Docker Workflow",
+  "command": "/jm:docker-workflow",
+  "description": "Create a workflow that requires Docker for local execution.",
+  "deliverable": "invalid output",
+  "skills_involved": [
+    "workflow-forge"
+  ],
+  "agents_coordinated": [
+    "workflow-forge-lead",
+    "workflow-forge-guardian"
+  ],
+  "phases": [
+    {
+      "id": "clarify",
+      "kind": "clarification",
+      "title": "Clarify",
+      "agents": [
+        "workflow-forge-lead"
+      ],
+      "inputs": [
+        "request"
+      ],
+      "outputs": [
+        "brief"
+      ],
+      "checkpoint": [
+        "brief is explicit"
+      ]
+    },
+    {
+      "id": "verify",
+      "kind": "verification",
+      "title": "Verify",
+      "agents": [
+        "workflow-forge-guardian"
+      ],
+      "inputs": [
+        "workflow"
+      ],
+      "outputs": [
+        "verdict"
+      ],
+      "checkpoint": [
+        "workflow passes validation"
+      ]
+    }
+  ],
+  "quality_gates": [
+    "frontmatter exists",
+    "final phase is verification"
+  ],
+  "example_dialogue": [
+    {
+      "user": "Create a Docker workflow.",
+      "assistant": "This should fail validation."
+    }
+  ]
+}

@@ -848,7 +848,7 @@
 | 574 | `webhook-handling` | — |
 | 575 | `whitepaper-creation` | — |
 | 576 | `workflow-creator` | — |
-| 577 | `workflow-forge` | Creates new workflows (slash commands) following the Antigravity format with pha |
+| 577 | `workflow-forge` | Creates slash-command workflow definitions with phase maps, agent handoffs, veri |
 | 578 | `workflow-orchestration` | — |
 | 579 | `workshop-design` | — |
 | 580 | `workshop-facilitator` | — |
