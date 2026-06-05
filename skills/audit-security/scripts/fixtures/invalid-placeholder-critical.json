@@ -1,0 +1,46 @@
+{
+  "summary": {
+    "target_root": "evals/fixtures/placeholder-secret-plugin",
+    "overall_status": "blocked",
+    "total_findings": 1,
+    "critical_count": 1,
+    "warning_count": 0,
+    "info_count": 0,
+    "categories_executed_count": 6
+  },
+  "categories_executed": [
+    "secret_exposure",
+    "path_security",
+    "hook_injection",
+    "sensitive_files",
+    "script_safety",
+    "external_network"
+  ],
+  "findings": [
+    {
+      "id": "SEC-001",
+      "category": "secret_exposure",
+      "severity": "CRITICAL",
+      "status": "confirmed",
+      "path": "README.md",
+      "line": 4,
+      "pattern": "<YOUR_TOKEN>",
+      "evidence": "[DOC] Placeholder token appears in documentation example.",
+      "remediation": "Do not treat placeholder documentation as a live credential."
+    }
+  ],
+  "false_positive_notes": [],
+  "remediation_plan": [
+    {
+      "finding_id": "SEC-001",
+      "priority": "P0",
+      "action": "Incorrectly rotate a placeholder."
+    }
+  ],
+  "coverage": {
+    "files_scanned": 2,
+    "files_skipped": [],
+    "scan_scope": "plugin root only"
+  },
+  "warnings": []
+}

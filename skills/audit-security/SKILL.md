@@ -1,11 +1,13 @@
 ---
 name: audit-security
-version: 1.0.0
+version: 1.0.1
 author: JM Labs (Javier Montaño)
 description: >
-  Performs a comprehensive security audit on a Claude Code plugin, detecting leaked secrets,
-  unsafe paths, shell injection risks, sensitive files, and insecure scripts. [EXPLICIT]
-  Trigger: audit security, security scan, check for secrets, find vulnerabilities. [EXPLICIT]
+  Performs a deterministic read-only static security audit for plugin artifacts,
+  detecting secret exposure, path security issues, hook injection, sensitive
+  files, script safety problems, and external network risks. [EXPLICIT]
+  Trigger: audit security, security scan, check for secrets, find vulnerabilities,
+  plugin security audit, leaked key scan. [EXPLICIT]
 allowed-tools:
   - Read
   - Glob
@@ -15,105 +17,137 @@ allowed-tools:
 
 # Audit Security
 
-> "Security is not a feature -- it is a property of the entire system."
+Performs a read-only static security audit of plugin artifacts. The output is a
+severity-classified report with exact file evidence, false-positive handling,
+remediation actions, coverage, and validator-backed structure. [EXPLICIT]
 
-Performs a 6-category security scan on a Claude Code plugin: secret patterns, path security, hook command injection, sensitive files, and script safety. Produces a severity-classified report with specific remediation for each finding. [EXPLICIT]
+## Deterministic Assets
 
----
+Use these local files before producing or reviewing a security report:
+
+| Path | Use |
+|---|---|
+| `assets/activation-policy.json` | Activation, clarification, false-positive, and refusal routing |
+| `assets/scan-policy.json` | Six scan categories, severities, statuses, and placeholder policy |
+| `assets/report-contract.json` | Required report sections and fields |
+| `assets/evidence-policy.json` | Evidence and remediation requirements |
+| `references/security-patterns.md` | Human-readable security pattern catalog |
+| `scripts/validate_security_report.py` | Offline JSON report validator |
+| `scripts/check.sh` | Deterministic positive and negative fixture check |
+
+The validator reads only local JSON files. It does not call the network,
+current time, random sources, model providers, or MCP tools. [EXPLICIT]
+
+## When To Activate
+
+Activate when the user asks to audit, scan, review, or check a plugin, skill
+bundle, hook directory, or explicit file list for security issues. [EXPLICIT]
+
+Do not activate for generic cybersecurity advice, code review, factuality
+review, content quality, legal compliance, or non-plugin application security
+unless the user supplies a static plugin/file target. [EXPLICIT]
+
+Refuse requests to exploit, weaponize, exfiltrate, or bypass security controls.
+[EXPLICIT]
+
+If no target path or file list is supplied, ask for `plugin_root_or_file_list`
+instead of inventing a scope. [EXPLICIT]
+
+## Scan Taxonomy
+
+Execute exactly these six categories from `assets/scan-policy.json`:
+
+1. `secret_exposure`
+2. `path_security`
+3. `hook_injection`
+4. `sensitive_files`
+5. `script_safety`
+6. `external_network`
+
+Every report must list all six categories, even when a category has zero
+findings. [EXPLICIT]
+
+## Severity Policy
+
+Use only `CRITICAL`, `WARNING`, and `INFO`.
+
+- `CRITICAL`: live secret exposure, parent-directory traversal in executable
+  context, hook command injection, sensitive credential files, or unvalidated
+  executable downloads.
+- `WARNING`: hardcoded absolute user paths or unsafe script posture that does
+  not directly expose credentials or execute untrusted input.
+- `INFO`: placeholders, documentation-only examples, metadata URLs, or manual
+  review notes.
+
+Placeholder/example secrets such as `<YOUR_TOKEN>`, `${API_KEY}`,
+`sk-REPLACE_ME`, and `AKIAEXAMPLE` must be `INFO` with status `placeholder`,
+not `CRITICAL`. [EXPLICIT]
 
 ## Procedure
 
-1. **Receive target plugin path** -- accept the plugin root directory as input. Confirm the directory exists and contains a `plugin.json` (or `.claude-plugin/plugin.json`) or recognizable plugin structure before proceeding. [EXPLICIT]
+1. Confirm activation with `assets/activation-policy.json`.
+2. Confirm the target root or explicit file list is inside the requested scope.
+3. Execute all six scan categories with static inspection only.
+4. For every finding, record stable ID `SEC-NNN`, category, severity, status,
+   path, line, pattern, evidence, and remediation.
+5. Redact live secrets in prose evidence when needed; preserve enough pattern
+   context for remediation.
+6. Add remediation plan entries for every `CRITICAL` and `WARNING` finding.
+7. Add false-positive notes for placeholders and documentation-only examples.
+8. Report coverage: files scanned, files skipped, and scan scope.
+9. Validate JSON reports with `scripts/validate_security_report.py` when a
+   machine-readable artifact is produced.
 
-2. **Secret pattern detection** -- scan all files for high-risk credential patterns:
-   - API keys: `sk-*`, `AKIA*`, `ghp_*`, `xox[bsp]-*`
-   - Generic secrets: `password\s*=`, `secret\s*=`, `token\s*=` (outside comments)
-   - Private keys: `BEGIN RSA PRIVATE KEY`, `BEGIN EC PRIVATE KEY`, `BEGIN OPENSSH PRIVATE KEY`
-   - `.env` files containing `KEY=`, `SECRET=`, `TOKEN=`, `PASSWORD=`
-   - Classify each match as CRITICAL severity. [EXPLICIT]
+## Output Contract
 
-3. **Path security analysis** -- search for hardcoded or unsafe path usage:
-   - Absolute user paths: `/Users/`, `/home/`, `/opt/`, `C:\`
-   - Path traversal patterns: `../` outside of comments and documentation
-   - Missing `${CLAUDE_PLUGIN_ROOT}` -- flag any path that should be relative but is absolute
-   - Classify hardcoded paths as WARNING, traversal as CRITICAL. [EXPLICIT]
+Markdown output must include:
 
-4. **Hook command security** -- inspect all hook definitions for shell injection risks:
-   - `eval` usage in hook commands
-   - Backtick substitution in hook command strings
-   - Unquoted variable expansion (`$VAR` instead of `"$VAR"`)
-   - Commands piped to `sh`, `bash`, or `exec`
-   - Classify injection vectors as CRITICAL. [EXPLICIT]
+1. `Summary`
+2. `Categories Executed`
+3. `Findings`
+4. `False Positive Notes`
+5. `Remediation Plan`
+6. `Coverage`
+7. `Warnings`
 
-5. **Sensitive file detection** -- glob for files that should not be in a plugin:
-   - `.env`, `.env.*`
-   - `.pem`, `.key`, `.p12`, `.pfx`
-   - `credentials.json`, `service-account.json`
-   - `id_rsa`, `id_ed25519`, `*.pub` (private key pairs)
-   - Classify presence as CRITICAL. [EXPLICIT]
+JSON output must match `assets/report-contract.json`. [EXPLICIT]
 
-6. **Script security** -- evaluate shell scripts in `scripts/` and hooks:
-   - World-writable permissions (mode `o+w`)
-   - Downloads without validation: `curl` or `wget` without checksum or signature verification
-   - Use of `chmod 777`
-   - Classify unsafe scripts as WARNING, unvalidated downloads as CRITICAL. [EXPLICIT]
+## Local Validation
 
-7. **Generate security report** -- compile all findings into a structured list with:
-   - Severity level (CRITICAL / WARNING / INFO)
-   - File path and line number
-   - Pattern matched
-   - Recommended remediation
-   - Summary counts by severity
+Run the skill check:
 
-## Quality Criteria
+```bash
+bash skills/audit-security/scripts/check.sh
+```
 
-- [ ] Every finding includes the exact file path, line number, and matched pattern.
-- [ ] Zero false positives from comments, documentation, or example strings -- context is checked.
-- [ ] All six detection categories are executed; none silently skipped.
-- [ ] The report clearly separates CRITICAL from WARNING from INFO findings.
-- [ ] Remediation advice is specific and actionable (not generic "fix this").
+Validate a JSON report:
+
+```bash
+python3 -B skills/audit-security/scripts/validate_security_report.py \
+  --contract skills/audit-security/assets/report-contract.json \
+  --scan-policy skills/audit-security/assets/scan-policy.json \
+  --evidence-policy skills/audit-security/assets/evidence-policy.json \
+  --report <security-report.json>
+```
+
+## Quality Gate
+
+- All six categories are executed and reported in canonical order.
+- Every finding has exact path, positive line number, pattern, evidence tag, and
+  remediation.
+- Finding IDs are `SEC-NNN`, unique, ascending, and gapless.
+- Severity counts match findings exactly.
+- Placeholder/example secrets are never CRITICAL.
+- CRITICAL and WARNING findings have remediation plan entries.
+- No target files are modified, deleted, quarantined, or executed.
 
 ## Assumptions & Limits
 
-- Read-only. This skill never modifies, deletes, or quarantines files.
-- Pattern-based detection only -- cannot detect secrets that are obfuscated, encrypted, or split across multiple variables.
-- False positive rate on generic patterns (e.g., `password=`) in documentation or example files is mitigated by context checking, but edge cases remain.
-- Does not execute hook commands to test for runtime injection -- only static analysis of command strings.
-- Scoped to the plugin root directory only. Files outside the plugin tree are not scanned even if symlinked into it.
-
-## Good vs Bad
-
-**Bad finding:**
-```
-WARNING: Possible secret found. [EXPLICIT]
-```
-Missing: no file path, no line number, no pattern, no remediation. [EXPLICIT]
-
-**Good finding:**
-```
-CRITICAL | hooks/hooks.json:12 | Pattern: `sk-proj-*` (OpenAI API key) | Remediation: Remove the key, rotate it immediately, and use environment variables instead. [EXPLICIT]
-```
-Includes: severity, exact file and line, matched pattern with classification, specific remediation. [EXPLICIT]
-
-## Anti-Patterns
-
-1. **Grep-and-forget** -- running a single grep for "password" without context filtering, producing dozens of false positives from documentation. [EXPLICIT]
-2. **Severity inflation** -- marking every finding as CRITICAL regardless of actual exploitability. [EXPLICIT]
-3. **Ignoring hook commands** -- only scanning static files while hook commands may execute arbitrary shell code. [EXPLICIT]
-4. **Skipping binary/non-text files** -- failing to detect `.pem` or `.key` files because only text content was searched. [EXPLICIT]
-5. **No traversal check** -- assuming all `../` usage is benign because "it's in a comment" without actually verifying. [EXPLICIT]
-
-## Edge Cases
-
-1. **Plugin with zero scripts** -- skip script security phase gracefully, note "no scripts found" in report rather than erroring. [EXPLICIT]
-2. **Obfuscated secrets** -- base64-encoded credentials or secrets split across multiple lines. Flag suspicious base64 blobs (>40 chars) as INFO for manual review. [EXPLICIT]
-3. **Monorepo with multiple plugins** -- ensure scanning is scoped to the specified plugin root, not the entire repository. [EXPLICIT]
-4. **Template variables** -- patterns like `${API_KEY}` or `<YOUR_TOKEN>` in example files should be classified as INFO, not CRITICAL, since they are placeholders. [EXPLICIT]
-
-## Usage
-
-Example invocations:
-
-- "/audit-security" — Run the full audit security workflow
-- "audit security on this project" — Apply to current context
-
+- Read-only. This skill never modifies, deletes, quarantines, or executes target
+  files. [EXPLICIT]
+- Pattern-based static analysis cannot prove absence of obfuscated or split
+  secrets. [EXPLICIT]
+- Symlink targets outside the supplied root are out of scope and should be
+  reported as skipped rather than followed. [EXPLICIT]
+- This skill reports plugin static security posture; runtime exploitation tests
+  require a separate, explicitly authorized workflow. [EXPLICIT]

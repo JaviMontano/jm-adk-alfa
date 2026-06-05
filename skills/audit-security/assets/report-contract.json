@@ -1,0 +1,42 @@
+{
+  "schema": 1,
+  "skill": "audit-security",
+  "required_sections": [
+    "summary",
+    "categories_executed",
+    "findings",
+    "false_positive_notes",
+    "remediation_plan",
+    "coverage",
+    "warnings"
+  ],
+  "summary_fields": [
+    "target_root",
+    "overall_status",
+    "total_findings",
+    "critical_count",
+    "warning_count",
+    "info_count",
+    "categories_executed_count"
+  ],
+  "finding_fields": [
+    "id",
+    "category",
+    "severity",
+    "status",
+    "path",
+    "line",
+    "pattern",
+    "evidence",
+    "remediation"
+  ],
+  "coverage_fields": ["files_scanned", "files_skipped", "scan_scope"],
+  "remediation_fields": ["finding_id", "priority", "action"],
+  "blocked_phrases": [
+    "probably safe",
+    "looks secure",
+    "no remediation needed",
+    "skip line number",
+    "generic fix"
+  ]
+}

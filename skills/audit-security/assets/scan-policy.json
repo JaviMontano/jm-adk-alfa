@@ -1,0 +1,33 @@
+{
+  "schema": 1,
+  "skill": "audit-security",
+  "categories": [
+    "secret_exposure",
+    "path_security",
+    "hook_injection",
+    "sensitive_files",
+    "script_safety",
+    "external_network"
+  ],
+  "severities": ["CRITICAL", "WARNING", "INFO"],
+  "overall_statuses": ["pass", "blocked", "needs_review"],
+  "finding_statuses": ["confirmed", "placeholder", "informational"],
+  "placeholder_patterns": [
+    "<YOUR_TOKEN>",
+    "<API_KEY>",
+    "${API_KEY}",
+    "${TOKEN}",
+    "sk-REPLACE_ME",
+    "AKIAEXAMPLE"
+  ],
+  "severity_policy": {
+    "secret_exposure": "CRITICAL",
+    "path_traversal": "CRITICAL",
+    "hook_injection": "CRITICAL",
+    "sensitive_files": "CRITICAL",
+    "hardcoded_absolute_path": "WARNING",
+    "unsafe_download": "CRITICAL",
+    "external_url_docs": "INFO",
+    "placeholder_secret": "INFO"
+  }
+}

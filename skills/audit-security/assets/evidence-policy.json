@@ -1,0 +1,12 @@
+{
+  "schema": 1,
+  "skill": "audit-security",
+  "allowed_tags": ["[CODE]", "[CONFIG]", "[DOC]", "[INFERENCE]"],
+  "requirements": [
+    "Every finding must include file path, line number, matched pattern, evidence, and remediation.",
+    "CRITICAL and WARNING findings must have remediation_plan entries.",
+    "Placeholder/example secrets must be INFO with status placeholder, never CRITICAL.",
+    "A clean report must still list all six categories in categories_executed."
+  ],
+  "forbidden_tags": ["[OPEN]", "[ASSUMPTION]"]
+}

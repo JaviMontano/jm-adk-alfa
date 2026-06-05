@@ -1,26 +1,30 @@
 ---
 name: audit-security-primary
 type: execution
-version: 2.0.0
-description: "Execute the Audit Security workflow."
+version: 2.0.1
+description: "Execute the deterministic Audit Security workflow."
 triad:
   lead: "audit-security-lead"
   support: "audit-security-support"
   guardian: "audit-security-guardian"
 ---
 
-# Audit Security — Execute
+# Audit Security Execute
 
 ## Dynamic Parameters
 
-| Parameter | Description | Required | Filled By |
-|-----------|-------------|----------|-----------|
-| `{{task}}` | What to accomplish | Yes | User input |
-| `{{context}}` | Background and constraints | Yes | User or codebase |
-| `{{constraints}}` | Additional rules | No | Guardrails JSON |
+| Parameter | Description | Required |
+|---|---|---|
+| `{{target}}` | Plugin root or explicit file list | Yes |
+| `{{scope}}` | Optional scan boundaries or exclusions | No |
+| `{{format}}` | Markdown or JSON report | No |
 
 ## Execution Steps
-1. Read SKILL.md `## When to Activate` — confirm this skill applies
-2. Read SKILL.md `## Validation Gate` — internalize quality criteria
-3. Execute the skill workflow per SKILL.md sections
-4. Validate output against Validation Gate before delivering
+
+1. Confirm activation with `assets/activation-policy.json`.
+2. Load `assets/scan-policy.json`, `assets/evidence-policy.json`, and `assets/report-contract.json`.
+3. Execute all six static scan categories.
+4. Produce stable `SEC-NNN` findings with path, line, pattern, evidence, and remediation.
+5. Add false-positive notes for placeholders and documentation examples.
+6. Add remediation plan entries for all CRITICAL and WARNING findings.
+7. Validate JSON reports with the local validator when available.

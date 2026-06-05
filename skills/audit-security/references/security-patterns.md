@@ -1,48 +1,55 @@
 # Security Pattern Catalog for Plugin Auditing
 
-> Patterns to scan for when auditing Claude Code plugin security.
-
-## Path Traversal
-
-| Pattern | Where to check | Severity |
-|---------|---------------|----------|
-| `../` in hooks.json | Hook command/script paths | CRITICAL |
-| `../` in shell scripts | Script file references | WARNING |
-| `../` in SKILL.md | Usually documentation examples | INFO (verify context) |
-| Absolute paths `/` in hooks | Hook command fields | WARNING |
+Human-readable mirror of `assets/scan-policy.json`. The JSON asset is the
+source of truth for validators.
 
 ## Secret Exposure
 
-| Pattern | Regex | Context |
-|---------|-------|---------|
-| API keys | `[A-Za-z0-9_-]{20,}` near `key`, `api_key`, `apikey` | Any file |
-| AWS keys | `AKIA[0-9A-Z]{16}` | Any file |
-| Bearer tokens | `Bearer\s+[A-Za-z0-9._-]+` | Any file |
-| Passwords | `password\s*[:=]\s*["'][^"']+["']` | Config files |
-| Private keys | `-----BEGIN.*PRIVATE KEY-----` | Any file |
+| Pattern | Severity | Notes |
+|---|---|---|
+| `sk-*`, `sk-proj-*` | CRITICAL | Redact full value in prose evidence |
+| `AKIA[0-9A-Z]{16}` | CRITICAL | Treat live-looking AWS keys as leaked credentials |
+| `ghp_*`, `xox[bsp]-*` | CRITICAL | Treat GitHub and Slack tokens as leaked credentials |
+| `<YOUR_TOKEN>`, `${API_KEY}`, `sk-REPLACE_ME` | INFO | Placeholder only when context is docs/examples |
+| Private key headers | CRITICAL | Any `BEGIN ... PRIVATE KEY` marker |
 
-## Shell Injection
+## Path Security
 
-| Pattern | Risk | Recommendation |
-|---------|------|----------------|
-| Unquoted heredoc `<< EOF` with variables | Variable content injected into output | Use `<< 'EOF'` + `jq`/`sed` |
-| `eval "$var"` | Arbitrary command execution | Avoid eval; use arrays |
-| Unquoted `$VAR` in commands | Word splitting, glob expansion | Always quote: `"${VAR}"` |
-| Backtick substitution `` `cmd` `` | Harder to nest safely | Use `$(cmd)` instead |
+| Pattern | Severity | Notes |
+|---|---|---|
+| `../` in executable hook/script context | CRITICAL | Parent traversal must be blocked |
+| `/Users/`, `/home/`, `C:\` in hook paths | WARNING | Replace with plugin-root-relative paths |
 
-## Forbidden Agent Fields
+## Hook Injection
 
-| Field | Effect if present |
-|-------|-------------------|
-| `hooks` | Runtime error or silent override |
-| `mcpServers` | Runtime error or silent override |
-| `permissionMode` | Runtime error or silent override |
+| Pattern | Severity | Recommendation |
+|---|---|---|
+| `eval` | CRITICAL | Avoid eval; use arrays or validated arguments |
+| Backticks | CRITICAL | Avoid shell substitution in hook commands |
+| Unquoted `$VAR` in hook command | CRITICAL | Quote variables or pass structured arguments |
+| `curl ... | sh` or `bash` | CRITICAL | Avoid piping remote content to shells |
 
-## External URLs
+## Sensitive Files
+
+| Pattern | Severity |
+|---|---|
+| `.env`, `.env.*` | CRITICAL |
+| `credentials.json`, `service-account.json` | CRITICAL |
+| `*.pem`, `*.key`, `*.p12`, `*.pfx` | CRITICAL |
+| `id_rsa`, `id_ed25519` | CRITICAL |
+
+## Script Safety
+
+| Pattern | Severity | Recommendation |
+|---|---|---|
+| `curl`/`wget` without checksum or signature verification | CRITICAL | Verify checksum or signature |
+| `chmod 777` | WARNING | Use least privilege permissions |
+| World-writable script mode | WARNING | Remove `o+w` permissions |
+
+## External Network
 
 | Context | Severity |
-|---------|----------|
-| URLs in hook commands | CRITICAL (potential exfiltration) |
-| URLs in documentation examples | INFO (verify they're illustrative) |
-| URLs in metadata (author, repo) | INFO (expected) |
-| Badge URLs (shields.io etc.) | INFO (standard practice) |
+|---|---|
+| External URL in executable hook or install script | CRITICAL unless verified and expected |
+| Metadata homepage/repository URL | INFO |
+| Documentation example URL | INFO |
