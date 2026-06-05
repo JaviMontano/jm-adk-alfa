@@ -1,0 +1,61 @@
+{
+  "artifact": {
+    "name": "invalid false pass",
+    "type": "release-packet",
+    "evidence": "[CODE] Fixture intentionally contradicts the contract."
+  },
+  "summary": {
+    "constitution_version": "v6.0.0",
+    "overall_status": "pass",
+    "gate": "G0",
+    "confidence": 0.99,
+    "blocking_findings": 0,
+    "not_verified_count": 0
+  },
+  "principle_matrix": [
+    {
+      "principle_id": 1,
+      "principle_name": "Think First, Act Next",
+      "status": "fail",
+      "severity": "P1",
+      "evidence": "[CODE] Version drift is present.",
+      "missing_evidence": [],
+      "remediation": "",
+      "gate_impact": ["G0"]
+    }
+  ],
+  "gate_impact": [
+    {
+      "gate": "G0",
+      "status": "pass",
+      "blocking": false,
+      "evidence": "[CODE] Fixture incorrectly marks G0 pass."
+    }
+  ],
+  "violations": [
+    {
+      "principle_id": 1,
+      "evidence": "[CODE] P1 violation exists."
+    }
+  ],
+  "missing_evidence": [
+    {
+      "principle_id": "none",
+      "evidence": "[CODE] Fixture claims no missing evidence."
+    }
+  ],
+  "remediation_plan": [
+    {
+      "item": "missing",
+      "action": "[CONFIG] This invalid fixture omits remediation."
+    }
+  ],
+  "decision": {
+    "release_decision": "allow",
+    "reason": "[CODE] Fixture incorrectly allows release.",
+    "next_action": "validator must fail"
+  },
+  "caveats": [
+    "[INFERENCE] This fixture is intentionally invalid."
+  ]
+}

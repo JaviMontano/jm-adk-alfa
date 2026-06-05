@@ -1,0 +1,46 @@
+{
+  "schema": 1,
+  "skill": "constitution-compliance",
+  "assets": [
+    {
+      "path": "assets/constitution-v6-principles.json",
+      "type": "policy",
+      "purpose": "Canonical Constitution v6.0.0 18-principle and G0-G3 gate map.",
+      "used_by": [
+        "SKILL.md",
+        "scripts/validate_constitution_report.py",
+        "evals/evals.json"
+      ]
+    },
+    {
+      "path": "assets/compliance-report-contract.json",
+      "type": "schema",
+      "purpose": "Required report sections, status values, evidence tags, and blocked phrases.",
+      "used_by": [
+        "SKILL.md",
+        "templates/output.md",
+        "scripts/validate_constitution_report.py"
+      ]
+    },
+    {
+      "path": "assets/severity-policy.json",
+      "type": "policy",
+      "purpose": "Severity and delivery decision policy for constitution findings.",
+      "used_by": [
+        "SKILL.md",
+        "agents/guardian.md",
+        "scripts/validate_constitution_report.py"
+      ]
+    },
+    {
+      "path": "assets/activation-policy.json",
+      "type": "policy",
+      "purpose": "Activation, false-positive, version-drift, and missing-evidence rules.",
+      "used_by": [
+        "SKILL.md",
+        "prompts/meta.md",
+        "evals/evals.json"
+      ]
+    }
+  ]
+}

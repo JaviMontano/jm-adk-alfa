@@ -1,75 +1,79 @@
 {
   "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-28",
   "skill": "constitution-compliance",
+  "constitution_version": "v6.0.0",
   "nodes": [
     {
       "id": "constitution-compliance",
       "type": "skill",
-      "label": "constitution-compliance"
+      "label": "Read-only Constitution audit"
     },
     {
-      "id": "constitution-compliance:inputs",
+      "id": "constitution-compliance:principles",
+      "type": "asset",
+      "label": "18-principle v6.0.0 map"
+    },
+    {
+      "id": "constitution-compliance:report-contract",
       "type": "contract",
-      "label": "Expected inputs"
+      "label": "Required report sections and statuses"
     },
     {
-      "id": "constitution-compliance:outputs",
-      "type": "contract",
-      "label": "Expected outputs"
+      "id": "constitution-compliance:severity-policy",
+      "type": "policy",
+      "label": "P0-P3 delivery policy"
     },
     {
-      "id": "constitution-compliance:quality",
+      "id": "constitution-compliance:gate-impact",
       "type": "gate",
-      "label": "Quality criteria"
+      "label": "G0-G3 gate impact"
     },
     {
-      "id": "constitution-compliance:ontology",
-      "type": "ontology",
-      "label": "Domain: general"
-    },
-    {
-      "id": "constitution-compliance:evidence",
-      "type": "gate",
-      "label": "Evidence / provenance requirements"
-    },
-    {
-      "id": "constitution-compliance:antipattern",
+      "id": "constitution-compliance:missing-evidence",
       "type": "risk",
-      "label": "Canonical anti-pattern to avoid"
+      "label": "Missing evidence must not pass"
+    },
+    {
+      "id": "constitution-compliance:false-pass",
+      "type": "risk",
+      "label": "Unsupported pass decision"
+    },
+    {
+      "id": "constitution-compliance:validator",
+      "type": "script",
+      "label": "validate_constitution_report.py"
     }
   ],
   "edges": [
     {
       "from": "constitution-compliance",
-      "to": "constitution-compliance:inputs",
+      "to": "constitution-compliance:principles",
       "type": "requires"
     },
     {
       "from": "constitution-compliance",
-      "to": "constitution-compliance:outputs",
+      "to": "constitution-compliance:report-contract",
       "type": "produces"
     },
     {
       "from": "constitution-compliance",
-      "to": "constitution-compliance:quality",
-      "type": "validated_by"
+      "to": "constitution-compliance:severity-policy",
+      "type": "uses"
     },
     {
-      "from": "constitution-compliance",
-      "to": "constitution-compliance:ontology",
-      "type": "classified_as"
+      "from": "constitution-compliance:principles",
+      "to": "constitution-compliance:gate-impact",
+      "type": "maps_to"
     },
     {
-      "from": "constitution-compliance",
-      "to": "constitution-compliance:evidence",
-      "type": "validated_by"
-    },
-    {
-      "from": "constitution-compliance",
-      "to": "constitution-compliance:antipattern",
+      "from": "constitution-compliance:missing-evidence",
+      "to": "constitution-compliance:false-pass",
       "type": "guards_against"
+    },
+    {
+      "from": "constitution-compliance",
+      "to": "constitution-compliance:validator",
+      "type": "validated_by"
     }
   ]
 }

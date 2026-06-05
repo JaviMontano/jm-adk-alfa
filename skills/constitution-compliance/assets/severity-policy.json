@@ -1,0 +1,43 @@
+{
+  "schema": 1,
+  "skill": "constitution-compliance",
+  "severities": [
+    {
+      "id": "P0",
+      "blocks_delivery": true,
+      "meaning": "Security, secret, data integrity, privacy, or hard constitutional breach."
+    },
+    {
+      "id": "P1",
+      "blocks_delivery": true,
+      "meaning": "Gate-blocking missing evidence, stale constitution target, broken process, or false compliance pass."
+    },
+    {
+      "id": "P2",
+      "blocks_delivery": false,
+      "meaning": "Important compliance gap with bounded workaround."
+    },
+    {
+      "id": "P3",
+      "blocks_delivery": false,
+      "meaning": "Low-risk documentation, wording, or improvement gap."
+    },
+    {
+      "id": "none",
+      "blocks_delivery": false,
+      "meaning": "Principle passes, does not apply, or has no finding."
+    }
+  ],
+  "status_rules": {
+    "fail_requires": ["severity", "evidence", "remediation", "gate_impact"],
+    "not_verified_requires": ["missing_evidence", "remediation", "gate_impact"],
+    "pass_requires": ["evidence"],
+    "not_applicable_requires": ["evidence"]
+  },
+  "overall_rules": {
+    "blocked_if_severity_in": ["P0", "P1"],
+    "blocked_if_required_gate_not_verified": true,
+    "pass_requires_no_failures": true,
+    "pass_requires_no_not_verified_required_gates": true
+  }
+}

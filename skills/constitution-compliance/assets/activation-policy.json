@@ -1,0 +1,42 @@
+{
+  "schema": 1,
+  "skill": "constitution-compliance",
+  "activate_when": [
+    "constitution compliance",
+    "constitutional audit",
+    "Pristino governance validation",
+    "pre-delivery compliance",
+    "G0 compliance",
+    "G1 compliance",
+    "G2 compliance",
+    "G3 compliance",
+    "does this violate the JM-ADK Constitution"
+  ],
+  "decline_when": [
+    "view or amend the Constitution itself",
+    "create an agent constitution",
+    "generic legal constitution question",
+    "quality review without JM-ADK governance scope",
+    "political constitution analysis"
+  ],
+  "redirects": [
+    {
+      "intent": "view_or_amend_constitution",
+      "target": "/jm-adk:constitution"
+    },
+    {
+      "intent": "create_agent_constitution",
+      "target": "agent-constitution-creator"
+    }
+  ],
+  "version_policy": {
+    "target": "v6.0.0",
+    "stale_versions": ["v5.2.0", "v4.1.0"],
+    "stale_version_status": "fail",
+    "stale_version_severity": "P1"
+  },
+  "missing_evidence_policy": {
+    "status": "not_verified",
+    "may_not_count_as_pass": true
+  }
+}

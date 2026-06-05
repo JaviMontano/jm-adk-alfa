@@ -1,0 +1,57 @@
+{
+  "schema": 1,
+  "skill": "constitution-compliance",
+  "required_sections": [
+    "artifact",
+    "summary",
+    "principle_matrix",
+    "gate_impact",
+    "violations",
+    "missing_evidence",
+    "remediation_plan",
+    "decision",
+    "caveats"
+  ],
+  "summary_fields": [
+    "constitution_version",
+    "overall_status",
+    "gate",
+    "confidence",
+    "blocking_findings",
+    "not_verified_count"
+  ],
+  "principle_fields": [
+    "principle_id",
+    "principle_name",
+    "status",
+    "severity",
+    "evidence",
+    "missing_evidence",
+    "remediation",
+    "gate_impact"
+  ],
+  "gate_impact_fields": ["gate", "status", "blocking", "evidence"],
+  "overall_statuses": ["pass", "blocked", "not_verified"],
+  "principle_statuses": ["pass", "fail", "not_verified", "not_applicable"],
+  "allowed_evidence_tags": [
+    "[CODE]",
+    "[CONFIG]",
+    "[DOC]",
+    "[INFERENCE]",
+    "[ASSUMPTION]",
+    "[CODIGO]",
+    "[CÓDIGO]",
+    "[INFERENCIA]",
+    "[SUPUESTO]"
+  ],
+  "blocked_phrases": [
+    "constitution-compliant",
+    "quality criteria met",
+    "looks compliant",
+    "seems compliant",
+    "probably compliant",
+    "no issues found",
+    "confidence >= 0.95"
+  ],
+  "decision_fields": ["release_decision", "reason", "next_action"]
+}

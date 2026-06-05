@@ -1,30 +1,29 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: constitution-compliance
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
-
 # Constitution Compliance
 
->
+Validates artifacts against JM-ADK Constitution v6.0.0 using all 18 principles,
+G0-G3 gate impact, evidence tags, severity, remediation, and missing-evidence
+handling.
 
-## Triggers
+## Activation
 
-- constitution-compliance
+Use this skill for constitutional audit, Pristino governance validation,
+pre-delivery compliance, and gate checks. Route Constitution viewing or
+amendment to `/jm-adk:constitution`.
 
-## Allowed Tools
+## Deterministic Resources
 
-- Read
-- Write
-- Glob
-- Grep
-- Bash
+- `assets/constitution-v6-principles.json`: 18 principles and G0-G3 gates.
+- `assets/compliance-report-contract.json`: required report shape.
+- `assets/severity-policy.json`: P0-P3 severity and block policy.
+- `assets/activation-policy.json`: activation, false-positive, and version-drift
+  rules.
+- `scripts/validate_constitution_report.py`: offline report validator.
+- `scripts/check.sh`: deterministic fixture checks.
 
-## Quick Use
+## Local Checks
 
-Use this skill when the request clearly matches the triggers and requires the `constitution-compliance` capability.
-
-## Output Format
-
-Markdown with summary, evidence, result, validation, and risks.
+```bash
+bash skills/constitution-compliance/scripts/check.sh
+python3 -B scripts/validate-skill-scripts.py --strict --run-checks --skill constitution-compliance
+python3 -B scripts/validate-skill-dod.py --skill constitution-compliance
+```
