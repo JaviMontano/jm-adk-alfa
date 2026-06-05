@@ -1,75 +1,23 @@
 {
   "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-28",
   "skill": "workflow-orchestration",
   "nodes": [
-    {
-      "id": "workflow-orchestration",
-      "type": "skill",
-      "label": "workflow-orchestration"
-    },
-    {
-      "id": "workflow-orchestration:inputs",
-      "type": "contract",
-      "label": "Expected inputs"
-    },
-    {
-      "id": "workflow-orchestration:outputs",
-      "type": "contract",
-      "label": "Expected outputs"
-    },
-    {
-      "id": "workflow-orchestration:quality",
-      "type": "gate",
-      "label": "Quality criteria"
-    },
-    {
-      "id": "workflow-orchestration:ontology",
-      "type": "ontology",
-      "label": "Domain: agentic-architecture"
-    },
-    {
-      "id": "workflow-orchestration:evidence",
-      "type": "gate",
-      "label": "Evidence / provenance requirements"
-    },
-    {
-      "id": "workflow-orchestration:antipattern",
-      "type": "risk",
-      "label": "Canonical anti-pattern to avoid"
-    }
+    {"id": "workflow-orchestration", "type": "skill"},
+    {"id": "stage", "type": "execution-unit"},
+    {"id": "checkpoint", "type": "gate"},
+    {"id": "resume-token", "type": "state"},
+    {"id": "idempotency-key", "type": "state"},
+    {"id": "failure-signal", "type": "risk"},
+    {"id": "recovery-action", "type": "control"},
+    {"id": "observability", "type": "evidence"}
   ],
   "edges": [
-    {
-      "from": "workflow-orchestration",
-      "to": "workflow-orchestration:inputs",
-      "type": "requires"
-    },
-    {
-      "from": "workflow-orchestration",
-      "to": "workflow-orchestration:outputs",
-      "type": "produces"
-    },
-    {
-      "from": "workflow-orchestration",
-      "to": "workflow-orchestration:quality",
-      "type": "validated_by"
-    },
-    {
-      "from": "workflow-orchestration",
-      "to": "workflow-orchestration:ontology",
-      "type": "classified_as"
-    },
-    {
-      "from": "workflow-orchestration",
-      "to": "workflow-orchestration:evidence",
-      "type": "validated_by"
-    },
-    {
-      "from": "workflow-orchestration",
-      "to": "workflow-orchestration:antipattern",
-      "type": "guards_against"
-    }
+    {"from": "workflow-orchestration", "to": "stage", "label": "coordinates"},
+    {"from": "stage", "to": "checkpoint", "label": "blocked_by"},
+    {"from": "checkpoint", "to": "resume-token", "label": "records"},
+    {"from": "resume-token", "to": "idempotency-key", "label": "pairs_with"},
+    {"from": "stage", "to": "failure-signal", "label": "detects"},
+    {"from": "failure-signal", "to": "recovery-action", "label": "triggers"},
+    {"from": "workflow-orchestration", "to": "observability", "label": "requires"}
   ]
 }

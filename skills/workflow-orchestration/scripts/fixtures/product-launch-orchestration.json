@@ -1,0 +1,102 @@
+{
+  "id": "product-launch-orchestration",
+  "title": "Product Launch Orchestration",
+  "objective": "Coordinate launch readiness from brief intake through verified go/no-go decision.",
+  "trigger": "A launch owner requests checkpointed coordination for a release candidate.",
+  "agents": ["product-manager", "release-coordinator", "quality-gatekeeper"],
+  "inputs": ["Launch brief", "Release candidate link", "Risk register"],
+  "outputs": ["Launch readiness report", "Go/no-go decision", "Resume checkpoint log"],
+  "stages": [
+    {
+      "number": 1,
+      "name": "Intake planning",
+      "agent": "product-manager",
+      "status": "ready",
+      "inputs": ["Launch brief", "Risk register"],
+      "actions": [
+        "Extract launch objectives, owner, target date, stakeholders, dependencies, and blockers.",
+        "Create the initial checkpoint log with explicit open questions and readiness assumptions."
+      ],
+      "outputs": ["Launch scope", "Checkpoint log"],
+      "checkpoint": {
+        "name": "Scope checkpoint",
+        "criteria": ["Owner and target date are explicit.", "Launch blockers are listed or marked none."],
+        "evidence": ["Launch scope table", "Checkpoint log entry"],
+        "onPass": "continue",
+        "onFail": "retry-with-input"
+      },
+      "resumeState": {
+        "stageKey": "intake-planning",
+        "artifact": "workspace/launch/checkpoint-log.md"
+      },
+      "failureSignals": ["Missing owner", "No target date"],
+      "recoveryActions": ["Request missing launch owner or date before continuing."]
+    },
+    {
+      "number": 2,
+      "name": "Execution coordination",
+      "agent": "release-coordinator",
+      "status": "pending",
+      "inputs": ["Launch scope", "Release candidate link"],
+      "actions": [
+        "Collect status from product, engineering, support, marketing, and operations readiness owners.",
+        "Update the checkpoint log with readiness status, blocker owner, due date, and escalation path."
+      ],
+      "outputs": ["Readiness matrix", "Blocker list"],
+      "checkpoint": {
+        "name": "Readiness checkpoint",
+        "criteria": ["Each readiness area has pass, fail, or blocked status.", "Every blocker has an owner and next action."],
+        "evidence": ["Readiness matrix", "Blocker list"],
+        "onPass": "continue",
+        "onFail": "escalate"
+      },
+      "resumeState": {
+        "stageKey": "execution-coordination",
+        "artifact": "workspace/launch/readiness-matrix.md"
+      },
+      "failureSignals": ["Unowned blocker", "Missing readiness area"],
+      "recoveryActions": ["Escalate unowned blockers to launch owner and pause go/no-go."]
+    },
+    {
+      "number": 3,
+      "name": "Verification review",
+      "agent": "quality-gatekeeper",
+      "status": "pending",
+      "inputs": ["Readiness matrix", "Blocker list"],
+      "actions": [
+        "Verify readiness evidence against go/no-go completion criteria.",
+        "Write final decision with residual risk, owner, timestamp, and resume token."
+      ],
+      "outputs": ["Go/no-go decision", "Resume checkpoint log"],
+      "checkpoint": {
+        "name": "Go/no-go checkpoint",
+        "criteria": ["No blocker lacks owner or next action.", "Decision includes residual risk and timestamp."],
+        "evidence": ["Decision note", "Final checkpoint log entry"],
+        "onPass": "continue",
+        "onFail": "stop"
+      },
+      "resumeState": {
+        "stageKey": "verification-review",
+        "artifact": "workspace/launch/decision.md"
+      },
+      "failureSignals": ["Unresolved blocker", "Missing decision timestamp"],
+      "recoveryActions": ["Stop launch and return to execution coordination."]
+    }
+  ],
+  "resume": {
+    "token": "launch-ready-001",
+    "stateStore": "checkpoint-file",
+    "idempotencyKey": "launch-brief-sha256",
+    "retryPolicy": "manual-review",
+    "resumeFrom": 1
+  },
+  "observability": {
+    "logs": ["Append stage transitions to workspace/launch/checkpoint-log.md."],
+    "metrics": ["Track completed checkpoints divided by total checkpoints."],
+    "auditTrail": ["Record decision owner, timestamp, resume token, and changed artifacts."]
+  },
+  "completionCriteria": [
+    "All checkpoints pass or blockers are explicitly escalated.",
+    "Go/no-go decision is written with residual risks and resume token."
+  ]
+}

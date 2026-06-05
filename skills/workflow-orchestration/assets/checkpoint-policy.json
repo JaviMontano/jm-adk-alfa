@@ -1,0 +1,15 @@
+{
+  "minimum_stages": 3,
+  "maximum_stages": 8,
+  "accepted_statuses": ["pending", "ready", "running", "blocked", "complete"],
+  "minimum_actions_per_stage": 2,
+  "minimum_checkpoint_criteria": 2,
+  "minimum_checkpoint_evidence": 1,
+  "blocked_on_pass": ["continue", "next"],
+  "blocked_on_fail": ["stop", "escalate", "retry-with-input", "resume-from-checkpoint"],
+  "required_stage_name_markers": {
+    "first": ["discover", "intake", "plan", "clarify"],
+    "last": ["verify", "validate", "close", "review"]
+  },
+  "vague_terms": ["handle", "manage", "process", "do it", "as needed", "various"]
+}

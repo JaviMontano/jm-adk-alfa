@@ -1,0 +1,13 @@
+{
+  "token_pattern": "^[a-z][a-z0-9-]{3,64}$",
+  "id_pattern": "^[a-z][a-z0-9-]{3,64}$",
+  "allowed_state_stores": ["workspace-state", "checkpoint-file", "task-log", "external-ticket", "memory-ledger"],
+  "allowed_retry_policies": ["none", "fixed", "exponential", "manual-review"],
+  "minimum_resume_state_keys": 2,
+  "required_observability_minimums": {
+    "logs": 1,
+    "metrics": 1,
+    "auditTrail": 1
+  },
+  "blocked_resume_values": ["later", "unknown", "n/a", "none", "someone"]
+}

@@ -1,0 +1,29 @@
+{
+  "skill": "workflow-orchestration",
+  "assets": [
+    {
+      "path": "assets/orchestration-schema.json",
+      "type": "schema",
+      "purpose": "Defines required top-level, stage, checkpoint, and resume fields for orchestration plans.",
+      "used_by": ["scripts/compile-orchestration-plan.py"]
+    },
+    {
+      "path": "assets/checkpoint-policy.json",
+      "type": "policy",
+      "purpose": "Defines checkpoint criteria, gate naming, and status transition rules.",
+      "used_by": ["scripts/compile-orchestration-plan.py"]
+    },
+    {
+      "path": "assets/resume-policy.json",
+      "type": "policy",
+      "purpose": "Defines durable state, resume token, retry, idempotency, and recovery requirements.",
+      "used_by": ["scripts/compile-orchestration-plan.py"]
+    },
+    {
+      "path": "assets/orchestration-template.md",
+      "type": "template",
+      "purpose": "Renders a validated orchestration plan into deterministic Markdown.",
+      "used_by": ["scripts/compile-orchestration-plan.py", "templates/output.md"]
+    }
+  ]
+}

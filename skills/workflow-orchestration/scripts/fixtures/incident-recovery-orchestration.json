@@ -1,0 +1,102 @@
+{
+  "id": "incident-recovery-orchestration",
+  "title": "Incident Recovery Orchestration",
+  "objective": "Coordinate incident recovery with resumable checkpoints from triage through closure review.",
+  "trigger": "A sev-2 incident requires multi-agent recovery coordination.",
+  "agents": ["incident-commander", "backend-engineer", "quality-gatekeeper"],
+  "inputs": ["Incident summary", "Service health dashboard", "Customer impact notes"],
+  "outputs": ["Recovery plan", "Checkpoint transcript", "Closure review"],
+  "stages": [
+    {
+      "number": 1,
+      "name": "Discover incident state",
+      "agent": "incident-commander",
+      "status": "running",
+      "inputs": ["Incident summary", "Service health dashboard"],
+      "actions": [
+        "Classify severity, impacted services, customer symptoms, current mitigations, and decision owner.",
+        "Create the recovery checkpoint transcript with current state and immediate unknowns."
+      ],
+      "outputs": ["Incident state", "Checkpoint transcript"],
+      "checkpoint": {
+        "name": "Triage checkpoint",
+        "criteria": ["Severity and impacted services are explicit.", "Current mitigation status is known."],
+        "evidence": ["Incident state summary"],
+        "onPass": "continue",
+        "onFail": "retry-with-input"
+      },
+      "resumeState": {
+        "stageKey": "discover-incident-state",
+        "artifact": "workspace/incidents/current/checkpoints.md"
+      },
+      "failureSignals": ["Unknown severity", "Unknown impacted service"],
+      "recoveryActions": ["Request missing triage facts from incident commander."]
+    },
+    {
+      "number": 2,
+      "name": "Recovery execution",
+      "agent": "backend-engineer",
+      "status": "pending",
+      "inputs": ["Incident state", "Service health dashboard"],
+      "actions": [
+        "Run the approved mitigation checklist and record each applied change with timestamp.",
+        "Compare service health before and after mitigation and update the transcript."
+      ],
+      "outputs": ["Mitigation log", "Health comparison"],
+      "checkpoint": {
+        "name": "Mitigation checkpoint",
+        "criteria": ["Each mitigation has timestamp and owner.", "Health comparison shows whether symptoms changed."],
+        "evidence": ["Mitigation log", "Health comparison"],
+        "onPass": "continue",
+        "onFail": "resume-from-checkpoint"
+      },
+      "resumeState": {
+        "stageKey": "recovery-execution",
+        "artifact": "workspace/incidents/current/mitigation-log.md"
+      },
+      "failureSignals": ["Mitigation failed", "Health signal unavailable"],
+      "recoveryActions": ["Resume from triage checkpoint and choose fallback mitigation."]
+    },
+    {
+      "number": 3,
+      "name": "Close review",
+      "agent": "quality-gatekeeper",
+      "status": "pending",
+      "inputs": ["Mitigation log", "Health comparison", "Customer impact notes"],
+      "actions": [
+        "Verify recovery evidence against customer impact and service health criteria.",
+        "Write closure review with residual risk, follow-up owner, and resume token."
+      ],
+      "outputs": ["Closure review"],
+      "checkpoint": {
+        "name": "Closure checkpoint",
+        "criteria": ["Recovery evidence matches impact notes.", "Follow-up owner and due date are recorded."],
+        "evidence": ["Closure review"],
+        "onPass": "continue",
+        "onFail": "escalate"
+      },
+      "resumeState": {
+        "stageKey": "close-review",
+        "artifact": "workspace/incidents/current/closure.md"
+      },
+      "failureSignals": ["Customer impact unresolved", "Follow-up owner missing"],
+      "recoveryActions": ["Escalate to incident commander and keep incident open."]
+    }
+  ],
+  "resume": {
+    "token": "incident-recovery-002",
+    "stateStore": "task-log",
+    "idempotencyKey": "incident-id",
+    "retryPolicy": "fixed",
+    "resumeFrom": 2
+  },
+  "observability": {
+    "logs": ["Append every stage transition to the incident checkpoint transcript."],
+    "metrics": ["Track time spent per stage and number of resume attempts."],
+    "auditTrail": ["Record mitigation owner, changed artifact, timestamp, and closure decision."]
+  },
+  "completionCriteria": [
+    "Closure checkpoint passes with explicit residual risk.",
+    "Resume token and follow-up owner are recorded in the incident transcript."
+  ]
+}

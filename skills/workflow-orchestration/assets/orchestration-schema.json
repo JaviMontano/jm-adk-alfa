@@ -1,0 +1,31 @@
+{
+  "required_top_fields": [
+    "id",
+    "title",
+    "objective",
+    "trigger",
+    "agents",
+    "inputs",
+    "outputs",
+    "stages",
+    "resume",
+    "observability",
+    "completionCriteria"
+  ],
+  "stage_required_fields": [
+    "number",
+    "name",
+    "agent",
+    "status",
+    "inputs",
+    "actions",
+    "outputs",
+    "checkpoint",
+    "resumeState",
+    "failureSignals",
+    "recoveryActions"
+  ],
+  "checkpoint_required_fields": ["name", "criteria", "evidence", "onPass", "onFail"],
+  "resume_required_fields": ["token", "stateStore", "idempotencyKey", "retryPolicy", "resumeFrom"],
+  "observability_required_fields": ["logs", "metrics", "auditTrail"]
+}
