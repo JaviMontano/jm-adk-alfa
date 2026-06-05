@@ -1,0 +1,19 @@
+{
+  "schema": 1,
+  "skill": "code-review-checklist",
+  "mode": "read_only",
+  "allowed_sources": [
+    "user-supplied diff, patch, PR, branch, commit range, changed file, Firestore rules, package manifest, npm audit output, test output, CI output, or acceptance criteria"
+  ],
+  "hotfix_policy": {
+    "allowed_scope": ["SEC-*", "FB-01", "FB-02"],
+    "requires_follow_up_within_hours": 48
+  },
+  "forbidden_behaviors": [
+    "editing target code",
+    "inventing files or line numbers",
+    "using current date without caller input",
+    "loading remote fonts or assets in report templates",
+    "approving a report with blocking checklist failures"
+  ]
+}

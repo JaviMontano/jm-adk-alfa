@@ -1,0 +1,29 @@
+{
+  "schema": 1,
+  "skill": "code-review-checklist",
+  "mode": "read_only",
+  "scope": {
+    "review_type": "pull_request_checklist",
+    "sources_reviewed": ["src/App.tsx"],
+    "minimum_inputs_missing": [],
+    "mode": "standard"
+  },
+  "scores": {"security": 100, "performance_firebase": 100, "quality_types": 100},
+  "checks": [
+    {"id": "SEC-02", "domain": "security", "status": "pass", "evidence_tag": "[GUESS]", "source": {"file": "src/App.tsx", "line": 8}, "why": "JSX escapes user text."}
+  ],
+  "findings": [],
+  "positive_evidence": [],
+  "missing_evidence": [],
+  "validation": {
+    "blocking_failures": [],
+    "checks_run": ["SEC-02"],
+    "not_verified": []
+  },
+  "decision": {
+    "release_decision": "approve",
+    "reason": "No findings.",
+    "next_action": "Merge."
+  },
+  "risks_and_limits": []
+}

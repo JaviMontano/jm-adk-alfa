@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "skill": "code-review-checklist",
+  "mode": "read_only",
+  "scope": {
+    "review_type": "pull_request_checklist",
+    "sources_reviewed": ["src/orders/loadOrders.ts diff", "npm audit excerpt"],
+    "minimum_inputs_missing": ["Firestore rules", "test output"],
+    "mode": "standard"
+  },
+  "scores": {"security": 80, "performance_firebase": 40, "quality_types": 60},
+  "checks": [
+    {"id": "SEC-05", "domain": "security", "status": "pass", "evidence_tag": "[CÓDIGO]", "source": {"file": "npm-audit.txt", "line": 1}, "why": "Audit excerpt reports zero high and critical findings."},
+    {"id": "FB-01", "domain": "performance_firebase", "status": "fail", "evidence_tag": "[CÓDIGO]", "source": {"file": "src/orders/loadOrders.ts", "line": 2}, "why": "Firestore query has no limit or pagination."},
+    {"id": "QUAL-01", "domain": "quality_types", "status": "fail", "evidence_tag": "[CÓDIGO]", "source": {"file": "src/orders/loadOrders.ts", "line": 3}, "why": "Unchecked any cast hides order shape validation."}
+  ],
+  "findings": [
+    {"id": "CRCF-001", "check_id": "FB-01", "severity": "BLOCKER", "file": "src/orders/loadOrders.ts", "line": 2, "claim": "Unbounded Firestore query can read the full orders collection. [CÓDIGO]", "evidence_tag": "[CÓDIGO]", "remediation": "Add limit, pagination, or authenticated user constraint."},
+    {"id": "CRCF-002", "check_id": "QUAL-01", "severity": "BLOCKER", "file": "src/orders/loadOrders.ts", "line": 3, "claim": "Unchecked any cast bypasses type safety. [CÓDIGO]", "evidence_tag": "[CÓDIGO]", "remediation": "Use a typed converter or schema guard."}
+  ],
+  "positive_evidence": [
+    {"file": "npm-audit.txt", "line": 1, "claim": "Dependency audit has no high or critical findings. [CÓDIGO]", "evidence_tag": "[CÓDIGO]"}
+  ],
+  "missing_evidence": ["Firestore rules", "test output"],
+  "validation": {
+    "blocking_failures": ["FB-01", "QUAL-01"],
+    "checks_run": ["SEC-05", "FB-01", "QUAL-01"],
+    "not_verified": ["SEC-03", "tests"]
+  },
+  "decision": {
+    "release_decision": "request_changes",
+    "reason": "Two blocking checklist gates failed. [CÓDIGO]",
+    "next_action": "Bound Firestore query and replace any with typed converter."
+  },
+  "risks_and_limits": ["Checklist is limited to supplied diff and audit excerpt. [CONFIG]"]
+}

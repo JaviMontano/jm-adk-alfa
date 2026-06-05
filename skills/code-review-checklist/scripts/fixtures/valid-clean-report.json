@@ -1,0 +1,33 @@
+{
+  "schema": 1,
+  "skill": "code-review-checklist",
+  "mode": "read_only",
+  "scope": {
+    "review_type": "changed_files",
+    "sources_reviewed": ["src/orders/loadOrders.ts", "tests/loadOrders.test.ts", "npm-audit.txt"],
+    "minimum_inputs_missing": [],
+    "mode": "standard"
+  },
+  "scores": {"security": 100, "performance_firebase": 100, "quality_types": 100},
+  "checks": [
+    {"id": "SEC-02", "domain": "security", "status": "pass", "evidence_tag": "[CÓDIGO]", "source": {"file": "src/orders/OrderRow.tsx", "line": 14}, "why": "User text is rendered through normal JSX escaping."},
+    {"id": "FB-02", "domain": "performance_firebase", "status": "pass", "evidence_tag": "[CÓDIGO]", "source": {"file": "src/orders/loadOrders.ts", "line": 22}, "why": "Reads are batched by bounded chunk IDs."},
+    {"id": "QUAL-01", "domain": "quality_types", "status": "pass", "evidence_tag": "[CÓDIGO]", "source": {"file": "src/orders/types.ts", "line": 8}, "why": "Order records use explicit typed converter output."}
+  ],
+  "findings": [],
+  "positive_evidence": [
+    {"file": "tests/loadOrders.test.ts", "line": 18, "claim": "Tests cover empty and populated order states. [CÓDIGO]", "evidence_tag": "[CÓDIGO]"}
+  ],
+  "missing_evidence": [],
+  "validation": {
+    "blocking_failures": [],
+    "checks_run": ["SEC-02", "FB-02", "QUAL-01"],
+    "not_verified": []
+  },
+  "decision": {
+    "release_decision": "approve",
+    "reason": "Applicable checks pass and positive evidence is present. [CÓDIGO]",
+    "next_action": "Merge when repository gates remain green."
+  },
+  "risks_and_limits": ["Runtime behavior outside supplied tests was not independently executed. [CONFIG]"]
+}

@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "skill": "code-review-checklist",
+  "assets": [
+    {
+      "path": "assets/activation-policy.json",
+      "type": "policy",
+      "purpose": "Defines activation, non-code refusal, and missing-input routing.",
+      "used_by": ["SKILL.md", "prompts/primary.md", "evals/evals.json"]
+    },
+    {
+      "path": "assets/checklist-taxonomy.json",
+      "type": "taxonomy",
+      "purpose": "Defines fixed checklist IDs, domains, statuses, and blocking gates.",
+      "used_by": ["SKILL.md", "templates/output.md", "scripts/validate_code_review_checklist_report.py"]
+    },
+    {
+      "path": "assets/evidence-policy.json",
+      "type": "policy",
+      "purpose": "Defines evidence tags, source fields, and secret redaction rules.",
+      "used_by": ["SKILL.md", "templates/output.md", "scripts/validate_code_review_checklist_report.py"]
+    },
+    {
+      "path": "assets/report-contract.json",
+      "type": "schema",
+      "purpose": "Defines the machine-checkable checklist report contract.",
+      "used_by": ["SKILL.md", "templates/output.md", "scripts/validate_code_review_checklist_report.py"]
+    },
+    {
+      "path": "assets/source-boundary-policy.json",
+      "type": "policy",
+      "purpose": "Defines read-only source boundaries and hotfix handling.",
+      "used_by": ["SKILL.md", "agents/guardian.md", "scripts/validate_code_review_checklist_report.py"]
+    }
+  ]
+}

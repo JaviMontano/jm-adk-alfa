@@ -1,0 +1,25 @@
+{
+  "schema": 1,
+  "skill": "code-review-checklist",
+  "activate_when": [
+    "user asks for a code review checklist",
+    "user asks for a pull request or PR checklist",
+    "user asks for OWASP, Firebase, performance, or TypeScript review checklist",
+    "user asks whether code changes are merge-ready using checklist gates"
+  ],
+  "do_not_activate_when": [
+    "user asks to review non-code products, books, courses, services, or options",
+    "user asks for generic project management checklist without code artifacts",
+    "user asks for deep exploit analysis better handled by audit-security"
+  ],
+  "minimum_inputs": [
+    "diff or patch",
+    "changed file path",
+    "pull request URL",
+    "branch or commit range",
+    "Firestore rules file",
+    "package manifest or npm audit output",
+    "test or CI output"
+  ],
+  "missing_input_behavior": "return needs_context with minimum_inputs_missing and no fabricated checklist results"
+}

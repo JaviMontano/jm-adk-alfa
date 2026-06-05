@@ -1,75 +1,23 @@
 {
   "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-28",
   "skill": "code-review-checklist",
   "nodes": [
-    {
-      "id": "code-review-checklist",
-      "type": "skill",
-      "label": "code-review-checklist"
-    },
-    {
-      "id": "code-review-checklist:inputs",
-      "type": "contract",
-      "label": "Expected inputs"
-    },
-    {
-      "id": "code-review-checklist:outputs",
-      "type": "contract",
-      "label": "Expected outputs"
-    },
-    {
-      "id": "code-review-checklist:quality",
-      "type": "gate",
-      "label": "Quality criteria"
-    },
-    {
-      "id": "code-review-checklist:ontology",
-      "type": "ontology",
-      "label": "Domain: prompt-structured-output"
-    },
-    {
-      "id": "code-review-checklist:evidence",
-      "type": "gate",
-      "label": "Evidence / provenance requirements"
-    },
-    {
-      "id": "code-review-checklist:antipattern",
-      "type": "risk",
-      "label": "Canonical anti-pattern to avoid"
-    }
+    {"id": "code-review-checklist", "type": "skill", "label": "Deterministic Code Review Checklist"},
+    {"id": "crc:activation", "type": "policy", "label": "Activation and missing-input routing"},
+    {"id": "crc:taxonomy", "type": "taxonomy", "label": "Checklist IDs and blocking gates"},
+    {"id": "crc:evidence", "type": "policy", "label": "Evidence tags and source citation"},
+    {"id": "crc:report-contract", "type": "schema", "label": "Checklist report contract"},
+    {"id": "crc:validator", "type": "script", "label": "Offline checklist report validator"},
+    {"id": "crc:false-positive-controls", "type": "eval", "label": "Clean, safe React, and batched Firestore controls"},
+    {"id": "crc:decision", "type": "gate", "label": "Merge decision rules"}
   ],
   "edges": [
-    {
-      "from": "code-review-checklist",
-      "to": "code-review-checklist:inputs",
-      "type": "requires"
-    },
-    {
-      "from": "code-review-checklist",
-      "to": "code-review-checklist:outputs",
-      "type": "produces"
-    },
-    {
-      "from": "code-review-checklist",
-      "to": "code-review-checklist:quality",
-      "type": "validated_by"
-    },
-    {
-      "from": "code-review-checklist",
-      "to": "code-review-checklist:ontology",
-      "type": "classified_as"
-    },
-    {
-      "from": "code-review-checklist",
-      "to": "code-review-checklist:evidence",
-      "type": "validated_by"
-    },
-    {
-      "from": "code-review-checklist",
-      "to": "code-review-checklist:antipattern",
-      "type": "guards_against"
-    }
+    {"from": "code-review-checklist", "to": "crc:activation", "type": "requires"},
+    {"from": "code-review-checklist", "to": "crc:taxonomy", "type": "uses"},
+    {"from": "code-review-checklist", "to": "crc:evidence", "type": "grounds_claims_with"},
+    {"from": "code-review-checklist", "to": "crc:report-contract", "type": "produces"},
+    {"from": "crc:validator", "to": "crc:report-contract", "type": "validates"},
+    {"from": "crc:false-positive-controls", "to": "crc:decision", "type": "calibrates"},
+    {"from": "crc:decision", "to": "crc:taxonomy", "type": "depends_on"}
   ]
 }

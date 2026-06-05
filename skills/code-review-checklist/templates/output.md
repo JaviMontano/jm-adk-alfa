@@ -1,28 +1,48 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: code-review-checklist
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
+# Code Review Checklist Report
 
-# Code Review Checklist Output
+## Scope
 
-## Summary
+- Review type: `{{review_type}}`
+- Sources reviewed: `{{sources_reviewed}}`
+- Minimum inputs missing: `{{minimum_inputs_missing}}`
+- Mode: `{{mode}}`
 
-{summary}
+## Scores
 
-## Evidence
+| Domain | Score |
+|---|---:|
+| security | `{{scores.security}}` |
+| performance_firebase | `{{scores.performance_firebase}}` |
+| quality_types | `{{scores.quality_types}}` |
 
-{evidence}
+## Checklist Results
 
-## Result
+| ID | Domain | Status | Evidence | Why |
+|---|---|---|---|---|
+| `{{id}}` | `{{domain}}` | `{{status}}` | `{{source.file}}:{{source.line}} {{evidence_tag}}` | `{{why}}` |
 
-{result}
+## Findings
+
+| ID | Check | Severity | Evidence | Claim | Remediation |
+|---|---|---|---|---|---|
+| `{{finding_id}}` | `{{check_id}}` | `{{severity}}` | `{{file}}:{{line}} {{evidence_tag}}` | `{{claim}}` | `{{remediation}}` |
+
+## Missing Evidence
+
+- `{{missing_evidence}}`
 
 ## Validation
 
-{validation}
+- Blocking failures: `{{blocking_failures}}`
+- Checks run: `{{checks_run}}`
+- Not verified: `{{not_verified}}`
+
+## Decision
+
+- Release decision: `{{release_decision}}`
+- Reason: `{{reason}}`
+- Next action: `{{next_action}}`
 
 ## Risks and Limits
 
-{risks}
+- `{{risk_or_limit}}`

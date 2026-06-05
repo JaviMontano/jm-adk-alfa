@@ -1,29 +1,46 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: code-review-checklist
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
-
 # Code Review Checklist
 
-Structured code review covering OWASP security, Core Web Vitals performance, Firebase best practices, and TypeScript types
+Deterministic, read-only checklist for code review and merge readiness across
+security, Firebase/performance, and TypeScript/code-quality gates. [CONFIG]
 
 ## Triggers
 
-- code-review-checklist
+- "code review checklist"
+- "PR checklist"
+- "pull request checklist"
+- "review checklist"
+- "OWASP checklist"
+- "Firebase review checklist"
 
-## Allowed Tools
+## Assets
 
-- Read
-- Grep
-- Glob
-- Bash
+- `assets/activation-policy.json`: activation and missing-input routing.
+- `assets/checklist-taxonomy.json`: checklist IDs, domains, statuses, and
+  blocking behavior.
+- `assets/evidence-policy.json`: evidence tag and source citation rules.
+- `assets/report-contract.json`: machine-checkable report structure.
+- `assets/source-boundary-policy.json`: read-only boundaries and hotfix policy.
 
-## Quick Use
+## Scripts
 
-Use this skill when the request clearly matches the triggers and requires the `code-review-checklist` capability.
+Run deterministic fixtures:
 
-## Output Format
+```bash
+bash skills/code-review-checklist/scripts/check.sh
+```
 
-Markdown with summary, evidence, result, validation, and risks.
+The script validates clean, blocking, and invalid report fixtures. [CÓDIGO]
+
+## Output
+
+Reports use:
+
+- `# Code Review Checklist Report`
+- `## Scope`
+- `## Scores`
+- `## Checklist Results`
+- `## Findings`
+- `## Missing Evidence`
+- `## Validation`
+- `## Decision`
+- `## Risks and Limits`
