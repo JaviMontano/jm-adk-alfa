@@ -1,0 +1,20 @@
+{
+  "schema": 1,
+  "skill": "quality-gatekeeper",
+  "allowed_evidence_tags": [
+    "[CODE]",
+    "[CONFIG]",
+    "[DOC]",
+    "[INFERENCE]",
+    "[ASSUMPTION]",
+    "[CÓDIGO]",
+    "[CONFIG]",
+    "[DOC]",
+    "[INFERENCIA]",
+    "[SUPUESTO]"
+  ],
+  "assumption_tags": ["[ASSUMPTION]", "[SUPUESTO]"],
+  "warning_threshold": 0.3,
+  "pass_requires_evidence": true,
+  "missing_evidence_status": "not_verified"
+}

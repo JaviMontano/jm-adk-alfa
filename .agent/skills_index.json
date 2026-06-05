@@ -2679,7 +2679,7 @@
     "id": "quality-gatekeeper",
     "path": "skills/quality-gatekeeper",
     "name": "Quality Gatekeeper",
-    "description": "Validates deliverables at quality gates G0-G3. Blocks phase transitions until criteria are met. Produces pass/fail reports with evidence. [EXPLICIT]"
+    "description": "Validates deliverables at JM-ADK quality gates G0-G3 using deterministic criteria, evidence tags, sequential gate order, score-history entry contracts, remediation, and fail-closed missing-evidence handling. Use before phase transitions, release decisions, `/jm:advance`, PR readiness, or any request asking whether a gate can pass."
   },
   {
     "id": "quality-metrics",

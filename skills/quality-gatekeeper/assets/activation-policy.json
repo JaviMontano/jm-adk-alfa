@@ -1,0 +1,20 @@
+{
+  "schema": 1,
+  "skill": "quality-gatekeeper",
+  "activate_for": [
+    "JM-ADK G0-G3 gate decision",
+    "/jm:advance",
+    "phase transition readiness",
+    "quality gate report",
+    "PR or release gate readiness",
+    "score-history entry validation"
+  ],
+  "do_not_activate_for": [
+    "generic quality writing feedback",
+    "generic CI log explanation without G0-G3 decision",
+    "Lighthouse-only request without G3 scope",
+    "human gatekeeper role assignment",
+    "generic legal or political gatekeeping"
+  ],
+  "false_positive_policy": "Do not produce a gate report when no JM-ADK gate or phase transition is in scope."
+}

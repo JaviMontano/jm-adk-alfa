@@ -1,0 +1,117 @@
+{
+  "summary": {
+    "gate_scope": ["G3"],
+    "source_stage": "G0-passed",
+    "target_stage": "deploy-ready",
+    "overall_status": "blocked",
+    "blocking_findings": 2,
+    "not_verified_count": 1,
+    "assumption_ratio": 0.4,
+    "confidence": 0.67
+  },
+  "previous_gates_passed": ["G0"],
+  "warning_banner": "[CONFIG] Assumption evidence exceeds 30%; clarify before release.",
+  "gate_results": [
+    {
+      "gate": "G3",
+      "status": "blocked",
+      "blocking": true,
+      "evidence": "[CODE] G1 and G2 are not recorded as passed; G3 criteria also contain a failure."
+    }
+  ],
+  "criteria_results": [
+    {
+      "gate": "G3",
+      "criterion_id": "G3-01",
+      "criterion_name": "tests_pass",
+      "status": "pass",
+      "severity": "none",
+      "required": true,
+      "evidence": "[CODE] `pytest` and `npm test` completed successfully.",
+      "missing_evidence": [],
+      "remediation": "none"
+    },
+    {
+      "gate": "G3",
+      "criterion_id": "G3-02",
+      "criterion_name": "lighthouse_at_least_90",
+      "status": "fail",
+      "severity": "P1",
+      "required": true,
+      "evidence": "[CODE] Lighthouse performance score is 84, below the required 90.",
+      "missing_evidence": [],
+      "remediation": "Improve performance and rerun Lighthouse until the score is at least 90."
+    },
+    {
+      "gate": "G3",
+      "criterion_id": "G3-03",
+      "criterion_name": "security_or_emulator_clean",
+      "status": "not_verified",
+      "severity": "P0",
+      "required": true,
+      "evidence": "[ASSUMPTION] Security checks were described verbally but no command output was provided.",
+      "missing_evidence": ["security audit output", "emulator output"],
+      "remediation": "Run security or emulator checks and attach command output."
+    },
+    {
+      "gate": "G3",
+      "criterion_id": "G3-04",
+      "criterion_name": "accessibility_audit_clean",
+      "status": "pass",
+      "severity": "none",
+      "required": true,
+      "evidence": "[ASSUMPTION] Accessibility was claimed clean in a status note; verify with an audit before release.",
+      "missing_evidence": [],
+      "remediation": "none"
+    },
+    {
+      "gate": "G3",
+      "criterion_id": "G3-05",
+      "criterion_name": "brand_voice_and_monitoring_ready",
+      "status": "pass",
+      "severity": "none",
+      "required": true,
+      "evidence": "[DOC] Brand voice scan and monitoring dashboard links are listed in the release packet.",
+      "missing_evidence": [],
+      "remediation": "none"
+    }
+  ],
+  "violations": [
+    {
+      "criterion_id": "G3-02",
+      "evidence": "[CODE] Lighthouse score below threshold.",
+      "severity": "P1"
+    }
+  ],
+  "missing_evidence": [
+    {
+      "criterion_id": "G3-03",
+      "missing": ["security audit output", "emulator output"],
+      "next_step": "Run security checks and rerun gate validation."
+    }
+  ],
+  "remediation_plan": [
+    "[CONFIG] Pass G1 and G2 before requesting G3.",
+    "[CONFIG] Raise Lighthouse score to at least 90.",
+    "[CONFIG] Attach security or emulator output."
+  ],
+  "score_history_entry": {
+    "gate_scope": ["G3"],
+    "source_stage": "G0-passed",
+    "target_stage": "deploy-ready",
+    "overall_status": "blocked",
+    "blocked": true,
+    "evaluator": "quality-gatekeeper",
+    "evidence_summary": "[CODE] G3 is blocked by sequence, Lighthouse, and missing security evidence.",
+    "commands": ["python3 -B scripts/validate_gate_report.py --report g3-blocked-report.json"],
+    "decision": "block",
+    "branch": "codex/example-g3",
+    "commit": "def5678"
+  },
+  "decision": {
+    "release_decision": "block",
+    "reason": "[CODE] Required G3 criteria failed or were not verified.",
+    "next_action": "fix findings and rerun G3 after G1 and G2 are passed"
+  },
+  "caveats": ["[INFERENCE] Sequential gate evidence is based on provided previous gate list."]
+}

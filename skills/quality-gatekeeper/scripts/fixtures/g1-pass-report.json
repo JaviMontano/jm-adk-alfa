@@ -1,0 +1,91 @@
+{
+  "summary": {
+    "gate_scope": ["G1"],
+    "source_stage": "G0-passed",
+    "target_stage": "analysis-complete",
+    "overall_status": "pass",
+    "blocking_findings": 0,
+    "not_verified_count": 0,
+    "assumption_ratio": 0.0,
+    "confidence": 0.95
+  },
+  "previous_gates_passed": ["G0"],
+  "warning_banner": "",
+  "gate_results": [
+    {
+      "gate": "G1",
+      "status": "pass",
+      "blocking": false,
+      "evidence": "[CODE] Spec, evidence tags, and stakeholder checklist are present."
+    }
+  ],
+  "criteria_results": [
+    {
+      "gate": "G1",
+      "criterion_id": "G1-01",
+      "criterion_name": "spec_complete",
+      "status": "pass",
+      "severity": "none",
+      "required": true,
+      "evidence": "[CODE] `docs/spec.md` includes scope, acceptance criteria, and explicit constraints.",
+      "missing_evidence": [],
+      "remediation": "none"
+    },
+    {
+      "gate": "G1",
+      "criterion_id": "G1-02",
+      "criterion_name": "evidence_tags_present",
+      "status": "pass",
+      "severity": "none",
+      "required": true,
+      "evidence": "[CONFIG] All factual claims use the repository evidence-tag policy.",
+      "missing_evidence": [],
+      "remediation": "none"
+    },
+    {
+      "gate": "G1",
+      "criterion_id": "G1-03",
+      "criterion_name": "stakeholder_or_checklist_coverage",
+      "status": "pass",
+      "severity": "none",
+      "required": true,
+      "evidence": "[DOC] `docs/checklists/stakeholders.md` maps reviewer, owner, and acceptance decision.",
+      "missing_evidence": [],
+      "remediation": "none"
+    }
+  ],
+  "violations": [
+    {
+      "criterion_id": "none",
+      "evidence": "[CODE] No criterion failures were found.",
+      "severity": "none"
+    }
+  ],
+  "missing_evidence": [
+    {
+      "criterion_id": "none",
+      "missing": [],
+      "next_step": "[CODE] No missing evidence remains."
+    }
+  ],
+  "remediation_plan": ["[CONFIG] No remediation required."],
+  "score_history_entry": {
+    "gate_scope": ["G1"],
+    "source_stage": "G0-passed",
+    "target_stage": "analysis-complete",
+    "overall_status": "pass",
+    "blocked": false,
+    "evaluator": "quality-gatekeeper",
+    "evidence_summary": "[CODE] G1 criteria all passed with explicit evidence.",
+    "commands": ["python3 -B scripts/validate_gate_report.py --report g1-pass-report.json"],
+    "decision": "allow",
+    "branch": "codex/example-g1",
+    "commit": "abc1234"
+  },
+  "decision": {
+    "release_decision": "allow",
+    "reason": "[CODE] No blocking or not_verified criteria remain.",
+    "next_action": "advance to G2"
+  },
+  "caveats": ["[INFERENCE] This report validates the cited evidence, not unstated artifacts."]
+}

@@ -2,25 +2,35 @@
 name: quality-gatekeeper-primary
 type: execution
 version: 2.0.0
-description: "Execute the Quality Gatekeeper workflow."
+description: "Execute the deterministic Quality Gatekeeper workflow."
 triad:
   lead: "quality-gatekeeper-lead"
   support: "quality-gatekeeper-support"
   guardian: "quality-gatekeeper-guardian"
 ---
 
-# Quality Gatekeeper — Execute
+# Quality Gatekeeper Execute
 
-## Dynamic Parameters
+## Objective
 
-| Parameter | Description | Required | Filled By |
-|-----------|-------------|----------|-----------|
-| `{{task}}` | What to accomplish | Yes | User input |
-| `{{context}}` | Background and constraints | Yes | User or codebase |
-| `{{constraints}}` | Additional rules | No | Guardrails JSON |
+Evaluate one JM-ADK G0-G3 gate decision with explicit criteria, evidence,
+blocking, remediation, and score-history entry. [EXPLICIT]
+
+## Required Inputs
+
+- `gate_id` or a clearly inferable gate.
+- Current and target stage.
+- Evidence sources or explicit missing-evidence statements.
+- Prior gate pass records when validating G1-G3.
 
 ## Execution Steps
-1. Read SKILL.md `## When to Activate` — confirm this skill applies
-2. Read SKILL.md `## Validation Gate` — internalize quality criteria
-3. Execute the skill workflow per SKILL.md sections
-4. Validate output against Validation Gate before delivering
+
+1. Confirm activation using `assets/activation-policy.json`.
+2. Load gate criteria, report contract, evidence policy, and score-history
+   schema.
+3. Enforce sequential gate order.
+4. Evaluate all scoped criteria exactly once.
+5. Mark missing required evidence as `not_verified`.
+6. Block on required `fail` or `not_verified`.
+7. Emit a score-history entry contract.
+8. Validate JSON reports with the local script when available.

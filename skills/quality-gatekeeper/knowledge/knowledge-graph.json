@@ -1,75 +1,79 @@
 {
   "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-28",
   "skill": "quality-gatekeeper",
+  "version": "1.0.1",
   "nodes": [
     {
       "id": "quality-gatekeeper",
       "type": "skill",
-      "label": "quality-gatekeeper"
+      "label": "Read-only G0-G3 gate decision"
     },
     {
-      "id": "quality-gatekeeper:inputs",
+      "id": "quality-gatekeeper:gate-criteria",
+      "type": "asset",
+      "label": "G0-G3 criterion map"
+    },
+    {
+      "id": "quality-gatekeeper:report-contract",
       "type": "contract",
-      "label": "Expected inputs"
+      "label": "Gate report schema"
     },
     {
-      "id": "quality-gatekeeper:outputs",
+      "id": "quality-gatekeeper:evidence-policy",
+      "type": "policy",
+      "label": "Evidence tags and assumption threshold"
+    },
+    {
+      "id": "quality-gatekeeper:score-history",
       "type": "contract",
-      "label": "Expected outputs"
+      "label": "Proposed score-history entry"
     },
     {
-      "id": "quality-gatekeeper:quality",
+      "id": "quality-gatekeeper:sequence",
       "type": "gate",
-      "label": "Quality criteria"
+      "label": "G0 -> G1 -> G2 -> G3"
     },
     {
-      "id": "quality-gatekeeper:ontology",
-      "type": "ontology",
-      "label": "Domain: general"
-    },
-    {
-      "id": "quality-gatekeeper:evidence",
-      "type": "gate",
-      "label": "Evidence / provenance requirements"
-    },
-    {
-      "id": "quality-gatekeeper:antipattern",
+      "id": "quality-gatekeeper:false-pass",
       "type": "risk",
-      "label": "Canonical anti-pattern to avoid"
+      "label": "Unsupported allow decision"
+    },
+    {
+      "id": "quality-gatekeeper:validator",
+      "type": "script",
+      "label": "validate_gate_report.py"
     }
   ],
   "edges": [
     {
       "from": "quality-gatekeeper",
-      "to": "quality-gatekeeper:inputs",
+      "to": "quality-gatekeeper:gate-criteria",
       "type": "requires"
     },
     {
       "from": "quality-gatekeeper",
-      "to": "quality-gatekeeper:outputs",
+      "to": "quality-gatekeeper:report-contract",
       "type": "produces"
     },
     {
       "from": "quality-gatekeeper",
-      "to": "quality-gatekeeper:quality",
-      "type": "validated_by"
+      "to": "quality-gatekeeper:evidence-policy",
+      "type": "uses"
     },
     {
       "from": "quality-gatekeeper",
-      "to": "quality-gatekeeper:ontology",
-      "type": "classified_as"
+      "to": "quality-gatekeeper:score-history",
+      "type": "emits"
     },
     {
-      "from": "quality-gatekeeper",
-      "to": "quality-gatekeeper:evidence",
-      "type": "validated_by"
-    },
-    {
-      "from": "quality-gatekeeper",
-      "to": "quality-gatekeeper:antipattern",
+      "from": "quality-gatekeeper:sequence",
+      "to": "quality-gatekeeper:false-pass",
       "type": "guards_against"
+    },
+    {
+      "from": "quality-gatekeeper",
+      "to": "quality-gatekeeper:validator",
+      "type": "validated_by"
     }
   ]
 }

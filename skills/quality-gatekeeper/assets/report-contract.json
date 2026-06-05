@@ -1,0 +1,55 @@
+{
+  "schema": 1,
+  "skill": "quality-gatekeeper",
+  "required_sections": [
+    "summary",
+    "gate_results",
+    "criteria_results",
+    "violations",
+    "missing_evidence",
+    "remediation_plan",
+    "score_history_entry",
+    "decision",
+    "caveats"
+  ],
+  "summary_fields": [
+    "gate_scope",
+    "source_stage",
+    "target_stage",
+    "overall_status",
+    "blocking_findings",
+    "not_verified_count",
+    "assumption_ratio",
+    "confidence"
+  ],
+  "gate_fields": ["gate", "status", "blocking", "evidence"],
+  "criterion_fields": [
+    "gate",
+    "criterion_id",
+    "criterion_name",
+    "status",
+    "severity",
+    "required",
+    "evidence",
+    "missing_evidence",
+    "remediation"
+  ],
+  "decision_fields": ["release_decision", "reason", "next_action"],
+  "score_history_fields": [
+    "gate_scope",
+    "source_stage",
+    "target_stage",
+    "overall_status",
+    "blocked",
+    "evaluator",
+    "evidence_summary",
+    "commands",
+    "decision"
+  ],
+  "overall_statuses": ["pass", "blocked", "not_verified"],
+  "criterion_statuses": ["pass", "fail", "not_verified", "not_applicable"],
+  "gate_statuses": ["pass", "blocked", "not_verified", "not_applicable"],
+  "severities": ["P0", "P1", "P2", "P3", "none"],
+  "release_decisions": ["allow", "block", "needs_evidence"],
+  "blocked_phrases": ["mostly pass", "partial pass", "probably passes", "rubber stamp", "skip evidence"]
+}

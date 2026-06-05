@@ -719,7 +719,7 @@
 | 444 | `pwa-architecture` | Progressive Web App design. Service workers, Web App Manifest, offline-first, pu |
 | 445 | `qbr-quarterly` | Cadencia QBR: auditoria trimestral y plan del proximo trimestre (P13). |
 | 446 | `quality-engineering` | — |
-| 447 | `quality-gatekeeper` | Validates deliverables at quality gates G0-G3. Blocks phase transitions until cr |
+| 447 | `quality-gatekeeper` | Validates deliverables at JM-ADK quality gates G0-G3 using deterministic criteri |
 | 448 | `quality-metrics` | Code coverage, cyclomatic complexity, duplication, Lighthouse scores, bundle siz |
 | 449 | `rag-patterns` | — |
 | 450 | `rate-limiting` | — |

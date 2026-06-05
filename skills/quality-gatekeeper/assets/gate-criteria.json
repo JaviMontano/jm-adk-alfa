@@ -1,0 +1,50 @@
+{
+  "schema": 1,
+  "skill": "quality-gatekeeper",
+  "gate_order": ["G0", "G1", "G2", "G3"],
+  "gates": [
+    {
+      "id": "G0",
+      "name": "Pre-flight",
+      "required_previous_gates": [],
+      "criteria": [
+        {"id": "G0-01", "name": "secrets_scan_clean", "required": true, "severity": "P0", "evidence_required": ["secrets scan output", "git diff check"]},
+        {"id": "G0-02", "name": "branch_isolation_confirmed", "required": true, "severity": "P1", "evidence_required": ["branch name", "git status"]},
+        {"id": "G0-03", "name": "constitution_compliance_checked", "required": true, "severity": "P1", "evidence_required": ["constitution compliance result", "evidence tags"]}
+      ]
+    },
+    {
+      "id": "G1",
+      "name": "Analysis",
+      "required_previous_gates": ["G0"],
+      "criteria": [
+        {"id": "G1-01", "name": "spec_complete", "required": true, "severity": "P1", "evidence_required": ["spec or analysis artifact"]},
+        {"id": "G1-02", "name": "evidence_tags_present", "required": true, "severity": "P1", "evidence_required": ["tagged claims"]},
+        {"id": "G1-03", "name": "stakeholder_or_checklist_coverage", "required": true, "severity": "P2", "evidence_required": ["stakeholder map or checklist"]}
+      ]
+    },
+    {
+      "id": "G2",
+      "name": "Architecture",
+      "required_previous_gates": ["G0", "G1"],
+      "criteria": [
+        {"id": "G2-01", "name": "data_model_documented", "required": true, "severity": "P1", "evidence_required": ["data model"]},
+        {"id": "G2-02", "name": "api_or_contracts_documented", "required": true, "severity": "P1", "evidence_required": ["API or interface contract"]},
+        {"id": "G2-03", "name": "security_rules_drafted", "required": true, "severity": "P0", "evidence_required": ["security rule artifact"]},
+        {"id": "G2-04", "name": "bdd_traceability_ready", "required": true, "severity": "P1", "evidence_required": ["BDD traceability or hash lock"]}
+      ]
+    },
+    {
+      "id": "G3",
+      "name": "Deploy-ready",
+      "required_previous_gates": ["G0", "G1", "G2"],
+      "criteria": [
+        {"id": "G3-01", "name": "tests_pass", "required": true, "severity": "P1", "evidence_required": ["test command output"]},
+        {"id": "G3-02", "name": "lighthouse_at_least_90", "required": true, "severity": "P1", "evidence_required": ["Lighthouse score >= 90"]},
+        {"id": "G3-03", "name": "security_or_emulator_clean", "required": true, "severity": "P0", "evidence_required": ["security audit or emulator output"]},
+        {"id": "G3-04", "name": "accessibility_audit_clean", "required": true, "severity": "P1", "evidence_required": ["accessibility audit output"]},
+        {"id": "G3-05", "name": "brand_voice_and_monitoring_ready", "required": true, "severity": "P2", "evidence_required": ["brand voice scan", "monitoring evidence"]}
+      ]
+    }
+  ]
+}
