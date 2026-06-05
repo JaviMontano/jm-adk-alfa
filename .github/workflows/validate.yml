@@ -31,6 +31,9 @@ jobs:
       - name: Validate skill script contracts
         run: python3 scripts/validate-skill-scripts.py --strict --run-checks
 
+      - name: Validate doc factory
+        run: bash scripts/doc-factory/check.sh
+
       - name: Validate completed skill DoD
         run: |
           set -euo pipefail
@@ -127,7 +130,7 @@ jobs:
         run: |
           set -euo pipefail
           if command -v shellcheck >/dev/null 2>&1; then
-            shellcheck -S error scripts/*.sh scripts/adapters/*.sh skills/*/scripts/*.sh
+            shellcheck -S error scripts/*.sh scripts/adapters/*.sh scripts/doc-factory/*.sh skills/*/scripts/*.sh
           else
             echo "shellcheck not installed; skipping shell lint"
           fi
