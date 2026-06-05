@@ -1,0 +1,25 @@
+{
+  "schema": 1,
+  "skill": "code-review-checklist",
+  "statuses": ["pass", "fail", "not_applicable", "not_verified"],
+  "domains": ["security", "performance_firebase", "quality_types"],
+  "decisions": ["approve", "approve_with_comments", "request_changes", "needs_context"],
+  "blocking_checks": ["SEC-01", "SEC-02", "SEC-03", "SEC-04", "SEC-05", "FB-01", "FB-02", "QUAL-01", "QUAL-02"],
+  "checks": [
+    {"id": "SEC-01", "domain": "security", "label": "No secrets in code", "blocking": true},
+    {"id": "SEC-02", "domain": "security", "label": "User-controlled HTML sanitized", "blocking": true},
+    {"id": "SEC-03", "domain": "security", "label": "Firestore rules enforce auth", "blocking": true},
+    {"id": "SEC-04", "domain": "security", "label": "CORS origins restricted", "blocking": true},
+    {"id": "SEC-05", "domain": "security", "label": "No high or critical dependency audit findings", "blocking": true},
+    {"id": "FB-01", "domain": "performance_firebase", "label": "Firestore reads are bounded", "blocking": true},
+    {"id": "FB-02", "domain": "performance_firebase", "label": "No Firestore reads in unbounded loops", "blocking": true},
+    {"id": "PERF-03", "domain": "performance_firebase", "label": "Images optimized when in scope", "blocking": false},
+    {"id": "PERF-04", "domain": "performance_firebase", "label": "Large dependency additions justified", "blocking": false},
+    {"id": "FB-05", "domain": "performance_firebase", "label": "Cloud Function cold starts mitigated", "blocking": false},
+    {"id": "QUAL-01", "domain": "quality_types", "label": "No unsafe any types", "blocking": true},
+    {"id": "QUAL-02", "domain": "quality_types", "label": "No undocumented suppressions", "blocking": true},
+    {"id": "QUAL-03", "domain": "quality_types", "label": "Size policy respected", "blocking": false},
+    {"id": "QUAL-04", "domain": "quality_types", "label": "Intention-revealing naming", "blocking": false},
+    {"id": "QUAL-05", "domain": "quality_types", "label": "Explicit error handling", "blocking": false}
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "schema": 1,
+  "skill": "code-review-checklist",
+  "required_sections": [
+    "scope",
+    "scores",
+    "checks",
+    "findings",
+    "positive_evidence",
+    "missing_evidence",
+    "validation",
+    "decision",
+    "risks_and_limits"
+  ],
+  "scope_fields": ["review_type", "sources_reviewed", "minimum_inputs_missing", "mode"],
+  "score_fields": ["security", "performance_firebase", "quality_types"],
+  "check_fields": ["id", "domain", "status", "evidence_tag", "source", "why"],
+  "finding_fields": ["id", "check_id", "severity", "file", "line", "claim", "evidence_tag", "remediation"],
+  "validation_fields": ["blocking_failures", "checks_run", "not_verified"],
+  "decision_fields": ["release_decision", "reason", "next_action"],
+  "release_decisions": ["approve", "approve_with_comments", "request_changes", "needs_context"],
+  "finding_severities": ["BLOCKER", "MAJOR", "MINOR"],
+  "forbidden_phrases": [
+    "probably fine",
+    "looks good enough",
+    "rubber stamp",
+    "I assume tests pass",
+    "skip checklist",
+    "approve despite blocker"
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "schema": 1,
+  "skill": "code-review-checklist",
+  "allowed_tags": ["[CÓDIGO]", "[CONFIG]", "[DOC]", "[INFERENCIA]", "[SUPUESTO]"],
+  "check_required_fields": ["id", "domain", "status", "evidence_tag", "source", "why"],
+  "source_required_fields": ["file", "line"],
+  "finding_required_fields": ["id", "check_id", "severity", "file", "line", "claim", "evidence_tag", "remediation"],
+  "secret_policy": "redact secret-like values and cite pattern/file/line without echoing the full value",
+  "missing_context_policy": "use not_verified or needs_context instead of inventing evidence"
+}

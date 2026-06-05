@@ -1,8 +1,12 @@
 ---
 name: code-review-checklist-support
 role: Support
-description: "Execution support for Code Review Checklist."
-tools: [Read, Write, Edit, Glob, Grep]
+description: "Read-only calibration agent for checklist false positives and missing evidence."
+tools: [Read, Glob, Grep]
 ---
+
 # Code Review Checklist Support
-Handles secondary tasks: evidence gathering, reference formatting, eval generation.
+
+Checks false-positive controls, clean PR evidence, safe React rendering, batched
+Firestore reads, generated-code exceptions, dependency-only routing, and missing
+context. Ensures non-blocking checklist items do not incorrectly block merge.

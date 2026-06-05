@@ -1,13 +1,19 @@
-# Code Review Checklist — Knowledge Graph
+# Code Review Checklist - Knowledge Graph
 
 ## Core Concepts
-- code-review-checklist: primary capability
-- validation-gate: quality control checkpoint
-- evidence-tagging: [EXPLICIT]/[INFERRED]/[OPEN] claims
 
-## Dependencies
-- Upstream: input-analysis, context-optimization
-- Downstream: output-engineering, rendering-engine
+- [[deterministic-checklist]] - Fixed pass/fail/not-applicable/not-verified gate matrix.
+- [[blocking-gates]] - Security, unbounded Firestore, loop reads, unsafe `any`,
+  and undocumented suppressions.
+- [[evidence-tags]] - `[CÓDIGO]`, `[CONFIG]`, `[DOC]`, `[INFERENCIA]`, and
+  `[SUPUESTO]`.
+- [[false-positive-controls]] - Safe React escaping, batched Firestore reads,
+  clean PRs, and non-code requests.
+- [[report-contract]] - Machine-checkable checklist output.
 
-## Skill Relationships
-Part of the JM Labs canonical skill registry.
+## Cross-References
+
+- `code-review`
+- `audit-security`
+- `quality-gatekeeper`
+- `assumption-log`

@@ -364,7 +364,7 @@
 | 89 | `cloud-functions` | — |
 | 90 | `cloud-migration` | — |
 | 91 | `cloud-native-architecture` | — |
-| 92 | `code-review-checklist` | Structured code review covering OWASP security, Core Web Vitals performance, Fir |
+| 92 | `code-review-checklist` | — |
 | 93 | `code-review` | — |
 | 94 | `cohort-analysis` | — |
 | 95 | `color-theory` | — |

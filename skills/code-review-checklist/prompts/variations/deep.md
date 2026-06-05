@@ -3,7 +3,9 @@ name: code-review-checklist-deep
 type: variation
 variant: deep
 ---
-# Code Review Checklist — Deep Analysis
 
-Full depth execution. Load all `references/` files from canonical. Run L3 progressive loading.
-Apply all Validation Gate criteria strictly.
+# Code Review Checklist - Deep Mode
+
+Use deep mode for auth, payment, data, compliance, migration, or broad
+dependency changes. Inspect every applicable checklist ID, record not-verified
+items explicitly, and do not infer unavailable tests, rules, or audit status.

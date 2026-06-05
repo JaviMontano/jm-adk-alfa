@@ -555,7 +555,7 @@
     "id": "code-review-checklist",
     "path": "skills/code-review-checklist",
     "name": "Code Review Checklist",
-    "description": "Structured code review covering OWASP security, Core Web Vitals performance, Firebase best practices, and TypeScript types"
+    "description": ">"
   },
   {
     "id": "cohort-analysis",

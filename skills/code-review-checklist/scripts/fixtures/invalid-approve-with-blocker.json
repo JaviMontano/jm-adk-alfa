@@ -1,0 +1,31 @@
+{
+  "schema": 1,
+  "skill": "code-review-checklist",
+  "mode": "read_only",
+  "scope": {
+    "review_type": "pull_request_checklist",
+    "sources_reviewed": ["firestore.rules"],
+    "minimum_inputs_missing": [],
+    "mode": "standard"
+  },
+  "scores": {"security": 50, "performance_firebase": 100, "quality_types": 100},
+  "checks": [
+    {"id": "SEC-03", "domain": "security", "status": "fail", "evidence_tag": "[CÓDIGO]", "source": {"file": "firestore.rules", "line": 4}, "why": "Rules allow public write."}
+  ],
+  "findings": [
+    {"id": "CRCF-001", "check_id": "SEC-03", "severity": "BLOCKER", "file": "firestore.rules", "line": 4, "claim": "Public write is allowed. [CÓDIGO]", "evidence_tag": "[CÓDIGO]", "remediation": "Require authenticated user and scoped ownership checks."}
+  ],
+  "positive_evidence": [],
+  "missing_evidence": [],
+  "validation": {
+    "blocking_failures": ["SEC-03"],
+    "checks_run": ["SEC-03"],
+    "not_verified": []
+  },
+  "decision": {
+    "release_decision": "approve",
+    "reason": "Approve despite blocker.",
+    "next_action": "Merge."
+  },
+  "risks_and_limits": []
+}
