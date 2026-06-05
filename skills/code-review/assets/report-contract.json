@@ -1,0 +1,39 @@
+{
+  "schema": 1,
+  "skill": "code-review",
+  "required_sections": [
+    "scope",
+    "findings",
+    "positive_patterns",
+    "validation",
+    "decision",
+    "risks_and_limits"
+  ],
+  "scope_fields": [
+    "review_type",
+    "sources_reviewed",
+    "minimum_inputs_missing",
+    "depth"
+  ],
+  "finding_fields": [
+    "id",
+    "severity",
+    "category",
+    "file",
+    "line",
+    "claim",
+    "evidence_tag",
+    "suggested_action"
+  ],
+  "positive_pattern_fields": ["file", "line", "pattern", "evidence_tag"],
+  "validation_fields": ["checks_run", "coverage_notes", "not_verified"],
+  "decision_fields": ["release_decision", "reason", "next_action"],
+  "release_decisions": ["approve", "approve_with_comments", "request_changes", "needs_context"],
+  "forbidden_phrases": [
+    "probably fine",
+    "looks good enough",
+    "rubber stamp",
+    "I assume tests pass",
+    "request changes for formatting preference"
+  ]
+}

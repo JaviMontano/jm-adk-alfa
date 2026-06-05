@@ -1,0 +1,9 @@
+{
+  "schema": 1,
+  "skill": "code-review",
+  "allowed_tags": ["[CÓDIGO]", "[CONFIG]", "[DOC]", "[INFERENCIA]", "[SUPUESTO]"],
+  "code_finding_required_fields": ["id", "severity", "category", "file", "line", "claim", "evidence_tag", "suggested_action"],
+  "line_policy": "line must be a positive integer for code findings; use null only for missing-context findings",
+  "claim_policy": "claims must cite inspected code, diffs, tests, CI, user-supplied requirements, or explicit inference from those sources",
+  "secret_policy": "do not echo live secrets; redact secret-like values and describe the pattern instead"
+}

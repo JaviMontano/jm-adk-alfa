@@ -1,28 +1,34 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: code-review
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
+# Code Review Report
 
-# Code Review Output
+## Scope
 
-## Summary
+- Review type: `{{review_type}}`
+- Sources reviewed: `{{sources_reviewed}}`
+- Minimum inputs missing: `{{minimum_inputs_missing}}`
+- Depth: `{{depth}}`
 
-{summary}
+## Findings
 
-## Evidence
+| ID | Severity | Category | Evidence | Claim | Suggested action |
+|---|---|---|---|---|---|
+| `{{id}}` | `{{severity}}` | `{{category}}` | `{{file}}:{{line}} {{evidence_tag}}` | `{{claim}}` | `{{suggested_action}}` |
 
-{evidence}
+## Positive Patterns
 
-## Result
-
-{result}
+- `{{file}}:{{line}} {{evidence_tag}}` - `{{pattern}}`
 
 ## Validation
 
-{validation}
+- Checks run: `{{checks_run}}`
+- Coverage notes: `{{coverage_notes}}`
+- Not verified: `{{not_verified}}`
+
+## Decision
+
+- Release decision: `{{release_decision}}`
+- Reason: `{{reason}}`
+- Next action: `{{next_action}}`
 
 ## Risks and Limits
 
-{risks}
+- `{{risk_or_limit}}`

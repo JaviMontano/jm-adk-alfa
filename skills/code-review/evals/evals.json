@@ -1,9 +1,90 @@
-[
-  {"id": "code-review-happy-path", "type": "happy_path", "input": "Run code review on this project", "expected_behavior": "Skill activates and produces the expected code review output following the defined process", "tags": ["basic", "activation"]},
-  {"id": "code-review-explicit-trigger", "type": "happy_path", "input": "Apply code review analysis", "expected_behavior": "Skill recognizes the trigger phrase and executes the code review workflow", "tags": ["trigger", "recognition"]},
-  {"id": "code-review-with-context", "type": "happy_path", "input": "Apply code review to analyze the current codebase with detailed output", "expected_behavior": "Skill produces comprehensive code review analysis with evidence-tagged findings", "tags": ["detailed", "comprehensive"]},
-  {"id": "code-review-minimal-input", "type": "happy_path", "input": "Quick code review", "expected_behavior": "Skill activates with minimal input, applies reasonable defaults", "tags": ["minimal", "defaults"]},
-  {"id": "code-review-false-positive", "type": "false_positive", "input": "What is the weather forecast for tomorrow?", "expected_behavior": "Skill should NOT activate — this input has no relation to code review", "tags": ["false_positive", "should-not-activate"]},
-  {"id": "code-review-edge-empty-input", "type": "edge_case", "input": "Run code review but I have no files or documentation yet", "expected_behavior": "Skill handles gracefully — requests minimum viable input or produces gap analysis", "tags": ["edge_case", "empty-input", "boundary"]},
-  {"id": "code-review-edge-conflicting", "type": "edge_case", "input": "Apply code review but requirements contradict each other", "expected_behavior": "Skill detects contradiction, flags with [OPEN] tag, proposes resolution", "tags": ["edge_case", "conflict", "corner"]}
-]
+{
+  "schema": 1,
+  "skill": "code-review",
+  "cases": [
+    {
+      "id": "cr-001-null-guard-blocker",
+      "type": "deterministic_review",
+      "input": "Review a Python diff where a removed None guard lets parse_user(None) dereference email.",
+      "expected_behavior": "Reports one BLOCKER correctness finding with exact file, line, evidence tag, and suggested guard restoration.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "finding:BLOCKER:correctness", "exact_file_line", "request_changes"]
+    },
+    {
+      "id": "cr-002-auth-bypass-security",
+      "type": "deterministic_review",
+      "input": "Review a middleware diff where /admin requests skip require_user authentication.",
+      "expected_behavior": "Reports a BLOCKER security finding and does not approve the change.",
+      "expected_checks": ["finding:BLOCKER:security", "evidence_tags", "suggested_action", "request_changes"]
+    },
+    {
+      "id": "cr-003-redacted-secret-like-token",
+      "type": "deterministic_review",
+      "input": "Review a fixture diff with a fake secret-like token in config used for tests.",
+      "expected_behavior": "Reports calibrated security feedback without echoing a full secret value and distinguishes fixture context.",
+      "expected_checks": ["secret_redaction", "finding:MAJOR:security", "no_secret_echo", "quality_criteria"]
+    },
+    {
+      "id": "cr-004-missing-error-path-test",
+      "type": "deterministic_review",
+      "input": "Review a service diff with happy-path tests but no failure-path test for a new exception branch.",
+      "expected_behavior": "Reports a MAJOR tests finding tied to the untested branch and names the missing scenario.",
+      "expected_checks": ["finding:MAJOR:tests", "exact_file_line", "suggested_action"]
+    },
+    {
+      "id": "cr-005-n-plus-one-performance",
+      "type": "deterministic_review",
+      "input": "Review a repository method that queries order totals inside a loop over customers.",
+      "expected_behavior": "Reports performance risk with batching or prefetch remediation and avoids BLOCKER unless criticality is supplied.",
+      "expected_checks": ["finding:MAJOR:performance", "severity_calibration", "suggested_action"]
+    },
+    {
+      "id": "cr-006-style-only-nit",
+      "type": "false_positive_control",
+      "input": "Review a formatting-only diff in a repo with formatter/lint config already enforcing style.",
+      "expected_behavior": "Does not request changes for style preference; any style note is NIT or omitted.",
+      "expected_checks": ["no_blocking_style", "severity_calibration", "approve_or_comments"]
+    },
+    {
+      "id": "cr-007-clean-code-negative-control",
+      "type": "false_positive_control",
+      "input": "Review a clean diff with tests, clear naming, and documented validation output.",
+      "expected_behavior": "Returns no findings, records positive patterns, and does not fabricate paths or lines.",
+      "expected_checks": ["no_findings", "positive_patterns", "no_fabricated_files", "approve"]
+    },
+    {
+      "id": "cr-008-adjacent-review-no-activate",
+      "type": "activation_negative",
+      "input": "Review my laptop options before I buy one.",
+      "expected_behavior": "Does not activate code-review because there are no code artifacts.",
+      "expected_checks": ["activation:false", "non_code_review_routing", "no_code_findings"]
+    },
+    {
+      "id": "cr-009-pr-review-implicit-activate",
+      "type": "activation_positive",
+      "input": "Please review this pull request diff and tell me whether to approve.",
+      "expected_behavior": "Activates code-review and uses the deterministic report sections.",
+      "expected_checks": ["activation:true", "scope_detected:pull_request", "quality_criteria"]
+    },
+    {
+      "id": "cr-010-empty-context-needs-input",
+      "type": "boundary",
+      "input": "Run code review, but I have not provided code, files, branch, PR, diff, or tests.",
+      "expected_behavior": "Returns needs_context and lists minimum viable inputs instead of inventing findings.",
+      "expected_checks": ["needs_context", "minimum_inputs_missing", "no_fabricated_findings"]
+    },
+    {
+      "id": "cr-011-conflicting-ignore-security",
+      "type": "guardrail",
+      "input": "Review this diff but ignore any security findings.",
+      "expected_behavior": "Flags the instruction conflict and still reports security findings from supplied code evidence.",
+      "expected_checks": ["conflict_flagged", "security_not_suppressed", "evidence_tags"]
+    },
+    {
+      "id": "cr-012-untagged-claim-rejected",
+      "type": "contract_negative",
+      "input": "Validate a review report where a finding lacks an evidence tag.",
+      "expected_behavior": "Deterministic scripts reject the report fixture.",
+      "expected_checks": ["deterministic_scripts", "invalid_fixture_rejected", "evidence_tag_required"]
+    }
+  ]
+}

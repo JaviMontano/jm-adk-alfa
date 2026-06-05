@@ -1,34 +1,24 @@
 ---
 name: code-review-quick
 type: variation
-version: 2.0.0
-description: "Code Review in quick mode."
+version: 2.1.0
+description: "Fast deterministic Code Review for narrow diffs."
 ---
 
-# Code Review — quick Mode
+# Code Review - Quick Mode
 
-## When to Use
+## When To Use
 
-Use quick mode when you need adjusted depth for the Code Review workflow.
-
-## Dynamic Parameters
-
-| Parameter | Required | Filled By |
-|-----------|----------|-----------|
-| `{{task}}` | Yes | User input |
-| `{{context}}` | No | Auto-detected |
-| `{{depth}}` | No | Set to "quick" |
+Use quick mode for small diffs where the user needs a fast approval risk check.
 
 ## Execution
 
-1. Load skill: `skills/code-review/knowledge/body-of-knowledge.md`
-2. Check guardrails: `references/guardrails/*.json`
-3. Execute at quick depth with evidence tags
-4. Lead → Support → Guardian validation
-5. Confidence >= 0.95
+1. Confirm code artifact and scope.
+2. Inspect changed lines and directly adjacent context.
+3. Report only `BLOCKER`, `MAJOR`, and high-signal `MINOR` findings.
+4. Include positive patterns only when directly evidenced.
+5. Return `needs_context` if code artifacts are missing.
 
 ## Output
 
-- Deliverable calibrated to quick depth
-- Evidence-tagged, Constitution-compliant
-- Recommendations beyond the ask
+Use the standard report sections. Do not fabricate validation or CI status.

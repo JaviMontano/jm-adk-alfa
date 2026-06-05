@@ -1,75 +1,23 @@
 {
   "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-28",
   "skill": "code-review",
   "nodes": [
-    {
-      "id": "code-review",
-      "type": "skill",
-      "label": "code-review"
-    },
-    {
-      "id": "code-review:inputs",
-      "type": "contract",
-      "label": "Expected inputs"
-    },
-    {
-      "id": "code-review:outputs",
-      "type": "contract",
-      "label": "Expected outputs"
-    },
-    {
-      "id": "code-review:quality",
-      "type": "gate",
-      "label": "Quality criteria"
-    },
-    {
-      "id": "code-review:ontology",
-      "type": "ontology",
-      "label": "Domain: prompt-structured-output"
-    },
-    {
-      "id": "code-review:evidence",
-      "type": "gate",
-      "label": "Evidence / provenance requirements"
-    },
-    {
-      "id": "code-review:antipattern",
-      "type": "risk",
-      "label": "Canonical anti-pattern to avoid"
-    }
+    {"id": "code-review", "type": "skill", "label": "Deterministic Code Review"},
+    {"id": "code-review:activation", "type": "policy", "label": "Activation and missing-input routing"},
+    {"id": "code-review:taxonomy", "type": "taxonomy", "label": "Severity and category taxonomy"},
+    {"id": "code-review:evidence", "type": "policy", "label": "Evidence tags and file-line citation"},
+    {"id": "code-review:report-contract", "type": "schema", "label": "Code review report contract"},
+    {"id": "code-review:validator", "type": "script", "label": "Offline report validator"},
+    {"id": "code-review:false-positive-controls", "type": "eval", "label": "Clean code and style-only controls"},
+    {"id": "code-review:decision", "type": "gate", "label": "Release decision rules"}
   ],
   "edges": [
-    {
-      "from": "code-review",
-      "to": "code-review:inputs",
-      "type": "requires"
-    },
-    {
-      "from": "code-review",
-      "to": "code-review:outputs",
-      "type": "produces"
-    },
-    {
-      "from": "code-review",
-      "to": "code-review:quality",
-      "type": "validated_by"
-    },
-    {
-      "from": "code-review",
-      "to": "code-review:ontology",
-      "type": "classified_as"
-    },
-    {
-      "from": "code-review",
-      "to": "code-review:evidence",
-      "type": "validated_by"
-    },
-    {
-      "from": "code-review",
-      "to": "code-review:antipattern",
-      "type": "guards_against"
-    }
+    {"from": "code-review", "to": "code-review:activation", "type": "requires"},
+    {"from": "code-review", "to": "code-review:taxonomy", "type": "classifies_with"},
+    {"from": "code-review", "to": "code-review:evidence", "type": "grounds_claims_with"},
+    {"from": "code-review", "to": "code-review:report-contract", "type": "produces"},
+    {"from": "code-review:validator", "to": "code-review:report-contract", "type": "validates"},
+    {"from": "code-review:false-positive-controls", "to": "code-review:decision", "type": "calibrates"},
+    {"from": "code-review:decision", "to": "code-review:taxonomy", "type": "depends_on"}
   ]
 }

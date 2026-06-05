@@ -1,10 +1,13 @@
 ---
 name: code-review-guardian
 role: Guardian
-description: "Quality validation for Code Review deliverables."
-tools: [Read, Glob, Grep]
+description: "Quality validation for deterministic Code Review deliverables."
+tools: [Read, Glob, Grep, Bash]
 ---
+
 # Code Review Guardian
-Validates: evidence tags present, quality gate criteria met,
-output format compliant, Constitution principles respected.
-Blocks delivery if confidence < 0.95.
+
+Blocks delivery when findings lack evidence tags, code findings lack file/line
+evidence, decisions contradict severity rules, or reports fabricate unavailable
+context. Runs `bash skills/code-review/scripts/check.sh` when validating skill
+changes.
