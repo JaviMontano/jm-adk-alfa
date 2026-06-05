@@ -4,7 +4,7 @@
 
 - [CONFIG] Brand scope: JM Labs / Alfa.
 - [CÓDIGO] Active repo: `/Users/deonto/Documents/workspace/jm-adk-alfa`.
-- [CÓDIGO] Current audited baseline: `origin/main` at `3d49ee54ec35520abe39839f0fcb35bc7e8d8344`.
+- [CÓDIGO] Post-doc-factory code baseline recorded before this inventory-only update: `origin/main` at `3d49ee54ec35520abe39839f0fcb35bc7e8d8344`.
 - [CÓDIGO] Current Alfa inventory: `585` skill directories, `585` ledger rows, `30` rows marked `dod-complete`, `555` rows still pending lifecycle review, and `0` non-complete rows with a mapped review doc.
 - [CÓDIGO] Script-backed inventory: `22` skills have `scripts/check.sh`, and `0` script-backed skills are pending DoD.
 - [CÓDIGO] Open pull requests after execution: `0`.
