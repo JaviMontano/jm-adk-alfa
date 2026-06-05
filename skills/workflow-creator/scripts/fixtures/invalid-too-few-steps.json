@@ -1,0 +1,71 @@
+{
+  "workflow": {
+    "id": "thin-workflow",
+    "title": "Thin Workflow",
+    "objective": "Produce a reviewed skill release packet with local validation evidence.",
+    "trigger": "/jm:harden-skill thin-workflow is invoked for one active skill.",
+    "preconditions": [
+      "Git status is clean before edits."
+    ],
+    "inputs": [
+      {
+        "name": "skill_slug",
+        "type": "string",
+        "required": true,
+        "description": "Kebab-case skill identifier selected for the hardening iteration."
+      }
+    ],
+    "steps": [
+      {
+        "stepNumber": 1,
+        "title": "Confirm Scope",
+        "desc": "Coordinator confirms exactly one active skill.",
+        "whyThisMatters": "Without a single active skill, unrelated changes can hide regressions.",
+        "inputNeeded": "skill_slug:string",
+        "actionInstruction": "Run git status and record the active skill slug.",
+        "promptToUse": "Confirm the active skill and branch name.",
+        "expectedOutput": "Scope packet with active_skill and branch fields.",
+        "validationRule": "active_skill equals thin-workflow.",
+        "failureSignal": "active_skill missing.",
+        "recoveryAction": "Stop and ask for the active skill.",
+        "handoffIfNeeded": "coordinator"
+      }
+    ],
+    "mainOutput": "ReleasePacket markdown with branch, checks, and decision.",
+    "secondaryOutputs": [
+      "Updated skill review doc"
+    ],
+    "DoD": [
+      "Per-skill DoD command passes with dod=pass.",
+      "Script contract command passes with warnings=0 errors=0."
+    ],
+    "qaChecklist": [
+      "All 17 top-level workflow fields are present.",
+      "Every step has 12 fields and an observable validation rule."
+    ],
+    "raci": {
+      "responsible": "integrator",
+      "accountable": "guardian",
+      "consulted": "determinism-auditor",
+      "informed": "coordinator"
+    },
+    "kpis": [
+      {
+        "metric": "local_gate_failures",
+        "target": "0",
+        "unit": "count",
+        "measurement": "Count non-zero exits across validation commands."
+      },
+      {
+        "metric": "scope_violations",
+        "target": "0",
+        "unit": "count",
+        "measurement": "Count diff paths outside allowed scope."
+      }
+    ],
+    "cadence": "per-request",
+    "errorHandling": "Log the failing command and block ledger completion.",
+    "fallbackRoute": "stop-and-ask",
+    "escalationRoute": "human-maintainer"
+  }
+}

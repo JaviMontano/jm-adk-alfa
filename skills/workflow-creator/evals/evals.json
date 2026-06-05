@@ -1,9 +1,204 @@
-[
-  {"id": "workflow-creator-happy-path", "type": "happy_path", "input": "Run workflow creator on this project", "expected_behavior": "Skill activates and produces the expected workflow creator output following the defined process", "tags": ["basic", "activation"]},
-  {"id": "workflow-creator-explicit-trigger", "type": "happy_path", "input": "Apply workflow creator analysis", "expected_behavior": "Skill recognizes the trigger phrase and executes the workflow creator workflow", "tags": ["trigger", "recognition"]},
-  {"id": "workflow-creator-with-context", "type": "happy_path", "input": "Apply workflow creator to analyze the current codebase with detailed output", "expected_behavior": "Skill produces comprehensive workflow creator analysis with evidence-tagged findings", "tags": ["detailed", "comprehensive"]},
-  {"id": "workflow-creator-minimal-input", "type": "happy_path", "input": "Quick workflow creator", "expected_behavior": "Skill activates with minimal input, applies reasonable defaults", "tags": ["minimal", "defaults"]},
-  {"id": "workflow-creator-false-positive", "type": "false_positive", "input": "What is the weather forecast for tomorrow?", "expected_behavior": "Skill should NOT activate — this input has no relation to workflow creator", "tags": ["false_positive", "should-not-activate"]},
-  {"id": "workflow-creator-edge-empty-input", "type": "edge_case", "input": "Run workflow creator but I have no files or documentation yet", "expected_behavior": "Skill handles gracefully — requests minimum viable input or produces gap analysis", "tags": ["edge_case", "empty-input", "boundary"]},
-  {"id": "workflow-creator-edge-conflicting", "type": "edge_case", "input": "Apply workflow creator but requirements contradict each other", "expected_behavior": "Skill detects contradiction, flags with [OPEN] tag, proposes resolution", "tags": ["edge_case", "conflict", "corner"]}
-]
+{
+  "schema": 1,
+  "skill": "workflow-creator",
+  "cases": [
+    {
+      "id": "happy-path-skill-hardening-workflow",
+      "type": "happy_path",
+      "input": "Create workflow YAML for skill-hardening-handoff owned by workflow-creator with DoD, RACI, KPIs, fallback, and escalation.",
+      "expected_activation": true,
+      "expected_outputs": [
+        "workflow.yaml block",
+        "17 top-level fields",
+        "3-7 ordered steps",
+        "RACI roles",
+        "measurable KPIs",
+        "validation evidence"
+      ],
+      "forbidden_outputs": [
+        "when needed",
+        "check everything",
+        "TBD"
+      ],
+      "expected_checks": [
+        "assets",
+        "deterministic_scripts",
+        "quality_criteria",
+        "workflow_spec_contract",
+        "raci",
+        "kpis"
+      ]
+    },
+    {
+      "id": "missing-owning-skill-asks-once",
+      "type": "edge_case",
+      "input": "Create a workflow called release-packet-review with steps, DoD, RACI, and KPIs.",
+      "expected_activation": true,
+      "expected_outputs": [
+        "asks for owning_skill_id or marks it [OPEN]",
+        "does not invent owner",
+        "lists missing blocking inputs"
+      ],
+      "forbidden_outputs": [
+        "assumes an owning skill without evidence",
+        "omits missing_inputs"
+      ],
+      "expected_checks": [
+        "activation_policy",
+        "quality_criteria",
+        "open_items"
+      ]
+    },
+    {
+      "id": "workflow-id-not-kebab-case-rejected",
+      "type": "negative_contract",
+      "input": "Generate workflow YAML for Release Packet Review owned by workflow-creator.",
+      "expected_activation": true,
+      "expected_outputs": [
+        "rejects or normalizes workflow_id to kebab-case",
+        "records original ambiguous identifier"
+      ],
+      "forbidden_outputs": [
+        "id: Release Packet Review",
+        "id: release_packet_review"
+      ],
+      "expected_checks": [
+        "workflow_spec_contract",
+        "quality_criteria",
+        "id_policy"
+      ]
+    },
+    {
+      "id": "duplicate-workflow-detected",
+      "type": "edge_case",
+      "input": "Create skill-hardening-handoff again after an existing workflow with that id is found locally.",
+      "expected_activation": true,
+      "expected_outputs": [
+        "stops before overwrite",
+        "mentions duplicate workflow id",
+        "asks for replace, rename, or supersede decision"
+      ],
+      "forbidden_outputs": [
+        "overwrites existing workflow silently",
+        "continues without duplicate decision"
+      ],
+      "expected_checks": [
+        "local_catalog_check",
+        "quality_criteria"
+      ]
+    },
+    {
+      "id": "missing-step-spec-graceful",
+      "type": "edge_case",
+      "input": "Create an agent handoff workflow, but references/step-spec.md is absent in this repo.",
+      "expected_activation": true,
+      "expected_outputs": [
+        "uses assets/workflow-definition-contract.json",
+        "does not claim references/step-spec.md was read",
+        "continues with local contract"
+      ],
+      "forbidden_outputs": [
+        "quotes absent step-spec.md",
+        "blocks only because step-spec.md is missing"
+      ],
+      "expected_checks": [
+        "assets",
+        "quality_criteria",
+        "source_integrity"
+      ]
+    },
+    {
+      "id": "too-few-steps-rejected",
+      "type": "negative_contract",
+      "input": "Validate a workflow spec with one step and all other fields present.",
+      "expected_activation": true,
+      "expected_outputs": [
+        "fails validation",
+        "reports steps must contain 3-7 items"
+      ],
+      "forbidden_outputs": [
+        "accepts one-step workflow",
+        "marks dod complete"
+      ],
+      "expected_checks": [
+        "deterministic_scripts",
+        "workflow_spec_contract",
+        "quality_criteria"
+      ]
+    },
+    {
+      "id": "too-many-steps-rejected",
+      "type": "negative_contract",
+      "input": "Validate a workflow spec with eight ordered steps.",
+      "expected_activation": true,
+      "expected_outputs": [
+        "fails validation",
+        "reports steps must contain 3-7 items"
+      ],
+      "forbidden_outputs": [
+        "accepts eight-step workflow without split recommendation"
+      ],
+      "expected_checks": [
+        "workflow_spec_contract",
+        "quality_criteria"
+      ]
+    },
+    {
+      "id": "vague-fields-rejected",
+      "type": "negative_contract",
+      "input": "Validate a workflow where trigger is 'when needed', QA is 'check everything', and recovery is 'try again'.",
+      "expected_activation": true,
+      "expected_outputs": [
+        "fails validation",
+        "reports blocked phrase",
+        "requires observable validation and recovery signals"
+      ],
+      "forbidden_outputs": [
+        "accepts vague trigger",
+        "accepts generic recovery action"
+      ],
+      "expected_checks": [
+        "deterministic_scripts",
+        "quality_criteria",
+        "blocked_phrases"
+      ]
+    },
+    {
+      "id": "raci-unknown-agent-blocked",
+      "type": "negative_contract",
+      "input": "Create a workflow with responsible 'someone' and accountable 'owner'.",
+      "expected_activation": true,
+      "expected_outputs": [
+        "blocks anonymous RACI roles",
+        "asks for concrete agent or human role"
+      ],
+      "forbidden_outputs": [
+        "responsible: someone",
+        "accountable: owner"
+      ],
+      "expected_checks": [
+        "raci",
+        "quality_criteria"
+      ]
+    },
+    {
+      "id": "false-positive-process-question",
+      "type": "false_positive",
+      "input": "What is the difference between a process, a checklist, and a workflow?",
+      "expected_activation": false,
+      "expected_outputs": [
+        "answers conceptually without generating 17-field YAML",
+        "does not load deterministic scripts"
+      ],
+      "forbidden_outputs": [
+        "workflow.yaml",
+        "runs validate_workflow_spec.py",
+        "creates a full workflow definition"
+      ],
+      "expected_checks": [
+        "activation_policy",
+        "false_positive"
+      ]
+    }
+  ]
+}

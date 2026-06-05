@@ -1,17 +1,26 @@
 ---
 name: workflow-creator-meta
 type: meta
-version: 2.0.0
-description: "Meta-prompt for Workflow Creator skill routing."
+version: 2.1.0
+description: "Route requests to Workflow Creator only when a full workflow definition is needed."
 ---
 
-# Workflow Creator — Meta Prompt
+# Workflow Creator Meta Prompt
 
-Activate this skill when the user request matches:
-- Trigger phrases from SKILL.md description
-- Direct invocation: `/workflow-creator`
+Activate when the request asks for a workflow definition, workflow YAML, workflow
+steps, DoD, RACI, KPIs, fallback, or escalation route. Decline conceptual
+questions, project plans, and checklists unless the user explicitly asks for
+the 17-field workflow contract.
 
-## Skill Routing
-1. Load SKILL.md → read `## When to Activate` section
-2. If match → activate lead agent: `workflow-creator-lead`
-3. If orchestrated → defer to orchestrating skill
+Routing output:
+
+```json
+{
+  "expected_activation": true,
+  "reason": "[EXPLICIT] request asks for workflow YAML with DoD/RACI/KPIs",
+  "missing_inputs": [],
+  "next_step": "load workflow-creator assets"
+}
+```
+
+Do not claim a local file was read unless it was read in this run.

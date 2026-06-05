@@ -863,7 +863,7 @@
 | 588 | `webhook-handling` | — |
 | 589 | `weekly-retro` | Cadencia de retro semanal: que ayudo, que friccion, que se vuelve regla (P12). |
 | 590 | `whitepaper-creation` | — |
-| 591 | `workflow-creator` | — |
+| 591 | `workflow-creator` | Generates deterministic 17-field workflow definitions with step contracts, DoD,  |
 | 592 | `workflow-forge` | Creates slash-command workflow definitions with phase maps, agent handoffs, veri |
 | 593 | `workflow-orchestration` | — |
 | 594 | `workshop-design` | — |

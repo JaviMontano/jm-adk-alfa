@@ -1,0 +1,41 @@
+{
+  "schema": 1,
+  "skill": "workflow-creator",
+  "activate_when": [
+    "create a workflow",
+    "define workflow steps",
+    "build workflow YAML",
+    "generate a workflow spec",
+    "add RACI to a workflow",
+    "define workflow DoD",
+    "define workflow KPIs",
+    "design escalation and fallback for a procedure"
+  ],
+  "decline_when": [
+    "generic checklist request",
+    "one-off project plan",
+    "conceptual definition without workflow output",
+    "spreadsheet or document template request without workflow fields",
+    "runtime execution request for an already-defined workflow"
+  ],
+  "clarify_if_missing": [
+    "workflow_id",
+    "owning_skill_id",
+    "objective",
+    "trigger",
+    "actors_or_roles",
+    "success_evidence",
+    "failure_modes"
+  ],
+  "network_policy": {
+    "default": "offline",
+    "allowed_only_if_user_requests_sources": true,
+    "requires_source_attribution": true
+  },
+  "activation_decision_fields": [
+    "expected_activation",
+    "reason",
+    "missing_inputs",
+    "recommended_next_step"
+  ]
+}

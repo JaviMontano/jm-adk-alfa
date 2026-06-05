@@ -1,0 +1,169 @@
+{
+  "schema": 1,
+  "skill": "workflow-creator",
+  "top_level_fields": [
+    "id",
+    "title",
+    "objective",
+    "trigger",
+    "preconditions",
+    "inputs",
+    "steps",
+    "mainOutput",
+    "secondaryOutputs",
+    "DoD",
+    "qaChecklist",
+    "raci",
+    "kpis",
+    "cadence",
+    "errorHandling",
+    "fallbackRoute",
+    "escalationRoute"
+  ],
+  "ordered_output_fields": [
+    "id",
+    "title",
+    "objective",
+    "trigger",
+    "preconditions",
+    "inputs",
+    "steps",
+    "mainOutput",
+    "secondaryOutputs",
+    "DoD",
+    "qaChecklist",
+    "raci",
+    "kpis",
+    "cadence",
+    "errorHandling",
+    "fallbackRoute",
+    "escalationRoute"
+  ],
+  "list_fields": [
+    "preconditions",
+    "inputs",
+    "steps",
+    "secondaryOutputs",
+    "DoD",
+    "qaChecklist",
+    "kpis"
+  ],
+  "step_fields": [
+    "stepNumber",
+    "title",
+    "desc",
+    "whyThisMatters",
+    "inputNeeded",
+    "actionInstruction",
+    "promptToUse",
+    "expectedOutput",
+    "validationRule",
+    "failureSignal",
+    "recoveryAction",
+    "handoffIfNeeded"
+  ],
+  "input_fields": [
+    "name",
+    "type",
+    "required",
+    "description"
+  ],
+  "input_types": [
+    "string",
+    "object",
+    "array",
+    "boolean",
+    "number",
+    "file",
+    "url"
+  ],
+  "raci_fields": [
+    "responsible",
+    "accountable",
+    "consulted",
+    "informed"
+  ],
+  "kpi_fields": [
+    "metric",
+    "target",
+    "unit",
+    "measurement"
+  ],
+  "kpi_units": [
+    "seconds",
+    "minutes",
+    "percentage",
+    "count",
+    "ratio",
+    "boolean"
+  ],
+  "cadence_allowed": [
+    "on-demand",
+    "hourly",
+    "daily",
+    "weekly",
+    "per-event",
+    "per-request"
+  ],
+  "rules": {
+    "min_steps": 3,
+    "max_steps": 7,
+    "min_preconditions": 1,
+    "min_inputs": 1,
+    "min_secondary_outputs": 1,
+    "min_dod": 2,
+    "min_qa_checks": 2,
+    "min_kpis": 2,
+    "objective_min_words": 7,
+    "title_max_words": 7,
+    "step_title_min_words": 2,
+    "step_title_max_words": 5
+  },
+  "blocked_phrases": [
+    "TBD",
+    "when needed",
+    "as needed",
+    "check everything",
+    "handle it",
+    "do the work",
+    "try again",
+    "someone",
+    "team",
+    "owner",
+    "N/A"
+  ],
+  "required_signal_words": {
+    "validationRule": [
+      "exit code",
+      "contains",
+      "equals",
+      "is true",
+      "matches",
+      "exists",
+      "non-empty",
+      "passes",
+      "validates"
+    ],
+    "failureSignal": [
+      "exit code",
+      "missing",
+      "timeout",
+      "throws",
+      "returns",
+      "error",
+      "fails",
+      "null",
+      "empty"
+    ],
+    "recoveryAction": [
+      "stop",
+      "retry",
+      "rerun",
+      "ask",
+      "fallback",
+      "escalate",
+      "patch",
+      "log"
+    ]
+  }
+}

@@ -1,75 +1,73 @@
 {
   "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-28",
   "skill": "workflow-creator",
   "nodes": [
     {
       "id": "workflow-creator",
       "type": "skill",
-      "label": "workflow-creator"
+      "label": "Workflow Creator"
     },
     {
-      "id": "workflow-creator:inputs",
-      "type": "contract",
-      "label": "Expected inputs"
+      "id": "workflow-definition-contract",
+      "type": "schema",
+      "label": "17-field workflow contract"
     },
     {
-      "id": "workflow-creator:outputs",
-      "type": "contract",
-      "label": "Expected outputs"
+      "id": "step-contract",
+      "type": "schema",
+      "label": "12-field step contract"
     },
     {
-      "id": "workflow-creator:quality",
+      "id": "activation-policy",
+      "type": "policy",
+      "label": "Activation and false-positive policy"
+    },
+    {
+      "id": "quality-gates",
       "type": "gate",
-      "label": "Quality criteria"
+      "label": "Fail-closed workflow quality gates"
     },
     {
-      "id": "workflow-creator:ontology",
-      "type": "ontology",
-      "label": "Domain: general"
+      "id": "deterministic-validator",
+      "type": "script",
+      "label": "Local workflow spec validator"
     },
     {
-      "id": "workflow-creator:evidence",
-      "type": "gate",
-      "label": "Evidence / provenance requirements"
-    },
-    {
-      "id": "workflow-creator:antipattern",
-      "type": "risk",
-      "label": "Canonical anti-pattern to avoid"
+      "id": "workflow-definition",
+      "type": "output",
+      "label": "Workflow YAML or JSON definition"
     }
   ],
   "edges": [
     {
       "from": "workflow-creator",
-      "to": "workflow-creator:inputs",
-      "type": "requires"
+      "to": "activation-policy",
+      "type": "routed_by"
     },
     {
       "from": "workflow-creator",
-      "to": "workflow-creator:outputs",
+      "to": "workflow-definition",
       "type": "produces"
     },
     {
-      "from": "workflow-creator",
-      "to": "workflow-creator:quality",
+      "from": "workflow-definition",
+      "to": "workflow-definition-contract",
       "type": "validated_by"
     },
     {
-      "from": "workflow-creator",
-      "to": "workflow-creator:ontology",
-      "type": "classified_as"
+      "from": "workflow-definition",
+      "to": "step-contract",
+      "type": "contains"
     },
     {
-      "from": "workflow-creator",
-      "to": "workflow-creator:evidence",
-      "type": "validated_by"
+      "from": "workflow-definition",
+      "to": "quality-gates",
+      "type": "blocked_by"
     },
     {
-      "from": "workflow-creator",
-      "to": "workflow-creator:antipattern",
-      "type": "guards_against"
+      "from": "deterministic-validator",
+      "to": "workflow-definition-contract",
+      "type": "enforces"
     }
   ]
 }
