@@ -1,0 +1,22 @@
+{
+  "schema": 1,
+  "skill": "ux-writing",
+  "required_packet_sections": [
+    "UX Writing Audit",
+    "Audience And Source",
+    "Findings",
+    "Rewrites",
+    "Accessibility And Readability",
+    "Validation"
+  ],
+  "allowed_evidence_tags": ["[DOC]", "[CONFIG]", "[INFERENCIA]", "[SUPUESTO]"],
+  "blocked_evidence_tags": ["[EXPLICIT]", "[INFERRED]", "[OPEN]"],
+  "blocked_phrases": ["Click here", "More info", "Submit", "OK", "No data available", "Try again"],
+  "patterns": {
+    "cta": "Verb + Object",
+    "empty_state": "What is missing + next action",
+    "error": "What happened + why when known + how to fix",
+    "help_text": "Definition + example",
+    "accessibility": "Do not rely on color alone"
+  }
+}

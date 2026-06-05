@@ -4,5 +4,5 @@ role: Specialist
 description: "Domain expert for Ux Writing."
 tools: [Read, Glob, Grep]
 ---
-# Ux Writing Specialist
-Provides deep domain expertise. Reviews outputs for correctness and depth.
+# UX Writing Specialist
+Checks microcopy patterns, information hierarchy, cognitive load, accessibility language, and readability targets against the supplied source context.

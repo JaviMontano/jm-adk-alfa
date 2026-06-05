@@ -1,9 +1,106 @@
-[
-  {"id": "ux-writing-happy-path", "type": "happy_path", "input": "Run ux writing on this project", "expected_behavior": "Skill activates and produces the expected ux writing output following the defined process", "tags": ["basic", "activation"]},
-  {"id": "ux-writing-explicit-trigger", "type": "happy_path", "input": "Apply ux writing analysis", "expected_behavior": "Skill recognizes the trigger phrase and executes the ux writing workflow", "tags": ["trigger", "recognition"]},
-  {"id": "ux-writing-with-context", "type": "happy_path", "input": "Apply ux writing to analyze the current codebase with detailed output", "expected_behavior": "Skill produces comprehensive ux writing analysis with evidence-tagged findings", "tags": ["detailed", "comprehensive"]},
-  {"id": "ux-writing-minimal-input", "type": "happy_path", "input": "Quick ux writing", "expected_behavior": "Skill activates with minimal input, applies reasonable defaults", "tags": ["minimal", "defaults"]},
-  {"id": "ux-writing-false-positive", "type": "false_positive", "input": "What is the weather forecast for tomorrow?", "expected_behavior": "Skill should NOT activate — this input has no relation to ux writing", "tags": ["false_positive", "should-not-activate"]},
-  {"id": "ux-writing-edge-empty-input", "type": "edge_case", "input": "Run ux writing but I have no files or documentation yet", "expected_behavior": "Skill handles gracefully — requests minimum viable input or produces gap analysis", "tags": ["edge_case", "empty-input", "boundary"]},
-  {"id": "ux-writing-edge-conflicting", "type": "edge_case", "input": "Apply ux writing but requirements contradict each other", "expected_behavior": "Skill detects contradiction, flags with [OPEN] tag, proposes resolution", "tags": ["edge_case", "conflict", "corner"]}
-]
+{
+  "schema": 1,
+  "skill": "ux-writing",
+  "cases": [
+    {
+      "id": "ux-writing-microcopy-rewrite-table",
+      "type": "happy_path",
+      "input": "Rewrite these UI labels for a billing dashboard: Submit, Click here, More info, OK, Cancel. Context: user reviews invoices and exports CSV.",
+      "expected_behavior": "Produces before/after microcopy with clear user outcomes.",
+      "must_include": ["UX Writing Audit", "Before", "After", "Review invoices", "Export CSV"],
+      "must_not_include": ["Click here", "More info", "Submit"],
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "verb_plus_object", "before_after_pairs"],
+      "tags": ["microcopy", "labels"]
+    },
+    {
+      "id": "ux-writing-error-message-recovery",
+      "type": "happy_path",
+      "input": "Improve this error: 'Invalid amount'. Context: loan amount entered is $800K, maximum is $750K.",
+      "expected_behavior": "Writes an error message with what happened, why, and how to fix.",
+      "must_include": ["$800K", "$750K", "Enter", "how to fix"],
+      "must_not_include": ["Invalid amount", "Try again", "You made a mistake"],
+      "expected_checks": ["error_recovery", "quality_criteria", "no_blame_language"],
+      "tags": ["error-message", "recovery"]
+    },
+    {
+      "id": "ux-writing-empty-state-action",
+      "type": "happy_path",
+      "input": "Write an empty state for a scenario comparison table when no scenarios have been evaluated yet.",
+      "expected_behavior": "Explains what is missing and the next action.",
+      "must_include": ["No scenarios evaluated yet", "Run", "next action"],
+      "must_not_include": ["No data available"],
+      "expected_checks": ["empty_state", "quality_criteria", "actionable_next_step"],
+      "tags": ["empty-state"]
+    },
+    {
+      "id": "ux-writing-cta-clarity",
+      "type": "happy_path",
+      "input": "Create primary and secondary CTAs for downloading a Phase 3 report and reviewing architecture options.",
+      "expected_behavior": "Creates CTAs using Verb + Object and distinct outcomes.",
+      "must_include": ["Download Phase 3 Report", "Review Architecture Options"],
+      "must_not_include": ["More Info", "Continue", "Click Here"],
+      "expected_checks": ["cta_clarity", "verb_plus_object", "quality_criteria"],
+      "tags": ["cta", "clarity"]
+    },
+    {
+      "id": "ux-writing-accessibility-language",
+      "type": "edge_case",
+      "input": "Rewrite this helper text: 'Don't be dumb. Use the red button if the chart looks crazy.'",
+      "expected_behavior": "Uses respectful, accessible language and avoids color-only instruction.",
+      "must_include": ["button label", "chart", "accessible", "respectful"],
+      "must_not_include": ["dumb", "crazy", "red button only"],
+      "expected_checks": ["accessibility_language", "tone", "no_color_only_instruction"],
+      "tags": ["accessibility-language", "tone"]
+    },
+    {
+      "id": "ux-writing-reading-level-executive",
+      "type": "happy_path",
+      "input": "Simplify this executive copy to Grade <= 12: 'The implementation architecture operationalizes cross-functional enablement through asynchronous stakeholder synchronization and multi-vector dependency resolution.'",
+      "expected_behavior": "Provides simpler copy and notes readability target.",
+      "must_include": ["Grade <= 12", "simpler", "stakeholders", "implementation"],
+      "must_not_include": ["operationalizes", "multi-vector dependency resolution"],
+      "expected_checks": ["readability_target", "jargon_reduction", "quality_criteria"],
+      "tags": ["reading-level", "executive"]
+    },
+    {
+      "id": "ux-writing-bilingual-spanish-first",
+      "type": "happy_path",
+      "input": "Write Spanish-first helper text for APR in a loan form. Known term: Annual Percentage Rate (APR). Audience: Colombian borrowers.",
+      "expected_behavior": "Defines the term in Spanish first and keeps APR in parentheses without inventing rates.",
+      "must_include": ["tasa", "APR", "ejemplo"],
+      "must_not_include": ["5%", "approved loan", "guaranteed"],
+      "expected_checks": ["bilingual_support", "no_numeric_invention", "quality_criteria"],
+      "tags": ["bilingual", "spanish-first"]
+    },
+    {
+      "id": "ux-writing-packet-validation",
+      "type": "script_contract",
+      "input": "Validate a UX Writing Audit packet before delivery.",
+      "expected_behavior": "Runs local validator and blocks packets missing sections, evidence tags, before/after rewrites, or using blocked anti-patterns.",
+      "must_include": ["scripts/validate_ux_writing_packet.py", "ux-writing-contract.json"],
+      "must_not_include": ["manual only"],
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria"],
+      "tags": ["script", "validator"]
+    },
+    {
+      "id": "ux-writing-false-positive-technical-accuracy",
+      "type": "false_positive",
+      "input": "Validate whether this Kubernetes architecture is technically correct and secure.",
+      "expected_behavior": "Does not run UX writing as the primary skill; routes to architecture/security review.",
+      "must_include": ["technical accuracy"],
+      "must_not_include": ["UX Writing Audit", "microcopy"],
+      "expected_checks": ["reject_false_positive", "routing"],
+      "tags": ["false_positive", "boundary"]
+    },
+    {
+      "id": "ux-writing-no-invented-product-claims",
+      "type": "edge_case",
+      "input": "Make this empty state exciting for Product X. Known facts: Product X imports CSV files. Unknown: AI, SOC 2, real-time sync.",
+      "expected_behavior": "Improves copy using only known facts and marks unknown claims as unavailable.",
+      "must_include": ["CSV", "not provided", "[SUPUESTO]"],
+      "must_not_include": ["AI", "SOC 2", "real-time sync"],
+      "expected_checks": ["no_fabricated_facts", "empty_state", "quality_criteria"],
+      "tags": ["truthfulness", "product-claims"]
+    }
+  ]
+}

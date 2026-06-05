@@ -11,11 +11,8 @@ model: opus
 context: fork
 allowed-tools:
   - Read
-  - Write
-  - Edit
   - Glob
   - Grep
-  - Bash
 ---
 
 # UX Writing: Information Design & Cognitive Accessibility Standards
@@ -51,9 +48,27 @@ If reference materials exist, load them:
 Read ${CLAUDE_SKILL_DIR}/references/ux-writing-patterns.md
 ```
 
+Load bundled deterministic assets only when needed:
+
+```
+Read ${CLAUDE_SKILL_DIR}/assets/ux-writing-checklist.md
+Read ${CLAUDE_SKILL_DIR}/assets/microcopy-patterns.json
+Read ${CLAUDE_SKILL_DIR}/assets/readability-rubric.json
+```
+
+## Deterministic Contract
+
+UX Writing output is a focused audit or microcopy packet grounded in supplied source facts. It may propose replacements, but it must not invent product capabilities, dates, owners, compliance claims, metrics, or audience demographics.
+
+- Evidence tags: `[DOC]` for source text, `[CONFIG]` for rubric thresholds or requested audience, `[INFERENCIA]` for reasoned UX-writing diagnosis, and `[SUPUESTO]` for assumptions created by missing context.
+- If a numeric readability metric is not computed by a deterministic script, label it `estimated`; do not present it as measured fact.
+- Date handling is deterministic: use a provided `review_date`; otherwise omit the date instead of using current time.
+- Network/random/time dependencies are forbidden. HTML templates render offline and do not fetch remote fonts.
+- Markdown UX writing packets should pass `scripts/validate_ux_writing_packet.py`.
+
 ---
 
-## When to Use
+## When to Activate
 
 - Auditing deliverable readability before stakeholder presentation
 - Improving information hierarchy in executive or technical documents
@@ -237,6 +252,12 @@ Before delivering UX writing audit:
 - [ ] Readability metrics calculated or estimated with targets
 - [ ] Audience identified and standards adapted accordingly
 - [ ] Bilingual considerations addressed if applicable
+- [ ] Evidence tags use only `[DOC]`, `[CONFIG]`, `[INFERENCIA]`, or `[SUPUESTO]`
+- [ ] Microcopy recommendations use Verb + Object where applicable and include before/after pairs
+- [ ] Error messages include what happened, why it happened when known, and how to fix
+- [ ] Empty states include what is missing and the next action
+- [ ] No unsupported product claims, dates, compliance claims, or metrics were invented
+- [ ] Markdown packets pass `python3 -B scripts/validate_ux_writing_packet.py --contract scripts/fixtures/ux-writing-contract.json --packet <packet> --expect pass`
 
 ## Cross-References
 

@@ -1,0 +1,35 @@
+{
+  "skill": "ux-writing",
+  "assets": [
+    {
+      "path": "assets/ux-writing-checklist.md",
+      "type": "checklist",
+      "purpose": "Deterministic human-readable gate for UX writing audit packets.",
+      "used_by": [
+        "SKILL.md",
+        "templates/output.md",
+        "evals/evals.json"
+      ]
+    },
+    {
+      "path": "assets/microcopy-patterns.json",
+      "type": "contract",
+      "purpose": "Machine-readable packet sections, evidence tags, microcopy patterns, and blocked phrases.",
+      "used_by": [
+        "SKILL.md",
+        "scripts/validate_ux_writing_packet.py",
+        "evals/evals.json"
+      ]
+    },
+    {
+      "path": "assets/readability-rubric.json",
+      "type": "rubric",
+      "purpose": "Machine-readable readability and accessibility targets for UX writing audits.",
+      "used_by": [
+        "SKILL.md",
+        "scripts/fixtures/ux-writing-contract.json",
+        "evals/evals.json"
+      ]
+    }
+  ]
+}

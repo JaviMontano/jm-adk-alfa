@@ -1,0 +1,17 @@
+{
+  "schema": 1,
+  "skill": "ux-writing",
+  "required_sections": [
+    "UX Writing Audit",
+    "Audience And Source",
+    "Findings",
+    "Rewrites",
+    "Accessibility And Readability",
+    "Validation"
+  ],
+  "allowed_evidence_tags": ["[DOC]", "[CONFIG]", "[INFERENCIA]", "[SUPUESTO]"],
+  "blocked_evidence_tags": ["[EXPLICIT]", "[INFERRED]", "[OPEN]"],
+  "minimum_rewrites": 3,
+  "blocked_after_phrases": ["Submit", "Click here", "More info", "OK", "No data available", "Try again"],
+  "forbidden_claims": ["AI", "SOC 2", "real-time sync", "approval workflow"]
+}

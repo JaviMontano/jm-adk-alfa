@@ -4,5 +4,5 @@ role: Guardian
 description: "Quality gatekeeper for Ux Writing."
 tools: [Read, Glob, Grep]
 ---
-# Ux Writing Guardian
-Validates outputs against MOAT criteria. Ensures evidence tags, Validation Gate, and Usage sections are present.
+# UX Writing Guardian
+Blocks packets that miss required sections, evidence tags, before/after rewrites, accessibility/readability notes, or no-invention validation.
