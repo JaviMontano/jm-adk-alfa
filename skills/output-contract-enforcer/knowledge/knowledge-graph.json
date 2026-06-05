@@ -1,75 +1,27 @@
 {
   "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-28",
   "skill": "output-contract-enforcer",
   "nodes": [
-    {
-      "id": "output-contract-enforcer",
-      "type": "skill",
-      "label": "output-contract-enforcer"
-    },
-    {
-      "id": "output-contract-enforcer:inputs",
-      "type": "contract",
-      "label": "Expected inputs"
-    },
-    {
-      "id": "output-contract-enforcer:outputs",
-      "type": "contract",
-      "label": "Expected outputs"
-    },
-    {
-      "id": "output-contract-enforcer:quality",
-      "type": "gate",
-      "label": "Quality criteria"
-    },
-    {
-      "id": "output-contract-enforcer:ontology",
-      "type": "ontology",
-      "label": "Domain: general"
-    },
-    {
-      "id": "output-contract-enforcer:evidence",
-      "type": "gate",
-      "label": "Evidence / provenance requirements"
-    },
-    {
-      "id": "output-contract-enforcer:antipattern",
-      "type": "risk",
-      "label": "Canonical anti-pattern to avoid"
-    }
+    {"id": "output-contract-enforcer", "type": "skill", "label": "Output Contract Enforcer"},
+    {"id": "contract", "type": "input", "label": "Declared output contract"},
+    {"id": "artifact", "type": "input", "label": "Generated artifact"},
+    {"id": "markdown-sections", "type": "check", "label": "Markdown sections"},
+    {"id": "json-fields", "type": "check", "label": "JSON required fields"},
+    {"id": "evidence-tags", "type": "check", "label": "Evidence tags"},
+    {"id": "naming", "type": "check", "label": "Naming convention"},
+    {"id": "validation-packet", "type": "output", "label": "Validation packet"},
+    {"id": "repair-suggestions", "type": "output", "label": "Repair suggestions"},
+    {"id": "validator-script", "type": "script", "label": "validate_output_contract.py"}
   ],
   "edges": [
-    {
-      "from": "output-contract-enforcer",
-      "to": "output-contract-enforcer:inputs",
-      "type": "requires"
-    },
-    {
-      "from": "output-contract-enforcer",
-      "to": "output-contract-enforcer:outputs",
-      "type": "produces"
-    },
-    {
-      "from": "output-contract-enforcer",
-      "to": "output-contract-enforcer:quality",
-      "type": "validated_by"
-    },
-    {
-      "from": "output-contract-enforcer",
-      "to": "output-contract-enforcer:ontology",
-      "type": "classified_as"
-    },
-    {
-      "from": "output-contract-enforcer",
-      "to": "output-contract-enforcer:evidence",
-      "type": "validated_by"
-    },
-    {
-      "from": "output-contract-enforcer",
-      "to": "output-contract-enforcer:antipattern",
-      "type": "guards_against"
-    }
+    {"from": "output-contract-enforcer", "to": "contract", "type": "requires"},
+    {"from": "output-contract-enforcer", "to": "artifact", "type": "requires"},
+    {"from": "artifact", "to": "markdown-sections", "type": "validated_by"},
+    {"from": "artifact", "to": "json-fields", "type": "validated_by"},
+    {"from": "artifact", "to": "evidence-tags", "type": "validated_by"},
+    {"from": "artifact", "to": "naming", "type": "validated_by"},
+    {"from": "contract", "to": "validator-script", "type": "consumed_by"},
+    {"from": "validator-script", "to": "validation-packet", "type": "produces"},
+    {"from": "validation-packet", "to": "repair-suggestions", "type": "contains"}
   ]
 }

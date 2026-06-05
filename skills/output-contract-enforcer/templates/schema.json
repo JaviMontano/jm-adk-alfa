@@ -1,0 +1,6 @@
+{
+  "schema": 1,
+  "required_fields": ["schema", "skill", "status", "contract_id", "artifact", "checks", "violations", "repair_suggestions", "evidence"],
+  "statuses": ["pass", "fail", "blocked"],
+  "check_fields": ["id", "status", "expected", "observed", "repair"]
+}

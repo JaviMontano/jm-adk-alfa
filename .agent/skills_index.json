@@ -2331,7 +2331,7 @@
     "id": "output-contract-enforcer",
     "path": "skills/output-contract-enforcer",
     "name": "Output Contract Enforcer",
-    "description": "Validates that every skill output matches its declared contract (format, completeness, evidence tags). Rejects non-conformant outputs. [EXPLICIT]"
+    "description": "Validate generated outputs against declared contracts for format, required sections, required fields, evidence tags, naming conventions, machine-readable validation packets, and repair suggestions. Use after a skill produces an output, before gate evaluation, when `/jm:verify` is invoked, or when the user asks to validate an artifact against its output contract. [EXPLICIT]"
   },
   {
     "id": "output-engineering",

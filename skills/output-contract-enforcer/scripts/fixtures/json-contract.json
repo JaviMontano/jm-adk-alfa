@@ -1,0 +1,8 @@
+{
+  "schema": 1,
+  "contract_id": "validation-packet-json",
+  "format": "json",
+  "required_fields": ["schema", "skill", "status", "checks", "violations"],
+  "evidence_tags_required": false,
+  "naming": {"style": "kebab-case"}
+}

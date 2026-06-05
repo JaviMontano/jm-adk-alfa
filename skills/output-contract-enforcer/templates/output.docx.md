@@ -1,10 +1,17 @@
-# Output Contract Enforcer — DOCX Template
+# Output Contract Enforcer - DOCX Template
 
-## Document Structure
-- Title: Output Contract Enforcer — [Client/Project Name]
+## Document Metadata
+
+- Title: Output Contract Validation - {{artifact_name}}
 - Author: JM Labs
-- Date: {{DATE}}
+- Created date: {{created_date}}
 
-## Sections (mirror SKILL.md structure)
-See canonical SKILL.md for section blueprints.
-Use brand-config.json tokens: Navy #122562 · Gold #FFD700 · Blue #137DC5
+## Sections
+
+1. Status, contract ID, and artifact path
+2. Checks table
+3. Violations
+4. Evidence
+5. Repair suggestions
+
+Use system fonts and local brand colors only; do not fetch remote fonts or assets.

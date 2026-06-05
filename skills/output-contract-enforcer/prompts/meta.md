@@ -5,13 +5,19 @@ version: 2.0.0
 description: "Meta-prompt for Output Contract Enforcer skill routing."
 ---
 
-# Output Contract Enforcer — Meta Prompt
+# Output Contract Enforcer - Meta Prompt
 
-Activate this skill when the user request matches:
-- Trigger phrases from SKILL.md description
-- Direct invocation: `/output-contract-enforcer`
+Activate when the user asks to validate an existing artifact against an explicit or discoverable contract.
 
-## Skill Routing
-1. Load SKILL.md → read `## When to Activate` section
-2. If match → activate lead agent: `output-contract-enforcer-lead`
-3. If orchestrated → defer to orchestrating skill
+Do not activate when:
+
+- The user asks to design a schema from scratch.
+- The user asks to format a fresh answer.
+- The user asks a conceptual question about contracts.
+- There is no artifact or contract evidence; return blocked or route to the owning creation skill.
+
+## Routing
+
+1. Confirm the contract and artifact exist.
+2. Activate `output-contract-enforcer-lead` for validation.
+3. Route broader release decisions to `quality-gatekeeper`.
