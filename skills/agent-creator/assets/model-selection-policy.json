@@ -1,0 +1,42 @@
+{
+  "version": "1.0.0",
+  "models": {
+    "haiku": {
+      "use_for": [
+        "formatting",
+        "extraction",
+        "checklist verification",
+        "simple classification"
+      ],
+      "avoid_for": [
+        "complex architecture",
+        "security reasoning",
+        "ambiguous trade-offs"
+      ]
+    },
+    "sonnet": {
+      "use_for": [
+        "balanced analysis",
+        "code review",
+        "agent prompt generation",
+        "multi-file synthesis"
+      ],
+      "avoid_for": [
+        "mission-critical governance without review"
+      ]
+    },
+    "opus": {
+      "use_for": [
+        "deep architecture",
+        "security audits",
+        "multi-agent governance",
+        "high ambiguity"
+      ],
+      "avoid_for": [
+        "simple formatting",
+        "mechanical extraction"
+      ]
+    }
+  },
+  "default": "sonnet"
+}

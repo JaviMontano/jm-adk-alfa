@@ -1,0 +1,52 @@
+{
+  "version": "1.0.0",
+  "allowed_tools": [
+    "Read",
+    "Write",
+    "Edit",
+    "Bash",
+    "Glob",
+    "Grep"
+  ],
+  "forbidden_tokens": [
+    "*",
+    "all",
+    "any",
+    "inherit-all"
+  ],
+  "tiers": {
+    "advisory": [],
+    "read_only": [
+      "Read",
+      "Glob",
+      "Grep"
+    ],
+    "read_with_shell": [
+      "Read",
+      "Glob",
+      "Grep",
+      "Bash"
+    ],
+    "read_write": [
+      "Read",
+      "Write",
+      "Edit",
+      "Glob",
+      "Grep"
+    ],
+    "builder": [
+      "Read",
+      "Write",
+      "Edit",
+      "Bash",
+      "Glob",
+      "Grep"
+    ]
+  },
+  "rules": [
+    "Default to read_only for review and analysis agents.",
+    "Add Bash only for deterministic inspection commands.",
+    "Add Write or Edit only when the agent must create or modify artifacts.",
+    "Never use wildcard or inherited-all tool access."
+  ]
+}

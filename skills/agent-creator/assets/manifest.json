@@ -1,0 +1,63 @@
+{
+  "skill": "agent-creator",
+  "version": "1.0.0",
+  "assets": [
+    {
+      "path": "assets/agent-spec-schema.json",
+      "type": "schema",
+      "purpose": "Defines the required structured input sections and validation thresholds for custom agent compilation.",
+      "used_by": [
+        "SKILL.md",
+        "README.md",
+        "scripts/compile-agent.py"
+      ]
+    },
+    {
+      "path": "assets/tool-policy.json",
+      "type": "policy",
+      "purpose": "Constrains agent tools to explicit least-privilege tiers and rejects wildcard access.",
+      "used_by": [
+        "SKILL.md",
+        "knowledge/body-of-knowledge.md",
+        "scripts/compile-agent.py"
+      ]
+    },
+    {
+      "path": "assets/model-selection-policy.json",
+      "type": "policy",
+      "purpose": "Maps agent complexity to haiku, sonnet, or opus model recommendations.",
+      "used_by": [
+        "SKILL.md",
+        "scripts/compile-agent.py"
+      ]
+    },
+    {
+      "path": "assets/description-trigger-policy.json",
+      "type": "policy",
+      "purpose": "Keeps frontmatter descriptions focused on trigger conditions and negative triggers.",
+      "used_by": [
+        "SKILL.md",
+        "prompts/primary.md",
+        "scripts/compile-agent.py"
+      ]
+    },
+    {
+      "path": "assets/agent-template.md",
+      "type": "template",
+      "purpose": "Provides the canonical Markdown section order for generated agent definitions.",
+      "used_by": [
+        "templates/output.md",
+        "scripts/compile-agent.py"
+      ]
+    },
+    {
+      "path": "assets/source-map.md",
+      "type": "traceability",
+      "purpose": "Documents which files consume each deterministic asset.",
+      "used_by": [
+        "README.md",
+        "scripts/README.md"
+      ]
+    }
+  ]
+}

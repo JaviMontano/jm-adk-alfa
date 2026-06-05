@@ -3,7 +3,9 @@ name: agent-creator-deep
 type: variation
 variant: deep
 ---
-# Agent Creator — Deep Analysis
 
-Full depth execution. Load all `references/` files from canonical. Run L3 progressive loading.
-Apply all Validation Gate criteria strictly.
+# Agent Creator - Deep Analysis
+
+Use for high-impact agents with write access, security scope, or multi-agent
+overlap. Add scope-overlap analysis, negative triggers, explicit approval
+boundaries, model rationale, and residual risk notes before finalizing.

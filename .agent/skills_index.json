@@ -57,7 +57,7 @@
     "id": "agent-creator",
     "path": "skills/agent-creator",
     "name": "Agent Creator",
-    "description": "[EXPLICIT]"
+    "description": "Create deterministic Claude Code custom agent definitions with trigger conditions, bounded system prompts, least-privilege tools, model selection, and validation checks. Use when the user asks to create an agent, add a subagent, make a custom agent, define an agent definition, or build an autonomous subprocess for a specific project responsibility. [EXPLICIT]"
   },
   {
     "id": "agentic-loop-engineering",

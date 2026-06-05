@@ -1,62 +1,86 @@
 {
   "skill_name": "agent-creator",
-  "evals": [
+  "cases": [
     {
-      "id": 1,
-      "name": "full-agent-with-description",
-      "prompt": "Create an agent called security-reviewer that reviews code for OWASP vulnerabilities",
-      "expected_output": "Complete agent.md with frontmatter (name, description with trigger conditions, model, tools), system prompt with bounded scope, process steps, output format, constraints, and reasoning discipline.",
-      "expectations": [
-        "Frontmatter has name, description, model, and tools fields",
-        "Description states WHEN to spawn (trigger conditions), not just WHAT it does",
-        "Tools are explicitly listed following principle of least privilege",
-        "System prompt is self-sufficient (no references to parent context)",
-        "Output format defined in a code block or table",
-        "Constraints section has at least 1 negative boundary"
+      "id": "agent_creator_001_security_reviewer",
+      "input": "Create a project agent named security-reviewer for OWASP code review with read-only access.",
+      "expected_checks": [
+        "assets",
+        "deterministic_scripts",
+        "quality_criteria",
+        "trigger_description",
+        "least_privilege_tools"
       ]
     },
     {
-      "id": 2,
-      "name": "interview-mode",
-      "prompt": "Create an agent called test-writer",
-      "expected_output": "Enters interview mode asking 3 questions: what it analyzes/produces, read-only vs read-write, complexity level.",
-      "expectations": [
-        "Asks what the agent should analyze or produce",
-        "Asks whether it should modify files or only read/report",
-        "Asks about complexity level for model selection",
-        "Does not generate a complete agent from the name alone"
+      "id": "agent_creator_002_dependency_auditor",
+      "input": "Build dependency-auditor to inspect package manifests, audit output, and license risk without editing files.",
+      "expected_checks": [
+        "assets",
+        "deterministic_scripts",
+        "quality_criteria",
+        "self_sufficient_prompt",
+        "negative_boundaries"
       ]
     },
     {
-      "id": 3,
-      "name": "false-positive-not-agent",
-      "prompt": "Write a function to validate email addresses",
-      "expected_output": "Does not create an agent. This is a coding task.",
-      "expectations": [
-        "Does not trigger agent creation",
-        "Recognizes this as a coding request"
+      "id": "agent_creator_003_interview_mode",
+      "input": "Create an agent called test-writer.",
+      "expected_checks": [
+        "quality_criteria",
+        "missing_field_questions",
+        "no_premature_generation"
       ]
     },
     {
-      "id": 4,
-      "name": "task-better-served-by-alternative",
-      "prompt": "Create an agent that always formats my output as markdown tables",
-      "expected_output": "Suggests an output style or CLAUDE.md rule instead of an agent, per the 'When NOT to create an agent' table.",
-      "expectations": [
-        "Identifies this as a formatting task, not an agent task",
-        "Suggests output style or CLAUDE.md rule as the better alternative",
-        "Explains why an agent is overkill for this use case"
+      "id": "agent_creator_004_not_agent",
+      "input": "Write a function to validate email addresses.",
+      "expected_checks": [
+        "quality_criteria",
+        "reject_false_positive",
+        "recommend_inline_task"
       ]
     },
     {
-      "id": 5,
-      "name": "name-collision-detection",
-      "prompt": "Create an agent called Explore that searches codebases",
-      "expected_output": "Rejects the name 'Explore' because it collides with a built-in agent. Suggests an alternative name.",
-      "expectations": [
-        "Detects collision with built-in agent name 'Explore'",
-        "Does not create the agent with the colliding name",
-        "Suggests alternative name like 'codebase-explorer' or 'repo-scanner'"
+      "id": "agent_creator_005_built_in_collision",
+      "input": "Create an agent called Explore that searches codebases.",
+      "expected_checks": [
+        "deterministic_scripts",
+        "quality_criteria",
+        "reject_builtin_collision",
+        "suggest_kebab_case_alternative"
+      ]
+    },
+    {
+      "id": "agent_creator_006_write_tools",
+      "input": "Create refactor-writer to update small files, but it must ask before destructive changes.",
+      "expected_checks": [
+        "assets",
+        "deterministic_scripts",
+        "quality_criteria",
+        "write_authority_constraints",
+        "escalation_triggers"
+      ]
+    },
+    {
+      "id": "agent_creator_007_overbroad_agent",
+      "input": "Create an agent that handles everything about my product.",
+      "expected_checks": [
+        "quality_criteria",
+        "scope_narrowing",
+        "non_goals",
+        "negative_triggers"
+      ]
+    },
+    {
+      "id": "agent_creator_008_global_scope",
+      "input": "Create a global research-summarizer agent for literature review; it should read only and never browse unless asked.",
+      "expected_checks": [
+        "assets",
+        "deterministic_scripts",
+        "quality_criteria",
+        "scope_destination",
+        "runtime_write_approval"
       ]
     }
   ]
