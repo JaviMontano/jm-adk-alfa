@@ -1,0 +1,53 @@
+{
+  "summary": {
+    "plugin_root": "skills/sample-plugin",
+    "total_skills": 1,
+    "average_score": 52,
+    "average_percentage": 86.67,
+    "grade": "A",
+    "systematic_gap_count": 0
+  },
+  "scorecards": [
+    {
+      "skill": "alpha",
+      "path": "skills/sample-plugin/alpha/SKILL.md",
+      "scores": {
+        "completeness": 10,
+        "description_quality": 8,
+        "procedure_clarity": 8,
+        "quality_criteria": 10,
+        "anti_patterns": 8,
+        "edge_cases": 8
+      },
+      "rationales": {
+        "completeness": "[CODE] Frontmatter and all required sections are present.",
+        "description_quality": "[DOC] Clear purpose and triggers are present.",
+        "procedure_clarity": "[DOC] Steps are numbered and tool-aware.",
+        "quality_criteria": "[DOC] Five measurable criteria are listed.",
+        "anti_patterns": "[DOC] Four anti-patterns include explanations.",
+        "edge_cases": "[DOC] Four edge cases include handling strategies."
+      },
+      "total_score": 52,
+      "percentage": 86.67,
+      "grade": "A",
+      "lowest_dimension": "description_quality",
+      "recommendation": "Add negative activation guidance."
+    }
+  ],
+  "bottom_skills": [
+    {
+      "skill": "alpha",
+      "total_score": 52,
+      "grade": "A",
+      "priority": "P3",
+      "recommendation": "Add negative activation guidance."
+    }
+  ],
+  "systematic_gaps": [],
+  "coverage": {
+    "discovered_skills": 1,
+    "scored_skills": 1,
+    "skipped_skills": []
+  },
+  "warnings": []
+}

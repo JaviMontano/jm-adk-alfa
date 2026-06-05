@@ -1,0 +1,52 @@
+{
+  "schema": 1,
+  "skill": "audit-content-quality",
+  "required_sections": [
+    "summary",
+    "scorecards",
+    "bottom_skills",
+    "systematic_gaps",
+    "coverage",
+    "warnings"
+  ],
+  "summary_fields": [
+    "plugin_root",
+    "total_skills",
+    "average_score",
+    "average_percentage",
+    "grade",
+    "systematic_gap_count"
+  ],
+  "scorecard_fields": [
+    "skill",
+    "path",
+    "scores",
+    "rationales",
+    "total_score",
+    "percentage",
+    "grade",
+    "lowest_dimension",
+    "recommendation"
+  ],
+  "bottom_skill_fields": [
+    "skill",
+    "total_score",
+    "grade",
+    "priority",
+    "recommendation"
+  ],
+  "systematic_gap_fields": [
+    "dimension",
+    "average_score",
+    "priority",
+    "recommendation"
+  ],
+  "coverage_fields": ["discovered_skills", "scored_skills", "skipped_skills"],
+  "blocked_phrases": [
+    "looks good",
+    "probably fine",
+    "roughly scored",
+    "generic improvement",
+    "skip rationale"
+  ]
+}

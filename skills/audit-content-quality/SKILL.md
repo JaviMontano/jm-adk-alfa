@@ -1,11 +1,13 @@
 ---
 name: audit-content-quality
-version: 1.0.0
+version: 1.0.1
 author: JM Labs (Javier Montaño)
 description: >
-  Audits all SKILL.md files in a plugin against a 6-criteria excellence rubric, producing
-  per-skill scores, plugin averages, and actionable improvement recommendations. [EXPLICIT]
-  Trigger: audit content quality, score skills, check skill quality, content rubric. [EXPLICIT]
+  Audits SKILL.md content quality with a deterministic 6-dimension rubric,
+  per-skill scorecards, plugin averages, bottom-skill priorities, systematic
+  gap detection, and machine-readable report validation. [EXPLICIT]
+  Trigger: audit content quality, score skills, check skill quality, content
+  rubric, weakest skills, plugin quality score. [EXPLICIT]
 allowed-tools:
   - Read
   - Glob
@@ -15,95 +17,148 @@ allowed-tools:
 
 # Audit Content Quality
 
-> "Quality is never an accident; it is always the result of intelligent effort." -- John Ruskin
+Audits `SKILL.md` files in a plugin or skill directory using a deterministic
+6-dimension structural rubric. The output is a scorecard report that is
+actionable, reproducible, and validated against local assets. [EXPLICIT]
 
-Scores every SKILL.md in a plugin across 6 quality dimensions (Completeness, Description Quality, Procedure Clarity, Quality Criteria, Anti-Patterns, Edge Cases). Produces per-skill scorecards, identifies the bottom 3 weakest skills, and flags systematic gaps across the plugin. [EXPLICIT]
+## Deterministic Assets
 
----
+Use these local files before producing or reviewing a content quality audit:
+
+| Path | Use |
+|---|---|
+| `assets/activation-policy.json` | Activation, false-positive, and clarification rules |
+| `assets/scoring-rubric.json` | Canonical dimensions, score bounds, grade thresholds, bottom count, and priorities |
+| `assets/report-contract.json` | Required JSON report sections and fields |
+| `assets/evidence-policy.json` | Evidence tag and rationale requirements |
+| `references/content-quality-rubric.md` | Human-readable mirror of the rubric |
+| `scripts/validate_content_quality_report.py` | Offline JSON report validator |
+| `scripts/check.sh` | Deterministic positive and negative fixture check |
+
+The validator reads only local JSON files. It does not call the network,
+current time, random sources, model providers, or MCP tools. [EXPLICIT]
+
+## When To Activate
+
+Activate when the user asks to audit, score, rank, compare, or improve
+`SKILL.md` content quality for a plugin, skill directory, or explicit set of
+skill files. [EXPLICIT]
+
+Do not activate for generic code review, security review, factuality review,
+website/article copy quality, design critique, grammar-only review, or content
+work that is not about `SKILL.md` skill contracts. [EXPLICIT]
+
+If no plugin root, skill directory, or `SKILL.md` file is supplied, ask for the
+target path instead of inventing a scope. [EXPLICIT]
+
+## Input Contract
+
+Accept:
+
+- a plugin root containing one or more `SKILL.md` files;
+- a list of skill directories or `SKILL.md` paths;
+- optional scoring constraints, such as "only rank the bottom 3".
+
+If zero `SKILL.md` files are found, report `blocked` with the searched path and
+do not produce fake scorecards. [EXPLICIT]
+
+## Scoring Rubric
+
+Score each skill on these six dimensions from `0` to `10`, using
+`assets/scoring-rubric.json` as the source of truth:
+
+1. `completeness`
+2. `description_quality`
+3. `procedure_clarity`
+4. `quality_criteria`
+5. `anti_patterns`
+6. `edge_cases`
+
+The total score is the sum of the six dimensions, max `60`.
+`percentage = total_score / 60 * 100`. Grades are:
+
+| Grade | Percentage |
+|---|---:|
+| A | 90-100 |
+| B | 80-89.999 |
+| C | 70-79.999 |
+| D | 60-69.999 |
+| F | 0-59.999 |
+
+Any dimension average below `6.0` is a systematic gap. [EXPLICIT]
 
 ## Procedure
 
-1. **Discover all SKILL.md files** -- glob for `**/SKILL.md` within the target plugin root. Build an inventory with skill name (from directory name) and file path. If zero skills are found, report an error and halt. [EXPLICIT]
+1. Confirm activation using `assets/activation-policy.json`.
+2. Discover all target `SKILL.md` files with `Glob` or an explicit input list.
+3. Parse each file for frontmatter, description, allowed tools, procedure,
+   quality criteria, anti-patterns, edge cases, examples, and references.
+4. Score all six dimensions using the local rubric and write one rationale per
+   dimension with `[CODE]`, `[CONFIG]`, `[DOC]`, or `[INFERENCE]` evidence tags.
+5. Compute `total_score`, `percentage`, `grade`, and `lowest_dimension` for
+   every skill.
+6. Compute plugin average score, average percentage, and summary grade.
+7. Sort bottom skills by `total_score` ascending, then skill name ascending;
+   report up to `3` items with priority from `assets/scoring-rubric.json`.
+8. Compute systematic gaps for dimension averages below `6.0`.
+9. Report coverage: discovered skills, scored skills, and skipped skills.
+10. Validate JSON reports with `scripts/validate_content_quality_report.py`
+    when a machine-readable artifact is produced.
 
-2. **Parse each SKILL.md** -- for every skill file, extract:
-   - YAML frontmatter block (between `---` markers)
-   - Procedure section (numbered steps)
-   - Quality Criteria section
-   - Anti-Patterns section
-   - Edge Cases section
-   - Guiding principle quote
+## Output Contract
 
-3. **Score each skill on 6 criteria** (1-10 scale):
-   - **Completeness (1-10)**: Has frontmatter with `name`, `description`, `allowed-tools`. Has procedure, quality criteria, anti-patterns sections. 10 = all present with edge cases and quote; 1 = missing most sections. [EXPLICIT]
-   - **Description Quality (1-10)**: Trigger phrases present in description, clear what/when explanation, description length >30 characters. 10 = multiple trigger phrases + precise explanation; 1 = empty or single-word description. [EXPLICIT]
-   - **Procedure Clarity (1-10)**: Steps are numbered, each step has a specific action (not vague), references actual tools or commands, logically ordered. 10 = every step is concrete and tool-aware; 1 = vague bullet points. [EXPLICIT]
-   - **Quality Criteria (1-10)**: At least 4 verifiable criteria present. Each criterion is testable (not subjective). 10 = 5+ measurable criteria; 5 = exactly 4 criteria; 1 = fewer than 2. [EXPLICIT]
-   - **Anti-Patterns (1-10)**: At least 3 anti-patterns with explanations of why they are harmful. 10 = 5+ well-explained anti-patterns; 5 = exactly 3; 1 = none or unlabeled. [EXPLICIT]
-   - **Edge Cases (1-10)**: At least 2 edge cases with explicit response strategies. 10 = 4+ edge cases with handling; 5 = exactly 2; 1 = none. [EXPLICIT]
+Markdown output must include these sections:
 
-4. **Calculate per-skill scores** -- sum the 6 criteria for each skill (max 60). Compute a percentage. Assign a letter grade: A (90-100%), B (80-89%), C (70-79%), D (60-69%), F (<60%). [EXPLICIT]
+1. `Summary`
+2. `Scorecards`
+3. `Bottom Skills`
+4. `Systematic Gaps`
+5. `Coverage`
+6. `Warnings`
 
-5. **Calculate plugin average** -- average all per-skill scores. Identify the bottom 3 weakest skills by total score. [EXPLICIT]
+JSON output must match `assets/report-contract.json`. [EXPLICIT]
 
-6. **Identify systematic gaps** -- for each of the 6 criteria, compute the average across all skills. Flag any criterion whose average falls below 6.0 as a systematic weakness. [EXPLICIT]
+Every scorecard must include:
 
-7. **Generate content quality report** with:
-   - Per-skill scorecard table (skill name, 6 scores, total, grade)
-   - Plugin average score and grade
-   - Bottom 3 weakest skills with specific improvement suggestions
-   - Systematic gaps section with remediation priorities
-   - Summary statistics (total skills, average score, score distribution)
+- skill name and path;
+- six dimension scores;
+- six dimension rationales;
+- total score, percentage, grade, lowest dimension, and recommendation.
 
-## Quality Criteria
+## Local Validation
 
-- [ ] Every SKILL.md is scored; none are silently skipped or missed by the glob.
-- [ ] Scores are justified -- each score includes a one-line rationale explaining why that number was assigned.
-- [ ] Systematic gaps are identified when any criterion averages below 6.0 across the plugin.
-- [ ] The weakest 3 skills are correctly identified by total score, with specific (not generic) improvement advice.
-- [ ] The final report includes a machine-parseable scorecard table.
+Run the skill check:
+
+```bash
+bash skills/audit-content-quality/scripts/check.sh
+```
+
+Validate a JSON report:
+
+```bash
+python3 -B skills/audit-content-quality/scripts/validate_content_quality_report.py \
+  --contract skills/audit-content-quality/assets/report-contract.json \
+  --rubric skills/audit-content-quality/assets/scoring-rubric.json \
+  --evidence-policy skills/audit-content-quality/assets/evidence-policy.json \
+  --report <content-quality-report.json>
+```
+
+## Quality Gate
+
+- Every discovered `SKILL.md` is scored or listed under `coverage.skipped_skills`.
+- Scores use the exact six dimensions and `0-10` bounds.
+- Totals, percentages, grades, averages, and bottom skills are formula-derived.
+- Every dimension score has a rationale with an accepted evidence tag.
+- Bottom skills include specific recommendations and priorities.
+- Systematic gaps are reported only when dimension averages fall below `6.0`.
+- No remote assets, wall-clock dates, or mutation tools are required.
 
 ## Assumptions & Limits
 
-- Read-only. This skill never modifies SKILL.md files.
-- Scoring is structural, not semantic -- a well-formatted but factually wrong procedure still scores high on Procedure Clarity.
-- The 6-criteria rubric is designed for PQA-style skills. Skills with unconventional structures (e.g., pure reference skills with no procedure) may score low on Procedure Clarity despite being fit for purpose.
-- Cannot assess whether anti-patterns are actually harmful or whether edge cases are realistic -- only their presence, count, and explanation quality.
-- Systematic gap detection requires ≥3 skills to be statistically meaningful. For 1-2 skill plugins, report per-skill scores only.
-
-## Good vs Bad
-
-**Bad finding:**
-```
-validate-hooks: 7/10
-```
-Missing: no per-criterion breakdown, no rationale, no improvement advice. [EXPLICIT]
-
-**Good finding:**
-```
-| validate-hooks | 9 | 8 | 9 | 7 | 8 | 9 | 50/60 (83%) | B |
-Quality Criteria scored 7: only 4 criteria present, needs 5+ for score ≥8. Add a 5th verifiable criterion. [EXPLICIT]
-```
-Includes: per-criterion scores, total with percentage, grade, specific rationale for lowest score, actionable improvement. [EXPLICIT]
-
-## Anti-Patterns
-
-1. **Binary scoring** -- giving only 1 or 10, never intermediate values. Scores must reflect gradations. [EXPLICIT]
-2. **Counting without reading** -- scoring quality criteria count as 10 just because 4 items exist, without checking if they are actually verifiable. [EXPLICIT]
-3. **Ignoring frontmatter parsing errors** -- if YAML is malformed, the skill should score 1 on Completeness with an explicit note, not be silently skipped. [EXPLICIT]
-4. **Generic improvement advice** -- telling every weak skill to "add more content" instead of specifying which section needs what. [EXPLICIT]
-5. **Averaging away outliers** -- a plugin average of 7.5 can hide a skill scoring 2.0. Always surface the bottom performers. [EXPLICIT]
-
-## Edge Cases
-
-1. **Single-skill plugin** -- the "bottom 3" analysis should adapt to report only the one skill. Systematic gap analysis still applies across the 6 criteria of that single skill. [EXPLICIT]
-2. **SKILL.md with no frontmatter** -- score Completeness as 1, Description Quality as 1. Still attempt to parse and score remaining sections. [EXPLICIT]
-3. **Extremely long SKILL.md (500+ lines)** -- do not truncate. Read the full file to ensure accurate scoring. Note the unusual length as an INFO observation. [EXPLICIT]
-4. **Non-English SKILL.md** -- score based on structural criteria (sections present, counts) rather than prose quality. Note the language in the report. [EXPLICIT]
-
-## Usage
-
-Example invocations:
-
-- "/audit-content-quality" — Run the full audit content quality workflow
-- "audit content quality on this project" — Apply to current context
-
+- Read-only. This skill never modifies target `SKILL.md` files. [EXPLICIT]
+- The rubric is structural, not a truth validator; factual correctness of a
+  skill's domain claims requires a separate audit. [EXPLICIT]
+- Single-skill targets are valid; bottom analysis reports only that one skill.
+  [EXPLICIT]
+- For unconventional skills, score the observable contract and explain fit
+  concerns in the rationale instead of silently skipping the skill. [EXPLICIT]

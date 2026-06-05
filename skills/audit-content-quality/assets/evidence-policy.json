@@ -1,0 +1,12 @@
+{
+  "schema": 1,
+  "skill": "audit-content-quality",
+  "allowed_tags": ["[CODE]", "[CONFIG]", "[DOC]", "[INFERENCE]"],
+  "rationale_requirements": [
+    "Every criterion score must include a one-line rationale.",
+    "Rationales must cite the observed section, missing section, count, malformed frontmatter, or path-level evidence.",
+    "Scores below 8 must include a concrete improvement recommendation.",
+    "No skill may be skipped without appearing in coverage.skipped_skills."
+  ],
+  "forbidden_tags": ["[OPEN]", "[ASSUMPTION]"]
+}

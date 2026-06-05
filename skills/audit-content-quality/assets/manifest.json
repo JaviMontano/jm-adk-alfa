@@ -1,0 +1,30 @@
+{
+  "schema": 1,
+  "skill": "audit-content-quality",
+  "assets": [
+    {
+      "path": "assets/activation-policy.json",
+      "type": "policy",
+      "purpose": "Activation and false-positive routing rules.",
+      "used_by": ["SKILL.md", "prompts/meta.md", "evals/evals.json"]
+    },
+    {
+      "path": "assets/scoring-rubric.json",
+      "type": "rubric",
+      "purpose": "Canonical dimensions, score bounds, formula, grades, and priorities.",
+      "used_by": ["SKILL.md", "scripts/validate_content_quality_report.py", "evals/evals.json"]
+    },
+    {
+      "path": "assets/report-contract.json",
+      "type": "schema-contract",
+      "purpose": "Required audit report sections and fields.",
+      "used_by": ["SKILL.md", "scripts/validate_content_quality_report.py", "templates/output.md"]
+    },
+    {
+      "path": "assets/evidence-policy.json",
+      "type": "policy",
+      "purpose": "Rationale and evidence-tag requirements.",
+      "used_by": ["SKILL.md", "scripts/validate_content_quality_report.py", "examples/example-output.md"]
+    }
+  ]
+}

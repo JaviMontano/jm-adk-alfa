@@ -1,0 +1,39 @@
+{
+  "schema": 1,
+  "skill": "audit-content-quality",
+  "score_min": 0,
+  "score_max": 10,
+  "dimensions": [
+    "completeness",
+    "description_quality",
+    "procedure_clarity",
+    "quality_criteria",
+    "anti_patterns",
+    "edge_cases"
+  ],
+  "dimension_labels": {
+    "completeness": "Completeness",
+    "description_quality": "Description Quality",
+    "procedure_clarity": "Procedure Clarity",
+    "quality_criteria": "Quality Criteria",
+    "anti_patterns": "Anti-Patterns",
+    "edge_cases": "Edge Cases"
+  },
+  "total_max": 60,
+  "systematic_gap_threshold": 6.0,
+  "grade_thresholds": [
+    {"grade": "A", "min_percentage": 90.0, "max_percentage": 100.0},
+    {"grade": "B", "min_percentage": 80.0, "max_percentage": 89.999},
+    {"grade": "C", "min_percentage": 70.0, "max_percentage": 79.999},
+    {"grade": "D", "min_percentage": 60.0, "max_percentage": 69.999},
+    {"grade": "F", "min_percentage": 0.0, "max_percentage": 59.999}
+  ],
+  "bottom_count": 3,
+  "priority_policy": {
+    "F": "P1",
+    "D": "P2",
+    "C": "P2",
+    "B": "P3",
+    "A": "P3"
+  }
+}
