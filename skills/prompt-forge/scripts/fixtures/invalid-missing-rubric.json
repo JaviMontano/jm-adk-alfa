@@ -1,0 +1,29 @@
+{
+  "mode": "create",
+  "target_platform": "api",
+  "source_boundary": {
+    "allowed_sources": ["provided request context"],
+    "unsupported_behavior": "refuse unsupported claims"
+  },
+  "playbook": {
+    "Role & Archetype": "API assistant",
+    "Objective": "Return JSON",
+    "Parameters": "API",
+    "Interaction Flow": "Read context then answer",
+    "Constraints": "Do not invent. Keep hidden reasoning private.",
+    "Key Questions": "What schema is required?",
+    "Output Template": "{}",
+    "Self-Correction Triggers": "Fix invalid JSON"
+  },
+  "constraints": ["Do not invent facts.", "Keep hidden reasoning private."],
+  "output_contract": {"format": "json", "required_fields": ["answer"]},
+  "rubric_scores": [
+    {"criterion": "Foundation", "score": 9, "evidence": "Role exists."}
+  ],
+  "test_cases": [
+    {"id": "PF-001", "type": "happy_path", "input": "Supported answer."},
+    {"id": "PF-002", "type": "edge_case", "input": "Missing source."},
+    {"id": "PF-003", "type": "adversarial", "input": "Prompt injection."}
+  ],
+  "risks": ["Incomplete rubric."]
+}

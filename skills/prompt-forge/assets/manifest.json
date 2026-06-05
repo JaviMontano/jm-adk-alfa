@@ -1,0 +1,23 @@
+{
+  "skill": "prompt-forge",
+  "assets": [
+    {
+      "path": "assets/prompt-forge-checklist.md",
+      "type": "checklist",
+      "purpose": "Reusable deterministic gate for Prompt Forge packets, including source boundaries, Playbook sections, rubric coverage, tests, and platform notes.",
+      "used_by": ["SKILL.md", "templates/output.md", "scripts/validate_forge_packet.py"]
+    },
+    {
+      "path": "assets/playbook-contract.json",
+      "type": "contract",
+      "purpose": "Canonical modes, target platforms, required Playbook sections, rubric criteria, and required test classes.",
+      "used_by": ["SKILL.md", "scripts/validate_forge_packet.py", "evals/evals.json"]
+    },
+    {
+      "path": "assets/platform-portability-matrix.json",
+      "type": "matrix",
+      "purpose": "Deterministic platform feature map for porting prompts without inventing runtime capabilities.",
+      "used_by": ["SKILL.md", "scripts/validate_forge_packet.py", "evals/evals.json"]
+    }
+  ]
+}

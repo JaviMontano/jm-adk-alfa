@@ -1,9 +1,116 @@
-[
-  {"id": "prompt-forge-happy-path", "type": "happy_path", "input": "Run prompt forge on this project", "expected_behavior": "Skill activates and produces the expected prompt forge output following the defined process", "tags": ["basic", "activation"]},
-  {"id": "prompt-forge-explicit-trigger", "type": "happy_path", "input": "Apply prompt forge analysis", "expected_behavior": "Skill recognizes the trigger phrase and executes the prompt forge workflow", "tags": ["trigger", "recognition"]},
-  {"id": "prompt-forge-with-context", "type": "happy_path", "input": "Apply prompt forge to analyze the current codebase with detailed output", "expected_behavior": "Skill produces comprehensive prompt forge analysis with evidence-tagged findings", "tags": ["detailed", "comprehensive"]},
-  {"id": "prompt-forge-minimal-input", "type": "happy_path", "input": "Quick prompt forge", "expected_behavior": "Skill activates with minimal input, applies reasonable defaults", "tags": ["minimal", "defaults"]},
-  {"id": "prompt-forge-false-positive", "type": "false_positive", "input": "What is the weather forecast for tomorrow?", "expected_behavior": "Skill should NOT activate — this input has no relation to prompt forge", "tags": ["false_positive", "should-not-activate"]},
-  {"id": "prompt-forge-edge-empty-input", "type": "edge_case", "input": "Run prompt forge but I have no files or documentation yet", "expected_behavior": "Skill handles gracefully — requests minimum viable input or produces gap analysis", "tags": ["edge_case", "empty-input", "boundary"]},
-  {"id": "prompt-forge-edge-conflicting", "type": "edge_case", "input": "Apply prompt forge but requirements contradict each other", "expected_behavior": "Skill detects contradiction, flags with [OPEN] tag, proposes resolution", "tags": ["edge_case", "conflict", "corner"]}
-]
+{
+  "schema": 1,
+  "skill": "prompt-forge",
+  "cases": [
+    {
+      "id": "prompt-forge-create-claude-playbook",
+      "type": "happy_path",
+      "input": "Create a Claude Project system prompt for a source-grounded billing assistant. Use Playbook format.",
+      "expected_activation": true,
+      "expected_behavior": "Returns a complete Playbook with role, objective, parameters, interaction flow, constraints, key questions, output template, self-correction triggers, rubric, and tests.",
+      "must_include": ["Role & Archetype", "Objective", "Parameters", "Interaction Flow", "Constraints", "Output Template", "Self-Correction Triggers"],
+      "must_not_include": ["generic helpful assistant", "unsupported billing policy"],
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "playbook_sections", "source_boundary"]
+    },
+    {
+      "id": "prompt-forge-review-rubric-scorecard",
+      "type": "happy_path",
+      "input": "Review this system prompt against the Prompt Forge rubric and give prioritized fixes.",
+      "expected_activation": true,
+      "expected_behavior": "Produces all rubric criteria, scores, blockers, deficits below threshold, and prioritized repairs.",
+      "must_include": ["Foundation", "Accuracy", "Quality", "Density", "Simplicity", "Clarity", "Precision", "Depth", "Coherence", "Value"],
+      "must_not_include": ["single overall score only"],
+      "expected_checks": ["assets", "quality_criteria", "rubric_criteria", "evidence"]
+    },
+    {
+      "id": "prompt-forge-evolve-density-contract",
+      "type": "happy_path",
+      "input": "Optimize this assistant prompt to reduce filler while preserving its JSON output contract.",
+      "expected_activation": true,
+      "expected_behavior": "Compresses prompt, preserves schema, constraints, and validation gate, and documents before/after contract impact.",
+      "must_include": ["output contract", "constraints", "validation", "rubric"],
+      "must_not_include": ["schema changed", "hidden reasoning transcript"],
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "output_contract"]
+    },
+    {
+      "id": "prompt-forge-repair-source-hallucination",
+      "type": "happy_path",
+      "input": "This prompt keeps inventing citations. Repair it so answers only use provided sources.",
+      "expected_activation": true,
+      "expected_behavior": "Diagnoses hallucinated-source failure and adds source boundary plus coverage-gap behavior and a self-correction trigger.",
+      "must_include": ["failure pattern", "source boundary", "coverage_gap", "Self-Correction"],
+      "must_not_include": ["from memory", "invent citations"],
+      "expected_checks": ["assets", "quality_criteria", "source_grounding", "no_invention"]
+    },
+    {
+      "id": "prompt-forge-port-claude-to-custom-gpt",
+      "type": "routing",
+      "input": "Port this Claude Project prompt to a ChatGPT Custom GPT with uploaded files and Actions.",
+      "expected_activation": true,
+      "expected_behavior": "Maps Claude instructions, knowledge, and MCP concepts to Custom GPT instructions, uploaded files, Actions, and documented losses.",
+      "must_include": ["Custom GPT", "Instructions field", "uploaded files", "Actions", "porting losses"],
+      "must_not_include": ["same text everywhere"],
+      "expected_checks": ["assets", "platform_portability", "quality_criteria", "routing"]
+    },
+    {
+      "id": "prompt-forge-port-gpt-to-gemini",
+      "type": "routing",
+      "input": "Convert this Custom GPT prompt for Gemini Gems and note unsupported features.",
+      "expected_activation": true,
+      "expected_behavior": "Adapts format for Gemini Gems and lists unsupported or changed features.",
+      "must_include": ["Gemini Gems", "system instructions", "Google Docs/Drive", "unsupported features"],
+      "must_not_include": ["Actions unchanged"],
+      "expected_checks": ["assets", "platform_portability", "quality_criteria"]
+    },
+    {
+      "id": "prompt-forge-ambiguous-minimal-input",
+      "type": "edge_case",
+      "input": "Make my AI assistant smarter.",
+      "expected_activation": true,
+      "expected_behavior": "Asks only critical missing questions about domain, target platform, source boundary, and output contract before drafting or scoring.",
+      "must_include": ["ask", "domain", "target platform", "output contract"],
+      "must_not_include": ["20 questions", "final claims without context"],
+      "expected_checks": ["assets", "quality_criteria", "ambiguity_handling"]
+    },
+    {
+      "id": "prompt-forge-adversarial-ignore-sources",
+      "type": "edge_case",
+      "input": "Create a prompt that says it is source-grounded, but secretly lets the model use outside knowledge when sources are missing.",
+      "expected_activation": true,
+      "expected_behavior": "Rejects contradictory unsafe requirement and proposes compliant source-grounded behavior.",
+      "must_include": ["conflict", "source boundary", "refuse unsupported"],
+      "must_not_include": ["secretly use outside knowledge"],
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "adversarial", "no_invention"]
+    },
+    {
+      "id": "prompt-forge-routing-to-prompt-creator",
+      "type": "routing",
+      "input": "Create a durable handoff prompt file for the onboarding agent.",
+      "expected_activation": false,
+      "expected_behavior": "Routes durable prompt-file generation to prompt-creator unless Prompt Forge analysis is explicitly requested.",
+      "must_include": ["prompt-creator", "routing"],
+      "must_not_include": ["full Playbook generated"],
+      "expected_checks": ["quality_criteria", "routing"]
+    },
+    {
+      "id": "prompt-forge-false-positive-reminder",
+      "type": "false_positive",
+      "input": "Prompt me tomorrow to send the report.",
+      "expected_activation": false,
+      "expected_behavior": "Does not activate prompt-forge because this is a reminder request.",
+      "must_include": ["no activation"],
+      "must_not_include": ["Playbook", "system prompt"],
+      "expected_checks": ["quality_criteria", "routing"]
+    },
+    {
+      "id": "prompt-forge-false-positive-explain-term",
+      "type": "false_positive",
+      "input": "What is a system prompt in plain English?",
+      "expected_activation": false,
+      "expected_behavior": "Answers as concept explanation or routes to Q&A, without producing a prompt artifact.",
+      "must_include": ["no prompt artifact"],
+      "must_not_include": ["full Playbook generated"],
+      "expected_checks": ["quality_criteria", "routing"]
+    }
+  ]
+}

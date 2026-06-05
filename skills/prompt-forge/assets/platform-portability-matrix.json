@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "skill": "prompt-forge",
+  "platforms": {
+    "claude-project": {
+      "instruction_surface": "Project instructions",
+      "knowledge_surface": "Project knowledge files",
+      "tool_surface": "MCP servers or project-enabled tools",
+      "porting_note": "Keep project instructions concise and move durable reference material to project knowledge."
+    },
+    "custom-gpt": {
+      "instruction_surface": "Instructions field",
+      "knowledge_surface": "Uploaded files",
+      "tool_surface": "Actions",
+      "porting_note": "Translate tool references to Actions or mark unsupported."
+    },
+    "gemini-gem": {
+      "instruction_surface": "System instructions",
+      "knowledge_surface": "Google Docs or Drive context",
+      "tool_surface": "Extensions",
+      "porting_note": "Map uploaded knowledge to available Google context surfaces."
+    },
+    "api": {
+      "instruction_surface": "system or developer message",
+      "knowledge_surface": "RAG or request context",
+      "tool_surface": "Function calling or tool definitions",
+      "porting_note": "Represent instructions and output contracts as code-owned artifacts."
+    },
+    "unknown": {
+      "instruction_surface": "unknown",
+      "knowledge_surface": "unknown",
+      "tool_surface": "unknown",
+      "porting_note": "Ask for target runtime before making platform-specific claims."
+    }
+  }
+}

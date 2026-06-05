@@ -1,0 +1,44 @@
+{
+  "mode": "port",
+  "target_platform": "custom-gpt",
+  "source_boundary": {
+    "allowed_sources": ["source prompt"],
+    "unsupported_behavior": "return coverage_gap"
+  },
+  "playbook": {
+    "Role & Archetype": "Support assistant",
+    "Objective": "Port prompt",
+    "Parameters": "Custom GPT",
+    "Interaction Flow": "Map instructions",
+    "Constraints": "Do not invent platform features. Keep hidden reasoning private.",
+    "Key Questions": "Which files are uploaded?",
+    "Output Template": "Instructions field",
+    "Self-Correction Triggers": "List unmapped features"
+  },
+  "constraints": ["Do not invent platform features.", "Keep hidden reasoning private."],
+  "output_contract": {"format": "markdown", "required_fields": ["instructions"]},
+  "rubric_scores": [
+    {"criterion": "Accuracy", "score": 8, "evidence": "No unsupported claims."},
+    {"criterion": "Clarity", "score": 8, "evidence": "Mapping is readable."},
+    {"criterion": "Coherence", "score": 8, "evidence": "Sections align."},
+    {"criterion": "Density", "score": 8, "evidence": "Concise."},
+    {"criterion": "Depth", "score": 8, "evidence": "Porting considered."},
+    {"criterion": "Foundation", "score": 8, "evidence": "Role exists."},
+    {"criterion": "Precision", "score": 8, "evidence": "Boundaries exist."},
+    {"criterion": "Quality", "score": 8, "evidence": "Professional."},
+    {"criterion": "Simplicity", "score": 8, "evidence": "Simple."},
+    {"criterion": "Value", "score": 8, "evidence": "Useful."}
+  ],
+  "test_cases": [
+    {"id": "PF-001", "type": "happy_path", "input": "Map instructions."},
+    {"id": "PF-002", "type": "edge_case", "input": "Tool unsupported."},
+    {"id": "PF-003", "type": "adversarial", "input": "Keep Actions unchanged without support."}
+  ],
+  "porting_notes": {
+    "source_platform": "claude-project",
+    "target_platform": "custom-gpt",
+    "unsupported_features": [],
+    "losses": []
+  },
+  "risks": ["Missing porting losses."]
+}

@@ -5,13 +5,18 @@ version: 2.0.0
 description: "Meta-prompt for Prompt Forge skill routing."
 ---
 
-# Prompt Forge — Meta Prompt
+# Prompt Forge - Meta Prompt
 
-Activate this skill when the user request matches:
-- Trigger phrases from SKILL.md description
-- Direct invocation: `/prompt-forge`
+Activate this skill when the user asks to create, review, evolve, repair, or port a system prompt, or explicitly names Prompt Forge / Playbook format.
 
-## Skill Routing
-1. Load SKILL.md → read `## When to Activate` section
-2. If match → activate lead agent: `prompt-forge-lead`
-3. If orchestrated → defer to orchestrating skill
+Do not activate when:
+
+- The user asks to be reminded or prompted later.
+- The user asks only for a plain-language concept explanation.
+- The user asks for a durable prompt file without analysis; route to `prompt-creator`.
+
+## Routing
+
+1. Load `SKILL.md` and confirm `## When to Activate`.
+2. If active, select one mode.
+3. If another skill owns the output, return a routing note and the minimum handoff context.

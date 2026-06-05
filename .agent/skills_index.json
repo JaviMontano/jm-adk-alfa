@@ -2571,7 +2571,7 @@
     "id": "prompt-forge",
     "path": "skills/prompt-forge",
     "name": "Prompt Forge",
-    "description": "Turn vague assistant ideas into structured, high-performance system prompts — portable across Claude, GPT, and Gemini. [EXPLICIT]"
+    "description": "Create, review, evolve, repair, and port system prompts using a deterministic Playbook format, source-boundary rules, platform portability notes, rubric scorecards, adversarial test cases, and script-backed forge packet validation. Use when the user asks to create a system prompt, review a prompt, optimize or repair prompt behavior, port prompts across Claude, ChatGPT, Gemini, or API runtimes, or apply Prompt Forge / Playbook format. [EXPLICIT]"
   },
   {
     "id": "prompting-and-meta-prompting",
