@@ -1,0 +1,42 @@
+{
+  "schema": 1,
+  "skill": "knowledge-management",
+  "assets": [
+    {
+      "path": "assets/README.md",
+      "type": "documentation",
+      "purpose": "Describe deterministic knowledge-management assets.",
+      "used_by": ["SKILL.md", "README.md"]
+    },
+    {
+      "path": "assets/evidence-policy.json",
+      "type": "policy",
+      "purpose": "Define allowed evidence tags for knowledge claims.",
+      "used_by": ["SKILL.md", "scripts/validate_knowledge_management_report.py"]
+    },
+    {
+      "path": "assets/knowledge-taxonomy.json",
+      "type": "taxonomy",
+      "purpose": "Define allowed knowledge item, status, and gap classifications.",
+      "used_by": ["SKILL.md", "knowledge/body-of-knowledge.md", "scripts/validate_knowledge_management_report.py"]
+    },
+    {
+      "path": "assets/searchability-policy.json",
+      "type": "policy",
+      "purpose": "Define deterministic retrieval metadata requirements.",
+      "used_by": ["SKILL.md", "scripts/validate_knowledge_management_report.py"]
+    },
+    {
+      "path": "assets/freshness-policy.json",
+      "type": "policy",
+      "purpose": "Define decay windows based on report reference dates.",
+      "used_by": ["SKILL.md", "scripts/validate_knowledge_management_report.py"]
+    },
+    {
+      "path": "assets/report-contract.json",
+      "type": "schema",
+      "purpose": "Define the offline-validatable report contract.",
+      "used_by": ["SKILL.md", "examples/example-output.md", "scripts/validate_knowledge_management_report.py"]
+    }
+  ]
+}

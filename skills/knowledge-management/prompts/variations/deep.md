@@ -21,24 +21,25 @@ Use deep mode when thoroughness matters more than speed: architecture decisions,
 
 ## Execution (Deep)
 
-1. Load ALL knowledge: `knowledge/body-of-knowledge.md` + cross-referenced skills
-2. Check guardrails: `references/guardrails/*.json`
+1. Load `knowledge/body-of-knowledge.md` and all files listed in
+   `assets/manifest.json`
+2. Check guardrails when present and keep missing guardrails as an explicit gap
 3. Lead executes with exhaustive analysis:
    - Cover ALL edge cases, not just common path
-   - Research: check standards, best practices, recent changes
-   - Document every assumption with `[ASSUMPTION]` tag
+   - Build a full register with source paths, owners, retrieval terms, aliases,
+     freshness dates, status, and next actions
+   - Document every assumption with `[SUPUESTO]`
 4. Support reviews with expanded scope:
-   - Security, accessibility, performance, business viability
+   - Searchability, decay, duplication, contradictions, orphan knowledge,
+     ownership, compliance, and handoff viability
    - Adversarial scenarios: what could go wrong?
 5. Guardian validates with strict criteria:
    - Evidence tags 100% coverage (no untagged claims)
    - Quality gate fully met
-   - Confidence >= 0.95 with evidence support
+   - JSON output passes `scripts/validate_knowledge_management_report.py`
 
 ## Output
 
 - Exhaustive deliverable with full evidence trail
-- Edge cases documented
-- Risk assessment included
-- Recommendations with priority ranking
-- Confidence score with justification
+- Register, searchability map, decay review, gap log, owner-bound actions,
+  validation evidence, risks, and confidence rationale

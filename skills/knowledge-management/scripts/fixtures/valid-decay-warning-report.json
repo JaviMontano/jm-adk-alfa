@@ -1,0 +1,40 @@
+{
+  "skill": "knowledge-management",
+  "reference_date": "2026-06-06",
+  "summary": "A handoff note is stale and has an owner-bound refresh action. [DOC][INFERENCIA]",
+  "register": [
+    {
+      "id": "km-101",
+      "title": "Release handoff checklist",
+      "type": "handoff",
+      "source_path": "docs/handoffs/release.md",
+      "evidence_tag": "[DOC]",
+      "owner": "Release Lead",
+      "last_reviewed": "2026-05-01",
+      "retrieval_terms": ["release handoff", "handoff checklist"],
+      "status": "stale",
+      "next_action": "Refresh handoff checklist by 2026-06-07."
+    }
+  ],
+  "searchability_map": [
+    {"term": "release handoff", "source_id": "km-101", "evidence_tag": "[DOC]"}
+  ],
+  "decay_review": [
+    {"source_id": "km-101", "status": "stale", "reason": "Handoff entry exceeds the 14-day freshness window using reference_date 2026-06-06. [DOC][INFERENCIA]"}
+  ],
+  "gaps": [
+    {"source_id": "km-101", "type": "stale", "description": "Refresh is required before handoff reuse. [DOC]"}
+  ],
+  "actions": [
+    {
+      "id": "act-101",
+      "owner": "Release Lead",
+      "due_date": "2026-06-07",
+      "description": "Refresh release handoff checklist.",
+      "source_ids": ["km-101"],
+      "evidence_tag": "[DOC]"
+    }
+  ],
+  "validation": ["Decay review used explicit reference_date 2026-06-06. [CONFIG]"],
+  "risks": ["Release handoff may be incomplete until the checklist is refreshed. [INFERENCIA]"]
+}

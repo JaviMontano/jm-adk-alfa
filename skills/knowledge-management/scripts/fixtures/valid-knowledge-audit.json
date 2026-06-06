@@ -1,0 +1,74 @@
+{
+  "skill": "knowledge-management",
+  "reference_date": "2026-06-06",
+  "summary": "Checkout knowledge has one active decision, one stale runbook, one contradiction, and one owner-bound remediation plan. [DOC][INFERENCIA]",
+  "register": [
+    {
+      "id": "km-001",
+      "title": "Enterprise checkout requires SSO",
+      "type": "decision",
+      "source_path": "docs/decisions/checkout-auth.md",
+      "evidence_tag": "[DOC]",
+      "owner": "Identity Team",
+      "last_reviewed": "2026-05-20",
+      "retrieval_terms": ["checkout auth", "enterprise sso"],
+      "status": "active",
+      "next_action": "Keep as canonical authentication decision."
+    },
+    {
+      "id": "km-002",
+      "title": "Checkout retry queue runbook",
+      "type": "runbook",
+      "source_path": "docs/runbooks/checkout-retry.md",
+      "evidence_tag": "[DOC]",
+      "owner": "Platform Ops",
+      "last_reviewed": "2026-02-01",
+      "retrieval_terms": ["retry queue", "checkout retry"],
+      "status": "stale",
+      "next_action": "Refresh retry queue runbook by 2026-06-14."
+    },
+    {
+      "id": "km-003",
+      "title": "Enterprise guest checkout note",
+      "type": "note",
+      "source_path": "docs/notes/session-44.md",
+      "evidence_tag": "[DOC]",
+      "owner": "Identity Team",
+      "last_reviewed": "2026-06-01",
+      "retrieval_terms": ["guest checkout", "enterprise buyers"],
+      "status": "contradiction",
+      "next_action": "Resolve guest checkout note against SSO decision by 2026-06-10."
+    }
+  ],
+  "searchability_map": [
+    {"term": "checkout auth", "source_id": "km-001", "evidence_tag": "[DOC]"},
+    {"term": "retry queue", "source_id": "km-002", "evidence_tag": "[DOC]"},
+    {"term": "guest checkout", "source_id": "km-003", "evidence_tag": "[DOC]"}
+  ],
+  "decay_review": [
+    {"source_id": "km-002", "status": "stale", "reason": "Runbook is older than the 90-day freshness window using reference_date 2026-06-06. [DOC][INFERENCIA]"}
+  ],
+  "gaps": [
+    {"source_id": "km-003", "type": "contradiction", "description": "Guest checkout note conflicts with SSO decision. [DOC][INFERENCIA]"}
+  ],
+  "actions": [
+    {
+      "id": "act-001",
+      "owner": "Platform Ops",
+      "due_date": "2026-06-14",
+      "description": "Refresh checkout retry queue runbook.",
+      "source_ids": ["km-002"],
+      "evidence_tag": "[DOC]"
+    },
+    {
+      "id": "act-002",
+      "owner": "Identity Team",
+      "due_date": "2026-06-10",
+      "description": "Resolve enterprise guest checkout contradiction.",
+      "source_ids": ["km-003"],
+      "evidence_tag": "[DOC]"
+    }
+  ],
+  "validation": ["Every register item has source, owner, retrieval terms, evidence, status, and next action. [DOC]"],
+  "risks": ["Source priority for session notes may downgrade the contradiction after review. [SUPUESTO]"]
+}

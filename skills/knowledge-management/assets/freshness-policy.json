@@ -1,0 +1,16 @@
+{
+  "schema": 1,
+  "requires_reference_date": true,
+  "windows_days": {
+    "decision": 180,
+    "runbook": 90,
+    "policy": 180,
+    "insight": 120,
+    "task": 30,
+    "glossary": 365,
+    "handoff": 14,
+    "risk": 30,
+    "note": 60
+  },
+  "rule": "Decay status is computed from reference_date minus last_reviewed; do not use the runtime clock."
+}
