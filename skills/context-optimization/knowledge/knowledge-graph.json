@@ -1,75 +1,78 @@
 {
   "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-28",
   "skill": "context-optimization",
   "nodes": [
     {
       "id": "context-optimization",
       "type": "skill",
-      "label": "context-optimization"
+      "label": "Context optimization"
     },
     {
-      "id": "context-optimization:inputs",
-      "type": "contract",
-      "label": "Expected inputs"
+      "id": "context-budget",
+      "type": "metric",
+      "label": "Context budget"
     },
     {
-      "id": "context-optimization:outputs",
-      "type": "contract",
-      "label": "Expected outputs"
+      "id": "progressive-loading",
+      "type": "policy",
+      "label": "L1/L2/L3 loading"
     },
     {
-      "id": "context-optimization:quality",
-      "type": "gate",
-      "label": "Quality criteria"
+      "id": "relevance-score",
+      "type": "metric",
+      "label": "Resource relevance"
     },
     {
-      "id": "context-optimization:ontology",
-      "type": "ontology",
-      "label": "Domain: context-reliability"
-    },
-    {
-      "id": "context-optimization:evidence",
-      "type": "gate",
-      "label": "Evidence / provenance requirements"
-    },
-    {
-      "id": "context-optimization:antipattern",
+      "id": "pruning-risk",
       "type": "risk",
-      "label": "Canonical anti-pattern to avoid"
+      "label": "Pruning risk"
+    },
+    {
+      "id": "session-state",
+      "type": "contract",
+      "label": "Summarized session state"
+    },
+    {
+      "id": "offline-validation",
+      "type": "gate",
+      "label": "Offline report validation"
+    },
+    {
+      "id": "full-transcript-persistence",
+      "type": "risk",
+      "label": "Unauthorized full transcript persistence"
     }
   ],
   "edges": [
     {
       "from": "context-optimization",
-      "to": "context-optimization:inputs",
-      "type": "requires"
+      "to": "context-budget",
+      "type": "optimizes_against"
     },
     {
       "from": "context-optimization",
-      "to": "context-optimization:outputs",
-      "type": "produces"
+      "to": "progressive-loading",
+      "type": "uses"
+    },
+    {
+      "from": "progressive-loading",
+      "to": "relevance-score",
+      "type": "bounded_by"
     },
     {
       "from": "context-optimization",
-      "to": "context-optimization:quality",
-      "type": "validated_by"
-    },
-    {
-      "from": "context-optimization",
-      "to": "context-optimization:ontology",
-      "type": "classified_as"
-    },
-    {
-      "from": "context-optimization",
-      "to": "context-optimization:evidence",
-      "type": "validated_by"
-    },
-    {
-      "from": "context-optimization",
-      "to": "context-optimization:antipattern",
+      "to": "pruning-risk",
       "type": "guards_against"
+    },
+    {
+      "from": "context-optimization",
+      "to": "offline-validation",
+      "type": "validated_by"
+    },
+    {
+      "from": "session-state",
+      "to": "full-transcript-persistence",
+      "type": "excludes"
     }
   ]
 }

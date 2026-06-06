@@ -1,0 +1,8 @@
+{
+  "schema": 1,
+  "skill": "context-optimization",
+  "levels": ["none", "minimal", "essential", "full"],
+  "default_target_path": "project/session-state.json",
+  "authorization_required_for_persist": true,
+  "essential_fields": ["phase", "focused_skill", "loaded_levels", "unresolved_risks"]
+}

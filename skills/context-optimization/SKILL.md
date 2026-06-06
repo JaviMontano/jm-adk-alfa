@@ -20,6 +20,20 @@ allowed-tools:
 
 **TL;DR**: Optimizes context window usage through progressive MOAT loading (L1/L2/L3), intelligent pruning, session state management, and token-efficient skill routing. Ensures the AI agent operates within context limits while maintaining access to the knowledge needed for the current task.
 
+## Deterministic Resources
+
+- `assets/loading-level-policy.json` defines L1/L2/L3 loading levels and the
+  one-L3-active-skill rule.
+- `assets/relevance-policy.json` defines relevance scoring and promotion
+  thresholds.
+- `assets/pruning-policy.json` defines safe prune, compress, and lazy-load
+  actions.
+- `assets/session-state-policy.json` defines persistence levels and authorized
+  write behavior.
+- `assets/optimization-report-contract.json` defines the JSON report contract.
+- `scripts/validate_context_optimization_report.py` validates reports offline.
+- `scripts/check.sh` runs deterministic positive and negative fixtures.
+
 ## Principio Rector
 El contexto es un recurso finito. Cargar los 100 skills completos excede cualquier ventana de contexto. La carga progresiva (L1 metadata, L2 core, L3 deep) permite acceder al conocimiento correcto en el momento correcto. La optimización de contexto no es ahorro — es precisión en la información cargada. [EXPLICIT]
 
@@ -116,6 +130,7 @@ Loading all 100 skills at L3 into context, overflowing the window, and producing
 - [ ] Missing context risks flagged when pruning removes potentially relevant information
 - [ ] Agent performance maintained despite context constraints [STAKEHOLDER]
 - [ ] Context strategy aligns with pipeline workflow and phase transitions [PLAN]
+- [ ] Machine report passes `bash skills/context-optimization/scripts/check.sh` when used
 
 ## Escalation Triggers
 - Critical skill context unavailable due to window limits
@@ -130,9 +145,12 @@ Loading all 100 skills at L3 into context, overflowing the window, and producing
 | Body of Knowledge | Before optimizing to understand MOAT loading architecture | `references/body-of-knowledge.md` |
 | State of the Art | When evaluating context management approaches | `references/state-of-the-art.md` |
 | Knowledge Graph | To understand skill dependency graph for loading priority | `references/knowledge-graph.mmd` |
-| Use Case Prompts | When configuring optimization for specific workflows | `prompts/use-case-prompts.md` |
-| Metaprompts | To generate context loading configurations | `prompts/metaprompts.md` |
-| Sample Output | To calibrate expected optimization report format | `examples/sample-output.md` |
+| Primary Prompt | When generating the standard optimization report | `prompts/primary.md` |
+| Meta Prompt | When deciding activation and safety checks | `prompts/meta.md` |
+| Quick Variation | When one active skill needs a short budget decision | `prompts/variations/quick.md` |
+| Deep Variation | When evidence, pruning, or handoff risk is high | `prompts/variations/deep.md` |
+| Example Output | To calibrate expected optimization report format | `examples/example-output.md` |
+| Report Contract | To validate machine-readable optimization reports offline | `assets/optimization-report-contract.json` |
 
 ## Output Configuration
 - **Language**: Spanish (Latin American, business register)

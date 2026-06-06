@@ -1,10 +1,20 @@
 # Context Optimization — DOCX Template
 
 ## Document Structure
-- Title: Context Optimization — [Client/Project Name]
+
+- Title: Context Optimization Report
 - Author: JM Labs
 - Date: {{DATE}}
 
-## Sections (mirror SKILL.md structure)
-See canonical SKILL.md for section blueprints.
-Use brand-config.json tokens: Navy #122562 · Gold #FFD700 · Blue #137DC5
+## Required Sections
+
+1. Optimization Target
+2. Skill Loading Plan
+3. Pruning Plan
+4. Session State Plan
+5. Metrics
+6. Guardian Decision
+
+## Determinism Notes
+
+Use explicit relevance scores, token metrics, authorization state, and risk flags.

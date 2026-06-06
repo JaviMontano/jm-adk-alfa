@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "skill": "context-optimization",
+  "optimization_target": {
+    "task": "routing",
+    "phase": "analysis",
+    "max_context_tokens": 20000,
+    "target_utilization_percent": 85,
+    "evidence_tag": "[CONFIG]"
+  },
+  "skill_loading_plan": [
+    {
+      "skill": "session-protocol",
+      "level": "L2",
+      "relevance_score": 75,
+      "rationale": "Session recovery is relevant but not deep focus.",
+      "evidence_tag": "[CODE]"
+    },
+    {
+      "skill": "seo-technical",
+      "level": "L1",
+      "relevance_score": 25,
+      "rationale": "Metadata only until referenced.",
+      "evidence_tag": "[INFERENCE]"
+    }
+  ],
+  "pruning_plan": [
+    {
+      "source_id": "historical-marketing-notes",
+      "action": "prune",
+      "relevance_score": 10,
+      "risk_flag": false,
+      "rationale": "Historical notes do not affect current routing.",
+      "evidence_tag": "[INFERENCE]"
+    }
+  ],
+  "session_state_plan": {
+    "persist_level": "minimal",
+    "target_path": "project/session-state.json",
+    "authorized": true,
+    "fields": ["phase", "loaded_levels"],
+    "evidence_tag": "[CONFIG]"
+  },
+  "metrics": {
+    "naive_tokens": 20000,
+    "optimized_tokens": 12000,
+    "utilization_percent": 60,
+    "improvement_percent": 40,
+    "evidence_tag": "[CODE]"
+  },
+  "guardian_decision": {
+    "decision": "pass",
+    "rationale": "No L3 load, pruning is low relevance, and metrics meet thresholds.",
+    "evidence_tag": "[CONFIG]"
+  }
+}

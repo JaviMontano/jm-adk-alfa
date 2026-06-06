@@ -1,0 +1,11 @@
+{
+  "schema": 1,
+  "skill": "context-optimization",
+  "levels": {
+    "L1": "metadata and trigger summary",
+    "L2": "core SKILL.md and quality gates",
+    "L3": "deep references, examples, and fixtures"
+  },
+  "max_l3_skills": 1,
+  "l3_min_relevance_score": 80
+}

@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "skill": "context-optimization",
+  "assets": [
+    {
+      "path": "assets/loading-level-policy.json",
+      "type": "policy",
+      "purpose": "Defines L1/L2/L3 loading levels and one-L3 active skill limit.",
+      "used_by": ["SKILL.md", "scripts/validate_context_optimization_report.py", "evals/evals.json"]
+    },
+    {
+      "path": "assets/relevance-policy.json",
+      "type": "policy",
+      "purpose": "Defines relevance score thresholds for loading and promotion.",
+      "used_by": ["SKILL.md", "scripts/validate_context_optimization_report.py", "templates/output.md"]
+    },
+    {
+      "path": "assets/pruning-policy.json",
+      "type": "policy",
+      "purpose": "Defines safe prune, compress, keep, and lazy-load behavior.",
+      "used_by": ["SKILL.md", "agents/guardian.md", "scripts/validate_context_optimization_report.py"]
+    },
+    {
+      "path": "assets/session-state-policy.json",
+      "type": "policy",
+      "purpose": "Defines session-state persistence levels and authorization requirements.",
+      "used_by": ["SKILL.md", "scripts/validate_context_optimization_report.py", "README.md"]
+    },
+    {
+      "path": "assets/optimization-report-contract.json",
+      "type": "schema",
+      "purpose": "Defines required JSON report sections and evidence tags.",
+      "used_by": ["SKILL.md", "scripts/validate_context_optimization_report.py", "templates/output.md"]
+    }
+  ]
+}

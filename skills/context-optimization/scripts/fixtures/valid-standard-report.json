@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "skill": "context-optimization",
+  "optimization_target": {
+    "task": "implementation",
+    "phase": "build",
+    "max_context_tokens": 24000,
+    "target_utilization_percent": 85,
+    "evidence_tag": "[CONFIG]"
+  },
+  "skill_loading_plan": [
+    {
+      "skill": "context-window-management",
+      "level": "L3",
+      "relevance_score": 95,
+      "rationale": "Active focus for budget plan.",
+      "evidence_tag": "[CONFIG]"
+    },
+    {
+      "skill": "session-protocol",
+      "level": "L2",
+      "relevance_score": 82,
+      "rationale": "Needed for session continuity.",
+      "evidence_tag": "[CODE]"
+    },
+    {
+      "skill": "tasklog-management",
+      "level": "L1",
+      "relevance_score": 55,
+      "rationale": "Only task status summary is needed.",
+      "evidence_tag": "[INFERENCE]"
+    }
+  ],
+  "pruning_plan": [
+    {
+      "source_id": "seo-technical",
+      "action": "lazy-load",
+      "relevance_score": 20,
+      "risk_flag": false,
+      "rationale": "Unrelated to active implementation context.",
+      "evidence_tag": "[INFERENCE]"
+    }
+  ],
+  "session_state_plan": {
+    "persist_level": "essential",
+    "target_path": "project/session-state.json",
+    "authorized": true,
+    "fields": ["phase", "focused_skill", "loaded_levels", "unresolved_risks"],
+    "evidence_tag": "[CONFIG]"
+  },
+  "metrics": {
+    "naive_tokens": 30000,
+    "optimized_tokens": 18000,
+    "utilization_percent": 75,
+    "improvement_percent": 40,
+    "evidence_tag": "[CODE]"
+  },
+  "guardian_decision": {
+    "decision": "pass",
+    "rationale": "One L3 skill, safe pruning, authorized persistence, and metrics meet thresholds.",
+    "evidence_tag": "[CONFIG]"
+  }
+}

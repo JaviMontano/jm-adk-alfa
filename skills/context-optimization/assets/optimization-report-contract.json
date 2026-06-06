@@ -1,0 +1,15 @@
+{
+  "schema": 1,
+  "skill": "context-optimization",
+  "required_report_keys": [
+    "schema_version",
+    "skill",
+    "optimization_target",
+    "skill_loading_plan",
+    "pruning_plan",
+    "session_state_plan",
+    "metrics",
+    "guardian_decision"
+  ],
+  "evidence_tags": ["[CODE]", "[CONFIG]", "[DOC]", "[INFERENCE]", "[ASSUMPTION]", "[OPEN]"]
+}
