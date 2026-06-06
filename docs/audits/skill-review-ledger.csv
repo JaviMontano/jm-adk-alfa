@@ -432,7 +432,7 @@ seo-content,"SEO content strategy: meta descriptions, Open Graph tags, schema ma
 seo-technical,"JSON-LD structured data, sitemap.xml, robots.txt, Open Graph tags, canonical URLs, and Firebase Hosting SEO headers",pending,,,,,
 server-middleware,"Auth verification (verifyIdToken), rate limiting, CORS config, request logging, input sanitization middleware. [EXPLICIT]",pending,,,,,
 serverless-patterns,Fan-out (Firestore trigger to multiple ops). Saga (compensating transactions). Event sourcing with Firestore. [EXPLICIT],pending,,,,,
-session-end-cleanup,"Session summary generation, insight extraction, tasklog update. [EXPLICIT]",pending,,,,,
+session-end-cleanup,"Closes an agent session with a deterministic evidence-tagged handoff: session summary, decisions, open tasks, insights, risks, validation evidence, and tasklog/changelog update plan. [EXPLICIT]",dod-complete,2026-06-06,docs/audits/skills/session-end-cleanup-review.md,P1,completed-session-end-cleanup-dod,"Closed DoD with activation/output/evidence/update assets, offline closeout report validator, valid and negative fixtures, 10 eval cases, examples, review doc, and per-skill validation evidence."
 session-manager,"Manages session state, pipeline progress, and cold-start priming. Reads/writes .specify/context.json to track feature stages and artifact completion. [EXPLICIT]",pending,,,,,
 session-protocol,"Mandatory session initialization: context loading, state recovery, pending closure, and next steps proposal. Ensures continuity across AI sessions with zero context loss. [EXPLICIT] Constitution Session Protocol section. [EXPLICIT]",pending,,,,,
 session-start-bootstrap,"Context loading, environment detection, guardrails initialization. [EXPLICIT]",pending,,,,,

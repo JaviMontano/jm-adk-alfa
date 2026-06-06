@@ -1,0 +1,31 @@
+{
+  "schema": 1,
+  "skill": "session-end-cleanup",
+  "checks": [
+    {
+      "id": "sections-present",
+      "question": "Are all required closeout sections present?",
+      "blocks_if_false": true
+    },
+    {
+      "id": "claims-tagged",
+      "question": "Does every factual claim include an allowed evidence tag?",
+      "blocks_if_false": true
+    },
+    {
+      "id": "validation-visible",
+      "question": "Are passed, failed, skipped, and unknown validations visible?",
+      "blocks_if_false": true
+    },
+    {
+      "id": "durable-updates-scoped",
+      "question": "Are tasklog/changelog updates authorized and scoped?",
+      "blocks_if_false": true
+    },
+    {
+      "id": "handoff-actionable",
+      "question": "Does Next Handoff name the first concrete action?",
+      "blocks_if_false": true
+    }
+  ]
+}

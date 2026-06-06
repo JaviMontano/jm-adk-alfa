@@ -1,0 +1,29 @@
+{
+  "schema": 1,
+  "skill": "session-end-cleanup",
+  "allowed_tags": ["[CODE]", "[CONFIG]", "[DOC]", "[INFERENCE]", "[ASSUMPTION]", "[OPEN]"],
+  "claim_rules": [
+    {
+      "claim": "validation passed",
+      "requires": ["exact command", "status", "evidence_tag"]
+    },
+    {
+      "claim": "PR ready or merged",
+      "requires": ["PR identifier or URL", "CI or merge evidence", "evidence_tag"]
+    },
+    {
+      "claim": "task complete",
+      "requires": ["task id or description", "completion_evidence", "evidence_tag"]
+    },
+    {
+      "claim": "durable log updated",
+      "requires": ["target path", "scope authority", "evidence_tag"]
+    }
+  ],
+  "forbidden_claims": [
+    "CI is green without CI evidence.",
+    "Merge is complete without merge evidence.",
+    "A task is complete because it is planned.",
+    "Durable logs were updated without target path evidence."
+  ]
+}

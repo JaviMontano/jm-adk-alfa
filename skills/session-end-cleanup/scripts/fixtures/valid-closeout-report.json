@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "skill": "session-end-cleanup",
+  "session": {
+    "objective": "Harden one skill and prepare a PR-ready closeout.",
+    "scope": "skills/session-end-cleanup plus its review doc and ledger row",
+    "evidence_tag": "[CONFIG]"
+  },
+  "summary": "[CODE] The skill contract, assets, evals, examples, and scripts were updated.",
+  "changes_completed": [
+    {
+      "description": "Added deterministic assets and offline report validation.",
+      "evidence_tag": "[CODE]"
+    }
+  ],
+  "decisions": [
+    {
+      "description": "Ledger completion waits for successful local validation.",
+      "evidence_tag": "[CONFIG]"
+    }
+  ],
+  "open_tasks": [
+    {
+      "description": "Open the pull request after local validations pass.",
+      "status": "open",
+      "evidence_tag": "[CONFIG]",
+      "next_action": "Create a ready PR from the hardening branch."
+    }
+  ],
+  "insights": [
+    {
+      "description": "Fixture-backed closeout validation prevents false completion claims.",
+      "evidence_tag": "[INFERENCE]"
+    }
+  ],
+  "risks": [
+    {
+      "description": "Remote CI status is unknown before PR creation.",
+      "evidence_tag": "[CONFIG]"
+    }
+  ],
+  "validation": [
+    {
+      "command": "bash skills/session-end-cleanup/scripts/check.sh",
+      "status": "pass",
+      "evidence": "Valid fixtures passed and negative fixtures failed.",
+      "evidence_tag": "[CODE]"
+    }
+  ],
+  "durable_updates": [
+    {
+      "description": "Update only the session-end-cleanup review doc and ledger row.",
+      "evidence_tag": "[CONFIG]"
+    }
+  ],
+  "next_handoff": "[CONFIG] Open PR, wait for CI, squash merge only if green.",
+  "guardian_decision": {
+    "decision": "pass",
+    "rationale": "All local closeout fixture checks passed.",
+    "evidence_tag": "[CODE]"
+  }
+}

@@ -1,28 +1,41 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: session-end-cleanup
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
+# Session End Cleanup Report
 
-# Session End Cleanup Output
+## Session Summary
 
-## Summary
+{session_summary}
 
-{summary}
+## Changes Completed
 
-## Evidence
+{changes_completed}
 
-{evidence}
+## Decisions And Assumptions
 
-## Result
+{decisions_and_assumptions}
 
-{result}
+## Open Tasks
 
-## Validation
+{open_tasks}
 
-{validation}
+## Insights Captured
 
-## Risks and Limits
+{insights_captured}
 
-{risks}
+## Risks And Blockers
+
+{risks_and_blockers}
+
+## Validation Evidence
+
+{validation_evidence}
+
+## Durable Updates
+
+{durable_updates}
+
+## Next Handoff
+
+{next_handoff}
+
+## Guardian Decision
+
+{guardian_decision}

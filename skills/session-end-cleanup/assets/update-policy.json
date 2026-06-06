@@ -1,0 +1,22 @@
+{
+  "schema": 1,
+  "skill": "session-end-cleanup",
+  "durable_targets": [
+    "tasklog row or entry explicitly named by the user or repo policy",
+    "changelog entry explicitly named by the user or repo policy",
+    "skill review doc and ledger row when maintaining exactly one skill"
+  ],
+  "write_rules": [
+    "Read the existing target before writing.",
+    "Update only the active row, entry, or section supported by evidence.",
+    "Use proposed updates when the target path or write authority is unclear.",
+    "Do not rewrite unrelated chronology or unrelated skill rows."
+  ],
+  "pause_conditions": [
+    "unrelated local change appears",
+    "validation fails",
+    "CI fails",
+    "merge evidence is absent for a merge claim",
+    "the requested update requires touching another active skill"
+  ]
+}

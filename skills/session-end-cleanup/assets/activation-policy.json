@@ -1,0 +1,23 @@
+{
+  "schema": 1,
+  "skill": "session-end-cleanup",
+  "activate_when": [
+    "The user asks to end, close, wrap up, or hand off an agent session.",
+    "The user asks for a final session summary with validation evidence.",
+    "The user asks to update tasklog or changelog at the end of an agent session.",
+    "The workflow requires a ReleasePacket, guardian decision, or next-session handoff."
+  ],
+  "do_not_activate_when": [
+    "The user asks to clean temporary files, format code, or remove unused assets without a session-closeout intent.",
+    "The user asks for a generic project summary unrelated to the active session.",
+    "The request belongs to pre-compaction, session start, tasklog management, or changelog management as the primary active skill."
+  ],
+  "required_context": [
+    "active objective",
+    "active scope",
+    "files or artifacts changed",
+    "commands run or explicit statement that no commands ran",
+    "validation, PR, CI, merge, and blocker state when those claims are requested"
+  ],
+  "fallback": "If required context is missing, produce a gap-aware closeout and block any completion claim that depends on missing evidence."
+}
