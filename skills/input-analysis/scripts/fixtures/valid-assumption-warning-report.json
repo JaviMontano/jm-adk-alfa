@@ -1,0 +1,35 @@
+{
+  "schema": 1,
+  "input_type": "brief",
+  "findings": [
+    {
+      "type": "gap",
+      "text": "Users are not identified.",
+      "evidence_tag": "ASSUMPTION",
+      "evidence": "two-line brief omits user groups",
+      "action": "Ask for primary and secondary users."
+    },
+    {
+      "type": "gap",
+      "text": "Success metrics are missing.",
+      "evidence_tag": "ASSUMPTION",
+      "evidence": "brief omits KPIs",
+      "action": "Define measurable success criteria."
+    }
+  ],
+  "completeness": {
+    "score": 22,
+    "assumption_ratio": 0.5,
+    "warning_banner": true
+  },
+  "evidence_tag_summary": {
+    "ASSUMPTION": 2
+  },
+  "validation": {
+    "all_findings_tagged": true,
+    "firebase_feasibility_assessed": true,
+    "phase_separation": true,
+    "includes_implementation_details": false,
+    "actionable_recommendations": true
+  }
+}

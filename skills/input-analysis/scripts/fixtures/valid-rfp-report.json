@@ -1,0 +1,44 @@
+{
+  "schema": 1,
+  "input_type": "rfp",
+  "findings": [
+    {
+      "type": "contradiction",
+      "text": "Login is optional in email but mandatory in the RFP.",
+      "evidence_tag": "DOC",
+      "evidence": "email:optional-login; rfp:mandatory-login",
+      "action": "Resolve MVP authentication requirement before architecture."
+    },
+    {
+      "type": "gap",
+      "text": "Data retention is not specified.",
+      "evidence_tag": "DOC",
+      "evidence": "brief omits retention policy",
+      "action": "Ask owner for retention and deletion requirements."
+    },
+    {
+      "type": "ambiguity",
+      "text": "Public portal and private PII need explicit surface boundaries.",
+      "evidence_tag": "INFERENCE",
+      "evidence": "public portal plus private PII constraint",
+      "action": "Define anonymous and authenticated surfaces."
+    }
+  ],
+  "completeness": {
+    "score": 58,
+    "assumption_ratio": 0.25,
+    "warning_banner": false
+  },
+  "evidence_tag_summary": {
+    "DOC": 2,
+    "INFERENCE": 1,
+    "ASSUMPTION": 0
+  },
+  "validation": {
+    "all_findings_tagged": true,
+    "firebase_feasibility_assessed": true,
+    "phase_separation": true,
+    "includes_implementation_details": false,
+    "actionable_recommendations": true
+  }
+}

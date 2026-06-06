@@ -1,0 +1,16 @@
+{
+  "schema": 1,
+  "input_type": "rfp",
+  "findings": [
+    {
+      "type": "requirement",
+      "text": "Implement Firebase auth now.",
+      "evidence_tag": "DOC",
+      "evidence": "user asked for analysis plus implementation",
+      "action": "Separate analysis from implementation planning."
+    }
+  ],
+  "completeness": {"score": 70, "assumption_ratio": 0.1, "warning_banner": false},
+  "evidence_tag_summary": {"DOC": 1},
+  "validation": {"all_findings_tagged": true, "firebase_feasibility_assessed": true, "phase_separation": false, "includes_implementation_details": true, "actionable_recommendations": true}
+}

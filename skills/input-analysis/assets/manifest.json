@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "skill": "input-analysis",
+  "assets": [
+    {
+      "path": "assets/evidence-tags-policy.json",
+      "type": "policy",
+      "purpose": "Defines allowed evidence tags for every finding.",
+      "used_by": ["SKILL.md", "README.md", "scripts/validate_input_analysis_report.py"]
+    },
+    {
+      "path": "assets/finding-taxonomy.json",
+      "type": "policy",
+      "purpose": "Defines contradiction, gap, ambiguity, constraint, requirement, and risk finding types.",
+      "used_by": ["SKILL.md", "evals/evals.json", "scripts/validate_input_analysis_report.py"]
+    },
+    {
+      "path": "assets/completeness-score-policy.json",
+      "type": "policy",
+      "purpose": "Defines the 0-100 completeness score and required dimensions.",
+      "used_by": ["SKILL.md", "examples/example-output.md", "scripts/validate_input_analysis_report.py"]
+    },
+    {
+      "path": "assets/assumption-warning-policy.json",
+      "type": "policy",
+      "purpose": "Requires a warning banner when assumptions exceed 30 percent of claims.",
+      "used_by": ["SKILL.md", "templates/output.md", "scripts/validate_input_analysis_report.py"]
+    },
+    {
+      "path": "assets/report-contract.json",
+      "type": "schema",
+      "purpose": "Defines the deterministic JSON report contract enforced by the offline validator.",
+      "used_by": ["scripts/check.sh", "scripts/validate_input_analysis_report.py"]
+    }
+  ]
+}

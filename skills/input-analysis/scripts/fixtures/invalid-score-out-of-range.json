@@ -1,0 +1,16 @@
+{
+  "schema": 1,
+  "input_type": "rfp",
+  "findings": [
+    {
+      "type": "gap",
+      "text": "Retention is missing.",
+      "evidence_tag": "DOC",
+      "evidence": "brief omits retention",
+      "action": "Ask for retention."
+    }
+  ],
+  "completeness": {"score": 120, "assumption_ratio": 0.2, "warning_banner": false},
+  "evidence_tag_summary": {"DOC": 1},
+  "validation": {"all_findings_tagged": true, "firebase_feasibility_assessed": true, "phase_separation": true, "includes_implementation_details": false, "actionable_recommendations": true}
+}

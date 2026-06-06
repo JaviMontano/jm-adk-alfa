@@ -1,0 +1,5 @@
+{
+  "schema": 1,
+  "report_type": "input-analysis-report",
+  "required_top_level": ["schema", "input_type", "findings", "completeness", "evidence_tag_summary", "validation"]
+}

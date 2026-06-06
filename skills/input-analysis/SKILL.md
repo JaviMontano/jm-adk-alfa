@@ -34,6 +34,10 @@ Parse project inputs (RFPs, briefs, emails). Detect contradictions, gaps, ambigu
 1. Produce the analysis deliverable in markdown. [EXPLICIT]
 2. Include evidence tag summary (% by tag type). [EXPLICIT]
 3. If >30% [ASSUMPTION], add WARNING banner. [EXPLICIT]
+
+## Deterministic Assets
+
+Use `assets/manifest.json` as the offline contract index. The assets define evidence tags, finding taxonomy, completeness scoring, assumption warning rules, and the JSON report contract. If a structured report is produced, validate it with `bash skills/input-analysis/scripts/check.sh` before acceptance.
 ## 3. Inputs / Outputs
 | Input | Type | Required | Description |
 |-------|------|----------|-------------|
@@ -47,6 +51,7 @@ Parse project inputs (RFPs, briefs, emails). Detect contradictions, gaps, ambigu
 - [ ] Deliverable follows R-008 output standards
 - [ ] No implementation details (phase separation)
 - [ ] Actionable recommendations included
+- [ ] JSON reports pass `scripts/check.sh` against `assets/`
 ## 5. Self-Correction Triggers
 > [!WARNING]
 > IF >30% claims are [ASSUMPTION] THEN add prominent WARNING banner.

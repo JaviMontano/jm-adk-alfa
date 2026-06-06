@@ -1,0 +1,6 @@
+{
+  "schema": 1,
+  "allowed_types": ["requirement", "constraint", "contradiction", "gap", "ambiguity", "risk"],
+  "action_required": true,
+  "minimum_categories_for_incomplete_input": ["contradiction", "gap", "ambiguity"]
+}
