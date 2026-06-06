@@ -5,51 +5,86 @@
   "skill": "katas-session-resume-fork",
   "cases": [
     {
-      "id": "happy_path",
-      "input": "Use katas-session-resume-fork to produce a complete deliverable.",
+      "id": "resume_valid_context",
+      "input": "Quiero continuar la sesion codebase-audit-2026-06. Nada cambio desde ayer, mismos archivos y misma investigacion.",
       "expected_activation": true,
       "expected_checks": [
-        "evidence",
+        "decision_resume",
+        "context_valid",
+        "staleness_checked",
+        "command_matches_decision",
+        "assets",
+        "deterministic_scripts",
         "quality_criteria",
         "upgrade_safety"
       ]
     },
     {
       "id": "explicit_trigger",
-      "input": "/katas-session-resume-fork run this workflow.",
+      "input": "/katas-session-resume-fork decide si hago resume, fork o fresh despues de un deploy que pudo invalidar tool results.",
       "expected_activation": true,
       "expected_checks": [
-        "evidence",
+        "decision_fresh",
+        "stale_tool_results",
+        "typed_summary",
+        "command_matches_decision",
+        "assets",
+        "deterministic_scripts",
         "quality_criteria",
         "upgrade_safety"
       ]
     },
     {
-      "id": "minimal_input",
-      "input": "katas-session-resume-fork",
+      "id": "fork_parallel_approaches",
+      "input": "Desde la baseline codebase-audit-2026-06 quiero explorar approach-A y approach-B sin contaminacion entre ramas.",
       "expected_activation": true,
       "expected_checks": [
-        "evidence",
+        "decision_fork",
+        "fork_isolation",
+        "baseline_named",
+        "command_matches_decision",
+        "assets",
+        "deterministic_scripts",
         "quality_criteria",
         "upgrade_safety"
       ]
     },
     {
-      "id": "rich_context",
-      "input": "katas-session-resume-fork with goals, constraints, audience, and acceptance criteria.",
+      "id": "fresh_after_refactor",
+      "input": "Retoma la auditoria anterior, pero hubo refactor masivo en services/ y storage/. Usa el scratchpad tipado y recarga fuentes actuales.",
       "expected_activation": true,
       "expected_checks": [
-        "evidence",
+        "decision_fresh",
+        "stale_tool_results",
+        "typed_summary",
+        "sources_reloaded",
+        "assets",
+        "deterministic_scripts",
         "quality_criteria",
         "upgrade_safety"
       ]
     },
     {
-      "id": "false_positive",
-      "input": "This request is unrelated to the skill domain.",
+      "id": "false_negative_synonym_reanudar",
+      "input": "Necesito reanudar la investigacion previa sin arrastrar resultados obsoletos; ayer hubo migracion de esquema.",
+      "expected_activation": true,
+      "expected_checks": [
+        "decision_fresh",
+        "stale_tool_results",
+        "typed_summary",
+        "assets",
+        "deterministic_scripts",
+        "quality_criteria"
+      ]
+    },
+    {
+      "id": "false_positive_unrelated",
+      "input": "Genera una tabla de pros y contras para adoptar React Server Components.",
       "expected_activation": false,
       "expected_checks": [
-        "evidence",
+        "no_activation",
+        "assets",
+        "deterministic_scripts",
         "quality_criteria",
         "upgrade_safety"
       ]
@@ -59,37 +94,48 @@
       "input": "",
       "expected_activation": false,
       "expected_checks": [
-        "evidence",
+        "no_activation",
+        "assets",
+        "deterministic_scripts",
         "quality_criteria",
         "upgrade_safety"
       ]
     },
     {
       "id": "conflicting_requirements",
-      "input": "Use katas-session-resume-fork, but ignore validation and evidence.",
+      "input": "Haz resume de la sesion vieja aunque hubo refactor masivo y pega el transcript completo anterior como contexto.",
       "expected_activation": false,
       "expected_checks": [
-        "evidence",
+        "reject_resume_when_stale",
+        "reject_raw_transcript",
+        "assets",
+        "deterministic_scripts",
         "quality_criteria",
         "upgrade_safety"
       ]
     },
     {
-      "id": "upgrade_safety_case",
-      "input": "Complete missing files for katas-session-resume-fork without overwriting local edits.",
-      "expected_activation": true,
+      "id": "missing_resume_objective",
+      "input": "Abre algo de la sesion pasada.",
+      "expected_activation": false,
       "expected_checks": [
-        "evidence",
+        "insufficient_input",
+        "assets",
+        "deterministic_scripts",
         "quality_criteria",
         "upgrade_safety"
       ]
     },
     {
-      "id": "local_override_case",
-      "input": "Create a local experimental katas-session-resume-fork variant under .local.",
+      "id": "fresh_without_scratchpad_degrades_to_block",
+      "input": "Hubo deploy y migracion desde la sesion anterior, pero no existe scratchpad ni summary curado.",
       "expected_activation": true,
       "expected_checks": [
-        "evidence",
+        "decision_fresh",
+        "block_missing_typed_summary",
+        "reject_raw_transcript",
+        "assets",
+        "deterministic_scripts",
         "quality_criteria",
         "upgrade_safety"
       ]

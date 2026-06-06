@@ -1,0 +1,28 @@
+{
+  "schema": 1,
+  "decision": "fork",
+  "reason": "Two independent approaches need to start from the same validated baseline without sharing mutable state.",
+  "signals": {
+    "context_valid": true,
+    "world_changed": false,
+    "stale_tool_results": false,
+    "parallel_branches": true,
+    "raw_transcript_used": false
+  },
+  "command": {
+    "branches": [
+      "claude --fork codebase-audit-2026-06 --new-name approach-A",
+      "claude --fork codebase-audit-2026-06 --new-name approach-B"
+    ]
+  },
+  "fork": {
+    "baseline": "codebase-audit-2026-06",
+    "branches": ["approach-A", "approach-B"],
+    "shared_state": false
+  },
+  "validation": {
+    "decision_matches_signals": true,
+    "staleness_checked": true,
+    "risk_recorded": true
+  }
+}

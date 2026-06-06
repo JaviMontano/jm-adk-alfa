@@ -29,6 +29,7 @@ Tres patrones de preservación de contexto entre corridas del agente y el criter
 2. ¿Necesitas explorar dos enfoques sin contaminación cruzada? → `fork` a dos sesiones nombradas desde la misma baseline.
 3. ¿Hubo refactor, migración o deploy entre sesiones? Los tool results están stale → sesión fresh con summary tipado del scratchpad, recargando las fuentes actualizadas.
 4. Nunca pegues el transcript completo viejo: infla contexto y reintroduce ruido.
+5. Consulta `assets/manifest.json` y valida reportes JSON con `bash skills/katas-session-resume-fork/scripts/check.sh`.
 
 ## Output Format
 

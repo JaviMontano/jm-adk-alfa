@@ -1,0 +1,25 @@
+{
+  "schema": 1,
+  "decision": "fresh",
+  "reason": "A migration happened, so start fresh but paste the old transcript.",
+  "signals": {
+    "context_valid": false,
+    "world_changed": true,
+    "stale_tool_results": true,
+    "parallel_branches": false,
+    "raw_transcript_used": true
+  },
+  "command": "claude -p \"Continue from this old transcript\"",
+  "summary": {
+    "source": "transcript",
+    "typed": false,
+    "raw_transcript": true,
+    "fields": ["goal", "findings"]
+  },
+  "validation": {
+    "decision_matches_signals": true,
+    "staleness_checked": true,
+    "sources_reloaded": true,
+    "risk_recorded": true
+  }
+}

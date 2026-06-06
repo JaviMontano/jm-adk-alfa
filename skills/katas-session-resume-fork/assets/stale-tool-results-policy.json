@@ -1,0 +1,6 @@
+{
+  "schema": 1,
+  "stale_signals": ["refactor", "migration", "deploy", "mass_edit", "schema_change"],
+  "resume_allowed_when_stale": false,
+  "fresh_requires_source_reload": true
+}

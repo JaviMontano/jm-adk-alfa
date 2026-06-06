@@ -1,0 +1,17 @@
+{
+  "schema": 1,
+  "decisions": {
+    "resume": {
+      "requires": ["context_valid", "not_world_changed", "not_stale_tool_results", "not_parallel_branches"],
+      "command_contains": "--resume"
+    },
+    "fork": {
+      "requires": ["parallel_branches", "baseline_named", "isolated_branches"],
+      "command_contains": "--fork"
+    },
+    "fresh": {
+      "requires": ["world_changed_or_stale_tool_results", "typed_summary", "sources_reloaded"],
+      "command_contains": "claude -p"
+    }
+  }
+}

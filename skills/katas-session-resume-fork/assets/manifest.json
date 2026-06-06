@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "skill": "katas-session-resume-fork",
+  "assets": [
+    {
+      "path": "assets/decision-matrix.json",
+      "type": "policy",
+      "purpose": "Defines deterministic selection rules for resume, fork, and fresh.",
+      "used_by": ["SKILL.md", "README.md", "evals/evals.json", "scripts/validate_kata_session_report.py"]
+    },
+    {
+      "path": "assets/stale-tool-results-policy.json",
+      "type": "policy",
+      "purpose": "Defines refactor, migration, deploy, and mass-edit signals that make resume unsafe.",
+      "used_by": ["SKILL.md", "prompts/primary.md", "scripts/validate_kata_session_report.py"]
+    },
+    {
+      "path": "assets/fork-isolation-policy.json",
+      "type": "policy",
+      "purpose": "Defines fork baseline, branch naming, and no shared mutable state requirements.",
+      "used_by": ["SKILL.md", "agents/guardian.md", "scripts/validate_kata_session_report.py"]
+    },
+    {
+      "path": "assets/typed-summary-policy.json",
+      "type": "policy",
+      "purpose": "Defines the curated scratchpad fields required for a fresh session summary.",
+      "used_by": ["SKILL.md", "templates/output.md", "scripts/validate_kata_session_report.py"]
+    },
+    {
+      "path": "assets/report-contract.json",
+      "type": "schema",
+      "purpose": "Defines the deterministic JSON report contract enforced by the offline validator.",
+      "used_by": ["scripts/check.sh", "scripts/validate_kata_session_report.py"]
+    }
+  ]
+}

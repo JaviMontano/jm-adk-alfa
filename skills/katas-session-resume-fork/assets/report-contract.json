@@ -1,0 +1,11 @@
+{
+  "schema": 1,
+  "report_type": "katas-session-resume-fork-report",
+  "required_top_level": ["schema", "decision", "reason", "signals", "command", "validation"],
+  "valid_decisions": ["resume", "fork", "fresh"],
+  "forbidden": {
+    "raw_transcript_used": true,
+    "fork_shared_state": true,
+    "resume_when_stale": true
+  }
+}
