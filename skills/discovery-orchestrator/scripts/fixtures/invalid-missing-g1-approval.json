@@ -1,0 +1,28 @@
+{
+  "skill": "discovery-orchestrator",
+  "reference_date": "2026-06-06",
+  "mode": "gate-check",
+  "summary": "G1 is incorrectly marked pass without approval. [CONFIG]",
+  "phase_plan": [
+    {"id": "0", "name": "Intake", "purpose": "Start discovery. [CONFIG]", "status": "completed", "owner": "Lead", "inputs_required": ["notes"], "outputs_expected": ["scope"], "evidence_tag": "[CONFIG]"},
+    {"id": "1", "name": "Current state", "purpose": "Route AS-IS. [CONFIG]", "status": "completed", "owner": "Lead", "inputs_required": ["inventory"], "outputs_expected": ["AS-IS"], "evidence_tag": "[CONFIG]"},
+    {"id": "2", "name": "Flow mapping", "purpose": "Route flows. [CONFIG]", "status": "completed", "owner": "Lead", "inputs_required": ["process"], "outputs_expected": ["flows"], "evidence_tag": "[CONFIG]"},
+    {"id": "3", "name": "Scenarios", "purpose": "Route scenarios. [CONFIG]", "status": "completed", "owner": "Lead", "inputs_required": ["options"], "outputs_expected": ["scorecard"], "evidence_tag": "[CONFIG]"},
+    {"id": "3b", "name": "Feasibility", "purpose": "Route feasibility. [CONFIG]", "status": "completed", "owner": "Lead", "inputs_required": ["scenario"], "outputs_expected": ["verdicts"], "evidence_tag": "[CONFIG]"},
+    {"id": "4", "name": "Roadmap", "purpose": "Route roadmap. [CONFIG]", "status": "pending", "owner": "Lead", "inputs_required": ["scenario"], "outputs_expected": ["roadmap"], "evidence_tag": "[CONFIG]"},
+    {"id": "4b", "name": "Commercial", "purpose": "Route model. [CONFIG]", "status": "pending", "owner": "Lead", "inputs_required": ["roadmap"], "outputs_expected": ["assumptions"], "evidence_tag": "[CONFIG]"},
+    {"id": "5a", "name": "Spec", "purpose": "Route spec. [CONFIG]", "status": "pending", "owner": "Lead", "inputs_required": ["roadmap"], "outputs_expected": ["spec"], "evidence_tag": "[CONFIG]"},
+    {"id": "5b", "name": "Pitch", "purpose": "Route pitch. [CONFIG]", "status": "pending", "owner": "Lead", "inputs_required": ["roadmap"], "outputs_expected": ["pitch"], "evidence_tag": "[CONFIG]"},
+    {"id": "6", "name": "Handover", "purpose": "Route handover. [CONFIG]", "status": "pending", "owner": "Lead", "inputs_required": ["package"], "outputs_expected": ["handover"], "evidence_tag": "[CONFIG]"}
+  ],
+  "skill_sequence": [
+    {"id": "S01", "skill": "scenario-analysis", "phase": "3", "operation": "validate", "status": "completed", "owner": "Lead", "depends_on": [], "produces": ["scorecard"], "evidence_tag": "[CONFIG]"}
+  ],
+  "gates": [
+    {"gate_id": "G1", "after_phase": "3", "before_phase": "4", "status": "pass", "decision": "Advance. [CONFIG]", "criteria": {"scenario_count": 3, "scoring_complete": true, "decision_tree_present": true, "recommended_scenario_id": "S2", "assumption_count": 3, "assumption_ratio": 0.2, "warning_banner": false, "approval": {"status": "missing", "approver": ""}}, "evidence_tag": "[CONFIG]"}
+  ],
+  "handoff": {"next_skill": "solution-roadmap", "next_action": "Start roadmap. [CONFIG]", "handover_gate": "pending", "deliverables_expected": ["06_Solution_Roadmap"]},
+  "boundary_checks": {"does_not_analyze": true, "no_prices": true, "no_downstream_execution": true},
+  "validation": ["Expected invalid because approval is missing. [CONFIG]"],
+  "risks": ["Approval cannot be inferred. [CONFIG]"]
+}

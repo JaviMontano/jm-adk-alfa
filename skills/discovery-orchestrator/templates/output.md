@@ -1,28 +1,44 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: discovery-orchestrator
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
-
-# Discovery Orchestrator Output
+# Discovery Orchestrator Packet
 
 ## Summary
 
-{summary}
+{evidence_tagged_summary}
 
-## Evidence
+## Mode
 
-{evidence}
+{sequence | gate-check | dashboard | handoff-readiness}
 
-## Result
+## Phase Plan
 
-{result}
+| Phase | Status | Owner | Required Input | Expected Output | Evidence |
+|-------|--------|-------|----------------|-----------------|----------|
+
+## Skill Sequence
+
+| ID | Skill | Phase | Operation | Status | Depends On | Produces | Evidence |
+|----|-------|-------|-----------|--------|------------|----------|----------|
+
+## Gates
+
+| Gate | After | Before | Status | Decision | Missing Evidence |
+|------|-------|--------|--------|----------|------------------|
+
+## Handoff
+
+- Next skill: {next_skill}
+- Next action: {next_action}
+- Stop condition: {stop_condition}
+
+## Boundary Checks
+
+- Does not analyze: {true|false}
+- No prices: {true|false}
+- No downstream execution: {true|false}
 
 ## Validation
 
-{validation}
+{validation_evidence}
 
-## Risks and Limits
+## Risks
 
-{risks}
+{evidence_tagged_risks}

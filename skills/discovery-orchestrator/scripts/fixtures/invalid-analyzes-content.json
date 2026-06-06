@@ -1,0 +1,29 @@
+{
+  "skill": "discovery-orchestrator",
+  "reference_date": "2026-06-06",
+  "mode": "sequence",
+  "summary": "This packet leaks domain analysis. [CONFIG]",
+  "analysis_findings": ["The architecture root cause is coupling in services. [INFERENCE]"],
+  "phase_plan": [
+    {"id": "0", "name": "Intake", "purpose": "Start discovery. [CONFIG]", "status": "completed", "owner": "Lead", "inputs_required": ["notes"], "outputs_expected": ["scope"], "evidence_tag": "[CONFIG]"},
+    {"id": "1", "name": "Current state", "purpose": "Route AS-IS. [CONFIG]", "status": "completed", "owner": "Lead", "inputs_required": ["inventory"], "outputs_expected": ["AS-IS"], "evidence_tag": "[CONFIG]"},
+    {"id": "2", "name": "Flow mapping", "purpose": "Route flows. [CONFIG]", "status": "completed", "owner": "Lead", "inputs_required": ["process"], "outputs_expected": ["flows"], "evidence_tag": "[CONFIG]"},
+    {"id": "3", "name": "Scenarios", "purpose": "Route scenarios. [CONFIG]", "status": "completed", "owner": "Lead", "inputs_required": ["options"], "outputs_expected": ["scorecard"], "evidence_tag": "[CONFIG]"},
+    {"id": "3b", "name": "Feasibility", "purpose": "Route feasibility. [CONFIG]", "status": "pending", "owner": "Lead", "inputs_required": ["scenario"], "outputs_expected": ["verdicts"], "evidence_tag": "[CONFIG]"},
+    {"id": "4", "name": "Roadmap", "purpose": "Route roadmap. [CONFIG]", "status": "pending", "owner": "Lead", "inputs_required": ["scenario"], "outputs_expected": ["roadmap"], "evidence_tag": "[CONFIG]"},
+    {"id": "4b", "name": "Commercial", "purpose": "Route model. [CONFIG]", "status": "pending", "owner": "Lead", "inputs_required": ["roadmap"], "outputs_expected": ["assumptions"], "evidence_tag": "[CONFIG]"},
+    {"id": "5a", "name": "Spec", "purpose": "Route spec. [CONFIG]", "status": "pending", "owner": "Lead", "inputs_required": ["roadmap"], "outputs_expected": ["spec"], "evidence_tag": "[CONFIG]"},
+    {"id": "5b", "name": "Pitch", "purpose": "Route pitch. [CONFIG]", "status": "pending", "owner": "Lead", "inputs_required": ["roadmap"], "outputs_expected": ["pitch"], "evidence_tag": "[CONFIG]"},
+    {"id": "6", "name": "Handover", "purpose": "Route handover. [CONFIG]", "status": "pending", "owner": "Lead", "inputs_required": ["package"], "outputs_expected": ["handover"], "evidence_tag": "[CONFIG]"}
+  ],
+  "skill_sequence": [
+    {"id": "S01", "skill": "stakeholder-mapping", "phase": "0", "operation": "invoke", "status": "completed", "owner": "Lead", "depends_on": [], "produces": ["stakeholders"], "evidence_tag": "[CONFIG]"}
+  ],
+  "gates": [
+    {"gate_id": "G1", "after_phase": "3", "before_phase": "4", "status": "block", "decision": "Block. [CONFIG]", "criteria": {"assumption_ratio": 0.1}, "blockers": ["Missing scenarios. [CONFIG]"], "next_action": "Run scenario-analysis. [CONFIG]", "evidence_tag": "[CONFIG]"}
+  ],
+  "handoff": {"next_skill": "scenario-analysis", "next_action": "Run scenario-analysis. [CONFIG]", "handover_gate": "blocked", "deliverables_expected": ["05_Escenarios_ToT"]},
+  "boundary_checks": {"does_not_analyze": false, "no_prices": true, "no_downstream_execution": true},
+  "validation": ["Expected invalid because analysis leaks. [CONFIG]"],
+  "risks": ["Domain analysis is outside this skill. [CONFIG]"]
+}

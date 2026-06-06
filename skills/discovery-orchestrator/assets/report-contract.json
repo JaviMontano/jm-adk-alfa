@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "skill": "discovery-orchestrator",
+  "modes": ["sequence", "gate-check", "dashboard", "handoff-readiness"],
+  "allowed_evidence_tags": [
+    "[CODE]",
+    "[CONFIG]",
+    "[DOC]",
+    "[INFERENCE]",
+    "[ASSUMPTION]",
+    "[CÓDIGO]",
+    "[INFERENCIA]",
+    "[SUPUESTO]"
+  ],
+  "required_top_level": [
+    "skill",
+    "reference_date",
+    "mode",
+    "summary",
+    "phase_plan",
+    "skill_sequence",
+    "gates",
+    "handoff",
+    "boundary_checks",
+    "validation",
+    "risks"
+  ],
+  "handoff_required_fields": [
+    "next_skill",
+    "next_action",
+    "handover_gate",
+    "deliverables_expected"
+  ],
+  "handover_gate_statuses": ["pending", "ready", "blocked"],
+  "moving_time_terms": ["today", "tomorrow", "yesterday", "soon", "recently", "later", "TBD"]
+}
