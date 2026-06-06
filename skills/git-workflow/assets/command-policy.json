@@ -1,0 +1,31 @@
+{
+  "schema": 1,
+  "skill": "git-workflow",
+  "allowed_command_prefixes": [
+    "git status",
+    "git fetch",
+    "git pull --ff-only",
+    "git checkout -b",
+    "git switch -c",
+    "git add",
+    "git restore --staged",
+    "git commit",
+    "git push -u",
+    "git push origin",
+    "git tag",
+    "gh pr create",
+    "gh pr checks",
+    "gh pr merge",
+    "git branch -d",
+    "git branch -D",
+    "git diff --check"
+  ],
+  "forbidden_patterns": [
+    "git reset --hard",
+    "git clean -fd",
+    "git checkout --",
+    "git push --force",
+    "git push -f"
+  ],
+  "force_with_lease_allowed": false
+}

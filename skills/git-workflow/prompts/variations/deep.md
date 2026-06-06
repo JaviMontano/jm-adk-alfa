@@ -5,11 +5,11 @@ version: 2.0.0
 description: "Git Workflow — deep analysis mode. Exhaustive coverage."
 ---
 
-# Git Workflow — Deep Mode
+# Git Workflow - Deep Mode
 
 ## When to Use
 
-Use deep mode when thoroughness matters more than speed: architecture decisions, security audits, compliance reviews, critical deliverables.
+Use deep mode for release tagging, conflict recovery, protected branch policy, multi-PR sequencing, or CI-sensitive changes.
 
 ## Dynamic Parameters
 
@@ -21,24 +21,11 @@ Use deep mode when thoroughness matters more than speed: architecture decisions,
 
 ## Execution (Deep)
 
-1. Load ALL knowledge: `knowledge/body-of-knowledge.md` + cross-referenced skills
-2. Check guardrails: `references/guardrails/*.json`
-3. Lead executes with exhaustive analysis:
-   - Cover ALL edge cases, not just common path
-   - Research: check standards, best practices, recent changes
-   - Document every assumption with `[ASSUMPTION]` tag
-4. Support reviews with expanded scope:
-   - Security, accessibility, performance, business viability
-   - Adversarial scenarios: what could go wrong?
-5. Guardian validates with strict criteria:
-   - Evidence tags 100% coverage (no untagged claims)
-   - Quality gate fully met
-   - Confidence >= 0.95 with evidence support
+1. Inspect workflow docs, CI config, PR templates, release notes, and branch protection hints.
+2. Build a complete command plan with preconditions and rollback notes.
+3. Include conflict resolution, failed-CI handling, release-tag verification, and branch cleanup.
+4. Guardian validates command safety and stop conditions before any execution recommendation.
 
 ## Output
 
-- Exhaustive deliverable with full evidence trail
-- Edge cases documented
-- Risk assessment included
-- Recommendations with priority ranking
-- Confidence score with justification
+- Full workflow plan with evidence trail, edge cases, risk assessment, and merge/release criteria.

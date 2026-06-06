@@ -1,0 +1,19 @@
+{
+  "skill": "git-workflow",
+  "reference_date": "2026-06-06",
+  "repo_state": {"branch": "main", "base_branch": "main", "clean": true, "aligned_with_remote": true, "open_prs": 0, "local_head": "abc1234", "remote_head": "abc1234", "evidence_tag": "[CODE]"},
+  "decision": {"status": "proceed", "rationale": "This should fail because release tag evidence is incomplete. [CONFIG]", "evidence_tag": "[CONFIG]"},
+  "branch_strategy": {"type": "release", "branch_name": "release/1-4-0", "base_branch": "main", "evidence_tag": "[CONFIG]"},
+  "operation_plan": [
+    {"step": 1, "command": "git fetch origin main", "preconditions": "network", "expected_outcome": "remote refreshed", "rollback": "block", "evidence_tag": "[CONFIG]"},
+    {"step": 2, "command": "git pull --ff-only origin main", "preconditions": "clean main", "expected_outcome": "main updated", "rollback": "block", "evidence_tag": "[CONFIG]"},
+    {"step": 3, "command": "git tag v1.4.0", "preconditions": "missing version source", "expected_outcome": "tag created", "rollback": "delete local tag before push", "evidence_tag": "[CONFIG]"}
+  ],
+  "commit_policy": {"convention": "project", "message_example": "release: 1.4.0", "evidence_tag": "[CONFIG]"},
+  "pr_policy": {"required_checks": ["release validation"], "merge_method": "squash", "delete_branch": true, "evidence_tag": "[CONFIG]"},
+  "conflict_policy": {"strategy": "block on markers", "marker_check": "grep conflict markers", "validation_after_resolution": "rerun checks", "evidence_tag": "[CONFIG]"},
+  "release_policy": {"tag_strategy": "semver-tag", "evidence_tag": "[CONFIG]"},
+  "validation": ["Run release validation. [CONFIG]", "Run git status --short --branch. [CODE]"],
+  "stop_conditions": ["Missing version source should stop progress. [CONFIG]"],
+  "risks": ["Tagging without version evidence can publish the wrong release. [ASSUMPTION]"]
+}

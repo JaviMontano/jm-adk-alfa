@@ -1,10 +1,3 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: git-workflow
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
-
 # Example Input
 
-Use `git-workflow` to produce a concise deliverable for a realistic project request.
+Design a safe Git workflow for a feature PR. The repo is on `main`, the working tree is clean, `origin/main` is aligned, and there are no open PRs. Use branch `codex/add-report-export`, conventional commits, local checks before PR, squash merge, branch cleanup, and no release tag.

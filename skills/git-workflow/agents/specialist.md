@@ -2,8 +2,7 @@
 name: git-workflow-specialist
 role: Specialist
 description: "Deep domain expert for Git Workflow."
-tools: [Read, Write, Glob, Grep]
+tools: [Read, Glob, Grep, Bash]
 ---
 # Git Workflow Specialist
-Deep expertise in advanced patterns and edge cases for this domain.
-Activated when Lead or Support identify need for specialized knowledge.
+Reviews conflict resolution, release tagging, branch protection, rebase versus merge tradeoffs, and recovery steps for failed validation.

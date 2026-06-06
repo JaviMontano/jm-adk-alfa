@@ -1,0 +1,30 @@
+{
+  "schema": 1,
+  "skill": "git-workflow",
+  "assets": [
+    {
+      "path": "assets/workflow-plan-contract.json",
+      "type": "contract",
+      "purpose": "Defines the required deterministic Git workflow plan shape.",
+      "used_by": ["SKILL.md", "templates/output.md", "scripts/validate_git_workflow_plan.py"]
+    },
+    {
+      "path": "assets/command-policy.json",
+      "type": "policy",
+      "purpose": "Constrains allowed command prefixes and forbidden destructive commands.",
+      "used_by": ["SKILL.md", "scripts/validate_git_workflow_plan.py"]
+    },
+    {
+      "path": "assets/branch-policy.json",
+      "type": "policy",
+      "purpose": "Constrains branch type, branch naming, and protected bases.",
+      "used_by": ["SKILL.md", "templates/output.md", "scripts/validate_git_workflow_plan.py"]
+    },
+    {
+      "path": "assets/release-policy.json",
+      "type": "policy",
+      "purpose": "Constrains release tag strategy and SemVer tag evidence.",
+      "used_by": ["SKILL.md", "templates/output.md", "scripts/validate_git_workflow_plan.py"]
+    }
+  ]
+}

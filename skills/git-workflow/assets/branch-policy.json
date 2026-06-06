@@ -1,0 +1,7 @@
+{
+  "schema": 1,
+  "skill": "git-workflow",
+  "branch_types": ["feature", "hotfix", "release", "trunk"],
+  "branch_name_pattern": "^(codex|feature|hotfix|release)/[a-z0-9]+(-[a-z0-9]+)*$",
+  "protected_bases": ["main", "master", "develop"]
+}

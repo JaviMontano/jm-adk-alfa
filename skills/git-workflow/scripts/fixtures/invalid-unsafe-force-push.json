@@ -1,0 +1,19 @@
+{
+  "skill": "git-workflow",
+  "reference_date": "2026-06-06",
+  "repo_state": {"branch": "codex/unsafe-push", "base_branch": "main", "clean": true, "aligned_with_remote": true, "open_prs": 0, "local_head": "abc1234", "remote_head": "abc1234", "evidence_tag": "[CODE]"},
+  "decision": {"status": "proceed", "rationale": "This should fail because the command plan force pushes. [CONFIG]", "evidence_tag": "[CONFIG]"},
+  "branch_strategy": {"type": "feature", "branch_name": "codex/unsafe-push", "base_branch": "main", "evidence_tag": "[CONFIG]"},
+  "operation_plan": [
+    {"step": 1, "command": "git status --short --branch", "preconditions": "repo exists", "expected_outcome": "clean state visible", "rollback": "block", "evidence_tag": "[CODE]"},
+    {"step": 2, "command": "git diff --check", "preconditions": "edits complete", "expected_outcome": "diff check passes", "rollback": "fix whitespace", "evidence_tag": "[CODE]"},
+    {"step": 3, "command": "git push --force origin codex/unsafe-push", "preconditions": "branch exists", "expected_outcome": "remote overwritten", "rollback": "manual recovery", "evidence_tag": "[CONFIG]"}
+  ],
+  "commit_policy": {"convention": "conventional", "message_example": "fix: unsafe push", "evidence_tag": "[CONFIG]"},
+  "pr_policy": {"required_checks": ["local validation"], "merge_method": "squash", "delete_branch": true, "evidence_tag": "[CONFIG]"},
+  "conflict_policy": {"strategy": "block on markers", "marker_check": "grep conflict markers", "validation_after_resolution": "rerun checks", "evidence_tag": "[CONFIG]"},
+  "release_policy": {"tag_strategy": "none", "evidence_tag": "[CONFIG]"},
+  "validation": ["Run git status. [CODE]", "Run git diff --check. [CODE]"],
+  "stop_conditions": ["Unsafe force push should stop progress. [CONFIG]"],
+  "risks": ["Force push can overwrite remote work. [ASSUMPTION]"]
+}

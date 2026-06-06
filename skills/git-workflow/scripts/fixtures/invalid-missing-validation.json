@@ -1,0 +1,19 @@
+{
+  "skill": "git-workflow",
+  "reference_date": "2026-06-06",
+  "repo_state": {"branch": "main", "base_branch": "main", "clean": true, "aligned_with_remote": true, "open_prs": 0, "local_head": "abc1234", "remote_head": "abc1234", "evidence_tag": "[CODE]"},
+  "decision": {"status": "proceed", "rationale": "This should fail because validation is empty. [CONFIG]", "evidence_tag": "[CONFIG]"},
+  "branch_strategy": {"type": "feature", "branch_name": "codex/no-validation", "base_branch": "main", "evidence_tag": "[CONFIG]"},
+  "operation_plan": [
+    {"step": 1, "command": "git fetch origin main", "preconditions": "network", "expected_outcome": "remote refreshed", "rollback": "block", "evidence_tag": "[CONFIG]"},
+    {"step": 2, "command": "git checkout -b codex/no-validation origin/main", "preconditions": "clean tree", "expected_outcome": "branch created", "rollback": "delete branch", "evidence_tag": "[CONFIG]"},
+    {"step": 3, "command": "git push -u origin codex/no-validation", "preconditions": "commit exists", "expected_outcome": "remote branch exists", "rollback": "delete branch", "evidence_tag": "[CONFIG]"}
+  ],
+  "commit_policy": {"convention": "conventional", "message_example": "feat: no validation", "evidence_tag": "[CONFIG]"},
+  "pr_policy": {"required_checks": ["Quality Gates"], "merge_method": "squash", "delete_branch": true, "evidence_tag": "[CONFIG]"},
+  "conflict_policy": {"strategy": "block on markers", "marker_check": "grep conflict markers", "validation_after_resolution": "rerun checks", "evidence_tag": "[CONFIG]"},
+  "release_policy": {"tag_strategy": "none", "evidence_tag": "[CONFIG]"},
+  "validation": [],
+  "stop_conditions": ["Missing validation should stop progress. [CONFIG]"],
+  "risks": ["Skipping validation can ship broken changes. [ASSUMPTION]"]
+}

@@ -5,7 +5,7 @@ version: 2.0.0
 description: "Evaluate and improve the Git Workflow skill."
 ---
 
-# Git Workflow — Self-Improvement
+# Git Workflow - Self-Improvement
 
 ## Evaluate
 
@@ -28,7 +28,6 @@ description: "Evaluate and improve the Git Workflow skill."
 ## Trigger
 
 Run this meta-prompt when:
-- Skill hasn't been reviewed in 30+ days
 - User reports unexpected output quality
 - New related skills added to the kit
 - Insights file updated with relevant patterns

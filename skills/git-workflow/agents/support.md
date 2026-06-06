@@ -5,5 +5,4 @@ description: "Cross-cutting review for Git Workflow: security, accessibility, ed
 tools: [Read, Glob, Grep]
 ---
 # Git Workflow Support
-Reviews Lead output for blind spots: security implications,
-accessibility concerns, edge cases, and Constitution compliance.
+Checks command safety, evidence tags, stop conditions, PR body completeness, and branch cleanup details.

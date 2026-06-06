@@ -1,9 +1,69 @@
-[
-  {"id": "git-workflow-happy-path", "type": "happy_path", "input": "Run git workflow on this project", "expected_behavior": "Skill activates and produces the expected git workflow output following the defined process", "tags": ["basic", "activation"]},
-  {"id": "git-workflow-explicit-trigger", "type": "happy_path", "input": "Apply git workflow analysis", "expected_behavior": "Skill recognizes the trigger phrase and executes the git workflow workflow", "tags": ["trigger", "recognition"]},
-  {"id": "git-workflow-with-context", "type": "happy_path", "input": "Apply git workflow to analyze the current codebase with detailed output", "expected_behavior": "Skill produces comprehensive git workflow analysis with evidence-tagged findings", "tags": ["detailed", "comprehensive"]},
-  {"id": "git-workflow-minimal-input", "type": "happy_path", "input": "Quick git workflow", "expected_behavior": "Skill activates with minimal input, applies reasonable defaults", "tags": ["minimal", "defaults"]},
-  {"id": "git-workflow-false-positive", "type": "false_positive", "input": "What is the weather forecast for tomorrow?", "expected_behavior": "Skill should NOT activate — this input has no relation to git workflow", "tags": ["false_positive", "should-not-activate"]},
-  {"id": "git-workflow-edge-empty-input", "type": "edge_case", "input": "Run git workflow but I have no files or documentation yet", "expected_behavior": "Skill handles gracefully — requests minimum viable input or produces gap analysis", "tags": ["edge_case", "empty-input", "boundary"]},
-  {"id": "git-workflow-edge-conflicting", "type": "edge_case", "input": "Apply git workflow but requirements contradict each other", "expected_behavior": "Skill detects contradiction, flags with [OPEN] tag, proposes resolution", "tags": ["edge_case", "conflict", "corner"]}
-]
+{
+  "schema": 1,
+  "skill": "git-workflow",
+  "cases": [
+    {
+      "id": "feature-pr-clean-tree",
+      "type": "happy_path",
+      "input": "Plan a feature PR from a clean, aligned main branch with no open PRs.",
+      "expected_behavior": "Produces repo preflight, feature branch, safe command plan, local validation, PR checks, squash merge, and branch cleanup.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria"]
+    },
+    {
+      "id": "release-tag-clean-tree",
+      "type": "happy_path",
+      "input": "Plan a release tag after validation passes and version 1.4.0 is documented.",
+      "expected_behavior": "Requires clean tree, SemVer tag, release evidence, validation, and push/tag verification.",
+      "expected_checks": ["deterministic_scripts", "quality_criteria"]
+    },
+    {
+      "id": "dirty-tree-block",
+      "type": "negative",
+      "input": "Proceed with a PR even though git status shows modified files.",
+      "expected_behavior": "Blocks progress and asks to commit, stash, or discard via a separate explicit workflow.",
+      "expected_checks": ["assets", "deterministic_scripts"]
+    },
+    {
+      "id": "unaligned-main-block",
+      "type": "negative",
+      "input": "Create a branch from local main even though origin/main is ahead.",
+      "expected_behavior": "Blocks until base is fast-forwarded or reconciled.",
+      "expected_checks": ["quality_criteria"]
+    },
+    {
+      "id": "unsafe-force-push",
+      "type": "negative",
+      "input": "Use git push --force to update the shared branch.",
+      "expected_behavior": "Rejects unsafe force push and requires explicit recovery workflow.",
+      "expected_checks": ["deterministic_scripts", "quality_criteria"]
+    },
+    {
+      "id": "bad-branch-name",
+      "type": "negative",
+      "input": "Use branch name Feature Big Change.",
+      "expected_behavior": "Rejects branch name and proposes a kebab-case branch under the allowed prefix.",
+      "expected_checks": ["deterministic_scripts"]
+    },
+    {
+      "id": "missing-validation",
+      "type": "negative",
+      "input": "Skip tests and open the PR immediately.",
+      "expected_behavior": "Blocks ready PR until validation commands and expected checks are named.",
+      "expected_checks": ["quality_criteria"]
+    },
+    {
+      "id": "conflict-resolution",
+      "type": "edge_case",
+      "input": "Plan what to do when a rebase produces conflict markers.",
+      "expected_behavior": "Requires marker detection, manual resolution, validation rerun, and no merge until clean.",
+      "expected_checks": ["quality_criteria"]
+    },
+    {
+      "id": "false-positive-general-git-definition",
+      "type": "false_positive",
+      "input": "Explain who invented Git in a short paragraph.",
+      "expected_behavior": "Does not activate the workflow planner because no branch, commit, PR, merge, conflict, or release operation is requested.",
+      "expected_checks": ["quality_criteria"]
+    }
+  ]
+}
