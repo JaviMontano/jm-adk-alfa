@@ -1,75 +1,22 @@
 {
   "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-28",
   "skill": "context-optimizer",
   "nodes": [
-    {
-      "id": "context-optimizer",
-      "type": "skill",
-      "label": "context-optimizer"
-    },
-    {
-      "id": "context-optimizer:inputs",
-      "type": "contract",
-      "label": "Expected inputs"
-    },
-    {
-      "id": "context-optimizer:outputs",
-      "type": "contract",
-      "label": "Expected outputs"
-    },
-    {
-      "id": "context-optimizer:quality",
-      "type": "gate",
-      "label": "Quality criteria"
-    },
-    {
-      "id": "context-optimizer:ontology",
-      "type": "ontology",
-      "label": "Domain: context-reliability"
-    },
-    {
-      "id": "context-optimizer:evidence",
-      "type": "gate",
-      "label": "Evidence / provenance requirements"
-    },
-    {
-      "id": "context-optimizer:antipattern",
-      "type": "risk",
-      "label": "Canonical anti-pattern to avoid"
-    }
+    {"id": "context-optimizer", "type": "skill", "label": "Context Optimizer"},
+    {"id": "loading-level", "type": "policy", "label": "L1/L2/L3 loading"},
+    {"id": "token-budget", "type": "metric", "label": "Token budget"},
+    {"id": "compression-plan", "type": "artifact", "label": "Compression plan"},
+    {"id": "eviction-safety", "type": "gate", "label": "Safe eviction"},
+    {"id": "retention-summary", "type": "artifact", "label": "Retention summary"},
+    {"id": "optimizer-report", "type": "schema", "label": "Optimizer report"}
   ],
   "edges": [
-    {
-      "from": "context-optimizer",
-      "to": "context-optimizer:inputs",
-      "type": "requires"
-    },
-    {
-      "from": "context-optimizer",
-      "to": "context-optimizer:outputs",
-      "type": "produces"
-    },
-    {
-      "from": "context-optimizer",
-      "to": "context-optimizer:quality",
-      "type": "validated_by"
-    },
-    {
-      "from": "context-optimizer",
-      "to": "context-optimizer:ontology",
-      "type": "classified_as"
-    },
-    {
-      "from": "context-optimizer",
-      "to": "context-optimizer:evidence",
-      "type": "validated_by"
-    },
-    {
-      "from": "context-optimizer",
-      "to": "context-optimizer:antipattern",
-      "type": "guards_against"
-    }
+    {"from": "context-optimizer", "to": "loading-level", "type": "assigns"},
+    {"from": "context-optimizer", "to": "token-budget", "type": "optimizes"},
+    {"from": "context-optimizer", "to": "compression-plan", "type": "produces"},
+    {"from": "compression-plan", "to": "retention-summary", "type": "requires"},
+    {"from": "context-optimizer", "to": "eviction-safety", "type": "validated_by"},
+    {"from": "optimizer-report", "to": "eviction-safety", "type": "validated_by"},
+    {"from": "optimizer-report", "to": "token-budget", "type": "reports"}
   ]
 }

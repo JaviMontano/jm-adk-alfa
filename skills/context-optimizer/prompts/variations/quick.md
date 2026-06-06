@@ -5,5 +5,8 @@ variant: quick
 ---
 # Context Optimizer — Quick Mode
 
-Streamlined execution. Focus on TL;DR and primary output only.
-Apply Validation Gate but skip extended evidence tagging.
+Use when the user asks for a fast reduction. Keep the active task intact, list
+top compression candidates, defer inactive references, and compute a simple
+before/after token estimate.
+
+Do not skip evidence tags or eviction safety.

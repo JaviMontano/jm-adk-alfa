@@ -15,12 +15,16 @@ triad:
 
 | Parameter | Description | Required | Filled By |
 |-----------|-------------|----------|-----------|
-| `{{task}}` | What to accomplish | Yes | User input |
-| `{{context}}` | Background and constraints | Yes | User or codebase |
-| `{{constraints}}` | Additional rules | No | Guardrails JSON |
+| `{{active_task}}` | Current task that must retain full fidelity | Yes | User/session |
+| `{{loaded_sources}}` | Files, messages, references, and artifacts in context | Yes | User/workspace |
+| `{{token_counts}}` | Current and target token budget facts | Yes | User/tooling |
+| `{{risk_flags}}` | Sources that must not be evicted | No | User/Guardian |
 
 ## Execution Steps
-1. Read SKILL.md `## When to Activate` — confirm this skill applies
-2. Read SKILL.md `## Validation Gate` — internalize quality criteria
-3. Execute the skill workflow per SKILL.md sections
-4. Validate output against Validation Gate before delivering
+1. Confirm the request is about context budget, lazy loading, compression, or progressive disclosure.
+2. Inventory active and inactive sources before recommending changes.
+3. Assign L1/L2/L3 loading levels with at most one L3 source.
+4. Compress completed artifacts with retention summaries.
+5. Reject eviction for active, unresolved, high-relevance, or risk-flagged sources.
+6. Compute reduction/utilization metrics from explicit token counts.
+7. Validate JSON reports with `scripts/check.sh` before delivery.

@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "skill": "context-optimizer",
+  "assets": [
+    {
+      "path": "assets/loading-level-policy.json",
+      "type": "policy",
+      "purpose": "Defines L1/L2/L3 loading levels and one-L3 active source limit.",
+      "used_by": ["SKILL.md", "scripts/validate_context_optimizer_report.py", "evals/evals.json"]
+    },
+    {
+      "path": "assets/token-budget-policy.json",
+      "type": "policy",
+      "purpose": "Defines token-count, reduction, and utilization calculations.",
+      "used_by": ["SKILL.md", "scripts/validate_context_optimizer_report.py", "templates/output.md"]
+    },
+    {
+      "path": "assets/compression-policy.json",
+      "type": "policy",
+      "purpose": "Defines compression actions and retention-summary requirements.",
+      "used_by": ["SKILL.md", "scripts/validate_context_optimizer_report.py", "knowledge/body-of-knowledge.md"]
+    },
+    {
+      "path": "assets/eviction-policy.json",
+      "type": "policy",
+      "purpose": "Defines safe defer and eviction rules for active, high-relevance, and risk-flagged sources.",
+      "used_by": ["SKILL.md", "scripts/validate_context_optimizer_report.py", "agents/guardian.md"]
+    },
+    {
+      "path": "assets/optimizer-report-contract.json",
+      "type": "schema",
+      "purpose": "Defines required JSON report sections and validation checks.",
+      "used_by": ["SKILL.md", "scripts/validate_context_optimizer_report.py", "templates/output.md"]
+    }
+  ]
+}

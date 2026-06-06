@@ -1,0 +1,23 @@
+{
+  "schema": "jm-labs.context-optimizer.report.v1",
+  "required_top_level_fields": [
+    "schema",
+    "skill",
+    "context_snapshot",
+    "loading_plan",
+    "compression_plan",
+    "eviction_plan",
+    "metrics",
+    "validation"
+  ],
+  "required_validation_checks": [
+    "assets",
+    "deterministic_scripts",
+    "quality_criteria",
+    "lazy_loading",
+    "compression_contract",
+    "eviction_safety",
+    "metrics",
+    "evidence_required"
+  ]
+}

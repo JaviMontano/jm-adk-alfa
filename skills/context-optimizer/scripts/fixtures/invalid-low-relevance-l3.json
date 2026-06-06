@@ -1,0 +1,10 @@
+{
+  "schema": "jm-labs.context-optimizer.report.v1",
+  "skill": "context-optimizer",
+  "context_snapshot": {"active_task": "Optimize", "max_context_tokens": 100000, "current_tokens": 80000, "target_utilization_percent": 70, "evidence_tag": "[CONFIG]"},
+  "loading_plan": [{"source_id": "active-skill", "level": "L3", "relevance_score": 40, "active": true, "rationale": "Too low for L3.", "evidence_tag": "[CÓDIGO]"}],
+  "compression_plan": [],
+  "eviction_plan": [],
+  "metrics": {"naive_tokens": 80000, "optimized_tokens": 56000, "reduction_percent": 30, "utilization_percent": 56, "evidence_tag": "[MÉTRICA]"},
+  "validation": {"status": "pass", "checks": ["assets", "deterministic_scripts", "quality_criteria", "lazy_loading", "compression_contract", "eviction_safety", "metrics", "evidence_required"]}
+}

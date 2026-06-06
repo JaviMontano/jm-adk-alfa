@@ -10,8 +10,10 @@ description: "Meta-prompt for Context Optimizer skill routing."
 Activate this skill when the user request matches:
 - Trigger phrases from SKILL.md description
 - Direct invocation: `/context-optimizer`
+- Requests to optimize token budget, context window, lazy loading, progressive disclosure, or session compression
 
 ## Skill Routing
-1. Load SKILL.md → read `## When to Activate` section
-2. If match → activate lead agent: `context-optimizer-lead`
-3. If orchestrated → defer to orchestrating skill
+1. Load only `SKILL.md` and this prompt first.
+2. If the request is about context optimization, activate `context-optimizer-lead`.
+3. Keep unrelated skill references deferred until the active skill requires them.
+4. If the request is about creating a compact handoff, route to `pre-compact-context`.

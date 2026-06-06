@@ -1,0 +1,10 @@
+{
+  "schema": 1,
+  "skill": "context-optimizer",
+  "actions": ["keep", "compress", "summarize", "defer"],
+  "rules": [
+    "Compressed or summarized artifacts require a retention_summary.",
+    "Optimized token count must be lower than current token count for compression actions.",
+    "Retention summaries must preserve decisions, blockers, evidence, and next actions when present."
+  ]
+}

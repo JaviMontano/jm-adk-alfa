@@ -22,6 +22,8 @@ allowed-tools:
 
 Prevents context window saturation by managing what gets loaded and when. Implements lazy loading of skill references, progressive disclosure of large artifacts, and context compression for long sessions. [EXPLICIT]
 
+Use deterministic assets in `assets/` for loading levels, token budget, compression, safe eviction, evidence, and report shape. When producing a JSON context optimizer report, validate it offline with `bash skills/context-optimizer/scripts/check.sh`. [EXPLICIT]
+
 **When to use:**
 
 - Automatically during skill loading (implicit)
@@ -78,6 +80,11 @@ Prevents context window saturation by managing what gets loaded and when. Implem
 - [ ] **Completed phases** are summarized (not deleted)
 - [ ] **No skill reference** loaded before its skill is active
 - [ ] **Index available** for skill discovery without full loading
+- [ ] **At most one L3 source** is fully loaded at a time
+- [ ] **Compression actions** include retention summaries
+- [ ] **Eviction actions** never remove active, high-relevance, or risk-flagged sources
+- [ ] **Metrics** compute reduction and utilization from explicit token counts
+- [ ] **JSON report** passes `scripts/check.sh` when produced
 
 ---
 

@@ -1,0 +1,11 @@
+{
+  "schema": 1,
+  "skill": "context-optimizer",
+  "actions": ["keep", "compress", "defer", "evict"],
+  "rules": [
+    "Active sources must not be evicted.",
+    "Risk-flagged sources must not be evicted.",
+    "Sources with relevance_score above 24 must not be evicted.",
+    "Eviction requires an explicit rationale and evidence tag."
+  ]
+}
