@@ -1,75 +1,73 @@
 {
   "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-28",
   "skill": "session-end-cleanup",
   "nodes": [
     {
       "id": "session-end-cleanup",
       "type": "skill",
-      "label": "session-end-cleanup"
+      "label": "Session End Cleanup"
     },
     {
-      "id": "session-end-cleanup:inputs",
-      "type": "contract",
-      "label": "Expected inputs"
+      "id": "session-closeout",
+      "type": "concept",
+      "label": "Session closeout"
     },
     {
-      "id": "session-end-cleanup:outputs",
-      "type": "contract",
-      "label": "Expected outputs"
-    },
-    {
-      "id": "session-end-cleanup:quality",
+      "id": "validation-evidence",
       "type": "gate",
-      "label": "Quality criteria"
+      "label": "Validation evidence"
     },
     {
-      "id": "session-end-cleanup:ontology",
-      "type": "ontology",
-      "label": "Domain: claude-code-config"
+      "id": "durable-update-boundary",
+      "type": "policy",
+      "label": "Durable update boundary"
     },
     {
-      "id": "session-end-cleanup:evidence",
-      "type": "gate",
-      "label": "Evidence / provenance requirements"
-    },
-    {
-      "id": "session-end-cleanup:antipattern",
+      "id": "false-completion",
       "type": "risk",
-      "label": "Canonical anti-pattern to avoid"
+      "label": "False completion"
+    },
+    {
+      "id": "next-handoff",
+      "type": "contract",
+      "label": "Next handoff"
+    },
+    {
+      "id": "guardian-decision",
+      "type": "gate",
+      "label": "Guardian decision"
     }
   ],
   "edges": [
     {
       "from": "session-end-cleanup",
-      "to": "session-end-cleanup:inputs",
-      "type": "requires"
-    },
-    {
-      "from": "session-end-cleanup",
-      "to": "session-end-cleanup:outputs",
+      "to": "session-closeout",
       "type": "produces"
     },
     {
-      "from": "session-end-cleanup",
-      "to": "session-end-cleanup:quality",
+      "from": "session-closeout",
+      "to": "validation-evidence",
+      "type": "requires"
+    },
+    {
+      "from": "session-closeout",
+      "to": "durable-update-boundary",
+      "type": "constrained_by"
+    },
+    {
+      "from": "durable-update-boundary",
+      "to": "false-completion",
+      "type": "mitigates"
+    },
+    {
+      "from": "guardian-decision",
+      "to": "validation-evidence",
       "type": "validated_by"
     },
     {
-      "from": "session-end-cleanup",
-      "to": "session-end-cleanup:ontology",
-      "type": "classified_as"
-    },
-    {
-      "from": "session-end-cleanup",
-      "to": "session-end-cleanup:evidence",
-      "type": "validated_by"
-    },
-    {
-      "from": "session-end-cleanup",
-      "to": "session-end-cleanup:antipattern",
-      "type": "guards_against"
+      "from": "next-handoff",
+      "to": "session-closeout",
+      "type": "derived_from"
     }
   ]
 }

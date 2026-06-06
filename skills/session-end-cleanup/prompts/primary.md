@@ -1,44 +1,49 @@
 ---
 name: session-end-cleanup-primary
 type: execution
-version: 2.0.0
-description: "Execute the Session End Cleanup workflow with triad orchestration."
+version: 2.1.0
+description: "Execute deterministic Session End Cleanup with triad validation."
 triad:
   lead: "session-end-cleanup-lead"
   support: "session-end-cleanup-support"
   guardian: "session-end-cleanup-guardian"
 ---
 
-# Session End Cleanup — Execute
+# Session End Cleanup - Execute
 
 ## Dynamic Parameters
 
 | Parameter | Description | Required | Filled By |
-|-----------|-------------|----------|-----------|
-| `{{task}}` | What to accomplish | Yes | User input |
-| `{{context}}` | Background and constraints | Yes | User or codebase |
-| `{{constraints}}` | Additional rules | No | Guardrails JSON |
-| `{{depth}}` | quick / standard / deep | No | Auto |
-| `{{output_format}}` | html / docx / xlsx / md | No | Auto |
+|---|---|---|---|
+| `{{objective}}` | User goal for the ending session | Yes | User input |
+| `{{scope}}` | Active repo, workspace, branch, files, or task boundary | Yes | User input or local inspection |
+| `{{evidence}}` | Commands, diffs, PR/CI/merge status, and artifacts inspected | Yes | Local inspection |
+| `{{durable_update_authority}}` | Whether tasklog/changelog writes are authorized | No | User or repo policy |
+| `{{output_format}}` | `markdown` or `json` | No | Default `markdown` |
 
 ## Execution
 
-1. **Load knowledge**: Read `knowledge/body-of-knowledge.md`
-2. **Check guardrails**: Read `references/guardrails/*.json`
-3. **Lead** (`session-end-cleanup-lead`): Execute SKILL.md Steps 1-4 for `{{task}}`
-   - Discover → Analyze → Execute → Validate
-   - Apply evidence tags on all claims
-4. **Support** (`session-end-cleanup-support`): Review for cross-cutting concerns
-   - Edge cases, security, accessibility, performance
-5. **Guardian** (`session-end-cleanup-guardian`): Validate
-   - Evidence tags complete
-   - Quality gate met
-   - Constitution XIII + XIV respected
-   - Output exceeds expectations
+1. Read `skills/session-end-cleanup/assets/output-contract.json`.
+2. Read `skills/session-end-cleanup/assets/evidence-policy.json`.
+3. Inventory evidence before writing: git status, changed files, command output,
+   PR/CI/merge state, blockers, and durable-log authority.
+4. Lead produces the closeout sections in the fixed contract order.
+5. Support checks for evidence gaps, false completion, hidden failures, and
+   durable-log overreach.
+6. Guardian approves only when required sections, evidence tags, validation
+   outcomes, and next handoff are present.
 
 ## Output
 
-- Primary deliverable for `{{task}}` in `{{output_format}}`
-- Evidence tags on every claim
-- Recommendations beyond the ask
-- Confidence score (>= 0.95)
+Return the closeout packet with these sections:
+
+- Session Summary
+- Changes Completed
+- Decisions And Assumptions
+- Open Tasks
+- Insights Captured
+- Risks And Blockers
+- Validation Evidence
+- Durable Updates
+- Next Handoff
+- Guardian Decision

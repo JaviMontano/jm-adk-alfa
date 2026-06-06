@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "skill": "session-end-cleanup",
+  "session": {
+    "objective": "Close a session without validation evidence.",
+    "scope": "single skill hardening",
+    "evidence_tag": "[CONFIG]"
+  },
+  "summary": "[CONFIG] This report claims completion without validation.",
+  "changes_completed": [
+    {
+      "description": "Claimed changes complete.",
+      "evidence_tag": "[CODE]"
+    }
+  ],
+  "decisions": [],
+  "open_tasks": [],
+  "insights": [],
+  "risks": [],
+  "durable_updates": [],
+  "next_handoff": "[CONFIG] Continue to PR.",
+  "guardian_decision": {
+    "decision": "pass",
+    "rationale": "Incorrectly passes without validation.",
+    "evidence_tag": "[CONFIG]"
+  }
+}

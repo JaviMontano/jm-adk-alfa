@@ -1,9 +1,76 @@
-[
-  {"id": "session-end-cleanup-happy-path", "type": "happy_path", "input": "Run session end cleanup on this project", "expected_behavior": "Skill activates and produces the expected session end cleanup output following the defined process", "tags": ["basic", "activation"]},
-  {"id": "session-end-cleanup-explicit-trigger", "type": "happy_path", "input": "Apply session end cleanup analysis", "expected_behavior": "Skill recognizes the trigger phrase and executes the session end cleanup workflow", "tags": ["trigger", "recognition"]},
-  {"id": "session-end-cleanup-with-context", "type": "happy_path", "input": "Apply session end cleanup to analyze the current codebase with detailed output", "expected_behavior": "Skill produces comprehensive session end cleanup analysis with evidence-tagged findings", "tags": ["detailed", "comprehensive"]},
-  {"id": "session-end-cleanup-minimal-input", "type": "happy_path", "input": "Quick session end cleanup", "expected_behavior": "Skill activates with minimal input, applies reasonable defaults", "tags": ["minimal", "defaults"]},
-  {"id": "session-end-cleanup-false-positive", "type": "false_positive", "input": "What is the weather forecast for tomorrow?", "expected_behavior": "Skill should NOT activate — this input has no relation to session end cleanup", "tags": ["false_positive", "should-not-activate"]},
-  {"id": "session-end-cleanup-edge-empty-input", "type": "edge_case", "input": "Run session end cleanup but I have no files or documentation yet", "expected_behavior": "Skill handles gracefully — requests minimum viable input or produces gap analysis", "tags": ["edge_case", "empty-input", "boundary"]},
-  {"id": "session-end-cleanup-edge-conflicting", "type": "edge_case", "input": "Apply session end cleanup but requirements contradict each other", "expected_behavior": "Skill detects contradiction, flags with [OPEN] tag, proposes resolution", "tags": ["edge_case", "conflict", "corner"]}
-]
+{
+  "schema": 1,
+  "skill": "session-end-cleanup",
+  "cases": [
+    {
+      "id": "session-end-cleanup-pr-ready",
+      "type": "happy_path",
+      "input": "Run session end cleanup for this branch after all local validations passed and prepare the PR handoff.",
+      "expected_behavior": "Produce all required closeout sections, cite validation commands, mark PR as pending, and provide next handoff.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "validation_evidence"]
+    },
+    {
+      "id": "session-end-cleanup-no-changes",
+      "type": "boundary",
+      "input": "Close this agent session; no files were changed but decisions and risks were discussed.",
+      "expected_behavior": "Produce a no-change closeout without inventing files changed, and capture decisions, risks, and next action.",
+      "expected_checks": ["quality_criteria", "no_false_completion"]
+    },
+    {
+      "id": "session-end-cleanup-validation-failed",
+      "type": "degradation",
+      "input": "End the session; one required validation failed with exit 1.",
+      "expected_behavior": "Block completion, name the failed command, preserve the failure in risks, and avoid marking tasks complete.",
+      "expected_checks": ["quality_criteria", "validation_evidence", "guardian_block"]
+    },
+    {
+      "id": "session-end-cleanup-pr-merged",
+      "type": "happy_path",
+      "input": "Close the session after the PR was squash merged and the branch was deleted.",
+      "expected_behavior": "Record PR, CI, merge, branch cleanup, and main update evidence before declaring completion.",
+      "expected_checks": ["quality_criteria", "merge_evidence"]
+    },
+    {
+      "id": "session-end-cleanup-durable-log-unclear",
+      "type": "edge_case",
+      "input": "Summarize the session, but I did not say whether tasklog or changelog may be edited.",
+      "expected_behavior": "Return proposed durable updates rather than writing logs, and mark authority as open.",
+      "expected_checks": ["assets", "quality_criteria", "write_boundary"]
+    },
+    {
+      "id": "session-end-cleanup-unrelated-local-change",
+      "type": "degradation",
+      "input": "Finish cleanup, but git status shows an unrelated modified file outside the active scope.",
+      "expected_behavior": "Pause before durable writes and identify the unrelated local change as a blocker.",
+      "expected_checks": ["quality_criteria", "guardian_block", "scope_boundary"]
+    },
+    {
+      "id": "session-end-cleanup-false-positive-filesystem",
+      "type": "false_positive",
+      "input": "Clean up temporary files in my downloads folder.",
+      "expected_behavior": "Do not activate; route to filesystem housekeeping rather than agent session closeout.",
+      "expected_checks": ["activation_boundary"]
+    },
+    {
+      "id": "session-end-cleanup-conflicting-evidence",
+      "type": "edge_case",
+      "input": "End the session: one note says CI passed, another says CI failed.",
+      "expected_behavior": "Preserve both claims, mark the conflict, and block any green merge claim until evidence is resolved.",
+      "expected_checks": ["quality_criteria", "evidence_conflict", "guardian_block"]
+    },
+    {
+      "id": "session-end-cleanup-long-session",
+      "type": "boundary",
+      "input": "Close a long multi-hour session with many commands, decisions, and follow-up tasks.",
+      "expected_behavior": "Compress into stable sections, prioritize open blockers, and keep next handoff actionable.",
+      "expected_checks": ["quality_criteria", "handoff_clarity"]
+    },
+    {
+      "id": "session-end-cleanup-machine-report",
+      "type": "script_contract",
+      "input": "Validate a JSON session cleanup report fixture offline.",
+      "expected_behavior": "Accept valid fixtures and reject reports missing validation evidence or evidence tags.",
+      "expected_checks": ["deterministic_scripts", "quality_criteria"]
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "skill": "session-end-cleanup",
+  "session": {
+    "objective": "Close a session with an untagged completed task.",
+    "scope": "single skill hardening",
+    "evidence_tag": "[CONFIG]"
+  },
+  "summary": "[CODE] This report has a task evidence gap.",
+  "changes_completed": [],
+  "decisions": [],
+  "open_tasks": [
+    {
+      "description": "Mark PR merged.",
+      "status": "done",
+      "next_action": "Delete branch."
+    }
+  ],
+  "insights": [],
+  "risks": [],
+  "validation": [
+    {
+      "command": "gh pr view 1",
+      "status": "pass",
+      "evidence": "Synthetic evidence.",
+      "evidence_tag": "[CODE]"
+    }
+  ],
+  "durable_updates": [],
+  "next_handoff": "[CONFIG] Continue.",
+  "guardian_decision": {
+    "decision": "pass",
+    "rationale": "Incorrectly passes with an untagged completed task.",
+    "evidence_tag": "[CONFIG]"
+  }
+}

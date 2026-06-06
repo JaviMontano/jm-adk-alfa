@@ -1,34 +1,30 @@
 ---
 name: session-end-cleanup-meta
 type: self-improvement
-version: 2.0.0
-description: "Evaluate and improve the Session End Cleanup skill."
+version: 2.1.0
+description: "Evaluate and improve deterministic closeout behavior for Session End Cleanup."
 ---
 
-# Session End Cleanup — Self-Improvement
+# Session End Cleanup - Self-Improvement
 
 ## Evaluate
 
-1. Is `knowledge/body-of-knowledge.md` current? New standards, deprecated practices?
-2. Are the 4 sub-agents (lead, support, guardian, specialist) covering all perspectives?
-3. Are templates producing useful deliverables? Test with a real scenario.
-4. What edge cases have been encountered that aren't documented?
-5. Are there new insights from `insights/` that apply to this skill?
-6. Has the related skill landscape changed? New cross-references needed?
+1. Do recent closeouts preserve failed/skipped checks instead of hiding them?
+2. Are tasklog and changelog updates limited to authorized targets?
+3. Do examples cover PR-ready, merged, blocked, no-change, and conflict states?
+4. Does `scripts/check.sh` reject missing validation evidence and untagged task
+   completion?
+5. Are evidence tags aligned with the active runtime contract?
 
 ## Improve
 
-1. Update body of knowledge with new findings (tag with `[DOC]`)
-2. Add prompt variations for newly discovered use cases
-3. Refine quality criteria based on real-world feedback
-4. Update knowledge graph: new concepts, new `[[wikilinks]]`
-5. Test templates with edge-case inputs to verify robustness
-6. Propose Constitution amendment if recurring ambiguity found (XVII)
+1. Update `assets/output-contract.json` when a new required section becomes
+   stable.
+2. Add deterministic fixtures before loosening prose guidance.
+3. Add evals for any recurring false-positive activation.
+4. Keep the validator offline and free of wall-clock, network, or random inputs.
 
 ## Trigger
 
-Run this meta-prompt when:
-- Skill hasn't been reviewed in 30+ days
-- User reports unexpected output quality
-- New related skills added to the kit
-- Insights file updated with relevant patterns
+Run this meta-prompt when closeouts are too vague, mark completion too early, or
+fail to help the next session resume quickly.

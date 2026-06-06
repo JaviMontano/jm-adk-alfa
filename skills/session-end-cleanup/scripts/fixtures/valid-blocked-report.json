@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "skill": "session-end-cleanup",
+  "session": {
+    "objective": "Close a session with a failed validation.",
+    "scope": "single skill hardening",
+    "evidence_tag": "[CONFIG]"
+  },
+  "summary": "[CODE] The local validation phase found a failing command.",
+  "changes_completed": [
+    {
+      "description": "Drafted deterministic assets but did not mark DoD complete.",
+      "evidence_tag": "[CODE]"
+    }
+  ],
+  "decisions": [
+    {
+      "description": "Completion remains blocked until the failing command passes.",
+      "evidence_tag": "[CONFIG]"
+    }
+  ],
+  "open_tasks": [
+    {
+      "description": "Fix the failed validation before opening PR.",
+      "status": "blocked",
+      "evidence_tag": "[CODE]",
+      "next_action": "Inspect the failing command output."
+    }
+  ],
+  "insights": [
+    {
+      "description": "Blocked closeouts should preserve the exact command failure.",
+      "evidence_tag": "[INFERENCE]"
+    }
+  ],
+  "risks": [
+    {
+      "description": "DoD completion would be false without a passing validation rerun.",
+      "evidence_tag": "[CODE]"
+    }
+  ],
+  "validation": [
+    {
+      "command": "python3 -B scripts/validate-skill-dod.py --skill session-end-cleanup",
+      "status": "fail",
+      "evidence": "Command exited with errors.",
+      "evidence_tag": "[CODE]"
+    }
+  ],
+  "durable_updates": [
+    {
+      "description": "Do not update the ledger to complete while validation is failing.",
+      "evidence_tag": "[CONFIG]"
+    }
+  ],
+  "next_handoff": "[CODE] Fix validation errors and rerun the per-skill gates.",
+  "guardian_decision": {
+    "decision": "block",
+    "rationale": "A required validation failed.",
+    "evidence_tag": "[CODE]"
+  }
+}

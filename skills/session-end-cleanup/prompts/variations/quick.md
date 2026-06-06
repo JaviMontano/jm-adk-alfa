@@ -1,34 +1,25 @@
 ---
 name: session-end-cleanup-quick
 type: variation
-version: 2.0.0
-description: "Session End Cleanup in quick mode."
+version: 2.1.0
+description: "Fast closeout for low-risk sessions with stable evidence."
 ---
 
-# Session End Cleanup — quick Mode
+# Session End Cleanup - Quick Mode
 
-## When to Use
+## When To Use
 
-Use quick mode when you need adjusted depth for the Session End Cleanup workflow.
-
-## Dynamic Parameters
-
-| Parameter | Required | Filled By |
-|-----------|----------|-----------|
-| `{{task}}` | Yes | User input |
-| `{{context}}` | No | Auto-detected |
-| `{{depth}}` | No | Set to "quick" |
+Use quick mode when the session is small, the evidence is already available, and
+there are no failed validations or ambiguous durable-log writes.
 
 ## Execution
 
-1. Load skill: `skills/session-end-cleanup/knowledge/body-of-knowledge.md`
-2. Check guardrails: `references/guardrails/*.json`
-3. Execute at quick depth with evidence tags
-4. Lead → Support → Guardian validation
-5. Confidence >= 0.95
+1. Read `assets/output-contract.json`.
+2. Inventory changed files, commands run, blockers, and next action.
+3. Emit the fixed Markdown sections with concise bullets.
+4. Block completion if validation, PR, CI, or merge status is unknown but needed
+   for the user's requested claim.
 
 ## Output
 
-- Deliverable calibrated to quick depth
-- Evidence-tagged, Constitution-compliant
-- Recommendations beyond the ask
+Keep the handoff compact. Do not omit Risks And Blockers or Guardian Decision.
