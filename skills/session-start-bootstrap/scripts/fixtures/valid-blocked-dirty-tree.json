@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "skill": "session-start-bootstrap",
+  "environment": {
+    "repo": "/Users/deonto/Documents/workspace/jm-adk-alfa",
+    "branch": "main",
+    "git_status": " M unrelated.md",
+    "status": "dirty",
+    "evidence_tag": "[CODE]"
+  },
+  "context_sources_loaded": [
+    {
+      "description": "Root AGENTS.md.",
+      "evidence_tag": "[DOC]"
+    }
+  ],
+  "active_guardrails": [
+    {
+      "description": "Pause on local changes not attributed to the process.",
+      "evidence_tag": "[CONFIG]"
+    }
+  ],
+  "current_state": [
+    {
+      "description": "Unrelated local changes are present.",
+      "evidence_tag": "[CODE]"
+    }
+  ],
+  "blockers_and_gaps": [
+    {
+      "description": "Dirty tree must be resolved before writes.",
+      "blocking": true,
+      "evidence_tag": "[CODE]"
+    }
+  ],
+  "validation_baseline": [
+    {
+      "command": "git status --short --branch",
+      "status": "fail",
+      "evidence": "Dirty file listed.",
+      "evidence_tag": "[CODE]"
+    }
+  ],
+  "first_action": "Preserve or resolve the unrelated local change.",
+  "guardian_decision": {
+    "decision": "block",
+    "rationale": "Dirty tree blocks startup.",
+    "evidence_tag": "[CODE]"
+  }
+}

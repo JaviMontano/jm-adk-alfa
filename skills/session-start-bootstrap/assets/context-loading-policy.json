@@ -1,0 +1,15 @@
+{
+  "schema": 1,
+  "skill": "session-start-bootstrap",
+  "load_order": [
+    "explicit user instructions",
+    "root AGENTS.md or runtime instructions",
+    "active handoff or ReleasePacket",
+    "task-relevant review docs, tasklog, changelog, and source files"
+  ],
+  "forbidden": [
+    "bulk-load private context",
+    "read unrelated sources because they are nearby",
+    "treat hidden conversation memory as a source"
+  ]
+}

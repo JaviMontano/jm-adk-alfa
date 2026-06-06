@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "skill": "session-start-bootstrap",
+  "assets": [
+    {
+      "path": "assets/bootstrap-contract.json",
+      "type": "schema",
+      "purpose": "Defines required startup packet sections, JSON keys, and guardian decisions.",
+      "used_by": ["SKILL.md", "templates/output.md", "scripts/validate_session_start_packet.py"]
+    },
+    {
+      "path": "assets/environment-policy.json",
+      "type": "policy",
+      "purpose": "Defines repo, branch, dirty-tree, open PR, and baseline checks.",
+      "used_by": ["SKILL.md", "prompts/primary.md", "scripts/validate_session_start_packet.py"]
+    },
+    {
+      "path": "assets/context-loading-policy.json",
+      "type": "policy",
+      "purpose": "Defines minimal task-relevant context loading boundaries.",
+      "used_by": ["SKILL.md", "agents/lead.md", "evals/evals.json"]
+    },
+    {
+      "path": "assets/guardrails-policy.json",
+      "type": "policy",
+      "purpose": "Defines hard rules, stop conditions, and startup blockers.",
+      "used_by": ["SKILL.md", "agents/guardian.md", "evals/evals.json"]
+    },
+    {
+      "path": "assets/source-priority.json",
+      "type": "policy",
+      "purpose": "Defines precedence for conflicting startup sources.",
+      "used_by": ["SKILL.md", "agents/specialist.md", "prompts/primary.md"]
+    }
+  ]
+}

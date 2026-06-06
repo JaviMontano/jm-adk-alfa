@@ -1,44 +1,38 @@
 ---
 name: session-start-bootstrap-primary
 type: execution
-version: 2.0.0
-description: "Execute the Session Start Bootstrap workflow with triad orchestration."
+version: 2.1.0
+description: "Execute deterministic Session Start Bootstrap with triad validation."
 triad:
   lead: "session-start-bootstrap-lead"
   support: "session-start-bootstrap-support"
   guardian: "session-start-bootstrap-guardian"
 ---
 
-# Session Start Bootstrap — Execute
+# Session Start Bootstrap - Execute
 
 ## Dynamic Parameters
 
 | Parameter | Description | Required | Filled By |
-|-----------|-------------|----------|-----------|
-| `{{task}}` | What to accomplish | Yes | User input |
-| `{{context}}` | Background and constraints | Yes | User or codebase |
-| `{{constraints}}` | Additional rules | No | Guardrails JSON |
-| `{{depth}}` | quick / standard / deep | No | Auto |
-| `{{output_format}}` | html / docx / xlsx / md | No | Auto |
+|---|---|---|---|
+| `{{objective}}` | Current user goal | Yes | User input |
+| `{{repo}}` | Active repo/workspace | Yes | User input or local inspection |
+| `{{handoff}}` | Prior ReleasePacket or rehydration packet | No | User or local docs |
+| `{{constraints}}` | Hard rules and pause criteria | Yes | User/repo instructions |
+| `{{output_format}}` | `markdown` or `json` | No | Default `markdown` |
 
 ## Execution
 
-1. **Load knowledge**: Read `knowledge/body-of-knowledge.md`
-2. **Check guardrails**: Read `references/guardrails/*.json`
-3. **Lead** (`session-start-bootstrap-lead`): Execute SKILL.md Steps 1-4 for `{{task}}`
-   - Discover → Analyze → Execute → Validate
-   - Apply evidence tags on all claims
-4. **Support** (`session-start-bootstrap-support`): Review for cross-cutting concerns
-   - Edge cases, security, accessibility, performance
-5. **Guardian** (`session-start-bootstrap-guardian`): Validate
-   - Evidence tags complete
-   - Quality gate met
-   - Constitution XIII + XIV respected
-   - Output exceeds expectations
+1. Read `assets/environment-policy.json`, `assets/context-loading-policy.json`,
+   and `assets/guardrails-policy.json`.
+2. Verify repo, branch, dirty-tree state, open PR state, and baseline SHA when
+   relevant.
+3. Load only task-relevant context sources and list each one.
+4. Record hard rules, blockers, validation baseline, and first safe action.
+5. Support reviews for missing evidence and over-loading.
+6. Guardian approves or blocks startup.
 
 ## Output
 
-- Primary deliverable for `{{task}}` in `{{output_format}}`
-- Evidence tags on every claim
-- Recommendations beyond the ask
-- Confidence score (>= 0.95)
+Return Environment, Context Sources Loaded, Active Guardrails, Current State,
+Blockers And Gaps, Validation Baseline, First Action, and Guardian Decision.

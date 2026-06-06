@@ -1,0 +1,17 @@
+{
+  "schema": 1,
+  "skill": "session-start-bootstrap",
+  "required_checks": [
+    "repo",
+    "branch",
+    "dirty_tree_state",
+    "open_pr_state",
+    "baseline_sha_when_available"
+  ],
+  "block_when": [
+    "dirty tree contains unrelated changes",
+    "open PR exists in a one-PR workflow",
+    "repo identity is unknown",
+    "branch is unknown"
+  ]
+}

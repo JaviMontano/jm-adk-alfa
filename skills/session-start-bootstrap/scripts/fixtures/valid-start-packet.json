@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "skill": "session-start-bootstrap",
+  "environment": {
+    "repo": "/Users/deonto/Documents/workspace/jm-adk-alfa",
+    "branch": "main",
+    "git_status": "## main...origin/main",
+    "status": "clean",
+    "evidence_tag": "[CODE]"
+  },
+  "context_sources_loaded": [
+    {
+      "description": "Root AGENTS.md and user workflow instructions.",
+      "evidence_tag": "[DOC]"
+    }
+  ],
+  "active_guardrails": [
+    {
+      "description": "One skill, one branch, one PR, one green merge at a time.",
+      "evidence_tag": "[CONFIG]"
+    }
+  ],
+  "current_state": [
+    {
+      "description": "No open PRs listed during preflight.",
+      "evidence_tag": "[CODE]"
+    }
+  ],
+  "blockers_and_gaps": [
+    {
+      "description": "No startup blockers after preflight.",
+      "blocking": false,
+      "evidence_tag": "[CODE]"
+    }
+  ],
+  "validation_baseline": [
+    {
+      "command": "git status --short --branch",
+      "status": "pass",
+      "evidence": "Clean main tracking origin/main.",
+      "evidence_tag": "[CODE]"
+    }
+  ],
+  "first_action": "Create the hardening branch from origin/main.",
+  "guardian_decision": {
+    "decision": "pass",
+    "rationale": "Environment is clean and guardrails are explicit.",
+    "evidence_tag": "[CODE]"
+  }
+}

@@ -1,34 +1,24 @@
 ---
 name: session-start-bootstrap-quick
 type: variation
-version: 2.0.0
-description: "Session Start Bootstrap in quick mode."
+version: 2.1.0
+description: "Fast startup gate for already-known repos."
 ---
 
-# Session Start Bootstrap — quick Mode
+# Session Start Bootstrap - Quick Mode
 
-## When to Use
+## When To Use
 
-Use quick mode when you need adjusted depth for the Session Start Bootstrap workflow.
-
-## Dynamic Parameters
-
-| Parameter | Required | Filled By |
-|-----------|----------|-----------|
-| `{{task}}` | Yes | User input |
-| `{{context}}` | No | Auto-detected |
-| `{{depth}}` | No | Set to "quick" |
+Use quick mode when repo and objective are known and the only need is a safe
+startup gate.
 
 ## Execution
 
-1. Load skill: `skills/session-start-bootstrap/knowledge/body-of-knowledge.md`
-2. Check guardrails: `references/guardrails/*.json`
-3. Execute at quick depth with evidence tags
-4. Lead → Support → Guardian validation
-5. Confidence >= 0.95
+1. Verify branch and dirty-tree state.
+2. Check open PR state if workflow requires exclusivity.
+3. Load root instructions and the active handoff only.
+4. Emit guardrails, blockers, and first action.
 
 ## Output
 
-- Deliverable calibrated to quick depth
-- Evidence-tagged, Constitution-compliant
-- Recommendations beyond the ask
+Keep it compact but do not omit Guardian Decision.
