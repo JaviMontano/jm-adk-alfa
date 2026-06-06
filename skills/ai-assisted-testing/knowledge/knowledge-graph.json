@@ -1,75 +1,22 @@
 {
   "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-28",
   "skill": "ai-assisted-testing",
   "nodes": [
-    {
-      "id": "ai-assisted-testing",
-      "type": "skill",
-      "label": "ai-assisted-testing"
-    },
-    {
-      "id": "ai-assisted-testing:inputs",
-      "type": "contract",
-      "label": "Expected inputs"
-    },
-    {
-      "id": "ai-assisted-testing:outputs",
-      "type": "contract",
-      "label": "Expected outputs"
-    },
-    {
-      "id": "ai-assisted-testing:quality",
-      "type": "gate",
-      "label": "Quality criteria"
-    },
-    {
-      "id": "ai-assisted-testing:ontology",
-      "type": "ontology",
-      "label": "Domain: general"
-    },
-    {
-      "id": "ai-assisted-testing:evidence",
-      "type": "gate",
-      "label": "Evidence / provenance requirements"
-    },
-    {
-      "id": "ai-assisted-testing:antipattern",
-      "type": "risk",
-      "label": "Canonical anti-pattern to avoid"
-    }
+    {"id": "test-plan", "type": "output", "label": "Test plan"},
+    {"id": "evidence", "type": "evidence", "label": "Testing evidence"},
+    {"id": "candidate-test", "type": "contract", "label": "Candidate test"},
+    {"id": "oracle", "type": "contract", "label": "Expected outcome"},
+    {"id": "fuzzing-plan", "type": "policy", "label": "Bounded fuzzing plan"},
+    {"id": "mutation-plan", "type": "policy", "label": "Mutation testing plan"},
+    {"id": "coverage-plan", "type": "metric", "label": "Coverage plan"},
+    {"id": "validator", "type": "gate", "label": "Offline validator"}
   ],
   "edges": [
-    {
-      "from": "ai-assisted-testing",
-      "to": "ai-assisted-testing:inputs",
-      "type": "requires"
-    },
-    {
-      "from": "ai-assisted-testing",
-      "to": "ai-assisted-testing:outputs",
-      "type": "produces"
-    },
-    {
-      "from": "ai-assisted-testing",
-      "to": "ai-assisted-testing:quality",
-      "type": "validated_by"
-    },
-    {
-      "from": "ai-assisted-testing",
-      "to": "ai-assisted-testing:ontology",
-      "type": "classified_as"
-    },
-    {
-      "from": "ai-assisted-testing",
-      "to": "ai-assisted-testing:evidence",
-      "type": "validated_by"
-    },
-    {
-      "from": "ai-assisted-testing",
-      "to": "ai-assisted-testing:antipattern",
-      "type": "guards_against"
-    }
+    {"from": "evidence", "to": "candidate-test", "type": "supports"},
+    {"from": "candidate-test", "to": "oracle", "type": "requires"},
+    {"from": "candidate-test", "to": "test-plan", "type": "belongs_to"},
+    {"from": "fuzzing-plan", "to": "candidate-test", "type": "bounds"},
+    {"from": "mutation-plan", "to": "coverage-plan", "type": "strengthens"},
+    {"from": "test-plan", "to": "validator", "type": "validated_by"}
   ]
 }

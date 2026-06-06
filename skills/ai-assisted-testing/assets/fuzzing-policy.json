@@ -1,0 +1,14 @@
+{
+  "schema": 1,
+  "skill": "ai-assisted-testing",
+  "max_iterations": 10000,
+  "max_timeout_seconds": 300,
+  "required_when_enabled": ["domain", "seeds", "iterations", "timeout_seconds", "safety_boundary", "target_environment", "oracle"],
+  "blocked_environments": ["production", "prod"],
+  "rules": [
+    "Fuzzing must use deterministic seed lists.",
+    "Fuzzing must define an input domain and oracle.",
+    "Fuzzing must not target production environments.",
+    "Fuzzing must include an explicit timeout and safety boundary."
+  ]
+}

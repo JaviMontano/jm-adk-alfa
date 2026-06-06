@@ -1,0 +1,13 @@
+{
+  "schema": 1,
+  "skill": "ai-assisted-testing",
+  "allowed_test_types": ["unit", "integration", "property", "fuzz", "mutation", "regression"],
+  "required_candidate_fields": ["id", "type", "target", "rationale", "oracle", "status", "evidence_ids"],
+  "allowed_statuses": ["proposed", "generated", "executed"],
+  "rules": [
+    "Every candidate test must name a concrete target.",
+    "Every candidate test must explain why the test exists.",
+    "Every candidate test must include a deterministic oracle.",
+    "Executed status is allowed only when execution evidence is present."
+  ]
+}

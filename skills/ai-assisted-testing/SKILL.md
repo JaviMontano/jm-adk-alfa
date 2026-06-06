@@ -16,6 +16,8 @@ allowed-tools:
 > "Method over hacks."
 ## TL;DR
 AI-generated test cases, fuzzing, mutation testing, coverage optimization. [EXPLICIT]
+
+Use deterministic assets in `assets/` for test taxonomy, evidence, fuzzing, mutation, coverage, and report shape. When producing a JSON assisted testing plan, validate it offline with `bash skills/ai-assisted-testing/scripts/check.sh`. [EXPLICIT]
 ## Procedure
 ### Step 1: Discover
 - Gather context and requirements
@@ -26,9 +28,12 @@ AI-generated test cases, fuzzing, mutation testing, coverage optimization. [EXPL
 ### Step 4: Validate
 - Verify quality criteria met
 ## Quality Criteria
-- [ ] Evidence tags applied
-- [ ] Constitution-compliant
-- [ ] Actionable output
+- [ ] Every generated test has target, rationale, oracle, and evidence.
+- [ ] Fuzzing proposals are bounded by domain, seed, iterations, timeout, and safety scope.
+- [ ] Mutation testing includes baseline, operators, kill criteria, and surviving-mutant handling.
+- [ ] Coverage plan names target files/modules and thresholds.
+- [ ] Execution status distinguishes `proposed`, `generated`, and `executed`.
+- [ ] JSON plan passes `scripts/check.sh` when produced.
 
 ## Usage
 

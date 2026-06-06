@@ -1,0 +1,12 @@
+{
+  "schema": "jm-labs.ai-assisted-testing.plan.v1",
+  "target": "src/api/request_schema.py",
+  "scope": {"includes": ["fuzzing"]},
+  "evidence": [{"id": "EV-CODE-001", "tag": "[CÓDIGO]", "source": "src/api/request_schema.py", "summary": "Request parser has validation branches."}],
+  "candidate_tests": [{"id": "AT-001", "type": "fuzz", "target": "request schema fuzzing", "rationale": "Find parser crashes.", "oracle": "Returns documented validation error.", "status": "proposed", "evidence_ids": ["EV-CODE-001"]}],
+  "coverage_plan": {"targets": [{"file": "src/api/request_schema.py", "current_percent": 70, "target_percent": 90, "missing_areas": ["invalid metadata"]}]},
+  "fuzzing_plan": {"enabled": true, "domain": "JSON request bodies", "seeds": ["valid-minimal"], "iterations": 50000, "timeout_seconds": 600, "safety_boundary": "", "target_environment": "production", "oracle": "No crash."},
+  "mutation_plan": {"enabled": false, "reason": "Not requested."},
+  "risks": [],
+  "validation": {"status": "pass", "checks": ["assets", "deterministic_scripts", "quality_criteria", "test_oracles", "evidence_required", "bounded_fuzzing", "mutation_contract", "coverage_targets"]}
+}
