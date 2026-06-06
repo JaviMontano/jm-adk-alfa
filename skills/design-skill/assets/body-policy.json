@@ -1,0 +1,14 @@
+{
+  "schema": 1,
+  "skill": "design-skill",
+  "procedure_min": 5,
+  "procedure_max": 10,
+  "quality_min": 4,
+  "quality_max": 6,
+  "anti_pattern_min": 4,
+  "anti_pattern_max": 6,
+  "edge_case_min": 3,
+  "edge_case_max": 5,
+  "moat_min_total": 75,
+  "allowed_action_verbs": ["Scan", "Read", "Validate", "Parse", "Extract", "Generate", "Compare", "Produce", "Report", "Compile", "Summarize"]
+}

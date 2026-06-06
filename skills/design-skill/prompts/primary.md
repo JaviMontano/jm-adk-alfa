@@ -11,16 +11,8 @@ triad:
 
 # Design Skill — Execute
 
-## Dynamic Parameters
-
-| Parameter | Description | Required | Filled By |
-|-----------|-------------|----------|-----------|
-| `{{task}}` | What to accomplish | Yes | User input |
-| `{{context}}` | Background and constraints | Yes | User or codebase |
-| `{{constraints}}` | Additional rules | No | Guardrails JSON |
-
-## Execution Steps
-1. Read SKILL.md `## When to Activate` — confirm this skill applies
-2. Read SKILL.md `## Validation Gate` — internalize quality criteria
-3. Execute the skill workflow per SKILL.md sections
-4. Validate output against Validation Gate before delivering
+1. Parse skill slug, concept, movement, owning agent, depth, and tool needs.
+2. Load `assets/frontmatter-policy.json`, `assets/body-policy.json`, `assets/tool-policy.json`, and `assets/report-contract.json`.
+3. Draft frontmatter, guiding principle, procedure, quality criteria, anti-patterns, edge cases, tool rationale, and MOAT score.
+4. Enforce least-privilege tools and block invalid name, vague procedure, weak criteria, missing edge cases, and MOAT score below 75.
+5. Validate JSON specs with `scripts/validate_design_skill_spec.py` when a spec artifact is produced.

@@ -3,7 +3,6 @@ name: design-skill-deep
 type: variation
 variant: deep
 ---
-# Design Skill — Deep Analysis
+# Design Skill — Deep Mode
 
-Full depth execution. Load all `references/` files from canonical. Run L3 progressive loading.
-Apply all Validation Gate criteria strictly.
+Load references and all asset contracts. Produce a full skill design spec with section-by-section validation, tool profile reasoning, MOAT scoring, and offline validation evidence.

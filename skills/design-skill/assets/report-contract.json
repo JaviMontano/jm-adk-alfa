@@ -1,0 +1,8 @@
+{
+  "schema": 1,
+  "skill": "design-skill",
+  "allowed_evidence_tags": ["[CODE]", "[CONFIG]", "[DOC]", "[INFERENCE]", "[ASSUMPTION]", "[CÓDIGO]", "[INFERENCIA]", "[SUPUESTO]"],
+  "required_top_level": ["skill", "reference_date", "designed_skill", "summary", "frontmatter", "tool_profile", "guiding_principle", "procedure", "quality_criteria", "anti_patterns", "edge_cases", "tool_rationale", "moat_score", "validation", "risks"],
+  "required_step_fields": ["step", "action", "input", "output", "evidence_tag"],
+  "moving_time_terms": ["today", "tomorrow", "yesterday", "soon", "recently", "later", "TBD"]
+}

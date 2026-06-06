@@ -1,0 +1,114 @@
+{
+  "skill": "design-skill",
+  "reference_date": "2026-06-06",
+  "designed_skill": "repository-risk-review",
+  "summary": "Designs a read-only repository review skill with bounded inputs, explicit evidence tags, and no write or network dependency. [CONFIG]",
+  "frontmatter": {
+    "name": "repository-risk-review",
+    "description": "Use when a user asks for a deterministic repository risk review that reads local files, identifies maintainability and safety issues, and returns evidence-tagged findings without editing files.",
+    "argument-hint": "$ARGUMENTS",
+    "user-invocable": true,
+    "allowed-tools": ["Read", "Glob", "Grep"]
+  },
+  "tool_profile": "read-only",
+  "guiding_principle": "The skill must preserve read-only review behavior, ground every finding in inspected files, and avoid speculative remediation claims. [DOC]",
+  "procedure": [
+    {
+      "step": 1,
+      "action": "Scan",
+      "input": "Repository root and user-specified scope.",
+      "output": "Candidate files grouped by code, tests, configuration, and documentation.",
+      "evidence_tag": "[CODE]"
+    },
+    {
+      "step": 2,
+      "action": "Read",
+      "input": "Only files selected from the bounded scope.",
+      "output": "Observed contracts, ownership boundaries, and validation entry points.",
+      "evidence_tag": "[CODE]"
+    },
+    {
+      "step": 3,
+      "action": "Extract",
+      "input": "Errors, TODOs, stale comments, weak tests, and risky configuration.",
+      "output": "Evidence-backed issue candidates with file references.",
+      "evidence_tag": "[CODE]"
+    },
+    {
+      "step": 4,
+      "action": "Compare",
+      "input": "Issue candidates and existing project conventions.",
+      "output": "Filtered findings that avoid style-only or unsupported claims.",
+      "evidence_tag": "[INFERENCE]"
+    },
+    {
+      "step": 5,
+      "action": "Produce",
+      "input": "Filtered findings and residual uncertainties.",
+      "output": "Review report with severity, evidence, and open questions.",
+      "evidence_tag": "[CONFIG]"
+    },
+    {
+      "step": 6,
+      "action": "Report",
+      "input": "Review report and inspected scope.",
+      "output": "Final response that states reviewed scope and test gaps.",
+      "evidence_tag": "[CONFIG]"
+    }
+  ],
+  "quality_criteria": [
+    "Every finding cites a concrete file or explicitly states that no supporting file was found. [CODE]",
+    "Severity labels are based on behavior, data integrity, security, or user-visible risk. [INFERENCE]",
+    "The report separates confirmed defects from assumptions and open questions. [CONFIG]",
+    "No remediation is claimed as applied because the tool profile is read-only. [CONFIG]",
+    "The response names validation gaps without inventing command output. [CODE]"
+  ],
+  "anti_patterns": [
+    "Editing files while operating under a read-only skill profile.",
+    "Listing broad best-practice advice without file-backed evidence.",
+    "Treating absence of tests as proof of a defect without behavioral support.",
+    "Mixing unrelated repositories or user-private context into the review."
+  ],
+  "edge_cases": [
+    {
+      "case": "The scoped path contains only documentation.",
+      "expected_behavior": "Report documentation-only scope and avoid code-risk claims. [CODE]"
+    },
+    {
+      "case": "The user asks for fixes after requesting a review.",
+      "expected_behavior": "State that this skill produces review output and ask for a separate edit workflow if changes are required. [CONFIG]"
+    },
+    {
+      "case": "A suspected issue depends on unavailable runtime data.",
+      "expected_behavior": "Classify the item as an assumption or open question instead of a confirmed defect. [ASSUMPTION]"
+    }
+  ],
+  "tool_rationale": [
+    {
+      "tool": "Read",
+      "reason": "Reads bounded local files for evidence. [CODE]"
+    },
+    {
+      "tool": "Glob",
+      "reason": "Discovers candidate files inside the user-approved scope. [CODE]"
+    },
+    {
+      "tool": "Grep",
+      "reason": "Finds deterministic patterns such as TODOs, test names, and risky configuration keys. [CODE]"
+    }
+  ],
+  "moat_score": {
+    "completeness": 22,
+    "accuracy": 23,
+    "actionability": 21,
+    "maintainability": 20,
+    "total": 86
+  },
+  "validation": [
+    "The fixture is accepted by validate_design_skill_spec.py without network access. [CODE]",
+    "Tool profile and allowed tools are exactly aligned. [CONFIG]"
+  ],
+  "risks": [
+    "The skill can miss runtime-only failures because it intentionally avoids execution tools. [ASSUMPTION]"
+  ]
+}

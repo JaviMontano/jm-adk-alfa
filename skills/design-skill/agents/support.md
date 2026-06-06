@@ -5,4 +5,5 @@ description: "Execution support for Design Skill."
 tools: [Read, Write, Edit, Glob, Grep]
 ---
 # Design Skill Support
-Handles secondary tasks: evidence gathering, reference formatting, eval generation.
+
+Check frontmatter fields, procedure step structure, quality criteria measurability, anti-pattern specificity, edge-case coverage, and tool rationale completeness.

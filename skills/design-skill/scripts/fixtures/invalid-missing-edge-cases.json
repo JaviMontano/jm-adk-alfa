@@ -1,0 +1,43 @@
+{
+  "skill": "design-skill",
+  "reference_date": "2026-06-06",
+  "designed_skill": "missing-edge-review",
+  "summary": "Omits edge cases to verify boundary coverage enforcement. [CONFIG]",
+  "frontmatter": {
+    "name": "missing-edge-review",
+    "description": "Use when validating that a designed skill without edge-case coverage is rejected.",
+    "argument-hint": "$ARGUMENTS",
+    "user-invocable": true,
+    "allowed-tools": ["Read", "Glob", "Grep"]
+  },
+  "tool_profile": "read-only",
+  "guiding_principle": "A skill design must name boundary conditions so execution behavior remains predictable. [DOC]",
+  "procedure": [
+    {"step": 1, "action": "Scan", "input": "Scope.", "output": "Files.", "evidence_tag": "[CODE]"},
+    {"step": 2, "action": "Read", "input": "Files.", "output": "Evidence.", "evidence_tag": "[CODE]"},
+    {"step": 3, "action": "Extract", "input": "Evidence.", "output": "Inputs.", "evidence_tag": "[CODE]"},
+    {"step": 4, "action": "Validate", "input": "Inputs.", "output": "Accepted inputs.", "evidence_tag": "[CONFIG]"},
+    {"step": 5, "action": "Report", "input": "Accepted inputs.", "output": "Report.", "evidence_tag": "[CONFIG]"}
+  ],
+  "quality_criteria": [
+    "The procedure is ordered and bounded. [CONFIG]",
+    "Tool access remains aligned with the profile. [CONFIG]",
+    "Quality criteria include evidence tags. [DOC]",
+    "The expected failure is missing edge-case coverage. [CODE]"
+  ],
+  "anti_patterns": [
+    "Shipping a skill design without boundary cases.",
+    "Treating examples as edge-case coverage.",
+    "Ignoring minimal input behavior.",
+    "Ignoring conflicting instruction behavior."
+  ],
+  "edge_cases": [],
+  "tool_rationale": [
+    {"tool": "Read", "reason": "Reads local evidence. [CODE]"},
+    {"tool": "Glob", "reason": "Finds local files. [CODE]"},
+    {"tool": "Grep", "reason": "Searches local files. [CODE]"}
+  ],
+  "moat_score": {"completeness": 20, "accuracy": 20, "actionability": 20, "maintainability": 18, "total": 78},
+  "validation": ["This fixture must fail on missing edge cases. [CODE]"],
+  "risks": ["If accepted, boundary behavior could remain undefined. [ASSUMPTION]"]
+}

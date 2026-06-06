@@ -1,0 +1,11 @@
+{
+  "schema": 1,
+  "skill": "design-skill",
+  "known_tools": ["Read", "Write", "Edit", "Glob", "Grep", "Bash", "WebFetch", "WebSearch"],
+  "profiles": {
+    "read-only": ["Read", "Glob", "Grep"],
+    "analysis": ["Read", "Glob", "Grep", "Bash"],
+    "generation": ["Read", "Write", "Glob", "Grep"],
+    "full-access": ["Read", "Write", "Glob", "Grep", "Bash"]
+  }
+}

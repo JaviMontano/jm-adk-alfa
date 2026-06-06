@@ -20,6 +20,17 @@ allowed-tools:
 
 Design a single plugin skill in full detail. Produces a complete SKILL.md specification with frontmatter, guiding principle, numbered procedure, quality criteria, anti-patterns, and edge cases. Validates against MOAT quality dimensions. [EXPLICIT]
 
+## Deterministic Resources
+
+Use bundled contracts before drafting final output:
+
+- `assets/frontmatter-policy.json` defines required fields, supported fields, name format, and argument-hint substitutions.
+- `assets/body-policy.json` defines procedure, quality criteria, anti-pattern, and edge-case minimums.
+- `assets/tool-policy.json` defines least-privilege tool profiles.
+- `assets/report-contract.json` defines the offline-validatable skill design spec.
+
+Use `scripts/validate_design_skill_spec.py` to validate JSON design specs and `scripts/check.sh` to run deterministic fixtures. The scripts validate the design contract only; they do not create deployable skill files.
+
 ---
 
 ## Procedure
@@ -139,6 +150,7 @@ Apply **least privilege**: include only tools the skill genuinely needs. Read-on
 - [ ] Anti-patterns describe mistakes, not correct behaviors. `[DOC]`
 - [ ] Edge cases cover boundary conditions, not just happy paths. `[DOC]`
 - [ ] Tool selection follows least privilege -- no unnecessary tools included. `[CONFIG]`
+- [ ] JSON design spec passes `scripts/validate_design_skill_spec.py`. `[CONFIG]`
 
 ## Assumptions & Limits
 
@@ -217,4 +229,3 @@ Example invocations:
 
 - "/design-skill" — Run the full design skill workflow
 - "design skill on this project" — Apply to current context
-

@@ -1,10 +1,11 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: design-skill
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
-
 # Example Input
 
-Use `design-skill` to produce a concise deliverable for a realistic project request.
+Design a skill named `validate-config`.
+
+Context:
+
+- It validates JSON, YAML, and TOML config files in a plugin. [CONFIG]
+- It is read-only and must not modify files. [CONFIG]
+- It should use `Read`, `Glob`, and `Grep` only. [CONFIG]
+- Include six procedure steps, five quality criteria, four anti-patterns, and three edge cases. [CONFIG]
+- Produce a reviewable spec, not a final file write. [CONFIG]

@@ -5,4 +5,5 @@ description: "Domain expert for Design Skill."
 tools: [Read, Glob, Grep]
 ---
 # Design Skill Specialist
-Provides deep domain expertise. Reviews outputs for correctness and depth.
+
+Review MOAT depth, least-privilege tool selection, trigger quality, procedure order, and whether the design remains a spec instead of writing the final skill.

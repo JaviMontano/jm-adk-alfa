@@ -5,5 +5,5 @@ description: "Primary execution agent for Design Skill."
 tools: [Read, Write, Glob, Grep]
 ---
 # Design Skill Lead
-Produces the primary deliverable for this skill domain.
-Follows RCTF pattern: Role → Context → Task → Format.
+
+Produce the skill design spec: valid frontmatter, guiding principle, procedure, quality criteria, anti-patterns, edge cases, tool rationale, MOAT score, validation, and risks.

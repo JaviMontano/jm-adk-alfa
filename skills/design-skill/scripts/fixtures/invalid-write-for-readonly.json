@@ -1,0 +1,48 @@
+{
+  "skill": "design-skill",
+  "reference_date": "2026-06-06",
+  "designed_skill": "readonly-summary-review",
+  "summary": "Declares a read-only profile while allowing Write to verify tool-profile enforcement. [CONFIG]",
+  "frontmatter": {
+    "name": "readonly-summary-review",
+    "description": "Use when validating that read-only skills cannot declare write-capable tools.",
+    "argument-hint": "$ARGUMENTS",
+    "user-invocable": true,
+    "allowed-tools": ["Read", "Write", "Glob", "Grep"]
+  },
+  "tool_profile": "read-only",
+  "guiding_principle": "A read-only skill cannot include write-capable tools because tool access must match the declared profile. [DOC]",
+  "procedure": [
+    {"step": 1, "action": "Scan", "input": "Scope.", "output": "Files.", "evidence_tag": "[CODE]"},
+    {"step": 2, "action": "Read", "input": "Files.", "output": "Evidence.", "evidence_tag": "[CODE]"},
+    {"step": 3, "action": "Extract", "input": "Evidence.", "output": "Summary points.", "evidence_tag": "[CODE]"},
+    {"step": 4, "action": "Compare", "input": "Summary points.", "output": "Filtered points.", "evidence_tag": "[INFERENCE]"},
+    {"step": 5, "action": "Report", "input": "Filtered points.", "output": "Read-only report.", "evidence_tag": "[CONFIG]"}
+  ],
+  "quality_criteria": [
+    "Allowed tools must equal the declared profile set. [CONFIG]",
+    "Read-only behavior cannot include file writing. [DOC]",
+    "Tool rationale covers the declared tools. [CODE]",
+    "The failure is reproducible without network access. [CODE]"
+  ],
+  "anti_patterns": [
+    "Granting Write for a review-only workflow.",
+    "Using a broad profile to avoid tool reasoning.",
+    "Leaving tool rationale incomplete.",
+    "Treating allowed-tools as decorative metadata."
+  ],
+  "edge_cases": [
+    {"case": "Write appears in a read-only profile.", "expected_behavior": "Reject the allowed-tools mismatch. [CONFIG]"},
+    {"case": "Tool rationale includes Write.", "expected_behavior": "Still reject because the profile does not allow it. [CONFIG]"},
+    {"case": "All other fields are valid.", "expected_behavior": "Keep the failure focused on tool policy. [CODE]"}
+  ],
+  "tool_rationale": [
+    {"tool": "Read", "reason": "Reads local evidence. [CODE]"},
+    {"tool": "Write", "reason": "Incorrectly writes under a read-only profile. [CONFIG]"},
+    {"tool": "Glob", "reason": "Finds scoped files. [CODE]"},
+    {"tool": "Grep", "reason": "Searches scoped files. [CODE]"}
+  ],
+  "moat_score": {"completeness": 21, "accuracy": 21, "actionability": 20, "maintainability": 18, "total": 80},
+  "validation": ["This fixture must fail when allowed-tools differs from the read-only profile. [CODE]"],
+  "risks": ["If accepted, a nominally safe skill could mutate files. [ASSUMPTION]"]
+}

@@ -1,0 +1,111 @@
+{
+  "skill": "design-skill",
+  "reference_date": "2026-06-06",
+  "designed_skill": "release-note-drafter",
+  "summary": "Designs a generation skill that reads local change evidence and writes a bounded release-note draft from deterministic inputs. [CONFIG]",
+  "frontmatter": {
+    "name": "release-note-drafter",
+    "description": "Use when a user needs a release-note drafting skill that reads local changelog evidence, generates structured release notes, and writes a bounded draft artifact.",
+    "argument-hint": "$ARGUMENTS",
+    "user-invocable": true,
+    "allowed-tools": ["Read", "Write", "Glob", "Grep"]
+  },
+  "tool_profile": "generation",
+  "guiding_principle": "The skill must generate only from supplied local evidence and keep written artifacts scoped to the requested release-note destination. [DOC]",
+  "procedure": [
+    {
+      "step": 1,
+      "action": "Scan",
+      "input": "Requested release scope and local changelog paths.",
+      "output": "Candidate source files and draft destination.",
+      "evidence_tag": "[CODE]"
+    },
+    {
+      "step": 2,
+      "action": "Read",
+      "input": "Changelog, commit summary, and release template files.",
+      "output": "Structured evidence grouped by feature, fix, risk, and migration.",
+      "evidence_tag": "[CODE]"
+    },
+    {
+      "step": 3,
+      "action": "Validate",
+      "input": "Evidence groups and requested audience.",
+      "output": "Accepted inputs plus missing-evidence notes.",
+      "evidence_tag": "[CONFIG]"
+    },
+    {
+      "step": 4,
+      "action": "Generate",
+      "input": "Accepted evidence and release-note template.",
+      "output": "Draft release note sections with evidence tags.",
+      "evidence_tag": "[INFERENCE]"
+    },
+    {
+      "step": 5,
+      "action": "Produce",
+      "input": "Draft sections and destination path.",
+      "output": "Written release-note draft artifact.",
+      "evidence_tag": "[CODE]"
+    }
+  ],
+  "quality_criteria": [
+    "Each release-note claim maps to local changelog, commit, or template evidence. [CODE]",
+    "Migration notes are separated from ordinary fixes and features. [CONFIG]",
+    "Missing evidence is reported as a gap rather than filled with invented content. [ASSUMPTION]",
+    "The draft path is bounded by the user request or existing release-note directory. [CONFIG]",
+    "Audience and tone are preserved from the selected template. [DOC]"
+  ],
+  "anti_patterns": [
+    "Writing outside the requested release-note destination.",
+    "Adding product claims that are absent from local evidence.",
+    "Treating internal TODOs as shipped behavior.",
+    "Combining unrelated release scopes in the same draft."
+  ],
+  "edge_cases": [
+    {
+      "case": "The changelog has fixes but no features.",
+      "expected_behavior": "Emit a fixes-only draft and omit empty feature claims. [CODE]"
+    },
+    {
+      "case": "The requested draft destination is missing.",
+      "expected_behavior": "Create only the explicitly requested bounded file path. [CONFIG]"
+    },
+    {
+      "case": "A migration item lacks rollback evidence.",
+      "expected_behavior": "Flag rollback as missing evidence in risks. [ASSUMPTION]"
+    }
+  ],
+  "tool_rationale": [
+    {
+      "tool": "Read",
+      "reason": "Reads source evidence and templates. [CODE]"
+    },
+    {
+      "tool": "Write",
+      "reason": "Creates the bounded release-note draft artifact. [CONFIG]"
+    },
+    {
+      "tool": "Glob",
+      "reason": "Finds release-note templates inside the requested scope. [CODE]"
+    },
+    {
+      "tool": "Grep",
+      "reason": "Finds deterministic release markers such as migration, fix, and feature headings. [CODE]"
+    }
+  ],
+  "moat_score": {
+    "completeness": 23,
+    "accuracy": 22,
+    "actionability": 22,
+    "maintainability": 21,
+    "total": 88
+  },
+  "validation": [
+    "The fixture is accepted by validate_design_skill_spec.py without network access. [CODE]",
+    "The generation tool profile matches the exact allowed-tools set. [CONFIG]"
+  ],
+  "risks": [
+    "Generated notes remain limited by the completeness of local release evidence. [ASSUMPTION]"
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "schema": 1,
+  "skill": "design-skill",
+  "required_fields": ["name", "description"],
+  "supported_fields": ["name", "description", "argument-hint", "disable-model-invocation", "user-invocable", "allowed-tools", "model", "context", "agent", "hooks"],
+  "skill_name_pattern": "^[a-z][a-z0-9]*(-[a-z0-9]+)*$",
+  "valid_substitutions": ["$ARGUMENTS", "$1", "$2", "${CLAUDE_SKILL_DIR}"],
+  "forbidden_argument_substitutions": ["$0"]
+}

@@ -7,11 +7,4 @@ description: "Meta-prompt for Design Skill skill routing."
 
 # Design Skill — Meta Prompt
 
-Activate this skill when the user request matches:
-- Trigger phrases from SKILL.md description
-- Direct invocation: `/design-skill`
-
-## Skill Routing
-1. Load SKILL.md → read `## When to Activate` section
-2. If match → activate lead agent: `design-skill-lead`
-3. If orchestrated → defer to orchestrating skill
+Activate when the request asks to design, plan, draft, validate, or specify a plugin skill. Do not activate for ordinary task execution or skill usage unless the user is designing the skill itself.
