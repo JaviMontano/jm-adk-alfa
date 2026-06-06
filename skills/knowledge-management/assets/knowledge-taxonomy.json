@@ -1,0 +1,7 @@
+{
+  "schema": 1,
+  "item_types": ["decision", "runbook", "policy", "insight", "task", "glossary", "handoff", "risk", "note"],
+  "statuses": ["active", "stale", "duplicate", "contradiction", "gap", "deprecated"],
+  "gap_types": ["missing_source", "missing_owner", "stale", "duplicate", "contradiction", "missing_retrieval_terms", "unverified_assumption"],
+  "rule": "Items with status gap, stale, contradiction, duplicate, or deprecated must include an owner-bound next_action."
+}

@@ -1,0 +1,25 @@
+{
+  "skill": "knowledge-management",
+  "reference_date": "2026-06-06",
+  "summary": "A note has an impossible review date. [DOC]",
+  "register": [
+    {
+      "id": "km-204",
+      "title": "Future note",
+      "type": "note",
+      "source_path": "docs/notes/future.md",
+      "evidence_tag": "[DOC]",
+      "owner": "Project Lead",
+      "last_reviewed": "2026-06-07",
+      "retrieval_terms": ["future note", "project note"],
+      "status": "active",
+      "next_action": "Correct review date."
+    }
+  ],
+  "searchability_map": [{"term": "future note", "source_id": "km-204", "evidence_tag": "[DOC]"}],
+  "decay_review": [{"source_id": "km-204", "status": "active", "reason": "Date must be checked. [DOC]"}],
+  "gaps": [{"source_id": "km-204", "type": "unverified_assumption", "description": "Review date is inconsistent. [DOC]"}],
+  "actions": [],
+  "validation": ["Evidence is present. [DOC]"],
+  "risks": ["Freshness cannot be trusted. [INFERENCIA]"]
+}

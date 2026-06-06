@@ -1,7 +1,5 @@
 {
   "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-28",
   "skill": "knowledge-management",
   "nodes": [
     {
@@ -10,66 +8,71 @@
       "label": "knowledge-management"
     },
     {
-      "id": "knowledge-management:inputs",
-      "type": "contract",
-      "label": "Expected inputs"
+      "id": "knowledge-register",
+      "type": "artifact",
+      "label": "Source-backed knowledge register"
     },
     {
-      "id": "knowledge-management:outputs",
-      "type": "contract",
-      "label": "Expected outputs"
-    },
-    {
-      "id": "knowledge-management:quality",
+      "id": "evidence-policy",
       "type": "gate",
-      "label": "Quality criteria"
+      "label": "Allowed evidence tags"
     },
     {
-      "id": "knowledge-management:ontology",
-      "type": "ontology",
-      "label": "Domain: general"
+      "id": "searchability-map",
+      "type": "artifact",
+      "label": "Retrieval map"
     },
     {
-      "id": "knowledge-management:evidence",
+      "id": "freshness-policy",
       "type": "gate",
-      "label": "Evidence / provenance requirements"
+      "label": "Deterministic decay policy"
     },
     {
-      "id": "knowledge-management:antipattern",
+      "id": "knowledge-gap",
       "type": "risk",
-      "label": "Canonical anti-pattern to avoid"
+      "label": "Missing, stale, duplicate, or contradictory knowledge"
+    },
+    {
+      "id": "maintenance-action",
+      "type": "artifact",
+      "label": "Owner-bound remediation action"
+    },
+    {
+      "id": "report-contract",
+      "type": "contract",
+      "label": "Offline-validatable report contract"
     }
   ],
   "edges": [
     {
       "from": "knowledge-management",
-      "to": "knowledge-management:inputs",
+      "to": "knowledge-register",
+      "type": "produces"
+    },
+    {
+      "from": "knowledge-register",
+      "to": "evidence-policy",
+      "type": "validated_by"
+    },
+    {
+      "from": "knowledge-register",
+      "to": "searchability-map",
+      "type": "indexed_by"
+    },
+    {
+      "from": "knowledge-register",
+      "to": "freshness-policy",
+      "type": "validated_by"
+    },
+    {
+      "from": "knowledge-gap",
+      "to": "maintenance-action",
       "type": "requires"
     },
     {
       "from": "knowledge-management",
-      "to": "knowledge-management:outputs",
-      "type": "produces"
-    },
-    {
-      "from": "knowledge-management",
-      "to": "knowledge-management:quality",
+      "to": "report-contract",
       "type": "validated_by"
-    },
-    {
-      "from": "knowledge-management",
-      "to": "knowledge-management:ontology",
-      "type": "classified_as"
-    },
-    {
-      "from": "knowledge-management",
-      "to": "knowledge-management:evidence",
-      "type": "validated_by"
-    },
-    {
-      "from": "knowledge-management",
-      "to": "knowledge-management:antipattern",
-      "type": "guards_against"
     }
   ]
 }

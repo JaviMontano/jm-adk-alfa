@@ -1,0 +1,6 @@
+{
+  "schema": 1,
+  "allowed_tags": ["[CÓDIGO]", "[DOC]", "[CONFIG]", "[INFERENCIA]", "[SUPUESTO]"],
+  "required_for": ["summary", "register", "gaps", "actions", "validation", "risks"],
+  "rule": "Every durable knowledge claim must include at least one allowed evidence tag."
+}

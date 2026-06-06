@@ -1,0 +1,8 @@
+{
+  "schema": 1,
+  "report_type": "knowledge-management-report",
+  "required_top_level": ["skill", "reference_date", "summary", "register", "searchability_map", "decay_review", "gaps", "actions", "validation", "risks"],
+  "required_register_fields": ["id", "title", "type", "source_path", "evidence_tag", "owner", "last_reviewed", "retrieval_terms", "status", "next_action"],
+  "required_action_fields": ["id", "owner", "due_date", "description", "source_ids", "evidence_tag"],
+  "rule": "Reports must be deterministic, source-backed, owner-bound, and validatable offline."
+}

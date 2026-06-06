@@ -1,0 +1,7 @@
+{
+  "schema": 1,
+  "minimum_retrieval_terms_per_item": 2,
+  "required_fields": ["source_path", "retrieval_terms", "owner"],
+  "forbidden_terms": ["knowledge-management", "misc", "general"],
+  "rule": "Retrieval terms must help locate the source artifact without conversational memory."
+}

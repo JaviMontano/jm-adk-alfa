@@ -1,0 +1,25 @@
+{
+  "skill": "knowledge-management",
+  "reference_date": "2026-06-06",
+  "summary": "A policy lacks retrieval metadata. [DOC]",
+  "register": [
+    {
+      "id": "km-202",
+      "title": "Payment policy",
+      "type": "policy",
+      "source_path": "docs/policies/payment.md",
+      "evidence_tag": "[DOC]",
+      "owner": "Payments Team",
+      "last_reviewed": "2026-05-20",
+      "retrieval_terms": ["payment"],
+      "status": "active",
+      "next_action": "Add aliases."
+    }
+  ],
+  "searchability_map": [{"term": "payment", "source_id": "km-202", "evidence_tag": "[DOC]"}],
+  "decay_review": [{"source_id": "km-202", "status": "active", "reason": "Fresh. [DOC]"}],
+  "gaps": [{"source_id": "km-202", "type": "missing_retrieval_terms", "description": "Only one term exists. [DOC]"}],
+  "actions": [],
+  "validation": ["Evidence is present. [DOC]"],
+  "risks": ["Search may fail. [INFERENCIA]"]
+}

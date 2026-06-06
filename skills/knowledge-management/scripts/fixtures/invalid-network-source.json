@@ -1,0 +1,25 @@
+{
+  "skill": "knowledge-management",
+  "reference_date": "2026-06-06",
+  "summary": "A report depends on a network source path. [DOC]",
+  "register": [
+    {
+      "id": "km-205",
+      "title": "Remote decision",
+      "type": "decision",
+      "source_path": "https://example.com/decision",
+      "evidence_tag": "[DOC]",
+      "owner": "Project Lead",
+      "last_reviewed": "2026-05-20",
+      "retrieval_terms": ["remote decision", "project decision"],
+      "status": "active",
+      "next_action": "Mirror source locally."
+    }
+  ],
+  "searchability_map": [{"term": "remote decision", "source_id": "km-205", "evidence_tag": "[DOC]"}],
+  "decay_review": [{"source_id": "km-205", "status": "active", "reason": "Fresh. [DOC]"}],
+  "gaps": [{"source_id": "km-205", "type": "missing_source", "description": "Local source is missing. [DOC]"}],
+  "actions": [],
+  "validation": ["Evidence is present. [DOC]"],
+  "risks": ["Network dependency prevents offline validation. [INFERENCIA]"]
+}

@@ -7,11 +7,17 @@ overwrite-policy: missing-only unless --force
 
 # Knowledge Management
 
->
+Build a deterministic knowledge register for project artifacts: what knowledge
+exists, where it lives, who owns it, how it can be found, when it decays, and
+what action keeps it usable.
 
 ## Triggers
 
 - knowledge-management
+- knowledge capture
+- knowledge register
+- searchability audit
+- decay prevention
 
 ## Allowed Tools
 
@@ -23,8 +29,27 @@ overwrite-policy: missing-only unless --force
 
 ## Quick Use
 
-Use this skill when the request clearly matches the triggers and requires the `knowledge-management` capability.
+Use this skill when scattered project knowledge must be captured, indexed,
+de-duplicated, assigned ownership, or reviewed for stale/uncited claims.
+
+The skill does not infer freshness from the live clock. Reports must include a
+fixed `reference_date`, and decay decisions must cite source dates.
 
 ## Output Format
 
-Markdown with summary, evidence, result, validation, and risks.
+Markdown or JSON with:
+
+- Summary and scope
+- Knowledge register
+- Searchability map
+- Decay review
+- Gaps and contradictions
+- Action log with owners and due dates
+- Validation evidence
+- Risks and assumptions
+
+JSON reports can be validated offline with:
+
+```bash
+bash skills/knowledge-management/scripts/check.sh
+```

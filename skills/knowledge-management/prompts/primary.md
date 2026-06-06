@@ -24,15 +24,21 @@ triad:
 ## Execution
 
 1. **Load knowledge**: Read `knowledge/body-of-knowledge.md`
-2. **Check guardrails**: Read `references/guardrails/*.json`
-3. **Lead** (`knowledge-management-lead`): Execute SKILL.md Steps 1-4 for `{{task}}`
+2. **Load deterministic assets**: Read `assets/manifest.json`,
+   `assets/knowledge-taxonomy.json`, `assets/searchability-policy.json`,
+   `assets/freshness-policy.json`, and `assets/report-contract.json`
+3. **Check guardrails**: Read available guardrails only when present
+4. **Lead** (`knowledge-management-lead`): Execute SKILL.md Steps 1-4 for `{{task}}`
    - Discover → Analyze → Execute → Validate
-   - Apply evidence tags on all claims
-4. **Support** (`knowledge-management-support`): Review for cross-cutting concerns
-   - Edge cases, security, accessibility, performance
-5. **Guardian** (`knowledge-management-guardian`): Validate
+   - Apply evidence tags on all register claims
+   - Use explicit report `reference_date` for decay decisions
+5. **Support** (`knowledge-management-support`): Review for cross-cutting concerns
+   - Searchability gaps, stale entries, orphan owners, duplicate sources,
+     contradictions, and handoff risks
+6. **Guardian** (`knowledge-management-guardian`): Validate
    - Evidence tags complete
    - Quality gate met
+   - Report contract satisfied
    - Constitution XIII + XIV respected
    - Output exceeds expectations
 
@@ -40,5 +46,5 @@ triad:
 
 - Primary deliverable for `{{task}}` in `{{output_format}}`
 - Evidence tags on every claim
-- Recommendations beyond the ask
-- Confidence score (>= 0.95)
+- Knowledge register, searchability map, decay review, action log, validation,
+  risks, and confidence score

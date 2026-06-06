@@ -22,13 +22,14 @@ Use quick mode when you need adjusted depth for the Knowledge Management workflo
 ## Execution
 
 1. Load skill: `skills/knowledge-management/knowledge/body-of-knowledge.md`
-2. Check guardrails: `references/guardrails/*.json`
-3. Execute at quick depth with evidence tags
+2. Load assets: `assets/manifest.json` and `assets/report-contract.json`
+3. Execute at quick depth with evidence tags, source paths, owners, retrieval
+   terms, and explicit `reference_date`
 4. Lead → Support → Guardian validation
-5. Confidence >= 0.95
+5. Run offline report validation when JSON output is produced
 
 ## Output
 
 - Deliverable calibrated to quick depth
 - Evidence-tagged, Constitution-compliant
-- Recommendations beyond the ask
+- Register, gaps, actions, risks, and validation notes

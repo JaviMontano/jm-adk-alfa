@@ -1,0 +1,25 @@
+{
+  "skill": "knowledge-management",
+  "reference_date": "2026-06-06",
+  "summary": "Checkout knowledge has one active decision.",
+  "register": [
+    {
+      "id": "km-201",
+      "title": "Checkout auth",
+      "type": "decision",
+      "source_path": "docs/decisions/auth.md",
+      "evidence_tag": "[DOC]",
+      "owner": "Identity Team",
+      "last_reviewed": "2026-06-01",
+      "retrieval_terms": ["checkout auth", "identity"],
+      "status": "active",
+      "next_action": "Keep canonical."
+    }
+  ],
+  "searchability_map": [{"term": "checkout auth", "source_id": "km-201", "evidence_tag": "[DOC]"}],
+  "decay_review": [{"source_id": "km-201", "status": "active", "reason": "Fresh. [DOC]"}],
+  "gaps": [{"source_id": "km-201", "type": "none", "description": "No gaps. [DOC]"}],
+  "actions": [],
+  "validation": ["Register fields complete. [DOC]"],
+  "risks": ["No risk. [DOC]"]
+}

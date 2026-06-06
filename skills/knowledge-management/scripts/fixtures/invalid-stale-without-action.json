@@ -1,0 +1,25 @@
+{
+  "skill": "knowledge-management",
+  "reference_date": "2026-06-06",
+  "summary": "A stale runbook lacks action coverage. [DOC][INFERENCIA]",
+  "register": [
+    {
+      "id": "km-203",
+      "title": "Retry runbook",
+      "type": "runbook",
+      "source_path": "docs/runbooks/retry.md",
+      "evidence_tag": "[DOC]",
+      "owner": "Platform Ops",
+      "last_reviewed": "2026-02-01",
+      "retrieval_terms": ["retry runbook", "queue retry"],
+      "status": "stale",
+      "next_action": "Refresh runbook."
+    }
+  ],
+  "searchability_map": [{"term": "retry runbook", "source_id": "km-203", "evidence_tag": "[DOC]"}],
+  "decay_review": [{"source_id": "km-203", "status": "stale", "reason": "Older than freshness window. [DOC][INFERENCIA]"}],
+  "gaps": [{"source_id": "km-203", "type": "stale", "description": "Needs review. [DOC]"}],
+  "actions": [],
+  "validation": ["Evidence is present. [DOC]"],
+  "risks": ["Operator may reuse stale runbook. [INFERENCIA]"]
+}
