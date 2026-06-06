@@ -3,7 +3,12 @@ name: ai-architecture-implementation-deep
 type: variation
 variant: deep
 ---
-# Ai Architecture Implementation — Deep Analysis
+# AI Architecture Implementation — Deep Analysis
 
-Full depth execution. Load all `references/` files from canonical. Run L3 progressive loading.
-Apply all Validation Gate criteria strictly.
+Use for production rollout, migration, remediation after audit, or enterprise MLOps.
+
+Required:
+- Load all local `references/`.
+- Include F0-F5 phase plan.
+- Include technology decisions, ADR markers, dependency graph, rollback, monitoring, and runbooks.
+- Produce JSON packet for offline validation.

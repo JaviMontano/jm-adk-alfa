@@ -3,7 +3,12 @@ name: ai-architecture-implementation-quick
 type: variation
 variant: quick
 ---
-# Ai Architecture Implementation — Quick Mode
+# AI Architecture Implementation — Quick Mode
 
-Streamlined execution. Focus on TL;DR and primary output only.
-Apply Validation Gate but skip extended evidence tagging.
+Use for a quick implementation outline.
+
+Required:
+- Keep phases F0-F5 visible even if summarized.
+- Do not skip evidence or DoD.
+- Mark missing architecture/stack/team inputs as prerequisites.
+- Include rollback and monitoring even in summary form.

@@ -1,16 +1,22 @@
-# Ai Architecture Implementation — Body of Knowledge
+# AI Architecture Implementation Body of Knowledge
 
-## Canon
-Key standards, references, and best practices for Ai Architecture Implementation.
+Implementation transforms an approved AI architecture or audit roadmap into phased production capability. It does not replace architecture design and does not audit existing systems.
 
-## Quality Metrics
-| Metric | Target | How to Measure |
-|--------|--------|---------------|
-| Accuracy | >= 90% | Correct outputs / total |
-| Evidence coverage | >= 80% | Claims tagged [EXPLICIT]/[INFERRED]/[OPEN] |
-| Constitution compliance | 100% | Principles respected |
-| Validation Gate pass | 100% | All checklist items satisfied |
+## Required Phases
 
-## References
-- See `references/` folder in canonical skill for detailed references
-- Industry standards and best practices for this domain
+| id | phase | required output |
+|----|-------|-----------------|
+| F0 | Foundation | repo, CI skeleton, environments, secrets policy |
+| F1 | Data Pipeline | ingestion, quality gates, feature consistency |
+| F2 | Model Lifecycle | training, evaluation, registry, staging |
+| F3 | Serving | API, auth, fallback, load test |
+| F4 | CI/CD | Blue & Gold, canary, validation gates, rollback |
+| F5 | Monitoring | infra, app, model, data, drift alerts, runbooks |
+
+## Evidence Rule
+
+Each phase and decision needs evidence or a stated prerequisite. Missing inputs become risks; they must not be invented.
+
+## Production Rule
+
+Production plans require CI/CD, monitoring, rollback, and runbooks. If any are out of scope, validation status must be `warn` or `block`.

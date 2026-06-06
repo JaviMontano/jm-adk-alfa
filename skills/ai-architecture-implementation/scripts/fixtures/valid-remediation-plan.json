@@ -1,0 +1,31 @@
+{
+  "schema": "jm-labs.ai-architecture-implementation.plan.v1",
+  "system": {"name": "rag-support-bot", "type": "genai-rag"},
+  "mode": "brownfield",
+  "scope": {"coverage": "genai", "stack": "python", "infra": "containers"},
+  "evidence": [
+    {"id": "E-001", "source": "rag-design.md", "summary": "RAG architecture approved.", "tag": "[DOC]"},
+    {"id": "E-002", "source": "security-notes.md", "summary": "Guardrail test suite missing.", "tag": "[ENTREVISTA]"},
+    {"id": "E-003", "source": "repo-settings.md", "summary": "Container deployment is current target.", "tag": "[CONFIG]"}
+  ],
+  "prerequisites": [],
+  "phases": [
+    {"id": "F0", "deliverables": ["CI skeleton"], "dependencies": [], "dod": ["security checks run"], "evidence_ids": ["E-003"]},
+    {"id": "F1", "deliverables": ["document ingestion"], "dependencies": ["F0"], "dod": ["ingestion fixture passes"], "evidence_ids": ["E-001"]},
+    {"id": "F2", "deliverables": ["prompt/version registry"], "dependencies": ["F1"], "dod": ["prompt version tracked"], "evidence_ids": ["E-001"]},
+    {"id": "F3", "deliverables": ["RAG API", "guardrails"], "dependencies": ["F2"], "dod": ["prompt injection tests pass"], "evidence_ids": ["E-002"]},
+    {"id": "F4", "deliverables": ["container rollout", "rollback"], "dependencies": ["F3"], "dod": ["rollback test passes"], "evidence_ids": ["E-003"]},
+    {"id": "F5", "deliverables": ["retrieval metrics", "runbooks"], "dependencies": ["F4"], "dod": ["retrieval dashboard exists"], "evidence_ids": ["E-001"]}
+  ],
+  "technology_decisions": [
+    {"component": "vector_db", "selected": "pgvector", "alternatives": ["Qdrant"], "rationale": "Existing PostgreSQL operation skills.", "adr_required": true, "evidence_ids": ["E-003"]}
+  ],
+  "controls": {
+    "ci_cd": {"status": "planned", "dod": "container build gate passes"},
+    "rollback": {"status": "planned", "dod": "previous image rollback works"},
+    "monitoring": {"status": "planned", "dod": "retrieval and token metrics visible"},
+    "runbooks": {"status": "planned", "dod": "RAG failure runbook approved"}
+  },
+  "risks": [],
+  "validation": {"status": "pass", "checks": ["assets", "deterministic_scripts", "quality_criteria", "phase_dod", "evidence_required", "technology_decisions", "rollback_monitoring"]}
+}

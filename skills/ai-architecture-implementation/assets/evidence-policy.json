@@ -1,0 +1,5 @@
+{
+  "schema": "jm-labs.ai-architecture-implementation.evidence-policy.v1",
+  "allowed_tags": ["[CÓDIGO]", "[CONFIG]", "[DOC]", "[MÉTRICA]", "[ENTREVISTA]", "[INFERENCIA]"],
+  "missing_input_policy": "record_as_prerequisite_or_risk"
+}

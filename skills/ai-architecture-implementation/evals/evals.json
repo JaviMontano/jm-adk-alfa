@@ -1,9 +1,76 @@
-[
-  {"id": "ai-architecture-implementation-happy-path", "type": "happy_path", "input": "Run ai architecture implementation on this project", "expected_behavior": "Skill activates and produces the expected ai architecture implementation output following the defined process", "tags": ["basic", "activation"]},
-  {"id": "ai-architecture-implementation-explicit-trigger", "type": "happy_path", "input": "Apply ai architecture implementation analysis", "expected_behavior": "Skill recognizes the trigger phrase and executes the ai architecture implementation workflow", "tags": ["trigger", "recognition"]},
-  {"id": "ai-architecture-implementation-with-context", "type": "happy_path", "input": "Apply ai architecture implementation to analyze the current codebase with detailed output", "expected_behavior": "Skill produces comprehensive ai architecture implementation analysis with evidence-tagged findings", "tags": ["detailed", "comprehensive"]},
-  {"id": "ai-architecture-implementation-minimal-input", "type": "happy_path", "input": "Quick ai architecture implementation", "expected_behavior": "Skill activates with minimal input, applies reasonable defaults", "tags": ["minimal", "defaults"]},
-  {"id": "ai-architecture-implementation-false-positive", "type": "false_positive", "input": "What is the weather forecast for tomorrow?", "expected_behavior": "Skill should NOT activate — this input has no relation to ai architecture implementation", "tags": ["false_positive", "should-not-activate"]},
-  {"id": "ai-architecture-implementation-edge-empty-input", "type": "edge_case", "input": "Run ai architecture implementation but I have no files or documentation yet", "expected_behavior": "Skill handles gracefully — requests minimum viable input or produces gap analysis", "tags": ["edge_case", "empty-input", "boundary"]},
-  {"id": "ai-architecture-implementation-edge-conflicting", "type": "edge_case", "input": "Apply ai architecture implementation but requirements contradict each other", "expected_behavior": "Skill detects contradiction, flags with [OPEN] tag, proposes resolution", "tags": ["edge_case", "conflict", "corner"]}
-]
+{
+  "schema": 1,
+  "skill": "ai-architecture-implementation",
+  "cases": [
+    {
+      "id": "ai-implementation-full-mlops-plan",
+      "type": "happy_path",
+      "input": "Create a full MLOps implementation plan for an approved AI architecture.",
+      "expected_behavior": "Produces phased F0-F5 implementation plan with technology decisions, evidence, DoD, CI/CD, monitoring, rollback, and runbooks.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "phase_dod", "rollback_monitoring"]
+    },
+    {
+      "id": "ai-implementation-remediation-from-audit",
+      "type": "happy_path",
+      "input": "Implement remediation roadmap from an AI architecture audit.",
+      "expected_behavior": "Sequences phases by audit priority and preserves dependencies and DoD.",
+      "expected_checks": ["quality_criteria", "evidence_required", "phase_dod"]
+    },
+    {
+      "id": "ai-implementation-rag-genai",
+      "type": "happy_path",
+      "input": "Implement a RAG assistant with ingestion, chunking, vector DB, retrieval, generation, guardrails, and monitoring.",
+      "expected_behavior": "Includes GenAI-specific components and operational controls.",
+      "expected_checks": ["quality_criteria", "genai_controls", "rollback_monitoring"]
+    },
+    {
+      "id": "ai-implementation-no-architecture",
+      "type": "degradation",
+      "input": "Implement AI architecture, but no architecture decision or target system is provided.",
+      "expected_behavior": "Blocks or emits prerequisites instead of inventing architecture.",
+      "expected_checks": ["evidence_required", "missing_inputs_block"]
+    },
+    {
+      "id": "ai-implementation-false-positive-audit",
+      "type": "false_positive",
+      "input": "Audit an existing AI architecture for risks.",
+      "expected_behavior": "Does not activate as primary; route to ai-architecture-audit.",
+      "expected_checks": ["quality_criteria", "activation_boundary"]
+    },
+    {
+      "id": "ai-implementation-big-bang-invalid",
+      "type": "degradation",
+      "input": "Implement everything in one phase without rollback.",
+      "expected_behavior": "Rejects big-bang plan and requires phased delivery plus rollback.",
+      "expected_checks": ["deterministic_scripts", "phase_dod", "rollback_monitoring"]
+    },
+    {
+      "id": "ai-implementation-invalid-mode",
+      "type": "degradation",
+      "input": "Use mode urgent-now for the implementation packet.",
+      "expected_behavior": "Rejects mode outside greenfield, brownfield, remediation, migration.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria"]
+    },
+    {
+      "id": "ai-implementation-missing-technology-rationale",
+      "type": "edge_case",
+      "input": "Select MLflow, Feast, and Kubernetes without alternatives or rationale.",
+      "expected_behavior": "Blocks technology decision until alternatives and rationale are present.",
+      "expected_checks": ["deterministic_scripts", "technology_decisions"]
+    },
+    {
+      "id": "ai-implementation-missing-phase-dod",
+      "type": "edge_case",
+      "input": "Create phases without Definition of Done.",
+      "expected_behavior": "Rejects packet because each phase must include DoD.",
+      "expected_checks": ["deterministic_scripts", "phase_dod"]
+    },
+    {
+      "id": "ai-implementation-script-contract",
+      "type": "script_contract",
+      "input": "Validate AI Architecture Implementation JSON packet fixtures offline.",
+      "expected_behavior": "Accept valid full and remediation packets; reject missing evidence, invalid mode, missing phase, missing DoD, and missing rollback packets.",
+      "expected_checks": ["deterministic_scripts", "assets", "quality_criteria"]
+    }
+  ]
+}

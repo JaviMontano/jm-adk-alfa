@@ -1,10 +1,17 @@
-# Ai Architecture Implementation — DOCX Template
+# AI Architecture Implementation — DOCX Template
 
 ## Document Structure
-- Title: Ai Architecture Implementation — [Client/Project Name]
+- Title: AI Architecture Implementation — [Client/Project Name]
 - Author: JM Labs
 - Date: {{DATE}}
 
-## Sections (mirror SKILL.md structure)
-See canonical SKILL.md for section blueprints.
-Use brand-config.json tokens: Navy #122562 · Gold #FFD700 · Blue #137DC5
+## Sections
+- Summary and scope
+- Prerequisites and risks
+- F0-F5 phased plan
+- Technology decisions
+- CI/CD and rollback
+- Monitoring and runbooks
+- Validation evidence
+
+Use system fonts and offline tables only.

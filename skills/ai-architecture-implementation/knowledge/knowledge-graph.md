@@ -1,13 +1,18 @@
-# Ai Architecture Implementation — Knowledge Graph
+# AI Architecture Implementation Knowledge Graph
 
-## Core Concepts
-- ai-architecture-implementation: primary capability
-- validation-gate: quality control checkpoint
-- evidence-tagging: [EXPLICIT]/[INFERRED]/[OPEN] claims
+## Nodes
+- implementation-plan: phased production plan.
+- prerequisite: architecture, data, team, budget, environment, compliance input.
+- phase: F0-F5 implementation stage.
+- technology-decision: selected option, alternatives, rationale, ADR marker.
+- validation-gate: tests, quality gates, rollout gates.
+- rollback-control: canary, rollback, previous version, fallback.
+- observability: infrastructure, application, model, data, drift.
+- runbook: operational response procedure.
 
-## Dependencies
-- Upstream: input-analysis, context-optimization
-- Downstream: output-engineering, rendering-engine
-
-## Skill Relationships
-Part of the JM Labs canonical skill registry.
+## Edges
+- prerequisite -> implementation-plan
+- implementation-plan -> phase -> validation-gate
+- technology-decision -> phase
+- phase F4 -> rollback-control
+- phase F5 -> observability -> runbook
