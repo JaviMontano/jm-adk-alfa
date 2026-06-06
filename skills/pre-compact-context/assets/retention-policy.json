@@ -1,0 +1,23 @@
+{
+  "schema": 1,
+  "skill": "pre-compact-context",
+  "priorities": {
+    "P0": {
+      "meaning": "Preserve verbatim",
+      "examples": ["hard rules", "active objective", "branch or PR state", "blockers", "next action"]
+    },
+    "P1": {
+      "meaning": "Preserve precisely or summarize with exact references",
+      "examples": ["file paths", "commands", "decisions", "assumptions", "validation evidence"]
+    },
+    "P2": {
+      "meaning": "Compress aggressively",
+      "examples": ["background", "rationale", "non-current alternatives"]
+    },
+    "DROP": {
+      "meaning": "Safe to omit with reason",
+      "examples": ["duplicates", "stale plans", "disproven facts", "social filler"]
+    }
+  },
+  "unsafe_drop_terms": ["hard rule", "blocker", "validation failure", "branch", "PR", "CI", "next action", "secret"]
+}

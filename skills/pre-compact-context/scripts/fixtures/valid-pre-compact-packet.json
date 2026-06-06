@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "skill": "pre-compact-context",
+  "compaction_trigger": [
+    {
+      "description": "User requested preservation before compaction.",
+      "evidence_tag": "[CONFIG]"
+    }
+  ],
+  "preserve_verbatim": [
+    {
+      "priority": "P0",
+      "item": "Exactly one skill, one branch, one PR, one green merge at a time.",
+      "source": "User workflow",
+      "reason": "Active hard rule.",
+      "evidence_tag": "[CONFIG]"
+    },
+    {
+      "priority": "P1",
+      "item": "Run validate-skill-dod.py and validate-skill-scripts.py before PR.",
+      "source": "User workflow",
+      "reason": "Validation replay.",
+      "evidence_tag": "[CONFIG]"
+    }
+  ],
+  "compressed_summary": [
+    {
+      "description": "The active skill was hardened with deterministic assets, evals, examples, prompts, templates, knowledge, and scripts.",
+      "evidence_tag": "[CODE]"
+    }
+  ],
+  "discard_list": [
+    {
+      "description": "Repeated progress updates.",
+      "reason": "Final packet preserves current state.",
+      "evidence_tag": "[INFERENCE]"
+    }
+  ],
+  "open_questions": [
+    {
+      "description": "PR URL is unknown until the PR is created.",
+      "evidence_tag": "[OPEN]"
+    }
+  ],
+  "risks": [
+    {
+      "description": "Remote CI cannot be verified before PR creation.",
+      "evidence_tag": "[CONFIG]"
+    }
+  ],
+  "validation": [
+    {
+      "command": "bash skills/pre-compact-context/scripts/check.sh",
+      "status": "pass",
+      "evidence": "Valid fixtures passed and negative fixtures failed.",
+      "evidence_tag": "[CODE]"
+    }
+  ],
+  "rehydration_prompt": "Repo: /Users/deonto/Documents/workspace/jm-adk-alfa. Branch: codex/harden-pre-compact-context-dod-20260606. Objective: finish pre-compact-context hardening. Next action: rerun local validations and open PR if clean.",
+  "guardian_decision": {
+    "decision": "pass",
+    "rationale": "P0 context and rehydration prompt are complete.",
+    "evidence_tag": "[CODE]"
+  }
+}

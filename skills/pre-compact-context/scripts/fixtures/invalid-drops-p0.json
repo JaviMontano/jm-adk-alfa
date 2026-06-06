@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "skill": "pre-compact-context",
+  "compaction_trigger": [
+    {
+      "description": "User requested compaction.",
+      "evidence_tag": "[CONFIG]"
+    }
+  ],
+  "preserve_verbatim": [
+    {
+      "priority": "P1",
+      "item": "Some context remains.",
+      "source": "Synthetic source",
+      "reason": "Insufficient priority.",
+      "evidence_tag": "[CONFIG]"
+    }
+  ],
+  "compressed_summary": [],
+  "discard_list": [
+    {
+      "description": "Drop the active hard rule and branch state.",
+      "reason": "Save space.",
+      "evidence_tag": "[ASSUMPTION]"
+    }
+  ],
+  "open_questions": [],
+  "risks": [],
+  "validation": [],
+  "rehydration_prompt": "Repo: /tmp/example. Branch: demo. Objective: continue. Next action: inspect status.",
+  "guardian_decision": {
+    "decision": "pass",
+    "rationale": "Incorrectly passes after dropping P0 context.",
+    "evidence_tag": "[CONFIG]"
+  }
+}

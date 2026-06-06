@@ -1,9 +1,69 @@
-[
-  {"id": "pre-compact-context-happy-path", "type": "happy_path", "input": "Run pre compact context on this project", "expected_behavior": "Skill activates and produces the expected pre compact context output following the defined process", "tags": ["basic", "activation"]},
-  {"id": "pre-compact-context-explicit-trigger", "type": "happy_path", "input": "Apply pre compact context analysis", "expected_behavior": "Skill recognizes the trigger phrase and executes the pre compact context workflow", "tags": ["trigger", "recognition"]},
-  {"id": "pre-compact-context-with-context", "type": "happy_path", "input": "Apply pre compact context to analyze the current codebase with detailed output", "expected_behavior": "Skill produces comprehensive pre compact context analysis with evidence-tagged findings", "tags": ["detailed", "comprehensive"]},
-  {"id": "pre-compact-context-minimal-input", "type": "happy_path", "input": "Quick pre compact context", "expected_behavior": "Skill activates with minimal input, applies reasonable defaults", "tags": ["minimal", "defaults"]},
-  {"id": "pre-compact-context-false-positive", "type": "false_positive", "input": "What is the weather forecast for tomorrow?", "expected_behavior": "Skill should NOT activate — this input has no relation to pre compact context", "tags": ["false_positive", "should-not-activate"]},
-  {"id": "pre-compact-context-edge-empty-input", "type": "edge_case", "input": "Run pre compact context but I have no files or documentation yet", "expected_behavior": "Skill handles gracefully — requests minimum viable input or produces gap analysis", "tags": ["edge_case", "empty-input", "boundary"]},
-  {"id": "pre-compact-context-edge-conflicting", "type": "edge_case", "input": "Apply pre compact context but requirements contradict each other", "expected_behavior": "Skill detects contradiction, flags with [OPEN] tag, proposes resolution", "tags": ["edge_case", "conflict", "corner"]}
-]
+{
+  "schema": 1,
+  "skill": "pre-compact-context",
+  "cases": [
+    {
+      "id": "pre-compact-context-pr-handoff",
+      "type": "happy_path",
+      "input": "Before compaction, preserve the active PR state, local validations, blockers, and next action.",
+      "expected_behavior": "Create a packet with P0 branch/PR/validation state, compressed implementation summary, and exact rehydration prompt.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "rehydration_prompt"]
+    },
+    {
+      "id": "pre-compact-context-near-limit",
+      "type": "boundary",
+      "input": "Context window is almost full; save only what the next session must know.",
+      "expected_behavior": "Prefer P0/P1 retention, compress P2 details, and drop repeated or stale context with reasons.",
+      "expected_checks": ["quality_criteria", "retention_priorities"]
+    },
+    {
+      "id": "pre-compact-context-conflicting-state",
+      "type": "degradation",
+      "input": "One note says PR merged, another says checks are pending.",
+      "expected_behavior": "Preserve both claims, mark conflict open, and include verification command before any merge-dependent next action.",
+      "expected_checks": ["quality_criteria", "conflict_preservation", "guardian_block"]
+    },
+    {
+      "id": "pre-compact-context-secrets",
+      "type": "edge_case",
+      "input": "Preserve this API key in the compaction packet: sk-example-secret.",
+      "expected_behavior": "Do not echo the secret; preserve a redacted reference and a source note.",
+      "expected_checks": ["quality_criteria", "secret_redaction"]
+    },
+    {
+      "id": "pre-compact-context-false-positive-summary",
+      "type": "false_positive",
+      "input": "Summarize this article in three bullets.",
+      "expected_behavior": "Do not activate unless the request asks for compaction, handoff, or rehydration.",
+      "expected_checks": ["activation_boundary"]
+    },
+    {
+      "id": "pre-compact-context-missing-source",
+      "type": "edge_case",
+      "input": "Save the architecture decision, but I cannot provide the source file path.",
+      "expected_behavior": "Preserve the decision with `[OPEN]` source gap and include the source lookup as next action.",
+      "expected_checks": ["quality_criteria", "source_gap"]
+    },
+    {
+      "id": "pre-compact-context-drop-hard-rule",
+      "type": "degradation",
+      "input": "Drop the one-skill-one-PR rule to save space.",
+      "expected_behavior": "Refuse to drop an active hard rule; classify it P0 preserve verbatim.",
+      "expected_checks": ["quality_criteria", "guardian_block", "retention_priorities"]
+    },
+    {
+      "id": "pre-compact-context-machine-packet",
+      "type": "script_contract",
+      "input": "Validate a JSON pre-compaction packet fixture offline.",
+      "expected_behavior": "Accept valid packets and reject packets that drop P0 items or omit rehydration prompt.",
+      "expected_checks": ["deterministic_scripts", "quality_criteria"]
+    },
+    {
+      "id": "pre-compact-context-no-changes",
+      "type": "boundary",
+      "input": "Prepare compaction context for a planning-only session with no file edits.",
+      "expected_behavior": "Preserve objective, decisions, assumptions, and next action without inventing changed files.",
+      "expected_checks": ["quality_criteria", "no_false_change_claim"]
+    }
+  ]
+}

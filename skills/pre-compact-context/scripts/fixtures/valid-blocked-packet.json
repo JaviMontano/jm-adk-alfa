@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "skill": "pre-compact-context",
+  "compaction_trigger": [
+    {
+      "description": "Context compaction requested while validation is failing.",
+      "evidence_tag": "[CONFIG]"
+    }
+  ],
+  "preserve_verbatim": [
+    {
+      "priority": "P0",
+      "item": "A required validation failed and must be rerun.",
+      "source": "Local command output",
+      "reason": "Active blocker.",
+      "evidence_tag": "[CODE]"
+    }
+  ],
+  "compressed_summary": [],
+  "discard_list": [
+    {
+      "description": "Older implementation alternatives.",
+      "reason": "They are superseded by the current failing command.",
+      "evidence_tag": "[INFERENCE]"
+    }
+  ],
+  "open_questions": [
+    {
+      "description": "The failing command needs inspection.",
+      "evidence_tag": "[OPEN]"
+    }
+  ],
+  "risks": [
+    {
+      "description": "Compaction could hide the failing command if not preserved.",
+      "evidence_tag": "[CODE]"
+    }
+  ],
+  "validation": [
+    {
+      "command": "python3 -B scripts/validate-skill-dod.py --skill pre-compact-context",
+      "status": "fail",
+      "evidence": "Command exited with errors.",
+      "evidence_tag": "[CODE]"
+    }
+  ],
+  "rehydration_prompt": "Repo: /Users/deonto/Documents/workspace/jm-adk-alfa. Branch: codex/harden-pre-compact-context-dod-20260606. Objective: fix failed validation. Next action: inspect validate-skill-dod.py output.",
+  "guardian_decision": {
+    "decision": "block",
+    "rationale": "A required validation failed.",
+    "evidence_tag": "[CODE]"
+  }
+}

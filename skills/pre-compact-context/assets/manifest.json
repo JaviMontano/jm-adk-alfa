@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "skill": "pre-compact-context",
+  "assets": [
+    {
+      "path": "assets/retention-policy.json",
+      "type": "policy",
+      "purpose": "Defines P0, P1, P2, and DROP retention classes for pre-compaction decisions.",
+      "used_by": ["SKILL.md", "prompts/primary.md", "scripts/validate_pre_compact_packet.py"]
+    },
+    {
+      "path": "assets/output-contract.json",
+      "type": "schema",
+      "purpose": "Defines required packet sections, JSON keys, and guardian decisions.",
+      "used_by": ["SKILL.md", "templates/output.md", "scripts/validate_pre_compact_packet.py"]
+    },
+    {
+      "path": "assets/evidence-policy.json",
+      "type": "policy",
+      "purpose": "Defines evidence tags, source requirements, and secret redaction requirements.",
+      "used_by": ["SKILL.md", "templates/output.md", "scripts/validate_pre_compact_packet.py"]
+    },
+    {
+      "path": "assets/rehydration-checklist.json",
+      "type": "checklist",
+      "purpose": "Defines guardian checks for resume-ready rehydration prompts.",
+      "used_by": ["SKILL.md", "agents/guardian.md", "evals/evals.json"]
+    },
+    {
+      "path": "assets/compaction-risk-policy.json",
+      "type": "policy",
+      "purpose": "Defines context-loss risks and conditions that block compaction.",
+      "used_by": ["SKILL.md", "agents/support.md", "evals/evals.json"]
+    }
+  ]
+}

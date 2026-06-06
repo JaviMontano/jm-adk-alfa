@@ -1,75 +1,78 @@
 {
   "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-28",
   "skill": "pre-compact-context",
   "nodes": [
     {
       "id": "pre-compact-context",
       "type": "skill",
-      "label": "pre-compact-context"
+      "label": "Pre Compact Context"
     },
     {
-      "id": "pre-compact-context:inputs",
+      "id": "retention-map",
       "type": "contract",
-      "label": "Expected inputs"
+      "label": "Retention map"
     },
     {
-      "id": "pre-compact-context:outputs",
+      "id": "p0-context",
+      "type": "priority",
+      "label": "P0 context"
+    },
+    {
+      "id": "compressed-summary",
       "type": "contract",
-      "label": "Expected outputs"
+      "label": "Compressed summary"
     },
     {
-      "id": "pre-compact-context:quality",
-      "type": "gate",
-      "label": "Quality criteria"
+      "id": "discard-list",
+      "type": "contract",
+      "label": "Discard list"
     },
     {
-      "id": "pre-compact-context:ontology",
-      "type": "ontology",
-      "label": "Domain: general"
+      "id": "rehydration-prompt",
+      "type": "contract",
+      "label": "Rehydration prompt"
     },
     {
-      "id": "pre-compact-context:evidence",
-      "type": "gate",
-      "label": "Evidence / provenance requirements"
-    },
-    {
-      "id": "pre-compact-context:antipattern",
+      "id": "compaction-risk",
       "type": "risk",
-      "label": "Canonical anti-pattern to avoid"
+      "label": "Compaction risk"
     }
   ],
   "edges": [
     {
       "from": "pre-compact-context",
-      "to": "pre-compact-context:inputs",
-      "type": "requires"
-    },
-    {
-      "from": "pre-compact-context",
-      "to": "pre-compact-context:outputs",
+      "to": "retention-map",
       "type": "produces"
     },
     {
-      "from": "pre-compact-context",
-      "to": "pre-compact-context:quality",
-      "type": "validated_by"
+      "from": "retention-map",
+      "to": "p0-context",
+      "type": "contains"
     },
     {
-      "from": "pre-compact-context",
-      "to": "pre-compact-context:ontology",
-      "type": "classified_as"
+      "from": "retention-map",
+      "to": "compressed-summary",
+      "type": "contains"
     },
     {
-      "from": "pre-compact-context",
-      "to": "pre-compact-context:evidence",
-      "type": "validated_by"
+      "from": "retention-map",
+      "to": "discard-list",
+      "type": "contains"
     },
     {
-      "from": "pre-compact-context",
-      "to": "pre-compact-context:antipattern",
-      "type": "guards_against"
+      "from": "rehydration-prompt",
+      "to": "p0-context",
+      "type": "depends_on"
+    },
+    {
+      "from": "rehydration-prompt",
+      "to": "compaction-risk",
+      "type": "mentions"
+    },
+    {
+      "from": "discard-list",
+      "to": "p0-context",
+      "type": "must_not_contain"
     }
   ]
 }

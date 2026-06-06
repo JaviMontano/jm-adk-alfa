@@ -1,0 +1,32 @@
+{
+  "schema": 1,
+  "skill": "pre-compact-context",
+  "risks": [
+    {
+      "id": "lost-hard-rule",
+      "description": "A hard operating rule is omitted or compressed ambiguously.",
+      "mitigation": "Classify as P0 and preserve verbatim."
+    },
+    {
+      "id": "lost-validation-state",
+      "description": "A failed, pending, or skipped validation disappears from the handoff.",
+      "mitigation": "Preserve command and status in Validation Evidence."
+    },
+    {
+      "id": "lost-next-action",
+      "description": "The next session cannot tell what to do first.",
+      "mitigation": "Include a concrete next action in Rehydration Prompt."
+    },
+    {
+      "id": "secret-exposure",
+      "description": "A secret is copied verbatim into the packet.",
+      "mitigation": "Redact the secret and preserve only source guidance."
+    }
+  ],
+  "block_when": [
+    "P0 item has no source or evidence tag",
+    "DROP contains unsafe active context",
+    "rehydration prompt lacks repo, branch, objective, or next action",
+    "secret appears verbatim"
+  ]
+}

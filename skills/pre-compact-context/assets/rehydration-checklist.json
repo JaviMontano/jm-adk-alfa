@@ -1,0 +1,31 @@
+{
+  "schema": 1,
+  "skill": "pre-compact-context",
+  "checks": [
+    {
+      "id": "p0-source-coverage",
+      "question": "Does every P0 item include source, reason, and evidence tag?",
+      "blocks_if_false": true
+    },
+    {
+      "id": "unsafe-drop-free",
+      "question": "Is the DROP list free of hard rules, blockers, validation failures, branch/PR state, and next action?",
+      "blocks_if_false": true
+    },
+    {
+      "id": "rehydration-actionable",
+      "question": "Does the rehydration prompt include repo, branch, objective, and next action?",
+      "blocks_if_false": true
+    },
+    {
+      "id": "open-questions-visible",
+      "question": "Are source gaps and conflicts visible?",
+      "blocks_if_false": true
+    },
+    {
+      "id": "secrets-redacted",
+      "question": "Are secrets redacted instead of copied?",
+      "blocks_if_false": true
+    }
+  ]
+}

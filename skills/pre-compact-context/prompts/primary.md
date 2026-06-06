@@ -1,44 +1,46 @@
 ---
 name: pre-compact-context-primary
 type: execution
-version: 2.0.0
-description: "Execute the Pre Compact Context workflow with triad orchestration."
+version: 2.1.0
+description: "Execute deterministic Pre Compact Context with triad validation."
 triad:
   lead: "pre-compact-context-lead"
   support: "pre-compact-context-support"
   guardian: "pre-compact-context-guardian"
 ---
 
-# Pre Compact Context — Execute
+# Pre Compact Context - Execute
 
 ## Dynamic Parameters
 
 | Parameter | Description | Required | Filled By |
-|-----------|-------------|----------|-----------|
-| `{{task}}` | What to accomplish | Yes | User input |
-| `{{context}}` | Background and constraints | Yes | User or codebase |
-| `{{constraints}}` | Additional rules | No | Guardrails JSON |
-| `{{depth}}` | quick / standard / deep | No | Auto |
-| `{{output_format}}` | html / docx / xlsx / md | No | Auto |
+|---|---|---|---|
+| `{{objective}}` | Active goal to preserve | Yes | User input |
+| `{{scope}}` | Repo, branch, files, PR, or task boundary | Yes | Local inspection |
+| `{{context_sources}}` | Files, commands, docs, and state read before compaction | Yes | Local inspection |
+| `{{token_pressure}}` | low / medium / high / critical | No | User or runtime |
+| `{{output_format}}` | `markdown` or `json` | No | Default `markdown` |
 
 ## Execution
 
-1. **Load knowledge**: Read `knowledge/body-of-knowledge.md`
-2. **Check guardrails**: Read `references/guardrails/*.json`
-3. **Lead** (`pre-compact-context-lead`): Execute SKILL.md Steps 1-4 for `{{task}}`
-   - Discover → Analyze → Execute → Validate
-   - Apply evidence tags on all claims
-4. **Support** (`pre-compact-context-support`): Review for cross-cutting concerns
-   - Edge cases, security, accessibility, performance
-5. **Guardian** (`pre-compact-context-guardian`): Validate
-   - Evidence tags complete
-   - Quality gate met
-   - Constitution XIII + XIV respected
-   - Output exceeds expectations
+1. Read `assets/retention-policy.json` and `assets/output-contract.json`.
+2. Inventory current objective, hard rules, git state, changed files, command
+   evidence, PR/CI state, decisions, assumptions, blockers, and next action.
+3. Classify each item as P0, P1, P2, or DROP.
+4. Lead produces the fixed packet sections.
+5. Support checks for context loss, false compression, and secret exposure.
+6. Guardian approves only when P0 items and rehydration prompt are complete.
 
 ## Output
 
-- Primary deliverable for `{{task}}` in `{{output_format}}`
-- Evidence tags on every claim
-- Recommendations beyond the ask
-- Confidence score (>= 0.95)
+Return:
+
+- Compaction Trigger
+- Preserve Verbatim
+- Compressed Summary
+- Discard List
+- Open Questions
+- Risks And Blockers
+- Validation Evidence
+- Rehydration Prompt
+- Guardian Decision
