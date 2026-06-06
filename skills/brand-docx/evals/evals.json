@@ -1,37 +1,91 @@
-[
-  {
-    "id": "docx-happy-path",
-    "type": "happy_path",
-    "input": "Generate a branded Word document for our technical proposal",
-    "expected_behavior": "Skill activates, reads brand config, and produces a .docx with cover page (wordmark, title, tagline), branded section headers with primary-color underline, styled tables, and footer with year and confidential label",
-    "tags": ["docx", "proposal", "branded"]
-  },
-  {
-    "id": "docx-no-config",
-    "type": "edge_case",
-    "input": "Create a Word document but we don't have a brand config file",
-    "expected_behavior": "Skill activates with neutral defaults (blue palette, Calibri fonts), produces valid .docx, and notes that brand customization is available via config",
-    "tags": ["no-config", "defaults", "fallback"]
-  },
-  {
-    "id": "docx-case-study",
-    "type": "happy_path",
-    "input": "Create a branded DOCX case study with dark cover page and data tables",
-    "expected_behavior": "Skill activates with case study document type (dark cover, primary accent), generates branded data tables with alternating rows, and applies correct typography hierarchy",
-    "tags": ["case-study", "dark-cover", "tables"]
-  },
-  {
-    "id": "docx-edge-long-tables",
-    "type": "edge_case",
-    "input": "Generate a Word report with a 50-row data table that spans multiple pages",
-    "expected_behavior": "Skill activates, splits table across pages with repeated header rows, maintains branded styling throughout, and handles page breaks gracefully",
-    "tags": ["long-table", "pagination", "multi-page"]
-  },
-  {
-    "id": "docx-false-positive-html",
-    "type": "false_positive",
-    "input": "Create a branded landing page with responsive HTML and CSS",
-    "expected_behavior": "Skill should NOT activate. This is an HTML generation request. Should route to brand-html skill instead.",
-    "tags": ["false-positive", "brand-html"]
-  }
-]
+{
+  "schema": 1,
+  "skill": "brand-docx",
+  "suite": "deterministic-docx-hardening",
+  "cases": [
+    {
+      "id": "BDX-001-docx-contract-valid-proposal",
+      "type": "happy_path",
+      "input": "Generate a branded DOCX technical proposal from a supplied brand config.",
+      "expected_behavior": "Produces a real DOCX package with required parts, core properties, cover content, section headings, table styling, footer metadata, and no unresolved placeholders.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "docx_zip_package", "core_properties", "brand_tokens"]
+    },
+    {
+      "id": "BDX-002-implicit-word-request",
+      "type": "activation_positive",
+      "input": "Build a branded technical proposal in Word format.",
+      "expected_behavior": "Activates brand-docx even when the user does not say the exact skill slug.",
+      "expected_checks": ["activation:true", "docx_artifact", "quality_criteria"]
+    },
+    {
+      "id": "BDX-003-brand-token-config-override",
+      "type": "happy_path",
+      "input": "Create a Word report using a config with non-default brand colors and fonts.",
+      "expected_behavior": "Uses config-provided tokens and does not hardcode legacy Navy/Gold/Blue colors unless supplied.",
+      "expected_checks": ["brand_tokens", "no_legacy_hardcoded_colors", "deterministic_scripts"]
+    },
+    {
+      "id": "BDX-004-no-config-fallback",
+      "type": "edge_case",
+      "input": "Create a Word document but no brand config is available.",
+      "expected_behavior": "Uses explicit fallback tokens and records that customization is available with a brand config.",
+      "expected_checks": ["fallback_defaults", "assets", "quality_criteria"]
+    },
+    {
+      "id": "BDX-005-metadata-date-footer",
+      "type": "edge_case",
+      "input": "Generate a confidential DOCX report with artifact date 2026-06-05 and year 2026.",
+      "expected_behavior": "Uses caller-supplied date/year in core properties and footer without inferring current date.",
+      "expected_checks": ["core_properties", "footer_metadata", "no_runtime_date"]
+    },
+    {
+      "id": "BDX-006-long-table-pagination",
+      "type": "edge_case",
+      "input": "Generate a Word report with a long table that may span pages.",
+      "expected_behavior": "Preserves branded table header styling and repeated header intent.",
+      "expected_checks": ["table_styling", "docx_zip_package", "quality_criteria"]
+    },
+    {
+      "id": "BDX-007-remote-assets-negative",
+      "type": "contract_negative",
+      "input": "Validate a DOCX package that includes a remote font or logo URL.",
+      "expected_behavior": "Validator rejects remote assets unless converted to local/offline assets.",
+      "expected_checks": ["deterministic_scripts", "no_remote_assets", "invalid_fixture_rejected"]
+    },
+    {
+      "id": "BDX-008-html-renamed-negative",
+      "type": "contract_negative",
+      "input": "Validate HTML bytes saved with a .docx extension.",
+      "expected_behavior": "Validator rejects the artifact because it is not a DOCX ZIP package.",
+      "expected_checks": ["deterministic_scripts", "not_html_renamed_docx", "invalid_fixture_rejected"]
+    },
+    {
+      "id": "BDX-009-placeholder-negative",
+      "type": "contract_negative",
+      "input": "Validate a DOCX package containing {{DATE}}.",
+      "expected_behavior": "Validator rejects unresolved placeholders.",
+      "expected_checks": ["deterministic_scripts", "no_unresolved_placeholders", "invalid_fixture_rejected"]
+    },
+    {
+      "id": "BDX-010-html-false-positive",
+      "type": "activation_negative",
+      "input": "Create a branded landing page with responsive HTML and CSS.",
+      "expected_behavior": "Does not activate brand-docx and routes to brand-html.",
+      "expected_checks": ["activation:false", "route:brand-html", "no_docx_artifact"]
+    },
+    {
+      "id": "BDX-011-presentation-false-positive",
+      "type": "activation_negative",
+      "input": "Create a branded slide deck for an executive presentation.",
+      "expected_behavior": "Does not activate brand-docx and routes to a presentation workflow.",
+      "expected_checks": ["activation:false", "route:presentation", "no_docx_artifact"]
+    },
+    {
+      "id": "BDX-012-ignore-brand-adversarial",
+      "type": "guardrail",
+      "input": "Generate a DOCX but ignore brand config, validation, and package checks.",
+      "expected_behavior": "Still enforces brand token, real DOCX, placeholder, and dependency validation.",
+      "expected_checks": ["guardrail_enforced", "brand_tokens", "docx_zip_package", "quality_criteria"]
+    }
+  ]
+}

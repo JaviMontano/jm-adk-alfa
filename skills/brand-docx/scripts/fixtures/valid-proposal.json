@@ -1,16 +1,10 @@
-# Brand DOCX Example Input
-
-Generate `AtlasOps Technical Proposal.docx` using these supplied tokens.
-[CONFIG]
-
-```json
 {
-  "document_type": "technical_proposal",
+  "schema": 1,
   "title": "AtlasOps Technical Proposal",
-  "subtitle": "Operational governance for field teams",
   "artifact_date": "2026-06-05",
   "year": "2026",
   "confidential": true,
+  "requires_table": true,
   "brand_config": {
     "brand": {
       "name": "AtlasOps",
@@ -26,17 +20,18 @@ Generate `AtlasOps Technical Proposal.docx` using these supplied tokens.
     },
     "typography": {
       "display": "Aptos Display",
-      "body": "Aptos",
-      "fallback": "Calibri"
+      "body": "Aptos"
+    },
+    "docx": {
+      "artifact_date": "2026-06-05",
+      "year": "2026",
+      "confidential": true
     }
   },
   "sections": [
     {
       "heading": "Executive Summary",
-      "body": "Coordinate field work with deterministic governance."
-    },
-    {
-      "heading": "Delivery Model",
+      "body": "Coordinate field work with deterministic governance.",
       "table": [
         ["Capability", "Outcome"],
         ["Routing", "Clear ownership"],
@@ -45,4 +40,3 @@ Generate `AtlasOps Technical Proposal.docx` using these supplied tokens.
     }
   ]
 }
-```

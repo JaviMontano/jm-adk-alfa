@@ -1,289 +1,147 @@
 ---
 name: brand-docx
-version: 1.0.0
-description:  [EXPLICIT]
-  This skill should be used when the user asks to "generate a Word document", [EXPLICIT]
-  "create a branded DOCX", "build a proposal in Word format", [EXPLICIT]
-  "make a brand-compliant report", or "produce a cover page", [EXPLICIT]
-  or mentions python-docx, Word templates, or DOCX generation. [EXPLICIT]
-  It generates brand-compliant Word documents using python-docx with configurable [EXPLICIT]
-  brand tokens for colors, fonts, cover pages, headers, callouts, tables, and footers. [EXPLICIT]
-  Use this skill whenever the user needs a .docx file with branded styling, [EXPLICIT]
-  even if they don't explicitly ask for "brand DOCX". [EXPLICIT]
-argument-hint: "document-type title [brand-config-path]" [EXPLICIT]
-model: opus [EXPLICIT]
-context: fork [EXPLICIT]
+version: 1.1.0
+description: >
+  Generate deterministic, brand-token-compliant Microsoft Word DOCX artifacts
+  from supplied brand configuration or explicit fallback defaults. Use when the
+  user asks for a Word document, DOCX, branded proposal, branded report, cover
+  page, or python-docx output. The skill enforces real DOCX package structure,
+  core properties, brand tokens, table/header/footer styling, no remote assets,
+  no unresolved placeholders, and offline validator fixtures. [EXPLICIT]
+argument-hint: "document-type title [brand-config-path]"
+model: opus
+context: fork
 allowed-tools:
   - Read
   - Grep
   - Glob
   - Write
-  - Edit
   - Bash
 ---
-# Brand DOCX — Word Document Generator [EXPLICIT]
- [EXPLICIT]
-Generate brand-compliant Word documents (.docx) using python-docx. Reads brand tokens from config and applies colors, typography, layout patterns, and structural elements. [EXPLICIT]
- [EXPLICIT]
-## Prerequisites [EXPLICIT]
- [EXPLICIT]
-- python-docx installed (`pip install python-docx`) [EXPLICIT]
-- Brand config file (optional; uses neutral defaults without one) [EXPLICIT]
- [EXPLICIT]
-## Brand Configuration [EXPLICIT]
- [EXPLICIT]
-Search for config: [EXPLICIT]
-1. Path passed as argument [EXPLICIT]
-2. `./brand-config.json` [EXPLICIT]
-3. `~/.claude/brand-config.json` [EXPLICIT]
- [EXPLICIT]
-### Config Fields Used [EXPLICIT]
- [EXPLICIT]
-```json [EXPLICIT]
-{ [EXPLICIT]
-  "brand": { "name": "", "wordmark": "", "wordmarkAccent": "", "tagline": "", "positioning": "" }, [EXPLICIT]
-  "colors": { "primary": "#FF7E08", "black": "#000000", "white": "#FFFFFF", "background": "#EFEAE4", "muted": "#B8A894" }, [EXPLICIT]
-  "decorative": ["#42D36F", "#06C8C8", "#9747FF", "#FE9CAB"], [EXPLICIT]
-  "typography": { "display": "Clash Grotesk", "displayFallback": "Calibri", "body": "Inter", "bodyFallback": "Calibri" }, [EXPLICIT]
-  "docx": { "year": "2026", "confidential": true } [EXPLICIT]
-} [EXPLICIT]
-``` [EXPLICIT]
- [EXPLICIT]
-## Color Palette (python-docx) [EXPLICIT]
- [EXPLICIT]
-```python [EXPLICIT]
-from docx.shared import RGBColor [EXPLICIT]
- [EXPLICIT]
-def load_brand_colors(config): [EXPLICIT]
-    """Load colors from brand config, with defaults."""
-    c = config.get("colors", {})
-    return {
-        "primary":    RGBColor.from_string(c.get("primary", "2563EB").lstrip("#")),
-        "black":      RGBColor.from_string(c.get("black", "000000").lstrip("#")),
-        "white":      RGBColor.from_string(c.get("white", "FFFFFF").lstrip("#")),
-        "background": RGBColor.from_string(c.get("background", "F8FAFC").lstrip("#")),
-        "muted":      RGBColor.from_string(c.get("muted", "94A3B8").lstrip("#")),
-    }
+
+# Brand DOCX / Word Document Generation
+
+## Purpose
+
+Generate `.docx` artifacts that are deterministic, brand-token-compliant, and
+validated as real Word packages. The skill may write the requested DOCX
+artifact, but validation must stay offline and must pass the local contract
+before delivery. [CONFIG]
+
+## Deterministic Resources
+
+- `assets/manifest.json` declares all deterministic assets. [CÓDIGO]
+- `assets/activation-policy.json` defines activation, routing, and false
+  positives. [CÓDIGO]
+- `assets/brand-docx-contract.json` defines required DOCX package parts,
+  metadata, dependency boundaries, token rules, and validator checks. [CÓDIGO]
+- `assets/fallback-brand-config.json` defines explicit fallback tokens when no
+  brand config is supplied. [CÓDIGO]
+- `assets/style-token-map.json` maps brand tokens to Word styles. [CÓDIGO]
+- `assets/evidence-policy.json` defines evidence tags and report requirements.
+  [CÓDIGO]
+- `scripts/check.sh` validates valid and invalid DOCX fixtures offline.
+  [CÓDIGO]
+
+## When To Activate
+
+Activate when the user asks for a Word document, `.docx`, branded proposal,
+branded report, branded memo, cover page, python-docx generation, or a file
+intended to open in Microsoft Word. [CONFIG]
+
+Do not activate for HTML pages, XLSX spreadsheets, PDFs, slide decks, image
+assets, or token extraction-only tasks. Route those requests to the appropriate
+document or brand skill. [CONFIG]
+
+## Inputs
+
+- Document type: proposal, report, memo, case study, brief, or cover page.
+- Title, subtitle, section outline, tables, and footer requirements.
+- Brand config path or inline brand tokens.
+- Optional language and page size.
+- Optional caller-supplied `artifact_date` and `year`; do not infer current
+  date/time.
+- Optional confidentiality flag.
+
+## Brand Configuration
+
+Search order:
+
+1. Path passed as argument.
+2. `./brand-config.json` in the working directory.
+3. `references/brand/design-tokens.json` when the current repo brand applies.
+4. `assets/fallback-brand-config.json` when no brand config exists.
+
+Never read hidden user-level brand files for this skill. [CONFIG]
+
+Required token groups:
+
+```json
+{
+  "brand": { "name": "", "wordmark": "", "tagline": "" },
+  "colors": { "primary": "", "black": "", "white": "", "background": "", "muted": "" },
+  "typography": { "display": "", "body": "", "fallback": "" },
+  "docx": { "artifact_date": "", "year": "", "confidential": false }
+}
 ```
 
-## Typography
+## Output Contract
 
-Brand display font with system fallback: [EXPLICIT]
+Return exactly one of these outputs:
 
-```python
-from docx.shared import Pt
+- A saved `.docx` artifact path plus validation evidence.
+- A plan for generating the `.docx` when the user asks for instructions only.
 
-def get_fonts(config):
-    t = config.get("typography", {})
-    return {
-        "display": t.get("display", "Calibri"),
-        "displayFallback": t.get("displayFallback", "Calibri"),
-        "body": t.get("body", "Calibri"),
-        "bodyFallback": t.get("bodyFallback", "Calibri"),
-    }
+The delivered `.docx` must include:
 
-def style_heading(run, fonts, colors, level=1):
-    sizes = {1: 32, 2: 24, 3: 18, 4: 14}
-    run.font.name = fonts["display"]
-    run.font.size = Pt(sizes.get(level, 16))
-    run.font.bold = True
-    run.font.color.rgb = colors["black"]
+- Real DOCX ZIP package structure, not HTML renamed as `.docx`.
+- `[Content_Types].xml`, `_rels/.rels`, `docProps/core.xml`,
+  `word/document.xml`, and `word/styles.xml`.
+- Core properties with title, creator, and caller-supplied artifact date.
+- Cover or opening section with wordmark, title, tagline, and document type.
+- Section headings styled from brand display font and primary underline.
+- Body text styled from brand body font and black/muted tokens.
+- Tables with primary header fill and white header text when tables exist.
+- Footer metadata with caller-supplied year and confidentiality label when
+  requested.
+- No unresolved `{{PLACEHOLDER}}` tokens.
+- No remote fonts, remote logos, remote images, base64 images, external scripts,
+  runtime current-date calls, or random values.
 
-def style_body(run, fonts, colors):
-    run.font.name = fonts["body"]
-    run.font.size = Pt(10)
-    run.font.color.rgb = colors["black"]
+## Token Rules
 
-def style_label(run, fonts, colors):
-    run.font.name = fonts["body"]
-    run.font.size = Pt(8)
-    run.font.color.rgb = colors["primary"]
-    run.font.bold = True
-```
-
-## Page Setup
-
-```python
-from docx.shared import Inches, Cm
-
-def setup_page(doc):
-    section = doc.sections[0]
-    section.page_width = Inches(8.27)   # A4
-    section.page_height = Inches(11.69)
-    section.top_margin = Cm(2.5)
-    section.bottom_margin = Cm(2.5)
-    section.left_margin = Cm(2.8)
-    section.right_margin = Cm(2.8)
-```
-
-## Document Components
-
-### Cover Page
-```python
-def add_cover(doc, title, subtitle="", doc_type="", config={}):
-    fonts = get_fonts(config)
-    colors = load_brand_colors(config)
-    brand = config.get("brand", {})
-
-    # Wordmark
-    logo_p = doc.add_paragraph()
-    logo_run = logo_p.add_run(brand.get("wordmark", brand.get("name", "")))
-    logo_run.font.name = fonts["display"]
-    logo_run.font.size = Pt(20)
-    logo_run.font.bold = True
-    logo_run.font.color.rgb = colors["black"]
-    if brand.get("wordmarkAccent"):
-        accent = logo_p.add_run(brand["wordmarkAccent"])
-        accent.font.name = fonts["display"]
-        accent.font.size = Pt(20)
-        accent.font.bold = True
-        accent.font.color.rgb = colors["primary"]
-
-    doc.add_paragraph()  # spacing
-
-    if doc_type:
-        lp = doc.add_paragraph()
-        lr = lp.add_run(doc_type.upper())
-        style_label(lr, fonts, colors)
-
-    tp = doc.add_paragraph()
-    tr = tp.add_run(title)
-    style_heading(tr, fonts, colors, level=1)
-
-    if subtitle:
-        sp = doc.add_paragraph()
-        sr = sp.add_run(subtitle)
-        sr.font.name = fonts["body"]
-        sr.font.size = Pt(14)
-        sr.font.color.rgb = colors["muted"]
-
-    # Tagline
-    if brand.get("tagline"):
-        doc.add_paragraph()
-        tag_p = doc.add_paragraph()
-        tag_r = tag_p.add_run(brand["tagline"])
-        tag_r.font.name = fonts["display"]
-        tag_r.font.size = Pt(14)
-        tag_r.font.bold = True
-        tag_r.font.color.rgb = colors["primary"]
-
-    doc.add_page_break()
-```
-
-### Section Header (with primary-color underline)
-```python
-def add_section_header(doc, title, label="", config={}):
-    fonts = get_fonts(config)
-    colors = load_brand_colors(config)
-    primary_hex = config.get("colors", {}).get("primary", "2563EB").lstrip("#")
-
-    if label:
-        lp = doc.add_paragraph()
-        lr = lp.add_run(label)
-        style_label(lr, fonts, colors)
-
-    h = doc.add_paragraph()
-    hr = h.add_run(title)
-    style_heading(hr, fonts, colors, level=2)
-
-    # Primary-color underline via bottom border
-    from docx.oxml.ns import qn
-    from docx.oxml import OxmlElement
-    pPr = h._p.get_or_add_pPr()
-    pBdr = OxmlElement('w:pBdr')
-    bottom = OxmlElement('w:bottom')
-    bottom.set(qn('w:val'), 'single')
-    bottom.set(qn('w:sz'), '6')
-    bottom.set(qn('w:space'), '4')
-    bottom.set(qn('w:color'), primary_hex)
-    pBdr.append(bottom)
-    pPr.append(pBdr)
-```
-
-### Callout Box
-```python
-def add_callout(doc, text, variant="primary", config={}):
-    colors_map = {
-        "primary": (config.get("colors",{}).get("primary","2563EB").lstrip("#"), "000000"),
-        "dark":    ("000000", "FFFFFF"),
-        "light":   (config.get("colors",{}).get("background","F8FAFC").lstrip("#"), "000000"),
-    }
-    bg, fg = colors_map.get(variant, colors_map["primary"])
-    # Implementation: 1-cell table with background fill
-    # (same pattern as original, using bg/fg from config)
-```
-
-### Data Table
-```python
-def add_data_table(doc, headers, rows, config={}):
-    """Table with primary-color header row, alternating row backgrounds."""
-    colors = config.get("colors", {})
-    primary = colors.get("primary", "2563EB").lstrip("#")
-    bg_alt = colors.get("background", "F8FAFC").lstrip("#")
-    # Header: primary bg, white text
-    # Data: alternating white / background color
-```
-
-### Header & Footer
-```python
-def add_header_footer(doc, title="", config={}):
-    brand = config.get("brand", {})
-    docx_cfg = config.get("docx", {})
-    year = docx_cfg.get("year", "2026")
-    # Header: wordmark left, doc title right
-    # Footer: confidential label + year + page number
-```
-
-## Document Types
-
-| Type | Cover | Accent | Header Style |
-|------|-------|--------|-------------|
-| Proposal | Background color | Primary | Display H1 |
-| Technical report | White | Primary | Display H1 |
-| Case study | Dark | Primary | White headline |
-| Internal memo | White | Primary left border | Compact |
-| Event materials | Decorative color | Primary/White | Bold display |
-
-## Writing Tone
-
-- Direct: lead with key message
-- Confident but humble
-- Action-oriented: active verbs
-- Human-centered: connect to human impact
-- Integrate tagline in section closings
-
-## Assumptions & Limits
-
-- Brand display font may not be installed on all systems; fallback font always specified
-- python-docx does not support all Word features (e.g., advanced shapes, SmartArt)
-- Colors are applied via XML manipulation for backgrounds; some features require OxmlElement
-- A4 default; Letter available by changing page dimensions
-
-## Edge Cases
-
-- **Font not installed:** Fallback to Calibri/Arial automatically
-- **Long tables (> 20 rows):** Split across pages; repeat header row
-- **Multi-language:** Set paragraph language attribute for spell-check
-- **Landscape sections:** Add new section with `WD_ORIENT.LANDSCAPE`
+- Use supplied brand tokens or explicit fallback tokens only.
+- Do not hardcode legacy palettes such as `#122562`, `#FFD700`, or `#137DC5`
+  unless they are explicitly supplied in the active brand config. [CONFIG]
+- Fallback defaults are `#2563EB`, `#0F172A`, `#FFFFFF`, `#F8FAFC`,
+  `#475569`, `Aptos Display`, and `Aptos`.
+- Preserve tokens in generated styles so validation can trace them.
 
 ## Validation Gate
 
-- [ ] Brand config loaded (or defaults applied)
-- [ ] All colors from config (no hardcoded values)
-- [ ] Typography uses configured fonts with fallbacks
-- [ ] Cover page has wordmark, title, tagline
-- [ ] Section headers have primary-color underline
-- [ ] Tables have branded header row
-- [ ] Header shows wordmark; footer shows year + confidential
-- [ ] Page margins are generous (brand breathing room)
+- [ ] Brand config or fallback tokens are explicitly declared.
+- [ ] Output is a real `.docx` package, not HTML or Markdown.
+- [ ] Required DOCX ZIP parts exist.
+- [ ] Core properties include caller-supplied title/date.
+- [ ] Brand colors and fonts are present in document XML/styles.
+- [ ] Tables, if present, use deterministic branded header styling.
+- [ ] Footer metadata includes caller-supplied year and confidentiality state.
+- [ ] No unresolved placeholders.
+- [ ] No remote assets, base64 images, runtime dates, or randomness.
+- [ ] `bash skills/brand-docx/scripts/check.sh` passes.
 
----
-**Author:** Javier Montano | **Last updated:** March 18, 2026
+## Assumptions And Limits
+
+- This skill creates DOCX/Word artifacts only; it does not build HTML pages,
+  XLSX spreadsheets, PDFs, or slide decks. [CONFIG]
+- `python-docx` is a suitable implementation path when available, but the
+  validation gate uses the Python standard library so CI remains deterministic.
+  [CONFIG]
+- Word rendering can vary by installed fonts; fallback fonts must be specified.
+  [INFERENCIA]
 
 ## Usage
 
-Example invocations: [EXPLICIT]
-
-- "/brand-docx" — Run the full brand docx workflow
-- "brand docx on this project" — Apply to current context
-
+- `/brand-docx proposal "AtlasOps Technical Proposal" ./brand-config.json`
+- `Generate a branded DOCX report with a cover page and KPI table`
+- `Use python-docx to create a Word proposal using these brand tokens`

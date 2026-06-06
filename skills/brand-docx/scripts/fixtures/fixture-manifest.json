@@ -1,0 +1,41 @@
+{
+  "schema": 1,
+  "skill": "brand-docx",
+  "fixtures": [
+    {
+      "path": "scripts/fixtures/valid-proposal.json",
+      "expect": "pass",
+      "purpose": "Valid branded DOCX proposal package with configured tokens, metadata, footer, and table."
+    },
+    {
+      "path": "scripts/fixtures/valid-fallback.json",
+      "expect": "pass",
+      "purpose": "Valid DOCX package using explicit fallback tokens when no brand config is supplied."
+    },
+    {
+      "path": "scripts/fixtures/valid-long-table.json",
+      "expect": "pass",
+      "purpose": "Valid DOCX package with a long table and repeated header marker."
+    },
+    {
+      "path": "scripts/fixtures/invalid-html-renamed.json",
+      "expect": "fail",
+      "purpose": "Rejects HTML bytes renamed as a DOCX artifact."
+    },
+    {
+      "path": "scripts/fixtures/invalid-remote-assets.json",
+      "expect": "fail",
+      "purpose": "Rejects remote font or logo URLs inside the DOCX package."
+    },
+    {
+      "path": "scripts/fixtures/invalid-unresolved-placeholder.json",
+      "expect": "fail",
+      "purpose": "Rejects unresolved template placeholders."
+    },
+    {
+      "path": "scripts/fixtures/invalid-hardcoded-token.json",
+      "expect": "fail",
+      "purpose": "Rejects legacy hardcoded colors when config supplies different tokens."
+    }
+  ]
+}

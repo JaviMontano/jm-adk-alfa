@@ -1,17 +1,26 @@
 ---
 name: brand-docx-meta
-type: meta
-version: 2.0.0
-description: "Meta-prompt for Brand Docx skill routing."
+type: self-improvement
+version: 2.1.0
+description: "Evaluate and improve deterministic Brand DOCX."
 ---
 
-# Brand Docx — Meta Prompt
+# Brand DOCX - Self-Improvement
 
-Activate this skill when the user request matches:
-- Trigger phrases from SKILL.md description
-- Direct invocation: `/brand-docx`
+## Evaluate
 
-## Skill Routing
-1. Load SKILL.md → read `## When to Activate` section
-2. If match → activate lead agent: `brand-docx-lead`
-3. If orchestrated → defer to orchestrating skill
+1. Do evals cover real DOCX packages, fallback config, token override, metadata,
+   long tables, invalid remote assets, HTML renamed as DOCX, placeholders, and
+   false positives?
+2. Do templates avoid remote dependencies, hidden user files, implicit current
+   dates, and hardcoded legacy colors?
+3. Does the validator reject non-DOCX output, unresolved placeholders, remote
+   URLs, and legacy hardcoded colors?
+4. Does the ledger review doc include command evidence before `dod-complete`?
+
+## Improve
+
+1. Update assets before prompts/templates.
+2. Add or adjust fixtures before validator changes.
+3. Re-run `bash skills/brand-docx/scripts/check.sh`.
+4. Re-run per-skill DoD before ledger changes.

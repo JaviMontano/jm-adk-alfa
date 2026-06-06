@@ -1,0 +1,14 @@
+{
+  "schema": 1,
+  "title": "Placeholder Report",
+  "artifact_date": "2026-06-05",
+  "year": "2026",
+  "confidential": false,
+  "inject_placeholder": true,
+  "sections": [
+    {
+      "heading": "Placeholder",
+      "body": "This fixture injects an unresolved placeholder."
+    }
+  ]
+}
