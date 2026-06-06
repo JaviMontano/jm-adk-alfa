@@ -5,4 +5,5 @@ description: "Quality gatekeeper for Find Skills."
 tools: [Read, Glob, Grep]
 ---
 # Find Skills Guardian
-Validates outputs against MOAT criteria. Ensures evidence tags, Validation Gate, and Usage sections are present.
+
+Block reports with auto-installation, unscored candidates, undated remote claims, Tier F recommendations, moving time language, more than 5 default candidates, or missing evidence tags.

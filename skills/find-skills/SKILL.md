@@ -19,7 +19,7 @@ allowed-tools:
 
 # Find Skills
 
-Discover and install specialized agent skills from both the open ecosystem and local plugin catalogs. [EXPLICIT]
+Discover and recommend specialized agent skills from both the open ecosystem and local plugin catalogs. Install only after explicit user approval. [EXPLICIT]
 
 > *The best skill is the one that already exists. Search before you build.*
 
@@ -28,6 +28,18 @@ Discover and install specialized agent skills from both the open ecosystem and l
 1. **Local first** — Check installed plugins before external search. Your ecosystem already has 400+ skills across SDF, MAO, PM, and SA.
 2. **Evidence over popularity** — Install counts matter, but source reputation and MOAT depth matter more.
 3. **Security gate** — Never auto-install unverified skills. Present evidence, let the user decide.
+4. **Determinism gate** — Separate live discovery from offline validation. Scripts validate frozen reports and fixtures only.
+
+## Deterministic Resources
+
+Use these assets before relying on prose references:
+
+- `assets/source-policy.json` defines allowed source types, scope values, and remote lookup rules.
+- `assets/scoring-rubric.json` defines stable score fields, weights, quality tiers, and confidence labels.
+- `assets/install-policy.json` defines confirmation requirements and forbidden auto-install actions.
+- `assets/report-contract.json` defines the offline-validatable recommendation report.
+
+Use `scripts/validate_find_skills_report.py` to validate JSON reports and `scripts/check.sh` to run offline fixtures. The scripts must not call `skills.sh`, GitHub, `npx`, package managers, or current-time APIs.
 
 ## Procedure
 
@@ -42,7 +54,7 @@ Extract from user request: [EXPLICIT]
 2. **Task** — e.g., write tests, review PRs, scaffold project, optimize performance
 3. **Scope** — local only, remote only, or both (default: both)
 
-Tag intent: `[INFERENCIA]` if inferred from vague request, `[DOC]` if user stated explicitly. [EXPLICIT]
+Tag intent with `[INFERENCE]` if inferred from vague request and `[DOC]` if user stated it explicitly. [EXPLICIT]
 
 ### Step 2 — Search Local Ecosystem
 
@@ -64,14 +76,14 @@ If a local match is found, skip to Step 5 with the local recommendation. [EXPLIC
 
 ### Step 3 — Search Remote Ecosystem
 
-If no local match or user explicitly wants remote: [EXPLICIT]
+If no local match exists or the user explicitly wants remote, search remote sources during normal execution only. [EXPLICIT]
 
 1. **Check skills.sh leaderboard** via `WebFetch`:
    ```
    https://skills.sh/?q=$QUERY
    ```
 
-2. **Run Skills CLI** if available:
+2. **Run Skills CLI** if available and the user has not requested offline mode:
    ```bash
    npx skills find "$QUERY"
    ```
@@ -102,9 +114,11 @@ For local skills, apply MOAT depth assessment: [EXPLICIT]
 | **Standard** (references/) | Solid, standard confidence |
 | **Minimal** (SKILL.md only) | Functional, verify before complex use |
 
+Score every candidate with `assets/scoring-rubric.json`. Include `score_total`, source trust, task fit, evidence quality, safety, installability, and maintenance. Do not recommend an unscored candidate, a Tier F candidate, or a remote candidate without a frozen `remote_snapshot_date`.
+
 ### Step 5 — Present Recommendations
 
-Format results as a comparison table: [EXPLICIT]
+Format results as a bounded comparison table. Prefer the top 3 and never exceed 5 candidates unless the user explicitly asks for a longer audit. [EXPLICIT]
 
 ```markdown
 ## Skill Recommendations for: "{query}"
@@ -123,6 +137,8 @@ Include for each skill: [EXPLICIT]
 - Source and trust level
 - Install/invoke command
 - Link to learn more (skills.sh URL or local path)
+- Evidence references and score total
+- Confirmation requirement before installation
 
 ### Step 6 — Install (if approved)
 
@@ -133,13 +149,13 @@ Include for each skill: [EXPLICIT]
 npx skills add <owner/repo@skill> -g -y
 ```
 
-**Never auto-install.** Present the command and wait for approval.
+**Never auto-install.** Present the command and wait for approval. If a user asks to install, restate the chosen candidate and require explicit confirmation before running the command.
 
 ### Step 7 — No Match Protocol
 
 If no relevant skill exists: [EXPLICIT]
 
-1. Acknowledge the gap explicitly
+1. Acknowledge the gap explicitly with evidence tags
 2. Offer to help with the task using general capabilities
 3. If the task is recurring, suggest creating a custom skill:
    ```bash
@@ -170,6 +186,9 @@ If no relevant skill exists: [EXPLICIT]
 - **Local + remote overlap**: Prefer local (MOAT-certified), note remote alternative
 - **Skills CLI not installed**: Fall back to WebFetch of skills.sh, suggest `npm i -g skills`
 - **Offline**: Search local catalogs only, note that remote search was skipped
+- **Remote unavailable**: Produce a local-only result and mark remote coverage as skipped, not failed
+- **Security warning**: Mark Tier F and do not select the candidate
+- **Install request**: Present the command only; wait for explicit confirmation
 
 ## Usage
 
@@ -186,6 +205,10 @@ Example invocations: [EXPLICIT]
 - [ ] No placeholder content (TBD, TODO) [EXPLICIT]
 - [ ] Actionable recommendations with priority levels [EXPLICIT]
 - [ ] Assumptions explicitly documented [EXPLICIT]
+- [ ] Candidate count is bounded and every candidate is scored [EXPLICIT]
+- [ ] Remote candidates include frozen evidence dates or are excluded [EXPLICIT]
+- [ ] Install actions require explicit confirmation [EXPLICIT]
+- [ ] JSON reports pass `scripts/validate_find_skills_report.py` [EXPLICIT]
 
 ## Assumptions & Limits
 

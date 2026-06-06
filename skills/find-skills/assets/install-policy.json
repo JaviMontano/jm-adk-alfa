@@ -1,0 +1,9 @@
+{
+  "schema": 1,
+  "skill": "find-skills",
+  "auto_install_allowed": false,
+  "user_confirmation_required": true,
+  "allowed_install_actions": ["already_available", "present_command_only", "create_custom_skill", "none"],
+  "forbidden_install_actions": ["auto_install", "run_command", "install_without_confirmation"],
+  "remote_command_requires_confirmation": true
+}

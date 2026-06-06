@@ -1,0 +1,16 @@
+{
+  "skill": "find-skills",
+  "reference_date": "2026-06-06",
+  "mode": "recommend",
+  "scope": "local-only",
+  "query": "docs generation",
+  "summary": "This summary lacks an accepted evidence tag.",
+  "intent": {"domain": "docs", "task": "generation", "source_scope": "local-only", "evidence_tag": "[CONFIG]"},
+  "candidates": [
+    {"id": "C01", "name": "api-documenter", "source": "local skills/", "source_type": "local", "quality_tier": "B", "moat_depth": "Standard", "score_total": 68, "score_breakdown": {"source_trust": 22, "task_fit": 20, "evidence_quality": 8, "safety": 10, "installability": 8, "maintenance": 0}, "evidence_refs": ["local search"], "install_action": "already_available", "install_command": "/api-documenter", "requires_confirmation": false, "security_review": "local_pre_vetted"}
+  ],
+  "recommendation": {"selected_candidate_id": "C01", "rationale": "Missing tag.", "confidence": "medium", "next_action": "Invoke local skill."},
+  "install_policy": {"auto_install": false, "user_confirmation_required": true, "allowed_action": "present_command_only"},
+  "validation": ["Expected invalid."],
+  "risks": ["Missing evidence tags."]
+}

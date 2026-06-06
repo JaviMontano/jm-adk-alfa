@@ -7,11 +7,6 @@ description: "Meta-prompt for Find Skills skill routing."
 
 # Find Skills — Meta Prompt
 
-Activate this skill when the user request matches:
-- Trigger phrases from SKILL.md description
-- Direct invocation: `/find-skills`
+Activate when the request asks to find, search, compare, recommend, install, or discover a skill or capability. Also activate when the user asks whether the agent can learn or extend itself for a task.
 
-## Skill Routing
-1. Load SKILL.md → read `## When to Activate` section
-2. If match → activate lead agent: `find-skills-lead`
-3. If orchestrated → defer to orchestrating skill
+Do not activate for ordinary task execution when the correct skill is already known. Route installation requests through the confirmation policy.

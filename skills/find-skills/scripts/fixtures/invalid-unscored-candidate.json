@@ -1,0 +1,16 @@
+{
+  "skill": "find-skills",
+  "reference_date": "2026-06-06",
+  "mode": "recommend",
+  "scope": "local-only",
+  "query": "security review",
+  "summary": "This invalid report omits candidate scoring. [CONFIG]",
+  "intent": {"domain": "security", "task": "review", "source_scope": "local-only", "evidence_tag": "[CONFIG]"},
+  "candidates": [
+    {"id": "C01", "name": "security-review", "source": "local skills/", "source_type": "local", "quality_tier": "B", "moat_depth": "Standard", "evidence_refs": ["local search [CODE]"], "install_action": "already_available", "install_command": "/security-review", "requires_confirmation": false, "security_review": "local_pre_vetted"}
+  ],
+  "recommendation": {"selected_candidate_id": "C01", "rationale": "Invalid unscored candidate. [CONFIG]", "confidence": "low", "next_action": "Invoke local skill. [CONFIG]"},
+  "install_policy": {"auto_install": false, "user_confirmation_required": true, "allowed_action": "present_command_only"},
+  "validation": ["Expected invalid. [CONFIG]"],
+  "risks": ["Unscored candidates cannot be compared. [CONFIG]"]
+}

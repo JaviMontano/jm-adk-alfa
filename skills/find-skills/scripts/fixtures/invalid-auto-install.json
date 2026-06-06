@@ -1,0 +1,16 @@
+{
+  "skill": "find-skills",
+  "reference_date": "2026-06-06",
+  "mode": "install-request",
+  "scope": "all",
+  "query": "browser automation skill",
+  "summary": "This invalid report attempts automatic installation. [CONFIG]",
+  "intent": {"domain": "automation", "task": "browser automation", "source_scope": "all", "evidence_tag": "[CONFIG]"},
+  "candidates": [
+    {"id": "C01", "name": "browser-use", "source": "skills.sh snapshot", "source_type": "remote", "remote_snapshot_date": "2026-06-06", "quality_tier": "A", "moat_depth": "Unknown", "score_total": 80, "score_breakdown": {"source_trust": 20, "task_fit": 23, "evidence_quality": 16, "safety": 12, "installability": 9, "maintenance": 0}, "evidence_refs": ["skills.sh snapshot [DOC]"], "install_action": "auto_install", "install_command": "npx skills add owner/repo -g -y", "requires_confirmation": false, "security_review": "not_reviewed"}
+  ],
+  "recommendation": {"selected_candidate_id": "C01", "rationale": "Invalid auto install. [CONFIG]", "confidence": "medium", "next_action": "Install without waiting. [CONFIG]"},
+  "install_policy": {"auto_install": true, "user_confirmation_required": false, "allowed_action": "present_command_only"},
+  "validation": ["Expected invalid. [CONFIG]"],
+  "risks": ["Auto-install is unsafe. [CONFIG]"]
+}

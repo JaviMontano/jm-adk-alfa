@@ -1,28 +1,36 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: find-skills
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
-
-# Find Skills Output
+# Find Skills Recommendation Report
 
 ## Summary
 
-{summary}
+{evidence_tagged_summary}
 
-## Evidence
+## Intent
 
-{evidence}
+| Domain | Task | Scope | Install Intent | Evidence |
+|--------|------|-------|----------------|----------|
 
-## Result
+## Candidates
 
-{result}
+| ID | Skill | Source | Type | Tier | Score | Install Action | Evidence |
+|----|-------|--------|------|------|-------|----------------|----------|
+
+## Recommendation
+
+- Selected candidate: {candidate_id}
+- Rationale: {evidence_tagged_rationale}
+- Confidence: {high|medium|low|none}
+- Next action: {evidence_tagged_next_action}
+
+## Install Policy
+
+- Auto-install: false
+- User confirmation required: true
+- Allowed action: present command only
 
 ## Validation
 
-{validation}
+{validation_evidence}
 
-## Risks and Limits
+## Risks
 
-{risks}
+{evidence_tagged_risks}
