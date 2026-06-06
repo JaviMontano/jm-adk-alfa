@@ -1,0 +1,17 @@
+{
+  "schema": 1,
+  "skill": "discovery-orchestrator",
+  "required_phase_ids": ["0", "1", "2", "3", "3b", "4", "4b", "5a", "5b", "6"],
+  "phase_order": ["0", "1", "2", "3", "3b", "4", "4b", "5a", "5b", "6"],
+  "statuses": ["pending", "running", "completed", "blocked", "skipped"],
+  "required_phase_fields": [
+    "id",
+    "name",
+    "purpose",
+    "status",
+    "owner",
+    "inputs_required",
+    "outputs_expected",
+    "evidence_tag"
+  ]
+}

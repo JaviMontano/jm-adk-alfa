@@ -4,4 +4,5 @@ type: variation
 variant: deep
 ---
 # Discovery Orchestrator — Deep Mode
-Full depth. Load all references/. Strict Validation Gate.
+
+Load relevant references plus all asset contracts. Produce the full phase plan, skill sequence, gate register, handoff, boundary checks, validation, and risks. Validate JSON packets offline when a packet fixture or artifact is produced.

@@ -1,0 +1,34 @@
+{
+  "schema": 1,
+  "skill": "discovery-orchestrator",
+  "required_boundary_checks": [
+    "does_not_analyze",
+    "no_prices",
+    "no_downstream_execution"
+  ],
+  "forbidden_top_level_fields": [
+    "analysis_findings",
+    "domain_findings",
+    "code_findings",
+    "architecture_decisions",
+    "implementation_plan",
+    "implementation_steps"
+  ],
+  "forbidden_price_fields": [
+    "price",
+    "pricing",
+    "currency",
+    "budget_amount",
+    "rate",
+    "hourly_rate",
+    "daily_rate",
+    "total_cost"
+  ],
+  "forbidden_price_patterns": [
+    "\\$\\s*\\d",
+    "\\bUSD\\b",
+    "\\bCOP\\b",
+    "\\bEUR\\b",
+    "\\bprice\\s*:"
+  ]
+}

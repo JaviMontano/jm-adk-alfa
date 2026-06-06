@@ -1,0 +1,60 @@
+{
+  "schema": 1,
+  "skill": "discovery-orchestrator",
+  "gate_statuses": ["pass", "block", "pending"],
+  "required_gate_fields": [
+    "gate_id",
+    "after_phase",
+    "before_phase",
+    "status",
+    "decision",
+    "criteria",
+    "evidence_tag"
+  ],
+  "gates": [
+    {
+      "gate_id": "G1",
+      "after_phase": "3",
+      "before_phase": "4",
+      "pass_requires": [
+        "scenario_count >= 3",
+        "scoring_complete == true",
+        "decision_tree_present == true",
+        "recommended_scenario_id",
+        "assumption_count >= 3",
+        "approval.status == approved"
+      ]
+    },
+    {
+      "gate_id": "G1B",
+      "after_phase": "3b",
+      "before_phase": "4",
+      "pass_requires": [
+        "technical_verdict in FEASIBLE, FEASIBLE_WITH_CONDITIONS",
+        "software_verdict in SUBSTANCIA, PROMESA_VIABLE"
+      ]
+    },
+    {
+      "gate_id": "G2",
+      "after_phase": "4",
+      "before_phase": "5a",
+      "pass_requires": [
+        "roadmap_present == true",
+        "prerequisites_present == true",
+        "effort_model == fte_months",
+        "sponsor_approval.status == approved"
+      ]
+    },
+    {
+      "gate_id": "G3",
+      "after_phase": "5b",
+      "before_phase": "6",
+      "pass_requires": [
+        "proposal_qa_passed == true",
+        "risk_review_complete == true",
+        "deliverable_register_complete == true",
+        "client_approval.status == approved"
+      ]
+    }
+  ]
+}

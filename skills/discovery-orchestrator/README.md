@@ -1,29 +1,39 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: discovery-orchestrator
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
-
 # Discovery Orchestrator
 
-Coordinates full analysis pipeline (phases 0-6). Sequences skills 009-023. Manages G1 gate. Does NOT analyze. [EXPLICIT]
+Coordinates JM Labs discovery phases 0-6 by sequencing canonical skills, enforcing G1/G2/G3 gates, and preserving the separation between orchestration and analysis. It does not create domain findings, implementation plans, or prices.
 
 ## Triggers
 
-- discovery-orchestrator
+- `discovery-orchestrator`
+- `plan discovery`
+- `orchestrate discovery`
+- `sequence discovery skills`
+- `manage G1 gate`
+- `resume discovery state`
+- `handoff discovery`
 
 ## Allowed Tools
 
 - Read
-- Grep
-- Glob
+- Write
+- Edit
 - Bash
+- Glob
+- Grep
+
+## Deterministic Resources
+
+- `assets/phase-contract.json` defines allowed phase ids and order.
+- `assets/skill-sequence-contract.json` defines canonical discovery skills.
+- `assets/gate-policy.json` defines G1, feasibility checkpoint, G2, and G3.
+- `assets/non-analysis-boundary.json` defines forbidden analysis and pricing fields.
+- `assets/report-contract.json` defines the JSON packet contract.
+- `scripts/check.sh` validates deterministic packet fixtures offline.
 
 ## Quick Use
 
-Use this skill when the request clearly matches the triggers and requires the `discovery-orchestrator` capability.
+Use this skill to produce a pipeline state packet, gate decision, discovery dashboard, or handoff readiness report. Route domain analysis work to the downstream skill named in the sequence.
 
 ## Output Format
 
-Markdown with summary, evidence, result, validation, and risks.
+Markdown or JSON with exact date, mode, phase plan, skill sequence, gates, handoff, boundary checks, validation, and risks. Every claim requires an evidence tag.

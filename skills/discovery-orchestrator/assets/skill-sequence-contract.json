@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "skill": "discovery-orchestrator",
+  "operations": ["coordinate", "invoke", "validate", "block", "handoff"],
+  "statuses": ["pending", "running", "completed", "blocked", "skipped"],
+  "required_sequence_fields": [
+    "id",
+    "skill",
+    "phase",
+    "operation",
+    "status",
+    "owner",
+    "depends_on",
+    "produces",
+    "evidence_tag"
+  ],
+  "canonical_skills": [
+    {"skill": "stakeholder-mapping", "allowed_phases": ["0"]},
+    {"skill": "workshop-facilitator", "allowed_phases": ["0"]},
+    {"skill": "asis-analysis", "allowed_phases": ["1"]},
+    {"skill": "dynamic-sme", "allowed_phases": ["1", "2", "3", "3b", "4", "4b", "5a", "5b", "6"]},
+    {"skill": "mermaid-diagramming", "allowed_phases": ["1", "2", "3", "3b", "4", "4b", "5a", "5b", "6"]},
+    {"skill": "flow-mapping", "allowed_phases": ["2"]},
+    {"skill": "scenario-analysis", "allowed_phases": ["3"]},
+    {"skill": "technical-feasibility", "allowed_phases": ["3b"]},
+    {"skill": "software-viability", "allowed_phases": ["3b"]},
+    {"skill": "solution-roadmap", "allowed_phases": ["4"]},
+    {"skill": "cost-estimation", "allowed_phases": ["4"]},
+    {"skill": "commercial-model", "allowed_phases": ["4b"]},
+    {"skill": "functional-spec", "allowed_phases": ["5a"]},
+    {"skill": "executive-pitch", "allowed_phases": ["5b"]},
+    {"skill": "discovery-handover", "allowed_phases": ["6"]},
+    {"skill": "project-program-management", "allowed_phases": ["0", "1", "2", "3", "3b", "4", "4b", "5a", "5b", "6"]},
+    {"skill": "risk-controlling-dynamics", "allowed_phases": ["0", "1", "2", "3", "3b", "4", "4b", "5a", "5b", "6"]}
+  ]
+}

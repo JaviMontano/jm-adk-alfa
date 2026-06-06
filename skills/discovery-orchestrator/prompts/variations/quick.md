@@ -4,4 +4,5 @@ type: variation
 variant: quick
 ---
 # Discovery Orchestrator — Quick Mode
-Streamlined. TL;DR and primary output only.
+
+Return only the current mode, gate decision, blockers, next skill, and boundary checks. Preserve exact dates and evidence tags.

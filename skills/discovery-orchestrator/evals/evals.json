@@ -1,9 +1,90 @@
-[
-  {"id": "discovery-orchestrator-happy-path", "type": "happy_path", "input": "Run discovery orchestrator on this project", "expected_behavior": "Skill activates and produces the expected discovery orchestrator output following the defined process", "tags": ["basic", "activation"]},
-  {"id": "discovery-orchestrator-explicit-trigger", "type": "happy_path", "input": "Apply discovery orchestrator analysis", "expected_behavior": "Skill recognizes the trigger phrase and executes the discovery orchestrator workflow", "tags": ["trigger", "recognition"]},
-  {"id": "discovery-orchestrator-with-context", "type": "happy_path", "input": "Apply discovery orchestrator to analyze the current codebase with detailed output", "expected_behavior": "Skill produces comprehensive discovery orchestrator analysis with evidence-tagged findings", "tags": ["detailed", "comprehensive"]},
-  {"id": "discovery-orchestrator-minimal-input", "type": "happy_path", "input": "Quick discovery orchestrator", "expected_behavior": "Skill activates with minimal input, applies reasonable defaults", "tags": ["minimal", "defaults"]},
-  {"id": "discovery-orchestrator-false-positive", "type": "false_positive", "input": "What is the weather forecast for tomorrow?", "expected_behavior": "Skill should NOT activate — this input has no relation to discovery orchestrator", "tags": ["false_positive", "should-not-activate"]},
-  {"id": "discovery-orchestrator-edge-empty-input", "type": "edge_case", "input": "Run discovery orchestrator but I have no files or documentation yet", "expected_behavior": "Skill handles gracefully — requests minimum viable input or produces gap analysis", "tags": ["edge_case", "empty-input", "boundary"]},
-  {"id": "discovery-orchestrator-edge-conflicting", "type": "edge_case", "input": "Apply discovery orchestrator but requirements contradict each other", "expected_behavior": "Skill detects contradiction, flags with [OPEN] tag, proposes resolution", "tags": ["edge_case", "conflict", "corner"]}
-]
+{
+  "schema": 1,
+  "skill": "discovery-orchestrator",
+  "cases": [
+    {
+      "id": "full-pipeline-g1-pass",
+      "type": "happy_path",
+      "input": "Coordinate a complete discovery pipeline for a service modernization initiative through G1 with three scenarios already scored and approved.",
+      "expected_behavior": "Produces an ordered phase plan, canonical skill sequence, G1 pass decision, feasibility checkpoint status, handoff, boundary checks, validation, and risks.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria"],
+      "tags": ["pipeline", "g1", "approval"]
+    },
+    {
+      "id": "g1-blocked-missing-scenario",
+      "type": "edge_case",
+      "input": "Move to roadmap after only two scenarios were compared and no steering approval exists.",
+      "expected_behavior": "Blocks G1, lists missing scenario and approval evidence, and refuses to start phase 4.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria"],
+      "tags": ["g1", "blocked"]
+    },
+    {
+      "id": "false-positive-domain-analysis",
+      "type": "false_positive",
+      "input": "Analyze the current architecture and identify the root causes of production defects.",
+      "expected_behavior": "Does not use this skill for the analysis itself; routes to AS-IS or architecture analysis and optionally coordinates the sequence.",
+      "expected_checks": ["quality_criteria"],
+      "tags": ["false-positive", "boundary"]
+    },
+    {
+      "id": "false-negative-gate-language",
+      "type": "false_negative",
+      "input": "Check whether the discovery work can advance from scenarios into roadmap and what evidence is missing.",
+      "expected_behavior": "Activates even without the exact skill name because the request is a gate-readiness decision.",
+      "expected_checks": ["assets", "quality_criteria"],
+      "tags": ["semantic-trigger", "gate"]
+    },
+    {
+      "id": "phase-order-degradation",
+      "type": "degradation",
+      "input": "Create a discovery packet that starts phase 4 before scenarios and feasibility are complete.",
+      "expected_behavior": "Rejects the sequence because phase order violates the phase contract.",
+      "expected_checks": ["deterministic_scripts", "quality_criteria"],
+      "tags": ["phase-order"]
+    },
+    {
+      "id": "out-of-range-skill",
+      "type": "edge_case",
+      "input": "Insert find-skills into the discovery sequence as a phase 3 analysis step.",
+      "expected_behavior": "Rejects the non-canonical skill for this pipeline and routes it outside the discovery-orchestrator packet.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria"],
+      "tags": ["skill-contract"]
+    },
+    {
+      "id": "assumption-warning-boundary",
+      "type": "boundary",
+      "input": "Most discovery state is assumed because only one meeting note exists.",
+      "expected_behavior": "Requires a warning banner when assumptions exceed 30 percent and blocks unsupported gate passage.",
+      "expected_checks": ["deterministic_scripts", "quality_criteria"],
+      "tags": ["assumptions"]
+    },
+    {
+      "id": "no-prices-policy",
+      "type": "edge_case",
+      "input": "Prepare G2 and include a budget in currency for the sponsor.",
+      "expected_behavior": "Refuses currency, rates, and prices; uses effort ranges and assumptions only.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria"],
+      "tags": ["no-prices", "g2"]
+    },
+    {
+      "id": "minimal-input-blocked-packet",
+      "type": "degradation",
+      "input": "Start discovery orchestration with no artifacts, no owners, and no approval records.",
+      "expected_behavior": "Creates a blocked starter packet with missing artifacts, owners, next actions, and no invented gate decisions.",
+      "expected_checks": ["assets", "quality_criteria"],
+      "tags": ["minimal-input"]
+    }
+  ],
+  "assets": ["assets/manifest.json", "assets/report-contract.json", "assets/gate-policy.json"],
+  "deterministic_scripts": ["scripts/check.sh", "scripts/validate_discovery_orchestrator_packet.py"],
+  "quality_criteria": [
+    "ordered phase plan",
+    "canonical skill sequence",
+    "G1 evidence and approval requirements",
+    "explicit pass/block/pending gate decisions",
+    "boundary check for no analysis",
+    "boundary check for no prices",
+    "assumption warning above 30 percent",
+    "offline validation evidence"
+  ]
+}

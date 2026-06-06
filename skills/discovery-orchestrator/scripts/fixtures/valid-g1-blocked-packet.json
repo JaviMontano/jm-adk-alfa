@@ -1,0 +1,61 @@
+{
+  "skill": "discovery-orchestrator",
+  "reference_date": "2026-06-06",
+  "mode": "gate-check",
+  "summary": "G1 is blocked because only two scenarios are present and approval is not recorded. [DOC]",
+  "phase_plan": [
+    {"id": "0", "name": "Intake and stakeholders", "purpose": "Confirm actors and scope before analysis begins. [CONFIG]", "status": "completed", "owner": "Discovery Lead", "inputs_required": ["workshop notes"], "outputs_expected": ["stakeholder map"], "evidence_tag": "[DOC]"},
+    {"id": "1", "name": "Current state", "purpose": "Route AS-IS analysis to its downstream owner. [CONFIG]", "status": "completed", "owner": "AS-IS Lead", "inputs_required": ["system inventory"], "outputs_expected": ["AS-IS analysis"], "evidence_tag": "[DOC]"},
+    {"id": "2", "name": "Flow mapping", "purpose": "Route business flow mapping to its downstream owner. [CONFIG]", "status": "completed", "owner": "Flow Lead", "inputs_required": ["process notes"], "outputs_expected": ["flow map"], "evidence_tag": "[DOC]"},
+    {"id": "3", "name": "Scenario analysis", "purpose": "Validate scenario selection evidence. [CONFIG]", "status": "blocked", "owner": "Scenario Lead", "inputs_required": ["candidate scenarios"], "outputs_expected": ["scenario scorecard"], "evidence_tag": "[DOC]"},
+    {"id": "3b", "name": "Feasibility checkpoint", "purpose": "Wait for selected scenario before feasibility. [CONFIG]", "status": "pending", "owner": "Feasibility Lead", "inputs_required": ["selected scenario"], "outputs_expected": ["feasibility verdicts"], "evidence_tag": "[CONFIG]"},
+    {"id": "4", "name": "Roadmap", "purpose": "Wait for G1 before roadmap. [CONFIG]", "status": "blocked", "owner": "Roadmap Lead", "inputs_required": ["approved scenario"], "outputs_expected": ["solution roadmap"], "evidence_tag": "[CONFIG]"},
+    {"id": "4b", "name": "Commercial model", "purpose": "Wait for roadmap and effort assumptions. [CONFIG]", "status": "pending", "owner": "Commercial Lead", "inputs_required": ["roadmap"], "outputs_expected": ["commercial assumptions"], "evidence_tag": "[CONFIG]"},
+    {"id": "5a", "name": "Functional specification", "purpose": "Wait for roadmap. [CONFIG]", "status": "pending", "owner": "Functional Lead", "inputs_required": ["roadmap"], "outputs_expected": ["functional spec"], "evidence_tag": "[CONFIG]"},
+    {"id": "5b", "name": "Executive pitch", "purpose": "Wait for roadmap. [CONFIG]", "status": "pending", "owner": "Pitch Lead", "inputs_required": ["roadmap"], "outputs_expected": ["executive pitch"], "evidence_tag": "[CONFIG]"},
+    {"id": "6", "name": "Handover", "purpose": "Start after G3 approval. [CONFIG]", "status": "pending", "owner": "Handover Lead", "inputs_required": ["approved package"], "outputs_expected": ["handover package"], "evidence_tag": "[CONFIG]"}
+  ],
+  "skill_sequence": [
+    {"id": "S01", "skill": "stakeholder-mapping", "phase": "0", "operation": "invoke", "status": "completed", "owner": "Discovery Lead", "depends_on": [], "produces": ["stakeholder map"], "evidence_tag": "[DOC]"},
+    {"id": "S02", "skill": "asis-analysis", "phase": "1", "operation": "invoke", "status": "completed", "owner": "AS-IS Lead", "depends_on": ["S01"], "produces": ["AS-IS analysis"], "evidence_tag": "[DOC]"},
+    {"id": "S03", "skill": "flow-mapping", "phase": "2", "operation": "invoke", "status": "completed", "owner": "Flow Lead", "depends_on": ["S02"], "produces": ["flow map"], "evidence_tag": "[DOC]"},
+    {"id": "S04", "skill": "scenario-analysis", "phase": "3", "operation": "block", "status": "blocked", "owner": "Scenario Lead", "depends_on": ["S03"], "produces": ["scenario scorecard"], "evidence_tag": "[DOC]"},
+    {"id": "S05", "skill": "solution-roadmap", "phase": "4", "operation": "block", "status": "blocked", "owner": "Roadmap Lead", "depends_on": ["S04"], "produces": ["solution roadmap"], "evidence_tag": "[CONFIG]"}
+  ],
+  "gates": [
+    {
+      "gate_id": "G1",
+      "after_phase": "3",
+      "before_phase": "4",
+      "status": "block",
+      "decision": "Do not advance to phase 4 until scenario and approval evidence are complete. [DOC]",
+      "criteria": {
+        "scenario_count": 2,
+        "scoring_complete": false,
+        "decision_tree_present": true,
+        "recommended_scenario_id": "",
+        "assumption_count": 5,
+        "assumption_ratio": 0.42,
+        "warning_banner": true,
+        "approval": {"status": "missing", "approver": ""}
+      },
+      "blockers": ["Need a third scored scenario. [DOC]", "Need explicit steering approval. [DOC]"],
+      "next_action": "Run scenario-analysis before any roadmap work. [CONFIG]",
+      "evidence_tag": "[DOC]"
+    }
+  ],
+  "handoff": {
+    "next_skill": "scenario-analysis",
+    "next_skill_id": "S04",
+    "next_action": "Complete the missing scenario evidence and approval record. [CONFIG]",
+    "handover_gate": "blocked",
+    "deliverables_expected": ["05_Escenarios_ToT"]
+  },
+  "boundary_checks": {
+    "does_not_analyze": true,
+    "no_prices": true,
+    "no_downstream_execution": true
+  },
+  "validation": ["Blocked packet preserves gate separation and avoids invented approval. [CONFIG]"],
+  "risks": ["High assumption share may distort gate readiness until evidence is added. [ASSUMPTION]"]
+}

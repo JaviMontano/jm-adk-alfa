@@ -1,22 +1,19 @@
-# Example Output
-
-```json
 {
   "skill": "discovery-orchestrator",
   "reference_date": "2026-06-06",
   "mode": "gate-check",
-  "summary": "G1 can pass because three scenarios are scored, a decision tree exists, the recommended scenario is explicit, and steering approval is recorded. [DOC]",
+  "summary": "G1 can pass because scenario evidence, scoring, decision tree, recommendation, assumptions, and approval are present. [DOC]",
   "phase_plan": [
-    {"id": "0", "name": "Intake and stakeholders", "purpose": "Confirm actors, scope, and workshop inputs. [CONFIG]", "status": "completed", "owner": "Discovery Lead", "inputs_required": ["workshop notes"], "outputs_expected": ["stakeholder map"], "evidence_tag": "[DOC]"},
-    {"id": "1", "name": "Current state", "purpose": "Route AS-IS analysis to the downstream skill. [CONFIG]", "status": "completed", "owner": "AS-IS Lead", "inputs_required": ["system inventory"], "outputs_expected": ["AS-IS analysis"], "evidence_tag": "[DOC]"},
-    {"id": "2", "name": "Flow mapping", "purpose": "Route flow mapping to the downstream skill. [CONFIG]", "status": "completed", "owner": "Flow Lead", "inputs_required": ["process notes"], "outputs_expected": ["flow map"], "evidence_tag": "[DOC]"},
+    {"id": "0", "name": "Intake and stakeholders", "purpose": "Confirm actors and scope before analysis begins. [CONFIG]", "status": "completed", "owner": "Discovery Lead", "inputs_required": ["workshop notes"], "outputs_expected": ["stakeholder map"], "evidence_tag": "[DOC]"},
+    {"id": "1", "name": "Current state", "purpose": "Route AS-IS analysis to its downstream owner. [CONFIG]", "status": "completed", "owner": "AS-IS Lead", "inputs_required": ["system inventory"], "outputs_expected": ["AS-IS analysis"], "evidence_tag": "[DOC]"},
+    {"id": "2", "name": "Flow mapping", "purpose": "Route business flow mapping to its downstream owner. [CONFIG]", "status": "completed", "owner": "Flow Lead", "inputs_required": ["process notes"], "outputs_expected": ["flow map"], "evidence_tag": "[DOC]"},
     {"id": "3", "name": "Scenario analysis", "purpose": "Validate scenario selection evidence. [CONFIG]", "status": "completed", "owner": "Scenario Lead", "inputs_required": ["candidate scenarios"], "outputs_expected": ["scenario scorecard"], "evidence_tag": "[DOC]"},
-    {"id": "3b", "name": "Feasibility checkpoint", "purpose": "Confirm technical and software viability before roadmap. [CONFIG]", "status": "completed", "owner": "Feasibility Lead", "inputs_required": ["selected scenario"], "outputs_expected": ["feasibility verdicts"], "evidence_tag": "[DOC]"},
-    {"id": "4", "name": "Roadmap", "purpose": "Prepare roadmap after G1 and feasibility evidence. [CONFIG]", "status": "pending", "owner": "Roadmap Lead", "inputs_required": ["approved scenario"], "outputs_expected": ["solution roadmap"], "evidence_tag": "[CONFIG]"},
-    {"id": "4b", "name": "Commercial model", "purpose": "Prepare effort and assumptions without prices. [CONFIG]", "status": "pending", "owner": "Commercial Lead", "inputs_required": ["roadmap"], "outputs_expected": ["commercial assumptions"], "evidence_tag": "[CONFIG]"},
+    {"id": "3b", "name": "Feasibility checkpoint", "purpose": "Confirm feasibility and viability before roadmap. [CONFIG]", "status": "completed", "owner": "Feasibility Lead", "inputs_required": ["selected scenario"], "outputs_expected": ["feasibility verdicts"], "evidence_tag": "[DOC]"},
+    {"id": "4", "name": "Roadmap", "purpose": "Prepare roadmap after gate evidence. [CONFIG]", "status": "pending", "owner": "Roadmap Lead", "inputs_required": ["approved scenario"], "outputs_expected": ["solution roadmap"], "evidence_tag": "[CONFIG]"},
+    {"id": "4b", "name": "Commercial model", "purpose": "Prepare assumptions and effort without prices. [CONFIG]", "status": "pending", "owner": "Commercial Lead", "inputs_required": ["roadmap"], "outputs_expected": ["commercial assumptions"], "evidence_tag": "[CONFIG]"},
     {"id": "5a", "name": "Functional specification", "purpose": "Prepare functional scope after roadmap. [CONFIG]", "status": "pending", "owner": "Functional Lead", "inputs_required": ["roadmap"], "outputs_expected": ["functional spec"], "evidence_tag": "[CONFIG]"},
     {"id": "5b", "name": "Executive pitch", "purpose": "Prepare sponsor narrative after roadmap. [CONFIG]", "status": "pending", "owner": "Pitch Lead", "inputs_required": ["roadmap"], "outputs_expected": ["executive pitch"], "evidence_tag": "[CONFIG]"},
-    {"id": "6", "name": "Handover", "purpose": "Start only after G3 approval. [CONFIG]", "status": "pending", "owner": "Handover Lead", "inputs_required": ["approved package"], "outputs_expected": ["handover package"], "evidence_tag": "[CONFIG]"}
+    {"id": "6", "name": "Handover", "purpose": "Start after G3 approval. [CONFIG]", "status": "pending", "owner": "Handover Lead", "inputs_required": ["approved package"], "outputs_expected": ["handover package"], "evidence_tag": "[CONFIG]"}
   ],
   "skill_sequence": [
     {"id": "S01", "skill": "stakeholder-mapping", "phase": "0", "operation": "invoke", "status": "completed", "owner": "Discovery Lead", "depends_on": [], "produces": ["stakeholder map"], "evidence_tag": "[DOC]"},
@@ -33,7 +30,7 @@
       "after_phase": "3",
       "before_phase": "4",
       "status": "pass",
-      "decision": "Advance to phase 4. [DOC]",
+      "decision": "Advance to phase 4 after approval. [DOC]",
       "criteria": {
         "scenario_count": 3,
         "scoring_complete": true,
@@ -45,10 +42,23 @@
         "approval": {"status": "approved", "approver": "Steering Committee"}
       },
       "evidence_tag": "[DOC]"
+    },
+    {
+      "gate_id": "G1B",
+      "after_phase": "3b",
+      "before_phase": "4",
+      "status": "pass",
+      "decision": "Feasibility checkpoint allows roadmap with conditions. [DOC]",
+      "criteria": {
+        "technical_verdict": "FEASIBLE_WITH_CONDITIONS",
+        "software_verdict": "PROMESA_VIABLE"
+      },
+      "evidence_tag": "[DOC]"
     }
   ],
   "handoff": {
     "next_skill": "solution-roadmap",
+    "next_skill_id": "S07",
     "next_action": "Start roadmap using the approved scenario and feasibility constraints. [CONFIG]",
     "handover_gate": "pending",
     "deliverables_expected": ["06_Solution_Roadmap", "07_Spec_Funcional", "08_Pitch_Ejecutivo", "09_Handover"]
@@ -58,7 +68,6 @@
     "no_prices": true,
     "no_downstream_execution": true
   },
-  "validation": ["G1 pass criteria are explicit and no downstream analysis is produced. [CONFIG]"],
-  "risks": ["Roadmap can still block if feasibility constraints are not converted into prerequisites. [INFERENCE]"]
+  "validation": ["The packet uses canonical phases, canonical skills, explicit G1 criteria, and no downstream analysis. [CONFIG]"],
+  "risks": ["Roadmap may block if feasibility constraints are not converted into prerequisites. [INFERENCE]"]
 }
-```

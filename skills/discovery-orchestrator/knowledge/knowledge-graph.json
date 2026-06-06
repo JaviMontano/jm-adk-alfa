@@ -1,75 +1,22 @@
 {
   "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-28",
   "skill": "discovery-orchestrator",
   "nodes": [
-    {
-      "id": "discovery-orchestrator",
-      "type": "skill",
-      "label": "discovery-orchestrator"
-    },
-    {
-      "id": "discovery-orchestrator:inputs",
-      "type": "contract",
-      "label": "Expected inputs"
-    },
-    {
-      "id": "discovery-orchestrator:outputs",
-      "type": "contract",
-      "label": "Expected outputs"
-    },
-    {
-      "id": "discovery-orchestrator:quality",
-      "type": "gate",
-      "label": "Quality criteria"
-    },
-    {
-      "id": "discovery-orchestrator:ontology",
-      "type": "ontology",
-      "label": "Domain: general"
-    },
-    {
-      "id": "discovery-orchestrator:evidence",
-      "type": "gate",
-      "label": "Evidence / provenance requirements"
-    },
-    {
-      "id": "discovery-orchestrator:antipattern",
-      "type": "risk",
-      "label": "Canonical anti-pattern to avoid"
-    }
+    {"id": "discovery-orchestrator", "type": "skill", "label": "Discovery Orchestrator"},
+    {"id": "phase-plan", "type": "contract", "label": "Ordered phase plan"},
+    {"id": "skill-sequence", "type": "contract", "label": "Canonical downstream skill sequence"},
+    {"id": "gates", "type": "gate", "label": "G1, feasibility, G2, and G3"},
+    {"id": "handoff", "type": "contract", "label": "Next skill and required evidence"},
+    {"id": "boundary-checks", "type": "guardrail", "label": "No analysis, no prices, no downstream execution"},
+    {"id": "offline-validator", "type": "script", "label": "scripts/validate_discovery_orchestrator_packet.py"}
   ],
   "edges": [
-    {
-      "from": "discovery-orchestrator",
-      "to": "discovery-orchestrator:inputs",
-      "type": "requires"
-    },
-    {
-      "from": "discovery-orchestrator",
-      "to": "discovery-orchestrator:outputs",
-      "type": "produces"
-    },
-    {
-      "from": "discovery-orchestrator",
-      "to": "discovery-orchestrator:quality",
-      "type": "validated_by"
-    },
-    {
-      "from": "discovery-orchestrator",
-      "to": "discovery-orchestrator:ontology",
-      "type": "classified_as"
-    },
-    {
-      "from": "discovery-orchestrator",
-      "to": "discovery-orchestrator:evidence",
-      "type": "validated_by"
-    },
-    {
-      "from": "discovery-orchestrator",
-      "to": "discovery-orchestrator:antipattern",
-      "type": "guards_against"
-    }
+    {"from": "discovery-orchestrator", "to": "phase-plan", "type": "coordinates"},
+    {"from": "phase-plan", "to": "skill-sequence", "type": "orders"},
+    {"from": "skill-sequence", "to": "handoff", "type": "feeds"},
+    {"from": "gates", "to": "phase-plan", "type": "controls_transition"},
+    {"from": "boundary-checks", "to": "handoff", "type": "guards"},
+    {"from": "offline-validator", "to": "gates", "type": "validates"},
+    {"from": "offline-validator", "to": "boundary-checks", "type": "validates"}
   ]
 }

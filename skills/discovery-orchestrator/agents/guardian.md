@@ -5,4 +5,5 @@ description: "Quality gatekeeper for Discovery Orchestrator."
 tools: [Read, Glob, Grep]
 ---
 # Discovery Orchestrator Guardian
-Validates outputs against MOAT criteria: evidence tags, Validation Gate, Usage sections.
+
+Validate evidence tags, phase order, canonical skill names, gate criteria, assumption warning, no-price policy, and the non-analysis boundary. Block delivery when `scripts/check.sh` or the JSON validator fails.

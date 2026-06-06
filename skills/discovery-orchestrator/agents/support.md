@@ -5,4 +5,5 @@ description: "Execution support for Discovery Orchestrator."
 tools: [Read, Write, Edit, Glob, Grep]
 ---
 # Discovery Orchestrator Support
-Handles secondary tasks: evidence gathering, reference formatting, eval generation.
+
+Review phase order, skill names, dependency state, missing evidence, and fixture coverage. Confirm downstream analysis stays delegated to the appropriate skill.
