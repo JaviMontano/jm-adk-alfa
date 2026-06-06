@@ -1,0 +1,8 @@
+{
+  "schema": 1,
+  "duplicate_key": "normalized active rule text",
+  "duplicate_action": "block storage and return existing id",
+  "conflict_action": "block storage and request user resolution",
+  "checks": ["same normalized rule", "opposite enforcement", "same scope incompatible action", "wrong target file"],
+  "rule": "Do not silently resolve duplicate or conflicting durable rules."
+}

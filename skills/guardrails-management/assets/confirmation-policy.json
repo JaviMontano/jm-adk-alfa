@@ -1,0 +1,10 @@
+{
+  "schema": 1,
+  "persist_requires": {
+    "status": "confirmed",
+    "confirmed_by": "user",
+    "confirmed_date": "ISO-8601"
+  },
+  "unconfirmed_action": "proposal-only",
+  "rule": "No guardrail JSON file may be modified until the user explicitly confirms the rule."
+}

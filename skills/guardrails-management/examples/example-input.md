@@ -7,4 +7,19 @@ overwrite-policy: missing-only unless --force
 
 # Example Input
 
-Use `guardrails-management` to produce a concise deliverable for a realistic project request.
+The user says:
+
+"From now on, always include evidence tags on every claim in JM Labs outputs."
+
+Existing files:
+
+- `references/guardrails/guidelines.json` contains `GL-001`: "Use Spanish for
+  user-facing status updates when the user writes in Spanish."
+- `references/guardrails/constraints.json` is empty.
+- `references/guardrails/guardrails.json` contains `GR-001`: "Prefer concise
+  summaries after validation."
+
+Reference date: 2026-06-06.
+
+Detect the rule, classify it, check duplicate/conflict risk, ask for explicit
+confirmation, and show the JSON entry that would be stored only if confirmed.

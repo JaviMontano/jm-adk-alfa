@@ -1,0 +1,23 @@
+{
+  "skill": "guardrails-management",
+  "operation": "store",
+  "reference_date": "2026-06-06",
+  "source_utterance": "Always make reports better. [CONFIG]",
+  "confirmation": {"status": "confirmed", "confirmed_by": "user", "confirmed_date": "2026-06-06"},
+  "rule_entry": {
+    "id": "GL-012",
+    "type": "guideline",
+    "rule": "Always make reports better.",
+    "scope": "Reports",
+    "source": "user-explicit",
+    "confirmed_date": "2026-06-06",
+    "active": true,
+    "evidence_tag": "[CONFIG]",
+    "verifiable_check": "Better.",
+    "target_file": "references/guardrails/guidelines.json"
+  },
+  "conflict_review": {"duplicate_active": false, "conflict": false, "existing_rules": [], "evidence_tag": "[CÓDIGO]"},
+  "storage_action": "append-one",
+  "validation": ["Schema is present. [DOC]"],
+  "risks": ["Guardian cannot verify this rule. [INFERENCIA]"]
+}

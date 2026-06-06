@@ -11,13 +11,21 @@ overwrite-policy: missing-only unless --force
 
 {summary}
 
-## Evidence
+## Operation
 
-{evidence}
+{operation}
 
-## Result
+## Rule Packet
 
-{result}
+{rule_packet}
+
+## Conflict Review
+
+{conflict_review}
+
+## Storage Action
+
+{storage_action}
 
 ## Validation
 

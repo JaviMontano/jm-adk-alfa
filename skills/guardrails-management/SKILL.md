@@ -29,6 +29,8 @@ Manages user-declared working rules stored as JSON in `references/guardrails/`. 
 - Detect user intent to set a working rule (keywords: "always", "never", "from now on", "prefer", "avoid")
 - Read existing guardrails: `references/guardrails/guidelines.json`, `constraints.json`, `guardrails.json`
 - Check for duplicates or conflicts with existing rules
+- Capture source text, proposed scope, evidence tag, and proposed verifiable
+  check before any write.
 
 ### Step 2: Analyze
 - Classify the rule type:
@@ -36,6 +38,8 @@ Manages user-declared working rules stored as JSON in `references/guardrails/`. 
   - **Guideline** (default, "always"): stored in `guidelines.json`
   - **Guardrail** (soft, "prefer"): stored in `guardrails.json`
 - Generate next ID: `GL-NNN` (guidelines), `CT-NNN` (constraints), `GR-NNN` (guardrails)
+- Apply `assets/classification-policy.json`, `assets/storage-map.json`, and
+  `assets/conflict-policy.json`.
 
 ### Step 3: Execute
 - **Confirm with user**: "I want to confirm: should I save this as a working [guideline/constraint/guardrail]? (yes/no)"
@@ -51,6 +55,21 @@ Manages user-declared working rules stored as JSON in `references/guardrails/`. 
 - No duplicate rules across files
 - Rule is actionable and verifiable by the Guardian
 - Confirmation was received before storing
+- For JSON operation packets, run
+  `bash skills/guardrails-management/scripts/check.sh`.
+
+## Deterministic Assets
+
+- `assets/manifest.json` lists every local asset and consumer.
+- `assets/rule-schema.json` defines required rule fields.
+- `assets/classification-policy.json` maps user language to rule type and ID
+  prefix.
+- `assets/confirmation-policy.json` requires explicit confirmation before
+  persistence.
+- `assets/conflict-policy.json` defines duplicate and conflict checks.
+- `assets/storage-map.json` maps each type to its canonical JSON file.
+- `assets/report-contract.json` defines operation packet fields enforced by the
+  offline validator.
 
 ## Quality Criteria
 
@@ -60,6 +79,10 @@ Manages user-declared working rules stored as JSON in `references/guardrails/`. 
 - [ ] JSON is valid after write
 - [ ] No duplicates across files
 - [ ] Evidence tags applied
+- [ ] Rule includes scope, source, verifiable check, active flag, and evidence
+      tag
+- [ ] Unconfirmed proposals are reported but not persisted
+- [ ] Removals preserve history by setting `active: false`
 
 ## Anti-Patterns
 
@@ -68,6 +91,8 @@ Manages user-declared working rules stored as JSON in `references/guardrails/`. 
 | Storing without confirmation | User didn't intend a permanent rule | Always double-confirm |
 | Mixing types | "Never" rules in guidelines file | Classify by enforcement level |
 | Storing unverifiable rules | Guardian can't check "make it nice" | Rules must be specific and testable |
+| Rewriting rule files wholesale | Risky data loss | Append or deactivate one entry at a time |
+| Resolving conflicts silently | User loses control of policy | Report conflict and require confirmation |
 
 ## Related Skills
 
@@ -96,3 +121,6 @@ Example invocations:
 | Empty or minimal input | Request clarification before proceeding |
 | Conflicting requirements | Flag conflicts explicitly, propose resolution |
 | Out-of-scope request | Redirect to appropriate skill or escalate |
+| User says "from now on" but no rule is specific | Ask for a verifiable check |
+| Duplicate active rule exists | Do not store; return existing ID |
+| User asks to remove a rule | Deactivate by ID, keep audit metadata |

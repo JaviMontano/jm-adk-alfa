@@ -1,9 +1,96 @@
-[
-  {"id": "guardrails-management-happy-path", "type": "happy_path", "input": "Run guardrails management on this project", "expected_behavior": "Skill activates and produces the expected guardrails management output following the defined process", "tags": ["basic", "activation"]},
-  {"id": "guardrails-management-explicit-trigger", "type": "happy_path", "input": "Apply guardrails management analysis", "expected_behavior": "Skill recognizes the trigger phrase and executes the guardrails management workflow", "tags": ["trigger", "recognition"]},
-  {"id": "guardrails-management-with-context", "type": "happy_path", "input": "Apply guardrails management to analyze the current codebase with detailed output", "expected_behavior": "Skill produces comprehensive guardrails management analysis with evidence-tagged findings", "tags": ["detailed", "comprehensive"]},
-  {"id": "guardrails-management-minimal-input", "type": "happy_path", "input": "Quick guardrails management", "expected_behavior": "Skill activates with minimal input, applies reasonable defaults", "tags": ["minimal", "defaults"]},
-  {"id": "guardrails-management-false-positive", "type": "false_positive", "input": "What is the weather forecast for tomorrow?", "expected_behavior": "Skill should NOT activate — this input has no relation to guardrails management", "tags": ["false_positive", "should-not-activate"]},
-  {"id": "guardrails-management-edge-empty-input", "type": "edge_case", "input": "Run guardrails management but I have no files or documentation yet", "expected_behavior": "Skill handles gracefully — requests minimum viable input or produces gap analysis", "tags": ["edge_case", "empty-input", "boundary"]},
-  {"id": "guardrails-management-edge-conflicting", "type": "edge_case", "input": "Apply guardrails management but requirements contradict each other", "expected_behavior": "Skill detects contradiction, flags with [OPEN] tag, proposes resolution", "tags": ["edge_case", "conflict", "corner"]}
-]
+{
+  "schema": 1,
+  "skill": "guardrails-management",
+  "cases": [
+    {
+      "id": "confirmed-guideline-happy-path",
+      "type": "happy_path",
+      "input": "From now on, always include evidence tags on every JM Labs claim. Yes, save it.",
+      "expected_behavior": "Classifies as guideline, generates GL id, confirms persistence, targets guidelines.json, and validates schema.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria"],
+      "tags": ["confirmation", "guideline"]
+    },
+    {
+      "id": "constraint-classification",
+      "type": "happy_path",
+      "input": "Never call network services from skill check.sh scripts. Confirmed.",
+      "expected_behavior": "Classifies as constraint, generates CT id, targets constraints.json, and requires a verifiable check.",
+      "expected_checks": ["assets", "quality_criteria"],
+      "tags": ["constraint", "storage-map"]
+    },
+    {
+      "id": "preference-guardrail",
+      "type": "happy_path",
+      "input": "Prefer short status updates while validations run.",
+      "expected_behavior": "Classifies as guardrail proposal and does not store until explicit confirmation is received.",
+      "expected_checks": ["assets", "quality_criteria"],
+      "tags": ["guardrail", "unconfirmed"]
+    },
+    {
+      "id": "unconfirmed-degradation",
+      "type": "degradation",
+      "input": "Maybe we should always write in a warmer tone.",
+      "expected_behavior": "Keeps as proposal, asks clarification, and does not persist because confirmation and verifiable check are missing.",
+      "expected_checks": ["deterministic_scripts", "quality_criteria"],
+      "tags": ["unconfirmed", "vague"]
+    },
+    {
+      "id": "duplicate-active-rule",
+      "type": "edge_case",
+      "input": "Always include evidence tags on every claim, while an active normalized duplicate already exists.",
+      "expected_behavior": "Blocks storage and returns the existing active rule ID.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria"],
+      "tags": ["duplicate", "block"]
+    },
+    {
+      "id": "conflicting-rules",
+      "type": "edge_case",
+      "input": "Always use Markdown tables for findings, but existing CT-002 says never use tables in compact reports.",
+      "expected_behavior": "Flags conflict and requires user resolution before storage.",
+      "expected_checks": ["assets", "quality_criteria"],
+      "tags": ["conflict"]
+    },
+    {
+      "id": "remove-by-id",
+      "type": "edge_case",
+      "input": "Deactivate GL-003.",
+      "expected_behavior": "Sets active false with audit metadata and does not delete the entry.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria"],
+      "tags": ["remove", "deactivate"]
+    },
+    {
+      "id": "false-positive-weather",
+      "type": "false_positive",
+      "input": "What is the weather forecast for tomorrow?",
+      "expected_behavior": "Does not activate guardrails-management because no durable rule operation is requested.",
+      "expected_checks": ["quality_criteria"],
+      "tags": ["false-positive"]
+    },
+    {
+      "id": "false-negative-policy-language",
+      "type": "false_negative",
+      "input": "Make this a permanent working rule: use local fixtures for validators.",
+      "expected_behavior": "Activates even without the word guardrail and creates a proposal awaiting confirmation.",
+      "expected_checks": ["assets", "quality_criteria"],
+      "tags": ["semantic-trigger"]
+    },
+    {
+      "id": "large-file-boundary",
+      "type": "boundary",
+      "input": "Add one confirmed rule when 250 existing guardrails are present.",
+      "expected_behavior": "Computes next ID deterministically, checks duplicates across all entries, and appends one entry only.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria"],
+      "tags": ["scale", "append-only"]
+    }
+  ],
+  "assets": ["assets/manifest.json", "assets/report-contract.json"],
+  "deterministic_scripts": ["scripts/check.sh", "scripts/validate_guardrails_packet.py"],
+  "quality_criteria": [
+    "explicit confirmation before persistence",
+    "correct type/id/target_file mapping",
+    "schema-valid JSON rule entry",
+    "duplicate and conflict review",
+    "deactivation instead of deletion",
+    "verifiable Guardian check"
+  ]
+}

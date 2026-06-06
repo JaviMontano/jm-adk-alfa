@@ -1,0 +1,48 @@
+{
+  "schema": 1,
+  "skill": "guardrails-management",
+  "assets": [
+    {
+      "path": "assets/README.md",
+      "type": "documentation",
+      "purpose": "Describe deterministic guardrail assets.",
+      "used_by": ["SKILL.md", "README.md"]
+    },
+    {
+      "path": "assets/rule-schema.json",
+      "type": "schema",
+      "purpose": "Define persisted guardrail rule fields.",
+      "used_by": ["SKILL.md", "scripts/validate_guardrails_packet.py"]
+    },
+    {
+      "path": "assets/classification-policy.json",
+      "type": "policy",
+      "purpose": "Map user language to guideline, constraint, or guardrail.",
+      "used_by": ["SKILL.md", "scripts/validate_guardrails_packet.py"]
+    },
+    {
+      "path": "assets/confirmation-policy.json",
+      "type": "policy",
+      "purpose": "Require explicit confirmation before persistence.",
+      "used_by": ["SKILL.md", "scripts/validate_guardrails_packet.py"]
+    },
+    {
+      "path": "assets/conflict-policy.json",
+      "type": "policy",
+      "purpose": "Define duplicate and conflict handling before writes.",
+      "used_by": ["SKILL.md", "scripts/validate_guardrails_packet.py"]
+    },
+    {
+      "path": "assets/storage-map.json",
+      "type": "contract",
+      "purpose": "Map each rule type to the canonical target file and ID prefix.",
+      "used_by": ["SKILL.md", "scripts/validate_guardrails_packet.py"]
+    },
+    {
+      "path": "assets/report-contract.json",
+      "type": "schema",
+      "purpose": "Define the offline-validatable operation packet.",
+      "used_by": ["SKILL.md", "examples/example-output.md", "scripts/validate_guardrails_packet.py"]
+    }
+  ]
+}

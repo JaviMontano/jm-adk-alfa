@@ -24,21 +24,28 @@ triad:
 ## Execution
 
 1. **Load knowledge**: Read `knowledge/body-of-knowledge.md`
-2. **Check guardrails**: Read `references/guardrails/*.json`
-3. **Lead** (`guardrails-management-lead`): Execute SKILL.md Steps 1-4 for `{{task}}`
+2. **Load deterministic assets**: Read `assets/manifest.json`,
+   `assets/rule-schema.json`, `assets/classification-policy.json`,
+   `assets/confirmation-policy.json`, `assets/conflict-policy.json`,
+   `assets/storage-map.json`, and `assets/report-contract.json`
+3. **Check guardrails**: Read available `references/guardrails/*.json` files
+   when present
+4. **Lead** (`guardrails-management-lead`): Execute SKILL.md Steps 1-4 for `{{task}}`
    - Discover → Analyze → Execute → Validate
    - Apply evidence tags on all claims
-4. **Support** (`guardrails-management-support`): Review for cross-cutting concerns
-   - Edge cases, security, accessibility, performance
-5. **Guardian** (`guardrails-management-guardian`): Validate
+   - Never store unconfirmed proposals
+5. **Support** (`guardrails-management-support`): Review for cross-cutting concerns
+   - Duplicate rules, conflicts, wrong target file, unverifiable checks, and
+     missing deactivation audit trail
+6. **Guardian** (`guardrails-management-guardian`): Validate
    - Evidence tags complete
    - Quality gate met
+   - Operation packet contract satisfied
    - Constitution XIII + XIV respected
    - Output exceeds expectations
 
 ## Output
 
 - Primary deliverable for `{{task}}` in `{{output_format}}`
-- Evidence tags on every claim
-- Recommendations beyond the ask
-- Confidence score (>= 0.95)
+- Rule proposal or stored rule packet, confirmation state, conflict review,
+  storage action, validation evidence, risks, and confidence score
