@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "skill": "session-lifecycle-management",
+  "assets": [
+    {
+      "path": "assets/staleness-policy.json",
+      "type": "policy",
+      "purpose": "Defines freshness signals for cached tool results.",
+      "used_by": ["SKILL.md", "scripts/validate_session_lifecycle_report.py", "evals/evals.json"]
+    },
+    {
+      "path": "assets/decision-matrix.json",
+      "type": "policy",
+      "purpose": "Defines resume, fork, and fresh transition rules.",
+      "used_by": ["SKILL.md", "scripts/validate_session_lifecycle_report.py", "templates/output.md"]
+    },
+    {
+      "path": "assets/typed-summary-policy.json",
+      "type": "policy",
+      "purpose": "Defines typed summary fields and stale-drop handling.",
+      "used_by": ["SKILL.md", "scripts/validate_session_lifecycle_report.py", "agents/guardian.md"]
+    },
+    {
+      "path": "assets/fork-isolation-policy.json",
+      "type": "policy",
+      "purpose": "Defines scratchpad and workspace isolation for forks.",
+      "used_by": ["SKILL.md", "scripts/validate_session_lifecycle_report.py", "agents/specialist.md"]
+    },
+    {
+      "path": "assets/lifecycle-decision-contract.json",
+      "type": "schema",
+      "purpose": "Defines required JSON report sections and validation checks.",
+      "used_by": ["SKILL.md", "scripts/validate_session_lifecycle_report.py", "templates/output.md"]
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "schema": "jm-labs.session-lifecycle-management.report.v1",
+  "required_top_level_fields": [
+    "schema",
+    "skill",
+    "transition",
+    "reason",
+    "context",
+    "staleness_results",
+    "typed_summary",
+    "forks",
+    "validation"
+  ],
+  "required_validation_checks": [
+    "assets",
+    "deterministic_scripts",
+    "quality_criteria",
+    "staleness_detected",
+    "typed_summary",
+    "transition_traced",
+    "fork_isolation",
+    "evidence_required"
+  ]
+}

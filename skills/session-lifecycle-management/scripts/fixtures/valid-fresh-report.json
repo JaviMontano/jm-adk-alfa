@@ -1,0 +1,43 @@
+{
+  "schema": "jm-labs.session-lifecycle-management.report.v1",
+  "skill": "session-lifecycle-management",
+  "transition": "fresh",
+  "reason": "Critical cached file reads and test output are stale after refactor.",
+  "context": {
+    "goal": "Continue token expiry fix after auth to identity rename",
+    "goal_branchable": false,
+    "shares_mutable_state": false,
+    "evidence_tag": "[CONFIG]"
+  },
+  "staleness_results": [
+    {
+      "result_id": "read-auth-token",
+      "source": "auth/token.py",
+      "signal_type": "path",
+      "critical": true,
+      "status": "stale",
+      "evidence_tag": "[CÓDIGO]"
+    },
+    {
+      "result_id": "pytest-auth",
+      "source": "pytest auth/ @ abc123",
+      "signal_type": "head",
+      "critical": true,
+      "status": "stale",
+      "evidence_tag": "[MÉTRICA]"
+    }
+  ],
+  "typed_summary": {
+    "goal": "Fix token expiry in the renamed identity module.",
+    "decisions": ["Old auth paths must be re-discovered before editing."],
+    "open_questions": ["Where did token TTL logic move under identity/?"],
+    "verified_facts": [],
+    "stale_dropped": ["auth/token.py", "pytest auth/ @ abc123"],
+    "raw_transcript_allowed": false
+  },
+  "forks": [],
+  "validation": {
+    "status": "pass",
+    "checks": ["assets", "deterministic_scripts", "quality_criteria", "staleness_detected", "typed_summary", "transition_traced", "fork_isolation", "evidence_required"]
+  }
+}

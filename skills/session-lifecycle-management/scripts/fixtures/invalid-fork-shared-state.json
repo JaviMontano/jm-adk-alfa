@@ -1,0 +1,11 @@
+{
+  "schema": "jm-labs.session-lifecycle-management.report.v1",
+  "skill": "session-lifecycle-management",
+  "transition": "fork",
+  "reason": "Try parallel hypotheses despite shared state.",
+  "context": {"goal": "Compare fixes", "goal_branchable": true, "shares_mutable_state": true, "evidence_tag": "[CONFIG]"},
+  "staleness_results": [{"result_id": "read-parser", "source": "src/parser.py", "signal_type": "hash", "critical": true, "status": "fresh", "evidence_tag": "[CÓDIGO]"}],
+  "typed_summary": null,
+  "forks": [{"branch": "strategy-a", "workspace": "workspace/2026-06-06-strategy-a/", "isolated_scratchpad": true, "isolated_workspace": false, "evidence_tag": "[CONFIG]"}],
+  "validation": {"status": "pass", "checks": ["assets", "deterministic_scripts", "quality_criteria", "staleness_detected", "typed_summary", "transition_traced", "fork_isolation", "evidence_required"]}
+}

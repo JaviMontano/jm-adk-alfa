@@ -1,0 +1,10 @@
+{
+  "schema": 1,
+  "skill": "session-lifecycle-management",
+  "required_fields": ["goal", "decisions", "open_questions", "verified_facts", "stale_dropped"],
+  "rules": [
+    "TypedSummary must be structured JSON, not raw transcript.",
+    "Fresh transition requires non-empty stale_dropped when staleness caused the fresh start.",
+    "Verified facts must retain evidence and exclude stale sources."
+  ]
+}

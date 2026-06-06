@@ -35,6 +35,7 @@ Capacidad de ingeniería para decidir, en un agente de larga duración, entre `r
 2. Corre el detector de staleness contra el estado actual del mundo.
 3. Aplica la matriz: válido → `resume`; ramificable → `fork`; stale crítico → `fresh` + `TypedSummary`.
 4. Valida con el checklist de `SKILL.md` y registra la razón de la transición.
+5. Si produces JSON, ejecuta `bash skills/session-lifecycle-management/scripts/check.sh`.
 
 ## Output Format
 

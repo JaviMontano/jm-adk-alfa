@@ -1,0 +1,10 @@
+{
+  "schema": 1,
+  "skill": "session-lifecycle-management",
+  "signal_types": ["mtime", "hash", "head", "path", "schema"],
+  "rules": [
+    "Every cached tool result must have a freshness signal.",
+    "A critical stale tool result blocks resume.",
+    "Stale dropped sources must not appear as verified facts in TypedSummary."
+  ]
+}

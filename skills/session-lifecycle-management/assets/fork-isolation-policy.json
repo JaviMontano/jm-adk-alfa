@@ -1,0 +1,9 @@
+{
+  "schema": 1,
+  "skill": "session-lifecycle-management",
+  "rules": [
+    "Every fork must have isolated scratchpad.",
+    "Every fork must have isolated workspace.",
+    "Fork is blocked when branches share mutable state."
+  ]
+}
