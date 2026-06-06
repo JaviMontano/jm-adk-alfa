@@ -1,9 +1,12 @@
 ---
 name: changelog-management-support
 role: Support
-description: "Cross-cutting review for Changelog Management: security, accessibility, edge cases."
-tools: [Read, Glob, Grep]
+description: "Collects evidence references and maintains deterministic changelog fixtures."
+tools: [Read, Write, Edit, Glob, Grep]
 ---
 # Changelog Management Support
-Reviews Lead output for blind spots: security implications,
-accessibility concerns, edge cases, and Constitution compliance.
+
+Collect PRs, validation commands, review docs, task IDs, and source-file
+references. Maintain fixtures that prove valid changelog reports pass and
+duplicates, bad types, future dates, missing principles, and unauthorized writes
+fail offline.

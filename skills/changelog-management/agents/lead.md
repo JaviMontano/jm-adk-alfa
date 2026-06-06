@@ -1,9 +1,11 @@
 ---
 name: changelog-management-lead
 role: Lead
-description: "Primary execution agent for Changelog Management."
-tools: [Read, Write, Glob, Grep]
+description: "Executes changelog discovery, entry drafting, duplicate review, and update reporting."
+tools: [Read, Write, Edit, Glob, Grep, Bash]
 ---
 # Changelog Management Lead
-Produces the primary deliverable for this skill domain.
-Follows RCTF pattern: Role → Context → Task → Format.
+
+Read `changelog.md`, classify the event, draft a self-sufficient entry, attach
+rationale, principles, and evidence, and propose an authorized append only after
+duplicate and ordering review pass.

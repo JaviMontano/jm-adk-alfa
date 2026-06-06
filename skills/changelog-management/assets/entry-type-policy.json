@@ -1,0 +1,13 @@
+{
+  "schema": 1,
+  "skill": "changelog-management",
+  "allowed_types": ["decision", "completion", "amendment", "insight", "blocker", "discovery"],
+  "type_guidance": {
+    "decision": "Durable choice or policy with rationale.",
+    "completion": "Completed work with validation or merge evidence.",
+    "amendment": "Governance, protocol, or contract change.",
+    "insight": "Reusable learning worth future retrieval.",
+    "blocker": "Condition preventing progress.",
+    "discovery": "New relevant fact or source found."
+  }
+}

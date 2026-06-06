@@ -1,0 +1,16 @@
+{
+  "schema": 1,
+  "skill": "changelog-management",
+  "principles_required": true,
+  "evidence_refs_required": true,
+  "rationale_required": true,
+  "authorization_required_for_write": true,
+  "allowed_evidence_refs": [
+    "PR number or URL",
+    "validation command",
+    "review document path",
+    "task ID",
+    "decision log path",
+    "source file path"
+  ]
+}
