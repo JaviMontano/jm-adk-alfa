@@ -9,7 +9,7 @@ triad:
   guardian: "ideate-component-guardian"
 ---
 
-# Ideate Component — Execute
+# Ideate Component - Execute
 
 ## Dynamic Parameters
 
@@ -20,7 +20,9 @@ triad:
 | `{{constraints}}` | Additional rules | No | Guardrails JSON |
 
 ## Execution Steps
-1. Read SKILL.md `## When to Activate` — confirm this skill applies
-2. Read SKILL.md `## Validation Gate` — internalize quality criteria
-3. Execute the skill workflow per SKILL.md sections
-4. Validate output against Validation Gate before delivering
+1. Confirm the request asks for one plugin component concept, not a full implementation.
+2. Identify component type: skill, agent, command, or hook.
+3. Read `references/component-patterns.md` and relevant plugin files if a path is provided.
+4. Inventory existing components and their names before proposing candidates.
+5. Produce 2-3 kebab-case candidates, one recommendation, relationships, conflicts, MOAT depth, tools, line range, validation, and risks.
+6. Validate against `assets/concept-card-contract.json` before delivering.

@@ -1,0 +1,16 @@
+{
+  "schema": 1,
+  "skill": "ideate-component",
+  "component_types": ["skill", "agent", "command", "hook"],
+  "type_requirements": {
+    "skill": ["movement"],
+    "agent": ["managed_skills"],
+    "command": ["invokes_component"],
+    "hook": ["hook_type", "event", "context_fields"]
+  },
+  "hook_event_compatibility": {
+    "command": ["PreToolUse", "PostToolUse", "Stop", "PreCompact", "PostCompact", "Notification"],
+    "prompt": ["PreToolUse", "PostToolUse"],
+    "agent": ["PreToolUse", "PostToolUse"]
+  }
+}

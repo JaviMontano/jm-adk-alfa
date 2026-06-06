@@ -1,0 +1,23 @@
+{
+  "skill": "ideate-component",
+  "reference_date": "2026-06-06",
+  "component_type": "skill",
+  "source_mode": "plugin-path",
+  "plugin_context": {"path_or_brief": "plugins/acme", "summary": "Existing plugin already has validate-manifest. [CODE]", "evidence_tag": "[CODE]"},
+  "existing_components": [
+    {"name": "validate-manifest", "type": "skill", "responsibility": "Validates plugin.json.", "evidence_tag": "[CODE]"}
+  ],
+  "candidates": [
+    {"name": "validate-manifest", "component_type": "skill", "responsibility": "This skill validates exported manifests for release.", "rationale": "Duplicate name should fail. [INFERENCE]", "evidence_tag": "[INFERENCE]"},
+    {"name": "manifest-export-review", "component_type": "skill", "responsibility": "This skill reviews exported manifests for release readiness.", "rationale": "Safe alternate. [INFERENCE]", "evidence_tag": "[INFERENCE]"}
+  ],
+  "recommended_candidate": "validate-manifest",
+  "relationships": {"movement": "VALIDATE", "direct_dependencies": ["validate-manifest"], "downstream_consumers": [], "diagram": "validate-manifest -> validate-manifest"},
+  "conflict_analysis": {"status": "overlap", "resolution": "differentiate", "rationale": "The duplicate should be rejected before differentiation. [INFERENCE]", "evidence_tag": "[INFERENCE]"},
+  "moat_depth": {"level": "STANDARD", "complexity_score": 4, "required_assets": ["SKILL.md", "references/"], "rationale": "Reference rules are enough. [INFERENCE]", "evidence_tag": "[INFERENCE]"},
+  "tools_needed": [{"tool": "Read", "reason": "Reads local manifests. [CODE]"}],
+  "estimated_lines": {"min": 80, "max": 120},
+  "output_decision": {"status": "recommended", "next_action": "design-skill", "evidence_tag": "[CONFIG]"},
+  "validation": ["This fixture must fail because a candidate duplicates an existing component. [CODE]"],
+  "risks": ["Accepting duplicates would make the plugin inventory ambiguous. [ASSUMPTION]"]
+}

@@ -1,0 +1,23 @@
+{
+  "skill": "ideate-component",
+  "reference_date": "2026-06-06",
+  "component_type": "command",
+  "source_mode": "plugin-path",
+  "plugin_context": {"path_or_brief": "plugins/acme", "summary": "Existing command already routes validation. [CODE]", "evidence_tag": "[CODE]"},
+  "existing_components": [
+    {"name": "validate-release", "type": "command", "responsibility": "Runs release validation.", "evidence_tag": "[CODE]"}
+  ],
+  "candidates": [
+    {"name": "release-check", "component_type": "command", "responsibility": "This command invokes release validation with a shorter name.", "rationale": "Alias-like command. [INFERENCE]", "evidence_tag": "[INFERENCE]"},
+    {"name": "release-validate", "component_type": "command", "responsibility": "This command routes users to release validation.", "rationale": "Alternate alias. [INFERENCE]", "evidence_tag": "[INFERENCE]"}
+  ],
+  "recommended_candidate": "release-check",
+  "relationships": {"invokes_component": "validate-release", "direct_dependencies": ["validate-release"], "downstream_consumers": ["users"], "diagram": "release-check -> validate-release"},
+  "conflict_analysis": {"status": "overlap", "resolution": "none", "rationale": "Overlap exists but no resolution is supplied. [INFERENCE]", "evidence_tag": "[INFERENCE]"},
+  "moat_depth": {"level": "MINIMAL", "complexity_score": 2, "required_assets": ["SKILL.md"], "rationale": "A command alias is small. [INFERENCE]", "evidence_tag": "[INFERENCE]"},
+  "tools_needed": [{"tool": "Read", "reason": "Reads command registry. [CODE]"}],
+  "estimated_lines": {"min": 18, "max": 32},
+  "output_decision": {"status": "recommended", "next_action": "design-command", "evidence_tag": "[CONFIG]"},
+  "validation": ["This fixture must fail because overlap has no resolution. [CODE]"],
+  "risks": ["The alias could duplicate the canonical command. [ASSUMPTION]"]
+}

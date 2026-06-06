@@ -1,0 +1,21 @@
+{
+  "skill": "ideate-component",
+  "reference_date": "2026-06-06",
+  "component_type": "hook",
+  "source_mode": "plugin-brief",
+  "plugin_context": {"path_or_brief": "Need a prompt hook for Stop.", "summary": "The brief asks for an incompatible hook type and event. [EXPLICIT]", "evidence_tag": "[EXPLICIT]"},
+  "existing_components": [],
+  "candidates": [
+    {"name": "stop-prompt-check", "component_type": "hook", "responsibility": "This hook validates prompt context after session close.", "rationale": "Invalid hook compatibility fixture. [INFERENCE]", "evidence_tag": "[INFERENCE]"},
+    {"name": "prompt-stop-validator", "component_type": "hook", "responsibility": "This hook checks prompt state after session close.", "rationale": "Invalid hook compatibility fixture. [INFERENCE]", "evidence_tag": "[INFERENCE]"}
+  ],
+  "recommended_candidate": "stop-prompt-check",
+  "relationships": {"hook_type": "prompt", "event": "Stop", "context_fields": ["prompt"], "direct_dependencies": [], "downstream_consumers": [], "diagram": "stop-prompt-check"},
+  "conflict_analysis": {"status": "none", "resolution": "none", "rationale": "No existing hook was provided. [EXPLICIT]", "evidence_tag": "[EXPLICIT]"},
+  "moat_depth": {"level": "FULL", "complexity_score": 6, "required_assets": ["SKILL.md", "references/", "examples/"], "rationale": "Hook behavior needs examples and references. [INFERENCE]", "evidence_tag": "[INFERENCE]"},
+  "tools_needed": [{"tool": "Read", "reason": "Reads hook registry. [CODE]"}],
+  "estimated_lines": {"min": 12, "max": 22},
+  "output_decision": {"status": "blocked", "next_action": "design-hook", "evidence_tag": "[CONFIG]"},
+  "validation": ["This fixture must fail because prompt/Stop is incompatible. [CODE]"],
+  "risks": ["Accepting the pair would cause runtime context errors. [ASSUMPTION]"]
+}

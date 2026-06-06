@@ -1,10 +1,3 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: ideate-component
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
-
 # Example Input
 
-Use `ideate-component` to produce a concise deliverable for a realistic project request.
+Ideate one hook component for the `jm-labs-runtime` plugin. Existing components include `validate-manifest`, `session-end-cleanup`, and `quality-gatekeeper`. The new component should run after a session closes and check whether the handoff packet has the required sections. Keep it read-only and recommend the right MOAT depth.

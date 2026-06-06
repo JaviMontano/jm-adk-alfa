@@ -1,0 +1,16 @@
+{
+  "schema": 1,
+  "skill": "ideate-component",
+  "levels": {
+    "MINIMAL": {"complexity_min": 1, "complexity_max": 2, "required_assets": ["SKILL.md"]},
+    "STANDARD": {"complexity_min": 3, "complexity_max": 5, "required_assets": ["SKILL.md", "references/"]},
+    "FULL": {"complexity_min": 6, "complexity_max": 7, "required_assets": ["SKILL.md", "references/", "examples/"]},
+    "DEEP": {"complexity_min": 8, "complexity_max": 10, "required_assets": ["SKILL.md", "references/", "examples/", "prompts/"]}
+  },
+  "line_ranges": {
+    "skill": {"min": 60, "max": 180},
+    "agent": {"min": 50, "max": 160},
+    "command": {"min": 15, "max": 60},
+    "hook": {"min": 5, "max": 40}
+  }
+}
