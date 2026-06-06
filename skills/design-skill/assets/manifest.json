@@ -1,0 +1,11 @@
+{
+  "schema": 1,
+  "skill": "design-skill",
+  "assets": [
+    {"path": "assets/README.md", "type": "documentation", "purpose": "Describe deterministic design-skill assets.", "used_by": ["SKILL.md", "README.md"]},
+    {"path": "assets/frontmatter-policy.json", "type": "policy", "purpose": "Define skill frontmatter rules.", "used_by": ["SKILL.md", "scripts/validate_design_skill_spec.py"]},
+    {"path": "assets/body-policy.json", "type": "policy", "purpose": "Define body section thresholds.", "used_by": ["SKILL.md", "scripts/validate_design_skill_spec.py"]},
+    {"path": "assets/tool-policy.json", "type": "policy", "purpose": "Define least-privilege tool profiles.", "used_by": ["SKILL.md", "scripts/validate_design_skill_spec.py"]},
+    {"path": "assets/report-contract.json", "type": "schema", "purpose": "Define the offline-validatable skill design spec.", "used_by": ["SKILL.md", "examples/example-output.md", "scripts/validate_design_skill_spec.py"]}
+  ]
+}

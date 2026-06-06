@@ -1,9 +1,90 @@
-[
-  {"id": "design-skill-happy-path", "type": "happy_path", "input": "Run design skill on this project", "expected_behavior": "Skill activates and produces the expected design skill output following the defined process", "tags": ["basic", "activation"]},
-  {"id": "design-skill-explicit-trigger", "type": "happy_path", "input": "Apply design skill analysis", "expected_behavior": "Skill recognizes the trigger phrase and executes the design skill workflow", "tags": ["trigger", "recognition"]},
-  {"id": "design-skill-with-context", "type": "happy_path", "input": "Apply design skill to analyze the current codebase with detailed output", "expected_behavior": "Skill produces comprehensive design skill analysis with evidence-tagged findings", "tags": ["detailed", "comprehensive"]},
-  {"id": "design-skill-minimal-input", "type": "happy_path", "input": "Quick design skill", "expected_behavior": "Skill activates with minimal input, applies reasonable defaults", "tags": ["minimal", "defaults"]},
-  {"id": "design-skill-false-positive", "type": "false_positive", "input": "What is the weather forecast for tomorrow?", "expected_behavior": "Skill should NOT activate — this input has no relation to design skill", "tags": ["false_positive", "should-not-activate"]},
-  {"id": "design-skill-edge-empty-input", "type": "edge_case", "input": "Run design skill but I have no files or documentation yet", "expected_behavior": "Skill handles gracefully — requests minimum viable input or produces gap analysis", "tags": ["edge_case", "empty-input", "boundary"]},
-  {"id": "design-skill-edge-conflicting", "type": "edge_case", "input": "Apply design skill but requirements contradict each other", "expected_behavior": "Skill detects contradiction, flags with [OPEN] tag, proposes resolution", "tags": ["edge_case", "conflict", "corner"]}
-]
+{
+  "schema": 1,
+  "skill": "design-skill",
+  "cases": [
+    {
+      "id": "valid-readonly-skill-spec",
+      "type": "happy_path",
+      "input": "Design a read-only config validation skill with Glob/Grep/Read tools and six procedure steps.",
+      "expected_behavior": "Produces a complete skill design spec with least-privilege tools, procedure steps, quality criteria, anti-patterns, edge cases, and MOAT score.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria"],
+      "tags": ["frontmatter", "least-privilege"]
+    },
+    {
+      "id": "valid-generation-skill-spec",
+      "type": "happy_path",
+      "input": "Design a generation skill that creates a report draft and needs Write with documented rationale.",
+      "expected_behavior": "Allows Write only because the procedure requires a generated draft and tool rationale explains it.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria"],
+      "tags": ["generation", "tool-rationale"]
+    },
+    {
+      "id": "bad-name-rejected",
+      "type": "edge_case",
+      "input": "Design a skill named Data Cleaner Pro.",
+      "expected_behavior": "Rejects non-kebab-case skill name.",
+      "expected_checks": ["deterministic_scripts", "quality_criteria"],
+      "tags": ["frontmatter"]
+    },
+    {
+      "id": "write-tool-for-readonly-rejected",
+      "type": "degradation",
+      "input": "Design a read-only audit skill but include Write and Bash just in case.",
+      "expected_behavior": "Blocks unnecessary tools and enforces least privilege.",
+      "expected_checks": ["assets", "quality_criteria"],
+      "tags": ["least-privilege"]
+    },
+    {
+      "id": "procedure-too-short",
+      "type": "edge_case",
+      "input": "Design a skill with two procedure steps.",
+      "expected_behavior": "Blocks because procedure requires 5-10 structured steps.",
+      "expected_checks": ["deterministic_scripts", "quality_criteria"],
+      "tags": ["procedure"]
+    },
+    {
+      "id": "generic-quality-rejected",
+      "type": "edge_case",
+      "input": "Use quality criteria like output is good and works well.",
+      "expected_behavior": "Rejects vague criteria and requires measurable pass/fail thresholds.",
+      "expected_checks": ["assets", "quality_criteria"],
+      "tags": ["quality"]
+    },
+    {
+      "id": "missing-edge-cases",
+      "type": "edge_case",
+      "input": "Design a skill with no edge cases.",
+      "expected_behavior": "Blocks until 3-5 boundary cases exist.",
+      "expected_checks": ["deterministic_scripts", "quality_criteria"],
+      "tags": ["edge-cases"]
+    },
+    {
+      "id": "low-moat-score",
+      "type": "degradation",
+      "input": "Design a skill with a MOAT score of 60.",
+      "expected_behavior": "Blocks until the design reaches at least 75.",
+      "expected_checks": ["deterministic_scripts", "quality_criteria"],
+      "tags": ["moat"]
+    },
+    {
+      "id": "false-positive-ordinary-task",
+      "type": "false_positive",
+      "input": "Clean this CSV file.",
+      "expected_behavior": "Does not activate because no skill design is requested.",
+      "expected_checks": ["quality_criteria"],
+      "tags": ["false-positive"]
+    }
+  ],
+  "assets": ["assets/manifest.json", "assets/report-contract.json", "assets/body-policy.json"],
+  "deterministic_scripts": ["scripts/check.sh", "scripts/validate_design_skill_spec.py"],
+  "quality_criteria": [
+    "kebab-case skill name",
+    "frontmatter required fields",
+    "procedure has 5-10 structured steps",
+    "quality criteria are measurable",
+    "anti-patterns and edge cases meet minimums",
+    "tool choice follows least privilege",
+    "MOAT score is at least 75",
+    "offline validation evidence"
+  ]
+}

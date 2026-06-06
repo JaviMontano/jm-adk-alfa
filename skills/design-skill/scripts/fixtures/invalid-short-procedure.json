@@ -1,0 +1,45 @@
+{
+  "skill": "design-skill",
+  "reference_date": "2026-06-06",
+  "designed_skill": "short-procedure-review",
+  "summary": "Uses too few procedure steps to verify minimum workflow coverage. [CONFIG]",
+  "frontmatter": {
+    "name": "short-procedure-review",
+    "description": "Use when validating that underspecified skill procedures are rejected.",
+    "argument-hint": "$ARGUMENTS",
+    "user-invocable": true,
+    "allowed-tools": ["Read", "Glob", "Grep"]
+  },
+  "tool_profile": "read-only",
+  "guiding_principle": "A designed skill must include enough ordered steps to make execution auditable. [DOC]",
+  "procedure": [
+    {"step": 1, "action": "Scan", "input": "Scope.", "output": "Files.", "evidence_tag": "[CODE]"},
+    {"step": 2, "action": "Read", "input": "Files.", "output": "Evidence.", "evidence_tag": "[CODE]"},
+    {"step": 3, "action": "Produce", "input": "Evidence.", "output": "Report.", "evidence_tag": "[CONFIG]"}
+  ],
+  "quality_criteria": [
+    "The procedure has deterministic ordering. [CONFIG]",
+    "Each step has input and output fields. [CODE]",
+    "Tool access remains read-only. [CONFIG]",
+    "The expected failure is the step count. [CODE]"
+  ],
+  "anti_patterns": [
+    "Collapsing discovery, validation, and reporting into one step.",
+    "Omitting the input for a procedure step.",
+    "Omitting the output for a procedure step.",
+    "Letting prose replace an ordered procedure."
+  ],
+  "edge_cases": [
+    {"case": "The skill has only three steps.", "expected_behavior": "Reject the procedure as below minimum. [CODE]"},
+    {"case": "The fields are otherwise complete.", "expected_behavior": "Preserve the minimum-step failure. [CONFIG]"},
+    {"case": "The tool profile is valid.", "expected_behavior": "Do not mask the procedure error. [CODE]"}
+  ],
+  "tool_rationale": [
+    {"tool": "Read", "reason": "Reads local evidence. [CODE]"},
+    {"tool": "Glob", "reason": "Finds local files. [CODE]"},
+    {"tool": "Grep", "reason": "Searches local files. [CODE]"}
+  ],
+  "moat_score": {"completeness": 20, "accuracy": 20, "actionability": 20, "maintainability": 18, "total": 78},
+  "validation": ["This fixture must fail on procedure length. [CODE]"],
+  "risks": ["If accepted, underspecified skill designs could pass review. [ASSUMPTION]"]
+}

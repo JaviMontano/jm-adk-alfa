@@ -1,0 +1,47 @@
+{
+  "skill": "design-skill",
+  "reference_date": "2026-06-06",
+  "designed_skill": "generic-quality-review",
+  "summary": "Includes a generic quality criterion to verify weak rubric rejection. [CONFIG]",
+  "frontmatter": {
+    "name": "generic-quality-review",
+    "description": "Use when validating that generic quality criteria do not pass a deterministic skill design review.",
+    "argument-hint": "$ARGUMENTS",
+    "user-invocable": true,
+    "allowed-tools": ["Read", "Glob", "Grep"]
+  },
+  "tool_profile": "read-only",
+  "guiding_principle": "Quality criteria must be concrete enough to verify against outputs and evidence. [DOC]",
+  "procedure": [
+    {"step": 1, "action": "Scan", "input": "Scope.", "output": "Files.", "evidence_tag": "[CODE]"},
+    {"step": 2, "action": "Read", "input": "Files.", "output": "Evidence.", "evidence_tag": "[CODE]"},
+    {"step": 3, "action": "Extract", "input": "Evidence.", "output": "Rubric items.", "evidence_tag": "[CODE]"},
+    {"step": 4, "action": "Validate", "input": "Rubric items.", "output": "Accepted items.", "evidence_tag": "[CONFIG]"},
+    {"step": 5, "action": "Report", "input": "Accepted items.", "output": "Report.", "evidence_tag": "[CONFIG]"}
+  ],
+  "quality_criteria": [
+    "The skill creates high quality output. [CONFIG]",
+    "Each criterion includes a measurable acceptance condition. [CONFIG]",
+    "Each criterion is traceable to skill behavior. [DOC]",
+    "The expected failure is the generic phrase. [CODE]"
+  ],
+  "anti_patterns": [
+    "Using vague adjectives as acceptance criteria.",
+    "Omitting evidence tags from rubric items.",
+    "Accepting quality language that cannot be tested.",
+    "Confusing user value with validation criteria."
+  ],
+  "edge_cases": [
+    {"case": "A criterion says high quality.", "expected_behavior": "Reject the generic wording. [CONFIG]"},
+    {"case": "Other criteria are concrete.", "expected_behavior": "Still fail because one generic item remains. [CODE]"},
+    {"case": "Evidence tags are present.", "expected_behavior": "Do not let evidence tags excuse vague criteria. [DOC]"}
+  ],
+  "tool_rationale": [
+    {"tool": "Read", "reason": "Reads local evidence. [CODE]"},
+    {"tool": "Glob", "reason": "Finds local files. [CODE]"},
+    {"tool": "Grep", "reason": "Searches local files. [CODE]"}
+  ],
+  "moat_score": {"completeness": 21, "accuracy": 21, "actionability": 20, "maintainability": 18, "total": 80},
+  "validation": ["This fixture must fail on generic quality wording. [CODE]"],
+  "risks": ["If accepted, vague rubrics could pass as deterministic criteria. [ASSUMPTION]"]
+}

@@ -1,75 +1,21 @@
 {
   "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-28",
   "skill": "design-skill",
   "nodes": [
-    {
-      "id": "design-skill",
-      "type": "skill",
-      "label": "design-skill"
-    },
-    {
-      "id": "design-skill:inputs",
-      "type": "contract",
-      "label": "Expected inputs"
-    },
-    {
-      "id": "design-skill:outputs",
-      "type": "contract",
-      "label": "Expected outputs"
-    },
-    {
-      "id": "design-skill:quality",
-      "type": "gate",
-      "label": "Quality criteria"
-    },
-    {
-      "id": "design-skill:ontology",
-      "type": "ontology",
-      "label": "Domain: general"
-    },
-    {
-      "id": "design-skill:evidence",
-      "type": "gate",
-      "label": "Evidence / provenance requirements"
-    },
-    {
-      "id": "design-skill:antipattern",
-      "type": "risk",
-      "label": "Canonical anti-pattern to avoid"
-    }
+    {"id": "design-skill", "type": "skill", "label": "Design Skill"},
+    {"id": "frontmatter-policy", "type": "policy", "label": "Skill frontmatter policy"},
+    {"id": "body-policy", "type": "policy", "label": "Skill body policy"},
+    {"id": "tool-policy", "type": "guardrail", "label": "Least privilege tool policy"},
+    {"id": "moat-score", "type": "gate", "label": "MOAT score"},
+    {"id": "skill-design-spec", "type": "contract", "label": "Skill design specification"},
+    {"id": "offline-validator", "type": "script", "label": "scripts/validate_design_skill_spec.py"}
   ],
   "edges": [
-    {
-      "from": "design-skill",
-      "to": "design-skill:inputs",
-      "type": "requires"
-    },
-    {
-      "from": "design-skill",
-      "to": "design-skill:outputs",
-      "type": "produces"
-    },
-    {
-      "from": "design-skill",
-      "to": "design-skill:quality",
-      "type": "validated_by"
-    },
-    {
-      "from": "design-skill",
-      "to": "design-skill:ontology",
-      "type": "classified_as"
-    },
-    {
-      "from": "design-skill",
-      "to": "design-skill:evidence",
-      "type": "validated_by"
-    },
-    {
-      "from": "design-skill",
-      "to": "design-skill:antipattern",
-      "type": "guards_against"
-    }
+    {"from": "design-skill", "to": "skill-design-spec", "type": "produces"},
+    {"from": "frontmatter-policy", "to": "skill-design-spec", "type": "constrains"},
+    {"from": "body-policy", "to": "skill-design-spec", "type": "validates"},
+    {"from": "tool-policy", "to": "skill-design-spec", "type": "guards"},
+    {"from": "moat-score", "to": "skill-design-spec", "type": "gates"},
+    {"from": "offline-validator", "to": "skill-design-spec", "type": "validates"}
   ]
 }

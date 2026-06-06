@@ -1,0 +1,47 @@
+{
+  "skill": "design-skill",
+  "reference_date": "2026-06-06",
+  "designed_skill": "low-moat-review",
+  "summary": "Uses a complete structure with a below-threshold MOAT score to verify scoring enforcement. [CONFIG]",
+  "frontmatter": {
+    "name": "low-moat-review",
+    "description": "Use when validating that skill designs below the configured MOAT threshold are rejected.",
+    "argument-hint": "$ARGUMENTS",
+    "user-invocable": true,
+    "allowed-tools": ["Read", "Glob", "Grep"]
+  },
+  "tool_profile": "read-only",
+  "guiding_principle": "The MOAT threshold prevents structurally complete but weak skill designs from passing. [DOC]",
+  "procedure": [
+    {"step": 1, "action": "Scan", "input": "Scope.", "output": "Files.", "evidence_tag": "[CODE]"},
+    {"step": 2, "action": "Read", "input": "Files.", "output": "Evidence.", "evidence_tag": "[CODE]"},
+    {"step": 3, "action": "Extract", "input": "Evidence.", "output": "Weaknesses.", "evidence_tag": "[CODE]"},
+    {"step": 4, "action": "Compare", "input": "Weaknesses.", "output": "Score components.", "evidence_tag": "[INFERENCE]"},
+    {"step": 5, "action": "Report", "input": "Score components.", "output": "Report.", "evidence_tag": "[CONFIG]"}
+  ],
+  "quality_criteria": [
+    "The total must equal the component sum. [CODE]",
+    "The total must meet the configured minimum. [CONFIG]",
+    "Components are numeric and auditable. [CODE]",
+    "A below-threshold score fails even when structure is complete. [CONFIG]"
+  ],
+  "anti_patterns": [
+    "Accepting a weak score because fields are present.",
+    "Using a total that differs from component sum.",
+    "Hiding scoring assumptions in prose.",
+    "Skipping score validation for review fixtures."
+  ],
+  "edge_cases": [
+    {"case": "Total equals component sum but is below threshold.", "expected_behavior": "Reject the score. [CONFIG]"},
+    {"case": "The fixture is otherwise structurally valid.", "expected_behavior": "Keep failure focused on score threshold. [CODE]"},
+    {"case": "The user requests leniency.", "expected_behavior": "Preserve the deterministic threshold. [CONFIG]"}
+  ],
+  "tool_rationale": [
+    {"tool": "Read", "reason": "Reads local evidence. [CODE]"},
+    {"tool": "Glob", "reason": "Finds local files. [CODE]"},
+    {"tool": "Grep", "reason": "Searches local files. [CODE]"}
+  ],
+  "moat_score": {"completeness": 18, "accuracy": 18, "actionability": 17, "maintainability": 17, "total": 70},
+  "validation": ["This fixture must fail on MOAT threshold. [CODE]"],
+  "risks": ["If accepted, weak but complete skill designs could pass. [ASSUMPTION]"]
+}

@@ -1,0 +1,47 @@
+{
+  "skill": "design-skill",
+  "reference_date": "2026-06-06",
+  "designed_skill": "Bad Skill Name",
+  "summary": "Uses an invalid skill name to verify frontmatter name enforcement. [CONFIG]",
+  "frontmatter": {
+    "name": "Bad Skill Name",
+    "description": "Use when validating that non-kebab-case skill names are rejected.",
+    "argument-hint": "$ARGUMENTS",
+    "user-invocable": true,
+    "allowed-tools": ["Read", "Glob", "Grep"]
+  },
+  "tool_profile": "read-only",
+  "guiding_principle": "The validator must reject names that do not match the kebab-case skill naming policy. [DOC]",
+  "procedure": [
+    {"step": 1, "action": "Scan", "input": "Scope.", "output": "Files.", "evidence_tag": "[CODE]"},
+    {"step": 2, "action": "Read", "input": "Files.", "output": "Evidence.", "evidence_tag": "[CODE]"},
+    {"step": 3, "action": "Extract", "input": "Evidence.", "output": "Patterns.", "evidence_tag": "[CODE]"},
+    {"step": 4, "action": "Compare", "input": "Patterns.", "output": "Decisions.", "evidence_tag": "[INFERENCE]"},
+    {"step": 5, "action": "Report", "input": "Decisions.", "output": "Report.", "evidence_tag": "[CONFIG]"}
+  ],
+  "quality_criteria": [
+    "Names are checked against the configured pattern. [CODE]",
+    "Unsupported frontmatter does not pass silently. [CONFIG]",
+    "Findings distinguish policy from inference. [DOC]",
+    "The expected failure remains isolated to naming. [CONFIG]"
+  ],
+  "anti_patterns": [
+    "Accepting spaces in skill names.",
+    "Accepting CamelCase skill names.",
+    "Using a directory name that differs from frontmatter.",
+    "Ignoring naming errors because other fields are valid."
+  ],
+  "edge_cases": [
+    {"case": "Name includes spaces.", "expected_behavior": "Reject as non-kebab-case. [CODE]"},
+    {"case": "Name includes capitals.", "expected_behavior": "Reject as non-kebab-case. [CODE]"},
+    {"case": "Name differs from designed_skill.", "expected_behavior": "Reject the mismatch. [CODE]"}
+  ],
+  "tool_rationale": [
+    {"tool": "Read", "reason": "Reads local policy. [CODE]"},
+    {"tool": "Glob", "reason": "Finds local fixtures. [CODE]"},
+    {"tool": "Grep", "reason": "Locates naming constraints. [CODE]"}
+  ],
+  "moat_score": {"completeness": 20, "accuracy": 20, "actionability": 20, "maintainability": 18, "total": 78},
+  "validation": ["This fixture must fail on frontmatter name format. [CODE]"],
+  "risks": ["If accepted, non-portable skill names could enter the catalog. [ASSUMPTION]"]
+}

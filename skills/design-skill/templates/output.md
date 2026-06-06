@@ -1,28 +1,50 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: design-skill
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
-
-# Design Skill Output
+# Skill Design Specification
 
 ## Summary
 
-{summary}
+{evidence_tagged_summary}
 
-## Evidence
+## Frontmatter
 
-{evidence}
+```yaml
+{frontmatter_yaml}
+```
 
-## Result
+## Guiding Principle
 
-{result}
+{guiding_principle}
+
+## Procedure
+
+| Step | Action | Input | Output | Evidence |
+|------|--------|-------|--------|----------|
+
+## Quality Criteria
+
+{measurable_quality_criteria}
+
+## Anti-Patterns
+
+{specific_anti_patterns}
+
+## Edge Cases
+
+{boundary_cases_with_expected_behavior}
+
+## Tool Rationale
+
+| Tool | Reason |
+|------|--------|
+
+## MOAT Score
+
+| Dimension | Score |
+|-----------|-------|
 
 ## Validation
 
-{validation}
+{validation_evidence}
 
-## Risks and Limits
+## Risks
 
-{risks}
+{evidence_tagged_risks}

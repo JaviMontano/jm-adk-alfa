@@ -5,5 +5,4 @@ variant: quick
 ---
 # Design Skill — Quick Mode
 
-Streamlined execution. Focus on TL;DR and primary output only.
-Apply Validation Gate but skip extended evidence tagging.
+Return frontmatter, guiding principle, procedure outline, quality criteria, anti-patterns, edge cases, tool rationale, MOAT score, and blockers.
