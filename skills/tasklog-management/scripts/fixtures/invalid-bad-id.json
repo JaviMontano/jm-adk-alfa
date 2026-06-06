@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "skill": "tasklog-management",
+  "as_of_date": "2026-06-06",
+  "tasklog_snapshot": {
+    "path": "tasklog.md",
+    "status": "present",
+    "task_count": 1,
+    "evidence_tag": "[CODE]"
+  },
+  "operations": [
+    {
+      "operation": "update",
+      "task_id": "TASK-22",
+      "from_status": "open",
+      "to_status": "completed",
+      "authorized": true,
+      "rationale": "Invalid fixture uses wrong ID format.",
+      "evidence_tag": "[CONFIG]"
+    }
+  ],
+  "stale_review": [],
+  "bridge_review": [],
+  "archive_review": [],
+  "guardian_decision": {
+    "decision": "pass",
+    "rationale": "Invalid fixture.",
+    "evidence_tag": "[CONFIG]"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "schema": 1,
+  "skill": "tasklog-management",
+  "bridge_root": "workspace/tasks",
+  "bridge_readme_pattern": "^workspace/tasks/TL-[0-9]{3}-[a-z0-9]+(?:-[a-z0-9]+)*/README\\.md$",
+  "creation_requires_authorization": true,
+  "required_when": [
+    "task has working files",
+    "task spans sessions",
+    "task needs evidence bundle",
+    "task is blocked by external artifact"
+  ]
+}

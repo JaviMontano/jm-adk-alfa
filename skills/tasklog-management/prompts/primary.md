@@ -2,7 +2,7 @@
 name: tasklog-management-primary
 type: execution
 version: 2.0.0
-description: "Execute the Tasklog Management workflow with triad orchestration."
+description: "Execute deterministic Tasklog Management workflow."
 triad:
   lead: "tasklog-management-lead"
   support: "tasklog-management-support"
@@ -14,31 +14,21 @@ triad:
 ## Dynamic Parameters
 
 | Parameter | Description | Required | Filled By |
-|-----------|-------------|----------|-----------|
-| `{{task}}` | What to accomplish | Yes | User input |
-| `{{context}}` | Background and constraints | Yes | User or codebase |
-| `{{constraints}}` | Additional rules | No | Guardrails JSON |
-| `{{depth}}` | quick / standard / deep | No | Auto |
-| `{{output_format}}` | html / docx / xlsx / md | No | Auto |
+|---|---|---:|---|
+| `{{task}}` | Requested tasklog operation | Yes | User input |
+| `{{context}}` | Existing tasklog and bridge evidence | Yes | Codebase |
+| `{{as_of_date}}` | Date for stale/archive calculations | Yes | Session config or user |
+| `{{constraints}}` | Write authorization and branch rules | No | Guardrails JSON |
 
 ## Execution
 
-1. **Load knowledge**: Read `knowledge/body-of-knowledge.md`
-2. **Check guardrails**: Read `references/guardrails/*.json`
-3. **Lead** (`tasklog-management-lead`): Execute SKILL.md Steps 1-4 for `{{task}}`
-   - Discover → Analyze → Execute → Validate
-   - Apply evidence tags on all claims
-4. **Support** (`tasklog-management-support`): Review for cross-cutting concerns
-   - Edge cases, security, accessibility, performance
-5. **Guardian** (`tasklog-management-guardian`): Validate
-   - Evidence tags complete
-   - Quality gate met
-   - Constitution XIII + XIV respected
-   - Output exceeds expectations
-
-## Output
-
-- Primary deliverable for `{{task}}` in `{{output_format}}`
-- Evidence tags on every claim
-- Recommendations beyond the ask
-- Confidence score (>= 0.95)
+1. Confirm activation through `SKILL.md ## When to Activate`.
+2. Load `assets/tasklog-contract.json`, `assets/status-policy.json`,
+   `assets/staleness-policy.json`, and `assets/bridge-policy.json`.
+3. Read `tasklog.md` and relevant `workspace/tasks/**` bridge paths.
+4. Validate IDs, statuses, dates, transitions, stale status, archive eligibility,
+   and bridge paths.
+5. Block any unauthorized write or hidden-clock decision.
+6. Return the Markdown report using `templates/output.md`.
+7. When a JSON report is produced, validate it with
+   `scripts/validate_tasklog_report.py`.

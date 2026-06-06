@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "skill": "tasklog-management",
+  "as_of_date": "2026-06-06",
+  "tasklog_snapshot": {
+    "path": "tasklog.md",
+    "status": "present",
+    "task_count": 1,
+    "evidence_tag": "[CODE]"
+  },
+  "operations": [
+    {
+      "operation": "none",
+      "task_id": "TL-015",
+      "from_status": "open",
+      "to_status": "none",
+      "authorized": false,
+      "rationale": "Review-only report; stale task is not auto-closed.",
+      "evidence_tag": "[CONFIG]"
+    }
+  ],
+  "stale_review": [
+    {
+      "task_id": "TL-015",
+      "status": "open",
+      "last_update": "2026-05-01",
+      "age_days": 36,
+      "stale": true,
+      "action": "review_required",
+      "evidence_tag": "[CODE]"
+    }
+  ],
+  "bridge_review": [
+    {
+      "task_id": "TL-015",
+      "needs_bridge": true,
+      "bridge_path": "workspace/tasks/TL-015-export-validator/README.md",
+      "exists": false,
+      "action": "create_if_authorized",
+      "evidence_tag": "[INFERENCE]"
+    }
+  ],
+  "archive_review": [],
+  "guardian_decision": {
+    "decision": "block",
+    "rationale": "Stale task requires owner review before any write.",
+    "evidence_tag": "[CONFIG]"
+  }
+}

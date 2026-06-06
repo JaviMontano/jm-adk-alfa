@@ -1,0 +1,14 @@
+{
+  "schema": 1,
+  "skill": "tasklog-management",
+  "statuses": ["open", "in-progress", "blocked", "deferred", "completed"],
+  "write_operations": ["add", "update", "close", "block", "defer", "bridge", "archive"],
+  "allowed_transitions": {
+    "none": ["open", "in-progress", "blocked", "deferred"],
+    "open": ["in-progress", "blocked", "deferred", "completed"],
+    "in-progress": ["blocked", "deferred", "completed"],
+    "blocked": ["in-progress", "deferred", "completed"],
+    "deferred": ["open", "in-progress", "completed"],
+    "completed": []
+  }
+}

@@ -1,9 +1,11 @@
 ---
 name: tasklog-management-support
 role: Support
-description: "Cross-cutting review for Tasklog Management: security, accessibility, edge cases."
-tools: [Read, Glob, Grep]
+description: "Collects tasklog evidence and maintains deterministic validation fixtures."
+tools: [Read, Write, Edit, Glob, Grep]
 ---
 # Tasklog Management Support
-Reviews Lead output for blind spots: security implications,
-accessibility concerns, edge cases, and Constitution compliance.
+
+Collect `tasklog.md`, bridge directories, and update evidence. Maintain fixtures
+that prove valid tasklog reports pass and invalid IDs, stale omissions,
+unauthorized writes, and malformed bridge paths fail offline.

@@ -5,30 +5,8 @@ version: 2.0.0
 description: "Tasklog Management in quick mode."
 ---
 
-# Tasklog Management — quick Mode
+# Tasklog Management — Quick Mode
 
-## When to Use
-
-Use quick mode when you need adjusted depth for the Tasklog Management workflow.
-
-## Dynamic Parameters
-
-| Parameter | Required | Filled By |
-|-----------|----------|-----------|
-| `{{task}}` | Yes | User input |
-| `{{context}}` | No | Auto-detected |
-| `{{depth}}` | No | Set to "quick" |
-
-## Execution
-
-1. Load skill: `skills/tasklog-management/knowledge/body-of-knowledge.md`
-2. Check guardrails: `references/guardrails/*.json`
-3. Execute at quick depth with evidence tags
-4. Lead → Support → Guardian validation
-5. Confidence >= 0.95
-
-## Output
-
-- Deliverable calibrated to quick depth
-- Evidence-tagged, Constitution-compliant
-- Recommendations beyond the ask
+Review `tasklog.md`, compute stale/archive status with explicit `as_of_date`,
+and return only task updates, blockers, and Guardian decision. Keep write
+authorization checks active.

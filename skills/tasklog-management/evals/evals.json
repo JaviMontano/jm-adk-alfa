@@ -1,9 +1,76 @@
-[
-  {"id": "tasklog-management-happy-path", "type": "happy_path", "input": "Run tasklog management on this project", "expected_behavior": "Skill activates and produces the expected tasklog management output following the defined process", "tags": ["basic", "activation"]},
-  {"id": "tasklog-management-explicit-trigger", "type": "happy_path", "input": "Apply tasklog management analysis", "expected_behavior": "Skill recognizes the trigger phrase and executes the tasklog management workflow", "tags": ["trigger", "recognition"]},
-  {"id": "tasklog-management-with-context", "type": "happy_path", "input": "Apply tasklog management to analyze the current codebase with detailed output", "expected_behavior": "Skill produces comprehensive tasklog management analysis with evidence-tagged findings", "tags": ["detailed", "comprehensive"]},
-  {"id": "tasklog-management-minimal-input", "type": "happy_path", "input": "Quick tasklog management", "expected_behavior": "Skill activates with minimal input, applies reasonable defaults", "tags": ["minimal", "defaults"]},
-  {"id": "tasklog-management-false-positive", "type": "false_positive", "input": "What is the weather forecast for tomorrow?", "expected_behavior": "Skill should NOT activate — this input has no relation to tasklog management", "tags": ["false_positive", "should-not-activate"]},
-  {"id": "tasklog-management-edge-empty-input", "type": "edge_case", "input": "Run tasklog management but I have no files or documentation yet", "expected_behavior": "Skill handles gracefully — requests minimum viable input or produces gap analysis", "tags": ["edge_case", "empty-input", "boundary"]},
-  {"id": "tasklog-management-edge-conflicting", "type": "edge_case", "input": "Apply tasklog management but requirements contradict each other", "expected_behavior": "Skill detects contradiction, flags with [OPEN] tag, proposes resolution", "tags": ["edge_case", "conflict", "corner"]}
-]
+{
+  "schema": 1,
+  "skill": "tasklog-management",
+  "cases": [
+    {
+      "id": "tasklog-management-add-task",
+      "type": "happy_path",
+      "input": "Add a new task to tasklog.md as of 2026-06-06 with owner agent and status open.",
+      "expected_behavior": "Assign a TL-NNN ID, keep status open, record opened and last-update dates, and gate the write on authorization.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "id_format"]
+    },
+    {
+      "id": "tasklog-management-missing-tasklog",
+      "type": "degradation",
+      "input": "Review tasks when tasklog.md is missing.",
+      "expected_behavior": "Report missing tasklog and propose creation only if explicitly authorized.",
+      "expected_checks": ["quality_criteria", "missing_source_gap"]
+    },
+    {
+      "id": "tasklog-management-stale-review",
+      "type": "happy_path",
+      "input": "Review open tasks as of 2026-06-06 where TL-015 last changed on 2026-05-01.",
+      "expected_behavior": "Compute 36 days of age and flag TL-015 as stale with review_required.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "stale_threshold"]
+    },
+    {
+      "id": "tasklog-management-completed-retain",
+      "type": "edge_case",
+      "input": "Review completed task TL-020 completed 10 days before as_of_date.",
+      "expected_behavior": "Retain the task in Completed because it is not archive-eligible.",
+      "expected_checks": ["quality_criteria", "archive_threshold"]
+    },
+    {
+      "id": "tasklog-management-archive-eligible",
+      "type": "happy_path",
+      "input": "Review completed task TL-018 completed more than 30 days before as_of_date.",
+      "expected_behavior": "Mark archive-eligible but do not archive without authorization.",
+      "expected_checks": ["quality_criteria", "archive_threshold", "write_authorization"]
+    },
+    {
+      "id": "tasklog-management-invalid-id",
+      "type": "degradation",
+      "input": "Update task TASK-22 to completed.",
+      "expected_behavior": "Reject the write because the ID does not match TL-NNN.",
+      "expected_checks": ["deterministic_scripts", "quality_criteria", "id_format"]
+    },
+    {
+      "id": "tasklog-management-unauthorized-close",
+      "type": "degradation",
+      "input": "Close TL-015 without owner approval.",
+      "expected_behavior": "Block the close operation and preserve the task state.",
+      "expected_checks": ["deterministic_scripts", "quality_criteria", "write_authorization"]
+    },
+    {
+      "id": "tasklog-management-bridge-required",
+      "type": "happy_path",
+      "input": "TL-015 needs working files for a cross-session implementation task.",
+      "expected_behavior": "Propose workspace/tasks/TL-015-<slug>/README.md and require authorization before creation.",
+      "expected_checks": ["assets", "quality_criteria", "bridge_path"]
+    },
+    {
+      "id": "tasklog-management-false-positive-os-tasks",
+      "type": "false_positive",
+      "input": "Which macOS task manager app should I use?",
+      "expected_behavior": "Do not activate because the request is not about this repo's tasklog.md.",
+      "expected_checks": ["activation_boundary"]
+    },
+    {
+      "id": "tasklog-management-machine-report-contract",
+      "type": "script_contract",
+      "input": "Validate Tasklog Management JSON report fixtures offline.",
+      "expected_behavior": "Accept valid add and stale-blocked reports, then reject unflagged stale, invalid ID, unauthorized write, and bad bridge path reports.",
+      "expected_checks": ["deterministic_scripts", "assets", "quality_criteria"]
+    }
+  ]
+}

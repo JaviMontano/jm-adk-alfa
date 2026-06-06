@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "skill": "tasklog-management",
+  "as_of_date": "2026-06-06",
+  "tasklog_snapshot": {
+    "path": "tasklog.md",
+    "status": "present",
+    "task_count": 1,
+    "evidence_tag": "[CODE]"
+  },
+  "operations": [],
+  "stale_review": [],
+  "bridge_review": [
+    {
+      "task_id": "TL-015",
+      "needs_bridge": true,
+      "bridge_path": "workspace/tasks/export-validator/README.md",
+      "exists": false,
+      "action": "create_if_authorized",
+      "evidence_tag": "[INFERENCE]"
+    }
+  ],
+  "archive_review": [],
+  "guardian_decision": {
+    "decision": "pass",
+    "rationale": "Invalid fixture uses a non-deterministic bridge path.",
+    "evidence_tag": "[CONFIG]"
+  }
+}

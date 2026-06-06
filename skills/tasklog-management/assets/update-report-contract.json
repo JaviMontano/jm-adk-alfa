@@ -1,0 +1,16 @@
+{
+  "schema": 1,
+  "skill": "tasklog-management",
+  "report_schema_version": 1,
+  "sections": {
+    "tasklog_snapshot": "Path, status, task count, and evidence tag.",
+    "operations": "Requested writes or no-op review actions.",
+    "stale_review": "Age calculations for active tasks.",
+    "bridge_review": "Bridge path presence or creation proposal.",
+    "archive_review": "Completed task retention decisions.",
+    "guardian_decision": "pass or block with rationale."
+  },
+  "network_required": false,
+  "time_required": false,
+  "random_required": false
+}
