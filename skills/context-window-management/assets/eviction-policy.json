@@ -1,0 +1,8 @@
+{
+  "schema": 1,
+  "skill": "context-window-management",
+  "eviction_order": ["P3", "P2", "P1"],
+  "never_evict": ["P0"],
+  "eviction_requires_reason": true,
+  "p1_eviction_requires_guardian_block": true
+}

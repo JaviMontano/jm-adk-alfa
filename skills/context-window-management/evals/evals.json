@@ -1,9 +1,76 @@
-[
-  {"id": "context-window-management-happy-path", "type": "happy_path", "input": "Run context window management on this project", "expected_behavior": "Skill activates and produces the expected context window management output following the defined process", "tags": ["basic", "activation"]},
-  {"id": "context-window-management-explicit-trigger", "type": "happy_path", "input": "Apply context window management analysis", "expected_behavior": "Skill recognizes the trigger phrase and executes the context window management workflow", "tags": ["trigger", "recognition"]},
-  {"id": "context-window-management-with-context", "type": "happy_path", "input": "Apply context window management to analyze the current codebase with detailed output", "expected_behavior": "Skill produces comprehensive context window management analysis with evidence-tagged findings", "tags": ["detailed", "comprehensive"]},
-  {"id": "context-window-management-minimal-input", "type": "happy_path", "input": "Quick context window management", "expected_behavior": "Skill activates with minimal input, applies reasonable defaults", "tags": ["minimal", "defaults"]},
-  {"id": "context-window-management-false-positive", "type": "false_positive", "input": "What is the weather forecast for tomorrow?", "expected_behavior": "Skill should NOT activate — this input has no relation to context window management", "tags": ["false_positive", "should-not-activate"]},
-  {"id": "context-window-management-edge-empty-input", "type": "edge_case", "input": "Run context window management but I have no files or documentation yet", "expected_behavior": "Skill handles gracefully — requests minimum viable input or produces gap analysis", "tags": ["edge_case", "empty-input", "boundary"]},
-  {"id": "context-window-management-edge-conflicting", "type": "edge_case", "input": "Apply context window management but requirements contradict each other", "expected_behavior": "Skill detects contradiction, flags with [OPEN] tag, proposes resolution", "tags": ["edge_case", "conflict", "corner"]}
-]
+{
+  "schema": 1,
+  "skill": "context-window-management",
+  "cases": [
+    {
+      "id": "context-window-management-under-limit",
+      "type": "happy_path",
+      "input": "Create a context plan with current tokens below available budget.",
+      "expected_behavior": "Keep required context and pass without eviction.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "budget_fit"]
+    },
+    {
+      "id": "context-window-management-over-limit-compress",
+      "type": "happy_path",
+      "input": "Plan context trimming when current estimated tokens exceed available budget.",
+      "expected_behavior": "Compress lower-priority items and evict eligible P3 items until post-plan tokens fit.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "compression"]
+    },
+    {
+      "id": "context-window-management-preserve-p0",
+      "type": "happy_path",
+      "input": "Active instructions and validation evidence are P0 while old examples are P3.",
+      "expected_behavior": "Keep all P0 items and only compress or evict lower-priority context.",
+      "expected_checks": ["quality_criteria", "priority_boundary"]
+    },
+    {
+      "id": "context-window-management-missing-estimates",
+      "type": "degradation",
+      "input": "Context items are listed without token estimates.",
+      "expected_behavior": "Block or request estimates instead of claiming fit.",
+      "expected_checks": ["quality_criteria", "guardian_block"]
+    },
+    {
+      "id": "context-window-management-preserve-fields",
+      "type": "edge_case",
+      "input": "Compress a decision-heavy source with IDs, paths, blockers, and validation evidence.",
+      "expected_behavior": "Require preservation fields before compression is accepted.",
+      "expected_checks": ["deterministic_scripts", "quality_criteria", "preservation"]
+    },
+    {
+      "id": "context-window-management-response-reserve",
+      "type": "happy_path",
+      "input": "Reserve 1500 response tokens in a 10000-token context window.",
+      "expected_behavior": "Compute available context as 8500 and fit post-plan tokens within that amount.",
+      "expected_checks": ["assets", "quality_criteria", "budget_arithmetic"]
+    },
+    {
+      "id": "context-window-management-false-positive-browser-window",
+      "type": "false_positive",
+      "input": "How do I resize a browser window?",
+      "expected_behavior": "Do not activate because this is UI window management, not token context pressure.",
+      "expected_checks": ["activation_boundary"]
+    },
+    {
+      "id": "context-window-management-compression-expands",
+      "type": "degradation",
+      "input": "Compress P2 notes from 800 tokens to 900 tokens.",
+      "expected_behavior": "Reject compression that increases token estimate.",
+      "expected_checks": ["deterministic_scripts", "quality_criteria", "compression"]
+    },
+    {
+      "id": "context-window-management-over-budget-no-plan",
+      "type": "degradation",
+      "input": "Post-plan estimate remains above available budget.",
+      "expected_behavior": "Guardian blocks the plan.",
+      "expected_checks": ["deterministic_scripts", "quality_criteria", "budget_fit"]
+    },
+    {
+      "id": "context-window-management-machine-report-contract",
+      "type": "script_contract",
+      "input": "Validate Context Window Management JSON report fixtures offline.",
+      "expected_behavior": "Accept valid over-budget and at-limit plans, then reject over-budget, P0 eviction, expanding compression, missing preservation, and missing estimate reports.",
+      "expected_checks": ["deterministic_scripts", "assets", "quality_criteria"]
+    }
+  ]
+}

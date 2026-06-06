@@ -1,0 +1,8 @@
+{
+  "schema": 1,
+  "skill": "context-window-management",
+  "required_fields": ["max_context_tokens", "reserved_response_tokens", "available_context_tokens", "current_estimated_tokens", "post_plan_estimated_tokens"],
+  "arithmetic": "available_context_tokens = max_context_tokens - reserved_response_tokens",
+  "fit_rule": "post_plan_estimated_tokens must be less than or equal to available_context_tokens",
+  "response_reserve_required": true
+}

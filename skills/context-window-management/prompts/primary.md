@@ -2,7 +2,7 @@
 name: context-window-management-primary
 type: execution
 version: 2.0.0
-description: "Execute the Context Window Management workflow with triad orchestration."
+description: "Execute deterministic Context Window Management workflow."
 triad:
   lead: "context-window-management-lead"
   support: "context-window-management-support"
@@ -14,31 +14,20 @@ triad:
 ## Dynamic Parameters
 
 | Parameter | Description | Required | Filled By |
-|-----------|-------------|----------|-----------|
-| `{{task}}` | What to accomplish | Yes | User input |
-| `{{context}}` | Background and constraints | Yes | User or codebase |
-| `{{constraints}}` | Additional rules | No | Guardrails JSON |
-| `{{depth}}` | quick / standard / deep | No | Auto |
-| `{{output_format}}` | html / docx / xlsx / md | No | Auto |
+|---|---|---:|---|
+| `{{task}}` | Context budgeting request | Yes | User input |
+| `{{context_items}}` | Source IDs and token estimates | Yes | User or codebase |
+| `{{max_context_tokens}}` | Maximum context window | Yes | Runtime or user |
+| `{{reserved_response_tokens}}` | Response-token reserve | Yes | Runtime or user |
 
 ## Execution
 
-1. **Load knowledge**: Read `knowledge/body-of-knowledge.md`
-2. **Check guardrails**: Read `references/guardrails/*.json`
-3. **Lead** (`context-window-management-lead`): Execute SKILL.md Steps 1-4 for `{{task}}`
-   - Discover → Analyze → Execute → Validate
-   - Apply evidence tags on all claims
-4. **Support** (`context-window-management-support`): Review for cross-cutting concerns
-   - Edge cases, security, accessibility, performance
-5. **Guardian** (`context-window-management-guardian`): Validate
-   - Evidence tags complete
-   - Quality gate met
-   - Constitution XIII + XIV respected
-   - Output exceeds expectations
-
-## Output
-
-- Primary deliverable for `{{task}}` in `{{output_format}}`
-- Evidence tags on every claim
-- Recommendations beyond the ask
-- Confidence score (>= 0.95)
+1. Confirm activation through `SKILL.md ## When to Activate`.
+2. Load budget, priority, compression, and eviction policies from `assets/`.
+3. Inventory context items with stable IDs and token estimates.
+4. Classify priority and assign keep/compress/evict actions.
+5. Validate budget arithmetic and final fit.
+6. Block P0 eviction, expanding compression, missing estimates, and over-budget plans.
+7. Return the Markdown report using `templates/output.md`.
+8. When a JSON report is produced, validate it with
+   `scripts/validate_context_window_report.py`.

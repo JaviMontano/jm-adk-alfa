@@ -1,0 +1,14 @@
+{
+  "schema": 1,
+  "skill": "context-window-management",
+  "required_report_keys": [
+    "schema_version",
+    "skill",
+    "token_budget",
+    "context_items",
+    "compression_plan",
+    "eviction_plan",
+    "guardian_decision"
+  ],
+  "evidence_tags": ["[CODE]", "[CONFIG]", "[DOC]", "[INFERENCE]", "[ASSUMPTION]", "[OPEN]"]
+}

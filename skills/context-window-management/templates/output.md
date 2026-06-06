@@ -1,28 +1,33 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: context-window-management
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
+# Context Window Management Report
 
-# Context Window Management Output
+## Token Budget
 
-## Summary
+- Max context tokens: `{max_context_tokens}` `{evidence_tag}`
+- Reserved response tokens: `{reserved_response_tokens}` `{evidence_tag}`
+- Available context tokens: `{available_context_tokens}` `{evidence_tag}`
+- Current estimated tokens: `{current_estimated_tokens}` `{evidence_tag}`
+- Post-plan estimated tokens: `{post_plan_estimated_tokens}` `{evidence_tag}`
 
-{summary}
+## Context Items
 
-## Evidence
+| ID | Source | Priority | Tokens | Action | Evidence |
+|---|---|---|---:|---|---|
+| `{id}` | `{source}` | `{priority}` | `{estimated_tokens}` | `{retention_action}` | `{evidence_tag}` |
 
-{evidence}
+## Compression Plan
 
-## Result
+| Source ID | Method | Before | After | Preserves | Evidence |
+|---|---|---:|---:|---|---|
+| `{source_id}` | `{method}` | `{estimated_tokens_before}` | `{estimated_tokens_after}` | `{preserves}` | `{evidence_tag}` |
 
-{result}
+## Eviction Plan
 
-## Validation
+| Source ID | Priority | Reason | Evidence |
+|---|---|---|---|
+| `{source_id}` | `{priority}` | `{reason}` | `{evidence_tag}` |
 
-{validation}
+## Guardian Decision
 
-## Risks and Limits
+Decision: `{decision}` `{evidence_tag}`
 
-{risks}
+Rationale: `{rationale}` `{evidence_tag}`

@@ -1,0 +1,16 @@
+{
+  "schema": 1,
+  "skill": "context-window-management",
+  "priorities": {
+    "P0": "Active instructions, repo status, blockers, branch/PR state, validation evidence.",
+    "P1": "Active files, current skill contracts, immediate implementation context.",
+    "P2": "Supporting docs, examples, adjacent references.",
+    "P3": "Historical, redundant, or archival context."
+  },
+  "default_actions": {
+    "P0": "keep",
+    "P1": "keep_or_structured_summary",
+    "P2": "compress",
+    "P3": "reference_or_evict"
+  }
+}

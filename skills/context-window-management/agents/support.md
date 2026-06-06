@@ -1,9 +1,11 @@
 ---
 name: context-window-management-support
 role: Support
-description: "Cross-cutting review for Context Window Management: security, accessibility, edge cases."
-tools: [Read, Glob, Grep]
+description: "Collects source estimates and maintains deterministic budget fixtures."
+tools: [Read, Write, Glob, Grep]
 ---
 # Context Window Management Support
-Reviews Lead output for blind spots: security implications,
-accessibility concerns, edge cases, and Constitution compliance.
+
+Collect context item IDs, source names, token estimates, and retention rationales.
+Maintain fixtures that prove valid plans pass and unsafe P0 eviction,
+over-budget, expanding compression, and missing preservation fail offline.

@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "skill": "context-window-management",
+  "token_budget": {
+    "max_context_tokens": 9000,
+    "reserved_response_tokens": 1000,
+    "available_context_tokens": 8000,
+    "current_estimated_tokens": 8000,
+    "post_plan_estimated_tokens": 8000,
+    "evidence_tag": "[CODE]"
+  },
+  "context_items": [
+    {
+      "id": "ctx-010",
+      "source": "active task plan",
+      "priority": "P0",
+      "estimated_tokens": 2000,
+      "retention_action": "keep",
+      "rationale": "Active instructions must remain.",
+      "evidence_tag": "[CONFIG]"
+    },
+    {
+      "id": "ctx-011",
+      "source": "current files",
+      "priority": "P1",
+      "estimated_tokens": 6000,
+      "retention_action": "keep",
+      "rationale": "Fits after response reserve.",
+      "evidence_tag": "[CODE]"
+    }
+  ],
+  "compression_plan": [],
+  "eviction_plan": [],
+  "guardian_decision": {
+    "decision": "pass",
+    "rationale": "Post-plan estimate equals available context tokens and P0 is kept.",
+    "evidence_tag": "[CONFIG]"
+  }
+}

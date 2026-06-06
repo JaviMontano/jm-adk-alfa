@@ -1,17 +1,18 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: context-window-management
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
-
 # Context Window Management
 
->
+`context-window-management` creates deterministic keep/compress/evict plans for
+large context sets. It protects active instructions and validation evidence while
+reducing lower-priority material into verifiable summaries or references.
 
 ## Triggers
 
-- context-window-management
+- `context-window-management`
+- `context window management`
+- `token budget`
+- `context budget`
+- `trim context`
+- `compress context`
+- `preserve before compact`
 
 ## Allowed Tools
 
@@ -21,10 +22,37 @@ overwrite-policy: missing-only unless --force
 - Grep
 - Bash
 
-## Quick Use
+## Deterministic Assets
 
-Use this skill when the request clearly matches the triggers and requires the `context-window-management` capability.
+| Asset | Purpose |
+|---|---|
+| `assets/budget-policy.json` | Budget fields and response reserve rules. |
+| `assets/priority-policy.json` | P0/P1/P2/P3 retention tiers. |
+| `assets/compression-policy.json` | Allowed compression methods and preservation requirements. |
+| `assets/eviction-policy.json` | Eviction order and P0 protection. |
+| `assets/report-contract.json` | Machine-checkable report schema. |
 
 ## Output Format
 
-Markdown with summary, evidence, result, validation, and risks.
+Return Markdown with:
+
+- token budget
+- context items
+- compression plan
+- eviction plan
+- final token estimate
+- Guardian decision
+
+Machine-readable reports should pass:
+
+```bash
+bash skills/context-window-management/scripts/check.sh
+```
+
+## Safety Rules
+
+- Do not evict P0 context.
+- Do not compress in a way that loses IDs, paths, decisions, blockers, validation
+  evidence, or open questions.
+- Do not claim the plan fits if final tokens exceed available budget.
+- Do not activate for browser or OS window-management requests.

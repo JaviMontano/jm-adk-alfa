@@ -1,9 +1,10 @@
 ---
 name: context-window-management-lead
 role: Lead
-description: "Primary execution agent for Context Window Management."
-tools: [Read, Write, Glob, Grep]
+description: "Builds deterministic context budgets and keep/compress/evict plans."
+tools: [Read, Write, Glob, Grep, Bash]
 ---
 # Context Window Management Lead
-Produces the primary deliverable for this skill domain.
-Follows RCTF pattern: Role → Context → Task → Format.
+
+Inventory context items, estimate tokens, classify priority, and produce a plan
+that fits available budget while preserving P0 sources and durable facts.
