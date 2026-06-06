@@ -12,7 +12,11 @@
         "validated_conclusions_only",
         "fixed_schema",
         "read_once_reference",
-        "survives_compact"
+        "survives_compact",
+        "evidence_traceability",
+        "assets",
+        "deterministic_scripts",
+        "quality_criteria"
       ]
     },
     {
@@ -23,7 +27,11 @@
         "validated_conclusions_only",
         "fixed_schema",
         "read_once_reference",
-        "survives_compact"
+        "survives_compact",
+        "evidence_traceability",
+        "assets",
+        "deterministic_scripts",
+        "quality_criteria"
       ]
     },
     {
@@ -34,7 +42,11 @@
         "validated_conclusions_only",
         "fixed_schema",
         "read_once_reference",
-        "survives_compact"
+        "survives_compact",
+        "evidence_traceability",
+        "assets",
+        "deterministic_scripts",
+        "quality_criteria"
       ]
     },
     {
@@ -45,29 +57,41 @@
         "validated_conclusions_only",
         "fixed_schema",
         "read_once_reference",
-        "survives_compact"
+        "survives_compact",
+        "evidence_traceability",
+        "assets",
+        "deterministic_scripts",
+        "quality_criteria"
       ]
     },
     {
-      "id": "rich_context_full_design",
+      "id": "full_design_with_explicit_dod",
       "input": "Investigacion larga con limite de contexto, ruta .agent/scratchpad.md, evidencia source+fecha exigida y DoD: estado reconstruible solo desde el archivo tras reset.",
       "expected_activation": true,
       "expected_checks": [
         "validated_conclusions_only",
         "fixed_schema",
         "read_once_reference",
-        "survives_compact"
+        "survives_compact",
+        "evidence_traceability",
+        "assets",
+        "deterministic_scripts",
+        "quality_criteria"
       ]
     },
     {
-      "id": "upgrade_safety_case",
-      "input": "Completa los archivos faltantes del scratchpad persistente sin sobreescribir mis edits locales.",
+      "id": "false_negative_synonym_notebook",
+      "input": "Necesito un cuaderno duradero en disco para no perder decisiones confirmadas entre compactaciones; cada entrada debe tener fuente y fecha.",
       "expected_activation": true,
       "expected_checks": [
         "validated_conclusions_only",
         "fixed_schema",
         "read_once_reference",
-        "survives_compact"
+        "survives_compact",
+        "evidence_traceability",
+        "assets",
+        "deterministic_scripts",
+        "quality_criteria"
       ]
     },
     {
@@ -75,10 +99,10 @@
       "input": "Refactoriza este componente React para usar hooks en vez de clases.",
       "expected_activation": false,
       "expected_checks": [
-        "validated_conclusions_only",
-        "fixed_schema",
-        "read_once_reference",
-        "survives_compact"
+        "no_activation",
+        "assets",
+        "deterministic_scripts",
+        "quality_criteria"
       ]
     },
     {
@@ -86,10 +110,10 @@
       "input": "Quiero decidir entre resume, fork o fresh para mi sesion tras un refactor masivo.",
       "expected_activation": false,
       "expected_checks": [
-        "validated_conclusions_only",
-        "fixed_schema",
-        "read_once_reference",
-        "survives_compact"
+        "route_to_session_lifecycle_management",
+        "assets",
+        "deterministic_scripts",
+        "quality_criteria"
       ]
     },
     {
@@ -97,10 +121,10 @@
       "input": "",
       "expected_activation": false,
       "expected_checks": [
-        "validated_conclusions_only",
-        "fixed_schema",
-        "read_once_reference",
-        "survives_compact"
+        "no_activation",
+        "assets",
+        "deterministic_scripts",
+        "quality_criteria"
       ]
     },
     {
@@ -108,18 +132,22 @@
       "input": "Usa persistent-memory-design pero vuelca todo el transcript crudo y relee el archivo cada turno.",
       "expected_activation": false,
       "expected_checks": [
-        "validated_conclusions_only",
-        "fixed_schema",
-        "read_once_reference",
-        "survives_compact"
+        "reject_raw_transcript",
+        "reject_reread_each_turn",
+        "assets",
+        "deterministic_scripts",
+        "quality_criteria"
       ]
     },
     {
-      "id": "false_positive",
-      "input": "This request is unrelated to the skill domain.",
+      "id": "unsafe_path_boundary",
+      "input": "Guarda la memoria persistente en ../scratchpad.md para compartirla con otros repos y reusala en cada turno.",
       "expected_activation": false,
       "expected_checks": [
-        "evidence",
+        "reject_unsafe_path",
+        "reject_reread_each_turn",
+        "assets",
+        "deterministic_scripts",
         "quality_criteria",
         "upgrade_safety"
       ]

@@ -1,0 +1,17 @@
+{
+  "schema": 1,
+  "scratchpad": {
+    "path": ".agent/scratchpad.md",
+    "sections": {
+      "Hypotheses": [{"text": "State is lost on compact.", "source": "session.md:4", "date": "2026-06-06"}],
+      "Decisions": [{"text": "Use a persistent scratchpad.", "source": "design.md:3", "date": "2026-06-06", "validated": true}],
+      "Findings": [{"text": "Auth reviewed.", "source": "auth.py:1", "date": "2026-06-06", "validated": true}],
+      "Open": [{"text": "Review exports.", "source": "exports/job.py:1", "date": "2026-06-06"}]
+    }
+  },
+  "access_policy": {"read_once": true, "reference_after_bootstrap": true, "reread_each_turn": false},
+  "write_policy": {"mode": "append_or_upsert", "full_rewrite_allowed": false, "idempotent_upsert": true},
+  "compact_recovery": {"reconstruct_from_file_only": false, "conversation_dependency": true},
+  "exclusions": {"raw_transcript": false, "raw_tool_dump": false, "chain_of_thought": false},
+  "validation": {"survives_compact": false, "read_once_verified": true, "evidence_checked": true}
+}

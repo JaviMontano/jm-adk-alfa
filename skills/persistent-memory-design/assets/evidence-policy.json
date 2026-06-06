@@ -1,0 +1,11 @@
+{
+  "schema": 1,
+  "required_evidence_fields": ["source", "date"],
+  "validated_required_for_sections": ["Decisions", "Findings"],
+  "forbidden_content_markers": [
+    "raw transcript",
+    "raw tool dump",
+    "chain-of-thought",
+    "unverified tool output"
+  ]
+}

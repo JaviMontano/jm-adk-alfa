@@ -1,0 +1,17 @@
+{
+  "schema": 1,
+  "scratchpad": {
+    "path": ".agent/scratchpad.md",
+    "sections": {
+      "Hypotheses": [{"text": "PII starts in onboarding.", "date": "2026-06-06"}],
+      "Decisions": [{"text": "Audit service layer.", "source": "plan.md:1", "date": "2026-06-06", "validated": true}],
+      "Findings": [{"text": "Email is logged.", "source": "services/user.py:88", "date": "2026-06-06", "validated": true}],
+      "Open": [{"text": "Review exports.", "source": "exports/job.py:1", "date": "2026-06-06"}]
+    }
+  },
+  "access_policy": {"read_once": true, "reference_after_bootstrap": true, "reread_each_turn": false},
+  "write_policy": {"mode": "append_or_upsert", "full_rewrite_allowed": false, "idempotent_upsert": true},
+  "compact_recovery": {"reconstruct_from_file_only": true, "conversation_dependency": false},
+  "exclusions": {"raw_transcript": false, "raw_tool_dump": false, "chain_of_thought": false},
+  "validation": {"survives_compact": true, "read_once_verified": true, "evidence_checked": true}
+}

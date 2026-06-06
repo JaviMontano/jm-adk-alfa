@@ -1,0 +1,19 @@
+{
+  "schema": 1,
+  "report_type": "persistent-memory-design-report",
+  "required_booleans": {
+    "access_policy.read_once": true,
+    "access_policy.reference_after_bootstrap": true,
+    "access_policy.reread_each_turn": false,
+    "write_policy.full_rewrite_allowed": false,
+    "write_policy.idempotent_upsert": true,
+    "compact_recovery.reconstruct_from_file_only": true,
+    "compact_recovery.conversation_dependency": false,
+    "exclusions.raw_transcript": false,
+    "exclusions.raw_tool_dump": false,
+    "exclusions.chain_of_thought": false,
+    "validation.survives_compact": true,
+    "validation.read_once_verified": true,
+    "validation.evidence_checked": true
+  }
+}

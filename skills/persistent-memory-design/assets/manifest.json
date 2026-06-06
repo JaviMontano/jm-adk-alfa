@@ -1,0 +1,48 @@
+{
+  "schema": 1,
+  "skill": "persistent-memory-design",
+  "assets": [
+    {
+      "path": "assets/scratchpad-contract.json",
+      "type": "contract",
+      "purpose": "Defines the allowed durable scratchpad path and required top-level report fields.",
+      "used_by": ["SKILL.md", "README.md", "scripts/validate_persistent_memory_report.py"]
+    },
+    {
+      "path": "assets/section-schema-policy.json",
+      "type": "policy",
+      "purpose": "Locks the fixed Hypotheses, Decisions, Findings, and Open sections.",
+      "used_by": ["SKILL.md", "evals/evals.json", "scripts/validate_persistent_memory_report.py"]
+    },
+    {
+      "path": "assets/evidence-policy.json",
+      "type": "policy",
+      "purpose": "Requires source and ISO date evidence for every persisted entry.",
+      "used_by": ["SKILL.md", "templates/output.md", "scripts/validate_persistent_memory_report.py"]
+    },
+    {
+      "path": "assets/access-policy.json",
+      "type": "policy",
+      "purpose": "Requires read-once bootstrap and reference-after-load behavior.",
+      "used_by": ["SKILL.md", "README.md", "scripts/validate_persistent_memory_report.py"]
+    },
+    {
+      "path": "assets/write-policy.json",
+      "type": "policy",
+      "purpose": "Requires append-or-upsert writes and rejects full rewrites as the normal update path.",
+      "used_by": ["SKILL.md", "scripts/validate_persistent_memory_report.py"]
+    },
+    {
+      "path": "assets/compact-recovery-policy.json",
+      "type": "policy",
+      "purpose": "Requires state reconstruction from the file only after compact or reset.",
+      "used_by": ["SKILL.md", "prompts/primary.md", "scripts/validate_persistent_memory_report.py"]
+    },
+    {
+      "path": "assets/report-contract.json",
+      "type": "schema",
+      "purpose": "Defines the deterministic JSON report contract enforced by the offline validator.",
+      "used_by": ["scripts/check.sh", "scripts/validate_persistent_memory_report.py"]
+    }
+  ]
+}

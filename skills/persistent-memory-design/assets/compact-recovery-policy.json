@@ -1,0 +1,7 @@
+{
+  "schema": 1,
+  "reconstruct_from_file_only": true,
+  "conversation_dependency": false,
+  "compact_survival_required": true,
+  "reset_survival_required": true
+}

@@ -38,6 +38,10 @@ No la uses para apuntes efímeros de un solo turno ni para volcar transcript cru
 4. **Lee una vez, referencia después.** Al iniciar sesión, lee el scratchpad una sola vez hacia el contexto. En turnos posteriores referencia sus secciones, no vuelvas a leer el archivo (preserva el cache).
 5. **Verifica supervivencia.** Confirma que tras `/compact` o reset el agente reconstruye estado solo desde el archivo, sin la conversación previa.
 
+## Activos determinísticos
+
+Usa `assets/manifest.json` como indice de contratos offline. Los contratos en `assets/` fijan la ruta permitida, secciones, evidencia minima, politica de lectura unica, escritura idempotente y reconstruccion tras compact/reset. Si produces un reporte JSON de diseno, validalo con `bash skills/persistent-memory-design/scripts/check.sh` antes de marcarlo como aceptado.
+
 ## Patrón correcto
 
 ```python
@@ -78,6 +82,7 @@ def step(ctx):
 - ¿Se lee una sola vez y luego se referencia, sin relectura por turno?
 - ¿El estado sobrevive a `/compact` y a un reset de sesión, reconstruible solo desde el archivo?
 - ¿Cada hallazgo lleva su evidencia mínima (source, fecha)?
+- ¿El reporte JSON pasa `scripts/check.sh` contra los contratos en `assets/`?
 
 ## Katas y skills relacionadas
 
