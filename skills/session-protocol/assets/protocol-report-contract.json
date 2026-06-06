@@ -1,0 +1,8 @@
+{
+  "schema": 1,
+  "skill": "session-protocol",
+  "json_required_keys": ["schema_version", "skill", "context_loading", "state_recovery", "pending_closure", "next_steps", "confirmation_gate", "guardian_decision"],
+  "allowed_source_statuses": ["loaded", "missing", "skipped"],
+  "allowed_recommendations": ["close", "continue", "defer", "archive"],
+  "allowed_guardian_decisions": ["pass", "block"]
+}

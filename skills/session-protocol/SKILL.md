@@ -1,7 +1,7 @@
 ---
 name: session-protocol
 author: JM Labs (Javier Montaño)
-version: 1.0.0
+version: 1.1.0
 description: >
   Mandatory session initialization: context loading, state recovery, pending closure,
   and next steps proposal. Ensures continuity across AI sessions with zero context loss. [EXPLICIT]
@@ -22,6 +22,14 @@ allowed-tools:
 ## TL;DR
 
 Implements the mandatory session initialization sequence from the Constitution: (1) load context files in order, (2) recover state from recent activity, (3) propose closure for pending items, (4) suggest next steps. Ensures every session starts productive from minute one, with full awareness of project state, open tasks, and recent decisions. [EXPLICIT]
+
+## Deterministic Resources
+
+- `assets/context-load-order.json` defines ordered source loading and missing-file handling.
+- `assets/state-recovery-policy.json` defines changelog, tasklog, git, and spec checks.
+- `assets/closure-policy.json` defines close/continue/defer/archive recommendation rules.
+- `assets/next-step-policy.json` defines next-step ranking and confirmation boundaries.
+- `assets/protocol-report-contract.json` defines the report shape validated by `scripts/check.sh`.
 
 ## Procedure
 
@@ -64,6 +72,9 @@ After pending items resolved:
 - [ ] Pending closure recommendations provided
 - [ ] 2-3 next steps proposed with rationale
 - [ ] No work started without user confirmation
+- [ ] `scripts/check.sh` passes when maintaining this skill
+- [ ] Missing context files are reported as `[OPEN]`, not silently skipped
+- [ ] Every closure recommendation cites evidence and requires confirmation
 
 ## Anti-Patterns
 

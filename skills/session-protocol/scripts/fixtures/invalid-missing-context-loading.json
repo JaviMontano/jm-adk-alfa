@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "skill": "session-protocol",
+  "context_loading": [],
+  "state_recovery": [],
+  "pending_closure": [],
+  "next_steps": [
+    {"description": "Start.", "rationale": "No context.", "evidence_tag": "[ASSUMPTION]"},
+    {"description": "Continue.", "rationale": "No source.", "evidence_tag": "[ASSUMPTION]"}
+  ],
+  "confirmation_gate": {"user_confirmed": false, "work_started": false, "message": "Missing context.", "evidence_tag": "[CONFIG]"},
+  "guardian_decision": {"decision": "pass", "rationale": "Incorrectly passes missing context.", "evidence_tag": "[CONFIG]"}
+}

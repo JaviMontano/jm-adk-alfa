@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "skill": "session-protocol",
+  "assets": [
+    {
+      "path": "assets/context-load-order.json",
+      "type": "policy",
+      "purpose": "Defines ordered context loading and missing-file handling.",
+      "used_by": ["SKILL.md", "prompts/primary.md", "scripts/validate_session_protocol_report.py"]
+    },
+    {
+      "path": "assets/state-recovery-policy.json",
+      "type": "policy",
+      "purpose": "Defines changelog, tasklog, git, insights, and spec recovery checks.",
+      "used_by": ["SKILL.md", "evals/evals.json", "scripts/validate_session_protocol_report.py"]
+    },
+    {
+      "path": "assets/closure-policy.json",
+      "type": "policy",
+      "purpose": "Defines closure recommendation statuses and confirmation boundaries.",
+      "used_by": ["SKILL.md", "templates/output.md", "scripts/validate_session_protocol_report.py"]
+    },
+    {
+      "path": "assets/next-step-policy.json",
+      "type": "policy",
+      "purpose": "Defines next-step ranking and no-work-before-confirmation rules.",
+      "used_by": ["SKILL.md", "templates/output.md", "evals/evals.json"]
+    },
+    {
+      "path": "assets/protocol-report-contract.json",
+      "type": "schema",
+      "purpose": "Defines required JSON report keys and allowed statuses.",
+      "used_by": ["SKILL.md", "scripts/validate_session_protocol_report.py", "templates/output.md"]
+    }
+  ]
+}

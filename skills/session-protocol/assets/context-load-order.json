@@ -1,0 +1,6 @@
+{
+  "schema": 1,
+  "skill": "session-protocol",
+  "load_order": ["CLAUDE.md", "constitution", "insights index", "changelog", "tasklog"],
+  "missing_rule": "Missing sources must be recorded as [OPEN] and must not be silently skipped."
+}

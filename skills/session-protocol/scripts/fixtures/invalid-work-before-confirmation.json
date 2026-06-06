@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "skill": "session-protocol",
+  "context_loading": [
+    {"order": 1, "source": "CLAUDE.md", "status": "loaded", "evidence_tag": "[DOC]"}
+  ],
+  "state_recovery": [],
+  "pending_closure": [],
+  "next_steps": [
+    {"description": "Implement now.", "rationale": "Incorrectly started work.", "evidence_tag": "[CONFIG]"},
+    {"description": "Commit now.", "rationale": "Incorrectly skipped confirmation.", "evidence_tag": "[CONFIG]"}
+  ],
+  "confirmation_gate": {"user_confirmed": false, "work_started": true, "message": "Work started without confirmation.", "evidence_tag": "[CONFIG]"},
+  "guardian_decision": {"decision": "pass", "rationale": "Incorrectly passes unconfirmed work.", "evidence_tag": "[CONFIG]"}
+}
