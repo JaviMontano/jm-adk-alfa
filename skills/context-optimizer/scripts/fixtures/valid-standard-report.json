@@ -1,0 +1,78 @@
+{
+  "schema": "jm-labs.context-optimizer.report.v1",
+  "skill": "context-optimizer",
+  "context_snapshot": {
+    "active_task": "Harden workspace-governance",
+    "max_context_tokens": 128000,
+    "current_tokens": 104000,
+    "target_utilization_percent": 72,
+    "evidence_tag": "[CONFIG]"
+  },
+  "loading_plan": [
+    {
+      "source_id": "skills/workspace-governance/SKILL.md",
+      "level": "L3",
+      "relevance_score": 96,
+      "active": true,
+      "rationale": "Active skill contract must remain fully loaded.",
+      "evidence_tag": "[CÓDIGO]"
+    },
+    {
+      "source_id": "prior-merged-pr-notes",
+      "level": "L2",
+      "relevance_score": 42,
+      "active": false,
+      "rationale": "Completed work can be retained as a summary.",
+      "evidence_tag": "[INFERENCIA]"
+    }
+  ],
+  "compression_plan": [
+    {
+      "artifact_id": "prior-merged-pr-notes",
+      "action": "compress",
+      "current_tokens": 22000,
+      "optimized_tokens": 5000,
+      "retention_summary": "Keep merge commit, validation evidence, blockers, and next skill.",
+      "evidence_tag": "[CONFIG]"
+    },
+    {
+      "artifact_id": "active-skill-contract",
+      "action": "keep",
+      "current_tokens": 6200,
+      "optimized_tokens": 6200,
+      "retention_summary": "Active source remains full fidelity.",
+      "evidence_tag": "[CONFIG]"
+    }
+  ],
+  "eviction_plan": [
+    {
+      "source_id": "old-brainstorm-transcript",
+      "action": "evict",
+      "active": false,
+      "risk_flag": false,
+      "relevance_score": 12,
+      "rationale": "Low relevance and no active dependency.",
+      "evidence_tag": "[INFERENCIA]"
+    },
+    {
+      "source_id": "open-blocker-decision",
+      "action": "keep",
+      "active": false,
+      "risk_flag": true,
+      "relevance_score": 83,
+      "rationale": "Risk-flagged unresolved decision must remain available.",
+      "evidence_tag": "[CONFIG]"
+    }
+  ],
+  "metrics": {
+    "naive_tokens": 104000,
+    "optimized_tokens": 69000,
+    "reduction_percent": 34,
+    "utilization_percent": 54,
+    "evidence_tag": "[MÉTRICA]"
+  },
+  "validation": {
+    "status": "pass",
+    "checks": ["assets", "deterministic_scripts", "quality_criteria", "lazy_loading", "compression_contract", "eviction_safety", "metrics", "evidence_required"]
+  }
+}

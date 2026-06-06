@@ -1,0 +1,14 @@
+{
+  "schema": 1,
+  "skill": "context-optimizer",
+  "levels": {
+    "L1": "Index-only source for discovery.",
+    "L2": "Retention summary with decisions, evidence, blockers, and next actions.",
+    "L3": "Full source loaded for active execution."
+  },
+  "rules": [
+    "At most one source may be L3 in an optimizer report.",
+    "L3 requires relevance_score >= 80.",
+    "Inactive references default to L1 or L2 until promoted by active need."
+  ]
+}

@@ -1,0 +1,69 @@
+{
+  "schema": "jm-labs.context-optimizer.report.v1",
+  "skill": "context-optimizer",
+  "context_snapshot": {
+    "active_task": "Continue long-running validation",
+    "max_context_tokens": 200000,
+    "current_tokens": 184000,
+    "target_utilization_percent": 70,
+    "evidence_tag": "[CONFIG]"
+  },
+  "loading_plan": [
+    {
+      "source_id": "active-validation-log",
+      "level": "L3",
+      "relevance_score": 91,
+      "active": true,
+      "rationale": "Current failure investigation depends on full validation log.",
+      "evidence_tag": "[CÓDIGO]"
+    },
+    {
+      "source_id": "completed-audit-notes",
+      "level": "L2",
+      "relevance_score": 55,
+      "active": false,
+      "rationale": "Completed audit notes only need decisions and evidence.",
+      "evidence_tag": "[INFERENCIA]"
+    },
+    {
+      "source_id": "inactive-reference-index",
+      "level": "L1",
+      "relevance_score": 22,
+      "active": false,
+      "rationale": "Reference can remain index-only until requested.",
+      "evidence_tag": "[CONFIG]"
+    }
+  ],
+  "compression_plan": [
+    {
+      "artifact_id": "completed-audit-notes",
+      "action": "summarize",
+      "current_tokens": 48000,
+      "optimized_tokens": 9000,
+      "retention_summary": "Preserve findings, decisions, validations, and remaining risks.",
+      "evidence_tag": "[CONFIG]"
+    }
+  ],
+  "eviction_plan": [
+    {
+      "source_id": "inactive-reference-index",
+      "action": "defer",
+      "active": false,
+      "risk_flag": false,
+      "relevance_score": 22,
+      "rationale": "Index remains discoverable without full reference loading.",
+      "evidence_tag": "[CONFIG]"
+    }
+  ],
+  "metrics": {
+    "naive_tokens": 184000,
+    "optimized_tokens": 116000,
+    "reduction_percent": 37,
+    "utilization_percent": 58,
+    "evidence_tag": "[MÉTRICA]"
+  },
+  "validation": {
+    "status": "pass",
+    "checks": ["assets", "deterministic_scripts", "quality_criteria", "lazy_loading", "compression_contract", "eviction_safety", "metrics", "evidence_required"]
+  }
+}

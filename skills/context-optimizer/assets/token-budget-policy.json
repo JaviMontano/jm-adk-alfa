@@ -1,0 +1,10 @@
+{
+  "schema": 1,
+  "skill": "context-optimizer",
+  "rules": [
+    "naive_tokens and optimized_tokens must be explicit integers.",
+    "reduction_percent must equal rounded reduction from naive to optimized tokens.",
+    "utilization_percent must equal rounded optimized_tokens divided by max_context_tokens.",
+    "optimization should reduce tokens by at least 20 percent unless Guardian blocks."
+  ]
+}

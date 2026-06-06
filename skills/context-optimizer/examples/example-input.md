@@ -1,10 +1,15 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: context-optimizer
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
-
 # Example Input
 
-Use `context-optimizer` to produce a concise deliverable for a realistic project request.
+Optimize this active session before continuing implementation.
+
+Active task: harden `workspace-governance`.
+Max context tokens: 128000.
+Current loaded estimate: 104000.
+Target utilization: 72 percent.
+
+Loaded sources:
+- `skills/workspace-governance/SKILL.md`, active, relevance 96, 6200 tokens.
+- `skills/workspace-governance/references/policy.md`, active, relevance 88, 18000 tokens.
+- Prior merged PR notes, completed, relevance 42, 22000 tokens.
+- Old brainstorming transcript, completed, relevance 15, 31000 tokens.
+- Open blocker decision, unresolved and risk-flagged, relevance 83, 9000 tokens.

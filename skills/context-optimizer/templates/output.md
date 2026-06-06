@@ -1,28 +1,32 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: context-optimizer
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
-
-# Context Optimizer Output
+# Context Optimizer Report
 
 ## Summary
 
-{summary}
+Active task: `{active_task}`
+Status: `{validation_status}`
 
-## Evidence
+## Context Snapshot
 
-{evidence}
+| max tokens | current tokens | target utilization |
+|------------|----------------|--------------------|
+| `{max_tokens}` | `{current_tokens}` | `{target_utilization_percent}` |
 
-## Result
+## Loading Plan
 
-{result}
+| source | level | relevance | rationale |
+|--------|-------|-----------|-----------|
+| `{source_id}` | `{level}` | `{relevance_score}` | `{rationale}` |
 
-## Validation
+## Compression Plan
 
-{validation}
+| artifact | action | before | after | retention summary |
+|----------|--------|--------|-------|-------------------|
+| `{artifact_id}` | `{action}` | `{current_tokens}` | `{optimized_tokens}` | `{retention_summary}` |
 
-## Risks and Limits
+## Eviction Safety
 
-{risks}
+List sources deferred or evicted, with risk flags and evidence tags.
+
+## Metrics
+
+Report token reduction and utilization from explicit counts.
