@@ -1,0 +1,28 @@
+{
+  "schema": "jm-labs.environment-detection.report.v1",
+  "environment": {
+    "ide": "codex",
+    "model": "small-context-model",
+    "model_tier": "light",
+    "triad_mode": "sequential",
+    "context_budget_tokens": 24000,
+    "confidence": 0.92
+  },
+  "signals": [
+    {"id": "s1", "kind": "instruction_file", "source": "workspace_instruction_file:AGENTS.md", "value": "AGENTS marker present", "evidence_tag": "[CÓDIGO]"},
+    {"id": "s2", "kind": "tooling", "source": "active_tools", "value": "shell available", "evidence_tag": "[CONFIG]"},
+    {"id": "s3", "kind": "model_context", "source": "runtime_metadata", "value": "context_budget_tokens=24000", "evidence_tag": "[CONFIG]"}
+  ],
+  "capabilities": {"read": true, "write": true, "shell": true, "subagents": false, "hooks_or_mcp": false, "network": false},
+  "decisions": [
+    {"id": "d1", "decision": "triad_mode=sequential", "evidence_ids": ["s2"], "evidence_tag": "[INFERENCIA]"},
+    {"id": "d2", "decision": "model_tier=light", "evidence_ids": ["s3"], "evidence_tag": "[INFERENCIA]"}
+  ],
+  "conflicts": [],
+  "loading_plan": [
+    {"resource": "active skill", "level": "L3", "reason": "over-eager preload", "evidence_ids": ["s1"]},
+    {"resource": "all skill registry", "level": "L1", "reason": "metadata", "evidence_ids": ["s2"]}
+  ],
+  "validation": {"status": "pass", "checks": ["signals_have_evidence", "mode_matches_capabilities", "tier_matches_budget", "loading_plan_bounded"]},
+  "recommendations": ["Load active skill at L3 despite light tier."]
+}

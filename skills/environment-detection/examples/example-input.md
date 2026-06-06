@@ -1,10 +1,13 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: environment-detection
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
+# Example Input — Environment Detection
 
-# Example Input
+Detect the active environment for a JM Labs session before bootstrap.
 
-Use `environment-detection` to produce a concise deliverable for a realistic project request.
+Available local signals:
+
+- `AGENTS.md` is loaded for the workspace.
+- The runtime exposes read, write, shell, and git commands.
+- No subagent, hooks, or MCP orchestration tools are available in this session.
+- The user supplied model context budget is `128000` tokens.
+- Network access is available, but it must not be used as detection evidence.
+
+Return a Markdown summary and JSON report. The loading plan must be safe for the detected tier and must not persist full transcript content.

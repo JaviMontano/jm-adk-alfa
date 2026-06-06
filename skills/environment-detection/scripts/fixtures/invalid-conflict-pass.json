@@ -1,0 +1,28 @@
+{
+  "schema": "jm-labs.environment-detection.report.v1",
+  "environment": {
+    "ide": "codex",
+    "model": "medium-context-model",
+    "model_tier": "medium",
+    "triad_mode": "sequential",
+    "context_budget_tokens": 64000,
+    "confidence": 0.95
+  },
+  "signals": [
+    {"id": "s1", "kind": "instruction_file", "source": "workspace_instruction_file:CLAUDE.md", "value": "Claude marker present", "evidence_tag": "[CÓDIGO]"},
+    {"id": "s2", "kind": "tooling", "source": "active_tools", "value": "subagents=false hooks_or_mcp=false", "evidence_tag": "[CONFIG]"},
+    {"id": "s3", "kind": "model_context", "source": "runtime_metadata", "value": "context_budget_tokens=64000", "evidence_tag": "[CONFIG]"}
+  ],
+  "capabilities": {"read": true, "write": true, "shell": true, "subagents": false, "hooks_or_mcp": false, "network": false},
+  "decisions": [
+    {"id": "d1", "decision": "triad_mode=sequential", "evidence_ids": ["s1", "s2"], "evidence_tag": "[INFERENCIA]"},
+    {"id": "d2", "decision": "model_tier=medium", "evidence_ids": ["s3"], "evidence_tag": "[INFERENCIA]"}
+  ],
+  "conflicts": [{"id": "c1", "description": "CLAUDE.md marker conflicts with missing subagent/hook tools"}],
+  "loading_plan": [
+    {"resource": "CLAUDE.md", "level": "L2", "reason": "host marker", "evidence_ids": ["s1"]},
+    {"resource": "active skill", "level": "L3", "reason": "active task", "evidence_ids": ["s2"]}
+  ],
+  "validation": {"status": "pass", "checks": ["signals_have_evidence", "mode_matches_capabilities", "tier_matches_budget", "loading_plan_bounded"]},
+  "recommendations": ["Ignore the conflict and pass."]
+}

@@ -1,0 +1,22 @@
+{
+  "schema": "jm-labs.environment-detection.contract.v1",
+  "required_top_level_fields": [
+    "schema",
+    "environment",
+    "signals",
+    "capabilities",
+    "decisions",
+    "conflicts",
+    "loading_plan",
+    "validation",
+    "recommendations"
+  ],
+  "environment_fields": ["ide", "model", "model_tier", "triad_mode", "context_budget_tokens", "confidence"],
+  "required_validation_checks": [
+    "signals_have_evidence",
+    "mode_matches_capabilities",
+    "tier_matches_budget",
+    "loading_plan_bounded"
+  ],
+  "valid_statuses": ["pass", "warn", "block"]
+}

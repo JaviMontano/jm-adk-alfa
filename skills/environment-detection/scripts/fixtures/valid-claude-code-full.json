@@ -1,0 +1,30 @@
+{
+  "schema": "jm-labs.environment-detection.report.v1",
+  "environment": {
+    "ide": "claude-code",
+    "model": "runtime-heavy-model",
+    "model_tier": "heavy",
+    "triad_mode": "full",
+    "context_budget_tokens": 200000,
+    "confidence": 0.97
+  },
+  "signals": [
+    {"id": "s1", "kind": "instruction_file", "source": "workspace_instruction_file:CLAUDE.md", "value": "Claude Code instructions present", "evidence_tag": "[CÓDIGO]"},
+    {"id": "s2", "kind": "tooling", "source": "active_tools", "value": "subagents=true", "evidence_tag": "[CONFIG]"},
+    {"id": "s3", "kind": "tooling", "source": "active_tools", "value": "hooks_or_mcp=true", "evidence_tag": "[CONFIG]"},
+    {"id": "s4", "kind": "model_context", "source": "runtime_metadata", "value": "context_budget_tokens=200000", "evidence_tag": "[CONFIG]"}
+  ],
+  "capabilities": {"read": true, "write": true, "shell": true, "subagents": true, "hooks_or_mcp": true, "network": false},
+  "decisions": [
+    {"id": "d1", "decision": "triad_mode=full", "evidence_ids": ["s1", "s2", "s3"], "evidence_tag": "[INFERENCIA]"},
+    {"id": "d2", "decision": "model_tier=heavy", "evidence_ids": ["s4"], "evidence_tag": "[INFERENCIA]"}
+  ],
+  "conflicts": [],
+  "loading_plan": [
+    {"resource": "CLAUDE.md", "level": "L2", "reason": "host instructions required", "evidence_ids": ["s1"]},
+    {"resource": "active skill", "level": "L3", "reason": "active detection task requires full skill", "evidence_ids": ["s2"]},
+    {"resource": "session history summary", "level": "L2", "reason": "summary is bounded", "evidence_ids": ["s4"]}
+  ],
+  "validation": {"status": "pass", "checks": ["signals_have_evidence", "mode_matches_capabilities", "tier_matches_budget", "loading_plan_bounded"]},
+  "recommendations": ["Full triad is allowed because subagents and hooks/MCP are both present."]
+}

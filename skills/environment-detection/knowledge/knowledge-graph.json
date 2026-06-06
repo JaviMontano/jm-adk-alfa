@@ -1,75 +1,22 @@
 {
   "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-28",
   "skill": "environment-detection",
   "nodes": [
-    {
-      "id": "environment-detection",
-      "type": "skill",
-      "label": "environment-detection"
-    },
-    {
-      "id": "environment-detection:inputs",
-      "type": "contract",
-      "label": "Expected inputs"
-    },
-    {
-      "id": "environment-detection:outputs",
-      "type": "contract",
-      "label": "Expected outputs"
-    },
-    {
-      "id": "environment-detection:quality",
-      "type": "gate",
-      "label": "Quality criteria"
-    },
-    {
-      "id": "environment-detection:ontology",
-      "type": "ontology",
-      "label": "Domain: general"
-    },
-    {
-      "id": "environment-detection:evidence",
-      "type": "gate",
-      "label": "Evidence / provenance requirements"
-    },
-    {
-      "id": "environment-detection:antipattern",
-      "type": "risk",
-      "label": "Canonical anti-pattern to avoid"
-    }
+    {"id": "environment-detection", "type": "skill", "label": "Environment detection"},
+    {"id": "local-signal", "type": "evidence", "label": "Local signal"},
+    {"id": "capability-profile", "type": "contract", "label": "Capability profile"},
+    {"id": "triad-mode", "type": "decision", "label": "Triad mode"},
+    {"id": "model-tier", "type": "decision", "label": "Model tier"},
+    {"id": "loading-plan", "type": "contract", "label": "Bootstrap loading plan"},
+    {"id": "conflict", "type": "risk", "label": "Signal conflict"},
+    {"id": "offline-validator", "type": "gate", "label": "Offline report validator"}
   ],
   "edges": [
-    {
-      "from": "environment-detection",
-      "to": "environment-detection:inputs",
-      "type": "requires"
-    },
-    {
-      "from": "environment-detection",
-      "to": "environment-detection:outputs",
-      "type": "produces"
-    },
-    {
-      "from": "environment-detection",
-      "to": "environment-detection:quality",
-      "type": "validated_by"
-    },
-    {
-      "from": "environment-detection",
-      "to": "environment-detection:ontology",
-      "type": "classified_as"
-    },
-    {
-      "from": "environment-detection",
-      "to": "environment-detection:evidence",
-      "type": "validated_by"
-    },
-    {
-      "from": "environment-detection",
-      "to": "environment-detection:antipattern",
-      "type": "guards_against"
-    }
+    {"from": "environment-detection", "to": "local-signal", "type": "requires"},
+    {"from": "local-signal", "to": "capability-profile", "type": "supports"},
+    {"from": "capability-profile", "to": "triad-mode", "type": "determines"},
+    {"from": "model-tier", "to": "loading-plan", "type": "bounds"},
+    {"from": "conflict", "to": "triad-mode", "type": "degrades"},
+    {"from": "environment-detection", "to": "offline-validator", "type": "validated_by"}
   ]
 }

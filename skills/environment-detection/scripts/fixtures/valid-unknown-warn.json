@@ -1,0 +1,29 @@
+{
+  "schema": "jm-labs.environment-detection.report.v1",
+  "environment": {
+    "ide": "unknown",
+    "model": "unknown",
+    "model_tier": "unknown",
+    "triad_mode": "sequential",
+    "context_budget_tokens": null,
+    "confidence": 0.74
+  },
+  "signals": [
+    {"id": "s1", "kind": "instruction_file", "source": "workspace_instruction_file:none_found", "value": "no host-specific instruction file found", "evidence_tag": "[CÓDIGO]"},
+    {"id": "s2", "kind": "tooling", "source": "active_tools", "value": "read/write/shell available", "evidence_tag": "[CONFIG]"},
+    {"id": "s3", "kind": "model_context", "source": "user_supplied_model_context", "value": "context budget not supplied", "evidence_tag": "[SUPUESTO]"}
+  ],
+  "capabilities": {"read": true, "write": true, "shell": true, "subagents": false, "hooks_or_mcp": false, "network": false},
+  "decisions": [
+    {"id": "d1", "decision": "triad_mode=sequential", "evidence_ids": ["s2"], "evidence_tag": "[INFERENCIA]"},
+    {"id": "d2", "decision": "model_tier=unknown", "evidence_ids": ["s3"], "evidence_tag": "[INFERENCIA]"}
+  ],
+  "conflicts": [],
+  "loading_plan": [
+    {"resource": "workspace instructions", "level": "L2", "reason": "only summary is safe without host certainty", "evidence_ids": ["s1"]},
+    {"resource": "all skill registry", "level": "L1", "reason": "metadata only", "evidence_ids": ["s2"]},
+    {"resource": "active skill", "level": "SKIP", "reason": "do not load L3 until task is known", "evidence_ids": ["s3"]}
+  ],
+  "validation": {"status": "warn", "checks": ["signals_have_evidence", "mode_matches_capabilities", "tier_matches_budget", "loading_plan_bounded"]},
+  "recommendations": ["Ask for model context budget before any L3 or full-history loading."]
+}

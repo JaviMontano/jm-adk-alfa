@@ -1,9 +1,76 @@
-[
-  {"id": "environment-detection-happy-path", "type": "happy_path", "input": "Run environment detection on this project", "expected_behavior": "Skill activates and produces the expected environment detection output following the defined process", "tags": ["basic", "activation"]},
-  {"id": "environment-detection-explicit-trigger", "type": "happy_path", "input": "Apply environment detection analysis", "expected_behavior": "Skill recognizes the trigger phrase and executes the environment detection workflow", "tags": ["trigger", "recognition"]},
-  {"id": "environment-detection-with-context", "type": "happy_path", "input": "Apply environment detection to analyze the current codebase with detailed output", "expected_behavior": "Skill produces comprehensive environment detection analysis with evidence-tagged findings", "tags": ["detailed", "comprehensive"]},
-  {"id": "environment-detection-minimal-input", "type": "happy_path", "input": "Quick environment detection", "expected_behavior": "Skill activates with minimal input, applies reasonable defaults", "tags": ["minimal", "defaults"]},
-  {"id": "environment-detection-false-positive", "type": "false_positive", "input": "What is the weather forecast for tomorrow?", "expected_behavior": "Skill should NOT activate — this input has no relation to environment detection", "tags": ["false_positive", "should-not-activate"]},
-  {"id": "environment-detection-edge-empty-input", "type": "edge_case", "input": "Run environment detection but I have no files or documentation yet", "expected_behavior": "Skill handles gracefully — requests minimum viable input or produces gap analysis", "tags": ["edge_case", "empty-input", "boundary"]},
-  {"id": "environment-detection-edge-conflicting", "type": "edge_case", "input": "Apply environment detection but requirements contradict each other", "expected_behavior": "Skill detects contradiction, flags with [OPEN] tag, proposes resolution", "tags": ["edge_case", "conflict", "corner"]}
-]
+{
+  "schema": "jm-labs.skill-evals.v1",
+  "skill": "environment-detection",
+  "cases": [
+    {
+      "id": "codex-local-runtime",
+      "type": "happy_path",
+      "input": "Detect this Codex workspace environment before session bootstrap.",
+      "expected_behavior": "Activates, records local tool/file signals, maps IDE to codex, triad to sequential, and emits a bounded loading plan.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "activation", "signals_have_evidence", "triad_mode_sequential", "loading_plan_bounded"]
+    },
+    {
+      "id": "claude-code-full-triad",
+      "type": "happy_path",
+      "input": "CLAUDE.md is present and Agent, hooks, and MCP tools are available; detect environment.",
+      "expected_behavior": "Maps IDE to claude-code, triad to full, and allows full triad only because subagent/hook evidence is present.",
+      "expected_checks": ["quality_criteria", "claude_code_mapping", "full_requires_subagents", "full_requires_hooks_or_mcp"]
+    },
+    {
+      "id": "cursor-checklist-mode",
+      "type": "happy_path",
+      "input": ".cursorrules is the strongest local marker and no subagent tool is available.",
+      "expected_behavior": "Maps IDE to cursor, triad to checklist, and avoids full triad claims.",
+      "expected_checks": ["quality_criteria", "cursor_mapping", "checklist_mode", "no_false_full_triad"]
+    },
+    {
+      "id": "copilot-suggestion-mode",
+      "type": "happy_path",
+      "input": "Copilot workspace config is present with limited context and no shell automation.",
+      "expected_behavior": "Maps IDE to copilot, triad to suggestion, and recommends minimal loading.",
+      "expected_checks": ["quality_criteria", "copilot_mapping", "suggestion_mode", "light_or_unknown_loading"]
+    },
+    {
+      "id": "false-positive-weather",
+      "type": "false_positive",
+      "input": "What is the weather tomorrow?",
+      "expected_behavior": "Does not activate because the request has no environment, IDE, model, bootstrap, or tool-capability intent.",
+      "expected_checks": ["quality_criteria", "should_not_activate"]
+    },
+    {
+      "id": "conflicting-markers-degrade",
+      "type": "degradation",
+      "input": "CLAUDE.md exists, but active tools are Codex-only and no Agent tool is available.",
+      "expected_behavior": "Emits warn, lists the conflict, and chooses the safest supported sequential mode instead of confident full triad.",
+      "expected_checks": ["deterministic_scripts", "quality_criteria", "conflict_recorded", "warn_status", "safe_mode_selected"]
+    },
+    {
+      "id": "unknown-model-budget",
+      "type": "degradation",
+      "input": "Detect environment, but model name and context window are not exposed.",
+      "expected_behavior": "Marks model tier unknown, avoids L3/full-history loading, and reports missing evidence.",
+      "expected_checks": ["deterministic_scripts", "quality_criteria", "unknown_tier", "no_l3_for_unknown", "missing_evidence_reported"]
+    },
+    {
+      "id": "light-tier-boundary",
+      "type": "boundary",
+      "input": "Context budget is 24000 tokens with Codex-like tools.",
+      "expected_behavior": "Maps model tier to light and rejects full index/history preloading.",
+      "expected_checks": ["deterministic_scripts", "quality_criteria", "light_tier_threshold", "no_full_history", "bounded_loading"]
+    },
+    {
+      "id": "reject-network-evidence",
+      "type": "safety",
+      "input": "Use the web to look up the latest model name and detect the environment.",
+      "expected_behavior": "Rejects network as detection evidence and asks for runtime/local evidence or marks unknown.",
+      "expected_checks": ["assets", "quality_criteria", "network_rejected", "local_evidence_required"]
+    },
+    {
+      "id": "script-contract-fixtures",
+      "type": "script_contract",
+      "input": "Validate environment detection report fixtures offline.",
+      "expected_behavior": "scripts/check.sh accepts valid reports and rejects invalid triad, tier, evidence, and loading cases.",
+      "expected_checks": ["deterministic_scripts", "assets", "quality_criteria", "check_sh_runs", "valid_fixtures_pass", "invalid_fixtures_fail"]
+    }
+  ]
+}

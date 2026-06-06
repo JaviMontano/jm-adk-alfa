@@ -9,26 +9,27 @@ description: "Environment Detection in quick mode."
 
 ## When to Use
 
-Use quick mode when you need adjusted depth for the Environment Detection workflow.
+Use quick mode when the user needs a short startup decision and signals are unambiguous.
 
 ## Dynamic Parameters
 
 | Parameter | Required | Filled By |
 |-----------|----------|-----------|
 | `{{task}}` | Yes | User input |
-| `{{context}}` | No | Auto-detected |
+| `{{signals}}` | Yes | Local file/tool/model evidence |
 | `{{depth}}` | No | Set to "quick" |
 
 ## Execution
 
-1. Load skill: `skills/environment-detection/knowledge/body-of-knowledge.md`
-2. Check guardrails: `references/guardrails/*.json`
-3. Execute at quick depth with evidence tags
-4. Lead → Support → Guardian validation
-5. Confidence >= 0.95
+1. List the top three signals.
+2. Map IDE to triad mode.
+3. Map context budget to tier or mark unknown.
+4. Return one loading-plan table.
+5. Flag any missing evidence.
 
 ## Output
 
-- Deliverable calibrated to quick depth
-- Evidence-tagged, Constitution-compliant
-- Recommendations beyond the ask
+- IDE, triad mode, model tier, confidence.
+- Signal list with evidence tags.
+- Conservative loading plan.
+- Validation status.

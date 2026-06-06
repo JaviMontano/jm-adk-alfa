@@ -1,0 +1,16 @@
+{
+  "schema": "jm-labs.environment-detection.loading-policy.v1",
+  "levels": ["L1", "L2", "L3", "SKIP"],
+  "max_l3_by_tier": {
+    "heavy": 1,
+    "medium": 1,
+    "light": 0,
+    "unknown": 0
+  },
+  "forbidden_l3_resources_by_tier": {
+    "medium": ["full-index", "all-skills", "full-history"],
+    "light": ["full-index", "all-skills", "full-history", "active skill"],
+    "unknown": ["full-index", "all-skills", "full-history", "active skill"]
+  },
+  "forbidden_resources": ["full-transcript", "private-history", "browser-cookies", "account-state"]
+}
