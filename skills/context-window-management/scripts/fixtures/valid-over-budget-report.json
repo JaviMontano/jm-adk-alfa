@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "skill": "context-window-management",
+  "token_budget": {
+    "max_context_tokens": 10000,
+    "reserved_response_tokens": 1500,
+    "available_context_tokens": 8500,
+    "current_estimated_tokens": 12000,
+    "post_plan_estimated_tokens": 7800,
+    "evidence_tag": "[CODE]"
+  },
+  "context_items": [
+    {
+      "id": "ctx-001",
+      "source": "active instructions and branch status",
+      "priority": "P0",
+      "estimated_tokens": 1800,
+      "retention_action": "keep",
+      "rationale": "Active task control context.",
+      "evidence_tag": "[CONFIG]"
+    },
+    {
+      "id": "ctx-002",
+      "source": "current skill files",
+      "priority": "P1",
+      "estimated_tokens": 3200,
+      "retention_action": "keep",
+      "rationale": "Current implementation context.",
+      "evidence_tag": "[CODE]"
+    },
+    {
+      "id": "ctx-003",
+      "source": "related review docs",
+      "priority": "P2",
+      "estimated_tokens": 4200,
+      "retention_action": "structured-summary",
+      "rationale": "Supporting context can be summarized.",
+      "evidence_tag": "[INFERENCE]"
+    },
+    {
+      "id": "ctx-004",
+      "source": "old examples already summarized",
+      "priority": "P3",
+      "estimated_tokens": 2800,
+      "retention_action": "evict",
+      "rationale": "Historical examples are redundant.",
+      "evidence_tag": "[INFERENCE]"
+    }
+  ],
+  "compression_plan": [
+    {
+      "source_id": "ctx-003",
+      "method": "structured-summary",
+      "estimated_tokens_before": 4200,
+      "estimated_tokens_after": 2800,
+      "preserves": ["ids", "paths", "decisions", "blockers", "validation_evidence", "open_questions"],
+      "evidence_tag": "[CONFIG]"
+    }
+  ],
+  "eviction_plan": [
+    {
+      "source_id": "ctx-004",
+      "priority": "P3",
+      "reason": "Redundant historical context with existing summary.",
+      "evidence_tag": "[INFERENCE]"
+    }
+  ],
+  "guardian_decision": {
+    "decision": "pass",
+    "rationale": "P0 is kept, compression reduces tokens, P3 is evicted, and final estimate fits.",
+    "evidence_tag": "[CONFIG]"
+  }
+}

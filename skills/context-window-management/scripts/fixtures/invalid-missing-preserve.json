@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "skill": "context-window-management",
+  "token_budget": {
+    "max_context_tokens": 10000,
+    "reserved_response_tokens": 1500,
+    "available_context_tokens": 8500,
+    "current_estimated_tokens": 9000,
+    "post_plan_estimated_tokens": 8000,
+    "evidence_tag": "[CODE]"
+  },
+  "context_items": [
+    {
+      "id": "ctx-030",
+      "source": "decision-heavy notes",
+      "priority": "P2",
+      "estimated_tokens": 2000,
+      "retention_action": "compress",
+      "rationale": "Invalid fixture omits preservation fields.",
+      "evidence_tag": "[INFERENCE]"
+    }
+  ],
+  "compression_plan": [
+    {
+      "source_id": "ctx-030",
+      "method": "structured-summary",
+      "estimated_tokens_before": 2000,
+      "estimated_tokens_after": 1000,
+      "preserves": ["ids", "paths"],
+      "evidence_tag": "[INFERENCE]"
+    }
+  ],
+  "eviction_plan": [],
+  "guardian_decision": {
+    "decision": "pass",
+    "rationale": "Invalid fixture.",
+    "evidence_tag": "[CONFIG]"
+  }
+}

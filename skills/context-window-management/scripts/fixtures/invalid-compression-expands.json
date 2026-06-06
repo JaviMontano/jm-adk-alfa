@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "skill": "context-window-management",
+  "token_budget": {
+    "max_context_tokens": 10000,
+    "reserved_response_tokens": 1500,
+    "available_context_tokens": 8500,
+    "current_estimated_tokens": 8000,
+    "post_plan_estimated_tokens": 8100,
+    "evidence_tag": "[CODE]"
+  },
+  "context_items": [
+    {
+      "id": "ctx-020",
+      "source": "support notes",
+      "priority": "P2",
+      "estimated_tokens": 800,
+      "retention_action": "compress",
+      "rationale": "Invalid fixture expands compression.",
+      "evidence_tag": "[INFERENCE]"
+    }
+  ],
+  "compression_plan": [
+    {
+      "source_id": "ctx-020",
+      "method": "structured-summary",
+      "estimated_tokens_before": 800,
+      "estimated_tokens_after": 900,
+      "preserves": ["ids", "paths", "decisions", "blockers", "validation_evidence", "open_questions"],
+      "evidence_tag": "[INFERENCE]"
+    }
+  ],
+  "eviction_plan": [],
+  "guardian_decision": {
+    "decision": "pass",
+    "rationale": "Invalid fixture.",
+    "evidence_tag": "[CONFIG]"
+  }
+}

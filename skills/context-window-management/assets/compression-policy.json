@@ -1,0 +1,8 @@
+{
+  "schema": 1,
+  "skill": "context-window-management",
+  "allowed_methods": ["extractive-summary", "structured-summary", "reference-only"],
+  "preserve_fields": ["ids", "paths", "decisions", "blockers", "validation_evidence", "open_questions"],
+  "must_reduce_tokens": true,
+  "p0_lossy_compression_allowed": false
+}

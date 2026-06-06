@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "skill": "context-window-management",
+  "assets": [
+    {
+      "path": "assets/budget-policy.json",
+      "type": "policy",
+      "purpose": "Defines context budget fields, arithmetic, and response reserve rules.",
+      "used_by": ["SKILL.md", "scripts/validate_context_window_report.py", "templates/output.md"]
+    },
+    {
+      "path": "assets/priority-policy.json",
+      "type": "policy",
+      "purpose": "Defines P0/P1/P2/P3 retention tiers and default actions.",
+      "used_by": ["SKILL.md", "evals/evals.json", "scripts/validate_context_window_report.py"]
+    },
+    {
+      "path": "assets/compression-policy.json",
+      "type": "policy",
+      "purpose": "Defines allowed compression methods and preservation requirements.",
+      "used_by": ["SKILL.md", "evals/evals.json", "scripts/validate_context_window_report.py"]
+    },
+    {
+      "path": "assets/eviction-policy.json",
+      "type": "policy",
+      "purpose": "Defines safe eviction order and P0 protection.",
+      "used_by": ["SKILL.md", "agents/guardian.md", "scripts/validate_context_window_report.py"]
+    },
+    {
+      "path": "assets/report-contract.json",
+      "type": "schema",
+      "purpose": "Defines required JSON report sections and evidence tags.",
+      "used_by": ["SKILL.md", "scripts/validate_context_window_report.py", "templates/output.md"]
+    }
+  ]
+}

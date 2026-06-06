@@ -1,75 +1,78 @@
 {
   "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-28",
   "skill": "context-window-management",
   "nodes": [
     {
       "id": "context-window-management",
       "type": "skill",
-      "label": "context-window-management"
+      "label": "Context Window Management"
     },
     {
-      "id": "context-window-management:inputs",
+      "id": "token-budget",
       "type": "contract",
-      "label": "Expected inputs"
+      "label": "Token budget"
     },
     {
-      "id": "context-window-management:outputs",
-      "type": "contract",
-      "label": "Expected outputs"
+      "id": "priority-policy",
+      "type": "policy",
+      "label": "Priority tiers"
     },
     {
-      "id": "context-window-management:quality",
-      "type": "gate",
-      "label": "Quality criteria"
+      "id": "compression-policy",
+      "type": "policy",
+      "label": "Compression rules"
     },
     {
-      "id": "context-window-management:ontology",
-      "type": "ontology",
-      "label": "Domain: context-reliability"
+      "id": "eviction-policy",
+      "type": "policy",
+      "label": "Eviction rules"
     },
     {
-      "id": "context-window-management:evidence",
-      "type": "gate",
-      "label": "Evidence / provenance requirements"
+      "id": "context-items",
+      "type": "input",
+      "label": "Context item inventory"
     },
     {
-      "id": "context-window-management:antipattern",
-      "type": "risk",
-      "label": "Canonical anti-pattern to avoid"
+      "id": "budget-report",
+      "type": "output",
+      "label": "Context budget report"
+    },
+    {
+      "id": "offline-validator",
+      "type": "script",
+      "label": "validate_context_window_report.py"
     }
   ],
   "edges": [
     {
       "from": "context-window-management",
-      "to": "context-window-management:inputs",
-      "type": "requires"
+      "to": "context-items",
+      "type": "inventories"
     },
     {
-      "from": "context-window-management",
-      "to": "context-window-management:outputs",
-      "type": "produces"
+      "from": "token-budget",
+      "to": "budget-report",
+      "type": "constrains"
     },
     {
-      "from": "context-window-management",
-      "to": "context-window-management:quality",
-      "type": "validated_by"
+      "from": "priority-policy",
+      "to": "budget-report",
+      "type": "constrains"
     },
     {
-      "from": "context-window-management",
-      "to": "context-window-management:ontology",
-      "type": "classified_as"
+      "from": "compression-policy",
+      "to": "budget-report",
+      "type": "constrains"
     },
     {
-      "from": "context-window-management",
-      "to": "context-window-management:evidence",
-      "type": "validated_by"
+      "from": "eviction-policy",
+      "to": "budget-report",
+      "type": "constrains"
     },
     {
-      "from": "context-window-management",
-      "to": "context-window-management:antipattern",
-      "type": "guards_against"
+      "from": "offline-validator",
+      "to": "budget-report",
+      "type": "validates"
     }
   ]
 }

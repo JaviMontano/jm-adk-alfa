@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "skill": "context-window-management",
+  "token_budget": {
+    "max_context_tokens": 10000,
+    "reserved_response_tokens": 1500,
+    "available_context_tokens": 8500,
+    "current_estimated_tokens": 7000,
+    "post_plan_estimated_tokens": 7000,
+    "evidence_tag": "[CODE]"
+  },
+  "context_items": [
+    {
+      "id": "ctx-040",
+      "source": "active file",
+      "priority": "P1",
+      "retention_action": "keep",
+      "rationale": "Invalid fixture misses estimated_tokens.",
+      "evidence_tag": "[OPEN]"
+    }
+  ],
+  "compression_plan": [],
+  "eviction_plan": [],
+  "guardian_decision": {
+    "decision": "pass",
+    "rationale": "Invalid fixture.",
+    "evidence_tag": "[CONFIG]"
+  }
+}

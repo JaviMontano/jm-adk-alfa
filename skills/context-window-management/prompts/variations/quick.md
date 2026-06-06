@@ -5,30 +5,7 @@ version: 2.0.0
 description: "Context Window Management in quick mode."
 ---
 
-# Context Window Management — quick Mode
+# Context Window Management — Quick Mode
 
-## When to Use
-
-Use quick mode when you need adjusted depth for the Context Window Management workflow.
-
-## Dynamic Parameters
-
-| Parameter | Required | Filled By |
-|-----------|----------|-----------|
-| `{{task}}` | Yes | User input |
-| `{{context}}` | No | Auto-detected |
-| `{{depth}}` | No | Set to "quick" |
-
-## Execution
-
-1. Load skill: `skills/context-window-management/knowledge/body-of-knowledge.md`
-2. Check guardrails: `references/guardrails/*.json`
-3. Execute at quick depth with evidence tags
-4. Lead → Support → Guardian validation
-5. Confidence >= 0.95
-
-## Output
-
-- Deliverable calibrated to quick depth
-- Evidence-tagged, Constitution-compliant
-- Recommendations beyond the ask
+Compute budget, classify P0/P1/P2/P3, and return only keep/compress/evict actions
+plus Guardian decision. Keep P0 and final-fit checks active.
