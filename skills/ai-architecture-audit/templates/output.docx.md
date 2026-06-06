@@ -1,10 +1,19 @@
-# Ai Architecture Audit — DOCX Template
+# AI Architecture Audit — DOCX Template
 
 ## Document Structure
-- Title: Ai Architecture Audit — [Client/Project Name]
+- Title: AI Architecture Audit — [Client/Project Name]
 - Author: JM Labs
 - Date: {{DATE}}
 
-## Sections (mirror SKILL.md structure)
-See canonical SKILL.md for section blueprints.
-Use brand-config.json tokens: Navy #122562 · Gold #FFD700 · Blue #137DC5
+## Sections
+- Executive summary
+- Evidence inventory
+- Six-dimension scorecard
+- Findings by severity
+- Quality attributes and anti-patterns
+- Security/compliance controls
+- Technical debt inventory
+- Remediation roadmap
+- Validation and residual risks
+
+Use system fonts and offline tables only.

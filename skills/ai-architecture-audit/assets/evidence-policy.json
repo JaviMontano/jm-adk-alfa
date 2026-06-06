@@ -1,0 +1,7 @@
+{
+  "schema": "jm-labs.ai-architecture-audit.evidence-policy.v1",
+  "allowed_tags": ["[CÓDIGO]", "[CONFIG]", "[MÉTRICA]", "[DOC]", "[ENTREVISTA]", "[HERRAMIENTA]", "[INFERENCIA]"],
+  "concrete_tags": ["[CÓDIGO]", "[CONFIG]", "[MÉTRICA]", "[DOC]", "[ENTREVISTA]", "[HERRAMIENTA]"],
+  "finding_policy": "each finding requires at least one concrete evidence tag",
+  "unknown_policy": "missing evidence must be recorded as a limitation or evidence gap"
+}

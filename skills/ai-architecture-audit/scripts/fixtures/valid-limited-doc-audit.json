@@ -1,0 +1,37 @@
+{
+  "schema": "jm-labs.ai-architecture-audit.report.v1",
+  "system": {"name": "rag-support-bot", "type": "genai-rag", "stage": "pre-production"},
+  "scope": {"mode": "supervisado", "depth": "express", "format": "técnico", "coverage": "docs-only"},
+  "evidence": [
+    {"id": "E-001", "type": "doc", "source": "rag-design.md", "summary": "RAG design documents retrieval and generation flow.", "tag": "[DOC]"},
+    {"id": "E-002", "type": "interview", "source": "security-review-notes.md", "summary": "No prompt injection test suite exists yet.", "tag": "[ENTREVISTA]"},
+    {"id": "E-003", "type": "config", "source": "guardrails.yaml", "summary": "PII masking is configured for user inputs.", "tag": "[CONFIG]"}
+  ],
+  "dimensions": [
+    {"id": "D1", "score": 3, "status": "partial", "rationale": "Design documentation exists."},
+    {"id": "D2", "score": 1, "status": "omitted", "rationale": "Production quality metrics are unavailable pre-production."},
+    {"id": "D3", "score": 2, "status": "gap", "rationale": "Prompt injection tests are absent."},
+    {"id": "D4", "score": 3, "status": "partial", "rationale": "PII masking exists but injection tests are missing."},
+    {"id": "D5", "score": 2, "status": "gap", "rationale": "Security test debt present."},
+    {"id": "D6", "score": 3, "status": "ready", "rationale": "Roadmap covers missing tests."}
+  ],
+  "findings": [
+    {"id": "F-001", "severity": "HIGH", "dimension": "D4", "title": "Prompt injection tests missing", "evidence_ids": ["E-002"], "remediation": {"pattern": "Guardrail Test Suite", "effort": "M", "dependencies": ["test prompts"], "dod": "Prompt injection regression suite passes."}}
+  ],
+  "quality_attributes": [
+    {"name": "Retrieval quality", "threshold": "defined before production", "current": "unknown", "gap": "metric unavailable", "evidence_id": "E-001"}
+  ],
+  "anti_patterns": [
+    {"name": "Unguarded LLM", "detection_method": "Security review notes", "evidence_id": "E-002"}
+  ],
+  "security_controls": [
+    {"control": "PII masking", "status": "implemented", "evidence_id": "E-003"}
+  ],
+  "technical_debt": [
+    {"type": "Responsible AI test debt", "impact": "unsafe release risk", "interest": "per feature", "principal": "M effort", "evidence_id": "E-002"}
+  ],
+  "roadmap": [
+    {"finding_id": "F-001", "phase": "Phase 1 Critical Safety", "priority_score": 18}
+  ],
+  "validation": {"status": "warn", "checks": ["assets", "deterministic_scripts", "quality_criteria", "evidence_required", "severity_taxonomy", "six_dimensions", "remediation_contract"], "omissions": ["production metrics unavailable"]}
+}

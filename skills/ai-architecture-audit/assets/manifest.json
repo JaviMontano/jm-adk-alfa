@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "skill": "ai-architecture-audit",
+  "assets": [
+    {
+      "path": "assets/audit-dimension-policy.json",
+      "type": "policy",
+      "purpose": "Defines D1-D6 audit dimensions and coverage rules.",
+      "used_by": ["SKILL.md", "scripts/validate_ai_architecture_audit_report.py", "evals/evals.json"]
+    },
+    {
+      "path": "assets/severity-policy.json",
+      "type": "policy",
+      "purpose": "Defines valid finding severities and priority meaning.",
+      "used_by": ["SKILL.md", "scripts/validate_ai_architecture_audit_report.py", "templates/output.md"]
+    },
+    {
+      "path": "assets/evidence-policy.json",
+      "type": "policy",
+      "purpose": "Defines allowed evidence tags and concrete evidence requirements.",
+      "used_by": ["SKILL.md", "scripts/validate_ai_architecture_audit_report.py", "agents/guardian.md"]
+    },
+    {
+      "path": "assets/remediation-policy.json",
+      "type": "policy",
+      "purpose": "Defines required remediation fields and effort labels.",
+      "used_by": ["SKILL.md", "scripts/validate_ai_architecture_audit_report.py", "references/remediation-patterns.md"]
+    },
+    {
+      "path": "assets/audit-report-contract.json",
+      "type": "schema",
+      "purpose": "Defines required JSON packet sections for offline validation.",
+      "used_by": ["SKILL.md", "scripts/validate_ai_architecture_audit_report.py", "templates/output.md"]
+    }
+  ]
+}

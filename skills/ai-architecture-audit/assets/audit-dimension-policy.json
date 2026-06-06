@@ -1,0 +1,13 @@
+{
+  "schema": "jm-labs.ai-architecture-audit.dimension-policy.v1",
+  "required_dimensions": ["D1", "D2", "D3", "D4", "D5", "D6"],
+  "dimension_names": {
+    "D1": "Structural Integrity",
+    "D2": "AI Quality Attributes",
+    "D3": "Pattern and Anti-Pattern Detection",
+    "D4": "Security and Compliance",
+    "D5": "Technical Debt Inventory",
+    "D6": "Remediation Roadmap"
+  },
+  "omission_policy": "dimension omissions require rationale and validation status warn or block"
+}

@@ -1,75 +1,25 @@
 {
   "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-28",
   "skill": "ai-architecture-audit",
   "nodes": [
-    {
-      "id": "ai-architecture-audit",
-      "type": "skill",
-      "label": "ai-architecture-audit"
-    },
-    {
-      "id": "ai-architecture-audit:inputs",
-      "type": "contract",
-      "label": "Expected inputs"
-    },
-    {
-      "id": "ai-architecture-audit:outputs",
-      "type": "contract",
-      "label": "Expected outputs"
-    },
-    {
-      "id": "ai-architecture-audit:quality",
-      "type": "gate",
-      "label": "Quality criteria"
-    },
-    {
-      "id": "ai-architecture-audit:ontology",
-      "type": "ontology",
-      "label": "Domain: general"
-    },
-    {
-      "id": "ai-architecture-audit:evidence",
-      "type": "gate",
-      "label": "Evidence / provenance requirements"
-    },
-    {
-      "id": "ai-architecture-audit:antipattern",
-      "type": "risk",
-      "label": "Canonical anti-pattern to avoid"
-    }
+    {"id": "audit", "type": "skill", "label": "AI Architecture Audit"},
+    {"id": "evidence-log", "type": "evidence", "label": "Evidence log"},
+    {"id": "dimension-scorecard", "type": "contract", "label": "D1-D6 scorecard"},
+    {"id": "finding", "type": "finding", "label": "Evidence-backed finding"},
+    {"id": "severity", "type": "taxonomy", "label": "Severity taxonomy"},
+    {"id": "anti-pattern", "type": "risk", "label": "AI anti-pattern"},
+    {"id": "remediation", "type": "contract", "label": "Remediation contract"},
+    {"id": "roadmap", "type": "output", "label": "Prioritized roadmap"},
+    {"id": "validator", "type": "gate", "label": "Offline report validator"}
   ],
   "edges": [
-    {
-      "from": "ai-architecture-audit",
-      "to": "ai-architecture-audit:inputs",
-      "type": "requires"
-    },
-    {
-      "from": "ai-architecture-audit",
-      "to": "ai-architecture-audit:outputs",
-      "type": "produces"
-    },
-    {
-      "from": "ai-architecture-audit",
-      "to": "ai-architecture-audit:quality",
-      "type": "validated_by"
-    },
-    {
-      "from": "ai-architecture-audit",
-      "to": "ai-architecture-audit:ontology",
-      "type": "classified_as"
-    },
-    {
-      "from": "ai-architecture-audit",
-      "to": "ai-architecture-audit:evidence",
-      "type": "validated_by"
-    },
-    {
-      "from": "ai-architecture-audit",
-      "to": "ai-architecture-audit:antipattern",
-      "type": "guards_against"
-    }
+    {"from": "audit", "to": "evidence-log", "type": "requires"},
+    {"from": "evidence-log", "to": "finding", "type": "supports"},
+    {"from": "finding", "to": "severity", "type": "classified_by"},
+    {"from": "finding", "to": "dimension-scorecard", "type": "maps_to"},
+    {"from": "anti-pattern", "to": "finding", "type": "detected_as"},
+    {"from": "finding", "to": "remediation", "type": "requires"},
+    {"from": "remediation", "to": "roadmap", "type": "prioritized_in"},
+    {"from": "audit", "to": "validator", "type": "validated_by"}
   ]
 }

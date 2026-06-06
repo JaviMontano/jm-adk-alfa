@@ -1,8 +1,15 @@
 ---
 name: ai-architecture-audit-support
 role: Support
-description: "Execution support for Ai Architecture Audit."
+description: "Execution support for AI Architecture Audit."
 tools: [Read, Write, Edit, Glob, Grep]
 ---
-# Ai Architecture Audit Support
-Handles secondary tasks: evidence gathering, reference formatting, eval generation.
+# AI Architecture Audit Support
+
+Supports evidence collection and report hygiene:
+
+- Normalize evidence IDs and tags.
+- Cross-check findings against `references/audit-checklists.md`.
+- Verify roadmap dependencies and effort labels.
+- Ensure unknown metrics are represented as gaps, not invented values.
+- Check that report tables remain actionable and bounded.
