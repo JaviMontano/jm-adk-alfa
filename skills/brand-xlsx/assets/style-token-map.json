@@ -1,0 +1,46 @@
+{
+  "schema": 1,
+  "skill": "brand-xlsx",
+  "styles": [
+    {
+      "name": "TitleBar",
+      "font_token": "typography.body",
+      "fill_token": "colors.primary",
+      "font_color_token": "colors.black",
+      "purpose": "Merged workbook title row."
+    },
+    {
+      "name": "SubtitleBar",
+      "font_token": "typography.body",
+      "fill_token": "colors.black",
+      "font_color_token": "colors.primary",
+      "purpose": "Workbook subtitle row."
+    },
+    {
+      "name": "ColumnHeader",
+      "font_token": "typography.body",
+      "fill_token": "colors.black",
+      "font_color_token": "colors.primary",
+      "border_token": "colors.primary",
+      "purpose": "Table header row."
+    },
+    {
+      "name": "DataEven",
+      "fill_token": "colors.white",
+      "font_color_token": "colors.black",
+      "purpose": "Even data rows."
+    },
+    {
+      "name": "DataOdd",
+      "fill_token": "colors.background",
+      "font_color_token": "colors.black",
+      "purpose": "Odd data rows."
+    },
+    {
+      "name": "FooterMeta",
+      "fill_token": "colors.black",
+      "font_color_token": "colors.muted",
+      "purpose": "Footer year/domain metadata."
+    }
+  ]
+}

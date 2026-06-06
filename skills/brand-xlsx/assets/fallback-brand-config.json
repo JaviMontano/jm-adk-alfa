@@ -1,0 +1,29 @@
+{
+  "schema": 1,
+  "brand": {
+    "name": "Fallback Brand",
+    "wordmark": "Fallback",
+    "tagline": "Deterministic branded XLSX fallback"
+  },
+  "colors": {
+    "primary": "#2563EB",
+    "black": "#0F172A",
+    "white": "#FFFFFF",
+    "background": "#F8FAFC",
+    "muted": "#475569",
+    "primarySoft": "#EFF6FF"
+  },
+  "typography": {
+    "body": "Calibri"
+  },
+  "xlsx": {
+    "artifact_date": "caller-supplied",
+    "year": "caller-supplied",
+    "domain": "caller-supplied"
+  },
+  "dependencies": {
+    "allow_remote_assets": false,
+    "allow_remote_fonts": false,
+    "allow_html_or_csv_renamed_xlsx": false
+  }
+}

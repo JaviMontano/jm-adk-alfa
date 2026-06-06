@@ -381,7 +381,7 @@
     "id": "brand-xlsx",
     "path": "skills/brand-xlsx",
     "name": "Brand Xlsx",
-    "description": "Generate brand-compliant Excel spreadsheets (.xlsx) using openpyxl. Reads brand tokens from config and applies consistent colors, typography, layout patterns. [EXPLICIT]"
+    "description": ">"
   },
   {
     "id": "branded-html-output",

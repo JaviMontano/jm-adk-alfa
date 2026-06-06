@@ -3,7 +3,9 @@ name: brand-xlsx-quick
 type: variation
 variant: quick
 ---
-# Brand Xlsx — Quick Mode
 
-Streamlined execution. Focus on TL;DR and primary output only.
-Apply Validation Gate but skip extended evidence tagging.
+# Brand XLSX - Quick Mode
+
+Use quick mode for a compact report or KPI sheet. Keep the same real-XLSX,
+brand-token, metadata, sheet-name, dependency, and validation requirements.
+Quick mode does not skip evidence or validation.

@@ -3,7 +3,10 @@ name: brand-xlsx-deep
 type: variation
 variant: deep
 ---
-# Brand Xlsx — Deep Analysis
 
-Full depth execution. Load all `references/` files from canonical. Run L3 progressive loading.
-Apply all Validation Gate criteria strictly.
+# Brand XLSX - Deep Mode
+
+Use deep mode for multi-sheet reports, KPI dashboards, financial summaries,
+wide tables, or strict brand packages. Validate every sheet against package,
+token, metadata, tab color, merged region, freeze pane, footer, placeholder, and
+dependency rules.
