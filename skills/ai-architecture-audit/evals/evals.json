@@ -1,9 +1,76 @@
-[
-  {"id": "ai-architecture-audit-happy-path", "type": "happy_path", "input": "Run ai architecture audit on this project", "expected_behavior": "Skill activates and produces the expected ai architecture audit output following the defined process", "tags": ["basic", "activation"]},
-  {"id": "ai-architecture-audit-explicit-trigger", "type": "happy_path", "input": "Apply ai architecture audit analysis", "expected_behavior": "Skill recognizes the trigger phrase and executes the ai architecture audit workflow", "tags": ["trigger", "recognition"]},
-  {"id": "ai-architecture-audit-with-context", "type": "happy_path", "input": "Apply ai architecture audit to analyze the current codebase with detailed output", "expected_behavior": "Skill produces comprehensive ai architecture audit analysis with evidence-tagged findings", "tags": ["detailed", "comprehensive"]},
-  {"id": "ai-architecture-audit-minimal-input", "type": "happy_path", "input": "Quick ai architecture audit", "expected_behavior": "Skill activates with minimal input, applies reasonable defaults", "tags": ["minimal", "defaults"]},
-  {"id": "ai-architecture-audit-false-positive", "type": "false_positive", "input": "What is the weather forecast for tomorrow?", "expected_behavior": "Skill should NOT activate — this input has no relation to ai architecture audit", "tags": ["false_positive", "should-not-activate"]},
-  {"id": "ai-architecture-audit-edge-empty-input", "type": "edge_case", "input": "Run ai architecture audit but I have no files or documentation yet", "expected_behavior": "Skill handles gracefully — requests minimum viable input or produces gap analysis", "tags": ["edge_case", "empty-input", "boundary"]},
-  {"id": "ai-architecture-audit-edge-conflicting", "type": "edge_case", "input": "Apply ai architecture audit but requirements contradict each other", "expected_behavior": "Skill detects contradiction, flags with [OPEN] tag, proposes resolution", "tags": ["edge_case", "conflict", "corner"]}
-]
+{
+  "schema": 1,
+  "skill": "ai-architecture-audit",
+  "cases": [
+    {
+      "id": "ai-architecture-audit-standard-six-dimensions",
+      "type": "happy_path",
+      "input": "Audit an ML scoring platform with source code, deployment config, monitoring screenshots, and SLA thresholds.",
+      "expected_behavior": "Produce a six-dimension report with evidence-backed findings, severity, remediation, and roadmap.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "six_dimensions", "evidence_required"]
+    },
+    {
+      "id": "ai-architecture-audit-genai-security-focus",
+      "type": "happy_path",
+      "input": "Review a RAG assistant for prompt injection, PII leakage, token budget blindness, and retrieval quality.",
+      "expected_behavior": "Emphasize security/compliance and GenAI anti-patterns while preserving all six audit dimensions.",
+      "expected_checks": ["quality_criteria", "security_controls", "anti_patterns", "owasp_llm"]
+    },
+    {
+      "id": "ai-architecture-audit-preproduction-limited-metrics",
+      "type": "degradation",
+      "input": "Audit a pre-production AI system with design docs and tests but no production metrics.",
+      "expected_behavior": "Mark runtime quality metrics unknown, create evidence gaps, and avoid invented measurements.",
+      "expected_checks": ["quality_criteria", "unknown_metrics", "no_invented_evidence"]
+    },
+    {
+      "id": "ai-architecture-audit-no-code-access",
+      "type": "degradation",
+      "input": "Audit using architecture diagrams and stakeholder notes only; code access is unavailable.",
+      "expected_behavior": "Produce a documentation-limited audit with explicit limitations and no code-only claims.",
+      "expected_checks": ["evidence_required", "scope_limitations", "no_false_code_claims"]
+    },
+    {
+      "id": "ai-architecture-audit-false-positive-new-design",
+      "type": "false_positive",
+      "input": "Design a new AI platform architecture from scratch.",
+      "expected_behavior": "Do not activate as the primary skill; route to AI software architecture design instead.",
+      "expected_checks": ["quality_criteria", "activation_boundary", "should_not_activate"]
+    },
+    {
+      "id": "ai-architecture-audit-invalid-finding-no-evidence",
+      "type": "degradation",
+      "input": "Report CRITICAL model drift debt without code, metric, config, doc, interview, or tool evidence.",
+      "expected_behavior": "Reject or downgrade the finding because it lacks evidence.",
+      "expected_checks": ["deterministic_scripts", "quality_criteria", "evidence_required"]
+    },
+    {
+      "id": "ai-architecture-audit-invalid-severity",
+      "type": "degradation",
+      "input": "Use severity 'urgent' for a finding.",
+      "expected_behavior": "Reject the finding because severity must be CRITICAL, HIGH, MEDIUM, LOW, or INFO.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "severity_taxonomy"]
+    },
+    {
+      "id": "ai-architecture-audit-missing-remediation-dod",
+      "type": "edge_case",
+      "input": "List findings without remediation pattern, dependencies, effort, or Definition of Done.",
+      "expected_behavior": "Block report completion until remediation fields are present.",
+      "expected_checks": ["deterministic_scripts", "quality_criteria", "remediation_contract"]
+    },
+    {
+      "id": "ai-architecture-audit-anti-pattern-method",
+      "type": "edge_case",
+      "input": "Claim Training-Serving Skew but omit detection method.",
+      "expected_behavior": "Reject anti-pattern finding without a detection method and evidence.",
+      "expected_checks": ["anti_patterns", "evidence_required", "detection_method"]
+    },
+    {
+      "id": "ai-architecture-audit-script-contract",
+      "type": "script_contract",
+      "input": "Validate AI Architecture Audit JSON packet fixtures offline.",
+      "expected_behavior": "Accept valid complete and limited-scope packets; reject missing evidence, invalid severity, missing dimension, missing remediation, and missing threshold packets.",
+      "expected_checks": ["deterministic_scripts", "assets", "quality_criteria"]
+    }
+  ]
+}

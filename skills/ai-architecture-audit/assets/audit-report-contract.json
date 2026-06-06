@@ -1,0 +1,27 @@
+{
+  "schema": "jm-labs.ai-architecture-audit.contract.v1",
+  "required_top_level_fields": [
+    "schema",
+    "system",
+    "scope",
+    "evidence",
+    "dimensions",
+    "findings",
+    "quality_attributes",
+    "anti_patterns",
+    "security_controls",
+    "technical_debt",
+    "roadmap",
+    "validation"
+  ],
+  "required_validation_checks": [
+    "assets",
+    "deterministic_scripts",
+    "quality_criteria",
+    "evidence_required",
+    "severity_taxonomy",
+    "six_dimensions",
+    "remediation_contract"
+  ],
+  "valid_statuses": ["pass", "warn", "block"]
+}

@@ -1,0 +1,6 @@
+{
+  "schema": "jm-labs.ai-architecture-audit.severity-policy.v1",
+  "allowed_severities": ["CRITICAL", "HIGH", "MEDIUM", "LOW", "INFO"],
+  "priority_order": ["CRITICAL", "HIGH", "MEDIUM", "LOW", "INFO"],
+  "invalid_label_policy": "reject"
+}

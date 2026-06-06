@@ -1,0 +1,48 @@
+{
+  "schema": "jm-labs.ai-architecture-audit.report.v1",
+  "system": {"name": "claims-risk-ai", "type": "ml-scoring", "stage": "production"},
+  "scope": {"mode": "piloto-auto", "depth": "standard", "format": "híbrido", "coverage": "full"},
+  "evidence": [
+    {"id": "E-001", "type": "config", "source": "infra/model-serving.yaml", "summary": "Main branch deploys directly to production.", "tag": "[CONFIG]"},
+    {"id": "E-002", "type": "metric", "source": "monitoring-export.json", "summary": "Latency P95 is 820ms and no drift alert policy exists.", "tag": "[MÉTRICA]"},
+    {"id": "E-003", "type": "doc", "source": "architecture.md", "summary": "Five AI layers documented; hardware layer omitted.", "tag": "[DOC]"},
+    {"id": "E-004", "type": "interview", "source": "ml-team-notes.md", "summary": "Fairness testing is manual and not automated.", "tag": "[ENTREVISTA]"},
+    {"id": "E-005", "type": "code", "source": "serving/app.py", "summary": "No circuit breaker around model invocation.", "tag": "[CÓDIGO]"},
+    {"id": "E-006", "type": "tool", "source": "dependency-scan.txt", "summary": "No circular dependency found in serving layer.", "tag": "[HERRAMIENTA]"}
+  ],
+  "dimensions": [
+    {"id": "D1", "score": 3, "status": "partial", "rationale": "Layer model is documented but incomplete."},
+    {"id": "D2", "score": 2, "status": "gap", "rationale": "Latency exceeds threshold and drift alerting is absent."},
+    {"id": "D3", "score": 2, "status": "gap", "rationale": "YOLO Deploy and missing circuit breaker detected."},
+    {"id": "D4", "score": 3, "status": "partial", "rationale": "Security controls require endpoint evidence."},
+    {"id": "D5", "score": 2, "status": "gap", "rationale": "Drift and test debt are present."},
+    {"id": "D6", "score": 4, "status": "ready", "rationale": "Roadmap is prioritized with DoD."}
+  ],
+  "findings": [
+    {"id": "F-001", "severity": "HIGH", "dimension": "D2", "title": "No drift alert policy", "evidence_ids": ["E-002"], "remediation": {"pattern": "Drift Detection", "effort": "M", "dependencies": ["monitoring baseline"], "dod": "Drift dashboard and alert test pass."}},
+    {"id": "F-002", "severity": "HIGH", "dimension": "D3", "title": "Direct deploy to production", "evidence_ids": ["E-001"], "remediation": {"pattern": "Blue and Gold CI/CD", "effort": "L", "dependencies": ["staging environment"], "dod": "Canary deploy and rollback gate are documented and tested."}},
+    {"id": "F-003", "severity": "MEDIUM", "dimension": "D3", "title": "No model circuit breaker", "evidence_ids": ["E-005"], "remediation": {"pattern": "Circuit Breaker", "effort": "M", "dependencies": ["fallback policy"], "dod": "Fallback path test passes for model invocation failure."}}
+  ],
+  "quality_attributes": [
+    {"name": "Latency P95", "threshold": "<500ms", "current": "820ms", "gap": "320ms over threshold", "evidence_id": "E-002"},
+    {"name": "Fairness", "threshold": ">=90% parity", "current": "manual only", "gap": "no automated measurement", "evidence_id": "E-004"}
+  ],
+  "anti_patterns": [
+    {"name": "YOLO Deploy", "detection_method": "Deployment config review", "evidence_id": "E-001"},
+    {"name": "Silent Degradation", "detection_method": "Monitoring export review", "evidence_id": "E-002"}
+  ],
+  "security_controls": [
+    {"control": "Model endpoint audit trail", "status": "unknown", "evidence_id": "E-003"},
+    {"control": "Fallback on model failure", "status": "missing", "evidence_id": "E-005"}
+  ],
+  "technical_debt": [
+    {"type": "Model drift debt", "impact": "accuracy degradation", "interest": "weekly", "principal": "M effort", "evidence_id": "E-002"},
+    {"type": "Deployment debt", "impact": "production regression risk", "interest": "per release", "principal": "L effort", "evidence_id": "E-001"}
+  ],
+  "roadmap": [
+    {"finding_id": "F-001", "phase": "Phase 1 Critical Safety", "priority_score": 18},
+    {"finding_id": "F-002", "phase": "Phase 1 Critical Safety", "priority_score": 18},
+    {"finding_id": "F-003", "phase": "Phase 2 Quality Foundation", "priority_score": 12}
+  ],
+  "validation": {"status": "pass", "checks": ["assets", "deterministic_scripts", "quality_criteria", "evidence_required", "severity_taxonomy", "six_dimensions", "remediation_contract"], "omissions": []}
+}

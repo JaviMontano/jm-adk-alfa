@@ -1,0 +1,14 @@
+{
+  "schema": "jm-labs.ai-architecture-audit.report.v1",
+  "system": {"name": "x", "type": "ml", "stage": "production"},
+  "scope": {"mode": "piloto-auto", "depth": "standard", "format": "híbrido"},
+  "evidence": [{"id": "E-001", "type": "doc", "source": "a.md", "summary": "doc", "tag": "[DOC]"}],
+  "dimensions": [{"id": "D1", "score": 3, "status": "ok", "rationale": "r"}, {"id": "D2", "score": 3, "status": "ok", "rationale": "r"}, {"id": "D3", "score": 3, "status": "ok", "rationale": "r"}, {"id": "D4", "score": 3, "status": "ok", "rationale": "r"}, {"id": "D5", "score": 3, "status": "ok", "rationale": "r"}, {"id": "D6", "score": 3, "status": "ok", "rationale": "r"}],
+  "findings": [{"id": "F-001", "severity": "HIGH", "dimension": "D2", "title": "Missing threshold", "evidence_ids": ["E-001"], "remediation": {"pattern": "Drift Detection", "effort": "M", "dependencies": [], "dod": "done"}}],
+  "quality_attributes": [{"name": "Accuracy", "threshold": null, "current": "unknown", "gap": "unknown", "evidence_id": "E-001"}],
+  "anti_patterns": [{"name": "Silent Degradation", "detection_method": "doc review", "evidence_id": "E-001"}],
+  "security_controls": [{"control": "Audit trail", "status": "unknown", "evidence_id": "E-001"}],
+  "technical_debt": [{"type": "Model drift debt", "impact": "risk", "interest": "weekly", "principal": "M", "evidence_id": "E-001"}],
+  "roadmap": [{"finding_id": "F-001", "phase": "Phase 1", "priority_score": 9}],
+  "validation": {"status": "pass", "checks": ["assets", "deterministic_scripts", "quality_criteria", "evidence_required", "severity_taxonomy", "six_dimensions", "remediation_contract"], "omissions": []}
+}

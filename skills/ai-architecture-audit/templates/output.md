@@ -1,28 +1,35 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: ai-architecture-audit
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
+# AI Architecture Audit Report
 
-# Ai Architecture Audit Output
+## Executive Summary
 
-## Summary
+System: `{system_name}`
+Scope: `{scope}`
+Status: `{validation_status}`
 
-{summary}
+## Evidence Inventory
 
-## Evidence
+| id | type | source | summary |
+|----|------|--------|---------|
+| `{evidence_id}` | `{type}` | `{source}` | `{summary}` |
 
-{evidence}
+## Six-Dimension Scorecard
 
-## Result
+| dimension | score | rationale |
+|-----------|-------|-----------|
+| `{dimension}` | `{score}` | `{rationale}` |
 
-{result}
+## Findings
+
+| id | severity | dimension | finding | evidence |
+|----|----------|-----------|---------|----------|
+| `{finding_id}` | `{severity}` | `{dimension}` | `{finding}` | `{evidence_ids}` |
+
+## Remediation Roadmap
+
+| priority | finding | pattern | effort | dependencies | DoD |
+|----------|---------|---------|--------|--------------|-----|
+| `{priority}` | `{finding_id}` | `{pattern}` | `{effort}` | `{dependencies}` | `{dod}` |
 
 ## Validation
 
-{validation}
-
-## Risks and Limits
-
-{risks}
+List validation checks, omitted dimensions, unknown metrics, and residual risks.

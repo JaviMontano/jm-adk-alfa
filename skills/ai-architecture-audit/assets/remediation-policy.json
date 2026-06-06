@@ -1,0 +1,7 @@
+{
+  "schema": "jm-labs.ai-architecture-audit.remediation-policy.v1",
+  "required_fields": ["pattern", "effort", "dependencies", "dod"],
+  "allowed_effort": ["S", "M", "L", "XL"],
+  "priority_score": "impact * urgency * reversibility",
+  "implementation_policy": "audit recommends remediation but does not implement it"
+}

@@ -3,7 +3,12 @@ name: ai-architecture-audit-deep
 type: variation
 variant: deep
 ---
-# Ai Architecture Audit — Deep Analysis
+# AI Architecture Audit — Deep Analysis
 
-Full depth execution. Load all `references/` files from canonical. Run L3 progressive loading.
-Apply all Validation Gate criteria strictly.
+Use when the audit is regulatory, post-incident, due diligence, or production readiness.
+
+Required:
+- Load all local `references/`.
+- Require evidence inventory before findings.
+- Include all six dimensions, anti-pattern detection methods, security controls, and debt quantification.
+- Produce JSON packet for offline validation.

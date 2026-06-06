@@ -24,6 +24,8 @@ Auditar arquitecturas de sistemas de IA existentes contra mejores prácticas, id
 seguridad, patrones, y deuda técnica. Produce un informe de auditoría con findings categorizados por severidad,
 evidencia por cada hallazgo, y un roadmap de remediación priorizado por impacto y urgencia. [EXPLICIT]
 
+Use the deterministic policies in `assets/` for audit dimensions, severity, evidence, remediation, and report shape. When producing a JSON audit packet, validate it offline with `bash skills/ai-architecture-audit/scripts/check.sh`. [EXPLICIT]
+
 ---
 
 ## Principio Rector
@@ -305,6 +307,7 @@ Load references:
 - [ ] Roadmap de remediación priorizado con dependency graph
 - [ ] Cada remediación tiene pattern, esfuerzo, dependencias, y Definition of Done
 - [ ] Informe es actionable — el equipo puede empezar a trabajar con solo leer el informe
+- [ ] Si se produce JSON, el paquete pasa `scripts/check.sh`
 
 ---
 
