@@ -1,0 +1,6 @@
+{
+  "schema": 1,
+  "allowed_tags": ["CODE", "CONFIG", "DOC", "INFERENCE", "ASSUMPTION"],
+  "every_finding_requires_tag": true,
+  "every_finding_requires_evidence": true
+}

@@ -1,9 +1,118 @@
-[
-  {"id": "input-analysis-happy-path", "type": "happy_path", "input": "Run input analysis on this project", "expected_behavior": "Skill activates and produces the expected input analysis output following the defined process", "tags": ["basic", "activation"]},
-  {"id": "input-analysis-explicit-trigger", "type": "happy_path", "input": "Apply input analysis analysis", "expected_behavior": "Skill recognizes the trigger phrase and executes the input analysis workflow", "tags": ["trigger", "recognition"]},
-  {"id": "input-analysis-with-context", "type": "happy_path", "input": "Apply input analysis to analyze the current codebase with detailed output", "expected_behavior": "Skill produces comprehensive input analysis analysis with evidence-tagged findings", "tags": ["detailed", "comprehensive"]},
-  {"id": "input-analysis-minimal-input", "type": "happy_path", "input": "Quick input analysis", "expected_behavior": "Skill activates with minimal input, applies reasonable defaults", "tags": ["minimal", "defaults"]},
-  {"id": "input-analysis-false-positive", "type": "false_positive", "input": "What is the weather forecast for tomorrow?", "expected_behavior": "Skill should NOT activate — this input has no relation to input analysis", "tags": ["false_positive", "should-not-activate"]},
-  {"id": "input-analysis-edge-empty-input", "type": "edge_case", "input": "Run input analysis but I have no files or documentation yet", "expected_behavior": "Skill handles gracefully — requests minimum viable input or produces gap analysis", "tags": ["edge_case", "empty-input", "boundary"]},
-  {"id": "input-analysis-edge-conflicting", "type": "edge_case", "input": "Apply input analysis but requirements contradict each other", "expected_behavior": "Skill detects contradiction, flags with [OPEN] tag, proposes resolution", "tags": ["edge_case", "conflict", "corner"]}
-]
+{
+  "schema": 1,
+  "skill": "input-analysis",
+  "cases": [
+    {
+      "id": "rfp_contradiction_and_gaps",
+      "input": "Analyze an RFP where login is optional in email but mandatory in the RFP, PII must remain private, and retention is unspecified.",
+      "expected_activation": true,
+      "expected_checks": [
+        "contradictions",
+        "gaps",
+        "evidence_tags",
+        "completeness_score",
+        "assets",
+        "deterministic_scripts",
+        "quality_criteria"
+      ]
+    },
+    {
+      "id": "explicit_trigger",
+      "input": "/input-analysis parse this project brief and score completeness before planning.",
+      "expected_activation": true,
+      "expected_checks": [
+        "evidence_tags",
+        "finding_taxonomy",
+        "completeness_score",
+        "assets",
+        "deterministic_scripts",
+        "quality_criteria"
+      ]
+    },
+    {
+      "id": "email_thread_ambiguity",
+      "input": "Analyze a sales email thread where the buyer asks for a portal but never defines users, data sources, success metrics, or approval owner.",
+      "expected_activation": true,
+      "expected_checks": [
+        "gaps",
+        "ambiguities",
+        "actionable_recommendations",
+        "assets",
+        "deterministic_scripts",
+        "quality_criteria"
+      ]
+    },
+    {
+      "id": "assumption_heavy_degradation",
+      "input": "Run input analysis on a two-line idea with no users, constraints, success criteria, source docs, or budget.",
+      "expected_activation": true,
+      "expected_checks": [
+        "assumption_warning",
+        "low_completeness_score",
+        "gaps",
+        "assets",
+        "deterministic_scripts",
+        "quality_criteria"
+      ]
+    },
+    {
+      "id": "false_positive_weather",
+      "input": "What is the weather forecast for tomorrow?",
+      "expected_activation": false,
+      "expected_checks": [
+        "no_activation",
+        "assets",
+        "deterministic_scripts",
+        "quality_criteria"
+      ]
+    },
+    {
+      "id": "empty_input",
+      "input": "",
+      "expected_activation": false,
+      "expected_checks": [
+        "insufficient_input",
+        "assets",
+        "deterministic_scripts",
+        "quality_criteria"
+      ]
+    },
+    {
+      "id": "conflicting_request_no_evidence",
+      "input": "Run input analysis but do not include evidence tags or validation.",
+      "expected_activation": false,
+      "expected_checks": [
+        "reject_missing_evidence",
+        "reject_missing_validation",
+        "assets",
+        "deterministic_scripts",
+        "quality_criteria"
+      ]
+    },
+    {
+      "id": "implementation_phase_boundary",
+      "input": "Analyze this RFP and immediately implement the Firebase auth and database schema.",
+      "expected_activation": true,
+      "expected_checks": [
+        "phase_separation",
+        "no_implementation_details",
+        "evidence_tags",
+        "assets",
+        "deterministic_scripts",
+        "quality_criteria"
+      ]
+    },
+    {
+      "id": "score_boundary_complete_brief",
+      "input": "Analyze a complete brief that includes users, goals, constraints, KPIs, data handling, risks, timeline, and owners.",
+      "expected_activation": true,
+      "expected_checks": [
+        "high_completeness_score",
+        "evidence_tags",
+        "assets",
+        "deterministic_scripts",
+        "quality_criteria"
+      ]
+    }
+  ]
+}

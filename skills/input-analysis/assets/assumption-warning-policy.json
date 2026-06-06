@@ -1,0 +1,6 @@
+{
+  "schema": 1,
+  "warning_threshold": 0.3,
+  "warning_required_when_above_threshold": true,
+  "warning_banner_label": "ASSUMPTION WARNING"
+}

@@ -1,0 +1,16 @@
+{
+  "schema": 1,
+  "input_type": "email",
+  "findings": [
+    {
+      "type": "ambiguity",
+      "text": "Approval owner is unclear.",
+      "evidence_tag": "DOC",
+      "evidence": "email thread omits owner",
+      "action": ""
+    }
+  ],
+  "completeness": {"score": 55, "assumption_ratio": 0.2, "warning_banner": false},
+  "evidence_tag_summary": {"DOC": 1},
+  "validation": {"all_findings_tagged": true, "firebase_feasibility_assessed": true, "phase_separation": true, "includes_implementation_details": false, "actionable_recommendations": true}
+}

@@ -22,8 +22,10 @@ Parse project inputs (RFPs, briefs, emails). Detect contradictions, gaps, ambigu
 
 ## Quick Use
 
-Use this skill when the request clearly matches the triggers and requires the `input-analysis` capability.
+Use this skill when a project input (RFP, brief, email, notes, or mixed source packet) must be parsed before planning or implementation. Extract requirements, constraints, contradictions, gaps, and ambiguities; tag every finding with evidence; score completeness from 0 to 100; and add a warning when assumptions exceed 30%.
+
+Consult `assets/manifest.json` for deterministic contracts and validate JSON reports with `bash skills/input-analysis/scripts/check.sh`.
 
 ## Output Format
 
-Markdown with summary, evidence, result, validation, and risks.
+Markdown or JSON with summary, evidence-tagged findings, contradiction/gap/ambiguity tables, completeness score, validation, and risks.

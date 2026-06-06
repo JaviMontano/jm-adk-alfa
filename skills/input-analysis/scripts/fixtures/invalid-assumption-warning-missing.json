@@ -1,0 +1,16 @@
+{
+  "schema": 1,
+  "input_type": "brief",
+  "findings": [
+    {
+      "type": "gap",
+      "text": "Users are not identified.",
+      "evidence_tag": "ASSUMPTION",
+      "evidence": "brief omits user groups",
+      "action": "Ask for users."
+    }
+  ],
+  "completeness": {"score": 20, "assumption_ratio": 0.75, "warning_banner": false},
+  "evidence_tag_summary": {"ASSUMPTION": 1},
+  "validation": {"all_findings_tagged": true, "firebase_feasibility_assessed": true, "phase_separation": true, "includes_implementation_details": false, "actionable_recommendations": true}
+}

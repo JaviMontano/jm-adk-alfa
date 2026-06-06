@@ -1,0 +1,6 @@
+{
+  "schema": 1,
+  "minimum_score": 0,
+  "maximum_score": 100,
+  "required_dimensions": ["users", "goals", "constraints", "data", "success_metrics", "timeline", "owners"]
+}
