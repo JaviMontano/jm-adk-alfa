@@ -1,0 +1,13 @@
+{
+  "schema": 1,
+  "critical_rules": ["never expose customer PII"],
+  "placement": {
+    "rules_at_start": false,
+    "rules_repeated_at_end": false,
+    "bulk_context_position": "middle",
+    "middle_only_critical_rules": true
+  },
+  "usage": {"fraction": 0.42, "threshold": 0.55, "compaction_required": false},
+  "compaction": {"preserve": ["rules", "decisions", "escalations"], "drops_critical_rules": false, "condenses_not_deletes": true},
+  "validation": {"lost_in_middle_addressed": true, "edge_placement_verified": true, "threshold_in_50_60": true, "preservation_verified": true}
+}

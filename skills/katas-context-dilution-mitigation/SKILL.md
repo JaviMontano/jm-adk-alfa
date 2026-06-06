@@ -34,6 +34,10 @@ Un agente puede seguir una política al turno 5 y violarla al turno 30 sin haber
 - Si `usage_fraction(history) > 0.55`, compactar: reescribir denso preservando reglas, decisiones y escaladas. Compactar no es borrar; es condensar conservando lo crítico.
 - El umbral 50-60% balancea conservar contexto útil contra evitar que las reglas se hundan en el valle.
 
+## Activos determinísticos
+
+Usa `assets/manifest.json` como indice de contratos offline. Los assets fijan la curva de atencion, edge placement, umbral 50-60%, preservacion de reglas/decisiones/escaladas y contrato JSON de salida. Si produces un reporte JSON de mitigacion, validalo con `bash skills/katas-context-dilution-mitigation/scripts/check.sh` antes de marcarlo como aceptado.
+
 ## Patrón correcto
 
 ```python
@@ -60,6 +64,7 @@ system_prompt = f"You are an assistant.\n{big_blob_of_context}\nIMPORTANT: never
 - Enunciar la regla: bordes para reglas críticas, centro para datos.
 - Fijar un umbral concreto de compactación (50-60%) y justificar el balance entre conservar contexto y evitar dilución.
 - Explicar que compactar preserva reglas, decisiones y escaladas, no las elimina.
+- Validar el contrato offline con `scripts/check.sh` cuando el output sea JSON.
 
 ## Cuándo activar
 

@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "skill": "katas-context-dilution-mitigation",
+  "assets": [
+    {
+      "path": "assets/attention-curve-policy.json",
+      "type": "policy",
+      "purpose": "Defines the U-shaped attention model and lost-in-the-middle risk.",
+      "used_by": ["SKILL.md", "README.md", "scripts/validate_context_dilution_report.py"]
+    },
+    {
+      "path": "assets/edge-placement-policy.json",
+      "type": "policy",
+      "purpose": "Requires critical rules at both prompt edges and bulk context in the middle.",
+      "used_by": ["SKILL.md", "evals/evals.json", "scripts/validate_context_dilution_report.py"]
+    },
+    {
+      "path": "assets/compaction-threshold-policy.json",
+      "type": "policy",
+      "purpose": "Defines the 50-60 percent context usage compaction threshold.",
+      "used_by": ["SKILL.md", "prompts/primary.md", "scripts/validate_context_dilution_report.py"]
+    },
+    {
+      "path": "assets/preserve-policy.json",
+      "type": "policy",
+      "purpose": "Requires compacted history to preserve rules, decisions, and escalations.",
+      "used_by": ["SKILL.md", "templates/output.md", "scripts/validate_context_dilution_report.py"]
+    },
+    {
+      "path": "assets/report-contract.json",
+      "type": "schema",
+      "purpose": "Defines the deterministic JSON report contract enforced by the offline validator.",
+      "used_by": ["scripts/check.sh", "scripts/validate_context_dilution_report.py"]
+    }
+  ]
+}

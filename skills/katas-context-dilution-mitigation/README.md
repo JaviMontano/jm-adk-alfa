@@ -31,6 +31,8 @@ La atención del transformer sigue una curva en U: los bordes del prompt reciben
 
 Actívala al diseñar system prompts o agentes multi-turno con políticas de seguridad/compliance que deben sostenerse a lo largo de muchos turnos, o cuando un agente respeta una regla temprano y la viola después. Coloca las reglas críticas al inicio Y al final del prompt; pon los datos ricos al centro; compacta antes del 60% de contexto.
 
+Consulta `assets/manifest.json` para los contratos determinísticos y valida reportes JSON con `bash skills/katas-context-dilution-mitigation/scripts/check.sh`.
+
 ## Output Format
 
 Markdown con summary, evidence, result, validation y risks.

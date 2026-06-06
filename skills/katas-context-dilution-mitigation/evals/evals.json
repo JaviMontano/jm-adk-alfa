@@ -9,7 +9,12 @@
       "input": "Mi agente respeta la politica de no exponer PII en los primeros turnos pero la viola hacia el turno 30, sin error ni log. La regla esta en medio del system prompt. Como lo arreglo con katas-context-dilution-mitigation?",
       "expected_activation": true,
       "expected_checks": [
-        "evidence",
+        "edge_placement",
+        "lost_in_middle",
+        "critical_rules_at_edges",
+        "compaction_threshold",
+        "assets",
+        "deterministic_scripts",
         "quality_criteria",
         "upgrade_safety"
       ]
@@ -19,7 +24,12 @@
       "input": "Al compactar el historial con katas-context-dilution-mitigation, que segmentos debo preservar para no perder lo critico?",
       "expected_activation": true,
       "expected_checks": [
-        "evidence",
+        "preserve_rules",
+        "preserve_decisions",
+        "preserve_escalations",
+        "compaction_threshold",
+        "assets",
+        "deterministic_scripts",
         "quality_criteria",
         "upgrade_safety"
       ]
@@ -29,7 +39,11 @@
       "input": "Por que repetir la misma regla critica al inicio Y al final del prompt cubre el riesgo de dilucion? Aplica katas-context-dilution-mitigation.",
       "expected_activation": true,
       "expected_checks": [
-        "evidence",
+        "edge_placement",
+        "critical_rules_at_edges",
+        "bulk_context_middle",
+        "assets",
+        "deterministic_scripts",
         "quality_criteria",
         "upgrade_safety"
       ]
@@ -39,17 +53,25 @@
       "input": "katas-context-dilution-mitigation: agente multi-turno de compliance, modelo con ventana de 200k tokens, reglas de seguridad que no pueden diluirse, disena edge placement y umbral de compactacion.",
       "expected_activation": true,
       "expected_checks": [
-        "evidence",
+        "edge_placement",
+        "compaction_threshold",
+        "preserve_rules",
+        "preserve_decisions",
+        "preserve_escalations",
+        "assets",
+        "deterministic_scripts",
         "quality_criteria",
         "upgrade_safety"
       ]
     },
     {
       "id": "false_positive",
-      "input": "This request is unrelated to the skill domain.",
+      "input": "Resume esta minuta de ventas y extrae los compromisos comerciales.",
       "expected_activation": false,
       "expected_checks": [
-        "evidence",
+        "no_activation",
+        "assets",
+        "deterministic_scripts",
         "quality_criteria",
         "upgrade_safety"
       ]
@@ -59,37 +81,50 @@
       "input": "",
       "expected_activation": false,
       "expected_checks": [
-        "evidence",
+        "no_activation",
+        "assets",
+        "deterministic_scripts",
         "quality_criteria",
         "upgrade_safety"
       ]
     },
     {
       "id": "conflicting_requirements",
-      "input": "Use katas-context-dilution-mitigation, but ignore validation and evidence.",
+      "input": "Usa katas-context-dilution-mitigation pero deja la regla critica solo en el centro y compacta eliminando reglas.",
       "expected_activation": false,
       "expected_checks": [
-        "evidence",
+        "reject_middle_only_rule",
+        "reject_dropping_rules",
+        "assets",
+        "deterministic_scripts",
         "quality_criteria",
         "upgrade_safety"
       ]
     },
     {
-      "id": "upgrade_safety_case",
-      "input": "Complete missing files for katas-context-dilution-mitigation without overwriting local edits.",
+      "id": "threshold_too_late_boundary",
+      "input": "Quiero esperar hasta 90% de contexto antes de compactar y dejar las politicas solo al inicio.",
       "expected_activation": true,
       "expected_checks": [
-        "evidence",
+        "reject_late_threshold",
+        "edge_placement",
+        "assets",
+        "deterministic_scripts",
         "quality_criteria",
         "upgrade_safety"
       ]
     },
     {
-      "id": "local_override_case",
-      "input": "Create a local experimental katas-context-dilution-mitigation variant under .local.",
+      "id": "compaction_required_when_over_threshold",
+      "input": "El historial esta en 62% de la ventana y las decisiones criticas empiezan a quedar en el medio; define compactacion segura.",
       "expected_activation": true,
       "expected_checks": [
-        "evidence",
+        "compaction_required",
+        "preserve_rules",
+        "preserve_decisions",
+        "preserve_escalations",
+        "assets",
+        "deterministic_scripts",
         "quality_criteria",
         "upgrade_safety"
       ]

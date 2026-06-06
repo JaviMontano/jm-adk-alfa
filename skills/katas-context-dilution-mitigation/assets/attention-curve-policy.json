@@ -1,0 +1,7 @@
+{
+  "schema": 1,
+  "attention_shape": "u_curve",
+  "high_attention_zones": ["start", "end"],
+  "low_attention_zone": "middle",
+  "risk": "lost_in_the_middle"
+}

@@ -1,0 +1,5 @@
+{
+  "schema": 1,
+  "report_type": "katas-context-dilution-mitigation-report",
+  "required_top_level": ["schema", "critical_rules", "placement", "usage", "compaction", "validation"]
+}
