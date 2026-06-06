@@ -1,0 +1,11 @@
+{
+  "schema": 1,
+  "skill": "continuous-learning",
+  "minimum_recurrence_count": 3,
+  "candidate_statuses": ["proposed", "not_needed"],
+  "rules": [
+    "Proposed amendments require recurrence_count >= 3.",
+    "Proposed amendments require rationale and proposal_path.",
+    "One-off ambiguity should be tracked as an insight or gap, not a constitution amendment."
+  ]
+}

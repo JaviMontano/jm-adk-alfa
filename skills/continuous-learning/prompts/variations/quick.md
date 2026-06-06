@@ -9,7 +9,8 @@ description: "Continuous Learning in quick mode."
 
 ## When to Use
 
-Use quick mode when you need adjusted depth for the Continuous Learning workflow.
+Use quick mode after a single clear debate or discovery where no amendment
+candidate is expected.
 
 ## Dynamic Parameters
 
@@ -21,14 +22,13 @@ Use quick mode when you need adjusted depth for the Continuous Learning workflow
 
 ## Execution
 
-1. Load skill: `skills/continuous-learning/knowledge/body-of-knowledge.md`
-2. Check guardrails: `references/guardrails/*.json`
-3. Execute at quick depth with evidence tags
-4. Lead → Support → Guardian validation
-5. Confidence >= 0.95
+1. Search the relevant `insights/` domain file.
+2. Capture answer, refined question, and coverage gaps.
+3. Draft one insight candidate or a duplicate/refinement decision.
+4. Validate required fields before delivery.
 
 ## Output
 
-- Deliverable calibrated to quick depth
-- Evidence-tagged, Constitution-compliant
-- Recommendations beyond the ask
+- One insight candidate or duplicate decision
+- Evidence-tagged update plan
+- Guardian pass/block

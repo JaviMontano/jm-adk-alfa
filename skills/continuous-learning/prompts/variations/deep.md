@@ -9,7 +9,8 @@ description: "Continuous Learning — deep analysis mode. Exhaustive coverage."
 
 ## When to Use
 
-Use deep mode when thoroughness matters more than speed: architecture decisions, security audits, compliance reviews, critical deliverables.
+Use deep mode for repeated ambiguity, governance changes, or high-impact
+decisions where amendment candidacy is plausible.
 
 ## Dynamic Parameters
 
@@ -21,24 +22,15 @@ Use deep mode when thoroughness matters more than speed: architecture decisions,
 
 ## Execution (Deep)
 
-1. Load ALL knowledge: `knowledge/body-of-knowledge.md` + cross-referenced skills
-2. Check guardrails: `references/guardrails/*.json`
-3. Lead executes with exhaustive analysis:
-   - Cover ALL edge cases, not just common path
-   - Research: check standards, best practices, recent changes
-   - Document every assumption with `[ASSUMPTION]` tag
-4. Support reviews with expanded scope:
-   - Security, accessibility, performance, business viability
-   - Adversarial scenarios: what could go wrong?
-5. Guardian validates with strict criteria:
-   - Evidence tags 100% coverage (no untagged claims)
-   - Quality gate fully met
-   - Confidence >= 0.95 with evidence support
+1. Read source event and all relevant domain insight entries.
+2. Build recurrence evidence and duplicate map.
+3. Extract reusable patterns, refined questions, and coverage gaps.
+4. Draft update plan and amendment candidates when threshold is met.
+5. Validate report with `scripts/check.sh`.
 
 ## Output
 
-- Exhaustive deliverable with full evidence trail
-- Edge cases documented
-- Risk assessment included
-- Recommendations with priority ranking
-- Confidence score with justification
+- Learning report with recurrence evidence and duplicate analysis
+- Insight update plan
+- Amendment decision with rationale
+- Guardian validation

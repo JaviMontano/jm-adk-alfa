@@ -15,30 +15,24 @@ triad:
 
 | Parameter | Description | Required | Filled By |
 |-----------|-------------|----------|-----------|
-| `{{task}}` | What to accomplish | Yes | User input |
-| `{{context}}` | Background and constraints | Yes | User or codebase |
-| `{{constraints}}` | Additional rules | No | Guardrails JSON |
-| `{{depth}}` | quick / standard / deep | No | Auto |
-| `{{output_format}}` | html / docx / xlsx / md | No | Auto |
+| `{{source_event}}` | Debate, discovery, decision, or incident to learn from | Yes | User/session |
+| `{{existing_insights}}` | Relevant entries from `insights/` | Yes | Workspace |
+| `{{recurrence_evidence}}` | Prior occurrences of the ambiguity class | No | User/workspace |
+| `{{output_format}}` | md or JSON learning report | No | Auto |
 
 ## Execution
 
-1. **Load knowledge**: Read `knowledge/body-of-knowledge.md`
-2. **Check guardrails**: Read `references/guardrails/*.json`
-3. **Lead** (`continuous-learning-lead`): Execute SKILL.md Steps 1-4 for `{{task}}`
-   - Discover → Analyze → Execute → Validate
-   - Apply evidence tags on all claims
-4. **Support** (`continuous-learning-support`): Review for cross-cutting concerns
-   - Edge cases, security, accessibility, performance
-5. **Guardian** (`continuous-learning-guardian`): Validate
-   - Evidence tags complete
-   - Quality gate met
-   - Constitution XIII + XIV respected
-   - Output exceeds expectations
+1. Confirm the source event is learnable and has enough evidence.
+2. Search existing insights before creating a new entry.
+3. Extract direct answer, question refinements, and coverage gaps.
+4. Produce insight candidates with domain, pattern, rationale, triggers, anchor, status, and evidence.
+5. Block duplicate active insights; refine or supersede instead.
+6. Propose amendments only when recurrence count is at least 3.
+7. Validate JSON reports with `scripts/check.sh`.
 
 ## Output
 
-- Primary deliverable for `{{task}}` in `{{output_format}}`
+- Continuous learning report in `{{output_format}}`
 - Evidence tags on every claim
-- Recommendations beyond the ask
-- Confidence score (>= 0.95)
+- Update plan for insights and optional ADR amendment
+- Guardian decision

@@ -1,0 +1,42 @@
+{
+  "schema": 1,
+  "skill": "continuous-learning",
+  "assets": [
+    {
+      "path": "assets/source-event-policy.json",
+      "type": "policy",
+      "purpose": "Defines valid source events and required three-output extraction.",
+      "used_by": ["SKILL.md", "scripts/validate_continuous_learning_report.py", "evals/evals.json"]
+    },
+    {
+      "path": "assets/insight-policy.json",
+      "type": "policy",
+      "purpose": "Defines insight domains, statuses, triggers, anchors, and evidence.",
+      "used_by": ["SKILL.md", "scripts/validate_continuous_learning_report.py", "templates/output.md"]
+    },
+    {
+      "path": "assets/duplicate-policy.json",
+      "type": "policy",
+      "purpose": "Defines duplicate active insight handling through refine, supersede, or reject decisions.",
+      "used_by": ["SKILL.md", "scripts/validate_continuous_learning_report.py", "agents/guardian.md"]
+    },
+    {
+      "path": "assets/amendment-policy.json",
+      "type": "policy",
+      "purpose": "Defines recurrence evidence threshold for constitution amendment candidates.",
+      "used_by": ["SKILL.md", "scripts/validate_continuous_learning_report.py", "knowledge/body-of-knowledge.md"]
+    },
+    {
+      "path": "assets/update-plan-policy.json",
+      "type": "policy",
+      "purpose": "Defines safe insight, index, cross-reference, and ADR update paths.",
+      "used_by": ["SKILL.md", "scripts/validate_continuous_learning_report.py", "agents/support.md"]
+    },
+    {
+      "path": "assets/learning-report-contract.json",
+      "type": "schema",
+      "purpose": "Defines required JSON report sections and validation checks.",
+      "used_by": ["SKILL.md", "scripts/validate_continuous_learning_report.py", "templates/output.md"]
+    }
+  ]
+}

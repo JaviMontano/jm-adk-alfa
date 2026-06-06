@@ -1,0 +1,12 @@
+{
+  "schema": 1,
+  "skill": "continuous-learning",
+  "domains": ["universal", "security", "frontend", "backend", "testing", "deployment", "governance", "workflow"],
+  "statuses": ["active", "tentative", "superseded", "rejected"],
+  "required_fields": ["title", "domain", "pattern", "rationale", "triggers", "constitutional_anchor", "status", "evidence_tag"],
+  "rules": [
+    "Insights must generalize beyond the source event.",
+    "Triggers must be specific enough for future routing.",
+    "Tentative evidence must not be marked active."
+  ]
+}
