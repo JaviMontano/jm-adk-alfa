@@ -1,0 +1,7 @@
+{
+  "schema": 1,
+  "critical_rules_at_start": true,
+  "critical_rules_repeated_at_end": true,
+  "bulk_context_position": "middle",
+  "middle_only_critical_rules_allowed": false
+}

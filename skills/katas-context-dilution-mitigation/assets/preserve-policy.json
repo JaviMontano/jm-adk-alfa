@@ -1,0 +1,6 @@
+{
+  "schema": 1,
+  "preserve": ["rules", "decisions", "escalations"],
+  "drop_critical_rules_allowed": false,
+  "compaction_is_condensation": true
+}
