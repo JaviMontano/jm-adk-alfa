@@ -1,0 +1,7 @@
+{
+  "schema": 1,
+  "allowed_modes": ["append_or_upsert"],
+  "full_rewrite_allowed": false,
+  "idempotent_upsert": true,
+  "preserve_manual_edits": true
+}

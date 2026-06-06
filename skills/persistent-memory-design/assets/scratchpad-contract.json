@@ -1,0 +1,19 @@
+{
+  "schema": 1,
+  "allowed_path_prefix": ".agent/",
+  "allowed_extension": ".md",
+  "path_rules": {
+    "relative_only": true,
+    "forbid_parent_traversal": true,
+    "forbid_absolute_paths": true
+  },
+  "required_report_fields": [
+    "schema",
+    "scratchpad",
+    "access_policy",
+    "write_policy",
+    "compact_recovery",
+    "exclusions",
+    "validation"
+  ]
+}

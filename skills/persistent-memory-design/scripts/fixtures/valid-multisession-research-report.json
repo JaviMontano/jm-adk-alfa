@@ -1,0 +1,62 @@
+{
+  "schema": 1,
+  "scratchpad": {
+    "path": ".agent/research-scratchpad.md",
+    "sections": {
+      "Hypotheses": [
+        {
+          "text": "The duplicate work comes from missing persisted module coverage.",
+          "source": "session-summary.md:21",
+          "date": "2026-06-06"
+        }
+      ],
+      "Decisions": [
+        {
+          "text": "Persist only module coverage, decisions, findings, and open checks.",
+          "source": "design-review.md:7",
+          "date": "2026-06-06",
+          "validated": true
+        }
+      ],
+      "Findings": [
+        {
+          "text": "auth/routes.py was already reviewed and contains no token logging.",
+          "source": "auth/routes.py:1",
+          "date": "2026-06-06",
+          "validated": true
+        }
+      ],
+      "Open": [
+        {
+          "text": "Confirm whether billing hooks emit customer identifiers.",
+          "source": "billing/hooks.py:33",
+          "date": "2026-06-06"
+        }
+      ]
+    }
+  },
+  "access_policy": {
+    "read_once": true,
+    "reference_after_bootstrap": true,
+    "reread_each_turn": false
+  },
+  "write_policy": {
+    "mode": "append_or_upsert",
+    "full_rewrite_allowed": false,
+    "idempotent_upsert": true
+  },
+  "compact_recovery": {
+    "reconstruct_from_file_only": true,
+    "conversation_dependency": false
+  },
+  "exclusions": {
+    "raw_transcript": false,
+    "raw_tool_dump": false,
+    "chain_of_thought": false
+  },
+  "validation": {
+    "survives_compact": true,
+    "read_once_verified": true,
+    "evidence_checked": true
+  }
+}

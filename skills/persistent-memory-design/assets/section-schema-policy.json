@@ -1,0 +1,7 @@
+{
+  "schema": 1,
+  "required_sections": ["Hypotheses", "Decisions", "Findings", "Open"],
+  "allow_extra_sections": false,
+  "section_entry_required_fields": ["text", "source", "date"],
+  "date_format": "YYYY-MM-DD"
+}

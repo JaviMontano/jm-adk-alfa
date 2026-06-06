@@ -27,6 +27,8 @@ Capacidad de ingeniería de contexto para diseñar un scratchpad persistente en 
 
 Actívala cuando una investigación o tarea larga deba sobrevivir a compactaciones o a sesiones nuevas, o cuando el agente repite trabajo por "olvidar" conclusiones ya validadas. Define una ruta estable y un esquema fijo de secciones, escribe solo conclusiones validadas con evidencia, lee el archivo una vez y referéncialo después. Verifica que tras `/compact` el estado se reconstruye solo desde el archivo.
 
+Consulta `assets/manifest.json` para los contratos determinísticos de ruta, secciones, evidencia, acceso, escritura y recuperación. Si entregas un reporte JSON de memoria persistente, ejecútalo contra `bash skills/persistent-memory-design/scripts/check.sh`.
+
 ## Output Format
 
 Markdown con summary, evidence, result, validation y risks. El artefacto central es el archivo scratchpad con secciones tipadas, donde cada hallazgo queda trazado a su source y fecha.
