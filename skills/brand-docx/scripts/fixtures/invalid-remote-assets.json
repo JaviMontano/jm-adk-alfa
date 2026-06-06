@@ -1,0 +1,14 @@
+{
+  "schema": 1,
+  "title": "Remote Asset Report",
+  "artifact_date": "2026-06-05",
+  "year": "2026",
+  "confidential": false,
+  "inject_remote_asset": true,
+  "sections": [
+    {
+      "heading": "Remote Asset",
+      "body": "This fixture injects a remote font URL."
+    }
+  ]
+}

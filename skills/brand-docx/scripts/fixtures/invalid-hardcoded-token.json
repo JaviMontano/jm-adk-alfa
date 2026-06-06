@@ -1,0 +1,37 @@
+{
+  "schema": 1,
+  "title": "Hardcoded Legacy Token Report",
+  "artifact_date": "2026-06-05",
+  "year": "2026",
+  "confidential": false,
+  "inject_hardcoded_colors": ["122562", "FFD700"],
+  "brand_config": {
+    "brand": {
+      "name": "AtlasOps",
+      "wordmark": "AtlasOps",
+      "tagline": "Operational clarity for field teams"
+    },
+    "colors": {
+      "primary": "#2563EB",
+      "black": "#0F172A",
+      "white": "#FFFFFF",
+      "background": "#F8FAFC",
+      "muted": "#475569"
+    },
+    "typography": {
+      "display": "Aptos Display",
+      "body": "Aptos"
+    },
+    "docx": {
+      "artifact_date": "2026-06-05",
+      "year": "2026",
+      "confidential": false
+    }
+  },
+  "sections": [
+    {
+      "heading": "Hardcoded Color",
+      "body": "This fixture injects colors that are not supplied by config."
+    }
+  ]
+}

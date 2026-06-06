@@ -1,28 +1,25 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: brand-docx
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
-
-# Brand Docx Output
+# Brand DOCX Result
 
 ## Summary
 
-{summary}
+- `{{summary}}`
 
-## Evidence
+## Artifact
 
-{evidence}
-
-## Result
-
-{result}
+- Path: `{{artifact_path}}`
+- Format: `.docx`
+- Brand config: `{{brand_config_source}}`
 
 ## Validation
 
-{validation}
+- DOCX package: `{{docx_package_status}}`
+- Core properties: `{{core_properties_status}}`
+- Brand tokens: `{{brand_tokens_status}}`
+- Table styling: `{{table_status}}`
+- Footer metadata: `{{footer_status}}`
+- Dependency boundary: `{{dependency_status}}`
+- Placeholder check: `{{placeholder_status}}`
 
-## Risks and Limits
+## Risks And Limits
 
-{risks}
+- `{{risk_or_limit}}`

@@ -1,0 +1,38 @@
+{
+  "schema": 1,
+  "skill": "brand-docx",
+  "styles": [
+    {
+      "name": "CoverTitle",
+      "font_token": "typography.display",
+      "color_token": "colors.black",
+      "purpose": "Document title on cover page."
+    },
+    {
+      "name": "SectionHeading",
+      "font_token": "typography.display",
+      "color_token": "colors.black",
+      "border_token": "colors.primary",
+      "purpose": "Section heading with primary underline."
+    },
+    {
+      "name": "BodyText",
+      "font_token": "typography.body",
+      "color_token": "colors.black",
+      "purpose": "Default paragraph body."
+    },
+    {
+      "name": "TableHeader",
+      "font_token": "typography.body",
+      "background_token": "colors.primary",
+      "color_token": "colors.white",
+      "purpose": "Branded table header row."
+    },
+    {
+      "name": "FooterMeta",
+      "font_token": "typography.body",
+      "color_token": "colors.muted",
+      "purpose": "Footer year and confidentiality metadata."
+    }
+  ]
+}

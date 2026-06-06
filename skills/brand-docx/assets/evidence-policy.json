@@ -1,0 +1,12 @@
+{
+  "schema": 1,
+  "skill": "brand-docx",
+  "required_evidence": [
+    "brand_config_source",
+    "docx_contract_status",
+    "validator_command",
+    "artifact_path_or_delivery_mode",
+    "known_limits"
+  ],
+  "allowed_tags": ["[CÓDIGO]", "[CONFIG]", "[INFERENCIA]", "[SUPUESTO]"]
+}

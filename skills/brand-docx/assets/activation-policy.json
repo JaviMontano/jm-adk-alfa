@@ -1,0 +1,23 @@
+{
+  "schema": 1,
+  "skill": "brand-docx",
+  "activate_when": [
+    "word document",
+    "docx",
+    "proposal in word",
+    "branded report",
+    "cover page",
+    "python-docx"
+  ],
+  "route_away_when": [
+    {"intent": "html page or landing page", "route": "brand-html"},
+    {"intent": "spreadsheet or xlsx", "route": "brand-xlsx"},
+    {"intent": "slides or presentation", "route": "pptx or presentation workflow"},
+    {"intent": "pdf only", "route": "pdf workflow"}
+  ],
+  "false_positive_controls": [
+    "Do not activate for responsive HTML/CSS requests.",
+    "Do not activate for token extraction without a Word/DOCX artifact.",
+    "Do not accept renamed HTML as DOCX output."
+  ]
+}

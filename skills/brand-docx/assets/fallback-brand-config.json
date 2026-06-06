@@ -1,0 +1,31 @@
+{
+  "schema": 1,
+  "brand": {
+    "name": "Fallback Brand",
+    "wordmark": "Fallback",
+    "tagline": "Deterministic branded DOCX fallback"
+  },
+  "colors": {
+    "primary": "#2563EB",
+    "black": "#0F172A",
+    "white": "#FFFFFF",
+    "background": "#F8FAFC",
+    "muted": "#475569"
+  },
+  "typography": {
+    "display": "Aptos Display",
+    "body": "Aptos",
+    "fallback": "Calibri"
+  },
+  "docx": {
+    "page_size": "A4",
+    "artifact_date": "caller-supplied",
+    "year": "caller-supplied",
+    "confidential": false
+  },
+  "dependencies": {
+    "allow_remote_assets": false,
+    "allow_remote_fonts": false,
+    "allow_html_renamed_docx": false
+  }
+}

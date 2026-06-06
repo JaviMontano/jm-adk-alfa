@@ -1,0 +1,13 @@
+{
+  "schema": 1,
+  "title": "Fallback Brand Report",
+  "artifact_date": "2026-06-05",
+  "year": "2026",
+  "confidential": false,
+  "sections": [
+    {
+      "heading": "Fallback Path",
+      "body": "Uses explicit fallback tokens without inventing a brand."
+    }
+  ]
+}

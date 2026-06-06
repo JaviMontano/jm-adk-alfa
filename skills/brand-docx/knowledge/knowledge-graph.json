@@ -1,75 +1,23 @@
 {
   "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-28",
   "skill": "brand-docx",
   "nodes": [
-    {
-      "id": "brand-docx",
-      "type": "skill",
-      "label": "brand-docx"
-    },
-    {
-      "id": "brand-docx:inputs",
-      "type": "contract",
-      "label": "Expected inputs"
-    },
-    {
-      "id": "brand-docx:outputs",
-      "type": "contract",
-      "label": "Expected outputs"
-    },
-    {
-      "id": "brand-docx:quality",
-      "type": "gate",
-      "label": "Quality criteria"
-    },
-    {
-      "id": "brand-docx:ontology",
-      "type": "ontology",
-      "label": "Domain: general"
-    },
-    {
-      "id": "brand-docx:evidence",
-      "type": "gate",
-      "label": "Evidence / provenance requirements"
-    },
-    {
-      "id": "brand-docx:antipattern",
-      "type": "risk",
-      "label": "Canonical anti-pattern to avoid"
-    }
+    {"id": "brand-docx", "type": "skill", "label": "Deterministic Brand DOCX"},
+    {"id": "brand-docx:activation", "type": "policy", "label": "DOCX artifact activation"},
+    {"id": "brand-docx:contract", "type": "schema", "label": "DOCX package contract"},
+    {"id": "brand-docx:tokens", "type": "policy", "label": "Brand token Word styles"},
+    {"id": "brand-docx:metadata", "type": "policy", "label": "Core properties and footer metadata"},
+    {"id": "brand-docx:dependencies", "type": "policy", "label": "Remote dependency boundary"},
+    {"id": "brand-docx:validator", "type": "script", "label": "Offline DOCX validator"},
+    {"id": "brand-docx:false-positive-controls", "type": "eval", "label": "HTML/XLSX/slides routing controls"}
   ],
   "edges": [
-    {
-      "from": "brand-docx",
-      "to": "brand-docx:inputs",
-      "type": "requires"
-    },
-    {
-      "from": "brand-docx",
-      "to": "brand-docx:outputs",
-      "type": "produces"
-    },
-    {
-      "from": "brand-docx",
-      "to": "brand-docx:quality",
-      "type": "validated_by"
-    },
-    {
-      "from": "brand-docx",
-      "to": "brand-docx:ontology",
-      "type": "classified_as"
-    },
-    {
-      "from": "brand-docx",
-      "to": "brand-docx:evidence",
-      "type": "validated_by"
-    },
-    {
-      "from": "brand-docx",
-      "to": "brand-docx:antipattern",
-      "type": "guards_against"
-    }
+    {"from": "brand-docx", "to": "brand-docx:activation", "type": "requires"},
+    {"from": "brand-docx", "to": "brand-docx:contract", "type": "produces"},
+    {"from": "brand-docx:contract", "to": "brand-docx:tokens", "type": "requires"},
+    {"from": "brand-docx:contract", "to": "brand-docx:metadata", "type": "requires"},
+    {"from": "brand-docx:contract", "to": "brand-docx:dependencies", "type": "constrains"},
+    {"from": "brand-docx:validator", "to": "brand-docx:contract", "type": "validates"},
+    {"from": "brand-docx:false-positive-controls", "to": "brand-docx:activation", "type": "calibrates"}
   ]
 }

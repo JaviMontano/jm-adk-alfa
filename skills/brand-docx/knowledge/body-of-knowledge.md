@@ -1,16 +1,31 @@
-# Brand Docx — Body of Knowledge
+# Brand DOCX - Body of Knowledge
 
 ## Canon
-Key standards, references, and best practices for Brand Docx.
 
-## Quality Metrics
-| Metric | Target | How to Measure |
-|--------|--------|---------------|
-| Accuracy | >= 90% | Correct outputs / total |
-| Evidence coverage | >= 80% | Claims tagged [EXPLICIT]/[INFERRED]/[OPEN] |
-| Constitution compliance | 100% | Principles respected |
-| Validation Gate pass | 100% | All checklist items satisfied |
+Brand DOCX is deterministic when every document style decision traces to a
+brand token, fallback token, or explicit user instruction. A valid artifact is a
+real DOCX ZIP package with required Word parts, core properties, branded styles,
+footer metadata, and no remote dependency.
 
-## References
-- See `references/` folder in canonical skill for detailed references
-- Industry standards and best practices for this domain
+## Required Invariants
+
+- Output is a DOCX package, not HTML renamed as `.docx`.
+- Required ZIP parts include content types, relationships, core properties,
+  document XML, and styles XML.
+- Brand colors and fonts come from config or fallback assets.
+- Caller supplies artifact date and footer year; current date is not inferred.
+- Tables use branded header styling when tables are present.
+- Remote assets, remote fonts, base64 images, unresolved placeholders, and
+  random values are not allowed.
+
+## False Positives
+
+- HTML landing pages route to `brand-html`.
+- XLSX spreadsheet requests route to `brand-xlsx`.
+- Slide deck requests route to a presentation workflow.
+- Token extraction without DOCX output routes away.
+
+## Validation
+
+Use `scripts/validate_brand_docx.py` and fixture JSON to verify package
+contract behavior before marking DoD complete.

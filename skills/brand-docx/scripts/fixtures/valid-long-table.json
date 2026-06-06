@@ -1,0 +1,50 @@
+{
+  "schema": 1,
+  "title": "AtlasOps Long Table Report",
+  "artifact_date": "2026-06-05",
+  "year": "2026",
+  "confidential": true,
+  "requires_table": true,
+  "brand_config": {
+    "brand": {
+      "name": "AtlasOps",
+      "wordmark": "AtlasOps",
+      "tagline": "Operational clarity for field teams"
+    },
+    "colors": {
+      "primary": "#2563EB",
+      "black": "#0F172A",
+      "white": "#FFFFFF",
+      "background": "#F8FAFC",
+      "muted": "#475569"
+    },
+    "typography": {
+      "display": "Aptos Display",
+      "body": "Aptos"
+    },
+    "docx": {
+      "artifact_date": "2026-06-05",
+      "year": "2026",
+      "confidential": true
+    }
+  },
+  "sections": [
+    {
+      "heading": "Portfolio Table",
+      "body": "Long table preserves branded headers.",
+      "table": [
+        ["Index", "Item"],
+        ["01", "Discovery"],
+        ["02", "Design"],
+        ["03", "Delivery"],
+        ["04", "Adoption"],
+        ["05", "Measurement"],
+        ["06", "Governance"],
+        ["07", "Support"],
+        ["08", "Iteration"],
+        ["09", "Scale"],
+        ["10", "Closure"]
+      ]
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "schema": 1,
+  "skill": "brand-docx",
+  "artifact_type": "docx",
+  "required_zip_parts": [
+    "[Content_Types].xml",
+    "_rels/.rels",
+    "docProps/core.xml",
+    "word/document.xml",
+    "word/styles.xml"
+  ],
+  "required_checks": [
+    "docx_zip_package",
+    "core_properties",
+    "brand_tokens",
+    "section_headers",
+    "table_styling",
+    "footer_metadata",
+    "no_unresolved_placeholders",
+    "no_remote_assets",
+    "not_html_renamed_docx"
+  ],
+  "forbidden_patterns": [
+    "{{",
+    "https://",
+    "http://",
+    "data:image",
+    "Math.random(",
+    "new Date("
+  ],
+  "forbidden_legacy_colors_unless_configured": [
+    "122562",
+    "FFD700",
+    "137DC5"
+  ],
+  "fallback_colors": {
+    "primary": "2563EB",
+    "black": "0F172A",
+    "white": "FFFFFF",
+    "background": "F8FAFC",
+    "muted": "475569"
+  },
+  "fallback_fonts": {
+    "display": "Aptos Display",
+    "body": "Aptos"
+  }
+}
