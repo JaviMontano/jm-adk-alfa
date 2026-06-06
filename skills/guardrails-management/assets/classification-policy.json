@@ -1,0 +1,21 @@
+{
+  "schema": 1,
+  "classes": {
+    "guideline": {
+      "id_prefix": "GL",
+      "signals": ["always", "from now on", "default", "use"],
+      "enforcement": "default"
+    },
+    "constraint": {
+      "id_prefix": "CT",
+      "signals": ["never", "must not", "do not", "block"],
+      "enforcement": "hard"
+    },
+    "guardrail": {
+      "id_prefix": "GR",
+      "signals": ["prefer", "avoid", "try to", "should"],
+      "enforcement": "soft"
+    }
+  },
+  "rule": "When signals conflict, choose the stricter type only after confirmation."
+}

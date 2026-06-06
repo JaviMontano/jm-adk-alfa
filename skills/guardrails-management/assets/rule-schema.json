@@ -1,0 +1,8 @@
+{
+  "schema": 1,
+  "required_fields": ["id", "type", "rule", "scope", "source", "confirmed_date", "active", "evidence_tag", "verifiable_check", "target_file"],
+  "allowed_types": ["guideline", "constraint", "guardrail"],
+  "allowed_sources": ["user-explicit", "user-confirmed", "system-import"],
+  "allowed_evidence_tags": ["[CONFIG]", "[DOC]", "[CÓDIGO]", "[INFERENCIA]", "[SUPUESTO]"],
+  "rule": "Persisted rules must be specific, scoped, source-backed, and Guardian-verifiable."
+}

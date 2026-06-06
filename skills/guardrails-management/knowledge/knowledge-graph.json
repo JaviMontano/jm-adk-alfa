@@ -1,7 +1,5 @@
 {
   "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-28",
   "skill": "guardrails-management",
   "nodes": [
     {
@@ -10,66 +8,81 @@
       "label": "guardrails-management"
     },
     {
-      "id": "guardrails-management:inputs",
-      "type": "contract",
-      "label": "Expected inputs"
+      "id": "rule-proposal",
+      "type": "artifact",
+      "label": "Unconfirmed rule proposal"
     },
     {
-      "id": "guardrails-management:outputs",
-      "type": "contract",
-      "label": "Expected outputs"
+      "id": "confirmed-rule",
+      "type": "artifact",
+      "label": "Confirmed durable rule"
     },
     {
-      "id": "guardrails-management:quality",
+      "id": "classification-policy",
       "type": "gate",
-      "label": "Quality criteria"
+      "label": "Type and ID prefix policy"
     },
     {
-      "id": "guardrails-management:ontology",
-      "type": "ontology",
-      "label": "Domain: agentic-architecture/hooks"
-    },
-    {
-      "id": "guardrails-management:evidence",
+      "id": "confirmation-policy",
       "type": "gate",
-      "label": "Evidence / provenance requirements"
+      "label": "Explicit confirmation policy"
     },
     {
-      "id": "guardrails-management:antipattern",
-      "type": "risk",
-      "label": "Canonical anti-pattern to avoid"
+      "id": "conflict-review",
+      "type": "gate",
+      "label": "Duplicate and conflict review"
+    },
+    {
+      "id": "storage-map",
+      "type": "contract",
+      "label": "Canonical guardrail JSON files"
+    },
+    {
+      "id": "enforcement-check",
+      "type": "gate",
+      "label": "Guardian-verifiable compliance test"
+    },
+    {
+      "id": "operation-packet",
+      "type": "contract",
+      "label": "Offline-validatable operation packet"
     }
   ],
   "edges": [
     {
       "from": "guardrails-management",
-      "to": "guardrails-management:inputs",
-      "type": "requires"
-    },
-    {
-      "from": "guardrails-management",
-      "to": "guardrails-management:outputs",
+      "to": "rule-proposal",
       "type": "produces"
     },
     {
-      "from": "guardrails-management",
-      "to": "guardrails-management:quality",
+      "from": "rule-proposal",
+      "to": "classification-policy",
+      "type": "validated_by"
+    },
+    {
+      "from": "rule-proposal",
+      "to": "confirmation-policy",
+      "type": "validated_by"
+    },
+    {
+      "from": "rule-proposal",
+      "to": "conflict-review",
+      "type": "validated_by"
+    },
+    {
+      "from": "confirmed-rule",
+      "to": "storage-map",
+      "type": "stored_in"
+    },
+    {
+      "from": "confirmed-rule",
+      "to": "enforcement-check",
       "type": "validated_by"
     },
     {
       "from": "guardrails-management",
-      "to": "guardrails-management:ontology",
-      "type": "classified_as"
-    },
-    {
-      "from": "guardrails-management",
-      "to": "guardrails-management:evidence",
+      "to": "operation-packet",
       "type": "validated_by"
-    },
-    {
-      "from": "guardrails-management",
-      "to": "guardrails-management:antipattern",
-      "type": "guards_against"
     }
   ]
 }

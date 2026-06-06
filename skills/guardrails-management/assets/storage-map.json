@@ -1,0 +1,17 @@
+{
+  "schema": 1,
+  "types": {
+    "guideline": {
+      "id_prefix": "GL",
+      "target_file": "references/guardrails/guidelines.json"
+    },
+    "constraint": {
+      "id_prefix": "CT",
+      "target_file": "references/guardrails/constraints.json"
+    },
+    "guardrail": {
+      "id_prefix": "GR",
+      "target_file": "references/guardrails/guardrails.json"
+    }
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "skill": "guardrails-management",
+  "operation": "propose",
+  "reference_date": "2026-06-06",
+  "source_utterance": "Prefer short validation status updates. [CONFIG]",
+  "confirmation": {
+    "status": "pending",
+    "confirmed_by": "",
+    "confirmed_date": ""
+  },
+  "rule_entry": {
+    "id": "GR-004",
+    "type": "guardrail",
+    "rule": "Prefer short validation status updates.",
+    "scope": "Validation progress updates",
+    "source": "user-explicit",
+    "confirmed_date": "2026-06-06",
+    "active": true,
+    "evidence_tag": "[CONFIG]",
+    "verifiable_check": "Progress updates are one or two concise sentences unless more detail is requested.",
+    "target_file": "references/guardrails/guardrails.json"
+  },
+  "conflict_review": {
+    "duplicate_active": false,
+    "conflict": false,
+    "existing_rules": [],
+    "evidence_tag": "[CÓDIGO]"
+  },
+  "storage_action": "proposal-only",
+  "validation": ["Proposal is not persisted because confirmation is pending. [CONFIG]"],
+  "risks": ["The rule remains inactive until explicit confirmation is received. [CONFIG]"]
+}

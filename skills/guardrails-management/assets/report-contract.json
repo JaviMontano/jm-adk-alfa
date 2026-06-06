@@ -1,0 +1,8 @@
+{
+  "schema": 1,
+  "report_type": "guardrails-operation-packet",
+  "required_top_level": ["skill", "operation", "reference_date", "source_utterance", "confirmation", "rule_entry", "conflict_review", "storage_action", "validation", "risks"],
+  "operations": ["propose", "store", "deactivate", "list", "enforce"],
+  "storage_actions": ["proposal-only", "append-one", "deactivate-one", "read-only", "blocked"],
+  "rule": "Operation packets must prove confirmation, classification, storage target, conflict review, and validation evidence."
+}

@@ -1,0 +1,23 @@
+{
+  "skill": "guardrails-management",
+  "operation": "deactivate",
+  "reference_date": "2026-06-06",
+  "source_utterance": "Remove GL-003. Confirmed. [CONFIG]",
+  "confirmation": {"status": "confirmed", "confirmed_by": "user", "confirmed_date": "2026-06-06"},
+  "rule_entry": {
+    "id": "GL-003",
+    "type": "guideline",
+    "rule": "Always produce long-form updates.",
+    "scope": "Status updates",
+    "source": "user-confirmed",
+    "confirmed_date": "2026-06-06",
+    "active": true,
+    "evidence_tag": "[CONFIG]",
+    "verifiable_check": "Rule should be inactive after removal.",
+    "target_file": "references/guardrails/guidelines.json"
+  },
+  "conflict_review": {"duplicate_active": false, "conflict": false, "existing_rules": [], "evidence_tag": "[CÓDIGO]"},
+  "storage_action": "blocked",
+  "validation": ["Deletion is not allowed; deactivation must preserve audit history. [DOC]"],
+  "risks": ["Deleting loses provenance. [INFERENCIA]"]
+}
