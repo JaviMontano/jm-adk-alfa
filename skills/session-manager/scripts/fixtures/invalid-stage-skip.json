@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "skill": "session-manager",
+  "context_snapshot": {
+    "context_path": ".specify/context.json",
+    "context_status": "present",
+    "active_feature": "billing-export",
+    "recorded_stage": "specified",
+    "evidence_tag": "[CODE]"
+  },
+  "priming_sources": [
+    {
+      "order": 1,
+      "source": ".specify/context.json",
+      "status": "loaded",
+      "evidence_tag": "[CODE]"
+    },
+    {
+      "order": 2,
+      "source": ".specify/plans/plan-20260606-billing-export.md",
+      "status": "loaded",
+      "evidence_tag": "[CODE]"
+    },
+    {
+      "order": 3,
+      "source": "tasks.md",
+      "status": "loaded",
+      "evidence_tag": "[CODE]"
+    }
+  ],
+  "stage_computation": {
+    "previous_stage": "specified",
+    "computed_stage": "tasks-ready",
+    "implementation_progress_percent": 0,
+    "tasks_complete": false,
+    "artifact_evidence": [
+      {
+        "artifact": ".specify/plans/plan-20260606-billing-export.md",
+        "exists": true,
+        "evidence_tag": "[CODE]"
+      },
+      {
+        "artifact": "tasks.md",
+        "exists": true,
+        "evidence_tag": "[CODE]"
+      }
+    ],
+    "evidence_tag": "[CODE]"
+  },
+  "persistence_actions": [
+    {
+      "target": ".specify/context.json",
+      "action": "update",
+      "authorized": true,
+      "rationale": "Invalid fixture jumps stages.",
+      "evidence_tag": "[CONFIG]"
+    }
+  ],
+  "next_action": {
+    "stage": "tasks-ready",
+    "recommended": "Start implementation.",
+    "rationale": "Invalid fixture.",
+    "evidence_tag": "[INFERENCE]"
+  },
+  "guardian_decision": {
+    "decision": "pass",
+    "rationale": "Invalid fixture.",
+    "evidence_tag": "[CONFIG]"
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "skill": "session-manager",
+  "context_snapshot": {
+    "context_path": ".specify/context.json",
+    "context_status": "present",
+    "active_feature": "billing-export",
+    "recorded_stage": "tasks-ready",
+    "evidence_tag": "[CODE]"
+  },
+  "priming_sources": [
+    {
+      "order": 1,
+      "source": ".specify/context.json",
+      "status": "loaded",
+      "evidence_tag": "[CODE]"
+    },
+    {
+      "order": 2,
+      "source": "tasks.md",
+      "status": "missing",
+      "evidence_tag": "[OPEN]"
+    }
+  ],
+  "stage_computation": {
+    "previous_stage": "tasks-ready",
+    "computed_stage": "implementing",
+    "implementation_progress_percent": 40,
+    "tasks_complete": false,
+    "artifact_evidence": [
+      {
+        "artifact": "tasks.md",
+        "exists": false,
+        "evidence_tag": "[OPEN]"
+      }
+    ],
+    "evidence_tag": "[INFERENCE]"
+  },
+  "persistence_actions": [],
+  "next_action": {
+    "stage": "implementing",
+    "recommended": "Continue implementation.",
+    "rationale": "Invalid fixture has no tasks.",
+    "evidence_tag": "[INFERENCE]"
+  },
+  "guardian_decision": {
+    "decision": "pass",
+    "rationale": "Invalid fixture.",
+    "evidence_tag": "[CONFIG]"
+  }
+}

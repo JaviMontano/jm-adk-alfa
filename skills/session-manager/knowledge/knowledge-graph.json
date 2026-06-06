@@ -1,75 +1,83 @@
 {
   "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-28",
   "skill": "session-manager",
   "nodes": [
     {
       "id": "session-manager",
       "type": "skill",
-      "label": "session-manager"
+      "label": "Session Manager"
     },
     {
-      "id": "session-manager:inputs",
-      "type": "contract",
-      "label": "Expected inputs"
+      "id": "context-json",
+      "type": "source",
+      "label": ".specify/context.json"
     },
     {
-      "id": "session-manager:outputs",
-      "type": "contract",
-      "label": "Expected outputs"
+      "id": "priming-sources",
+      "type": "source-set",
+      "label": "Context, latest plan, active tasks, and tests"
     },
     {
-      "id": "session-manager:quality",
+      "id": "stage-policy",
+      "type": "policy",
+      "label": "Linear stage policy"
+    },
+    {
+      "id": "persistence-policy",
+      "type": "policy",
+      "label": "Authorized .specify persistence"
+    },
+    {
+      "id": "status-report",
+      "type": "output",
+      "label": "Session status report"
+    },
+    {
+      "id": "guardian-block",
       "type": "gate",
-      "label": "Quality criteria"
+      "label": "Guardian block on unsafe state"
     },
     {
-      "id": "session-manager:ontology",
-      "type": "ontology",
-      "label": "Domain: claude-code-config"
-    },
-    {
-      "id": "session-manager:evidence",
-      "type": "gate",
-      "label": "Evidence / provenance requirements"
-    },
-    {
-      "id": "session-manager:antipattern",
-      "type": "risk",
-      "label": "Canonical anti-pattern to avoid"
+      "id": "offline-validator",
+      "type": "script",
+      "label": "validate_session_manager_report.py"
     }
   ],
   "edges": [
     {
       "from": "session-manager",
-      "to": "session-manager:inputs",
-      "type": "requires"
+      "to": "context-json",
+      "type": "reads"
     },
     {
       "from": "session-manager",
-      "to": "session-manager:outputs",
-      "type": "produces"
+      "to": "priming-sources",
+      "type": "reads"
     },
     {
-      "from": "session-manager",
-      "to": "session-manager:quality",
+      "from": "priming-sources",
+      "to": "stage-policy",
+      "type": "feeds"
+    },
+    {
+      "from": "stage-policy",
+      "to": "status-report",
+      "type": "constrains"
+    },
+    {
+      "from": "persistence-policy",
+      "to": "status-report",
+      "type": "constrains"
+    },
+    {
+      "from": "status-report",
+      "to": "guardian-block",
       "type": "validated_by"
     },
     {
-      "from": "session-manager",
-      "to": "session-manager:ontology",
-      "type": "classified_as"
-    },
-    {
-      "from": "session-manager",
-      "to": "session-manager:evidence",
-      "type": "validated_by"
-    },
-    {
-      "from": "session-manager",
-      "to": "session-manager:antipattern",
-      "type": "guards_against"
+      "from": "offline-validator",
+      "to": "status-report",
+      "type": "validates"
     }
   ]
 }

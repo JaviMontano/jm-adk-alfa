@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "skill": "session-manager",
+  "context_snapshot": {
+    "context_path": ".specify/context.json",
+    "context_status": "present",
+    "active_feature": "billing-export",
+    "recorded_stage": "specified",
+    "evidence_tag": "[CODE]"
+  },
+  "priming_sources": [
+    {
+      "order": 1,
+      "source": ".specify/context.json",
+      "status": "loaded",
+      "evidence_tag": "[CODE]"
+    }
+  ],
+  "stage_computation": {
+    "previous_stage": "specified",
+    "computed_stage": "planned",
+    "implementation_progress_percent": 0,
+    "tasks_complete": false,
+    "artifact_evidence": [
+      {
+        "artifact": ".specify/plans/plan-20260606-billing-export.md",
+        "exists": true,
+        "evidence_tag": "[CODE]"
+      }
+    ],
+    "evidence_tag": "[CODE]"
+  },
+  "persistence_actions": [
+    {
+      "target": ".specify/context.json",
+      "action": "update",
+      "authorized": false,
+      "rationale": "Invalid fixture writes without authorization.",
+      "evidence_tag": "[ASSUMPTION]"
+    }
+  ],
+  "next_action": {
+    "stage": "planned",
+    "recommended": "Persist from memory.",
+    "rationale": "Invalid fixture.",
+    "evidence_tag": "[INFERENCE]"
+  },
+  "guardian_decision": {
+    "decision": "pass",
+    "rationale": "Invalid fixture.",
+    "evidence_tag": "[CONFIG]"
+  }
+}

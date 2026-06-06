@@ -1,0 +1,37 @@
+{
+  "schema": 1,
+  "skill": "session-manager",
+  "stage_order": ["specified", "planned", "testified", "tasks-ready", "implementing", "complete"],
+  "artifact_rules": [
+    {
+      "stage": "specified",
+      "requires_any": ["spec.md", ".specify/spec.md"]
+    },
+    {
+      "stage": "planned",
+      "requires_any": [".specify/plans/plan-*.md"]
+    },
+    {
+      "stage": "testified",
+      "requires_any": ["tests/features/*.feature", ".specify/tests/features/*.feature"]
+    },
+    {
+      "stage": "tasks-ready",
+      "requires_any": ["tasks.md", ".specify/tasks.md"]
+    },
+    {
+      "stage": "implementing",
+      "requires_all": ["task evidence", "implementation_progress_percent 1..99"]
+    },
+    {
+      "stage": "complete",
+      "requires_all": ["all task evidence complete", "validation evidence"]
+    }
+  ],
+  "rules": {
+    "max_forward_stage_delta_per_pass": 1,
+    "allow_backward_correction_with_block": true,
+    "implementing_requires_tasks": true,
+    "complete_requires_validation_evidence": true
+  }
+}
