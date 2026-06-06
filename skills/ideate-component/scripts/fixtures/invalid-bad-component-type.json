@@ -1,0 +1,21 @@
+{
+  "skill": "ideate-component",
+  "reference_date": "2026-06-06",
+  "component_type": "widget",
+  "source_mode": "plugin-brief",
+  "plugin_context": {"path_or_brief": "Need a visual widget.", "summary": "The requested type is outside plugin component taxonomy. [EXPLICIT]", "evidence_tag": "[EXPLICIT]"},
+  "existing_components": [],
+  "candidates": [
+    {"name": "visual-widget", "component_type": "widget", "responsibility": "This widget renders plugin state for users.", "rationale": "Invalid component type should fail. [INFERENCE]", "evidence_tag": "[INFERENCE]"},
+    {"name": "state-panel", "component_type": "widget", "responsibility": "This widget displays plugin state summaries.", "rationale": "Invalid component type should fail. [INFERENCE]", "evidence_tag": "[INFERENCE]"}
+  ],
+  "recommended_candidate": "visual-widget",
+  "relationships": {"direct_dependencies": [], "downstream_consumers": [], "diagram": "visual-widget"},
+  "conflict_analysis": {"status": "none", "resolution": "none", "rationale": "No inventory was provided. [EXPLICIT]", "evidence_tag": "[EXPLICIT]"},
+  "moat_depth": {"level": "STANDARD", "complexity_score": 4, "required_assets": ["SKILL.md", "references/"], "rationale": "Invalid type fixture. [INFERENCE]", "evidence_tag": "[INFERENCE]"},
+  "tools_needed": [{"tool": "Read", "reason": "Reads local context. [CODE]"}],
+  "estimated_lines": {"min": 80, "max": 120},
+  "output_decision": {"status": "blocked", "next_action": "reject", "evidence_tag": "[CONFIG]"},
+  "validation": ["This fixture must fail on component_type. [CODE]"],
+  "risks": ["Accepting unknown types would bypass component policy. [ASSUMPTION]"]
+}

@@ -1,0 +1,69 @@
+{
+  "skill": "ideate-component",
+  "reference_date": "2026-06-06",
+  "component_type": "skill",
+  "source_mode": "plugin-path",
+  "plugin_context": {
+    "path_or_brief": "plugins/acme",
+    "summary": "Existing plugin validates release artifacts and needs a manifest export review skill. [CODE]",
+    "evidence_tag": "[CODE]"
+  },
+  "existing_components": [
+    {"name": "validate-manifest", "type": "skill", "responsibility": "Validates plugin.json only.", "evidence_tag": "[CODE]"},
+    {"name": "release-agent", "type": "agent", "responsibility": "Coordinates release checks.", "evidence_tag": "[CODE]"}
+  ],
+  "candidates": [
+    {
+      "name": "export-manifest-review",
+      "component_type": "skill",
+      "responsibility": "This skill reviews exported plugin manifests against release constraints.",
+      "rationale": "Names the artifact and the review boundary without colliding with validate-manifest. [INFERENCE]",
+      "evidence_tag": "[INFERENCE]"
+    },
+    {
+      "name": "manifest-export-audit",
+      "component_type": "skill",
+      "responsibility": "This skill audits manifest export files for release readiness.",
+      "rationale": "Acceptable alternate, but audit is broader than review. [INFERENCE]",
+      "evidence_tag": "[INFERENCE]"
+    }
+  ],
+  "recommended_candidate": "export-manifest-review",
+  "relationships": {
+    "movement": "VALIDATE",
+    "direct_dependencies": ["validate-manifest"],
+    "downstream_consumers": ["release-agent"],
+    "diagram": "validate-manifest -> export-manifest-review -> release-agent"
+  },
+  "conflict_analysis": {
+    "status": "overlap",
+    "resolution": "differentiate",
+    "rationale": "validate-manifest checks plugin.json, while export-manifest-review checks generated release exports. [INFERENCE]",
+    "evidence_tag": "[INFERENCE]"
+  },
+  "moat_depth": {
+    "level": "STANDARD",
+    "complexity_score": 4,
+    "required_assets": ["SKILL.md", "references/"],
+    "rationale": "Needs manifest-export reference rules but does not need examples or prompts. [INFERENCE]",
+    "evidence_tag": "[INFERENCE]"
+  },
+  "tools_needed": [
+    {"tool": "Read", "reason": "Reads manifest export files. [CODE]"},
+    {"tool": "Glob", "reason": "Finds exported manifest paths. [CODE]"},
+    {"tool": "Grep", "reason": "Locates release markers and schema keys. [CODE]"}
+  ],
+  "estimated_lines": {"min": 90, "max": 130},
+  "output_decision": {
+    "status": "recommended",
+    "next_action": "design-skill",
+    "evidence_tag": "[CONFIG]"
+  },
+  "validation": [
+    "Candidate names are kebab-case and do not duplicate existing components. [CODE]",
+    "Conflict resolution differentiates the new skill from validate-manifest. [INFERENCE]"
+  ],
+  "risks": [
+    "The concept depends on release export examples that are not included in this fixture. [ASSUMPTION]"
+  ]
+}

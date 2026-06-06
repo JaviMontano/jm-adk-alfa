@@ -242,7 +242,7 @@ html-semantic,"Implements semantic HTML5 with proper document structure, landmar
 html-semantic-builder,"Semantic HTML5 page construction. Landmarks, ARIA roles, structured data (JSON-LD), Open Graph meta, accessibility. [EXPLICIT]",pending,,,,,
 http-headers,"Security headers, caching headers, compression, content negotiation. [EXPLICIT]",pending,,,,,
 iconography,"Icon systems, SVG optimization, icon accessibility, consistency. [EXPLICIT]",pending,,,,,
-ideate-component,"Brainstorm individual plugin components (skill, agent, command, hook) for existing or planned plugins. [EXPLICIT]",pending,,,,,
+ideate-component,"Brainstorm individual plugin components (skill, agent, command, hook) for existing or planned plugins. [EXPLICIT]",dod-complete,2026-06-06,docs/audits/skills/ideate-component-review.md,P1,completed-ideate-component-dod,"Closed DoD with deterministic concept-card assets, DoD-format evals, domain examples, offline ideate-component validator, fixtures, review doc, adapter freshness evidence, and local validation evidence."
 ideate-plugin,"Generate a structured plugin concept brief from a user idea. Trigger: ideate plugin, brainstorm plugin, plugin concept, new plugin idea, create plugin concept. [EXPLICIT] Researches existing plugins for overlap, proposes movement structure and component counts. [EXPLICIT]",pending,,,,,
 iic-artifact-analyzer,Non-destructive cross-artifact consistency analysis. 8 detection categories. Health score 0-100. Updates score-history.json. [EXPLICIT],pending,,,,,
 iic-bugfix,"Structured bug tracking. Creates bug entries with severity, reproduction steps, and T-B tasks. Links to affected requirements. [EXPLICIT]",pending,,,,,

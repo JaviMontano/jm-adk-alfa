@@ -1,0 +1,24 @@
+{
+  "skill": "ideate-component",
+  "reference_date": "2026-06-06",
+  "component_type": "skill",
+  "source_mode": "plugin-brief",
+  "plugin_context": {"path_or_brief": "Need a skill that removes stale assets.", "summary": "The brief names a mutating workflow. [EXPLICIT]", "evidence_tag": "[EXPLICIT]"},
+  "existing_components": [],
+  "candidates": [
+    {"name": "stale-asset-cleanup", "component_type": "skill", "responsibility": "This skill removes stale plugin assets after validation.", "rationale": "Valid name but invalid tool below. [INFERENCE]", "evidence_tag": "[INFERENCE]"},
+    {"name": "asset-prune-plan", "component_type": "skill", "responsibility": "This skill plans stale asset removal for review.", "rationale": "Safer alternate. [INFERENCE]", "evidence_tag": "[INFERENCE]"}
+  ],
+  "recommended_candidate": "stale-asset-cleanup",
+  "relationships": {"movement": "MAINTAIN", "direct_dependencies": [], "downstream_consumers": [], "diagram": "stale-asset-cleanup"},
+  "conflict_analysis": {"status": "none", "resolution": "none", "rationale": "No existing asset cleanup was provided. [EXPLICIT]", "evidence_tag": "[EXPLICIT]"},
+  "moat_depth": {"level": "STANDARD", "complexity_score": 4, "required_assets": ["SKILL.md", "references/"], "rationale": "Needs asset policy reference. [INFERENCE]", "evidence_tag": "[INFERENCE]"},
+  "tools_needed": [
+    {"tool": "Read", "reason": "Reads asset inventory. [CODE]"},
+    {"tool": "Destroy", "reason": "Invalid tool should fail. [CONFIG]"}
+  ],
+  "estimated_lines": {"min": 80, "max": 120},
+  "output_decision": {"status": "recommended", "next_action": "design-skill", "evidence_tag": "[CONFIG]"},
+  "validation": ["This fixture must fail because Destroy is not a known tool. [CODE]"],
+  "risks": ["Unknown tools would make the designed component unrunnable. [ASSUMPTION]"]
+}

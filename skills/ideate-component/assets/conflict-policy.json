@@ -1,0 +1,6 @@
+{
+  "schema": 1,
+  "skill": "ideate-component",
+  "statuses": ["none", "overlap", "missing-dependency", "unreadable-context"],
+  "resolutions": ["none", "merge", "split", "differentiate", "create-dependency", "accept-isolated"]
+}

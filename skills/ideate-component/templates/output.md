@@ -1,28 +1,40 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: ideate-component
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
-
-# Ideate Component Output
+# Component Concept Card
 
 ## Summary
 
-{summary}
+- Component type: `{component_type}`
+- Recommended name: `{recommended_name}`
+- Source mode: `{plugin-path|plugin-brief|architecture-plan}`
 
-## Evidence
+## Candidates
 
-{evidence}
+| Name | Responsibility | Rationale |
+|------|----------------|-----------|
+| `{candidate}` | `{single_sentence}` | `{reason}` |
 
-## Result
+## Relationships
 
-{result}
+- Direct dependencies: `{dependencies}`
+- Downstream consumers: `{consumers}`
+- Diagram: `{diagram}`
 
-## Validation
+## Conflict Analysis
 
-{validation}
+- Status: `{none|overlap|missing-dependency|unreadable-context}`
+- Resolution: `{none|merge|split|differentiate|create-dependency|accept-isolated}`
 
-## Risks and Limits
+## MOAT Depth
 
-{risks}
+- Level: `{MINIMAL|STANDARD|FULL|DEEP}`
+- Required assets: `{assets}`
+- Rationale: `{rationale}`
+
+## Tools and Size
+
+- Tools needed: `{tools}`
+- Estimated lines: `{min}-{max}`
+
+## Validation and Risks
+
+- Validation: `{validation}`
+- Risks: `{risks}`

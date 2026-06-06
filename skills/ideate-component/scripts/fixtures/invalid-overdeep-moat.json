@@ -1,0 +1,21 @@
+{
+  "skill": "ideate-component",
+  "reference_date": "2026-06-06",
+  "component_type": "command",
+  "source_mode": "plugin-brief",
+  "plugin_context": {"path_or_brief": "Need a one-line alias for validate-release.", "summary": "The brief describes a simple command alias. [EXPLICIT]", "evidence_tag": "[EXPLICIT]"},
+  "existing_components": [],
+  "candidates": [
+    {"name": "vr", "component_type": "command", "responsibility": "This command invokes validate-release through a short alias.", "rationale": "Short alias candidate. [INFERENCE]", "evidence_tag": "[INFERENCE]"},
+    {"name": "release-check", "component_type": "command", "responsibility": "This command routes users to validate-release.", "rationale": "Readable alias candidate. [INFERENCE]", "evidence_tag": "[INFERENCE]"}
+  ],
+  "recommended_candidate": "release-check",
+  "relationships": {"invokes_component": "validate-release", "direct_dependencies": ["validate-release"], "downstream_consumers": ["users"], "diagram": "release-check -> validate-release"},
+  "conflict_analysis": {"status": "none", "resolution": "none", "rationale": "No existing alias was provided. [EXPLICIT]", "evidence_tag": "[EXPLICIT]"},
+  "moat_depth": {"level": "DEEP", "complexity_score": 4, "required_assets": ["SKILL.md", "references/", "examples/", "prompts/"], "rationale": "This overstates a simple alias. [INFERENCE]", "evidence_tag": "[INFERENCE]"},
+  "tools_needed": [{"tool": "Read", "reason": "Reads command registry. [CODE]"}],
+  "estimated_lines": {"min": 18, "max": 32},
+  "output_decision": {"status": "recommended", "next_action": "design-command", "evidence_tag": "[CONFIG]"},
+  "validation": ["This fixture must fail because DEEP requires a higher complexity score. [CODE]"],
+  "risks": ["Overstating MOAT depth increases maintenance cost. [ASSUMPTION]"]
+}

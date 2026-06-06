@@ -1,0 +1,71 @@
+{
+  "skill": "ideate-component",
+  "reference_date": "2026-06-06",
+  "component_type": "hook",
+  "source_mode": "plugin-brief",
+  "plugin_context": {
+    "path_or_brief": "A runtime plugin needs a closeout packet structure check after a session closes.",
+    "summary": "The brief names session-end-cleanup and quality-gatekeeper as existing components. [EXPLICIT]",
+    "evidence_tag": "[EXPLICIT]"
+  },
+  "existing_components": [
+    {"name": "session-end-cleanup", "type": "skill", "responsibility": "Produces the closeout packet.", "evidence_tag": "[EXPLICIT]"},
+    {"name": "quality-gatekeeper", "type": "agent", "responsibility": "Owns validation policy.", "evidence_tag": "[EXPLICIT]"}
+  ],
+  "candidates": [
+    {
+      "name": "handoff-packet-check",
+      "component_type": "hook",
+      "responsibility": "This hook validates session handoff packets against required closeout sections.",
+      "rationale": "The name matches the lifecycle artifact and bounded check. [INFERENCE]",
+      "evidence_tag": "[INFERENCE]"
+    },
+    {
+      "name": "session-handoff-audit",
+      "component_type": "hook",
+      "responsibility": "This hook audits session handoff completeness after session close.",
+      "rationale": "Clear alternate, but broader than packet structure validation. [INFERENCE]",
+      "evidence_tag": "[INFERENCE]"
+    }
+  ],
+  "recommended_candidate": "handoff-packet-check",
+  "relationships": {
+    "hook_type": "command",
+    "event": "Stop",
+    "context_fields": ["transcript_path", "handoff_packet_path"],
+    "direct_dependencies": ["session-end-cleanup", "quality-gatekeeper"],
+    "downstream_consumers": ["session-resume"],
+    "diagram": "session-end-cleanup -> handoff-packet-check -> session-resume"
+  },
+  "conflict_analysis": {
+    "status": "overlap",
+    "resolution": "differentiate",
+    "rationale": "quality-gatekeeper remains the general validation authority; this hook checks closeout packet structure only. [INFERENCE]",
+    "evidence_tag": "[INFERENCE]"
+  },
+  "moat_depth": {
+    "level": "FULL",
+    "complexity_score": 6,
+    "required_assets": ["SKILL.md", "references/", "examples/"],
+    "rationale": "Lifecycle behavior needs compatibility reference and examples for pass/fail packet shapes. [INFERENCE]",
+    "evidence_tag": "[INFERENCE]"
+  },
+  "tools_needed": [
+    {"tool": "Read", "reason": "Reads handoff packet files. [CODE]"},
+    {"tool": "Grep", "reason": "Checks required section markers. [CODE]"},
+    {"tool": "Bash", "reason": "Runs deterministic local packet validation. [CODE]"}
+  ],
+  "estimated_lines": {"min": 14, "max": 24},
+  "output_decision": {
+    "status": "recommended",
+    "next_action": "design-hook",
+    "evidence_tag": "[CONFIG]"
+  },
+  "validation": [
+    "command/Stop is a compatible hook type and event pair. [CONFIG]",
+    "The conflict resolution differentiates the hook from quality-gatekeeper. [INFERENCE]"
+  ],
+  "risks": [
+    "The actual hooks registry was not read in this fixture, so registry placement remains an assumption. [ASSUMPTION]"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "schema": 1,
+  "skill": "ideate-component",
+  "candidate_min": 2,
+  "candidate_max": 3,
+  "name_pattern": "^[a-z][a-z0-9]*(-[a-z0-9]+)*$",
+  "allowed_evidence_tags": ["[CODE]", "[CONFIG]", "[DOC]", "[INFERENCE]", "[ASSUMPTION]", "[EXPLICIT]", "[INFERRED]", "[OPEN]", "[CÓDIGO]", "[INFERENCIA]", "[SUPUESTO]"],
+  "source_modes": ["plugin-path", "plugin-brief", "architecture-plan"],
+  "known_tools": ["Read", "Write", "Edit", "Glob", "Grep", "Bash", "WebFetch", "WebSearch"],
+  "required_top_level": ["skill", "reference_date", "component_type", "source_mode", "plugin_context", "existing_components", "candidates", "recommended_candidate", "relationships", "conflict_analysis", "moat_depth", "tools_needed", "estimated_lines", "output_decision", "validation", "risks"],
+  "required_candidate_fields": ["name", "component_type", "responsibility", "rationale", "evidence_tag"],
+  "moving_time_terms": ["today", "tomorrow", "yesterday", "soon", "recently", "later", "TBD"],
+  "output_statuses": ["recommended", "blocked", "needs-clarification"],
+  "next_actions": ["design-skill", "design-agent", "design-command", "design-hook", "reject", "clarify"]
+}

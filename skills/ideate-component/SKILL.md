@@ -23,6 +23,17 @@ This is a **read-only** skill. It proposes but never creates files. [EXPLICIT]
 
 ---
 
+## Deterministic Resources
+
+Use these bundled assets when producing or validating a concept card:
+
+- `assets/concept-card-contract.json` defines required output fields, evidence tags, candidate count, and moving-time terms to avoid.
+- `assets/component-type-policy.json` defines component types, hook event compatibility, and type-specific relationship requirements.
+- `assets/moat-depth-policy.json` defines MOAT depth thresholds, required assets, and line ranges.
+- `assets/conflict-policy.json` defines conflict statuses and allowed resolutions.
+
+If the final output is converted to JSON for validation, it must pass `scripts/validate_ideate_component_concept.py`.
+
 ## Procedure
 
 ### Step 1 -- Identify Component Type
@@ -85,6 +96,7 @@ This is a **read-only** skill. It proposes but never creates files. [EXPLICIT]
   - Estimated Lines: {range}
   ```
 - Present the card for review. Suggest designing the component with `/pqa:design`.
+- Include enough fields to map the markdown card to the JSON contract in `assets/concept-card-contract.json`.
 
 ---
 
@@ -95,6 +107,9 @@ This is a **read-only** skill. It proposes but never creates files. [EXPLICIT]
 - [ ] Relationship mapping includes all direct dependencies. `[CODIGO]`
 - [ ] MOAT depth recommendation has explicit justification. `[DOC]`
 - [ ] Conflict analysis explicitly states whether overlap exists and proposes a resolution (merge, split, or differentiate). `[DOC]`
+- [ ] Tool recommendations use only known tools and include rationale. `[DOC]`
+- [ ] Estimated line range fits the component type in `assets/moat-depth-policy.json`. `[DOC]`
+- [ ] Hook concepts use a compatible hook type/event pair from `assets/component-type-policy.json`. `[DOC]`
 
 ## Assumptions & Limits
 
@@ -148,4 +163,3 @@ Example invocations:
 
 - "/ideate-component" — Run the full ideate component workflow
 - "ideate component on this project" — Apply to current context
-

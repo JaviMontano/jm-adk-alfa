@@ -1,75 +1,24 @@
 {
   "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-28",
   "skill": "ideate-component",
   "nodes": [
-    {
-      "id": "ideate-component",
-      "type": "skill",
-      "label": "ideate-component"
-    },
-    {
-      "id": "ideate-component:inputs",
-      "type": "contract",
-      "label": "Expected inputs"
-    },
-    {
-      "id": "ideate-component:outputs",
-      "type": "contract",
-      "label": "Expected outputs"
-    },
-    {
-      "id": "ideate-component:quality",
-      "type": "gate",
-      "label": "Quality criteria"
-    },
-    {
-      "id": "ideate-component:ontology",
-      "type": "ontology",
-      "label": "Domain: general"
-    },
-    {
-      "id": "ideate-component:evidence",
-      "type": "gate",
-      "label": "Evidence / provenance requirements"
-    },
-    {
-      "id": "ideate-component:antipattern",
-      "type": "risk",
-      "label": "Canonical anti-pattern to avoid"
-    }
+    {"id": "ideate-component", "type": "skill", "label": "Ideate Component"},
+    {"id": "component-type", "type": "decision", "label": "Component type"},
+    {"id": "plugin-inventory", "type": "evidence", "label": "Plugin inventory"},
+    {"id": "candidate-names", "type": "contract", "label": "Candidate names"},
+    {"id": "relationships", "type": "contract", "label": "Relationships"},
+    {"id": "conflict-analysis", "type": "gate", "label": "Conflict analysis"},
+    {"id": "moat-depth", "type": "gate", "label": "MOAT depth"},
+    {"id": "concept-card", "type": "output", "label": "Concept card"}
   ],
   "edges": [
-    {
-      "from": "ideate-component",
-      "to": "ideate-component:inputs",
-      "type": "requires"
-    },
-    {
-      "from": "ideate-component",
-      "to": "ideate-component:outputs",
-      "type": "produces"
-    },
-    {
-      "from": "ideate-component",
-      "to": "ideate-component:quality",
-      "type": "validated_by"
-    },
-    {
-      "from": "ideate-component",
-      "to": "ideate-component:ontology",
-      "type": "classified_as"
-    },
-    {
-      "from": "ideate-component",
-      "to": "ideate-component:evidence",
-      "type": "validated_by"
-    },
-    {
-      "from": "ideate-component",
-      "to": "ideate-component:antipattern",
-      "type": "guards_against"
-    }
+    {"from": "ideate-component", "to": "component-type", "type": "selects"},
+    {"from": "ideate-component", "to": "plugin-inventory", "type": "reads"},
+    {"from": "plugin-inventory", "to": "candidate-names", "type": "constrains"},
+    {"from": "candidate-names", "to": "relationships", "type": "anchors"},
+    {"from": "relationships", "to": "conflict-analysis", "type": "validates"},
+    {"from": "relationships", "to": "moat-depth", "type": "sizes"},
+    {"from": "conflict-analysis", "to": "concept-card", "type": "feeds"},
+    {"from": "moat-depth", "to": "concept-card", "type": "feeds"}
   ]
 }

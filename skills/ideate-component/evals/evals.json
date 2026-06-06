@@ -1,9 +1,69 @@
-[
-  {"id": "ideate-component-happy-path", "type": "happy_path", "input": "Run ideate component on this project", "expected_behavior": "Skill activates and produces the expected ideate component output following the defined process", "tags": ["basic", "activation"]},
-  {"id": "ideate-component-explicit-trigger", "type": "happy_path", "input": "Apply ideate component analysis", "expected_behavior": "Skill recognizes the trigger phrase and executes the ideate component workflow", "tags": ["trigger", "recognition"]},
-  {"id": "ideate-component-with-context", "type": "happy_path", "input": "Apply ideate component to analyze the current codebase with detailed output", "expected_behavior": "Skill produces comprehensive ideate component analysis with evidence-tagged findings", "tags": ["detailed", "comprehensive"]},
-  {"id": "ideate-component-minimal-input", "type": "happy_path", "input": "Quick ideate component", "expected_behavior": "Skill activates with minimal input, applies reasonable defaults", "tags": ["minimal", "defaults"]},
-  {"id": "ideate-component-false-positive", "type": "false_positive", "input": "What is the weather forecast for tomorrow?", "expected_behavior": "Skill should NOT activate — this input has no relation to ideate component", "tags": ["false_positive", "should-not-activate"]},
-  {"id": "ideate-component-edge-empty-input", "type": "edge_case", "input": "Run ideate component but I have no files or documentation yet", "expected_behavior": "Skill handles gracefully — requests minimum viable input or produces gap analysis", "tags": ["edge_case", "empty-input", "boundary"]},
-  {"id": "ideate-component-edge-conflicting", "type": "edge_case", "input": "Apply ideate component but requirements contradict each other", "expected_behavior": "Skill detects contradiction, flags with [OPEN] tag, proposes resolution", "tags": ["edge_case", "conflict", "corner"]}
-]
+{
+  "schema": 1,
+  "skill": "ideate-component",
+  "cases": [
+    {
+      "id": "skill-component-with-plugin-path",
+      "type": "happy_path",
+      "input": "Ideate one skill for plugins/acme that validates exported manifests without creating files.",
+      "expected_behavior": "Produces 2-3 kebab-case candidates, one recommended skill, dependencies, conflict status, STANDARD or FULL MOAT depth, known tools, line estimate, validation, and risks.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria"]
+    },
+    {
+      "id": "agent-component-multi-skill-boundary",
+      "type": "happy_path",
+      "input": "Ideate an agent that coordinates manifest validation, changelog review, and release-note drafting.",
+      "expected_behavior": "Selects component_type agent, requires at least two managed skills, and rejects a one-skill orchestration boundary.",
+      "expected_checks": ["quality_criteria", "deterministic_scripts"]
+    },
+    {
+      "id": "command-alias-delegation",
+      "type": "happy_path",
+      "input": "Ideate a short command alias for the canonical validate-release command.",
+      "expected_behavior": "Selects component_type command, names invoked component, and distinguishes canonical command from alias.",
+      "expected_checks": ["quality_criteria"]
+    },
+    {
+      "id": "hook-compatible-event",
+      "type": "happy_path",
+      "input": "Ideate a hook using type command for the Stop event to validate closeout packets.",
+      "expected_behavior": "Accepts command/Stop compatibility, states hook context, and includes conflict resolution with existing validators.",
+      "expected_checks": ["assets", "deterministic_scripts"]
+    },
+    {
+      "id": "false-positive-product-idea",
+      "type": "false_positive",
+      "input": "Brainstorm marketing campaign names for a product launch.",
+      "expected_behavior": "Does not activate because the request is not about a plugin skill, agent, command, or hook.",
+      "expected_checks": ["quality_criteria"]
+    },
+    {
+      "id": "missing-component-type",
+      "type": "clarification",
+      "input": "Ideate a component for the runtime plugin, but I do not know what type.",
+      "expected_behavior": "Asks one concise question choosing between skill, agent, command, or hook instead of inventing the type.",
+      "expected_checks": ["quality_criteria"]
+    },
+    {
+      "id": "no-plugin-path-degradation",
+      "type": "degradation",
+      "input": "Ideate a skill from this brief only: validate onboarding checklists. No repository path is available.",
+      "expected_behavior": "Uses source_mode plugin-brief, marks file-derived evidence as unavailable, and reports assumptions without failing.",
+      "expected_checks": ["quality_criteria"]
+    },
+    {
+      "id": "duplicate-existing-name",
+      "type": "negative",
+      "input": "Ideate a skill named validate-manifest when validate-manifest already exists.",
+      "expected_behavior": "Rejects or renames the duplicate candidate and records conflict resolution.",
+      "expected_checks": ["deterministic_scripts", "quality_criteria"]
+    },
+    {
+      "id": "invalid-hook-event",
+      "type": "negative",
+      "input": "Ideate a type prompt hook for the Stop event.",
+      "expected_behavior": "Rejects prompt/Stop compatibility and proposes a compatible alternative.",
+      "expected_checks": ["assets", "deterministic_scripts"]
+    }
+  ]
+}
