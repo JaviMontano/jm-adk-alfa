@@ -1,28 +1,31 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: continuous-learning
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
+# Continuous Learning Report
 
-# Continuous Learning Output
+## Source Event
 
-## Summary
+Type: `{event_type}`
+Topic: `{topic}`
 
-{summary}
+## Three Outputs
 
-## Evidence
+- Direct answer: `{direct_answer}`
+- Question refinements: `{question_refinements}`
+- Coverage gaps: `{coverage_gaps}`
 
-{evidence}
+## Prior Insight Search
 
-## Result
+Domains searched: `{domains}`
+Matches: `{matches}`
 
-{result}
+## Insight Candidates
 
-## Validation
+| title | domain | status | trigger | anchor |
+|-------|--------|--------|---------|--------|
+| `{title}` | `{domain}` | `{status}` | `{trigger}` | `{anchor}` |
 
-{validation}
+## Amendment Candidates
 
-## Risks and Limits
+List recurrence count, rationale, proposal path, and Guardian decision.
 
-{risks}
+## Update Plan
+
+List insight files, index update, and cross-references.

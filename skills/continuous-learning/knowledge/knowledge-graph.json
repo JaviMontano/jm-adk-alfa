@@ -1,75 +1,22 @@
 {
   "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-28",
   "skill": "continuous-learning",
   "nodes": [
-    {
-      "id": "continuous-learning",
-      "type": "skill",
-      "label": "continuous-learning"
-    },
-    {
-      "id": "continuous-learning:inputs",
-      "type": "contract",
-      "label": "Expected inputs"
-    },
-    {
-      "id": "continuous-learning:outputs",
-      "type": "contract",
-      "label": "Expected outputs"
-    },
-    {
-      "id": "continuous-learning:quality",
-      "type": "gate",
-      "label": "Quality criteria"
-    },
-    {
-      "id": "continuous-learning:ontology",
-      "type": "ontology",
-      "label": "Domain: general"
-    },
-    {
-      "id": "continuous-learning:evidence",
-      "type": "gate",
-      "label": "Evidence / provenance requirements"
-    },
-    {
-      "id": "continuous-learning:antipattern",
-      "type": "risk",
-      "label": "Canonical anti-pattern to avoid"
-    }
+    {"id": "continuous-learning", "type": "skill", "label": "Continuous Learning"},
+    {"id": "source-event", "type": "input", "label": "Debate, discovery, decision, or incident"},
+    {"id": "prior-insight-search", "type": "gate", "label": "Prior insight search"},
+    {"id": "three-outputs", "type": "contract", "label": "Answer, refinements, gaps"},
+    {"id": "insight-candidate", "type": "artifact", "label": "Reusable insight"},
+    {"id": "amendment-gate", "type": "gate", "label": "Recurrence threshold"},
+    {"id": "update-plan", "type": "artifact", "label": "Insight and index update plan"}
   ],
   "edges": [
-    {
-      "from": "continuous-learning",
-      "to": "continuous-learning:inputs",
-      "type": "requires"
-    },
-    {
-      "from": "continuous-learning",
-      "to": "continuous-learning:outputs",
-      "type": "produces"
-    },
-    {
-      "from": "continuous-learning",
-      "to": "continuous-learning:quality",
-      "type": "validated_by"
-    },
-    {
-      "from": "continuous-learning",
-      "to": "continuous-learning:ontology",
-      "type": "classified_as"
-    },
-    {
-      "from": "continuous-learning",
-      "to": "continuous-learning:evidence",
-      "type": "validated_by"
-    },
-    {
-      "from": "continuous-learning",
-      "to": "continuous-learning:antipattern",
-      "type": "guards_against"
-    }
+    {"from": "continuous-learning", "to": "source-event", "type": "requires"},
+    {"from": "source-event", "to": "three-outputs", "type": "extracts"},
+    {"from": "continuous-learning", "to": "prior-insight-search", "type": "requires"},
+    {"from": "prior-insight-search", "to": "insight-candidate", "type": "dedupes"},
+    {"from": "insight-candidate", "to": "amendment-gate", "type": "may_trigger"},
+    {"from": "insight-candidate", "to": "update-plan", "type": "updates"},
+    {"from": "amendment-gate", "to": "update-plan", "type": "adds_adr_when_threshold_met"}
   ]
 }

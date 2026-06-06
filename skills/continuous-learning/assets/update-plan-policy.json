@@ -1,0 +1,10 @@
+{
+  "schema": 1,
+  "skill": "continuous-learning",
+  "allowed_update_prefixes": ["insights/", ".specify/adr/"],
+  "rules": [
+    "Insight updates must target insights/<domain>.md.",
+    "The insights index must be marked for update when a new or refined insight is emitted.",
+    "ADR proposal paths are allowed only for amendment candidates."
+  ]
+}

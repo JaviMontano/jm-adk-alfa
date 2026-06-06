@@ -1,0 +1,10 @@
+{
+  "schema": 1,
+  "skill": "continuous-learning",
+  "allowed_decisions": ["new", "refine", "supersede", "reject_duplicate"],
+  "rules": [
+    "Do not create duplicate active insights.",
+    "When a related active insight exists, refine or supersede it.",
+    "Rejected duplicates must name the existing insight."
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "schema": "jm-labs.continuous-learning.report.v1",
+  "skill": "continuous-learning",
+  "source_event": {
+    "event_type": "discovery",
+    "topic": "offline fixtures improve skill validation",
+    "date": "2026-06-06",
+    "direct_answer": "Validator fixtures make DoD evidence reproducible.",
+    "question_refinements": "Prefer packet validation when live runtime behavior varies.",
+    "coverage_gaps": "Live execution remains outside generic skill contracts.",
+    "evidence_tag": "[CÓDIGO]"
+  },
+  "prior_insight_search": {
+    "searched": true,
+    "domains": ["testing", "workflow"],
+    "matches": [],
+    "evidence_tag": "[DOC]"
+  },
+  "insights": [
+    {
+      "title": "Use offline fixtures for skill DoD validators",
+      "domain": "testing",
+      "pattern": "Add valid and negative fixtures for every skill-specific validator.",
+      "rationale": "Fixtures prove deterministic acceptance and rejection without network state.",
+      "triggers": ["skill validator", "DoD evidence", "offline check"],
+      "constitutional_anchor": "Constitution XVII",
+      "status": "active",
+      "duplicate_decision": "new",
+      "evidence_tag": "[CÓDIGO]"
+    }
+  ],
+  "amendment_candidates": [
+    {
+      "ambiguity_class": "validator fixture requirement",
+      "recurrence_count": 1,
+      "status": "not_needed",
+      "rationale": "Single discovery does not meet amendment threshold.",
+      "evidence_tag": "[INFERENCIA]"
+    }
+  ],
+  "updates": {
+    "insight_files": ["insights/testing.md"],
+    "index_updated": true,
+    "cross_references": ["validator-fixtures-discovery"],
+    "evidence_tag": "[CONFIG]"
+  },
+  "validation": {
+    "status": "pass",
+    "checks": ["assets", "deterministic_scripts", "quality_criteria", "prior_insight_search", "insight_contract", "duplicate_policy", "amendment_gate", "evidence_required", "update_plan"]
+  }
+}

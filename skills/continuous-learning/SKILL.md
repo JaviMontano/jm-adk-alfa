@@ -24,6 +24,8 @@ allowed-tools:
 
 Implements Constitution XVII: every debate and discovery produces reusable insights captured in `insights/<domain>.md`. Before new debates, consult existing insights. When recurring ambiguity detected, propose constitution amendments. The project compounds knowledge — it never re-debates a settled class of decision. [EXPLICIT]
 
+Use deterministic assets in `assets/` for insight taxonomy, evidence, duplicate handling, amendment gates, update plans, and report shape. When producing a JSON learning report, validate it offline with `bash skills/continuous-learning/scripts/check.sh`. [EXPLICIT]
+
 ## Procedure
 
 ### Step 1: Discover
@@ -71,6 +73,9 @@ Implements Constitution XVII: every debate and discovery produces reusable insig
 - [ ] Frequency check performed (3+ → amendment)
 - [ ] No duplicate insights
 - [ ] Evidence tags applied
+- [ ] Prior insight search recorded
+- [ ] Amendment candidates include recurrence evidence
+- [ ] JSON report passes `scripts/check.sh` when produced
 
 ## Anti-Patterns
 

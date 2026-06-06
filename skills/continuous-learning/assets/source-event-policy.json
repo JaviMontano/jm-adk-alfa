@@ -1,0 +1,11 @@
+{
+  "schema": 1,
+  "skill": "continuous-learning",
+  "event_types": ["debate", "discovery", "decision", "incident"],
+  "required_three_outputs": ["direct_answer", "question_refinements", "coverage_gaps"],
+  "rules": [
+    "Every learning report must identify a source event.",
+    "Every report must capture direct answer, refined question, and coverage gaps.",
+    "Reports must block when the source event is too thin to support reusable learning."
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "schema": "jm-labs.continuous-learning.report.v1",
+  "required_top_level_fields": [
+    "schema",
+    "skill",
+    "source_event",
+    "prior_insight_search",
+    "insights",
+    "amendment_candidates",
+    "updates",
+    "validation"
+  ],
+  "required_validation_checks": [
+    "assets",
+    "deterministic_scripts",
+    "quality_criteria",
+    "prior_insight_search",
+    "insight_contract",
+    "duplicate_policy",
+    "amendment_gate",
+    "evidence_required",
+    "update_plan"
+  ]
+}

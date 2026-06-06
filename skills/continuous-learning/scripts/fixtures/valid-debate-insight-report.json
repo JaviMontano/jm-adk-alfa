@@ -1,0 +1,52 @@
+{
+  "schema": "jm-labs.continuous-learning.report.v1",
+  "skill": "continuous-learning",
+  "source_event": {
+    "event_type": "debate",
+    "topic": "one skill per PR hardening workflow",
+    "date": "2026-06-06",
+    "direct_answer": "Complete the active skill through green merge before starting the next skill.",
+    "question_refinements": "Define branch, PR, CI, merge, cleanup, and ReleasePacket boundaries.",
+    "coverage_gaps": "Need blocked CI and stale branch fields in ReleasePacket.",
+    "evidence_tag": "[CONFIG]"
+  },
+  "prior_insight_search": {
+    "searched": true,
+    "domains": ["governance", "workflow"],
+    "matches": ["insights/governance.md#one-active-workstream"],
+    "evidence_tag": "[DOC]"
+  },
+  "insights": [
+    {
+      "title": "One active skill through green merge",
+      "domain": "governance",
+      "pattern": "Complete one skill from branch through green merge before starting another.",
+      "rationale": "Single-skill PRs prevent cross-skill leakage and make evidence auditable.",
+      "triggers": ["multi-skill hardening", "skill queue", "one PR per skill"],
+      "constitutional_anchor": "Constitution XVII",
+      "status": "active",
+      "duplicate_decision": "refine",
+      "evidence_tag": "[CONFIG]"
+    }
+  ],
+  "amendment_candidates": [
+    {
+      "ambiguity_class": "one-active-skill workflow boundary",
+      "recurrence_count": 3,
+      "status": "proposed",
+      "rationale": "The same ambiguity recurred across three hardening sessions.",
+      "proposal_path": ".specify/adr/one-active-skill-green-merge.md",
+      "evidence_tag": "[CONFIG]"
+    }
+  ],
+  "updates": {
+    "insight_files": ["insights/governance.md"],
+    "index_updated": true,
+    "cross_references": ["source-debate-2026-06-06"],
+    "evidence_tag": "[CONFIG]"
+  },
+  "validation": {
+    "status": "pass",
+    "checks": ["assets", "deterministic_scripts", "quality_criteria", "prior_insight_search", "insight_contract", "duplicate_policy", "amendment_gate", "evidence_required", "update_plan"]
+  }
+}

@@ -1,9 +1,76 @@
-[
-  {"id": "continuous-learning-happy-path", "type": "happy_path", "input": "Run continuous learning on this project", "expected_behavior": "Skill activates and produces the expected continuous learning output following the defined process", "tags": ["basic", "activation"]},
-  {"id": "continuous-learning-explicit-trigger", "type": "happy_path", "input": "Apply continuous learning analysis", "expected_behavior": "Skill recognizes the trigger phrase and executes the continuous learning workflow", "tags": ["trigger", "recognition"]},
-  {"id": "continuous-learning-with-context", "type": "happy_path", "input": "Apply continuous learning to analyze the current codebase with detailed output", "expected_behavior": "Skill produces comprehensive continuous learning analysis with evidence-tagged findings", "tags": ["detailed", "comprehensive"]},
-  {"id": "continuous-learning-minimal-input", "type": "happy_path", "input": "Quick continuous learning", "expected_behavior": "Skill activates with minimal input, applies reasonable defaults", "tags": ["minimal", "defaults"]},
-  {"id": "continuous-learning-false-positive", "type": "false_positive", "input": "What is the weather forecast for tomorrow?", "expected_behavior": "Skill should NOT activate — this input has no relation to continuous learning", "tags": ["false_positive", "should-not-activate"]},
-  {"id": "continuous-learning-edge-empty-input", "type": "edge_case", "input": "Run continuous learning but I have no files or documentation yet", "expected_behavior": "Skill handles gracefully — requests minimum viable input or produces gap analysis", "tags": ["edge_case", "empty-input", "boundary"]},
-  {"id": "continuous-learning-edge-conflicting", "type": "edge_case", "input": "Apply continuous learning but requirements contradict each other", "expected_behavior": "Skill detects contradiction, flags with [OPEN] tag, proposes resolution", "tags": ["edge_case", "conflict", "corner"]}
-]
+{
+  "schema": 1,
+  "skill": "continuous-learning",
+  "cases": [
+    {
+      "id": "continuous-learning-debate-insight",
+      "type": "happy_path",
+      "input": "Extract reusable insight from a Socratic debate about branch-per-skill workflow.",
+      "expected_behavior": "Captures answer, refinements, gaps, prior insight search, insight candidate, update plan, and evidence.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "prior_insight_search", "insight_contract", "evidence_required"]
+    },
+    {
+      "id": "continuous-learning-discovery-insight",
+      "type": "happy_path",
+      "input": "Capture a discovery about validation scripts needing offline fixtures.",
+      "expected_behavior": "Creates an insight candidate with domain, reusable pattern, trigger, anchor, and target update file.",
+      "expected_checks": ["insight_contract", "update_plan", "quality_criteria"]
+    },
+    {
+      "id": "continuous-learning-amendment-candidate",
+      "type": "happy_path",
+      "input": "Three debates hit the same ambiguity about when to pause before merge.",
+      "expected_behavior": "Proposes amendment candidate with recurrence count, rationale, and ADR path.",
+      "expected_checks": ["amendment_gate", "evidence_required", "update_plan"]
+    },
+    {
+      "id": "continuous-learning-no-amendment",
+      "type": "edge_case",
+      "input": "One isolated disagreement appears in a debate.",
+      "expected_behavior": "Blocks amendment proposal and records a tentative insight or gap.",
+      "expected_checks": ["amendment_gate", "quality_criteria"]
+    },
+    {
+      "id": "continuous-learning-duplicate-active",
+      "type": "degradation",
+      "input": "Create a new active insight identical to an existing active insight.",
+      "expected_behavior": "Rejects duplicate and requires refine, supersede, or no-op.",
+      "expected_checks": ["deterministic_scripts", "duplicate_policy"]
+    },
+    {
+      "id": "continuous-learning-no-prior-search",
+      "type": "degradation",
+      "input": "Add an insight without checking existing insight files.",
+      "expected_behavior": "Blocks report because prior insight search is missing.",
+      "expected_checks": ["deterministic_scripts", "prior_insight_search"]
+    },
+    {
+      "id": "continuous-learning-missing-three-outputs",
+      "type": "degradation",
+      "input": "Summarize debate without answer, refined question, or coverage gaps.",
+      "expected_behavior": "Rejects incomplete debate extraction.",
+      "expected_checks": ["deterministic_scripts", "quality_criteria"]
+    },
+    {
+      "id": "continuous-learning-bad-update-path",
+      "type": "degradation",
+      "input": "Write insight update outside insights/ or .specify/adr/.",
+      "expected_behavior": "Blocks unsafe update path.",
+      "expected_checks": ["deterministic_scripts", "update_plan"]
+    },
+    {
+      "id": "continuous-learning-false-positive",
+      "type": "false_positive",
+      "input": "Teach me the history of reinforcement learning.",
+      "expected_behavior": "Does not activate because no project debate/discovery capture is requested.",
+      "expected_checks": ["activation_boundary", "quality_criteria"]
+    },
+    {
+      "id": "continuous-learning-script-contract",
+      "type": "script_contract",
+      "input": "Validate continuous learning JSON fixtures offline.",
+      "expected_behavior": "Accepts valid learning reports and rejects missing prior search, missing outputs, duplicate insights, weak amendment, and unsafe update path.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria"]
+    }
+  ]
+}
