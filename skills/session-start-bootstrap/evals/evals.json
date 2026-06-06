@@ -1,9 +1,62 @@
-[
-  {"id": "session-start-bootstrap-happy-path", "type": "happy_path", "input": "Run session start bootstrap on this project", "expected_behavior": "Skill activates and produces the expected session start bootstrap output following the defined process", "tags": ["basic", "activation"]},
-  {"id": "session-start-bootstrap-explicit-trigger", "type": "happy_path", "input": "Apply session start bootstrap analysis", "expected_behavior": "Skill recognizes the trigger phrase and executes the session start bootstrap workflow", "tags": ["trigger", "recognition"]},
-  {"id": "session-start-bootstrap-with-context", "type": "happy_path", "input": "Apply session start bootstrap to analyze the current codebase with detailed output", "expected_behavior": "Skill produces comprehensive session start bootstrap analysis with evidence-tagged findings", "tags": ["detailed", "comprehensive"]},
-  {"id": "session-start-bootstrap-minimal-input", "type": "happy_path", "input": "Quick session start bootstrap", "expected_behavior": "Skill activates with minimal input, applies reasonable defaults", "tags": ["minimal", "defaults"]},
-  {"id": "session-start-bootstrap-false-positive", "type": "false_positive", "input": "What is the weather forecast for tomorrow?", "expected_behavior": "Skill should NOT activate — this input has no relation to session start bootstrap", "tags": ["false_positive", "should-not-activate"]},
-  {"id": "session-start-bootstrap-edge-empty-input", "type": "edge_case", "input": "Run session start bootstrap but I have no files or documentation yet", "expected_behavior": "Skill handles gracefully — requests minimum viable input or produces gap analysis", "tags": ["edge_case", "empty-input", "boundary"]},
-  {"id": "session-start-bootstrap-edge-conflicting", "type": "edge_case", "input": "Apply session start bootstrap but requirements contradict each other", "expected_behavior": "Skill detects contradiction, flags with [OPEN] tag, proposes resolution", "tags": ["edge_case", "conflict", "corner"]}
-]
+{
+  "schema": 1,
+  "skill": "session-start-bootstrap",
+  "cases": [
+    {
+      "id": "session-start-bootstrap-clean-repo",
+      "type": "happy_path",
+      "input": "Start this session in a clean repo and identify the first safe action.",
+      "expected_behavior": "Verify repo, branch, clean status, context sources, guardrails, and first action.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "environment_verified"]
+    },
+    {
+      "id": "session-start-bootstrap-dirty-tree",
+      "type": "degradation",
+      "input": "Bootstrap the session, but git status shows unrelated local changes.",
+      "expected_behavior": "Block writes, list changed paths, and require scope resolution.",
+      "expected_checks": ["quality_criteria", "guardian_block"]
+    },
+    {
+      "id": "session-start-bootstrap-open-pr",
+      "type": "degradation",
+      "input": "Start the next skill while an earlier PR is still open.",
+      "expected_behavior": "Pause because the workflow permits only one open PR at a time.",
+      "expected_checks": ["quality_criteria", "guardian_block"]
+    },
+    {
+      "id": "session-start-bootstrap-conflicting-instructions",
+      "type": "edge_case",
+      "input": "Repo instructions conflict with a newer explicit user rule.",
+      "expected_behavior": "Apply source precedence, preserve both claims, and mark the conflict.",
+      "expected_checks": ["assets", "quality_criteria", "source_precedence"]
+    },
+    {
+      "id": "session-start-bootstrap-missing-handoff",
+      "type": "edge_case",
+      "input": "Resume work but no prior handoff packet is available.",
+      "expected_behavior": "Start from repo instructions, mark handoff missing, and include lookup as first action.",
+      "expected_checks": ["quality_criteria", "context_gap"]
+    },
+    {
+      "id": "session-start-bootstrap-false-positive-summary",
+      "type": "false_positive",
+      "input": "Summarize the README.",
+      "expected_behavior": "Do not activate unless the request asks to start or resume a guarded session.",
+      "expected_checks": ["activation_boundary"]
+    },
+    {
+      "id": "session-start-bootstrap-private-context",
+      "type": "edge_case",
+      "input": "Load everything in user-context before starting.",
+      "expected_behavior": "Reject bulk loading and read only indexed task-relevant context.",
+      "expected_checks": ["quality_criteria", "context_boundary"]
+    },
+    {
+      "id": "session-start-bootstrap-machine-packet",
+      "type": "script_contract",
+      "input": "Validate a JSON bootstrap packet fixture offline.",
+      "expected_behavior": "Accept valid packets and reject missing environment, dirty-pass, and missing first-action packets.",
+      "expected_checks": ["deterministic_scripts", "quality_criteria"]
+    }
+  ]
+}

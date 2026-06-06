@@ -1,0 +1,17 @@
+{
+  "schema": 1,
+  "skill": "session-start-bootstrap",
+  "must_record": [
+    "hard rules",
+    "forbidden changes",
+    "validation requirements",
+    "pause criteria",
+    "first action"
+  ],
+  "pause_conditions": [
+    "local changes not attributed to active scope",
+    "open PR blocks serial workflow",
+    "conflicting instructions change safe first action",
+    "required environment check is unknown"
+  ]
+}

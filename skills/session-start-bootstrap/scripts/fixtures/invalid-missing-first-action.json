@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "skill": "session-start-bootstrap",
+  "environment": {
+    "repo": "/tmp/example",
+    "branch": "main",
+    "git_status": "## main...origin/main",
+    "status": "clean",
+    "evidence_tag": "[CODE]"
+  },
+  "context_sources_loaded": [
+    {
+      "description": "Root instructions.",
+      "evidence_tag": "[DOC]"
+    }
+  ],
+  "active_guardrails": [
+    {
+      "description": "One branch at a time.",
+      "evidence_tag": "[CONFIG]"
+    }
+  ],
+  "current_state": [],
+  "blockers_and_gaps": [],
+  "validation_baseline": [],
+  "first_action": "",
+  "guardian_decision": {
+    "decision": "pass",
+    "rationale": "Incorrectly passes without first action.",
+    "evidence_tag": "[CONFIG]"
+  }
+}

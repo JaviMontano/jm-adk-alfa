@@ -1,75 +1,21 @@
 {
   "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-28",
   "skill": "session-start-bootstrap",
   "nodes": [
-    {
-      "id": "session-start-bootstrap",
-      "type": "skill",
-      "label": "session-start-bootstrap"
-    },
-    {
-      "id": "session-start-bootstrap:inputs",
-      "type": "contract",
-      "label": "Expected inputs"
-    },
-    {
-      "id": "session-start-bootstrap:outputs",
-      "type": "contract",
-      "label": "Expected outputs"
-    },
-    {
-      "id": "session-start-bootstrap:quality",
-      "type": "gate",
-      "label": "Quality criteria"
-    },
-    {
-      "id": "session-start-bootstrap:ontology",
-      "type": "ontology",
-      "label": "Domain: claude-code-config"
-    },
-    {
-      "id": "session-start-bootstrap:evidence",
-      "type": "gate",
-      "label": "Evidence / provenance requirements"
-    },
-    {
-      "id": "session-start-bootstrap:antipattern",
-      "type": "risk",
-      "label": "Canonical anti-pattern to avoid"
-    }
+    {"id": "session-start-bootstrap", "type": "skill", "label": "Session Start Bootstrap"},
+    {"id": "environment-check", "type": "gate", "label": "Environment check"},
+    {"id": "context-source-list", "type": "contract", "label": "Context source list"},
+    {"id": "guardrails-initialization", "type": "policy", "label": "Guardrails initialization"},
+    {"id": "source-precedence", "type": "policy", "label": "Source precedence"},
+    {"id": "first-action", "type": "contract", "label": "First action"},
+    {"id": "startup-blocker", "type": "risk", "label": "Startup blocker"}
   ],
   "edges": [
-    {
-      "from": "session-start-bootstrap",
-      "to": "session-start-bootstrap:inputs",
-      "type": "requires"
-    },
-    {
-      "from": "session-start-bootstrap",
-      "to": "session-start-bootstrap:outputs",
-      "type": "produces"
-    },
-    {
-      "from": "session-start-bootstrap",
-      "to": "session-start-bootstrap:quality",
-      "type": "validated_by"
-    },
-    {
-      "from": "session-start-bootstrap",
-      "to": "session-start-bootstrap:ontology",
-      "type": "classified_as"
-    },
-    {
-      "from": "session-start-bootstrap",
-      "to": "session-start-bootstrap:evidence",
-      "type": "validated_by"
-    },
-    {
-      "from": "session-start-bootstrap",
-      "to": "session-start-bootstrap:antipattern",
-      "type": "guards_against"
-    }
+    {"from": "session-start-bootstrap", "to": "environment-check", "type": "requires"},
+    {"from": "session-start-bootstrap", "to": "context-source-list", "type": "requires"},
+    {"from": "context-source-list", "to": "guardrails-initialization", "type": "feeds"},
+    {"from": "source-precedence", "to": "guardrails-initialization", "type": "constrains"},
+    {"from": "startup-blocker", "to": "first-action", "type": "blocks"},
+    {"from": "first-action", "to": "environment-check", "type": "depends_on"}
   ]
 }

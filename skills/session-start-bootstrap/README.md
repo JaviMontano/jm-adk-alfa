@@ -1,30 +1,51 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: session-start-bootstrap
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
-
 # Session Start Bootstrap
 
->
+`session-start-bootstrap` creates a deterministic start packet before an agent
+does work. It verifies environment, loads minimal relevant context, initializes
+guardrails, records blockers, and names the first safe action.
 
 ## Triggers
 
-- session-start-bootstrap
+- `session start bootstrap`
+- `/session-start-bootstrap`
+- `start this session`
+- `bootstrap the repo`
+- `resume from handoff`
 
-## Allowed Tools
+Do not activate for generic project summaries or implementation requests unless
+the session needs an explicit startup gate.
 
-- Read
-- Write
-- Glob
-- Grep
-- Bash
+## Resources
 
-## Quick Use
+- `assets/bootstrap-contract.json` - required packet structure.
+- `assets/environment-policy.json` - repo/branch/PR/dirty-tree checks.
+- `assets/context-loading-policy.json` - minimal context loading rules.
+- `assets/guardrails-policy.json` - hard rules and stop conditions.
+- `assets/source-priority.json` - precedence for conflicting sources.
+- `scripts/check.sh` - offline fixture validation.
 
-Use this skill when the request clearly matches the triggers and requires the `session-start-bootstrap` capability.
+## Required Output
 
-## Output Format
+1. Environment
+2. Context Sources Loaded
+3. Active Guardrails
+4. Current State
+5. Blockers And Gaps
+6. Validation Baseline
+7. First Action
+8. Guardian Decision
 
-Markdown with summary, evidence, result, validation, and risks.
+## Validation
+
+```bash
+bash skills/session-start-bootstrap/scripts/check.sh
+python3 -B scripts/validate-skill-scripts.py --strict --run-checks --skill session-start-bootstrap
+python3 -B scripts/validate-skill-dod.py --skill session-start-bootstrap
+```
+
+## Safety Rules
+
+- Never start writes from a dirty tree without explicit scope resolution.
+- Never assume PR/CI/merge state without evidence.
+- Load only task-relevant context.
+- Preserve hard rules exactly.

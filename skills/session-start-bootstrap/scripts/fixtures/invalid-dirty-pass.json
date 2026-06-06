@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "skill": "session-start-bootstrap",
+  "environment": {
+    "repo": "/tmp/example",
+    "branch": "main",
+    "git_status": " M unrelated.md",
+    "status": "dirty",
+    "evidence_tag": "[CODE]"
+  },
+  "context_sources_loaded": [
+    {
+      "description": "Root instructions.",
+      "evidence_tag": "[DOC]"
+    }
+  ],
+  "active_guardrails": [
+    {
+      "description": "Pause on dirty tree.",
+      "evidence_tag": "[CONFIG]"
+    }
+  ],
+  "current_state": [],
+  "blockers_and_gaps": [],
+  "validation_baseline": [],
+  "first_action": "Start writing.",
+  "guardian_decision": {
+    "decision": "pass",
+    "rationale": "Incorrectly passes dirty environment.",
+    "evidence_tag": "[CONFIG]"
+  }
+}

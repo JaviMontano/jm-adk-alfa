@@ -1,0 +1,29 @@
+{
+  "schema": 1,
+  "skill": "session-start-bootstrap",
+  "markdown_sections": [
+    "Environment",
+    "Context Sources Loaded",
+    "Active Guardrails",
+    "Current State",
+    "Blockers And Gaps",
+    "Validation Baseline",
+    "First Action",
+    "Guardian Decision"
+  ],
+  "json_required_keys": [
+    "schema_version",
+    "skill",
+    "environment",
+    "context_sources_loaded",
+    "active_guardrails",
+    "current_state",
+    "blockers_and_gaps",
+    "validation_baseline",
+    "first_action",
+    "guardian_decision"
+  ],
+  "allowed_environment_statuses": ["clean", "dirty", "unknown"],
+  "allowed_validation_statuses": ["pass", "fail", "skipped", "unknown"],
+  "allowed_guardian_decisions": ["pass", "block"]
+}

@@ -1,0 +1,12 @@
+{
+  "schema": 1,
+  "skill": "session-start-bootstrap",
+  "precedence": [
+    "explicit user config for this session",
+    "repo instructions and active AGENTS or CLAUDE files",
+    "prior ReleasePacket or rehydration packet",
+    "tasklog, changelog, and review docs",
+    "local inference"
+  ],
+  "rule": "When sources conflict, preserve the conflict and apply the highest-priority source until the user resolves it."
+}

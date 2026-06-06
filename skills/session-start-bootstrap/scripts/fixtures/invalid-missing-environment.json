@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "skill": "session-start-bootstrap",
+  "context_sources_loaded": [],
+  "active_guardrails": [],
+  "current_state": [],
+  "blockers_and_gaps": [],
+  "validation_baseline": [],
+  "first_action": "Start work.",
+  "guardian_decision": {
+    "decision": "pass",
+    "rationale": "Incorrectly passes without environment.",
+    "evidence_tag": "[CONFIG]"
+  }
+}

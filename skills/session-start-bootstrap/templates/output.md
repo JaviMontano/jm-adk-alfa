@@ -1,28 +1,33 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: session-start-bootstrap
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
+# Session Start Bootstrap Packet
 
-# Session Start Bootstrap Output
+## Environment
 
-## Summary
+{environment}
 
-{summary}
+## Context Sources Loaded
 
-## Evidence
+{context_sources_loaded}
 
-{evidence}
+## Active Guardrails
 
-## Result
+{active_guardrails}
 
-{result}
+## Current State
 
-## Validation
+{current_state}
 
-{validation}
+## Blockers And Gaps
 
-## Risks and Limits
+{blockers_and_gaps}
 
-{risks}
+## Validation Baseline
+
+{validation_baseline}
+
+## First Action
+
+{first_action}
+
+## Guardian Decision
+
+{guardian_decision}
