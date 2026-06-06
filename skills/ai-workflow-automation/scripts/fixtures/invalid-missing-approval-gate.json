@@ -1,0 +1,30 @@
+{
+  "skill": "ai-workflow-automation",
+  "reference_date": "2026-06-06",
+  "summary": "High-risk AI drafting has no approval gate. [CONFIG]",
+  "actors": [
+    {"id": "ai-drafter", "type": "ai", "owner": "Support Ops"}
+  ],
+  "steps": [
+    {
+      "id": "S1",
+      "actor": "ai-drafter",
+      "action": "Draft and send response.",
+      "input_refs": ["ticket.json"],
+      "output": "sent-response",
+      "owner": "Support Ops",
+      "risk_level": "high",
+      "requires_approval": true,
+      "deterministic_check": "Response has source refs.",
+      "retry_limit": 1,
+      "fallback": "Manual triage.",
+      "prompt_contract": "Use ticket only.",
+      "output_contract": "JSON response draft."
+    }
+  ],
+  "approval_gates": [],
+  "handoffs": [],
+  "fallbacks": ["Manual triage. [CONFIG]"],
+  "validation": ["Missing approval gate should fail. [CONFIG]"],
+  "risks": ["Outbound response could bypass review. [INFERENCIA]"]
+}

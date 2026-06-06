@@ -1,0 +1,7 @@
+{
+  "schema": 1,
+  "max_retry_limit": 3,
+  "requires_fallback": true,
+  "forbidden_retry_language": ["until it works", "keep trying", "retry forever"],
+  "rule": "Retries are bounded and every failed step has a fallback path."
+}

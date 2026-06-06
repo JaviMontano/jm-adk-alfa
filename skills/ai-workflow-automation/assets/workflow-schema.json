@@ -1,0 +1,6 @@
+{
+  "schema": 1,
+  "required_step_fields": ["id", "actor", "action", "input_refs", "output", "owner", "risk_level", "requires_approval", "deterministic_check", "retry_limit", "fallback"],
+  "risk_levels": ["low", "medium", "high", "critical"],
+  "rule": "Every workflow step must be bounded, owned, checkable, and connected to inputs and outputs."
+}

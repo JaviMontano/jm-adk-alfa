@@ -1,0 +1,7 @@
+{
+  "schema": 1,
+  "report_type": "ai-workflow-automation-plan",
+  "required_top_level": ["skill", "reference_date", "summary", "actors", "steps", "approval_gates", "handoffs", "fallbacks", "validation", "risks"],
+  "required_ai_step_fields": ["prompt_contract", "output_contract"],
+  "rule": "Workflow plans must be deterministic, owner-bound, approval-gated, handoff-ready, and validatable offline."
+}

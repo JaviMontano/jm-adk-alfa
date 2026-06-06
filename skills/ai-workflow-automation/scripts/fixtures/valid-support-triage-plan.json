@@ -1,0 +1,85 @@
+{
+  "skill": "ai-workflow-automation",
+  "reference_date": "2026-06-06",
+  "summary": "Support triage is modeled as a gated AI workflow with human approval before outbound response. [CONFIG][INFERENCIA]",
+  "actors": [
+    {"id": "system-ticket", "type": "system", "owner": "Support Ops"},
+    {"id": "ai-classifier", "type": "ai", "owner": "Support Ops"},
+    {"id": "support-lead", "type": "human", "owner": "Support Lead", "decision_authority": "Approve P0 escalation and outbound replies"}
+  ],
+  "steps": [
+    {
+      "id": "S1",
+      "actor": "system-ticket",
+      "action": "Load ticket JSON and escalation policy.",
+      "input_refs": ["tickets/inbound/*.json", "docs/support/escalation-policy.md"],
+      "output": "normalized-ticket",
+      "owner": "Support Ops",
+      "risk_level": "low",
+      "requires_approval": false,
+      "deterministic_check": "Ticket JSON validates against required fields.",
+      "retry_limit": 0,
+      "fallback": "Block workflow and request valid ticket fixture."
+    },
+    {
+      "id": "S2",
+      "actor": "ai-classifier",
+      "action": "Classify ticket severity and draft response.",
+      "input_refs": ["normalized-ticket", "docs/templates/triage-response.md"],
+      "output": "severity-label-and-response-draft",
+      "owner": "Support Ops",
+      "risk_level": "high",
+      "requires_approval": true,
+      "deterministic_check": "Output includes severity, rationale, source refs, and response draft fields.",
+      "retry_limit": 1,
+      "fallback": "Hand off to support lead with failed classification packet.",
+      "prompt_contract": "Use ticket fields and policy excerpts only.",
+      "output_contract": "JSON object with severity, rationale, source_refs, draft_response."
+    },
+    {
+      "id": "S3",
+      "actor": "support-lead",
+      "action": "Approve escalation and outbound response.",
+      "input_refs": ["severity-label-and-response-draft"],
+      "output": "approval-decision",
+      "owner": "Support Lead",
+      "risk_level": "high",
+      "requires_approval": true,
+      "deterministic_check": "Decision is one of approved, rejected, needs-info.",
+      "retry_limit": 0,
+      "fallback": "Manual triage without outbound automation."
+    }
+  ],
+  "approval_gates": [
+    {
+      "id": "G1",
+      "before_step": "S2",
+      "approver": "Support Lead",
+      "criteria": ["P0 escalation requires human review", "Outbound response requires approval"],
+      "decision_values": ["approved", "rejected", "needs-info"],
+      "evidence_tag": "[DOC]"
+    },
+    {
+      "id": "G2",
+      "before_step": "S3",
+      "approver": "Support Lead",
+      "criteria": ["Approval decision must be recorded before send"],
+      "decision_values": ["approved", "rejected", "needs-info"],
+      "evidence_tag": "[CONFIG]"
+    }
+  ],
+  "handoffs": [
+    {
+      "id": "H1",
+      "from_actor": "ai-classifier",
+      "to_actor": "support-lead",
+      "artifact": "failed-classification-packet",
+      "acceptance_criteria": ["ticket id present", "failure reason present", "policy refs present"],
+      "completion_signal": "support lead records manual decision",
+      "evidence_tag": "[CONFIG]"
+    }
+  ],
+  "fallbacks": ["Failed AI classification hands off to support lead after one retry. [CONFIG]"],
+  "validation": ["All high-risk steps have approval gates and bounded retry. [CONFIG]"],
+  "risks": ["Classifier quality requires labeled-ticket regression before production. [INFERENCIA]"]
+}

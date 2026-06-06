@@ -1,0 +1,7 @@
+{
+  "schema": 1,
+  "actors": ["human", "ai", "system"],
+  "ai_required_fields": ["prompt_contract", "output_contract"],
+  "human_required_fields": ["owner", "decision_authority"],
+  "rule": "AI steps require explicit input and output contracts; human approval steps require accountable authority."
+}

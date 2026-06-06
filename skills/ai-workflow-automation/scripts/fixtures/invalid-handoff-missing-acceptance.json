@@ -1,0 +1,35 @@
+{
+  "skill": "ai-workflow-automation",
+  "reference_date": "2026-06-06",
+  "summary": "Handoff has no acceptance criteria. [CONFIG]",
+  "actors": [
+    {"id": "ai-reviewer", "type": "ai", "owner": "Ops"},
+    {"id": "human-lead", "type": "human", "owner": "Lead", "decision_authority": "Accept handoff"}
+  ],
+  "steps": [
+    {
+      "id": "S1",
+      "actor": "ai-reviewer",
+      "action": "Review input.",
+      "input_refs": ["input.json"],
+      "output": "review-packet",
+      "owner": "Ops",
+      "risk_level": "high",
+      "requires_approval": true,
+      "deterministic_check": "Packet has required fields.",
+      "retry_limit": 1,
+      "fallback": "Hand off to human lead.",
+      "prompt_contract": "Use input only.",
+      "output_contract": "JSON review packet."
+    }
+  ],
+  "approval_gates": [
+    {"id": "G1", "before_step": "S1", "approver": "Lead", "criteria": ["Review required"], "decision_values": ["approved", "rejected", "needs-info"], "evidence_tag": "[CONFIG]"}
+  ],
+  "handoffs": [
+    {"id": "H1", "from_actor": "ai-reviewer", "to_actor": "human-lead", "artifact": "review-packet", "acceptance_criteria": [], "completion_signal": "lead accepts", "evidence_tag": "[CONFIG]"}
+  ],
+  "fallbacks": ["Human lead accepts handoff. [CONFIG]"],
+  "validation": ["Handoff acceptance criteria missing. [CONFIG]"],
+  "risks": ["Handoff may be ambiguous. [INFERENCIA]"]
+}
