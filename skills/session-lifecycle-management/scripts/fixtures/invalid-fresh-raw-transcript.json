@@ -1,0 +1,11 @@
+{
+  "schema": "jm-labs.session-lifecycle-management.report.v1",
+  "skill": "session-lifecycle-management",
+  "transition": "fresh",
+  "reason": "Critical stale result requires fresh.",
+  "context": {"goal": "Continue fix", "goal_branchable": false, "shares_mutable_state": false, "evidence_tag": "[CONFIG]"},
+  "staleness_results": [{"result_id": "read-auth-token", "source": "auth/token.py", "signal_type": "path", "critical": true, "status": "stale", "evidence_tag": "[CÓDIGO]"}],
+  "typed_summary": {"goal": "Continue fix", "decisions": [], "open_questions": [], "verified_facts": [], "stale_dropped": ["auth/token.py"], "raw_transcript_allowed": true},
+  "forks": [],
+  "validation": {"status": "pass", "checks": ["assets", "deterministic_scripts", "quality_criteria", "staleness_detected", "typed_summary", "transition_traced", "fork_isolation", "evidence_required"]}
+}

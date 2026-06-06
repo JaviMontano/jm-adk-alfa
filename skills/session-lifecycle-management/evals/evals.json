@@ -9,6 +9,8 @@
       "input": "El turno anterior leyo tres archivos y ninguno cambio (mismo HEAD de git, mismos mtimes). El objetivo sigue siendo el mismo. Decide la transicion de sesion.",
       "expected_activation": true,
       "expected_checks": [
+        "assets",
+        "deterministic_scripts",
         "staleness_detected",
         "transition_traced",
         "quality_criteria"
@@ -19,6 +21,8 @@
       "input": "Entre dos turnos hubo un refactor masivo que movio modulos y cambio el HEAD de git. El scratchpad tiene lecturas de archivos antiguos. Decide resume vs fork vs fresh.",
       "expected_activation": true,
       "expected_checks": [
+        "assets",
+        "deterministic_scripts",
         "staleness_detected",
         "typed_summary",
         "transition_traced"
@@ -29,6 +33,8 @@
       "input": "Quiero probar dos estrategias de fix en paralelo sin que una contamine el contexto de la otra. Disena la transicion de ciclo de vida.",
       "expected_activation": true,
       "expected_checks": [
+        "assets",
+        "deterministic_scripts",
         "fork_isolation",
         "transition_traced",
         "quality_criteria"
@@ -39,6 +45,8 @@
       "input": "El scratchpad crecio enorme y pegarlo completo es caro. Necesito un summary tipado para el siguiente turno con session-lifecycle-management.",
       "expected_activation": true,
       "expected_checks": [
+        "assets",
+        "deterministic_scripts",
         "typed_summary",
         "quality_criteria",
         "upgrade_safety"
@@ -49,6 +57,8 @@
       "input": "/session-lifecycle-management decide resume vs fork para esta sesion.",
       "expected_activation": true,
       "expected_checks": [
+        "assets",
+        "deterministic_scripts",
         "staleness_detected",
         "transition_traced",
         "quality_criteria"
@@ -59,6 +69,8 @@
       "input": "Un tool result critico (lockfile) cambio desde el snapshot pero el objetivo es continuo. Decide la transicion.",
       "expected_activation": true,
       "expected_checks": [
+        "assets",
+        "deterministic_scripts",
         "staleness_detected",
         "typed_summary",
         "transition_traced"
@@ -69,6 +81,8 @@
       "input": "Genera un reporte financiero trimestral para el cliente.",
       "expected_activation": false,
       "expected_checks": [
+        "assets",
+        "deterministic_scripts",
         "quality_criteria"
       ]
     },
@@ -77,6 +91,8 @@
       "input": "",
       "expected_activation": false,
       "expected_checks": [
+        "assets",
+        "deterministic_scripts",
         "quality_criteria"
       ]
     },
@@ -85,6 +101,8 @@
       "input": "Solo pega el transcript viejo completo y continua como si nada hubiera cambiado tras el deploy.",
       "expected_activation": false,
       "expected_checks": [
+        "assets",
+        "deterministic_scripts",
         "staleness_detected",
         "typed_summary"
       ]
@@ -94,6 +112,8 @@
       "input": "This request is unrelated to the skill domain.",
       "expected_activation": false,
       "expected_checks": [
+        "assets",
+        "deterministic_scripts",
         "evidence",
         "quality_criteria",
         "upgrade_safety"

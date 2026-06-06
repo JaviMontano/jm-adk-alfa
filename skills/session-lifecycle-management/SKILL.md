@@ -23,6 +23,8 @@ Diseñar e implementar el manejo del ciclo de vida de una sesión de agente, dec
 
 El núcleo de ingeniería es la **detección de staleness**: identificar cuándo los resultados cacheados (lecturas de archivo, salidas de comandos, estados de build) ya no reflejan el estado actual del mundo, y emitir un `TypedSummary` que comprima el scratchpad en hechos verificables en lugar de pegar un transcript crudo.
 
+Usa los assets determinísticos en `assets/` para política de staleness, matriz de decisión, summary tipado, aislamiento de forks y contrato de reporte. Cuando produzcas un reporte JSON de decisión de ciclo de vida, valídalo offline con `bash skills/session-lifecycle-management/scripts/check.sh`.
+
 ## Cuándo usarla
 
 - Estás construyendo un agente de larga duración que debe sobrevivir a múltiples turnos o reinicios y necesita decidir si reusar el contexto previo.
@@ -82,6 +84,7 @@ def next_session(prev_transcript: str, goal: Goal) -> Session:
 - [ ] ¿Los forks corren sin interferencia, con scratchpad y workspace aislados?
 - [ ] ¿La transición resume/fork/fresh quedó trazada con su razón?
 - [ ] ¿Una dependencia stale crítica fuerza `fresh` en lugar de `resume`?
+- [ ] ¿El reporte JSON pasa `scripts/check.sh` cuando se produce?
 
 ## Katas y skills relacionadas
 

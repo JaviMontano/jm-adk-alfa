@@ -1,0 +1,10 @@
+{
+  "schema": 1,
+  "skill": "session-lifecycle-management",
+  "transitions": ["resume", "fork", "fresh"],
+  "rules": [
+    "resume requires no critical stale tool results.",
+    "fork requires a branchable goal and no shared mutable state.",
+    "fresh is required when any critical tool result is stale."
+  ]
+}
