@@ -1,28 +1,28 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: workspace-governance
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
+# Workspace Governance Report
 
-# Workspace Governance Output
+## Workspace Root
 
-## Summary
+Root: `{workspace_root}`
+Gitignored: `{workspace_ignored}`
 
-{summary}
+## Directory Inventory
 
-## Evidence
+| path | type | has README |
+|------|------|------------|
+| `{path}` | `{type}` | `{has_readme}` |
 
-{evidence}
+## Sessions
 
-## Result
+| path | age days | stale review |
+|------|----------|--------------|
+| `{path}` | `{age_days}` | `{stale_review_required}` |
 
-{result}
+## Task Bridges
 
-## Validation
+| task id | path | tasklog match |
+|---------|------|---------------|
+| `{task_id}` | `{path}` | `{matches_tasklog}` |
 
-{validation}
+## Actions
 
-## Risks and Limits
-
-{risks}
+List create, update `.gitignore`, create task bridge, flag stale, or no-op actions.

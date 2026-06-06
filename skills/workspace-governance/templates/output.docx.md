@@ -1,8 +1,17 @@
-# DOCX Template — Workspace Governance
-## Structure
-- Title: "Workspace Governance Report"
-- Section 1: Executive Summary
-- Section 2: Findings / Deliverables
-- Section 3: Recommendations
-- Footer: "MetodologIA — {{date}}"
-## Formatting: Poppins headings, Montserrat body, JetBrains Mono code
+# Workspace Governance — DOCX Template
+
+## Document Structure
+- Title: Workspace Governance Report
+- Author: JM Labs
+- Date: {{DATE}}
+
+## Sections
+- Workspace root and gitignore
+- Directory inventory
+- Sessions
+- Task bridges
+- Estandares
+- Safe actions
+- Guardian validation
+
+Use offline system fonts and JM Labs colors: Navy #122562, Gold #FFD700, Blue #137DC5.

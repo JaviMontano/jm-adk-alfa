@@ -1,0 +1,10 @@
+{
+  "schema": 1,
+  "skill": "workspace-governance",
+  "stale_after_days": 30,
+  "rules": [
+    "Sessions older than 30 days must be flagged for review.",
+    "Stale sessions must not be deleted automatically.",
+    "Cleanup requires explicit user approval outside this report."
+  ]
+}

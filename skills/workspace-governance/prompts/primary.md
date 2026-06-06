@@ -15,30 +15,22 @@ triad:
 
 | Parameter | Description | Required | Filled By |
 |-----------|-------------|----------|-----------|
-| `{{task}}` | What to accomplish | Yes | User input |
-| `{{context}}` | Background and constraints | Yes | User or codebase |
-| `{{constraints}}` | Additional rules | No | Guardrails JSON |
-| `{{depth}}` | quick / standard / deep | No | Auto |
-| `{{output_format}}` | html / docx / xlsx / md | No | Auto |
+| `{{workspace_inventory}}` | Existing workspace directories and files | Yes | Workspace |
+| `{{gitignore_state}}` | Whether `workspace/` is ignored | Yes | Repo |
+| `{{tasklog_items}}` | Open tasklog IDs requiring bridges | No | Workspace |
+| `{{output_format}}` | md or JSON governance report | No | Auto |
 
 ## Execution
 
-1. **Load knowledge**: Read `knowledge/body-of-knowledge.md`
-2. **Check guardrails**: Read `references/guardrails/*.json`
-3. **Lead** (`workspace-governance-lead`): Execute SKILL.md Steps 1-4 for `{{task}}`
-   - Discover → Analyze → Execute → Validate
-   - Apply evidence tags on all claims
-4. **Support** (`workspace-governance-support`): Review for cross-cutting concerns
-   - Edge cases, security, accessibility, performance
-5. **Guardian** (`workspace-governance-guardian`): Validate
-   - Evidence tags complete
-   - Quality gate met
-   - Constitution XIII + XIV respected
-   - Output exceeds expectations
+1. Confirm request is about `workspace/`, session folders, task bridges, estandares, or gitignored user layer.
+2. Inspect `.gitignore`, workspace inventory, and tasklog evidence.
+3. Validate root, README coverage, dated sessions, task bridges, and stale-session flags.
+4. Propose safe actions under `workspace/` or `.gitignore`.
+5. Validate JSON reports with `scripts/check.sh`.
 
 ## Output
 
-- Primary deliverable for `{{task}}` in `{{output_format}}`
+- Workspace governance report
 - Evidence tags on every claim
-- Recommendations beyond the ask
-- Confidence score (>= 0.95)
+- Safe action plan
+- Guardian pass/block decision

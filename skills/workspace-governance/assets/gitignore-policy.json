@@ -1,0 +1,9 @@
+{
+  "schema": 1,
+  "skill": "workspace-governance",
+  "required_ignored_path": "workspace/",
+  "rules": [
+    "workspace/ must be ignored before pass status.",
+    "If missing, the report must include an update_gitignore action targeting .gitignore."
+  ]
+}

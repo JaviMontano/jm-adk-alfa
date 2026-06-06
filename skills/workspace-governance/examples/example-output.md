@@ -1,18 +1,15 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: workspace-governance
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
-
-# Example Output
+# Workspace Governance Report
 
 ## Summary
 
-Example output for `workspace-governance`.
+`workspace/` exists but must be added to `.gitignore`. [CÓDIGO]
+Task bridge `workspace/tasks/TL-042-api-cleanup/` should be created with `README.md`. [CONFIG]
+Session `workspace/2026-04-15-old-audit/` is stale and should be flagged for review, not deleted automatically. [CÓDIGO]
+Session `workspace/today-notes/` has invalid naming and should be renamed or recreated as dated session folder. [CÓDIGO]
 
 ## Validation
 
-- Skill activated intentionally.
-- Output follows the requested format.
-- Risks and assumptions are explicit.
+- Gitignore policy: block until update action exists. [CONFIG]
+- Session contract: one invalid session name detected. [CÓDIGO]
+- Task bridge contract: one missing bridge for open task. [CÓDIGO]
+- Stale review: 52-day session flagged. [CÓDIGO]

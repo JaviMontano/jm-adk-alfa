@@ -1,0 +1,11 @@
+{
+  "schema": "jm-labs.workspace-governance.report.v1",
+  "skill": "workspace-governance",
+  "workspace_root": "workspace/",
+  "gitignore": {"workspace_ignored": false, "source": ".gitignore", "evidence_tag": "[CÓDIGO]"},
+  "directories": [{"path": "workspace/", "type": "root", "has_readme": true, "evidence_tag": "[CÓDIGO]"}],
+  "sessions": [],
+  "task_bridges": [],
+  "actions": [{"action": "update_gitignore", "target": ".gitignore", "tracked": false, "rationale": "Add workspace/.", "evidence_tag": "[CONFIG]"}],
+  "validation": {"status": "pass", "checks": ["assets", "deterministic_scripts", "quality_criteria", "gitignore_policy", "session_contract", "task_bridge_contract", "stale_review", "evidence_required"]}
+}

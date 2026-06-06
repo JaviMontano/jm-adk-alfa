@@ -1,0 +1,26 @@
+{
+  "schema": "jm-labs.workspace-governance.report.v1",
+  "skill": "workspace-governance",
+  "workspace_root": "workspace/",
+  "gitignore": {
+    "workspace_ignored": true,
+    "source": ".gitignore",
+    "evidence_tag": "[CONFIG]"
+  },
+  "directories": [
+    {"path": "workspace/", "type": "root", "has_readme": true, "evidence_tag": "[CONFIG]"},
+    {"path": "workspace/tasks/", "type": "tasks", "has_readme": true, "evidence_tag": "[CONFIG]"}
+  ],
+  "sessions": [
+    {"path": "workspace/2026-06-06-session-start/", "age_days": 0, "has_readme": true, "stale_review_required": false, "evidence_tag": "[CONFIG]"}
+  ],
+  "task_bridges": [],
+  "actions": [
+    {"action": "create", "target": "workspace/estandares/", "tracked": false, "rationale": "Create missing local standards area.", "evidence_tag": "[CONFIG]"},
+    {"action": "create_readme", "target": "workspace/estandares/README.md", "tracked": false, "rationale": "Document standards area purpose.", "evidence_tag": "[CONFIG]"}
+  ],
+  "validation": {
+    "status": "pass",
+    "checks": ["assets", "deterministic_scripts", "quality_criteria", "gitignore_policy", "session_contract", "task_bridge_contract", "stale_review", "evidence_required"]
+  }
+}

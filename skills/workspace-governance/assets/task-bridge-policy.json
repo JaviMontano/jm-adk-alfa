@@ -1,0 +1,10 @@
+{
+  "schema": 1,
+  "skill": "workspace-governance",
+  "task_bridge_pattern": "^workspace/tasks/TL-[0-9]{3}-[a-z0-9-]+/$",
+  "rules": [
+    "Task bridges must map to tasklog IDs.",
+    "Task bridge folders require README.md.",
+    "Missing bridge for an open task requires a create_task_bridge action."
+  ]
+}

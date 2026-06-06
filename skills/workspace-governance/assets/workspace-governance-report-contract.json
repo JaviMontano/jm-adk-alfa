@@ -1,0 +1,24 @@
+{
+  "schema": "jm-labs.workspace-governance.report.v1",
+  "required_top_level_fields": [
+    "schema",
+    "skill",
+    "workspace_root",
+    "gitignore",
+    "directories",
+    "sessions",
+    "task_bridges",
+    "actions",
+    "validation"
+  ],
+  "required_validation_checks": [
+    "assets",
+    "deterministic_scripts",
+    "quality_criteria",
+    "gitignore_policy",
+    "session_contract",
+    "task_bridge_contract",
+    "stale_review",
+    "evidence_required"
+  ]
+}

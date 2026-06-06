@@ -22,6 +22,8 @@ allowed-tools:
 
 Scaffolds and maintains the `workspace/` directory — the user's local interaction layer that is gitignored. Creates dated session folders, task bridges (connecting `tasklog.md` to working files), and manages the `estandares/` reference area. Ensures workspace structure is canonical and never pollutes the version-controlled repository. [EXPLICIT]
 
+Use deterministic assets in `assets/` for gitignore policy, session naming, task bridges, estandares, stale review, and report shape. When producing a JSON workspace governance report, validate it offline with `bash skills/workspace-governance/scripts/check.sh`. [EXPLICIT]
+
 ## Procedure
 
 ### Step 1: Discover
@@ -77,6 +79,8 @@ Scaffolds and maintains the `workspace/` directory — the user's local interact
 - [ ] Task bridges connect to tasklog.md items
 - [ ] Stale sessions (>30 days) flagged
 - [ ] estandares/ directory present
+- [ ] No workspace action targets paths outside `workspace/` except `.gitignore`
+- [ ] JSON report passes `scripts/check.sh` when produced
 
 ## Anti-Patterns
 

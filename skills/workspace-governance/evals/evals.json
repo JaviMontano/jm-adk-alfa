@@ -1,9 +1,76 @@
-[
-  {"id": "workspace-governance-happy-path", "type": "happy_path", "input": "Run workspace governance on this project", "expected_behavior": "Skill activates and produces the expected workspace governance output following the defined process", "tags": ["basic", "activation"]},
-  {"id": "workspace-governance-explicit-trigger", "type": "happy_path", "input": "Apply workspace governance analysis", "expected_behavior": "Skill recognizes the trigger phrase and executes the workspace governance workflow", "tags": ["trigger", "recognition"]},
-  {"id": "workspace-governance-with-context", "type": "happy_path", "input": "Apply workspace governance to analyze the current codebase with detailed output", "expected_behavior": "Skill produces comprehensive workspace governance analysis with evidence-tagged findings", "tags": ["detailed", "comprehensive"]},
-  {"id": "workspace-governance-minimal-input", "type": "happy_path", "input": "Quick workspace governance", "expected_behavior": "Skill activates with minimal input, applies reasonable defaults", "tags": ["minimal", "defaults"]},
-  {"id": "workspace-governance-false-positive", "type": "false_positive", "input": "What is the weather forecast for tomorrow?", "expected_behavior": "Skill should NOT activate — this input has no relation to workspace governance", "tags": ["false_positive", "should-not-activate"]},
-  {"id": "workspace-governance-edge-empty-input", "type": "edge_case", "input": "Run workspace governance but I have no files or documentation yet", "expected_behavior": "Skill handles gracefully — requests minimum viable input or produces gap analysis", "tags": ["edge_case", "empty-input", "boundary"]},
-  {"id": "workspace-governance-edge-conflicting", "type": "edge_case", "input": "Apply workspace governance but requirements contradict each other", "expected_behavior": "Skill detects contradiction, flags with [OPEN] tag, proposes resolution", "tags": ["edge_case", "conflict", "corner"]}
-]
+{
+  "schema": 1,
+  "skill": "workspace-governance",
+  "cases": [
+    {
+      "id": "workspace-governance-full-audit",
+      "type": "happy_path",
+      "input": "Audit workspace tree with sessions, tasks, estandares, and .gitignore evidence.",
+      "expected_behavior": "Reports gitignore status, README coverage, session naming, task bridges, stale review, and safe actions.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "gitignore_policy", "session_contract", "task_bridge_contract"]
+    },
+    {
+      "id": "workspace-governance-scaffold",
+      "type": "happy_path",
+      "input": "Scaffold workspace root, tasks, and estandares directories.",
+      "expected_behavior": "Proposes create actions only under workspace/ and .gitignore update if needed.",
+      "expected_checks": ["update_plan", "gitignore_policy", "quality_criteria"]
+    },
+    {
+      "id": "workspace-governance-task-bridge",
+      "type": "happy_path",
+      "input": "Create bridge for open task TL-042 API cleanup.",
+      "expected_behavior": "Uses workspace/tasks/TL-042-api-cleanup/ and requires README plus tasklog match.",
+      "expected_checks": ["task_bridge_contract", "evidence_required"]
+    },
+    {
+      "id": "workspace-governance-stale-session",
+      "type": "edge_case",
+      "input": "Session folder is 45 days old.",
+      "expected_behavior": "Flags stale review instead of deleting the folder automatically.",
+      "expected_checks": ["stale_review", "quality_criteria"]
+    },
+    {
+      "id": "workspace-governance-missing-gitignore",
+      "type": "degradation",
+      "input": "workspace/ exists but is not ignored.",
+      "expected_behavior": "Blocks pass status until .gitignore update action is present.",
+      "expected_checks": ["deterministic_scripts", "gitignore_policy"]
+    },
+    {
+      "id": "workspace-governance-invalid-session-name",
+      "type": "degradation",
+      "input": "Create workspace/today-session/ as a session folder.",
+      "expected_behavior": "Rejects invalid session naming.",
+      "expected_checks": ["deterministic_scripts", "session_contract"]
+    },
+    {
+      "id": "workspace-governance-missing-readme",
+      "type": "degradation",
+      "input": "Workspace subfolder has no README.md.",
+      "expected_behavior": "Blocks pass status until README action exists.",
+      "expected_checks": ["deterministic_scripts", "quality_criteria"]
+    },
+    {
+      "id": "workspace-governance-unsafe-action",
+      "type": "degradation",
+      "input": "Write workspace artifact into src/ or docs/.",
+      "expected_behavior": "Rejects action target outside workspace/ or .gitignore.",
+      "expected_checks": ["deterministic_scripts", "update_plan"]
+    },
+    {
+      "id": "workspace-governance-false-positive",
+      "type": "false_positive",
+      "input": "Explain the concept of a collaborative workspace.",
+      "expected_behavior": "Does not activate because no repo workspace governance action is requested.",
+      "expected_checks": ["activation_boundary", "quality_criteria"]
+    },
+    {
+      "id": "workspace-governance-script-contract",
+      "type": "script_contract",
+      "input": "Validate workspace governance JSON fixtures offline.",
+      "expected_behavior": "Accepts valid governance reports and rejects unsafe gitignore, session, README, stale, and action cases.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria"]
+    }
+  ]
+}

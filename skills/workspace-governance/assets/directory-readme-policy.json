@@ -1,0 +1,8 @@
+{
+  "schema": 1,
+  "skill": "workspace-governance",
+  "rules": [
+    "Every workspace directory in the report must have README.md or an action to create it.",
+    "README files preserve purpose, inputs, outputs, and related task IDs."
+  ]
+}
