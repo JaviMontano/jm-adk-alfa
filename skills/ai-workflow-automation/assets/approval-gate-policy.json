@@ -1,0 +1,8 @@
+{
+  "schema": 1,
+  "required_for_risk": ["high", "critical"],
+  "required_for_external_effect": true,
+  "decision_values": ["approved", "rejected", "needs-info"],
+  "required_gate_fields": ["id", "before_step", "approver", "criteria", "decision_values", "evidence_tag"],
+  "rule": "High-risk, critical, irreversible, or external-effect steps require a human approval gate before execution."
+}

@@ -1,9 +1,88 @@
-[
-  {"id": "ai-workflow-automation-happy-path", "type": "happy_path", "input": "Run ai workflow automation on this project", "expected_behavior": "Skill activates and produces the expected ai workflow automation output following the defined process", "tags": ["basic", "activation"]},
-  {"id": "ai-workflow-automation-explicit-trigger", "type": "happy_path", "input": "Apply ai workflow automation analysis", "expected_behavior": "Skill recognizes the trigger phrase and executes the ai workflow automation workflow", "tags": ["trigger", "recognition"]},
-  {"id": "ai-workflow-automation-with-context", "type": "happy_path", "input": "Apply ai workflow automation to analyze the current codebase with detailed output", "expected_behavior": "Skill produces comprehensive ai workflow automation analysis with evidence-tagged findings", "tags": ["detailed", "comprehensive"]},
-  {"id": "ai-workflow-automation-minimal-input", "type": "happy_path", "input": "Quick ai workflow automation", "expected_behavior": "Skill activates with minimal input, applies reasonable defaults", "tags": ["minimal", "defaults"]},
-  {"id": "ai-workflow-automation-false-positive", "type": "false_positive", "input": "What is the weather forecast for tomorrow?", "expected_behavior": "Skill should NOT activate — this input has no relation to ai workflow automation", "tags": ["false_positive", "should-not-activate"]},
-  {"id": "ai-workflow-automation-edge-empty-input", "type": "edge_case", "input": "Run ai workflow automation but I have no files or documentation yet", "expected_behavior": "Skill handles gracefully — requests minimum viable input or produces gap analysis", "tags": ["edge_case", "empty-input", "boundary"]},
-  {"id": "ai-workflow-automation-edge-conflicting", "type": "edge_case", "input": "Apply ai workflow automation but requirements contradict each other", "expected_behavior": "Skill detects contradiction, flags with [OPEN] tag, proposes resolution", "tags": ["edge_case", "conflict", "corner"]}
-]
+{
+  "schema": 1,
+  "skill": "ai-workflow-automation",
+  "cases": [
+    {
+      "id": "support-triage-happy-path",
+      "type": "happy_path",
+      "input": "Design an LLM workflow for support triage with human approval before customer replies.",
+      "expected_behavior": "Produces actor map, step graph, AI contracts, approval gates, handoffs, fallbacks, validation, and risks.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria"],
+      "tags": ["approval", "handoff"]
+    },
+    {
+      "id": "invoice-review-approval",
+      "type": "happy_path",
+      "input": "Automate invoice anomaly detection but require finance approval before payment release.",
+      "expected_behavior": "Flags payment release as high risk and places an approval gate before external effect.",
+      "expected_checks": ["assets", "quality_criteria"],
+      "tags": ["external-effect", "finance"]
+    },
+    {
+      "id": "ai-output-contract-required",
+      "type": "edge_case",
+      "input": "Let AI classify leads and pass them to Sales when confident.",
+      "expected_behavior": "Requires AI input contract, output schema, deterministic confidence replacement, approval/escalation criteria, and fallback.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria"],
+      "tags": ["ai-contract"]
+    },
+    {
+      "id": "unbounded-retry-degradation",
+      "type": "degradation",
+      "input": "Retry the AI step until it works, then send the result.",
+      "expected_behavior": "Rejects unbounded retry and replaces it with bounded retry plus fallback and approval.",
+      "expected_checks": ["deterministic_scripts", "quality_criteria"],
+      "tags": ["retry", "degradation"]
+    },
+    {
+      "id": "missing-human-owner",
+      "type": "edge_case",
+      "input": "Escalate risky outputs to someone for approval.",
+      "expected_behavior": "Blocks the plan until approver role or team is explicit.",
+      "expected_checks": ["quality_criteria"],
+      "tags": ["owner", "approval"]
+    },
+    {
+      "id": "false-positive-weather",
+      "type": "false_positive",
+      "input": "What is the weather forecast for tomorrow?",
+      "expected_behavior": "Does not activate because no AI workflow automation is requested.",
+      "expected_checks": ["quality_criteria"],
+      "tags": ["false-positive"]
+    },
+    {
+      "id": "false-negative-human-ai-handoff",
+      "type": "false_negative",
+      "input": "Create a process where AI drafts and a human approves each response.",
+      "expected_behavior": "Activates even without the exact trigger phrase because the request is LLM workflow plus approval gate design.",
+      "expected_checks": ["assets", "quality_criteria"],
+      "tags": ["semantic-trigger"]
+    },
+    {
+      "id": "minimal-input-boundary",
+      "type": "edge_case",
+      "input": "Automate the review workflow with AI.",
+      "expected_behavior": "Requests minimum viable inputs: trigger, actors, source artifacts, approval owner, output contract, and risk boundary.",
+      "expected_checks": ["quality_criteria"],
+      "tags": ["minimal"]
+    },
+    {
+      "id": "large-workflow-boundary",
+      "type": "boundary",
+      "input": "Design a 40-step AI workflow but keep the deliverable reviewable.",
+      "expected_behavior": "Summarizes low-risk repeated steps, expands high-risk gates and handoffs, and keeps validation deterministic.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria"],
+      "tags": ["scale", "bounded-output"]
+    }
+  ],
+  "assets": ["assets/manifest.json", "assets/report-contract.json"],
+  "deterministic_scripts": ["scripts/check.sh", "scripts/validate_ai_workflow_plan.py"],
+  "quality_criteria": [
+    "actor map and step graph",
+    "AI input and output contracts",
+    "human approval gates before high-risk steps",
+    "handoff packets with acceptance criteria",
+    "bounded retry and fallback",
+    "offline validation evidence"
+  ]
+}

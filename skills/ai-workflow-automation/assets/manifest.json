@@ -1,0 +1,48 @@
+{
+  "schema": 1,
+  "skill": "ai-workflow-automation",
+  "assets": [
+    {
+      "path": "assets/README.md",
+      "type": "documentation",
+      "purpose": "Describe deterministic AI workflow automation assets.",
+      "used_by": ["SKILL.md", "README.md"]
+    },
+    {
+      "path": "assets/workflow-schema.json",
+      "type": "schema",
+      "purpose": "Define workflow plan and step graph fields.",
+      "used_by": ["SKILL.md", "scripts/validate_ai_workflow_plan.py"]
+    },
+    {
+      "path": "assets/actor-taxonomy.json",
+      "type": "taxonomy",
+      "purpose": "Define allowed actor types and responsibilities.",
+      "used_by": ["SKILL.md", "scripts/validate_ai_workflow_plan.py"]
+    },
+    {
+      "path": "assets/approval-gate-policy.json",
+      "type": "policy",
+      "purpose": "Define approval gate requirements and decision values.",
+      "used_by": ["SKILL.md", "scripts/validate_ai_workflow_plan.py"]
+    },
+    {
+      "path": "assets/handoff-policy.json",
+      "type": "policy",
+      "purpose": "Define human-AI handoff packet requirements.",
+      "used_by": ["SKILL.md", "scripts/validate_ai_workflow_plan.py"]
+    },
+    {
+      "path": "assets/failure-policy.json",
+      "type": "policy",
+      "purpose": "Define bounded retries and fallback paths.",
+      "used_by": ["SKILL.md", "scripts/validate_ai_workflow_plan.py"]
+    },
+    {
+      "path": "assets/report-contract.json",
+      "type": "schema",
+      "purpose": "Define the offline-validatable workflow plan.",
+      "used_by": ["SKILL.md", "examples/example-output.md", "scripts/validate_ai_workflow_plan.py"]
+    }
+  ]
+}

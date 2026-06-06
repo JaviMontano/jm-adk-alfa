@@ -1,0 +1,85 @@
+{
+  "skill": "ai-workflow-automation",
+  "reference_date": "2026-06-06",
+  "summary": "Invoice anomaly automation includes AI review and finance approval before payment release. [CONFIG][INFERENCIA]",
+  "actors": [
+    {"id": "invoice-system", "type": "system", "owner": "Finance Ops"},
+    {"id": "ai-reviewer", "type": "ai", "owner": "Finance Ops"},
+    {"id": "finance-approver", "type": "human", "owner": "Controller", "decision_authority": "Approve or reject payment release"}
+  ],
+  "steps": [
+    {
+      "id": "S1",
+      "actor": "invoice-system",
+      "action": "Load invoice and vendor policy fixture.",
+      "input_refs": ["fixtures/invoices/*.json", "docs/finance/vendor-policy.md"],
+      "output": "normalized-invoice",
+      "owner": "Finance Ops",
+      "risk_level": "medium",
+      "requires_approval": false,
+      "deterministic_check": "Invoice fixture has vendor_id, amount, currency, due_date.",
+      "retry_limit": 0,
+      "fallback": "Block invoice workflow and request valid fixture."
+    },
+    {
+      "id": "S2",
+      "actor": "ai-reviewer",
+      "action": "Detect anomalies and recommend decision.",
+      "input_refs": ["normalized-invoice", "docs/finance/vendor-policy.md"],
+      "output": "anomaly-report",
+      "owner": "Finance Ops",
+      "risk_level": "high",
+      "requires_approval": true,
+      "deterministic_check": "Report includes anomaly_type, evidence_refs, recommendation, and confidence_basis.",
+      "retry_limit": 1,
+      "fallback": "Route invoice to finance approver for manual review.",
+      "prompt_contract": "Use invoice fixture and vendor policy only.",
+      "output_contract": "JSON object with anomaly_type, evidence_refs, recommendation, confidence_basis."
+    },
+    {
+      "id": "S3",
+      "actor": "finance-approver",
+      "action": "Approve payment release decision.",
+      "input_refs": ["anomaly-report"],
+      "output": "payment-release-decision",
+      "owner": "Controller",
+      "risk_level": "critical",
+      "requires_approval": true,
+      "deterministic_check": "Decision value is approved, rejected, or needs-info.",
+      "retry_limit": 0,
+      "fallback": "Hold payment for manual investigation."
+    }
+  ],
+  "approval_gates": [
+    {
+      "id": "G1",
+      "before_step": "S2",
+      "approver": "Controller",
+      "criteria": ["AI recommendation cannot release payment without approval"],
+      "decision_values": ["approved", "rejected", "needs-info"],
+      "evidence_tag": "[CONFIG]"
+    },
+    {
+      "id": "G2",
+      "before_step": "S3",
+      "approver": "Controller",
+      "criteria": ["Payment release is an external financial effect"],
+      "decision_values": ["approved", "rejected", "needs-info"],
+      "evidence_tag": "[DOC]"
+    }
+  ],
+  "handoffs": [
+    {
+      "id": "H1",
+      "from_actor": "ai-reviewer",
+      "to_actor": "finance-approver",
+      "artifact": "anomaly-report",
+      "acceptance_criteria": ["invoice id present", "evidence refs present", "recommendation present"],
+      "completion_signal": "controller records payment-release-decision",
+      "evidence_tag": "[CONFIG]"
+    }
+  ],
+  "fallbacks": ["Failed AI anomaly review routes to manual finance approval. [CONFIG]"],
+  "validation": ["Critical payment release is gated by human approval. [DOC]"],
+  "risks": ["Vendor policy fixture completeness limits anomaly coverage. [SUPUESTO]"]
+}

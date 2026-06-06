@@ -5,19 +5,31 @@ generated-on: 2026-05-28
 overwrite-policy: missing-only unless --force
 -->
 
-# Ai Workflow Automation Output
+# AI Workflow Automation Output
 
 ## Summary
 
 {summary}
 
-## Evidence
+## Actors
 
-{evidence}
+{actors}
 
-## Result
+## Step Graph
 
-{result}
+{steps}
+
+## Approval Gates
+
+{approval_gates}
+
+## Human-AI Handoffs
+
+{handoffs}
+
+## Fallbacks
+
+{fallbacks}
 
 ## Validation
 

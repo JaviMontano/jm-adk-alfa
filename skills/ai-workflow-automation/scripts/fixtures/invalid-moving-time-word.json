@@ -1,0 +1,28 @@
+{
+  "skill": "ai-workflow-automation",
+  "reference_date": "2026-06-06",
+  "summary": "Workflow asks for approval soon instead of explicit gate criteria. [CONFIG]",
+  "actors": [
+    {"id": "system", "type": "system", "owner": "Ops"}
+  ],
+  "steps": [
+    {
+      "id": "S1",
+      "actor": "system",
+      "action": "Run export tomorrow.",
+      "input_refs": ["source.json"],
+      "output": "export",
+      "owner": "Ops",
+      "risk_level": "low",
+      "requires_approval": false,
+      "deterministic_check": "Export schema valid.",
+      "retry_limit": 0,
+      "fallback": "Block export on invalid schema."
+    }
+  ],
+  "approval_gates": [],
+  "handoffs": [],
+  "fallbacks": ["Block export on invalid schema. [CONFIG]"],
+  "validation": ["Moving time word should fail. [CONFIG]"],
+  "risks": ["Schedule depends on relative time. [INFERENCIA]"]
+}

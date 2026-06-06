@@ -1,7 +1,5 @@
 {
   "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-28",
   "skill": "ai-workflow-automation",
   "nodes": [
     {
@@ -10,66 +8,76 @@
       "label": "ai-workflow-automation"
     },
     {
-      "id": "ai-workflow-automation:inputs",
+      "id": "workflow-step-graph",
+      "type": "artifact",
+      "label": "Workflow step graph"
+    },
+    {
+      "id": "ai-step-contract",
       "type": "contract",
-      "label": "Expected inputs"
+      "label": "AI input and output contract"
     },
     {
-      "id": "ai-workflow-automation:outputs",
+      "id": "approval-gate",
+      "type": "gate",
+      "label": "Human approval gate"
+    },
+    {
+      "id": "human-ai-handoff",
+      "type": "artifact",
+      "label": "Human-AI handoff packet"
+    },
+    {
+      "id": "fallback-path",
+      "type": "gate",
+      "label": "Bounded retry and fallback"
+    },
+    {
+      "id": "offline-validation",
+      "type": "gate",
+      "label": "Offline validation"
+    },
+    {
+      "id": "workflow-plan-contract",
       "type": "contract",
-      "label": "Expected outputs"
-    },
-    {
-      "id": "ai-workflow-automation:quality",
-      "type": "gate",
-      "label": "Quality criteria"
-    },
-    {
-      "id": "ai-workflow-automation:ontology",
-      "type": "ontology",
-      "label": "Domain: general"
-    },
-    {
-      "id": "ai-workflow-automation:evidence",
-      "type": "gate",
-      "label": "Evidence / provenance requirements"
-    },
-    {
-      "id": "ai-workflow-automation:antipattern",
-      "type": "risk",
-      "label": "Canonical anti-pattern to avoid"
+      "label": "Offline-validatable workflow plan"
     }
   ],
   "edges": [
     {
       "from": "ai-workflow-automation",
-      "to": "ai-workflow-automation:inputs",
-      "type": "requires"
-    },
-    {
-      "from": "ai-workflow-automation",
-      "to": "ai-workflow-automation:outputs",
+      "to": "workflow-step-graph",
       "type": "produces"
     },
     {
-      "from": "ai-workflow-automation",
-      "to": "ai-workflow-automation:quality",
+      "from": "workflow-step-graph",
+      "to": "ai-step-contract",
+      "type": "contains"
+    },
+    {
+      "from": "workflow-step-graph",
+      "to": "approval-gate",
+      "type": "validated_by"
+    },
+    {
+      "from": "workflow-step-graph",
+      "to": "human-ai-handoff",
+      "type": "produces"
+    },
+    {
+      "from": "workflow-step-graph",
+      "to": "fallback-path",
       "type": "validated_by"
     },
     {
       "from": "ai-workflow-automation",
-      "to": "ai-workflow-automation:ontology",
-      "type": "classified_as"
-    },
-    {
-      "from": "ai-workflow-automation",
-      "to": "ai-workflow-automation:evidence",
+      "to": "workflow-plan-contract",
       "type": "validated_by"
     },
     {
-      "from": "ai-workflow-automation",
-      "to": "ai-workflow-automation:antipattern",
-      "type": "guards_against"
+      "from": "workflow-plan-contract",
+      "to": "offline-validation",
+      "type": "validated_by"
     }
   ]
 }

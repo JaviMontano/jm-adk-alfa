@@ -1,0 +1,5 @@
+{
+  "schema": 1,
+  "required_fields": ["id", "from_actor", "to_actor", "artifact", "acceptance_criteria", "completion_signal", "evidence_tag"],
+  "rule": "Human-AI handoffs must transfer a concrete artifact with acceptance criteria and completion signal."
+}

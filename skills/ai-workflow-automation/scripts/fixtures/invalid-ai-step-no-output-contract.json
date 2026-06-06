@@ -1,0 +1,32 @@
+{
+  "skill": "ai-workflow-automation",
+  "reference_date": "2026-06-06",
+  "summary": "AI step lacks output contract. [CONFIG]",
+  "actors": [
+    {"id": "ai-reviewer", "type": "ai", "owner": "Ops"},
+    {"id": "human-approver", "type": "human", "owner": "Lead", "decision_authority": "Approve result"}
+  ],
+  "steps": [
+    {
+      "id": "S1",
+      "actor": "ai-reviewer",
+      "action": "Review item.",
+      "input_refs": ["input.json"],
+      "output": "review",
+      "owner": "Ops",
+      "risk_level": "high",
+      "requires_approval": true,
+      "deterministic_check": "Review exists.",
+      "retry_limit": 1,
+      "fallback": "Human review.",
+      "prompt_contract": "Use input only."
+    }
+  ],
+  "approval_gates": [
+    {"id": "G1", "before_step": "S1", "approver": "Lead", "criteria": ["Review required"], "decision_values": ["approved", "rejected", "needs-info"], "evidence_tag": "[CONFIG]"}
+  ],
+  "handoffs": [],
+  "fallbacks": ["Human review. [CONFIG]"],
+  "validation": ["Output contract missing. [CONFIG]"],
+  "risks": ["AI output cannot be checked. [INFERENCIA]"]
+}

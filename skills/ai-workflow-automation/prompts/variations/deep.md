@@ -5,7 +5,7 @@ version: 2.0.0
 description: "Ai Workflow Automation — deep analysis mode. Exhaustive coverage."
 ---
 
-# Ai Workflow Automation — Deep Mode
+# AI Workflow Automation — Deep Mode
 
 ## When to Use
 
@@ -21,24 +21,23 @@ Use deep mode when thoroughness matters more than speed: architecture decisions,
 
 ## Execution (Deep)
 
-1. Load ALL knowledge: `knowledge/body-of-knowledge.md` + cross-referenced skills
-2. Check guardrails: `references/guardrails/*.json`
+1. Load `knowledge/body-of-knowledge.md` and every file in
+   `assets/manifest.json`
+2. Check existing guardrails when present
 3. Lead executes with exhaustive analysis:
    - Cover ALL edge cases, not just common path
-   - Research: check standards, best practices, recent changes
-   - Document every assumption with `[ASSUMPTION]` tag
+   - Model each actor, step, input, output, approval, handoff, fallback,
+     validation check, and operational risk
+   - Document every assumption with `[SUPUESTO]`
 4. Support reviews with expanded scope:
-   - Security, accessibility, performance, business viability
-   - Adversarial scenarios: what could go wrong?
+   - Missing approval gates, AI hallucination containment, handoff gaps,
+     bounded retries, data exposure, and rollback paths
 5. Guardian validates with strict criteria:
    - Evidence tags 100% coverage (no untagged claims)
    - Quality gate fully met
-   - Confidence >= 0.95 with evidence support
+   - JSON output passes `scripts/validate_ai_workflow_plan.py`
 
 ## Output
 
-- Exhaustive deliverable with full evidence trail
-- Edge cases documented
-- Risk assessment included
-- Recommendations with priority ranking
-- Confidence score with justification
+- Exhaustive workflow plan with gates, handoffs, fallback paths, validation
+  evidence, risks, and confidence rationale

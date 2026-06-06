@@ -1,0 +1,33 @@
+{
+  "skill": "ai-workflow-automation",
+  "reference_date": "2026-06-06",
+  "summary": "Plan uses unbounded retry language. [CONFIG]",
+  "actors": [
+    {"id": "ai-classifier", "type": "ai", "owner": "Ops"},
+    {"id": "lead", "type": "human", "owner": "Lead", "decision_authority": "Approve result"}
+  ],
+  "steps": [
+    {
+      "id": "S1",
+      "actor": "ai-classifier",
+      "action": "Classify item until it works.",
+      "input_refs": ["input.json"],
+      "output": "classification",
+      "owner": "Ops",
+      "risk_level": "high",
+      "requires_approval": true,
+      "deterministic_check": "Classification schema valid.",
+      "retry_limit": 99,
+      "fallback": "keep trying",
+      "prompt_contract": "Use input only.",
+      "output_contract": "JSON classification."
+    }
+  ],
+  "approval_gates": [
+    {"id": "G1", "before_step": "S1", "approver": "Lead", "criteria": ["Approval required"], "decision_values": ["approved", "rejected", "needs-info"], "evidence_tag": "[CONFIG]"}
+  ],
+  "handoffs": [],
+  "fallbacks": ["retry forever. [CONFIG]"],
+  "validation": ["Retry should be bounded. [CONFIG]"],
+  "risks": ["Unbounded retries can stall workflow. [INFERENCIA]"]
+}
