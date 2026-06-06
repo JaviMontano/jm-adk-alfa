@@ -1,9 +1,76 @@
-[
-  {"id": "session-manager-happy-path", "type": "happy_path", "input": "Run session manager on this project", "expected_behavior": "Skill activates and produces the expected session manager output following the defined process", "tags": ["basic", "activation"]},
-  {"id": "session-manager-explicit-trigger", "type": "happy_path", "input": "Apply session manager analysis", "expected_behavior": "Skill recognizes the trigger phrase and executes the session manager workflow", "tags": ["trigger", "recognition"]},
-  {"id": "session-manager-with-context", "type": "happy_path", "input": "Apply session manager to analyze the current codebase with detailed output", "expected_behavior": "Skill produces comprehensive session manager analysis with evidence-tagged findings", "tags": ["detailed", "comprehensive"]},
-  {"id": "session-manager-minimal-input", "type": "happy_path", "input": "Quick session manager", "expected_behavior": "Skill activates with minimal input, applies reasonable defaults", "tags": ["minimal", "defaults"]},
-  {"id": "session-manager-false-positive", "type": "false_positive", "input": "What is the weather forecast for tomorrow?", "expected_behavior": "Skill should NOT activate — this input has no relation to session manager", "tags": ["false_positive", "should-not-activate"]},
-  {"id": "session-manager-edge-empty-input", "type": "edge_case", "input": "Run session manager but I have no files or documentation yet", "expected_behavior": "Skill handles gracefully — requests minimum viable input or produces gap analysis", "tags": ["edge_case", "empty-input", "boundary"]},
-  {"id": "session-manager-edge-conflicting", "type": "edge_case", "input": "Apply session manager but requirements contradict each other", "expected_behavior": "Skill detects contradiction, flags with [OPEN] tag, proposes resolution", "tags": ["edge_case", "conflict", "corner"]}
-]
+{
+  "schema": 1,
+  "skill": "session-manager",
+  "cases": [
+    {
+      "id": "session-manager-cold-start-present-context",
+      "type": "happy_path",
+      "input": "Run session-manager with .specify/context.json, latest plan, and active tasks present.",
+      "expected_behavior": "Read sources in order, compute the evidence-backed stage, list authorized persistence actions, and recommend the next action.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "priming_order"]
+    },
+    {
+      "id": "session-manager-missing-context-block",
+      "type": "degradation",
+      "input": "Recover session state when .specify/context.json is missing.",
+      "expected_behavior": "Mark context missing with [OPEN], avoid silent initialization, and Guardian blocks persistence.",
+      "expected_checks": ["quality_criteria", "missing_source_gap", "guardian_block"]
+    },
+    {
+      "id": "session-manager-specified-to-planned",
+      "type": "happy_path",
+      "input": "Context records specified and a latest plan artifact is present.",
+      "expected_behavior": "Advance at most one stage to planned and cite the plan artifact.",
+      "expected_checks": ["assets", "quality_criteria", "stage_delta"]
+    },
+    {
+      "id": "session-manager-planned-to-testified",
+      "type": "happy_path",
+      "input": "Context records planned and tests/features/*.feature exists.",
+      "expected_behavior": "Compute testified only when testification evidence is present.",
+      "expected_checks": ["quality_criteria", "artifact_evidence"]
+    },
+    {
+      "id": "session-manager-testified-to-tasks-ready",
+      "type": "happy_path",
+      "input": "Context records testified and tasks.md exists.",
+      "expected_behavior": "Compute tasks-ready and propose implementation planning as the next action.",
+      "expected_checks": ["quality_criteria", "artifact_evidence"]
+    },
+    {
+      "id": "session-manager-implementing-no-tasks",
+      "type": "degradation",
+      "input": "Report implementing at 40 percent but no tasks file exists.",
+      "expected_behavior": "Reject the stage and block persistence because implementing requires task evidence.",
+      "expected_checks": ["deterministic_scripts", "quality_criteria", "guardian_block"]
+    },
+    {
+      "id": "session-manager-stage-skip",
+      "type": "edge_case",
+      "input": "Context records specified but report attempts to jump directly to tasks-ready.",
+      "expected_behavior": "Reject the skip or block until an explicit correction is confirmed.",
+      "expected_checks": ["deterministic_scripts", "quality_criteria", "stage_delta"]
+    },
+    {
+      "id": "session-manager-unauthorized-write",
+      "type": "degradation",
+      "input": "Update .specify/context.json from memory without authorization.",
+      "expected_behavior": "Refuse the write and keep the report in Guardian block state.",
+      "expected_checks": ["deterministic_scripts", "quality_criteria", "write_authorization"]
+    },
+    {
+      "id": "session-manager-false-positive-browser-session",
+      "type": "false_positive",
+      "input": "Help me clear a browser session cookie.",
+      "expected_behavior": "Do not activate because the request is not about project pipeline state.",
+      "expected_checks": ["activation_boundary"]
+    },
+    {
+      "id": "session-manager-machine-report-contract",
+      "type": "script_contract",
+      "input": "Validate Session Manager JSON report fixtures offline.",
+      "expected_behavior": "Accept valid planned and blocked reports, then reject missing-context-pass, stage-skip, implementing-without-tasks, and unauthorized-write reports.",
+      "expected_checks": ["deterministic_scripts", "assets", "quality_criteria"]
+    }
+  ]
+}

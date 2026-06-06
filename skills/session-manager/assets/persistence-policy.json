@@ -1,0 +1,18 @@
+{
+  "schema": 1,
+  "skill": "session-manager",
+  "allowed_targets": [
+    ".specify/context.json",
+    ".specify/score-history.json",
+    ".specify/decisions/"
+  ],
+  "write_actions": ["create", "update", "append"],
+  "authorization_required": true,
+  "block_when": [
+    "context is missing and no initialization policy is cited",
+    "context JSON is invalid",
+    "stage computation conflicts with context and user confirmation is absent",
+    "target is outside allowed_targets",
+    "write authorization is false"
+  ]
+}

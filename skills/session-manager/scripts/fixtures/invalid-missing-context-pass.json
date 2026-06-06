@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "skill": "session-manager",
+  "context_snapshot": {
+    "context_path": ".specify/context.json",
+    "context_status": "missing",
+    "active_feature": "billing-export",
+    "recorded_stage": "specified",
+    "evidence_tag": "[OPEN]"
+  },
+  "priming_sources": [
+    {
+      "order": 1,
+      "source": ".specify/context.json",
+      "status": "missing",
+      "evidence_tag": "[OPEN]"
+    }
+  ],
+  "stage_computation": {
+    "previous_stage": "specified",
+    "computed_stage": "specified",
+    "implementation_progress_percent": 0,
+    "tasks_complete": false,
+    "artifact_evidence": [
+      {
+        "artifact": ".specify/context.json",
+        "exists": false,
+        "evidence_tag": "[OPEN]"
+      }
+    ],
+    "evidence_tag": "[OPEN]"
+  },
+  "persistence_actions": [],
+  "next_action": {
+    "stage": "specified",
+    "recommended": "Continue anyway.",
+    "rationale": "Invalid fixture.",
+    "evidence_tag": "[INFERENCE]"
+  },
+  "guardian_decision": {
+    "decision": "pass",
+    "rationale": "Invalid pass with missing context.",
+    "evidence_tag": "[CONFIG]"
+  }
+}

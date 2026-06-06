@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "skill": "session-manager",
+  "assets": [
+    {
+      "path": "assets/state-contract.json",
+      "type": "schema",
+      "purpose": "Defines required Session Manager JSON report keys, statuses, decisions, and evidence tags.",
+      "used_by": ["SKILL.md", "scripts/validate_session_manager_report.py", "templates/output.md"]
+    },
+    {
+      "path": "assets/stage-policy.json",
+      "type": "policy",
+      "purpose": "Defines linear stage order, artifact evidence mapping, and no-skip progression rules.",
+      "used_by": ["SKILL.md", "evals/evals.json", "scripts/validate_session_manager_report.py"]
+    },
+    {
+      "path": "assets/priming-policy.json",
+      "type": "policy",
+      "purpose": "Defines deterministic cold-start read order and missing-source handling.",
+      "used_by": ["SKILL.md", "prompts/primary.md", "scripts/validate_session_manager_report.py"]
+    },
+    {
+      "path": "assets/persistence-policy.json",
+      "type": "policy",
+      "purpose": "Defines allowed .specify persistence targets and authorization requirements.",
+      "used_by": ["SKILL.md", "agents/guardian.md", "scripts/validate_session_manager_report.py"]
+    },
+    {
+      "path": "assets/source-boundary-policy.json",
+      "type": "policy",
+      "purpose": "Defines approved local sources and disallowed inference sources for session state.",
+      "used_by": ["SKILL.md", "README.md", "scripts/validate_session_manager_report.py"]
+    }
+  ]
+}

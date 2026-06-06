@@ -1,28 +1,44 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: session-manager
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
+# Session Manager Report
 
-# Session Manager Output
+## Context Snapshot
 
-## Summary
+- Feature: `{feature}` `{feature_evidence_tag}`
+- Context path: `{context_path}` `{context_evidence_tag}`
+- Context status: `{context_status}` `{context_evidence_tag}`
+- Recorded stage: `{recorded_stage}` `{stage_evidence_tag}`
 
-{summary}
+## Priming Sources
 
-## Evidence
+| Order | Source | Status | Evidence |
+|---:|---|---|---|
+| `{order}` | `{source}` | `{status}` | `{evidence_tag}` |
 
-{evidence}
+## Stage Computation
 
-## Result
+- Previous stage: `{previous_stage}` `{stage_evidence_tag}`
+- Computed stage: `{computed_stage}` `{stage_evidence_tag}`
+- Progress percent: `{implementation_progress_percent}` `{stage_evidence_tag}`
+- Tasks complete: `{tasks_complete}` `{stage_evidence_tag}`
+- Validation evidence: `{validation_evidence}` `{stage_evidence_tag}`
 
-{result}
+## Artifact Evidence
 
-## Validation
+| Artifact | Exists | Evidence |
+|---|---:|---|
+| `{artifact}` | `{exists}` | `{evidence_tag}` |
 
-{validation}
+## Persistence Actions
 
-## Risks and Limits
+| Target | Action | Authorized | Rationale |
+|---|---|---:|---|
+| `{target}` | `{action}` | `{authorized}` | `{rationale}` |
 
-{risks}
+## Next Action
+
+`{recommended_next_action}` `{next_action_evidence_tag}`
+
+## Guardian Decision
+
+Decision: `{decision}` `{guardian_evidence_tag}`
+
+Rationale: `{guardian_rationale}` `{guardian_evidence_tag}`

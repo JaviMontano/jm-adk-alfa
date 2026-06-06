@@ -1,0 +1,30 @@
+{
+  "schema": 1,
+  "skill": "session-manager",
+  "read_order": [
+    {
+      "order": 1,
+      "source": ".specify/context.json",
+      "required": true,
+      "missing_behavior": "block persistence and report [OPEN]"
+    },
+    {
+      "order": 2,
+      "source": ".specify/plans/plan-*.md",
+      "required": false,
+      "missing_behavior": "record missing and keep current evidence-backed stage"
+    },
+    {
+      "order": 3,
+      "source": "tasks.md or .specify/tasks.md",
+      "required": false,
+      "missing_behavior": "do not report tasks-ready or implementing"
+    },
+    {
+      "order": 4,
+      "source": "tests/features/*.feature or .specify/tests/features/*.feature",
+      "required": false,
+      "missing_behavior": "do not report testified from tests"
+    }
+  ]
+}

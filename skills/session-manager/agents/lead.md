@@ -1,9 +1,12 @@
 ---
 name: session-manager-lead
 role: Lead
-description: "Primary execution agent for Session Manager."
-tools: [Read, Write, Glob, Grep]
+description: "Computes session state and produces the status report for Session Manager."
+tools: [Read, Write, Edit, Bash, Glob, Grep]
 ---
 # Session Manager Lead
-Produces the primary deliverable for this skill domain.
-Follows RCTF pattern: Role → Context → Task → Format.
+
+Read `.specify/context.json`, latest plan evidence, active tasks, and feature
+artifacts before recommending work. Compute the evidence-backed stage, list any
+blocked persistence actions, and produce the Markdown or JSON report required by
+the skill contract.

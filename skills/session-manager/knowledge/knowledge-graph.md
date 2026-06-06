@@ -1,13 +1,21 @@
 # Session Manager — Knowledge Graph
 
 ## Core Concepts
-- session-manager: primary capability
-- validation-gate: quality control checkpoint
-- evidence-tagging: [EXPLICIT]/[INFERRED]/[OPEN] claims
+
+- `.specify/context.json`: persisted project state source.
+- priming sources: context, latest plan, active tasks, and feature tests.
+- stage policy: linear stage order and artifact evidence mapping.
+- persistence policy: allowed `.specify/**` writes and authorization.
+- Guardian block: required when evidence is missing, conflicting, or unsafe.
 
 ## Dependencies
-- Upstream: input-analysis, context-optimization
-- Downstream: output-engineering, rendering-engine
 
-## Skill Relationships
-Part of the JM Labs canonical skill registry.
+- Upstream: session-start-bootstrap and session-protocol can invoke this skill to
+  recover project state.
+- Downstream: tasklog-management and changelog-management can use the status
+  report as input after user confirmation.
+
+## Validation
+
+`scripts/validate_session_manager_report.py` validates the machine report
+without network, time, or random dependencies.

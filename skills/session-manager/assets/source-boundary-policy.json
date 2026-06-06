@@ -1,0 +1,26 @@
+{
+  "schema": 1,
+  "skill": "session-manager",
+  "allowed_sources": [
+    ".specify/context.json",
+    ".specify/plans/plan-*.md",
+    "tasks.md",
+    ".specify/tasks.md",
+    "spec.md",
+    ".specify/spec.md",
+    "tests/features/*.feature",
+    ".specify/tests/features/*.feature",
+    ".specify/score-history.json",
+    ".specify/decisions/*.md"
+  ],
+  "disallowed_progress_sources": [
+    "memory-only claims",
+    "branch name",
+    "elapsed time",
+    "unverified conversation summary",
+    "network service state"
+  ],
+  "network_required": false,
+  "time_required": false,
+  "random_required": false
+}
