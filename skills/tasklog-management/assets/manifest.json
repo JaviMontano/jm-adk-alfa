@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "skill": "tasklog-management",
+  "assets": [
+    {
+      "path": "assets/tasklog-contract.json",
+      "type": "schema",
+      "purpose": "Defines tasklog columns, task ID pattern, required report keys, and evidence tags.",
+      "used_by": ["SKILL.md", "scripts/validate_tasklog_report.py", "templates/output.md"]
+    },
+    {
+      "path": "assets/status-policy.json",
+      "type": "policy",
+      "purpose": "Defines allowed statuses, write operations, and lifecycle transitions.",
+      "used_by": ["SKILL.md", "evals/evals.json", "scripts/validate_tasklog_report.py"]
+    },
+    {
+      "path": "assets/staleness-policy.json",
+      "type": "policy",
+      "purpose": "Defines stale and archive thresholds with explicit as_of_date handling.",
+      "used_by": ["SKILL.md", "evals/evals.json", "scripts/validate_tasklog_report.py"]
+    },
+    {
+      "path": "assets/bridge-policy.json",
+      "type": "policy",
+      "purpose": "Defines deterministic workspace task bridge paths and creation rules.",
+      "used_by": ["SKILL.md", "agents/guardian.md", "scripts/validate_tasklog_report.py"]
+    },
+    {
+      "path": "assets/update-report-contract.json",
+      "type": "schema",
+      "purpose": "Defines required JSON report sections for offline validation.",
+      "used_by": ["SKILL.md", "scripts/validate_tasklog_report.py", "templates/output.md"]
+    }
+  ]
+}

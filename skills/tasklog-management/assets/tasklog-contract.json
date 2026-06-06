@@ -1,0 +1,18 @@
+{
+  "schema": 1,
+  "skill": "tasklog-management",
+  "task_id_pattern": "^TL-[0-9]{3}$",
+  "required_columns": ["ID", "Description", "Status", "Owner", "Opened", "Last Update", "Bridge", "Notes"],
+  "required_report_keys": [
+    "schema_version",
+    "skill",
+    "as_of_date",
+    "tasklog_snapshot",
+    "operations",
+    "stale_review",
+    "bridge_review",
+    "archive_review",
+    "guardian_decision"
+  ],
+  "evidence_tags": ["[CODE]", "[CONFIG]", "[DOC]", "[INFERENCE]", "[ASSUMPTION]", "[OPEN]"]
+}

@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "skill": "tasklog-management",
+  "as_of_date": "2026-06-06",
+  "tasklog_snapshot": {
+    "path": "tasklog.md",
+    "status": "present",
+    "task_count": 1,
+    "evidence_tag": "[CODE]"
+  },
+  "operations": [],
+  "stale_review": [
+    {
+      "task_id": "TL-015",
+      "status": "open",
+      "last_update": "2026-05-01",
+      "age_days": 36,
+      "stale": false,
+      "action": "not_stale",
+      "evidence_tag": "[CODE]"
+    }
+  ],
+  "bridge_review": [],
+  "archive_review": [],
+  "guardian_decision": {
+    "decision": "pass",
+    "rationale": "Invalid fixture leaves stale task unflagged.",
+    "evidence_tag": "[CONFIG]"
+  }
+}

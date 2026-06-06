@@ -1,28 +1,38 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: tasklog-management
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
+# Tasklog Management Report
 
-# Tasklog Management Output
+## Tasklog Snapshot
 
-## Summary
+- Path: `{tasklog_path}` `{evidence_tag}`
+- Status: `{tasklog_status}` `{evidence_tag}`
+- Tasks reviewed: `{task_count}` `{evidence_tag}`
+- `as_of_date`: `{as_of_date}` `{evidence_tag}`
 
-{summary}
+## Operations
 
-## Evidence
+| Operation | ID | From | To | Authorized | Evidence |
+|---|---|---|---|---:|---|
+| `{operation}` | `{task_id}` | `{from_status}` | `{to_status}` | `{authorized}` | `{evidence_tag}` |
 
-{evidence}
+## Stale Review
 
-## Result
+| ID | Status | Last Update | Age Days | Stale | Action | Evidence |
+|---|---|---|---:|---:|---|---|
+| `{task_id}` | `{status}` | `{last_update}` | `{age_days}` | `{stale}` | `{action}` | `{evidence_tag}` |
 
-{result}
+## Bridge Review
 
-## Validation
+| ID | Needs Bridge | Bridge Path | Exists | Action | Evidence |
+|---|---:|---|---:|---|---|
+| `{task_id}` | `{needs_bridge}` | `{bridge_path}` | `{exists}` | `{action}` | `{evidence_tag}` |
 
-{validation}
+## Archive Review
 
-## Risks and Limits
+| ID | Completed Date | Age Days | Archive Eligible | Action | Evidence |
+|---|---|---:|---:|---|---|
+| `{task_id}` | `{completed_date}` | `{age_days}` | `{archive_eligible}` | `{action}` | `{evidence_tag}` |
 
-{risks}
+## Guardian Decision
+
+Decision: `{decision}` `{evidence_tag}`
+
+Rationale: `{rationale}` `{evidence_tag}`

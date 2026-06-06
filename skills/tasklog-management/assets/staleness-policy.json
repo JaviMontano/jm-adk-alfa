@@ -1,0 +1,11 @@
+{
+  "schema": 1,
+  "skill": "tasklog-management",
+  "date_format": "YYYY-MM-DD",
+  "stale_after_days": 14,
+  "archive_completed_after_days": 30,
+  "clock_policy": "Use explicit as_of_date from the report or session config; do not call system time inside validation.",
+  "active_statuses": ["open", "in-progress", "blocked"],
+  "stale_action": "review_required",
+  "archive_action": "archive_eligible"
+}

@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "skill": "tasklog-management",
+  "as_of_date": "2026-06-06",
+  "tasklog_snapshot": {
+    "path": "tasklog.md",
+    "status": "present",
+    "task_count": 2,
+    "evidence_tag": "[CODE]"
+  },
+  "operations": [
+    {
+      "operation": "add",
+      "task_id": "TL-017",
+      "from_status": "none",
+      "to_status": "open",
+      "authorized": true,
+      "rationale": "New task ID follows next observed TL-NNN sequence.",
+      "evidence_tag": "[CONFIG]"
+    }
+  ],
+  "stale_review": [
+    {
+      "task_id": "TL-015",
+      "status": "open",
+      "last_update": "2026-05-25",
+      "age_days": 12,
+      "stale": false,
+      "action": "not_stale",
+      "evidence_tag": "[CODE]"
+    }
+  ],
+  "bridge_review": [
+    {
+      "task_id": "TL-017",
+      "needs_bridge": false,
+      "bridge_path": "",
+      "exists": false,
+      "action": "not_required",
+      "evidence_tag": "[CONFIG]"
+    }
+  ],
+  "archive_review": [
+    {
+      "task_id": "TL-016",
+      "completed_date": "2026-06-01",
+      "age_days": 5,
+      "archive_eligible": false,
+      "action": "retain",
+      "evidence_tag": "[CODE]"
+    }
+  ],
+  "guardian_decision": {
+    "decision": "pass",
+    "rationale": "Tasklog is present, add operation is authorized, and date calculations are deterministic.",
+    "evidence_tag": "[CONFIG]"
+  }
+}

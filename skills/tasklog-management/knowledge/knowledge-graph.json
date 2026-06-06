@@ -1,75 +1,83 @@
 {
   "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-28",
   "skill": "tasklog-management",
   "nodes": [
     {
       "id": "tasklog-management",
       "type": "skill",
-      "label": "tasklog-management"
+      "label": "Tasklog Management"
     },
     {
-      "id": "tasklog-management:inputs",
-      "type": "contract",
-      "label": "Expected inputs"
+      "id": "tasklog-md",
+      "type": "source",
+      "label": "tasklog.md"
     },
     {
-      "id": "tasklog-management:outputs",
-      "type": "contract",
-      "label": "Expected outputs"
+      "id": "task-schema",
+      "type": "schema",
+      "label": "Tasklog table contract"
     },
     {
-      "id": "tasklog-management:quality",
-      "type": "gate",
-      "label": "Quality criteria"
+      "id": "status-policy",
+      "type": "policy",
+      "label": "Status transition policy"
     },
     {
-      "id": "tasklog-management:ontology",
-      "type": "ontology",
-      "label": "Domain: general"
+      "id": "stale-policy",
+      "type": "policy",
+      "label": "Stale and archive date policy"
     },
     {
-      "id": "tasklog-management:evidence",
-      "type": "gate",
-      "label": "Evidence / provenance requirements"
+      "id": "bridge-policy",
+      "type": "policy",
+      "label": "workspace/tasks bridge policy"
     },
     {
-      "id": "tasklog-management:antipattern",
-      "type": "risk",
-      "label": "Canonical anti-pattern to avoid"
+      "id": "update-report",
+      "type": "output",
+      "label": "Tasklog update report"
+    },
+    {
+      "id": "offline-validator",
+      "type": "script",
+      "label": "validate_tasklog_report.py"
     }
   ],
   "edges": [
     {
       "from": "tasklog-management",
-      "to": "tasklog-management:inputs",
-      "type": "requires"
+      "to": "tasklog-md",
+      "type": "reads"
     },
     {
-      "from": "tasklog-management",
-      "to": "tasklog-management:outputs",
-      "type": "produces"
+      "from": "tasklog-md",
+      "to": "task-schema",
+      "type": "conforms_to"
     },
     {
-      "from": "tasklog-management",
-      "to": "tasklog-management:quality",
-      "type": "validated_by"
+      "from": "task-schema",
+      "to": "update-report",
+      "type": "feeds"
     },
     {
-      "from": "tasklog-management",
-      "to": "tasklog-management:ontology",
-      "type": "classified_as"
+      "from": "status-policy",
+      "to": "update-report",
+      "type": "constrains"
     },
     {
-      "from": "tasklog-management",
-      "to": "tasklog-management:evidence",
-      "type": "validated_by"
+      "from": "stale-policy",
+      "to": "update-report",
+      "type": "constrains"
     },
     {
-      "from": "tasklog-management",
-      "to": "tasklog-management:antipattern",
-      "type": "guards_against"
+      "from": "bridge-policy",
+      "to": "update-report",
+      "type": "constrains"
+    },
+    {
+      "from": "offline-validator",
+      "to": "update-report",
+      "type": "validates"
     }
   ]
 }

@@ -1,34 +1,22 @@
 ---
 name: tasklog-management-meta
-type: self-improvement
+type: meta
 version: 2.0.0
-description: "Evaluate and improve the Tasklog Management skill."
+description: "Meta-prompt for deterministic Tasklog Management routing."
 ---
 
-# Tasklog Management — Self-Improvement
+# Tasklog Management — Meta Prompt
 
-## Evaluate
+Activate this skill when the user request mentions `tasklog.md`, open tasks,
+pending items, stale tasks, task status, task closure, task archive, or
+`workspace/tasks/` bridges.
 
-1. Is `knowledge/body-of-knowledge.md` current? New standards, deprecated practices?
-2. Are the 4 sub-agents (lead, support, guardian, specialist) covering all perspectives?
-3. Are templates producing useful deliverables? Test with a real scenario.
-4. What edge cases have been encountered that aren't documented?
-5. Are there new insights from `insights/` that apply to this skill?
-6. Has the related skill landscape changed? New cross-references needed?
+Do not activate for unrelated operating-system task apps, calendar reminders, or
+general productivity advice that does not require repository tasklog state.
 
-## Improve
+## Routing
 
-1. Update body of knowledge with new findings (tag with `[DOC]`)
-2. Add prompt variations for newly discovered use cases
-3. Refine quality criteria based on real-world feedback
-4. Update knowledge graph: new concepts, new `[[wikilinks]]`
-5. Test templates with edge-case inputs to verify robustness
-6. Propose Constitution amendment if recurring ambiguity found (XVII)
-
-## Trigger
-
-Run this meta-prompt when:
-- Skill hasn't been reviewed in 30+ days
-- User reports unexpected output quality
-- New related skills added to the kit
-- Insights file updated with relevant patterns
+1. Confirm activation through `SKILL.md`.
+2. If the request includes writes, route through `tasklog-management-guardian`.
+3. If the request only needs review, return recommendations and keep writes
+   disabled.
