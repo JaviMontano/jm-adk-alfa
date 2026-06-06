@@ -1,0 +1,74 @@
+{
+  "schema": "jm-labs.ai-assisted-testing.plan.v1",
+  "target": "src/payments/validate_payment.py",
+  "scope": {
+    "includes": ["unit tests", "branch coverage"],
+    "excludes": ["live gateway calls"]
+  },
+  "evidence": [
+    {
+      "id": "EV-CODE-001",
+      "tag": "[CÓDIGO]",
+      "source": "src/payments/validate_payment.py",
+      "summary": "Validation branches cover amount, currency, duplicate token, and blocked account checks."
+    },
+    {
+      "id": "EV-METRIC-001",
+      "tag": "[MÉTRICA]",
+      "source": "coverage.xml",
+      "summary": "Current branch coverage is 61 percent."
+    }
+  ],
+  "candidate_tests": [
+    {
+      "id": "AT-001",
+      "type": "unit",
+      "target": "validate_payment rejects negative amount",
+      "rationale": "Negative amount branch is uncovered and high risk.",
+      "oracle": "Result is rejected with error code amount_invalid.",
+      "status": "proposed",
+      "evidence_ids": ["EV-CODE-001", "EV-METRIC-001"]
+    },
+    {
+      "id": "AT-002",
+      "type": "regression",
+      "target": "validate_payment rejects duplicate idempotency token",
+      "rationale": "Duplicate token behavior protects against double charge.",
+      "oracle": "Second request returns duplicate_token without gateway call.",
+      "status": "generated",
+      "evidence_ids": ["EV-CODE-001"]
+    }
+  ],
+  "coverage_plan": {
+    "targets": [
+      {
+        "file": "src/payments/validate_payment.py",
+        "current_percent": 61,
+        "target_percent": 85,
+        "missing_areas": ["negative amount", "duplicate token", "blocked account"]
+      }
+    ]
+  },
+  "fuzzing_plan": {
+    "enabled": false,
+    "reason": "Unit branch coverage is the active target for this packet."
+  },
+  "mutation_plan": {
+    "enabled": false,
+    "reason": "Mutation testing is deferred until generated unit tests are committed."
+  },
+  "risks": ["Gateway integration remains covered by separate contract tests."],
+  "validation": {
+    "status": "pass",
+    "checks": [
+      "assets",
+      "deterministic_scripts",
+      "quality_criteria",
+      "test_oracles",
+      "evidence_required",
+      "bounded_fuzzing",
+      "mutation_contract",
+      "coverage_targets"
+    ]
+  }
+}

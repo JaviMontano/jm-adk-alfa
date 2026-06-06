@@ -1,0 +1,25 @@
+{
+  "schema": "jm-labs.ai-assisted-testing.plan.v1",
+  "required_top_level_fields": [
+    "schema",
+    "target",
+    "scope",
+    "evidence",
+    "candidate_tests",
+    "coverage_plan",
+    "fuzzing_plan",
+    "mutation_plan",
+    "risks",
+    "validation"
+  ],
+  "required_validation_checks": [
+    "assets",
+    "deterministic_scripts",
+    "quality_criteria",
+    "test_oracles",
+    "evidence_required",
+    "bounded_fuzzing",
+    "mutation_contract",
+    "coverage_targets"
+  ]
+}

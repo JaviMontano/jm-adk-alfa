@@ -1,0 +1,11 @@
+{
+  "schema": 1,
+  "skill": "ai-assisted-testing",
+  "allowed_tags": ["[CÓDIGO]", "[CONFIG]", "[DOC]", "[MÉTRICA]", "[ENTREVISTA]", "[INFERENCIA]"],
+  "required_fields": ["id", "tag", "source", "summary"],
+  "rules": [
+    "Candidate tests must reference existing evidence IDs.",
+    "The skill must block test generation when no code, requirement, defect, example, or metric evidence exists.",
+    "The skill must not claim tests passed without execution evidence."
+  ]
+}

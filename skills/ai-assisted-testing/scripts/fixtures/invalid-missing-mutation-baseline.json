@@ -1,0 +1,12 @@
+{
+  "schema": "jm-labs.ai-assisted-testing.plan.v1",
+  "target": "src/pricing.py",
+  "scope": {"includes": ["mutation testing"]},
+  "evidence": [{"id": "EV-CODE-001", "tag": "[CÓDIGO]", "source": "src/pricing.py", "summary": "Pricing branches include discount and tax paths."}],
+  "candidate_tests": [{"id": "AT-001", "type": "mutation", "target": "discount boundary mutation", "rationale": "Boundary mutants must be killed.", "oracle": "Mutant changing >= to > is killed.", "status": "proposed", "evidence_ids": ["EV-CODE-001"]}],
+  "coverage_plan": {"targets": [{"file": "src/pricing.py", "current_percent": 72, "target_percent": 88, "missing_areas": ["discount boundary"]}]},
+  "fuzzing_plan": {"enabled": false, "reason": "Not requested."},
+  "mutation_plan": {"enabled": true, "baseline_status": "unknown", "operators": ["conditional boundary"], "kill_criteria": "80 percent mutation score.", "surviving_mutant_policy": "Triage survivors."},
+  "risks": [],
+  "validation": {"status": "pass", "checks": ["assets", "deterministic_scripts", "quality_criteria", "test_oracles", "evidence_required", "bounded_fuzzing", "mutation_contract", "coverage_targets"]}
+}

@@ -1,0 +1,11 @@
+{
+  "schema": 1,
+  "skill": "ai-assisted-testing",
+  "required_target_fields": ["file", "current_percent", "target_percent", "missing_areas"],
+  "rules": [
+    "Coverage plans must name target files or modules.",
+    "Coverage targets must be numeric percentages from 0 to 100.",
+    "Target coverage must not be lower than current coverage.",
+    "Missing areas must be concrete branches, paths, or behaviors."
+  ]
+}

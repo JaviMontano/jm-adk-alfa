@@ -1,0 +1,42 @@
+{
+  "schema": 1,
+  "skill": "ai-assisted-testing",
+  "assets": [
+    {
+      "path": "assets/test-taxonomy-policy.json",
+      "type": "policy",
+      "purpose": "Defines allowed test categories and required candidate-test fields.",
+      "used_by": ["SKILL.md", "scripts/validate_ai_assisted_testing_plan.py", "evals/evals.json"]
+    },
+    {
+      "path": "assets/evidence-policy.json",
+      "type": "policy",
+      "purpose": "Defines evidence tags, source requirements, and no-fake-pass rules.",
+      "used_by": ["SKILL.md", "scripts/validate_ai_assisted_testing_plan.py", "agents/guardian.md"]
+    },
+    {
+      "path": "assets/fuzzing-policy.json",
+      "type": "policy",
+      "purpose": "Defines bounded fuzzing requirements for seeds, iterations, timeout, scope, and safety.",
+      "used_by": ["SKILL.md", "scripts/validate_ai_assisted_testing_plan.py", "knowledge/body-of-knowledge.md"]
+    },
+    {
+      "path": "assets/mutation-policy.json",
+      "type": "policy",
+      "purpose": "Defines mutation testing baseline, operator, kill-criteria, and survivor requirements.",
+      "used_by": ["SKILL.md", "scripts/validate_ai_assisted_testing_plan.py", "templates/output.md"]
+    },
+    {
+      "path": "assets/coverage-policy.json",
+      "type": "policy",
+      "purpose": "Defines measurable coverage target and missing-area requirements.",
+      "used_by": ["SKILL.md", "scripts/validate_ai_assisted_testing_plan.py", "templates/output.md"]
+    },
+    {
+      "path": "assets/assisted-testing-plan-contract.json",
+      "type": "schema",
+      "purpose": "Defines the machine-readable AI Assisted Testing plan packet.",
+      "used_by": ["SKILL.md", "scripts/validate_ai_assisted_testing_plan.py", "templates/output.md"]
+    }
+  ]
+}

@@ -1,28 +1,28 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: ai-assisted-testing
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
-
-# Ai Assisted Testing Output
+# AI Assisted Testing Plan
 
 ## Summary
 
-{summary}
+Target: `{target}`
+Status: `{validation_status}`
 
 ## Evidence
 
-{evidence}
+| id | source | summary |
+|----|--------|---------|
+| `{id}` | `{source}` | `{summary}` |
 
-## Result
+## Candidate Tests
 
-{result}
+| id | type | target | rationale | oracle | status |
+|----|------|--------|-----------|--------|--------|
+| `{id}` | `{type}` | `{target}` | `{rationale}` | `{oracle}` | `{status}` |
 
-## Validation
+## Coverage Plan
 
-{validation}
+| file | current | target | missing area |
+|------|---------|--------|--------------|
+| `{file}` | `{current}` | `{target}` | `{missing}` |
 
-## Risks and Limits
+## Safety
 
-{risks}
+List fuzzing bounds, mutation baseline, and execution limits.

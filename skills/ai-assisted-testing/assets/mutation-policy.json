@@ -1,0 +1,12 @@
+{
+  "schema": 1,
+  "skill": "ai-assisted-testing",
+  "required_when_enabled": ["baseline_status", "operators", "kill_criteria", "surviving_mutant_policy"],
+  "allowed_baseline_statuses": ["passing"],
+  "rules": [
+    "Mutation testing requires a passing baseline.",
+    "Mutation operators must be explicit.",
+    "Kill criteria must be measurable.",
+    "Surviving mutants must be triaged instead of ignored."
+  ]
+}

@@ -1,13 +1,17 @@
-# Ai Assisted Testing — Knowledge Graph
-<!-- Zettelkasten-ready: use [[wikilinks]] for Obsidian -->
+# AI Assisted Testing Knowledge Graph
 
-## Core Concepts
-- [[ai-assisted-testing]] — Primary concept
-- [[ai-assisted-testing-patterns]] — Common patterns and approaches
-- [[ai-assisted-testing-anti-patterns]] — What to avoid
+## Nodes
+- test-plan: evidence-backed testing deliverable.
+- evidence: code, requirements, defects, examples, coverage.
+- candidate-test: target, rationale, oracle, status.
+- fuzzing-plan: domain, seeds, iterations, timeout, safety boundary.
+- mutation-plan: baseline, operators, kill criteria.
+- coverage-plan: current/target coverage and target files.
+- validation: offline plan validator.
 
-## Tags
-#ai-assisted-testing #jm-adk #zettelkasten
-
-## Cross-References
-- Related skills in this domain
+## Edges
+- evidence -> candidate-test -> test-plan
+- candidate-test -> coverage-plan
+- fuzzing-plan -> candidate-test
+- mutation-plan -> coverage-plan
+- test-plan -> validation

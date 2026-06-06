@@ -1,9 +1,76 @@
-[
-  {"id": "ai-assisted-testing-happy-path", "type": "happy_path", "input": "Run ai assisted testing on this project", "expected_behavior": "Skill activates and produces the expected ai assisted testing output following the defined process", "tags": ["basic", "activation"]},
-  {"id": "ai-assisted-testing-explicit-trigger", "type": "happy_path", "input": "Apply ai assisted testing analysis", "expected_behavior": "Skill recognizes the trigger phrase and executes the ai assisted testing workflow", "tags": ["trigger", "recognition"]},
-  {"id": "ai-assisted-testing-with-context", "type": "happy_path", "input": "Apply ai assisted testing to analyze the current codebase with detailed output", "expected_behavior": "Skill produces comprehensive ai assisted testing analysis with evidence-tagged findings", "tags": ["detailed", "comprehensive"]},
-  {"id": "ai-assisted-testing-minimal-input", "type": "happy_path", "input": "Quick ai assisted testing", "expected_behavior": "Skill activates with minimal input, applies reasonable defaults", "tags": ["minimal", "defaults"]},
-  {"id": "ai-assisted-testing-false-positive", "type": "false_positive", "input": "What is the weather forecast for tomorrow?", "expected_behavior": "Skill should NOT activate — this input has no relation to ai assisted testing", "tags": ["false_positive", "should-not-activate"]},
-  {"id": "ai-assisted-testing-edge-empty-input", "type": "edge_case", "input": "Run ai assisted testing but I have no files or documentation yet", "expected_behavior": "Skill handles gracefully — requests minimum viable input or produces gap analysis", "tags": ["edge_case", "empty-input", "boundary"]},
-  {"id": "ai-assisted-testing-edge-conflicting", "type": "edge_case", "input": "Apply ai assisted testing but requirements contradict each other", "expected_behavior": "Skill detects contradiction, flags with [OPEN] tag, proposes resolution", "tags": ["edge_case", "conflict", "corner"]}
-]
+{
+  "schema": 1,
+  "skill": "ai-assisted-testing",
+  "cases": [
+    {
+      "id": "ai-assisted-testing-unit-plan",
+      "type": "happy_path",
+      "input": "Generate unit tests for a parser module with examples and failure cases.",
+      "expected_behavior": "Produces candidate tests with target, rationale, oracle, evidence, and proposed execution status.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "test_oracles", "evidence_required"]
+    },
+    {
+      "id": "ai-assisted-testing-fuzzing-plan",
+      "type": "happy_path",
+      "input": "Create a fuzzing plan for JSON request validation.",
+      "expected_behavior": "Defines bounded input domain, seeds, iterations, timeout, safety scope, and expected oracle.",
+      "expected_checks": ["quality_criteria", "bounded_fuzzing", "test_oracles"]
+    },
+    {
+      "id": "ai-assisted-testing-mutation-plan",
+      "type": "happy_path",
+      "input": "Design mutation testing for pricing logic.",
+      "expected_behavior": "Includes baseline, mutation operators, kill criteria, and surviving mutant handling.",
+      "expected_checks": ["quality_criteria", "mutation_contract", "coverage_targets"]
+    },
+    {
+      "id": "ai-assisted-testing-coverage-optimization",
+      "type": "happy_path",
+      "input": "Find missing tests to raise branch coverage on payment validation.",
+      "expected_behavior": "Names target files/modules, current/target coverage, and tests mapped to uncovered branches.",
+      "expected_checks": ["quality_criteria", "coverage_targets", "evidence_required"]
+    },
+    {
+      "id": "ai-assisted-testing-false-positive-weather",
+      "type": "false_positive",
+      "input": "What is the weather tomorrow?",
+      "expected_behavior": "Does not activate because no testing intent exists.",
+      "expected_checks": ["quality_criteria", "activation_boundary"]
+    },
+    {
+      "id": "ai-assisted-testing-no-code",
+      "type": "degradation",
+      "input": "Generate tests but no code, API contract, examples, or requirements are available.",
+      "expected_behavior": "Blocks or requests minimum evidence instead of inventing targets.",
+      "expected_checks": ["evidence_required", "missing_inputs_block"]
+    },
+    {
+      "id": "ai-assisted-testing-invalid-no-oracle",
+      "type": "degradation",
+      "input": "Generate test names without expected outcomes.",
+      "expected_behavior": "Rejects tests without oracle.",
+      "expected_checks": ["deterministic_scripts", "quality_criteria", "test_oracles"]
+    },
+    {
+      "id": "ai-assisted-testing-unsafe-fuzzing",
+      "type": "degradation",
+      "input": "Fuzz a production endpoint without timeout or safety boundary.",
+      "expected_behavior": "Rejects unsafe fuzzing plan.",
+      "expected_checks": ["deterministic_scripts", "bounded_fuzzing"]
+    },
+    {
+      "id": "ai-assisted-testing-mutation-no-baseline",
+      "type": "edge_case",
+      "input": "Run mutation testing without baseline passing tests.",
+      "expected_behavior": "Blocks mutation testing until baseline is supplied.",
+      "expected_checks": ["deterministic_scripts", "mutation_contract"]
+    },
+    {
+      "id": "ai-assisted-testing-script-contract",
+      "type": "script_contract",
+      "input": "Validate AI Assisted Testing JSON fixtures offline.",
+      "expected_behavior": "Accept valid unit/fuzz/mutation plans and reject missing oracle, no evidence, unsafe fuzzing, missing mutation baseline, and missing coverage targets.",
+      "expected_checks": ["deterministic_scripts", "assets", "quality_criteria"]
+    }
+  ]
+}

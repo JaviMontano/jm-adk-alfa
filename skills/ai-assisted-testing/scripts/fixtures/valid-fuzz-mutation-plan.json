@@ -1,0 +1,99 @@
+{
+  "schema": "jm-labs.ai-assisted-testing.plan.v1",
+  "target": "src/api/request_schema.py",
+  "scope": {
+    "includes": ["property tests", "bounded fuzzing", "mutation testing"],
+    "excludes": ["production endpoint fuzzing"]
+  },
+  "evidence": [
+    {
+      "id": "EV-DOC-001",
+      "tag": "[DOC]",
+      "source": "docs/api/request-schema.md",
+      "summary": "The schema requires account_id, amount, currency, and metadata."
+    },
+    {
+      "id": "EV-CODE-001",
+      "tag": "[CÓDIGO]",
+      "source": "src/api/request_schema.py",
+      "summary": "Parser rejects unknown currencies and oversized metadata."
+    },
+    {
+      "id": "EV-RUN-001",
+      "tag": "[MÉTRICA]",
+      "kind": "execution",
+      "source": "pytest tests/api/test_request_schema.py",
+      "summary": "Baseline request schema test suite is passing."
+    }
+  ],
+  "candidate_tests": [
+    {
+      "id": "AT-010",
+      "type": "property",
+      "target": "request schema preserves valid currency codes",
+      "rationale": "Currency normalization must be stable across generated valid inputs.",
+      "oracle": "Every accepted request returns a currency in the configured allowlist.",
+      "status": "proposed",
+      "evidence_ids": ["EV-DOC-001", "EV-CODE-001"]
+    },
+    {
+      "id": "AT-011",
+      "type": "fuzz",
+      "target": "request schema rejects oversized metadata payloads",
+      "rationale": "Metadata size limits defend parser memory and downstream storage.",
+      "oracle": "Payloads above 2048 bytes return metadata_too_large within timeout.",
+      "status": "generated",
+      "evidence_ids": ["EV-CODE-001"]
+    },
+    {
+      "id": "AT-012",
+      "type": "mutation",
+      "target": "currency allowlist condition",
+      "rationale": "A removed allowlist branch should be killed by generated tests.",
+      "oracle": "Mutant that accepts XXX currency is killed by invalid currency test.",
+      "status": "executed",
+      "evidence_ids": ["EV-CODE-001", "EV-RUN-001"]
+    }
+  ],
+  "coverage_plan": {
+    "targets": [
+      {
+        "file": "src/api/request_schema.py",
+        "current_percent": 78,
+        "target_percent": 90,
+        "missing_areas": ["oversized metadata", "unknown currency", "empty account_id"]
+      }
+    ]
+  },
+  "fuzzing_plan": {
+    "enabled": true,
+    "domain": "JSON request bodies matching the documented schema with bounded invalid variants",
+    "seeds": ["valid-minimal", "invalid-currency", "oversized-metadata"],
+    "iterations": 250,
+    "timeout_seconds": 30,
+    "safety_boundary": "local parser function only; no network or filesystem writes",
+    "target_environment": "local",
+    "oracle": "Parser returns accepted object or documented validation error without exception."
+  },
+  "mutation_plan": {
+    "enabled": true,
+    "baseline_status": "passing",
+    "operators": ["conditional boundary", "return value", "allowlist removal"],
+    "kill_criteria": "At least 85 percent mutation score on request_schema.py.",
+    "surviving_mutant_policy": "Open a follow-up test candidate for each equivalent or surviving mutant."
+  },
+  "risks": ["Equivalent mutants require reviewer triage."],
+  "validation": {
+    "status": "pass",
+    "checks": [
+      "assets",
+      "deterministic_scripts",
+      "quality_criteria",
+      "test_oracles",
+      "evidence_required",
+      "bounded_fuzzing",
+      "mutation_contract",
+      "coverage_targets"
+    ]
+  }
+}
