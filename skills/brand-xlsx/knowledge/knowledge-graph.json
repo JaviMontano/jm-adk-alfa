@@ -1,75 +1,25 @@
 {
   "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-28",
   "skill": "brand-xlsx",
   "nodes": [
-    {
-      "id": "brand-xlsx",
-      "type": "skill",
-      "label": "brand-xlsx"
-    },
-    {
-      "id": "brand-xlsx:inputs",
-      "type": "contract",
-      "label": "Expected inputs"
-    },
-    {
-      "id": "brand-xlsx:outputs",
-      "type": "contract",
-      "label": "Expected outputs"
-    },
-    {
-      "id": "brand-xlsx:quality",
-      "type": "gate",
-      "label": "Quality criteria"
-    },
-    {
-      "id": "brand-xlsx:ontology",
-      "type": "ontology",
-      "label": "Domain: general"
-    },
-    {
-      "id": "brand-xlsx:evidence",
-      "type": "gate",
-      "label": "Evidence / provenance requirements"
-    },
-    {
-      "id": "brand-xlsx:antipattern",
-      "type": "risk",
-      "label": "Canonical anti-pattern to avoid"
-    }
+    {"id": "brand-xlsx", "type": "skill", "label": "Deterministic Brand XLSX"},
+    {"id": "brand-xlsx:activation", "type": "policy", "label": "XLSX artifact activation"},
+    {"id": "brand-xlsx:contract", "type": "schema", "label": "XLSX workbook contract"},
+    {"id": "brand-xlsx:tokens", "type": "policy", "label": "Brand token workbook styles"},
+    {"id": "brand-xlsx:metadata", "type": "policy", "label": "Core properties and footer metadata"},
+    {"id": "brand-xlsx:features", "type": "policy", "label": "Workbook feature requirements"},
+    {"id": "brand-xlsx:dependencies", "type": "policy", "label": "Remote dependency boundary"},
+    {"id": "brand-xlsx:validator", "type": "script", "label": "Offline XLSX validator"},
+    {"id": "brand-xlsx:false-positive-controls", "type": "eval", "label": "HTML/DOCX/PPTX/CSV routing controls"}
   ],
   "edges": [
-    {
-      "from": "brand-xlsx",
-      "to": "brand-xlsx:inputs",
-      "type": "requires"
-    },
-    {
-      "from": "brand-xlsx",
-      "to": "brand-xlsx:outputs",
-      "type": "produces"
-    },
-    {
-      "from": "brand-xlsx",
-      "to": "brand-xlsx:quality",
-      "type": "validated_by"
-    },
-    {
-      "from": "brand-xlsx",
-      "to": "brand-xlsx:ontology",
-      "type": "classified_as"
-    },
-    {
-      "from": "brand-xlsx",
-      "to": "brand-xlsx:evidence",
-      "type": "validated_by"
-    },
-    {
-      "from": "brand-xlsx",
-      "to": "brand-xlsx:antipattern",
-      "type": "guards_against"
-    }
+    {"from": "brand-xlsx", "to": "brand-xlsx:activation", "type": "requires"},
+    {"from": "brand-xlsx", "to": "brand-xlsx:contract", "type": "produces"},
+    {"from": "brand-xlsx:contract", "to": "brand-xlsx:tokens", "type": "requires"},
+    {"from": "brand-xlsx:contract", "to": "brand-xlsx:metadata", "type": "requires"},
+    {"from": "brand-xlsx:contract", "to": "brand-xlsx:features", "type": "requires"},
+    {"from": "brand-xlsx:contract", "to": "brand-xlsx:dependencies", "type": "constrains"},
+    {"from": "brand-xlsx:validator", "to": "brand-xlsx:contract", "type": "validates"},
+    {"from": "brand-xlsx:false-positive-controls", "to": "brand-xlsx:activation", "type": "calibrates"}
   ]
 }

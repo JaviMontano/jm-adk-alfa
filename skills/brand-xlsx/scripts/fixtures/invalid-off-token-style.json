@@ -1,16 +1,12 @@
-# Brand XLSX Example Input
-
-Generate `AtlasOps KPI Workbook.xlsx` using these supplied tokens. [CONFIG]
-
-```json
 {
-  "workbook_type": "kpi_dashboard",
-  "title": "AtlasOps KPI Workbook",
-  "subtitle": "Operational dashboard",
-  "sheet_name": "KPI Report",
+  "schema": 1,
+  "title": "Off Token Workbook",
+  "subtitle": "Invalid workbook",
+  "sheet_name": "Off Token",
   "artifact_date": "2026-06-06",
   "year": "2026",
-  "domain": "atlasops.example",
+  "domain": "invalid.example",
+  "inject_off_token_color": true,
   "brand_config": {
     "brand": {
       "name": "AtlasOps",
@@ -27,13 +23,11 @@ Generate `AtlasOps KPI Workbook.xlsx` using these supplied tokens. [CONFIG]
     },
     "typography": {
       "body": "Calibri"
+    },
+    "xlsx": {
+      "artifact_date": "2026-06-06",
+      "year": "2026",
+      "domain": "atlasops.example"
     }
-  },
-  "headers": ["Metric", "Value", "Owner"],
-  "rows": [
-    ["Revenue", "100", "Ops"],
-    ["Churn", "4", "CS"],
-    ["NPS", "62", "CX"]
-  ]
+  }
 }
-```

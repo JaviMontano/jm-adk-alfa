@@ -1,14 +1,15 @@
 ---
 name: brand-xlsx
-version: 1.0.0
-description: 
-  This skill should be used when the user asks to "generate a branded spreadsheet",
-  "create an Excel file with brand colors", "build an XLSX report",
-  "apply brand styling to a spreadsheet", or mentions openpyxl or brand tokens. [EXPLICIT]
-  It generates brand-compliant Excel spreadsheets (.xlsx) using openpyxl with
-  configurable color fills, typography, layout patterns, KPI boxes, and footers. [EXPLICIT]
-  Use this skill whenever the user needs any styled or branded Excel output,
-  even if they don't explicitly ask for "brand-xlsx". [EXPLICIT]
+version: 1.1.0
+description: >
+  Generate deterministic, brand-token-compliant Microsoft Excel XLSX artifacts
+  from supplied brand configuration or explicit fallback defaults. Use when the
+  user asks for an Excel workbook, XLSX, branded spreadsheet, spreadsheet
+  report, KPI dashboard, or openpyxl output. The skill enforces real XLSX
+  package structure, workbook/core properties, sheet names, tab colors, merged
+  title/footer regions, brand-token styles, freeze panes, bounded column
+  widths, no remote assets, no unresolved placeholders, and offline validator
+  fixtures. [EXPLICIT]
 argument-hint: "sheet-title [brand-config-path]"
 model: opus
 context: fork
@@ -17,264 +18,137 @@ allowed-tools:
   - Grep
   - Glob
   - Write
-  - Edit
   - Bash
 ---
 
-# Brand XLSX — Spreadsheet Generator
+# Brand XLSX / Excel Workbook Generation
 
-Generate brand-compliant Excel spreadsheets (.xlsx) using openpyxl. Reads brand tokens from config and applies consistent colors, typography, layout patterns. [EXPLICIT]
+## Purpose
 
-## Prerequisites
+Generate `.xlsx` artifacts that are deterministic, brand-token-compliant, and
+validated as real Excel packages. The skill may write the requested XLSX
+artifact, but validation must stay offline and must pass the local contract
+before delivery. [CONFIG]
 
-- openpyxl installed (`pip install openpyxl`)
-- Brand config file (optional; neutral defaults without one)
+## Deterministic Resources
+
+- `assets/manifest.json` declares all deterministic assets. [CÓDIGO]
+- `assets/activation-policy.json` defines activation, routing, and false
+  positives. [CÓDIGO]
+- `assets/brand-xlsx-contract.json` defines required XLSX package parts,
+  workbook features, dependency boundaries, token rules, and validator checks.
+  [CÓDIGO]
+- `assets/fallback-brand-config.json` defines explicit fallback tokens when no
+  brand config is supplied. [CÓDIGO]
+- `assets/style-token-map.json` maps brand tokens to workbook styles. [CÓDIGO]
+- `assets/evidence-policy.json` defines evidence tags and report requirements.
+  [CÓDIGO]
+- `scripts/check.sh` validates valid and invalid XLSX fixtures offline.
+  [CÓDIGO]
+
+## When To Activate
+
+Activate when the user asks for an Excel workbook, `.xlsx`, branded
+spreadsheet, spreadsheet report, KPI dashboard, openpyxl generation, or a file
+intended to open in Microsoft Excel. [CONFIG]
+
+Do not activate for CSV-only exports, HTML pages, DOCX documents, PDFs, slide
+decks, image assets, or token extraction-only tasks. Route those requests to
+the appropriate document or brand skill. [CONFIG]
+
+## Inputs
+
+- Workbook type: report, KPI dashboard, inventory table, financial summary, or
+  operational workbook.
+- Title, subtitle, sheet name, headers, rows, KPI blocks, and footer needs.
+- Brand config path or inline brand tokens.
+- Optional caller-supplied `artifact_date`, `year`, and `domain`; do not infer
+  current date/time.
+- Optional wide-data and print/freeze-pane requirements.
 
 ## Brand Configuration
 
-Search for config: [EXPLICIT]
-1. Path passed as argument
-2. `./brand-config.json`
-3. `~/.claude/brand-config.json`
+Search order:
 
-### Config Fields Used
+1. Path passed as argument.
+2. `./brand-config.json` in the working directory.
+3. `references/brand/design-tokens.json` when the current repo brand applies.
+4. `assets/fallback-brand-config.json` when no brand config exists.
+
+Never read hidden user-level brand files for this skill. [CONFIG]
+
+Required token groups:
 
 ```json
 {
   "brand": { "name": "", "wordmark": "", "tagline": "" },
-  "colors": {
-    "primary": "#FF7E08",
-    "black": "#000000",
-    "white": "#FFFFFF",
-    "background": "#EFEAE4",
-    "muted": "#B8A894",
-    "primarySoft": "#FFF0E0"
-  },
-  "decorative": ["#42D36F", "#06C8C8", "#9747FF", "#FE9CAB"],
-  "xlsx": { "year": "2026", "domain": "yourbrand.com" }
+  "colors": { "primary": "", "black": "", "white": "", "background": "", "muted": "", "primarySoft": "" },
+  "typography": { "body": "" },
+  "xlsx": { "artifact_date": "", "year": "", "domain": "" }
 }
 ```
 
-## Color Fills
+## Output Contract
 
-```python
-from openpyxl.styles import PatternFill, Font, Alignment, Border, Side
+Return exactly one of these outputs:
 
-def load_fills(config):
-    c = config.get("colors", {})
-    return {
-        "primary":    PatternFill("solid", fgColor=c.get("primary", "2563EB").lstrip("#")),
-        "black":      PatternFill("solid", fgColor=c.get("black", "000000").lstrip("#")),
-        "background": PatternFill("solid", fgColor=c.get("background", "F8FAFC").lstrip("#")),
-        "white":      PatternFill("solid", fgColor=c.get("white", "FFFFFF").lstrip("#")),
-        "muted":      PatternFill("solid", fgColor=c.get("muted", "94A3B8").lstrip("#")),
-        "soft":       PatternFill("solid", fgColor=c.get("primarySoft", "EFF6FF").lstrip("#")),
-    }
-```
+- A saved `.xlsx` artifact path plus validation evidence.
+- A plan for generating the `.xlsx` when the user asks for instructions only.
 
-## Typography
+The delivered `.xlsx` must include:
 
-Brand display fonts are typically unavailable in Excel. Use system fallbacks: [EXPLICIT]
+- Real XLSX ZIP package structure, not HTML or CSV renamed as `.xlsx`.
+- `[Content_Types].xml`, `_rels/.rels`, `docProps/core.xml`,
+  `xl/workbook.xml`, `xl/_rels/workbook.xml.rels`, `xl/styles.xml`, and at
+  least one `xl/worksheets/sheet*.xml`.
+- Core properties with title, creator, and caller-supplied artifact date.
+- Meaningful sheet names, not `Sheet1`.
+- Primary tab color.
+- Merged title region, header row, data rows, and footer metadata.
+- Brand colors and fonts in `xl/styles.xml`.
+- Freeze panes, auto filter, and bounded column widths.
+- Footer metadata with wordmark, tagline, caller-supplied year, and domain.
+- No unresolved `{{PLACEHOLDER}}` tokens.
+- No remote fonts, remote logos, remote images, base64 images, external
+  relationships, runtime current-date calls, or random values.
 
-```python
-def load_fonts(config):
-    c = config.get("colors", {})
-    primary = c.get("primary", "2563EB").lstrip("#")
-    return {
-        "title":  lambda size=18: Font(name="Calibri", bold=True, size=size, color="000000"),
-        "header": lambda: Font(name="Calibri", bold=True, size=10, color=primary),
-        "body":   lambda: Font(name="Calibri", bold=False, size=10, color="000000"),
-        "muted":  lambda: Font(name="Calibri", bold=False, size=8, color=c.get("muted","94A3B8").lstrip("#")),
-    }
-```
+## Token Rules
 
-## Sheet Layout Pattern
-
-```
-Row 1:   Title bar      primary fill, bold dark text, height 36 [EXPLICIT]
-Row 2:   Subtitle       dark fill, small primary-color text, height 18 [EXPLICIT]
-Row 3:   Spacer [EXPLICIT]
-Row 4+:  Section label  primary fill, white text [EXPLICIT]
-Row 5+:  Column headers dark fill, primary-color bold text [EXPLICIT]
-Row 6+:  Data rows      alternating white / background [EXPLICIT]
-Last:    Footer         dark fill, muted text [EXPLICIT]
-```
-
-Tab color: always set to primary color. [EXPLICIT]
-
-## Core Functions
-
-### Sheet Setup
-```python
-def setup_sheet(ws, title, subtitle="", config={}):
-    fills = load_fills(config)
-    fonts = load_fonts(config)
-    primary = config.get("colors",{}).get("primary","2563EB").lstrip("#")
-
-    ws.sheet_properties.tabColor = primary
-    ws.row_dimensions[1].height = 36
-    ws.merge_cells('A1:J1')
-    c = ws['A1']
-    c.value = title
-    c.font = fonts["title"]()
-    c.fill = fills["primary"]
-    c.alignment = Alignment(horizontal="left", vertical="center", indent=2)
-
-    if subtitle:
-        ws.row_dimensions[2].height = 18
-        ws.merge_cells('A2:J2')
-        c2 = ws['A2']
-        c2.value = subtitle
-        c2.font = Font(name="Calibri", size=9, color=primary)
-        c2.fill = fills["black"]
-        c2.alignment = Alignment(horizontal="left", vertical="center", indent=2)
-```
-
-### Column Headers
-```python
-def add_headers(ws, row, headers, style="dark", config={}):
-    fills = load_fills(config)
-    primary = config.get("colors",{}).get("primary","2563EB").lstrip("#")
-
-    fill = fills["black"] if style == "dark" else fills["primary"]
-    color = primary if style == "dark" else "000000"
-    ws.row_dimensions[row].height = 26
-    for i, label in enumerate(headers, 1):
-        c = ws.cell(row=row, column=i, value=label)
-        c.font = Font(name="Calibri", bold=True, size=10, color=color)
-        c.fill = fill
-        c.alignment = Alignment(horizontal="left", vertical="center", indent=1)
-        c.border = Border(bottom=Side(style="medium", color=primary))
-```
-
-### Data Rows
-```python
-def add_data(ws, start_row, data, config={}):
-    fills = load_fills(config)
-    fonts = load_fonts(config)
-    muted = config.get("colors",{}).get("muted","94A3B8").lstrip("#")
-
-    for i, row_data in enumerate(data):
-        fill = fills["white"] if i % 2 == 0 else fills["background"]
-        ws.row_dimensions[start_row + i].height = 20
-        for j, value in enumerate(row_data, 1):
-            c = ws.cell(row=start_row + i, column=j, value=value)
-            c.font = fonts["body"]()
-            c.fill = fill
-            c.alignment = Alignment(horizontal="left", vertical="center", indent=1)
-            c.border = Border(bottom=Side(style="hair", color=muted))
-```
-
-### Section Divider
-```python
-def add_section(ws, row, label, col_span=10, config={}):
-    fills = load_fills(config)
-    ws.row_dimensions[row].height = 22
-    ws.merge_cells(start_row=row, start_column=1, end_row=row, end_column=col_span)
-    c = ws.cell(row=row, column=1, value=f"  {label}")
-    c.font = Font(name="Calibri", bold=True, size=10, color="FFFFFF")
-    c.fill = fills["primary"]
-    c.alignment = Alignment(horizontal="left", vertical="center")
-```
-
-### KPI Box
-```python
-def add_kpi(ws, row, col, label, value, unit="", config={}):
-    fills = load_fills(config)
-    primary = config.get("colors",{}).get("primary","2563EB").lstrip("#")
-
-    ws.row_dimensions[row].height = 16
-    lc = ws.cell(row=row, column=col, value=label)
-    lc.font = Font(name="Calibri", bold=True, size=8, color=primary)
-    lc.fill = fills["black"]
-    lc.alignment = Alignment(horizontal="center", vertical="center")
-
-    ws.row_dimensions[row + 1].height = 34
-    vc = ws.cell(row=row + 1, column=col, value=f"{value}{unit}")
-    vc.font = Font(name="Calibri", bold=True, size=22, color="000000")
-    vc.fill = fills["primary"]
-    vc.alignment = Alignment(horizontal="center", vertical="center")
-```
-
-### Footer
-```python
-def add_footer(ws, row, col_span=10, config={}):
-    fills = load_fills(config)
-    fonts = load_fonts(config)
-    brand = config.get("brand", {})
-    xlsx_cfg = config.get("xlsx", {})
-    year = xlsx_cfg.get("year", "2026")
-    domain = xlsx_cfg.get("domain", "")
-    wordmark = brand.get("wordmark", brand.get("name", ""))
-    tagline = brand.get("tagline", "")
-
-    ws.row_dimensions[row].height = 16
-    ws.merge_cells(start_row=row, start_column=1, end_row=row, end_column=col_span)
-    parts = [p for p in [wordmark, tagline, year, domain] if p]
-    c = ws.cell(row=row, column=1, value="  " + "  |  ".join(parts))
-    c.font = fonts["muted"]()
-    c.fill = fills["black"]
-    c.alignment = Alignment(horizontal="left", vertical="center")
-```
-
-### Auto Column Width
-```python
-def auto_fit(ws, min_w=10, max_w=50):
-    from openpyxl.utils import get_column_letter
-    for col in ws.columns:
-        letter = get_column_letter(col[0].column)
-        max_len = max((len(str(c.value)) for c in col if c.value), default=0)
-        ws.column_dimensions[letter].width = max(min_w, min(max_w, max_len + 4))
-```
-
-## Approved Color Combinations
-
-| Use Case | Fill | Font Color |
-|----------|------|-----------|
-| Sheet title | Primary | Black |
-| Column headers | Black | Primary |
-| Alt headers | Primary | Black |
-| Section dividers | Primary | White |
-| KPI label | Black | Primary |
-| KPI value | Primary | Black |
-| Even rows | White | Black |
-| Odd rows | Background | Black |
-| Footer | Black | Muted |
-
-## Assumptions & Limits
-
-- Brand display fonts unavailable in Excel; Calibri Bold used as universal fallback
-- openpyxl handles .xlsx only (not .xls)
-- Conditional formatting uses openpyxl rules; complex formulas may need manual adjustment
-- Charts use openpyxl chart module; brand decorative colors applied to series
-
-## Edge Cases
-
-- **No brand config:** Use neutral blue palette with Calibri
-- **Wide data (> 10 columns):** Freeze panes at header row + first column
-- **Large datasets (> 1000 rows):** Use openpyxl write-only mode for performance
-- **Multiple sheets:** Apply setup_sheet to each; consistent tab colors
-- **Print layout:** Set print area, page orientation, header/footer for printing
+- Use supplied brand tokens or explicit fallback tokens only.
+- Do not hardcode legacy palettes such as `#122562`, `#FFD700`, `#137DC5`, or
+  `#FF7E08` unless they are explicitly supplied in the active brand config.
+  [CONFIG]
+- Fallback defaults are `#2563EB`, `#0F172A`, `#FFFFFF`, `#F8FAFC`,
+  `#475569`, `#EFF6FF`, and `Calibri`.
+- Preserve tokens in generated styles so validation can trace them.
 
 ## Validation Gate
 
-- [ ] Brand config loaded (or defaults applied)
-- [ ] Tab color set to primary
-- [ ] Title bar uses primary fill
-- [ ] Column headers use dark fill with primary text (or inverse)
-- [ ] Data rows alternate white / background
-- [ ] Footer present with wordmark + tagline + year
-- [ ] No default Excel blue/grey styles remaining
-- [ ] Sheet names are meaningful (not "Sheet1")
-- [ ] Column widths auto-fitted
+- [ ] Brand config or fallback tokens are explicitly declared.
+- [ ] Output is a real `.xlsx` package, not HTML/CSV/Markdown.
+- [ ] Required XLSX ZIP parts exist.
+- [ ] Core properties include caller-supplied title/date.
+- [ ] Sheet names are meaningful.
+- [ ] Tab color uses primary token.
+- [ ] Title/footer regions are merged.
+- [ ] Headers, alternating rows, and footer use deterministic branded styles.
+- [ ] Freeze panes, auto filter, and bounded column widths are present.
+- [ ] No unresolved placeholders.
+- [ ] No remote assets, base64 images, runtime dates, or randomness.
+- [ ] `bash skills/brand-xlsx/scripts/check.sh` passes.
 
----
-**Author:** Javier Montano | **Last updated:** March 18, 2026
+## Assumptions And Limits
+
+- This skill creates XLSX/Excel artifacts only; it does not build HTML pages,
+  DOCX documents, PDFs, slide decks, or CSV-only exports. [CONFIG]
+- `openpyxl` is a suitable implementation path when available, but the
+  validation gate uses the Python standard library so CI remains deterministic.
+  [CONFIG]
+- Excel rendering can vary by installed fonts; fallback font must be declared.
+  [INFERENCIA]
 
 ## Usage
 
-Example invocations: [EXPLICIT]
-
-- "/brand-xlsx" — Run the full brand xlsx workflow
-- "brand xlsx on this project" — Apply to current context
-
+- `/brand-xlsx "AtlasOps KPI Workbook" ./brand-config.json`
+- `Generate a branded XLSX report with KPI boxes and a data table`
+- `Use openpyxl to create an Excel workbook using these brand tokens`

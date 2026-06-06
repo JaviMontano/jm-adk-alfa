@@ -1,0 +1,23 @@
+{
+  "schema": 1,
+  "skill": "brand-xlsx",
+  "activate_when": [
+    "excel workbook",
+    "xlsx",
+    "branded spreadsheet",
+    "spreadsheet report",
+    "openpyxl",
+    "kpi dashboard in excel"
+  ],
+  "route_away_when": [
+    {"intent": "html page or landing page", "route": "brand-html"},
+    {"intent": "word document or docx", "route": "brand-docx"},
+    {"intent": "slides or presentation", "route": "presentation workflow"},
+    {"intent": "csv only", "route": "csv export workflow"}
+  ],
+  "false_positive_controls": [
+    "Do not activate for CSV-only exports.",
+    "Do not activate for HTML/DOCX/PPTX requests.",
+    "Do not accept renamed HTML or CSV bytes as XLSX output."
+  ]
+}

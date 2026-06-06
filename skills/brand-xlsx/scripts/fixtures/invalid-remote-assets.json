@@ -1,0 +1,11 @@
+{
+  "schema": 1,
+  "title": "Remote Asset Workbook",
+  "subtitle": "Invalid workbook",
+  "sheet_name": "Remote Asset",
+  "artifact_date": "2026-06-06",
+  "year": "2026",
+  "domain": "invalid.example",
+  "inject_remote_asset": true,
+  "inject_remote_relationship": true
+}

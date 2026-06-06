@@ -1,0 +1,55 @@
+{
+  "schema": 1,
+  "skill": "brand-xlsx",
+  "artifact_type": "xlsx",
+  "required_zip_parts": [
+    "[Content_Types].xml",
+    "_rels/.rels",
+    "docProps/core.xml",
+    "xl/workbook.xml",
+    "xl/_rels/workbook.xml.rels",
+    "xl/styles.xml",
+    "xl/worksheets/sheet1.xml"
+  ],
+  "required_checks": [
+    "xlsx_zip_package",
+    "core_properties",
+    "brand_tokens",
+    "meaningful_sheet_names",
+    "tab_color",
+    "title_merge",
+    "header_fill",
+    "alternating_rows",
+    "footer_metadata",
+    "freeze_panes",
+    "bounded_column_widths",
+    "no_unresolved_placeholders",
+    "no_remote_assets",
+    "not_html_or_csv_renamed_xlsx"
+  ],
+  "forbidden_patterns": [
+    "{{",
+    "https://",
+    "http://",
+    "data:image",
+    "Math.random(",
+    "new Date("
+  ],
+  "forbidden_legacy_colors_unless_configured": [
+    "122562",
+    "FFD700",
+    "137DC5",
+    "FF7E08"
+  ],
+  "fallback_colors": {
+    "primary": "2563EB",
+    "black": "0F172A",
+    "white": "FFFFFF",
+    "background": "F8FAFC",
+    "muted": "475569",
+    "primarySoft": "EFF6FF"
+  },
+  "fallback_fonts": {
+    "body": "Calibri"
+  }
+}

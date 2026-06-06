@@ -1,0 +1,10 @@
+{
+  "schema": 1,
+  "title": "Placeholder Workbook",
+  "subtitle": "Invalid workbook",
+  "sheet_name": "Placeholder",
+  "artifact_date": "2026-06-06",
+  "year": "2026",
+  "domain": "invalid.example",
+  "inject_placeholder": true
+}

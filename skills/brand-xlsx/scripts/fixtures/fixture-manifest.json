@@ -1,0 +1,46 @@
+{
+  "schema": 1,
+  "skill": "brand-xlsx",
+  "fixtures": [
+    {
+      "path": "scripts/fixtures/valid-report.json",
+      "expect": "pass",
+      "purpose": "Valid branded XLSX report package with configured tokens, metadata, footer, sheet name, tab color, and table styling."
+    },
+    {
+      "path": "scripts/fixtures/valid-fallback.json",
+      "expect": "pass",
+      "purpose": "Valid XLSX package using explicit fallback tokens when no brand config is supplied."
+    },
+    {
+      "path": "scripts/fixtures/valid-wide-data.json",
+      "expect": "pass",
+      "purpose": "Valid XLSX package with wide data, freeze panes, bounded column widths, and brand styling."
+    },
+    {
+      "path": "scripts/fixtures/invalid-not-zip.json",
+      "expect": "fail",
+      "purpose": "Rejects HTML or CSV bytes renamed as an XLSX artifact."
+    },
+    {
+      "path": "scripts/fixtures/invalid-missing-parts.json",
+      "expect": "fail",
+      "purpose": "Rejects XLSX packages missing workbook style or worksheet parts."
+    },
+    {
+      "path": "scripts/fixtures/invalid-off-token-style.json",
+      "expect": "fail",
+      "purpose": "Rejects legacy or off-token colors in workbook styles."
+    },
+    {
+      "path": "scripts/fixtures/invalid-remote-assets.json",
+      "expect": "fail",
+      "purpose": "Rejects remote URLs or external relationships inside the XLSX package."
+    },
+    {
+      "path": "scripts/fixtures/invalid-placeholder.json",
+      "expect": "fail",
+      "purpose": "Rejects unresolved template placeholders."
+    }
+  ]
+}

@@ -1,28 +1,27 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: brand-xlsx
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
-
-# Brand Xlsx Output
+# Brand XLSX Result
 
 ## Summary
 
-{summary}
+- `{{summary}}`
 
-## Evidence
+## Artifact
 
-{evidence}
-
-## Result
-
-{result}
+- Path: `{{artifact_path}}`
+- Format: `.xlsx`
+- Brand config: `{{brand_config_source}}`
 
 ## Validation
 
-{validation}
+- XLSX package: `{{xlsx_package_status}}`
+- Core properties: `{{core_properties_status}}`
+- Brand tokens: `{{brand_tokens_status}}`
+- Sheet names: `{{sheet_name_status}}`
+- Tab color: `{{tab_color_status}}`
+- Workbook features: `{{workbook_feature_status}}`
+- Footer metadata: `{{footer_status}}`
+- Dependency boundary: `{{dependency_status}}`
+- Placeholder check: `{{placeholder_status}}`
 
-## Risks and Limits
+## Risks And Limits
 
-{risks}
+- `{{risk_or_limit}}`

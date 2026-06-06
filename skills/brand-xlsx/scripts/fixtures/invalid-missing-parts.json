@@ -1,0 +1,10 @@
+{
+  "schema": 1,
+  "title": "Missing Styles Workbook",
+  "subtitle": "Invalid workbook",
+  "sheet_name": "Missing Styles",
+  "artifact_date": "2026-06-06",
+  "year": "2026",
+  "domain": "invalid.example",
+  "omit_styles": true
+}
