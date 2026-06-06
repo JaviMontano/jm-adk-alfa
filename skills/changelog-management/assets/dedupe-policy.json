@@ -1,0 +1,8 @@
+{
+  "schema": 1,
+  "skill": "changelog-management",
+  "fingerprint_fields": ["date", "type", "normalized_description", "evidence_refs"],
+  "duplicate_found_actions": ["skip", "revise"],
+  "duplicate_not_found_actions": ["append"],
+  "append_duplicate_allowed": false
+}

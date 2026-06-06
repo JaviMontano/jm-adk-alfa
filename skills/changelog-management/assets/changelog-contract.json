@@ -1,0 +1,16 @@
+{
+  "schema": 1,
+  "skill": "changelog-management",
+  "required_report_keys": [
+    "schema_version",
+    "skill",
+    "as_of_date",
+    "changelog_snapshot",
+    "proposed_entries",
+    "duplicate_review",
+    "ordering_review",
+    "guardian_decision"
+  ],
+  "entry_required_keys": ["date", "type", "description", "rationale", "principles", "evidence_refs", "authorized", "evidence_tag"],
+  "evidence_tags": ["[CODE]", "[CONFIG]", "[DOC]", "[INFERENCE]", "[ASSUMPTION]", "[OPEN]"]
+}

@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "skill": "changelog-management",
+  "as_of_date": "2026-06-06",
+  "changelog_snapshot": {
+    "path": "changelog.md",
+    "status": "present",
+    "recent_entries_loaded": 5,
+    "newest_first": true,
+    "evidence_tag": "[CODE]"
+  },
+  "proposed_entries": [],
+  "duplicate_review": [
+    {
+      "fingerprint": "2026-06-06|completion|tasklog-management-hardening-merged|PR #78",
+      "duplicate_found": true,
+      "action": "skip",
+      "evidence_tag": "[CODE]"
+    }
+  ],
+  "ordering_review": {
+    "new_section_date": "2026-06-06",
+    "insertion_position": "blocked",
+    "newest_first": true,
+    "evidence_tag": "[CODE]"
+  },
+  "guardian_decision": {
+    "decision": "block",
+    "rationale": "Duplicate entry was found, so append is blocked.",
+    "evidence_tag": "[CONFIG]"
+  }
+}

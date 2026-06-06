@@ -2,7 +2,7 @@
 name: changelog-management-primary
 type: execution
 version: 2.0.0
-description: "Execute the Changelog Management workflow with triad orchestration."
+description: "Execute deterministic Changelog Management workflow."
 triad:
   lead: "changelog-management-lead"
   support: "changelog-management-support"
@@ -14,31 +14,21 @@ triad:
 ## Dynamic Parameters
 
 | Parameter | Description | Required | Filled By |
-|-----------|-------------|----------|-----------|
-| `{{task}}` | What to accomplish | Yes | User input |
-| `{{context}}` | Background and constraints | Yes | User or codebase |
-| `{{constraints}}` | Additional rules | No | Guardrails JSON |
-| `{{depth}}` | quick / standard / deep | No | Auto |
-| `{{output_format}}` | html / docx / xlsx / md | No | Auto |
+|---|---|---:|---|
+| `{{task}}` | Requested changelog operation | Yes | User input |
+| `{{context}}` | Existing changelog and evidence refs | Yes | Codebase |
+| `{{as_of_date}}` | Date for entry placement | Yes | Session config or user |
+| `{{constraints}}` | Write authorization and branch rules | No | Guardrails JSON |
 
 ## Execution
 
-1. **Load knowledge**: Read `knowledge/body-of-knowledge.md`
-2. **Check guardrails**: Read `references/guardrails/*.json`
-3. **Lead** (`changelog-management-lead`): Execute SKILL.md Steps 1-4 for `{{task}}`
-   - Discover → Analyze → Execute → Validate
-   - Apply evidence tags on all claims
-4. **Support** (`changelog-management-support`): Review for cross-cutting concerns
-   - Edge cases, security, accessibility, performance
-5. **Guardian** (`changelog-management-guardian`): Validate
-   - Evidence tags complete
-   - Quality gate met
-   - Constitution XIII + XIV respected
-   - Output exceeds expectations
-
-## Output
-
-- Primary deliverable for `{{task}}` in `{{output_format}}`
-- Evidence tags on every claim
-- Recommendations beyond the ask
-- Confidence score (>= 0.95)
+1. Confirm activation through `SKILL.md ## When to Activate`.
+2. Load entry type, ordering, duplicate, and evidence policies from `assets/`.
+3. Read `changelog.md` and recent entries.
+4. Classify the event, draft entry, and attach rationale, principles, and evidence.
+5. Run duplicate review and ordering review.
+6. Block unsupported types, future dates, duplicate append, missing evidence, or
+   unauthorized writes.
+7. Return the Markdown report using `templates/output.md`.
+8. When a JSON report is produced, validate it with
+   `scripts/validate_changelog_report.py`.

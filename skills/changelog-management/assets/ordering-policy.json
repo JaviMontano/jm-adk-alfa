@@ -1,0 +1,9 @@
+{
+  "schema": 1,
+  "skill": "changelog-management",
+  "date_format": "YYYY-MM-DD",
+  "clock_policy": "Use explicit as_of_date from report or session config; do not call system time inside validation.",
+  "section_order": "newest-first",
+  "future_date_allowed": false,
+  "reuse_existing_date_section": true
+}

@@ -1,75 +1,88 @@
 {
   "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-28",
   "skill": "changelog-management",
   "nodes": [
     {
       "id": "changelog-management",
       "type": "skill",
-      "label": "changelog-management"
+      "label": "Changelog Management"
     },
     {
-      "id": "changelog-management:inputs",
-      "type": "contract",
-      "label": "Expected inputs"
+      "id": "changelog-md",
+      "type": "source",
+      "label": "changelog.md"
     },
     {
-      "id": "changelog-management:outputs",
-      "type": "contract",
-      "label": "Expected outputs"
+      "id": "entry-contract",
+      "type": "schema",
+      "label": "Changelog entry contract"
     },
     {
-      "id": "changelog-management:quality",
-      "type": "gate",
-      "label": "Quality criteria"
+      "id": "entry-type-policy",
+      "type": "policy",
+      "label": "Allowed entry types"
     },
     {
-      "id": "changelog-management:ontology",
-      "type": "ontology",
-      "label": "Domain: general"
+      "id": "ordering-policy",
+      "type": "policy",
+      "label": "Newest-first date sections"
     },
     {
-      "id": "changelog-management:evidence",
-      "type": "gate",
-      "label": "Evidence / provenance requirements"
+      "id": "dedupe-policy",
+      "type": "policy",
+      "label": "Duplicate fingerprint"
     },
     {
-      "id": "changelog-management:antipattern",
-      "type": "risk",
-      "label": "Canonical anti-pattern to avoid"
+      "id": "evidence-policy",
+      "type": "policy",
+      "label": "Rationale, principle, and evidence refs"
+    },
+    {
+      "id": "update-report",
+      "type": "output",
+      "label": "Changelog update report"
+    },
+    {
+      "id": "offline-validator",
+      "type": "script",
+      "label": "validate_changelog_report.py"
     }
   ],
   "edges": [
     {
       "from": "changelog-management",
-      "to": "changelog-management:inputs",
-      "type": "requires"
+      "to": "changelog-md",
+      "type": "reads"
     },
     {
-      "from": "changelog-management",
-      "to": "changelog-management:outputs",
-      "type": "produces"
+      "from": "entry-contract",
+      "to": "update-report",
+      "type": "feeds"
     },
     {
-      "from": "changelog-management",
-      "to": "changelog-management:quality",
-      "type": "validated_by"
+      "from": "entry-type-policy",
+      "to": "update-report",
+      "type": "constrains"
     },
     {
-      "from": "changelog-management",
-      "to": "changelog-management:ontology",
-      "type": "classified_as"
+      "from": "ordering-policy",
+      "to": "update-report",
+      "type": "constrains"
     },
     {
-      "from": "changelog-management",
-      "to": "changelog-management:evidence",
-      "type": "validated_by"
+      "from": "dedupe-policy",
+      "to": "update-report",
+      "type": "constrains"
     },
     {
-      "from": "changelog-management",
-      "to": "changelog-management:antipattern",
-      "type": "guards_against"
+      "from": "evidence-policy",
+      "to": "update-report",
+      "type": "constrains"
+    },
+    {
+      "from": "offline-validator",
+      "to": "update-report",
+      "type": "validates"
     }
   ]
 }

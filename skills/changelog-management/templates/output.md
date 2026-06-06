@@ -1,28 +1,39 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: changelog-management
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
+# Changelog Management Report
 
-# Changelog Management Output
+## Changelog Snapshot
 
-## Summary
+- Path: `{changelog_path}` `{evidence_tag}`
+- Status: `{changelog_status}` `{evidence_tag}`
+- Recent entries loaded: `{recent_entries_loaded}` `{evidence_tag}`
+- Newest-first order: `{newest_first}` `{evidence_tag}`
+- `as_of_date`: `{as_of_date}` `{evidence_tag}`
 
-{summary}
+## Proposed Entries
 
-## Evidence
+| Date | Type | Description | Authorized | Evidence |
+|---|---|---|---:|---|
+| `{date}` | `{type}` | `{description}` | `{authorized}` | `{evidence_tag}` |
 
-{evidence}
+## Rationale And Evidence
 
-## Result
+- Rationale: `{rationale}` `{evidence_tag}`
+- Principles: `{principles}` `{evidence_tag}`
+- Evidence refs: `{evidence_refs}` `{evidence_tag}`
 
-{result}
+## Duplicate Review
 
-## Validation
+| Fingerprint | Duplicate Found | Action | Evidence |
+|---|---:|---|---|
+| `{fingerprint}` | `{duplicate_found}` | `{action}` | `{evidence_tag}` |
 
-{validation}
+## Ordering Review
 
-## Risks and Limits
+- New section date: `{new_section_date}` `{evidence_tag}`
+- Insertion position: `{insertion_position}` `{evidence_tag}`
+- Newest-first preserved: `{newest_first}` `{evidence_tag}`
 
-{risks}
+## Guardian Decision
+
+Decision: `{decision}` `{evidence_tag}`
+
+Rationale: `{rationale}` `{evidence_tag}`

@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "skill": "changelog-management",
+  "assets": [
+    {
+      "path": "assets/changelog-contract.json",
+      "type": "schema",
+      "purpose": "Defines required changelog report keys, entry fields, and evidence tags.",
+      "used_by": ["SKILL.md", "scripts/validate_changelog_report.py", "templates/output.md"]
+    },
+    {
+      "path": "assets/entry-type-policy.json",
+      "type": "policy",
+      "purpose": "Defines allowed entry types and required semantic fields.",
+      "used_by": ["SKILL.md", "evals/evals.json", "scripts/validate_changelog_report.py"]
+    },
+    {
+      "path": "assets/ordering-policy.json",
+      "type": "policy",
+      "purpose": "Defines date-section ordering, explicit as_of_date, and future-date rejection.",
+      "used_by": ["SKILL.md", "evals/evals.json", "scripts/validate_changelog_report.py"]
+    },
+    {
+      "path": "assets/dedupe-policy.json",
+      "type": "policy",
+      "purpose": "Defines duplicate fingerprints and duplicate handling actions.",
+      "used_by": ["SKILL.md", "agents/guardian.md", "scripts/validate_changelog_report.py"]
+    },
+    {
+      "path": "assets/evidence-policy.json",
+      "type": "policy",
+      "purpose": "Defines rationale, principle, evidence, and authorization requirements.",
+      "used_by": ["SKILL.md", "README.md", "scripts/validate_changelog_report.py"]
+    }
+  ]
+}

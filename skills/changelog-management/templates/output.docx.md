@@ -1,8 +1,21 @@
-# DOCX Template — Changelog Management
-## Structure
-- Title: "Changelog Management Report"
-- Section 1: Executive Summary
-- Section 2: Findings / Deliverables
-- Section 3: Recommendations
-- Footer: "MetodologIA — {{date}}"
-## Formatting: Poppins headings, Montserrat body, JetBrains Mono code
+# Changelog Management — DOCX Template
+
+## Document Structure
+
+- Title: Changelog Management Report
+- Author: JM Labs
+- Date: {{DATE}}
+
+## Required Sections
+
+1. Changelog Snapshot
+2. Proposed Entries
+3. Rationale And Evidence
+4. Duplicate Review
+5. Ordering Review
+6. Guardian Decision
+
+## Determinism Notes
+
+Use explicit `as_of_date`, preserve `[OPEN]` gaps, and never append a duplicate
+entry.

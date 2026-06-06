@@ -1,9 +1,76 @@
-[
-  {"id": "changelog-management-happy-path", "type": "happy_path", "input": "Run changelog management on this project", "expected_behavior": "Skill activates and produces the expected changelog management output following the defined process", "tags": ["basic", "activation"]},
-  {"id": "changelog-management-explicit-trigger", "type": "happy_path", "input": "Apply changelog management analysis", "expected_behavior": "Skill recognizes the trigger phrase and executes the changelog management workflow", "tags": ["trigger", "recognition"]},
-  {"id": "changelog-management-with-context", "type": "happy_path", "input": "Apply changelog management to analyze the current codebase with detailed output", "expected_behavior": "Skill produces comprehensive changelog management analysis with evidence-tagged findings", "tags": ["detailed", "comprehensive"]},
-  {"id": "changelog-management-minimal-input", "type": "happy_path", "input": "Quick changelog management", "expected_behavior": "Skill activates with minimal input, applies reasonable defaults", "tags": ["minimal", "defaults"]},
-  {"id": "changelog-management-false-positive", "type": "false_positive", "input": "What is the weather forecast for tomorrow?", "expected_behavior": "Skill should NOT activate — this input has no relation to changelog management", "tags": ["false_positive", "should-not-activate"]},
-  {"id": "changelog-management-edge-empty-input", "type": "edge_case", "input": "Run changelog management but I have no files or documentation yet", "expected_behavior": "Skill handles gracefully — requests minimum viable input or produces gap analysis", "tags": ["edge_case", "empty-input", "boundary"]},
-  {"id": "changelog-management-edge-conflicting", "type": "edge_case", "input": "Apply changelog management but requirements contradict each other", "expected_behavior": "Skill detects contradiction, flags with [OPEN] tag, proposes resolution", "tags": ["edge_case", "conflict", "corner"]}
-]
+{
+  "schema": 1,
+  "skill": "changelog-management",
+  "cases": [
+    {
+      "id": "changelog-management-log-decision",
+      "type": "happy_path",
+      "input": "Log a decision from PR #78 as of 2026-06-06.",
+      "expected_behavior": "Append a decision entry with explicit date, rationale, principles, evidence refs, duplicate review, and authorization.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "entry_type"]
+    },
+    {
+      "id": "changelog-management-log-completion",
+      "type": "happy_path",
+      "input": "Record that tasklog-management hardening completed with Quality Gates pass.",
+      "expected_behavior": "Create a completion entry with validation evidence and no duplicate append.",
+      "expected_checks": ["quality_criteria", "evidence_refs"]
+    },
+    {
+      "id": "changelog-management-log-blocker",
+      "type": "happy_path",
+      "input": "Record a blocker that CI failed for a PR.",
+      "expected_behavior": "Create a blocker entry that preserves the condition and next recovery action.",
+      "expected_checks": ["quality_criteria", "entry_type"]
+    },
+    {
+      "id": "changelog-management-missing-changelog",
+      "type": "degradation",
+      "input": "Log an entry when changelog.md is missing.",
+      "expected_behavior": "Report missing changelog and create only if explicitly authorized.",
+      "expected_checks": ["quality_criteria", "missing_source_gap", "write_authorization"]
+    },
+    {
+      "id": "changelog-management-duplicate-skip",
+      "type": "edge_case",
+      "input": "Append an entry that already exists for the same date, type, description, and evidence.",
+      "expected_behavior": "Detect duplicate and skip or revise instead of appending.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "dedupe"]
+    },
+    {
+      "id": "changelog-management-future-date",
+      "type": "degradation",
+      "input": "Log an entry dated 2026-06-07 while as_of_date is 2026-06-06.",
+      "expected_behavior": "Reject future-dated write.",
+      "expected_checks": ["deterministic_scripts", "quality_criteria", "date_order"]
+    },
+    {
+      "id": "changelog-management-unknown-type",
+      "type": "degradation",
+      "input": "Log entry type note for a durable repo event.",
+      "expected_behavior": "Reject unsupported type or map it to an allowed type before writing.",
+      "expected_checks": ["deterministic_scripts", "quality_criteria", "entry_type"]
+    },
+    {
+      "id": "changelog-management-missing-principles",
+      "type": "degradation",
+      "input": "Append a completion entry without principle references.",
+      "expected_behavior": "Block the write until principle references are provided.",
+      "expected_checks": ["deterministic_scripts", "quality_criteria", "principles"]
+    },
+    {
+      "id": "changelog-management-false-positive-public-release",
+      "type": "false_positive",
+      "input": "What changed in the latest public browser release notes?",
+      "expected_behavior": "Do not activate because the request is unrelated to this repository's changelog.md.",
+      "expected_checks": ["activation_boundary"]
+    },
+    {
+      "id": "changelog-management-machine-report-contract",
+      "type": "script_contract",
+      "input": "Validate Changelog Management JSON report fixtures offline.",
+      "expected_behavior": "Accept valid decision and duplicate-block reports, then reject unknown type, future date, duplicate append, missing principles, and unauthorized entries.",
+      "expected_checks": ["deterministic_scripts", "assets", "quality_criteria"]
+    }
+  ]
+}
