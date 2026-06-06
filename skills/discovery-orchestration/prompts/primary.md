@@ -24,21 +24,28 @@ triad:
 ## Execution
 
 1. **Load knowledge**: Read `knowledge/body-of-knowledge.md`
-2. **Check guardrails**: Read `references/guardrails/*.json`
-3. **Lead** (`discovery-orchestration-lead`): Execute SKILL.md Steps 1-4 for `{{task}}`
+2. **Load deterministic assets**: Read `assets/manifest.json`,
+   `assets/pipeline-schema.json`, `assets/gate-policy.json`,
+   `assets/deliverable-policy.json`, `assets/dependency-policy.json`,
+   `assets/status-taxonomy.json`, and `assets/report-contract.json`
+3. **Check guardrails**: Read available guardrails when present
+4. **Lead** (`discovery-orchestration-lead`): Execute SKILL.md Steps 1-4 for `{{task}}`
    - Discover → Analyze → Execute → Validate
    - Apply evidence tags on all claims
-4. **Support** (`discovery-orchestration-support`): Review for cross-cutting concerns
-   - Edge cases, security, accessibility, performance
-5. **Guardian** (`discovery-orchestration-guardian`): Validate
+   - Build pipeline, phases, dependency graph, gates, deliverable register,
+     blockers, validation, and risks
+5. **Support** (`discovery-orchestration-support`): Review for cross-cutting concerns
+   - Dependency cycles, missing gates, unvalidated deliverables, owner gaps,
+     unsafe parallelism, and blocked transitions
+6. **Guardian** (`discovery-orchestration-guardian`): Validate
    - Evidence tags complete
    - Quality gate met
+   - Orchestration packet contract satisfied
    - Constitution XIII + XIV respected
    - Output exceeds expectations
 
 ## Output
 
 - Primary deliverable for `{{task}}` in `{{output_format}}`
-- Evidence tags on every claim
-- Recommendations beyond the ask
-- Confidence score (>= 0.95)
+- Discovery orchestration packet with pipeline, phases, dependencies, gates,
+  deliverables, blockers, validation, risks, and confidence score

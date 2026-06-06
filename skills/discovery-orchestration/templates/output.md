@@ -11,13 +11,25 @@ overwrite-policy: missing-only unless --force
 
 {summary}
 
-## Evidence
+## Pipeline
 
-{evidence}
+{pipeline}
 
-## Result
+## Dependency Graph
 
-{result}
+{dependencies}
+
+## Quality Gates
+
+{gates}
+
+## Deliverables
+
+{deliverables}
+
+## Blockers
+
+{blockers}
 
 ## Validation
 

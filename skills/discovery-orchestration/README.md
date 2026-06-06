@@ -7,11 +7,17 @@ overwrite-policy: missing-only unless --force
 
 # Discovery Orchestration
 
->
+Sequence a discovery pipeline with explicit phases, dependencies, quality gates,
+deliverables, owners, blockers, and validation evidence.
 
 ## Triggers
 
 - discovery-orchestration
+- discovery pipeline
+- orchestrate discovery
+- gate enforcement
+- deliverable tracking
+- discovery dashboard
 
 ## Allowed Tools
 
@@ -23,8 +29,25 @@ overwrite-policy: missing-only unless --force
 
 ## Quick Use
 
-Use this skill when the request clearly matches the triggers and requires the `discovery-orchestration` capability.
+Use this skill when a discovery engagement needs a deterministic operating plan:
+which skills run, in what order, which outputs unblock the next phase, and what
+evidence proves completion.
 
 ## Output Format
 
-Markdown with summary, evidence, result, validation, and risks.
+Markdown or JSON with:
+
+- Pipeline summary and scope
+- Phase and skill sequence
+- Dependency graph
+- Quality gates with pass/block criteria
+- Deliverable register
+- Blockers and next actions
+- Validation evidence
+- Risks and assumptions
+
+JSON orchestration packets can be validated offline with:
+
+```bash
+bash skills/discovery-orchestration/scripts/check.sh
+```

@@ -1,0 +1,6 @@
+{
+  "schema": 1,
+  "report_type": "discovery-orchestration-packet",
+  "required_top_level": ["skill", "reference_date", "summary", "pipeline", "phases", "skill_sequence", "dependencies", "gates", "deliverables", "blockers", "validation", "risks"],
+  "rule": "Orchestration packets must prove sequencing, gates, deliverable tracking, blockers, and validation evidence offline."
+}

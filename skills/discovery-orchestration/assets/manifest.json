@@ -1,0 +1,48 @@
+{
+  "schema": 1,
+  "skill": "discovery-orchestration",
+  "assets": [
+    {
+      "path": "assets/README.md",
+      "type": "documentation",
+      "purpose": "Describe deterministic discovery orchestration assets.",
+      "used_by": ["SKILL.md", "README.md"]
+    },
+    {
+      "path": "assets/pipeline-schema.json",
+      "type": "schema",
+      "purpose": "Define pipeline, phase, and skill sequence fields.",
+      "used_by": ["SKILL.md", "scripts/validate_discovery_orchestration_packet.py"]
+    },
+    {
+      "path": "assets/gate-policy.json",
+      "type": "policy",
+      "purpose": "Define phase gate requirements.",
+      "used_by": ["SKILL.md", "scripts/validate_discovery_orchestration_packet.py"]
+    },
+    {
+      "path": "assets/deliverable-policy.json",
+      "type": "policy",
+      "purpose": "Define deliverable statuses and validation requirements.",
+      "used_by": ["SKILL.md", "scripts/validate_discovery_orchestration_packet.py"]
+    },
+    {
+      "path": "assets/dependency-policy.json",
+      "type": "policy",
+      "purpose": "Define acyclic dependency graph rules.",
+      "used_by": ["SKILL.md", "scripts/validate_discovery_orchestration_packet.py"]
+    },
+    {
+      "path": "assets/status-taxonomy.json",
+      "type": "taxonomy",
+      "purpose": "Define canonical pipeline, gate, and deliverable states.",
+      "used_by": ["SKILL.md", "scripts/validate_discovery_orchestration_packet.py"]
+    },
+    {
+      "path": "assets/report-contract.json",
+      "type": "schema",
+      "purpose": "Define the offline-validatable orchestration packet.",
+      "used_by": ["SKILL.md", "examples/example-output.md", "scripts/validate_discovery_orchestration_packet.py"]
+    }
+  ]
+}

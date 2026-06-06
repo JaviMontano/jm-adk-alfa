@@ -1,0 +1,25 @@
+{
+  "skill": "discovery-orchestration",
+  "reference_date": "2026-06-06",
+  "summary": "Pipeline contains a dependency cycle. [CONFIG]",
+  "pipeline": {"id": "DISC-004", "scope": "Cycle", "status": "blocked", "exit_criteria": ["Break cycle"]},
+  "phases": [
+    {"id": "P1", "name": "Analysis", "skills": ["requirements-engineering", "system-architecture"], "status": "blocked"}
+  ],
+  "skill_sequence": [
+    {"skill": "requirements-engineering", "phase": "P1", "depends_on": ["system-architecture"], "parallel_group": "A", "owner": "BA", "expected_deliverable": "D1", "status": "blocked", "evidence_tag": "[CONFIG]"},
+    {"skill": "system-architecture", "phase": "P1", "depends_on": ["requirements-engineering"], "parallel_group": "A", "owner": "Architect", "expected_deliverable": "D2", "status": "blocked", "evidence_tag": "[CONFIG]"}
+  ],
+  "dependencies": [
+    {"from": "requirements-engineering", "to": "system-architecture", "type": "blocks", "evidence_tag": "[CONFIG]"},
+    {"from": "system-architecture", "to": "requirements-engineering", "type": "blocks", "evidence_tag": "[CONFIG]"}
+  ],
+  "gates": [],
+  "deliverables": [
+    {"id": "D1", "owner": "BA", "source_skill": "requirements-engineering", "status": "blocked", "validation_refs": ["cycle"], "evidence_tag": "[DOC]"},
+    {"id": "D2", "owner": "Architect", "source_skill": "system-architecture", "status": "blocked", "validation_refs": ["cycle"], "evidence_tag": "[DOC]"}
+  ],
+  "blockers": [{"id": "B1", "owner": "Discovery Lead", "description": "Break dependency cycle. [CONFIG]", "next_action": "Choose canonical upstream source.", "evidence_tag": "[CONFIG]"}],
+  "validation": ["Cycle should fail validation. [CONFIG]"],
+  "risks": ["Sequencing cannot proceed. [INFERENCIA]"]
+}
