@@ -15,30 +15,26 @@ triad:
 
 | Parameter | Description | Required | Filled By |
 |-----------|-------------|----------|-----------|
-| `{{task}}` | What to accomplish | Yes | User input |
-| `{{context}}` | Background and constraints | Yes | User or codebase |
-| `{{constraints}}` | Additional rules | No | Guardrails JSON |
-| `{{depth}}` | quick / standard / deep | No | Auto |
-| `{{output_format}}` | html / docx / xlsx / md | No | Auto |
+| `{{task}}` | Environment or bootstrap decision to make | Yes | User input |
+| `{{signals}}` | Local files, tool list, model/context data | Yes | Workspace/runtime |
+| `{{constraints}}` | Brand, evidence, persistence, and loading limits | No | User or repo policy |
+| `{{depth}}` | quick / standard / deep | No | Risk level |
+| `{{output_format}}` | md / json / html / docx | No | User or workflow |
 
 ## Execution
 
-1. **Load knowledge**: Read `knowledge/body-of-knowledge.md`
-2. **Check guardrails**: Read `references/guardrails/*.json`
-3. **Lead** (`environment-detection-lead`): Execute SKILL.md Steps 1-4 for `{{task}}`
-   - Discover → Analyze → Execute → Validate
-   - Apply evidence tags on all claims
-4. **Support** (`environment-detection-support`): Review for cross-cutting concerns
-   - Edge cases, security, accessibility, performance
-5. **Guardian** (`environment-detection-guardian`): Validate
-   - Evidence tags complete
-   - Quality gate met
-   - Constitution XIII + XIV respected
-   - Output exceeds expectations
+1. Read the deterministic policies in `assets/`.
+2. Inventory signals and reject network/time/random/account-state evidence.
+3. Map IDE to triad mode and context budget to model tier.
+4. Build a bounded bootstrap loading plan.
+5. Emit conflicts, missing evidence, and conservative fallbacks.
+6. Validate JSON reports with `scripts/check.sh`.
 
 ## Output
 
-- Primary deliverable for `{{task}}` in `{{output_format}}`
-- Evidence tags on every claim
-- Recommendations beyond the ask
-- Confidence score (>= 0.95)
+- Environment detection summary.
+- Evidence-tagged signal inventory.
+- Capability profile and triad mode.
+- Model tier and context budget decision.
+- Bootstrap loading plan.
+- Validation status and residual risks.

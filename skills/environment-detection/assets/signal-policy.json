@@ -1,0 +1,24 @@
+{
+  "schema": "jm-labs.environment-detection.signal-policy.v1",
+  "accepted_sources": [
+    "workspace_instruction_file",
+    "active_tools",
+    "runtime_metadata",
+    "user_supplied_model_context",
+    "repository_marker"
+  ],
+  "rejected_source_fragments": [
+    "http://",
+    "https://",
+    "web",
+    "network",
+    "current_time",
+    "datetime",
+    "random",
+    "cookie",
+    "account",
+    "browser_history"
+  ],
+  "required_signal_fields": ["id", "kind", "source", "value", "evidence_tag"],
+  "allowed_evidence_tags": ["[CÓDIGO]", "[CONFIG]", "[DOC]", "[INFERENCIA]", "[SUPUESTO]", "[EXPLICIT]", "[INFERRED]", "[OPEN]"]
+}

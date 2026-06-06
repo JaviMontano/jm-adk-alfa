@@ -1,0 +1,16 @@
+{
+  "schema": "jm-labs.environment-detection.capability-profile.v1",
+  "triad_by_ide": {
+    "claude-code": "full",
+    "codex": "sequential",
+    "gemini": "sequential",
+    "antigravity": "sequential",
+    "cursor": "checklist",
+    "windsurf": "checklist",
+    "copilot": "suggestion",
+    "unknown": "sequential"
+  },
+  "full_triad_requires": ["subagents", "hooks_or_mcp"],
+  "conservative_fallback": "sequential",
+  "conflict_status": "warn"
+}

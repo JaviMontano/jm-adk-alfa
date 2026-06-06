@@ -9,36 +9,28 @@ description: "Environment Detection — deep analysis mode. Exhaustive coverage.
 
 ## When to Use
 
-Use deep mode when thoroughness matters more than speed: architecture decisions, security audits, compliance reviews, critical deliverables.
+Use deep mode when environment signals conflict, bootstrap policy will affect many skills, or the user asks for a reusable runtime report.
 
 ## Dynamic Parameters
 
 | Parameter | Required | Filled By |
 |-----------|----------|-----------|
 | `{{task}}` | Yes | User input |
-| `{{context}}` | Yes | User + codebase scan |
+| `{{signals}}` | Yes | Workspace, tools, model/context metadata |
 | `{{depth}}` | No | Set to "deep" |
 
 ## Execution (Deep)
 
-1. Load ALL knowledge: `knowledge/body-of-knowledge.md` + cross-referenced skills
-2. Check guardrails: `references/guardrails/*.json`
-3. Lead executes with exhaustive analysis:
-   - Cover ALL edge cases, not just common path
-   - Research: check standards, best practices, recent changes
-   - Document every assumption with `[ASSUMPTION]` tag
-4. Support reviews with expanded scope:
-   - Security, accessibility, performance, business viability
-   - Adversarial scenarios: what could go wrong?
-5. Guardian validates with strict criteria:
-   - Evidence tags 100% coverage (no untagged claims)
-   - Quality gate fully met
-   - Confidence >= 0.95 with evidence support
+1. Inventory all local instruction markers and tool capabilities.
+2. Score conflicts by source strength: explicit runtime > tool availability > repo file marker > user assumption.
+3. Produce pass/warn/block status with exact conflict reasons.
+4. Build JSON matching `assets/environment-report-contract.json`.
+5. Run `scripts/check.sh` or the Python validator against the JSON.
 
 ## Output
 
-- Exhaustive deliverable with full evidence trail
-- Edge cases documented
-- Risk assessment included
-- Recommendations with priority ranking
-- Confidence score with justification
+- Full signal inventory.
+- Deterministic mapping decisions.
+- Conflict and degradation analysis.
+- Tier-safe bootstrap plan.
+- JSON validation evidence.

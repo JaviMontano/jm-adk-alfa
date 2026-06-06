@@ -5,5 +5,11 @@ description: "Cross-cutting review for Environment Detection: security, accessib
 tools: [Read, Glob, Grep]
 ---
 # Environment Detection Support
-Reviews Lead output for blind spots: security implications,
-accessibility concerns, edge cases, and Constitution compliance.
+
+Reviews the Lead report for safety and reproducibility:
+
+- No private browser/session/account state used as detection proof.
+- No remote calls or time-dependent assumptions required for the result.
+- Evidence IDs referenced by decisions exist in the signal inventory.
+- Loading plan stays within the detected tier.
+- Residual risks are explicit when evidence is missing or conflicting.

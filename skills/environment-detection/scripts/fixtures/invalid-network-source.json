@@ -1,0 +1,28 @@
+{
+  "schema": "jm-labs.environment-detection.report.v1",
+  "environment": {
+    "ide": "codex",
+    "model": "remote-lookup-model",
+    "model_tier": "heavy",
+    "triad_mode": "sequential",
+    "context_budget_tokens": 128000,
+    "confidence": 0.93
+  },
+  "signals": [
+    {"id": "s1", "kind": "instruction_file", "source": "workspace_instruction_file:AGENTS.md", "value": "AGENTS marker present", "evidence_tag": "[CÓDIGO]"},
+    {"id": "s2", "kind": "tooling", "source": "active_tools", "value": "shell available", "evidence_tag": "[CONFIG]"},
+    {"id": "s3", "kind": "model_context", "source": "https://model.example/current", "value": "context_budget_tokens=128000", "evidence_tag": "[DOC]"}
+  ],
+  "capabilities": {"read": true, "write": true, "shell": true, "subagents": false, "hooks_or_mcp": false, "network": true},
+  "decisions": [
+    {"id": "d1", "decision": "triad_mode=sequential", "evidence_ids": ["s2"], "evidence_tag": "[INFERENCIA]"},
+    {"id": "d2", "decision": "model_tier=heavy", "evidence_ids": ["s3"], "evidence_tag": "[INFERENCIA]"}
+  ],
+  "conflicts": [],
+  "loading_plan": [
+    {"resource": "AGENTS.md", "level": "L2", "reason": "workspace marker", "evidence_ids": ["s1"]},
+    {"resource": "active skill", "level": "L3", "reason": "active task", "evidence_ids": ["s2"]}
+  ],
+  "validation": {"status": "pass", "checks": ["signals_have_evidence", "mode_matches_capabilities", "tier_matches_budget", "loading_plan_bounded"]},
+  "recommendations": ["Use remote lookup for model identity."]
+}

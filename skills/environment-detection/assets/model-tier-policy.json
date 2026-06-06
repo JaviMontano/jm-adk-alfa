@@ -1,0 +1,10 @@
+{
+  "schema": "jm-labs.environment-detection.model-tier.v1",
+  "tiers": [
+    {"name": "heavy", "min_tokens": 100000, "max_tokens": null},
+    {"name": "medium", "min_tokens": 32000, "max_tokens": 99999},
+    {"name": "light", "min_tokens": 1, "max_tokens": 31999},
+    {"name": "unknown", "min_tokens": null, "max_tokens": null}
+  ],
+  "unknown_context_budget_policy": "mark_unknown_and_use_conservative_loading"
+}

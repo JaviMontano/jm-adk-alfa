@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "skill": "environment-detection",
+  "assets": [
+    {
+      "path": "assets/signal-policy.json",
+      "type": "policy",
+      "purpose": "Defines accepted and rejected environment detection signals.",
+      "used_by": ["SKILL.md", "scripts/validate_environment_detection_report.py", "evals/evals.json"]
+    },
+    {
+      "path": "assets/capability-profile-policy.json",
+      "type": "policy",
+      "purpose": "Maps supported IDE hosts to deterministic triad modes.",
+      "used_by": ["SKILL.md", "scripts/validate_environment_detection_report.py", "knowledge/body-of-knowledge.md"]
+    },
+    {
+      "path": "assets/model-tier-policy.json",
+      "type": "policy",
+      "purpose": "Maps context budget thresholds to model tiers.",
+      "used_by": ["SKILL.md", "scripts/validate_environment_detection_report.py", "templates/output.md"]
+    },
+    {
+      "path": "assets/loading-policy.json",
+      "type": "policy",
+      "purpose": "Defines tier-safe bootstrap loading limits.",
+      "used_by": ["SKILL.md", "scripts/validate_environment_detection_report.py", "agents/guardian.md"]
+    },
+    {
+      "path": "assets/environment-report-contract.json",
+      "type": "schema",
+      "purpose": "Defines the machine-readable report shape validated offline.",
+      "used_by": ["SKILL.md", "scripts/validate_environment_detection_report.py", "templates/output.md"]
+    }
+  ]
+}

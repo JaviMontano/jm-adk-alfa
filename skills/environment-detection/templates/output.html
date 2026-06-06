@@ -1,30 +1,32 @@
-<!-- MetodologIA Brand Template: Environment Detection -->
-<!-- Uses: references/brand/design-tokens.json + html-template.html -->
-<!-- Replace: {{TITLE}}, {{SUBTITLE}}, {{CONTENT}}, {{DATE}} -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>{{TITLE}} | Environment Detection | MetodologIA</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Montserrat:wght@300;400;500&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>{{TITLE}} | Environment Detection | JM Labs</title>
 <style>
-:root{--navy:#0A122A;--surface:#1E293B;--gold:#FFD700;--cyan:#137DC5;--text:#FFF;--muted:#94A3B8}
-body{font-family:'Montserrat',sans-serif;background:var(--navy);color:var(--text);margin:0;padding:2rem}
-.c{max-width:1000px;margin:0 auto}
-h1{font-family:'Poppins',sans-serif;background:linear-gradient(135deg,#fff,var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-h2{font-family:'Poppins',sans-serif;color:var(--gold);border-bottom:1px solid rgba(255,255,255,.05);padding-bottom:.5rem}
-.card{background:rgba(30,41,59,.4);backdrop-filter:blur(24px);border:1px solid rgba(255,255,255,.05);border-radius:12px;padding:1.5rem;margin:1rem 0}
-table{width:100%;border-collapse:collapse}
-th{font-family:'Poppins',sans-serif;color:var(--gold);text-align:left;padding:.75rem;border-bottom:2px solid var(--gold)}
-td{padding:.75rem;border-bottom:1px solid rgba(255,255,255,.05)}
-footer{text-align:center;margin-top:3rem;border-top:2px solid var(--gold);padding:1.5rem;font-family:'JetBrains Mono',monospace;font-size:.75rem;color:var(--muted)}
-@media print{body{background:#fff;color:#1a1a1a}h1{-webkit-text-fill-color:#0A122A}h2{color:#0A122A}}
+:root{--ink:#101828;--muted:#667085;--line:#D0D5DD;--panel:#F9FAFB;--accent:#2563EB;--warn:#B54708;--ok:#027A48}
+body{font-family:Arial,Helvetica,sans-serif;color:var(--ink);background:#fff;margin:0;padding:32px;line-height:1.45}
+main{max-width:1040px;margin:0 auto}
+h1{font-size:30px;margin:0 0 8px}
+h2{font-size:18px;margin:28px 0 10px;border-bottom:1px solid var(--line);padding-bottom:6px}
+.meta{color:var(--muted);font-size:14px;margin-bottom:20px}
+.status{display:inline-block;border:1px solid var(--line);padding:4px 8px;border-radius:6px;font-size:13px}
+.pass{color:var(--ok)}.warn{color:var(--warn)}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{border:1px solid var(--line);padding:8px;text-align:left;vertical-align:top}
+th{background:var(--panel)}
+code{font-family:Menlo,Consolas,monospace;font-size:.95em}
+footer{margin-top:32px;color:var(--muted);font-size:12px;border-top:1px solid var(--line);padding-top:12px}
 </style>
 </head>
-<body><div class="c">
+<body>
+<main>
 <h1>{{TITLE}}</h1>
-<p style="color:var(--muted);font-family:'JetBrains Mono',monospace;font-size:.85rem">{{SUBTITLE}}</p>
-<hr style="border:none;height:4px;background:linear-gradient(90deg,var(--gold),var(--cyan));border-radius:2px;margin:1.5rem 0">
+<p class="meta">{{SUBTITLE}}</p>
+<span class="status {{STATUS_CLASS}}">{{STATUS}}</span>
 {{CONTENT}}
-<footer><span style="color:var(--gold)">MetodologIA</span> — {{DATE}}<br>Made with Pristino Agent</footer>
-</div></body></html>
+<footer>JM Labs — {{DATE}}</footer>
+</main>
+</body>
+</html>

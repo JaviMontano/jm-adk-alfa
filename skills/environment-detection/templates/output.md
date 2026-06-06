@@ -1,28 +1,31 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: environment-detection
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
-
-# Environment Detection Output
+# Environment Detection Report
 
 ## Summary
 
-{summary}
+Environment: `{ide}` | Model tier: `{model_tier}` | Triad mode: `{triad_mode}` | Status: `{status}`
 
-## Evidence
+## Signals
 
-{evidence}
+| id | kind | source | value | evidence |
+|----|------|--------|-------|----------|
+| `{signal_id}` | `{kind}` | `{source}` | `{value}` | `{evidence_tag}` |
 
-## Result
+## Decisions
 
-{result}
+| decision | evidence ids | status |
+|----------|--------------|--------|
+| `{decision}` | `{evidence_ids}` | `{status}` |
+
+## Loading Plan
+
+| resource | level | reason |
+|----------|-------|--------|
+| `{resource}` | `{level}` | `{reason}` |
 
 ## Validation
 
-{validation}
+Required checks: `signals_have_evidence`, `mode_matches_capabilities`, `tier_matches_budget`, `loading_plan_bounded`.
 
 ## Risks and Limits
 
-{risks}
+List missing signals, conflicts, unknown model budget, or conservative fallbacks.

@@ -16,92 +16,103 @@ allowed-tools:
 
 # Environment Detection
 
-> "Know your battlefield before deploying your troops."
+> Detect the runtime from evidence before choosing orchestration depth.
 
 ## TL;DR
 
-Detects the runtime environment (IDE + model) and adapts Pristino's behavior accordingly. Determines triad mode (full/sequential/checklist/suggestion), skill loading strategy, and context budget. Runs at session start as part of the bootstrap sequence. Full protocol: `references/ontology/environment-protocol.md`. [EXPLICIT]
+Detect the active assistant host, model tier, available capabilities, and safe bootstrap loading plan from deterministic local signals. Use `assets/signal-policy.json`, `assets/capability-profile-policy.json`, `assets/model-tier-policy.json`, and `assets/loading-policy.json` as the source contracts. Validate JSON reports with `scripts/check.sh`. [EXPLICIT]
 
 ## Procedure
 
 ### Step 1: Discover
-- Check which instruction file loaded the agent (CLAUDE.md, GEMINI.md, .cursorrules, etc.)
-- Check available tools (Agent tool present? → full triad mode)
-- Check model context window (how much can we load?)
-- Read `references/ontology/environment-protocol.md` for the full detection matrix
+- Collect local instruction markers: `AGENTS.md`, `CLAUDE.md`, `GEMINI.md`, `.cursorrules`, `.windsurfrules`, Copilot config, or user-provided runtime notes. [EXPLICIT]
+- Collect available tool markers from the active session: read/write/shell, subagent support, hooks/MCP support, browser access, and network access. [EXPLICIT]
+- Collect model context data only when supplied by the runtime or user; do not infer capacity from the current date, network, marketing pages, or random guesses. [EXPLICIT]
+- Assign every signal a stable `id`, `source`, `kind`, `value`, and evidence tag. [EXPLICIT]
 
 ### Step 2: Analyze
-- Map IDE to capability profile:
-  - claude-code → full triad (subagents, hooks, MCP)
-  - gemini/antigravity → sequential prompts (no Agent tool)
-  - cursor/windsurf → checklist mode (inline rules)
-  - copilot → suggestion mode (limited context)
-  - codex → sequential prompts (Bash/Read/Write only)
-- Map model to tier:
-  - Heavy (>100K): load full Constitution + Index + history
-  - Medium (32-100K): load Constitution + active skills
-  - Light (<32K): load active skill only
+- Map IDE to triad mode using `assets/capability-profile-policy.json`: `claude-code=full`, `codex|gemini|antigravity=sequential`, `cursor|windsurf=checklist`, `copilot=suggestion`, `unknown=sequential`. [EXPLICIT]
+- Map model tier by context budget using `assets/model-tier-policy.json`: heavy `>=100000`, medium `32000..99999`, light `<32000`, unknown when budget is unavailable. [EXPLICIT]
+- Treat conflicting signals as `warn`; select the safest capability mode supported by actual tools rather than the most ambitious file marker. [EXPLICIT]
+- Prefer conservative loading when evidence is missing: no L3 full history, no all-skills preload, no private transcript persistence. [EXPLICIT]
 
 ### Step 3: Execute
-- Set triad mode based on IDE detection
-- Set context budget based on model tier
-- Load appropriate files for the tier
-- Report environment to user:
+- Emit an environment report that includes signals, capabilities, decisions, loading plan, validation status, and residual risks. [EXPLICIT]
+- Use L1/L2/L3/SKIP levels from `assets/loading-policy.json`; allow at most one L3 resource unless the user explicitly authorizes a deeper investigation. [EXPLICIT]
+- Persist only summarized session state when an approved target is present. [EXPLICIT]
+- Report environment to user with evidence tags:
   ```
   Environment detected:
     IDE: {ide} | Model: {model} | Tier: {tier}
     Triad: {mode} | Tools: {available_tools}
-    Skills: {count} | Agents: {count}
+    Signals: {count} | Confidence: {confidence}
   ```
 
 ### Step 4: Validate
-- Confirm detected IDE matches actual tool availability
-- Confirm model tier matches actual context capacity
-- If mismatch: adjust and re-report
-- Log detection result for session continuity
+- Confirm detected IDE matches local signals and tool availability. [EXPLICIT]
+- Confirm model tier matches the supplied context budget. [EXPLICIT]
+- Confirm the loading plan is bounded for the tier. [EXPLICIT]
+- Run `bash skills/environment-detection/scripts/check.sh` when a JSON report is produced. [EXPLICIT]
+- If mismatch remains, emit `warn` or `block` rather than a false `pass`. [EXPLICIT]
 
 ## Quality Criteria
 
-- [ ] IDE correctly identified from instruction file
-- [ ] Model tier correctly assessed
-- [ ] Triad mode matches IDE capabilities
-- [ ] Context budget set appropriately
-- [ ] Environment reported to user
-- [ ] Evidence tags applied
+- [ ] IDE is backed by at least one local signal or explicitly marked `unknown`.
+- [ ] Triad mode matches the deterministic IDE policy and actual capabilities.
+- [ ] Model tier matches context budget thresholds or is explicitly `unknown`.
+- [ ] Loading plan is bounded to the tier and avoids full transcript/history persistence.
+- [ ] Conflicts degrade to `warn` or `block`; they never produce confident `pass`.
+- [ ] Evidence tags appear on all report signals and decisions.
+- [ ] Machine-readable reports pass the offline validator.
 
 ## Anti-Patterns
 
 | Anti-Pattern | Why It's Bad | Do This Instead |
 |-------------|-------------|-----------------|
-| Assuming Claude Code always | May be running in Cursor/Copilot | Detect from instruction file |
-| Loading full Index in Light tier | Exhausts context window | Load only active skill |
-| Skipping detection | Triad mode wrong for the IDE | Always detect at session start |
-| Hardcoding model name | Models change, tiers don't | Detect by capability, not name |
+| Assuming Claude Code always | May be running in Codex, Cursor, Copilot, Gemini, or unknown host | Detect from local signals and tools |
+| Loading full index in light/unknown tier | Exhausts context window or hides critical user input | Use L1/L2 and one active L3 only when justified |
+| Calling network to identify the model | Makes detection non-reproducible and time-dependent | Use provided runtime/model data or mark unknown |
+| Treating conflicting signals as pass | Produces false confidence and wrong orchestration | Emit `warn` with explicit conflicts |
+| Persisting full transcript | Leaks context and bloats future sessions | Persist only summarized state with authorization |
 
 ## Related Skills
 
 - `session-protocol` — Environment detection is Step 0 of session init
 - `context-optimization` — Context budget depends on detected tier
-- `continuous-learning` — Log environment patterns for optimization
+- `session-start-bootstrap` — Consumes detection results during startup
+- `context-window-management` — Applies tier-specific budget controls
 
 ## Usage
 
 Example invocations:
 
-- "/environment-detection" — Run the full environment detection workflow
-- "environment detection on this project" — Apply to current context
-
+- "Detect this environment and give me the safe bootstrap plan."
+- "Which IDE/model tier are we in, and what mode should the agent use?"
+- "Run environment detection before starting the session."
 
 ## Assumptions & Limits
 
-- Assumes access to project artifacts (code, docs, configs) [EXPLICIT]
-- Requires English-language output unless otherwise specified [EXPLICIT]
-- Does not replace domain expert judgment for final decisions [EXPLICIT]
+- Assumes access to local workspace signals and the active tool list. [EXPLICIT]
+- Does not identify a model from private account state, browser cookies, or remote webpages. [EXPLICIT]
+- Uses conservative defaults when context budget or model identity is unavailable. [EXPLICIT]
 
 ## Edge Cases
 
 | Scenario | Handling |
 |----------|----------|
-| Empty or minimal input | Request clarification before proceeding |
-| Conflicting requirements | Flag conflicts explicitly, propose resolution |
-| Out-of-scope request | Redirect to appropriate skill or escalate |
+| No instruction files | Use tool signals and mark file evidence as missing |
+| Conflicting IDE markers | Select safest supported mode and emit `warn` |
+| Unknown context budget | Mark tier `unknown` and avoid L3/full-history loading |
+| Network-only model claim | Reject as evidence; ask for local/runtime signal |
+| User requests full preload | Require explicit risk acknowledgement and budget evidence |
+
+## Deterministic Resources
+
+| Resource | Purpose |
+|----------|---------|
+| `assets/signal-policy.json` | Allowed and rejected detection signals |
+| `assets/capability-profile-policy.json` | IDE to triad/capability mapping |
+| `assets/model-tier-policy.json` | Context budget thresholds |
+| `assets/loading-policy.json` | Tier-safe bootstrap loading |
+| `assets/environment-report-contract.json` | Required JSON report fields |
+| `scripts/check.sh` | Offline fixture validation |
