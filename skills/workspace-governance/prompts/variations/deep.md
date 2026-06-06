@@ -9,7 +9,8 @@ description: "Workspace Governance — deep analysis mode. Exhaustive coverage."
 
 ## When to Use
 
-Use deep mode when thoroughness matters more than speed: architecture decisions, security audits, compliance reviews, critical deliverables.
+Use deep mode when scaffolding or auditing a full workspace tree with sessions,
+tasks, estandares, stale folders, and `.gitignore` evidence.
 
 ## Dynamic Parameters
 
@@ -21,24 +22,15 @@ Use deep mode when thoroughness matters more than speed: architecture decisions,
 
 ## Execution (Deep)
 
-1. Load ALL knowledge: `knowledge/body-of-knowledge.md` + cross-referenced skills
-2. Check guardrails: `references/guardrails/*.json`
-3. Lead executes with exhaustive analysis:
-   - Cover ALL edge cases, not just common path
-   - Research: check standards, best practices, recent changes
-   - Document every assumption with `[ASSUMPTION]` tag
-4. Support reviews with expanded scope:
-   - Security, accessibility, performance, business viability
-   - Adversarial scenarios: what could go wrong?
-5. Guardian validates with strict criteria:
-   - Evidence tags 100% coverage (no untagged claims)
-   - Quality gate fully met
-   - Confidence >= 0.95 with evidence support
+1. Inventory workspace root, task bridges, sessions, estandares, and README coverage.
+2. Compare task bridges to open tasklog IDs.
+3. Flag sessions older than 30 days for review.
+4. Validate proposed actions against path safety.
+5. Validate JSON report with `scripts/check.sh`.
 
 ## Output
 
-- Exhaustive deliverable with full evidence trail
-- Edge cases documented
-- Risk assessment included
-- Recommendations with priority ranking
-- Confidence score with justification
+- Full governance report with evidence
+- Safe action plan
+- Stale-session review list
+- Guardian validation

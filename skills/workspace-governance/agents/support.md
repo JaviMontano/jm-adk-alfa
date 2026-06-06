@@ -5,5 +5,10 @@ description: "Cross-cutting review for Workspace Governance: security, accessibi
 tools: [Read, Glob, Grep]
 ---
 # Workspace Governance Support
-Reviews Lead output for blind spots: security implications,
-accessibility concerns, edge cases, and Constitution compliance.
+Checks report evidence, action paths, task bridge mapping, and stale-session
+flags before Guardian review.
+
+Support duties:
+- Confirm `.gitignore` evidence.
+- Verify every proposed action has a safe target.
+- Run `scripts/check.sh` against JSON reports when present.

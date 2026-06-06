@@ -1,0 +1,10 @@
+{
+  "schema": 1,
+  "skill": "workspace-governance",
+  "session_pattern": "^workspace/[0-9]{4}-[0-9]{2}-[0-9]{2}-[a-z0-9-]+/$",
+  "rules": [
+    "Session folders must use YYYY-MM-DD-slug format.",
+    "Session folders require README.md.",
+    "Invalid session names block pass status."
+  ]
+}

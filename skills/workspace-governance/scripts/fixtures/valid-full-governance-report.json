@@ -1,0 +1,30 @@
+{
+  "schema": "jm-labs.workspace-governance.report.v1",
+  "skill": "workspace-governance",
+  "workspace_root": "workspace/",
+  "gitignore": {
+    "workspace_ignored": true,
+    "source": ".gitignore",
+    "evidence_tag": "[CÓDIGO]"
+  },
+  "directories": [
+    {"path": "workspace/", "type": "root", "has_readme": true, "evidence_tag": "[CÓDIGO]"},
+    {"path": "workspace/tasks/", "type": "tasks", "has_readme": true, "evidence_tag": "[CÓDIGO]"},
+    {"path": "workspace/estandares/", "type": "estandares", "has_readme": true, "evidence_tag": "[CÓDIGO]"}
+  ],
+  "sessions": [
+    {"path": "workspace/2026-06-06-hardening/", "age_days": 0, "has_readme": true, "stale_review_required": false, "evidence_tag": "[CONFIG]"},
+    {"path": "workspace/2026-04-15-old-audit/", "age_days": 52, "has_readme": true, "stale_review_required": true, "evidence_tag": "[CÓDIGO]"}
+  ],
+  "task_bridges": [
+    {"task_id": "TL-042", "path": "workspace/tasks/TL-042-api-cleanup/", "matches_tasklog": true, "has_readme": true, "evidence_tag": "[CONFIG]"}
+  ],
+  "actions": [
+    {"action": "flag_stale", "target": "workspace/2026-04-15-old-audit/", "tracked": false, "rationale": "Session is older than 30 days.", "evidence_tag": "[CONFIG]"},
+    {"action": "no_op", "target": "workspace/", "tracked": false, "rationale": "Workspace root already satisfies governance.", "evidence_tag": "[CÓDIGO]"}
+  ],
+  "validation": {
+    "status": "pass",
+    "checks": ["assets", "deterministic_scripts", "quality_criteria", "gitignore_policy", "session_contract", "task_bridge_contract", "stale_review", "evidence_required"]
+  }
+}

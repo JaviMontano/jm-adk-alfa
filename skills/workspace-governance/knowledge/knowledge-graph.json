@@ -1,75 +1,22 @@
 {
   "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-28",
   "skill": "workspace-governance",
   "nodes": [
-    {
-      "id": "workspace-governance",
-      "type": "skill",
-      "label": "workspace-governance"
-    },
-    {
-      "id": "workspace-governance:inputs",
-      "type": "contract",
-      "label": "Expected inputs"
-    },
-    {
-      "id": "workspace-governance:outputs",
-      "type": "contract",
-      "label": "Expected outputs"
-    },
-    {
-      "id": "workspace-governance:quality",
-      "type": "gate",
-      "label": "Quality criteria"
-    },
-    {
-      "id": "workspace-governance:ontology",
-      "type": "ontology",
-      "label": "Domain: general"
-    },
-    {
-      "id": "workspace-governance:evidence",
-      "type": "gate",
-      "label": "Evidence / provenance requirements"
-    },
-    {
-      "id": "workspace-governance:antipattern",
-      "type": "risk",
-      "label": "Canonical anti-pattern to avoid"
-    }
+    {"id": "workspace-governance", "type": "skill", "label": "Workspace Governance"},
+    {"id": "gitignore-policy", "type": "gate", "label": "workspace/ is gitignored"},
+    {"id": "workspace-directory", "type": "artifact", "label": "Workspace directory"},
+    {"id": "session-folder", "type": "artifact", "label": "Dated session folder"},
+    {"id": "task-bridge", "type": "artifact", "label": "Tasklog bridge directory"},
+    {"id": "estandares", "type": "artifact", "label": "Local standards reference area"},
+    {"id": "stale-review", "type": "gate", "label": "Stale session review"}
   ],
   "edges": [
-    {
-      "from": "workspace-governance",
-      "to": "workspace-governance:inputs",
-      "type": "requires"
-    },
-    {
-      "from": "workspace-governance",
-      "to": "workspace-governance:outputs",
-      "type": "produces"
-    },
-    {
-      "from": "workspace-governance",
-      "to": "workspace-governance:quality",
-      "type": "validated_by"
-    },
-    {
-      "from": "workspace-governance",
-      "to": "workspace-governance:ontology",
-      "type": "classified_as"
-    },
-    {
-      "from": "workspace-governance",
-      "to": "workspace-governance:evidence",
-      "type": "validated_by"
-    },
-    {
-      "from": "workspace-governance",
-      "to": "workspace-governance:antipattern",
-      "type": "guards_against"
-    }
+    {"from": "workspace-governance", "to": "gitignore-policy", "type": "requires"},
+    {"from": "workspace-governance", "to": "workspace-directory", "type": "audits"},
+    {"from": "workspace-directory", "to": "session-folder", "type": "contains"},
+    {"from": "workspace-directory", "to": "task-bridge", "type": "contains"},
+    {"from": "workspace-directory", "to": "estandares", "type": "contains"},
+    {"from": "session-folder", "to": "stale-review", "type": "validated_by"},
+    {"from": "task-bridge", "to": "gitignore-policy", "type": "protected_by"}
   ]
 }

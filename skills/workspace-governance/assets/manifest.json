@@ -1,0 +1,42 @@
+{
+  "schema": 1,
+  "skill": "workspace-governance",
+  "assets": [
+    {
+      "path": "assets/gitignore-policy.json",
+      "type": "policy",
+      "purpose": "Defines requirement that workspace/ is ignored by git.",
+      "used_by": ["SKILL.md", "scripts/validate_workspace_governance_report.py", "evals/evals.json"]
+    },
+    {
+      "path": "assets/session-policy.json",
+      "type": "policy",
+      "purpose": "Defines dated session folder format and README requirements.",
+      "used_by": ["SKILL.md", "scripts/validate_workspace_governance_report.py", "templates/output.md"]
+    },
+    {
+      "path": "assets/task-bridge-policy.json",
+      "type": "policy",
+      "purpose": "Defines task bridge format and tasklog matching.",
+      "used_by": ["SKILL.md", "scripts/validate_workspace_governance_report.py", "knowledge/body-of-knowledge.md"]
+    },
+    {
+      "path": "assets/directory-readme-policy.json",
+      "type": "policy",
+      "purpose": "Defines README coverage for workspace subfolders.",
+      "used_by": ["SKILL.md", "scripts/validate_workspace_governance_report.py", "agents/guardian.md"]
+    },
+    {
+      "path": "assets/stale-review-policy.json",
+      "type": "policy",
+      "purpose": "Defines stale session review threshold and no-auto-delete rule.",
+      "used_by": ["SKILL.md", "scripts/validate_workspace_governance_report.py", "agents/specialist.md"]
+    },
+    {
+      "path": "assets/workspace-governance-report-contract.json",
+      "type": "schema",
+      "purpose": "Defines required JSON report sections and validation checks.",
+      "used_by": ["SKILL.md", "scripts/validate_workspace_governance_report.py", "templates/output.md"]
+    }
+  ]
+}

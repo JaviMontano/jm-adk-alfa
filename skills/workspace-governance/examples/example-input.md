@@ -1,10 +1,12 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: workspace-governance
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
-
 # Example Input
 
-Use `workspace-governance` to produce a concise deliverable for a realistic project request.
+Audit and scaffold workspace governance for this repo.
+
+Evidence:
+- `.gitignore` does not contain `workspace/`.
+- `workspace/` exists with `README.md`.
+- `workspace/tasks/` exists with `README.md`.
+- Open tasklog item: `TL-042 API cleanup`.
+- Missing task bridge: `workspace/tasks/TL-042-api-cleanup/`.
+- Session `workspace/2026-04-15-old-audit/` is 52 days old and has README.
+- Session `workspace/today-notes/` does not match dated session format.

@@ -9,7 +9,7 @@ description: "Workspace Governance in quick mode."
 
 ## When to Use
 
-Use quick mode when you need adjusted depth for the Workspace Governance workflow.
+Use quick mode for a single session folder, `.gitignore` check, or one task bridge.
 
 ## Dynamic Parameters
 
@@ -21,14 +21,13 @@ Use quick mode when you need adjusted depth for the Workspace Governance workflo
 
 ## Execution
 
-1. Load skill: `skills/workspace-governance/knowledge/body-of-knowledge.md`
-2. Check guardrails: `references/guardrails/*.json`
-3. Execute at quick depth with evidence tags
-4. Lead → Support → Guardian validation
-5. Confidence >= 0.95
+1. Check `.gitignore`.
+2. Validate the requested workspace path and README.
+3. Confirm session or task bridge naming.
+4. Emit safe action plan and Guardian decision.
 
 ## Output
 
-- Deliverable calibrated to quick depth
-- Evidence-tagged, Constitution-compliant
-- Recommendations beyond the ask
+- Minimal governance report
+- Evidence-tagged safe action
+- Guardian pass/block
