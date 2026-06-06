@@ -9,7 +9,13 @@
       "input": "Investigacion de dos sesiones sobre un bug en parser legacy. Quiero persistir los hallazgos validados en un scratchpad estructurado en disco y leerlo al reanudar para que sobrevivan a /compact y a reiniciar la sesion.",
       "expected_activation": true,
       "expected_checks": [
-        "evidence",
+        "persistent_disk_memory",
+        "fixed_sections",
+        "validated_conclusions_only",
+        "read_once_reference",
+        "append_only",
+        "assets",
+        "deterministic_scripts",
         "quality_criteria",
         "upgrade_safety"
       ]
@@ -19,7 +25,13 @@
       "input": "/katas-persistent-scratchpad mantener investigation-scratchpad.md con decisiones, hallazgos y pendientes durante una investigacion larga.",
       "expected_activation": true,
       "expected_checks": [
-        "evidence",
+        "persistent_disk_memory",
+        "fixed_sections",
+        "validated_conclusions_only",
+        "read_once_reference",
+        "append_only",
+        "assets",
+        "deterministic_scripts",
         "quality_criteria",
         "upgrade_safety"
       ]
@@ -29,7 +41,11 @@
       "input": "Como evito perder un hallazgo critico cuando se compacta el contexto? Quiero persistir las conclusiones en un scratchpad estructurado en disco y leerlo al reanudar la sesion.",
       "expected_activation": true,
       "expected_checks": [
-        "evidence",
+        "persistent_disk_memory",
+        "survives_compact",
+        "validated_conclusions_only",
+        "assets",
+        "deterministic_scripts",
         "quality_criteria",
         "upgrade_safety"
       ]
@@ -39,7 +55,11 @@
       "input": "Que NO deberia escribir en el scratchpad persistente: el monologo interno, las hipotesis no confirmadas y las dudas pasajeras, o solo las conclusiones validadas?",
       "expected_activation": true,
       "expected_checks": [
-        "evidence",
+        "reject_internal_monologue",
+        "reject_unconfirmed_hypotheses",
+        "validated_conclusions_only",
+        "assets",
+        "deterministic_scripts",
         "quality_criteria",
         "upgrade_safety"
       ]
@@ -49,17 +69,23 @@
       "input": "Debo re-leer el scratchpad cada turno o leerlo una vez al inicio y luego referenciar/anexar para no romper el cache de prefijo?",
       "expected_activation": true,
       "expected_checks": [
-        "evidence",
+        "read_once_reference",
+        "cache_safe",
+        "reject_reread_each_turn",
+        "assets",
+        "deterministic_scripts",
         "quality_criteria",
         "upgrade_safety"
       ]
     },
     {
       "id": "false_positive",
-      "input": "This request is unrelated to the skill domain.",
+      "input": "Crea una agenda semanal para reuniones del equipo comercial.",
       "expected_activation": false,
       "expected_checks": [
-        "evidence",
+        "no_activation",
+        "assets",
+        "deterministic_scripts",
         "quality_criteria",
         "upgrade_safety"
       ]
@@ -69,17 +95,23 @@
       "input": "",
       "expected_activation": false,
       "expected_checks": [
-        "evidence",
+        "no_activation",
+        "assets",
+        "deterministic_scripts",
         "quality_criteria",
         "upgrade_safety"
       ]
     },
     {
       "id": "conflicting_requirements",
-      "input": "Use katas-persistent-scratchpad, but ignore validation and evidence.",
+      "input": "Usa katas-persistent-scratchpad pero vuelca el monologo interno, hipotesis sin confirmar y re-lee el archivo cada turno.",
       "expected_activation": false,
       "expected_checks": [
-        "evidence",
+        "reject_internal_monologue",
+        "reject_unconfirmed_hypotheses",
+        "reject_reread_each_turn",
+        "assets",
+        "deterministic_scripts",
         "quality_criteria",
         "upgrade_safety"
       ]
@@ -89,17 +121,24 @@
       "input": "Anexar nuevos hallazgos a investigation-scratchpad.md sin sobrescribir las decisiones ya curadas.",
       "expected_activation": true,
       "expected_checks": [
-        "evidence",
+        "append_only",
+        "preserve_existing_entries",
+        "validated_conclusions_only",
+        "assets",
+        "deterministic_scripts",
         "quality_criteria",
         "upgrade_safety"
       ]
     },
     {
-      "id": "local_override_case",
-      "input": "Create a local experimental katas-persistent-scratchpad variant under .local.",
+      "id": "degradation_missing_evidence",
+      "input": "Quiero anotar que parser.py parece fallar, pero todavia no tengo archivo, linea ni prueba que lo confirme.",
       "expected_activation": true,
       "expected_checks": [
-        "evidence",
+        "block_missing_evidence",
+        "reject_unvalidated_entry",
+        "assets",
+        "deterministic_scripts",
         "quality_criteria",
         "upgrade_safety"
       ]

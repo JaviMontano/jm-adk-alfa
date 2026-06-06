@@ -1,0 +1,7 @@
+{
+  "schema": 1,
+  "read_once_at_start": true,
+  "reference_after_load": true,
+  "reread_each_turn": false,
+  "cache_safe": true
+}

@@ -1,0 +1,10 @@
+{
+  "schema": 1,
+  "validated_required_for_sections": ["Decisiones", "Hallazgos"],
+  "forbidden_content": [
+    "monologo interno",
+    "hipotesis sin confirmar",
+    "duda pasajera",
+    "raw transcript"
+  ]
+}
