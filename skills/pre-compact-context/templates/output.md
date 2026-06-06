@@ -1,28 +1,37 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: pre-compact-context
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
+# Pre Compact Context Packet
 
-# Pre Compact Context Output
+## Compaction Trigger
 
-## Summary
+{compaction_trigger}
 
-{summary}
+## Preserve Verbatim
 
-## Evidence
+{preserve_verbatim}
 
-{evidence}
+## Compressed Summary
 
-## Result
+{compressed_summary}
 
-{result}
+## Discard List
 
-## Validation
+{discard_list}
 
-{validation}
+## Open Questions
 
-## Risks and Limits
+{open_questions}
 
-{risks}
+## Risks And Blockers
+
+{risks_and_blockers}
+
+## Validation Evidence
+
+{validation_evidence}
+
+## Rehydration Prompt
+
+{rehydration_prompt}
+
+## Guardian Decision
+
+{guardian_decision}

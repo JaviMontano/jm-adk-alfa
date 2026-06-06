@@ -1,30 +1,52 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: pre-compact-context
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
-
 # Pre Compact Context
 
->
+`pre-compact-context` prepares a deterministic packet before a conversation is
+compacted or handed to another session. It preserves hard rules, active state,
+blockers, source paths, validation evidence, and the next action.
 
 ## Triggers
 
-- pre-compact-context
+- `pre compact context`
+- `/pre-compact-context`
+- `before compaction`
+- `prepare context for compaction`
+- `make a rehydration prompt`
 
-## Allowed Tools
+Do not activate for ordinary summarization unless the user explicitly wants to
+preserve context before compression, compaction, handoff, or thread migration.
 
-- Read
-- Write
-- Glob
-- Grep
-- Bash
+## Resources
 
-## Quick Use
+- `assets/retention-policy.json` - P0/P1/P2/DROP classification rules.
+- `assets/output-contract.json` - required packet sections and JSON fields.
+- `assets/evidence-policy.json` - evidence tag and source rules.
+- `assets/rehydration-checklist.json` - resume-readiness checklist.
+- `assets/compaction-risk-policy.json` - loss modes and guardian blockers.
+- `scripts/check.sh` - offline fixture validation for context packets.
 
-Use this skill when the request clearly matches the triggers and requires the `pre-compact-context` capability.
+## Required Output
 
-## Output Format
+1. Compaction Trigger
+2. Preserve Verbatim
+3. Compressed Summary
+4. Discard List
+5. Open Questions
+6. Risks And Blockers
+7. Validation Evidence
+8. Rehydration Prompt
+9. Guardian Decision
 
-Markdown with summary, evidence, result, validation, and risks.
+## Validation
+
+```bash
+bash skills/pre-compact-context/scripts/check.sh
+python3 -B scripts/validate-skill-scripts.py --strict --run-checks --skill pre-compact-context
+python3 -B scripts/validate-skill-dod.py --skill pre-compact-context
+```
+
+## Safety Rules
+
+- Never drop hard rules, blockers, branch/PR state, or validation failures.
+- Never preserve secrets verbatim.
+- Never claim a source was read unless the packet cites it.
+- Prefer `[OPEN]` over invented task state.

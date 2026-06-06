@@ -1,0 +1,12 @@
+{
+  "schema": 1,
+  "skill": "pre-compact-context",
+  "allowed_tags": ["[CODE]", "[CONFIG]", "[DOC]", "[INFERENCE]", "[ASSUMPTION]", "[OPEN]"],
+  "source_rules": [
+    "P0 items require a concrete source or [OPEN] source gap.",
+    "Validation entries require command, status, evidence, and evidence_tag.",
+    "PR, CI, merge, or branch claims require local git or remote evidence.",
+    "Secrets must be redacted and never preserved verbatim."
+  ],
+  "secret_patterns": ["sk-", "ghp_", "xoxb-", "AKIA", "BEGIN PRIVATE KEY"]
+}

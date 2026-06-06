@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "skill": "pre-compact-context",
+  "compaction_trigger": [
+    {
+      "description": "User requested compaction.",
+      "evidence_tag": "[CONFIG]"
+    }
+  ],
+  "preserve_verbatim": [
+    {
+      "priority": "P0",
+      "item": "Preserve the hard rule.",
+      "source": "User workflow",
+      "reason": "Active rule.",
+      "evidence_tag": "[CONFIG]"
+    }
+  ],
+  "compressed_summary": [],
+  "discard_list": [],
+  "open_questions": [],
+  "risks": [],
+  "validation": [],
+  "rehydration_prompt": "",
+  "guardian_decision": {
+    "decision": "pass",
+    "rationale": "Incorrectly passes without rehydration.",
+    "evidence_tag": "[CONFIG]"
+  }
+}
