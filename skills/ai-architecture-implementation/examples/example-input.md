@@ -1,10 +1,13 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: ai-architecture-implementation
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
+# Example Input — AI Architecture Implementation
 
-# Example Input
+Create a production implementation plan for `claims-risk-ai`.
 
-Use `ai-architecture-implementation` to produce a concise deliverable for a realistic project request.
+Known context:
+
+- Approved architecture exists for a batch + online scoring ML system.
+- Audit finding F-001 requires drift monitoring; F-002 requires Blue & Gold CI/CD.
+- Team uses Python, containers, GitHub Actions, and Kubernetes.
+- Data source is claims events from PostgreSQL.
+- Required controls: model registry, reproducible training, serving API, rollback, drift alerts, and runbooks.
+
+Mode: remediation. Scope: full. Format: hybrid. Do not write production code; produce the phased implementation plan and validation packet.

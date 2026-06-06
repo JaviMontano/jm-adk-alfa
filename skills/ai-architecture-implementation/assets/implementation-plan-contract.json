@@ -1,0 +1,6 @@
+{
+  "schema": "jm-labs.ai-architecture-implementation.contract.v1",
+  "required_top_level_fields": ["schema", "system", "mode", "scope", "evidence", "prerequisites", "phases", "technology_decisions", "controls", "risks", "validation"],
+  "required_validation_checks": ["assets", "deterministic_scripts", "quality_criteria", "phase_dod", "evidence_required", "technology_decisions", "rollback_monitoring"],
+  "valid_statuses": ["pass", "warn", "block"]
+}

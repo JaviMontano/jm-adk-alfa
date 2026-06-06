@@ -25,6 +25,8 @@ implementación de pipelines, configuración de serving, despliegue de monitoreo
 Produce blueprints de implementación, guías de selección de tecnología, y un playbook fase-a-fase que
 transforma decisiones arquitectónicas en infraestructura operativa. [EXPLICIT]
 
+Use the deterministic policies in `assets/` for phases, technology decisions, evidence, deployment controls, and report shape. When producing a JSON implementation packet, validate it offline with `bash skills/ai-architecture-implementation/scripts/check.sh`. [EXPLICIT]
+
 ---
 
 ## Principio Rector
@@ -295,6 +297,7 @@ Implementa el stack de observabilidad completo para el sistema AI. [EXPLICIT]
 - [ ] Drift detection activo con alertas configuradas
 - [ ] Runbooks documentados para failure scenarios comunes
 - [ ] Cada fase tiene Definition of Done cumplida con evidencia
+- [ ] Si se produce JSON, el paquete pasa `scripts/check.sh`
 
 *El agente que ejecuta este skill debe verificar cada item antes de entregar el output al usuario.*
 

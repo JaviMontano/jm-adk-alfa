@@ -1,0 +1,5 @@
+{
+  "schema": "jm-labs.ai-architecture-implementation.technology-decision-policy.v1",
+  "required_fields": ["component", "selected", "alternatives", "rationale", "evidence_ids"],
+  "adr_required_for": ["model_registry", "serving", "orchestration", "vector_db", "feature_store", "monitoring", "cicd"]
+}

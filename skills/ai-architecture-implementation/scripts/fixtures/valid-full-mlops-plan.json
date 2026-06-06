@@ -1,0 +1,32 @@
+{
+  "schema": "jm-labs.ai-architecture-implementation.plan.v1",
+  "system": {"name": "claims-risk-ai", "type": "ml-scoring"},
+  "mode": "remediation",
+  "scope": {"coverage": "full", "stack": "python", "infra": "kubernetes"},
+  "evidence": [
+    {"id": "E-001", "source": "approved-architecture.md", "summary": "Approved architecture exists.", "tag": "[DOC]"},
+    {"id": "E-002", "source": "audit-report.json", "summary": "Audit requires drift monitoring and Blue/Gold deployment.", "tag": "[DOC]"},
+    {"id": "E-003", "source": "team-context.md", "summary": "Team uses Python, containers, GitHub Actions, and Kubernetes.", "tag": "[CONFIG]"}
+  ],
+  "prerequisites": [{"id": "P-001", "description": "Provision staging namespace", "status": "open"}],
+  "phases": [
+    {"id": "F0", "deliverables": ["repository structure", "CI skeleton"], "dependencies": [], "dod": ["lint and unit checks run"], "evidence_ids": ["E-003"]},
+    {"id": "F1", "deliverables": ["claims ingestion", "data quality gates"], "dependencies": ["F0"], "dod": ["schema and freshness checks pass"], "evidence_ids": ["E-001"]},
+    {"id": "F2", "deliverables": ["training pipeline", "model registry"], "dependencies": ["F1"], "dod": ["model version has metrics and staging state"], "evidence_ids": ["E-001"]},
+    {"id": "F3", "deliverables": ["scoring API", "fallback"], "dependencies": ["F2"], "dod": ["load and fallback tests pass"], "evidence_ids": ["E-001"]},
+    {"id": "F4", "deliverables": ["Blue and Gold pipeline", "rollback"], "dependencies": ["F3"], "dod": ["canary and rollback test pass"], "evidence_ids": ["E-002"]},
+    {"id": "F5", "deliverables": ["drift monitoring", "runbooks"], "dependencies": ["F4"], "dod": ["drift alert fires on fixture"], "evidence_ids": ["E-002"]}
+  ],
+  "technology_decisions": [
+    {"component": "model_registry", "selected": "MLflow", "alternatives": ["W&B"], "rationale": "Fits Python stack and remediation scope.", "adr_required": true, "evidence_ids": ["E-003"]},
+    {"component": "cicd", "selected": "GitHub Actions", "alternatives": ["Tekton"], "rationale": "Existing team tool.", "adr_required": true, "evidence_ids": ["E-003"]}
+  ],
+  "controls": {
+    "ci_cd": {"status": "planned", "dod": "validation gates pass"},
+    "rollback": {"status": "planned", "dod": "rollback test passes"},
+    "monitoring": {"status": "planned", "dod": "dashboards and drift alerts exist"},
+    "runbooks": {"status": "planned", "dod": "common failure runbooks reviewed"}
+  },
+  "risks": ["staging namespace not yet provisioned"],
+  "validation": {"status": "pass", "checks": ["assets", "deterministic_scripts", "quality_criteria", "phase_dod", "evidence_required", "technology_decisions", "rollback_monitoring"]}
+}

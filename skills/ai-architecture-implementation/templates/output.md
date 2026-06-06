@@ -1,28 +1,30 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: ai-architecture-implementation
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
-
-# Ai Architecture Implementation Output
+# AI Architecture Implementation Plan
 
 ## Summary
 
-{summary}
+System: `{system_name}`
+Mode: `{mode}`
+Scope: `{scope}`
+Status: `{validation_status}`
 
-## Evidence
+## Prerequisites
 
-{evidence}
+| id | prerequisite | status | evidence |
+|----|--------------|--------|----------|
+| `{id}` | `{prerequisite}` | `{status}` | `{evidence}` |
 
-## Result
+## Phased Plan
 
-{result}
+| phase | deliverables | dependencies | DoD |
+|-------|--------------|--------------|-----|
+| `{phase}` | `{deliverables}` | `{dependencies}` | `{dod}` |
 
-## Validation
+## Technology Decisions
 
-{validation}
+| component | selected | alternatives | rationale |
+|-----------|----------|--------------|-----------|
+| `{component}` | `{selected}` | `{alternatives}` | `{rationale}` |
 
-## Risks and Limits
+## Controls
 
-{risks}
+Include CI/CD, rollback, monitoring, alerts, and runbooks.

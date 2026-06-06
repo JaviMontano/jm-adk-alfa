@@ -1,0 +1,13 @@
+{
+  "schema": "jm-labs.ai-architecture-implementation.phase-policy.v1",
+  "required_phases": ["F0", "F1", "F2", "F3", "F4", "F5"],
+  "phase_names": {
+    "F0": "Foundation",
+    "F1": "Data Pipeline",
+    "F2": "Model Lifecycle",
+    "F3": "Serving",
+    "F4": "CI/CD",
+    "F5": "Monitoring"
+  },
+  "big_bang_policy": "reject"
+}

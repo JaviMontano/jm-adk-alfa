@@ -1,75 +1,23 @@
 {
   "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-28",
   "skill": "ai-architecture-implementation",
   "nodes": [
-    {
-      "id": "ai-architecture-implementation",
-      "type": "skill",
-      "label": "ai-architecture-implementation"
-    },
-    {
-      "id": "ai-architecture-implementation:inputs",
-      "type": "contract",
-      "label": "Expected inputs"
-    },
-    {
-      "id": "ai-architecture-implementation:outputs",
-      "type": "contract",
-      "label": "Expected outputs"
-    },
-    {
-      "id": "ai-architecture-implementation:quality",
-      "type": "gate",
-      "label": "Quality criteria"
-    },
-    {
-      "id": "ai-architecture-implementation:ontology",
-      "type": "ontology",
-      "label": "Domain: general"
-    },
-    {
-      "id": "ai-architecture-implementation:evidence",
-      "type": "gate",
-      "label": "Evidence / provenance requirements"
-    },
-    {
-      "id": "ai-architecture-implementation:antipattern",
-      "type": "risk",
-      "label": "Canonical anti-pattern to avoid"
-    }
+    {"id": "implementation-plan", "type": "output", "label": "Implementation plan"},
+    {"id": "prerequisite", "type": "input", "label": "Prerequisite"},
+    {"id": "phase", "type": "contract", "label": "F0-F5 phase"},
+    {"id": "technology-decision", "type": "decision", "label": "Technology decision"},
+    {"id": "validation-gate", "type": "gate", "label": "Validation gate"},
+    {"id": "rollback-control", "type": "control", "label": "Rollback control"},
+    {"id": "observability", "type": "control", "label": "Observability"},
+    {"id": "validator", "type": "gate", "label": "Offline validator"}
   ],
   "edges": [
-    {
-      "from": "ai-architecture-implementation",
-      "to": "ai-architecture-implementation:inputs",
-      "type": "requires"
-    },
-    {
-      "from": "ai-architecture-implementation",
-      "to": "ai-architecture-implementation:outputs",
-      "type": "produces"
-    },
-    {
-      "from": "ai-architecture-implementation",
-      "to": "ai-architecture-implementation:quality",
-      "type": "validated_by"
-    },
-    {
-      "from": "ai-architecture-implementation",
-      "to": "ai-architecture-implementation:ontology",
-      "type": "classified_as"
-    },
-    {
-      "from": "ai-architecture-implementation",
-      "to": "ai-architecture-implementation:evidence",
-      "type": "validated_by"
-    },
-    {
-      "from": "ai-architecture-implementation",
-      "to": "ai-architecture-implementation:antipattern",
-      "type": "guards_against"
-    }
+    {"from": "prerequisite", "to": "implementation-plan", "type": "feeds"},
+    {"from": "implementation-plan", "to": "phase", "type": "contains"},
+    {"from": "technology-decision", "to": "phase", "type": "supports"},
+    {"from": "phase", "to": "validation-gate", "type": "validated_by"},
+    {"from": "phase", "to": "rollback-control", "type": "requires_for_production"},
+    {"from": "phase", "to": "observability", "type": "requires_for_production"},
+    {"from": "implementation-plan", "to": "validator", "type": "validated_by"}
   ]
 }

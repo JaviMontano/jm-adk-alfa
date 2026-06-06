@@ -1,0 +1,11 @@
+{
+  "schema": 1,
+  "skill": "ai-architecture-implementation",
+  "assets": [
+    {"path": "assets/phase-policy.json", "type": "policy", "purpose": "Defines required F0-F5 phases and DoD coverage.", "used_by": ["SKILL.md", "scripts/validate_ai_architecture_implementation_plan.py", "evals/evals.json"]},
+    {"path": "assets/technology-decision-policy.json", "type": "policy", "purpose": "Defines selected/alternative/rationale requirements.", "used_by": ["SKILL.md", "scripts/validate_ai_architecture_implementation_plan.py", "templates/output.md"]},
+    {"path": "assets/evidence-policy.json", "type": "policy", "purpose": "Defines evidence and prerequisite handling.", "used_by": ["SKILL.md", "scripts/validate_ai_architecture_implementation_plan.py", "agents/guardian.md"]},
+    {"path": "assets/deployment-control-policy.json", "type": "policy", "purpose": "Defines required CI/CD, rollback, monitoring, and runbook controls.", "used_by": ["SKILL.md", "scripts/validate_ai_architecture_implementation_plan.py", "knowledge/body-of-knowledge.md"]},
+    {"path": "assets/implementation-plan-contract.json", "type": "schema", "purpose": "Defines machine-readable implementation packet structure.", "used_by": ["SKILL.md", "scripts/validate_ai_architecture_implementation_plan.py", "templates/output.md"]}
+  ]
+}

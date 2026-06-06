@@ -1,0 +1,20 @@
+{
+  "schema": "jm-labs.ai-architecture-implementation.plan.v1",
+  "system": {"name": "x"},
+  "mode": "urgent-now",
+  "scope": {"coverage": "full"},
+  "evidence": [{"id": "E-001", "source": "a.md", "summary": "s", "tag": "[DOC]"}],
+  "prerequisites": [],
+  "phases": [
+    {"id": "F0", "deliverables": ["d"], "dependencies": [], "dod": ["d"], "evidence_ids": ["E-001"]},
+    {"id": "F1", "deliverables": ["d"], "dependencies": [], "dod": ["d"], "evidence_ids": ["E-001"]},
+    {"id": "F2", "deliverables": ["d"], "dependencies": [], "dod": ["d"], "evidence_ids": ["E-001"]},
+    {"id": "F3", "deliverables": ["d"], "dependencies": [], "dod": ["d"], "evidence_ids": ["E-001"]},
+    {"id": "F4", "deliverables": ["d"], "dependencies": [], "dod": ["d"], "evidence_ids": ["E-001"]},
+    {"id": "F5", "deliverables": ["d"], "dependencies": [], "dod": ["d"], "evidence_ids": ["E-001"]}
+  ],
+  "technology_decisions": [{"component": "cicd", "selected": "GitHub Actions", "alternatives": ["Tekton"], "rationale": "r", "evidence_ids": ["E-001"]}],
+  "controls": {"ci_cd": {"status": "planned", "dod": "d"}, "rollback": {"status": "planned", "dod": "d"}, "monitoring": {"status": "planned", "dod": "d"}, "runbooks": {"status": "planned", "dod": "d"}},
+  "risks": [],
+  "validation": {"status": "pass", "checks": ["assets", "deterministic_scripts", "quality_criteria", "phase_dod", "evidence_required", "technology_decisions", "rollback_monitoring"]}
+}
