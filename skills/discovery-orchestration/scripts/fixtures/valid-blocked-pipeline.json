@@ -1,0 +1,34 @@
+{
+  "skill": "discovery-orchestration",
+  "reference_date": "2026-06-06",
+  "summary": "Discovery is blocked at requirements gate because input contradictions remain unresolved. [CONFIG][INFERENCIA]",
+  "pipeline": {
+    "id": "DISC-002",
+    "scope": "Focused intake discovery",
+    "status": "blocked",
+    "exit_criteria": ["Input contradictions resolved", "Requirements gate passes"]
+  },
+  "phases": [
+    {"id": "P1", "name": "Intake", "skills": ["input-analysis"], "status": "validated"},
+    {"id": "P2", "name": "Requirements", "skills": ["requirements-engineering"], "status": "blocked"}
+  ],
+  "skill_sequence": [
+    {"skill": "input-analysis", "phase": "P1", "depends_on": [], "parallel_group": "A", "owner": "Discovery Lead", "expected_deliverable": "D1", "status": "validated", "evidence_tag": "[CONFIG]"},
+    {"skill": "requirements-engineering", "phase": "P2", "depends_on": ["input-analysis"], "parallel_group": "B", "owner": "BA Lead", "expected_deliverable": "D2", "status": "blocked", "evidence_tag": "[CONFIG]"}
+  ],
+  "dependencies": [
+    {"from": "input-analysis", "to": "requirements-engineering", "type": "blocks", "evidence_tag": "[CONFIG]"}
+  ],
+  "gates": [
+    {"id": "G1", "before_phase": "P2", "criteria": ["Contradiction log resolved [DOC]"], "status": "block", "evidence_tag": "[DOC]"}
+  ],
+  "deliverables": [
+    {"id": "D1", "owner": "Discovery Lead", "source_skill": "input-analysis", "status": "validated", "validation_refs": ["G1"], "evidence_tag": "[DOC]"},
+    {"id": "D2", "owner": "BA Lead", "source_skill": "requirements-engineering", "status": "blocked", "validation_refs": ["G1"], "evidence_tag": "[DOC]"}
+  ],
+  "blockers": [
+    {"id": "B1", "owner": "Discovery Lead", "description": "Resolve intake contradiction before requirements. [DOC]", "next_action": "Schedule decision review on 2026-06-07.", "evidence_tag": "[CONFIG]"}
+  ],
+  "validation": ["Blocked state is explicit and downstream ready status is not claimed. [CONFIG]"],
+  "risks": ["Requirements schedule is at risk until B1 closes. [INFERENCIA]"]
+}

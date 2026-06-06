@@ -1,0 +1,20 @@
+{
+  "skill": "discovery-orchestration",
+  "reference_date": "2026-06-06",
+  "summary": "A skill entry lacks owner. [CONFIG]",
+  "pipeline": {"id": "DISC-006", "scope": "Missing owner", "status": "blocked", "exit_criteria": ["Owners assigned"]},
+  "phases": [
+    {"id": "P1", "name": "Intake", "skills": ["input-analysis"], "status": "blocked"}
+  ],
+  "skill_sequence": [
+    {"skill": "input-analysis", "phase": "P1", "depends_on": [], "parallel_group": "A", "owner": "", "expected_deliverable": "D1", "status": "blocked", "evidence_tag": "[CONFIG]"}
+  ],
+  "dependencies": [],
+  "gates": [],
+  "deliverables": [
+    {"id": "D1", "owner": "", "source_skill": "input-analysis", "status": "blocked", "validation_refs": ["owner"], "evidence_tag": "[DOC]"}
+  ],
+  "blockers": [{"id": "B1", "owner": "Discovery Lead", "description": "Assign owner. [CONFIG]", "next_action": "Name owner.", "evidence_tag": "[CONFIG]"}],
+  "validation": ["Owner should be required. [CONFIG]"],
+  "risks": ["Unowned work stalls. [INFERENCIA]"]
+}

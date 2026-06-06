@@ -1,0 +1,46 @@
+{
+  "skill": "discovery-orchestration",
+  "reference_date": "2026-06-06",
+  "summary": "Support modernization discovery is ready because gates pass and deliverables are validated. [CONFIG][INFERENCIA]",
+  "pipeline": {
+    "id": "DISC-001",
+    "scope": "Support modernization discovery",
+    "status": "ready",
+    "exit_criteria": ["All deliverables validated", "Gates pass", "No open blockers"]
+  },
+  "phases": [
+    {"id": "P1", "name": "Intake", "skills": ["input-analysis"], "status": "validated"},
+    {"id": "P2", "name": "Discovery", "skills": ["stakeholder-analysis", "current-state-analysis"], "status": "validated"},
+    {"id": "P3", "name": "Requirements", "skills": ["requirements-engineering"], "status": "validated"},
+    {"id": "P4", "name": "Package", "skills": ["discovery-reporting"], "status": "validated"}
+  ],
+  "skill_sequence": [
+    {"skill": "input-analysis", "phase": "P1", "depends_on": [], "parallel_group": "A", "owner": "Discovery Lead", "expected_deliverable": "D1", "status": "validated", "evidence_tag": "[CONFIG]"},
+    {"skill": "stakeholder-analysis", "phase": "P2", "depends_on": ["input-analysis"], "parallel_group": "B", "owner": "Product Lead", "expected_deliverable": "D2", "status": "validated", "evidence_tag": "[CONFIG]"},
+    {"skill": "current-state-analysis", "phase": "P2", "depends_on": ["input-analysis"], "parallel_group": "B", "owner": "Ops Lead", "expected_deliverable": "D3", "status": "validated", "evidence_tag": "[CONFIG]"},
+    {"skill": "requirements-engineering", "phase": "P3", "depends_on": ["stakeholder-analysis", "current-state-analysis"], "parallel_group": "C", "owner": "BA Lead", "expected_deliverable": "D4", "status": "validated", "evidence_tag": "[CONFIG]"},
+    {"skill": "discovery-reporting", "phase": "P4", "depends_on": ["requirements-engineering"], "parallel_group": "D", "owner": "Discovery Lead", "expected_deliverable": "D5", "status": "validated", "evidence_tag": "[CONFIG]"}
+  ],
+  "dependencies": [
+    {"from": "input-analysis", "to": "stakeholder-analysis", "type": "blocks", "evidence_tag": "[CONFIG]"},
+    {"from": "input-analysis", "to": "current-state-analysis", "type": "blocks", "evidence_tag": "[CONFIG]"},
+    {"from": "stakeholder-analysis", "to": "requirements-engineering", "type": "blocks", "evidence_tag": "[CONFIG]"},
+    {"from": "current-state-analysis", "to": "requirements-engineering", "type": "blocks", "evidence_tag": "[CONFIG]"},
+    {"from": "requirements-engineering", "to": "discovery-reporting", "type": "blocks", "evidence_tag": "[CONFIG]"}
+  ],
+  "gates": [
+    {"id": "G1", "before_phase": "P2", "criteria": ["Input gaps listed [DOC]"], "status": "pass", "evidence_tag": "[DOC]"},
+    {"id": "G2", "before_phase": "P3", "criteria": ["Stakeholder and current-state outputs validated [DOC]"], "status": "pass", "evidence_tag": "[DOC]"},
+    {"id": "G3", "before_phase": "P4", "criteria": ["Requirements are validated [DOC]"], "status": "pass", "evidence_tag": "[DOC]"}
+  ],
+  "deliverables": [
+    {"id": "D1", "owner": "Discovery Lead", "source_skill": "input-analysis", "status": "validated", "validation_refs": ["G1"], "evidence_tag": "[DOC]"},
+    {"id": "D2", "owner": "Product Lead", "source_skill": "stakeholder-analysis", "status": "validated", "validation_refs": ["G2"], "evidence_tag": "[DOC]"},
+    {"id": "D3", "owner": "Ops Lead", "source_skill": "current-state-analysis", "status": "validated", "validation_refs": ["G2"], "evidence_tag": "[DOC]"},
+    {"id": "D4", "owner": "BA Lead", "source_skill": "requirements-engineering", "status": "validated", "validation_refs": ["G3"], "evidence_tag": "[DOC]"},
+    {"id": "D5", "owner": "Discovery Lead", "source_skill": "discovery-reporting", "status": "validated", "validation_refs": ["G3"], "evidence_tag": "[DOC]"}
+  ],
+  "blockers": [],
+  "validation": ["Dependency graph is acyclic and every phase transition has a gate. [CONFIG]"],
+  "risks": ["Stakeholder availability remains a scheduling risk outside this packet. [SUPUESTO]"]
+}

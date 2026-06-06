@@ -1,0 +1,23 @@
+{
+  "skill": "discovery-orchestration",
+  "reference_date": "2026-06-06",
+  "summary": "Pipeline skips gate before requirements. [CONFIG]",
+  "pipeline": {"id": "DISC-003", "scope": "Bad pipeline", "status": "ready", "exit_criteria": ["Done"]},
+  "phases": [
+    {"id": "P1", "name": "Intake", "skills": ["input-analysis"], "status": "validated"},
+    {"id": "P2", "name": "Requirements", "skills": ["requirements-engineering"], "status": "validated"}
+  ],
+  "skill_sequence": [
+    {"skill": "input-analysis", "phase": "P1", "depends_on": [], "parallel_group": "A", "owner": "Lead", "expected_deliverable": "D1", "status": "validated", "evidence_tag": "[CONFIG]"},
+    {"skill": "requirements-engineering", "phase": "P2", "depends_on": ["input-analysis"], "parallel_group": "B", "owner": "BA", "expected_deliverable": "D2", "status": "validated", "evidence_tag": "[CONFIG]"}
+  ],
+  "dependencies": [{"from": "input-analysis", "to": "requirements-engineering", "type": "blocks", "evidence_tag": "[CONFIG]"}],
+  "gates": [],
+  "deliverables": [
+    {"id": "D1", "owner": "Lead", "source_skill": "input-analysis", "status": "validated", "validation_refs": ["G1"], "evidence_tag": "[DOC]"},
+    {"id": "D2", "owner": "BA", "source_skill": "requirements-engineering", "status": "validated", "validation_refs": ["G1"], "evidence_tag": "[DOC]"}
+  ],
+  "blockers": [],
+  "validation": ["Gate is missing. [CONFIG]"],
+  "risks": ["Phase transition is unverifiable. [INFERENCIA]"]
+}

@@ -3,11 +3,18 @@
 
 ## Core Concepts
 - [[discovery-orchestration]] — Primary concept
-- [[discovery-orchestration-patterns]] — Common patterns and approaches
-- [[discovery-orchestration-anti-patterns]] — What to avoid
+- [[discovery-pipeline]] — Ordered scope, phases, gates, and outputs
+- [[dependency-graph]] — Skill sequencing and parallelism constraints
+- [[quality-gate]] — Measurable pass/block transition
+- [[deliverable-register]] — Owner-bound status and validation evidence
+- [[blocked-pipeline]] — Pipeline state with blockers and next actions
+- [[discovery-dashboard]] — Progress, risks, blockers, and next steps
 
 ## Tags
 #discovery-orchestration #jm-adk #zettelkasten
 
 ## Cross-References
-- Related skills in this domain
+- [[input-analysis]] for intake quality
+- [[requirements-engineering]] for downstream requirements outputs
+- [[system-architecture]] for architecture discovery outputs
+- [[quality-gatekeeper]] for gate enforcement patterns

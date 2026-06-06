@@ -1,0 +1,7 @@
+{
+  "schema": 1,
+  "pipeline_statuses": ["ready", "blocked", "in-progress"],
+  "phase_statuses": ["not-started", "ready", "blocked", "validated"],
+  "allowed_evidence_tags": ["[CONFIG]", "[DOC]", "[CÓDIGO]", "[INFERENCIA]", "[SUPUESTO]"],
+  "rule": "Status values must come from this taxonomy; free-form status text is not allowed."
+}

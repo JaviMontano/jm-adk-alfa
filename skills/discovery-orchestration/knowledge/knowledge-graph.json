@@ -1,7 +1,5 @@
 {
   "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-28",
   "skill": "discovery-orchestration",
   "nodes": [
     {
@@ -10,66 +8,66 @@
       "label": "discovery-orchestration"
     },
     {
-      "id": "discovery-orchestration:inputs",
+      "id": "discovery-pipeline",
+      "type": "artifact",
+      "label": "Discovery pipeline"
+    },
+    {
+      "id": "dependency-graph",
       "type": "contract",
-      "label": "Expected inputs"
+      "label": "Skill dependency graph"
     },
     {
-      "id": "discovery-orchestration:outputs",
-      "type": "contract",
-      "label": "Expected outputs"
-    },
-    {
-      "id": "discovery-orchestration:quality",
+      "id": "quality-gate",
       "type": "gate",
-      "label": "Quality criteria"
+      "label": "Phase transition gate"
     },
     {
-      "id": "discovery-orchestration:ontology",
-      "type": "ontology",
-      "label": "Domain: agentic-architecture"
+      "id": "deliverable-register",
+      "type": "artifact",
+      "label": "Owner-bound deliverables"
     },
     {
-      "id": "discovery-orchestration:evidence",
-      "type": "gate",
-      "label": "Evidence / provenance requirements"
-    },
-    {
-      "id": "discovery-orchestration:antipattern",
+      "id": "blocked-pipeline",
       "type": "risk",
-      "label": "Canonical anti-pattern to avoid"
+      "label": "Blocked pipeline"
+    },
+    {
+      "id": "orchestration-packet",
+      "type": "contract",
+      "label": "Offline-validatable orchestration packet"
     }
   ],
   "edges": [
     {
       "from": "discovery-orchestration",
-      "to": "discovery-orchestration:inputs",
-      "type": "requires"
-    },
-    {
-      "from": "discovery-orchestration",
-      "to": "discovery-orchestration:outputs",
+      "to": "discovery-pipeline",
       "type": "produces"
     },
     {
-      "from": "discovery-orchestration",
-      "to": "discovery-orchestration:quality",
+      "from": "discovery-pipeline",
+      "to": "dependency-graph",
       "type": "validated_by"
     },
     {
-      "from": "discovery-orchestration",
-      "to": "discovery-orchestration:ontology",
-      "type": "classified_as"
-    },
-    {
-      "from": "discovery-orchestration",
-      "to": "discovery-orchestration:evidence",
+      "from": "discovery-pipeline",
+      "to": "quality-gate",
       "type": "validated_by"
     },
     {
+      "from": "discovery-pipeline",
+      "to": "deliverable-register",
+      "type": "produces"
+    },
+    {
+      "from": "blocked-pipeline",
+      "to": "quality-gate",
+      "type": "blocked_by"
+    },
+    {
       "from": "discovery-orchestration",
-      "to": "discovery-orchestration:antipattern",
-      "type": "guards_against"
+      "to": "orchestration-packet",
+      "type": "validated_by"
     }
   ]
 }

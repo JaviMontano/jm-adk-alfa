@@ -1,9 +1,88 @@
-[
-  {"id": "discovery-orchestration-happy-path", "type": "happy_path", "input": "Run discovery orchestration on this project", "expected_behavior": "Skill activates and produces the expected discovery orchestration output following the defined process", "tags": ["basic", "activation"]},
-  {"id": "discovery-orchestration-explicit-trigger", "type": "happy_path", "input": "Apply discovery orchestration analysis", "expected_behavior": "Skill recognizes the trigger phrase and executes the discovery orchestration workflow", "tags": ["trigger", "recognition"]},
-  {"id": "discovery-orchestration-with-context", "type": "happy_path", "input": "Apply discovery orchestration to analyze the current codebase with detailed output", "expected_behavior": "Skill produces comprehensive discovery orchestration analysis with evidence-tagged findings", "tags": ["detailed", "comprehensive"]},
-  {"id": "discovery-orchestration-minimal-input", "type": "happy_path", "input": "Quick discovery orchestration", "expected_behavior": "Skill activates with minimal input, applies reasonable defaults", "tags": ["minimal", "defaults"]},
-  {"id": "discovery-orchestration-false-positive", "type": "false_positive", "input": "What is the weather forecast for tomorrow?", "expected_behavior": "Skill should NOT activate — this input has no relation to discovery orchestration", "tags": ["false_positive", "should-not-activate"]},
-  {"id": "discovery-orchestration-edge-empty-input", "type": "edge_case", "input": "Run discovery orchestration but I have no files or documentation yet", "expected_behavior": "Skill handles gracefully — requests minimum viable input or produces gap analysis", "tags": ["edge_case", "empty-input", "boundary"]},
-  {"id": "discovery-orchestration-edge-conflicting", "type": "edge_case", "input": "Apply discovery orchestration but requirements contradict each other", "expected_behavior": "Skill detects contradiction, flags with [OPEN] tag, proposes resolution", "tags": ["edge_case", "conflict", "corner"]}
-]
+{
+  "schema": 1,
+  "skill": "discovery-orchestration",
+  "cases": [
+    {
+      "id": "full-pipeline-happy-path",
+      "type": "happy_path",
+      "input": "Orchestrate discovery for support modernization with input analysis, stakeholder map, requirements, architecture, risks, and report.",
+      "expected_behavior": "Produces acyclic dependency graph, phases, gates, deliverable register, blockers, validation, and risks.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria"],
+      "tags": ["pipeline", "gates"]
+    },
+    {
+      "id": "parallel-independent-skills",
+      "type": "happy_path",
+      "input": "Run stakeholder analysis and current-state review in parallel after intake.",
+      "expected_behavior": "Allows parallelism only when no dependency edge conflicts.",
+      "expected_checks": ["assets", "quality_criteria"],
+      "tags": ["parallelism"]
+    },
+    {
+      "id": "blocked-gate-valid",
+      "type": "edge_case",
+      "input": "Requirements gate is blocked because input-analysis has unresolved contradictions.",
+      "expected_behavior": "Reports blocked pipeline with blocker owner, next action, and no downstream ready status.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria"],
+      "tags": ["blocked", "gate"]
+    },
+    {
+      "id": "cycle-degradation",
+      "type": "degradation",
+      "input": "Architecture depends on requirements and requirements depend on architecture.",
+      "expected_behavior": "Detects dependency cycle and blocks sequencing.",
+      "expected_checks": ["deterministic_scripts", "quality_criteria"],
+      "tags": ["cycle"]
+    },
+    {
+      "id": "missing-gate",
+      "type": "edge_case",
+      "input": "Move from discovery to architecture without specifying G2 criteria.",
+      "expected_behavior": "Blocks phase transition until gate criteria exist.",
+      "expected_checks": ["assets", "quality_criteria"],
+      "tags": ["gate"]
+    },
+    {
+      "id": "false-positive-weather",
+      "type": "false_positive",
+      "input": "What is the weather forecast for tomorrow?",
+      "expected_behavior": "Does not activate because no discovery pipeline orchestration is requested.",
+      "expected_checks": ["quality_criteria"],
+      "tags": ["false-positive"]
+    },
+    {
+      "id": "false-negative-pipeline-language",
+      "type": "false_negative",
+      "input": "Plan the sequence of discovery work and approval checkpoints for this engagement.",
+      "expected_behavior": "Activates even without exact trigger phrase because sequencing and checkpoints imply discovery orchestration.",
+      "expected_checks": ["assets", "quality_criteria"],
+      "tags": ["semantic-trigger"]
+    },
+    {
+      "id": "minimal-input-boundary",
+      "type": "edge_case",
+      "input": "Set up discovery orchestration, but no docs are available yet.",
+      "expected_behavior": "Requests minimum viable artifacts and emits blocked starter packet rather than inventing deliverables.",
+      "expected_checks": ["quality_criteria"],
+      "tags": ["minimal"]
+    },
+    {
+      "id": "large-pipeline-boundary",
+      "type": "boundary",
+      "input": "Coordinate a discovery pipeline with 30 skills and multiple gates.",
+      "expected_behavior": "Keeps output bounded by summarizing repeated low-risk skills and expanding gates, blockers, dependencies, and high-risk deliverables.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria"],
+      "tags": ["scale"]
+    }
+  ],
+  "assets": ["assets/manifest.json", "assets/report-contract.json"],
+  "deterministic_scripts": ["scripts/check.sh", "scripts/validate_discovery_orchestration_packet.py"],
+  "quality_criteria": [
+    "acyclic dependency graph",
+    "gate for every phase transition",
+    "owner-bound deliverable register",
+    "validated deliverables for ready pipeline",
+    "explicit blockers for blocked pipeline",
+    "offline validation evidence"
+  ]
+}

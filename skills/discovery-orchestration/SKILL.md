@@ -30,12 +30,17 @@ Manages the end-to-end discovery pipeline by sequencing skill execution, enforci
 - Determine which skills are needed based on project type and objectives
 - Assess available inputs: existing documentation, stakeholder access, codebase
 - Check for existing discovery artifacts that can be reused or updated
+- Capture deliverables, owners, dependencies, phase gates, blockers, and exit
+  criteria before sequencing.
 
 ### Step 2: Analyze
 - Sequence skills based on dependencies (requirements before architecture, stakeholders before communication)
 - Define quality gates between phases with explicit pass/fail criteria
 - Identify parallel execution opportunities (skills that don't depend on each other)
 - Estimate effort per skill and total discovery timeline
+- Use `assets/dependency-policy.json` to avoid cycles and unsupported parallelism.
+- Use `assets/gate-policy.json` and `assets/deliverable-policy.json` for gate
+  and completion status.
 
 ### Step 3: Execute
 - Generate `plan-YYYY-MM-DD-task-name.md` at pipeline start using the template
@@ -56,6 +61,19 @@ Manages the end-to-end discovery pipeline by sequencing skill execution, enforci
 - Confirm quality gates were enforced (no shortcuts taken)
 - Check cross-references between deliverables for consistency
 - Review the complete discovery package with stakeholders
+- For JSON orchestration packets, run
+  `bash skills/discovery-orchestration/scripts/check.sh`.
+
+## Deterministic Assets
+
+- `assets/manifest.json` lists local assets and consumers.
+- `assets/pipeline-schema.json` defines pipeline and phase fields.
+- `assets/gate-policy.json` defines pass/block gate criteria.
+- `assets/deliverable-policy.json` defines deliverable states and validation.
+- `assets/dependency-policy.json` defines dependency graph rules.
+- `assets/status-taxonomy.json` defines canonical status values.
+- `assets/report-contract.json` defines the offline-validatable orchestration
+  packet.
 
 ## Quality Criteria
 
@@ -64,12 +82,18 @@ Manages the end-to-end discovery pipeline by sequencing skill execution, enforci
 - [ ] All deliverables are tracked with status and owner
 - [ ] Cross-deliverable consistency is verified
 - [ ] Evidence tags applied to all claims
+- [ ] Dependency graph is acyclic
+- [ ] Every phase transition has a gate
+- [ ] A ready pipeline has only validated deliverables and passing gates
+- [ ] A blocked pipeline has explicit blockers and next actions
 
 ## Anti-Patterns
 
 - Skipping quality gates under time pressure
 - Running all skills sequentially when parallel execution is possible
 - Discovery without a defined end state or exit criteria
+- Marking deliverables complete without validation evidence
+- Parallelizing dependent skills in the same phase
 
 ## Related Skills
 
@@ -100,3 +124,6 @@ Example invocations:
 | Empty or minimal input | Request clarification before proceeding |
 | Conflicting requirements | Flag conflicts explicitly, propose resolution |
 | Out-of-scope request | Redirect to appropriate skill or escalate |
+| Cyclic dependency | Block sequencing and report the cycle |
+| Missing gate criteria | Block phase transition |
+| Ready status with unvalidated deliverables | Downgrade to blocked |

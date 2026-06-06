@@ -1,0 +1,7 @@
+{
+  "schema": 1,
+  "required_pipeline_fields": ["id", "scope", "status", "exit_criteria"],
+  "required_phase_fields": ["id", "name", "skills", "status"],
+  "required_skill_fields": ["skill", "phase", "depends_on", "parallel_group", "owner", "expected_deliverable", "status", "evidence_tag"],
+  "rule": "Pipeline phases and skills must be owner-bound, dependency-aware, and statused."
+}

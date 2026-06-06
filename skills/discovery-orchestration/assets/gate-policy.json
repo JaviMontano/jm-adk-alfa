@@ -1,0 +1,6 @@
+{
+  "schema": 1,
+  "required_gate_fields": ["id", "before_phase", "criteria", "status", "evidence_tag"],
+  "gate_statuses": ["pass", "block", "warn"],
+  "rule": "Every phase after the first requires a gate with measurable criteria."
+}

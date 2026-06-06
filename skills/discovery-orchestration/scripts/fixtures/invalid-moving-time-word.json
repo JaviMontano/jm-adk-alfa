@@ -1,0 +1,20 @@
+{
+  "skill": "discovery-orchestration",
+  "reference_date": "2026-06-06",
+  "summary": "Pipeline says gates will be checked soon. [CONFIG]",
+  "pipeline": {"id": "DISC-007", "scope": "Relative time", "status": "blocked", "exit_criteria": ["Check soon"]},
+  "phases": [
+    {"id": "P1", "name": "Intake", "skills": ["input-analysis"], "status": "blocked"}
+  ],
+  "skill_sequence": [
+    {"skill": "input-analysis", "phase": "P1", "depends_on": [], "parallel_group": "A", "owner": "Lead", "expected_deliverable": "D1", "status": "blocked", "evidence_tag": "[CONFIG]"}
+  ],
+  "dependencies": [],
+  "gates": [],
+  "deliverables": [
+    {"id": "D1", "owner": "Lead", "source_skill": "input-analysis", "status": "blocked", "validation_refs": ["soon"], "evidence_tag": "[DOC]"}
+  ],
+  "blockers": [{"id": "B1", "owner": "Lead", "description": "Review tomorrow. [CONFIG]", "next_action": "Decide later.", "evidence_tag": "[CONFIG]"}],
+  "validation": ["Moving time word should fail. [CONFIG]"],
+  "risks": ["Relative time makes orchestration non-deterministic. [INFERENCIA]"]
+}

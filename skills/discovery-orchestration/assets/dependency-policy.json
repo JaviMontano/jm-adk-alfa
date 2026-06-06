@@ -1,0 +1,7 @@
+{
+  "schema": 1,
+  "required_fields": ["from", "to", "type", "evidence_tag"],
+  "types": ["blocks", "informs", "parallel-safe"],
+  "acyclic_required": true,
+  "rule": "Dependency edges must reference known skills and must not form cycles."
+}

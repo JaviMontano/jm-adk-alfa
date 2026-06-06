@@ -1,0 +1,7 @@
+{
+  "schema": 1,
+  "required_fields": ["id", "owner", "source_skill", "status", "validation_refs", "evidence_tag"],
+  "statuses": ["not-started", "in-progress", "complete", "validated", "blocked"],
+  "ready_requires": "validated",
+  "rule": "A ready pipeline requires all deliverables to be validated."
+}
