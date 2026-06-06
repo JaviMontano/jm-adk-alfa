@@ -5,5 +5,4 @@ variant: quick
 ---
 # Find Skills — Quick Mode
 
-Streamlined execution. Focus on TL;DR and primary output only.
-Apply Validation Gate but skip extended evidence tagging.
+Return the top recommendation, one alternative, score, source, command, confirmation requirement, and risk note. Keep evidence tags and never skip install safety.

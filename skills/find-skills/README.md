@@ -1,17 +1,17 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: find-skills
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
-
 # Find Skills
 
->
+Finds and recommends agent skills from local catalogs and optional remote sources. It is local-first, evidence-tagged, and installation-safe: the skill may present commands, but it must not install anything without explicit user confirmation.
 
 ## Triggers
 
-- find-skills
+- `find-skills`
+- `find a skill`
+- `is there a skill for`
+- `search skills`
+- `install skill`
+- `skill marketplace`
+- `skills.sh`
+- `extend capabilities`
 
 ## Allowed Tools
 
@@ -20,12 +20,20 @@ overwrite-policy: missing-only unless --force
 - Grep
 - Bash
 - WebFetch
-- Agent
+- Task
+
+## Deterministic Resources
+
+- `assets/source-policy.json` defines local, remote, and user-provided sources.
+- `assets/scoring-rubric.json` defines stable candidate scoring and tiers.
+- `assets/install-policy.json` blocks automatic installation.
+- `assets/report-contract.json` defines the offline-validatable report.
+- `scripts/check.sh` validates local fixtures without network access.
 
 ## Quick Use
 
-Use this skill when the request clearly matches the triggers and requires the `find-skills` capability.
+Use this skill to parse a capability request, search local catalogs first, optionally summarize remote candidates, score every candidate, and recommend a bounded next action.
 
 ## Output Format
 
-Markdown with summary, evidence, result, validation, and risks.
+Markdown or JSON with exact date, query, scope, intent, candidate table, selected recommendation, install policy, validation, and risks. Every claim requires an evidence tag.

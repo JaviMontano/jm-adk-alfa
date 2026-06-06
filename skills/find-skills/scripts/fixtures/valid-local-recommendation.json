@@ -1,13 +1,10 @@
-# Example Output
-
-```json
 {
   "skill": "find-skills",
   "reference_date": "2026-06-06",
   "mode": "recommend",
   "scope": "local-only",
-  "query": "deterministic AI-assisted test planning",
-  "summary": "Local catalog search found a directly relevant AI testing skill and remote search was skipped by scope. [CODE]",
+  "query": "deterministic AI-assisted testing",
+  "summary": "Local catalog search found a validated local skill and remote search was skipped by scope. [CODE]",
   "intent": {
     "domain": "AI testing",
     "task": "deterministic test planning",
@@ -28,20 +25,43 @@
         "task_fit": 25,
         "evidence_quality": 18,
         "safety": 14,
-        "installability": 10
+        "installability": 10,
+        "maintenance": 0
       },
       "evidence_refs": ["skills/ai-assisted-testing/SKILL.md [CODE]", "docs/audits/skills/ai-assisted-testing-review.md [CODE]"],
       "install_action": "already_available",
       "install_command": "/ai-assisted-testing",
       "requires_confirmation": false,
       "security_review": "local_pre_vetted"
+    },
+    {
+      "id": "C02",
+      "name": "test-generation",
+      "source": "local skills/",
+      "source_type": "local",
+      "quality_tier": "B",
+      "moat_depth": "Standard",
+      "score_total": 70,
+      "score_breakdown": {
+        "source_trust": 22,
+        "task_fit": 18,
+        "evidence_quality": 10,
+        "safety": 12,
+        "installability": 8,
+        "maintenance": 0
+      },
+      "evidence_refs": ["local catalog match for testing [CODE]"],
+      "install_action": "already_available",
+      "install_command": "/test-generation",
+      "requires_confirmation": false,
+      "security_review": "local_pre_vetted"
     }
   ],
   "recommendation": {
     "selected_candidate_id": "C01",
-    "rationale": "Select `ai-assisted-testing` because it is local, already validated, and directly matches deterministic testing workflow design. [CODE]",
+    "rationale": "Select `ai-assisted-testing` because it is local, validated, and best matches deterministic AI test planning. [CODE]",
     "confidence": "high",
-    "next_action": "Invoke the local skill for test planning; no installation is required. [CONFIG]"
+    "next_action": "Invoke the local skill; no installation is required. [CONFIG]"
   },
   "install_policy": {
     "auto_install": false,
@@ -49,6 +69,5 @@
     "allowed_action": "present_command_only"
   },
   "validation": ["The report is local-only, scored, bounded, and installation-safe. [CONFIG]"],
-  "risks": ["Remote alternatives were not evaluated because scope was local-only. [CONFIG]"]
+  "risks": ["Remote alternatives were skipped because scope is local-only. [CONFIG]"]
 }
-```

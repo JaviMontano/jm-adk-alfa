@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "skill": "find-skills",
+  "assets": [
+    {
+      "path": "assets/README.md",
+      "type": "documentation",
+      "purpose": "Describe deterministic find-skills assets.",
+      "used_by": ["SKILL.md", "README.md"]
+    },
+    {
+      "path": "assets/source-policy.json",
+      "type": "policy",
+      "purpose": "Define source scopes, source types, and remote evidence requirements.",
+      "used_by": ["SKILL.md", "scripts/validate_find_skills_report.py"]
+    },
+    {
+      "path": "assets/scoring-rubric.json",
+      "type": "rubric",
+      "purpose": "Define deterministic score dimensions, tiers, and confidence labels.",
+      "used_by": ["SKILL.md", "scripts/validate_find_skills_report.py"]
+    },
+    {
+      "path": "assets/install-policy.json",
+      "type": "policy",
+      "purpose": "Block auto-installation and require explicit confirmation.",
+      "used_by": ["SKILL.md", "scripts/validate_find_skills_report.py"]
+    },
+    {
+      "path": "assets/report-contract.json",
+      "type": "schema",
+      "purpose": "Define the offline-validatable recommendation report.",
+      "used_by": ["SKILL.md", "examples/example-output.md", "scripts/validate_find_skills_report.py"]
+    }
+  ]
+}

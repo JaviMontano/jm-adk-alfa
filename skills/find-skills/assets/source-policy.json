@@ -1,0 +1,11 @@
+{
+  "schema": 1,
+  "skill": "find-skills",
+  "scopes": ["local-only", "remote-only", "all", "no-match"],
+  "source_types": ["local", "remote", "user-provided"],
+  "local_first": true,
+  "remote_requires_snapshot_date": true,
+  "remote_sources": ["skills.sh", "GitHub", "Skills CLI"],
+  "offline_script_forbidden_commands": ["curl", "wget", "npx", "npm", "pnpm", "yarn", "gh api", "WebFetch"],
+  "required_intent_fields": ["domain", "task", "source_scope", "evidence_tag"]
+}

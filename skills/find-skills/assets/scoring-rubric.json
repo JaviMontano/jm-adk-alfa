@@ -1,0 +1,21 @@
+{
+  "schema": 1,
+  "skill": "find-skills",
+  "max_candidates_default": 5,
+  "score_dimensions": {
+    "source_trust": 25,
+    "task_fit": 25,
+    "evidence_quality": 20,
+    "safety": 15,
+    "installability": 10,
+    "maintenance": 5
+  },
+  "quality_tiers": ["S", "A", "B", "C", "F"],
+  "moat_depths": ["Deep", "Full", "Standard", "Minimal", "Unknown"],
+  "confidence": {
+    "high": 85,
+    "medium": 65,
+    "low": 40,
+    "none": 0
+  }
+}

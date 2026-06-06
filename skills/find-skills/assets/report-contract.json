@@ -1,0 +1,44 @@
+{
+  "schema": 1,
+  "skill": "find-skills",
+  "modes": ["recommend", "compare", "no-match", "install-request"],
+  "allowed_evidence_tags": [
+    "[CODE]",
+    "[CONFIG]",
+    "[DOC]",
+    "[INFERENCE]",
+    "[ASSUMPTION]",
+    "[CÓDIGO]",
+    "[INFERENCIA]",
+    "[SUPUESTO]"
+  ],
+  "required_top_level": [
+    "skill",
+    "reference_date",
+    "mode",
+    "scope",
+    "query",
+    "summary",
+    "intent",
+    "candidates",
+    "recommendation",
+    "install_policy",
+    "validation",
+    "risks"
+  ],
+  "required_candidate_fields": [
+    "id",
+    "name",
+    "source",
+    "source_type",
+    "quality_tier",
+    "moat_depth",
+    "score_total",
+    "score_breakdown",
+    "evidence_refs",
+    "install_action",
+    "requires_confirmation",
+    "security_review"
+  ],
+  "moving_time_terms": ["today", "tomorrow", "yesterday", "soon", "recently", "later", "TBD", "current leaderboard", "latest installs"]
+}

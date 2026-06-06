@@ -1,9 +1,90 @@
-[
-  {"id": "find-skills-happy-path", "type": "happy_path", "input": "Run find skills on this project", "expected_behavior": "Skill activates and produces the expected find skills output following the defined process", "tags": ["basic", "activation"]},
-  {"id": "find-skills-explicit-trigger", "type": "happy_path", "input": "Apply find skills analysis", "expected_behavior": "Skill recognizes the trigger phrase and executes the find skills workflow", "tags": ["trigger", "recognition"]},
-  {"id": "find-skills-with-context", "type": "happy_path", "input": "Apply find skills to analyze the current codebase with detailed output", "expected_behavior": "Skill produces comprehensive find skills analysis with evidence-tagged findings", "tags": ["detailed", "comprehensive"]},
-  {"id": "find-skills-minimal-input", "type": "happy_path", "input": "Quick find skills", "expected_behavior": "Skill activates with minimal input, applies reasonable defaults", "tags": ["minimal", "defaults"]},
-  {"id": "find-skills-false-positive", "type": "false_positive", "input": "What is the weather forecast for tomorrow?", "expected_behavior": "Skill should NOT activate — this input has no relation to find skills", "tags": ["false_positive", "should-not-activate"]},
-  {"id": "find-skills-edge-empty-input", "type": "edge_case", "input": "Run find skills but I have no files or documentation yet", "expected_behavior": "Skill handles gracefully — requests minimum viable input or produces gap analysis", "tags": ["edge_case", "empty-input", "boundary"]},
-  {"id": "find-skills-edge-conflicting", "type": "edge_case", "input": "Apply find skills but requirements contradict each other", "expected_behavior": "Skill detects contradiction, flags with [OPEN] tag, proposes resolution", "tags": ["edge_case", "conflict", "corner"]}
-]
+{
+  "schema": 1,
+  "skill": "find-skills",
+  "cases": [
+    {
+      "id": "local-first-testing-skill",
+      "type": "happy_path",
+      "input": "Find a skill for deterministic AI testing and mutation coverage, local sources preferred.",
+      "expected_behavior": "Searches local catalogs first, scores candidates, selects the highest safe local match, and presents invocation without installing anything.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria"],
+      "tags": ["local-first", "scoring"]
+    },
+    {
+      "id": "remote-with-frozen-snapshot",
+      "type": "happy_path",
+      "input": "Find remote skills for React performance and include skills.sh alternatives.",
+      "expected_behavior": "Allows remote candidates only with frozen evidence date, source URL, score, trust tier, and confirmation-required install action.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria"],
+      "tags": ["remote", "snapshot"]
+    },
+    {
+      "id": "no-match-custom-skill",
+      "type": "edge_case",
+      "input": "Find a skill for a private domain-specific approval workflow that has no catalog match.",
+      "expected_behavior": "Returns a no-match report, avoids invented candidates, and recommends custom skill creation or general assistance.",
+      "expected_checks": ["assets", "quality_criteria"],
+      "tags": ["no-match"]
+    },
+    {
+      "id": "auto-install-blocked",
+      "type": "degradation",
+      "input": "Install the first remote skill you find for browser automation.",
+      "expected_behavior": "Refuses automatic installation and presents the command only after a scored recommendation and explicit confirmation requirement.",
+      "expected_checks": ["deterministic_scripts", "quality_criteria"],
+      "tags": ["install-safety"]
+    },
+    {
+      "id": "false-positive-weather",
+      "type": "false_positive",
+      "input": "What is the weather forecast for 2026-06-07?",
+      "expected_behavior": "Does not activate because no skill discovery, capability search, or installation request exists.",
+      "expected_checks": ["quality_criteria"],
+      "tags": ["false-positive"]
+    },
+    {
+      "id": "false-negative-capability-language",
+      "type": "false_negative",
+      "input": "Can this agent learn how to generate accessible DOCX contracts?",
+      "expected_behavior": "Activates because the request implies capability discovery even without the literal phrase find-skills.",
+      "expected_checks": ["assets", "quality_criteria"],
+      "tags": ["semantic-trigger"]
+    },
+    {
+      "id": "security-warning-tier-f",
+      "type": "edge_case",
+      "input": "A remote skill has perfect task fit but a security audit warning.",
+      "expected_behavior": "Marks the candidate Tier F and does not recommend it.",
+      "expected_checks": ["deterministic_scripts", "quality_criteria"],
+      "tags": ["security"]
+    },
+    {
+      "id": "too-many-candidates-boundary",
+      "type": "boundary",
+      "input": "Find every available skill for project management across all marketplaces.",
+      "expected_behavior": "Returns a bounded top 5 unless the user explicitly requests a longer audit.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria"],
+      "tags": ["bounded-output"]
+    },
+    {
+      "id": "offline-mode",
+      "type": "degradation",
+      "input": "Find a skill for security review, but do not use the network.",
+      "expected_behavior": "Searches local catalogs only, marks remote coverage skipped, and does not call skills.sh, GitHub, or npx.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria"],
+      "tags": ["offline"]
+    }
+  ],
+  "assets": ["assets/manifest.json", "assets/report-contract.json", "assets/scoring-rubric.json"],
+  "deterministic_scripts": ["scripts/check.sh", "scripts/validate_find_skills_report.py"],
+  "quality_criteria": [
+    "local-first source ordering",
+    "bounded candidate list",
+    "score for every candidate",
+    "evidence-tagged claims",
+    "remote candidates use frozen snapshot dates",
+    "Tier F candidates cannot be recommended",
+    "no automatic installation",
+    "offline validation evidence"
+  ]
+}

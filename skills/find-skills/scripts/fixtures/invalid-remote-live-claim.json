@@ -1,0 +1,16 @@
+{
+  "skill": "find-skills",
+  "reference_date": "2026-06-06",
+  "mode": "recommend",
+  "scope": "all",
+  "query": "React performance skill",
+  "summary": "This invalid report claims a current leaderboard without a snapshot. [CONFIG]",
+  "intent": {"domain": "web", "task": "React performance", "source_scope": "all", "evidence_tag": "[CONFIG]"},
+  "candidates": [
+    {"id": "C01", "name": "react-performance", "source": "skills.sh current leaderboard", "source_type": "remote", "quality_tier": "A", "moat_depth": "Unknown", "score_total": 82, "score_breakdown": {"source_trust": 20, "task_fit": 25, "evidence_quality": 15, "safety": 12, "installability": 10, "maintenance": 0}, "evidence_refs": ["skills.sh current leaderboard [DOC]"], "install_action": "present_command_only", "install_command": "npx skills add owner/react-performance -g -y", "requires_confirmation": true, "security_review": "snapshot_missing"}
+  ],
+  "recommendation": {"selected_candidate_id": "C01", "rationale": "Invalid remote evidence. [CONFIG]", "confidence": "medium", "next_action": "Present command only. [CONFIG]"},
+  "install_policy": {"auto_install": false, "user_confirmation_required": true, "allowed_action": "present_command_only"},
+  "validation": ["Expected invalid. [CONFIG]"],
+  "risks": ["Live rankings are not reproducible. [CONFIG]"]
+}

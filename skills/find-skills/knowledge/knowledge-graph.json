@@ -1,75 +1,21 @@
 {
   "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-28",
   "skill": "find-skills",
   "nodes": [
-    {
-      "id": "find-skills",
-      "type": "skill",
-      "label": "find-skills"
-    },
-    {
-      "id": "find-skills:inputs",
-      "type": "contract",
-      "label": "Expected inputs"
-    },
-    {
-      "id": "find-skills:outputs",
-      "type": "contract",
-      "label": "Expected outputs"
-    },
-    {
-      "id": "find-skills:quality",
-      "type": "gate",
-      "label": "Quality criteria"
-    },
-    {
-      "id": "find-skills:ontology",
-      "type": "ontology",
-      "label": "Domain: general"
-    },
-    {
-      "id": "find-skills:evidence",
-      "type": "gate",
-      "label": "Evidence / provenance requirements"
-    },
-    {
-      "id": "find-skills:antipattern",
-      "type": "risk",
-      "label": "Canonical anti-pattern to avoid"
-    }
+    {"id": "find-skills", "type": "skill", "label": "Find Skills"},
+    {"id": "source-policy", "type": "policy", "label": "Local-first source policy"},
+    {"id": "candidate", "type": "entity", "label": "Skill candidate"},
+    {"id": "scoring-rubric", "type": "rubric", "label": "Deterministic candidate scoring"},
+    {"id": "install-policy", "type": "guardrail", "label": "No auto-installation"},
+    {"id": "recommendation-report", "type": "contract", "label": "Evidence-tagged recommendation report"},
+    {"id": "offline-validator", "type": "script", "label": "scripts/validate_find_skills_report.py"}
   ],
   "edges": [
-    {
-      "from": "find-skills",
-      "to": "find-skills:inputs",
-      "type": "requires"
-    },
-    {
-      "from": "find-skills",
-      "to": "find-skills:outputs",
-      "type": "produces"
-    },
-    {
-      "from": "find-skills",
-      "to": "find-skills:quality",
-      "type": "validated_by"
-    },
-    {
-      "from": "find-skills",
-      "to": "find-skills:ontology",
-      "type": "classified_as"
-    },
-    {
-      "from": "find-skills",
-      "to": "find-skills:evidence",
-      "type": "validated_by"
-    },
-    {
-      "from": "find-skills",
-      "to": "find-skills:antipattern",
-      "type": "guards_against"
-    }
+    {"from": "find-skills", "to": "source-policy", "type": "uses"},
+    {"from": "source-policy", "to": "candidate", "type": "filters"},
+    {"from": "scoring-rubric", "to": "candidate", "type": "scores"},
+    {"from": "install-policy", "to": "recommendation-report", "type": "guards"},
+    {"from": "candidate", "to": "recommendation-report", "type": "feeds"},
+    {"from": "offline-validator", "to": "recommendation-report", "type": "validates"}
   ]
 }
