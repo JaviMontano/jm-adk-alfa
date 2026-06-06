@@ -1,0 +1,8 @@
+{
+  "schema": 1,
+  "skill": "context-optimization",
+  "actions": ["keep", "compress", "prune", "lazy-load"],
+  "prune_max_relevance_score": 24,
+  "risk_flag_prune_allowed": false,
+  "prune_requires_rationale": true
+}

@@ -1,9 +1,76 @@
-[
-  {"id": "context-optimization-happy-path", "type": "happy_path", "input": "Run context optimization on this project", "expected_behavior": "Skill activates and produces the expected context optimization output following the defined process", "tags": ["basic", "activation"]},
-  {"id": "context-optimization-explicit-trigger", "type": "happy_path", "input": "Apply context optimization analysis", "expected_behavior": "Skill recognizes the trigger phrase and executes the context optimization workflow", "tags": ["trigger", "recognition"]},
-  {"id": "context-optimization-with-context", "type": "happy_path", "input": "Apply context optimization to analyze the current codebase with detailed output", "expected_behavior": "Skill produces comprehensive context optimization analysis with evidence-tagged findings", "tags": ["detailed", "comprehensive"]},
-  {"id": "context-optimization-minimal-input", "type": "happy_path", "input": "Quick context optimization", "expected_behavior": "Skill activates with minimal input, applies reasonable defaults", "tags": ["minimal", "defaults"]},
-  {"id": "context-optimization-false-positive", "type": "false_positive", "input": "What is the weather forecast for tomorrow?", "expected_behavior": "Skill should NOT activate — this input has no relation to context optimization", "tags": ["false_positive", "should-not-activate"]},
-  {"id": "context-optimization-edge-empty-input", "type": "edge_case", "input": "Run context optimization but I have no files or documentation yet", "expected_behavior": "Skill handles gracefully — requests minimum viable input or produces gap analysis", "tags": ["edge_case", "empty-input", "boundary"]},
-  {"id": "context-optimization-edge-conflicting", "type": "edge_case", "input": "Apply context optimization but requirements contradict each other", "expected_behavior": "Skill detects contradiction, flags with [OPEN] tag, proposes resolution", "tags": ["edge_case", "conflict", "corner"]}
-]
+{
+  "schema": 1,
+  "skill": "context-optimization",
+  "cases": [
+    {
+      "id": "context-optimization-progressive-loading",
+      "type": "happy_path",
+      "input": "Optimize context for planning with five skills at L1, two at L2, and one active focus at L3.",
+      "expected_behavior": "Create a loading plan with explicit relevance scores, one L3 skill, and utilization below target.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "loading_levels"]
+    },
+    {
+      "id": "context-optimization-lazy-load",
+      "type": "happy_path",
+      "input": "Keep adjacent skills lazy-loaded until referenced.",
+      "expected_behavior": "Mark low-priority skills for lazy-load instead of eager L3 loading.",
+      "expected_checks": ["quality_criteria", "lazy_loading"]
+    },
+    {
+      "id": "context-optimization-session-state",
+      "type": "happy_path",
+      "input": "Persist essential session state to project/session-state.json after optimization.",
+      "expected_behavior": "Persist only authorized essential fields and cite the target path.",
+      "expected_checks": ["assets", "quality_criteria", "write_authorization"]
+    },
+    {
+      "id": "context-optimization-two-l3",
+      "type": "degradation",
+      "input": "Load two active skills at L3 in the same plan.",
+      "expected_behavior": "Reject the plan because only one L3 skill can be active.",
+      "expected_checks": ["deterministic_scripts", "quality_criteria", "l3_limit"]
+    },
+    {
+      "id": "context-optimization-low-relevance-l3",
+      "type": "degradation",
+      "input": "Promote a skill with relevance score 40 to L3.",
+      "expected_behavior": "Reject low-relevance L3 promotion.",
+      "expected_checks": ["deterministic_scripts", "quality_criteria", "relevance_score"]
+    },
+    {
+      "id": "context-optimization-risky-prune",
+      "type": "degradation",
+      "input": "Prune a context source that contains a blocker risk flag.",
+      "expected_behavior": "Block pruning and keep or compress the risky source.",
+      "expected_checks": ["deterministic_scripts", "quality_criteria", "pruning"]
+    },
+    {
+      "id": "context-optimization-no-improvement",
+      "type": "edge_case",
+      "input": "Optimization improves token use by only 10 percent.",
+      "expected_behavior": "Block success claim because improvement is below 20 percent.",
+      "expected_checks": ["deterministic_scripts", "quality_criteria", "metrics"]
+    },
+    {
+      "id": "context-optimization-unauthorized-persist",
+      "type": "degradation",
+      "input": "Persist full session state without authorization.",
+      "expected_behavior": "Reject the persistence action.",
+      "expected_checks": ["deterministic_scripts", "quality_criteria", "write_authorization"]
+    },
+    {
+      "id": "context-optimization-false-positive-seo",
+      "type": "false_positive",
+      "input": "Optimize website context for a search engine snippet.",
+      "expected_behavior": "Do not activate because this is SEO/page context, not agent context-window optimization.",
+      "expected_checks": ["activation_boundary"]
+    },
+    {
+      "id": "context-optimization-machine-report-contract",
+      "type": "script_contract",
+      "input": "Validate Context Optimization JSON report fixtures offline.",
+      "expected_behavior": "Accept valid standard and lazy-load reports, then reject two-L3, low-relevance-L3, risky-prune, no-improvement, and unauthorized-persist reports.",
+      "expected_checks": ["deterministic_scripts", "assets", "quality_criteria"]
+    }
+  ]
+}

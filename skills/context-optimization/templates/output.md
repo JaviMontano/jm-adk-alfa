@@ -1,28 +1,40 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: context-optimization
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
+# Context Optimization Report
 
-# Context Optimization Output
+## Optimization Target
 
-## Summary
+- Task: `{task}` `{evidence_tag}`
+- Phase: `{phase}` `{evidence_tag}`
+- Max context tokens: `{max_context_tokens}` `{evidence_tag}`
+- Target utilization percent: `{target_utilization_percent}` `{evidence_tag}`
 
-{summary}
+## Skill Loading Plan
 
-## Evidence
+| Skill | Level | Relevance | Rationale | Evidence |
+|---|---|---:|---|---|
+| `{skill}` | `{level}` | `{relevance_score}` | `{rationale}` | `{evidence_tag}` |
 
-{evidence}
+## Pruning Plan
 
-## Result
+| Source | Action | Relevance | Risk Flag | Rationale |
+|---|---|---:|---:|---|
+| `{source_id}` | `{action}` | `{relevance_score}` | `{risk_flag}` | `{rationale}` |
 
-{result}
+## Session State Plan
 
-## Validation
+- Persist level: `{persist_level}` `{evidence_tag}`
+- Target path: `{target_path}` `{evidence_tag}`
+- Authorized: `{authorized}` `{evidence_tag}`
+- Fields: `{fields}` `{evidence_tag}`
 
-{validation}
+## Metrics
 
-## Risks and Limits
+- Naive tokens: `{naive_tokens}` `{evidence_tag}`
+- Optimized tokens: `{optimized_tokens}` `{evidence_tag}`
+- Utilization percent: `{utilization_percent}` `{evidence_tag}`
+- Improvement percent: `{improvement_percent}` `{evidence_tag}`
 
-{risks}
+## Guardian Decision
+
+Decision: `{decision}` `{evidence_tag}`
+
+Rationale: `{rationale}` `{evidence_tag}`

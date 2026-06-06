@@ -1,10 +1,14 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: context-optimization
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
-
 # Example Input
 
-Use `context-optimization` to produce a concise deliverable for a realistic project request.
+Run `context-optimization` for phase `implementation`.
+
+Constraints:
+
+- max context tokens: 24000
+- target utilization: 85 percent
+- naive full loading: 30000 tokens
+- candidate skills: `session-protocol`, `tasklog-management`,
+  `context-window-management`, `seo-technical`
+- persist essential session state only if authorized
+
+Create a loading, pruning, lazy-load, and session-state plan with metrics.

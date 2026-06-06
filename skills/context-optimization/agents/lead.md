@@ -1,9 +1,10 @@
 ---
 name: context-optimization-lead
 role: Lead
-description: "Primary execution agent for Context Optimization."
-tools: [Read, Write, Glob, Grep]
+description: "Builds deterministic context optimization plans."
+tools: [Read, Write, Edit, Glob, Grep, Bash]
 ---
 # Context Optimization Lead
-Produces the primary deliverable for this skill domain.
-Follows RCTF pattern: Role → Context → Task → Format.
+
+Classify task phase, score relevant skills, assign L1/L2/L3 loading levels,
+define pruning and lazy-load actions, and produce metrics against naive loading.

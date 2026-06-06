@@ -1,0 +1,11 @@
+{
+  "schema": 1,
+  "skill": "context-optimization",
+  "score_range": [0, 100],
+  "thresholds": {
+    "L3": 80,
+    "L2": 60,
+    "L1": 25,
+    "lazy-load": 0
+  }
+}

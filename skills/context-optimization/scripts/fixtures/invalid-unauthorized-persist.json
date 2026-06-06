@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "skill": "context-optimization",
+  "optimization_target": {
+    "task": "implementation",
+    "phase": "build",
+    "max_context_tokens": 24000,
+    "target_utilization_percent": 85,
+    "evidence_tag": "[CONFIG]"
+  },
+  "skill_loading_plan": [
+    {
+      "skill": "context-window-management",
+      "level": "L3",
+      "relevance_score": 95,
+      "rationale": "Active focus.",
+      "evidence_tag": "[CONFIG]"
+    }
+  ],
+  "pruning_plan": [],
+  "session_state_plan": {
+    "persist_level": "full",
+    "target_path": "project/session-state.json",
+    "authorized": false,
+    "fields": ["phase", "focused_skill"],
+    "evidence_tag": "[ASSUMPTION]"
+  },
+  "metrics": {
+    "naive_tokens": 30000,
+    "optimized_tokens": 18000,
+    "utilization_percent": 75,
+    "improvement_percent": 40,
+    "evidence_tag": "[CODE]"
+  },
+  "guardian_decision": {
+    "decision": "pass",
+    "rationale": "Invalid fixture.",
+    "evidence_tag": "[CONFIG]"
+  }
+}

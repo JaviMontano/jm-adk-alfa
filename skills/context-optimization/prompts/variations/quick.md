@@ -1,12 +1,11 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: context-optimization
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
-
 # Context Optimization Quick Variation
 
-Use when the task is low risk and well specified.
+Use when the task is low risk, has one active skill, and needs a fast context budget decision.
 
-Return only the requested deliverable, validation status, and residual risks.
+Return:
+- L1/L2/L3/prune table.
+- Token budget summary with improvement percentage.
+- Session-state action: `none`, `summarize_only`, or `persist_summary`.
+- Validation status and residual risks.
+
+Do not propose more than one L3 load in quick mode.
