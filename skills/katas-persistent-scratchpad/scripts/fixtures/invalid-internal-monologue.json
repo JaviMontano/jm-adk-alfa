@@ -1,0 +1,16 @@
+{
+  "schema": 1,
+  "scratchpad": {
+    "path": "investigation-scratchpad.md",
+    "persistent_on_disk": true,
+    "sections": {
+      "Decisiones": [{"text": "monologo interno sobre varias opciones sin validar.", "date": "2026-06-06", "evidence": "chat", "validated": true}],
+      "Hallazgos": [{"text": "Parser bug confirmed.", "date": "2026-06-06", "evidence": "parser.py:142", "validated": true}],
+      "Pendientes": [{"text": "Run strict tests.", "date": "2026-06-06", "evidence": "test plan"}]
+    }
+  },
+  "access_policy": {"read_once_at_start": true, "reference_after_load": true, "reread_each_turn": false},
+  "write_policy": {"append_only": true, "overwrite_existing": false, "preserve_existing_entries": true},
+  "exclusions": {"internal_monologue": true, "unconfirmed_hypotheses": false, "transient_doubts": false, "raw_transcript": false},
+  "validation": {"survives_compact": true, "survives_restart": true, "kata10_cache_safe": true, "kata11_compaction_linked": true, "kata19_adaptive_investigation_linked": true}
+}

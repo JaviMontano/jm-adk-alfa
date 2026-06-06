@@ -1,0 +1,7 @@
+{
+  "schema": 1,
+  "append_only": true,
+  "overwrite_existing": false,
+  "preserve_existing_entries": true,
+  "curated_only": true
+}

@@ -1,0 +1,6 @@
+{
+  "schema": 1,
+  "required_sections": ["Decisiones", "Hallazgos", "Pendientes"],
+  "allow_extra_sections": false,
+  "entry_required_fields": ["text", "date", "evidence"]
+}

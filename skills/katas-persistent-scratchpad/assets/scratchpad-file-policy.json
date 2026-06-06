@@ -1,0 +1,8 @@
+{
+  "schema": 1,
+  "canonical_path": "investigation-scratchpad.md",
+  "allowed_extension": ".md",
+  "persistent_on_disk": true,
+  "survives_compact": true,
+  "survives_restart": true
+}

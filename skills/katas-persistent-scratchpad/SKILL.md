@@ -33,6 +33,10 @@ Cuando el contexto se compacta (Kata 11 · compactación), se pierde detalle. Si
 - Estructura fija por secciones (`## Decisiones`, `## Hallazgos`, `## Pendientes`) para que sea anexable y legible.
 - Al inicio de cada sesión el agente lee el scratchpad UNA vez; después referencia y anexa, no re-lee cada turno (preserva el prefijo de cache, Kata 10).
 
+## Activos determinísticos
+
+Usa `assets/manifest.json` como indice de contratos offline. Los assets fijan ruta, secciones, evidencia, lectura unica, escritura append-only y contrato JSON de salida. Si produces un reporte JSON de scratchpad persistente, validalo con `bash skills/katas-persistent-scratchpad/scripts/check.sh` antes de marcarlo como aceptado.
+
 ## Patrón correcto
 
 ```markdown
@@ -64,6 +68,7 @@ def append_scratchpad(section, entry):
 - Describir la diferencia entre memoria conversacional (volátil) y persistente (scratchpad en disco).
 - Enunciar qué se escribe (hipótesis confirmadas, decisiones, hallazgos, pendientes) y qué NO (monólogo, hipótesis sin confirmar, dudas pasajeras).
 - Conectar con Kata 11 (compactación, que motiva la persistencia) y Kata 19 (investigación adaptativa, que consume y alimenta el scratchpad).
+- Validar el contrato offline con `scripts/check.sh` cuando el output sea JSON.
 
 ## Cuándo activar
 

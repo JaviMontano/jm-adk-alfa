@@ -1,0 +1,6 @@
+{
+  "schema": 1,
+  "report_type": "katas-persistent-scratchpad-report",
+  "required_top_level": ["schema", "scratchpad", "access_policy", "write_policy", "exclusions", "validation"],
+  "required_sections": ["Decisiones", "Hallazgos", "Pendientes"]
+}

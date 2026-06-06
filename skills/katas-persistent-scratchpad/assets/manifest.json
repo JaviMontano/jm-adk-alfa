@@ -1,0 +1,42 @@
+{
+  "schema": 1,
+  "skill": "katas-persistent-scratchpad",
+  "assets": [
+    {
+      "path": "assets/scratchpad-file-policy.json",
+      "type": "policy",
+      "purpose": "Defines the durable scratchpad path and persistence expectations.",
+      "used_by": ["SKILL.md", "README.md", "scripts/validate_kata_scratchpad_report.py"]
+    },
+    {
+      "path": "assets/section-policy.json",
+      "type": "policy",
+      "purpose": "Locks the Decisiones, Hallazgos, and Pendientes sections.",
+      "used_by": ["SKILL.md", "evals/evals.json", "templates/output.md", "scripts/validate_kata_scratchpad_report.py"]
+    },
+    {
+      "path": "assets/evidence-policy.json",
+      "type": "policy",
+      "purpose": "Requires date and evidence for every persisted entry.",
+      "used_by": ["SKILL.md", "agents/guardian.md", "scripts/validate_kata_scratchpad_report.py"]
+    },
+    {
+      "path": "assets/access-policy.json",
+      "type": "policy",
+      "purpose": "Requires read-once startup access and reference-after-load behavior.",
+      "used_by": ["SKILL.md", "prompts/primary.md", "scripts/validate_kata_scratchpad_report.py"]
+    },
+    {
+      "path": "assets/write-policy.json",
+      "type": "policy",
+      "purpose": "Requires append-only updates that preserve curated existing entries.",
+      "used_by": ["SKILL.md", "README.md", "scripts/validate_kata_scratchpad_report.py"]
+    },
+    {
+      "path": "assets/report-contract.json",
+      "type": "schema",
+      "purpose": "Defines the deterministic JSON report contract enforced by the offline validator.",
+      "used_by": ["scripts/check.sh", "scripts/validate_kata_scratchpad_report.py"]
+    }
+  ]
+}

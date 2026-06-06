@@ -31,6 +31,8 @@ La conversación es memoria volátil: cuando se compacta (Kata 11) se pierde det
 
 Actívalo en investigaciones largas o multisesión donde el detalle no puede perderse al compactar. Al reanudar, lee `investigation-scratchpad.md` una sola vez; durante la sesión anexa conclusiones validadas a las secciones `## Decisiones`, `## Hallazgos` y `## Pendientes`. Nunca vuelques monólogo interno ni hipótesis sin confirmar.
 
+Consulta `assets/manifest.json` para los contratos determinísticos y valida reportes JSON con `bash skills/katas-persistent-scratchpad/scripts/check.sh`.
+
 ## Output Format
 
 Markdown estructurado por secciones (Decisiones, Hallazgos, Pendientes) más estado de validación y riesgos residuales.

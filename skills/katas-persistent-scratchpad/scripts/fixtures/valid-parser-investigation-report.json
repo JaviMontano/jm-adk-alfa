@@ -1,0 +1,55 @@
+{
+  "schema": 1,
+  "scratchpad": {
+    "path": "investigation-scratchpad.md",
+    "persistent_on_disk": true,
+    "sections": {
+      "Decisiones": [
+        {
+          "text": "Use pydantic v2 for parser migration.",
+          "date": "2026-06-06",
+          "evidence": "T-19 compatibility check",
+          "validated": true
+        }
+      ],
+      "Hallazgos": [
+        {
+          "text": "src/legacy/parser.py has an offset bug at line 142.",
+          "date": "2026-06-06",
+          "evidence": "src/legacy/parser.py:142 replicated",
+          "validated": true
+        }
+      ],
+      "Pendientes": [
+        {
+          "text": "Verify whether --strict breaks integration tests.",
+          "date": "2026-06-06",
+          "evidence": "integration test plan"
+        }
+      ]
+    }
+  },
+  "access_policy": {
+    "read_once_at_start": true,
+    "reference_after_load": true,
+    "reread_each_turn": false
+  },
+  "write_policy": {
+    "append_only": true,
+    "overwrite_existing": false,
+    "preserve_existing_entries": true
+  },
+  "exclusions": {
+    "internal_monologue": false,
+    "unconfirmed_hypotheses": false,
+    "transient_doubts": false,
+    "raw_transcript": false
+  },
+  "validation": {
+    "survives_compact": true,
+    "survives_restart": true,
+    "kata10_cache_safe": true,
+    "kata11_compaction_linked": true,
+    "kata19_adaptive_investigation_linked": true
+  }
+}
