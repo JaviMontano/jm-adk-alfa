@@ -1,0 +1,8 @@
+{
+  "schema": 1,
+  "skill": "session-protocol",
+  "min_steps": 2,
+  "max_steps": 3,
+  "must_include_rationale": true,
+  "no_work_before_confirmation": true
+}

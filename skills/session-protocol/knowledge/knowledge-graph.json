@@ -1,75 +1,19 @@
 {
   "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-28",
   "skill": "session-protocol",
   "nodes": [
-    {
-      "id": "session-protocol",
-      "type": "skill",
-      "label": "session-protocol"
-    },
-    {
-      "id": "session-protocol:inputs",
-      "type": "contract",
-      "label": "Expected inputs"
-    },
-    {
-      "id": "session-protocol:outputs",
-      "type": "contract",
-      "label": "Expected outputs"
-    },
-    {
-      "id": "session-protocol:quality",
-      "type": "gate",
-      "label": "Quality criteria"
-    },
-    {
-      "id": "session-protocol:ontology",
-      "type": "ontology",
-      "label": "Domain: claude-code-config"
-    },
-    {
-      "id": "session-protocol:evidence",
-      "type": "gate",
-      "label": "Evidence / provenance requirements"
-    },
-    {
-      "id": "session-protocol:antipattern",
-      "type": "risk",
-      "label": "Canonical anti-pattern to avoid"
-    }
+    {"id": "session-protocol", "type": "skill", "label": "Session Protocol"},
+    {"id": "context-loading", "type": "phase", "label": "Context loading"},
+    {"id": "state-recovery", "type": "phase", "label": "State recovery"},
+    {"id": "pending-closure", "type": "phase", "label": "Pending closure"},
+    {"id": "confirmation-gate", "type": "gate", "label": "Confirmation gate"},
+    {"id": "next-steps-proposal", "type": "contract", "label": "Next steps proposal"}
   ],
   "edges": [
-    {
-      "from": "session-protocol",
-      "to": "session-protocol:inputs",
-      "type": "requires"
-    },
-    {
-      "from": "session-protocol",
-      "to": "session-protocol:outputs",
-      "type": "produces"
-    },
-    {
-      "from": "session-protocol",
-      "to": "session-protocol:quality",
-      "type": "validated_by"
-    },
-    {
-      "from": "session-protocol",
-      "to": "session-protocol:ontology",
-      "type": "classified_as"
-    },
-    {
-      "from": "session-protocol",
-      "to": "session-protocol:evidence",
-      "type": "validated_by"
-    },
-    {
-      "from": "session-protocol",
-      "to": "session-protocol:antipattern",
-      "type": "guards_against"
-    }
+    {"from": "session-protocol", "to": "context-loading", "type": "starts_with"},
+    {"from": "context-loading", "to": "state-recovery", "type": "feeds"},
+    {"from": "state-recovery", "to": "pending-closure", "type": "feeds"},
+    {"from": "pending-closure", "to": "confirmation-gate", "type": "blocked_by"},
+    {"from": "confirmation-gate", "to": "next-steps-proposal", "type": "precedes"}
   ]
 }

@@ -1,28 +1,25 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: session-protocol
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
+# Session Protocol Report
 
-# Session Protocol Output
+## Context Loading
 
-## Summary
+{context_loading}
 
-{summary}
+## State Recovery
 
-## Evidence
+{state_recovery}
 
-{evidence}
+## Pending Closure
 
-## Result
+{pending_closure}
 
-{result}
+## Next Steps Proposal
 
-## Validation
+{next_steps_proposal}
 
-{validation}
+## Confirmation Gate
 
-## Risks and Limits
+{confirmation_gate}
 
-{risks}
+## Guardian Decision
+
+{guardian_decision}

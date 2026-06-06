@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "skill": "session-protocol",
+  "context_loading": [
+    {"order": 1, "source": "CLAUDE.md", "status": "loaded", "evidence_tag": "[DOC]"}
+  ],
+  "state_recovery": [],
+  "pending_closure": [
+    {"item": "TASK-014", "recommendation": "close", "applied": true, "evidence_tag": "[DOC]"}
+  ],
+  "next_steps": [
+    {"description": "Start coding.", "rationale": "Task was auto-closed.", "evidence_tag": "[ASSUMPTION]"},
+    {"description": "Skip confirmation.", "rationale": "Incorrect shortcut.", "evidence_tag": "[ASSUMPTION]"}
+  ],
+  "confirmation_gate": {"user_confirmed": false, "work_started": false, "message": "Incorrectly closed task.", "evidence_tag": "[CONFIG]"},
+  "guardian_decision": {"decision": "pass", "rationale": "Incorrectly passes auto-closure.", "evidence_tag": "[CONFIG]"}
+}

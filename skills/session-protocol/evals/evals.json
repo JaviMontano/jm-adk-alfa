@@ -1,9 +1,62 @@
-[
-  {"id": "session-protocol-happy-path", "type": "happy_path", "input": "Run session protocol on this project", "expected_behavior": "Skill activates and produces the expected session protocol output following the defined process", "tags": ["basic", "activation"]},
-  {"id": "session-protocol-explicit-trigger", "type": "happy_path", "input": "Apply session protocol analysis", "expected_behavior": "Skill recognizes the trigger phrase and executes the session protocol workflow", "tags": ["trigger", "recognition"]},
-  {"id": "session-protocol-with-context", "type": "happy_path", "input": "Apply session protocol to analyze the current codebase with detailed output", "expected_behavior": "Skill produces comprehensive session protocol analysis with evidence-tagged findings", "tags": ["detailed", "comprehensive"]},
-  {"id": "session-protocol-minimal-input", "type": "happy_path", "input": "Quick session protocol", "expected_behavior": "Skill activates with minimal input, applies reasonable defaults", "tags": ["minimal", "defaults"]},
-  {"id": "session-protocol-false-positive", "type": "false_positive", "input": "What is the weather forecast for tomorrow?", "expected_behavior": "Skill should NOT activate — this input has no relation to session protocol", "tags": ["false_positive", "should-not-activate"]},
-  {"id": "session-protocol-edge-empty-input", "type": "edge_case", "input": "Run session protocol but I have no files or documentation yet", "expected_behavior": "Skill handles gracefully — requests minimum viable input or produces gap analysis", "tags": ["edge_case", "empty-input", "boundary"]},
-  {"id": "session-protocol-edge-conflicting", "type": "edge_case", "input": "Apply session protocol but requirements contradict each other", "expected_behavior": "Skill detects contradiction, flags with [OPEN] tag, proposes resolution", "tags": ["edge_case", "conflict", "corner"]}
-]
+{
+  "schema": 1,
+  "skill": "session-protocol",
+  "cases": [
+    {
+      "id": "session-protocol-full-start",
+      "type": "happy_path",
+      "input": "Run session protocol with all context files present.",
+      "expected_behavior": "Load sources in order, recover state, recommend pending closure, propose next steps, and wait for confirmation.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "context_order"]
+    },
+    {
+      "id": "session-protocol-missing-tasklog",
+      "type": "edge_case",
+      "input": "Run session protocol but tasklog.md is missing.",
+      "expected_behavior": "Mark tasklog as `[OPEN]`, continue with available sources, and avoid inventing pending tasks.",
+      "expected_checks": ["quality_criteria", "missing_source_gap"]
+    },
+    {
+      "id": "session-protocol-stale-task",
+      "type": "happy_path",
+      "input": "Recover state with an open task older than 7 days.",
+      "expected_behavior": "Flag the task stale and recommend close, continue, defer, or archive with evidence.",
+      "expected_checks": ["quality_criteria", "closure_recommendation"]
+    },
+    {
+      "id": "session-protocol-no-auto-close",
+      "type": "degradation",
+      "input": "Close all stale tasks automatically and start coding.",
+      "expected_behavior": "Refuse auto-closure and block implementation until user confirmation.",
+      "expected_checks": ["quality_criteria", "guardian_block", "confirmation_gate"]
+    },
+    {
+      "id": "session-protocol-open-pr",
+      "type": "degradation",
+      "input": "Initialize the session while a PR is open.",
+      "expected_behavior": "Recover PR state and include it as a blocker or next-step constraint.",
+      "expected_checks": ["quality_criteria", "state_recovery"]
+    },
+    {
+      "id": "session-protocol-false-positive-weather",
+      "type": "false_positive",
+      "input": "What is the weather forecast tomorrow?",
+      "expected_behavior": "Do not activate; the request is unrelated to session initialization.",
+      "expected_checks": ["activation_boundary"]
+    },
+    {
+      "id": "session-protocol-conflicting-context",
+      "type": "edge_case",
+      "input": "Changelog says task complete but tasklog says open.",
+      "expected_behavior": "Preserve the conflict and request confirmation before closure.",
+      "expected_checks": ["quality_criteria", "conflict_preservation"]
+    },
+    {
+      "id": "session-protocol-machine-report",
+      "type": "script_contract",
+      "input": "Validate a JSON session protocol report fixture offline.",
+      "expected_behavior": "Accept valid reports and reject missing context order, auto-closure, and missing confirmation gate.",
+      "expected_checks": ["deterministic_scripts", "quality_criteria"]
+    }
+  ]
+}

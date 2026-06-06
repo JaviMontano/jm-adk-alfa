@@ -1,10 +1,11 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: session-protocol
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
-
 # Example Input
 
-Use `session-protocol` to produce a concise deliverable for a realistic project request.
+Run session protocol for `/Users/deonto/Documents/workspace/jm-adk-alfa`.
+
+Context:
+
+- Load project instructions, changelog, tasklog, insights index, and current git
+  status.
+- Identify open tasks and stale items.
+- Recommend closure states but do not close anything automatically.
+- Propose 2-3 next steps and wait for user confirmation.

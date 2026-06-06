@@ -1,0 +1,6 @@
+{
+  "schema": 1,
+  "skill": "session-protocol",
+  "checks": ["last 5 changelog entries", "open tasklog items", "tentative insights", "git status", ".specify work"],
+  "conflict_rule": "Conflicting state must be preserved and routed to confirmation."
+}

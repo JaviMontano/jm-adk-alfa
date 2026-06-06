@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "skill": "session-protocol",
+  "context_loading": [
+    {"order": 1, "source": "CLAUDE.md", "status": "loaded", "evidence_tag": "[DOC]"},
+    {"order": 2, "source": "constitution", "status": "loaded", "evidence_tag": "[DOC]"},
+    {"order": 3, "source": "insights/README.md", "status": "missing", "evidence_tag": "[OPEN]"}
+  ],
+  "state_recovery": [
+    {"description": "Recent changelog and git status reviewed.", "evidence_tag": "[CODE]"}
+  ],
+  "pending_closure": [
+    {"item": "TASK-014", "recommendation": "continue", "applied": false, "evidence_tag": "[DOC]"}
+  ],
+  "next_steps": [
+    {"description": "Continue active hardening queue.", "rationale": "Highest-priority active workflow.", "evidence_tag": "[CONFIG]"},
+    {"description": "Review stale tasks.", "rationale": "Prevents hidden debt.", "evidence_tag": "[INFERENCE]"}
+  ],
+  "confirmation_gate": {"user_confirmed": false, "work_started": false, "message": "Waiting for user direction.", "evidence_tag": "[CONFIG]"},
+  "guardian_decision": {"decision": "pass", "rationale": "Protocol report is complete and no work started.", "evidence_tag": "[CONFIG]"}
+}

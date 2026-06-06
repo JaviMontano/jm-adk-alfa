@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "skill": "session-protocol",
+  "context_loading": [
+    {"order": 1, "source": "CLAUDE.md", "status": "missing", "evidence_tag": "[OPEN]"}
+  ],
+  "state_recovery": [
+    {"description": "Required context source is missing.", "evidence_tag": "[OPEN]"}
+  ],
+  "pending_closure": [],
+  "next_steps": [
+    {"description": "Locate missing instructions.", "rationale": "Cannot safely initialize without source.", "evidence_tag": "[OPEN]"},
+    {"description": "Ask user for the active handoff.", "rationale": "Avoids stale assumptions.", "evidence_tag": "[CONFIG]"}
+  ],
+  "confirmation_gate": {"user_confirmed": false, "work_started": false, "message": "Blocked on missing context.", "evidence_tag": "[OPEN]"},
+  "guardian_decision": {"decision": "block", "rationale": "Required context is missing.", "evidence_tag": "[OPEN]"}
+}

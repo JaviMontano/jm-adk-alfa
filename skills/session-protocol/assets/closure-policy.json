@@ -1,0 +1,7 @@
+{
+  "schema": 1,
+  "skill": "session-protocol",
+  "allowed_recommendations": ["close", "continue", "defer", "archive"],
+  "stale_after_days": 7,
+  "confirmation_rule": "Recommendations are proposals only; no task is closed or archived without explicit user confirmation."
+}
