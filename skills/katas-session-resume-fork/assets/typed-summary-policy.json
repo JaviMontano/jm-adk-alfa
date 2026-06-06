@@ -1,0 +1,6 @@
+{
+  "schema": 1,
+  "source": "scratchpad",
+  "raw_transcript_allowed": false,
+  "required_fields": ["goal", "findings", "decisions", "current_sources", "next_steps"]
+}

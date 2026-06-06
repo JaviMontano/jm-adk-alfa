@@ -1,0 +1,18 @@
+{
+  "schema": 1,
+  "decision": "resume",
+  "reason": "",
+  "signals": {
+    "context_valid": true,
+    "world_changed": false,
+    "stale_tool_results": false,
+    "parallel_branches": false,
+    "raw_transcript_used": false
+  },
+  "command": "claude --resume codebase-audit-2026-06",
+  "validation": {
+    "decision_matches_signals": true,
+    "staleness_checked": true,
+    "risk_recorded": true
+  }
+}

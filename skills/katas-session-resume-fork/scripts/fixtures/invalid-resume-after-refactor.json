@@ -1,0 +1,18 @@
+{
+  "schema": 1,
+  "decision": "resume",
+  "reason": "Resume is convenient even though a refactor happened.",
+  "signals": {
+    "context_valid": false,
+    "world_changed": true,
+    "stale_tool_results": true,
+    "parallel_branches": false,
+    "raw_transcript_used": false
+  },
+  "command": "claude --resume codebase-audit-2026-06",
+  "validation": {
+    "decision_matches_signals": true,
+    "staleness_checked": true,
+    "risk_recorded": true
+  }
+}

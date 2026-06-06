@@ -1,0 +1,25 @@
+{
+  "schema": 1,
+  "decision": "fresh",
+  "reason": "A deploy changed sources, but no typed summary is available.",
+  "signals": {
+    "context_valid": false,
+    "world_changed": true,
+    "stale_tool_results": true,
+    "parallel_branches": false,
+    "raw_transcript_used": false
+  },
+  "command": "claude -p \"Continue the previous work\"",
+  "summary": {
+    "source": "scratchpad",
+    "typed": false,
+    "raw_transcript": false,
+    "fields": ["goal"]
+  },
+  "validation": {
+    "decision_matches_signals": true,
+    "staleness_checked": true,
+    "sources_reloaded": true,
+    "risk_recorded": true
+  }
+}

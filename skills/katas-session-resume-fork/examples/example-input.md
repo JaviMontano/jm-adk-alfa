@@ -7,4 +7,4 @@ overwrite-policy: missing-only unless --force
 
 # Example Input
 
-Use `katas-session-resume-fork` to produce a concise deliverable for a realistic project request.
+Retomemos la auditoria `codebase-audit-2026-06`. Ayer se corrio con `--resume`, pero desde entonces hubo un refactor grande en `services/` y `storage/`. Tengo un scratchpad estructurado con hallazgos validados y quiero evitar usar tool results stale o pegar el transcript completo viejo.

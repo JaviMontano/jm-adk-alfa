@@ -1,0 +1,7 @@
+{
+  "schema": 1,
+  "minimum_branches": 2,
+  "baseline_required": true,
+  "shared_mutable_state_allowed": false,
+  "branch_names_required": true
+}

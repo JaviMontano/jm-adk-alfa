@@ -39,6 +39,10 @@ Resumir una sesión vieja cuyos tool results están stale lleva al modelo a refe
 - **Scratchpad estructurado (Kata 18) es la fuente del summary.** No se pega la conversación entera: se inyecta el resumen curado de hallazgos.
 - **Señal de stale:** si hubo refactor, migración o edición masiva entre sesiones, los tool results previos están stale y resume es la elección incorrecta.
 
+## Activos determinísticos
+
+Usa `assets/manifest.json` como indice de contratos offline. Los assets fijan la matriz de decision `resume|fork|fresh`, senales de staleness, aislamiento de forks, summary tipado y contrato JSON de salida. Si produces un reporte JSON de la kata, validalo con `bash skills/katas-session-resume-fork/scripts/check.sh` antes de marcarlo como aceptado.
+
 ## Patrón correcto
 
 ```bash
@@ -73,6 +77,7 @@ claude -p "Continuamos. Conversación previa:\n$SUMMARY"
 - Identifica cuándo los tool results previos están stale (refactor, migración, edición masiva).
 - Conecta el patrón con el scratchpad estructurado (Kata 18) como fuente del summary tipado.
 - Rechaza pegar transcripts completos viejos; defiende el summary curado en su lugar.
+- Valida reportes JSON con `scripts/check.sh` contra los contratos en `assets/`.
 
 ## Cuándo activar
 

@@ -1,0 +1,25 @@
+{
+  "schema": 1,
+  "decision": "fresh",
+  "reason": "A refactor changed the files since the prior session, so previous tool results may be stale and a typed scratchpad summary is safer.",
+  "signals": {
+    "context_valid": false,
+    "world_changed": true,
+    "stale_tool_results": true,
+    "parallel_branches": false,
+    "raw_transcript_used": false
+  },
+  "command": "SUMMARY=$(cat .agent/audit-scratchpad.md); claude -p \"Continue with this typed summary and reload changed sources before acting: $SUMMARY\"",
+  "summary": {
+    "source": "scratchpad",
+    "typed": true,
+    "raw_transcript": false,
+    "fields": ["goal", "findings", "decisions", "current_sources", "next_steps"]
+  },
+  "validation": {
+    "decision_matches_signals": true,
+    "staleness_checked": true,
+    "sources_reloaded": true,
+    "risk_recorded": true
+  }
+}
