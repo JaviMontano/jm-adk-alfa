@@ -1,6 +1,6 @@
 ---
 name: discovery-orchestrator
-description: This skill should be used when the user asks to "plan discovery", "orchestrate discovery", "run the discovery pipeline", "sequence discovery skills", "manage G1/G2/G3 gates", "resume discovery state", or coordinate phases 0-6 without performing the underlying analysis.
+description: Coordinates full analysis pipeline (phases 0-6). Sequences skills 009-023. Manages G1 gate. Does NOT analyze. [EXPLICIT]
 version: 1.0.0
 status: production
 owner: Javier Montaño
