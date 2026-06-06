@@ -21,6 +21,17 @@ allowed-tools:
 
 Design a plugin agent with complete frontmatter, role definition, skill assignments, execution flows, and operating principles. Prominently enforces the plugin subagent constraint: agents in plugins cannot use hooks, mcpServers, or permissionMode. [EXPLICIT]
 
+## Deterministic Resources
+
+Use bundled contracts before drafting final output:
+
+- `assets/frontmatter-policy.json` defines supported, required, forbidden, and mutually exclusive fields.
+- `assets/constraint-policy.json` defines plugin subagent guardrails and violation handling.
+- `assets/maxturns-policy.json` defines the deterministic `maxTurns` formula.
+- `assets/report-contract.json` defines the offline-validatable agent design spec.
+
+Use `scripts/validate_design_agent_spec.py` to validate JSON design specs and `scripts/check.sh` to run deterministic fixtures. The scripts validate the design contract only; they do not create deployable agent files.
+
 ---
 
 ## CRITICAL: Plugin Subagent Constraints
@@ -144,6 +155,7 @@ Draft the YAML frontmatter using ALL supported fields for plugin subagents:
 - [ ] Operating principles are specific, actionable, and verifiable. `[DOC]`
 - [ ] maxTurns calculation is documented with rationale. `[INFERENCIA]`
 - [ ] Tool selection follows least privilege -- no unnecessary tools. `[CONFIG]`
+- [ ] JSON design spec passes `scripts/validate_design_agent_spec.py`. `[CONFIG]`
 
 ## Assumptions & Limits
 
@@ -218,4 +230,3 @@ Example invocations:
 
 - "/design-agent" — Run the full design agent workflow
 - "design agent on this project" — Apply to current context
-

@@ -1,0 +1,11 @@
+{
+  "schema": 1,
+  "skill": "design-agent",
+  "plugin_subagent_forbidden_fields": {
+    "hooks": "Use plugin-level hooks.json instead.",
+    "mcpServers": "Configure MCP servers at session level.",
+    "permissionMode": "Document required permissions; session policy applies."
+  },
+  "output_boundary": "produce_spec_only",
+  "forbidden_output_actions": ["write_final_agent_file", "register_hook", "configure_mcp_server", "change_permission_mode"]
+}

@@ -1,0 +1,14 @@
+{
+  "skill": "design-agent",
+  "reference_date": "2026-06-06",
+  "agent_name": "bad-hooks-agent",
+  "summary": "This invalid spec includes hooks in frontmatter. [CONFIG]",
+  "frontmatter": {"name": "bad-hooks-agent", "description": "Invalid hooks agent.", "hooks": {"PreToolUse": []}, "maxTurns": 10, "skills": ["validate-structure"]},
+  "role_boundary": {"role": "This agent incorrectly owns lifecycle hooks. [CONFIG]", "owns": ["hooks"], "delegates": []},
+  "skill_assignments": [{"skill": "validate-structure", "status": "planned", "invocation": "single", "evidence_tag": "[CONFIG]"}],
+  "execution_flows": [{"command": "/bad:hooks", "steps": ["Read config. [CONFIG]", "Register hook. [CONFIG]"], "quality_gate": "Expected invalid. [CONFIG]"}],
+  "operating_principles": ["Read configuration before proposing hook behavior. [CONFIG]", "Document hook ownership at plugin level. [CONFIG]", "Block agent-level hook fields explicitly. [CONFIG]", "Report runtime risks before implementation. [CONFIG]"],
+  "max_turns_rationale": {"skills_count": 1, "complexity_bonus": 5, "interaction_points": 0, "formula_result": 9, "rounded_maxTurns": 10},
+  "validation": ["Expected invalid. [CONFIG]"],
+  "risks": ["hooks are forbidden for plugin subagents. [CONFIG]"]
+}

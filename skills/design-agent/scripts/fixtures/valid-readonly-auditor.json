@@ -1,0 +1,34 @@
+{
+  "skill": "design-agent",
+  "reference_date": "2026-06-06",
+  "agent_name": "plugin-audit-reader",
+  "summary": "The read-only auditor spec is valid because it uses disallowedTools without a tools allowlist and documents a bounded audit flow. [CONFIG]",
+  "frontmatter": {
+    "name": "plugin-audit-reader",
+    "description": "Reads plugin artifacts and reports audit findings.",
+    "disallowedTools": ["Write", "Edit"],
+    "maxTurns": 15,
+    "skills": ["audit-structure", "audit-security"]
+  },
+  "role_boundary": {
+    "role": "This agent audits plugin artifacts by reading files and reporting evidence-backed findings. [CONFIG]",
+    "owns": ["read-only audit report"],
+    "delegates": ["file edits"]
+  },
+  "skill_assignments": [
+    {"skill": "audit-structure", "status": "planned", "invocation": "sequential-first", "evidence_tag": "[CONFIG]"},
+    {"skill": "audit-security", "status": "planned", "invocation": "sequential-second", "evidence_tag": "[CONFIG]"}
+  ],
+  "execution_flows": [
+    {"command": "/audit:plugin", "steps": ["Read plugin manifest. [CONFIG]", "Run structure audit. [CONFIG]", "Run security audit. [CONFIG]"], "quality_gate": "Report only evidence-backed findings. [CONFIG]"}
+  ],
+  "operating_principles": [
+    "Read target files before summarizing audit findings. [CONFIG]",
+    "Report every finding with file path evidence. [CONFIG]",
+    "Do not write remediation files from this audit agent. [CONFIG]",
+    "Escalate missing artifacts as blockers instead of guessing. [CONFIG]"
+  ],
+  "max_turns_rationale": {"skills_count": 2, "complexity_bonus": 5, "interaction_points": 1, "formula_result": 15, "rounded_maxTurns": 15},
+  "validation": ["No forbidden fields are present and disallowedTools is used without tools. [CONFIG]"],
+  "risks": ["Read-only mode may require a separate implementation agent for fixes. [CONFIG]"]
+}

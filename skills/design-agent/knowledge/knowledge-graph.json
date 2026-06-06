@@ -1,75 +1,21 @@
 {
   "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-28",
   "skill": "design-agent",
   "nodes": [
-    {
-      "id": "design-agent",
-      "type": "skill",
-      "label": "design-agent"
-    },
-    {
-      "id": "design-agent:inputs",
-      "type": "contract",
-      "label": "Expected inputs"
-    },
-    {
-      "id": "design-agent:outputs",
-      "type": "contract",
-      "label": "Expected outputs"
-    },
-    {
-      "id": "design-agent:quality",
-      "type": "gate",
-      "label": "Quality criteria"
-    },
-    {
-      "id": "design-agent:ontology",
-      "type": "ontology",
-      "label": "Domain: general"
-    },
-    {
-      "id": "design-agent:evidence",
-      "type": "gate",
-      "label": "Evidence / provenance requirements"
-    },
-    {
-      "id": "design-agent:antipattern",
-      "type": "risk",
-      "label": "Canonical anti-pattern to avoid"
-    }
+    {"id": "design-agent", "type": "skill", "label": "Design Agent"},
+    {"id": "frontmatter-policy", "type": "policy", "label": "Agent frontmatter policy"},
+    {"id": "constraint-policy", "type": "guardrail", "label": "Plugin subagent constraints"},
+    {"id": "maxturns-policy", "type": "formula", "label": "maxTurns policy"},
+    {"id": "agent-design-spec", "type": "contract", "label": "Agent design specification"},
+    {"id": "operating-principle", "type": "quality", "label": "Specific operating principle"},
+    {"id": "offline-validator", "type": "script", "label": "scripts/validate_design_agent_spec.py"}
   ],
   "edges": [
-    {
-      "from": "design-agent",
-      "to": "design-agent:inputs",
-      "type": "requires"
-    },
-    {
-      "from": "design-agent",
-      "to": "design-agent:outputs",
-      "type": "produces"
-    },
-    {
-      "from": "design-agent",
-      "to": "design-agent:quality",
-      "type": "validated_by"
-    },
-    {
-      "from": "design-agent",
-      "to": "design-agent:ontology",
-      "type": "classified_as"
-    },
-    {
-      "from": "design-agent",
-      "to": "design-agent:evidence",
-      "type": "validated_by"
-    },
-    {
-      "from": "design-agent",
-      "to": "design-agent:antipattern",
-      "type": "guards_against"
-    }
+    {"from": "design-agent", "to": "agent-design-spec", "type": "produces"},
+    {"from": "frontmatter-policy", "to": "agent-design-spec", "type": "constrains"},
+    {"from": "constraint-policy", "to": "frontmatter-policy", "type": "blocks"},
+    {"from": "maxturns-policy", "to": "agent-design-spec", "type": "validates"},
+    {"from": "operating-principle", "to": "agent-design-spec", "type": "supports"},
+    {"from": "offline-validator", "to": "agent-design-spec", "type": "validates"}
   ]
 }

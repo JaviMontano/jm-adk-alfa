@@ -1,0 +1,22 @@
+{
+  "schema": 1,
+  "skill": "design-agent",
+  "allowed_evidence_tags": ["[CODE]", "[CONFIG]", "[DOC]", "[INFERENCE]", "[ASSUMPTION]", "[CÓDIGO]", "[INFERENCIA]", "[SUPUESTO]"],
+  "required_top_level": [
+    "skill",
+    "reference_date",
+    "agent_name",
+    "summary",
+    "frontmatter",
+    "role_boundary",
+    "skill_assignments",
+    "execution_flows",
+    "operating_principles",
+    "max_turns_rationale",
+    "validation",
+    "risks"
+  ],
+  "required_assignment_fields": ["skill", "status", "invocation", "evidence_tag"],
+  "required_flow_fields": ["command", "steps", "quality_gate"],
+  "moving_time_terms": ["today", "tomorrow", "yesterday", "soon", "recently", "later", "TBD"]
+}

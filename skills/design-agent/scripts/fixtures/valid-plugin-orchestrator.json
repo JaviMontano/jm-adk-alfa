@@ -1,14 +1,11 @@
-# Example Output
-
-```json
 {
   "skill": "design-agent",
   "reference_date": "2026-06-06",
   "agent_name": "plugin-qa-engineer",
-  "summary": "The proposed agent is valid because it uses supported frontmatter, excludes forbidden plugin subagent fields, and documents maxTurns from the formula. [CONFIG]",
+  "summary": "The plugin QA agent spec is valid because it uses supported frontmatter and covers all requested command flows. [CONFIG]",
   "frontmatter": {
     "name": "plugin-qa-engineer",
-    "description": "Validates plugin structure, manifests, and QA reports for Plugin QA workflows.",
+    "description": "Validates plugin structure, manifests, and QA reports.",
     "tools": ["Read", "Glob", "Grep", "Bash", "Write"],
     "maxTurns": 20,
     "skills": ["validate-structure", "validate-manifest", "generate-qa-report"],
@@ -34,14 +31,7 @@
     "Stop report generation when a critical validation gate fails. [CONFIG]",
     "Present generated reports for review before writing final plugin assets. [CONFIG]"
   ],
-  "max_turns_rationale": {
-    "skills_count": 3,
-    "complexity_bonus": 5,
-    "interaction_points": 1,
-    "formula_result": 19,
-    "rounded_maxTurns": 20
-  },
-  "validation": ["No forbidden fields are present, tools/disallowedTools do not conflict, and every command has a flow. [CONFIG]"],
+  "max_turns_rationale": {"skills_count": 3, "complexity_bonus": 5, "interaction_points": 1, "formula_result": 19, "rounded_maxTurns": 20},
+  "validation": ["No forbidden fields are present and every command has a flow. [CONFIG]"],
   "risks": ["The listed skills are planned and must exist before deployable agent generation. [ASSUMPTION]"]
 }
-```

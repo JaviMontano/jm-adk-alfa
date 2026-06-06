@@ -1,0 +1,14 @@
+{
+  "skill": "design-agent",
+  "reference_date": "2026-06-06",
+  "agent_name": "conflicted-tools-agent",
+  "summary": "This invalid spec uses tools and disallowedTools together. [CONFIG]",
+  "frontmatter": {"name": "conflicted-tools-agent", "description": "Invalid tools conflict.", "tools": ["Read"], "disallowedTools": ["Write"], "maxTurns": 10, "skills": ["audit-structure"]},
+  "role_boundary": {"role": "This agent has a conflicting tool policy. [CONFIG]", "owns": ["audit"], "delegates": []},
+  "skill_assignments": [{"skill": "audit-structure", "status": "planned", "invocation": "single", "evidence_tag": "[CONFIG]"}],
+  "execution_flows": [{"command": "/audit", "steps": ["Read config. [CONFIG]", "Report. [CONFIG]"], "quality_gate": "Expected invalid. [CONFIG]"}],
+  "operating_principles": ["Read target files before reporting findings. [CONFIG]", "Cite evidence for each audit item. [CONFIG]", "Avoid write actions in audit mode. [CONFIG]", "Stop when tool policy conflicts. [CONFIG]"],
+  "max_turns_rationale": {"skills_count": 1, "complexity_bonus": 5, "interaction_points": 0, "formula_result": 9, "rounded_maxTurns": 10},
+  "validation": ["Expected invalid. [CONFIG]"],
+  "risks": ["Tool conflict weakens least privilege. [CONFIG]"]
+}

@@ -1,0 +1,14 @@
+{
+  "skill": "design-agent",
+  "reference_date": "2026-06-06",
+  "agent_name": "generic-principle-agent",
+  "summary": "This invalid spec uses generic operating principles. [CONFIG]",
+  "frontmatter": {"name": "generic-principle-agent", "description": "Invalid generic principles.", "tools": ["Read"], "maxTurns": 10, "skills": ["validate-structure"]},
+  "role_boundary": {"role": "This agent has vague behavioral rules. [CONFIG]", "owns": ["validation"], "delegates": []},
+  "skill_assignments": [{"skill": "validate-structure", "status": "planned", "invocation": "single", "evidence_tag": "[CONFIG]"}],
+  "execution_flows": [{"command": "/validate", "steps": ["Read config. [CONFIG]", "Validate structure. [CONFIG]"], "quality_gate": "Expected invalid. [CONFIG]"}],
+  "operating_principles": ["Be helpful. [CONFIG]", "Ensure quality. [CONFIG]", "Communicate clearly. [CONFIG]", "Do your best. [CONFIG]"],
+  "max_turns_rationale": {"skills_count": 1, "complexity_bonus": 5, "interaction_points": 0, "formula_result": 9, "rounded_maxTurns": 10},
+  "validation": ["Expected invalid. [CONFIG]"],
+  "risks": ["Generic rules are not verifiable. [CONFIG]"]
+}

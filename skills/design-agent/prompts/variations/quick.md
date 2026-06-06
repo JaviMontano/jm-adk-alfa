@@ -5,5 +5,4 @@ variant: quick
 ---
 # Design Agent — Quick Mode
 
-Streamlined execution. Focus on TL;DR and primary output only.
-Apply Validation Gate but skip extended evidence tagging.
+Return frontmatter, role boundary, assigned skills, one flow table, operating principles, maxTurns calculation, and validation blockers. Keep evidence tags and forbidden-field checks.

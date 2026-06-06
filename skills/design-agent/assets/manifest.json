@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "skill": "design-agent",
+  "assets": [
+    {
+      "path": "assets/README.md",
+      "type": "documentation",
+      "purpose": "Describe deterministic design-agent assets.",
+      "used_by": ["SKILL.md", "README.md"]
+    },
+    {
+      "path": "assets/frontmatter-policy.json",
+      "type": "policy",
+      "purpose": "Define agent frontmatter fields and incompatibilities.",
+      "used_by": ["SKILL.md", "scripts/validate_design_agent_spec.py"]
+    },
+    {
+      "path": "assets/constraint-policy.json",
+      "type": "policy",
+      "purpose": "Define plugin subagent forbidden fields and workarounds.",
+      "used_by": ["SKILL.md", "scripts/validate_design_agent_spec.py"]
+    },
+    {
+      "path": "assets/maxturns-policy.json",
+      "type": "formula",
+      "purpose": "Define deterministic maxTurns calculation.",
+      "used_by": ["SKILL.md", "scripts/validate_design_agent_spec.py"]
+    },
+    {
+      "path": "assets/report-contract.json",
+      "type": "schema",
+      "purpose": "Define the offline-validatable agent design spec.",
+      "used_by": ["SKILL.md", "examples/example-output.md", "scripts/validate_design_agent_spec.py"]
+    }
+  ]
+}

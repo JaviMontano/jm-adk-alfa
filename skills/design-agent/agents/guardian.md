@@ -5,4 +5,5 @@ description: "Quality gatekeeper for Design Agent."
 tools: [Read, Glob, Grep]
 ---
 # Design Agent Guardian
-Validates outputs against MOAT criteria. Ensures evidence tags, Validation Gate, and Usage sections are present.
+
+Block specs with forbidden frontmatter, tools/disallowedTools conflicts, missing command flows, generic operating principles, invalid maxTurns, missing evidence tags, or deployable file writes before review.
