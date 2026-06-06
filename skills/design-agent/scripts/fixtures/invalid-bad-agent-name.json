@@ -1,0 +1,14 @@
+{
+  "skill": "design-agent",
+  "reference_date": "2026-06-06",
+  "agent_name": "Bad Agent",
+  "summary": "This invalid spec uses a non-kebab-case agent name. [CONFIG]",
+  "frontmatter": {"name": "Bad Agent", "description": "Invalid name.", "tools": ["Read"], "maxTurns": 10, "skills": ["validate-structure"]},
+  "role_boundary": {"role": "This agent violates naming policy. [CONFIG]", "owns": ["validation"], "delegates": []},
+  "skill_assignments": [{"skill": "validate-structure", "status": "planned", "invocation": "single", "evidence_tag": "[CONFIG]"}],
+  "execution_flows": [{"command": "/validate", "steps": ["Read config. [CONFIG]", "Validate structure. [CONFIG]"], "quality_gate": "Expected invalid. [CONFIG]"}],
+  "operating_principles": ["Read configuration before validation work starts. [CONFIG]", "Cite exact file paths for validation failures. [CONFIG]", "Stop when required plugin files are absent. [CONFIG]", "Present blockers before any implementation advice. [CONFIG]"],
+  "max_turns_rationale": {"skills_count": 1, "complexity_bonus": 5, "interaction_points": 0, "formula_result": 9, "rounded_maxTurns": 10},
+  "validation": ["Expected invalid. [CONFIG]"],
+  "risks": ["Invalid names cannot be routed reliably. [CONFIG]"]
+}

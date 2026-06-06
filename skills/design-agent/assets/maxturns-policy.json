@@ -1,0 +1,9 @@
+{
+  "schema": 1,
+  "skill": "design-agent",
+  "formula": "(skills_count * 4) + complexity_bonus + (interaction_points * 2)",
+  "rounding": "nearest_5_up",
+  "min": 5,
+  "max": 200,
+  "required_fields": ["skills_count", "complexity_bonus", "interaction_points", "formula_result", "rounded_maxTurns"]
+}

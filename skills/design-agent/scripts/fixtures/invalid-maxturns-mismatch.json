@@ -1,0 +1,14 @@
+{
+  "skill": "design-agent",
+  "reference_date": "2026-06-06",
+  "agent_name": "bad-turn-budget",
+  "summary": "This invalid spec has a maxTurns mismatch. [CONFIG]",
+  "frontmatter": {"name": "bad-turn-budget", "description": "Invalid turn budget.", "tools": ["Read"], "maxTurns": 5, "skills": ["s1", "s2", "s3"]},
+  "role_boundary": {"role": "This agent underestimates turn budget for three skills. [CONFIG]", "owns": ["sequence"], "delegates": []},
+  "skill_assignments": [{"skill": "s1", "status": "planned", "invocation": "first", "evidence_tag": "[CONFIG]"}, {"skill": "s2", "status": "planned", "invocation": "second", "evidence_tag": "[CONFIG]"}, {"skill": "s3", "status": "planned", "invocation": "third", "evidence_tag": "[CONFIG]"}],
+  "execution_flows": [{"command": "/bad:turns", "steps": ["Run first skill. [CONFIG]", "Run second skill. [CONFIG]"], "quality_gate": "Expected invalid. [CONFIG]"}],
+  "operating_principles": ["Run assigned skills in documented order. [CONFIG]", "Stop when a skill reports a blocker. [CONFIG]", "Report incomplete execution before ending. [CONFIG]", "Preserve evidence for every handoff. [CONFIG]"],
+  "max_turns_rationale": {"skills_count": 3, "complexity_bonus": 5, "interaction_points": 1, "formula_result": 19, "rounded_maxTurns": 20},
+  "validation": ["Expected invalid. [CONFIG]"],
+  "risks": ["Low maxTurns can stop mid-flow. [CONFIG]"]
+}

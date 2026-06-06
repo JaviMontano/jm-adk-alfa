@@ -1,0 +1,14 @@
+{
+  "skill": "design-agent",
+  "reference_date": "2026-06-06",
+  "agent_name": "missing-flow-agent",
+  "summary": "This invalid spec has no execution flow. [CONFIG]",
+  "frontmatter": {"name": "missing-flow-agent", "description": "Invalid missing flow.", "tools": ["Read"], "maxTurns": 10, "skills": ["validate-structure"]},
+  "role_boundary": {"role": "This agent lacks command flow coverage. [CONFIG]", "owns": ["validation"], "delegates": []},
+  "skill_assignments": [{"skill": "validate-structure", "status": "planned", "invocation": "single", "evidence_tag": "[CONFIG]"}],
+  "execution_flows": [],
+  "operating_principles": ["Read configuration before validation. [CONFIG]", "Cite failing files in every finding. [CONFIG]", "Stop on missing manifest evidence. [CONFIG]", "Present validation status before recommendations. [CONFIG]"],
+  "max_turns_rationale": {"skills_count": 1, "complexity_bonus": 5, "interaction_points": 0, "formula_result": 9, "rounded_maxTurns": 10},
+  "validation": ["Expected invalid. [CONFIG]"],
+  "risks": ["Missing flow coverage creates ambiguous execution. [CONFIG]"]
+}

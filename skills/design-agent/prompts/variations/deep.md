@@ -3,7 +3,6 @@ name: design-agent-deep
 type: variation
 variant: deep
 ---
-# Design Agent — Deep Analysis
+# Design Agent — Deep Mode
 
-Full depth execution. Load all `references/` files from canonical. Run L3 progressive loading.
-Apply all Validation Gate criteria strictly.
+Load references and all asset contracts. Produce a full agent design spec with command-by-command flows, delegation criteria, principle validation, maxTurns formula, and offline validation evidence.

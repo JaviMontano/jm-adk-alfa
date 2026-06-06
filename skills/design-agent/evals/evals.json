@@ -1,9 +1,90 @@
-[
-  {"id": "design-agent-happy-path", "type": "happy_path", "input": "Run design agent on this project", "expected_behavior": "Skill activates and produces the expected design agent output following the defined process", "tags": ["basic", "activation"]},
-  {"id": "design-agent-explicit-trigger", "type": "happy_path", "input": "Apply design agent analysis", "expected_behavior": "Skill recognizes the trigger phrase and executes the design agent workflow", "tags": ["trigger", "recognition"]},
-  {"id": "design-agent-with-context", "type": "happy_path", "input": "Apply design agent to analyze the current codebase with detailed output", "expected_behavior": "Skill produces comprehensive design agent analysis with evidence-tagged findings", "tags": ["detailed", "comprehensive"]},
-  {"id": "design-agent-minimal-input", "type": "happy_path", "input": "Quick design agent", "expected_behavior": "Skill activates with minimal input, applies reasonable defaults", "tags": ["minimal", "defaults"]},
-  {"id": "design-agent-false-positive", "type": "false_positive", "input": "What is the weather forecast for tomorrow?", "expected_behavior": "Skill should NOT activate — this input has no relation to design agent", "tags": ["false_positive", "should-not-activate"]},
-  {"id": "design-agent-edge-empty-input", "type": "edge_case", "input": "Run design agent but I have no files or documentation yet", "expected_behavior": "Skill handles gracefully — requests minimum viable input or produces gap analysis", "tags": ["edge_case", "empty-input", "boundary"]},
-  {"id": "design-agent-edge-conflicting", "type": "edge_case", "input": "Apply design agent but requirements contradict each other", "expected_behavior": "Skill detects contradiction, flags with [OPEN] tag, proposes resolution", "tags": ["edge_case", "conflict", "corner"]}
-]
+{
+  "schema": 1,
+  "skill": "design-agent",
+  "cases": [
+    {
+      "id": "valid-plugin-orchestrator",
+      "type": "happy_path",
+      "input": "Design a plugin QA orchestrator agent with three skills, Read/Grep/Bash tools, two command flows, and maxTurns rationale.",
+      "expected_behavior": "Produces a bounded agent design spec with valid frontmatter, skills, flows, operating principles, maxTurns calculation, validation, and risks.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria"],
+      "tags": ["frontmatter", "maxTurns"]
+    },
+    {
+      "id": "valid-readonly-auditor",
+      "type": "happy_path",
+      "input": "Design a read-only audit agent with disallowed Write/Edit tools and no installation behavior.",
+      "expected_behavior": "Uses either tools or disallowedTools, documents role boundary, and validates flow coverage.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria"],
+      "tags": ["readonly", "least-privilege"]
+    },
+    {
+      "id": "forbidden-hooks-blocked",
+      "type": "degradation",
+      "input": "Design an agent with PreToolUse hooks in frontmatter.",
+      "expected_behavior": "Blocks `hooks` because plugin subagents cannot define lifecycle hooks.",
+      "expected_checks": ["deterministic_scripts", "quality_criteria"],
+      "tags": ["forbidden-field"]
+    },
+    {
+      "id": "mcpservers-permission-blocked",
+      "type": "edge_case",
+      "input": "Design an agent that declares mcpServers and permissionMode.",
+      "expected_behavior": "Rejects forbidden plugin subagent fields and routes MCP/permission needs to session-level configuration notes.",
+      "expected_checks": ["assets", "quality_criteria"],
+      "tags": ["constraints"]
+    },
+    {
+      "id": "tools-disallowed-conflict",
+      "type": "edge_case",
+      "input": "Design frontmatter with both tools and disallowedTools.",
+      "expected_behavior": "Blocks the spec because the fields are mutually exclusive.",
+      "expected_checks": ["deterministic_scripts", "quality_criteria"],
+      "tags": ["frontmatter"]
+    },
+    {
+      "id": "maxturns-mismatch",
+      "type": "degradation",
+      "input": "Design an agent with five skills but maxTurns set to 5.",
+      "expected_behavior": "Requires formula-based maxTurns and blocks undersized values.",
+      "expected_checks": ["deterministic_scripts", "quality_criteria"],
+      "tags": ["maxTurns"]
+    },
+    {
+      "id": "generic-principles-rejected",
+      "type": "edge_case",
+      "input": "Use operating principles like be helpful and ensure quality.",
+      "expected_behavior": "Rejects generic principles and requires specific, actionable, verifiable rules.",
+      "expected_checks": ["assets", "quality_criteria"],
+      "tags": ["principles"]
+    },
+    {
+      "id": "missing-flow-coverage",
+      "type": "edge_case",
+      "input": "Design an agent that handles two commands but documents only one flow.",
+      "expected_behavior": "Blocks until every handled command has an execution flow and gate behavior.",
+      "expected_checks": ["deterministic_scripts", "quality_criteria"],
+      "tags": ["flows"]
+    },
+    {
+      "id": "false-positive-task-agent",
+      "type": "false_positive",
+      "input": "Ask the coding agent to fix a failing unit test.",
+      "expected_behavior": "Does not activate because no plugin agent design is requested.",
+      "expected_checks": ["quality_criteria"],
+      "tags": ["false-positive"]
+    }
+  ],
+  "assets": ["assets/manifest.json", "assets/report-contract.json", "assets/frontmatter-policy.json"],
+  "deterministic_scripts": ["scripts/check.sh", "scripts/validate_design_agent_spec.py"],
+  "quality_criteria": [
+    "no forbidden plugin subagent fields",
+    "tools and disallowedTools are mutually exclusive",
+    "kebab-case agent name",
+    "skill assignments are explicit",
+    "execution flows cover handled commands",
+    "operating principles are specific and verifiable",
+    "maxTurns follows deterministic formula",
+    "offline validation evidence"
+  ]
+}

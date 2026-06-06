@@ -11,16 +11,9 @@ triad:
 
 # Design Agent — Execute
 
-## Dynamic Parameters
-
-| Parameter | Description | Required | Filled By |
-|-----------|-------------|----------|-----------|
-| `{{task}}` | What to accomplish | Yes | User input |
-| `{{context}}` | Background and constraints | Yes | User or codebase |
-| `{{constraints}}` | Additional rules | No | Guardrails JSON |
-
-## Execution Steps
-1. Read SKILL.md `## When to Activate` — confirm this skill applies
-2. Read SKILL.md `## Validation Gate` — internalize quality criteria
-3. Execute the skill workflow per SKILL.md sections
-4. Validate output against Validation Gate before delivering
+1. Parse agent name, plugin context, handled commands, skills, tools, and interaction points.
+2. Load `assets/frontmatter-policy.json`, `assets/constraint-policy.json`, `assets/maxturns-policy.json`, and `assets/report-contract.json`.
+3. Draft frontmatter with required fields and no forbidden plugin subagent fields.
+4. Define role boundary, skill assignments, command flows, operating principles, and maxTurns rationale.
+5. Validate tools/disallowedTools exclusivity and command flow coverage.
+6. Validate JSON specs with `scripts/validate_design_agent_spec.py` when a spec artifact is produced.

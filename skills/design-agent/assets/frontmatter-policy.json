@@ -1,0 +1,10 @@
+{
+  "schema": 1,
+  "skill": "design-agent",
+  "required_fields": ["name", "description"],
+  "supported_fields": ["name", "description", "tools", "disallowedTools", "model", "maxTurns", "skills", "memory", "background", "isolation"],
+  "forbidden_fields": ["hooks", "mcpServers", "permissionMode"],
+  "mutually_exclusive": [["tools", "disallowedTools"]],
+  "agent_name_pattern": "^[a-z][a-z0-9]*(-[a-z0-9]+)*$",
+  "known_tools": ["Read", "Write", "Edit", "Glob", "Grep", "Bash", "WebFetch", "Task"]
+}

@@ -1,28 +1,43 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: design-agent
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
-
-# Design Agent Output
+# Agent Design Specification
 
 ## Summary
 
-{summary}
+{evidence_tagged_summary}
 
-## Evidence
+## Frontmatter
 
-{evidence}
+```yaml
+{frontmatter_yaml}
+```
 
-## Result
+## Role Boundary
 
-{result}
+- Role: {role}
+- Owns: {owned_scope}
+- Delegates: {delegated_scope}
+
+## Skill Assignments
+
+| Skill | Status | Invocation | Evidence |
+|-------|--------|------------|----------|
+
+## Execution Flows
+
+| Command | Steps | Quality Gate |
+|---------|-------|--------------|
+
+## Operating Principles
+
+{specific_actionable_verifiable_principles}
+
+## maxTurns Rationale
+
+`(skills * 4) + complexity_bonus + (interaction_points * 2) = {formula_result}`, rounded to `{rounded_maxTurns}`.
 
 ## Validation
 
-{validation}
+{validation_evidence}
 
-## Risks and Limits
+## Risks
 
-{risks}
+{evidence_tagged_risks}
