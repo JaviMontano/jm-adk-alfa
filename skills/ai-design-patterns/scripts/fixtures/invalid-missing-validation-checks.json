@@ -1,0 +1,13 @@
+{
+  "schema": "jm-labs.ai-design-patterns.report.v1",
+  "system": {"name": "Missing Checks", "domain": "ml", "risk_level": "low", "regulatory_context": false},
+  "evidence": [{"id": "E-001", "tag": "[EXPLICIT]", "source": "fixture", "summary": "A report exists."}],
+  "requirements": {"quality_attributes": ["maintainability"], "constraints": [], "model_count": 1, "traffic_profile": "low"},
+  "detected_context": {"feature_store_present": false, "model_registry_present": true, "monitoring_present": true},
+  "anti_patterns": [],
+  "pattern_recommendations": [{"pattern": "Drift Detection", "priority": "should", "rationale": "Monitor quality.", "tradeoffs": ["alert noise"], "required_tactics": ["monitoring"], "dependencies": [], "evidence_ids": ["E-001"], "addresses": []}],
+  "tactics": [{"category": "availability", "name": "monitoring", "mapped_component": "model", "evidence_ids": ["E-001"]}],
+  "roadmap": [{"phase": "control", "patterns": ["Drift Detection"], "exit_criteria": ["alert test passes"]}],
+  "validation": {"status": "pass", "checks": ["assets", "quality_criteria"]},
+  "risks": []
+}

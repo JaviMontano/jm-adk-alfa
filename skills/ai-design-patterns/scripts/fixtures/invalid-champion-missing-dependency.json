@@ -1,0 +1,13 @@
+{
+  "schema": "jm-labs.ai-design-patterns.report.v1",
+  "system": {"name": "Missing Dependency", "domain": "risk", "risk_level": "high", "regulatory_context": true},
+  "evidence": [{"id": "E-001", "tag": "[EXPLICIT]", "source": "fixture", "summary": "Candidate model promotion is required."}],
+  "requirements": {"quality_attributes": ["auditability"], "constraints": [], "model_count": 2, "traffic_profile": "high"},
+  "detected_context": {"feature_store_present": false, "model_registry_present": false, "monitoring_present": true},
+  "anti_patterns": [],
+  "pattern_recommendations": [{"pattern": "Champion-Challenger", "priority": "must", "rationale": "Promote candidates safely.", "tradeoffs": ["split complexity"], "required_tactics": ["promotion gate"], "dependencies": ["Model Registry"], "evidence_ids": ["E-001"], "addresses": []}],
+  "tactics": [{"category": "governance", "name": "promotion gate", "mapped_component": "release process", "evidence_ids": ["E-001"]}],
+  "roadmap": [{"phase": "promotion", "patterns": ["Champion-Challenger"], "exit_criteria": ["gate approved"]}],
+  "validation": {"status": "pass", "checks": ["assets", "deterministic_scripts", "quality_criteria", "pattern_catalog", "anti_pattern_coverage", "dependency_check", "roadmap_exit_criteria"]},
+  "risks": ["Dependency is intentionally incomplete."]
+}

@@ -1,18 +1,51 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: ai-design-patterns
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
-
 # Example Output
 
-## Summary
-
-Example output for `ai-design-patterns`.
-
-## Validation
-
-- Skill activated intentionally.
-- Output follows the requested format.
-- Risks and assumptions are explicit.
+```json
+{
+  "schema": "jm-labs.ai-design-patterns.report.v1",
+  "system": {
+    "name": "Fraud Scoring Modernization",
+    "domain": "payments risk",
+    "risk_level": "high",
+    "regulatory_context": true
+  },
+  "evidence": [
+    {"id": "E-001", "tag": "[EXPLICIT]", "source": "user input", "summary": "Training-serving skew and silent model degradation are present."}
+  ],
+  "requirements": {
+    "quality_attributes": ["reliability", "auditability", "maintainability"],
+    "constraints": ["strict latency budget", "regulated payments domain"],
+    "model_count": 3,
+    "traffic_profile": "high"
+  },
+  "detected_context": {
+    "feature_store_present": false,
+    "model_registry_present": false,
+    "monitoring_present": false
+  },
+  "anti_patterns": [
+    {"id": "AP-001", "name": "Training-Serving Skew", "severity": "high", "detection_signal": "Feature computation differs between training and production.", "remediation_pattern": "Feature Store", "evidence_ids": ["E-001"]},
+    {"id": "AP-002", "name": "Silent Model Degradation", "severity": "high", "detection_signal": "No drift monitoring is present.", "remediation_pattern": "Drift Detection", "evidence_ids": ["E-001"]}
+  ],
+  "pattern_recommendations": [
+    {"pattern": "Feature Store", "priority": "must", "rationale": "Single source of truth fixes skew and enables reuse.", "tradeoffs": ["infrastructure overhead"], "required_tactics": ["data versioning", "feature registry"], "dependencies": [], "evidence_ids": ["E-001"], "addresses": ["AP-001"]},
+    {"pattern": "Drift Detection", "priority": "must", "rationale": "Detects model degradation before business metrics crater.", "tradeoffs": ["false-positive alerts"], "required_tactics": ["model performance monitoring"], "dependencies": [], "evidence_ids": ["E-001"], "addresses": ["AP-002"]},
+    {"pattern": "Champion-Challenger", "priority": "should", "rationale": "Supports evidence-based promotion for candidate models.", "tradeoffs": ["traffic split complexity"], "required_tactics": ["A/B testing infrastructure"], "dependencies": ["Feature Store", "Model Registry"], "evidence_ids": ["E-001"], "addresses": []}
+  ],
+  "tactics": [
+    {"category": "maintainability", "name": "data versioning", "mapped_component": "feature pipeline", "evidence_ids": ["E-001"]},
+    {"category": "availability", "name": "model performance monitoring", "mapped_component": "model serving", "evidence_ids": ["E-001"]},
+    {"category": "governance", "name": "audit trail", "mapped_component": "model registry", "evidence_ids": ["E-001"]}
+  ],
+  "roadmap": [
+    {"phase": "foundation", "patterns": ["Feature Store", "Model Registry"], "exit_criteria": ["training-serving feature parity test passes"]},
+    {"phase": "resilience", "patterns": ["Drift Detection"], "exit_criteria": ["drift alert test passes"]},
+    {"phase": "promotion", "patterns": ["Champion-Challenger"], "exit_criteria": ["candidate promotion gate defined"]}
+  ],
+  "validation": {
+    "status": "pass",
+    "checks": ["assets", "deterministic_scripts", "quality_criteria", "pattern_catalog", "anti_pattern_coverage", "dependency_check", "roadmap_exit_criteria"]
+  },
+  "risks": ["Champion-Challenger should not start before model registry and feature parity are available."]
+}
+```

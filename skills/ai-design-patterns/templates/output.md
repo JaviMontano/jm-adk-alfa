@@ -1,28 +1,32 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: ai-design-patterns
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
+# AI Design Patterns Report
 
-# Ai Design Patterns Output
+## System
+- Name: `{system_name}`
+- Domain: `{domain}`
+- Risk level: `{risk_level}`
+- Regulatory context: `{regulatory_context}`
 
-## Summary
+## Requirements
+{requirements}
 
-{summary}
+## Anti-Patterns
+| ID | Name | Severity | Signal | Remediation |
+|----|------|----------|--------|-------------|
+| `{id}` | `{name}` | `{severity}` | `{detection_signal}` | `{remediation_pattern}` |
 
-## Evidence
+## Pattern Recommendations
+| Pattern | Priority | Rationale | Trade-offs | Dependencies |
+|---------|----------|-----------|------------|--------------|
+| `{pattern}` | `{priority}` | `{rationale}` | `{tradeoffs}` | `{dependencies}` |
 
-{evidence}
+## Tactics
+{tactics}
 
-## Result
-
-{result}
+## Roadmap
+{roadmap}
 
 ## Validation
-
 {validation}
 
-## Risks and Limits
-
+## Risks
 {risks}

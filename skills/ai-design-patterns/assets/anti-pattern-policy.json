@@ -1,0 +1,5 @@
+{
+  "schema": "jm-labs.asset.anti-pattern-policy.v1",
+  "allowed_severities": ["low", "medium", "high", "critical"],
+  "required_fields": ["id", "name", "severity", "detection_signal", "remediation_pattern", "evidence_ids"]
+}

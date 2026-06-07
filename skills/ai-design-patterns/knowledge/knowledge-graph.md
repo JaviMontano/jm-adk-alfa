@@ -1,13 +1,7 @@
-# Ai Design Patterns — Knowledge Graph
+# AI Design Patterns - Knowledge Graph
 
-## Core Concepts
-- ai-design-patterns: primary capability
-- validation-gate: quality control checkpoint
-- evidence-tagging: [EXPLICIT]/[INFERRED]/[OPEN] claims
+## Flow
+`requirements` -> `anti-patterns` -> `pattern-catalog` -> `dependencies` -> `tactics` -> `roadmap` -> `offline-validator`
 
-## Dependencies
-- Upstream: input-analysis, context-optimization
-- Downstream: output-engineering, rendering-engine
-
-## Skill Relationships
-Part of the JM Labs canonical skill registry.
+## Tags
+#ai-design-patterns #jm-labs #mlops #architecture-patterns

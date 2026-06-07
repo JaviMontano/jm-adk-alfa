@@ -1,75 +1,22 @@
 {
   "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-28",
   "skill": "ai-design-patterns",
   "nodes": [
-    {
-      "id": "ai-design-patterns",
-      "type": "skill",
-      "label": "ai-design-patterns"
-    },
-    {
-      "id": "ai-design-patterns:inputs",
-      "type": "contract",
-      "label": "Expected inputs"
-    },
-    {
-      "id": "ai-design-patterns:outputs",
-      "type": "contract",
-      "label": "Expected outputs"
-    },
-    {
-      "id": "ai-design-patterns:quality",
-      "type": "gate",
-      "label": "Quality criteria"
-    },
-    {
-      "id": "ai-design-patterns:ontology",
-      "type": "ontology",
-      "label": "Domain: general"
-    },
-    {
-      "id": "ai-design-patterns:evidence",
-      "type": "gate",
-      "label": "Evidence / provenance requirements"
-    },
-    {
-      "id": "ai-design-patterns:antipattern",
-      "type": "risk",
-      "label": "Canonical anti-pattern to avoid"
-    }
+    {"id": "ai-design-patterns", "type": "skill", "label": "AI Design Patterns"},
+    {"id": "requirements", "type": "contract", "label": "Requirements and constraints"},
+    {"id": "anti-patterns", "type": "policy", "label": "Anti-pattern detection"},
+    {"id": "pattern-catalog", "type": "policy", "label": "Allowed pattern catalog"},
+    {"id": "tactics", "type": "policy", "label": "Tactic mapping"},
+    {"id": "dependencies", "type": "gate", "label": "Pattern dependency checks"},
+    {"id": "roadmap", "type": "contract", "label": "Implementation roadmap"},
+    {"id": "offline-validator", "type": "script", "label": "Offline report validator"}
   ],
   "edges": [
-    {
-      "from": "ai-design-patterns",
-      "to": "ai-design-patterns:inputs",
-      "type": "requires"
-    },
-    {
-      "from": "ai-design-patterns",
-      "to": "ai-design-patterns:outputs",
-      "type": "produces"
-    },
-    {
-      "from": "ai-design-patterns",
-      "to": "ai-design-patterns:quality",
-      "type": "validated_by"
-    },
-    {
-      "from": "ai-design-patterns",
-      "to": "ai-design-patterns:ontology",
-      "type": "classified_as"
-    },
-    {
-      "from": "ai-design-patterns",
-      "to": "ai-design-patterns:evidence",
-      "type": "validated_by"
-    },
-    {
-      "from": "ai-design-patterns",
-      "to": "ai-design-patterns:antipattern",
-      "type": "guards_against"
-    }
+    {"from": "ai-design-patterns", "to": "requirements", "type": "requires"},
+    {"from": "ai-design-patterns", "to": "anti-patterns", "type": "detects"},
+    {"from": "ai-design-patterns", "to": "pattern-catalog", "type": "uses"},
+    {"from": "pattern-catalog", "to": "dependencies", "type": "checked_by"},
+    {"from": "tactics", "to": "roadmap", "type": "feeds"},
+    {"from": "roadmap", "to": "offline-validator", "type": "validated_by"}
   ]
 }

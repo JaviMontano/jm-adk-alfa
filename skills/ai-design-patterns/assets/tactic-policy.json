@@ -1,0 +1,5 @@
+{
+  "schema": "jm-labs.asset.tactic-policy.v1",
+  "allowed_categories": ["maintainability", "availability", "resilience", "load", "governance"],
+  "required_fields": ["category", "name", "mapped_component", "evidence_ids"]
+}

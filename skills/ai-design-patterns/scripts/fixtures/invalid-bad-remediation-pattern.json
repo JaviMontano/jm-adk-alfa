@@ -1,0 +1,13 @@
+{
+  "schema": "jm-labs.ai-design-patterns.report.v1",
+  "system": {"name": "Bad Remediation", "domain": "ml", "risk_level": "medium", "regulatory_context": false},
+  "evidence": [{"id": "E-001", "tag": "[EXPLICIT]", "source": "fixture", "summary": "An anti-pattern is present."}],
+  "requirements": {"quality_attributes": ["reliability"], "constraints": [], "model_count": 1, "traffic_profile": "medium"},
+  "detected_context": {"feature_store_present": false, "model_registry_present": false, "monitoring_present": false},
+  "anti_patterns": [{"id": "AP-001", "name": "Unknown Fix", "severity": "high", "detection_signal": "invalid remediation", "remediation_pattern": "Magic Remediator", "evidence_ids": ["E-001"]}],
+  "pattern_recommendations": [{"pattern": "Drift Detection", "priority": "must", "rationale": "Monitor failures.", "tradeoffs": ["alert noise"], "required_tactics": ["monitoring"], "dependencies": [], "evidence_ids": ["E-001"], "addresses": ["AP-001"]}],
+  "tactics": [{"category": "availability", "name": "monitoring", "mapped_component": "model", "evidence_ids": ["E-001"]}],
+  "roadmap": [{"phase": "control", "patterns": ["Drift Detection"], "exit_criteria": ["alert test passes"]}],
+  "validation": {"status": "pass", "checks": ["assets", "deterministic_scripts", "quality_criteria", "pattern_catalog", "anti_pattern_coverage", "dependency_check", "roadmap_exit_criteria"]},
+  "risks": []
+}

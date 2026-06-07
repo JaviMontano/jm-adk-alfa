@@ -1,0 +1,12 @@
+{
+  "schema": 1,
+  "skill": "ai-design-patterns",
+  "assets": [
+    {"path": "assets/pattern-selection-contract.json", "type": "schema", "purpose": "Defines the AI pattern selection report packet.", "used_by": ["SKILL.md", "scripts/validate_ai_design_patterns_report.py", "templates/output.md", "evals/evals.json"]},
+    {"path": "assets/pattern-catalog-policy.json", "type": "policy", "purpose": "Defines allowed pattern names and recommendation fields.", "used_by": ["SKILL.md", "scripts/validate_ai_design_patterns_report.py", "references/ai-patterns-detail.md"]},
+    {"path": "assets/anti-pattern-policy.json", "type": "policy", "purpose": "Defines anti-pattern finding fields and remediation requirements.", "used_by": ["SKILL.md", "scripts/validate_ai_design_patterns_report.py", "references/anti-patterns.md"]},
+    {"path": "assets/tactic-policy.json", "type": "policy", "purpose": "Defines allowed tactic categories and mapping fields.", "used_by": ["SKILL.md", "scripts/validate_ai_design_patterns_report.py", "references/tactics-catalog.md"]},
+    {"path": "assets/dependency-policy.json", "type": "policy", "purpose": "Defines pattern dependencies.", "used_by": ["SKILL.md", "scripts/validate_ai_design_patterns_report.py", "agents/guardian.md"]},
+    {"path": "assets/roadmap-policy.json", "type": "policy", "purpose": "Defines roadmap phase and exit criteria requirements.", "used_by": ["SKILL.md", "scripts/validate_ai_design_patterns_report.py", "templates/output.md"]}
+  ]
+}

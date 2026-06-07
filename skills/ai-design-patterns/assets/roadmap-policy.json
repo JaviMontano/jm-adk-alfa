@@ -1,0 +1,5 @@
+{
+  "schema": "jm-labs.asset.roadmap-policy.v1",
+  "required_fields": ["phase", "patterns", "exit_criteria"],
+  "rules": ["Every roadmap phase requires at least one exit criterion."]
+}

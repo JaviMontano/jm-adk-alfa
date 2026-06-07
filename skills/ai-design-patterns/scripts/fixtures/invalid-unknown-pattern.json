@@ -1,0 +1,13 @@
+{
+  "schema": "jm-labs.ai-design-patterns.report.v1",
+  "system": {"name": "Unknown Pattern", "domain": "ml", "risk_level": "medium", "regulatory_context": false},
+  "evidence": [{"id": "E-001", "tag": "[EXPLICIT]", "source": "fixture", "summary": "The user requested an unknown pattern."}],
+  "requirements": {"quality_attributes": ["reliability"], "constraints": [], "model_count": 1, "traffic_profile": "medium"},
+  "detected_context": {"feature_store_present": false, "model_registry_present": false, "monitoring_present": false},
+  "anti_patterns": [],
+  "pattern_recommendations": [{"pattern": "Magic AI Mesh Pattern", "priority": "must", "rationale": "Invalid catalog entry should fail.", "tradeoffs": ["unknown behavior"], "required_tactics": ["undefined"], "dependencies": [], "evidence_ids": ["E-001"], "addresses": []}],
+  "tactics": [{"category": "availability", "name": "undefined", "mapped_component": "model", "evidence_ids": ["E-001"]}],
+  "roadmap": [{"phase": "invalid", "patterns": ["Magic AI Mesh Pattern"], "exit_criteria": ["should not pass"]}],
+  "validation": {"status": "pass", "checks": ["assets", "deterministic_scripts", "quality_criteria", "pattern_catalog", "anti_pattern_coverage", "dependency_check", "roadmap_exit_criteria"]},
+  "risks": []
+}

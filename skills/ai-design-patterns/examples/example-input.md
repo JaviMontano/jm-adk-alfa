@@ -1,10 +1,17 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: ai-design-patterns
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
-
 # Example Input
 
-Use `ai-design-patterns` to produce a concise deliverable for a realistic project request.
+Select AI design patterns for `Fraud Scoring Modernization`.
+
+Context:
+- Existing system has training-serving skew and silent model degradation.
+- Two candidate models will compete with the production model.
+- Domain is regulated payments risk.
+- Traffic is high and latency budget is strict.
+- The team has no feature registry yet.
+
+Required:
+- JSON packet using `jm-labs.ai-design-patterns.report.v1`
+- anti-pattern detection
+- recommended patterns and dependencies
+- tactic mapping
+- implementation roadmap
