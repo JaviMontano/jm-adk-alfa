@@ -1,0 +1,27 @@
+{
+  "schema": "jm-labs.ai-conops.report.v1",
+  "system": {"name": "Mismatch", "domain": "ops", "purpose": "Optimize operations.", "scope": {"includes": ["optimization"], "excludes": []}},
+  "evidence": [{"id": "E-001", "tag": "[EXPLICIT]", "source": "fixture", "summary": "Low value and high effort."}],
+  "vision": {"problem_statement": "Unclear business issue.", "objectives": ["explore"], "success_criteria": ["learning"], "evidence_ids": ["E-001"]},
+  "stakeholders": [
+    {"id": "S-001", "name": "Exec", "role": "Vision Holder", "concerns": ["value"], "decision_rights": ["approve"], "evidence_ids": ["E-001"]},
+    {"id": "S-002", "name": "User", "role": "User of Output", "concerns": ["usefulness"], "decision_rights": ["adopt"], "evidence_ids": ["E-001"]},
+    {"id": "S-003", "name": "Ops", "role": "Operations", "concerns": ["cost"], "decision_rights": ["degrade"], "evidence_ids": ["E-001"]}
+  ],
+  "interaction_design": {"default_level": 2, "level_name": "Decision Support", "decision_stakes": "low", "rationale": "Human decides.", "controls": ["audit trail"], "escalation_conditions": ["low confidence"], "evidence_ids": ["E-001"]},
+  "business_value": {"value_score": 2, "effort_score": 5, "quadrant": "Quick Wins", "rationale": "This should not be a quick win.", "evidence_ids": ["E-001"]},
+  "success_metrics": [
+    {"id": "M-001", "pillar": "technical", "name": "accuracy", "threshold": "0.8", "objective": "0.9", "frequency": "weekly", "owner": "Data"},
+    {"id": "M-002", "pillar": "business", "name": "cost", "threshold": "flat", "objective": "lower", "frequency": "monthly", "owner": "Exec"},
+    {"id": "M-003", "pillar": "ux-ethics", "name": "satisfaction", "threshold": "4/5", "objective": "4.5/5", "frequency": "monthly", "owner": "User"}
+  ],
+  "operational_modes": [
+    {"mode": "Startup", "triggers": ["deploy"], "exit_criteria": ["healthy"], "owner": "Ops"},
+    {"mode": "Executing", "triggers": ["request"], "exit_criteria": ["response"], "owner": "User"},
+    {"mode": "Degraded", "triggers": ["failure"], "exit_criteria": ["manual"], "owner": "Ops"},
+    {"mode": "Recovery", "triggers": ["rollback"], "exit_criteria": ["restored"], "owner": "Ops"}
+  ],
+  "assumptions": [{"id": "A-001", "statement": "Value is low.", "status": "open", "owner": "Exec"}],
+  "validation": {"status": "block", "checks": ["assets", "deterministic_scripts", "quality_criteria", "stakeholder_coverage", "metric_coverage", "mode_transitions"]},
+  "risks": []
+}

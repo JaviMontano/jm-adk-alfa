@@ -1,0 +1,10 @@
+{
+  "schema": "jm-labs.asset.stakeholder-policy.v1",
+  "minimum_stakeholders": 3,
+  "required_fields": ["id", "name", "role", "concerns", "decision_rights", "evidence_ids"],
+  "recommended_roles": ["Vision Holder", "User of Output", "Compliance", "Operations", "Data Science"],
+  "rules": [
+    "Each stakeholder must have at least one concern and one decision right.",
+    "At least three stakeholder perspectives are required before CONOPS can pass."
+  ]
+}

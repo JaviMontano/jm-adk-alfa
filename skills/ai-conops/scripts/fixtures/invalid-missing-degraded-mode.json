@@ -1,0 +1,26 @@
+{
+  "schema": "jm-labs.ai-conops.report.v1",
+  "system": {"name": "Mode Gap", "domain": "support", "purpose": "Assist support.", "scope": {"includes": ["triage"], "excludes": []}},
+  "evidence": [{"id": "E-001", "tag": "[EXPLICIT]", "source": "fixture", "summary": "Mode gap fixture."}],
+  "vision": {"problem_statement": "Support load is high.", "objectives": ["reduce load"], "success_criteria": ["speed"], "evidence_ids": ["E-001"]},
+  "stakeholders": [
+    {"id": "S-001", "name": "Product", "role": "Vision Holder", "concerns": ["adoption"], "decision_rights": ["approve"], "evidence_ids": ["E-001"]},
+    {"id": "S-002", "name": "Support Agent", "role": "User of Output", "concerns": ["workflow"], "decision_rights": ["use"], "evidence_ids": ["E-001"]},
+    {"id": "S-003", "name": "Ops", "role": "Operations", "concerns": ["uptime"], "decision_rights": ["degrade"], "evidence_ids": ["E-001"]}
+  ],
+  "interaction_design": {"default_level": 2, "level_name": "Decision Support", "decision_stakes": "low", "rationale": "Human decides.", "controls": ["audit trail"], "escalation_conditions": ["low confidence"], "evidence_ids": ["E-001"]},
+  "business_value": {"value_score": 4, "effort_score": 2, "quadrant": "Quick Wins", "rationale": "Bounded assistant.", "evidence_ids": ["E-001"]},
+  "success_metrics": [
+    {"id": "M-001", "pillar": "technical", "name": "accuracy", "threshold": "0.8", "objective": "0.9", "frequency": "weekly", "owner": "Data"},
+    {"id": "M-002", "pillar": "business", "name": "speed", "threshold": "2m", "objective": "1m", "frequency": "daily", "owner": "Ops"},
+    {"id": "M-003", "pillar": "ux-ethics", "name": "explanation coverage", "threshold": "95%", "objective": "100%", "frequency": "daily", "owner": "Support"}
+  ],
+  "operational_modes": [
+    {"mode": "Startup", "triggers": ["deploy"], "exit_criteria": ["healthy"], "owner": "Ops"},
+    {"mode": "Executing", "triggers": ["ticket"], "exit_criteria": ["answer"], "owner": "Support Agent"},
+    {"mode": "Recovery", "triggers": ["rollback"], "exit_criteria": ["restored"], "owner": "Ops"}
+  ],
+  "assumptions": [{"id": "A-001", "statement": "Support data exists.", "status": "open", "owner": "Product"}],
+  "validation": {"status": "block", "checks": ["assets", "deterministic_scripts", "quality_criteria", "stakeholder_coverage", "metric_coverage", "mode_transitions"]},
+  "risks": []
+}

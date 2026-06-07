@@ -1,6 +1,6 @@
 ---
 name: ai-conops
-version: 1.0.0
+version: 1.0.1
 description: >
   Concept of Operations (CONOPS) for AI systems — system vision, stakeholder mapping, AI-human interaction spectrum,
   business value assessment, success metrics, and operational modes. This skill should be used when the user asks to
@@ -21,6 +21,16 @@ allowed-tools:
 # AI CONOPS: Operational Concept for AI-Enabled Systems
 
 CONOPS for AI systems defines *what the system does, for whom, and under what conditions* — before architecture begins. Aligned with IEEE 1362-2022, this skill produces the operational concept document that drives all downstream architectural decisions: stakeholder identification, interaction autonomy levels, business value assessment, measurable success metrics, and operational modes with their state transitions. [EXPLICIT]
+
+## Deterministic DoD Assets
+
+- `assets/conops-report-contract.json` defines the machine-checkable CONOPS packet.
+- `assets/interaction-level-policy.json` defines Level 1-5 autonomy controls.
+- `assets/stakeholder-policy.json` defines minimum stakeholder and RACI evidence.
+- `assets/value-matrix-policy.json` defines value/effort quadrant rules.
+- `assets/metrics-policy.json` defines the required technical, business, and UX/ethics metric pillars.
+- `assets/operational-mode-policy.json` defines required modes, transition evidence, and degraded/recovery handling.
+- `scripts/validate_ai_conops_report.py` validates CONOPS packets offline without network, time, or random dependencies.
 
 ## Principio Rector
 
@@ -49,6 +59,9 @@ Load references:
   Read ${CLAUDE_SKILL_DIR}/references/interaction-spectrum.md
   Read ${CLAUDE_SKILL_DIR}/references/success-metrics.md
   Read ${CLAUDE_SKILL_DIR}/references/business-value-matrix.md
+
+Validate machine-readable output:
+  Run `bash skills/ai-conops/scripts/check.sh` for local fixture evidence.
 
 ---
 
@@ -247,6 +260,17 @@ Defines the operational states the AI system can inhabit and the transitions bet
 - Does not select *design patterns or tactics* (see **metodologia-ai-design-patterns**)
 - Success metrics are defined, not implemented — implementation requires monitoring architecture
 - Business value assessment is directional, not financial modeling (see **metodologia-cost-estimation**)
+
+## Validation Gate
+
+- Every CONOPS packet declares `schema: jm-labs.ai-conops.report.v1`.
+- Stakeholder map includes at least three stakeholders with concerns and decision rights.
+- Interaction design chooses exactly one default autonomy level from 1 to 5 and records rationale.
+- Business value quadrant is consistent with deterministic value and effort scores.
+- Success metrics cover all three pillars: technical, business, and UX/ethics.
+- Operational modes include at least `Startup`, `Executing`, `Degraded`, and `Recovery` with triggers and exit criteria.
+- Open assumptions are explicit and cannot be hidden in narrative prose.
+- Validation checks include `assets`, `deterministic_scripts`, `quality_criteria`, `stakeholder_coverage`, `metric_coverage`, and `mode_transitions`.
 
 ---
 

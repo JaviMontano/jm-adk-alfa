@@ -1,0 +1,61 @@
+{
+  "schema": "jm-labs.ai-conops.report.v1",
+  "system": {
+    "name": "Fraud Triage Router",
+    "domain": "payments risk",
+    "purpose": "Auto-route routine fraud alerts and escalate uncertain cases.",
+    "scope": {
+      "includes": ["alert scoring", "routine case routing", "exception escalation"],
+      "excludes": ["account closure", "law enforcement reporting"]
+    }
+  },
+  "evidence": [
+    {"id": "E-001", "tag": "[EXPLICIT]", "source": "discovery notes", "summary": "Routine fraud alerts are high-volume and reversible."}
+  ],
+  "vision": {
+    "problem_statement": "Analysts spend too much time sorting routine fraud alerts.",
+    "objectives": ["Reduce routine queue load", "Escalate ambiguous cases", "Maintain analyst oversight"],
+    "success_criteria": ["Routine routing precision above 0.90", "Escalation SLA under 15 minutes"],
+    "evidence_ids": ["E-001"]
+  },
+  "stakeholders": [
+    {"id": "S-001", "name": "Risk Director", "role": "Vision Holder", "concerns": ["loss reduction"], "decision_rights": ["approve thresholds"], "evidence_ids": ["E-001"]},
+    {"id": "S-002", "name": "Fraud Analyst", "role": "User of Output", "concerns": ["explainability"], "decision_rights": ["handle escalations"], "evidence_ids": ["E-001"]},
+    {"id": "S-003", "name": "SRE", "role": "Operations", "concerns": ["availability"], "decision_rights": ["trigger degraded mode"], "evidence_ids": ["E-001"]}
+  ],
+  "interaction_design": {
+    "default_level": 3,
+    "level_name": "Shared Control",
+    "decision_stakes": "medium",
+    "rationale": "AI handles routine routing while humans handle exceptions.",
+    "controls": ["confidence threshold", "human override", "audit trail"],
+    "escalation_conditions": ["low confidence", "large transaction", "new fraud pattern"],
+    "evidence_ids": ["E-001"]
+  },
+  "business_value": {
+    "value_score": 5,
+    "effort_score": 3,
+    "quadrant": "Strategic Investments",
+    "rationale": "High value but requires integrations, monitoring, and threshold governance.",
+    "evidence_ids": ["E-001"]
+  },
+  "success_metrics": [
+    {"id": "M-001", "pillar": "technical", "name": "routing precision", "threshold": "0.90", "objective": "0.95", "frequency": "daily", "owner": "Data Science"},
+    {"id": "M-002", "pillar": "business", "name": "analyst queue reduction", "threshold": "25%", "objective": "40%", "frequency": "weekly", "owner": "Risk Director"},
+    {"id": "M-003", "pillar": "ux-ethics", "name": "explanation coverage", "threshold": "95%", "objective": "100%", "frequency": "daily", "owner": "Fraud Analyst"}
+  ],
+  "operational_modes": [
+    {"mode": "Startup", "triggers": ["model deployed"], "exit_criteria": ["routing service healthy"], "owner": "SRE"},
+    {"mode": "Executing", "triggers": ["alert received"], "exit_criteria": ["alert routed or escalated"], "owner": "Fraud Analyst"},
+    {"mode": "Degraded", "triggers": ["precision drift"], "exit_criteria": ["manual routing enabled"], "owner": "SRE"},
+    {"mode": "Recovery", "triggers": ["rollback approved"], "exit_criteria": ["previous model restored"], "owner": "Data Science"}
+  ],
+  "assumptions": [
+    {"id": "A-001", "statement": "Historical alert labels are adequate for initial threshold design.", "status": "open", "owner": "Data Science"}
+  ],
+  "validation": {
+    "status": "pass",
+    "checks": ["assets", "deterministic_scripts", "quality_criteria", "stakeholder_coverage", "metric_coverage", "mode_transitions"]
+  },
+  "risks": []
+}

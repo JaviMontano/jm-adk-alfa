@@ -3,7 +3,14 @@ name: ai-conops-deep
 type: variation
 variant: deep
 ---
-# Ai Conops — Deep Analysis
+# AI CONOPS - Deep Mode
 
-Full depth execution. Load all `references/` files from canonical. Run L3 progressive loading.
-Apply all Validation Gate criteria strictly.
+Use deep mode for regulated, high-stakes, multi-stakeholder, or Level 4-5 autonomy candidates.
+
+Additional requirements:
+- include decision stakes, reversibility, model confidence, and regulatory environment
+- document why higher or lower autonomy levels were rejected
+- include stakeholder-metric alignment
+- include mode transition triggers and exit criteria
+- include open assumptions with owners
+- mark architecture decisions as downstream unless required for CONOPS safety

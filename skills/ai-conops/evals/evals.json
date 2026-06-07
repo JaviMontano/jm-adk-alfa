@@ -1,9 +1,86 @@
-[
-  {"id": "ai-conops-happy-path", "type": "happy_path", "input": "Run ai conops on this project", "expected_behavior": "Skill activates and produces the expected ai conops output following the defined process", "tags": ["basic", "activation"]},
-  {"id": "ai-conops-explicit-trigger", "type": "happy_path", "input": "Apply ai conops analysis", "expected_behavior": "Skill recognizes the trigger phrase and executes the ai conops workflow", "tags": ["trigger", "recognition"]},
-  {"id": "ai-conops-with-context", "type": "happy_path", "input": "Apply ai conops to analyze the current codebase with detailed output", "expected_behavior": "Skill produces comprehensive ai conops analysis with evidence-tagged findings", "tags": ["detailed", "comprehensive"]},
-  {"id": "ai-conops-minimal-input", "type": "happy_path", "input": "Quick ai conops", "expected_behavior": "Skill activates with minimal input, applies reasonable defaults", "tags": ["minimal", "defaults"]},
-  {"id": "ai-conops-false-positive", "type": "false_positive", "input": "What is the weather forecast for tomorrow?", "expected_behavior": "Skill should NOT activate — this input has no relation to ai conops", "tags": ["false_positive", "should-not-activate"]},
-  {"id": "ai-conops-edge-empty-input", "type": "edge_case", "input": "Run ai conops but I have no files or documentation yet", "expected_behavior": "Skill handles gracefully — requests minimum viable input or produces gap analysis", "tags": ["edge_case", "empty-input", "boundary"]},
-  {"id": "ai-conops-edge-conflicting", "type": "edge_case", "input": "Apply ai conops but requirements contradict each other", "expected_behavior": "Skill detects contradiction, flags with [OPEN] tag, proposes resolution", "tags": ["edge_case", "conflict", "corner"]}
-]
+{
+  "schema": 1,
+  "skill": "ai-conops",
+  "cases": [
+    {
+      "id": "ai-conops-claims-copilot",
+      "type": "happy_path",
+      "input": "Create an AI CONOPS for Claims Copilot with stakeholders, Level 2 interaction, value matrix, metrics, and modes.",
+      "expected_behavior": "Produces a valid CONOPS packet with all required sections and evidence-backed assumptions.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "stakeholder_coverage", "metric_coverage", "mode_transitions"],
+      "tags": ["claims", "decision-support"]
+    },
+    {
+      "id": "ai-conops-shared-control-fraud",
+      "type": "happy_path",
+      "input": "Define CONOPS for fraud triage where AI auto-routes routine cases and escalates exceptions.",
+      "expected_behavior": "Selects Level 3 Shared Control with escalation and recovery controls.",
+      "expected_checks": ["assets", "quality_criteria", "interaction-level", "mode_transitions"],
+      "tags": ["fraud", "shared-control"]
+    },
+    {
+      "id": "ai-conops-executive-scope",
+      "type": "happy_path",
+      "input": "Produce executive AI CONOPS summary for a support assistant, but keep assumptions explicit.",
+      "expected_behavior": "Produces concise CONOPS while preserving stakeholders, metrics, assumptions, and risks.",
+      "expected_checks": ["assets", "quality_criteria", "stakeholder_coverage", "metric_coverage"],
+      "tags": ["executive", "summary"]
+    },
+    {
+      "id": "ai-conops-missing-stakeholders",
+      "type": "degradation",
+      "input": "Define an AI CONOPS with only the product owner listed.",
+      "expected_behavior": "Blocks or warns because at least three stakeholder perspectives are required.",
+      "expected_checks": ["deterministic_scripts", "quality_criteria", "stakeholder_coverage"],
+      "tags": ["stakeholders", "degradation"]
+    },
+    {
+      "id": "ai-conops-invalid-autonomy",
+      "type": "degradation",
+      "input": "Set autonomy Level 6 for a high-stakes AI medical advisor.",
+      "expected_behavior": "Rejects invalid autonomy level and requires Level 1-5 with controls.",
+      "expected_checks": ["quality_criteria", "interaction-level"],
+      "tags": ["autonomy", "invalid"]
+    },
+    {
+      "id": "ai-conops-metric-pillar-gap",
+      "type": "edge_case",
+      "input": "Define only model accuracy metrics for the CONOPS.",
+      "expected_behavior": "Requires business and UX/ethics metrics in addition to technical metrics.",
+      "expected_checks": ["quality_criteria", "metric_coverage"],
+      "tags": ["metrics", "coverage-gap"]
+    },
+    {
+      "id": "ai-conops-value-effort-conflict",
+      "type": "edge_case",
+      "input": "Call a low-value high-effort use case a Quick Win.",
+      "expected_behavior": "Detects quadrant mismatch and requires value/effort reconciliation.",
+      "expected_checks": ["deterministic_scripts", "quality_criteria", "value-matrix"],
+      "tags": ["value-matrix", "conflict"]
+    },
+    {
+      "id": "ai-conops-no-degraded-mode",
+      "type": "edge_case",
+      "input": "Create CONOPS operational modes with only Startup and Executing.",
+      "expected_behavior": "Blocks until Degraded and Recovery modes are included.",
+      "expected_checks": ["quality_criteria", "mode_transitions"],
+      "tags": ["modes", "recovery"]
+    },
+    {
+      "id": "ai-conops-false-positive-weather",
+      "type": "false_positive",
+      "input": "What is the weather forecast tomorrow?",
+      "expected_behavior": "Does not activate because the request is unrelated to AI CONOPS.",
+      "expected_checks": ["quality_criteria"],
+      "tags": ["false-positive", "activation"]
+    },
+    {
+      "id": "ai-conops-script-validation",
+      "type": "validation",
+      "input": "Validate an AI CONOPS report packet with deterministic fixtures.",
+      "expected_behavior": "Runs the offline validator against valid and invalid fixtures.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria"],
+      "tags": ["scripts", "fixtures"]
+    }
+  ]
+}

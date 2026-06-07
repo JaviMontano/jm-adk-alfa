@@ -1,17 +1,21 @@
 ---
 name: ai-conops-meta
 type: meta
-version: 2.0.0
-description: "Meta-prompt for Ai Conops skill routing."
+version: 2.1.0
+description: "Meta-prompt for maintaining deterministic AI CONOPS quality."
 ---
 
-# Ai Conops — Meta Prompt
+# AI CONOPS - Meta Prompt
 
-Activate this skill when the user request matches:
-- Trigger phrases from SKILL.md description
-- Direct invocation: `/ai-conops`
+## Evaluate
+1. Do evals cover stakeholder gaps, autonomy errors, metric pillar gaps, value quadrant conflicts, and missing degraded modes?
+2. Do assets match the offline validator?
+3. Do examples include open assumptions and operational modes?
+4. Do prompts prevent CONOPS from becoming architecture design too early?
+5. Are the three references still aligned with assets?
 
-## Skill Routing
-1. Load SKILL.md → read `## When to Activate` section
-2. If match → activate lead agent: `ai-conops-lead`
-3. If orchestrated → defer to orchestrating skill
+## Improve
+1. Add fixtures for any recurring invalid CONOPS packet.
+2. Update assets only when the deterministic policy changes.
+3. Keep `scripts/check.sh` offline and reproducible.
+4. Update review doc and ledger only after validation evidence exists.

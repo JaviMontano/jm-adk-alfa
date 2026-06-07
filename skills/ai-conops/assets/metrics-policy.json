@@ -1,0 +1,9 @@
+{
+  "schema": "jm-labs.asset.metrics-policy.v1",
+  "required_pillars": ["technical", "business", "ux-ethics"],
+  "required_fields": ["id", "pillar", "name", "threshold", "objective", "frequency", "owner"],
+  "rules": [
+    "At least one metric per required pillar is mandatory.",
+    "Metrics must include threshold, objective, frequency, and owner."
+  ]
+}
