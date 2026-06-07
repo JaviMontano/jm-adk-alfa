@@ -1,28 +1,37 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: ai-pipeline-architecture
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
+# AI Pipeline Architecture Report
 
-# Ai Pipeline Architecture Output
+## System
 
-## Summary
-
-{summary}
+{system}
 
 ## Evidence
 
 {evidence}
 
-## Result
+## Pipeline Stages
 
-{result}
+{pipeline_stages}
+
+## Data Stores
+
+{data_stores}
+
+## Model Registry
+
+{model_registry}
+
+## CI/CD
+
+{cicd}
+
+## Requirements
+
+{requirements}
 
 ## Validation
 
 {validation}
 
-## Risks and Limits
+## Risks
 
 {risks}

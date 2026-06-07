@@ -1,16 +1,25 @@
-# Ai Pipeline Architecture — Body of Knowledge
+# AI Pipeline Architecture Body of Knowledge
 
 ## Canon
-Key standards, references, and best practices for Ai Pipeline Architecture.
 
-## Quality Metrics
-| Metric | Target | How to Measure |
-|--------|--------|---------------|
-| Accuracy | >= 90% | Correct outputs / total |
-| Evidence coverage | >= 80% | Claims tagged [EXPLICIT]/[INFERRED]/[OPEN] |
-| Constitution compliance | 100% | Principles respected |
-| Validation Gate pass | 100% | All checklist items satisfied |
+The pipeline is the architecture. The model is one component inside development,
+production, registry, CI/CD, monitoring, and requirements systems.
 
-## References
-- See `references/` folder in canonical skill for detailed references
-- Industry standards and best practices for this domain
+## Required Coverage
+
+| Area | Deterministic Requirement |
+|------|---------------------------|
+| Development pipeline | at least one allowed development stage with gates |
+| Production pipeline | at least one allowed production stage with gates |
+| Data stores | allowed store types with latency and consistency rationale |
+| Model registry | artifact versioning, lineage, stage management, rollback |
+| CI/CD | model, feature, data, performance, security, regression gates |
+| Requirements | AP/NF/SEC/CP ids mapped to components |
+
+## Anti-Patterns
+
+- one pipeline for experimentation and production
+- direct file copy instead of model registry
+- production deploy without regression gate
+- store choice by vendor preference instead of workload
+- requirements without measurable thresholds or mapped components

@@ -1,10 +1,17 @@
-# Ai Pipeline Architecture — DOCX Template
+# DOCX Template - AI Pipeline Architecture
 
 ## Document Structure
-- Title: Ai Pipeline Architecture — [Client/Project Name]
-- Author: JM Labs
-- Date: {{DATE}}
 
-## Sections (mirror SKILL.md structure)
-See canonical SKILL.md for section blueprints.
-Use brand-config.json tokens: Navy #122562 · Gold #FFD700 · Blue #137DC5
+- Title: "AI Pipeline Architecture Report"
+- Section 1: System Context and Evidence
+- Section 2: Development Pipeline
+- Section 3: Production Pipeline
+- Section 4: Data Store Selection
+- Section 5: Model Registry
+- Section 6: CI/CD Gates
+- Section 7: AP/NF/SEC/CP Requirements
+- Section 8: Validation and Risks
+
+## Formatting
+
+Use plain headings and evidence ids in monospace. Do not require remote assets.

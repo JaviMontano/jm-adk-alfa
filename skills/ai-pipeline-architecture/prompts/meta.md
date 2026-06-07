@@ -1,17 +1,15 @@
 ---
 name: ai-pipeline-architecture-meta
 type: meta
-version: 2.0.0
-description: "Meta-prompt for Ai Pipeline Architecture skill routing."
+version: 2.1.0
+description: "Meta-prompt for AI pipeline architecture routing and improvement."
 ---
 
-# Ai Pipeline Architecture — Meta Prompt
+# AI Pipeline Architecture - Meta
 
-Activate this skill when the user request matches:
-- Trigger phrases from SKILL.md description
-- Direct invocation: `/ai-pipeline-architecture`
+Activate for AI/ML pipeline architecture, data store selection, model registry,
+AI CI/CD, Blue-Gold deployment, or AP/NF/SEC/CP pipeline requirements.
 
-## Skill Routing
-1. Load SKILL.md → read `## When to Activate` section
-2. If match → activate lead agent: `ai-pipeline-architecture-lead`
-3. If orchestrated → defer to orchestrating skill
+Do not activate for generic CI, generic data engineering, UI flows, or weather.
+
+Improve by adding eval cases and fixtures before changing validator behavior.

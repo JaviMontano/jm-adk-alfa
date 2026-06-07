@@ -1,0 +1,26 @@
+{
+  "schema": "jm-labs.ai-pipeline-architecture.report.v1",
+  "system": {"name": "Notebook Modernization", "domain": "retail demand forecasting", "mode": "modernization", "risk_level": "medium", "regulated": false},
+  "evidence": [
+    {"id": "E-101", "tag": "[EXPLICIT]", "source": "user input", "summary": "Current workflow trains models in notebooks."},
+    {"id": "E-102", "tag": "[INFERRED]", "source": "architecture review", "summary": "Production scoring needs repeatable artifacts and rollback."}
+  ],
+  "pipeline_stages": [
+    {"pipeline": "development", "stage": "Model Verification", "purpose": "Validate notebook model before artifact registration.", "inputs": ["candidate model"], "outputs": ["verification report"], "gates": ["holdout evaluation"], "evidence_ids": ["E-101"]},
+    {"pipeline": "production", "stage": "Pipeline Operations", "purpose": "Monitor scheduled batch scoring and drift.", "inputs": ["batch scores"], "outputs": ["health report"], "gates": ["drift alert"], "evidence_ids": ["E-102"]}
+  ],
+  "data_stores": [
+    {"store_type": "object", "purpose": "Training snapshots and model artifacts.", "consistency_model": "eventual", "latency_class": "batch", "evidence_ids": ["E-101"]},
+    {"store_type": "relational", "purpose": "Experiment metadata and schedule audit.", "consistency_model": "strong", "latency_class": "interactive", "evidence_ids": ["E-102"]}
+  ],
+  "model_registry": {"tool_decision": "central model registry", "versioning_strategy": "hash", "capabilities": ["artifact_versioning", "lineage", "stage_management", "rollback"], "promotion_stages": ["Staging", "Canary", "Production", "Archived"], "evidence_ids": ["E-102"]},
+  "cicd": {"strategy": "Manual-Gated", "gates": ["model_validation", "feature_validation", "data_quality", "performance", "security", "regression"], "rollback_strategy": "Revert scheduled job to archived production model.", "evidence_ids": ["E-102"]},
+  "requirements": [
+    {"id": "AP-7", "category": "AP", "description": "Forecast accuracy threshold.", "threshold": ".88", "objective": ".94", "mapped_component": "Model Verification", "evidence_ids": ["E-101"]},
+    {"id": "NF-2", "category": "NF", "description": "Time to restore upon error.", "threshold": "< 1 min", "objective": "< 30 secs", "mapped_component": "Pipeline Operations", "evidence_ids": ["E-102"]},
+    {"id": "SEC-2", "category": "SEC", "description": "Record pipeline executions.", "threshold": "required", "objective": "automated audit", "mapped_component": "Model Registry", "evidence_ids": ["E-102"]},
+    {"id": "CP-7", "category": "CP", "description": "Support governance review workflows.", "threshold": "required", "objective": "approval gate", "mapped_component": "CI/CD", "evidence_ids": ["E-102"]}
+  ],
+  "validation": {"status": "pass", "checks": ["assets", "deterministic_scripts", "quality_criteria", "stage_coverage", "store_selection", "registry_capabilities", "cicd_gates", "requirements_mapping"]},
+  "risks": ["Manual approval can become a bottleneck if release frequency increases."]
+}

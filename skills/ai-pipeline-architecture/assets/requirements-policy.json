@@ -1,0 +1,10 @@
+{
+  "schema": "jm-labs.asset.requirements-policy.v1",
+  "allowed_categories": ["AP", "NF", "SEC", "CP"],
+  "id_prefixes": {
+    "AP": "AP-",
+    "NF": "NF-",
+    "SEC": "SEC-",
+    "CP": "CP-"
+  }
+}

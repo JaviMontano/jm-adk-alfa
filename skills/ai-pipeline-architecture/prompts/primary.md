@@ -1,26 +1,30 @@
 ---
 name: ai-pipeline-architecture-primary
 type: execution
-version: 2.0.0
-description: "Execute the Ai Pipeline Architecture workflow."
+version: 2.1.0
+description: "Execute deterministic AI pipeline architecture workflow."
 triad:
   lead: "ai-pipeline-architecture-lead"
   support: "ai-pipeline-architecture-support"
   guardian: "ai-pipeline-architecture-guardian"
 ---
 
-# Ai Pipeline Architecture — Execute
+# AI Pipeline Architecture - Execute
 
 ## Dynamic Parameters
 
 | Parameter | Description | Required | Filled By |
 |-----------|-------------|----------|-----------|
-| `{{task}}` | What to accomplish | Yes | User input |
-| `{{context}}` | Background and constraints | Yes | User or codebase |
-| `{{constraints}}` | Additional rules | No | Guardrails JSON |
+| `{{system}}` | AI system or project name | Yes | User input |
+| `{{context}}` | Data, model, serving, compliance, and team constraints | Yes | User or repo scan |
+| `{{mode}}` | greenfield / modernization / audit | No | Auto |
+| `{{scope}}` | executive / technical | No | Auto |
 
-## Execution Steps
-1. Read SKILL.md `## When to Activate` — confirm this skill applies
-2. Read SKILL.md `## Validation Gate` — internalize quality criteria
-3. Execute the skill workflow per SKILL.md sections
-4. Validate output against Validation Gate before delivering
+## Execution
+
+1. Load `SKILL.md`, `references/*.md`, and `assets/*.json`.
+2. Build evidence ids before decisions.
+3. Produce development and production pipeline stages.
+4. Select data stores with workload rationale.
+5. Define registry, CI/CD gates, and AP/NF/SEC/CP requirements.
+6. Validate the packet offline before delivery.

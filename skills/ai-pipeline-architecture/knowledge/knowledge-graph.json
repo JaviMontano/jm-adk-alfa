@@ -1,75 +1,24 @@
 {
   "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-28",
   "skill": "ai-pipeline-architecture",
   "nodes": [
-    {
-      "id": "ai-pipeline-architecture",
-      "type": "skill",
-      "label": "ai-pipeline-architecture"
-    },
-    {
-      "id": "ai-pipeline-architecture:inputs",
-      "type": "contract",
-      "label": "Expected inputs"
-    },
-    {
-      "id": "ai-pipeline-architecture:outputs",
-      "type": "contract",
-      "label": "Expected outputs"
-    },
-    {
-      "id": "ai-pipeline-architecture:quality",
-      "type": "gate",
-      "label": "Quality criteria"
-    },
-    {
-      "id": "ai-pipeline-architecture:ontology",
-      "type": "ontology",
-      "label": "Domain: general"
-    },
-    {
-      "id": "ai-pipeline-architecture:evidence",
-      "type": "gate",
-      "label": "Evidence / provenance requirements"
-    },
-    {
-      "id": "ai-pipeline-architecture:antipattern",
-      "type": "risk",
-      "label": "Canonical anti-pattern to avoid"
-    }
+    {"id": "ai-pipeline-architecture", "type": "skill", "label": "AI Pipeline Architecture"},
+    {"id": "development-pipeline", "type": "subsystem", "label": "Development Pipeline"},
+    {"id": "production-pipeline", "type": "subsystem", "label": "Production Pipeline"},
+    {"id": "data-store-selection", "type": "decision", "label": "Data Store Selection"},
+    {"id": "model-registry", "type": "decision", "label": "Model Registry"},
+    {"id": "blue-gold-cicd", "type": "decision", "label": "Blue-Gold CI/CD"},
+    {"id": "requirements-map", "type": "contract", "label": "AP/NF/SEC/CP Requirements"},
+    {"id": "offline-validator", "type": "script", "label": "Offline Validator"}
   ],
   "edges": [
-    {
-      "from": "ai-pipeline-architecture",
-      "to": "ai-pipeline-architecture:inputs",
-      "type": "requires"
-    },
-    {
-      "from": "ai-pipeline-architecture",
-      "to": "ai-pipeline-architecture:outputs",
-      "type": "produces"
-    },
-    {
-      "from": "ai-pipeline-architecture",
-      "to": "ai-pipeline-architecture:quality",
-      "type": "validated_by"
-    },
-    {
-      "from": "ai-pipeline-architecture",
-      "to": "ai-pipeline-architecture:ontology",
-      "type": "classified_as"
-    },
-    {
-      "from": "ai-pipeline-architecture",
-      "to": "ai-pipeline-architecture:evidence",
-      "type": "validated_by"
-    },
-    {
-      "from": "ai-pipeline-architecture",
-      "to": "ai-pipeline-architecture:antipattern",
-      "type": "guards_against"
-    }
+    {"from": "ai-pipeline-architecture", "to": "development-pipeline", "type": "requires"},
+    {"from": "ai-pipeline-architecture", "to": "production-pipeline", "type": "requires"},
+    {"from": "development-pipeline", "to": "model-registry", "type": "publishes_to"},
+    {"from": "model-registry", "to": "production-pipeline", "type": "promotes_to"},
+    {"from": "data-store-selection", "to": "production-pipeline", "type": "supports"},
+    {"from": "blue-gold-cicd", "to": "model-registry", "type": "governs"},
+    {"from": "requirements-map", "to": "offline-validator", "type": "validated_by"},
+    {"from": "offline-validator", "to": "ai-pipeline-architecture", "type": "validates"}
   ]
 }

@@ -1,9 +1,86 @@
-[
-  {"id": "ai-pipeline-architecture-happy-path", "type": "happy_path", "input": "Run ai pipeline architecture on this project", "expected_behavior": "Skill activates and produces the expected ai pipeline architecture output following the defined process", "tags": ["basic", "activation"]},
-  {"id": "ai-pipeline-architecture-explicit-trigger", "type": "happy_path", "input": "Apply ai pipeline architecture analysis", "expected_behavior": "Skill recognizes the trigger phrase and executes the ai pipeline architecture workflow", "tags": ["trigger", "recognition"]},
-  {"id": "ai-pipeline-architecture-with-context", "type": "happy_path", "input": "Apply ai pipeline architecture to analyze the current codebase with detailed output", "expected_behavior": "Skill produces comprehensive ai pipeline architecture analysis with evidence-tagged findings", "tags": ["detailed", "comprehensive"]},
-  {"id": "ai-pipeline-architecture-minimal-input", "type": "happy_path", "input": "Quick ai pipeline architecture", "expected_behavior": "Skill activates with minimal input, applies reasonable defaults", "tags": ["minimal", "defaults"]},
-  {"id": "ai-pipeline-architecture-false-positive", "type": "false_positive", "input": "What is the weather forecast for tomorrow?", "expected_behavior": "Skill should NOT activate — this input has no relation to ai pipeline architecture", "tags": ["false_positive", "should-not-activate"]},
-  {"id": "ai-pipeline-architecture-edge-empty-input", "type": "edge_case", "input": "Run ai pipeline architecture but I have no files or documentation yet", "expected_behavior": "Skill handles gracefully — requests minimum viable input or produces gap analysis", "tags": ["edge_case", "empty-input", "boundary"]},
-  {"id": "ai-pipeline-architecture-edge-conflicting", "type": "edge_case", "input": "Apply ai pipeline architecture but requirements contradict each other", "expected_behavior": "Skill detects contradiction, flags with [OPEN] tag, proposes resolution", "tags": ["edge_case", "conflict", "corner"]}
-]
+{
+  "schema": 1,
+  "skill": "ai-pipeline-architecture",
+  "cases": [
+    {
+      "id": "ai-pipeline-architecture-fraud-greenfield",
+      "type": "happy_path",
+      "input": "Design AI pipelines for regulated fraud scoring with online inference.",
+      "expected_behavior": "Produces development and production stages, stores, registry, CI/CD gates, and AP/NF/SEC/CP requirements.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "stage_coverage", "store_selection", "registry_capabilities"],
+      "tags": ["fraud", "greenfield"]
+    },
+    {
+      "id": "ai-pipeline-architecture-notebook-modernization",
+      "type": "happy_path",
+      "input": "Modernize a notebook training process into orchestrated ML pipelines.",
+      "expected_behavior": "Separates development pipeline from production pipeline and requires registry lineage.",
+      "expected_checks": ["quality_criteria", "stage_coverage", "requirements_mapping"],
+      "tags": ["notebook", "modernization"]
+    },
+    {
+      "id": "ai-pipeline-architecture-store-selection",
+      "type": "happy_path",
+      "input": "Select stores for training artifacts, metadata, online features, and embeddings.",
+      "expected_behavior": "Maps object, relational, key-value, and vector stores to workload rationale.",
+      "expected_checks": ["quality_criteria", "store_selection"],
+      "tags": ["stores"]
+    },
+    {
+      "id": "ai-pipeline-architecture-missing-prod-stage",
+      "type": "degradation",
+      "input": "Return only a training pipeline and skip production serving.",
+      "expected_behavior": "Blocks because production stage coverage is missing.",
+      "expected_checks": ["quality_criteria", "stage_coverage"],
+      "tags": ["stage-gap"]
+    },
+    {
+      "id": "ai-pipeline-architecture-missing-registry",
+      "type": "degradation",
+      "input": "Use direct model files without registry lineage or rollback.",
+      "expected_behavior": "Blocks missing registry capabilities.",
+      "expected_checks": ["quality_criteria", "registry_capabilities"],
+      "tags": ["registry"]
+    },
+    {
+      "id": "ai-pipeline-architecture-cicd-no-regression",
+      "type": "edge_case",
+      "input": "Design Blue-Gold CI/CD but omit regression checks.",
+      "expected_behavior": "Rejects incomplete CI/CD validation gates.",
+      "expected_checks": ["quality_criteria", "cicd_gates"],
+      "tags": ["cicd"]
+    },
+    {
+      "id": "ai-pipeline-architecture-bad-requirement",
+      "type": "edge_case",
+      "input": "Map requirement AP-3 as security.",
+      "expected_behavior": "Rejects requirement id/category mismatch.",
+      "expected_checks": ["quality_criteria", "requirements_mapping"],
+      "tags": ["requirements"]
+    },
+    {
+      "id": "ai-pipeline-architecture-false-positive-devops",
+      "type": "false_positive",
+      "input": "Create a generic CI workflow for a static website.",
+      "expected_behavior": "Does not activate unless AI/ML pipeline architecture is requested.",
+      "expected_checks": ["quality_criteria"],
+      "tags": ["false-positive"]
+    },
+    {
+      "id": "ai-pipeline-architecture-false-positive-weather",
+      "type": "false_positive",
+      "input": "What is the weather forecast tomorrow?",
+      "expected_behavior": "Does not activate.",
+      "expected_checks": ["quality_criteria"],
+      "tags": ["false-positive"]
+    },
+    {
+      "id": "ai-pipeline-architecture-script-validation",
+      "type": "validation",
+      "input": "Validate deterministic AI pipeline architecture reports with fixtures.",
+      "expected_behavior": "Offline script accepts valid fixtures and rejects invalid fixtures.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria"],
+      "tags": ["scripts", "fixtures"]
+    }
+  ]
+}
