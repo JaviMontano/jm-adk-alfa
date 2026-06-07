@@ -1,16 +1,21 @@
-# Generate Qa Report — Body of Knowledge
+# Generate QA Report - Body of Knowledge
 
 ## Canon
-Key standards, references, and best practices for Generate Qa Report.
+
+A QA report is a reconciliation artifact. It should not invent audit results or silently drop missing dimensions. Counts, severities, source coverage, and recommendations must be traceable to source runs.
 
 ## Quality Metrics
 | Metric | Target | How to Measure |
 |--------|--------|---------------|
-| Accuracy | >= 90% | Correct outputs / total |
-| Evidence coverage | >= 80% | Claims tagged [EXPLICIT]/[INFERRED]/[OPEN] |
-| Constitution compliance | 100% | Principles respected |
-| Validation Gate pass | 100% | All checklist items satisfied |
+| Source coverage | 100% | complete, partial, or blocked per QA dimension |
+| Count reconciliation | 100% | summary totals equal findings list |
+| TL;DR length | exactly 3 | three distinct lines |
+| Finding schema | 100% | severity, category, component, description, recommendation, evidence |
+| Recommendation ranking | 100% | ranks are sequential and reference findings |
+| Evidence coverage | 100% | source, finding, validation, and risk claims tagged |
 
 ## References
-- See `references/` folder in canonical skill for detailed references
-- Industry standards and best practices for this domain
+- `references/report-format-spec.md`
+- `assets/report-contract.json`
+- `assets/severity-policy.json`
+- `assets/source-policy.json`

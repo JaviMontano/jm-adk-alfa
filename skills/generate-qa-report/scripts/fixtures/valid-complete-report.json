@@ -1,0 +1,46 @@
+{
+  "skill": "generate-qa-report",
+  "reference_date": "2026-06-06",
+  "report_metadata": {
+    "plugin_name": "acme-validator",
+    "plugin_version": "1.2.0",
+    "plugin_path": "plugins/acme-validator",
+    "coverage_status": "complete",
+    "evidence_tag": "[CONFIG]"
+  },
+  "source_runs": [
+    {"name": "validate-structure", "status": "pass", "findings_count": 0, "evidence_tag": "[CODE]"},
+    {"name": "validate-manifest", "status": "warn", "findings_count": 1, "evidence_tag": "[CODE]"},
+    {"name": "validate-components", "status": "pass", "findings_count": 0, "evidence_tag": "[CODE]"},
+    {"name": "validate-hooks", "status": "pass", "findings_count": 0, "evidence_tag": "[CODE]"},
+    {"name": "validate-cross-refs", "status": "pass", "findings_count": 0, "evidence_tag": "[CODE]"},
+    {"name": "audit-security", "status": "fail", "findings_count": 1, "evidence_tag": "[CODE]"},
+    {"name": "audit-content-quality", "status": "pass", "findings_count": 0, "evidence_tag": "[CODE]"}
+  ],
+  "summary_stats": {"total_findings": 2, "critical": 1, "warning": 1, "info": 0},
+  "tldr": [
+    "acme-validator has 1 critical and 1 warning across completed QA sources. [CODE]",
+    "Structure, components, hooks, cross-references, and content quality passed. [CODE]",
+    "Priority: remove and rotate the hardcoded token in hooks/post-install.sh:7. [CODE]"
+  ],
+  "findings": [
+    {"id": "F-001", "severity": "CRITICAL", "category": "Security", "component": "hooks/post-install.sh:7", "description": "Hardcoded token was reported by audit-security. [CODE]", "recommendation": "Remove token, rotate credential, and load from environment.", "evidence_tag": "[CODE]"},
+    {"id": "F-002", "severity": "WARNING", "category": "Manifest", "component": "plugin.json", "description": "Missing description was reported by validate-manifest. [CODE]", "recommendation": "Add a concise plugin description.", "evidence_tag": "[CODE]"}
+  ],
+  "category_status": [
+    {"category": "Security", "status": "FAIL", "critical": 1, "warning": 0, "info": 0, "evidence_tag": "[CODE]"},
+    {"category": "Manifest", "status": "WARN", "critical": 0, "warning": 1, "info": 0, "evidence_tag": "[CODE]"},
+    {"category": "Structure", "status": "PASS", "critical": 0, "warning": 0, "info": 0, "evidence_tag": "[CODE]"}
+  ],
+  "recommendations": [
+    {"rank": 1, "finding_ids": ["F-001"], "action": "Remove and rotate the hardcoded token.", "rationale": "Credential exposure is the highest-impact finding. [CODE]", "effort": "moderate", "evidence_tag": "[CODE]"},
+    {"rank": 2, "finding_ids": ["F-002"], "action": "Add the missing plugin description.", "rationale": "Manifest discoverability depends on the description field. [CODE]", "effort": "trivial", "evidence_tag": "[CODE]"}
+  ],
+  "validation": [
+    "Summary counts match the findings list. [CODE]",
+    "Recommendation ranks are sequential and reference included findings. [CODE]"
+  ],
+  "risks": [
+    "The report aggregates upstream findings and does not independently prove each finding. [ASSUMPTION]"
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "schema": 1,
+  "skill": "generate-qa-report",
+  "allowed_evidence_tags": ["[CODE]", "[CONFIG]", "[DOC]", "[INFERENCE]", "[ASSUMPTION]", "[EXPLICIT]", "[INFERRED]", "[OPEN]", "[CÓDIGO]", "[INFERENCIA]", "[SUPUESTO]"],
+  "required_top_level": ["skill", "reference_date", "report_metadata", "source_runs", "summary_stats", "tldr", "findings", "category_status", "recommendations", "validation", "risks"],
+  "required_finding_fields": ["id", "severity", "category", "component", "description", "recommendation", "evidence_tag"],
+  "moving_time_terms": ["today", "tomorrow", "yesterday", "soon", "recently", "later", "TBD"]
+}

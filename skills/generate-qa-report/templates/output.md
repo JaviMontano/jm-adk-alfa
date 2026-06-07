@@ -1,28 +1,34 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: generate-qa-report
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
+# QA Report: {plugin_name}
 
-# Generate Qa Report Output
+**Reference Date**: {reference_date}
+**Plugin**: {plugin_path}
+**Source Coverage**: {complete|partial|blocked}
 
-## Summary
+## TL;DR
 
-{summary}
+{line_1}
+{line_2}
+{line_3}
 
-## Evidence
+## Summary Statistics
 
-{evidence}
+| Severity | Count |
+|----------|-------|
+| CRITICAL | {critical} |
+| WARNING | {warning} |
+| INFO | {info} |
 
-## Result
+## Findings
 
-{result}
+| ID | Severity | Category | Component | Description | Recommendation |
+|----|----------|----------|-----------|-------------|----------------|
+| {id} | {severity} | {category} | {component} | {description} | {recommendation} |
 
-## Validation
+## Recommendations
 
-{validation}
+1. {action} - {rationale}
 
-## Risks and Limits
+## Validation and Risks
 
-{risks}
+- Validation: {validation}
+- Risks: {risks}

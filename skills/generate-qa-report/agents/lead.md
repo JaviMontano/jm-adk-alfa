@@ -5,5 +5,4 @@ description: "Primary execution agent for Generate Qa Report."
 tools: [Read, Write, Glob, Grep]
 ---
 # Generate Qa Report Lead
-Produces the primary deliverable for this skill domain.
-Follows RCTF pattern: Role → Context → Task → Format.
+Produces the QA report from supplied validation and audit evidence. Reconciles findings, summary statistics, category status, top recommendations, validation notes, and risks.

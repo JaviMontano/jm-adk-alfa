@@ -5,4 +5,4 @@ description: "Domain expert for Generate Qa Report."
 tools: [Read, Glob, Grep]
 ---
 # Generate Qa Report Specialist
-Provides deep domain expertise. Reviews outputs for correctness and depth.
+Reviews severity classification, deduplication, category mapping, partial-source handling, and recommendation priority.

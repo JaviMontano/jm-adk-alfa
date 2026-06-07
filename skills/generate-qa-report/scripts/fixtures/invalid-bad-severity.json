@@ -1,0 +1,13 @@
+{
+  "skill": "generate-qa-report",
+  "reference_date": "2026-06-06",
+  "report_metadata": {"plugin_name": "bad-severity", "plugin_version": "1.0.0", "plugin_path": "plugins/bad-severity", "coverage_status": "partial", "evidence_tag": "[CONFIG]"},
+  "source_runs": [{"name": "audit-security", "status": "fail", "findings_count": 1, "evidence_tag": "[CODE]"}],
+  "summary_stats": {"total_findings": 1, "critical": 0, "warning": 0, "info": 0},
+  "tldr": ["One unsupported severity is present. [CODE]", "Security source ran. [CODE]", "Priority: reject unsupported severity. [CONFIG]"],
+  "findings": [{"id": "F-001", "severity": "BLOCKER", "category": "Security", "component": "hooks/install.sh", "description": "Unsupported severity. [CODE]", "recommendation": "Use CRITICAL, WARNING, or INFO.", "evidence_tag": "[CODE]"}],
+  "category_status": [{"category": "Security", "status": "FAIL", "critical": 0, "warning": 0, "info": 0, "evidence_tag": "[CODE]"}],
+  "recommendations": [{"rank": 1, "finding_ids": ["F-001"], "action": "Fix severity.", "rationale": "Unsupported severity breaks aggregation. [CODE]", "effort": "trivial", "evidence_tag": "[CODE]"}],
+  "validation": ["This fixture must fail on severity. [CODE]", "Counts are intentionally secondary. [CONFIG]"],
+  "risks": ["Unsupported severity can hide prioritization. [ASSUMPTION]"]
+}

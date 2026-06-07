@@ -1,75 +1,23 @@
 {
   "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-28",
   "skill": "generate-qa-report",
   "nodes": [
-    {
-      "id": "generate-qa-report",
-      "type": "skill",
-      "label": "generate-qa-report"
-    },
-    {
-      "id": "generate-qa-report:inputs",
-      "type": "contract",
-      "label": "Expected inputs"
-    },
-    {
-      "id": "generate-qa-report:outputs",
-      "type": "contract",
-      "label": "Expected outputs"
-    },
-    {
-      "id": "generate-qa-report:quality",
-      "type": "gate",
-      "label": "Quality criteria"
-    },
-    {
-      "id": "generate-qa-report:ontology",
-      "type": "ontology",
-      "label": "Domain: general"
-    },
-    {
-      "id": "generate-qa-report:evidence",
-      "type": "gate",
-      "label": "Evidence / provenance requirements"
-    },
-    {
-      "id": "generate-qa-report:antipattern",
-      "type": "risk",
-      "label": "Canonical anti-pattern to avoid"
-    }
+    {"id": "generate-qa-report", "type": "skill", "label": "Generate QA Report"},
+    {"id": "source-runs", "type": "evidence", "label": "Source runs"},
+    {"id": "findings", "type": "contract", "label": "Normalized findings"},
+    {"id": "summary-stats", "type": "contract", "label": "Summary statistics"},
+    {"id": "tldr", "type": "contract", "label": "Three-line TLDR"},
+    {"id": "recommendations", "type": "contract", "label": "Ranked recommendations"},
+    {"id": "validation", "type": "gate", "label": "Report validation"},
+    {"id": "risks", "type": "output", "label": "Residual risks"}
   ],
   "edges": [
-    {
-      "from": "generate-qa-report",
-      "to": "generate-qa-report:inputs",
-      "type": "requires"
-    },
-    {
-      "from": "generate-qa-report",
-      "to": "generate-qa-report:outputs",
-      "type": "produces"
-    },
-    {
-      "from": "generate-qa-report",
-      "to": "generate-qa-report:quality",
-      "type": "validated_by"
-    },
-    {
-      "from": "generate-qa-report",
-      "to": "generate-qa-report:ontology",
-      "type": "classified_as"
-    },
-    {
-      "from": "generate-qa-report",
-      "to": "generate-qa-report:evidence",
-      "type": "validated_by"
-    },
-    {
-      "from": "generate-qa-report",
-      "to": "generate-qa-report:antipattern",
-      "type": "guards_against"
-    }
+    {"from": "generate-qa-report", "to": "source-runs", "type": "requires"},
+    {"from": "source-runs", "to": "findings", "type": "normalizes"},
+    {"from": "findings", "to": "summary-stats", "type": "reconciles"},
+    {"from": "summary-stats", "to": "tldr", "type": "summarizes"},
+    {"from": "findings", "to": "recommendations", "type": "prioritizes"},
+    {"from": "recommendations", "to": "validation", "type": "checked_by"},
+    {"from": "validation", "to": "risks", "type": "informs"}
   ]
 }

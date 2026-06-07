@@ -1,0 +1,13 @@
+{
+  "skill": "generate-qa-report",
+  "reference_date": "2026-06-06",
+  "report_metadata": {"plugin_name": "source-evidence", "plugin_version": "1.0.0", "plugin_path": "plugins/source-evidence", "coverage_status": "partial", "evidence_tag": "[CONFIG]"},
+  "source_runs": [{"name": "validate-structure", "status": "pass", "findings_count": 0, "evidence_tag": ""}],
+  "summary_stats": {"total_findings": 0, "critical": 0, "warning": 0, "info": 0},
+  "tldr": ["No findings are listed. [CODE]", "Source evidence is missing. [CONFIG]", "Priority: add source evidence. [CONFIG]"],
+  "findings": [],
+  "category_status": [{"category": "Structure", "status": "PASS", "critical": 0, "warning": 0, "info": 0, "evidence_tag": "[CODE]"}],
+  "recommendations": [],
+  "validation": ["This fixture must fail on source evidence. [CODE]", "No findings are present. [CODE]"],
+  "risks": ["Source runs without evidence are not auditable. [ASSUMPTION]"]
+}

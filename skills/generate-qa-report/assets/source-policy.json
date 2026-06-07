@@ -1,0 +1,6 @@
+{
+  "schema": 1,
+  "skill": "generate-qa-report",
+  "required_sources": ["validate-structure", "validate-manifest", "validate-components", "validate-hooks", "validate-cross-refs", "audit-security", "audit-content-quality"],
+  "categories": ["Structure", "Manifest", "Components", "Hooks", "Cross-References", "Security", "Content Quality"]
+}

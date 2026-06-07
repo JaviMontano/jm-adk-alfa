@@ -1,0 +1,39 @@
+{
+  "skill": "generate-qa-report",
+  "reference_date": "2026-06-06",
+  "report_metadata": {
+    "plugin_name": "clean-plugin",
+    "plugin_version": "2.0.0",
+    "plugin_path": "plugins/clean-plugin",
+    "coverage_status": "complete",
+    "evidence_tag": "[CONFIG]"
+  },
+  "source_runs": [
+    {"name": "validate-structure", "status": "pass", "findings_count": 0, "evidence_tag": "[CODE]"},
+    {"name": "validate-manifest", "status": "pass", "findings_count": 0, "evidence_tag": "[CODE]"},
+    {"name": "validate-components", "status": "pass", "findings_count": 0, "evidence_tag": "[CODE]"},
+    {"name": "validate-hooks", "status": "pass", "findings_count": 0, "evidence_tag": "[CODE]"},
+    {"name": "validate-cross-refs", "status": "pass", "findings_count": 0, "evidence_tag": "[CODE]"},
+    {"name": "audit-security", "status": "pass", "findings_count": 0, "evidence_tag": "[CODE]"},
+    {"name": "audit-content-quality", "status": "pass", "findings_count": 0, "evidence_tag": "[CODE]"}
+  ],
+  "summary_stats": {"total_findings": 0, "critical": 0, "warning": 0, "info": 0},
+  "tldr": [
+    "clean-plugin has zero QA findings across completed sources. [CODE]",
+    "All QA categories passed. [CODE]",
+    "Priority: preserve current validation coverage before release. [CONFIG]"
+  ],
+  "findings": [],
+  "category_status": [
+    {"category": "Structure", "status": "PASS", "critical": 0, "warning": 0, "info": 0, "evidence_tag": "[CODE]"},
+    {"category": "Security", "status": "PASS", "critical": 0, "warning": 0, "info": 0, "evidence_tag": "[CODE]"}
+  ],
+  "recommendations": [],
+  "validation": [
+    "Zero summary counts match the empty findings list. [CODE]",
+    "Complete source coverage includes all required QA sources. [CODE]"
+  ],
+  "risks": [
+    "Clean status depends on the supplied source runs remaining valid for the reviewed revision. [ASSUMPTION]"
+  ]
+}

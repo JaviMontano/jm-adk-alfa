@@ -1,30 +1,29 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: generate-qa-report
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
-
 # Generate Qa Report
 
->
+`generate-qa-report` aggregates validation and audit outputs into a deterministic Markdown QA report. It does not invent findings; it reconciles source runs, counts severities, writes an exact 3-line TL;DR, and prioritizes recommendations from evidence-backed findings.
 
-## Triggers
+## Deterministic Inputs
 
-- generate-qa-report
+- Validation/audit outputs from structure, manifest, components, hooks, cross-reference, security, and content-quality checks.
+- Plugin metadata such as name, version, path, and component counts.
+- Optional partial-source acknowledgement when not all QA dimensions were run.
 
-## Allowed Tools
+## Deterministic Output
 
-- Read
-- Write
-- Glob
-- Grep
-- Bash
+The report must include:
 
-## Quick Use
+- report metadata and source coverage;
+- summary statistics whose counts match the findings list;
+- exactly three TL;DR lines;
+- categorized findings with severity, component, description, recommendation, and evidence tag;
+- category status table;
+- top recommendations ranked by severity and impact;
+- validation notes and residual risks.
 
-Use this skill when the request clearly matches the triggers and requires the `generate-qa-report` capability.
+## Offline Contract
 
-## Output Format
+Run the deterministic fixture validator:
 
-Markdown with summary, evidence, result, validation, and risks.
+```bash
+bash skills/generate-qa-report/scripts/check.sh
+```

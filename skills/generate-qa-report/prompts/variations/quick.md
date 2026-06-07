@@ -3,7 +3,6 @@ name: generate-qa-report-quick
 type: variation
 variant: quick
 ---
-# Generate Qa Report — Quick Mode
+# Generate QA Report - Quick Mode
 
-Streamlined execution. Focus on TL;DR and primary output only.
-Apply Validation Gate but skip extended evidence tagging.
+Streamlined execution for small QA outputs. Include the 3-line TL;DR, summary stats, all findings, top recommendations, source coverage, validation, and risks. Do not skip evidence tags.

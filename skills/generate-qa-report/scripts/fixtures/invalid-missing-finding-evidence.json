@@ -1,0 +1,13 @@
+{
+  "skill": "generate-qa-report",
+  "reference_date": "2026-06-06",
+  "report_metadata": {"plugin_name": "missing-evidence", "plugin_version": "1.0.0", "plugin_path": "plugins/missing-evidence", "coverage_status": "partial", "evidence_tag": "[CONFIG]"},
+  "source_runs": [{"name": "validate-manifest", "status": "warn", "findings_count": 1, "evidence_tag": "[CODE]"}],
+  "summary_stats": {"total_findings": 1, "critical": 0, "warning": 1, "info": 0},
+  "tldr": ["One warning is listed. [CODE]", "Manifest source ran. [CODE]", "Priority: add evidence tags. [CONFIG]"],
+  "findings": [{"id": "F-001", "severity": "WARNING", "category": "Manifest", "component": "plugin.json", "description": "Missing description.", "recommendation": "Add description.", "evidence_tag": ""}],
+  "category_status": [{"category": "Manifest", "status": "WARN", "critical": 0, "warning": 1, "info": 0, "evidence_tag": "[CODE]"}],
+  "recommendations": [{"rank": 1, "finding_ids": ["F-001"], "action": "Add description.", "rationale": "Manifest warning exists. [CODE]", "effort": "trivial", "evidence_tag": "[CODE]"}],
+  "validation": ["This fixture must fail on finding evidence. [CODE]", "Counts otherwise match. [CODE]"],
+  "risks": ["Untraceable findings are hard to fix. [ASSUMPTION]"]
+}
