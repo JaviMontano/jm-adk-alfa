@@ -1,0 +1,11 @@
+{
+  "system": {"name": "Dashboard Missing Metrics", "platforms": ["web"], "tools": ["GA4", "BigQuery", "Looker Studio"], "scope": "Signup"},
+  "evidence": [{"id": "ev1", "tag": "measurement_requirement", "source": "Brief", "summary": "Signup event required."}],
+  "ga4_setup": [{"surface": "web", "tool": "GA4", "owner": "Analytics", "consent_policy": "documented", "validation_method": "DebugView", "evidence_ids": ["ev1"]}],
+  "events": [{"name": "account_created", "trigger": "Signup succeeds.", "platform": "web", "owner": "Analytics", "parameters": [{"name": "event_id", "type": "string", "pii": "none"}], "destination": "GA4", "validation_method": "DebugView", "evidence_ids": ["ev1"]}],
+  "conversions": [], "user_properties": [],
+  "bigquery_export": {"enabled": true, "dataset": "ga4_export", "location": "US", "retention": "14 months", "partitioning": "event_date", "pii_handling": "No raw personal data.", "owner": "Data", "validation_method": "Row check", "evidence_ids": ["ev1"]},
+  "dashboards": [{"name": "Signup", "data_source": "BigQuery", "metrics": [], "owner": "Analytics", "freshness": "daily", "validation_method": "Query check", "evidence_ids": ["ev1"]}],
+  "implementation_steps": [{"id": "step-1", "task": "Instrument signup.", "owner": "Web", "validation_method": "DebugView", "evidence_ids": ["ev1"]}],
+  "validation": {"status": "pass", "checks": ["ga4_setup", "event_contract", "conversion_policy", "user_property_policy", "bigquery_export", "dashboard_policy", "privacy_policy", "evidence_policy"]}
+}

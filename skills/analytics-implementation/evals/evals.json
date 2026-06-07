@@ -1,9 +1,22 @@
-[
-  {"id": "analytics-implementation-happy-path", "type": "happy_path", "input": "Run analytics implementation on this project", "expected_behavior": "Skill activates and produces the expected analytics implementation output following the defined process", "tags": ["basic", "activation"]},
-  {"id": "analytics-implementation-explicit-trigger", "type": "happy_path", "input": "Apply analytics implementation analysis", "expected_behavior": "Skill recognizes the trigger phrase and executes the analytics implementation workflow", "tags": ["trigger", "recognition"]},
-  {"id": "analytics-implementation-with-context", "type": "happy_path", "input": "Apply analytics implementation to analyze the current codebase with detailed output", "expected_behavior": "Skill produces comprehensive analytics implementation analysis with evidence-tagged findings", "tags": ["detailed", "comprehensive"]},
-  {"id": "analytics-implementation-minimal-input", "type": "happy_path", "input": "Quick analytics implementation", "expected_behavior": "Skill activates with minimal input, applies reasonable defaults", "tags": ["minimal", "defaults"]},
-  {"id": "analytics-implementation-false-positive", "type": "false_positive", "input": "What is the weather forecast for tomorrow?", "expected_behavior": "Skill should NOT activate — this input has no relation to analytics implementation", "tags": ["false_positive", "should-not-activate"]},
-  {"id": "analytics-implementation-edge-empty-input", "type": "edge_case", "input": "Run analytics implementation but I have no files or documentation yet", "expected_behavior": "Skill handles gracefully — requests minimum viable input or produces gap analysis", "tags": ["edge_case", "empty-input", "boundary"]},
-  {"id": "analytics-implementation-edge-conflicting", "type": "edge_case", "input": "Apply analytics implementation but requirements contradict each other", "expected_behavior": "Skill detects contradiction, flags with [OPEN] tag, proposes resolution", "tags": ["edge_case", "conflict", "corner"]}
-]
+{
+  "schema": 1,
+  "skill": "analytics-implementation",
+  "determinism": {
+    "network": "forbidden",
+    "time": "provided by caller when needed",
+    "randomness": "forbidden",
+    "oracle": "assets plus scripts/fixtures"
+  },
+  "cases": [
+    {"id": "impl-ga4-web-firebase", "type": "happy_path", "input": "Plan GA4 and Firebase Analytics implementation for web and mobile onboarding with conversions and BigQuery export.", "expected_behavior": "Produces setup, events, conversions, user properties, export, dashboards, implementation steps, privacy, and QA checks.", "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "ga4_setup", "event_contract", "bigquery_export"]},
+    {"id": "impl-checkout-conversions", "type": "happy_path", "input": "Implement GA4 checkout events, mark purchase_completed as a conversion, export to BigQuery, and prepare Looker Studio revenue dashboard.", "expected_behavior": "Defines event contracts, conversion ownership, export settings, dashboard data source, and validation methods.", "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "conversion_policy", "dashboard_policy"]},
+    {"id": "impl-existing-broken-events", "type": "degradation", "input": "Existing GA4 events are inconsistent and BigQuery export is disabled.", "expected_behavior": "Creates a remediation plan without claiming export evidence, and blocks final pass until export and QA are validated.", "expected_checks": ["assets", "quality_criteria", "gap_tracking", "bigquery_export"]},
+    {"id": "impl-conflicting-privacy", "type": "conflict", "input": "Track raw email as a user property but also comply with privacy-safe analytics.", "expected_behavior": "Blocks raw personal data and proposes safe identifiers or hashed/consented alternatives.", "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "privacy_policy"]},
+    {"id": "impl-false-positive-firestore", "type": "false_positive", "input": "Design Firestore collections, security rules, indexes, and backups.", "expected_behavior": "Does not activate because this is database design without analytics implementation.", "expected_checks": ["quality_criteria", "activation_guard"]},
+    {"id": "impl-false-positive-dashboard-design", "type": "false_positive", "input": "Design a dashboard color palette and chart layout.", "expected_behavior": "Does not activate unless analytics setup, data source, metrics, or implementation handoff is requested.", "expected_checks": ["quality_criteria", "activation_guard"]},
+    {"id": "impl-negative-no-evidence", "type": "false_negative_guard", "input": "Return a GA4 implementation plan with no project evidence, owners, validation, or privacy notes.", "expected_behavior": "Rejects final output because evidence, owners, validation, and privacy controls are mandatory.", "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "evidence_policy"]},
+    {"id": "impl-boundary-minimal", "type": "boundary", "input": "We only know the product needs GA4 for web signup and Looker Studio weekly activation reporting.", "expected_behavior": "Produces a minimal implementation plan with assumptions and open evidence gaps instead of inventing app details.", "expected_checks": ["assets", "quality_criteria", "assumption_tracking"]},
+    {"id": "impl-invalid-conversion", "type": "negative_output", "input": "Mark purchase_completed as a conversion but do not define the event contract.", "expected_behavior": "Rejects output because every conversion must reference a known event.", "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "conversion_policy"]},
+    {"id": "impl-invalid-dashboard", "type": "negative_output", "input": "Create a Looker Studio dashboard with no data source, metrics, owner, or freshness.", "expected_behavior": "Rejects dashboard handoff as unverifiable.", "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "dashboard_policy"]}
+  ]
+}

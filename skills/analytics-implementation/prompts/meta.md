@@ -10,8 +10,9 @@ description: "Meta-prompt for Analytics Implementation skill routing."
 Activate this skill when the user request matches:
 - Trigger phrases from SKILL.md description
 - Direct invocation: `/analytics-implementation`
+- GA4/Firebase setup, custom events, conversions, user properties, BigQuery export, Looker Studio readiness, DebugView QA, or consent/privacy analytics implementation
 
 ## Skill Routing
-1. Load SKILL.md → read `## When to Activate` section
-2. If match → activate lead agent: `analytics-implementation-lead`
-3. If orchestrated → defer to orchestrating skill
+1. Load SKILL.md and confirm the task is analytics implementation, not Firestore database design or dashboard visual design.
+2. If matched, activate `analytics-implementation-lead`.
+3. If orchestrated, defer to the orchestrator while preserving the `assets/` and `scripts/` contract.

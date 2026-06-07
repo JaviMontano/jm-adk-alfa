@@ -1,0 +1,13 @@
+{
+  "skill": "analytics-implementation",
+  "version": "1.0.1",
+  "assets": [
+    {"path": "assets/analytics-implementation-contract.json", "type": "schema_contract", "purpose": "Defines required implementation report sections and checks.", "used_by": ["SKILL.md", "README.md", "templates/output.md", "scripts/validate_analytics_implementation.py"]},
+    {"path": "assets/ga4-policy.json", "type": "setup_contract", "purpose": "Defines GA4 and Firebase setup fields.", "used_by": ["SKILL.md", "prompts/primary.md", "scripts/validate_analytics_implementation.py"]},
+    {"path": "assets/event-policy.json", "type": "event_contract", "purpose": "Defines custom event and parameter rules.", "used_by": ["SKILL.md", "agents/guardian.md", "scripts/validate_analytics_implementation.py"]},
+    {"path": "assets/conversion-policy.json", "type": "conversion_contract", "purpose": "Defines conversion marker rules.", "used_by": ["SKILL.md", "agents/specialist.md", "scripts/validate_analytics_implementation.py"]},
+    {"path": "assets/bigquery-policy.json", "type": "export_contract", "purpose": "Defines BigQuery export requirements.", "used_by": ["SKILL.md", "templates/output.md", "scripts/validate_analytics_implementation.py"]},
+    {"path": "assets/dashboard-policy.json", "type": "dashboard_contract", "purpose": "Defines Looker Studio readiness requirements.", "used_by": ["SKILL.md", "templates/output.md", "scripts/validate_analytics_implementation.py"]},
+    {"path": "assets/evidence-policy.json", "type": "evidence_contract", "purpose": "Defines evidence tags and required provenance fields.", "used_by": ["SKILL.md", "agents/support.md", "scripts/validate_analytics_implementation.py"]}
+  ]
+}

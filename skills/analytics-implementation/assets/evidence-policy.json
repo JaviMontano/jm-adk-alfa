@@ -1,0 +1,5 @@
+{
+  "schema": 1,
+  "allowed_tags": ["measurement_requirement", "platform_inventory", "privacy_constraint", "export_requirement", "dashboard_requirement", "validation", "assumption"],
+  "required_fields": ["id", "tag", "source", "summary"]
+}

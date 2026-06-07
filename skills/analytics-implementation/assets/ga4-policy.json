@@ -1,0 +1,6 @@
+{
+  "schema": 1,
+  "required_fields": ["surface", "tool", "owner", "consent_policy", "validation_method", "evidence_ids"],
+  "allowed_tools": ["GA4", "Firebase Analytics", "Measurement Protocol"],
+  "required_consent_values": ["documented", "not_applicable"]
+}
