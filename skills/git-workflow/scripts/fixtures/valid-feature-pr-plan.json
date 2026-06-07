@@ -1,0 +1,66 @@
+{
+  "skill": "git-workflow",
+  "reference_date": "2026-06-06",
+  "repo_state": {
+    "branch": "main",
+    "base_branch": "main",
+    "clean": true,
+    "aligned_with_remote": true,
+    "open_prs": 0,
+    "local_head": "abc1234",
+    "remote_head": "abc1234",
+    "evidence_tag": "[CODE]"
+  },
+  "decision": {
+    "status": "proceed",
+    "rationale": "The working tree is clean, base branch is aligned, and no open PR blocks the feature workflow. [CODE]",
+    "evidence_tag": "[CODE]"
+  },
+  "branch_strategy": {
+    "type": "feature",
+    "branch_name": "codex/add-report-export",
+    "base_branch": "main",
+    "evidence_tag": "[CONFIG]"
+  },
+  "operation_plan": [
+    {"step": 1, "command": "git fetch origin main", "preconditions": "network access is available", "expected_outcome": "origin/main is refreshed", "rollback": "retry or block on network failure", "evidence_tag": "[CONFIG]"},
+    {"step": 2, "command": "git checkout -b codex/add-report-export origin/main", "preconditions": "working tree is clean", "expected_outcome": "feature branch starts from origin/main", "rollback": "delete branch before changes if created accidentally", "evidence_tag": "[CONFIG]"},
+    {"step": 3, "command": "git status --short --branch", "preconditions": "branch exists", "expected_outcome": "branch and cleanliness are visible", "rollback": "block if unexpected changes appear", "evidence_tag": "[CODE]"},
+    {"step": 4, "command": "git diff --check", "preconditions": "edits are complete", "expected_outcome": "whitespace check passes", "rollback": "fix whitespace before staging", "evidence_tag": "[CODE]"},
+    {"step": 5, "command": "git add skills/report-export docs/report-export.md", "preconditions": "scope was reviewed", "expected_outcome": "scoped files are staged", "rollback": "git restore --staged skills/report-export docs/report-export.md", "evidence_tag": "[CONFIG]"},
+    {"step": 6, "command": "git commit -m \"feat: add report export\"", "preconditions": "local validation passed", "expected_outcome": "conventional commit exists", "rollback": "amend or revert before push", "evidence_tag": "[CONFIG]"},
+    {"step": 7, "command": "git push -u origin codex/add-report-export", "preconditions": "commit exists", "expected_outcome": "remote branch is available for PR", "rollback": "delete remote branch if PR is abandoned", "evidence_tag": "[CONFIG]"}
+  ],
+  "commit_policy": {
+    "convention": "conventional",
+    "message_example": "feat: add report export",
+    "evidence_tag": "[CONFIG]"
+  },
+  "pr_policy": {
+    "required_checks": ["local validation", "Quality Gates"],
+    "merge_method": "squash",
+    "delete_branch": true,
+    "evidence_tag": "[CONFIG]"
+  },
+  "conflict_policy": {
+    "strategy": "fetch, inspect conflicts, resolve markers, rerun validation, then push",
+    "marker_check": "search for conflict markers before commit",
+    "validation_after_resolution": "rerun local validation and diff check",
+    "evidence_tag": "[CONFIG]"
+  },
+  "release_policy": {
+    "tag_strategy": "none",
+    "evidence_tag": "[CONFIG]"
+  },
+  "validation": [
+    "Run project local validation before staging. [CONFIG]",
+    "Run git diff --check before commit. [CODE]"
+  ],
+  "stop_conditions": [
+    "Stop if working tree becomes dirty from unrelated changes. [CONFIG]",
+    "Stop if Quality Gates fail. [CONFIG]"
+  ],
+  "risks": [
+    "The plan assumes the remote branch does not already exist. [ASSUMPTION]"
+  ]
+}

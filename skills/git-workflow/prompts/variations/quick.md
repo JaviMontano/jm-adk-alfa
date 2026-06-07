@@ -5,11 +5,11 @@ version: 2.0.0
 description: "Git Workflow in quick mode."
 ---
 
-# Git Workflow — quick Mode
+# Git Workflow - Quick Mode
 
 ## When to Use
 
-Use quick mode when you need adjusted depth for the Git Workflow workflow.
+Use quick mode for a single Git operation with known repo state.
 
 ## Dynamic Parameters
 
@@ -21,14 +21,10 @@ Use quick mode when you need adjusted depth for the Git Workflow workflow.
 
 ## Execution
 
-1. Load skill: `skills/git-workflow/knowledge/body-of-knowledge.md`
-2. Check guardrails: `references/guardrails/*.json`
-3. Execute at quick depth with evidence tags
-4. Lead → Support → Guardian validation
-5. Confidence >= 0.95
+1. Confirm repo state and stop conditions.
+2. Produce branch, commit, PR, validation, and cleanup steps.
+3. Validate command safety and evidence tags.
 
 ## Output
 
-- Deliverable calibrated to quick depth
-- Evidence-tagged, Constitution-compliant
-- Recommendations beyond the ask
+- Compact workflow plan with blockers, commands, validation, and next action.

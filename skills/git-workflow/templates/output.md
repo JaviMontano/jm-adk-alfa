@@ -1,28 +1,39 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: git-workflow
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
+# Git Workflow Plan
 
-# Git Workflow Output
+## Repo State
 
-## Summary
+- Branch: `{branch}`
+- Clean tree: `{true|false}`
+- Base aligned: `{true|false}`
+- Open PRs: `{count}`
+- Decision: `{proceed|block|clarify}`
 
-{summary}
+## Branch Strategy
 
-## Evidence
+- Type: `{feature|hotfix|release|trunk}`
+- Branch name: `{branch_name}`
+- Base branch: `{base_branch}`
 
-{evidence}
+## Command Plan
 
-## Result
+| Step | Command | Preconditions | Expected Outcome | Rollback |
+|------|---------|---------------|------------------|----------|
+| `{n}` | `{command}` | `{precondition}` | `{outcome}` | `{rollback}` |
 
-{result}
+## Commit and PR Policy
 
-## Validation
+- Commit convention: `{convention}`
+- Required checks: `{checks}`
+- Merge method: `{squash|merge|rebase}`
+- Delete branch after merge: `{true|false}`
 
-{validation}
+## Conflict and Release Policy
 
-## Risks and Limits
+- Conflict strategy: `{strategy}`
+- Release tag: `{none|semver-tag}`
 
-{risks}
+## Validation and Risks
+
+- Local validation: `{commands}`
+- Stop conditions: `{conditions}`
+- Risks: `{risks}`

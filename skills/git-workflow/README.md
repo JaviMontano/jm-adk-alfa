@@ -1,30 +1,30 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: git-workflow
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
-
 # Git Workflow
 
->
+`git-workflow` designs or audits a safe Git operating plan before branch, commit, PR, merge, conflict, or release-tag work. It favors explicit preflight, clean working tree checks, deterministic commands, and clear stop conditions.
 
-## Triggers
+## Deterministic Inputs
 
-- git-workflow
+- Repository state: branch, cleanliness, local/remote alignment, and open PR count.
+- Desired operation: feature PR, hotfix, release tag, conflict resolution, or workflow audit.
+- Project constraints: branch naming, commit convention, merge method, required checks, and release policy.
 
-## Allowed Tools
+## Deterministic Output
 
-- Read
-- Write
-- Glob
-- Grep
-- Bash
+The output is a Git workflow plan with:
 
-## Quick Use
+- repo preflight and decision status;
+- branch strategy and branch name;
+- ordered command plan with preconditions and rollback notes;
+- commit convention and PR policy;
+- conflict-resolution policy;
+- release-tag policy when relevant;
+- validation commands and stop conditions;
+- risks and assumptions with evidence tags.
 
-Use this skill when the request clearly matches the triggers and requires the `git-workflow` capability.
+## Offline Contract
 
-## Output Format
+The bundled validator checks deterministic JSON workflow-plan fixtures against policy assets:
 
-Markdown with summary, evidence, result, validation, and risks.
+```bash
+bash skills/git-workflow/scripts/check.sh
+```

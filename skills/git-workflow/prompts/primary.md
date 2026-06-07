@@ -9,7 +9,7 @@ triad:
   guardian: "git-workflow-guardian"
 ---
 
-# Git Workflow — Execute
+# Git Workflow - Execute
 
 ## Dynamic Parameters
 
@@ -23,22 +23,13 @@ triad:
 
 ## Execution
 
-1. **Load knowledge**: Read `knowledge/body-of-knowledge.md`
-2. **Check guardrails**: Read `references/guardrails/*.json`
-3. **Lead** (`git-workflow-lead`): Execute SKILL.md Steps 1-4 for `{{task}}`
-   - Discover → Analyze → Execute → Validate
-   - Apply evidence tags on all claims
-4. **Support** (`git-workflow-support`): Review for cross-cutting concerns
-   - Edge cases, security, accessibility, performance
-5. **Guardian** (`git-workflow-guardian`): Validate
-   - Evidence tags complete
-   - Quality gate met
-   - Constitution XIII + XIV respected
-   - Output exceeds expectations
+1. Read repo state before proposing commands: status, branch, base alignment, and open PRs.
+2. Select operation type: feature PR, hotfix, release tag, conflict resolution, or workflow audit.
+3. Produce an ordered command plan with preconditions, expected outcomes, rollback notes, and validation commands.
+4. Apply command policy: block forbidden destructive commands and unsafe force pushes.
+5. Apply branch, PR, conflict, and release policies.
+6. Guardian validates against `assets/workflow-plan-contract.json` before delivery.
 
 ## Output
 
-- Primary deliverable for `{{task}}` in `{{output_format}}`
-- Evidence tags on every claim
-- Recommendations beyond the ask
-- Confidence score (>= 0.95)
+- Git workflow plan with evidence tags, stop conditions, and validation checklist.

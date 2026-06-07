@@ -1,0 +1,12 @@
+{
+  "schema": 1,
+  "skill": "git-workflow",
+  "allowed_evidence_tags": ["[CODE]", "[CONFIG]", "[DOC]", "[INFERENCE]", "[ASSUMPTION]", "[EXPLICIT]", "[INFERRED]", "[OPEN]", "[CÓDIGO]", "[INFERENCIA]", "[SUPUESTO]"],
+  "required_top_level": ["skill", "reference_date", "repo_state", "decision", "branch_strategy", "operation_plan", "commit_policy", "pr_policy", "conflict_policy", "release_policy", "validation", "stop_conditions", "risks"],
+  "required_repo_fields": ["branch", "base_branch", "clean", "aligned_with_remote", "open_prs", "local_head", "remote_head", "evidence_tag"],
+  "required_step_fields": ["step", "command", "preconditions", "expected_outcome", "rollback", "evidence_tag"],
+  "decision_statuses": ["proceed", "block", "clarify"],
+  "commit_conventions": ["conventional", "semantic", "project"],
+  "merge_methods": ["squash", "merge", "rebase"],
+  "moving_time_terms": ["today", "tomorrow", "yesterday", "soon", "recently", "later", "TBD"]
+}

@@ -1,0 +1,19 @@
+{
+  "skill": "git-workflow",
+  "reference_date": "2026-06-06",
+  "repo_state": {"branch": "main", "base_branch": "main", "clean": false, "aligned_with_remote": true, "open_prs": 0, "local_head": "abc1234", "remote_head": "abc1234", "evidence_tag": "[CODE]"},
+  "decision": {"status": "proceed", "rationale": "This should fail because the tree is dirty. [CODE]", "evidence_tag": "[CODE]"},
+  "branch_strategy": {"type": "feature", "branch_name": "codex/dirty-proceed", "base_branch": "main", "evidence_tag": "[CONFIG]"},
+  "operation_plan": [
+    {"step": 1, "command": "git status --short --branch", "preconditions": "repo exists", "expected_outcome": "dirty state visible", "rollback": "block", "evidence_tag": "[CODE]"},
+    {"step": 2, "command": "git fetch origin main", "preconditions": "network", "expected_outcome": "remote refreshed", "rollback": "block", "evidence_tag": "[CONFIG]"},
+    {"step": 3, "command": "git checkout -b codex/dirty-proceed origin/main", "preconditions": "dirty tree ignored", "expected_outcome": "branch created", "rollback": "delete branch", "evidence_tag": "[CONFIG]"}
+  ],
+  "commit_policy": {"convention": "conventional", "message_example": "fix: dirty proceed", "evidence_tag": "[CONFIG]"},
+  "pr_policy": {"required_checks": ["local validation"], "merge_method": "squash", "delete_branch": true, "evidence_tag": "[CONFIG]"},
+  "conflict_policy": {"strategy": "block on markers", "marker_check": "grep conflict markers", "validation_after_resolution": "rerun checks", "evidence_tag": "[CONFIG]"},
+  "release_policy": {"tag_strategy": "none", "evidence_tag": "[CONFIG]"},
+  "validation": ["Run git status. [CODE]", "Run git diff --check. [CODE]"],
+  "stop_conditions": ["Dirty tree should stop progress. [CONFIG]"],
+  "risks": ["Dirty tree can mix unrelated work. [ASSUMPTION]"]
+}

@@ -1,75 +1,23 @@
 {
   "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-28",
   "skill": "git-workflow",
   "nodes": [
-    {
-      "id": "git-workflow",
-      "type": "skill",
-      "label": "git-workflow"
-    },
-    {
-      "id": "git-workflow:inputs",
-      "type": "contract",
-      "label": "Expected inputs"
-    },
-    {
-      "id": "git-workflow:outputs",
-      "type": "contract",
-      "label": "Expected outputs"
-    },
-    {
-      "id": "git-workflow:quality",
-      "type": "gate",
-      "label": "Quality criteria"
-    },
-    {
-      "id": "git-workflow:ontology",
-      "type": "ontology",
-      "label": "Domain: general"
-    },
-    {
-      "id": "git-workflow:evidence",
-      "type": "gate",
-      "label": "Evidence / provenance requirements"
-    },
-    {
-      "id": "git-workflow:antipattern",
-      "type": "risk",
-      "label": "Canonical anti-pattern to avoid"
-    }
+    {"id": "git-workflow", "type": "skill", "label": "Git Workflow"},
+    {"id": "repo-state", "type": "evidence", "label": "Repository state"},
+    {"id": "branch-strategy", "type": "decision", "label": "Branch strategy"},
+    {"id": "command-plan", "type": "contract", "label": "Command plan"},
+    {"id": "pr-policy", "type": "gate", "label": "PR policy"},
+    {"id": "conflict-policy", "type": "gate", "label": "Conflict policy"},
+    {"id": "release-policy", "type": "gate", "label": "Release policy"},
+    {"id": "validation", "type": "gate", "label": "Validation evidence"}
   ],
   "edges": [
-    {
-      "from": "git-workflow",
-      "to": "git-workflow:inputs",
-      "type": "requires"
-    },
-    {
-      "from": "git-workflow",
-      "to": "git-workflow:outputs",
-      "type": "produces"
-    },
-    {
-      "from": "git-workflow",
-      "to": "git-workflow:quality",
-      "type": "validated_by"
-    },
-    {
-      "from": "git-workflow",
-      "to": "git-workflow:ontology",
-      "type": "classified_as"
-    },
-    {
-      "from": "git-workflow",
-      "to": "git-workflow:evidence",
-      "type": "validated_by"
-    },
-    {
-      "from": "git-workflow",
-      "to": "git-workflow:antipattern",
-      "type": "guards_against"
-    }
+    {"from": "git-workflow", "to": "repo-state", "type": "requires"},
+    {"from": "repo-state", "to": "branch-strategy", "type": "constrains"},
+    {"from": "branch-strategy", "to": "command-plan", "type": "shapes"},
+    {"from": "command-plan", "to": "pr-policy", "type": "feeds"},
+    {"from": "command-plan", "to": "conflict-policy", "type": "guards"},
+    {"from": "command-plan", "to": "release-policy", "type": "may_feed"},
+    {"from": "pr-policy", "to": "validation", "type": "requires"}
   ]
 }
