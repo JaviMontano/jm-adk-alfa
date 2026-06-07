@@ -1,0 +1,11 @@
+{
+  "system": {"name": "Missing Evidence", "platforms": ["web"], "destinations": ["Segment"], "scope": "Activation"},
+  "evidence": [],
+  "taxonomy": [],
+  "properties": [],
+  "identity": {},
+  "events": [],
+  "tracking_plan": [],
+  "governance": {},
+  "validation": {"status": "pass", "checks": []}
+}

@@ -1,30 +1,32 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: analytics-events
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
-
 # Analytics Events
 
->
+Use this skill to design product analytics event taxonomies and tracking plans that are specific, implementable, testable, and privacy-aware.
 
-## Triggers
+## Trigger Signals
 
-- analytics-events
+- Event taxonomy or event naming conventions.
+- Tracking plan for Segment, RudderStack, Amplitude, Mixpanel, GA4, Snowplow, warehouse events, mobile SDKs, web SDKs, or backend events.
+- Funnel instrumentation, product activation events, checkout events, onboarding events, lifecycle events, or account/billing events.
+- Event property schema, identity resolution, anonymous/user id merge policy, privacy handling, or QA validation.
 
-## Allowed Tools
+## Deliverable
 
-- Read
-- Write
-- Glob
-- Grep
-- Bash
+The skill produces a tracking plan with:
 
-## Quick Use
+- product surfaces and domains
+- event names and triggers
+- event owners
+- platforms and destinations
+- required properties and types
+- identity policy
+- privacy classification
+- implementation owner and QA method
+- validation checks and risks
 
-Use this skill when the request clearly matches the triggers and requires the `analytics-events` capability.
+## Assets
 
-## Output Format
+`assets/` contains static JSON policies for naming, properties, identity, tracking plans, evidence, and validation. These files are the deterministic contract for the skill.
 
-Markdown with summary, evidence, result, validation, and risks.
+## Scripts
+
+Run `bash skills/analytics-events/scripts/check.sh` to validate JSON fixtures offline. The script accepts valid tracking plans and rejects missing evidence, bad naming, missing identity, unknown properties, sensitive properties without privacy review, and incomplete validation checks.

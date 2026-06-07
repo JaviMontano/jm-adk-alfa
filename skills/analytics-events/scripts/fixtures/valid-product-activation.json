@@ -1,0 +1,50 @@
+{
+  "system": {
+    "name": "Atlas Activation",
+    "platforms": ["web", "ios", "backend"],
+    "destinations": ["Segment", "Amplitude", "Snowflake"],
+    "scope": "Onboarding activation events"
+  },
+  "evidence": [
+    {"id": "ev-prd", "tag": "product_requirement", "source": "Onboarding product brief", "summary": "Activation includes account creation and workspace invitation."},
+    {"id": "ev-dest", "tag": "tracking_destination", "source": "Analytics stack inventory", "summary": "Segment forwards product events to Amplitude and Snowflake."},
+    {"id": "ev-privacy", "tag": "privacy_constraint", "source": "Privacy implementation note", "summary": "Raw personal contact fields are excluded from analytics events."},
+    {"id": "ev-validation", "tag": "validation", "source": "QA plan", "summary": "Events are tested in debugger and destination warehouse."}
+  ],
+  "taxonomy": [
+    {"domain": "activation", "purpose": "Measure signup and workspace setup milestones.", "evidence_ids": ["ev-prd"]}
+  ],
+  "properties": [
+    {"name": "event_id", "type": "string", "required": true, "description": "Deterministic event id for deduplication.", "pii": "none"},
+    {"name": "anonymous_id", "type": "string", "required": true, "description": "Anonymous visitor identifier.", "pii": "none"},
+    {"name": "user_id", "type": "string", "required": false, "description": "Authenticated user identifier.", "pii": "low"},
+    {"name": "workspace_id", "type": "string", "required": false, "description": "Workspace identifier.", "pii": "low"},
+    {"name": "invite_count", "type": "integer", "required": false, "description": "Number of invitations sent.", "pii": "none"}
+  ],
+  "identity": {
+    "anonymous_id_policy": "Set on first visit and preserved through signup.",
+    "user_id_policy": "Attach after authenticated account creation.",
+    "merge_policy": "Merge anonymous and user profiles on account_created.",
+    "deduplication_key": "event_id",
+    "evidence_ids": ["ev-prd", "ev-privacy"]
+  },
+  "events": [
+    {"name": "account_created", "domain": "activation", "action": "created", "trigger": "Account creation succeeds.", "owner": "Growth Analytics", "platforms": ["web", "ios", "backend"], "properties": ["event_id", "anonymous_id", "user_id"], "evidence_ids": ["ev-prd"]},
+    {"name": "workspace_invited", "domain": "activation", "action": "invited", "trigger": "Workspace invitation is sent.", "owner": "Growth Analytics", "platforms": ["web", "backend"], "properties": ["event_id", "anonymous_id", "user_id", "workspace_id", "invite_count"], "evidence_ids": ["ev-prd"]}
+  ],
+  "tracking_plan": [
+    {"event_name": "account_created", "destination": "Segment", "implementation_owner": "Activation Engineering", "qa_method": "Segment debugger plus Snowflake row check.", "rollout_phase": "qa", "evidence_ids": ["ev-dest", "ev-validation"]},
+    {"event_name": "workspace_invited", "destination": "Segment", "implementation_owner": "Activation Engineering", "qa_method": "Backend unit test plus Amplitude event receipt.", "rollout_phase": "qa", "evidence_ids": ["ev-dest", "ev-validation"]}
+  ],
+  "governance": {
+    "naming_convention": "lower snake_case object_action",
+    "versioning_policy": "Additive properties only without review.",
+    "deprecation_policy": "Keep aliases for 30 days before removal.",
+    "privacy_review": true,
+    "evidence_ids": ["ev-privacy", "ev-validation"]
+  },
+  "validation": {
+    "status": "pass",
+    "checks": ["naming_policy", "property_policy", "identity_policy", "tracking_plan_policy", "privacy_policy", "evidence_policy"]
+  }
+}

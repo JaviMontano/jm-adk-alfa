@@ -1,0 +1,54 @@
+{
+  "system": {
+    "name": "Atlas Checkout",
+    "platforms": ["web", "backend"],
+    "destinations": ["RudderStack", "Mixpanel", "Snowflake"],
+    "scope": "Checkout funnel events"
+  },
+  "evidence": [
+    {"id": "ev-checkout", "tag": "product_requirement", "source": "Checkout funnel brief", "summary": "Checkout stages include cart, checkout, payment, and purchase."},
+    {"id": "ev-stack", "tag": "tracking_destination", "source": "Analytics stack", "summary": "RudderStack routes events to Mixpanel and Snowflake."},
+    {"id": "ev-qa", "tag": "validation", "source": "Checkout QA plan", "summary": "Backend confirms purchase_completed after order persistence."}
+  ],
+  "taxonomy": [
+    {"domain": "checkout", "purpose": "Measure checkout conversion and payment completion.", "evidence_ids": ["ev-checkout"]}
+  ],
+  "properties": [
+    {"name": "event_id", "type": "string", "required": true, "description": "Deterministic event id for deduplication.", "pii": "none"},
+    {"name": "anonymous_id", "type": "string", "required": true, "description": "Anonymous visitor identifier.", "pii": "none"},
+    {"name": "user_id", "type": "string", "required": false, "description": "Authenticated user identifier.", "pii": "low"},
+    {"name": "cart_id", "type": "string", "required": true, "description": "Cart identifier.", "pii": "low"},
+    {"name": "order_id", "type": "string", "required": false, "description": "Order identifier after purchase.", "pii": "low"},
+    {"name": "value", "type": "number", "required": false, "description": "Order value in reporting currency.", "pii": "none"}
+  ],
+  "identity": {
+    "anonymous_id_policy": "Set for every visitor before authentication.",
+    "user_id_policy": "Attach when authenticated; otherwise remain null.",
+    "merge_policy": "Merge profile when user_id becomes available.",
+    "deduplication_key": "event_id",
+    "evidence_ids": ["ev-checkout"]
+  },
+  "events": [
+    {"name": "cart_viewed", "domain": "checkout", "action": "viewed", "trigger": "Cart drawer or cart page is displayed.", "owner": "Commerce Analytics", "platforms": ["web"], "properties": ["event_id", "anonymous_id", "user_id", "cart_id"], "evidence_ids": ["ev-checkout"]},
+    {"name": "checkout_started", "domain": "checkout", "action": "started", "trigger": "User begins checkout from cart.", "owner": "Commerce Analytics", "platforms": ["web"], "properties": ["event_id", "anonymous_id", "user_id", "cart_id"], "evidence_ids": ["ev-checkout"]},
+    {"name": "payment_submitted", "domain": "checkout", "action": "submitted", "trigger": "Backend accepts payment submission.", "owner": "Commerce Analytics", "platforms": ["backend"], "properties": ["event_id", "anonymous_id", "user_id", "cart_id", "value"], "evidence_ids": ["ev-checkout"]},
+    {"name": "purchase_completed", "domain": "checkout", "action": "completed", "trigger": "Order is persisted and confirmed.", "owner": "Commerce Analytics", "platforms": ["backend"], "properties": ["event_id", "anonymous_id", "user_id", "cart_id", "order_id", "value"], "evidence_ids": ["ev-checkout"]}
+  ],
+  "tracking_plan": [
+    {"event_name": "cart_viewed", "destination": "RudderStack", "implementation_owner": "Web Engineering", "qa_method": "Browser debugger and warehouse row check.", "rollout_phase": "qa", "evidence_ids": ["ev-stack", "ev-qa"]},
+    {"event_name": "checkout_started", "destination": "RudderStack", "implementation_owner": "Web Engineering", "qa_method": "Browser debugger and Mixpanel receipt.", "rollout_phase": "qa", "evidence_ids": ["ev-stack", "ev-qa"]},
+    {"event_name": "payment_submitted", "destination": "RudderStack", "implementation_owner": "Backend Engineering", "qa_method": "Backend contract test and Snowflake receipt.", "rollout_phase": "qa", "evidence_ids": ["ev-stack", "ev-qa"]},
+    {"event_name": "purchase_completed", "destination": "RudderStack", "implementation_owner": "Backend Engineering", "qa_method": "Order persistence test and destination receipt.", "rollout_phase": "qa", "evidence_ids": ["ev-stack", "ev-qa"]}
+  ],
+  "governance": {
+    "naming_convention": "lower snake_case object_action",
+    "versioning_policy": "Version breaking property changes.",
+    "deprecation_policy": "Maintain aliases through release window.",
+    "privacy_review": false,
+    "evidence_ids": ["ev-qa"]
+  },
+  "validation": {
+    "status": "pass",
+    "checks": ["naming_policy", "property_policy", "identity_policy", "tracking_plan_policy", "privacy_policy", "evidence_policy"]
+  }
+}

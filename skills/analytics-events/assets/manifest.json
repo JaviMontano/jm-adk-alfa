@@ -1,0 +1,12 @@
+{
+  "skill": "analytics-events",
+  "version": "1.0.1",
+  "assets": [
+    {"path": "assets/analytics-events-contract.json", "type": "schema_contract", "purpose": "Defines required tracking plan sections and validation checks.", "used_by": ["SKILL.md", "README.md", "templates/output.md", "scripts/validate_analytics_events.py"]},
+    {"path": "assets/naming-policy.json", "type": "naming_contract", "purpose": "Defines event naming rules and allowed actions.", "used_by": ["SKILL.md", "prompts/primary.md", "scripts/validate_analytics_events.py"]},
+    {"path": "assets/property-policy.json", "type": "property_contract", "purpose": "Defines required property schema and privacy fields.", "used_by": ["SKILL.md", "agents/guardian.md", "scripts/validate_analytics_events.py"]},
+    {"path": "assets/identity-policy.json", "type": "identity_contract", "purpose": "Defines identity and deduplication requirements.", "used_by": ["SKILL.md", "agents/specialist.md", "scripts/validate_analytics_events.py"]},
+    {"path": "assets/tracking-plan-policy.json", "type": "tracking_plan_contract", "purpose": "Defines implementation owner, destination, QA, and rollout requirements.", "used_by": ["SKILL.md", "templates/output.md", "scripts/validate_analytics_events.py"]},
+    {"path": "assets/evidence-policy.json", "type": "evidence_contract", "purpose": "Defines evidence tags and required provenance fields.", "used_by": ["SKILL.md", "agents/support.md", "scripts/validate_analytics_events.py"]}
+  ]
+}

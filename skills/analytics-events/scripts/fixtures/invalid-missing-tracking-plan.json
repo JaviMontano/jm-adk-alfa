@@ -1,0 +1,21 @@
+{
+  "system": {"name": "Missing Tracking", "platforms": ["web"], "destinations": ["Segment"], "scope": "Activation"},
+  "evidence": [
+    {"id": "ev1", "tag": "product_requirement", "source": "Brief", "summary": "Signup matters."}
+  ],
+  "taxonomy": [
+    {"domain": "activation", "purpose": "Track signup.", "evidence_ids": ["ev1"]}
+  ],
+  "properties": [
+    {"name": "event_id", "type": "string", "required": true, "description": "Event id.", "pii": "none"},
+    {"name": "anonymous_id", "type": "string", "required": true, "description": "Anonymous id.", "pii": "none"},
+    {"name": "user_id", "type": "string", "required": false, "description": "User id.", "pii": "low"}
+  ],
+  "identity": {"anonymous_id_policy": "Set before signup.", "user_id_policy": "Set after signup.", "merge_policy": "Merge after signup.", "deduplication_key": "event_id", "evidence_ids": ["ev1"]},
+  "events": [
+    {"name": "account_created", "domain": "activation", "action": "created", "trigger": "Signup succeeds.", "owner": "Growth", "platforms": ["web"], "properties": ["event_id", "anonymous_id", "user_id"], "evidence_ids": ["ev1"]}
+  ],
+  "tracking_plan": [],
+  "governance": {"naming_convention": "lower snake_case object_action", "versioning_policy": "Additive only.", "deprecation_policy": "Alias old names.", "privacy_review": false, "evidence_ids": ["ev1"]},
+  "validation": {"status": "pass", "checks": ["naming_policy", "property_policy", "identity_policy", "tracking_plan_policy", "privacy_policy", "evidence_policy"]}
+}

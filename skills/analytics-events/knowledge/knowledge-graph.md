@@ -1,13 +1,21 @@
-# Analytics Events — Knowledge Graph
-<!-- Zettelkasten-ready: use [[wikilinks]] for Obsidian -->
+# Analytics Events Knowledge Graph
 
-## Core Concepts
-- [[analytics-events]] — Primary concept
-- [[analytics-events-patterns]] — Common patterns and approaches
-- [[analytics-events-anti-patterns]] — What to avoid
+## Core Nodes
 
-## Tags
-#analytics-events #jm-adk #zettelkasten
+- `analytics-events`: event taxonomy and tracking plan capability.
+- `taxonomy`: product domains and event groups.
+- `event`: named behavior with trigger, action, owner, and platforms.
+- `property`: typed event attribute with PII classification.
+- `identity-policy`: anonymous id, user id, merge behavior, and deduplication key.
+- `tracking-plan`: destination, implementation owner, QA method, and rollout phase.
+- `privacy-policy`: sensitive data handling and review.
+- `deterministic-oracle`: local validator and fixtures.
 
-## Cross-References
-- Related skills in this domain
+## Required Edges
+
+- `taxonomy` groups `event`.
+- `event` references `property`.
+- `event` is governed by `identity-policy`.
+- `tracking-plan` implements `event`.
+- `privacy-policy` validates `property`.
+- `deterministic-oracle` verifies the full contract.

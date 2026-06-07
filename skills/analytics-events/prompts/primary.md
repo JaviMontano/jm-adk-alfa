@@ -2,7 +2,7 @@
 name: analytics-events-primary
 type: execution
 version: 2.0.0
-description: "Execute the Analytics Events workflow with triad orchestration."
+description: "Execute the Analytics Events workflow with deterministic tracking plan validation."
 triad:
   lead: "analytics-events-lead"
   support: "analytics-events-support"
@@ -15,30 +15,23 @@ triad:
 
 | Parameter | Description | Required | Filled By |
 |-----------|-------------|----------|-----------|
-| `{{task}}` | What to accomplish | Yes | User input |
-| `{{context}}` | Background and constraints | Yes | User or codebase |
-| `{{constraints}}` | Additional rules | No | Guardrails JSON |
+| `{{task}}` | Event taxonomy or tracking plan request | Yes | User input |
+| `{{context}}` | Product surfaces, journeys, platforms, destinations, privacy constraints, and existing events | Yes | User or codebase |
+| `{{constraints}}` | Governance, privacy, naming, or destination rules | No | Guardrails JSON |
 | `{{depth}}` | quick / standard / deep | No | Auto |
 | `{{output_format}}` | html / docx / xlsx / md | No | Auto |
 
 ## Execution
 
-1. **Load knowledge**: Read `knowledge/body-of-knowledge.md`
-2. **Check guardrails**: Read `references/guardrails/*.json`
-3. **Lead** (`analytics-events-lead`): Execute SKILL.md Steps 1-4 for `{{task}}`
-   - Discover → Analyze → Execute → Validate
-   - Apply evidence tags on all claims
-4. **Support** (`analytics-events-support`): Review for cross-cutting concerns
-   - Edge cases, security, accessibility, performance
-5. **Guardian** (`analytics-events-guardian`): Validate
-   - Evidence tags complete
-   - Quality gate met
-   - Constitution XIII + XIV respected
-   - Output exceeds expectations
+1. Load `knowledge/body-of-knowledge.md` and the contracts in `assets/`.
+2. Confirm the task is about analytics events, tracking plan, instrumentation, identity, or event taxonomy.
+3. Inventory journeys, surfaces, destinations, current events, privacy constraints, and evidence.
+4. Produce taxonomy, events, properties, identity policy, tracking plan, governance, and validation checks.
+5. Guardian validates against `assets/analytics-events-contract.json`; structured JSON must pass `scripts/validate_analytics_events.py`.
 
 ## Output
 
-- Primary deliverable for `{{task}}` in `{{output_format}}`
-- Evidence tags on every claim
-- Recommendations beyond the ask
-- Confidence score (>= 0.95)
+- Tracking plan deliverable for `{{task}}` in `{{output_format}}`
+- Evidence references for source artifacts, privacy constraints, and validation
+- Risks, assumptions, and blocked gaps
+- Validation status against naming, properties, identity, tracking plan, privacy, and evidence checks
