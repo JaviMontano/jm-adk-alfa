@@ -1,0 +1,24 @@
+{
+  "schema": 1,
+  "required_sections": [
+    "system",
+    "evidence",
+    "sources",
+    "models",
+    "tests",
+    "data_contracts",
+    "lineage",
+    "documentation",
+    "validation"
+  ],
+  "allowed_validation_statuses": ["pass", "warn", "block"],
+  "required_validation_checks": [
+    "layer_policy",
+    "materialization_policy",
+    "test_policy",
+    "lineage_complete",
+    "contract_policy",
+    "documentation_policy"
+  ],
+  "required_system_fields": ["name", "warehouse", "transformation_framework", "scope"]
+}

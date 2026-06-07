@@ -1,0 +1,12 @@
+{
+  "skill": "analytics-engineering",
+  "version": "1.0.1",
+  "assets": [
+    {"path": "assets/analytics-engineering-contract.json", "type": "schema_contract", "purpose": "Defines required analytics engineering report sections and validation checks.", "used_by": ["SKILL.md", "README.md", "templates/output.md", "scripts/validate_analytics_engineering.py"]},
+    {"path": "assets/layer-policy.json", "type": "layer_contract", "purpose": "Defines layer names, prefixes, and valid materializations.", "used_by": ["SKILL.md", "prompts/primary.md", "scripts/validate_analytics_engineering.py"]},
+    {"path": "assets/materialization-policy.json", "type": "materialization_contract", "purpose": "Defines required materialization fields and incremental strategy rules.", "used_by": ["SKILL.md", "scripts/validate_analytics_engineering.py"]},
+    {"path": "assets/testing-policy.json", "type": "testing_contract", "purpose": "Defines required analytics model tests and blocking severities.", "used_by": ["SKILL.md", "agents/guardian.md", "scripts/validate_analytics_engineering.py"]},
+    {"path": "assets/data-contract-policy.json", "type": "data_contract_policy", "purpose": "Defines enforced contract expectations and breaking-change policies.", "used_by": ["SKILL.md", "agents/guardian.md", "scripts/validate_analytics_engineering.py"]},
+    {"path": "assets/evidence-policy.json", "type": "evidence_contract", "purpose": "Defines allowed evidence tags and required evidence fields.", "used_by": ["SKILL.md", "agents/support.md", "scripts/validate_analytics_engineering.py"]}
+  ]
+}

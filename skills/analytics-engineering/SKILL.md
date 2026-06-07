@@ -1,6 +1,6 @@
 ---
 name: analytics-engineering
-version: 1.0.0
+version: 1.0.1
 argument-hint: "project-or-system-name"
 description: 
   This skill should be used when the user asks to "design analytics models",
@@ -56,6 +56,23 @@ If reference materials exist, load them:
 ```
 Read ${CLAUDE_SKILL_DIR}/references/analytics-patterns.md
 ```
+
+## Deterministic Hardening Contract
+
+Before finalizing an analytics engineering deliverable, apply the offline contract in `assets/` and the reproducible validator in `scripts/`. The skill must not depend on network access, wall-clock time, random sampling, or unverifiable claims. [EXPLICIT]
+
+Required deterministic assets:
+- `assets/analytics-engineering-contract.json` defines mandatory output sections.
+- `assets/layer-policy.json` defines allowed layers, prefixes, and materializations.
+- `assets/materialization-policy.json` defines required fields for incremental and full-refresh models.
+- `assets/testing-policy.json` defines mandatory data tests and severities.
+- `assets/data-contract-policy.json` defines enforced contract and breaking-change rules.
+- `assets/evidence-policy.json` defines provenance tags and evidence references.
+
+Offline validation:
+- Use `scripts/validate_analytics_engineering.py` for JSON handoff reports.
+- Use `bash scripts/check.sh` to run deterministic valid and invalid fixtures.
+- Treat any missing evidence, unowned model, mart without tests, broken lineage, unsupported materialization, or unenforced production contract as a blocking issue.
 
 ---
 
@@ -313,6 +330,8 @@ Skip intermediate layers initially. Start with staging + marts. Add layers as co
 
 Before finalizing delivery, verify:
 
+- [ ] Output maps to `assets/analytics-engineering-contract.json` when a structured handoff is requested
+- [ ] Evidence references are present for source inventory, contracts, lineage, and validation decisions
 - [ ] Layer architecture defined with enforced naming conventions (stg_, int_, fct_, dim_)
 - [ ] Source-to-mart lineage traceable for every consumption model
 - [ ] Modeling pattern matches query patterns and data characteristics
@@ -323,6 +342,7 @@ Before finalizing delivery, verify:
 - [ ] Slim CI configured (`state:modified+`, deferred execution)
 - [ ] Cost per model measurable via query tagging
 - [ ] Documentation covers column descriptions for all mart-layer models
+- [ ] `scripts/check.sh` passes for deterministic JSON fixtures when local validation is required
 
 ---
 
@@ -340,7 +360,7 @@ Default output is Markdown with embedded Mermaid diagrams. HTML generation requi
 
 **Primary:** `A-01_Analytics_Engineering.html` — Source-to-target mapping, modeling patterns, transformation framework, testing strategy, documentation plan, performance optimization.
 
-**Secondary:** Model dependency DAG, naming convention guide, test coverage report template, cost attribution dashboard spec.
+**Secondary:** Model dependency DAG, naming convention guide, test coverage report template, cost attribution dashboard spec, and optional JSON handoff validated by `scripts/validate_analytics_engineering.py`.
 
 ---
 **Author:** Javier Montano | **Last updated:** March 18, 2026

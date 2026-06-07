@@ -1,0 +1,8 @@
+{
+  "schema": 1,
+  "allowed_materializations": ["view", "ephemeral", "table", "incremental", "snapshot", "semantic_layer"],
+  "incremental_required_fields": ["unique_key", "updated_at", "incremental_strategy"],
+  "allowed_incremental_strategies": ["append", "merge", "delete_insert", "insert_overwrite", "microbatch"],
+  "full_refresh_expected_for": ["small_dimensions", "prototypes", "tables_under_10m_rows"],
+  "required_model_fields": ["name", "layer", "grain", "owner", "materialization", "columns", "upstream", "evidence_ids"]
+}

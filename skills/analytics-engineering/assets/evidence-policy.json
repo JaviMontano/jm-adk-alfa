@@ -1,0 +1,6 @@
+{
+  "schema": 1,
+  "allowed_tags": ["source_inventory", "schema_contract", "business_rule", "lineage", "validation", "assumption"],
+  "required_fields": ["id", "tag", "source", "summary"],
+  "reference_fields": ["evidence_ids"]
+}

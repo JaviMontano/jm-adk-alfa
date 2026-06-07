@@ -1,0 +1,29 @@
+{
+  "schema": 1,
+  "layers": [
+    {
+      "layer": "staging",
+      "allowed_prefixes": ["stg_"],
+      "allowed_materializations": ["view"],
+      "raw_sources_allowed": true
+    },
+    {
+      "layer": "intermediate",
+      "allowed_prefixes": ["int_"],
+      "allowed_materializations": ["ephemeral", "view", "incremental"],
+      "raw_sources_allowed": false
+    },
+    {
+      "layer": "mart",
+      "allowed_prefixes": ["fct_", "dim_", "mrt_"],
+      "allowed_materializations": ["table", "incremental"],
+      "raw_sources_allowed": false
+    },
+    {
+      "layer": "metrics",
+      "allowed_prefixes": ["met_"],
+      "allowed_materializations": ["table", "semantic_layer"],
+      "raw_sources_allowed": false
+    }
+  ]
+}

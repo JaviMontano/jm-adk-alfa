@@ -1,75 +1,25 @@
 {
   "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-28",
   "skill": "analytics-engineering",
   "nodes": [
-    {
-      "id": "analytics-engineering",
-      "type": "skill",
-      "label": "analytics-engineering"
-    },
-    {
-      "id": "analytics-engineering:inputs",
-      "type": "contract",
-      "label": "Expected inputs"
-    },
-    {
-      "id": "analytics-engineering:outputs",
-      "type": "contract",
-      "label": "Expected outputs"
-    },
-    {
-      "id": "analytics-engineering:quality",
-      "type": "gate",
-      "label": "Quality criteria"
-    },
-    {
-      "id": "analytics-engineering:ontology",
-      "type": "ontology",
-      "label": "Domain: general"
-    },
-    {
-      "id": "analytics-engineering:evidence",
-      "type": "gate",
-      "label": "Evidence / provenance requirements"
-    },
-    {
-      "id": "analytics-engineering:antipattern",
-      "type": "risk",
-      "label": "Canonical anti-pattern to avoid"
-    }
+    {"id": "analytics-engineering", "type": "skill", "label": "Analytics engineering"},
+    {"id": "source-inventory", "type": "contract", "label": "Source inventory"},
+    {"id": "model-layer", "type": "ontology", "label": "Model layer"},
+    {"id": "materialization", "type": "policy", "label": "Materialization policy"},
+    {"id": "data-test", "type": "gate", "label": "Data test coverage"},
+    {"id": "data-contract", "type": "gate", "label": "Enforced data contract"},
+    {"id": "lineage", "type": "gate", "label": "Source-to-mart lineage"},
+    {"id": "documentation", "type": "gate", "label": "Model and column documentation"},
+    {"id": "deterministic-oracle", "type": "script", "label": "Offline JSON validator"}
   ],
   "edges": [
-    {
-      "from": "analytics-engineering",
-      "to": "analytics-engineering:inputs",
-      "type": "requires"
-    },
-    {
-      "from": "analytics-engineering",
-      "to": "analytics-engineering:outputs",
-      "type": "produces"
-    },
-    {
-      "from": "analytics-engineering",
-      "to": "analytics-engineering:quality",
-      "type": "validated_by"
-    },
-    {
-      "from": "analytics-engineering",
-      "to": "analytics-engineering:ontology",
-      "type": "classified_as"
-    },
-    {
-      "from": "analytics-engineering",
-      "to": "analytics-engineering:evidence",
-      "type": "validated_by"
-    },
-    {
-      "from": "analytics-engineering",
-      "to": "analytics-engineering:antipattern",
-      "type": "guards_against"
-    }
+    {"from": "analytics-engineering", "to": "source-inventory", "type": "requires"},
+    {"from": "source-inventory", "to": "model-layer", "type": "feeds"},
+    {"from": "model-layer", "to": "materialization", "type": "constrained_by"},
+    {"from": "model-layer", "to": "data-test", "type": "validated_by"},
+    {"from": "model-layer", "to": "data-contract", "type": "governed_by"},
+    {"from": "lineage", "to": "model-layer", "type": "connects"},
+    {"from": "documentation", "to": "model-layer", "type": "describes"},
+    {"from": "deterministic-oracle", "to": "data-test", "type": "verifies"}
   ]
 }

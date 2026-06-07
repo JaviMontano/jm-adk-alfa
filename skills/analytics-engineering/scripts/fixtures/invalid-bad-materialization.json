@@ -1,0 +1,21 @@
+{
+  "system": {"name": "Bad Materialization", "warehouse": "Snowflake", "transformation_framework": "dbt Core", "scope": "Finance mart"},
+  "evidence": [
+    {"id": "ev1", "tag": "source_inventory", "source": "Source inventory", "summary": "Payments source exists."}
+  ],
+  "sources": [
+    {"id": "stripe", "system": "Stripe", "tables": ["payments"], "freshness_sla": "1 hour", "evidence_ids": ["ev1"]}
+  ],
+  "models": [
+    {"name": "stg_stripe_payments", "layer": "staging", "grain": "one row per payment", "owner": "Finance", "materialization": "table", "columns": ["payment_id"], "upstream": ["stripe"], "evidence_ids": ["ev1"]}
+  ],
+  "tests": [
+    {"model_name": "stg_stripe_payments", "test_type": "not_null", "field": "payment_id", "severity": "error", "evidence_ids": ["ev1"]}
+  ],
+  "data_contracts": [],
+  "lineage": [
+    {"from": "stripe", "to": "stg_stripe_payments"}
+  ],
+  "documentation": [],
+  "validation": {"status": "pass", "checks": ["layer_policy", "materialization_policy", "test_policy", "lineage_complete", "contract_policy", "documentation_policy"]}
+}
