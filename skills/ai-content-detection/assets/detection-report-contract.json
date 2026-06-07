@@ -1,0 +1,26 @@
+{
+  "schema": "jm-labs.asset.detection-report-contract.v1",
+  "report_schema": "jm-labs.ai-content-detection.report.v1",
+  "required_top_level_fields": [
+    "schema",
+    "content",
+    "scope",
+    "evidence",
+    "signals",
+    "assessment",
+    "watermark",
+    "human_ai_strategy",
+    "decision_policy",
+    "validation",
+    "risks"
+  ],
+  "required_validation_checks": [
+    "assets",
+    "deterministic_scripts",
+    "quality_criteria",
+    "false_positive_control",
+    "threshold_policy",
+    "evidence_required",
+    "no_authorship_claim"
+  ]
+}

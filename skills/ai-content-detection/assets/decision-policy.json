@@ -1,0 +1,6 @@
+{
+  "schema": "jm-labs.asset.decision-policy.v1",
+  "allowed_final_actions": ["no-action", "human-review", "request-disclosure", "editorial-review", "policy-review"],
+  "disallowed_final_actions": ["accuse-author", "automatic-penalty", "ban", "punish"],
+  "rules": ["High-stakes contexts require human-review.", "User-facing language must be non-accusatory."]
+}

@@ -1,0 +1,7 @@
+{
+  "schema": "jm-labs.asset.signal-taxonomy-policy.v1",
+  "allowed_types": ["model-detector", "stylometry", "metadata", "watermark", "provenance", "citation-integrity", "edit-history", "disclosure"],
+  "allowed_directions": ["ai", "human", "mixed", "unknown"],
+  "required_fields": ["id", "type", "score", "weight", "direction", "evidence_ids", "notes"],
+  "rules": ["Each signal requires evidence ids.", "Signal score and weight must be 0..1."]
+}

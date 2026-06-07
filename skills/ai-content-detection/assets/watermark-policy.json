@@ -1,0 +1,5 @@
+{
+  "schema": "jm-labs.asset.watermark-policy.v1",
+  "allowed_statuses": ["present", "absent", "not-checked"],
+  "rules": ["Watermark status present requires evidence ids.", "Not-checked requires explanatory notes."]
+}

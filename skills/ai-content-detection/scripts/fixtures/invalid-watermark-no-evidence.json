@@ -1,0 +1,13 @@
+{
+  "schema": "jm-labs.ai-content-detection.report.v1",
+  "content": {"id": "bad-004", "type": "article", "sample_size": 900, "language": "en"},
+  "scope": {"purpose": "provenance", "allowed_use": "editorial", "high_stakes": false},
+  "evidence": [{"id": "E-001", "tag": "[EXPLICIT]", "source": "excerpt", "summary": "Text supplied."}],
+  "signals": [{"id": "S-001", "type": "stylometry", "score": 0.4, "weight": 0.3, "direction": "unknown", "evidence_ids": ["E-001"], "notes": "Weak signal."}],
+  "assessment": {"ai_likelihood": 0.4, "classification": "inconclusive", "confidence": 0.4, "authorship_claim": "not-determined", "rationale": "Inconclusive.", "limitations": []},
+  "watermark": {"status": "present", "method": "unknown", "evidence_ids": [], "notes": "Claim lacks evidence."},
+  "human_ai_strategy": {"recommended_label": "Review", "review_steps": ["Human review"]},
+  "decision_policy": {"final_action": "human-review", "allowed_actions": ["editorial-review"], "disallowed_actions": ["accuse-author"], "user_facing_language": "Human review recommended."},
+  "validation": {"status": "block", "checks": ["assets", "deterministic_scripts", "quality_criteria", "false_positive_control", "threshold_policy", "evidence_required", "no_authorship_claim"]},
+  "risks": []
+}

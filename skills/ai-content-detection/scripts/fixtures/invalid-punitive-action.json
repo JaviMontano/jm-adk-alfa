@@ -1,0 +1,13 @@
+{
+  "schema": "jm-labs.ai-content-detection.report.v1",
+  "content": {"id": "bad-006", "type": "essay", "sample_size": 700, "language": "en"},
+  "scope": {"purpose": "education review", "allowed_use": "education", "high_stakes": true},
+  "evidence": [{"id": "E-001", "tag": "[EXPLICIT]", "source": "detector", "summary": "Detector score supplied."}],
+  "signals": [{"id": "S-001", "type": "model-detector", "score": 0.86, "weight": 0.5, "direction": "ai", "evidence_ids": ["E-001"], "notes": "Detector score."}],
+  "assessment": {"ai_likelihood": 0.86, "classification": "likely-ai", "confidence": 0.7, "authorship_claim": "not-determined", "rationale": "Likely AI but not authorship proof.", "limitations": []},
+  "watermark": {"status": "not-checked", "method": "", "evidence_ids": [], "notes": "No watermark check."},
+  "human_ai_strategy": {"recommended_label": "Review", "review_steps": ["Human review"]},
+  "decision_policy": {"final_action": "ban", "allowed_actions": ["automatic-penalty"], "disallowed_actions": ["accuse-author"], "user_facing_language": "Punish the author."},
+  "validation": {"status": "block", "checks": ["assets", "deterministic_scripts", "quality_criteria", "false_positive_control", "threshold_policy", "evidence_required", "no_authorship_claim"]},
+  "risks": []
+}

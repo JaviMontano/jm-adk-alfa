@@ -1,0 +1,6 @@
+{
+  "schema": "jm-labs.asset.evidence-policy.v1",
+  "allowed_tags": ["[EXPLICIT]", "[INFERRED]", "[OPEN]"],
+  "required_fields": ["id", "tag", "source", "summary"],
+  "rules": ["Every signal must reference known evidence.", "The report must not claim authorship as fact."]
+}

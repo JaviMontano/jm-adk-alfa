@@ -1,75 +1,24 @@
 {
   "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-28",
   "skill": "ai-content-detection",
   "nodes": [
-    {
-      "id": "ai-content-detection",
-      "type": "skill",
-      "label": "ai-content-detection"
-    },
-    {
-      "id": "ai-content-detection:inputs",
-      "type": "contract",
-      "label": "Expected inputs"
-    },
-    {
-      "id": "ai-content-detection:outputs",
-      "type": "contract",
-      "label": "Expected outputs"
-    },
-    {
-      "id": "ai-content-detection:quality",
-      "type": "gate",
-      "label": "Quality criteria"
-    },
-    {
-      "id": "ai-content-detection:ontology",
-      "type": "ontology",
-      "label": "Domain: general"
-    },
-    {
-      "id": "ai-content-detection:evidence",
-      "type": "gate",
-      "label": "Evidence / provenance requirements"
-    },
-    {
-      "id": "ai-content-detection:antipattern",
-      "type": "risk",
-      "label": "Canonical anti-pattern to avoid"
-    }
+    {"id": "ai-content-detection", "type": "skill", "label": "AI Content Detection"},
+    {"id": "evidence-register", "type": "contract", "label": "Evidence register"},
+    {"id": "signal-taxonomy", "type": "policy", "label": "Signal taxonomy"},
+    {"id": "threshold-policy", "type": "policy", "label": "Threshold policy"},
+    {"id": "watermark-policy", "type": "policy", "label": "Watermark policy"},
+    {"id": "decision-policy", "type": "policy", "label": "Decision policy"},
+    {"id": "false-positive-control", "type": "gate", "label": "False-positive control"},
+    {"id": "detection-report-contract", "type": "schema", "label": "Detection report contract"},
+    {"id": "offline-validator", "type": "script", "label": "Offline validator"}
   ],
   "edges": [
-    {
-      "from": "ai-content-detection",
-      "to": "ai-content-detection:inputs",
-      "type": "requires"
-    },
-    {
-      "from": "ai-content-detection",
-      "to": "ai-content-detection:outputs",
-      "type": "produces"
-    },
-    {
-      "from": "ai-content-detection",
-      "to": "ai-content-detection:quality",
-      "type": "validated_by"
-    },
-    {
-      "from": "ai-content-detection",
-      "to": "ai-content-detection:ontology",
-      "type": "classified_as"
-    },
-    {
-      "from": "ai-content-detection",
-      "to": "ai-content-detection:evidence",
-      "type": "validated_by"
-    },
-    {
-      "from": "ai-content-detection",
-      "to": "ai-content-detection:antipattern",
-      "type": "guards_against"
-    }
+    {"from": "ai-content-detection", "to": "evidence-register", "type": "requires"},
+    {"from": "ai-content-detection", "to": "signal-taxonomy", "type": "uses"},
+    {"from": "ai-content-detection", "to": "threshold-policy", "type": "uses"},
+    {"from": "ai-content-detection", "to": "watermark-policy", "type": "uses"},
+    {"from": "ai-content-detection", "to": "decision-policy", "type": "uses"},
+    {"from": "ai-content-detection", "to": "false-positive-control", "type": "guards_against"},
+    {"from": "detection-report-contract", "to": "offline-validator", "type": "validated_by"}
   ]
 }
