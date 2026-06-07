@@ -1,0 +1,5 @@
+{
+  "schema": 1,
+  "required_controls": ["deduplication", "suppression", "grouping", "review_cadence"],
+  "required_fields": ["control", "policy", "owner", "evidence_ids"]
+}

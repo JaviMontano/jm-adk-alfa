@@ -1,0 +1,20 @@
+{
+  "system": {"name": "Missing Checks", "scope": "alerting", "risk_level": "medium"},
+  "evidence": [{"id": "E1", "tag": "[EXPLICIT]", "source": "fixture", "summary": "Fixture."}],
+  "severity_model": [
+    {"severity": "critical", "page": true, "target_response": "5m", "description": "critical", "evidence_ids": ["E1"]},
+    {"severity": "high", "page": true, "target_response": "15m", "description": "high", "evidence_ids": ["E1"]},
+    {"severity": "medium", "page": false, "target_response": "next day", "description": "medium", "evidence_ids": ["E1"]},
+    {"severity": "low", "page": false, "target_response": "weekly", "description": "low", "evidence_ids": ["E1"]}
+  ],
+  "alert_rules": [{"id": "A1", "signal": "error_rate", "severity": "critical", "threshold": ">1%", "owner": "team", "oracle": "metric", "escalation_id": "ESC1", "evidence_ids": ["E1"]}],
+  "escalation_paths": [{"id": "ESC1", "owner_team": "team", "primary_route": "oncall", "backup_route": "backup", "handoff_condition": "no ack", "evidence_ids": ["E1"]}],
+  "fatigue_controls": [
+    {"control": "deduplication", "policy": "dedupe", "owner": "sre", "evidence_ids": ["E1"]},
+    {"control": "suppression", "policy": "suppress", "owner": "sre", "evidence_ids": ["E1"]},
+    {"control": "grouping", "policy": "group", "owner": "sre", "evidence_ids": ["E1"]},
+    {"control": "review_cadence", "policy": "review", "owner": "sre", "evidence_ids": ["E1"]}
+  ],
+  "routing_policy": {"default_route": "triage", "business_hours_route": "bh", "after_hours_route": "ah", "evidence_ids": ["E1"]},
+  "validation": {"status": "pass", "checks": ["assets"]}
+}

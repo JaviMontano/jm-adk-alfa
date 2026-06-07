@@ -1,13 +1,7 @@
-# Alerting Strategy — Knowledge Graph
-<!-- Zettelkasten-ready: use [[wikilinks]] for Obsidian -->
+# Alerting Strategy - Knowledge Graph
 
-## Core Concepts
-- [[alerting-strategy]] — Primary concept
-- [[alerting-strategy-patterns]] — Common patterns and approaches
-- [[alerting-strategy-anti-patterns]] — What to avoid
-
-## Tags
-#alerting-strategy #jm-adk #zettelkasten
-
-## Cross-References
-- Related skills in this domain
+- `alerting-strategy` requires `system-context` and `evidence`.
+- `severity-model` classifies `alert-rules`.
+- `alert-rules` route through `escalation-paths`.
+- `fatigue-controls` suppress duplicate or non-actionable alerts.
+- `validation` checks severity, rules, escalation, fatigue, and evidence.

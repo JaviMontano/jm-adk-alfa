@@ -1,0 +1,4 @@
+{
+  "schema": 1,
+  "required_fields": ["id", "signal", "severity", "threshold", "owner", "oracle", "escalation_id", "evidence_ids"]
+}

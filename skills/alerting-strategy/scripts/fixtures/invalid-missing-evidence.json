@@ -1,0 +1,1 @@
+{"system": {"name": "No Evidence", "scope": "alerting", "risk_level": "medium"}, "evidence": [], "severity_model": [], "alert_rules": [], "escalation_paths": [], "fatigue_controls": [], "routing_policy": {}, "validation": {"status": "pass", "checks": []}}

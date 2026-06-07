@@ -1,7 +1,7 @@
 ---
 name: alerting-strategy
 author: JM Labs (Javier Montaño)
-version: 1.0.0
+version: 1.0.1
 description: >
   Alert fatigue prevention, escalation rules, severity classification. [EXPLICIT]
   Trigger: "alerting strategy"
@@ -16,6 +16,19 @@ allowed-tools:
 > "Method over hacks."
 ## TL;DR
 Alert fatigue prevention, escalation rules, severity classification. [EXPLICIT]
+
+## Deterministic Hardening Contract
+
+This skill must produce an alerting strategy that can be checked offline without network, wall-clock, or random dependencies. Use `assets/` as the contract source:
+
+- `assets/alerting-strategy-contract.json`: required report sections and validation checks.
+- `assets/severity-policy.json`: allowed severity levels and response targets.
+- `assets/rule-policy.json`: alert rule fields and threshold requirements.
+- `assets/escalation-policy.json`: ownership, routing, and escalation requirements.
+- `assets/fatigue-policy.json`: deduplication, suppression, grouping, and review cadence controls.
+- `assets/evidence-policy.json`: allowed evidence tags and provenance rules.
+
+If a JSON alerting strategy is requested or used as handoff, validate it with `scripts/validate_alerting_strategy.py`. The fixture smoke test is `bash skills/alerting-strategy/scripts/check.sh`. [EXPLICIT]
 ## Procedure
 ### Step 1: Discover
 - Gather context and requirements

@@ -1,75 +1,22 @@
 {
   "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-28",
   "skill": "alerting-strategy",
   "nodes": [
-    {
-      "id": "alerting-strategy",
-      "type": "skill",
-      "label": "alerting-strategy"
-    },
-    {
-      "id": "alerting-strategy:inputs",
-      "type": "contract",
-      "label": "Expected inputs"
-    },
-    {
-      "id": "alerting-strategy:outputs",
-      "type": "contract",
-      "label": "Expected outputs"
-    },
-    {
-      "id": "alerting-strategy:quality",
-      "type": "gate",
-      "label": "Quality criteria"
-    },
-    {
-      "id": "alerting-strategy:ontology",
-      "type": "ontology",
-      "label": "Domain: general"
-    },
-    {
-      "id": "alerting-strategy:evidence",
-      "type": "gate",
-      "label": "Evidence / provenance requirements"
-    },
-    {
-      "id": "alerting-strategy:antipattern",
-      "type": "risk",
-      "label": "Canonical anti-pattern to avoid"
-    }
+    {"id": "alerting-strategy", "type": "skill", "label": "Alerting Strategy"},
+    {"id": "system-context", "type": "contract", "label": "System context"},
+    {"id": "evidence", "type": "gate", "label": "Evidence"},
+    {"id": "severity-model", "type": "policy", "label": "Severity model"},
+    {"id": "alert-rules", "type": "contract", "label": "Alert rules"},
+    {"id": "escalation-paths", "type": "routing", "label": "Escalation paths"},
+    {"id": "fatigue-controls", "type": "control", "label": "Fatigue controls"},
+    {"id": "validation", "type": "gate", "label": "Deterministic validation"}
   ],
   "edges": [
-    {
-      "from": "alerting-strategy",
-      "to": "alerting-strategy:inputs",
-      "type": "requires"
-    },
-    {
-      "from": "alerting-strategy",
-      "to": "alerting-strategy:outputs",
-      "type": "produces"
-    },
-    {
-      "from": "alerting-strategy",
-      "to": "alerting-strategy:quality",
-      "type": "validated_by"
-    },
-    {
-      "from": "alerting-strategy",
-      "to": "alerting-strategy:ontology",
-      "type": "classified_as"
-    },
-    {
-      "from": "alerting-strategy",
-      "to": "alerting-strategy:evidence",
-      "type": "validated_by"
-    },
-    {
-      "from": "alerting-strategy",
-      "to": "alerting-strategy:antipattern",
-      "type": "guards_against"
-    }
+    {"from": "alerting-strategy", "to": "system-context", "type": "requires"},
+    {"from": "system-context", "to": "evidence", "type": "supported_by"},
+    {"from": "severity-model", "to": "alert-rules", "type": "classifies"},
+    {"from": "alert-rules", "to": "escalation-paths", "type": "routes_to"},
+    {"from": "fatigue-controls", "to": "alert-rules", "type": "guards"},
+    {"from": "validation", "to": "alerting-strategy", "type": "validates"}
   ]
 }

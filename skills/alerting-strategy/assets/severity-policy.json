@@ -1,0 +1,6 @@
+{
+  "schema": 1,
+  "allowed_severities": ["critical", "high", "medium", "low", "info"],
+  "paging_severities": ["critical", "high"],
+  "required_fields": ["severity", "page", "target_response", "description", "evidence_ids"]
+}

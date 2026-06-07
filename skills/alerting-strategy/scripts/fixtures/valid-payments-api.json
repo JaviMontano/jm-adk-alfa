@@ -1,0 +1,32 @@
+{
+  "system": {"name": "Payments API", "scope": "production alerting strategy", "risk_level": "high"},
+  "evidence": [
+    {"id": "E1", "tag": "[EXPLICIT]", "source": "example input", "summary": "Duplicate pages and noisy CPU alerts create fatigue."},
+    {"id": "E2", "tag": "[EXPLICIT]", "source": "example input", "summary": "Authorization failures are critical customer-impacting events."},
+    {"id": "E3", "tag": "[EXPLICIT]", "source": "example input", "summary": "Critical failures must page within 5 minutes."}
+  ],
+  "severity_model": [
+    {"severity": "critical", "page": true, "target_response": "5 minutes", "description": "Confirmed customer-impacting payment failure.", "evidence_ids": ["E2", "E3"]},
+    {"severity": "high", "page": true, "target_response": "15 minutes", "description": "Likely customer impact or sustained synthetic failure.", "evidence_ids": ["E3"]},
+    {"severity": "medium", "page": false, "target_response": "next business hour", "description": "Risk increasing without confirmed impact.", "evidence_ids": ["E1"]},
+    {"severity": "low", "page": false, "target_response": "weekly review", "description": "Trend or noisy signal without action.", "evidence_ids": ["E1"]}
+  ],
+  "alert_rules": [
+    {"id": "A1", "signal": "payment_authorization_failure_rate", "severity": "critical", "threshold": ">2% for 5m", "owner": "payments", "oracle": "payment metrics and synthetic checkout agree", "escalation_id": "ESC1", "evidence_ids": ["E2", "E3"]},
+    {"id": "A2", "signal": "checkout_probe_failure", "severity": "high", "threshold": "3 failed probes in 10m", "owner": "sre", "oracle": "probe fails from two regions", "escalation_id": "ESC2", "evidence_ids": ["E3"]},
+    {"id": "A3", "signal": "cpu_saturation_trend", "severity": "low", "threshold": ">85% for 2h without user impact", "owner": "platform", "oracle": "no customer-impacting symptom is firing", "escalation_id": "ESC3", "evidence_ids": ["E1"]}
+  ],
+  "escalation_paths": [
+    {"id": "ESC1", "owner_team": "payments", "primary_route": "payments-oncall", "backup_route": "sre-incident-commander", "handoff_condition": "no acknowledgement within 5 minutes", "evidence_ids": ["E2", "E3"]},
+    {"id": "ESC2", "owner_team": "sre", "primary_route": "sre-oncall", "backup_route": "payments-oncall", "handoff_condition": "probe failure ties to payment code", "evidence_ids": ["E3"]},
+    {"id": "ESC3", "owner_team": "platform", "primary_route": "platform-business-hours", "backup_route": "sre-review", "handoff_condition": "capacity risk becomes customer-impacting", "evidence_ids": ["E1"]}
+  ],
+  "fatigue_controls": [
+    {"control": "deduplication", "policy": "Collapse correlated latency, queue, and timeout symptoms into the highest-severity incident.", "owner": "sre", "evidence_ids": ["E1"]},
+    {"control": "suppression", "policy": "Suppress CPU-only pages unless customer impact is present.", "owner": "platform", "evidence_ids": ["E1"]},
+    {"control": "grouping", "policy": "Group dependency timeout and checkout probe failures under one payment incident.", "owner": "sre", "evidence_ids": ["E1"]},
+    {"control": "review_cadence", "policy": "Review alert volume weekly and retire rules with no action in 30 days.", "owner": "sre", "evidence_ids": ["E1"]}
+  ],
+  "routing_policy": {"default_route": "sre-triage", "business_hours_route": "service-owner-triage", "after_hours_route": "paging-severities-only", "evidence_ids": ["E1", "E3"]},
+  "validation": {"status": "pass", "checks": ["assets", "deterministic_scripts", "quality_criteria", "severity_model", "alert_rules", "escalation_paths", "fatigue_controls"]}
+}

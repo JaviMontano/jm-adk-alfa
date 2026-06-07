@@ -1,0 +1,4 @@
+{
+  "schema": 1,
+  "required_fields": ["id", "owner_team", "primary_route", "backup_route", "handoff_condition", "evidence_ids"]
+}

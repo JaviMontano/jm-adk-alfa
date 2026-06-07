@@ -1,8 +1,3 @@
-# DOCX Template — Alerting Strategy
-## Structure
-- Title: "Alerting Strategy Report"
-- Section 1: Executive Summary
-- Section 2: Findings / Deliverables
-- Section 3: Recommendations
-- Footer: "MetodologIA — {{date}}"
-## Formatting: Poppins headings, Montserrat body, JetBrains Mono code
+# Alerting Strategy - DOCX Template
+
+Required sections: system context, evidence, severity model, alert rules, escalation paths, fatigue controls, routing policy, validation checks, and residual risks.

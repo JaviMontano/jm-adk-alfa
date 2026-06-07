@@ -1,0 +1,31 @@
+{
+  "system": {"name": "Nightly Data Pipeline", "scope": "pipeline alerting strategy", "risk_level": "medium"},
+  "evidence": [
+    {"id": "E1", "tag": "[EXPLICIT]", "source": "requirements", "summary": "Stale data and schema failures are important signals."},
+    {"id": "E2", "tag": "[EXPLICIT]", "source": "requirements", "summary": "Warning alerts should route to business-hours triage."}
+  ],
+  "severity_model": [
+    {"severity": "critical", "page": true, "target_response": "10 minutes", "description": "Customer-facing data is stale past SLA.", "evidence_ids": ["E1"]},
+    {"severity": "high", "page": true, "target_response": "30 minutes", "description": "Repeated schema failure blocks publication.", "evidence_ids": ["E1"]},
+    {"severity": "medium", "page": false, "target_response": "next business hour", "description": "Rising warning without SLA breach.", "evidence_ids": ["E2"]},
+    {"severity": "low", "page": false, "target_response": "weekly review", "description": "Trend-only action item.", "evidence_ids": ["E2"]}
+  ],
+  "alert_rules": [
+    {"id": "A1", "signal": "data_freshness_sla", "severity": "critical", "threshold": "freshness > 2h late", "owner": "data-platform", "oracle": "freshness monitor and dashboard timestamp agree", "escalation_id": "ESC1", "evidence_ids": ["E1"]},
+    {"id": "A2", "signal": "schema_validation_failure", "severity": "high", "threshold": "same required column fails twice", "owner": "data-engineering", "oracle": "validator output includes failing column", "escalation_id": "ESC2", "evidence_ids": ["E1"]},
+    {"id": "A3", "signal": "row_count_warning", "severity": "medium", "threshold": "row count outside expected band", "owner": "data-engineering", "oracle": "no freshness SLA breach", "escalation_id": "ESC3", "evidence_ids": ["E2"]}
+  ],
+  "escalation_paths": [
+    {"id": "ESC1", "owner_team": "data-platform", "primary_route": "data-platform-oncall", "backup_route": "analytics-lead", "handoff_condition": "not acknowledged in 10 minutes", "evidence_ids": ["E1"]},
+    {"id": "ESC2", "owner_team": "data-engineering", "primary_route": "data-eng-oncall", "backup_route": "data-platform-oncall", "handoff_condition": "infra failure suspected", "evidence_ids": ["E1"]},
+    {"id": "ESC3", "owner_team": "data-engineering", "primary_route": "business-hours-triage", "backup_route": "weekly-data-quality-review", "handoff_condition": "warning repeats three days", "evidence_ids": ["E2"]}
+  ],
+  "fatigue_controls": [
+    {"control": "deduplication", "policy": "Collapse row count, freshness, and downstream dashboard failures into freshness incident.", "owner": "data-platform", "evidence_ids": ["E2"]},
+    {"control": "suppression", "policy": "Suppress downstream dashboard alerts while freshness incident is active.", "owner": "data-platform", "evidence_ids": ["E2"]},
+    {"control": "grouping", "policy": "Group schema errors by source table and release.", "owner": "data-engineering", "evidence_ids": ["E1"]},
+    {"control": "review_cadence", "policy": "Review warning volume every two weeks.", "owner": "data-engineering", "evidence_ids": ["E2"]}
+  ],
+  "routing_policy": {"default_route": "data-triage", "business_hours_route": "data-quality-review", "after_hours_route": "freshness-and-schema-pages-only", "evidence_ids": ["E2"]},
+  "validation": {"status": "pass", "checks": ["assets", "deterministic_scripts", "quality_criteria", "severity_model", "alert_rules", "escalation_paths", "fatigue_controls"]}
+}
