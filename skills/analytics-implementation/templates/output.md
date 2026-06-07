@@ -1,28 +1,62 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: analytics-implementation
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
-
-# Analytics Implementation Output
+# {{project_name}} Analytics Implementation Plan
 
 ## Summary
 
-{summary}
+{{summary}}
 
 ## Evidence
 
-{evidence}
+| Evidence ID | Tag | Source | Summary |
+|---|---|---|---|
+| {{evidence_id}} | {{tag}} | {{source}} | {{summary}} |
 
-## Result
+## GA4 And Firebase Setup
 
-{result}
+| Surface | Tool | Owner | Consent Policy | Validation |
+|---|---|---|---|---|
+| {{surface}} | {{tool}} | {{owner}} | {{consent_policy}} | {{validation_method}} |
+
+## Custom Events
+
+| Event | Trigger | Platform | Owner | Parameters | Destination | Validation |
+|---|---|---|---|---|---|---|
+| {{event_name}} | {{trigger}} | {{platform}} | {{owner}} | {{parameters}} | {{destination}} | {{validation_method}} |
+
+## Conversions And User Properties
+
+| Type | Name | Source Event | Owner | Privacy |
+|---|---|---|---|---|
+| {{type}} | {{name}} | {{source_event}} | {{owner}} | {{privacy_status}} |
+
+## BigQuery Export
+
+| Dataset | Location | Retention | Partitioning | PII Handling | Owner |
+|---|---|---|---|---|---|
+| {{dataset}} | {{location}} | {{retention}} | {{partitioning}} | {{pii_handling}} | {{owner}} |
+
+## Looker Studio Readiness
+
+| Dashboard | Data Source | Metrics | Owner | Freshness |
+|---|---|---|---|---|
+| {{dashboard}} | {{data_source}} | {{metrics}} | {{owner}} | {{freshness}} |
+
+## Implementation Steps
+
+| Step | Task | Owner | Validation |
+|---|---|---|---|
+| {{step_id}} | {{task}} | {{owner}} | {{validation_method}} |
 
 ## Validation
 
-{validation}
+- GA4 setup: {{ga4_status}}
+- Event contract: {{event_status}}
+- Conversion policy: {{conversion_status}}
+- User property policy: {{user_property_status}}
+- BigQuery export: {{bigquery_status}}
+- Dashboard policy: {{dashboard_status}}
+- Privacy policy: {{privacy_status}}
+- Evidence policy: {{evidence_status}}
 
-## Risks and Limits
+## Risks And Open Gaps
 
-{risks}
+{{risks_and_open_gaps}}

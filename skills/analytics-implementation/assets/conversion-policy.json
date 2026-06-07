@@ -1,0 +1,4 @@
+{
+  "schema": 1,
+  "required_fields": ["event_name", "owner", "condition", "validation_method", "evidence_ids"]
+}

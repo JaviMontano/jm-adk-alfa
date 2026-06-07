@@ -1,75 +1,22 @@
 {
   "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-28",
   "skill": "analytics-implementation",
   "nodes": [
-    {
-      "id": "analytics-implementation",
-      "type": "skill",
-      "label": "analytics-implementation"
-    },
-    {
-      "id": "analytics-implementation:inputs",
-      "type": "contract",
-      "label": "Expected inputs"
-    },
-    {
-      "id": "analytics-implementation:outputs",
-      "type": "contract",
-      "label": "Expected outputs"
-    },
-    {
-      "id": "analytics-implementation:quality",
-      "type": "gate",
-      "label": "Quality criteria"
-    },
-    {
-      "id": "analytics-implementation:ontology",
-      "type": "ontology",
-      "label": "Domain: general"
-    },
-    {
-      "id": "analytics-implementation:evidence",
-      "type": "gate",
-      "label": "Evidence / provenance requirements"
-    },
-    {
-      "id": "analytics-implementation:antipattern",
-      "type": "risk",
-      "label": "Canonical anti-pattern to avoid"
-    }
+    {"id": "analytics-implementation", "type": "skill", "label": "Analytics implementation"},
+    {"id": "ga4-setup", "type": "contract", "label": "GA4 or Firebase setup"},
+    {"id": "custom-event", "type": "contract", "label": "Custom event"},
+    {"id": "conversion", "type": "gate", "label": "Conversion marker"},
+    {"id": "user-property", "type": "contract", "label": "User property"},
+    {"id": "bigquery-export", "type": "handoff", "label": "BigQuery export"},
+    {"id": "dashboard", "type": "handoff", "label": "Looker Studio readiness"},
+    {"id": "deterministic-oracle", "type": "script", "label": "Offline implementation validator"}
   ],
   "edges": [
-    {
-      "from": "analytics-implementation",
-      "to": "analytics-implementation:inputs",
-      "type": "requires"
-    },
-    {
-      "from": "analytics-implementation",
-      "to": "analytics-implementation:outputs",
-      "type": "produces"
-    },
-    {
-      "from": "analytics-implementation",
-      "to": "analytics-implementation:quality",
-      "type": "validated_by"
-    },
-    {
-      "from": "analytics-implementation",
-      "to": "analytics-implementation:ontology",
-      "type": "classified_as"
-    },
-    {
-      "from": "analytics-implementation",
-      "to": "analytics-implementation:evidence",
-      "type": "validated_by"
-    },
-    {
-      "from": "analytics-implementation",
-      "to": "analytics-implementation:antipattern",
-      "type": "guards_against"
-    }
+    {"from": "ga4-setup", "to": "custom-event", "type": "enables"},
+    {"from": "custom-event", "to": "conversion", "type": "feeds"},
+    {"from": "custom-event", "to": "bigquery-export", "type": "exported_to"},
+    {"from": "user-property", "to": "bigquery-export", "type": "exported_to"},
+    {"from": "bigquery-export", "to": "dashboard", "type": "feeds"},
+    {"from": "deterministic-oracle", "to": "analytics-implementation", "type": "verifies"}
   ]
 }

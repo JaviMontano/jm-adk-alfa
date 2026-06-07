@@ -1,29 +1,19 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: analytics-implementation
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
-
 # Analytics Implementation
 
-GA4 setup. Firebase Analytics custom events. Conversions. User properties. BigQuery export. Looker Studio dashboards. [EXPLICIT]
+Use this skill to plan and validate GA4/Firebase Analytics implementation work: setup, custom events, conversions, user properties, BigQuery export, Looker Studio readiness, privacy controls, and QA.
 
-## Triggers
+## Trigger Signals
 
-- analytics-implementation
+- GA4 or Firebase Analytics setup.
+- Custom events, event parameters, conversions, audiences, or user properties.
+- BigQuery export, retention, dataset ownership, or analytics warehouse handoff.
+- Looker Studio dashboard data sources and metric readiness.
+- DebugView, event QA, consent mode, or privacy-safe rollout.
 
-## Allowed Tools
+## Deliverable
 
-- Read
-- Grep
-- Glob
-- Bash
+The skill produces an implementation package with GA4 setup, event contracts, conversions, user properties, BigQuery export, dashboard plan, implementation steps, validation checks, assumptions, and risks.
 
-## Quick Use
+## Assets And Scripts
 
-Use this skill when the request clearly matches the triggers and requires the `analytics-implementation` capability.
-
-## Output Format
-
-Markdown with summary, evidence, result, validation, and risks.
+`assets/` contains the deterministic policy files. `scripts/check.sh` validates JSON fixtures offline by accepting valid implementation plans and rejecting missing evidence, bad event names, unknown conversions, unsafe user properties, disabled exports, dashboard gaps, and incomplete validation.

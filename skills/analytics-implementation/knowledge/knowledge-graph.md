@@ -1,13 +1,12 @@
-# Analytics Implementation — Knowledge Graph
+# Analytics Implementation Knowledge Graph
 
-## Core Concepts
-- analytics-implementation: primary capability
-- validation-gate: quality control checkpoint
-- evidence-tagging: [EXPLICIT]/[INFERRED]/[OPEN] claims
+## Core Nodes
 
-## Dependencies
-- Upstream: input-analysis, context-optimization
-- Downstream: output-engineering, rendering-engine
-
-## Skill Relationships
-Part of the JM Labs canonical skill registry.
+- `analytics-implementation`: GA4/Firebase implementation capability.
+- `ga4-setup`: property, app, stream, platform, owner, and debug validation.
+- `custom-event`: event contract with trigger, parameters, owner, and destination.
+- `conversion`: conversion marker tied to a known event.
+- `user-property`: typed user attribute with privacy classification.
+- `bigquery-export`: dataset, location, retention, partitioning, and PII handling.
+- `dashboard`: Looker Studio data source, metrics, owner, and freshness.
+- `deterministic-oracle`: local validator and fixtures.

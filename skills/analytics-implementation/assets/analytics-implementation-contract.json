@@ -1,0 +1,7 @@
+{
+  "schema": 1,
+  "required_sections": ["system", "evidence", "ga4_setup", "events", "conversions", "user_properties", "bigquery_export", "dashboards", "implementation_steps", "validation"],
+  "required_system_fields": ["name", "platforms", "tools", "scope"],
+  "allowed_validation_statuses": ["pass", "warn", "block"],
+  "required_validation_checks": ["ga4_setup", "event_contract", "conversion_policy", "user_property_policy", "bigquery_export", "dashboard_policy", "privacy_policy", "evidence_policy"]
+}

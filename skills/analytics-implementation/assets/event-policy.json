@@ -1,0 +1,10 @@
+{
+  "schema": 1,
+  "event_name_pattern": "^[a-z][a-z0-9]*(_[a-z0-9]+)*$",
+  "max_event_name_length": 40,
+  "required_event_fields": ["name", "trigger", "platform", "owner", "parameters", "destination", "validation_method", "evidence_ids"],
+  "required_parameter_fields": ["name", "type", "pii"],
+  "allowed_types": ["string", "number", "integer", "boolean", "timestamp", "enum"],
+  "allowed_pii": ["none", "low", "sensitive"],
+  "blocked_names": ["email", "phone", "address", "card_number", "ssn"]
+}

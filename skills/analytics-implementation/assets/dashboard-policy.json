@@ -1,0 +1,4 @@
+{
+  "schema": 1,
+  "required_fields": ["name", "data_source", "metrics", "owner", "freshness", "validation_method", "evidence_ids"]
+}

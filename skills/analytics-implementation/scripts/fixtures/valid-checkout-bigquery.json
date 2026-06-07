@@ -1,0 +1,29 @@
+{
+  "system": {"name": "Checkout Analytics", "platforms": ["web", "backend"], "tools": ["GA4", "Measurement Protocol", "BigQuery", "Looker Studio"], "scope": "Checkout conversion implementation"},
+  "evidence": [
+    {"id": "ev-checkout", "tag": "measurement_requirement", "source": "Checkout brief", "summary": "Checkout events and purchase conversion are required."},
+    {"id": "ev-export", "tag": "export_requirement", "source": "Reporting requirement", "summary": "Looker Studio uses BigQuery export."},
+    {"id": "ev-qa", "tag": "validation", "source": "QA checklist", "summary": "Events are validated in DebugView and export tables."}
+  ],
+  "ga4_setup": [
+    {"surface": "web checkout", "tool": "GA4", "owner": "Web Analytics", "consent_policy": "documented", "validation_method": "DebugView", "evidence_ids": ["ev-checkout"]},
+    {"surface": "order backend", "tool": "Measurement Protocol", "owner": "Backend Analytics", "consent_policy": "documented", "validation_method": "BigQuery export row", "evidence_ids": ["ev-checkout", "ev-qa"]}
+  ],
+  "events": [
+    {"name": "checkout_started", "trigger": "User begins checkout.", "platform": "web", "owner": "Commerce Analytics", "parameters": [{"name": "event_id", "type": "string", "pii": "none"}, {"name": "cart_id", "type": "string", "pii": "low"}], "destination": "GA4", "validation_method": "DebugView", "evidence_ids": ["ev-checkout"]},
+    {"name": "purchase_completed", "trigger": "Order is confirmed.", "platform": "backend", "owner": "Commerce Analytics", "parameters": [{"name": "event_id", "type": "string", "pii": "none"}, {"name": "order_id", "type": "string", "pii": "low"}, {"name": "value", "type": "number", "pii": "none"}], "destination": "GA4", "validation_method": "BigQuery row check", "evidence_ids": ["ev-checkout", "ev-qa"]}
+  ],
+  "conversions": [
+    {"event_name": "purchase_completed", "owner": "Commerce Analytics", "condition": "Order confirmed.", "validation_method": "GA4 conversion report check", "evidence_ids": ["ev-checkout", "ev-qa"]}
+  ],
+  "user_properties": [],
+  "bigquery_export": {"enabled": true, "dataset": "ga4_checkout_export", "location": "US", "retention": "14 months", "partitioning": "event_date", "pii_handling": "No raw personal data.", "owner": "Data Platform", "validation_method": "Export table contains purchase_completed.", "evidence_ids": ["ev-export", "ev-qa"]},
+  "dashboards": [
+    {"name": "Checkout Funnel", "data_source": "BigQuery GA4 export", "metrics": ["checkout starts", "purchases", "conversion rate", "revenue"], "owner": "Commerce Analytics", "freshness": "daily", "validation_method": "Dashboard metrics match export query.", "evidence_ids": ["ev-export", "ev-qa"]}
+  ],
+  "implementation_steps": [
+    {"id": "step-1", "task": "Instrument checkout_started on web.", "owner": "Web Engineering", "validation_method": "DebugView", "evidence_ids": ["ev-checkout"]},
+    {"id": "step-2", "task": "Send purchase_completed from backend.", "owner": "Backend Engineering", "validation_method": "BigQuery row check", "evidence_ids": ["ev-qa"]}
+  ],
+  "validation": {"status": "pass", "checks": ["ga4_setup", "event_contract", "conversion_policy", "user_property_policy", "bigquery_export", "dashboard_policy", "privacy_policy", "evidence_policy"]}
+}
