@@ -1,0 +1,26 @@
+{
+  "schema": 1,
+  "required_sections": [
+    "system",
+    "evidence",
+    "matrix_coverage",
+    "model_tests",
+    "data_quality_tests",
+    "fairness_compliance_tests",
+    "integration_strategy",
+    "automation_gates",
+    "monitoring",
+    "validation"
+  ],
+  "required_validation_checks": [
+    "assets",
+    "deterministic_scripts",
+    "quality_criteria",
+    "matrix_coverage",
+    "model_test_coverage",
+    "data_quality_coverage",
+    "fairness_compliance_coverage",
+    "automation_gates"
+  ],
+  "allowed_validation_statuses": ["pass", "warn", "block"]
+}

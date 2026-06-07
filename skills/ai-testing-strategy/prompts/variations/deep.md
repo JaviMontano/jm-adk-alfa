@@ -3,7 +3,8 @@ name: ai-testing-strategy-deep
 type: variation
 variant: deep
 ---
-# Ai Testing Strategy — Deep Analysis
+# AI Testing Strategy - Deep Analysis
 
-Full depth execution. Load all `references/` files from canonical. Run L3 progressive loading.
-Apply all Validation Gate criteria strictly.
+Load all three reference files and every contract asset in `assets/`. Produce full coverage across test types, layers, test data strategy, AI-specific model tests, fairness/compliance testing, integration harness, automation gates, monitoring, evidence, and residual risks.
+
+For codebase reviews, cite file paths or mark gaps as `[OPEN]`. For greenfield work, separate assumptions from test commitments.

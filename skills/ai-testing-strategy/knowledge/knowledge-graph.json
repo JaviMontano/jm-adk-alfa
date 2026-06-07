@@ -1,75 +1,27 @@
 {
   "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-28",
   "skill": "ai-testing-strategy",
   "nodes": [
-    {
-      "id": "ai-testing-strategy",
-      "type": "skill",
-      "label": "ai-testing-strategy"
-    },
-    {
-      "id": "ai-testing-strategy:inputs",
-      "type": "contract",
-      "label": "Expected inputs"
-    },
-    {
-      "id": "ai-testing-strategy:outputs",
-      "type": "contract",
-      "label": "Expected outputs"
-    },
-    {
-      "id": "ai-testing-strategy:quality",
-      "type": "gate",
-      "label": "Quality criteria"
-    },
-    {
-      "id": "ai-testing-strategy:ontology",
-      "type": "ontology",
-      "label": "Domain: general"
-    },
-    {
-      "id": "ai-testing-strategy:evidence",
-      "type": "gate",
-      "label": "Evidence / provenance requirements"
-    },
-    {
-      "id": "ai-testing-strategy:antipattern",
-      "type": "risk",
-      "label": "Canonical anti-pattern to avoid"
-    }
+    {"id": "ai-testing-strategy", "type": "skill", "label": "AI Testing Strategy"},
+    {"id": "system-context", "type": "contract", "label": "System context and risk"},
+    {"id": "evidence", "type": "gate", "label": "Evidence and assumptions"},
+    {"id": "matrix-coverage", "type": "model", "label": "6x6 testing matrix coverage"},
+    {"id": "model-tests", "type": "test-set", "label": "Model and prediction tests"},
+    {"id": "data-quality-tests", "type": "test-set", "label": "Data quality and pipeline tests"},
+    {"id": "fairness-compliance-tests", "type": "test-set", "label": "Fairness and compliance tests"},
+    {"id": "integration-strategy", "type": "decision", "label": "Integration approach and harness"},
+    {"id": "automation-gates", "type": "gate", "label": "CI/CD automation gates"},
+    {"id": "monitoring", "type": "gate", "label": "Continuous monitoring"},
+    {"id": "validation", "type": "gate", "label": "Deterministic validation"}
   ],
   "edges": [
-    {
-      "from": "ai-testing-strategy",
-      "to": "ai-testing-strategy:inputs",
-      "type": "requires"
-    },
-    {
-      "from": "ai-testing-strategy",
-      "to": "ai-testing-strategy:outputs",
-      "type": "produces"
-    },
-    {
-      "from": "ai-testing-strategy",
-      "to": "ai-testing-strategy:quality",
-      "type": "validated_by"
-    },
-    {
-      "from": "ai-testing-strategy",
-      "to": "ai-testing-strategy:ontology",
-      "type": "classified_as"
-    },
-    {
-      "from": "ai-testing-strategy",
-      "to": "ai-testing-strategy:evidence",
-      "type": "validated_by"
-    },
-    {
-      "from": "ai-testing-strategy",
-      "to": "ai-testing-strategy:antipattern",
-      "type": "guards_against"
-    }
+    {"from": "ai-testing-strategy", "to": "system-context", "type": "requires"},
+    {"from": "system-context", "to": "evidence", "type": "supported_by"},
+    {"from": "matrix-coverage", "to": "model-tests", "type": "contains"},
+    {"from": "matrix-coverage", "to": "data-quality-tests", "type": "contains"},
+    {"from": "matrix-coverage", "to": "fairness-compliance-tests", "type": "contains"},
+    {"from": "integration-strategy", "to": "automation-gates", "type": "feeds"},
+    {"from": "automation-gates", "to": "monitoring", "type": "continues_as"},
+    {"from": "validation", "to": "ai-testing-strategy", "type": "validates"}
   ]
 }

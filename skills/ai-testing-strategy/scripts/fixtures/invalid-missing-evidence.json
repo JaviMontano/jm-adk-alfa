@@ -1,0 +1,12 @@
+{
+  "system": {"name": "No Evidence", "use_case": "AI scoring", "risk_level": "medium", "strategy_scope": "AI testing strategy"},
+  "evidence": [],
+  "matrix_coverage": {"covered_test_types": [], "covered_layers": [], "cells": []},
+  "model_tests": [],
+  "data_quality_tests": [],
+  "fairness_compliance_tests": [],
+  "integration_strategy": {},
+  "automation_gates": [],
+  "monitoring": [],
+  "validation": {"status": "pass", "checks": []}
+}

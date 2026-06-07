@@ -1,6 +1,6 @@
 ---
 name: ai-testing-strategy
-version: 1.0.0
+version: 1.0.1
 description: >
   Comprehensive testing strategy for AI systems — testing scope matrix (6 types x 6 layers), model prediction testing,
   data quality testing, compliance and fairness testing, integration approaches, and CI/CD test automation. This skill
@@ -21,6 +21,20 @@ allowed-tools:
 # AI Testing Strategy: Comprehensive Verification for AI-Enabled Systems
 
 AI testing strategy defines how to verify that an AI system behaves correctly, fairly, securely, and reliably across all layers — from data ingestion through model inference to production monitoring. This skill produces a testing strategy document covering the testing scope matrix, model and prediction tests, data quality tests, compliance and fairness tests, integration approaches, and CI/CD test automation for AI pipelines. [EXPLICIT]
+
+## Deterministic Hardening Contract
+
+This skill must produce a testing strategy that can be checked offline without network, wall-clock, or random dependencies. Use the assets in `assets/` as the contract source before writing the final report:
+
+- `assets/testing-strategy-contract.json`: required report sections and validation checks.
+- `assets/matrix-policy.json`: canonical test types, layers, priorities, and matrix coverage rule.
+- `assets/model-test-policy.json`: required model and prediction test categories.
+- `assets/data-quality-policy.json`: required data quality and pipeline test categories.
+- `assets/fairness-compliance-policy.json`: required fairness, privacy, audit, and governance tests.
+- `assets/automation-policy.json`: automation tiers, CI/CD gates, and post-deploy monitoring expectations.
+- `assets/evidence-policy.json`: allowed evidence tags and provenance rules.
+
+If a JSON testing strategy is requested or used as an intermediate handoff, validate it with `scripts/validate_ai_testing_strategy.py`. The fixture smoke test is `bash skills/ai-testing-strategy/scripts/check.sh`. [EXPLICIT]
 
 ## Principio Rector
 

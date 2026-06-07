@@ -1,0 +1,68 @@
+{
+  "system": {
+    "name": "Claims Assist",
+    "use_case": "Healthcare claims triage",
+    "risk_level": "high",
+    "strategy_scope": "AI testing strategy"
+  },
+  "evidence": [
+    {"id": "E1", "tag": "[EXPLICIT]", "source": "example input", "summary": "FastAPI, Python ingestion, PostgreSQL, S3, registry, and model are declared."},
+    {"id": "E2", "tag": "[EXPLICIT]", "source": "example input", "summary": "p95 below 250 ms, weekly retraining, PHI-safe audit, and fallback rules are required."},
+    {"id": "E3", "tag": "[EXPLICIT]", "source": "example input", "summary": "Known gaps include skew, stale distributions, drift alerts, fairness tests, and promotion gates."},
+    {"id": "E4", "tag": "[EXPLICIT]", "source": "example input", "summary": "Production PHI cannot be copied into fixtures."}
+  ],
+  "matrix_coverage": {
+    "covered_test_types": ["functional", "performance", "security", "compliance", "fairness", "integration"],
+    "covered_layers": ["ui", "api", "pipeline_ops", "model_processing", "data_management", "infrastructure"],
+    "cells": [
+      {"test_type": "functional", "layer": "api", "priority": "mandatory", "coverage_target": "API contract and response schema", "evidence_ids": ["E1"]},
+      {"test_type": "performance", "layer": "model_processing", "priority": "mandatory", "coverage_target": "p95 inference below 250 ms", "evidence_ids": ["E2"]},
+      {"test_type": "security", "layer": "data_management", "priority": "mandatory", "coverage_target": "PHI redaction in fixtures and logs", "evidence_ids": ["E4"]},
+      {"test_type": "compliance", "layer": "pipeline_ops", "priority": "mandatory", "coverage_target": "model promotion evidence retained", "evidence_ids": ["E2", "E3"]},
+      {"test_type": "fairness", "layer": "model_processing", "priority": "mandatory", "coverage_target": "fairness parity threshold", "evidence_ids": ["E3"]},
+      {"test_type": "integration", "layer": "infrastructure", "priority": "recommended", "coverage_target": "test harness deploys dependencies", "evidence_ids": ["E1"]}
+    ]
+  },
+  "model_tests": [
+    {"category": "accuracy", "oracle": "holdout and slice metrics", "threshold": "accuracy >= .88 and AUC >= .90", "automation_tier": "T3", "evidence_ids": ["E2"]},
+    {"category": "adversarial", "oracle": "boundary and perturbation suite", "threshold": "accuracy delta <= 10%", "automation_tier": "T3", "evidence_ids": ["E3"]},
+    {"category": "drift", "oracle": "PSI drift simulation", "threshold": "detect drift within 1 hour", "automation_tier": "T4", "evidence_ids": ["E3"]},
+    {"category": "counterfactual", "oracle": "priority sensitivity checks", "threshold": "explanation direction matches feature change", "automation_tier": "T3", "evidence_ids": ["E3"]},
+    {"category": "regression", "oracle": "champion-challenger comparison", "threshold": "no protected slice regression", "automation_tier": "T5", "evidence_ids": ["E3"]}
+  ],
+  "data_quality_tests": [
+    {"category": "schema", "oracle": "claims schema validator", "threshold": "required fields and ranges pass", "automation_tier": "T2", "evidence_ids": ["E1"]},
+    {"category": "distribution", "oracle": "reference distribution comparison", "threshold": "PSI below alert threshold", "automation_tier": "T3", "evidence_ids": ["E3"]},
+    {"category": "lineage", "oracle": "claim id to prediction lineage query", "threshold": "100% lineage completeness", "automation_tier": "T4", "evidence_ids": ["E2"]},
+    {"category": "training_serving_skew", "oracle": "batch and serving feature parity test", "threshold": "0 feature mismatches", "automation_tier": "T3", "evidence_ids": ["E3"]}
+  ],
+  "fairness_compliance_tests": [
+    {"category": "fairness", "oracle": "approved protected group slice report", "threshold": "parity >= 90%", "automation_tier": "T5", "evidence_ids": ["E3"]},
+    {"category": "audit_trail", "oracle": "prediction log completeness check", "threshold": "100% decisions include model version and explanation id", "automation_tier": "T5", "evidence_ids": ["E2"]},
+    {"category": "privacy", "oracle": "PHI detector against fixtures and logs", "threshold": "0 raw PHI leaks", "automation_tier": "T2", "evidence_ids": ["E4"]},
+    {"category": "governance", "oracle": "promotion gate packet review", "threshold": "approval, evaluation, and rollback plan present", "automation_tier": "T5", "evidence_ids": ["E2", "E3"]}
+  ],
+  "integration_strategy": {
+    "approach": "bottom_up_harness",
+    "rationale": "Healthcare risk makes data and compliance evidence the first gate.",
+    "harness": "synthetic claims data, registry stub, scoring API, and audit log verifier",
+    "contracts": ["data contract", "feature contract", "model contract", "API contract"],
+    "evidence_ids": ["E1", "E4"]
+  },
+  "automation_gates": [
+    {"gate": "code_quality", "tier": "T1", "trigger": "every commit", "blocks": "yes", "evidence_ids": ["E1"]},
+    {"gate": "data_quality", "tier": "T2", "trigger": "pull request", "blocks": "yes", "evidence_ids": ["E3"]},
+    {"gate": "model_quality", "tier": "T3", "trigger": "pre-deploy", "blocks": "yes", "evidence_ids": ["E2"]},
+    {"gate": "fairness_compliance", "tier": "T5", "trigger": "model promotion", "blocks": "yes", "evidence_ids": ["E3"]},
+    {"gate": "performance_regression", "tier": "T4", "trigger": "release candidate", "blocks": "yes", "evidence_ids": ["E2"]}
+  ],
+  "monitoring": [
+    {"signal": "drift", "threshold": "PSI breach or quality alert within 1 hour", "response": "open retraining review", "evidence_ids": ["E3"]},
+    {"signal": "performance", "threshold": "p95 exceeds 250 ms", "response": "page service owner and roll back model if needed", "evidence_ids": ["E2"]},
+    {"signal": "fairness", "threshold": "parity below 90%", "response": "block promotion or trigger review", "evidence_ids": ["E3"]}
+  ],
+  "validation": {
+    "status": "pass",
+    "checks": ["assets", "deterministic_scripts", "quality_criteria", "matrix_coverage", "model_test_coverage", "data_quality_coverage", "fairness_compliance_coverage", "automation_gates"]
+  }
+}

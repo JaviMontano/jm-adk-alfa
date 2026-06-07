@@ -1,0 +1,48 @@
+{
+  "skill": "ai-testing-strategy",
+  "version": "1.0.1",
+  "assets": [
+    {
+      "path": "assets/testing-strategy-contract.json",
+      "type": "schema_contract",
+      "purpose": "Defines required AI testing strategy sections and validation checks.",
+      "used_by": ["SKILL.md", "README.md", "templates/output.md", "scripts/validate_ai_testing_strategy.py"]
+    },
+    {
+      "path": "assets/matrix-policy.json",
+      "type": "coverage_contract",
+      "purpose": "Defines canonical AI test types, layers, priorities, and matrix coverage.",
+      "used_by": ["SKILL.md", "references/testing-matrix.md", "scripts/validate_ai_testing_strategy.py"]
+    },
+    {
+      "path": "assets/model-test-policy.json",
+      "type": "test_contract",
+      "purpose": "Defines required model and prediction test categories.",
+      "used_by": ["SKILL.md", "references/ai-test-types.md", "scripts/validate_ai_testing_strategy.py"]
+    },
+    {
+      "path": "assets/data-quality-policy.json",
+      "type": "test_contract",
+      "purpose": "Defines required data quality and pipeline test categories.",
+      "used_by": ["SKILL.md", "references/ai-test-types.md", "scripts/validate_ai_testing_strategy.py"]
+    },
+    {
+      "path": "assets/fairness-compliance-policy.json",
+      "type": "governance_contract",
+      "purpose": "Defines fairness, privacy, audit, and governance test requirements.",
+      "used_by": ["SKILL.md", "references/ai-test-types.md", "scripts/validate_ai_testing_strategy.py"]
+    },
+    {
+      "path": "assets/automation-policy.json",
+      "type": "automation_contract",
+      "purpose": "Defines automation tiers, CI/CD gates, and monitoring requirements.",
+      "used_by": ["SKILL.md", "prompts/primary.md", "scripts/validate_ai_testing_strategy.py"]
+    },
+    {
+      "path": "assets/evidence-policy.json",
+      "type": "evidence_contract",
+      "purpose": "Defines evidence tags and provenance rules for testing strategy claims.",
+      "used_by": ["SKILL.md", "agents/guardian.md", "scripts/validate_ai_testing_strategy.py"]
+    }
+  ]
+}

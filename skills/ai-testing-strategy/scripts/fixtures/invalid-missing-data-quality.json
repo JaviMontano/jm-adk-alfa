@@ -1,0 +1,18 @@
+{
+  "system": {"name": "Missing Data Quality", "use_case": "AI scoring", "risk_level": "medium", "strategy_scope": "AI testing strategy"},
+  "evidence": [{"id": "E1", "tag": "[EXPLICIT]", "source": "fixture", "summary": "Fixture evidence."}],
+  "matrix_coverage": {"covered_test_types": ["functional", "performance", "security", "compliance", "fairness", "integration"], "covered_layers": ["ui", "api", "pipeline_ops", "model_processing", "data_management", "infrastructure"], "cells": [{"test_type": "functional", "layer": "api", "priority": "mandatory", "coverage_target": "api", "evidence_ids": ["E1"]}]},
+  "model_tests": [
+    {"category": "accuracy", "oracle": "holdout", "threshold": "pass", "automation_tier": "T3", "evidence_ids": ["E1"]},
+    {"category": "adversarial", "oracle": "perturb", "threshold": "pass", "automation_tier": "T3", "evidence_ids": ["E1"]},
+    {"category": "drift", "oracle": "psi", "threshold": "pass", "automation_tier": "T4", "evidence_ids": ["E1"]},
+    {"category": "counterfactual", "oracle": "what-if", "threshold": "pass", "automation_tier": "T3", "evidence_ids": ["E1"]},
+    {"category": "regression", "oracle": "champion", "threshold": "pass", "automation_tier": "T5", "evidence_ids": ["E1"]}
+  ],
+  "data_quality_tests": [{"category": "schema", "oracle": "schema", "threshold": "pass", "automation_tier": "T2", "evidence_ids": ["E1"]}],
+  "fairness_compliance_tests": [],
+  "integration_strategy": {},
+  "automation_gates": [],
+  "monitoring": [],
+  "validation": {"status": "pass", "checks": ["assets", "deterministic_scripts", "quality_criteria"]}
+}

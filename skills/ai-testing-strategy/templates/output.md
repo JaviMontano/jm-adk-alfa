@@ -1,28 +1,45 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: ai-testing-strategy
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
+# AI Testing Strategy Report
 
-# Ai Testing Strategy Output
+## System Context
 
-## Summary
-
-{summary}
+{system_context}
 
 ## Evidence
 
-{evidence}
+{evidence_table}
 
-## Result
+## Matrix Coverage
 
-{result}
+{matrix_coverage}
+
+## Model And Prediction Tests
+
+{model_tests}
+
+## Data Quality And Pipeline Tests
+
+{data_quality_tests}
+
+## Fairness, Compliance, Privacy, And Governance Tests
+
+{fairness_compliance_tests}
+
+## Integration Strategy
+
+{integration_strategy}
+
+## CI/CD Automation Gates
+
+{automation_gates}
+
+## Continuous Monitoring
+
+{monitoring_plan}
 
 ## Validation
 
-{validation}
+{validation_checks}
 
-## Risks and Limits
+## Risks And Open Items
 
-{risks}
+{risks_open_items}
