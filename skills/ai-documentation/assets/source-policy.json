@@ -1,0 +1,5 @@
+{
+  "schema": "jm-labs.asset.source-policy.v1",
+  "allowed_source_types": ["code", "existing_doc", "api_spec", "config", "test", "user_input", "diff"],
+  "allowed_statuses": ["present", "missing", "stale", "conflict"]
+}

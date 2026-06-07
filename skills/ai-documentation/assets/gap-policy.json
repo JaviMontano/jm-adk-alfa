@@ -1,0 +1,5 @@
+{
+  "schema": "jm-labs.asset.gap-policy.v1",
+  "allowed_severities": ["low", "medium", "high", "critical"],
+  "rule": "Any blocking gap requires validation.status to be warn or block."
+}

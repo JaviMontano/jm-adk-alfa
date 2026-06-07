@@ -1,0 +1,11 @@
+{
+  "schema": "jm-labs.ai-documentation.packet.v1",
+  "project": {"name": "Missing Evidence", "documentation_mode": "create", "primary_audience": "developer"},
+  "evidence": [{"id": "E-001", "tag": "[EXPLICIT]", "source_type": "code", "path": "src/app.py", "summary": "Defines app startup."}],
+  "source_inventory": [{"path": "src/app.py", "source_type": "code", "status": "present", "evidence_ids": ["E-999"]}],
+  "documentation_targets": [{"doc_type": "README", "output_path": "README.md", "audience": "developer", "freshness_policy": "create", "required_sections": ["Overview"], "evidence_ids": ["E-001"]}],
+  "generated_sections": [{"target_doc_type": "README", "heading": "Overview", "content_summary": "App overview.", "source_evidence_ids": ["E-001"], "validation_status": "ready"}],
+  "gap_analysis": [],
+  "validation": {"status": "pass", "checks": ["assets", "deterministic_scripts", "source_inventory", "evidence_traceability", "section_coverage", "no_unverified_claims", "gap_policy", "output_paths"]},
+  "risks": []
+}

@@ -1,0 +1,6 @@
+{
+  "schema": "jm-labs.asset.path-policy.v1",
+  "allowed_exact_paths": ["README.md", "CHANGELOG.md"],
+  "allowed_prefixes": ["docs/", "api/"],
+  "forbidden_segments": ["..", ".git", ".codex", ".local"]
+}

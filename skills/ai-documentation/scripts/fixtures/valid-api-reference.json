@@ -1,0 +1,23 @@
+{
+  "schema": "jm-labs.ai-documentation.packet.v1",
+  "project": {"name": "Billing API", "documentation_mode": "create", "primary_audience": "api_consumer"},
+  "evidence": [
+    {"id": "E-101", "tag": "[EXPLICIT]", "source_type": "api_spec", "path": "api/openapi.json", "summary": "Defines invoice endpoints and schemas."},
+    {"id": "E-102", "tag": "[EXPLICIT]", "source_type": "code", "path": "src/billing/routes.py", "summary": "Implements invoice list and create routes."},
+    {"id": "E-103", "tag": "[EXPLICIT]", "source_type": "test", "path": "tests/test_billing_api.py", "summary": "Covers invoice list and create behavior."}
+  ],
+  "source_inventory": [
+    {"path": "api/openapi.json", "source_type": "api_spec", "status": "present", "evidence_ids": ["E-101"]},
+    {"path": "src/billing/routes.py", "source_type": "code", "status": "present", "evidence_ids": ["E-102"]},
+    {"path": "tests/test_billing_api.py", "source_type": "test", "status": "present", "evidence_ids": ["E-103"]}
+  ],
+  "documentation_targets": [
+    {"doc_type": "API_REFERENCE", "output_path": "api/billing.md", "audience": "api_consumer", "freshness_policy": "create", "required_sections": ["Authentication", "Endpoints", "Schemas", "Errors"], "evidence_ids": ["E-101", "E-102", "E-103"]}
+  ],
+  "generated_sections": [
+    {"target_doc_type": "API_REFERENCE", "heading": "Invoice Endpoints", "content_summary": "Documents invoice list and create behavior from spec and tests.", "source_evidence_ids": ["E-101", "E-102", "E-103"], "validation_status": "ready"}
+  ],
+  "gap_analysis": [],
+  "validation": {"status": "pass", "checks": ["assets", "deterministic_scripts", "source_inventory", "evidence_traceability", "section_coverage", "no_unverified_claims", "gap_policy", "output_paths"]},
+  "risks": []
+}

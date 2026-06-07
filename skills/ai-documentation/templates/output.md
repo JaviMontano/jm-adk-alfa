@@ -1,28 +1,29 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: ai-documentation
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
+# AI Documentation Packet
 
-# Ai Documentation Output
+## Project
 
-## Summary
+{project}
 
-{summary}
+## Source Inventory
 
-## Evidence
+{source_inventory}
 
-{evidence}
+## Documentation Targets
 
-## Result
+{documentation_targets}
 
-{result}
+## Generated Sections
+
+{generated_sections}
+
+## Gap Analysis
+
+{gap_analysis}
 
 ## Validation
 
 {validation}
 
-## Risks and Limits
+## Risks
 
 {risks}

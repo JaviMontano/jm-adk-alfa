@@ -1,0 +1,11 @@
+{
+  "schema": "jm-labs.ai-documentation.packet.v1",
+  "project": {"name": "Blocking Gap", "documentation_mode": "audit", "primary_audience": "maintainer"},
+  "evidence": [{"id": "E-001", "tag": "[OPEN]", "source_type": "existing_doc", "path": "README.md", "summary": "API behavior is missing."}],
+  "source_inventory": [{"path": "README.md", "source_type": "existing_doc", "status": "missing", "evidence_ids": ["E-001"]}],
+  "documentation_targets": [{"doc_type": "API_REFERENCE", "output_path": "docs/api.md", "audience": "api_consumer", "freshness_policy": "create", "required_sections": ["Endpoints"], "evidence_ids": ["E-001"]}],
+  "generated_sections": [{"target_doc_type": "API_REFERENCE", "heading": "Endpoints", "content_summary": "Cannot document endpoints without a source.", "source_evidence_ids": ["E-001"], "validation_status": "block"}],
+  "gap_analysis": [{"id": "G-001", "severity": "critical", "target_doc_type": "API_REFERENCE", "description": "No API source is available.", "blocking": true, "evidence_ids": ["E-001"]}],
+  "validation": {"status": "pass", "checks": ["assets", "deterministic_scripts", "source_inventory", "evidence_traceability", "section_coverage", "no_unverified_claims", "gap_policy", "output_paths"]},
+  "risks": ["Validation status is intentionally wrong."]
+}

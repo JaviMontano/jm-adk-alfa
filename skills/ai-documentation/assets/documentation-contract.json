@@ -1,0 +1,6 @@
+{
+  "schema": "jm-labs.asset.documentation-contract.v1",
+  "report_schema": "jm-labs.ai-documentation.packet.v1",
+  "required_top_level_fields": ["schema", "project", "evidence", "source_inventory", "documentation_targets", "generated_sections", "gap_analysis", "validation", "risks"],
+  "required_validation_checks": ["assets", "deterministic_scripts", "source_inventory", "evidence_traceability", "section_coverage", "no_unverified_claims", "gap_policy", "output_paths"]
+}

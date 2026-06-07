@@ -1,0 +1,11 @@
+{
+  "schema": 1,
+  "skill": "ai-documentation",
+  "assets": [
+    {"path": "assets/documentation-contract.json", "type": "schema", "purpose": "Defines the AI documentation packet schema and required validation checks.", "used_by": ["SKILL.md", "scripts/validate_ai_documentation_packet.py", "templates/output.md", "evals/evals.json"]},
+    {"path": "assets/source-policy.json", "type": "policy", "purpose": "Defines allowed source types and source inventory statuses.", "used_by": ["SKILL.md", "scripts/validate_ai_documentation_packet.py", "knowledge/body-of-knowledge.md"]},
+    {"path": "assets/doc-type-policy.json", "type": "policy", "purpose": "Defines allowed documentation target types, audiences, and freshness policies.", "used_by": ["SKILL.md", "scripts/validate_ai_documentation_packet.py", "templates/output.md"]},
+    {"path": "assets/gap-policy.json", "type": "policy", "purpose": "Defines gap severities and blocking-gap validation behavior.", "used_by": ["SKILL.md", "scripts/validate_ai_documentation_packet.py", "agents/guardian.md"]},
+    {"path": "assets/path-policy.json", "type": "policy", "purpose": "Defines safe relative output path constraints.", "used_by": ["SKILL.md", "scripts/validate_ai_documentation_packet.py", "agents/support.md"]}
+  ]
+}
