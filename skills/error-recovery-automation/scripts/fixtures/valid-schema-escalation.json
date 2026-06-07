@@ -1,0 +1,64 @@
+{
+  "schema": 1,
+  "skill": "error-recovery-automation",
+  "scenario_id": "schema-contract-partial-artifact",
+  "decision": "escalate",
+  "error": {
+    "category": "schema_contract",
+    "recoverability": "not_retryable"
+  },
+  "retry": {
+    "enabled": false,
+    "max_attempts": 0,
+    "backoff_strategy": "none",
+    "base_delay_seconds": 0,
+    "max_delay_seconds": 0,
+    "jitter": "none",
+    "stop_conditions": []
+  },
+  "rollback": {
+    "required": true,
+    "plan": [
+      "remove the partial generated artifact from the staging directory",
+      "restore the previous schema fixture"
+    ],
+    "verification": [
+      "confirm staging directory contains no partial artifact",
+      "rerun schema contract test against the restored fixture"
+    ]
+  },
+  "escalation": {
+    "required": true,
+    "owner": "schema owner",
+    "trigger": "required field removed from response contract",
+    "handoff": [
+      "failed command",
+      "schema diff",
+      "rollback verification",
+      "requested contract decision"
+    ]
+  },
+  "evidence": {
+    "observed_error": "KeyError: required field customer_id missing",
+    "classification_basis": "Schema contract changed and retry cannot restore the field",
+    "attempted_command": "python3 -B scripts/build-report.py",
+    "validation_source": "schema contract test output"
+  },
+  "validation": {
+    "pre_retry_checks": [
+      "confirm retry remains disabled",
+      "confirm rollback plan is approved"
+    ],
+    "post_recovery_checks": [
+      "confirm partial artifact is absent",
+      "confirm owner handoff includes schema diff"
+    ]
+  },
+  "safety": {
+    "idempotency_checked": false,
+    "side_effects": "known_reversible",
+    "destructive_action": false,
+    "approval_required": false,
+    "state_changed": true
+  }
+}

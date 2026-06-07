@@ -1,0 +1,19 @@
+{
+  "schema": 1,
+  "required_evidence_fields": [
+    "observed_error",
+    "classification_basis",
+    "attempted_command",
+    "validation_source"
+  ],
+  "required_validation_fields": [
+    "pre_retry_checks",
+    "post_recovery_checks"
+  ],
+  "rules": [
+    "Do not invent evidence.",
+    "Do not classify retryability from a broad symptom alone.",
+    "Do not close recovery without post-recovery validation.",
+    "Every user-facing factual claim should carry an evidence tag when the surrounding protocol requires it."
+  ]
+}

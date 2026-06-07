@@ -1,17 +1,16 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: error-recovery-automation
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
-
 # Error Recovery Automation
 
->
+Deterministic recovery planning for failed automations, scripts, CI jobs, API
+calls, deployments, and agent workflows.
 
 ## Triggers
 
-- error-recovery-automation
+- `error-recovery-automation`
+- `error recovery automation`
+- `classify this failure`
+- `retry safely`
+- `rollback before retry`
+- `escalate this failed automation`
 
 ## Allowed Tools
 
@@ -23,8 +22,21 @@ overwrite-policy: missing-only unless --force
 
 ## Quick Use
 
-Use this skill when the request clearly matches the triggers and requires the `error-recovery-automation` capability.
+Use this skill when a failed process needs a safe next step. The skill separates
+recoverable transient failures from non-retryable failures, then produces a
+bounded recovery plan with validation and handoff evidence.
 
 ## Output Format
 
-Markdown with summary, evidence, result, validation, and risks.
+Markdown or JSON with:
+
+- failure summary
+- classification and recoverability
+- retry policy or retry block
+- rollback plan when state can change
+- escalation handoff when human action is required
+- validation evidence
+- residual risks and Guardian decision
+
+Structured JSON plans can be validated offline with
+`scripts/validate_error_recovery.py`.

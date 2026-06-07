@@ -1,0 +1,43 @@
+{
+  "schema": 1,
+  "skill": "error-recovery-automation",
+  "scenario_id": "schema-no-owner",
+  "decision": "escalate",
+  "error": {
+    "category": "schema_contract",
+    "recoverability": "not_retryable"
+  },
+  "retry": {
+    "enabled": false,
+    "max_attempts": 0,
+    "backoff_strategy": "none",
+    "base_delay_seconds": 0,
+    "max_delay_seconds": 0,
+    "jitter": "none",
+    "stop_conditions": []
+  },
+  "rollback": {"required": false, "plan": [], "verification": []},
+  "escalation": {
+    "required": true,
+    "owner": "",
+    "trigger": "schema changed",
+    "handoff": ["failed command"]
+  },
+  "evidence": {
+    "observed_error": "schema field missing",
+    "classification_basis": "contract failure",
+    "attempted_command": "build-report",
+    "validation_source": "schema test"
+  },
+  "validation": {
+    "pre_retry_checks": ["confirm retry disabled"],
+    "post_recovery_checks": ["confirm handoff"]
+  },
+  "safety": {
+    "idempotency_checked": false,
+    "side_effects": "none",
+    "destructive_action": false,
+    "approval_required": false,
+    "state_changed": false
+  }
+}

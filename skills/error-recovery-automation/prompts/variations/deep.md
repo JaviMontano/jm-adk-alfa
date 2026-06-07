@@ -1,44 +1,28 @@
 ---
 name: error-recovery-automation-deep
-type: variation
+type: execution
 version: 2.0.0
-description: "Error Recovery Automation — deep analysis mode. Exhaustive coverage."
+description: "Full recovery design for complex or stateful failures."
 ---
 
-# Error Recovery Automation — Deep Mode
+# Deep Recovery Design
 
-## When to Use
+Use when the failure may involve production state, partial deployment, data
+integrity, credentials, schema drift, or multiple owners.
 
-Use deep mode when thoroughness matters more than speed: architecture decisions, security audits, compliance reviews, critical deliverables.
+## Steps
 
-## Dynamic Parameters
-
-| Parameter | Required | Filled By |
-|-----------|----------|-----------|
-| `{{task}}` | Yes | User input |
-| `{{context}}` | Yes | User + codebase scan |
-| `{{depth}}` | No | Set to "deep" |
-
-## Execution (Deep)
-
-1. Load ALL knowledge: `knowledge/body-of-knowledge.md` + cross-referenced skills
-2. Check guardrails: `references/guardrails/*.json`
-3. Lead executes with exhaustive analysis:
-   - Cover ALL edge cases, not just common path
-   - Research: check standards, best practices, recent changes
-   - Document every assumption with `[ASSUMPTION]` tag
-4. Support reviews with expanded scope:
-   - Security, accessibility, performance, business viability
-   - Adversarial scenarios: what could go wrong?
-5. Guardian validates with strict criteria:
-   - Evidence tags 100% coverage (no untagged claims)
-   - Quality gate fully met
-   - Confidence >= 0.95 with evidence support
+1. Build an evidence table from logs, commands, artifacts, checkpoints, and
+   owner-provided constraints.
+2. Classify the error with `assets/classification-policy.json`.
+3. Decide retry eligibility with `assets/retry-policy.json`.
+4. Define rollback and verification with `assets/rollback-policy.json`.
+5. Define escalation triggers and handoff with
+   `assets/escalation-policy.json`.
+6. Produce the output sections in `assets/error-recovery-contract.json`.
+7. For JSON output, validate with `scripts/validate_error_recovery.py`.
 
 ## Output
 
-- Exhaustive deliverable with full evidence trail
-- Edge cases documented
-- Risk assessment included
-- Recommendations with priority ranking
-- Confidence score with justification
+Return a full recovery plan with evidence, assumptions, blocked decisions,
+validation commands, and residual risks.

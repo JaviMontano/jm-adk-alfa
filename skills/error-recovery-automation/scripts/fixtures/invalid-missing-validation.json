@@ -1,0 +1,38 @@
+{
+  "schema": 1,
+  "skill": "error-recovery-automation",
+  "scenario_id": "no-validation",
+  "decision": "recover",
+  "error": {
+    "category": "timeout",
+    "recoverability": "retryable"
+  },
+  "retry": {
+    "enabled": true,
+    "max_attempts": 3,
+    "backoff_strategy": "exponential",
+    "base_delay_seconds": 5,
+    "max_delay_seconds": 60,
+    "jitter": "none",
+    "stop_conditions": ["attempt limit reached"]
+  },
+  "rollback": {"required": false, "plan": [], "verification": []},
+  "escalation": {"required": false, "owner": "", "trigger": "", "handoff": []},
+  "evidence": {
+    "observed_error": "timeout",
+    "classification_basis": "transient timeout",
+    "attempted_command": "qa",
+    "validation_source": "command output"
+  },
+  "validation": {
+    "pre_retry_checks": ["check clean state"],
+    "post_recovery_checks": []
+  },
+  "safety": {
+    "idempotency_checked": true,
+    "side_effects": "none",
+    "destructive_action": false,
+    "approval_required": false,
+    "state_changed": false
+  }
+}

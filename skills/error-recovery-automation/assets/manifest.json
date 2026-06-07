@@ -1,0 +1,42 @@
+{
+  "schema": 1,
+  "skill": "error-recovery-automation",
+  "assets": [
+    {
+      "path": "assets/error-recovery-contract.json",
+      "type": "contract",
+      "purpose": "Defines required sections and structured fields for recovery outputs.",
+      "used_by": ["SKILL.md", "templates/output.md", "scripts/validate_error_recovery.py"]
+    },
+    {
+      "path": "assets/classification-policy.json",
+      "type": "policy",
+      "purpose": "Maps observed errors to deterministic categories and recoverability decisions.",
+      "used_by": ["SKILL.md", "knowledge/body-of-knowledge.md", "scripts/validate_error_recovery.py"]
+    },
+    {
+      "path": "assets/retry-policy.json",
+      "type": "policy",
+      "purpose": "Constrains retry attempts, backoff, idempotency, and stop conditions.",
+      "used_by": ["SKILL.md", "prompts/primary.md", "scripts/validate_error_recovery.py"]
+    },
+    {
+      "path": "assets/rollback-policy.json",
+      "type": "policy",
+      "purpose": "Defines rollback and verification requirements for stateful recovery.",
+      "used_by": ["SKILL.md", "agents/support.md", "scripts/validate_error_recovery.py"]
+    },
+    {
+      "path": "assets/escalation-policy.json",
+      "type": "policy",
+      "purpose": "Defines escalation triggers, owners, and handoff evidence.",
+      "used_by": ["SKILL.md", "agents/guardian.md", "scripts/validate_error_recovery.py"]
+    },
+    {
+      "path": "assets/evidence-policy.json",
+      "type": "policy",
+      "purpose": "Defines minimum evidence required before retry or closure.",
+      "used_by": ["SKILL.md", "examples/example-output.md", "scripts/validate_error_recovery.py"]
+    }
+  ]
+}

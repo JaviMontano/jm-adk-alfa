@@ -1,28 +1,37 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: error-recovery-automation
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
+# Error Recovery Plan
 
-# Error Recovery Automation Output
+## Failure Summary
 
-## Summary
+{failure_summary}
 
-{summary}
+## Classification
 
-## Evidence
+{classification}
 
-{evidence}
+## Recovery Plan
 
-## Result
+{recovery_plan}
 
-{result}
+## Retry Policy Or Retry Block
 
-## Validation
+{retry_policy}
 
-{validation}
+## Rollback Plan
 
-## Risks and Limits
+{rollback_plan}
 
-{risks}
+## Escalation Handoff
+
+{escalation_handoff}
+
+## Validation Evidence
+
+{validation_evidence}
+
+## Risks And Limits
+
+{risks_and_limits}
+
+## Guardian Decision
+
+{guardian_decision}
