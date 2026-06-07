@@ -1,17 +1,15 @@
 ---
 name: ai-software-architecture-meta
 type: meta
-version: 2.0.0
-description: "Meta-prompt for Ai Software Architecture skill routing."
+version: 2.1.0
+description: "Meta-prompt for AI Software Architecture routing."
 ---
 
-# Ai Software Architecture — Meta Prompt
+# AI Software Architecture - Meta Prompt
 
-Activate this skill when the user request matches:
-- Trigger phrases from SKILL.md description
-- Direct invocation: `/ai-software-architecture`
+Activate this skill when the request asks to design, evaluate, document, or refactor architecture for an AI-enabled software system.
 
-## Skill Routing
-1. Load SKILL.md → read `## When to Activate` section
-2. If match → activate lead agent: `ai-software-architecture-lead`
-3. If orchestrated → defer to orchestrating skill
+Strong activation signals:
+- AI module boundaries, model-serving boundaries, feature-store boundaries, model registry, drift monitoring, explainability, AI quality attributes, ADRs for AI decisions, AI technical debt.
+
+Do not activate for generic code refactors, weather/news requests, pure MLOps pipeline implementation, or GenAI-specific RAG design unless the user asks for internal AI software architecture.

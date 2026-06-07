@@ -1,0 +1,12 @@
+{
+  "system": {"name": "No Evidence", "use_case": "AI decisioning", "risk_level": "medium", "architecture_scope": "logical"},
+  "evidence": [],
+  "layer_view": [],
+  "components": [],
+  "patterns": [],
+  "quality_scenarios": [],
+  "adrs": [],
+  "debt": [],
+  "evolution_plan": [],
+  "validation": {"status": "pass", "checks": []}
+}

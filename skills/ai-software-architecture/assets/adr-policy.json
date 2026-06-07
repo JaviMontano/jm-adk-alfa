@@ -1,0 +1,14 @@
+{
+  "schema": 1,
+  "allowed_statuses": ["proposed", "accepted", "superseded", "rejected"],
+  "required_fields": [
+    "id",
+    "title",
+    "status",
+    "context",
+    "decision",
+    "consequences",
+    "alternatives",
+    "evidence_ids"
+  ]
+}

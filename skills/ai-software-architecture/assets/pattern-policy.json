@@ -1,0 +1,27 @@
+{
+  "schema": 1,
+  "allowed_patterns": [
+    "Feature Store",
+    "Model Registry",
+    "Drift Detection",
+    "Explainability Wrapper",
+    "Shadow Deployment",
+    "Champion-Challenger",
+    "Canary Deployment",
+    "Bulkhead Isolation",
+    "Circuit Breaker",
+    "Rule Fallback",
+    "Service Orientation",
+    "Pipe-and-Filter"
+  ],
+  "allowed_anti_patterns": [
+    "training-serving skew",
+    "pipeline jungle",
+    "dead feature columns",
+    "undeclared consumers",
+    "missing drift monitor",
+    "unversioned model artifact",
+    "opaque high-stakes decision"
+  ],
+  "allowed_decisions": ["selected", "rejected", "monitor"]
+}

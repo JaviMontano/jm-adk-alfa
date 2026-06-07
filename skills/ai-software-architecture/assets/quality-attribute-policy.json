@@ -1,0 +1,25 @@
+{
+  "schema": 1,
+  "allowed_attributes": [
+    "performance",
+    "availability",
+    "modifiability",
+    "deployability",
+    "testability",
+    "accuracy",
+    "fairness",
+    "explainability",
+    "robustness",
+    "drift_resilience",
+    "compliance",
+    "security"
+  ],
+  "required_attributes": [
+    "performance",
+    "availability",
+    "drift_resilience",
+    "deployability",
+    "explainability"
+  ],
+  "scenario_fields": ["attribute", "stimulus", "response", "measure", "evidence_ids"]
+}

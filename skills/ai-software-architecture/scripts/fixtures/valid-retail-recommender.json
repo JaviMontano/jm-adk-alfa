@@ -1,0 +1,59 @@
+{
+  "system": {
+    "name": "Retail Recommender",
+    "use_case": "Personalized product recommendations",
+    "risk_level": "medium",
+    "architecture_scope": "logical AI software architecture"
+  },
+  "evidence": [
+    {"id": "E1", "tag": "[EXPLICIT]", "source": "requirements memo", "summary": "Shared embeddings support multiple recommendation models."},
+    {"id": "E2", "tag": "[EXPLICIT]", "source": "requirements memo", "summary": "Model-specific SLAs and shared GPU pool are required."},
+    {"id": "E3", "tag": "[INFERRED]", "source": "architecture analysis", "summary": "Bulkhead isolation is needed to prevent model contention."},
+    {"id": "E4", "tag": "[EXPLICIT]", "source": "requirements memo", "summary": "A/B rollout and rollback are required for new models."}
+  ],
+  "layer_view": [
+    {"layer": "hardware", "modules": ["shared-gpu-pool"], "responsibility": "Run model families with isolated quotas.", "dependencies": [], "owner": "platform", "evidence_ids": ["E2", "E3"]},
+    {"layer": "data", "modules": ["event-ingestion", "embedding-store"], "responsibility": "Capture behavior events and serve embeddings.", "dependencies": ["stream"], "owner": "data-engineering", "evidence_ids": ["E1"]},
+    {"layer": "model", "modules": ["ranking-model", "model-registry"], "responsibility": "Version recommendation models and metadata.", "dependencies": ["embedding-store"], "owner": "ml-engineering", "evidence_ids": ["E1", "E4"]},
+    {"layer": "inference", "modules": ["ranking-service", "traffic-router"], "responsibility": "Serve recommendations and split rollout traffic.", "dependencies": ["model-registry", "shared-gpu-pool"], "owner": "application-engineering", "evidence_ids": ["E2", "E4"]},
+    {"layer": "application", "modules": ["commerce-api", "recommendation-widget"], "responsibility": "Show recommendations in shopping flows.", "dependencies": ["ranking-service"], "owner": "product-engineering", "evidence_ids": ["E4"]},
+    {"layer": "monitoring_control", "modules": ["sla-monitor", "drift-monitor", "experiment-dashboard"], "responsibility": "Track latency, drift, and business lift.", "dependencies": ["hardware", "data", "model", "inference"], "owner": "platform", "evidence_ids": ["E2", "E4"]}
+  ],
+  "components": [
+    {"id": "C1", "layer": "data", "responsibility": "Serve reusable embeddings.", "interfaces": ["embedding_lookup", "embedding_batch_export"], "dependencies": ["event-ingestion"], "owner": "data-engineering", "evidence_ids": ["E1"]},
+    {"id": "C2", "layer": "inference", "responsibility": "Route traffic between model versions.", "interfaces": ["recommendation_request", "ranked_items_response"], "dependencies": ["model-registry"], "owner": "application-engineering", "evidence_ids": ["E4"]},
+    {"id": "C3", "layer": "monitoring_control", "responsibility": "Detect latency and drift regressions.", "interfaces": ["metrics_in", "alerts_out"], "dependencies": ["ranking-service"], "owner": "platform", "evidence_ids": ["E2"]}
+  ],
+  "patterns": [
+    {"id": "P1", "name": "Bulkhead Isolation", "decision": "selected", "rationale": "Prevents one model family from exhausting shared GPU capacity.", "enabled_quality_attributes": ["availability", "performance"], "alternatives": ["single shared queue"], "evidence_ids": ["E2", "E3"]},
+    {"id": "P2", "name": "Canary Deployment", "decision": "selected", "rationale": "Limits exposure during model rollout.", "enabled_quality_attributes": ["deployability"], "alternatives": ["full cutover"], "evidence_ids": ["E4"]},
+    {"id": "P3", "name": "Drift Detection", "decision": "selected", "rationale": "Detects embedding and behavior distribution shifts.", "enabled_quality_attributes": ["drift_resilience"], "alternatives": ["manual monthly review"], "evidence_ids": ["E1"]},
+    {"id": "P4", "name": "Explainability Wrapper", "decision": "monitor", "rationale": "Medium-risk recommendations need lightweight rationale for merchandising audits.", "enabled_quality_attributes": ["explainability"], "alternatives": ["no explanation"], "evidence_ids": ["E4"]},
+    {"id": "P5", "name": "Model Registry", "decision": "selected", "rationale": "Supports model version lineage and rollback.", "enabled_quality_attributes": ["deployability"], "alternatives": ["manual artifact naming"], "evidence_ids": ["E4"]}
+  ],
+  "quality_scenarios": [
+    {"id": "Q1", "attribute": "performance", "stimulus": "Recommendation widget requests ranked items.", "response": "Ranking service returns items.", "measure": "p95 < 150 ms.", "evidence_ids": ["E2"]},
+    {"id": "Q2", "attribute": "availability", "stimulus": "One model family saturates GPU quota.", "response": "Bulkhead preserves other model families.", "measure": "No cross-family outage.", "evidence_ids": ["E2", "E3"]},
+    {"id": "Q3", "attribute": "drift_resilience", "stimulus": "Embedding distribution shifts after campaign launch.", "response": "Drift monitor alerts experiment owner.", "measure": "Detection < 1 h.", "evidence_ids": ["E1"]},
+    {"id": "Q4", "attribute": "deployability", "stimulus": "New ranking model is approved.", "response": "Canary traffic increases in controlled steps.", "measure": "Rollback < 30 s.", "evidence_ids": ["E4"]},
+    {"id": "Q5", "attribute": "explainability", "stimulus": "Merchandising reviews recommendation changes.", "response": "Report shows top feature drivers by model version.", "measure": "Coverage for every canary model.", "evidence_ids": ["E4"]}
+  ],
+  "adrs": [
+    {"id": "ADR-001", "title": "Isolate model families with bulkheads", "status": "accepted", "context": "Shared GPU pool serves models with different SLAs.", "decision": "Allocate independent queues and quotas per model family.", "consequences": "Improves fault isolation with some utilization overhead.", "alternatives": ["single shared queue"], "evidence_ids": ["E2", "E3"]},
+    {"id": "ADR-002", "title": "Use canary rollout for ranking models", "status": "accepted", "context": "New models require controlled rollout and rollback.", "decision": "Route traffic progressively through a traffic router.", "consequences": "Reduces rollout risk and adds routing complexity.", "alternatives": ["manual full rollout"], "evidence_ids": ["E4"]}
+  ],
+  "debt": [
+    {"id": "D1", "type": "shared GPU contention", "severity": "high", "owner": "platform", "mitigation": "Introduce quotas and model-family queues.", "sequence": 1, "evidence_ids": ["E2", "E3"]},
+    {"id": "D2", "type": "missing drift monitor", "severity": "medium", "owner": "ml-engineering", "mitigation": "Add embedding drift metrics.", "sequence": 2, "evidence_ids": ["E1"]},
+    {"id": "D3", "type": "unversioned rollout evidence", "severity": "medium", "owner": "application-engineering", "mitigation": "Bind canary metrics to model registry version.", "sequence": 3, "evidence_ids": ["E4"]}
+  ],
+  "evolution_plan": [
+    {"step": 1, "objective": "Add GPU bulkheads.", "debt_ids": ["D1"], "validation": "Synthetic saturation does not impact another model family."},
+    {"step": 2, "objective": "Add embedding drift monitor.", "debt_ids": ["D2"], "validation": "Drift fixture triggers alert."},
+    {"step": 3, "objective": "Bind rollout telemetry to model registry.", "debt_ids": ["D3"], "validation": "Every canary metric includes model version."}
+  ],
+  "validation": {
+    "status": "pass",
+    "checks": ["assets", "deterministic_scripts", "quality_criteria", "layer_coverage", "pattern_traceability", "adr_completeness", "debt_evolution"]
+  }
+}

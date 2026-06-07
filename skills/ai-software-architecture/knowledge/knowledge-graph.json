@@ -1,75 +1,26 @@
 {
   "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-28",
   "skill": "ai-software-architecture",
   "nodes": [
-    {
-      "id": "ai-software-architecture",
-      "type": "skill",
-      "label": "ai-software-architecture"
-    },
-    {
-      "id": "ai-software-architecture:inputs",
-      "type": "contract",
-      "label": "Expected inputs"
-    },
-    {
-      "id": "ai-software-architecture:outputs",
-      "type": "contract",
-      "label": "Expected outputs"
-    },
-    {
-      "id": "ai-software-architecture:quality",
-      "type": "gate",
-      "label": "Quality criteria"
-    },
-    {
-      "id": "ai-software-architecture:ontology",
-      "type": "ontology",
-      "label": "Domain: general"
-    },
-    {
-      "id": "ai-software-architecture:evidence",
-      "type": "gate",
-      "label": "Evidence / provenance requirements"
-    },
-    {
-      "id": "ai-software-architecture:antipattern",
-      "type": "risk",
-      "label": "Canonical anti-pattern to avoid"
-    }
+    {"id": "ai-software-architecture", "type": "skill", "label": "AI Software Architecture"},
+    {"id": "system-context", "type": "contract", "label": "System context and scope"},
+    {"id": "evidence", "type": "gate", "label": "Evidence and assumptions"},
+    {"id": "six-layer-stack", "type": "model", "label": "6-layer AI architecture stack"},
+    {"id": "component-contract", "type": "contract", "label": "Component contracts"},
+    {"id": "pattern-decision", "type": "decision", "label": "Pattern decisions"},
+    {"id": "quality-scenario", "type": "quality", "label": "Measurable quality scenarios"},
+    {"id": "adr", "type": "record", "label": "Architecture Decision Records"},
+    {"id": "debt-item", "type": "risk", "label": "Architecture debt item"},
+    {"id": "validation", "type": "gate", "label": "Deterministic validation"}
   ],
   "edges": [
-    {
-      "from": "ai-software-architecture",
-      "to": "ai-software-architecture:inputs",
-      "type": "requires"
-    },
-    {
-      "from": "ai-software-architecture",
-      "to": "ai-software-architecture:outputs",
-      "type": "produces"
-    },
-    {
-      "from": "ai-software-architecture",
-      "to": "ai-software-architecture:quality",
-      "type": "validated_by"
-    },
-    {
-      "from": "ai-software-architecture",
-      "to": "ai-software-architecture:ontology",
-      "type": "classified_as"
-    },
-    {
-      "from": "ai-software-architecture",
-      "to": "ai-software-architecture:evidence",
-      "type": "validated_by"
-    },
-    {
-      "from": "ai-software-architecture",
-      "to": "ai-software-architecture:antipattern",
-      "type": "guards_against"
-    }
+    {"from": "ai-software-architecture", "to": "system-context", "type": "requires"},
+    {"from": "system-context", "to": "evidence", "type": "supported_by"},
+    {"from": "ai-software-architecture", "to": "six-layer-stack", "type": "produces"},
+    {"from": "six-layer-stack", "to": "component-contract", "type": "contains"},
+    {"from": "pattern-decision", "to": "quality-scenario", "type": "enables"},
+    {"from": "adr", "to": "pattern-decision", "type": "records"},
+    {"from": "debt-item", "to": "quality-scenario", "type": "threatens"},
+    {"from": "validation", "to": "ai-software-architecture", "type": "validates"}
   ]
 }
