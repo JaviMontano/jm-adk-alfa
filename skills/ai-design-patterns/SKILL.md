@@ -1,6 +1,6 @@
 ---
 name: ai-design-patterns
-version: 1.0.0
+version: 1.0.1
 description: >
   AI-specific design patterns and system tactics — Feature Store, Champion-Challenger, Shadow Deployment, Drift Detection,
   Explainability Wrapper, Canary Deployment, Bulkhead, and traditional patterns adapted for AI. This skill should be used
@@ -21,6 +21,16 @@ allowed-tools:
 # AI Design Patterns: Patterns & Tactics for AI-Enabled Systems
 
 AI design patterns define reusable solutions to recurring architectural problems in AI systems. This skill produces a pattern selection analysis covering maintainability tactics, availability tactics, AI-specific patterns (Feature Store, Champion-Challenger, Shadow Deployment, Drift Detection), traditional patterns adapted for AI, anti-pattern detection, and a decision framework that maps system requirements to recommended patterns. [EXPLICIT]
+
+## Deterministic DoD Assets
+
+- `assets/pattern-selection-contract.json` defines the machine-checkable pattern selection packet.
+- `assets/pattern-catalog-policy.json` defines allowed AI patterns and required recommendation fields.
+- `assets/anti-pattern-policy.json` defines anti-pattern detection and remediation fields.
+- `assets/tactic-policy.json` defines maintainability, availability, resilience, load, and governance tactic requirements.
+- `assets/dependency-policy.json` defines required pattern dependencies and incompatible recommendations.
+- `assets/roadmap-policy.json` defines phase, exit-criteria, and evidence requirements.
+- `scripts/validate_ai_design_patterns_report.py` validates packets offline without network, time, or random dependencies.
 
 ## Principio Rector
 
@@ -59,6 +69,9 @@ Read ${CLAUDE_SKILL_DIR}/references/ai-patterns-detail.md
 Read ${CLAUDE_SKILL_DIR}/references/tactics-catalog.md
 Read ${CLAUDE_SKILL_DIR}/references/anti-patterns.md
 ```
+
+Validate machine-readable output:
+  Run `bash skills/ai-design-patterns/scripts/check.sh` for local fixture evidence.
 
 ---
 

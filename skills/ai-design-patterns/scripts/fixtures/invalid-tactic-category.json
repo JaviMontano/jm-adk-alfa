@@ -1,0 +1,13 @@
+{
+  "schema": "jm-labs.ai-design-patterns.report.v1",
+  "system": {"name": "Bad Tactic Category", "domain": "ml", "risk_level": "medium", "regulatory_context": false},
+  "evidence": [{"id": "E-001", "tag": "[EXPLICIT]", "source": "fixture", "summary": "A guardrail is required."}],
+  "requirements": {"quality_attributes": ["reliability"], "constraints": [], "model_count": 1, "traffic_profile": "medium"},
+  "detected_context": {"feature_store_present": false, "model_registry_present": true, "monitoring_present": true},
+  "anti_patterns": [],
+  "pattern_recommendations": [{"pattern": "Guardrail Pattern", "priority": "must", "rationale": "Constrain unsafe outputs.", "tradeoffs": ["extra review logic"], "required_tactics": ["policy check"], "dependencies": [], "evidence_ids": ["E-001"], "addresses": []}],
+  "tactics": [{"category": "speed", "name": "policy check", "mapped_component": "response filter", "evidence_ids": ["E-001"]}],
+  "roadmap": [{"phase": "guardrails", "patterns": ["Guardrail Pattern"], "exit_criteria": ["policy fixture passes"]}],
+  "validation": {"status": "pass", "checks": ["assets", "deterministic_scripts", "quality_criteria", "pattern_catalog", "anti_pattern_coverage", "dependency_check", "roadmap_exit_criteria"]},
+  "risks": []
+}

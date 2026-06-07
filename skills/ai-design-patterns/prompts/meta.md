@@ -1,17 +1,12 @@
 ---
 name: ai-design-patterns-meta
 type: meta
-version: 2.0.0
-description: "Meta-prompt for Ai Design Patterns skill routing."
+version: 2.1.0
+description: "Maintain deterministic AI Design Patterns quality."
 ---
 
-# Ai Design Patterns — Meta Prompt
+# AI Design Patterns - Meta Prompt
 
-Activate this skill when the user request matches:
-- Trigger phrases from SKILL.md description
-- Direct invocation: `/ai-design-patterns`
-
-## Skill Routing
-1. Load SKILL.md → read `## When to Activate` section
-2. If match → activate lead agent: `ai-design-patterns-lead`
-3. If orchestrated → defer to orchestrating skill
+Evaluate whether evals cover unknown patterns, missing evidence, missing dependencies,
+roadmap gaps, overengineering, anti-pattern remediation, and false-positive routing.
+Keep assets and validator aligned before updating review doc or ledger.

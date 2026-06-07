@@ -1,0 +1,13 @@
+{
+  "schema": "jm-labs.ai-design-patterns.report.v1",
+  "system": {"name": "No Exit Criteria", "domain": "ml", "risk_level": "medium", "regulatory_context": false},
+  "evidence": [{"id": "E-001", "tag": "[EXPLICIT]", "source": "fixture", "summary": "A rollout is needed."}],
+  "requirements": {"quality_attributes": ["reliability"], "constraints": [], "model_count": 1, "traffic_profile": "medium"},
+  "detected_context": {"feature_store_present": false, "model_registry_present": true, "monitoring_present": true},
+  "anti_patterns": [],
+  "pattern_recommendations": [{"pattern": "Canary Deployment", "priority": "should", "rationale": "Reduce rollout blast radius.", "tradeoffs": ["release complexity"], "required_tactics": ["traffic ramp"], "dependencies": ["Model Registry"], "evidence_ids": ["E-001"], "addresses": []}],
+  "tactics": [{"category": "resilience", "name": "traffic ramp", "mapped_component": "deployment pipeline", "evidence_ids": ["E-001"]}],
+  "roadmap": [{"phase": "rollout", "patterns": ["Canary Deployment"], "exit_criteria": []}],
+  "validation": {"status": "pass", "checks": ["assets", "deterministic_scripts", "quality_criteria", "pattern_catalog", "anti_pattern_coverage", "dependency_check", "roadmap_exit_criteria"]},
+  "risks": []
+}

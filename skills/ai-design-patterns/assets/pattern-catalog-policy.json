@@ -1,0 +1,5 @@
+{
+  "schema": "jm-labs.asset.pattern-catalog-policy.v1",
+  "allowed_patterns": ["Feature Store", "Model Registry", "Champion-Challenger", "Shadow Deployment", "Drift Detection", "Explainability Wrapper", "Canary Deployment", "Bulkhead", "Circuit Breaker", "Guardrail Pattern", "N-Party Voting", "Prompt Caching", "Model Distillation"],
+  "priorities": ["must", "should", "could", "avoid", "defer"]
+}

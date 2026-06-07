@@ -1,10 +1,12 @@
-# Ai Design Patterns — DOCX Template
+# AI Design Patterns - DOCX Template
 
 ## Document Structure
-- Title: Ai Design Patterns — [Client/Project Name]
-- Author: JM Labs
-- Date: {{DATE}}
-
-## Sections (mirror SKILL.md structure)
-See canonical SKILL.md for section blueprints.
-Use brand-config.json tokens: Navy #122562 · Gold #FFD700 · Blue #137DC5
+- Title: "AI Design Patterns - [System Name]"
+- Section 1: Requirements and Context
+- Section 2: Anti-Pattern Detection
+- Section 3: Pattern Recommendations
+- Section 4: Tactic Mapping
+- Section 5: Dependency Checks
+- Section 6: Roadmap and Exit Criteria
+- Section 7: Risks and Validation
+- Footer: "JM Labs - {{date}}"

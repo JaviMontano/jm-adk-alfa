@@ -1,0 +1,9 @@
+{
+  "schema": "jm-labs.asset.dependency-policy.v1",
+  "dependencies": {
+    "Champion-Challenger": ["Feature Store", "Model Registry"],
+    "Canary Deployment": ["Model Registry"],
+    "Shadow Deployment": ["Model Registry"],
+    "Explainability Wrapper": ["Model Registry"]
+  }
+}

@@ -1,9 +1,86 @@
-[
-  {"id": "ai-design-patterns-happy-path", "type": "happy_path", "input": "Run ai design patterns on this project", "expected_behavior": "Skill activates and produces the expected ai design patterns output following the defined process", "tags": ["basic", "activation"]},
-  {"id": "ai-design-patterns-explicit-trigger", "type": "happy_path", "input": "Apply ai design patterns analysis", "expected_behavior": "Skill recognizes the trigger phrase and executes the ai design patterns workflow", "tags": ["trigger", "recognition"]},
-  {"id": "ai-design-patterns-with-context", "type": "happy_path", "input": "Apply ai design patterns to analyze the current codebase with detailed output", "expected_behavior": "Skill produces comprehensive ai design patterns analysis with evidence-tagged findings", "tags": ["detailed", "comprehensive"]},
-  {"id": "ai-design-patterns-minimal-input", "type": "happy_path", "input": "Quick ai design patterns", "expected_behavior": "Skill activates with minimal input, applies reasonable defaults", "tags": ["minimal", "defaults"]},
-  {"id": "ai-design-patterns-false-positive", "type": "false_positive", "input": "What is the weather forecast for tomorrow?", "expected_behavior": "Skill should NOT activate — this input has no relation to ai design patterns", "tags": ["false_positive", "should-not-activate"]},
-  {"id": "ai-design-patterns-edge-empty-input", "type": "edge_case", "input": "Run ai design patterns but I have no files or documentation yet", "expected_behavior": "Skill handles gracefully — requests minimum viable input or produces gap analysis", "tags": ["edge_case", "empty-input", "boundary"]},
-  {"id": "ai-design-patterns-edge-conflicting", "type": "edge_case", "input": "Apply ai design patterns but requirements contradict each other", "expected_behavior": "Skill detects contradiction, flags with [OPEN] tag, proposes resolution", "tags": ["edge_case", "conflict", "corner"]}
-]
+{
+  "schema": 1,
+  "skill": "ai-design-patterns",
+  "cases": [
+    {
+      "id": "ai-design-patterns-fraud-modernization",
+      "type": "happy_path",
+      "input": "Select AI design patterns for a regulated fraud model with skew and degradation risks.",
+      "expected_behavior": "Recommends Feature Store, Drift Detection, governance tactics, dependencies, and roadmap.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "pattern_catalog", "anti_pattern_coverage"],
+      "tags": ["fraud", "regulated"]
+    },
+    {
+      "id": "ai-design-patterns-shadow-canary",
+      "type": "happy_path",
+      "input": "Plan shadow deployment and canary rollout for a high-risk model replacement.",
+      "expected_behavior": "Requires Shadow Deployment before Canary Deployment with exit criteria.",
+      "expected_checks": ["assets", "quality_criteria", "dependency_check", "roadmap_exit_criteria"],
+      "tags": ["deployment", "canary"]
+    },
+    {
+      "id": "ai-design-patterns-feature-store-not-needed",
+      "type": "happy_path",
+      "input": "Assess a single low-risk model with simple static features.",
+      "expected_behavior": "Avoids Feature Store if requirements do not justify infrastructure overhead.",
+      "expected_checks": ["quality_criteria", "pattern_catalog"],
+      "tags": ["avoid-overengineering"]
+    },
+    {
+      "id": "ai-design-patterns-unknown-pattern",
+      "type": "degradation",
+      "input": "Recommend Magic AI Mesh Pattern.",
+      "expected_behavior": "Rejects unknown pattern outside the catalog.",
+      "expected_checks": ["deterministic_scripts", "quality_criteria", "pattern_catalog"],
+      "tags": ["invalid-pattern"]
+    },
+    {
+      "id": "ai-design-patterns-missing-evidence",
+      "type": "degradation",
+      "input": "Recommend Drift Detection without evidence or detected risk.",
+      "expected_behavior": "Blocks or requires evidence ids and rationale.",
+      "expected_checks": ["quality_criteria", "anti_pattern_coverage"],
+      "tags": ["evidence-gap"]
+    },
+    {
+      "id": "ai-design-patterns-champion-no-dependency",
+      "type": "edge_case",
+      "input": "Recommend Champion-Challenger without Feature Store or Model Registry dependency.",
+      "expected_behavior": "Rejects missing dependency or records it explicitly.",
+      "expected_checks": ["deterministic_scripts", "quality_criteria", "dependency_check"],
+      "tags": ["dependency"]
+    },
+    {
+      "id": "ai-design-patterns-roadmap-no-exit",
+      "type": "edge_case",
+      "input": "Provide a roadmap with phases but no exit criteria.",
+      "expected_behavior": "Blocks until each phase has exit criteria.",
+      "expected_checks": ["quality_criteria", "roadmap_exit_criteria"],
+      "tags": ["roadmap"]
+    },
+    {
+      "id": "ai-design-patterns-false-positive-weather",
+      "type": "false_positive",
+      "input": "What is the weather forecast tomorrow?",
+      "expected_behavior": "Does not activate because request is unrelated to AI design patterns.",
+      "expected_checks": ["quality_criteria"],
+      "tags": ["false-positive"]
+    },
+    {
+      "id": "ai-design-patterns-false-positive-ui-patterns",
+      "type": "false_positive",
+      "input": "Suggest UI card patterns for a landing page.",
+      "expected_behavior": "Does not activate unless AI system design patterns are explicitly requested.",
+      "expected_checks": ["quality_criteria"],
+      "tags": ["false-positive", "ui"]
+    },
+    {
+      "id": "ai-design-patterns-script-validation",
+      "type": "validation",
+      "input": "Validate an AI design patterns selection report with deterministic fixtures.",
+      "expected_behavior": "Runs the offline validator against valid and invalid fixtures.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria"],
+      "tags": ["scripts", "fixtures"]
+    }
+  ]
+}

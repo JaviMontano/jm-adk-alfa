@@ -3,7 +3,7 @@ name: ai-design-patterns-quick
 type: variation
 variant: quick
 ---
-# Ai Design Patterns — Quick Mode
+# AI Design Patterns - Quick Mode
 
-Streamlined execution. Focus on TL;DR and primary output only.
-Apply Validation Gate but skip extended evidence tagging.
+Use quick mode for early pattern triage. Still include requirements, top risks,
+recommended/avoided patterns, dependencies, and next validation step.

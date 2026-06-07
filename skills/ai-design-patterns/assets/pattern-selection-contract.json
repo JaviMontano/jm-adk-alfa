@@ -1,0 +1,6 @@
+{
+  "schema": "jm-labs.asset.pattern-selection-contract.v1",
+  "report_schema": "jm-labs.ai-design-patterns.report.v1",
+  "required_top_level_fields": ["schema", "system", "evidence", "requirements", "detected_context", "anti_patterns", "pattern_recommendations", "tactics", "roadmap", "validation", "risks"],
+  "required_validation_checks": ["assets", "deterministic_scripts", "quality_criteria", "pattern_catalog", "anti_pattern_coverage", "dependency_check", "roadmap_exit_criteria"]
+}

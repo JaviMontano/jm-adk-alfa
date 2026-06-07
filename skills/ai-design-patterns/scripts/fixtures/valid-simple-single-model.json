@@ -1,0 +1,88 @@
+{
+  "schema": "jm-labs.ai-design-patterns.report.v1",
+  "system": {
+    "name": "Support Triage Classifier",
+    "domain": "internal support",
+    "risk_level": "low",
+    "regulatory_context": false
+  },
+  "evidence": [
+    {
+      "id": "E-101",
+      "tag": "[EXPLICIT]",
+      "source": "user input",
+      "summary": "One low-risk classifier uses static inputs and has low traffic."
+    },
+    {
+      "id": "E-102",
+      "tag": "[INFERRED]",
+      "source": "requirements analysis",
+      "summary": "Feature reuse and multi-model promotion are not required."
+    }
+  ],
+  "requirements": {
+    "quality_attributes": ["maintainability", "reliability"],
+    "constraints": ["low operational overhead"],
+    "model_count": 1,
+    "traffic_profile": "low"
+  },
+  "detected_context": {
+    "feature_store_present": false,
+    "model_registry_present": true,
+    "monitoring_present": true
+  },
+  "anti_patterns": [],
+  "pattern_recommendations": [
+    {
+      "pattern": "Drift Detection",
+      "priority": "should",
+      "rationale": "A lightweight monitor is enough to catch quality decay.",
+      "tradeoffs": ["simple thresholds may miss subtle drift"],
+      "required_tactics": ["baseline quality monitor"],
+      "dependencies": [],
+      "evidence_ids": ["E-101"],
+      "addresses": []
+    },
+    {
+      "pattern": "Feature Store",
+      "priority": "avoid",
+      "rationale": "The static single-model workflow does not justify feature platform overhead.",
+      "tradeoffs": ["future reuse would require reassessment"],
+      "required_tactics": ["architecture decision record"],
+      "dependencies": [],
+      "evidence_ids": ["E-102"],
+      "addresses": []
+    }
+  ],
+  "tactics": [
+    {
+      "category": "availability",
+      "name": "baseline quality monitor",
+      "mapped_component": "classifier dashboard",
+      "evidence_ids": ["E-101"]
+    },
+    {
+      "category": "governance",
+      "name": "architecture decision record",
+      "mapped_component": "engineering docs",
+      "evidence_ids": ["E-102"]
+    }
+  ],
+  "roadmap": [
+    {
+      "phase": "minimum control",
+      "patterns": ["Drift Detection"],
+      "exit_criteria": ["baseline alert threshold documented"]
+    },
+    {
+      "phase": "defer platform",
+      "patterns": ["Feature Store"],
+      "exit_criteria": ["reassessment trigger documented for feature reuse"]
+    }
+  ],
+  "validation": {
+    "status": "pass",
+    "checks": ["assets", "deterministic_scripts", "quality_criteria", "pattern_catalog", "anti_pattern_coverage", "dependency_check", "roadmap_exit_criteria"]
+  },
+  "risks": ["Feature Store remains deferred until model count or feature reuse increases."]
+}

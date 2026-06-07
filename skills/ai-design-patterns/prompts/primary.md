@@ -1,26 +1,29 @@
 ---
 name: ai-design-patterns-primary
 type: execution
-version: 2.0.0
-description: "Execute the Ai Design Patterns workflow."
+version: 2.1.0
+description: "Execute deterministic AI pattern selection with evidence and dependency checks."
 triad:
   lead: "ai-design-patterns-lead"
   support: "ai-design-patterns-support"
   guardian: "ai-design-patterns-guardian"
 ---
 
-# Ai Design Patterns — Execute
+# AI Design Patterns - Execute
 
-## Dynamic Parameters
+## Execution
+1. Load `references/ai-patterns-detail.md`, `references/tactics-catalog.md`, and `references/anti-patterns.md`.
+2. Load assets under `assets/`.
+3. Establish requirements, constraints, risk level, model count, traffic profile, and detected context.
+4. Detect anti-patterns with evidence.
+5. Recommend patterns with priority, rationale, trade-offs, tactics, dependencies, and evidence.
+6. Build roadmap phases with exit criteria.
+7. Guardian validates JSON packets with `scripts/validate_ai_design_patterns_report.py`.
 
-| Parameter | Description | Required | Filled By |
-|-----------|-------------|----------|-----------|
-| `{{task}}` | What to accomplish | Yes | User input |
-| `{{context}}` | Background and constraints | Yes | User or codebase |
-| `{{constraints}}` | Additional rules | No | Guardrails JSON |
-
-## Execution Steps
-1. Read SKILL.md `## When to Activate` — confirm this skill applies
-2. Read SKILL.md `## Validation Gate` — internalize quality criteria
-3. Execute the skill workflow per SKILL.md sections
-4. Validate output against Validation Gate before delivering
+## Output
+- Requirements and detected context.
+- Anti-pattern detection.
+- Pattern recommendations.
+- Tactic mapping.
+- Dependency checks.
+- Implementation roadmap and risks.
