@@ -1,0 +1,49 @@
+{
+  "system": {
+    "name": "Atlas Product Events",
+    "warehouse": "BigQuery",
+    "transformation_framework": "dbt Core",
+    "scope": "Product usage sessions"
+  },
+  "evidence": [
+    {"id": "ev-events", "tag": "source_inventory", "source": "Product events table description", "summary": "Application event stream contains user and session activity."},
+    {"id": "ev-session-rule", "tag": "business_rule", "source": "Product analytics session definition", "summary": "Sessions close after 30 minutes of inactivity."},
+    {"id": "ev-contract-product", "tag": "schema_contract", "source": "Product analytics contract", "summary": "Session mart schema is consumed by product analytics."},
+    {"id": "ev-lineage-product", "tag": "lineage", "source": "Sessionization model plan", "summary": "Event staging feeds sessionization and session fact models."},
+    {"id": "ev-validation-product", "tag": "validation", "source": "Local validation plan", "summary": "Session mart tests and incremental requirements are checked."}
+  ],
+  "sources": [
+    {"id": "app_events", "system": "Application Events", "tables": ["events"], "freshness_sla": "1 hour", "evidence_ids": ["ev-events"]}
+  ],
+  "models": [
+    {"name": "stg_app_events", "layer": "staging", "grain": "one row per event id", "owner": "Product Analytics", "materialization": "view", "columns": ["event_id", "user_id", "event_name", "event_at"], "upstream": ["app_events"], "evidence_ids": ["ev-events"]},
+    {"name": "int_sessions", "layer": "intermediate", "grain": "one row per session id", "owner": "Product Analytics", "materialization": "incremental", "columns": ["session_id", "user_id", "started_at", "ended_at"], "upstream": ["stg_app_events"], "unique_key": "session_id", "updated_at": "ended_at", "incremental_strategy": "microbatch", "evidence_ids": ["ev-session-rule", "ev-lineage-product"]},
+    {"name": "fct_sessions", "layer": "mart", "grain": "one row per completed session", "owner": "Product Analytics", "materialization": "incremental", "columns": ["session_id", "user_id", "duration_seconds", "started_at"], "upstream": ["int_sessions"], "unique_key": "session_id", "updated_at": "started_at", "incremental_strategy": "merge", "evidence_ids": ["ev-contract-product", "ev-lineage-product"]},
+    {"name": "dim_user", "layer": "mart", "grain": "one row per user id", "owner": "Product Analytics", "materialization": "table", "columns": ["user_id", "signup_date", "plan"], "upstream": ["stg_app_events"], "evidence_ids": ["ev-contract-product"]}
+  ],
+  "tests": [
+    {"model_name": "fct_sessions", "test_type": "not_null", "field": "session_id", "severity": "error", "evidence_ids": ["ev-contract-product"]},
+    {"model_name": "fct_sessions", "test_type": "unique", "field": "session_id", "severity": "error", "evidence_ids": ["ev-contract-product"]},
+    {"model_name": "fct_sessions", "test_type": "accepted_values", "field": "duration_seconds", "severity": "error", "evidence_ids": ["ev-validation-product"]},
+    {"model_name": "dim_user", "test_type": "not_null", "field": "user_id", "severity": "error", "evidence_ids": ["ev-contract-product"]},
+    {"model_name": "dim_user", "test_type": "unique", "field": "user_id", "severity": "error", "evidence_ids": ["ev-contract-product"]}
+  ],
+  "data_contracts": [
+    {"model_name": "fct_sessions", "enforced": true, "owner": "Product Analytics", "breaking_change_policy": "block", "evidence_ids": ["ev-contract-product"]},
+    {"model_name": "dim_user", "enforced": true, "owner": "Product Analytics", "breaking_change_policy": "version", "evidence_ids": ["ev-contract-product"]}
+  ],
+  "lineage": [
+    {"from": "app_events", "to": "stg_app_events"},
+    {"from": "stg_app_events", "to": "int_sessions"},
+    {"from": "int_sessions", "to": "fct_sessions"},
+    {"from": "stg_app_events", "to": "dim_user"}
+  ],
+  "documentation": [
+    {"model_name": "fct_sessions", "description": "Product session fact table.", "column_descriptions": ["session_id is the unique session key", "duration_seconds is derived from session boundaries", "started_at is the session start timestamp"], "owner": "Product Analytics"},
+    {"model_name": "dim_user", "description": "User dimension for product analysis.", "column_descriptions": ["user_id is the unique user key", "plan is the current subscription plan"], "owner": "Product Analytics"}
+  ],
+  "validation": {
+    "status": "pass",
+    "checks": ["layer_policy", "materialization_policy", "test_policy", "lineage_complete", "contract_policy", "documentation_policy"]
+  }
+}

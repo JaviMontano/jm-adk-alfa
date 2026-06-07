@@ -1,0 +1,28 @@
+{
+  "system": {"name": "Lineage Gap", "warehouse": "Snowflake", "transformation_framework": "dbt Core", "scope": "Revenue mart"},
+  "evidence": [
+    {"id": "ev1", "tag": "source_inventory", "source": "Source inventory", "summary": "Payments source exists."},
+    {"id": "ev2", "tag": "schema_contract", "source": "Finance contract", "summary": "Revenue mart has a contract."}
+  ],
+  "sources": [
+    {"id": "stripe", "system": "Stripe", "tables": ["payments"], "freshness_sla": "1 hour", "evidence_ids": ["ev1"]}
+  ],
+  "models": [
+    {"name": "stg_stripe_payments", "layer": "staging", "grain": "one row per payment", "owner": "Finance", "materialization": "view", "columns": ["payment_id"], "upstream": ["stripe"], "evidence_ids": ["ev1"]},
+    {"name": "fct_revenue", "layer": "mart", "grain": "one row per payment", "owner": "Finance", "materialization": "table", "columns": ["payment_id"], "upstream": ["stg_stripe_payments"], "evidence_ids": ["ev2"]}
+  ],
+  "tests": [
+    {"model_name": "fct_revenue", "test_type": "not_null", "field": "payment_id", "severity": "error", "evidence_ids": ["ev2"]},
+    {"model_name": "fct_revenue", "test_type": "unique", "field": "payment_id", "severity": "error", "evidence_ids": ["ev2"]}
+  ],
+  "data_contracts": [
+    {"model_name": "fct_revenue", "enforced": true, "owner": "Finance", "breaking_change_policy": "block", "evidence_ids": ["ev2"]}
+  ],
+  "lineage": [
+    {"from": "stripe", "to": "stg_stripe_payments"}
+  ],
+  "documentation": [
+    {"model_name": "fct_revenue", "description": "Revenue mart.", "column_descriptions": ["payment_id is the key"], "owner": "Finance"}
+  ],
+  "validation": {"status": "pass", "checks": ["layer_policy", "materialization_policy", "test_policy", "lineage_complete", "contract_policy", "documentation_policy"]}
+}

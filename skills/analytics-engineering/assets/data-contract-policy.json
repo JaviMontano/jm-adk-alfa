@@ -1,0 +1,7 @@
+{
+  "schema": 1,
+  "required_contract_fields": ["model_name", "enforced", "owner", "breaking_change_policy", "evidence_ids"],
+  "allowed_breaking_change_policies": ["block", "version", "warn_internal"],
+  "production_layers_requiring_contracts": ["mart", "metrics"],
+  "default_policy": "block"
+}

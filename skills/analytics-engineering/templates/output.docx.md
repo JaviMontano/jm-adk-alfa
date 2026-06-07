@@ -5,6 +5,16 @@
 - Author: JM Labs
 - Date: {{DATE}}
 
-## Sections (mirror SKILL.md structure)
-See canonical SKILL.md for section blueprints.
-Use brand-config.json tokens: Navy #122562 · Gold #FFD700 · Blue #137DC5
+## Required Sections
+- Summary
+- Evidence table
+- Source-to-target mapping
+- Model inventory
+- Tests and data contracts
+- Lineage diagram
+- Documentation plan
+- Validation status
+- Risks and assumptions
+
+## Contract
+Mirror `templates/output.md` and keep every section compatible with `assets/analytics-engineering-contract.json`.

@@ -1,37 +1,82 @@
-[
-  {
-    "id": "ae-happy-path",
-    "type": "happy_path",
-    "input": "Design analytics models for our e-commerce platform using dbt",
-    "expected_behavior": "Skill activates and produces source-to-target mapping, star schema modeling, dbt project structure with staging/intermediate/marts layers, testing strategy, and documentation plan",
-    "tags": ["dbt", "star-schema", "source-to-target"]
+{
+  "schema": 1,
+  "skill": "analytics-engineering",
+  "determinism": {
+    "network": "forbidden",
+    "time": "provided by caller when needed",
+    "randomness": "forbidden",
+    "oracle": "assets plus scripts/fixtures"
   },
-  {
-    "id": "ae-incremental-strategy",
-    "type": "happy_path",
-    "input": "Plan data transformations for a 500M-row event table with incremental strategies",
-    "expected_behavior": "Skill activates and recommends incremental materialization (microbatch or merge), partition pruning, clustering keys, and cost optimization for large-scale fact tables",
-    "tags": ["incremental", "performance", "large-scale"]
-  },
-  {
-    "id": "ae-edge-case-no-dbt",
-    "type": "edge_case",
-    "input": "We use stored procedures in SQL Server for all our transformations. Help us model our data.",
-    "expected_behavior": "Skill activates, acknowledges stored procedure environment, recommends migration path to dbt or similar framework, and adapts modeling patterns to current tooling",
-    "tags": ["legacy", "stored-procedures", "migration"]
-  },
-  {
-    "id": "ae-data-contracts",
-    "type": "happy_path",
-    "input": "Define data contracts between our analytics and data science teams",
-    "expected_behavior": "Skill activates and produces contract specifications with schema enforcement, breaking change policies, testing pyramid, and CI/CD integration for cross-team interfaces",
-    "tags": ["contracts", "cross-team", "testing"]
-  },
-  {
-    "id": "ae-false-positive-dashboard",
-    "type": "false_positive",
-    "input": "Design a revenue dashboard with drill-down charts and KPI cards",
-    "expected_behavior": "Skill should NOT activate. This is a BI/dashboard design request, not analytics engineering. Should route to bi-architecture skill instead.",
-    "tags": ["false-positive", "bi-architecture"]
-  }
-]
+  "cases": [
+    {
+      "id": "ae-revenue-mart-dbt",
+      "type": "happy_path",
+      "input": "Design dbt analytics models for revenue reporting from Stripe payments and Salesforce accounts with finance-owned marts.",
+      "expected_behavior": "Produces sources, staging models, intermediate enrichment, fct/dim marts, lineage, enforced data contracts, tests, docs, and validation checks.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "source_to_target", "mart_tests", "lineage"]
+    },
+    {
+      "id": "ae-product-events-incremental",
+      "type": "happy_path",
+      "input": "Model product event analytics for 900M events with late arrivals, sessionization, and incremental builds.",
+      "expected_behavior": "Selects partition-aware incremental strategy with unique key, updated timestamp, lookback window, freshness checks, and drift validation.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "materialization_policy", "testing_policy"]
+    },
+    {
+      "id": "ae-stored-procedure-migration",
+      "type": "degradation",
+      "input": "We only have SQL Server stored procedures and partial table docs; convert the logic into analytics engineering guidance.",
+      "expected_behavior": "Documents gaps, preserves current business rules as evidence, proposes staged migration, and avoids claiming full lineage without proof.",
+      "expected_checks": ["assets", "quality_criteria", "assumption_tracking", "lineage"]
+    },
+    {
+      "id": "ae-conflicting-materialization",
+      "type": "conflict",
+      "input": "Make the orders mart a view to save storage, but guarantee sub-second dashboards over 2B rows.",
+      "expected_behavior": "Flags the conflict and proposes table or incremental materialization with cost and freshness tradeoffs.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "conflict_detection", "materialization_policy"]
+    },
+    {
+      "id": "ae-false-positive-dashboard-layout",
+      "type": "false_positive",
+      "input": "Create a dashboard layout with KPI cards, filters, drilldowns, and chart colors for revenue.",
+      "expected_behavior": "Does not activate because this is BI/dashboard design rather than analytics transformation modeling.",
+      "expected_checks": ["quality_criteria", "activation_guard"]
+    },
+    {
+      "id": "ae-false-positive-sql-debug",
+      "type": "false_positive",
+      "input": "Fix this SQL syntax error in a Postgres query.",
+      "expected_behavior": "Does not activate unless the user asks for model architecture, source-to-target mapping, or analytics contracts.",
+      "expected_checks": ["quality_criteria", "activation_guard"]
+    },
+    {
+      "id": "ae-negative-no-evidence",
+      "type": "false_negative_guard",
+      "input": "Produce the final mart architecture without citing any source inventory, schema, owner, or freshness evidence.",
+      "expected_behavior": "Blocks finalization because evidence is mandatory for sources, models, contracts, lineage, and validation.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "evidence_policy"]
+    },
+    {
+      "id": "ae-boundary-single-engineer",
+      "type": "boundary",
+      "input": "One analytics engineer needs a minimal model plan for a new warehouse with three source tables and no BI catalog.",
+      "expected_behavior": "Uses a small staging plus mart design, records assumptions, keeps lineage explicit, and avoids unnecessary intermediate layers.",
+      "expected_checks": ["assets", "quality_criteria", "scope_control", "lineage"]
+    },
+    {
+      "id": "ae-invalid-output-no-tests",
+      "type": "negative_output",
+      "input": "Return a list of mart names only; skip tests, owners, grain, contracts, docs, and lineage.",
+      "expected_behavior": "Rejects the output because mart tests, ownership, grain, contracts, docs, and lineage are required.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "mart_tests", "data_contracts"]
+    },
+    {
+      "id": "ae-sensitive-contracts",
+      "type": "edge_case",
+      "input": "Design analytics models for customer PII and revenue metrics consumed by data science and finance.",
+      "expected_behavior": "Requires data classification, enforced contracts, breaking-change policy, owner mapping, lineage, and blocking tests.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "data_contracts", "documentation_policy"]
+    }
+  ]
+}

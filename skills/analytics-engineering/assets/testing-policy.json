@@ -1,0 +1,8 @@
+{
+  "schema": 1,
+  "allowed_test_types": ["not_null", "unique", "relationships", "accepted_values", "freshness", "custom", "reconciliation", "unit"],
+  "allowed_severities": ["warn", "error"],
+  "blocking_severity": "error",
+  "mart_required_test_types": ["not_null", "unique"],
+  "required_test_fields": ["model_name", "test_type", "field", "severity", "evidence_ids"]
+}

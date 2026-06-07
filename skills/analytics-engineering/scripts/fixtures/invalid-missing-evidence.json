@@ -1,0 +1,11 @@
+{
+  "system": {"name": "No Evidence", "warehouse": "Snowflake", "transformation_framework": "dbt Core", "scope": "Revenue mart"},
+  "evidence": [],
+  "sources": [],
+  "models": [],
+  "tests": [],
+  "data_contracts": [],
+  "lineage": [],
+  "documentation": [],
+  "validation": {"status": "pass", "checks": []}
+}

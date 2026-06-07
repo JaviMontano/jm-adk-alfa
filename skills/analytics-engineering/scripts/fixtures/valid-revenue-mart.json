@@ -1,0 +1,49 @@
+{
+  "system": {
+    "name": "Atlas Commerce Revenue",
+    "warehouse": "Snowflake",
+    "transformation_framework": "dbt Core",
+    "scope": "Finance revenue marts"
+  },
+  "evidence": [
+    {"id": "ev-source-stripe", "tag": "source_inventory", "source": "User supplied Stripe payments and subscriptions", "summary": "Stripe tables feed finance revenue models."},
+    {"id": "ev-source-salesforce", "tag": "source_inventory", "source": "User supplied Salesforce accounts", "summary": "Salesforce accounts feed account dimensions."},
+    {"id": "ev-contract-finance", "tag": "schema_contract", "source": "Finance analytics contract", "summary": "Revenue mart schema changes must be blocked in CI."},
+    {"id": "ev-lineage", "tag": "lineage", "source": "Model dependency plan", "summary": "Revenue marts depend on staged Stripe and Salesforce models."},
+    {"id": "ev-validation", "tag": "validation", "source": "Local validation plan", "summary": "Layer, materialization, tests, contracts, lineage, and docs are checked."}
+  ],
+  "sources": [
+    {"id": "stripe", "system": "Stripe", "tables": ["payments", "subscriptions"], "freshness_sla": "1 hour", "evidence_ids": ["ev-source-stripe"]},
+    {"id": "salesforce", "system": "Salesforce", "tables": ["accounts"], "freshness_sla": "4 hours", "evidence_ids": ["ev-source-salesforce"]}
+  ],
+  "models": [
+    {"name": "stg_stripe_payments", "layer": "staging", "grain": "one row per payment id", "owner": "Finance Analytics", "materialization": "view", "columns": ["payment_id", "subscription_id", "amount", "paid_at"], "upstream": ["stripe"], "evidence_ids": ["ev-source-stripe"]},
+    {"name": "stg_salesforce_accounts", "layer": "staging", "grain": "one row per account id", "owner": "Finance Analytics", "materialization": "view", "columns": ["account_id", "segment", "region"], "upstream": ["salesforce"], "evidence_ids": ["ev-source-salesforce"]},
+    {"name": "int_revenue_events", "layer": "intermediate", "grain": "one row per normalized revenue event", "owner": "Finance Analytics", "materialization": "ephemeral", "columns": ["revenue_event_id", "account_id", "amount", "recognized_at"], "upstream": ["stg_stripe_payments", "stg_salesforce_accounts"], "evidence_ids": ["ev-lineage"]},
+    {"name": "fct_revenue", "layer": "mart", "grain": "one row per revenue event", "owner": "Finance Analytics", "materialization": "incremental", "columns": ["revenue_event_id", "account_id", "amount", "recognized_at"], "upstream": ["int_revenue_events"], "unique_key": "revenue_event_id", "updated_at": "recognized_at", "incremental_strategy": "merge", "evidence_ids": ["ev-contract-finance", "ev-lineage"]}
+  ],
+  "tests": [
+    {"model_name": "stg_stripe_payments", "test_type": "not_null", "field": "payment_id", "severity": "error", "evidence_ids": ["ev-source-stripe"]},
+    {"model_name": "fct_revenue", "test_type": "not_null", "field": "revenue_event_id", "severity": "error", "evidence_ids": ["ev-contract-finance"]},
+    {"model_name": "fct_revenue", "test_type": "unique", "field": "revenue_event_id", "severity": "error", "evidence_ids": ["ev-contract-finance"]},
+    {"model_name": "fct_revenue", "test_type": "relationships", "field": "account_id", "severity": "error", "evidence_ids": ["ev-contract-finance"]},
+    {"model_name": "fct_revenue", "test_type": "reconciliation", "field": "amount", "severity": "error", "evidence_ids": ["ev-validation"]}
+  ],
+  "data_contracts": [
+    {"model_name": "fct_revenue", "enforced": true, "owner": "Finance Analytics", "breaking_change_policy": "block", "evidence_ids": ["ev-contract-finance"]}
+  ],
+  "lineage": [
+    {"from": "stripe", "to": "stg_stripe_payments"},
+    {"from": "salesforce", "to": "stg_salesforce_accounts"},
+    {"from": "stg_stripe_payments", "to": "int_revenue_events"},
+    {"from": "stg_salesforce_accounts", "to": "int_revenue_events"},
+    {"from": "int_revenue_events", "to": "fct_revenue"}
+  ],
+  "documentation": [
+    {"model_name": "fct_revenue", "description": "Certified finance revenue fact table.", "column_descriptions": ["revenue_event_id is the unique revenue event key", "amount is recognized revenue in reporting currency", "recognized_at is the accounting timestamp"], "owner": "Finance Analytics"}
+  ],
+  "validation": {
+    "status": "pass",
+    "checks": ["layer_policy", "materialization_policy", "test_policy", "lineage_complete", "contract_policy", "documentation_policy"]
+  }
+}
