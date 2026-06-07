@@ -1,0 +1,8 @@
+{
+  "schema": 1,
+  "skill": "generate-qa-report",
+  "tldr_lines": 3,
+  "recommendation_min": 0,
+  "recommendation_max": 5,
+  "finding_id_pattern": "^F-[0-9]{3}$"
+}

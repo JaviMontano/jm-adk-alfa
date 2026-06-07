@@ -1,0 +1,13 @@
+{
+  "skill": "generate-qa-report",
+  "reference_date": "2026-06-06",
+  "report_metadata": {"plugin_name": "long-tldr", "plugin_version": "1.0.0", "plugin_path": "plugins/long-tldr", "coverage_status": "partial", "evidence_tag": "[CONFIG]"},
+  "source_runs": [{"name": "validate-structure", "status": "pass", "findings_count": 0, "evidence_tag": "[CODE]"}],
+  "summary_stats": {"total_findings": 0, "critical": 0, "warning": 0, "info": 0},
+  "tldr": ["Line one. [CODE]", "Line two. [CODE]", "Line three. [CODE]", "Line four. [CODE]"],
+  "findings": [],
+  "category_status": [{"category": "Structure", "status": "PASS", "critical": 0, "warning": 0, "info": 0, "evidence_tag": "[CODE]"}],
+  "recommendations": [],
+  "validation": ["This fixture must fail on TLDR length. [CODE]", "No findings are present. [CODE]"],
+  "risks": ["Long TLDR violates the report contract. [ASSUMPTION]"]
+}

@@ -1,0 +1,30 @@
+{
+  "schema": 1,
+  "skill": "generate-qa-report",
+  "assets": [
+    {
+      "path": "assets/report-contract.json",
+      "type": "contract",
+      "purpose": "Defines required deterministic QA report fields.",
+      "used_by": ["SKILL.md", "templates/output.md", "scripts/validate_generate_qa_report.py"]
+    },
+    {
+      "path": "assets/severity-policy.json",
+      "type": "policy",
+      "purpose": "Constrains severity and category status values.",
+      "used_by": ["SKILL.md", "scripts/validate_generate_qa_report.py"]
+    },
+    {
+      "path": "assets/source-policy.json",
+      "type": "policy",
+      "purpose": "Defines QA source dimensions and report categories.",
+      "used_by": ["SKILL.md", "scripts/validate_generate_qa_report.py"]
+    },
+    {
+      "path": "assets/output-policy.json",
+      "type": "policy",
+      "purpose": "Constrains TLDR, finding, and recommendation counts.",
+      "used_by": ["SKILL.md", "templates/output.md", "scripts/validate_generate_qa_report.py"]
+    }
+  ]
+}

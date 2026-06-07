@@ -1,0 +1,8 @@
+{
+  "schema": 1,
+  "skill": "generate-qa-report",
+  "severities": ["CRITICAL", "WARNING", "INFO"],
+  "category_statuses": ["PASS", "WARN", "FAIL", "NOT_RUN"],
+  "coverage_statuses": ["complete", "partial", "blocked"],
+  "effort_values": ["trivial", "moderate", "significant"]
+}

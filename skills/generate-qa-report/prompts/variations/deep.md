@@ -3,7 +3,6 @@ name: generate-qa-report-deep
 type: variation
 variant: deep
 ---
-# Generate Qa Report — Deep Analysis
+# Generate QA Report - Deep Analysis
 
-Full depth execution. Load all `references/` files from canonical. Run L3 progressive loading.
-Apply all Validation Gate criteria strictly.
+Full depth execution for large or mixed-source QA outputs. Load `references/report-format-spec.md`, reconcile all source runs, deduplicate findings, include category status, content-quality scorecard when available, and validate count totals strictly.

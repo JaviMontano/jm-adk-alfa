@@ -22,6 +22,17 @@ Aggregates findings from all 7 validation and audit skills into a single compreh
 
 ---
 
+## Deterministic Resources
+
+Use these bundled assets when producing or validating a QA report:
+
+- `assets/report-contract.json` defines required report fields, evidence tags, and moving-time terms to avoid.
+- `assets/severity-policy.json` defines severity order, category statuses, and recommendation priority.
+- `assets/source-policy.json` defines required QA source dimensions and categories.
+- `assets/output-policy.json` defines TL;DR, finding, and recommendation limits.
+
+If converting the report to JSON for validation, it must pass `scripts/validate_generate_qa_report.py`.
+
 ## Procedure
 
 1. **Collect findings from all validation and audit skills** -- check if validation/audit results are available from the current session. If not, inform the user that validation skills should be run first, or offer to run them. Gather results from:
@@ -38,6 +49,7 @@ Aggregates findings from all 7 validation and audit skills into a single compreh
    - Pass rate per dimension (findings with 0 critical and 0 warnings = PASS)
    - Total files scanned
    - Total skills, agents, commands, hooks evaluated
+   - Verify that severity counts match the findings list before writing the report. [EXPLICIT]
 
 3. **Build the TL;DR** -- write exactly 3 lines summarizing:
    - Line 1: Overall health verdict (e.g., "Plugin X has 3 critical issues requiring immediate attention.")
@@ -48,7 +60,7 @@ Aggregates findings from all 7 validation and audit skills into a single compreh
    - Plugin name
    - Version (from plugin.json)
    - Skill count, agent count, command count, hook count
-   - Date of report generation
+   - Report reference date from the supplied evidence or explicit user context
 
 5. **Write Findings by Category** -- organize all findings into 7 sections:
    - Structure
@@ -69,6 +81,7 @@ Aggregates findings from all 7 validation and audit skills into a single compreh
 7. **Write Top 5 Recommendations** -- prioritized by impact:
    - Rank by: CRITICAL findings first, then by number of files affected, then by ease of fix
    - Each recommendation: what to do, why it matters, estimated effort (trivial/moderate/significant)
+   - Each recommendation must reference one or more finding IDs. [EXPLICIT]
 
 8. **Include Content Quality Scorecard** -- if `audit-content-quality` results are available, embed the per-skill scorecard table and the plugin average score. [EXPLICIT]
 
@@ -81,6 +94,10 @@ Aggregates findings from all 7 validation and audit skills into a single compreh
 - [ ] Findings are categorized into the correct section -- no security findings under "Structure".
 - [ ] The Top 5 Recommendations are genuinely prioritized by impact, not just listed in discovery order.
 - [ ] The report is valid Markdown with properly formatted tables and headers.
+- [ ] Summary counts equal the categorized findings list.
+- [ ] Source coverage states complete, partial, or blocked with evidence.
+- [ ] Recommendations are ranked 1..N and reference included findings.
+- [ ] Missing source dimensions are reported as coverage gaps, not silently omitted.
 
 ## Assumptions & Limits
 
@@ -132,4 +149,3 @@ Example invocations:
 
 - "/generate-qa-report" — Run the full generate qa report workflow
 - "generate qa report on this project" — Apply to current context
-
