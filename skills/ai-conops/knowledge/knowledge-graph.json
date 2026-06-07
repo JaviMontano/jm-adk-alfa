@@ -1,75 +1,25 @@
 {
   "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-28",
   "skill": "ai-conops",
   "nodes": [
-    {
-      "id": "ai-conops",
-      "type": "skill",
-      "label": "ai-conops"
-    },
-    {
-      "id": "ai-conops:inputs",
-      "type": "contract",
-      "label": "Expected inputs"
-    },
-    {
-      "id": "ai-conops:outputs",
-      "type": "contract",
-      "label": "Expected outputs"
-    },
-    {
-      "id": "ai-conops:quality",
-      "type": "gate",
-      "label": "Quality criteria"
-    },
-    {
-      "id": "ai-conops:ontology",
-      "type": "ontology",
-      "label": "Domain: general"
-    },
-    {
-      "id": "ai-conops:evidence",
-      "type": "gate",
-      "label": "Evidence / provenance requirements"
-    },
-    {
-      "id": "ai-conops:antipattern",
-      "type": "risk",
-      "label": "Canonical anti-pattern to avoid"
-    }
+    {"id": "ai-conops", "type": "skill", "label": "AI CONOPS"},
+    {"id": "system-vision", "type": "section", "label": "System vision"},
+    {"id": "stakeholder-map", "type": "section", "label": "Stakeholder and actor map"},
+    {"id": "interaction-level", "type": "policy", "label": "AI-human interaction level"},
+    {"id": "business-value", "type": "policy", "label": "Business value matrix"},
+    {"id": "success-metrics", "type": "policy", "label": "Three-pillar success metrics"},
+    {"id": "operational-modes", "type": "policy", "label": "Operational modes and transitions"},
+    {"id": "conops-report-contract", "type": "schema", "label": "CONOPS report contract"},
+    {"id": "offline-validator", "type": "script", "label": "Offline CONOPS validator"}
   ],
   "edges": [
-    {
-      "from": "ai-conops",
-      "to": "ai-conops:inputs",
-      "type": "requires"
-    },
-    {
-      "from": "ai-conops",
-      "to": "ai-conops:outputs",
-      "type": "produces"
-    },
-    {
-      "from": "ai-conops",
-      "to": "ai-conops:quality",
-      "type": "validated_by"
-    },
-    {
-      "from": "ai-conops",
-      "to": "ai-conops:ontology",
-      "type": "classified_as"
-    },
-    {
-      "from": "ai-conops",
-      "to": "ai-conops:evidence",
-      "type": "validated_by"
-    },
-    {
-      "from": "ai-conops",
-      "to": "ai-conops:antipattern",
-      "type": "guards_against"
-    }
+    {"from": "ai-conops", "to": "system-vision", "type": "requires"},
+    {"from": "ai-conops", "to": "stakeholder-map", "type": "requires"},
+    {"from": "ai-conops", "to": "interaction-level", "type": "uses"},
+    {"from": "ai-conops", "to": "business-value", "type": "uses"},
+    {"from": "ai-conops", "to": "success-metrics", "type": "requires"},
+    {"from": "ai-conops", "to": "operational-modes", "type": "requires"},
+    {"from": "conops-report-contract", "to": "offline-validator", "type": "validated_by"},
+    {"from": "stakeholder-map", "to": "success-metrics", "type": "aligns_with"}
   ]
 }

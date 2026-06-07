@@ -1,0 +1,25 @@
+{
+  "schema": "jm-labs.ai-conops.report.v1",
+  "system": {"name": "Tiny CONOPS", "domain": "support", "purpose": "Assist support triage.", "scope": {"includes": ["triage"], "excludes": []}},
+  "evidence": [{"id": "E-001", "tag": "[EXPLICIT]", "source": "fixture", "summary": "Fixture evidence."}],
+  "vision": {"problem_statement": "Support triage is slow.", "objectives": ["speed"], "success_criteria": ["p95 below 2 minutes"], "evidence_ids": ["E-001"]},
+  "stakeholders": [
+    {"id": "S-001", "name": "Product Owner", "role": "Vision Holder", "concerns": ["speed"], "decision_rights": ["approve"], "evidence_ids": ["E-001"]}
+  ],
+  "interaction_design": {"default_level": 2, "level_name": "Decision Support", "decision_stakes": "low", "rationale": "Human decides.", "controls": ["audit trail"], "escalation_conditions": ["low confidence"], "evidence_ids": ["E-001"]},
+  "business_value": {"value_score": 4, "effort_score": 2, "quadrant": "Quick Wins", "rationale": "Fast impact.", "evidence_ids": ["E-001"]},
+  "success_metrics": [
+    {"id": "M-001", "pillar": "technical", "name": "accuracy", "threshold": "0.8", "objective": "0.9", "frequency": "weekly", "owner": "Data"},
+    {"id": "M-002", "pillar": "business", "name": "speed", "threshold": "2m", "objective": "1m", "frequency": "daily", "owner": "Ops"},
+    {"id": "M-003", "pillar": "ux-ethics", "name": "explanation coverage", "threshold": "95%", "objective": "100%", "frequency": "daily", "owner": "Support"}
+  ],
+  "operational_modes": [
+    {"mode": "Startup", "triggers": ["deploy"], "exit_criteria": ["healthy"], "owner": "Ops"},
+    {"mode": "Executing", "triggers": ["ticket"], "exit_criteria": ["triaged"], "owner": "Support"},
+    {"mode": "Degraded", "triggers": ["failure"], "exit_criteria": ["manual"], "owner": "Ops"},
+    {"mode": "Recovery", "triggers": ["rollback"], "exit_criteria": ["restored"], "owner": "Ops"}
+  ],
+  "assumptions": [{"id": "A-001", "statement": "Data exists.", "status": "open", "owner": "Data"}],
+  "validation": {"status": "warn", "checks": ["assets", "deterministic_scripts", "quality_criteria", "stakeholder_coverage", "metric_coverage", "mode_transitions"]},
+  "risks": []
+}

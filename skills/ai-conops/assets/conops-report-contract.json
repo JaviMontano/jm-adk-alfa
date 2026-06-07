@@ -1,0 +1,26 @@
+{
+  "schema": "jm-labs.asset.conops-report-contract.v1",
+  "report_schema": "jm-labs.ai-conops.report.v1",
+  "required_top_level_fields": [
+    "schema",
+    "system",
+    "evidence",
+    "vision",
+    "stakeholders",
+    "interaction_design",
+    "business_value",
+    "success_metrics",
+    "operational_modes",
+    "assumptions",
+    "validation",
+    "risks"
+  ],
+  "required_validation_checks": [
+    "assets",
+    "deterministic_scripts",
+    "quality_criteria",
+    "stakeholder_coverage",
+    "metric_coverage",
+    "mode_transitions"
+  ]
+}

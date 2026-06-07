@@ -3,7 +3,15 @@ name: ai-conops-quick
 type: variation
 variant: quick
 ---
-# Ai Conops — Quick Mode
+# AI CONOPS - Quick Mode
 
-Streamlined execution. Focus on TL;DR and primary output only.
-Apply Validation Gate but skip extended evidence tagging.
+Use quick mode for early framing.
+
+Required even in quick mode:
+- one system vision paragraph
+- at least three stakeholders
+- one default interaction level
+- one value quadrant
+- at least one metric per pillar
+- Startup, Executing, Degraded, and Recovery modes
+- explicit assumptions and risks

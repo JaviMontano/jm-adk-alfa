@@ -1,0 +1,10 @@
+{
+  "schema": "jm-labs.asset.operational-mode-policy.v1",
+  "allowed_modes": ["Configuration", "Startup", "Executing", "Monitoring", "Learning", "Shadow", "Degraded", "Recovery"],
+  "required_modes": ["Startup", "Executing", "Degraded", "Recovery"],
+  "required_fields": ["mode", "triggers", "exit_criteria", "owner"],
+  "rules": [
+    "Each mode requires at least one trigger and one exit criterion.",
+    "Degraded and Recovery modes are mandatory for AI systems."
+  ]
+}

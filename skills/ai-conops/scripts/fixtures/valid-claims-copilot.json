@@ -1,6 +1,3 @@
-# Example Output
-
-```json
 {
   "schema": "jm-labs.ai-conops.report.v1",
   "system": {
@@ -13,12 +10,7 @@
     }
   },
   "evidence": [
-    {
-      "id": "E-001",
-      "tag": "[EXPLICIT]",
-      "source": "user input",
-      "summary": "Human adjuster remains accountable and audit trail is required."
-    }
+    {"id": "E-001", "tag": "[EXPLICIT]", "source": "user input", "summary": "Human adjuster remains accountable and audit trail is required."}
   ],
   "vision": {
     "problem_statement": "Adjusters spend excessive time triaging routine claims.",
@@ -67,4 +59,3 @@
   },
   "risks": ["Data availability is not yet validated."]
 }
-```

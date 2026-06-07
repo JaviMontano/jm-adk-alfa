@@ -1,0 +1,27 @@
+{
+  "schema": "jm-labs.ai-conops.report.v1",
+  "system": {"name": "Bad Level", "domain": "medical", "purpose": "Advise clinicians.", "scope": {"includes": ["recommendations"], "excludes": []}},
+  "evidence": [{"id": "E-001", "tag": "[EXPLICIT]", "source": "fixture", "summary": "High-stakes medical scenario."}],
+  "vision": {"problem_statement": "Clinical triage is slow.", "objectives": ["assist"], "success_criteria": ["safe recommendations"], "evidence_ids": ["E-001"]},
+  "stakeholders": [
+    {"id": "S-001", "name": "Doctor", "role": "User of Output", "concerns": ["safety"], "decision_rights": ["decide treatment"], "evidence_ids": ["E-001"]},
+    {"id": "S-002", "name": "Compliance", "role": "Compliance", "concerns": ["audit"], "decision_rights": ["block"], "evidence_ids": ["E-001"]},
+    {"id": "S-003", "name": "Ops", "role": "Operations", "concerns": ["availability"], "decision_rights": ["degrade"], "evidence_ids": ["E-001"]}
+  ],
+  "interaction_design": {"default_level": 6, "level_name": "Fuller Autonomy", "decision_stakes": "high", "rationale": "Invalid level.", "controls": ["audit trail"], "escalation_conditions": ["low confidence"], "evidence_ids": ["E-001"]},
+  "business_value": {"value_score": 4, "effort_score": 3, "quadrant": "Strategic Investments", "rationale": "High effort.", "evidence_ids": ["E-001"]},
+  "success_metrics": [
+    {"id": "M-001", "pillar": "technical", "name": "accuracy", "threshold": "0.9", "objective": "0.95", "frequency": "weekly", "owner": "Data"},
+    {"id": "M-002", "pillar": "business", "name": "triage time", "threshold": "5m", "objective": "3m", "frequency": "daily", "owner": "Ops"},
+    {"id": "M-003", "pillar": "ux-ethics", "name": "audit coverage", "threshold": "100%", "objective": "100%", "frequency": "daily", "owner": "Compliance"}
+  ],
+  "operational_modes": [
+    {"mode": "Startup", "triggers": ["deploy"], "exit_criteria": ["healthy"], "owner": "Ops"},
+    {"mode": "Executing", "triggers": ["case"], "exit_criteria": ["recommendation"], "owner": "Doctor"},
+    {"mode": "Degraded", "triggers": ["failure"], "exit_criteria": ["manual"], "owner": "Ops"},
+    {"mode": "Recovery", "triggers": ["rollback"], "exit_criteria": ["restored"], "owner": "Ops"}
+  ],
+  "assumptions": [{"id": "A-001", "statement": "Clinical data is approved.", "status": "open", "owner": "Compliance"}],
+  "validation": {"status": "block", "checks": ["assets", "deterministic_scripts", "quality_criteria", "stakeholder_coverage", "metric_coverage", "mode_transitions"]},
+  "risks": ["Invalid autonomy level."]
+}

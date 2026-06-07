@@ -1,0 +1,42 @@
+{
+  "schema": 1,
+  "skill": "ai-conops",
+  "assets": [
+    {
+      "path": "assets/conops-report-contract.json",
+      "type": "schema",
+      "purpose": "Defines the machine-readable AI CONOPS report packet.",
+      "used_by": ["SKILL.md", "scripts/validate_ai_conops_report.py", "templates/output.md", "evals/evals.json"]
+    },
+    {
+      "path": "assets/interaction-level-policy.json",
+      "type": "policy",
+      "purpose": "Defines allowed autonomy levels, controls, and high-stakes guardrails.",
+      "used_by": ["SKILL.md", "scripts/validate_ai_conops_report.py", "references/interaction-spectrum.md", "agents/guardian.md"]
+    },
+    {
+      "path": "assets/stakeholder-policy.json",
+      "type": "policy",
+      "purpose": "Defines required stakeholder coverage, concerns, and decision rights.",
+      "used_by": ["SKILL.md", "scripts/validate_ai_conops_report.py", "agents/support.md"]
+    },
+    {
+      "path": "assets/value-matrix-policy.json",
+      "type": "policy",
+      "purpose": "Defines deterministic value/effort quadrant classification.",
+      "used_by": ["SKILL.md", "scripts/validate_ai_conops_report.py", "references/business-value-matrix.md"]
+    },
+    {
+      "path": "assets/metrics-policy.json",
+      "type": "policy",
+      "purpose": "Defines required technical, business, and UX/ethics metric pillars.",
+      "used_by": ["SKILL.md", "scripts/validate_ai_conops_report.py", "references/success-metrics.md"]
+    },
+    {
+      "path": "assets/operational-mode-policy.json",
+      "type": "policy",
+      "purpose": "Defines required operational modes and transition fields.",
+      "used_by": ["SKILL.md", "scripts/validate_ai_conops_report.py", "templates/output.md"]
+    }
+  ]
+}

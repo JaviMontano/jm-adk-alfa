@@ -1,0 +1,16 @@
+{
+  "schema": "jm-labs.asset.interaction-level-policy.v1",
+  "levels": {
+    "1": "Manual Operation",
+    "2": "Decision Support",
+    "3": "Shared Control",
+    "4": "Supervised Autonomy",
+    "5": "Full Autonomy"
+  },
+  "high_stakes_controls": ["human override", "audit trail"],
+  "rules": [
+    "default_level must be an integer from 1 to 5.",
+    "Level 4 or 5 requires explicit monitoring, rollback, and audit controls.",
+    "High-stakes systems require human override and audit trail controls."
+  ]
+}

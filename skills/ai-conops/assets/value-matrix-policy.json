@@ -1,0 +1,14 @@
+{
+  "schema": "jm-labs.asset.value-matrix-policy.v1",
+  "score_range": [1, 5],
+  "quadrants": {
+    "Quick Wins": "value_score >= 4 and effort_score <= 2",
+    "Strategic Investments": "value_score >= 4 and effort_score >= 3",
+    "Low Priority": "value_score <= 3 and effort_score <= 2",
+    "Avoid/Reconsider": "value_score <= 3 and effort_score >= 3"
+  },
+  "rules": [
+    "Quadrant must match value_score and effort_score.",
+    "Low-value high-effort use cases cannot be classified as Quick Wins."
+  ]
+}
