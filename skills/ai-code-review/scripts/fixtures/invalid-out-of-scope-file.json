@@ -1,0 +1,24 @@
+{
+  "schema": "jm-labs.ai-code-review.report.v1",
+  "target": "src/auth/session.py",
+  "scope": {"includes": ["src/auth/session.py"], "excludes": [], "basis": "Fixture"},
+  "review_mode": "standard",
+  "evidence": [{"id": "E-001", "tag": "[CÓDIGO]", "kind": "source", "source": "scripts/deploy.sh:9", "summary": "Out-of-scope source evidence."}],
+  "findings": [{
+    "id": "F-001",
+    "priority": "P2",
+    "category": "security",
+    "status": "confirmed",
+    "file": "scripts/deploy.sh",
+    "line_start": 9,
+    "evidence_id": "E-001",
+    "observation": "Out-of-scope file should fail.",
+    "impact": "The review would exceed the requested scope.",
+    "recommendation": "Expand scope explicitly before reviewing this file.",
+    "confidence": 0.7,
+    "false_positive_notes": ""
+  }],
+  "summary": {"finding_count": 1, "highest_priority": "P2", "overall_risk": "medium", "clean_review_rationale": ""},
+  "validation": {"status": "warn", "checks": ["assets", "deterministic_scripts", "quality_criteria", "file_line_evidence", "false_positive_filter", "no_fake_test_results"], "commands_run": [], "claimed_test_status": "not-run"},
+  "risks": []
+}

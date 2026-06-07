@@ -1,0 +1,10 @@
+{
+  "schema": "jm-labs.asset.scope-policy.v1",
+  "required_fields": ["includes", "excludes", "basis"],
+  "default_excludes": ["dist/**", "build/**", "coverage/**", "node_modules/**", "vendor/**", "package-lock.json", "yarn.lock", "pnpm-lock.yaml"],
+  "rules": [
+    "Findings must target files matched by scope.includes unless the report explicitly expands scope.",
+    "Generated, vendored, and lock files are excluded by default.",
+    "Clean reviews must still record reviewed scope and exclusions."
+  ]
+}

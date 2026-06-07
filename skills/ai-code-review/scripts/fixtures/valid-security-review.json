@@ -1,0 +1,69 @@
+{
+  "schema": "jm-labs.ai-code-review.report.v1",
+  "target": "PR-123",
+  "scope": {
+    "includes": ["src/auth/session.py", "src/auth/session_test.py"],
+    "excludes": ["dist/**", "vendor/**", "package-lock.json"],
+    "basis": "Review request for auth session diff"
+  },
+  "review_mode": "deep",
+  "evidence": [
+    {
+      "id": "E-001",
+      "tag": "[CÓDIGO]",
+      "kind": "source",
+      "source": "src/auth/session.py:42",
+      "summary": "remember_me uses the default TTL branch instead of the persistent TTL branch."
+    },
+    {
+      "id": "E-002",
+      "tag": "[CÓDIGO]",
+      "kind": "test",
+      "source": "src/auth/session_test.py:18",
+      "summary": "Tests cover only default session expiration."
+    }
+  ],
+  "findings": [
+    {
+      "id": "F-001",
+      "priority": "P1",
+      "category": "correctness",
+      "status": "confirmed",
+      "file": "src/auth/session.py",
+      "line_start": 42,
+      "evidence_id": "E-001",
+      "observation": "The remember_me branch returns the default TTL instead of the persistent-session TTL.",
+      "impact": "Users who request a persistent session can be logged out earlier than the product contract describes.",
+      "recommendation": "Use the persistent-session TTL when remember_me is true and add a regression test for that branch.",
+      "confidence": 0.88,
+      "false_positive_notes": "The changed branch and configured TTL are both in the reviewed scope."
+    },
+    {
+      "id": "F-002",
+      "priority": "P2",
+      "category": "tests",
+      "status": "confirmed",
+      "file": "src/auth/session_test.py",
+      "line_start": 18,
+      "evidence_id": "E-002",
+      "observation": "The test file has no assertion for remember_me expiration behavior.",
+      "impact": "The regression can return because only the default expiration branch is exercised.",
+      "recommendation": "Add a test that asserts the persistent-session TTL when remember_me is true.",
+      "confidence": 0.82,
+      "false_positive_notes": "The reviewed tests are in scope and target the same session function."
+    }
+  ],
+  "summary": {
+    "finding_count": 2,
+    "highest_priority": "P1",
+    "overall_risk": "high",
+    "clean_review_rationale": ""
+  },
+  "validation": {
+    "status": "warn",
+    "checks": ["assets", "deterministic_scripts", "quality_criteria", "file_line_evidence", "false_positive_filter", "no_fake_test_results"],
+    "commands_run": [],
+    "claimed_test_status": "not-run"
+  },
+  "risks": ["Tests were not executed during review."]
+}

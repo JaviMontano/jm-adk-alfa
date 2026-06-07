@@ -1,0 +1,33 @@
+{
+  "schema": "jm-labs.ai-code-review.report.v1",
+  "target": "src/utils/slug.py",
+  "scope": {
+    "includes": ["src/utils/slug.py"],
+    "excludes": ["dist/**", "vendor/**", "package-lock.json"],
+    "basis": "Single-file review request"
+  },
+  "review_mode": "quick",
+  "evidence": [
+    {
+      "id": "E-001",
+      "tag": "[CÓDIGO]",
+      "kind": "source",
+      "source": "src/utils/slug.py:1",
+      "summary": "Reviewed slug helper implementation within requested scope."
+    }
+  ],
+  "findings": [],
+  "summary": {
+    "finding_count": 0,
+    "highest_priority": "none",
+    "overall_risk": "none",
+    "clean_review_rationale": "Reviewed source scope has no confirmed finding under the priority policy."
+  },
+  "validation": {
+    "status": "pass",
+    "checks": ["assets", "deterministic_scripts", "quality_criteria", "file_line_evidence", "false_positive_filter", "no_fake_test_results"],
+    "commands_run": [],
+    "claimed_test_status": "not-run"
+  },
+  "risks": ["No tests were executed; this is a static review only."]
+}

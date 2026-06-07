@@ -1,28 +1,27 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: ai-code-review
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
+# AI Code Review Report
 
-# Ai Code Review Output
+## Scope
+- Target: `{target}`
+- Includes: `{scope_includes}`
+- Excludes: `{scope_excludes}`
+- Mode: `{review_mode}`
 
-## Summary
+## Findings
+| Priority | File:Line | Category | Status | Confidence | Summary |
+|----------|-----------|----------|--------|------------|---------|
+| `{priority}` | `{file}:{line_start}` | `{category}` | `{status}` | `{confidence}` | `{observation}` |
 
-{summary}
-
-## Evidence
-
-{evidence}
-
-## Result
-
-{result}
+## Finding Detail
+### `{id}` - `{priority}` `{category}`
+- Evidence: `{evidence_id}` / `{evidence_source}`
+- Impact: `{impact}`
+- Recommendation: `{recommendation}`
+- False-positive notes: `{false_positive_notes}`
 
 ## Validation
-
-{validation}
+- Status: `{validation_status}`
+- Commands run: `{commands_run}`
+- Claimed test status: `{claimed_test_status}`
 
 ## Risks and Limits
-
 {risks}

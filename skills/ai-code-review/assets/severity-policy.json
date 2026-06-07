@@ -1,0 +1,27 @@
+{
+  "schema": "jm-labs.asset.severity-policy.v1",
+  "priorities": {
+    "P0": {
+      "merge_impact": "block",
+      "definition": "Confirmed issue that can cause severe security compromise, data loss, or production outage.",
+      "minimum_confidence": 0.9
+    },
+    "P1": {
+      "merge_impact": "block",
+      "definition": "Confirmed correctness, security, or data-integrity regression that should block merge.",
+      "minimum_confidence": 0.8
+    },
+    "P2": {
+      "merge_impact": "fix-soon",
+      "definition": "Meaningful maintainability, test, performance, or reliability risk with clear evidence.",
+      "minimum_confidence": 0.65
+    },
+    "P3": {
+      "merge_impact": "advisory",
+      "definition": "Non-blocking improvement or small clarity issue.",
+      "minimum_confidence": 0.5
+    }
+  },
+  "allowed_statuses": ["confirmed", "probable", "needs-verification"],
+  "blocking_priorities": ["P0", "P1"]
+}

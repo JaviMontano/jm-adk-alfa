@@ -1,44 +1,20 @@
 ---
 name: ai-code-review-deep
 type: variation
-version: 2.0.0
-description: "Ai Code Review — deep analysis mode. Exhaustive coverage."
+version: 2.1.0
+description: "Deep deterministic AI Code Review mode."
 ---
 
-# Ai Code Review — Deep Mode
+# AI Code Review - Deep Mode
 
-## When to Use
+Use deep mode when merge risk is high, security matters, or the diff crosses
+multiple modules.
 
-Use deep mode when thoroughness matters more than speed: architecture decisions, security audits, compliance reviews, critical deliverables.
+Additional checks:
+- compare changed behavior against tests and documentation
+- inspect call sites for contract changes
+- review authorization, input validation, secrets, and persistence paths
+- identify missing regression tests tied to changed behavior
+- record non-findings when a tempting issue is intentionally suppressed
 
-## Dynamic Parameters
-
-| Parameter | Required | Filled By |
-|-----------|----------|-----------|
-| `{{task}}` | Yes | User input |
-| `{{context}}` | Yes | User + codebase scan |
-| `{{depth}}` | No | Set to "deep" |
-
-## Execution (Deep)
-
-1. Load ALL knowledge: `knowledge/body-of-knowledge.md` + cross-referenced skills
-2. Check guardrails: `references/guardrails/*.json`
-3. Lead executes with exhaustive analysis:
-   - Cover ALL edge cases, not just common path
-   - Research: check standards, best practices, recent changes
-   - Document every assumption with `[ASSUMPTION]` tag
-4. Support reviews with expanded scope:
-   - Security, accessibility, performance, business viability
-   - Adversarial scenarios: what could go wrong?
-5. Guardian validates with strict criteria:
-   - Evidence tags 100% coverage (no untagged claims)
-   - Quality gate fully met
-   - Confidence >= 0.95 with evidence support
-
-## Output
-
-- Exhaustive deliverable with full evidence trail
-- Edge cases documented
-- Risk assessment included
-- Recommendations with priority ranking
-- Confidence score with justification
+Output must still separate confirmed findings from `needs-verification` items.

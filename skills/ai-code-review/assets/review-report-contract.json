@@ -1,0 +1,37 @@
+{
+  "schema": "jm-labs.asset.review-report-contract.v1",
+  "report_schema": "jm-labs.ai-code-review.report.v1",
+  "required_top_level_fields": [
+    "schema",
+    "target",
+    "scope",
+    "review_mode",
+    "evidence",
+    "findings",
+    "summary",
+    "validation",
+    "risks"
+  ],
+  "required_finding_fields": [
+    "id",
+    "priority",
+    "category",
+    "status",
+    "file",
+    "line_start",
+    "evidence_id",
+    "observation",
+    "impact",
+    "recommendation",
+    "confidence",
+    "false_positive_notes"
+  ],
+  "required_validation_checks": [
+    "assets",
+    "deterministic_scripts",
+    "quality_criteria",
+    "file_line_evidence",
+    "false_positive_filter",
+    "no_fake_test_results"
+  ]
+}

@@ -1,30 +1,45 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: ai-code-review
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
+# AI Code Review
 
-# Ai Code Review
-
->
+AI Code Review produces deterministic, source-backed review reports for diffs,
+files, or codebases. It is optimized for exact evidence, false-positive control,
+and clear reviewer-ready findings.
 
 ## Triggers
-
 - ai-code-review
+- ai code review
+- AI-assisted review
+- review this diff
+- automated code review
 
-## Allowed Tools
+## Inputs
+- Files, directories, patch, PR diff, or review packet target.
+- Optional review mode: `quick`, `standard`, `deep`, or `adversarial`.
+- Optional constraints: security focus, test focus, migration focus, or generated-file policy.
 
-- Read
-- Write
-- Glob
-- Grep
-- Bash
+## Output
+Markdown review by default, with an optional JSON packet that follows
+`assets/review-report-contract.json`.
 
-## Quick Use
+Required report sections:
+- scope and exclusions
+- findings sorted by priority
+- file-line evidence
+- impact and recommendation
+- false-positive notes
+- validation commands and remaining risks
 
-Use this skill when the request clearly matches the triggers and requires the `ai-code-review` capability.
+## Determinism Rules
+- Findings require exact file and line evidence.
+- Priorities must follow `assets/severity-policy.json`.
+- Runtime claims require `validation.commands_run`.
+- Low-confidence issues must be marked `needs-verification`.
+- Clean reviews must still record scope, evidence, and validation status.
 
-## Output Format
+## Local Validation
+Run:
 
-Markdown with summary, evidence, result, validation, and risks.
+```bash
+bash skills/ai-code-review/scripts/check.sh
+python3 -B scripts/validate-skill-dod.py --skill ai-code-review
+python3 -B scripts/validate-skill-scripts.py --strict --run-checks --skill ai-code-review
+```
