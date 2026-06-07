@@ -1,9 +1,22 @@
-[
-  {"id": "alerting-strategy-happy-path", "type": "happy_path", "input": "Run alerting strategy on this project", "expected_behavior": "Skill activates and produces the expected alerting strategy output following the defined process", "tags": ["basic", "activation"]},
-  {"id": "alerting-strategy-explicit-trigger", "type": "happy_path", "input": "Apply alerting strategy analysis", "expected_behavior": "Skill recognizes the trigger phrase and executes the alerting strategy workflow", "tags": ["trigger", "recognition"]},
-  {"id": "alerting-strategy-with-context", "type": "happy_path", "input": "Apply alerting strategy to analyze the current codebase with detailed output", "expected_behavior": "Skill produces comprehensive alerting strategy analysis with evidence-tagged findings", "tags": ["detailed", "comprehensive"]},
-  {"id": "alerting-strategy-minimal-input", "type": "happy_path", "input": "Quick alerting strategy", "expected_behavior": "Skill activates with minimal input, applies reasonable defaults", "tags": ["minimal", "defaults"]},
-  {"id": "alerting-strategy-false-positive", "type": "false_positive", "input": "What is the weather forecast for tomorrow?", "expected_behavior": "Skill should NOT activate — this input has no relation to alerting strategy", "tags": ["false_positive", "should-not-activate"]},
-  {"id": "alerting-strategy-edge-empty-input", "type": "edge_case", "input": "Run alerting strategy but I have no files or documentation yet", "expected_behavior": "Skill handles gracefully — requests minimum viable input or produces gap analysis", "tags": ["edge_case", "empty-input", "boundary"]},
-  {"id": "alerting-strategy-edge-conflicting", "type": "edge_case", "input": "Apply alerting strategy but requirements contradict each other", "expected_behavior": "Skill detects contradiction, flags with [OPEN] tag, proposes resolution", "tags": ["edge_case", "conflict", "corner"]}
-]
+{
+  "schema": 1,
+  "skill": "alerting-strategy",
+  "determinism": {
+    "network": "forbidden",
+    "time": "fixed by caller when needed",
+    "randomness": "forbidden",
+    "oracle": "assets plus scripts/fixtures"
+  },
+  "cases": [
+    {"id": "alert-payments-api", "type": "happy_path", "input": "Design alerting strategy for Payments API with duplicate pages, noisy CPU alerts, missed authorization failures, and 5 minute critical paging.", "expected_behavior": "Produces severity model, alert rules, escalation paths, fatigue controls, routing policy, and validation checks.", "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "severity_model", "alert_rules", "escalation_paths", "fatigue_controls"]},
+    {"id": "alert-data-pipeline", "type": "happy_path", "input": "Create alerting strategy for nightly data pipeline with stale data, schema failures, and nonpaging warning triage.", "expected_behavior": "Classifies page-worthy freshness failures separately from business-hours warnings.", "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "alert_rules"]},
+    {"id": "alert-minimal-input", "type": "edge_case", "input": "Need alerting strategy for a new service with only latency and error rate known.", "expected_behavior": "Documents assumptions and open gaps while producing a minimal severity and rule scaffold.", "expected_checks": ["assets", "quality_criteria", "assumption_tracking"]},
+    {"id": "alert-conflicting-requirements", "type": "conflict", "input": "Page every warning immediately but also reduce after-hours pages by 80%.", "expected_behavior": "Flags conflict and proposes business-hours routing plus critical-only paging.", "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "conflict_detection"]},
+    {"id": "alert-false-positive-weather", "type": "false_positive", "input": "What is the weather forecast tomorrow?", "expected_behavior": "Does not activate because no alerting strategy is requested.", "expected_checks": ["quality_criteria", "activation_guard"]},
+    {"id": "alert-false-positive-ui-copy", "type": "false_positive", "input": "Write a banner message for a planned maintenance page.", "expected_behavior": "Does not activate unless alert routing, severity, escalation, or fatigue prevention is requested.", "expected_checks": ["quality_criteria", "activation_guard"]},
+    {"id": "alert-negative-no-owner", "type": "false_negative_guard", "input": "Create alert rules but omit owner and escalation.", "expected_behavior": "Blocks finalization because every paging rule needs owner and escalation path.", "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "escalation_paths"]},
+    {"id": "alert-degradation-no-metrics", "type": "degradation", "input": "No metrics exist yet; design the alerting strategy from incident history only.", "expected_behavior": "Marks missing metrics open and defines instrumentation prerequisites before paging rules.", "expected_checks": ["assets", "quality_criteria", "open_gap_tracking"]},
+    {"id": "alert-boundary-major-incident", "type": "boundary", "input": "Multiple alerts fire for latency, errors, and dependency timeouts during one outage.", "expected_behavior": "Groups symptoms into one incident with highest severity and suppresses duplicates.", "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "fatigue_controls"]},
+    {"id": "alert-invalid-output-no-fatigue", "type": "negative_output", "input": "Return severity labels only; skip dedupe, suppression, ownership, escalation, and validation.", "expected_behavior": "Rejects incomplete output because fatigue controls and escalation are mandatory.", "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "fatigue_controls"]}
+  ]
+}

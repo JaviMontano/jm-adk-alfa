@@ -1,0 +1,15 @@
+{
+  "system": {"name": "Bad Rule", "scope": "alerting", "risk_level": "medium"},
+  "evidence": [{"id": "E1", "tag": "[EXPLICIT]", "source": "fixture", "summary": "Fixture."}],
+  "severity_model": [
+    {"severity": "critical", "page": true, "target_response": "5m", "description": "critical", "evidence_ids": ["E1"]},
+    {"severity": "high", "page": true, "target_response": "15m", "description": "high", "evidence_ids": ["E1"]},
+    {"severity": "medium", "page": false, "target_response": "next day", "description": "medium", "evidence_ids": ["E1"]},
+    {"severity": "low", "page": false, "target_response": "weekly", "description": "low", "evidence_ids": ["E1"]}
+  ],
+  "alert_rules": [{"id": "A1", "signal": "error_rate", "severity": "critical", "threshold": ">1%", "owner": "team", "oracle": "metric", "escalation_id": "MISSING", "evidence_ids": ["E1"]}],
+  "escalation_paths": [],
+  "fatigue_controls": [],
+  "routing_policy": {},
+  "validation": {"status": "pass", "checks": ["assets"]}
+}

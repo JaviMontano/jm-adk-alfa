@@ -1,0 +1,6 @@
+{
+  "schema": 1,
+  "required_sections": ["system", "evidence", "severity_model", "alert_rules", "escalation_paths", "fatigue_controls", "routing_policy", "validation"],
+  "required_validation_checks": ["assets", "deterministic_scripts", "quality_criteria", "severity_model", "alert_rules", "escalation_paths", "fatigue_controls"],
+  "allowed_validation_statuses": ["pass", "warn", "block"]
+}

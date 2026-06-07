@@ -1,0 +1,10 @@
+{
+  "system": {"name": "Bad Severity", "scope": "alerting", "risk_level": "medium"},
+  "evidence": [{"id": "E1", "tag": "[EXPLICIT]", "source": "fixture", "summary": "Fixture."}],
+  "severity_model": [{"severity": "critical", "page": false, "target_response": "5m", "description": "bad", "evidence_ids": ["E1"]}],
+  "alert_rules": [],
+  "escalation_paths": [],
+  "fatigue_controls": [],
+  "routing_policy": {},
+  "validation": {"status": "pass", "checks": ["assets"]}
+}

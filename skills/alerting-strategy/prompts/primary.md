@@ -1,44 +1,18 @@
 ---
 name: alerting-strategy-primary
 type: execution
-version: 2.0.0
-description: "Execute the Alerting Strategy workflow with triad orchestration."
+version: 2.1.0
+description: "Execute deterministic Alerting Strategy workflow."
 triad:
   lead: "alerting-strategy-lead"
   support: "alerting-strategy-support"
   guardian: "alerting-strategy-guardian"
 ---
 
-# Alerting Strategy — Execute
+# Alerting Strategy - Execute
 
-## Dynamic Parameters
-
-| Parameter | Description | Required | Filled By |
-|-----------|-------------|----------|-----------|
-| `{{task}}` | What to accomplish | Yes | User input |
-| `{{context}}` | Background and constraints | Yes | User or codebase |
-| `{{constraints}}` | Additional rules | No | Guardrails JSON |
-| `{{depth}}` | quick / standard / deep | No | Auto |
-| `{{output_format}}` | html / docx / xlsx / md | No | Auto |
-
-## Execution
-
-1. **Load knowledge**: Read `knowledge/body-of-knowledge.md`
-2. **Check guardrails**: Read `references/guardrails/*.json`
-3. **Lead** (`alerting-strategy-lead`): Execute SKILL.md Steps 1-4 for `{{task}}`
-   - Discover → Analyze → Execute → Validate
-   - Apply evidence tags on all claims
-4. **Support** (`alerting-strategy-support`): Review for cross-cutting concerns
-   - Edge cases, security, accessibility, performance
-5. **Guardian** (`alerting-strategy-guardian`): Validate
-   - Evidence tags complete
-   - Quality gate met
-   - Constitution XIII + XIV respected
-   - Output exceeds expectations
-
-## Output
-
-- Primary deliverable for `{{task}}` in `{{output_format}}`
-- Evidence tags on every claim
-- Recommendations beyond the ask
-- Confidence score (>= 0.95)
+1. Confirm the request concerns alert severity, routing, escalation, paging, thresholds, or alert fatigue.
+2. Read `assets/manifest.json` and contract assets.
+3. Gather evidence: incident history, metric names, owners, response targets, and constraints.
+4. Produce severity model, alert rules, escalation paths, fatigue controls, routing policy, validation checks, and risks.
+5. If JSON handoff exists, validate it with `scripts/validate_alerting_strategy.py`.

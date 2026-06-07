@@ -1,28 +1,28 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: alerting-strategy
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
+# Alerting Strategy Report
 
-# Alerting Strategy Output
-
-## Summary
-
-{summary}
+## System Context
+{system_context}
 
 ## Evidence
+{evidence_table}
 
-{evidence}
+## Severity Model
+{severity_model}
 
-## Result
+## Alert Rules
+{alert_rules}
 
-{result}
+## Escalation Paths
+{escalation_paths}
+
+## Fatigue Controls
+{fatigue_controls}
+
+## Routing Policy
+{routing_policy}
 
 ## Validation
+{validation_checks}
 
-{validation}
-
-## Risks and Limits
-
-{risks}
+## Risks And Open Items
+{risks_open_items}

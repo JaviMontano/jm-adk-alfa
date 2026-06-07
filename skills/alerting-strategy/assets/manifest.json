@@ -1,0 +1,12 @@
+{
+  "skill": "alerting-strategy",
+  "version": "1.0.1",
+  "assets": [
+    {"path": "assets/alerting-strategy-contract.json", "type": "schema_contract", "purpose": "Defines required alerting strategy sections and checks.", "used_by": ["SKILL.md", "README.md", "templates/output.md", "scripts/validate_alerting_strategy.py"]},
+    {"path": "assets/severity-policy.json", "type": "severity_contract", "purpose": "Defines allowed severity levels and paging expectations.", "used_by": ["SKILL.md", "scripts/validate_alerting_strategy.py"]},
+    {"path": "assets/rule-policy.json", "type": "rule_contract", "purpose": "Defines required alert rule fields.", "used_by": ["SKILL.md", "scripts/validate_alerting_strategy.py"]},
+    {"path": "assets/escalation-policy.json", "type": "routing_contract", "purpose": "Defines escalation path requirements.", "used_by": ["SKILL.md", "scripts/validate_alerting_strategy.py"]},
+    {"path": "assets/fatigue-policy.json", "type": "fatigue_contract", "purpose": "Defines required fatigue controls.", "used_by": ["SKILL.md", "scripts/validate_alerting_strategy.py"]},
+    {"path": "assets/evidence-policy.json", "type": "evidence_contract", "purpose": "Defines evidence tags and provenance rules.", "used_by": ["SKILL.md", "agents/guardian.md", "scripts/validate_alerting_strategy.py"]}
+  ]
+}
