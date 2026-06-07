@@ -3,7 +3,14 @@ name: ai-testing-strategy-quick
 type: variation
 variant: quick
 ---
-# Ai Testing Strategy — Quick Mode
+# AI Testing Strategy - Quick Mode
 
-Streamlined execution. Focus on TL;DR and primary output only.
-Apply Validation Gate but skip extended evidence tagging.
+Produce a compact strategy with:
+- Matrix coverage summary.
+- Top 5 model and prediction tests.
+- Top 5 data quality tests.
+- Fairness/compliance minimum viable gate.
+- Integration approach.
+- CI/CD gates and monitoring checks.
+
+Do not skip evidence tags or validation checks.

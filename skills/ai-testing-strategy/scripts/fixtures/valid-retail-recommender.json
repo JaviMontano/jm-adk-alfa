@@ -1,0 +1,67 @@
+{
+  "system": {
+    "name": "Retail Recommender",
+    "use_case": "Personalized product recommendations",
+    "risk_level": "medium",
+    "strategy_scope": "AI testing strategy"
+  },
+  "evidence": [
+    {"id": "E1", "tag": "[EXPLICIT]", "source": "requirements memo", "summary": "Shared embeddings and recommendation models are in scope."},
+    {"id": "E2", "tag": "[EXPLICIT]", "source": "requirements memo", "summary": "Canary rollout, latency SLAs, and A/B promotion are required."},
+    {"id": "E3", "tag": "[INFERRED]", "source": "testing analysis", "summary": "Embedding drift and slice performance can degrade recommendations silently."}
+  ],
+  "matrix_coverage": {
+    "covered_test_types": ["functional", "performance", "security", "compliance", "fairness", "integration"],
+    "covered_layers": ["ui", "api", "pipeline_ops", "model_processing", "data_management", "infrastructure"],
+    "cells": [
+      {"test_type": "functional", "layer": "ui", "priority": "recommended", "coverage_target": "recommendation rendering and fallback", "evidence_ids": ["E1"]},
+      {"test_type": "performance", "layer": "api", "priority": "mandatory", "coverage_target": "recommendation API latency", "evidence_ids": ["E2"]},
+      {"test_type": "security", "layer": "infrastructure", "priority": "recommended", "coverage_target": "model endpoint access control", "evidence_ids": ["E2"]},
+      {"test_type": "compliance", "layer": "pipeline_ops", "priority": "recommended", "coverage_target": "promotion evidence retained", "evidence_ids": ["E2"]},
+      {"test_type": "fairness", "layer": "model_processing", "priority": "mandatory", "coverage_target": "category exposure fairness", "evidence_ids": ["E3"]},
+      {"test_type": "integration", "layer": "data_management", "priority": "mandatory", "coverage_target": "embedding store to model contract", "evidence_ids": ["E1"]}
+    ]
+  },
+  "model_tests": [
+    {"category": "accuracy", "oracle": "offline ranking metrics", "threshold": "NDCG does not regress", "automation_tier": "T3", "evidence_ids": ["E1"]},
+    {"category": "adversarial", "oracle": "sparse history and cold-start cases", "threshold": "fallback quality remains acceptable", "automation_tier": "T3", "evidence_ids": ["E3"]},
+    {"category": "drift", "oracle": "embedding distribution monitor", "threshold": "drift detected within 1 hour", "automation_tier": "T4", "evidence_ids": ["E3"]},
+    {"category": "counterfactual", "oracle": "category preference perturbation", "threshold": "ranking changes are monotonic", "automation_tier": "T3", "evidence_ids": ["E3"]},
+    {"category": "regression", "oracle": "champion-challenger ranking comparison", "threshold": "no KPI slice regression", "automation_tier": "T5", "evidence_ids": ["E2"]}
+  ],
+  "data_quality_tests": [
+    {"category": "schema", "oracle": "event schema validator", "threshold": "required fields pass", "automation_tier": "T2", "evidence_ids": ["E1"]},
+    {"category": "distribution", "oracle": "event and embedding distribution comparison", "threshold": "no unreviewed drift breach", "automation_tier": "T3", "evidence_ids": ["E3"]},
+    {"category": "lineage", "oracle": "event to recommendation trace", "threshold": "100% traceability for canary traffic", "automation_tier": "T4", "evidence_ids": ["E2"]},
+    {"category": "training_serving_skew", "oracle": "offline vs online embedding parity", "threshold": "0 schema mismatch", "automation_tier": "T3", "evidence_ids": ["E1"]}
+  ],
+  "fairness_compliance_tests": [
+    {"category": "fairness", "oracle": "category and segment exposure analysis", "threshold": "approved exposure threshold met", "automation_tier": "T5", "evidence_ids": ["E3"]},
+    {"category": "audit_trail", "oracle": "canary decision log completeness", "threshold": "100% model version coverage", "automation_tier": "T5", "evidence_ids": ["E2"]},
+    {"category": "privacy", "oracle": "PII scan for recommendation events", "threshold": "0 unexpected PII", "automation_tier": "T2", "evidence_ids": ["E1"]},
+    {"category": "governance", "oracle": "A/B promotion checklist", "threshold": "approval and rollback plan present", "automation_tier": "T5", "evidence_ids": ["E2"]}
+  ],
+  "integration_strategy": {
+    "approach": "parallel",
+    "rationale": "Data and API teams can validate embedding contracts and recommendation UX concurrently.",
+    "harness": "traffic replay plus sampled catalog and embedding fixture",
+    "contracts": ["embedding contract", "model contract", "API contract"],
+    "evidence_ids": ["E1", "E2"]
+  },
+  "automation_gates": [
+    {"gate": "code_quality", "tier": "T1", "trigger": "every commit", "blocks": "yes", "evidence_ids": ["E1"]},
+    {"gate": "data_quality", "tier": "T2", "trigger": "pull request", "blocks": "yes", "evidence_ids": ["E1"]},
+    {"gate": "model_quality", "tier": "T3", "trigger": "pre-deploy", "blocks": "yes", "evidence_ids": ["E2"]},
+    {"gate": "fairness_compliance", "tier": "T5", "trigger": "model promotion", "blocks": "approval_required", "evidence_ids": ["E3"]},
+    {"gate": "performance_regression", "tier": "T4", "trigger": "canary", "blocks": "yes", "evidence_ids": ["E2"]}
+  ],
+  "monitoring": [
+    {"signal": "drift", "threshold": "embedding drift breach", "response": "pause promotion and review", "evidence_ids": ["E3"]},
+    {"signal": "performance", "threshold": "API latency SLA breach", "response": "roll back canary", "evidence_ids": ["E2"]},
+    {"signal": "fairness", "threshold": "exposure fairness breach", "response": "require merchandising review", "evidence_ids": ["E3"]}
+  ],
+  "validation": {
+    "status": "pass",
+    "checks": ["assets", "deterministic_scripts", "quality_criteria", "matrix_coverage", "model_test_coverage", "data_quality_coverage", "fairness_compliance_coverage", "automation_gates"]
+  }
+}

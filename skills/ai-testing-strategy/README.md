@@ -1,31 +1,27 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: ai-testing-strategy
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
+# AI Testing Strategy
 
-# Ai Testing Strategy
+Deterministic JM Labs skill for designing test strategies for AI-enabled systems. It covers the 6 test types x 6 layers matrix, model and prediction tests, data quality tests, fairness and compliance tests, integration harnesses, CI/CD gates, and continuous monitoring.
 
->
+## Trigger
 
-## Triggers
+Use this skill when the request asks to define an AI testing strategy, validate model predictions, design data quality tests, plan fairness testing, test AI pipelines, build AI integration tests, automate model quality gates, or evaluate coverage gaps in AI system testing.
 
-- ai-testing-strategy
+## Deterministic Inputs
 
-## Allowed Tools
+- System or project name.
+- AI use case, model type, and risk level.
+- Layers present: UI, API, pipeline ops, model processing, data management, infrastructure.
+- Required metrics for accuracy, performance, fairness, explainability, drift, compliance, and security.
+- CI/CD context, test tools, monitoring tools, and test data constraints.
 
-- Read
-- Write
-- Edit
-- Glob
-- Grep
-- Bash
+## Output Contract
 
-## Quick Use
+The strategy must include system context, evidence, matrix coverage, model tests, data quality tests, fairness and compliance tests, integration strategy, automation gates, monitoring plan, residual risks, and validation checks. JSON handoffs are validated offline with `scripts/validate_ai_testing_strategy.py`.
 
-Use this skill when the request clearly matches the triggers and requires the `ai-testing-strategy` capability.
+## Local Validation
 
-## Output Format
-
-Markdown with summary, evidence, result, validation, and risks.
+```bash
+bash skills/ai-testing-strategy/scripts/check.sh
+python3 -B scripts/validate-skill-dod.py --skill ai-testing-strategy
+python3 -B scripts/validate-skill-scripts.py --strict --run-checks --skill ai-testing-strategy
+```

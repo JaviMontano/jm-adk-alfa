@@ -1,0 +1,38 @@
+{
+  "system": {"name": "Missing Checks", "use_case": "AI scoring", "risk_level": "medium", "strategy_scope": "AI testing strategy"},
+  "evidence": [{"id": "E1", "tag": "[EXPLICIT]", "source": "fixture", "summary": "Fixture evidence."}],
+  "matrix_coverage": {"covered_test_types": ["functional", "performance", "security", "compliance", "fairness", "integration"], "covered_layers": ["ui", "api", "pipeline_ops", "model_processing", "data_management", "infrastructure"], "cells": [{"test_type": "functional", "layer": "api", "priority": "mandatory", "coverage_target": "api", "evidence_ids": ["E1"]}]},
+  "model_tests": [
+    {"category": "accuracy", "oracle": "holdout", "threshold": "pass", "automation_tier": "T3", "evidence_ids": ["E1"]},
+    {"category": "adversarial", "oracle": "perturb", "threshold": "pass", "automation_tier": "T3", "evidence_ids": ["E1"]},
+    {"category": "drift", "oracle": "psi", "threshold": "pass", "automation_tier": "T4", "evidence_ids": ["E1"]},
+    {"category": "counterfactual", "oracle": "what-if", "threshold": "pass", "automation_tier": "T3", "evidence_ids": ["E1"]},
+    {"category": "regression", "oracle": "champion", "threshold": "pass", "automation_tier": "T5", "evidence_ids": ["E1"]}
+  ],
+  "data_quality_tests": [
+    {"category": "schema", "oracle": "schema", "threshold": "pass", "automation_tier": "T2", "evidence_ids": ["E1"]},
+    {"category": "distribution", "oracle": "distribution", "threshold": "pass", "automation_tier": "T3", "evidence_ids": ["E1"]},
+    {"category": "lineage", "oracle": "lineage", "threshold": "pass", "automation_tier": "T4", "evidence_ids": ["E1"]},
+    {"category": "training_serving_skew", "oracle": "skew", "threshold": "pass", "automation_tier": "T3", "evidence_ids": ["E1"]}
+  ],
+  "fairness_compliance_tests": [
+    {"category": "fairness", "oracle": "fairness", "threshold": "pass", "automation_tier": "T5", "evidence_ids": ["E1"]},
+    {"category": "audit_trail", "oracle": "audit", "threshold": "pass", "automation_tier": "T5", "evidence_ids": ["E1"]},
+    {"category": "privacy", "oracle": "privacy", "threshold": "pass", "automation_tier": "T2", "evidence_ids": ["E1"]},
+    {"category": "governance", "oracle": "governance", "threshold": "pass", "automation_tier": "T5", "evidence_ids": ["E1"]}
+  ],
+  "integration_strategy": {"approach": "bottom_up", "rationale": "data first", "harness": "fixture", "contracts": ["data"], "evidence_ids": ["E1"]},
+  "automation_gates": [
+    {"gate": "code_quality", "tier": "T1", "trigger": "commit", "blocks": "yes", "evidence_ids": ["E1"]},
+    {"gate": "data_quality", "tier": "T2", "trigger": "pr", "blocks": "yes", "evidence_ids": ["E1"]},
+    {"gate": "model_quality", "tier": "T3", "trigger": "pre-deploy", "blocks": "yes", "evidence_ids": ["E1"]},
+    {"gate": "fairness_compliance", "tier": "T5", "trigger": "promotion", "blocks": "yes", "evidence_ids": ["E1"]},
+    {"gate": "performance_regression", "tier": "T4", "trigger": "release", "blocks": "yes", "evidence_ids": ["E1"]}
+  ],
+  "monitoring": [
+    {"signal": "drift", "threshold": "breach", "response": "review", "evidence_ids": ["E1"]},
+    {"signal": "performance", "threshold": "breach", "response": "rollback", "evidence_ids": ["E1"]},
+    {"signal": "fairness", "threshold": "breach", "response": "review", "evidence_ids": ["E1"]}
+  ],
+  "validation": {"status": "pass", "checks": ["assets"]}
+}

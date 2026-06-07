@@ -1,9 +1,82 @@
-[
-  {"id": "ai-testing-strategy-happy-path", "type": "happy_path", "input": "Run ai testing strategy on this project", "expected_behavior": "Skill activates and produces the expected ai testing strategy output following the defined process", "tags": ["basic", "activation"]},
-  {"id": "ai-testing-strategy-explicit-trigger", "type": "happy_path", "input": "Apply ai testing strategy analysis", "expected_behavior": "Skill recognizes the trigger phrase and executes the ai testing strategy workflow", "tags": ["trigger", "recognition"]},
-  {"id": "ai-testing-strategy-with-context", "type": "happy_path", "input": "Apply ai testing strategy to analyze the current codebase with detailed output", "expected_behavior": "Skill produces comprehensive ai testing strategy analysis with evidence-tagged findings", "tags": ["detailed", "comprehensive"]},
-  {"id": "ai-testing-strategy-minimal-input", "type": "happy_path", "input": "Quick ai testing strategy", "expected_behavior": "Skill activates with minimal input, applies reasonable defaults", "tags": ["minimal", "defaults"]},
-  {"id": "ai-testing-strategy-false-positive", "type": "false_positive", "input": "What is the weather forecast for tomorrow?", "expected_behavior": "Skill should NOT activate — this input has no relation to ai testing strategy", "tags": ["false_positive", "should-not-activate"]},
-  {"id": "ai-testing-strategy-edge-empty-input", "type": "edge_case", "input": "Run ai testing strategy but I have no files or documentation yet", "expected_behavior": "Skill handles gracefully — requests minimum viable input or produces gap analysis", "tags": ["edge_case", "empty-input", "boundary"]},
-  {"id": "ai-testing-strategy-edge-conflicting", "type": "edge_case", "input": "Apply ai testing strategy but requirements contradict each other", "expected_behavior": "Skill detects contradiction, flags with [OPEN] tag, proposes resolution", "tags": ["edge_case", "conflict", "corner"]}
-]
+{
+  "schema": 1,
+  "skill": "ai-testing-strategy",
+  "determinism": {
+    "network": "forbidden",
+    "time": "fixed by caller when needed",
+    "randomness": "forbidden",
+    "oracle": "assets plus scripts/fixtures"
+  },
+  "cases": [
+    {
+      "id": "ats-healthcare-claims-strategy",
+      "type": "happy_path",
+      "input": "Define AI testing strategy for healthcare claims triage with PHI constraints, p95 below 250 ms, weekly retraining, fairness gates, and drift alerts.",
+      "expected_behavior": "Produces matrix coverage, model tests, data quality tests, fairness/compliance tests, integration approach, automation gates, monitoring, risks, and validation checks.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "matrix_coverage", "model_test_coverage", "data_quality_coverage", "fairness_compliance_coverage", "automation_gates"]
+    },
+    {
+      "id": "ats-retail-recommender-strategy",
+      "type": "happy_path",
+      "input": "Plan testing for a retail recommender with shared embeddings, canary rollouts, latency SLAs, recommendation fairness, and A/B model promotion.",
+      "expected_behavior": "Selects coverage across test types and layers with canary, performance, drift, regression, and fairness gates.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "matrix_coverage", "automation_gates"]
+    },
+    {
+      "id": "ats-minimal-greenfield",
+      "type": "edge_case",
+      "input": "Create a testing strategy for a greenfield AI lead scoring MVP; no repo exists, but the team knows it needs fairness and rollback gates.",
+      "expected_behavior": "Documents assumptions, uses proposed thresholds, marks missing inputs open, and avoids claiming code evidence.",
+      "expected_checks": ["assets", "quality_criteria", "assumption_tracking", "open_gap_tracking"]
+    },
+    {
+      "id": "ats-conflict-no-ground-truth",
+      "type": "conflict",
+      "input": "Define tests for an unsupervised anomaly model; stakeholders require accuracy thresholds but no labeled ground truth exists.",
+      "expected_behavior": "Flags the conflict and proposes proxy metrics, human evaluation, synthetic labels, and monitoring gates.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "conflict_detection"]
+    },
+    {
+      "id": "ats-false-positive-weather",
+      "type": "false_positive",
+      "input": "What is the weather forecast for Bogota tomorrow?",
+      "expected_behavior": "Does not activate because there is no AI testing strategy request.",
+      "expected_checks": ["quality_criteria", "activation_guard"]
+    },
+    {
+      "id": "ats-false-positive-generic-unit-test",
+      "type": "false_positive",
+      "input": "Write a unit test for this pure string formatting helper.",
+      "expected_behavior": "Does not activate unless the request involves AI systems, model tests, data quality, fairness, drift, or AI pipeline coverage.",
+      "expected_checks": ["quality_criteria", "activation_guard"]
+    },
+    {
+      "id": "ats-negative-no-evidence",
+      "type": "false_negative_guard",
+      "input": "Create the strategy but omit evidence and assumptions.",
+      "expected_behavior": "Blocks finalization because every test category, gate, and risk must cite evidence or an explicit assumption.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "evidence_required"]
+    },
+    {
+      "id": "ats-degradation-no-production-data",
+      "type": "degradation",
+      "input": "Design testing when production data cannot be used because of HIPAA and only synthetic data is allowed.",
+      "expected_behavior": "Uses synthetic/de-identified test data strategy, privacy validation, representativeness checks, and open gaps for unavailable baselines.",
+      "expected_checks": ["assets", "quality_criteria", "test_data_constraints", "privacy_guard"]
+    },
+    {
+      "id": "ats-boundary-continuous-learning",
+      "type": "boundary",
+      "input": "Define testing for a continuous learning model that retrains daily and promotes models automatically if gates pass.",
+      "expected_behavior": "Requires stable baseline comparison, promotion gates, drift recalibration tests, rollback, and post-deploy monitoring.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "automation_gates", "monitoring"]
+    },
+    {
+      "id": "ats-invalid-output-missing-matrix",
+      "type": "negative_output",
+      "input": "Return only model accuracy tests and skip matrix, data quality, fairness, compliance, integration, and automation gates.",
+      "expected_behavior": "Rejects incomplete output because the testing matrix and cross-layer gate coverage are mandatory.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "matrix_coverage"]
+    }
+  ]
+}

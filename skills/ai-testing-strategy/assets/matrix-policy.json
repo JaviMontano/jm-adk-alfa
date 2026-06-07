@@ -1,0 +1,7 @@
+{
+  "schema": 1,
+  "test_types": ["functional", "performance", "security", "compliance", "fairness", "integration"],
+  "layers": ["ui", "api", "pipeline_ops", "model_processing", "data_management", "infrastructure"],
+  "priorities": ["mandatory", "recommended", "deferred"],
+  "rule": "Coverage summary must name every test type and every layer, with representative cells prioritized by risk."
+}

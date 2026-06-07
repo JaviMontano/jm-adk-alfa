@@ -1,17 +1,15 @@
 ---
 name: ai-testing-strategy-meta
 type: meta
-version: 2.0.0
-description: "Meta-prompt for Ai Testing Strategy skill routing."
+version: 2.1.0
+description: "Meta-prompt for AI Testing Strategy routing."
 ---
 
-# Ai Testing Strategy — Meta Prompt
+# AI Testing Strategy - Meta Prompt
 
-Activate this skill when the user request matches:
-- Trigger phrases from SKILL.md description
-- Direct invocation: `/ai-testing-strategy`
+Activate this skill when the request asks to design, evaluate, document, or harden testing for an AI-enabled system.
 
-## Skill Routing
-1. Load SKILL.md → read `## When to Activate` section
-2. If match → activate lead agent: `ai-testing-strategy-lead`
-3. If orchestrated → defer to orchestrating skill
+Strong activation signals:
+- AI testing strategy, model tests, data quality tests, fairness tests, compliance tests, drift simulation, adversarial testing, model regression, model promotion gates, AI CI/CD testing, AI integration harness.
+
+Do not activate for generic unit tests, non-AI refactors, weather/news requests, pure architecture design, or deployment strategy unless the user asks for AI testing coverage.

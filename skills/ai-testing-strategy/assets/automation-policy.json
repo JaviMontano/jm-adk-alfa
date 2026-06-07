@@ -1,0 +1,7 @@
+{
+  "schema": 1,
+  "tiers": ["T1", "T2", "T3", "T4", "T5"],
+  "required_gates": ["code_quality", "data_quality", "model_quality", "fairness_compliance", "performance_regression"],
+  "required_monitoring": ["drift", "performance", "fairness"],
+  "allowed_blocking": ["yes", "no", "approval_required"]
+}
