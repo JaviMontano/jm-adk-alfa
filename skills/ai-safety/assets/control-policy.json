@@ -1,0 +1,5 @@
+{
+  "schema": "jm-labs.asset.control-policy.v1",
+  "allowed_control_types": ["content_filter", "output_guardrail", "prompt_injection_defense", "jailbreak_detection", "human_review", "rate_limit", "logging_monitoring"],
+  "allowed_actions": ["allow", "transform", "refuse", "escalate", "human_review"]
+}

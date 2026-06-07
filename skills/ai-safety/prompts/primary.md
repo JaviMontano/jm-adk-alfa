@@ -1,44 +1,19 @@
 ---
 name: ai-safety-primary
 type: execution
-version: 2.0.0
-description: "Execute the Ai Safety workflow with triad orchestration."
+version: 2.1.0
+description: "Execute deterministic AI safety report generation."
 triad:
   lead: "ai-safety-lead"
   support: "ai-safety-support"
   guardian: "ai-safety-guardian"
 ---
 
-# Ai Safety — Execute
+# AI Safety - Execute
 
-## Dynamic Parameters
-
-| Parameter | Description | Required | Filled By |
-|-----------|-------------|----------|-----------|
-| `{{task}}` | What to accomplish | Yes | User input |
-| `{{context}}` | Background and constraints | Yes | User or codebase |
-| `{{constraints}}` | Additional rules | No | Guardrails JSON |
-| `{{depth}}` | quick / standard / deep | No | Auto |
-| `{{output_format}}` | html / docx / xlsx / md | No | Auto |
-
-## Execution
-
-1. **Load knowledge**: Read `knowledge/body-of-knowledge.md`
-2. **Check guardrails**: Read `references/guardrails/*.json`
-3. **Lead** (`ai-safety-lead`): Execute SKILL.md Steps 1-4 for `{{task}}`
-   - Discover → Analyze → Execute → Validate
-   - Apply evidence tags on all claims
-4. **Support** (`ai-safety-support`): Review for cross-cutting concerns
-   - Edge cases, security, accessibility, performance
-5. **Guardian** (`ai-safety-guardian`): Validate
-   - Evidence tags complete
-   - Quality gate met
-   - Constitution XIII + XIV respected
-   - Output exceeds expectations
-
-## Output
-
-- Primary deliverable for `{{task}}` in `{{output_format}}`
-- Evidence tags on every claim
-- Recommendations beyond the ask
-- Confidence score (>= 0.95)
+1. Load `SKILL.md` and `assets/*.json`.
+2. Build evidence ids.
+3. Classify risks with severity and scenarios.
+4. Map every risk to controls.
+5. Add jailbreak tests, evaluation metrics, and escalation.
+6. Validate the report offline before delivery.

@@ -1,6 +1,3 @@
-# Example Output
-
-```json
 {
   "schema": "jm-labs.ai-safety.report.v1",
   "system": {"name": "Support Assistant", "use_case": "customer support drafting", "risk_level": "high", "high_stakes": false},
@@ -31,4 +28,3 @@
   "validation": {"status": "pass", "checks": ["assets", "deterministic_scripts", "quality_criteria", "risk_taxonomy", "control_coverage", "jailbreak_coverage", "evaluation_metrics", "escalation_policy"]},
   "risks": ["Live safety performance still requires production monitoring."]
 }
-```

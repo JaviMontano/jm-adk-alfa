@@ -1,0 +1,12 @@
+{
+  "schema": "jm-labs.ai-safety.report.v1",
+  "system": {"name": "Missing Jailbreak", "use_case": "test", "risk_level": "high", "high_stakes": false},
+  "evidence": [{"id": "E-001", "tag": "[EXPLICIT]", "source": "fixture", "summary": "Jailbreak risk."}],
+  "risk_assessment": [{"id": "R-001", "domain": "jailbreak", "severity": "high", "scenario": "Instruction override.", "evidence_ids": ["E-001"]}],
+  "controls": [{"id": "C-001", "control_type": "prompt_injection_defense", "target_risk_ids": ["R-001"], "action": "refuse", "description": "Defend.", "test_oracle": "refuse", "evidence_ids": ["E-001"]}],
+  "jailbreak_tests": [],
+  "evaluation": {"metrics": [{"metric": "unsafe_recall", "threshold": ">= 0.95", "evidence_ids": ["E-001"]}, {"metric": "overrefusal_rate", "threshold": "<= 0.05", "evidence_ids": ["E-001"]}, {"metric": "jailbreak_block_rate", "threshold": ">= 0.98", "evidence_ids": ["E-001"]}]},
+  "escalation": {"owner": "owner", "channels": ["queue"], "criteria": ["jailbreak"]},
+  "validation": {"status": "pass", "checks": ["assets", "deterministic_scripts", "quality_criteria", "risk_taxonomy", "control_coverage", "jailbreak_coverage", "evaluation_metrics", "escalation_policy"]},
+  "risks": []
+}

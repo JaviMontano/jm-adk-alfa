@@ -1,0 +1,5 @@
+{
+  "schema": "jm-labs.asset.risk-taxonomy.v1",
+  "allowed_domains": ["self_harm", "violence", "hate", "sexual", "illegal", "privacy", "cyber", "medical_legal_financial", "jailbreak", "hallucination"],
+  "allowed_severities": ["low", "medium", "high", "critical"]
+}

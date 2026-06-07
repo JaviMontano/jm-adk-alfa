@@ -1,9 +1,10 @@
 ---
 name: ai-safety-lead
 role: Lead
-description: "Primary execution agent for Ai Safety."
+description: "Primary execution agent for deterministic AI safety reports."
 tools: [Read, Write, Glob, Grep]
 ---
-# Ai Safety Lead
-Produces the primary deliverable for this skill domain.
-Follows RCTF pattern: Role → Context → Task → Format.
+# AI Safety Lead
+
+Builds the safety report from evidence, risk assessment, controls, jailbreak
+tests, evaluation metrics, escalation policy, validation, and residual risks.

@@ -1,0 +1,12 @@
+{
+  "schema": "jm-labs.ai-safety.report.v1",
+  "system": {"name": "Missing Metrics", "use_case": "test", "risk_level": "medium", "high_stakes": false},
+  "evidence": [{"id": "E-001", "tag": "[EXPLICIT]", "source": "fixture", "summary": "Safety risk."}],
+  "risk_assessment": [{"id": "R-001", "domain": "jailbreak", "severity": "high", "scenario": "Override.", "evidence_ids": ["E-001"]}],
+  "controls": [{"id": "C-001", "control_type": "prompt_injection_defense", "target_risk_ids": ["R-001"], "action": "refuse", "description": "Defend.", "test_oracle": "refuse", "evidence_ids": ["E-001"]}],
+  "jailbreak_tests": [{"id": "J-001", "attack_type": "policy_override", "expected_action": "refuse", "oracle": "refuse", "evidence_ids": ["E-001"]}],
+  "evaluation": {"metrics": [{"metric": "unsafe_recall", "threshold": ">= 0.95", "evidence_ids": ["E-001"]}]},
+  "escalation": {"owner": "owner", "channels": ["queue"], "criteria": ["jailbreak"]},
+  "validation": {"status": "pass", "checks": ["assets", "deterministic_scripts", "quality_criteria", "risk_taxonomy", "control_coverage", "jailbreak_coverage", "evaluation_metrics", "escalation_policy"]},
+  "risks": []
+}

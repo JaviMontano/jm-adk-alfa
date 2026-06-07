@@ -1,15 +1,21 @@
-# Ai Safety — Body of Knowledge
+# AI Safety Body of Knowledge
 
 ## Canon
-Key standards, references, and best practices for Ai Safety.
 
-## Quality Metrics
-| Metric | Target | How to Measure |
-|--------|--------|---------------|
-| Accuracy | >= 90% | Correct outputs / total |
-| Evidence coverage | 100% | All claims tagged |
-| Constitution compliance | 100% | Principles respected |
+AI safety work is not a vibe check. It is a traceable map from harm scenarios to
+controls, tests, metrics, escalation, and residual risk.
 
-## References
-- Industry standards for this domain
-- Best practice guides
+## Required Coverage
+
+- risk taxonomy: harm domain and severity
+- controls: mapped to every risk id
+- jailbreak tests: attack type, expected action, oracle
+- evaluation metrics: unsafe recall, over-refusal, jailbreak block rate
+- escalation: owner, channels, criteria
+
+## Anti-Patterns
+
+- critical risk with allow-only action
+- guardrail without test oracle
+- safety plan without over-refusal metric
+- no escalation for high-stakes or private-data cases

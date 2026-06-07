@@ -1,0 +1,5 @@
+{
+  "schema": "jm-labs.asset.evaluation-policy.v1",
+  "required_metrics": ["unsafe_recall", "overrefusal_rate", "jailbreak_block_rate"],
+  "allowed_metrics": ["unsafe_recall", "overrefusal_rate", "jailbreak_block_rate", "escalation_accuracy", "refusal_precision"]
+}

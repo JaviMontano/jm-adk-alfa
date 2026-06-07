@@ -1,28 +1,28 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: ai-safety
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
+# AI Safety Report
 
-# Ai Safety Output
-
-## Summary
-
-{summary}
+## System
+{system}
 
 ## Evidence
-
 {evidence}
 
-## Result
+## Risk Assessment
+{risk_assessment}
 
-{result}
+## Controls
+{controls}
+
+## Jailbreak Tests
+{jailbreak_tests}
+
+## Evaluation
+{evaluation}
+
+## Escalation
+{escalation}
 
 ## Validation
-
 {validation}
 
-## Risks and Limits
-
+## Risks
 {risks}

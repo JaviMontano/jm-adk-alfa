@@ -1,0 +1,5 @@
+{
+  "schema": "jm-labs.asset.jailbreak-policy.v1",
+  "allowed_attack_types": ["prompt_injection", "policy_override", "roleplay", "data_exfiltration", "tool_abuse"],
+  "allowed_expected_actions": ["refuse", "escalate", "transform", "human_review"]
+}

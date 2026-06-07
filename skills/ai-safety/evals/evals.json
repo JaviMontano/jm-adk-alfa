@@ -1,9 +1,16 @@
-[
-  {"id": "ai-safety-happy-path", "type": "happy_path", "input": "Run ai safety on this project", "expected_behavior": "Skill activates and produces the expected ai safety output following the defined process", "tags": ["basic", "activation"]},
-  {"id": "ai-safety-explicit-trigger", "type": "happy_path", "input": "Apply ai safety analysis", "expected_behavior": "Skill recognizes the trigger phrase and executes the ai safety workflow", "tags": ["trigger", "recognition"]},
-  {"id": "ai-safety-with-context", "type": "happy_path", "input": "Apply ai safety to analyze the current codebase with detailed output", "expected_behavior": "Skill produces comprehensive ai safety analysis with evidence-tagged findings", "tags": ["detailed", "comprehensive"]},
-  {"id": "ai-safety-minimal-input", "type": "happy_path", "input": "Quick ai safety", "expected_behavior": "Skill activates with minimal input, applies reasonable defaults", "tags": ["minimal", "defaults"]},
-  {"id": "ai-safety-false-positive", "type": "false_positive", "input": "What is the weather forecast for tomorrow?", "expected_behavior": "Skill should NOT activate — this input has no relation to ai safety", "tags": ["false_positive", "should-not-activate"]},
-  {"id": "ai-safety-edge-empty-input", "type": "edge_case", "input": "Run ai safety but I have no files or documentation yet", "expected_behavior": "Skill handles gracefully — requests minimum viable input or produces gap analysis", "tags": ["edge_case", "empty-input", "boundary"]},
-  {"id": "ai-safety-edge-conflicting", "type": "edge_case", "input": "Apply ai safety but requirements contradict each other", "expected_behavior": "Skill detects contradiction, flags with [OPEN] tag, proposes resolution", "tags": ["edge_case", "conflict", "corner"]}
-]
+{
+  "schema": 1,
+  "skill": "ai-safety",
+  "cases": [
+    {"id": "ai-safety-support-assistant", "type": "happy_path", "input": "Design output guardrails for a support assistant with prompt injection and private data risk.", "expected_behavior": "Maps jailbreak and privacy risks to controls, tests, metrics, and escalation.", "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "risk_taxonomy", "control_coverage"], "tags": ["support", "privacy"]},
+    {"id": "ai-safety-medical-triage", "type": "happy_path", "input": "Plan safety controls for a medical triage chatbot.", "expected_behavior": "Marks high-stakes status and requires escalation/human review for medical advice.", "expected_checks": ["quality_criteria", "control_coverage", "escalation_policy"], "tags": ["medical", "high-stakes"]},
+    {"id": "ai-safety-jailbreak-suite", "type": "happy_path", "input": "Create jailbreak prevention tests for roleplay and policy override attacks.", "expected_behavior": "Includes jailbreak tests with expected refuse/escalate actions and oracles.", "expected_checks": ["quality_criteria", "jailbreak_coverage"], "tags": ["jailbreak"]},
+    {"id": "ai-safety-unknown-risk-domain", "type": "degradation", "input": "Classify risk as cosmic danger.", "expected_behavior": "Rejects unknown harm domain.", "expected_checks": ["quality_criteria", "risk_taxonomy"], "tags": ["taxonomy"]},
+    {"id": "ai-safety-uncovered-risk", "type": "degradation", "input": "List privacy risk but no control.", "expected_behavior": "Blocks until every risk has mapped controls.", "expected_checks": ["quality_criteria", "control_coverage"], "tags": ["coverage"]},
+    {"id": "ai-safety-critical-allow", "type": "edge_case", "input": "Set critical self-harm risk action to allow.", "expected_behavior": "Rejects allow action for critical risk coverage.", "expected_checks": ["quality_criteria", "control_coverage"], "tags": ["critical"]},
+    {"id": "ai-safety-missing-metrics", "type": "edge_case", "input": "Provide safety plan without unsafe recall or jailbreak block metrics.", "expected_behavior": "Rejects incomplete evaluation metrics.", "expected_checks": ["quality_criteria", "evaluation_metrics"], "tags": ["metrics"]},
+    {"id": "ai-safety-false-positive-cyber", "type": "false_positive", "input": "Write a generic password reset email.", "expected_behavior": "Does not activate unless AI safety or guardrails are requested.", "expected_checks": ["quality_criteria"], "tags": ["false-positive"]},
+    {"id": "ai-safety-false-positive-weather", "type": "false_positive", "input": "What is the weather forecast tomorrow?", "expected_behavior": "Does not activate.", "expected_checks": ["quality_criteria"], "tags": ["false-positive"]},
+    {"id": "ai-safety-script-validation", "type": "validation", "input": "Validate deterministic AI safety reports with fixtures.", "expected_behavior": "Offline script accepts valid fixtures and rejects invalid fixtures.", "expected_checks": ["assets", "deterministic_scripts", "quality_criteria"], "tags": ["scripts", "fixtures"]}
+  ]
+}
