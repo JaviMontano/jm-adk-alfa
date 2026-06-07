@@ -1,0 +1,31 @@
+{
+  "schema": "jm-labs.ai-content-detection.report.v1",
+  "content": {"id": "article-watermark-001", "type": "article", "sample_size": 1400, "language": "en"},
+  "scope": {"purpose": "provenance review", "allowed_use": "editorial", "high_stakes": false},
+  "evidence": [
+    {"id": "E-001", "tag": "[EXPLICIT]", "source": "watermark verifier output", "summary": "Verifier found a signed AI provenance marker."},
+    {"id": "E-002", "tag": "[EXPLICIT]", "source": "document metadata", "summary": "Metadata shows export from an AI-assisted editor."}
+  ],
+  "signals": [
+    {"id": "S-001", "type": "watermark", "score": 0.95, "weight": 0.6, "direction": "ai", "evidence_ids": ["E-001"], "notes": "Signed watermark evidence is present."},
+    {"id": "S-002", "type": "metadata", "score": 0.8, "weight": 0.2, "direction": "ai", "evidence_ids": ["E-002"], "notes": "Metadata supports AI-assisted provenance."}
+  ],
+  "assessment": {
+    "ai_likelihood": 0.86,
+    "classification": "likely-ai",
+    "confidence": 0.88,
+    "authorship_claim": "not-determined",
+    "rationale": "Watermark and metadata indicate AI-assisted generation.",
+    "limitations": ["Watermark identifies tool provenance, not human intent."]
+  },
+  "watermark": {"status": "present", "method": "signed-provenance-marker", "evidence_ids": ["E-001"], "notes": "Verifier output supplied."},
+  "human_ai_strategy": {"recommended_label": "AI-generated or AI-assisted disclosure recommended", "review_steps": ["Keep provenance record", "Apply editorial review"]},
+  "decision_policy": {
+    "final_action": "editorial-review",
+    "allowed_actions": ["request-disclosure", "editorial-review"],
+    "disallowed_actions": ["accuse-author", "automatic-penalty"],
+    "user_facing_language": "The artifact contains provenance evidence consistent with AI assistance; editorial disclosure review is recommended."
+  },
+  "validation": {"status": "pass", "checks": ["assets", "deterministic_scripts", "quality_criteria", "false_positive_control", "threshold_policy", "evidence_required", "no_authorship_claim"]},
+  "risks": []
+}

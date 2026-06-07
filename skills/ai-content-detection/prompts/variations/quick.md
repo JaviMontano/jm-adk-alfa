@@ -1,34 +1,17 @@
 ---
 name: ai-content-detection-quick
 type: variation
-version: 2.0.0
-description: "Ai Content Detection in quick mode."
+version: 2.1.0
+description: "Quick AI Content Detection mode."
 ---
 
-# Ai Content Detection — quick Mode
+# AI Content Detection - Quick Mode
 
-## When to Use
+Use quick mode for low-stakes editorial triage.
 
-Use quick mode when you need adjusted depth for the Ai Content Detection workflow.
-
-## Dynamic Parameters
-
-| Parameter | Required | Filled By |
-|-----------|----------|-----------|
-| `{{task}}` | Yes | User input |
-| `{{context}}` | No | Auto-detected |
-| `{{depth}}` | No | Set to "quick" |
-
-## Execution
-
-1. Load skill: `skills/ai-content-detection/knowledge/body-of-knowledge.md`
-2. Check guardrails: `references/guardrails/*.json`
-3. Execute at quick depth with evidence tags
-4. Lead → Support → Guardian validation
-5. Confidence >= 0.95
-
-## Output
-
-- Deliverable calibrated to quick depth
-- Evidence-tagged, Constitution-compliant
-- Recommendations beyond the ask
+Rules:
+- use only provided evidence
+- include at least one signal or mark report inconclusive
+- keep authorship as `not-determined`
+- include limitations and safe next step
+- avoid enforcement recommendations

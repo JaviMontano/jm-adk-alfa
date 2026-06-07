@@ -1,8 +1,17 @@
-# DOCX Template — Ai Content Detection
+# DOCX Template - AI Content Detection
+
 ## Structure
-- Title: "Ai Content Detection Report"
-- Section 1: Executive Summary
-- Section 2: Findings / Deliverables
-- Section 3: Recommendations
-- Footer: "MetodologIA — {{date}}"
-## Formatting: Poppins headings, Montserrat body, JetBrains Mono code
+- Title: "AI Content Detection Report"
+- Section 1: Content and Scope
+- Section 2: Evidence Register
+- Section 3: Signals
+- Section 4: Likelihood Assessment
+- Section 5: Watermark and Provenance
+- Section 6: Human-AI Strategy and Decision Policy
+- Section 7: Risks and Limitations
+- Footer: "JM Labs - {{date}}"
+
+## Formatting
+- Headings: system sans-serif
+- Body: system sans-serif
+- Schema ids and scores: monospace

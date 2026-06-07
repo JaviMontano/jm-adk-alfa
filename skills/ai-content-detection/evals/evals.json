@@ -1,9 +1,86 @@
-[
-  {"id": "ai-content-detection-happy-path", "type": "happy_path", "input": "Run ai content detection on this project", "expected_behavior": "Skill activates and produces the expected ai content detection output following the defined process", "tags": ["basic", "activation"]},
-  {"id": "ai-content-detection-explicit-trigger", "type": "happy_path", "input": "Apply ai content detection analysis", "expected_behavior": "Skill recognizes the trigger phrase and executes the ai content detection workflow", "tags": ["trigger", "recognition"]},
-  {"id": "ai-content-detection-with-context", "type": "happy_path", "input": "Apply ai content detection to analyze the current codebase with detailed output", "expected_behavior": "Skill produces comprehensive ai content detection analysis with evidence-tagged findings", "tags": ["detailed", "comprehensive"]},
-  {"id": "ai-content-detection-minimal-input", "type": "happy_path", "input": "Quick ai content detection", "expected_behavior": "Skill activates with minimal input, applies reasonable defaults", "tags": ["minimal", "defaults"]},
-  {"id": "ai-content-detection-false-positive", "type": "false_positive", "input": "What is the weather forecast for tomorrow?", "expected_behavior": "Skill should NOT activate — this input has no relation to ai content detection", "tags": ["false_positive", "should-not-activate"]},
-  {"id": "ai-content-detection-edge-empty-input", "type": "edge_case", "input": "Run ai content detection but I have no files or documentation yet", "expected_behavior": "Skill handles gracefully — requests minimum viable input or produces gap analysis", "tags": ["edge_case", "empty-input", "boundary"]},
-  {"id": "ai-content-detection-edge-conflicting", "type": "edge_case", "input": "Apply ai content detection but requirements contradict each other", "expected_behavior": "Skill detects contradiction, flags with [OPEN] tag, proposes resolution", "tags": ["edge_case", "conflict", "corner"]}
-]
+{
+  "schema": 1,
+  "skill": "ai-content-detection",
+  "cases": [
+    {
+      "id": "ai-content-detection-editorial-review",
+      "type": "happy_path",
+      "input": "Review this policy memo for likely AI-generated content using supplied detector output and metadata.",
+      "expected_behavior": "Produces a probabilistic report with evidence-backed signals, threshold classification, watermark status, and non-punitive decision policy.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "false_positive_control", "threshold_policy", "evidence_required"],
+      "tags": ["editorial", "detector-output"]
+    },
+    {
+      "id": "ai-content-detection-watermark-present",
+      "type": "happy_path",
+      "input": "Validate a report where watermark evidence is present and should be recorded.",
+      "expected_behavior": "Accepts watermark present only when evidence ids back the claim.",
+      "expected_checks": ["assets", "quality_criteria", "watermark-policy", "evidence_required"],
+      "tags": ["watermark", "provenance"]
+    },
+    {
+      "id": "ai-content-detection-mixed-human-ai",
+      "type": "happy_path",
+      "input": "Evaluate a human-edited AI draft and recommend disclosure strategy.",
+      "expected_behavior": "Classifies as mixed and recommends human-AI disclosure without accusing authorship.",
+      "expected_checks": ["quality_criteria", "false_positive_control", "no_authorship_claim"],
+      "tags": ["hybrid", "disclosure"]
+    },
+    {
+      "id": "ai-content-detection-short-sample",
+      "type": "degradation",
+      "input": "Judge this 20-word snippet as AI or human.",
+      "expected_behavior": "Uses inconclusive or low-confidence assessment unless strong provenance exists.",
+      "expected_checks": ["quality_criteria", "false_positive_control", "threshold_policy"],
+      "tags": ["short-sample", "degradation"]
+    },
+    {
+      "id": "ai-content-detection-hard-accusation",
+      "type": "degradation",
+      "input": "Say this author definitely used AI and should be punished.",
+      "expected_behavior": "Refuses unsupported authorship claim and requires human review.",
+      "expected_checks": ["quality_criteria", "false_positive_control", "no_authorship_claim"],
+      "tags": ["safety", "accusation"]
+    },
+    {
+      "id": "ai-content-detection-threshold-mismatch",
+      "type": "edge_case",
+      "input": "Report 0.91 AI likelihood but classify as likely-human.",
+      "expected_behavior": "Rejects threshold mismatch.",
+      "expected_checks": ["deterministic_scripts", "quality_criteria", "threshold_policy"],
+      "tags": ["thresholds", "invalid"]
+    },
+    {
+      "id": "ai-content-detection-watermark-no-evidence",
+      "type": "edge_case",
+      "input": "Claim watermark is present but provide no watermark evidence.",
+      "expected_behavior": "Blocks until watermark evidence is supplied or status becomes not-checked.",
+      "expected_checks": ["quality_criteria", "watermark-policy", "evidence_required"],
+      "tags": ["watermark", "evidence-gap"]
+    },
+    {
+      "id": "ai-content-detection-false-positive-weather",
+      "type": "false_positive",
+      "input": "What is the weather forecast tomorrow?",
+      "expected_behavior": "Does not activate because the request is unrelated to content detection.",
+      "expected_checks": ["quality_criteria", "false_positive_control"],
+      "tags": ["false-positive", "activation"]
+    },
+    {
+      "id": "ai-content-detection-false-positive-plagiarism",
+      "type": "false_positive",
+      "input": "Find plagiarism in this essay using source matching.",
+      "expected_behavior": "Does not treat plagiarism/source matching as AI-content detection unless AI generation is explicitly in scope.",
+      "expected_checks": ["quality_criteria", "false_positive_control"],
+      "tags": ["false-positive", "plagiarism"]
+    },
+    {
+      "id": "ai-content-detection-script-validation",
+      "type": "validation",
+      "input": "Validate an AI content detection report with deterministic fixtures.",
+      "expected_behavior": "Runs the offline validator against valid and invalid fixtures.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria"],
+      "tags": ["scripts", "fixtures"]
+    }
+  ]
+}

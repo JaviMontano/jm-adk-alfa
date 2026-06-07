@@ -1,19 +1,7 @@
-# Example Output
-
-```json
 {
   "schema": "jm-labs.ai-content-detection.report.v1",
-  "content": {
-    "id": "memo-2026-04-claim-ops",
-    "type": "policy-memo",
-    "sample_size": 620,
-    "language": "en"
-  },
-  "scope": {
-    "purpose": "editorial review",
-    "allowed_use": "review-only",
-    "high_stakes": false
-  },
+  "content": {"id": "memo-2026-04-claim-ops", "type": "policy-memo", "sample_size": 620, "language": "en"},
+  "scope": {"purpose": "editorial review", "allowed_use": "review-only", "high_stakes": false},
   "evidence": [
     {"id": "E-001", "tag": "[EXPLICIT]", "source": "user supplied excerpt", "summary": "Memo excerpt was provided for review."},
     {"id": "E-002", "tag": "[EXPLICIT]", "source": "internal detector output", "summary": "Detector score reported as 0.82."}
@@ -27,29 +15,17 @@
     "classification": "mixed",
     "confidence": 0.72,
     "authorship_claim": "not-determined",
-    "rationale": "Signals lean AI-assisted but do not establish authorship or fully generated status.",
+    "rationale": "Signals lean AI-assisted but do not establish authorship.",
     "limitations": ["No watermark check was run", "Short excerpt limits stylometric reliability"]
   },
-  "watermark": {
-    "status": "not-checked",
-    "method": "",
-    "evidence_ids": [],
-    "notes": "No watermark tool output was supplied."
-  },
-  "human_ai_strategy": {
-    "recommended_label": "AI-assisted review recommended",
-    "review_steps": ["Ask author for disclosure context", "Review source citations", "Apply editorial style review"]
-  },
+  "watermark": {"status": "not-checked", "method": "", "evidence_ids": [], "notes": "No watermark tool output was supplied."},
+  "human_ai_strategy": {"recommended_label": "AI-assisted review recommended", "review_steps": ["Ask author for disclosure context", "Review source citations"]},
   "decision_policy": {
     "final_action": "human-review",
     "allowed_actions": ["request-disclosure", "editorial-review"],
     "disallowed_actions": ["accuse-author", "automatic-penalty"],
     "user_facing_language": "This content shows signals consistent with AI assistance; human review is recommended before any conclusion."
   },
-  "validation": {
-    "status": "warn",
-    "checks": ["assets", "deterministic_scripts", "quality_criteria", "false_positive_control", "threshold_policy", "evidence_required", "no_authorship_claim"]
-  },
+  "validation": {"status": "warn", "checks": ["assets", "deterministic_scripts", "quality_criteria", "false_positive_control", "threshold_policy", "evidence_required", "no_authorship_claim"]},
   "risks": ["Detector score alone is insufficient for enforcement."]
 }
-```

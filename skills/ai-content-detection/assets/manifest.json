@@ -1,0 +1,42 @@
+{
+  "schema": 1,
+  "skill": "ai-content-detection",
+  "assets": [
+    {
+      "path": "assets/detection-report-contract.json",
+      "type": "schema",
+      "purpose": "Defines the machine-readable AI content detection report packet.",
+      "used_by": ["SKILL.md", "scripts/validate_ai_content_detection_report.py", "templates/output.md", "evals/evals.json"]
+    },
+    {
+      "path": "assets/signal-taxonomy-policy.json",
+      "type": "policy",
+      "purpose": "Defines allowed signal types, directions, and required signal fields.",
+      "used_by": ["SKILL.md", "scripts/validate_ai_content_detection_report.py", "knowledge/body-of-knowledge.md"]
+    },
+    {
+      "path": "assets/threshold-policy.json",
+      "type": "policy",
+      "purpose": "Defines deterministic likelihood thresholds and classification labels.",
+      "used_by": ["SKILL.md", "scripts/validate_ai_content_detection_report.py", "agents/guardian.md"]
+    },
+    {
+      "path": "assets/evidence-policy.json",
+      "type": "policy",
+      "purpose": "Defines evidence tags, source requirements, and no-authorship-claim rules.",
+      "used_by": ["SKILL.md", "scripts/validate_ai_content_detection_report.py", "agents/lead.md"]
+    },
+    {
+      "path": "assets/watermark-policy.json",
+      "type": "policy",
+      "purpose": "Defines watermark/provenance status and evidence requirements.",
+      "used_by": ["SKILL.md", "scripts/validate_ai_content_detection_report.py", "agents/specialist.md"]
+    },
+    {
+      "path": "assets/decision-policy.json",
+      "type": "policy",
+      "purpose": "Defines safe final actions, high-stakes human review, and non-accusatory language.",
+      "used_by": ["SKILL.md", "scripts/validate_ai_content_detection_report.py", "agents/support.md"]
+    }
+  ]
+}

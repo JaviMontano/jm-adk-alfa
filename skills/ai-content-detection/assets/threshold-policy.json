@@ -1,0 +1,10 @@
+{
+  "schema": "jm-labs.asset.threshold-policy.v1",
+  "classes": {
+    "likely-ai": "ai_likelihood >= 0.80",
+    "mixed": "0.55 <= ai_likelihood < 0.80",
+    "likely-human": "ai_likelihood <= 0.25",
+    "inconclusive": "0.25 < ai_likelihood < 0.55 or insufficient evidence"
+  },
+  "rules": ["Classification must match ai_likelihood.", "Short or contradictory evidence should reduce confidence."]
+}
