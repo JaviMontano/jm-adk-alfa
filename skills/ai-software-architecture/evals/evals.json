@@ -1,9 +1,82 @@
-[
-  {"id": "ai-software-architecture-happy-path", "type": "happy_path", "input": "Run ai software architecture on this project", "expected_behavior": "Skill activates and produces the expected ai software architecture output following the defined process", "tags": ["basic", "activation"]},
-  {"id": "ai-software-architecture-explicit-trigger", "type": "happy_path", "input": "Apply ai software architecture analysis", "expected_behavior": "Skill recognizes the trigger phrase and executes the ai software architecture workflow", "tags": ["trigger", "recognition"]},
-  {"id": "ai-software-architecture-with-context", "type": "happy_path", "input": "Apply ai software architecture to analyze the current codebase with detailed output", "expected_behavior": "Skill produces comprehensive ai software architecture analysis with evidence-tagged findings", "tags": ["detailed", "comprehensive"]},
-  {"id": "ai-software-architecture-minimal-input", "type": "happy_path", "input": "Quick ai software architecture", "expected_behavior": "Skill activates with minimal input, applies reasonable defaults", "tags": ["minimal", "defaults"]},
-  {"id": "ai-software-architecture-false-positive", "type": "false_positive", "input": "What is the weather forecast for tomorrow?", "expected_behavior": "Skill should NOT activate — this input has no relation to ai software architecture", "tags": ["false_positive", "should-not-activate"]},
-  {"id": "ai-software-architecture-edge-empty-input", "type": "edge_case", "input": "Run ai software architecture but I have no files or documentation yet", "expected_behavior": "Skill handles gracefully — requests minimum viable input or produces gap analysis", "tags": ["edge_case", "empty-input", "boundary"]},
-  {"id": "ai-software-architecture-edge-conflicting", "type": "edge_case", "input": "Apply ai software architecture but requirements contradict each other", "expected_behavior": "Skill detects contradiction, flags with [OPEN] tag, proposes resolution", "tags": ["edge_case", "conflict", "corner"]}
-]
+{
+  "schema": 1,
+  "skill": "ai-software-architecture",
+  "determinism": {
+    "network": "forbidden",
+    "time": "fixed by caller when needed",
+    "randomness": "forbidden",
+    "oracle": "assets plus scripts/fixtures"
+  },
+  "cases": [
+    {
+      "id": "asa-healthcare-claims-architecture",
+      "type": "happy_path",
+      "input": "Design AI software architecture for healthcare claims triage with p95 below 250 ms, PHI audit constraints, weekly retraining, and drift monitoring.",
+      "expected_behavior": "Produces 6-layer architecture, component contracts, AI-specific quality attributes, ADRs, debt register, evolution plan, and validation checks tied to evidence.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "layer_coverage", "pattern_traceability", "adr_completeness"]
+    },
+    {
+      "id": "asa-retail-demand-forecasting",
+      "type": "happy_path",
+      "input": "Review architecture for retail demand forecasting with batch training, feature sharing across stores, shadow deployment for new models, and stockout KPI impact.",
+      "expected_behavior": "Selects feature store, shadow deployment, drift detection, and model registry patterns with measurable scenarios and trade-offs.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "pattern_traceability", "debt_evolution"]
+    },
+    {
+      "id": "asa-greenfield-minimal-input",
+      "type": "edge_case",
+      "input": "Design AI architecture for a greenfield lead scoring product; no repo exists yet, but the team knows it needs explainability and rollback.",
+      "expected_behavior": "Documents assumptions, avoids invented code evidence, proposes minimal monolithic pipeline plus ADRs and measurable quality targets.",
+      "expected_checks": ["assets", "quality_criteria", "adr_completeness", "assumption_tracking"]
+    },
+    {
+      "id": "asa-conflicting-latency-explainability",
+      "type": "conflict",
+      "input": "Architect real-time fraud scoring requiring p95 below 50 ms and full SHAP explanations synchronously for every request.",
+      "expected_behavior": "Flags conflict, proposes asynchronous explanation or tiered explainability, and records an ADR with alternatives and consequences.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "conflict_detection", "adr_completeness"]
+    },
+    {
+      "id": "asa-false-positive-weather",
+      "type": "false_positive",
+      "input": "What is the weather forecast for Bogota tomorrow?",
+      "expected_behavior": "Does not activate because no AI software architecture request or trigger exists.",
+      "expected_checks": ["quality_criteria", "activation_guard"]
+    },
+    {
+      "id": "asa-false-positive-generic-python",
+      "type": "false_positive",
+      "input": "Refactor this Python function to reduce cyclomatic complexity.",
+      "expected_behavior": "Does not activate unless AI architecture, model serving, feature store, drift, or AI quality attributes are present.",
+      "expected_checks": ["quality_criteria", "activation_guard"]
+    },
+    {
+      "id": "asa-negative-no-evidence",
+      "type": "false_negative_guard",
+      "input": "Create the architecture report but omit evidence and assumptions.",
+      "expected_behavior": "Blocks finalization because every architecture decision must cite evidence or an explicit assumption.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "evidence_required"]
+    },
+    {
+      "id": "asa-degradation-no-codebase",
+      "type": "degradation",
+      "input": "Evaluate AI architecture from a requirements memo only; codebase access is unavailable.",
+      "expected_behavior": "Produces requirements-based architecture with [OPEN] gaps instead of claiming code evidence.",
+      "expected_checks": ["assets", "quality_criteria", "assumption_tracking", "open_gap_tracking"]
+    },
+    {
+      "id": "asa-boundary-multi-model",
+      "type": "boundary",
+      "input": "Design architecture for a multi-model recommendation platform with shared embeddings, model-specific SLAs, and a shared GPU pool.",
+      "expected_behavior": "Uses bulkhead isolation, model registry, feature or embedding store boundaries, and quality scenarios per model family.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "layer_coverage", "pattern_traceability"]
+    },
+    {
+      "id": "asa-invalid-output-missing-adrs",
+      "type": "negative_output",
+      "input": "Return only a module diagram and pattern list for a regulated AI system.",
+      "expected_behavior": "Rejects incomplete output because ADRs, quality scenarios, compliance evidence, and debt evolution are mandatory.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "adr_completeness", "debt_evolution"]
+    }
+  ]
+}

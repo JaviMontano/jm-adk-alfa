@@ -1,0 +1,12 @@
+{
+  "schema": 1,
+  "required_layers": [
+    "hardware",
+    "data",
+    "model",
+    "inference",
+    "application",
+    "monitoring_control"
+  ],
+  "dependency_rule": "Upper layers may depend on lower layers through explicit contracts; monitoring_control observes all layers."
+}

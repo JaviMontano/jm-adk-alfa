@@ -1,0 +1,60 @@
+{
+  "system": {
+    "name": "Claims Assist",
+    "use_case": "Healthcare claims triage",
+    "risk_level": "high",
+    "architecture_scope": "logical AI software architecture"
+  },
+  "evidence": [
+    {"id": "E1", "tag": "[EXPLICIT]", "source": "example input", "summary": "Python workers, PostgreSQL, S3, FastAPI, and a batch-trained model are declared."},
+    {"id": "E2", "tag": "[EXPLICIT]", "source": "example input", "summary": "p95 inference target is below 250 ms with weekly retraining."},
+    {"id": "E3", "tag": "[EXPLICIT]", "source": "example input", "summary": "Audit trails and PHI-safe logging are required."},
+    {"id": "E4", "tag": "[EXPLICIT]", "source": "example input", "summary": "Known risks include training-serving skew, stale feature definitions, and missing drift alerts."},
+    {"id": "E5", "tag": "[INFERRED]", "source": "architecture analysis", "summary": "High-stakes healthcare triage requires explainability and deterministic fallback behavior."}
+  ],
+  "layer_view": [
+    {"layer": "hardware", "modules": ["cpu-inference-pool"], "responsibility": "Serve triage model within latency budget.", "dependencies": [], "owner": "platform", "evidence_ids": ["E2"]},
+    {"layer": "data", "modules": ["claims-ingestion", "feature-store"], "responsibility": "Validate claims schemas and serve reusable features.", "dependencies": ["postgresql", "s3"], "owner": "data-engineering", "evidence_ids": ["E1", "E4"]},
+    {"layer": "model", "modules": ["triage-model", "model-registry"], "responsibility": "Version model artifact and evaluation metadata.", "dependencies": ["feature-store"], "owner": "ml-engineering", "evidence_ids": ["E1", "E2"]},
+    {"layer": "inference", "modules": ["scoring-adapter", "rule-fallback"], "responsibility": "Return priority, confidence, and fallback results.", "dependencies": ["triage-model", "feature-store"], "owner": "application-engineering", "evidence_ids": ["E2", "E5"]},
+    {"layer": "application", "modules": ["case-api", "review-queue"], "responsibility": "Expose triage results to claims reviewers.", "dependencies": ["scoring-adapter"], "owner": "product-engineering", "evidence_ids": ["E1"]},
+    {"layer": "monitoring_control", "modules": ["drift-monitor", "audit-logger"], "responsibility": "Track drift, model version, PHI-safe audit events, and health.", "dependencies": ["data", "model", "inference", "application"], "owner": "platform-compliance", "evidence_ids": ["E3", "E4"]}
+  ],
+  "components": [
+    {"id": "C1", "layer": "data", "responsibility": "Create versioned claims features.", "interfaces": ["claims_batch_in", "features_out"], "dependencies": ["postgresql", "s3"], "owner": "data-engineering", "evidence_ids": ["E1", "E4"]},
+    {"id": "C2", "layer": "model", "responsibility": "Register approved triage model versions.", "interfaces": ["model_artifact_in", "model_version_out"], "dependencies": ["feature-store"], "owner": "ml-engineering", "evidence_ids": ["E2"]},
+    {"id": "C3", "layer": "inference", "responsibility": "Score claims and apply deterministic fallback.", "interfaces": ["claim_score_request", "triage_priority_response"], "dependencies": ["model-registry", "feature-store"], "owner": "application-engineering", "evidence_ids": ["E2", "E5"]}
+  ],
+  "patterns": [
+    {"id": "P1", "name": "Feature Store", "decision": "selected", "rationale": "Centralizes feature definitions to reduce training-serving skew.", "enabled_quality_attributes": ["modifiability", "drift_resilience"], "alternatives": ["inline feature computation"], "evidence_ids": ["E4"]},
+    {"id": "P2", "name": "Model Registry", "decision": "selected", "rationale": "Provides versioned model lineage for audit trails and rollback.", "enabled_quality_attributes": ["deployability", "compliance"], "alternatives": ["artifact folder convention"], "evidence_ids": ["E2", "E3"]},
+    {"id": "P3", "name": "Drift Detection", "decision": "selected", "rationale": "Detects stale feature distributions before weekly retraining.", "enabled_quality_attributes": ["drift_resilience", "accuracy"], "alternatives": ["manual weekly review"], "evidence_ids": ["E4"]},
+    {"id": "P4", "name": "Explainability Wrapper", "decision": "selected", "rationale": "Adds decision rationale required for reviewer trust and audit.", "enabled_quality_attributes": ["explainability", "compliance"], "alternatives": ["opaque score only"], "evidence_ids": ["E3", "E5"]},
+    {"id": "P5", "name": "Rule Fallback", "decision": "selected", "rationale": "Preserves service behavior if model serving fails.", "enabled_quality_attributes": ["availability"], "alternatives": ["hard outage"], "evidence_ids": ["E5"]}
+  ],
+  "quality_scenarios": [
+    {"id": "Q1", "attribute": "performance", "stimulus": "100 concurrent claims scoring requests arrive.", "response": "Scoring adapter returns priority.", "measure": "p95 < 250 ms.", "evidence_ids": ["E2"]},
+    {"id": "Q2", "attribute": "availability", "stimulus": "Model endpoint is unavailable.", "response": "Rule fallback serves deterministic priority.", "measure": "Failover < 30 s.", "evidence_ids": ["E5"]},
+    {"id": "Q3", "attribute": "drift_resilience", "stimulus": "Claim amount PSI exceeds threshold.", "response": "Drift alert opens retraining review.", "measure": "Detection < 1 h.", "evidence_ids": ["E4"]},
+    {"id": "Q4", "attribute": "deployability", "stimulus": "Approved model version is released.", "response": "Model registry promotes version with rollback pointer.", "measure": "Deployment < 15 min and rollback < 30 s.", "evidence_ids": ["E2"]},
+    {"id": "Q5", "attribute": "explainability", "stimulus": "Reviewer opens triage decision.", "response": "Top drivers and model version are displayed.", "measure": "Audit trail completeness = 100%.", "evidence_ids": ["E3", "E5"]}
+  ],
+  "adrs": [
+    {"id": "ADR-001", "title": "Adopt feature store for claims features", "status": "proposed", "context": "Stale feature definitions and training-serving skew are known risks.", "decision": "Version shared feature definitions in a feature store.", "consequences": "Reduces skew and adds platform ownership work.", "alternatives": ["inline features in training and serving"], "evidence_ids": ["E4"]},
+    {"id": "ADR-002", "title": "Use deterministic rule fallback", "status": "accepted", "context": "Healthcare triage must degrade safely when model serving fails.", "decision": "Route to deterministic rules during model outage.", "consequences": "Preserves availability and may reduce accuracy during outage.", "alternatives": ["return 503", "use stale predictions"], "evidence_ids": ["E5"]}
+  ],
+  "debt": [
+    {"id": "D1", "type": "training-serving skew", "severity": "high", "owner": "data-engineering", "mitigation": "Move feature definitions into versioned feature store.", "sequence": 1, "evidence_ids": ["E4"]},
+    {"id": "D2", "type": "missing drift monitor", "severity": "high", "owner": "platform-compliance", "mitigation": "Add PSI and model performance drift alerts.", "sequence": 2, "evidence_ids": ["E4"]},
+    {"id": "D3", "type": "opaque high-stakes decision", "severity": "medium", "owner": "ml-engineering", "mitigation": "Expose top drivers and model version in reviewer workflow.", "sequence": 3, "evidence_ids": ["E3", "E5"]}
+  ],
+  "evolution_plan": [
+    {"step": 1, "objective": "Stabilize shared feature contracts.", "debt_ids": ["D1"], "validation": "Training and serving use the same feature version."},
+    {"step": 2, "objective": "Instrument drift and model health.", "debt_ids": ["D2"], "validation": "Drift alert fires on synthetic PSI breach."},
+    {"step": 3, "objective": "Add explainability to reviewer workflow.", "debt_ids": ["D3"], "validation": "Every triage response includes top drivers and model version."}
+  ],
+  "validation": {
+    "status": "pass",
+    "checks": ["assets", "deterministic_scripts", "quality_criteria", "layer_coverage", "pattern_traceability", "adr_completeness", "debt_evolution"]
+  }
+}

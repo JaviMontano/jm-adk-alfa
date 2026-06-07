@@ -1,0 +1,12 @@
+{
+  "system": {"name": "Missing ADR", "use_case": "AI scoring", "risk_level": "medium", "architecture_scope": "logical"},
+  "evidence": [{"id": "E1", "tag": "[EXPLICIT]", "source": "fixture", "summary": "Fixture evidence."}],
+  "layer_view": [],
+  "components": [],
+  "patterns": [],
+  "quality_scenarios": [],
+  "adrs": [],
+  "debt": [],
+  "evolution_plan": [],
+  "validation": {"status": "pass", "checks": ["assets", "deterministic_scripts", "quality_criteria"]}
+}

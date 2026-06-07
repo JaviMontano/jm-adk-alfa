@@ -1,0 +1,42 @@
+{
+  "skill": "ai-software-architecture",
+  "version": "1.0.1",
+  "assets": [
+    {
+      "path": "assets/architecture-report-contract.json",
+      "type": "schema_contract",
+      "purpose": "Defines required AI architecture report sections and validation checks.",
+      "used_by": ["SKILL.md", "README.md", "templates/output.md", "scripts/validate_ai_architecture_report.py"]
+    },
+    {
+      "path": "assets/layer-model.json",
+      "type": "domain_contract",
+      "purpose": "Defines the canonical 6-layer AI software architecture stack.",
+      "used_by": ["SKILL.md", "knowledge/body-of-knowledge.md", "scripts/validate_ai_architecture_report.py"]
+    },
+    {
+      "path": "assets/quality-attribute-policy.json",
+      "type": "quality_contract",
+      "purpose": "Defines allowed and required AI quality attributes for measurable scenarios.",
+      "used_by": ["SKILL.md", "prompts/primary.md", "scripts/validate_ai_architecture_report.py"]
+    },
+    {
+      "path": "assets/pattern-policy.json",
+      "type": "decision_contract",
+      "purpose": "Defines approved AI architecture patterns and anti-patterns for traceable decisions.",
+      "used_by": ["SKILL.md", "references/ai-patterns-catalog.md", "scripts/validate_ai_architecture_report.py"]
+    },
+    {
+      "path": "assets/adr-policy.json",
+      "type": "decision_record_contract",
+      "purpose": "Defines required ADR fields and allowed statuses.",
+      "used_by": ["SKILL.md", "templates/output.md", "scripts/validate_ai_architecture_report.py"]
+    },
+    {
+      "path": "assets/evidence-policy.json",
+      "type": "evidence_contract",
+      "purpose": "Defines evidence tags and provenance rules for architecture claims.",
+      "used_by": ["SKILL.md", "agents/guardian.md", "scripts/validate_ai_architecture_report.py"]
+    }
+  ]
+}

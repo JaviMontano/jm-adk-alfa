@@ -3,7 +3,14 @@ name: ai-software-architecture-quick
 type: variation
 variant: quick
 ---
-# Ai Software Architecture — Quick Mode
+# AI Software Architecture - Quick Mode
 
-Streamlined execution. Focus on TL;DR and primary output only.
-Apply Validation Gate but skip extended evidence tagging.
+Produce a compact architecture report with:
+- 6-layer module view.
+- Top 3 component contracts.
+- Top 3 patterns or anti-patterns.
+- 5 measurable quality scenarios.
+- 2 ADRs.
+- Top 5 debts and next actions.
+
+Do not skip evidence tags or validation checks.

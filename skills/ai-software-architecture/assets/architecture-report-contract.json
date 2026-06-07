@@ -1,0 +1,25 @@
+{
+  "schema": 1,
+  "required_sections": [
+    "system",
+    "evidence",
+    "layer_view",
+    "components",
+    "patterns",
+    "quality_scenarios",
+    "adrs",
+    "debt",
+    "evolution_plan",
+    "validation"
+  ],
+  "required_validation_checks": [
+    "assets",
+    "deterministic_scripts",
+    "quality_criteria",
+    "layer_coverage",
+    "pattern_traceability",
+    "adr_completeness",
+    "debt_evolution"
+  ],
+  "allowed_validation_statuses": ["pass", "warn", "block"]
+}

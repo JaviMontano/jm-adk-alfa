@@ -1,0 +1,6 @@
+{
+  "schema": 1,
+  "allowed_tags": ["[EXPLICIT]", "[INFERRED]", "[OPEN]"],
+  "required_fields": ["id", "tag", "source", "summary"],
+  "rule": "Every pattern, quality scenario, ADR, and debt item must reference evidence or an explicit assumption."
+}

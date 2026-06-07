@@ -1,0 +1,12 @@
+{
+  "system": {"name": "Missing Layer", "use_case": "AI scoring", "risk_level": "medium", "architecture_scope": "logical"},
+  "evidence": [{"id": "E1", "tag": "[EXPLICIT]", "source": "fixture", "summary": "Fixture evidence."}],
+  "layer_view": [{"layer": "data", "modules": ["features"], "responsibility": "features", "dependencies": [], "owner": "data", "evidence_ids": ["E1"]}],
+  "components": [{"id": "C1", "layer": "data", "responsibility": "features", "interfaces": ["in", "out"], "dependencies": [], "owner": "data", "evidence_ids": ["E1"]}],
+  "patterns": [{"id": "P1", "name": "Feature Store", "decision": "selected", "rationale": "reuse", "enabled_quality_attributes": ["modifiability"], "alternatives": ["inline"], "evidence_ids": ["E1"]}],
+  "quality_scenarios": [{"id": "Q1", "attribute": "performance", "stimulus": "request", "response": "reply", "measure": "p95 < 1s", "evidence_ids": ["E1"]}],
+  "adrs": [{"id": "ADR-001", "title": "Choose feature store", "status": "accepted", "context": "shared features", "decision": "feature store", "consequences": "reuse", "alternatives": ["inline"], "evidence_ids": ["E1"]}],
+  "debt": [{"id": "D1", "type": "missing monitor", "severity": "medium", "owner": "platform", "mitigation": "add monitor", "sequence": 1, "evidence_ids": ["E1"]}],
+  "evolution_plan": [{"step": 1, "objective": "add monitor", "debt_ids": ["D1"], "validation": "alert test"}],
+  "validation": {"status": "pass", "checks": ["assets", "deterministic_scripts", "quality_criteria", "layer_coverage", "pattern_traceability", "adr_completeness", "debt_evolution"]}
+}

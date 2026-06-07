@@ -1,10 +1,20 @@
-# Ai Software Architecture — DOCX Template
+# AI Software Architecture - DOCX Template
 
 ## Document Structure
-- Title: Ai Software Architecture — [Client/Project Name]
-- Author: JM Labs
-- Date: {{DATE}}
 
-## Sections (mirror SKILL.md structure)
-See canonical SKILL.md for section blueprints.
-Use brand-config.json tokens: Navy #122562 · Gold #FFD700 · Blue #137DC5
+- Title: AI Software Architecture - [System Name]
+- Author: JM Labs
+- Version: [Version]
+- Evidence basis: [Inputs, repository paths, assumptions]
+
+## Required Sections
+
+1. System context and architecture scope.
+2. Evidence table.
+3. 6-layer AI stack module view.
+4. Component contracts and dependency boundaries.
+5. Pattern decisions and anti-patterns.
+6. Quality attribute scenarios.
+7. Architecture Decision Records.
+8. Debt inventory and evolution plan.
+9. Validation checks and residual risks.

@@ -1,28 +1,41 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: ai-software-architecture
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
+# AI Software Architecture Report
 
-# Ai Software Architecture Output
+## System Context
 
-## Summary
-
-{summary}
+{system_context}
 
 ## Evidence
 
-{evidence}
+{evidence_table}
 
-## Result
+## 6-Layer Module View
 
-{result}
+{layer_view}
+
+## Component Contracts
+
+{component_contracts}
+
+## Pattern Decisions
+
+{pattern_decisions}
+
+## Quality Attribute Scenarios
+
+{quality_attribute_scenarios}
+
+## ADRs
+
+{architecture_decision_records}
+
+## Debt And Evolution Plan
+
+{debt_evolution}
 
 ## Validation
 
-{validation}
+{validation_checks}
 
-## Risks and Limits
+## Risks And Open Items
 
-{risks}
+{risks_open_items}

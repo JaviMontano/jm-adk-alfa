@@ -1,6 +1,6 @@
 ---
 name: ai-software-architecture
-version: 1.0.0
+version: 1.0.1
 description: >
   AI software architecture design — modules, layers, boundaries, design patterns, ADRs, quality attributes, and technical debt strategy
   for AI-enabled systems. This skill should be used when the user asks to "design AI system structure", "define AI module boundaries",
@@ -20,6 +20,19 @@ allowed-tools:
 # AI Software Architecture: Internal Structure & Design Decisions for AI-Enabled Systems
 
 AI software architecture defines how code is organized internally in systems that combine traditional software components with AI/ML capabilities — module boundaries spanning data pipelines, model serving, and feature stores; layer separation across the 6-layer AI stack; design patterns bridging traditional and AI-specific concerns; and the reasoning behind technical decisions. This skill produces comprehensive architecture documentation that enables teams to understand, maintain, and evolve AI-enabled systems. [EXPLICIT]
+
+## Deterministic Hardening Contract
+
+This skill must produce an architecture report that can be checked offline without network, wall-clock, or random dependencies. Use the assets in `assets/` as the contract source before writing the final report:
+
+- `assets/architecture-report-contract.json`: required top-level sections and validation checks.
+- `assets/layer-model.json`: canonical 6-layer AI architecture stack.
+- `assets/quality-attribute-policy.json`: required quality attributes and measurable scenario fields.
+- `assets/pattern-policy.json`: approved AI architecture patterns and anti-patterns.
+- `assets/adr-policy.json`: ADR statuses and required ADR fields.
+- `assets/evidence-policy.json`: allowed evidence tags and provenance rules.
+
+If a JSON report is requested or used as an intermediate handoff, validate it with `scripts/validate_ai_architecture_report.py`. The fixture smoke test is `bash skills/ai-software-architecture/scripts/check.sh`. [EXPLICIT]
 
 ## Principio Rector
 
