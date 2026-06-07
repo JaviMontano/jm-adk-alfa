@@ -9,7 +9,7 @@ description: "Analytics Events in quick mode."
 
 ## When to Use
 
-Use quick mode when you need adjusted depth for the Analytics Events workflow.
+Use quick mode for a compact but complete event taxonomy or tracking plan.
 
 ## Dynamic Parameters
 
@@ -21,14 +21,13 @@ Use quick mode when you need adjusted depth for the Analytics Events workflow.
 
 ## Execution
 
-1. Load skill: `skills/analytics-events/knowledge/body-of-knowledge.md`
-2. Check guardrails: `references/guardrails/*.json`
-3. Execute at quick depth with evidence tags
-4. Lead → Support → Guardian validation
-5. Confidence >= 0.95
+1. Load `knowledge/body-of-knowledge.md` and `assets/analytics-events-contract.json`.
+2. Produce only the essential taxonomy, events, properties, identity policy, tracking plan, and validation notes.
+3. Keep assumptions explicit and do not skip evidence.
+4. Guardian validates naming, properties, identity, tracking plan, privacy, and evidence checks.
 
 ## Output
 
-- Deliverable calibrated to quick depth
-- Evidence-tagged, Constitution-compliant
-- Recommendations beyond the ask
+- Compact tracking plan
+- Evidence references and open gaps
+- Validation checklist

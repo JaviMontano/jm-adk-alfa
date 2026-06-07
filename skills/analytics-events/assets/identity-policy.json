@@ -1,0 +1,6 @@
+{
+  "schema": 1,
+  "required_fields": ["anonymous_id_policy", "user_id_policy", "merge_policy", "deduplication_key", "evidence_ids"],
+  "required_identity_properties": ["anonymous_id", "event_id"],
+  "authenticated_identity_property": "user_id"
+}

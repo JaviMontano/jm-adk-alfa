@@ -1,0 +1,6 @@
+{
+  "schema": 1,
+  "required_fields": ["event_name", "destination", "implementation_owner", "qa_method", "rollout_phase", "evidence_ids"],
+  "allowed_rollout_phases": ["draft", "instrument", "qa", "released", "deprecated"],
+  "required_governance_fields": ["naming_convention", "versioning_policy", "deprecation_policy", "privacy_review", "evidence_ids"]
+}

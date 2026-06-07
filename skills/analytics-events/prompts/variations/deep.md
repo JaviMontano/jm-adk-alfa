@@ -9,7 +9,7 @@ description: "Analytics Events — deep analysis mode. Exhaustive coverage."
 
 ## When to Use
 
-Use deep mode when thoroughness matters more than speed: architecture decisions, security audits, compliance reviews, critical deliverables.
+Use deep mode when instrumentation quality, privacy, migration, or multi-platform consistency matters more than speed.
 
 ## Dynamic Parameters
 
@@ -21,19 +21,11 @@ Use deep mode when thoroughness matters more than speed: architecture decisions,
 
 ## Execution (Deep)
 
-1. Load ALL knowledge: `knowledge/body-of-knowledge.md` + cross-referenced skills
-2. Check guardrails: `references/guardrails/*.json`
-3. Lead executes with exhaustive analysis:
-   - Cover ALL edge cases, not just common path
-   - Research: check standards, best practices, recent changes
-   - Document every assumption with `[ASSUMPTION]` tag
-4. Support reviews with expanded scope:
-   - Security, accessibility, performance, business viability
-   - Adversarial scenarios: what could go wrong?
-5. Guardian validates with strict criteria:
-   - Evidence tags 100% coverage (no untagged claims)
-   - Quality gate fully met
-   - Confidence >= 0.95 with evidence support
+1. Load `knowledge/body-of-knowledge.md` and all `assets/` policy files.
+2. Inventory existing events, destinations, platforms, identities, duplicates, PII risks, and QA evidence.
+3. Design taxonomy, canonical event names, legacy aliases, property schema, identity merge policy, tracking plan, governance, rollout, and validation.
+4. Test the plan against false positives, blocked PII, duplicate event names, unknown properties, and missing owners.
+5. Guardian blocks if any event lacks trigger, owner, properties, evidence, or QA method.
 
 ## Output
 

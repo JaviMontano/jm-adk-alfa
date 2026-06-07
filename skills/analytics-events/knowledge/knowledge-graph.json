@@ -1,75 +1,23 @@
 {
   "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-28",
   "skill": "analytics-events",
   "nodes": [
-    {
-      "id": "analytics-events",
-      "type": "skill",
-      "label": "analytics-events"
-    },
-    {
-      "id": "analytics-events:inputs",
-      "type": "contract",
-      "label": "Expected inputs"
-    },
-    {
-      "id": "analytics-events:outputs",
-      "type": "contract",
-      "label": "Expected outputs"
-    },
-    {
-      "id": "analytics-events:quality",
-      "type": "gate",
-      "label": "Quality criteria"
-    },
-    {
-      "id": "analytics-events:ontology",
-      "type": "ontology",
-      "label": "Domain: general"
-    },
-    {
-      "id": "analytics-events:evidence",
-      "type": "gate",
-      "label": "Evidence / provenance requirements"
-    },
-    {
-      "id": "analytics-events:antipattern",
-      "type": "risk",
-      "label": "Canonical anti-pattern to avoid"
-    }
+    {"id": "analytics-events", "type": "skill", "label": "Analytics events"},
+    {"id": "taxonomy", "type": "ontology", "label": "Event taxonomy"},
+    {"id": "event", "type": "contract", "label": "Tracked event"},
+    {"id": "property", "type": "contract", "label": "Event property"},
+    {"id": "identity-policy", "type": "policy", "label": "Identity policy"},
+    {"id": "tracking-plan", "type": "handoff", "label": "Tracking plan"},
+    {"id": "privacy-policy", "type": "gate", "label": "Privacy review"},
+    {"id": "deterministic-oracle", "type": "script", "label": "Offline tracking plan validator"}
   ],
   "edges": [
-    {
-      "from": "analytics-events",
-      "to": "analytics-events:inputs",
-      "type": "requires"
-    },
-    {
-      "from": "analytics-events",
-      "to": "analytics-events:outputs",
-      "type": "produces"
-    },
-    {
-      "from": "analytics-events",
-      "to": "analytics-events:quality",
-      "type": "validated_by"
-    },
-    {
-      "from": "analytics-events",
-      "to": "analytics-events:ontology",
-      "type": "classified_as"
-    },
-    {
-      "from": "analytics-events",
-      "to": "analytics-events:evidence",
-      "type": "validated_by"
-    },
-    {
-      "from": "analytics-events",
-      "to": "analytics-events:antipattern",
-      "type": "guards_against"
-    }
+    {"from": "analytics-events", "to": "taxonomy", "type": "produces"},
+    {"from": "taxonomy", "to": "event", "type": "groups"},
+    {"from": "event", "to": "property", "type": "requires"},
+    {"from": "event", "to": "identity-policy", "type": "governed_by"},
+    {"from": "tracking-plan", "to": "event", "type": "implements"},
+    {"from": "privacy-policy", "to": "property", "type": "validates"},
+    {"from": "deterministic-oracle", "to": "tracking-plan", "type": "verifies"}
   ]
 }

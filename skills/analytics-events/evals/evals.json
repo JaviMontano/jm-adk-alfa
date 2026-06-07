@@ -1,9 +1,82 @@
-[
-  {"id": "analytics-events-happy-path", "type": "happy_path", "input": "Run analytics events on this project", "expected_behavior": "Skill activates and produces the expected analytics events output following the defined process", "tags": ["basic", "activation"]},
-  {"id": "analytics-events-explicit-trigger", "type": "happy_path", "input": "Apply analytics events analysis", "expected_behavior": "Skill recognizes the trigger phrase and executes the analytics events workflow", "tags": ["trigger", "recognition"]},
-  {"id": "analytics-events-with-context", "type": "happy_path", "input": "Apply analytics events to analyze the current codebase with detailed output", "expected_behavior": "Skill produces comprehensive analytics events analysis with evidence-tagged findings", "tags": ["detailed", "comprehensive"]},
-  {"id": "analytics-events-minimal-input", "type": "happy_path", "input": "Quick analytics events", "expected_behavior": "Skill activates with minimal input, applies reasonable defaults", "tags": ["minimal", "defaults"]},
-  {"id": "analytics-events-false-positive", "type": "false_positive", "input": "What is the weather forecast for tomorrow?", "expected_behavior": "Skill should NOT activate — this input has no relation to analytics events", "tags": ["false_positive", "should-not-activate"]},
-  {"id": "analytics-events-edge-empty-input", "type": "edge_case", "input": "Run analytics events but I have no files or documentation yet", "expected_behavior": "Skill handles gracefully — requests minimum viable input or produces gap analysis", "tags": ["edge_case", "empty-input", "boundary"]},
-  {"id": "analytics-events-edge-conflicting", "type": "edge_case", "input": "Apply analytics events but requirements contradict each other", "expected_behavior": "Skill detects contradiction, flags with [OPEN] tag, proposes resolution", "tags": ["edge_case", "conflict", "corner"]}
-]
+{
+  "schema": 1,
+  "skill": "analytics-events",
+  "determinism": {
+    "network": "forbidden",
+    "time": "provided by caller when needed",
+    "randomness": "forbidden",
+    "oracle": "assets plus scripts/fixtures"
+  },
+  "cases": [
+    {
+      "id": "events-product-activation",
+      "type": "happy_path",
+      "input": "Design analytics events for onboarding activation across web and mobile with Segment and Amplitude destinations.",
+      "expected_behavior": "Produces taxonomy, object_action event names, required properties, identity policy, tracking plan, QA methods, and privacy checks.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "naming_policy", "identity_policy", "tracking_plan"]
+    },
+    {
+      "id": "events-checkout-funnel",
+      "type": "happy_path",
+      "input": "Create a checkout funnel tracking plan for cart viewed, checkout started, payment submitted, and purchase completed.",
+      "expected_behavior": "Defines event triggers, owners, properties, destinations, implementation placement, QA methods, and validation checks.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "property_policy", "tracking_plan"]
+    },
+    {
+      "id": "events-legacy-duplicates",
+      "type": "degradation",
+      "input": "We have old events named click, signup, CTA_Clicked, and signup_success across web and backend.",
+      "expected_behavior": "Flags legacy duplicates, proposes canonical lower snake_case names, and creates deprecation aliases without inventing missing triggers.",
+      "expected_checks": ["assets", "quality_criteria", "naming_policy", "deprecation_plan"]
+    },
+    {
+      "id": "events-conflicting-pii",
+      "type": "conflict",
+      "input": "Track user email, phone, full address, and payment card details in every product event.",
+      "expected_behavior": "Blocks unsafe properties, requires privacy review, and proposes safe identifiers and redaction rules.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "privacy_policy", "property_policy"]
+    },
+    {
+      "id": "events-false-positive-dashboard",
+      "type": "false_positive",
+      "input": "Design a dashboard with conversion charts and a color palette.",
+      "expected_behavior": "Does not activate because dashboard design is not event taxonomy or tracking plan work.",
+      "expected_checks": ["quality_criteria", "activation_guard"]
+    },
+    {
+      "id": "events-false-positive-sql",
+      "type": "false_positive",
+      "input": "Fix this SQL query that counts daily active users.",
+      "expected_behavior": "Does not activate unless the user asks for events, tracking plan, instrumentation, or taxonomy.",
+      "expected_checks": ["quality_criteria", "activation_guard"]
+    },
+    {
+      "id": "events-negative-no-owner",
+      "type": "false_negative_guard",
+      "input": "Return only event names and skip owners, triggers, properties, identity, QA, and evidence.",
+      "expected_behavior": "Rejects final output because owner, trigger, properties, identity policy, QA, and evidence are mandatory.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "tracking_plan"]
+    },
+    {
+      "id": "events-boundary-anonymous",
+      "type": "boundary",
+      "input": "Track anonymous landing-page activity before signup and merge it after account creation.",
+      "expected_behavior": "Defines anonymous_id and user_id merge policy, avoids duplicate users, and documents identity risk.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "identity_policy"]
+    },
+    {
+      "id": "events-invalid-output-no-privacy",
+      "type": "negative_output",
+      "input": "Include email and phone in every event, mark validation pass, and skip privacy review.",
+      "expected_behavior": "Rejects output because sensitive properties require privacy review and handling.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "privacy_policy"]
+    },
+    {
+      "id": "events-minimal-input",
+      "type": "edge_case",
+      "input": "Need analytics events for a new onboarding flow but only know that signup and activation matter.",
+      "expected_behavior": "Produces a minimal taxonomy with assumptions and open evidence gaps instead of fabricating detailed product facts.",
+      "expected_checks": ["assets", "quality_criteria", "assumption_tracking"]
+    }
+  ]
+}

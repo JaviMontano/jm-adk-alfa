@@ -1,0 +1,8 @@
+{
+  "schema": 1,
+  "allowed_types": ["string", "number", "integer", "boolean", "timestamp", "enum", "object"],
+  "allowed_pii": ["none", "low", "sensitive"],
+  "required_property_fields": ["name", "type", "required", "description", "pii"],
+  "sensitive_requires": ["privacy_review", "handling"],
+  "blocked_property_names": ["email", "phone", "address", "card_number", "ssn"]
+}

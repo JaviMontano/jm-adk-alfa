@@ -1,0 +1,7 @@
+{
+  "schema": 1,
+  "event_name_pattern": "^[a-z][a-z0-9]*(_[a-z0-9]+)+$",
+  "allowed_actions": ["viewed", "clicked", "started", "submitted", "completed", "created", "updated", "deleted", "invited", "joined", "purchased", "failed", "signed_up", "logged_in"],
+  "blocked_names": ["click", "submit", "success", "error", "page", "event"],
+  "required_event_fields": ["name", "domain", "action", "trigger", "owner", "platforms", "properties", "evidence_ids"]
+}
