@@ -1,13 +1,17 @@
-# Ai Pipeline Architecture — Knowledge Graph
+# AI Pipeline Architecture Knowledge Graph
 
 ## Core Concepts
-- ai-pipeline-architecture: primary capability
-- validation-gate: quality control checkpoint
-- evidence-tagging: [EXPLICIT]/[INFERRED]/[OPEN] claims
 
-## Dependencies
-- Upstream: input-analysis, context-optimization
-- Downstream: output-engineering, rendering-engine
+- [[development-pipeline]] - experimentation, training, tuning, verification
+- [[production-pipeline]] - data cleansing, transformation, execution, results, operations
+- [[data-store-selection]] - relational, object, key-value, graph, vector
+- [[model-registry]] - versioning, lineage, stage management, rollback
+- [[blue-gold-cicd]] - staged validation and rollback
+- [[requirements-map]] - AP/NF/SEC/CP mapped to components
 
-## Skill Relationships
-Part of the JM Labs canonical skill registry.
+## Cross-References
+
+- `references/pipeline-patterns.md`
+- `references/data-stores.md`
+- `references/requirements-tables.md`
+- `scripts/validate_ai_pipeline_architecture_report.py`

@@ -1,0 +1,6 @@
+{
+  "schema": "jm-labs.asset.stage-policy.v1",
+  "allowed_pipelines": ["development", "production"],
+  "development_stages": ["Data Quality Checks", "Data Transforms", "Data Summary", "Model Building", "Model Tuning", "Model Verification", "Code Commit", "CI/CD Dev Ops"],
+  "production_stages": ["Data Cleansing", "Data Transformation", "Model Execution", "Results Store", "Pipeline Operations", "Dev Ops / CD CI"]
+}

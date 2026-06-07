@@ -1,0 +1,20 @@
+{
+  "schema": "jm-labs.ai-pipeline-architecture.report.v1",
+  "system": {"name": "Missing Checks", "domain": "ml", "mode": "audit", "risk_level": "low", "regulated": false},
+  "evidence": [{"id": "E-001", "tag": "[EXPLICIT]", "source": "fixture", "summary": "Valid structure with missing checks."}],
+  "pipeline_stages": [
+    {"pipeline": "development", "stage": "Model Verification", "purpose": "Verify model.", "inputs": ["model"], "outputs": ["report"], "gates": ["holdout"], "evidence_ids": ["E-001"]},
+    {"pipeline": "production", "stage": "Model Execution", "purpose": "Serve model.", "inputs": ["features"], "outputs": ["prediction"], "gates": ["latency"], "evidence_ids": ["E-001"]}
+  ],
+  "data_stores": [{"store_type": "object", "purpose": "Artifacts.", "consistency_model": "eventual", "latency_class": "batch", "evidence_ids": ["E-001"]}],
+  "model_registry": {"tool_decision": "registry", "versioning_strategy": "semantic", "capabilities": ["artifact_versioning", "lineage", "stage_management", "rollback"], "promotion_stages": ["Staging", "Canary", "Production", "Archived"], "evidence_ids": ["E-001"]},
+  "cicd": {"strategy": "Blue-Gold", "gates": ["model_validation", "feature_validation", "data_quality", "performance", "security", "regression"], "rollback_strategy": "rollback", "evidence_ids": ["E-001"]},
+  "requirements": [
+    {"id": "AP-3", "category": "AP", "description": "latency", "threshold": "10 secs", "objective": "5 secs", "mapped_component": "Model Execution", "evidence_ids": ["E-001"]},
+    {"id": "NF-2", "category": "NF", "description": "restore", "threshold": "< 1 min", "objective": "< 30 secs", "mapped_component": "CI/CD", "evidence_ids": ["E-001"]},
+    {"id": "SEC-5", "category": "SEC", "description": "access", "threshold": "required", "objective": "least privilege", "mapped_component": "Data Stores", "evidence_ids": ["E-001"]},
+    {"id": "CP-6", "category": "CP", "description": "lineage", "threshold": "required", "objective": "automated", "mapped_component": "Registry", "evidence_ids": ["E-001"]}
+  ],
+  "validation": {"status": "pass", "checks": ["assets", "quality_criteria"]},
+  "risks": []
+}

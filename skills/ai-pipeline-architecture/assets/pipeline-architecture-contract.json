@@ -1,0 +1,6 @@
+{
+  "schema": "jm-labs.asset.pipeline-architecture-contract.v1",
+  "report_schema": "jm-labs.ai-pipeline-architecture.report.v1",
+  "required_top_level_fields": ["schema", "system", "evidence", "pipeline_stages", "data_stores", "model_registry", "cicd", "requirements", "validation", "risks"],
+  "required_validation_checks": ["assets", "deterministic_scripts", "quality_criteria", "stage_coverage", "store_selection", "registry_capabilities", "cicd_gates", "requirements_mapping"]
+}

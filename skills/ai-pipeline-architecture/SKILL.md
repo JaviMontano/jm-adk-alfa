@@ -1,6 +1,6 @@
 ---
 name: ai-pipeline-architecture
-version: 1.0.0
+version: 1.0.1
 description: >
   AI pipeline architecture design — development pipelines, production pipelines, data stores, model registry, CI/CD for AI,
   and non-functional requirements. This skill should be used when the user asks to "design AI pipelines", "architect ML pipelines",
@@ -55,6 +55,23 @@ Load references:
 Read ${CLAUDE_SKILL_DIR}/references/pipeline-patterns.md
 Read ${CLAUDE_SKILL_DIR}/references/data-stores.md
 Read ${CLAUDE_SKILL_DIR}/references/requirements-tables.md
+```
+
+Load deterministic DoD assets:
+
+```
+Read ${CLAUDE_SKILL_DIR}/assets/pipeline-architecture-contract.json
+Read ${CLAUDE_SKILL_DIR}/assets/stage-policy.json
+Read ${CLAUDE_SKILL_DIR}/assets/data-store-policy.json
+Read ${CLAUDE_SKILL_DIR}/assets/registry-policy.json
+Read ${CLAUDE_SKILL_DIR}/assets/cicd-policy.json
+Read ${CLAUDE_SKILL_DIR}/assets/requirements-policy.json
+```
+
+When scripts are present, validate the final packet with:
+
+```
+bash skills/ai-pipeline-architecture/scripts/check.sh
 ```
 
 ---
@@ -258,6 +275,9 @@ Before finalizing delivery, verify:
 - [ ] Model registry design includes versioning, lineage, staging, and rollback
 - [ ] CI/CD strategy uses Blue & Gold (or equivalent staged deployment)
 - [ ] Validation gates cover model quality, data quality, performance, security, and regression
+- [ ] Report packet conforms to `assets/pipeline-architecture-contract.json`
+- [ ] Every pipeline stage, data store, registry decision, CI/CD gate, and requirement maps to evidence ids
+- [ ] Offline validator passes before delivery
 - [ ] Requirements framework includes all four categories (AP, NF, SEC, CP) with thresholds
 - [ ] Training-serving skew risk explicitly addressed in pipeline design
 - [ ] Monitoring strategy covers all pipeline stages (not just model serving)

@@ -3,7 +3,15 @@ name: ai-pipeline-architecture-deep
 type: variation
 variant: deep
 ---
-# Ai Pipeline Architecture — Deep Analysis
+# AI Pipeline Architecture - Deep Mode
 
-Full depth execution. Load all `references/` files from canonical. Run L3 progressive loading.
-Apply all Validation Gate criteria strictly.
+Use for regulated, high-risk, multi-store, or multi-team systems.
+
+Load all references and expand:
+
+- full development pipeline
+- full production pipeline
+- store synchronization risks
+- registry promotion workflow
+- Blue-Gold rollout and rollback
+- AP/NF/SEC/CP requirements with measurable thresholds

@@ -1,0 +1,6 @@
+{
+  "schema": "jm-labs.asset.registry-policy.v1",
+  "required_capabilities": ["artifact_versioning", "lineage", "stage_management", "rollback"],
+  "allowed_versioning_strategies": ["semantic", "timestamp", "hash"],
+  "required_promotion_stages": ["Staging", "Canary", "Production", "Archived"]
+}

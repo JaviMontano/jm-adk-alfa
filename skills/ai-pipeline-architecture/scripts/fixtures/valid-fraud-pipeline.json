@@ -1,15 +1,6 @@
-# Example Output
-
-```json
 {
   "schema": "jm-labs.ai-pipeline-architecture.report.v1",
-  "system": {
-    "name": "Fraud Scoring Pipeline",
-    "domain": "payments risk",
-    "mode": "greenfield",
-    "risk_level": "high",
-    "regulated": true
-  },
+  "system": {"name": "Fraud Scoring Pipeline", "domain": "payments risk", "mode": "greenfield", "risk_level": "high", "regulated": true},
   "evidence": [
     {"id": "E-001", "tag": "[EXPLICIT]", "source": "user input", "summary": "Batch training and online inference are both required."},
     {"id": "E-002", "tag": "[EXPLICIT]", "source": "user input", "summary": "Features are reused by three models and registry is missing."}
@@ -23,29 +14,14 @@
     {"store_type": "key_value", "purpose": "Low-latency online feature cache.", "consistency_model": "configurable", "latency_class": "realtime", "evidence_ids": ["E-001", "E-002"]},
     {"store_type": "relational", "purpose": "Registry metadata and audit trails.", "consistency_model": "strong", "latency_class": "interactive", "evidence_ids": ["E-002"]}
   ],
-  "model_registry": {
-    "tool_decision": "MLflow-compatible registry",
-    "versioning_strategy": "semantic",
-    "capabilities": ["artifact_versioning", "lineage", "stage_management", "rollback"],
-    "promotion_stages": ["Staging", "Canary", "Production", "Archived"],
-    "evidence_ids": ["E-002"]
-  },
-  "cicd": {
-    "strategy": "Blue-Gold",
-    "gates": ["model_validation", "feature_validation", "data_quality", "performance", "security", "regression"],
-    "rollback_strategy": "Archive previous Blue as rollback target.",
-    "evidence_ids": ["E-001", "E-002"]
-  },
+  "model_registry": {"tool_decision": "MLflow-compatible registry", "versioning_strategy": "semantic", "capabilities": ["artifact_versioning", "lineage", "stage_management", "rollback"], "promotion_stages": ["Staging", "Canary", "Production", "Archived"], "evidence_ids": ["E-002"]},
+  "cicd": {"strategy": "Blue-Gold", "gates": ["model_validation", "feature_validation", "data_quality", "performance", "security", "regression"], "rollback_strategy": "Archive previous Blue as rollback target.", "evidence_ids": ["E-001", "E-002"]},
   "requirements": [
     {"id": "AP-3", "category": "AP", "description": "Time to execute the model.", "threshold": "10 secs", "objective": "5 secs", "mapped_component": "Model Execution", "evidence_ids": ["E-001"]},
     {"id": "NF-8", "category": "NF", "description": "Model drift detection delay.", "threshold": "< 1 hour", "objective": "< 10 mins", "mapped_component": "Pipeline Operations", "evidence_ids": ["E-001"]},
     {"id": "SEC-5", "category": "SEC", "description": "Implement data access controls.", "threshold": "required", "objective": "least privilege", "mapped_component": "Data Stores", "evidence_ids": ["E-002"]},
     {"id": "CP-6", "category": "CP", "description": "Model versions logged with lineage.", "threshold": "required", "objective": "automated lineage", "mapped_component": "Model Registry", "evidence_ids": ["E-002"]}
   ],
-  "validation": {
-    "status": "pass",
-    "checks": ["assets", "deterministic_scripts", "quality_criteria", "stage_coverage", "store_selection", "registry_capabilities", "cicd_gates", "requirements_mapping"]
-  },
+  "validation": {"status": "pass", "checks": ["assets", "deterministic_scripts", "quality_criteria", "stage_coverage", "store_selection", "registry_capabilities", "cicd_gates", "requirements_mapping"]},
   "risks": ["Feature serving cache consistency needs explicit invalidation policy before production."]
 }
-```

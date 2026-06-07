@@ -1,0 +1,12 @@
+{
+  "schema": 1,
+  "skill": "ai-pipeline-architecture",
+  "assets": [
+    {"path": "assets/pipeline-architecture-contract.json", "type": "schema", "purpose": "Defines the AI pipeline architecture report schema and required validation checks.", "used_by": ["SKILL.md", "scripts/validate_ai_pipeline_architecture_report.py", "templates/output.md", "evals/evals.json"]},
+    {"path": "assets/stage-policy.json", "type": "policy", "purpose": "Defines allowed development and production pipeline stages.", "used_by": ["SKILL.md", "scripts/validate_ai_pipeline_architecture_report.py", "references/pipeline-patterns.md"]},
+    {"path": "assets/data-store-policy.json", "type": "policy", "purpose": "Defines allowed data store types, consistency models, and latency classes.", "used_by": ["SKILL.md", "scripts/validate_ai_pipeline_architecture_report.py", "references/data-stores.md"]},
+    {"path": "assets/registry-policy.json", "type": "policy", "purpose": "Defines required model registry capabilities and promotion stages.", "used_by": ["SKILL.md", "scripts/validate_ai_pipeline_architecture_report.py", "agents/guardian.md"]},
+    {"path": "assets/cicd-policy.json", "type": "policy", "purpose": "Defines allowed CI/CD strategies and required gates.", "used_by": ["SKILL.md", "scripts/validate_ai_pipeline_architecture_report.py", "references/pipeline-patterns.md"]},
+    {"path": "assets/requirements-policy.json", "type": "policy", "purpose": "Defines AP/NF/SEC/CP requirement category mapping.", "used_by": ["SKILL.md", "scripts/validate_ai_pipeline_architecture_report.py", "references/requirements-tables.md"]}
+  ]
+}

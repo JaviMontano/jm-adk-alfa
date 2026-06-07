@@ -1,0 +1,5 @@
+{
+  "schema": "jm-labs.asset.cicd-policy.v1",
+  "allowed_strategies": ["Blue-Gold", "Canary", "Shadow", "Manual-Gated", "Hybrid"],
+  "required_gates": ["model_validation", "feature_validation", "data_quality", "performance", "security", "regression"]
+}

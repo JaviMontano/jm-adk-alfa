@@ -1,31 +1,36 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: ai-pipeline-architecture
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
+# AI Pipeline Architecture
 
-# Ai Pipeline Architecture
-
->
+Designs source-backed AI pipeline architecture packets covering development
+pipeline stages, production pipeline stages, data stores, model registry, CI/CD
+strategy, and AP/NF/SEC/CP requirements.
 
 ## Triggers
 
-- ai-pipeline-architecture
+- "design AI pipelines"
+- "architect ML pipelines"
+- "select data stores for AI"
+- "design model registry"
+- "implement CI/CD for ML"
+- "define AI pipeline requirements"
 
-## Allowed Tools
+## Deterministic Output
 
-- Read
-- Write
-- Edit
-- Glob
-- Grep
-- Bash
+The hardened output is a JSON-compatible architecture packet with:
 
-## Quick Use
+- system context and evidence ids
+- development and production pipeline stages
+- data store selection with workload rationale
+- model registry versioning, lineage, stage management, and rollback
+- Blue-Gold or equivalent CI/CD strategy and validation gates
+- AP/NF/SEC/CP requirement mapping
+- validation checks and risks
 
-Use this skill when the request clearly matches the triggers and requires the `ai-pipeline-architecture` capability.
+## Offline Validation
 
-## Output Format
+Run:
 
-Markdown with summary, evidence, result, validation, and risks.
+```bash
+bash skills/ai-pipeline-architecture/scripts/check.sh
+```
+
+The validator uses only local assets and fixtures.

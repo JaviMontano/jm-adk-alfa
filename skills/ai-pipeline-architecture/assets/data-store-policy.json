@@ -1,0 +1,6 @@
+{
+  "schema": "jm-labs.asset.data-store-policy.v1",
+  "allowed_store_types": ["relational", "object", "key_value", "graph", "vector"],
+  "allowed_consistency_models": ["strong", "eventual", "configurable", "n/a"],
+  "allowed_latency_classes": ["batch", "interactive", "realtime"]
+}
