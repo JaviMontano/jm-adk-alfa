@@ -1,0 +1,11 @@
+{
+  "schema": "jm-labs.ai-code-review.report.v1",
+  "target": "src/auth/session.py",
+  "scope": {"includes": ["src/auth/session.py"], "excludes": [], "basis": "Fixture"},
+  "review_mode": "standard",
+  "evidence": [{"id": "E-001", "tag": "[CÓDIGO]", "kind": "source", "source": "src/auth/session.py:42", "summary": "Source evidence."}],
+  "findings": [],
+  "summary": {"finding_count": 0, "highest_priority": "none", "overall_risk": "none", "clean_review_rationale": "No confirmed findings."},
+  "validation": {"status": "pass", "checks": ["assets", "deterministic_scripts", "quality_criteria", "file_line_evidence", "false_positive_filter", "no_fake_test_results"], "commands_run": [], "claimed_test_status": "pass"},
+  "risks": []
+}

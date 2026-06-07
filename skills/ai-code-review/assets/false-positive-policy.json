@@ -1,0 +1,11 @@
+{
+  "schema": "jm-labs.asset.false-positive-policy.v1",
+  "rules": [
+    "Do not report style preference as a defect.",
+    "Do not mark P0 or P1 unless status is confirmed and confidence meets the severity threshold.",
+    "Use needs-verification for plausible issues that require runtime or domain evidence.",
+    "Group duplicate symptoms under one root-cause finding.",
+    "Record suppression rationale in false_positive_notes when relevant."
+  ],
+  "degradation_status": "needs-verification"
+}

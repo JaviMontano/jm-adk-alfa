@@ -1,0 +1,24 @@
+{
+  "schema": "jm-labs.ai-code-review.report.v1",
+  "target": "src/auth/session.py",
+  "scope": {"includes": ["src/auth/session.py"], "excludes": [], "basis": "Fixture"},
+  "review_mode": "standard",
+  "evidence": [{"id": "E-001", "tag": "[INFERENCIA]", "kind": "source", "source": "src/auth/session.py:42", "summary": "Weak source interpretation."}],
+  "findings": [{
+    "id": "F-001",
+    "priority": "P1",
+    "category": "correctness",
+    "status": "confirmed",
+    "file": "src/auth/session.py",
+    "line_start": 42,
+    "evidence_id": "E-001",
+    "observation": "Low-confidence P1 should fail.",
+    "impact": "Speculative findings can block merge incorrectly.",
+    "recommendation": "Downgrade to needs-verification or gather stronger evidence.",
+    "confidence": 0.42,
+    "false_positive_notes": ""
+  }],
+  "summary": {"finding_count": 1, "highest_priority": "P1", "overall_risk": "high", "clean_review_rationale": ""},
+  "validation": {"status": "block", "checks": ["assets", "deterministic_scripts", "quality_criteria", "file_line_evidence", "false_positive_filter", "no_fake_test_results"], "commands_run": [], "claimed_test_status": "not-run"},
+  "risks": ["Weak evidence is intentionally invalid for P1."]
+}

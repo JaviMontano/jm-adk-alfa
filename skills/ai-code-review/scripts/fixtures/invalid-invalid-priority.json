@@ -1,0 +1,24 @@
+{
+  "schema": "jm-labs.ai-code-review.report.v1",
+  "target": "src/auth/session.py",
+  "scope": {"includes": ["src/auth/session.py"], "excludes": [], "basis": "Fixture"},
+  "review_mode": "standard",
+  "evidence": [{"id": "E-001", "tag": "[CÓDIGO]", "kind": "source", "source": "src/auth/session.py:42", "summary": "Source evidence."}],
+  "findings": [{
+    "id": "F-001",
+    "priority": "P9",
+    "category": "correctness",
+    "status": "confirmed",
+    "file": "src/auth/session.py",
+    "line_start": 42,
+    "evidence_id": "E-001",
+    "observation": "Invalid priority should fail.",
+    "impact": "Priority cannot be interpreted.",
+    "recommendation": "Use P0-P3.",
+    "confidence": 0.7,
+    "false_positive_notes": ""
+  }],
+  "summary": {"finding_count": 1, "highest_priority": "none", "overall_risk": "medium", "clean_review_rationale": ""},
+  "validation": {"status": "warn", "checks": ["assets", "deterministic_scripts", "quality_criteria", "file_line_evidence", "false_positive_filter", "no_fake_test_results"], "commands_run": [], "claimed_test_status": "not-run"},
+  "risks": []
+}

@@ -1,0 +1,11 @@
+{
+  "schema": "jm-labs.asset.evidence-policy.v1",
+  "allowed_tags": ["[CÓDIGO]", "[CONFIG]", "[DOC]", "[MÉTRICA]", "[ENTREVISTA]", "[INFERENCIA]"],
+  "allowed_kinds": ["source", "diff", "test", "command_output", "doc", "config"],
+  "required_fields": ["id", "tag", "kind", "source", "summary"],
+  "rules": [
+    "Every confirmed finding must reference one known evidence id.",
+    "Source evidence must include a file path and line marker.",
+    "Command output is required before claiming tests passed or failed."
+  ]
+}

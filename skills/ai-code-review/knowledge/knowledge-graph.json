@@ -1,75 +1,23 @@
 {
   "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-28",
   "skill": "ai-code-review",
   "nodes": [
-    {
-      "id": "ai-code-review",
-      "type": "skill",
-      "label": "ai-code-review"
-    },
-    {
-      "id": "ai-code-review:inputs",
-      "type": "contract",
-      "label": "Expected inputs"
-    },
-    {
-      "id": "ai-code-review:outputs",
-      "type": "contract",
-      "label": "Expected outputs"
-    },
-    {
-      "id": "ai-code-review:quality",
-      "type": "gate",
-      "label": "Quality criteria"
-    },
-    {
-      "id": "ai-code-review:ontology",
-      "type": "ontology",
-      "label": "Domain: prompt-structured-output"
-    },
-    {
-      "id": "ai-code-review:evidence",
-      "type": "gate",
-      "label": "Evidence / provenance requirements"
-    },
-    {
-      "id": "ai-code-review:antipattern",
-      "type": "risk",
-      "label": "Canonical anti-pattern to avoid"
-    }
+    {"id": "ai-code-review", "type": "skill", "label": "AI Code Review"},
+    {"id": "review-scope", "type": "contract", "label": "Review scope and exclusions"},
+    {"id": "file-line-evidence", "type": "gate", "label": "File-line evidence"},
+    {"id": "severity-policy", "type": "policy", "label": "Priority and merge impact"},
+    {"id": "false-positive-filter", "type": "gate", "label": "False-positive filtering"},
+    {"id": "no-fake-test-results", "type": "gate", "label": "No fake test results"},
+    {"id": "review-report-contract", "type": "schema", "label": "Review report contract"},
+    {"id": "offline-validator", "type": "script", "label": "Offline report validator"}
   ],
   "edges": [
-    {
-      "from": "ai-code-review",
-      "to": "ai-code-review:inputs",
-      "type": "requires"
-    },
-    {
-      "from": "ai-code-review",
-      "to": "ai-code-review:outputs",
-      "type": "produces"
-    },
-    {
-      "from": "ai-code-review",
-      "to": "ai-code-review:quality",
-      "type": "validated_by"
-    },
-    {
-      "from": "ai-code-review",
-      "to": "ai-code-review:ontology",
-      "type": "classified_as"
-    },
-    {
-      "from": "ai-code-review",
-      "to": "ai-code-review:evidence",
-      "type": "validated_by"
-    },
-    {
-      "from": "ai-code-review",
-      "to": "ai-code-review:antipattern",
-      "type": "guards_against"
-    }
+    {"from": "ai-code-review", "to": "review-scope", "type": "requires"},
+    {"from": "ai-code-review", "to": "file-line-evidence", "type": "requires"},
+    {"from": "ai-code-review", "to": "severity-policy", "type": "uses"},
+    {"from": "ai-code-review", "to": "false-positive-filter", "type": "guards_against"},
+    {"from": "ai-code-review", "to": "no-fake-test-results", "type": "guards_against"},
+    {"from": "review-report-contract", "to": "offline-validator", "type": "validated_by"},
+    {"from": "file-line-evidence", "to": "review-report-contract", "type": "encoded_in"}
   ]
 }

@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "skill": "ai-code-review",
+  "assets": [
+    {
+      "path": "assets/review-report-contract.json",
+      "type": "schema",
+      "purpose": "Defines the machine-readable AI code review report packet.",
+      "used_by": ["SKILL.md", "scripts/validate_ai_code_review_report.py", "templates/output.md", "evals/evals.json"]
+    },
+    {
+      "path": "assets/severity-policy.json",
+      "type": "policy",
+      "purpose": "Defines P0-P3 priority semantics, merge impact, and confidence thresholds.",
+      "used_by": ["SKILL.md", "scripts/validate_ai_code_review_report.py", "agents/guardian.md", "knowledge/body-of-knowledge.md"]
+    },
+    {
+      "path": "assets/evidence-policy.json",
+      "type": "policy",
+      "purpose": "Defines allowed evidence tags, evidence kinds, and source requirements.",
+      "used_by": ["SKILL.md", "scripts/validate_ai_code_review_report.py", "agents/lead.md"]
+    },
+    {
+      "path": "assets/scope-policy.json",
+      "type": "policy",
+      "purpose": "Defines include/exclude matching and default generated-file handling.",
+      "used_by": ["SKILL.md", "scripts/validate_ai_code_review_report.py", "agents/support.md"]
+    },
+    {
+      "path": "assets/false-positive-policy.json",
+      "type": "policy",
+      "purpose": "Defines confidence, suppression, and degradation rules for uncertain findings.",
+      "used_by": ["SKILL.md", "scripts/validate_ai_code_review_report.py", "agents/support.md", "evals/evals.json"]
+    }
+  ]
+}

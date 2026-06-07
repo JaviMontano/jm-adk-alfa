@@ -1,34 +1,25 @@
 ---
 name: ai-code-review-meta
 type: self-improvement
-version: 2.0.0
-description: "Evaluate and improve the Ai Code Review skill."
+version: 2.1.0
+description: "Evaluate and improve the deterministic AI Code Review skill."
 ---
 
-# Ai Code Review — Self-Improvement
+# AI Code Review - Self-Improvement
 
 ## Evaluate
-
-1. Is `knowledge/body-of-knowledge.md` current? New standards, deprecated practices?
-2. Are the 4 sub-agents (lead, support, guardian, specialist) covering all perspectives?
-3. Are templates producing useful deliverables? Test with a real scenario.
-4. What edge cases have been encountered that aren't documented?
-5. Are there new insights from `insights/` that apply to this skill?
-6. Has the related skill landscape changed? New cross-references needed?
+1. Do evals still include false positives, fake test claims, clean reviews, and low-confidence degradation?
+2. Do assets still match the validator contract?
+3. Do examples include exact file-line evidence and scope exclusions?
+4. Do prompts prevent speculative P0/P1 findings?
+5. Are new review categories needed for recurring repository patterns?
 
 ## Improve
-
-1. Update body of knowledge with new findings (tag with `[DOC]`)
-2. Add prompt variations for newly discovered use cases
-3. Refine quality criteria based on real-world feedback
-4. Update knowledge graph: new concepts, new `[[wikilinks]]`
-5. Test templates with edge-case inputs to verify robustness
-6. Propose Constitution amendment if recurring ambiguity found (XVII)
+1. Add new fixtures for any false positive that escaped the policy.
+2. Update `assets/severity-policy.json` only when priority semantics change.
+3. Keep `scripts/check.sh` offline and deterministic.
+4. Update review doc and ledger only after validation evidence exists.
 
 ## Trigger
-
-Run this meta-prompt when:
-- Skill hasn't been reviewed in 30+ days
-- User reports unexpected output quality
-- New related skills added to the kit
-- Insights file updated with relevant patterns
+Run this meta-prompt after failed review validation, user-reported false positives,
+or new recurring review categories.
