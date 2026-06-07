@@ -1,0 +1,6 @@
+{
+  "schema": "jm-labs.asset.safety-report-contract.v1",
+  "report_schema": "jm-labs.ai-safety.report.v1",
+  "required_top_level_fields": ["schema", "system", "evidence", "risk_assessment", "controls", "jailbreak_tests", "evaluation", "escalation", "validation", "risks"],
+  "required_validation_checks": ["assets", "deterministic_scripts", "quality_criteria", "risk_taxonomy", "control_coverage", "jailbreak_coverage", "evaluation_metrics", "escalation_policy"]
+}

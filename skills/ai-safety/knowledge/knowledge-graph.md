@@ -1,13 +1,8 @@
-# Ai Safety — Knowledge Graph
-<!-- Zettelkasten-ready: use [[wikilinks]] for Obsidian -->
+# AI Safety Knowledge Graph
 
-## Core Concepts
-- [[ai-safety]] — Primary concept
-- [[ai-safety-patterns]] — Common patterns and approaches
-- [[ai-safety-anti-patterns]] — What to avoid
-
-## Tags
-#ai-safety #jm-adk #zettelkasten
-
-## Cross-References
-- Related skills in this domain
+- [[risk-assessment]] - harm domains, severity, scenario, evidence
+- [[controls]] - filters, guardrails, defenses, human review
+- [[jailbreak-tests]] - prompt injection and policy override oracles
+- [[evaluation-metrics]] - unsafe recall, over-refusal, block rate
+- [[escalation]] - owner, channels, criteria
+- [[offline-validator]] - deterministic report contract

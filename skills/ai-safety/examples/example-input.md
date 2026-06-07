@@ -1,10 +1,11 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: ai-safety
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
-
 # Example Input
 
-Use `ai-safety` to produce a concise deliverable for a realistic project request.
+Design safety controls for a customer-support AI assistant.
+
+Context:
+
+- The assistant drafts refund and account-help responses.
+- Users may submit private account data.
+- Prompt injection attempts have appeared in tickets.
+- The assistant must not provide legal, medical, or financial advice.
+- Human review is available through the support escalation queue.

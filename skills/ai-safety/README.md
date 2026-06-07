@@ -1,30 +1,25 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: ai-safety
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
+# AI Safety
 
-# Ai Safety
-
->
+Designs deterministic AI safety reports for content filters, output guardrails,
+jailbreak prevention, safety evaluation, escalation, and residual risk tracking.
 
 ## Triggers
 
-- ai-safety
+- "AI safety"
+- "output guardrails"
+- "content filters"
+- "jailbreak prevention"
+- "safety evaluation"
+- "unsafe output mitigation"
 
-## Allowed Tools
+## Offline Validation
 
-- Read
-- Write
-- Glob
-- Grep
-- Bash
+Run:
 
-## Quick Use
+```bash
+bash skills/ai-safety/scripts/check.sh
+```
 
-Use this skill when the request clearly matches the triggers and requires the `ai-safety` capability.
-
-## Output Format
-
-Markdown with summary, evidence, result, validation, and risks.
+The validator rejects reports with unknown harm domains, uncovered risks,
+critical risks set to allow, missing jailbreak tests, missing metrics, missing
+evidence, or incomplete validation checks.

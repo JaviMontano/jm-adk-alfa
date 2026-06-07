@@ -1,8 +1,4 @@
-# DOCX Template — Ai Safety
-## Structure
-- Title: "Ai Safety Report"
-- Section 1: Executive Summary
-- Section 2: Findings / Deliverables
-- Section 3: Recommendations
-- Footer: "MetodologIA — {{date}}"
-## Formatting: Poppins headings, Montserrat body, JetBrains Mono code
+# DOCX Template - AI Safety
+
+Sections: System, Evidence, Risk Assessment, Controls, Jailbreak Tests,
+Evaluation Metrics, Escalation, Validation, Residual Risks.

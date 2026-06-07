@@ -1,0 +1,11 @@
+{
+  "schema": 1,
+  "skill": "ai-safety",
+  "assets": [
+    {"path": "assets/safety-report-contract.json", "type": "schema", "purpose": "Defines the AI safety report schema and required validation checks.", "used_by": ["SKILL.md", "scripts/validate_ai_safety_report.py", "templates/output.md", "evals/evals.json"]},
+    {"path": "assets/risk-taxonomy.json", "type": "policy", "purpose": "Defines allowed harm domains and severity values.", "used_by": ["SKILL.md", "scripts/validate_ai_safety_report.py", "knowledge/body-of-knowledge.md"]},
+    {"path": "assets/control-policy.json", "type": "policy", "purpose": "Defines allowed control types and actions.", "used_by": ["SKILL.md", "scripts/validate_ai_safety_report.py", "agents/guardian.md"]},
+    {"path": "assets/jailbreak-policy.json", "type": "policy", "purpose": "Defines jailbreak attack types and expected actions.", "used_by": ["SKILL.md", "scripts/validate_ai_safety_report.py", "agents/specialist.md"]},
+    {"path": "assets/evaluation-policy.json", "type": "policy", "purpose": "Defines required safety evaluation metrics.", "used_by": ["SKILL.md", "scripts/validate_ai_safety_report.py", "prompts/primary.md"]}
+  ]
+}
