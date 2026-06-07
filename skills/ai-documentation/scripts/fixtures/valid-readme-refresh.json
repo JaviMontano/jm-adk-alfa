@@ -1,13 +1,6 @@
-# Example Output
-
-```json
 {
   "schema": "jm-labs.ai-documentation.packet.v1",
-  "project": {
-    "name": "Ticket API",
-    "documentation_mode": "update",
-    "primary_audience": "developer"
-  },
+  "project": {"name": "Ticket API", "documentation_mode": "update", "primary_audience": "developer"},
   "evidence": [
     {"id": "E-001", "tag": "[EXPLICIT]", "source_type": "code", "path": "src/api.py", "summary": "Defines GET /health and POST /tickets."},
     {"id": "E-002", "tag": "[EXPLICIT]", "source_type": "api_spec", "path": "openapi.json", "summary": "Defines ticket request and response schemas."},
@@ -30,10 +23,6 @@
   "gap_analysis": [
     {"id": "G-001", "severity": "medium", "target_doc_type": "README", "description": "Authentication behavior is not confirmed by supplied sources.", "blocking": false, "evidence_ids": ["E-004"]}
   ],
-  "validation": {
-    "status": "warn",
-    "checks": ["assets", "deterministic_scripts", "source_inventory", "evidence_traceability", "section_coverage", "no_unverified_claims", "gap_policy", "output_paths"]
-  },
+  "validation": {"status": "warn", "checks": ["assets", "deterministic_scripts", "source_inventory", "evidence_traceability", "section_coverage", "no_unverified_claims", "gap_policy", "output_paths"]},
   "risks": ["Authentication documentation remains incomplete until the source behavior is confirmed."]
 }
-```

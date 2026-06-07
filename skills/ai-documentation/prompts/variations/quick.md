@@ -1,34 +1,17 @@
 ---
 name: ai-documentation-quick
 type: variation
-version: 2.0.0
-description: "Ai Documentation in quick mode."
+version: 2.1.0
+description: "Quick source-backed documentation packet."
 ---
 
-# Ai Documentation — quick Mode
+# AI Documentation - Quick Mode
 
-## When to Use
+Use when the user needs a small README, quickstart, or gap scan.
 
-Use quick mode when you need adjusted depth for the Ai Documentation workflow.
+Steps:
 
-## Dynamic Parameters
-
-| Parameter | Required | Filled By |
-|-----------|----------|-----------|
-| `{{task}}` | Yes | User input |
-| `{{context}}` | No | Auto-detected |
-| `{{depth}}` | No | Set to "quick" |
-
-## Execution
-
-1. Load skill: `skills/ai-documentation/knowledge/body-of-knowledge.md`
-2. Check guardrails: `references/guardrails/*.json`
-3. Execute at quick depth with evidence tags
-4. Lead → Support → Guardian validation
-5. Confidence >= 0.95
-
-## Output
-
-- Deliverable calibrated to quick depth
-- Evidence-tagged, Constitution-compliant
-- Recommendations beyond the ask
+1. Inventory only directly supplied sources.
+2. Generate the requested target sections.
+3. Mark unknown behavior as `[OPEN]`.
+4. Return a compact packet with validation checks.

@@ -1,30 +1,35 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: ai-documentation
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
+# AI Documentation
 
-# Ai Documentation
-
->
+Generates and audits source-backed project documentation packets for README,
+API reference, runbooks, architecture notes, changelog drafts, and quickstarts.
 
 ## Triggers
 
-- ai-documentation
+- "generate docs from code"
+- "write a README from this repo"
+- "create API docs"
+- "audit documentation drift"
+- "produce source-backed project documentation"
 
-## Allowed Tools
+## Contract
 
-- Read
-- Write
-- Glob
-- Grep
-- Bash
+The skill produces a JSON-compatible documentation packet with:
 
-## Quick Use
+- project metadata and target audience
+- evidence inventory tied to code, docs, configs, tests, API specs, or user input
+- requested documentation targets and output paths
+- generated section summaries with source evidence ids
+- gap analysis for missing, stale, or conflicting sources
+- deterministic validation checks and residual risks
 
-Use this skill when the request clearly matches the triggers and requires the `ai-documentation` capability.
+## Offline Validation
 
-## Output Format
+Run:
 
-Markdown with summary, evidence, result, validation, and risks.
+```bash
+bash skills/ai-documentation/scripts/check.sh
+```
+
+The validator uses only files inside this skill and rejects packets with unknown
+doc types, missing evidence, unsafe paths, incomplete validation checks, or
+blocking gaps reported as pass.

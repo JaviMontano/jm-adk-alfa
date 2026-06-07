@@ -1,9 +1,86 @@
-[
-  {"id": "ai-documentation-happy-path", "type": "happy_path", "input": "Run ai documentation on this project", "expected_behavior": "Skill activates and produces the expected ai documentation output following the defined process", "tags": ["basic", "activation"]},
-  {"id": "ai-documentation-explicit-trigger", "type": "happy_path", "input": "Apply ai documentation analysis", "expected_behavior": "Skill recognizes the trigger phrase and executes the ai documentation workflow", "tags": ["trigger", "recognition"]},
-  {"id": "ai-documentation-with-context", "type": "happy_path", "input": "Apply ai documentation to analyze the current codebase with detailed output", "expected_behavior": "Skill produces comprehensive ai documentation analysis with evidence-tagged findings", "tags": ["detailed", "comprehensive"]},
-  {"id": "ai-documentation-minimal-input", "type": "happy_path", "input": "Quick ai documentation", "expected_behavior": "Skill activates with minimal input, applies reasonable defaults", "tags": ["minimal", "defaults"]},
-  {"id": "ai-documentation-false-positive", "type": "false_positive", "input": "What is the weather forecast for tomorrow?", "expected_behavior": "Skill should NOT activate — this input has no relation to ai documentation", "tags": ["false_positive", "should-not-activate"]},
-  {"id": "ai-documentation-edge-empty-input", "type": "edge_case", "input": "Run ai documentation but I have no files or documentation yet", "expected_behavior": "Skill handles gracefully — requests minimum viable input or produces gap analysis", "tags": ["edge_case", "empty-input", "boundary"]},
-  {"id": "ai-documentation-edge-conflicting", "type": "edge_case", "input": "Apply ai documentation but requirements contradict each other", "expected_behavior": "Skill detects contradiction, flags with [OPEN] tag, proposes resolution", "tags": ["edge_case", "conflict", "corner"]}
-]
+{
+  "schema": 1,
+  "skill": "ai-documentation",
+  "cases": [
+    {
+      "id": "ai-documentation-readme-refresh",
+      "type": "happy_path",
+      "input": "Generate a README from code, tests, and existing docs.",
+      "expected_behavior": "Produces README target sections tied to source evidence ids.",
+      "expected_checks": ["assets", "quality_criteria", "source_inventory", "evidence_traceability", "section_coverage"],
+      "tags": ["readme", "source-backed"]
+    },
+    {
+      "id": "ai-documentation-api-reference",
+      "type": "happy_path",
+      "input": "Create API docs from an OpenAPI file and route handlers.",
+      "expected_behavior": "Uses API_REFERENCE doc type and cites API spec plus code evidence.",
+      "expected_checks": ["quality_criteria", "source_inventory", "output_paths", "no_unverified_claims"],
+      "tags": ["api", "openapi"]
+    },
+    {
+      "id": "ai-documentation-runbook",
+      "type": "happy_path",
+      "input": "Create an operations runbook from deployment config and alert tests.",
+      "expected_behavior": "Uses RUNBOOK doc type and includes validation/risk sections.",
+      "expected_checks": ["quality_criteria", "section_coverage", "gap_policy"],
+      "tags": ["runbook", "operations"]
+    },
+    {
+      "id": "ai-documentation-drift-audit",
+      "type": "edge_case",
+      "input": "Audit documentation drift where README conflicts with code.",
+      "expected_behavior": "Flags stale/conflicting source inventory and does not silently overwrite facts.",
+      "expected_checks": ["quality_criteria", "source_inventory", "evidence_traceability", "gap_policy"],
+      "tags": ["drift", "conflict"]
+    },
+    {
+      "id": "ai-documentation-missing-api-spec",
+      "type": "degradation",
+      "input": "Write API docs but no route file or API spec is available.",
+      "expected_behavior": "Creates a gap analysis packet instead of inventing endpoints.",
+      "expected_checks": ["quality_criteria", "no_unverified_claims", "gap_policy"],
+      "tags": ["missing-source"]
+    },
+    {
+      "id": "ai-documentation-unsafe-path",
+      "type": "degradation",
+      "input": "Write docs to ../../outside.md.",
+      "expected_behavior": "Blocks unsafe output path.",
+      "expected_checks": ["quality_criteria", "output_paths"],
+      "tags": ["path-safety"]
+    },
+    {
+      "id": "ai-documentation-missing-evidence",
+      "type": "degradation",
+      "input": "Generate claims without source evidence ids.",
+      "expected_behavior": "Rejects or marks the packet block until evidence ids are supplied.",
+      "expected_checks": ["quality_criteria", "evidence_traceability", "no_unverified_claims"],
+      "tags": ["evidence-gap"]
+    },
+    {
+      "id": "ai-documentation-false-positive-marketing",
+      "type": "false_positive",
+      "input": "Write a product launch blog post.",
+      "expected_behavior": "Does not activate unless source-backed technical documentation is requested.",
+      "expected_checks": ["quality_criteria", "source_inventory"],
+      "tags": ["false-positive"]
+    },
+    {
+      "id": "ai-documentation-false-positive-weather",
+      "type": "false_positive",
+      "input": "What is the weather forecast tomorrow?",
+      "expected_behavior": "Does not activate.",
+      "expected_checks": ["quality_criteria", "source_inventory"],
+      "tags": ["false-positive"]
+    },
+    {
+      "id": "ai-documentation-script-validation",
+      "type": "validation",
+      "input": "Validate deterministic documentation packets with fixtures.",
+      "expected_behavior": "Offline script accepts valid fixtures and rejects invalid fixtures.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria"],
+      "tags": ["scripts", "fixtures"]
+    }
+  ]
+}

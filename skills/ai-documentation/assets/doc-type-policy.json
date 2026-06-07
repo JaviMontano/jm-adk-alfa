@@ -1,0 +1,6 @@
+{
+  "schema": "jm-labs.asset.doc-type-policy.v1",
+  "allowed_doc_types": ["README", "API_REFERENCE", "RUNBOOK", "ARCHITECTURE_NOTE", "QUICKSTART", "CHANGELOG_DRAFT"],
+  "allowed_audiences": ["developer", "operator", "end_user", "maintainer", "api_consumer"],
+  "allowed_freshness_policies": ["create", "update", "audit", "defer"]
+}

@@ -1,75 +1,23 @@
 {
   "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-28",
   "skill": "ai-documentation",
   "nodes": [
-    {
-      "id": "ai-documentation",
-      "type": "skill",
-      "label": "ai-documentation"
-    },
-    {
-      "id": "ai-documentation:inputs",
-      "type": "contract",
-      "label": "Expected inputs"
-    },
-    {
-      "id": "ai-documentation:outputs",
-      "type": "contract",
-      "label": "Expected outputs"
-    },
-    {
-      "id": "ai-documentation:quality",
-      "type": "gate",
-      "label": "Quality criteria"
-    },
-    {
-      "id": "ai-documentation:ontology",
-      "type": "ontology",
-      "label": "Domain: general"
-    },
-    {
-      "id": "ai-documentation:evidence",
-      "type": "gate",
-      "label": "Evidence / provenance requirements"
-    },
-    {
-      "id": "ai-documentation:antipattern",
-      "type": "risk",
-      "label": "Canonical anti-pattern to avoid"
-    }
+    {"id": "ai-documentation", "type": "skill", "label": "AI Documentation"},
+    {"id": "source-inventory", "type": "contract", "label": "Source Inventory"},
+    {"id": "evidence-map", "type": "contract", "label": "Evidence Map"},
+    {"id": "documentation-target", "type": "contract", "label": "Documentation Target"},
+    {"id": "generated-section", "type": "output", "label": "Generated Section"},
+    {"id": "gap-analysis", "type": "gate", "label": "Gap Analysis"},
+    {"id": "path-policy", "type": "gate", "label": "Safe Output Path Policy"},
+    {"id": "offline-validator", "type": "script", "label": "Offline Packet Validator"}
   ],
   "edges": [
-    {
-      "from": "ai-documentation",
-      "to": "ai-documentation:inputs",
-      "type": "requires"
-    },
-    {
-      "from": "ai-documentation",
-      "to": "ai-documentation:outputs",
-      "type": "produces"
-    },
-    {
-      "from": "ai-documentation",
-      "to": "ai-documentation:quality",
-      "type": "validated_by"
-    },
-    {
-      "from": "ai-documentation",
-      "to": "ai-documentation:ontology",
-      "type": "classified_as"
-    },
-    {
-      "from": "ai-documentation",
-      "to": "ai-documentation:evidence",
-      "type": "validated_by"
-    },
-    {
-      "from": "ai-documentation",
-      "to": "ai-documentation:antipattern",
-      "type": "guards_against"
-    }
+    {"from": "ai-documentation", "to": "source-inventory", "type": "requires"},
+    {"from": "source-inventory", "to": "evidence-map", "type": "produces"},
+    {"from": "evidence-map", "to": "generated-section", "type": "supports"},
+    {"from": "documentation-target", "to": "generated-section", "type": "contains"},
+    {"from": "gap-analysis", "to": "offline-validator", "type": "validated_by"},
+    {"from": "path-policy", "to": "documentation-target", "type": "guards"},
+    {"from": "offline-validator", "to": "ai-documentation", "type": "validates"}
   ]
 }
