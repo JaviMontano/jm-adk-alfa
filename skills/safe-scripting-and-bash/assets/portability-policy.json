@@ -1,0 +1,6 @@
+{
+  "schema": 1,
+  "skill": "safe-scripting-and-bash",
+  "required_flags": ["bash_shebang", "set_euo_pipefail", "repo_root_detection", "quoted_variables", "mktemp_dir", "cleanup_trap"],
+  "blocked_path_prefixes": ["/Users/", "/home/"]
+}

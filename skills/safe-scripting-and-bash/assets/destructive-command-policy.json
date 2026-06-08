@@ -1,0 +1,6 @@
+{
+  "schema": 1,
+  "skill": "safe-scripting-and-bash",
+  "forbidden_patterns": ["rm -rf", "git reset --hard", "git clean -fd", "sudo", "push --force"],
+  "required_secret_controls": ["never_print_env", "redact_tokens", "no_credential_persistence"]
+}
