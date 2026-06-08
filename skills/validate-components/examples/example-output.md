@@ -1,18 +1,10 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: validate-components
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
-
 # Example Output
 
-## Summary
-
-Example output for `validate-components`.
-
-## Validation
-
-- Skill activated intentionally.
-- Output follows the requested format.
-- Risks and assumptions are explicit.
+```json
+{
+  "schema": "jm-labs.validate-components.report.v1",
+  "skill": "validate-components",
+  "status": "pass",
+  "counts": {"skills": 600, "agents": 261, "commands": 267, "prompts": 256, "components": 1384}
+}
+```

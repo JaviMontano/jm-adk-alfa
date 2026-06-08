@@ -1,0 +1,1 @@
+{"schema":"jm-labs.validate-components.count-policy.v1","required_counts":["skills","agents","commands","prompts","components"],"docs_must_align_for_pass":true}

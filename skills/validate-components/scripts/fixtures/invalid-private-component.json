@@ -1,0 +1,1 @@
+{"schema":"jm-labs.validate-components.report.v1","skill":"validate-components","status":"warn","docs_aligned":true,"counts":{"skills":600,"agents":261,"commands":267,"prompts":256,"components":1384},"findings":[{"path":"user-context/jarvis-os/SKILL.md","severity":"critical"}],"validation":{"status":"warn","evidence":"invalid"}}

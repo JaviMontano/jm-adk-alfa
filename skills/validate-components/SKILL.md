@@ -18,6 +18,16 @@ Validates that every skill, agent, and command file has correct YAML frontmatter
 
 ---
 
+## Deterministic Safety Contract
+
+- `assets/component-report-contract.json` defines report shape.
+- `assets/count-consistency-policy.json` requires component counts and docs alignment.
+- `assets/private-component-policy.json` blocks private paths from publishable component inventories.
+- `scripts/validate_components_report.py` validates reports offline.
+- `scripts/check.sh` runs positive and negative fixtures.
+
+Fail closed when counts are missing, docs are out of sync while status claims pass, private paths appear as publishable components, or clean claims lack validation evidence. [EXPLICIT]
+
 ## Procedure
 
 ### Step 1 -- Enumerate All Components
@@ -130,4 +140,3 @@ Example invocations:
 
 - "/validate-components" — Run the full validate components workflow
 - "validate components on this project" — Apply to current context
-
