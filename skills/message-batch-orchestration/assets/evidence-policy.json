@@ -1,0 +1,14 @@
+{
+  "schema": 1,
+  "skill": "message-batch-orchestration",
+  "minimum_evidence_items": 3,
+  "accepted_evidence_types": [
+    "workload_scope",
+    "custom_id_sample",
+    "status_polling",
+    "results_fragmentation",
+    "retry_subset",
+    "persistence_sink",
+    "synchronous_route_rejection"
+  ]
+}

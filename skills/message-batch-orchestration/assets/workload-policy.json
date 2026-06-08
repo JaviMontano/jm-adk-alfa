@@ -1,0 +1,11 @@
+{
+  "schema": 1,
+  "skill": "message-batch-orchestration",
+  "allowed_modes": ["offline"],
+  "required_flags": {
+    "latency_tolerant": true,
+    "realtime_required": false,
+    "streaming_required": false
+  },
+  "minimum_item_count": 2
+}

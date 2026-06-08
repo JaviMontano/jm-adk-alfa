@@ -1,0 +1,12 @@
+{
+  "schema": 1,
+  "skill": "message-batch-orchestration",
+  "success_result_type": "succeeded",
+  "failure_result_types": ["errored", "expired", "canceled"],
+  "allowed_max_retries": [1, 2, 3],
+  "required_retry_flags": {
+    "selective_retry": true,
+    "retries_batch_complete": false
+  },
+  "persistence_required_before_retry": true
+}

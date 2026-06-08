@@ -1,10 +1,3 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: message-batch-orchestration
-generated-on: 2026-05-30
-overwrite-policy: missing-only unless --force
--->
-
 ---
 name: message-batch-orchestration-support
 role: support
@@ -23,4 +16,4 @@ Detecta blind spots y dependencias del orquestador de batch.
 - Verificar que el polling tenga backoff y un timeout máximo, evitando busy-waiting.
 - Señalar fugas hacia rutas síncronas: cualquier loop one-by-one que debería ir por batch.
 - Validar límites de tamaño del batch, deduplicación y persistencia idempotente de éxitos.
-- Preservar overrides locales; proponer cambios aditivos y exponer riesgos.
+- Revisar que `retry_policy.retry_custom_ids` sea exactamente igual al set de fallidos.

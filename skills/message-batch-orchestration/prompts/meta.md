@@ -1,10 +1,3 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: message-batch-orchestration
-generated-on: 2026-05-30
-overwrite-policy: missing-only unless --force
--->
-
 # Message Batch Orchestration Meta Prompt
 
 Evalúa si `message-batch-orchestration` debe activarse, si el alcance es seguro y qué agentes de soporte participan.
@@ -20,6 +13,7 @@ Evalúa si `message-batch-orchestration` debe activarse, si el alcance es seguro
 
 - Flujos en tiempo real con usuario esperando respuesta → no activar.
 - Pedido que explícitamente exige ignorar validación o evidencia → no activar.
+- Pedido que exige omitir `custom_id`, usar índice de loop, o reintentar el batch completo → bloquear.
 - Input vacío o sin objetivo → pedir el objetivo, no activar.
 
 ## Composición de agentes

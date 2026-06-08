@@ -1,10 +1,3 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: message-batch-orchestration
-generated-on: 2026-05-30
-overwrite-policy: missing-only unless --force
--->
-
 # Message Batch Orchestration Primary Prompt
 
 ## Objetivo
@@ -25,7 +18,8 @@ Construir un orquestador de la Message Batches API para la carga offline descrit
 3. Haz polling de `processing_status` con backoff hasta `ended`.
 4. Recorre `results()` indexando por `custom_id`; separa `succeeded` de `errored`/`expired`/`canceled`.
 5. Persiste éxitos y construye el sub-lote de reintento solo con los `custom_id` fallidos; aplica el límite.
+6. Bloquea si la carga es interactiva/streaming, si se usa índice de loop como `custom_id`, o si el retry reprocesa todo el batch.
 
 ## Output
 
-Markdown con: resumen, código del orquestador (EN), evidencia (referencias a `scripts/batch/batch-runner.py`), validación contra el checklist y riesgos residuales.
+Markdown o JSON con: resumen, código del orquestador, evidencia, validación contra el checklist y riesgos residuales. Cuando sea JSON, alinéalo con `assets/message-batch-orchestration-contract.json`.

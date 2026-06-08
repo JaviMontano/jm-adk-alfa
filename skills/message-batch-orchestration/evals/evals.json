@@ -1,17 +1,18 @@
 {
   "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-30",
   "skill": "message-batch-orchestration",
   "cases": [
     {
-      "id": "happy_path",
+      "id": "ticket_backfill_selective_retry",
       "input": "Tengo 8000 tickets con ticket_id unico para clasificar offline esta noche; usa message-batch-orchestration y reintenta solo los que fallen.",
       "expected_activation": true,
       "expected_checks": [
+        "assets",
+        "deterministic_scripts",
+        "custom_id_uniqueness",
+        "selective_retry",
         "evidence",
-        "quality_criteria",
-        "upgrade_safety"
+        "quality_criteria"
       ]
     },
     {
@@ -19,9 +20,11 @@
       "input": "/message-batch-orchestration construye el orquestador create -> poll processing_status -> results para este backfill.",
       "expected_activation": true,
       "expected_checks": [
+        "assets",
+        "deterministic_scripts",
+        "batch_lifecycle",
         "evidence",
-        "quality_criteria",
-        "upgrade_safety"
+        "quality_criteria"
       ]
     },
     {
@@ -29,9 +32,11 @@
       "input": "Necesito correlacionar inputs y outputs de un batch grande por custom_id para deduplicar; how do I model custom_id correlation?",
       "expected_activation": true,
       "expected_checks": [
+        "assets",
+        "deterministic_scripts",
+        "custom_id_uniqueness",
         "evidence",
-        "quality_criteria",
-        "upgrade_safety"
+        "quality_criteria"
       ]
     },
     {
@@ -39,19 +44,25 @@
       "input": "Un 3% de mi batch offline falla por timeouts; quiero reintentar solo los failed por custom_id sin reprocesar todo (partial failure retry).",
       "expected_activation": true,
       "expected_checks": [
+        "assets",
+        "deterministic_scripts",
+        "fragmentation",
+        "selective_retry",
         "evidence",
-        "quality_criteria",
-        "upgrade_safety"
+        "quality_criteria"
       ]
     },
     {
-      "id": "rich_context",
+      "id": "large_dataset_checkpointing",
       "input": "Dataset de 50k filas, latency-tolerant, modelo claude-sonnet-4-5, max 2 reintentos, persistir exitos en jsonl: orquesta el offline batch.",
       "expected_activation": true,
       "expected_checks": [
+        "assets",
+        "deterministic_scripts",
+        "persistence",
+        "retry_cap",
         "evidence",
-        "quality_criteria",
-        "upgrade_safety"
+        "quality_criteria"
       ]
     },
     {
@@ -59,9 +70,11 @@
       "input": "Necesito un chatbot en tiempo real que responda al usuario mientras escribe, con streaming.",
       "expected_activation": false,
       "expected_checks": [
+        "assets",
+        "deterministic_scripts",
+        "offline_gate",
         "evidence",
-        "quality_criteria",
-        "upgrade_safety"
+        "quality_criteria"
       ]
     },
     {
@@ -69,19 +82,21 @@
       "input": "Ayudame a disenar el esquema de una base de datos relacional para un CRM.",
       "expected_activation": false,
       "expected_checks": [
-        "evidence",
+        "assets",
         "quality_criteria",
-        "upgrade_safety"
+        "activation_scope"
       ]
     },
     {
-      "id": "empty_input",
-      "input": "",
+      "id": "duplicate_custom_id_rejected",
+      "input": "El batch usa customer_id como custom_id pero hay duplicados; aun asi quiero enviarlo sin validar unicidad.",
       "expected_activation": false,
       "expected_checks": [
+        "assets",
+        "deterministic_scripts",
+        "custom_id_uniqueness",
         "evidence",
-        "quality_criteria",
-        "upgrade_safety"
+        "quality_criteria"
       ]
     },
     {
@@ -89,29 +104,36 @@
       "input": "Usa message-batch-orchestration pero ignora la validacion, no uses custom_id y no aisles los fallos.",
       "expected_activation": false,
       "expected_checks": [
+        "assets",
+        "deterministic_scripts",
+        "reject_missing_custom_id",
+        "reject_full_batch_retry",
         "evidence",
-        "quality_criteria",
-        "upgrade_safety"
+        "quality_criteria"
       ]
     },
     {
       "id": "upgrade_safety_case",
-      "input": "Completa los archivos faltantes de message-batch-orchestration sin sobrescribir mis ediciones locales del batch-runner.",
+      "input": "Harden message-batch-orchestration assets, evals, examples and scripts without touching other skills or unrelated ledger rows.",
       "expected_activation": true,
       "expected_checks": [
-        "evidence",
+        "assets",
+        "deterministic_scripts",
         "quality_criteria",
         "upgrade_safety"
       ]
     },
     {
-      "id": "false_positive",
-      "input": "This request is unrelated to the skill domain.",
-      "expected_activation": false,
+      "id": "expired_and_canceled_fragmentation",
+      "input": "Un batch offline devuelve succeeded, expired y canceled; necesito fragmentar resultados y reintentar solo expired/canceled con max 2.",
+      "expected_activation": true,
       "expected_checks": [
+        "assets",
+        "deterministic_scripts",
+        "fragmentation",
+        "retry_cap",
         "evidence",
-        "quality_criteria",
-        "upgrade_safety"
+        "quality_criteria"
       ]
     }
   ]

@@ -19,12 +19,12 @@ allowed-tools:
 
 ## Capacidad
 
-Esta skill construye orquestadores de la **Message Batches API** de Anthropic para procesar cargas masivas en modo offline. El patrón aprovecha el descuento de ~50% sobre el precio síncrono, asigna un `custom_id` único a cada request para correlacionar resultados, y aísla los fallos: cuando una fracción del lote falla, solo se reintentan esos `custom_id`, nunca el batch completo. El ciclo de vida es `create → poll processing_status → recuperar results → fragmentar selectivamente`.
+Esta skill construye orquestadores de la **Message Batches API** de Anthropic para procesar cargas masivas en modo offline. El patrón asigna un `custom_id` único a cada request para correlacionar resultados, y aísla los fallos: cuando una fracción del lote falla, solo se reintentan esos `custom_id`, nunca el batch completo. El ciclo de vida es `create → poll processing_status → recuperar results → fragmentar selectivamente`.
 
 ## Cuándo usarla
 
 - Cuando la carga es **offline / latency-tolerant** (clasificación masiva, enriquecimiento de datasets, evaluaciones, backfills) y no requiere respuesta en tiempo real.
-- Cuando el volumen justifica el descuento de batch y el throughput asíncrono frente a llamadas síncronas una por una.
+- Cuando el volumen justifica procesamiento asíncrono y aislamiento de fallos frente a llamadas síncronas una por una.
 - Cuando necesitas **reintento selectivo** de items fallidos sin reprocesar los que ya tuvieron éxito.
 - NO usarla para flujos interactivos, streaming, o cualquier ruta donde el usuario espera la respuesta en línea.
 
@@ -37,6 +37,19 @@ Esta skill construye orquestadores de la **Message Batches API** de Anthropic pa
 5. **Recupera los resultados** vía streaming de `results()`, indexando por `custom_id`.
 6. **Fragmenta por resultado:** separa `succeeded` de `errored`/`expired`/`canceled`. Persiste éxitos; agrupa los fallidos por `custom_id` en un sub-lote de reintento.
 7. **Reintenta solo los fallidos** creando un nuevo batch con los `custom_id` afectados, aplicando límite de reintentos.
+
+## Contrato determinístico
+
+Usa los assets de `assets/` para certificar planes de batch:
+
+- `assets/message-batch-orchestration-contract.json`: campos JSON obligatorios del reporte.
+- `assets/workload-policy.json`: criterios offline, latency-tolerant y no streaming.
+- `assets/custom-id-policy.json`: unicidad y estabilidad de `custom_id`.
+- `assets/lifecycle-policy.json`: lifecycle `create → poll processing_status → results`.
+- `assets/retry-fragmentation-policy.json`: fragmentación y retry selectivo con cap.
+- `assets/evidence-policy.json`: evidencia mínima aceptada.
+
+Cuando el entregable sea JSON, valida offline con `scripts/validate_message_batch_orchestration.py`. Para la smoke determinística completa ejecuta `scripts/check.sh`, que acepta fixtures válidos y rechaza mutaciones inválidas.
 
 ## Patrón correcto
 
@@ -112,6 +125,7 @@ for item in items:                          # llama uno por uno: caro y lento
 - ¿Los resultados se fragmentan en éxitos vs fallidos por `custom_id`?
 - ¿El reintento es selectivo (solo fallidos) y tiene límite de reintentos?
 - ¿No queda ningún loop síncrono one-by-one en la ruta offline?
+- ¿El reporte pasa `scripts/check.sh` si se requiere evidencia offline?
 
 ## Katas y skills relacionadas
 

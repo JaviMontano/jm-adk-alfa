@@ -1,0 +1,23 @@
+{
+  "schema": 1,
+  "skill": "message-batch-orchestration",
+  "json_contract": {
+    "schema_version": 1,
+    "required_top_level_fields": [
+      "schema",
+      "skill",
+      "report_id",
+      "scenario",
+      "workload",
+      "request_modeling",
+      "batch_lifecycle",
+      "result_fragmentation",
+      "retry_policy",
+      "persistence",
+      "evidence",
+      "validation",
+      "guardian"
+    ],
+    "guardian_decisions": ["pass", "warn", "block"]
+  }
+}

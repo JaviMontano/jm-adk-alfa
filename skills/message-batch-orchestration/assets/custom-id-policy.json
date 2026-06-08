@@ -1,0 +1,17 @@
+{
+  "schema": 1,
+  "skill": "message-batch-orchestration",
+  "required_fields": [
+    "custom_id_source",
+    "custom_ids",
+    "uniqueness_validated",
+    "index_based_custom_id"
+  ],
+  "forbidden_sources": ["loop_index", "array_index", "row_number"],
+  "index_like_patterns": [
+    "^\\d+$",
+    "^item-?\\d+$",
+    "^row-?\\d+$",
+    "^index-?\\d+$"
+  ]
+}

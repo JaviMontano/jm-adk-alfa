@@ -1,10 +1,3 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: message-batch-orchestration
-generated-on: 2026-05-30
-overwrite-policy: missing-only unless --force
--->
-
 # Message Batch Orchestration Output
 
 ## Resumen
@@ -19,7 +12,7 @@ overwrite-policy: missing-only unless --force
 
 ## Evidencia
 
-{referencias a scripts/batch/batch-runner.py; supuestos marcados}
+{evidencia de scope offline, custom_id, lifecycle, fragmentación y retry}
 
 ## Validación (checklist)
 
@@ -29,6 +22,7 @@ overwrite-policy: missing-only unless --force
 - [ ] Resultados fragmentados (succeeded vs errored/expired/canceled)
 - [ ] Reintento selectivo de custom_id fallidos con límite
 - [ ] Sin loop síncrono one-by-one en la ruta offline
+- [ ] Reporte JSON compatible con `assets/message-batch-orchestration-contract.json` cuando se requiera validación offline
 
 ## Riesgos y límites
 
