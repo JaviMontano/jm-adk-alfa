@@ -1,7 +1,5 @@
 {
   "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-29",
   "skill": "katas-pretooluse-guardrails",
   "nodes": [
     {
@@ -10,126 +8,76 @@
       "label": "katas-pretooluse-guardrails"
     },
     {
-      "id": "katas-pretooluse-guardrails:inputs",
-      "type": "contract",
-      "label": "Expected inputs"
-    },
-    {
-      "id": "katas-pretooluse-guardrails:outputs",
-      "type": "contract",
-      "label": "Expected outputs"
-    },
-    {
-      "id": "katas-pretooluse-guardrails:quality",
-      "type": "gate",
-      "label": "Quality criteria"
-    },
-    {
-      "id": "katas-pretooluse-guardrails:pretooluse-hook",
+      "id": "pretooluse-hook",
       "type": "concept",
       "label": "PreToolUse hook"
     },
     {
-      "id": "katas-pretooluse-guardrails:permission-decision",
+      "id": "permission-decision",
       "type": "concept",
       "label": "permissionDecision allow/deny/ask"
     },
     {
-      "id": "katas-pretooluse-guardrails:policy-in-code",
-      "type": "concept",
-      "label": "Policy as reloadable dict or JSON"
+      "id": "external-policy",
+      "type": "contract",
+      "label": "Reloadable dict or JSON policy"
     },
     {
-      "id": "katas-pretooluse-guardrails:hook-matcher",
-      "type": "concept",
-      "label": "HookMatcher registration"
-    },
-    {
-      "id": "katas-pretooluse-guardrails:certification-argument",
+      "id": "deny-before-side-effects",
       "type": "gate",
-      "label": "Critical policies live in hooks, not prompts"
+      "label": "deny before side-effects"
     },
     {
-      "id": "katas-pretooluse-guardrails:prompt-only-antipattern",
+      "id": "allow-path",
+      "type": "gate",
+      "label": "allowed case remains executable"
+    },
+    {
+      "id": "prompt-only-policy",
       "type": "antipattern",
-      "label": "Policy only in system_prompt"
+      "label": "policy only in system_prompt"
     },
     {
-      "id": "katas-pretooluse-guardrails:ontology",
-      "type": "ontology",
-      "label": "Domain: agentic-architecture/hooks"
-    },
-    {
-      "id": "katas-pretooluse-guardrails:evidence",
+      "id": "offline-validator",
       "type": "gate",
-      "label": "Evidence / provenance requirements"
-    },
-    {
-      "id": "katas-pretooluse-guardrails:antipattern",
-      "type": "risk",
-      "label": "Canonical anti-pattern to avoid"
+      "label": "offline JSON report validator"
     }
   ],
   "edges": [
     {
       "from": "katas-pretooluse-guardrails",
-      "to": "katas-pretooluse-guardrails:inputs",
+      "to": "pretooluse-hook",
       "type": "requires"
     },
     {
-      "from": "katas-pretooluse-guardrails",
-      "to": "katas-pretooluse-guardrails:outputs",
-      "type": "produces"
-    },
-    {
-      "from": "katas-pretooluse-guardrails",
-      "to": "katas-pretooluse-guardrails:quality",
-      "type": "validated_by"
-    },
-    {
-      "from": "katas-pretooluse-guardrails",
-      "to": "katas-pretooluse-guardrails:pretooluse-hook",
-      "type": "uses"
-    },
-    {
-      "from": "katas-pretooluse-guardrails:pretooluse-hook",
-      "to": "katas-pretooluse-guardrails:permission-decision",
+      "from": "pretooluse-hook",
+      "to": "permission-decision",
       "type": "emits"
     },
     {
-      "from": "katas-pretooluse-guardrails:pretooluse-hook",
-      "to": "katas-pretooluse-guardrails:policy-in-code",
+      "from": "pretooluse-hook",
+      "to": "external-policy",
       "type": "reads"
     },
     {
-      "from": "katas-pretooluse-guardrails:pretooluse-hook",
-      "to": "katas-pretooluse-guardrails:hook-matcher",
-      "type": "registered_by"
-    },
-    {
-      "from": "katas-pretooluse-guardrails:permission-decision",
-      "to": "katas-pretooluse-guardrails:certification-argument",
+      "from": "permission-decision",
+      "to": "deny-before-side-effects",
       "type": "validated_by"
     },
     {
-      "from": "katas-pretooluse-guardrails:prompt-only-antipattern",
-      "to": "katas-pretooluse-guardrails:certification-argument",
+      "from": "permission-decision",
+      "to": "allow-path",
+      "type": "validated_by"
+    },
+    {
+      "from": "prompt-only-policy",
+      "to": "deny-before-side-effects",
       "type": "violates"
     },
     {
       "from": "katas-pretooluse-guardrails",
-      "to": "katas-pretooluse-guardrails:ontology",
-      "type": "classified_as"
-    },
-    {
-      "from": "katas-pretooluse-guardrails",
-      "to": "katas-pretooluse-guardrails:evidence",
+      "to": "offline-validator",
       "type": "validated_by"
-    },
-    {
-      "from": "katas-pretooluse-guardrails",
-      "to": "katas-pretooluse-guardrails:antipattern",
-      "type": "guards_against"
     }
   ]
 }

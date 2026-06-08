@@ -1,0 +1,8 @@
+{
+  "schema": 1,
+  "requires_deny_case": true,
+  "requires_allow_case": true,
+  "denied_tool_executed_must_be": false,
+  "allowed_tool_executed_must_be": true,
+  "prompt_injection_bypassed_must_be": false
+}

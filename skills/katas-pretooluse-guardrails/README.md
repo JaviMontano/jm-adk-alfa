@@ -1,13 +1,6 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: katas-pretooluse-guardrails
-generated-on: 2026-05-29
-overwrite-policy: missing-only unless --force
--->
-
 # Katas Pretooluse Guardrails
 
-Guardarrailes deterministas en hook PreToolUse con permissionDecision deny desde politica recargable, no en el system prompt.
+Kata para convertir reglas críticas de negocio en controles determinísticos de `PreToolUse`. La política vive en código o JSON recargable, el hook inspecciona `tool_name` y `tool_input`, y el retorno estructurado usa `permissionDecision: "deny"` antes de que la tool produzca efectos.
 
 ## Triggers
 
@@ -16,21 +9,26 @@ Guardarrailes deterministas en hook PreToolUse con permissionDecision deny desde
 - policy gate
 - deterministic guardrail
 
-## Allowed Tools
+## Use When
 
-- Read
-- Grep
-- Glob
-- Bash
+- Una política no puede depender de obediencia al `system_prompt`.
+- Una tool con side-effects debe bloquearse antes de ejecutar.
+- La política debe recargarse sin reiniciar el agente.
+- El reporte debe probar casos `deny` y `allow` con evidencia offline.
 
-## Resumen ejecutivo
+## Output Contract
 
-Kata 02 del kit JM-ADK. Enseña a mover las políticas críticas (límites monetarios, dominios prohibidos, paths protegidos) desde el `system_prompt` hacia un hook `PreToolUse` que emite `permissionDecision: 'deny'`. El SDK aplica el bloqueo ANTES de que la tool produzca side-effects, por lo que el guardarraíl es determinista y no depende de que el modelo obedezca. La política vive en un `dict` o JSON recargable en caliente.
+El entregable debe incluir:
 
-## Quick Use
+- Política externa al prompt (`dict` o JSON).
+- Hook `PreToolUse` registrado con `HookMatcher`.
+- Retorno `hookSpecificOutput` con `hookEventName`, `permissionDecision` y `permissionDecisionReason`.
+- Caso denegado sin side-effects y caso permitido que ejecuta.
+- Evidencia de que prompt injection no puede saltarse la política.
 
-Invoca `katas-pretooluse-guardrails` cuando exista un límite de negocio que no puede romperse y debas bloquear una tool antes de que ejecute. El patrón registra un `HookMatcher(matcher="*", hooks=[policy_gate])` en `ClaudeAgentOptions.hooks["PreToolUse"]` y retorna `deny` con un `permissionDecisionReason` legible.
+## Offline Validation
 
-## Output Format
-
-Markdown con el patrón GOOD (hook + `permissionDecision`), el anti-patrón (política solo en prompt), el argumento de certificación y el estado de validación.
+```bash
+bash skills/katas-pretooluse-guardrails/scripts/check.sh
+python3 -B skills/katas-pretooluse-guardrails/scripts/validate_pretooluse_guardrails.py skills/katas-pretooluse-guardrails/scripts/fixtures/valid-refund-limit.json
+```

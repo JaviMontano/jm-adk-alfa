@@ -1,0 +1,15 @@
+{
+  "schema": 1,
+  "allowed_sources": ["dict", "json"],
+  "required_rule_fields": [
+    "id",
+    "target_tool",
+    "field",
+    "operator",
+    "value",
+    "decision"
+  ],
+  "allowed_operators": ["gt", "gte", "lt", "lte", "equals", "in", "not_in", "path_prefix", "domain_blocklist"],
+  "hot_reload_required": true,
+  "system_prompt_only_allowed": false
+}

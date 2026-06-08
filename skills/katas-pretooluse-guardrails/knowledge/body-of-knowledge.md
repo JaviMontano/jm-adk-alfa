@@ -1,41 +1,35 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: katas-pretooluse-guardrails
-generated-on: 2026-05-29
-overwrite-policy: missing-only unless --force
--->
-
-# Katas Pretooluse Guardrails Body of Knowledge
+# Body Of Knowledge
 
 ## Canon
 
-Conceptos clave de la Kata 02:
-
-- **Hook `PreToolUse`**: se registra en `ClaudeAgentOptions.hooks` y se ejecuta ANTES de cada invocación de tool, recibiendo `tool_name` y `tool_input`.
-- **`permissionDecision`**: enum estructurado `allow` / `deny` / `ask`. No es texto libre; el SDK lo interpreta y aplica.
-- **`permissionDecisionReason`**: mensaje legible que el modelo recibe cuando hay `deny`, para replanear.
-- **Política en código**: un `dict` (`POLICY = {"max_amount": 1000.0}`) o un JSON en disco. Recargable en caliente sin reiniciar el agente.
-- **`HookMatcher`**: filtra a qué tools aplica el hook; `matcher="*"` cubre todas.
-- **Garantía del SDK**: si el hook retorna `deny`, la tool NO corre. Cero side-effects.
-- **Relación con Kata 01**: `permissionDecision` controla cada tool; `stop_reason` controla el bucle agéntico.
+- `PreToolUse` corre antes de la invocación de una tool.
+- `permissionDecision` es un enum estructurado: `allow`, `deny`, `ask`.
+- `permissionDecisionReason` debe explicar la denegación para que el modelo pueda replanear.
+- Las políticas críticas viven en `dict` o JSON recargable, no sólo en `system_prompt`.
+- Un `deny` válido deja la tool sin ejecutar y por tanto sin side-effects.
+- Un `raise` dentro de la tool no reemplaza el hook porque ocurre después de entrar a la tool.
 
 ## Quality Signals
 
 | Signal | Target |
 |---|---|
-| Política fuera del prompt | Los límites críticos viven en hook/`dict`/JSON, no en `system_prompt` |
-| Decisión estructurada | Se usa `permissionDecision: allow/deny/ask`, no texto libre |
-| Bloqueo pre-ejecución | El `deny` corre ANTES de la tool, garantizando cero side-effects |
-| Razón accionable | `permissionDecisionReason` permite al modelo replanear |
+| Policy source | `dict` o JSON recargable |
+| Hook event | `PreToolUse` |
+| Decision output | `hookSpecificOutput` con `permissionDecision` |
+| Deny case | cero side-effects |
+| Allow case | conserva ruta válida |
+| Injection case | prompt injection no cambia la decisión |
 
-## Anti-patrón canónico
+## Anti-Patterns
 
-Política solo en `system_prompt` ("no apruebes reembolsos mayores a $1000") sin hooks `PreToolUse`. Un prompt injection o un usuario insistente la rompe y la tool ejecuta el reembolso de todas formas. La intención no es determinista hasta que el SDK puede aplicarla.
+- Política escrita sólo en `system_prompt`.
+- Validar después de ejecutar la tool.
+- Retornar texto libre en lugar de `permissionDecision`.
+- Omitir caso `allow`, causando falsos positivos.
+- Usar matcher parcial sin justificar cobertura.
 
-## Quiz de referencia
+## Boundaries
 
-Respuestas B · C · B. P2: la política se actualiza mutando el `dict` `POLICY` o releyendo el JSON (hot-reload, sin reiniciar). P3: `deny` corre ANTES de ejecutar la tool (cero side-effects), mientras que un `raise` correría DESPUÉS, ya con efectos.
-
-## Open Knowledge
-
-- Añadir patrones de política compuesta (montos + dominios + paths) conforme se estabilicen.
+- Para normalizar outputs después de la tool, usar `katas-posttooluse-normalization`.
+- Para control del bucle agéntico, usar la kata de loop determinístico.
+- Para errores estructurados de MCP, usar `katas-mcp-structured-errors`.

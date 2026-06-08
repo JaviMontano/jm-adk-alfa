@@ -1,0 +1,84 @@
+{
+  "schema": 1,
+  "skill": "katas-pretooluse-guardrails",
+  "report_id": "ptu-valid-domain-and-path-policy",
+  "scenario": "domain and path policy enforced by reloadable JSON",
+  "evidence": [
+    {
+      "type": "policy_file",
+      "detail": "policy.json defines blocked email domains and protected path prefixes."
+    },
+    {
+      "type": "side_effect_counter",
+      "detail": "Denied send_email and delete_file calls leave side_effect_count at zero."
+    },
+    {
+      "type": "reload_test",
+      "detail": "Updating policy.json changes the denied domain list without restarting the agent."
+    }
+  ],
+  "policy": {
+    "source": "json",
+    "hot_reload": true,
+    "system_prompt_only": false,
+    "rules": [
+      {
+        "id": "blocked-email-domain",
+        "target_tool": "send_email",
+        "field": "recipient_domain",
+        "operator": "domain_blocklist",
+        "value": ["blocked.example", "risk.example"],
+        "decision": "deny"
+      },
+      {
+        "id": "protected-system-path",
+        "target_tool": "delete_file",
+        "field": "path",
+        "operator": "path_prefix",
+        "value": "/system",
+        "decision": "deny"
+      }
+    ]
+  },
+  "hook": {
+    "event_name": "PreToolUse",
+    "matcher": "*",
+    "registered": true,
+    "blocks_before_execution": true,
+    "denial_output": {
+      "hookEventName": "PreToolUse",
+      "permissionDecision": "deny",
+      "permissionDecisionReason": "Tool input violates reloadable policy.json."
+    }
+  },
+  "decisions": [
+    {
+      "tool_name": "send_email",
+      "tool_input": {
+        "recipient_domain": "blocked.example"
+      },
+      "expected_decision": "deny",
+      "expected_side_effects": false,
+      "reason": "Recipient domain is blocklisted."
+    },
+    {
+      "tool_name": "delete_file",
+      "tool_input": {
+        "path": "/tmp/session.log"
+      },
+      "expected_decision": "allow",
+      "expected_side_effects": true,
+      "reason": "Path is outside protected prefixes."
+    }
+  ],
+  "validation": {
+    "denied_tool_executed": false,
+    "allowed_tool_executed": true,
+    "system_prompt_only": false,
+    "prompt_injection_bypassed": false
+  },
+  "guardian": {
+    "decision": "pass",
+    "reason": "The reloadable policy blocks high-risk tool inputs before execution and preserves an allow path."
+  }
+}
