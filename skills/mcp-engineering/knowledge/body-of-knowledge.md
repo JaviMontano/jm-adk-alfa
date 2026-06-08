@@ -1,10 +1,3 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: mcp-engineering
-generated-on: 2026-05-30
-overwrite-policy: missing-only unless --force
--->
-
 # Mcp Engineering Body of Knowledge
 
 ## Canon
@@ -20,6 +13,17 @@ La integración MCP en producción se sostiene sobre dos decisiones de diseño: 
 - **Remediación de secretos.** Un secreto filtrado se rota en el proveedor y se purga del historial con `git filter-repo`. Añadirlo a `.gitignore` después NO borra lo ya commiteado.
 - **MCP vs built-in.** MCP solo cuando ningún tool built-in (Read, Grep, Bash) cubre la necesidad.
 
+## Taxonomía determinística de errores
+
+| errorCategory | isRetryable | retryAfterSeconds | Acción cliente |
+|---|---:|---:|---|
+| `auth` | false | null | No reintentar; pedir credencial válida o reautenticación |
+| `rate_limit` | true | requerido | Reintentar con backoff y cap |
+| `transient` | true | opcional | Reintentar con backoff corto y cap |
+| `fatal` | false | null | No reintentar; devolver error tipado |
+
+El modelo no decide retry. El cliente consume esos campos y aplica una política acotada.
+
 ## Quality Signals
 
 | Señal | Objetivo |
@@ -29,6 +33,7 @@ La integración MCP en producción se sostiene sobre dos decisiones de diseño: 
 | Error accionable | Cada error con categoría + `isRetryable` (+ `retryAfterSeconds`) |
 | Reintento en cliente | La política de retry no depende del juicio del modelo |
 | Minimalismo de tooling | MCP solo cuando un built-in no aplica |
+| Script offline | `scripts/check.sh` acepta fixtures válidos y rechaza mutaciones inválidas |
 
 ## Decisión de diseño
 

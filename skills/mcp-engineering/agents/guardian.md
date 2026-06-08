@@ -1,10 +1,3 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: mcp-engineering
-generated-on: 2026-05-30
-overwrite-policy: missing-only unless --force
--->
-
 ---
 name: mcp-engineering-guardian
 role: guardian
@@ -22,4 +15,5 @@ Valida el checklist y bloquea el anti-patrón antes de aprobar.
 - Rechazar cualquier token literal en archivo versionado y exigir rotación + `git filter-repo` ante fuga (un `.gitignore` no purga el historial).
 - Rechazar errores como string genérico que obliguen al modelo a adivinar si reintenta.
 - Confirmar que la política de reintento vive en el cliente, no en el juicio del modelo.
-- Surface risks and validation gaps.
+- Ejecutar o exigir evidencia de `scripts/check.sh` cuando el reporte sea certificable offline.
+- Bloquear si faltan assets, evals, ejemplos, scripts, review doc, ledger o evidencia local.

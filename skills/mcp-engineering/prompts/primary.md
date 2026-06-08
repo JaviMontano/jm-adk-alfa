@@ -1,10 +1,3 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: mcp-engineering
-generated-on: 2026-05-30
-overwrite-policy: missing-only unless --force
--->
-
 # Mcp Engineering Primary Prompt
 
 ## Objective
@@ -22,10 +15,12 @@ Diseña la integración de un servidor MCP en producción: scope correcto, crede
 
 1. Decide el scope: `.mcp.json` (equipo) o `~/.claude.json` (personal).
 2. Escribe la config con `${ENV_VAR}`; cero secretos literales.
-3. Diseña el contrato de error (`isError`, `errorCategory`, `isRetryable`, `retryAfterSeconds`).
-4. Coloca la política de reintento en el cliente y respeta `retryAfterSeconds`.
-5. Verifica que MCP sea necesario (ningún tool built-in aplica) y corre el checklist.
+3. Diseña el contrato de error con categorías `auth`, `rate_limit`, `transient` y `fatal`.
+4. Marca `rate_limit` y `transient` como reintentables; `auth` y `fatal` no se reintentan.
+5. Coloca la política de reintento en el cliente, con cap de 2-3 intentos y respeto de `retryAfterSeconds`.
+6. Verifica que MCP sea necesario (ningún tool built-in aplica) y corre el checklist.
+7. Si hubo secreto filtrado, incluye rotación y purga de historial con `git filter-repo`; no aceptes sólo `.gitignore`.
 
 ## Output
 
-Markdown con summary, evidence, result, validation y risks. Incluye el bloque `.mcp.json` y el contrato de error en código (EN), prosa en ES.
+Markdown o JSON con summary, evidence, result, validation y risks. Cuando sea JSON, alinéalo con `assets/mcp-engineering-contract.json`.

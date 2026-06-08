@@ -1,0 +1,103 @@
+{
+  "schema": 1,
+  "skill": "mcp-engineering",
+  "cases": [
+    {
+      "id": "literal_secret_in_env",
+      "base": "valid-team-billing-config.json",
+      "operations": [
+        {
+          "op": "set",
+          "path": "mcp_config.mcpServers.billing.env.BILLING_API_KEY",
+          "value": "sk-live-123"
+        }
+      ]
+    },
+    {
+      "id": "team_scope_in_personal_config",
+      "base": "valid-team-billing-config.json",
+      "operations": [
+        {
+          "op": "set",
+          "path": "scope_decision.config_target",
+          "value": "~/.claude.json"
+        },
+        {
+          "op": "set",
+          "path": "mcp_config.config_path",
+          "value": "~/.claude.json"
+        }
+      ]
+    },
+    {
+      "id": "missing_auth_category",
+      "base": "valid-team-billing-config.json",
+      "operations": [
+        {
+          "op": "remove",
+          "path": "error_contract.categories.0"
+        }
+      ]
+    },
+    {
+      "id": "rate_limit_not_retryable",
+      "base": "valid-team-billing-config.json",
+      "operations": [
+        {
+          "op": "set",
+          "path": "error_contract.categories.1.isRetryable",
+          "value": false
+        }
+      ]
+    },
+    {
+      "id": "retry_policy_owned_by_model",
+      "base": "valid-team-billing-config.json",
+      "operations": [
+        {
+          "op": "set",
+          "path": "retry_policy.owner",
+          "value": "model"
+        }
+      ]
+    },
+    {
+      "id": "model_decides_retry",
+      "base": "valid-team-billing-config.json",
+      "operations": [
+        {
+          "op": "set",
+          "path": "retry_policy.model_decides_retry",
+          "value": true
+        }
+      ]
+    },
+    {
+      "id": "builtin_covers_need",
+      "base": "valid-team-billing-config.json",
+      "operations": [
+        {
+          "op": "set",
+          "path": "builtin_review.builtin_covers_need",
+          "value": true
+        }
+      ]
+    },
+    {
+      "id": "leaked_secret_without_history_purge",
+      "base": "valid-team-billing-config.json",
+      "operations": [
+        {
+          "op": "set",
+          "path": "credentials.leaked_secret_detected",
+          "value": true
+        },
+        {
+          "op": "set",
+          "path": "credentials.remediation_steps",
+          "value": ["rotate_provider_secret"]
+        }
+      ]
+    }
+  ]
+}

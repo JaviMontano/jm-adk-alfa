@@ -1,0 +1,99 @@
+{
+  "schema": 1,
+  "skill": "mcp-engineering",
+  "report_id": "personal-search-mcp",
+  "scenario": "Personal search MCP server kept outside the repository.",
+  "scope_decision": {
+    "requested_inheritance": "personal",
+    "config_target": "~/.claude.json",
+    "versioned": false,
+    "reason": "Only one developer should inherit this local search server."
+  },
+  "mcp_config": {
+    "server_name": "personal-search",
+    "config_path": "~/.claude.json",
+    "mcpServers": {
+      "personal-search": {
+        "command": "node",
+        "args": ["~/tools/search-mcp/index.js"],
+        "env": {
+          "SEARCH_API_KEY": "${SEARCH_API_KEY}"
+        }
+      }
+    }
+  },
+  "credentials": {
+    "env_vars": ["SEARCH_API_KEY"],
+    "literal_secret_count": 0,
+    "leaked_secret_detected": false,
+    "remediation_steps": []
+  },
+  "error_contract": {
+    "categories": [
+      {
+        "errorCategory": "auth",
+        "isRetryable": false,
+        "retryAfterSeconds": null,
+        "http_statuses": [401]
+      },
+      {
+        "errorCategory": "rate_limit",
+        "isRetryable": true,
+        "retryAfterSeconds": 60,
+        "http_statuses": [429]
+      },
+      {
+        "errorCategory": "transient",
+        "isRetryable": true,
+        "retryAfterSeconds": null,
+        "http_statuses": [503]
+      },
+      {
+        "errorCategory": "fatal",
+        "isRetryable": false,
+        "retryAfterSeconds": null,
+        "http_statuses": [400]
+      }
+    ],
+    "generic_error_string_allowed": false
+  },
+  "retry_policy": {
+    "owner": "client",
+    "max_attempts": 3,
+    "respects_retry_after_seconds": true,
+    "model_decides_retry": false,
+    "nonretryable_action": "surface typed error and stop"
+  },
+  "builtin_review": {
+    "builtin_covers_need": false,
+    "checked_tools": ["Read", "Grep", "Bash"],
+    "justification": "The external search API is not equivalent to local grep or file reads."
+  },
+  "evidence": [
+    {
+      "type": "inheritance_scope",
+      "detail": "The request is explicitly personal."
+    },
+    {
+      "type": "env_var_reference",
+      "detail": "SEARCH_API_KEY is referenced as ${SEARCH_API_KEY}."
+    },
+    {
+      "type": "retry_policy",
+      "detail": "Client owns retry with max_attempts=3."
+    }
+  ],
+  "validation": {
+    "scope_matches_inheritance": true,
+    "env_var_expansion_only": true,
+    "literal_secret_count": 0,
+    "typed_error_categories_complete": true,
+    "retry_policy_in_client": true,
+    "builtin_not_sufficient": true,
+    "deterministic_script_passed": true
+  },
+  "guardian": {
+    "decision": "pass",
+    "reason": "Personal scope is kept outside repo and errors are typed for client-owned retry."
+  }
+}

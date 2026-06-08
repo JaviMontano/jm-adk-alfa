@@ -1,0 +1,29 @@
+{
+  "schema": 1,
+  "skill": "mcp-engineering",
+  "required_categories": {
+    "auth": {
+      "isRetryable": false,
+      "retryAfterSeconds": null
+    },
+    "rate_limit": {
+      "isRetryable": true,
+      "retryAfterSeconds": "required_positive_integer"
+    },
+    "transient": {
+      "isRetryable": true,
+      "retryAfterSeconds": "nullable_or_positive_integer"
+    },
+    "fatal": {
+      "isRetryable": false,
+      "retryAfterSeconds": null
+    }
+  },
+  "required_fields": [
+    "errorCategory",
+    "isRetryable",
+    "retryAfterSeconds",
+    "http_statuses"
+  ],
+  "generic_error_string_allowed": false
+}

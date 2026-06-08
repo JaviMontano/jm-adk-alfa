@@ -41,6 +41,19 @@ No la uses cuando un tool built-in (Read, Grep, Bash) ya resuelve la necesidad: 
 5. **Si se filtró un secreto, rótalo y purga.** Rotar la credencial comprometida + reescribir historia con `git filter-repo`. Un `.gitignore` posterior NO borra lo ya commiteado.
 6. **Justifica MCP frente al built-in.** Antes de añadir un servidor, confirma que ningún tool built-in cubre el caso.
 
+## Contrato determinístico
+
+Usa los assets de `assets/` como contrato de validación:
+
+- `assets/mcp-engineering-contract.json`: campos obligatorios del reporte.
+- `assets/scope-policy.json`: correspondencia team/personal con `.mcp.json` o `~/.claude.json`.
+- `assets/secret-policy.json`: formato `${ENV_VAR}`, detección de literales y remediación por rotación + `git filter-repo`.
+- `assets/typed-error-policy.json`: categorías, retryability y `retryAfterSeconds`.
+- `assets/client-retry-policy.json`: límites de retry propiedad del cliente.
+- `assets/evidence-policy.json`: evidencia mínima para certificar la configuración.
+
+Cuando el entregable sea JSON, valida offline con `scripts/validate_mcp_engineering.py`. Para la smoke determinística completa ejecuta `scripts/check.sh`, que acepta fixtures válidos y rechaza mutaciones inválidas.
+
 ## Patrón correcto
 
 ```jsonc
@@ -106,6 +119,7 @@ function toolError() {
 - ¿La política de reintento vive en el cliente, no en el modelo?
 - ¿Se recurre a MCP solo cuando ningún tool built-in aplica?
 - ¿Ante fuga de secreto el plan es rotar + `filter-repo`, no solo `.gitignore`?
+- ¿El reporte pasa `scripts/check.sh` si se requiere evidencia offline?
 
 ## Katas y skills relacionadas
 
