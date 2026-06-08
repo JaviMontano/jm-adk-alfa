@@ -1,24 +1,17 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: katas-posttooluse-normalization
-generated-on: 2026-05-29
-overwrite-policy: missing-only unless --force
--->
+# Meta Prompt
 
-# Katas Posttooluse Normalization Meta Prompt
-
-Decide si `katas-posttooluse-normalization` debe activarse y qué agentes participan.
+Activa `katas-posttooluse-normalization` cuando el problema sea limpiar output después de ejecutar una tool y antes del historial del modelo.
 
 ## Activation Check
 
-- ¿Hay una o más tools que devuelven payloads heterogéneos o legacy (XML, códigos opacos) que conviene canonizar a JSON?
-- ¿El usuario menciona `PostToolUse`, `updatedMCPToolOutput`, normalización de output o payloads legacy?
-- ¿Se busca una garantía central por runtime, no una limpieza voluntaria por-tool?
-- NO activar si el problema es extracción defensiva de un `tool_result` ya estructurado (esa es otra kata) ni si el input está vacío.
+- ¿Hay XML, códigos opacos o payload legacy?
+- ¿Se menciona `PostToolUse` o `updatedMCPToolOutput`?
+- ¿La garantía debe ser central por runtime?
+- ¿El usuario pide que el modelo no vea payload crudo?
 
-## Agentes
+## Do Not Activate
 
-- lead: implementa el hook y `STATUS_MAP`.
-- support: caza tools fuera del matcher y códigos sin mapear.
-- guardian: valida el argumento de runtime y rechaza el anti-patrón por-tool.
-- specialist: detalle del shape del hook en el SDK.
+- La tarea bloquea una tool antes de ejecutar.
+- La tarea sólo valida un JSON ya limpio.
+- No hay tool output ni payload crudo.
+- El input está vacío y no define formato origen ni destino.

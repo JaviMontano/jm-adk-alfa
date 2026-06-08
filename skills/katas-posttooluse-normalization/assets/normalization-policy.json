@@ -1,0 +1,8 @@
+{
+  "schema": 1,
+  "canonical_fields": ["order_id", "status", "amount"],
+  "status_map_required": true,
+  "fallback_status": "unknown",
+  "matcher_must_cover_all_legacy_tools": true,
+  "per_tool_normalization_allowed": false
+}

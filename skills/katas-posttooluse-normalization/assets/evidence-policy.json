@@ -1,0 +1,13 @@
+{
+  "schema": 1,
+  "accepted_evidence_types": [
+    "hook_code",
+    "matcher_inventory",
+    "raw_payload_fixture",
+    "normalized_output_fixture",
+    "history_trace",
+    "fallback_test",
+    "additional_context_review"
+  ],
+  "minimum_evidence_items": 2
+}

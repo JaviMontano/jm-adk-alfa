@@ -1,7 +1,5 @@
 {
   "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-29",
   "skill": "katas-posttooluse-normalization",
   "nodes": [
     {
@@ -10,126 +8,76 @@
       "label": "katas-posttooluse-normalization"
     },
     {
-      "id": "katas-posttooluse-normalization:inputs",
-      "type": "contract",
-      "label": "Expected inputs"
+      "id": "posttooluse-hook",
+      "type": "concept",
+      "label": "PostToolUse hook"
     },
     {
-      "id": "katas-posttooluse-normalization:outputs",
+      "id": "updated-mcp-tool-output",
       "type": "contract",
-      "label": "Expected outputs"
+      "label": "updatedMCPToolOutput"
     },
     {
-      "id": "katas-posttooluse-normalization:quality",
+      "id": "status-map",
+      "type": "contract",
+      "label": "STATUS_MAP"
+    },
+    {
+      "id": "additional-context",
+      "type": "concept",
+      "label": "additionalContext metadata"
+    },
+    {
+      "id": "raw-payload-hidden",
       "type": "gate",
-      "label": "Quality criteria"
+      "label": "raw payload hidden from model"
     },
     {
-      "id": "concept:posttooluse-hook",
-      "type": "concept",
-      "label": "Hook PostToolUse (garantia de runtime)"
-    },
-    {
-      "id": "concept:updated-mcp-tool-output",
-      "type": "concept",
-      "label": "updatedMCPToolOutput reemplaza el output crudo"
-    },
-    {
-      "id": "concept:status-map",
-      "type": "concept",
-      "label": "STATUS_MAP / esquemas en codigo recargable"
-    },
-    {
-      "id": "concept:additional-context",
-      "type": "concept",
-      "label": "additionalContext para metadatos auditables"
-    },
-    {
-      "id": "antipattern:per-tool-normalization",
+      "id": "per-tool-antipattern",
       "type": "antipattern",
-      "label": "Normalizacion por-tool via @tool decorators (fragil)"
+      "label": "per-tool normalization"
     },
     {
-      "id": "argument:runtime-responsibility",
-      "type": "argument",
-      "label": "La normalizacion es responsabilidad del runtime, no de cada tool"
-    },
-    {
-      "id": "katas-posttooluse-normalization:ontology",
-      "type": "ontology",
-      "label": "Domain: agentic-architecture/hooks"
-    },
-    {
-      "id": "katas-posttooluse-normalization:evidence",
+      "id": "offline-validator",
       "type": "gate",
-      "label": "Evidence / provenance requirements"
-    },
-    {
-      "id": "katas-posttooluse-normalization:antipattern",
-      "type": "risk",
-      "label": "Canonical anti-pattern to avoid"
+      "label": "offline JSON report validator"
     }
   ],
   "edges": [
     {
       "from": "katas-posttooluse-normalization",
-      "to": "katas-posttooluse-normalization:inputs",
+      "to": "posttooluse-hook",
       "type": "requires"
     },
     {
-      "from": "katas-posttooluse-normalization",
-      "to": "katas-posttooluse-normalization:outputs",
-      "type": "produces"
+      "from": "posttooluse-hook",
+      "to": "updated-mcp-tool-output",
+      "type": "emits"
     },
     {
-      "from": "katas-posttooluse-normalization",
-      "to": "katas-posttooluse-normalization:quality",
+      "from": "posttooluse-hook",
+      "to": "status-map",
+      "type": "uses"
+    },
+    {
+      "from": "posttooluse-hook",
+      "to": "additional-context",
+      "type": "adds"
+    },
+    {
+      "from": "updated-mcp-tool-output",
+      "to": "raw-payload-hidden",
       "type": "validated_by"
     },
     {
-      "from": "katas-posttooluse-normalization",
-      "to": "concept:posttooluse-hook",
-      "type": "applies"
-    },
-    {
-      "from": "concept:posttooluse-hook",
-      "to": "concept:updated-mcp-tool-output",
-      "type": "uses"
-    },
-    {
-      "from": "concept:posttooluse-hook",
-      "to": "concept:status-map",
-      "type": "uses"
-    },
-    {
-      "from": "concept:posttooluse-hook",
-      "to": "concept:additional-context",
-      "type": "uses"
-    },
-    {
-      "from": "concept:posttooluse-hook",
-      "to": "antipattern:per-tool-normalization",
-      "type": "contrasts_with"
-    },
-    {
-      "from": "argument:runtime-responsibility",
-      "to": "concept:posttooluse-hook",
-      "type": "justifies"
+      "from": "per-tool-antipattern",
+      "to": "raw-payload-hidden",
+      "type": "violates"
     },
     {
       "from": "katas-posttooluse-normalization",
-      "to": "katas-posttooluse-normalization:ontology",
-      "type": "classified_as"
-    },
-    {
-      "from": "katas-posttooluse-normalization",
-      "to": "katas-posttooluse-normalization:evidence",
+      "to": "offline-validator",
       "type": "validated_by"
-    },
-    {
-      "from": "katas-posttooluse-normalization",
-      "to": "katas-posttooluse-normalization:antipattern",
-      "type": "guards_against"
     }
   ]
 }

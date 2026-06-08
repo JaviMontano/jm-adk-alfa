@@ -1,0 +1,77 @@
+{
+  "schema": 1,
+  "skill": "katas-posttooluse-normalization",
+  "report_id": "ptu-normalization-valid-legacy-erp",
+  "scenario": "legacy ERP XML normalized before model history",
+  "evidence": [
+    {
+      "type": "hook_code",
+      "detail": "PostToolUse hook returns hookSpecificOutput.updatedMCPToolOutput."
+    },
+    {
+      "type": "matcher_inventory",
+      "detail": "Matcher covers get_order, get_invoice, get_shipment, and legacy_erp_* tools."
+    },
+    {
+      "type": "history_trace",
+      "detail": "Model history contains canonical JSON only, not raw XML."
+    }
+  ],
+  "hook": {
+    "event_name": "PostToolUse",
+    "matcher": "legacy_erp_*|get_order|get_invoice|get_shipment",
+    "registered": true,
+    "runtime_enforced": true,
+    "hook_specific_output": {
+      "hookEventName": "PostToolUse",
+      "updatedMCPToolOutput": {
+        "type": "text",
+        "text": "{\"order_id\":\"A-4471\",\"status\":\"paid\",\"amount\":1290.5}"
+      },
+      "additionalContext": "source=legacy_erp_xml; normalized=true"
+    }
+  },
+  "normalization": {
+    "status_map": {
+      "0xA1": "paid",
+      "0xB2": "pending",
+      "0xC3": "overdue"
+    },
+    "canonical_schema": ["order_id", "status", "amount"],
+    "transformations": [
+      {
+        "tool_name": "get_order",
+        "raw_payload": "<OrderResponse><OrderId>A-4471</OrderId><StatusCode>0xA1</StatusCode><Total>1290.50</Total></OrderResponse>",
+        "normalized_output": {
+          "order_id": "A-4471",
+          "status": "paid",
+          "amount": 1290.5
+        },
+        "raw_payload_visible_to_model": false,
+        "fallback_for_unknown": "unknown"
+      },
+      {
+        "tool_name": "get_invoice",
+        "raw_payload": "<InvoiceResponse><OrderId>I-1007</OrderId><StatusCode>0xB2</StatusCode><Total>88.20</Total></InvoiceResponse>",
+        "normalized_output": {
+          "order_id": "I-1007",
+          "status": "pending",
+          "amount": 88.2
+        },
+        "raw_payload_visible_to_model": false,
+        "fallback_for_unknown": "unknown"
+      }
+    ]
+  },
+  "validation": {
+    "raw_payload_visible_to_model": false,
+    "all_matched_tools_covered": true,
+    "fallback_for_unknown_status": true,
+    "per_tool_normalization": false,
+    "additional_context_contains_payload": false
+  },
+  "guardian": {
+    "decision": "pass",
+    "reason": "Runtime PostToolUse normalization replaces raw XML with canonical JSON before model history."
+  }
+}

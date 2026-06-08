@@ -64,7 +64,7 @@ async def normalize_legacy(input, tool_use_id, ctx):
 @tool
 def get_order(id):
     raw = legacy_erp.fetch(id)
-    return normalize(raw)  # frágil: depende de que TODO autor lo recuerde
+    return normalize(raw)  # frágil: depende de que cada autor lo recuerde
 
 @tool
 def get_invoice(id):
@@ -74,6 +74,16 @@ def get_invoice(id):
 ## Argumento de certificación
 
 La normalización de outputs heterogéneos es responsabilidad del runtime vía `PostToolUse`, no convención de cada tool. Defiende: el hook matchea por patrón y garantiza la transformación para todas las tools; `updatedMCPToolOutput` impide que el XML crudo entre al historial; `additionalContext` sirve para metadatos auditables que el modelo no necesita ver. Quiz de referencia: C·B·B.
+
+## Contrato determinístico
+
+- El hook debe declarar `hookEventName: "PostToolUse"` y estar registrado con matcher que cubra todas las tools legacy.
+- `updatedMCPToolOutput` debe reemplazar el payload crudo por JSON canónico.
+- `additionalContext` debe contener sólo metadatos auditables, no XML ni payload crudo.
+- `STATUS_MAP` y el esquema canónico viven en un lugar recargable.
+- Los códigos no mapeados deben caer en fallback explícito `unknown`.
+- La validación offline usa `assets/posttooluse-normalization-contract.json`, `assets/updated-output-policy.json`, `assets/normalization-policy.json` y `assets/evidence-policy.json`.
+- Comando local: `bash skills/katas-posttooluse-normalization/scripts/check.sh`.
 
 ## Cuándo activar
 

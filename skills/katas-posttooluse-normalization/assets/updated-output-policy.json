@@ -1,0 +1,12 @@
+{
+  "schema": 1,
+  "hook_event_name": "PostToolUse",
+  "required_hook_output_fields": [
+    "hookEventName",
+    "updatedMCPToolOutput",
+    "additionalContext"
+  ],
+  "updated_output_type": "text",
+  "raw_payload_markers": ["<", ">", "</", "<?xml", "StatusCode"],
+  "additional_context_must_exclude_raw_payload": true
+}
