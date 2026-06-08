@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-06-05",
+  "skill": "proceso-seleccion-orchestrator",
+  "nodes": [
+    {
+      "id": "proceso-seleccion-orchestrator",
+      "type": "skill",
+      "label": "proceso-seleccion-orchestrator"
+    },
+    {
+      "id": "proceso-seleccion-orchestrator:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "proceso-seleccion-orchestrator:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "proceso-seleccion-orchestrator:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "proceso-seleccion-orchestrator",
+      "to": "proceso-seleccion-orchestrator:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "proceso-seleccion-orchestrator",
+      "to": "proceso-seleccion-orchestrator:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "proceso-seleccion-orchestrator",
+      "to": "proceso-seleccion-orchestrator:quality",
+      "type": "validated_by"
+    }
+  ]
+}

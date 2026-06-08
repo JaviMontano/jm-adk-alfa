@@ -1,0 +1,33 @@
+{
+  "schema": 1,
+  "roles": {
+    "consultant-offer-manager": {
+      "es": [
+        {"angle": "logro", "q": "Cuéntame un caso donde habilitaste un resultado de negocio, no solo entregaste horas."},
+        {"angle": "conflicto", "q": "Describe un desacuerdo con un stakeholder senior y cómo lo resolviste."},
+        {"angle": "método", "q": "¿Cómo llevas una propuesta de oferta de cero a firma?"},
+        {"angle": "fracaso", "q": "Un proyecto que no salió: qué aprendiste y qué cambiaste."}
+      ],
+      "en": [
+        {"angle": "impact", "q": "Walk me through a time you enabled a business outcome end to end."},
+        {"angle": "conflict", "q": "A disagreement with an executive sponsor — how did you handle it?"},
+        {"angle": "method", "q": "How do you take an offer/proposal from zero to signature?"},
+        {"angle": "failure", "q": "A project that failed: what did you learn and change?"}
+      ]
+    },
+    "generic": {
+      "es": [
+        {"angle": "logro", "q": "Tu mayor logro medible y tu rol exacto en él."},
+        {"angle": "conflicto", "q": "Cómo manejas prioridades en conflicto."},
+        {"angle": "método", "q": "Tu forma de estructurar un problema ambiguo."},
+        {"angle": "fracaso", "q": "Un error propio y el aprendizaje."}
+      ],
+      "en": [
+        {"angle": "impact", "q": "Your most measurable achievement and your exact role."},
+        {"angle": "conflict", "q": "How you handle conflicting priorities."},
+        {"angle": "method", "q": "How you structure an ambiguous problem."},
+        {"angle": "failure", "q": "A mistake of yours and the lesson."}
+      ]
+    }
+  }
+}

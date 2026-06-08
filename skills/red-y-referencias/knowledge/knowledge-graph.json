@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-06-05",
+  "skill": "red-y-referencias",
+  "nodes": [
+    {
+      "id": "red-y-referencias",
+      "type": "skill",
+      "label": "red-y-referencias"
+    },
+    {
+      "id": "red-y-referencias:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "red-y-referencias:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "red-y-referencias:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "red-y-referencias",
+      "to": "red-y-referencias:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "red-y-referencias",
+      "to": "red-y-referencias:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "red-y-referencias",
+      "to": "red-y-referencias:quality",
+      "type": "validated_by"
+    }
+  ]
+}

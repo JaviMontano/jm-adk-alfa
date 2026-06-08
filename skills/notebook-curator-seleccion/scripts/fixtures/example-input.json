@@ -1,0 +1,8 @@
+{
+  "schema": 1,
+  "skill": "notebook-curator-seleccion",
+  "mode": "dry-run",
+  "input": {
+    "goal": "Run deterministic automation for notebook-curator-seleccion."
+  }
+}

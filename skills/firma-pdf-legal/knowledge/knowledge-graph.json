@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-06-05",
+  "skill": "firma-pdf-legal",
+  "nodes": [
+    {
+      "id": "firma-pdf-legal",
+      "type": "skill",
+      "label": "firma-pdf-legal"
+    },
+    {
+      "id": "firma-pdf-legal:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "firma-pdf-legal:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "firma-pdf-legal:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "firma-pdf-legal",
+      "to": "firma-pdf-legal:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "firma-pdf-legal",
+      "to": "firma-pdf-legal:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "firma-pdf-legal",
+      "to": "firma-pdf-legal:quality",
+      "type": "validated_by"
+    }
+  ]
+}

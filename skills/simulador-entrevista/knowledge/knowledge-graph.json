@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-06-05",
+  "skill": "simulador-entrevista",
+  "nodes": [
+    {
+      "id": "simulador-entrevista",
+      "type": "skill",
+      "label": "simulador-entrevista"
+    },
+    {
+      "id": "simulador-entrevista:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "simulador-entrevista:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "simulador-entrevista:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "simulador-entrevista",
+      "to": "simulador-entrevista:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "simulador-entrevista",
+      "to": "simulador-entrevista:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "simulador-entrevista",
+      "to": "simulador-entrevista:quality",
+      "type": "validated_by"
+    }
+  ]
+}

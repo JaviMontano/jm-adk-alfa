@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-06-05",
+  "skill": "cv-cover-optimizer",
+  "nodes": [
+    {
+      "id": "cv-cover-optimizer",
+      "type": "skill",
+      "label": "cv-cover-optimizer"
+    },
+    {
+      "id": "cv-cover-optimizer:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "cv-cover-optimizer:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "cv-cover-optimizer:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "cv-cover-optimizer",
+      "to": "cv-cover-optimizer:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "cv-cover-optimizer",
+      "to": "cv-cover-optimizer:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "cv-cover-optimizer",
+      "to": "cv-cover-optimizer:quality",
+      "type": "validated_by"
+    }
+  ]
+}

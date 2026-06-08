@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generated_by": "scripts/scaffold-skill.py",
+  "generated_on": "2026-06-05",
+  "skill": "negociacion-oferta",
+  "nodes": [
+    {
+      "id": "negociacion-oferta",
+      "type": "skill",
+      "label": "negociacion-oferta"
+    },
+    {
+      "id": "negociacion-oferta:inputs",
+      "type": "contract",
+      "label": "Expected inputs"
+    },
+    {
+      "id": "negociacion-oferta:outputs",
+      "type": "contract",
+      "label": "Expected outputs"
+    },
+    {
+      "id": "negociacion-oferta:quality",
+      "type": "gate",
+      "label": "Quality criteria"
+    }
+  ],
+  "edges": [
+    {
+      "from": "negociacion-oferta",
+      "to": "negociacion-oferta:inputs",
+      "type": "requires"
+    },
+    {
+      "from": "negociacion-oferta",
+      "to": "negociacion-oferta:outputs",
+      "type": "produces"
+    },
+    {
+      "from": "negociacion-oferta",
+      "to": "negociacion-oferta:quality",
+      "type": "validated_by"
+    }
+  ]
+}
