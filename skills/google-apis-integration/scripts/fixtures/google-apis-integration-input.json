@@ -1,0 +1,178 @@
+{
+  "schema_version": 1,
+  "project": {
+    "name": "Customer Operations Dashboard",
+    "owner": "JM Labs",
+    "environment": "serverless_backend_with_web_frontend"
+  },
+  "integration_mode": "web_app_with_backend",
+  "services": [
+    {
+      "id": "sheets",
+      "operation": "spreadsheets.values.batchUpdate",
+      "purpose": "Write curated KPI rows to an app-opened spreadsheet after reading the target range.",
+      "auth_profile": "sheets_write_file",
+      "requested_scopes": ["https://www.googleapis.com/auth/drive.file"],
+      "mutation": true,
+      "resource_identifiers": {
+        "spreadsheet_id": "sheet_customer_ops",
+        "range": "KPI!A2:H50"
+      },
+      "read_before_write": true,
+      "idempotency_key": "sheets-kpi-batch-20260601",
+      "retry_policy": "default_exponential_backoff",
+      "quota_strategy": {
+        "batching": true,
+        "partial_response_fields": "spreadsheetId,updatedRange,totalUpdatedRows",
+        "quota_user_or_key_restriction": "quotaUser=tenant-customer-ops"
+      }
+    },
+    {
+      "id": "docs",
+      "operation": "documents.batchUpdate",
+      "purpose": "Insert an approved kickoff brief into an app-created customer document.",
+      "auth_profile": "docs_write_file",
+      "requested_scopes": ["https://www.googleapis.com/auth/drive.file"],
+      "mutation": true,
+      "resource_identifiers": {
+        "document_id": "doc_customer_kickoff",
+        "revision_guard": "requiredRevisionId"
+      },
+      "read_before_write": true,
+      "idempotency_key": "docs-brief-batch-20260601",
+      "retry_policy": "default_exponential_backoff",
+      "quota_strategy": {
+        "batching": true,
+        "partial_response_fields": "documentId,replies",
+        "quota_user_or_key_restriction": "quotaUser=tenant-customer-ops"
+      }
+    },
+    {
+      "id": "calendar",
+      "operation": "events.insert",
+      "purpose": "Schedule a customer review with attendee and notification review before sending invitations.",
+      "auth_profile": "calendar_events_write",
+      "requested_scopes": ["https://www.googleapis.com/auth/calendar.events"],
+      "mutation": true,
+      "resource_identifiers": {
+        "calendar_id": "primary",
+        "event_summary": "Customer Operations Review",
+        "time_zone": "America/Bogota"
+      },
+      "read_before_write": true,
+      "idempotency_key": "calendar-review-event-20260603",
+      "retry_policy": "calendar_event_write_backoff",
+      "quota_strategy": {
+        "batching": false,
+        "partial_response_fields": "id,htmlLink,status,conferenceData",
+        "quota_user_or_key_restriction": "quotaUser=tenant-customer-ops"
+      }
+    },
+    {
+      "id": "maps_js",
+      "operation": "maps.load_js_api",
+      "purpose": "Render customer locations in the browser using application-authorized coordinates.",
+      "auth_profile": "maps_js_restricted_key",
+      "requested_scopes": [],
+      "mutation": false,
+      "resource_identifiers": {
+        "allowed_referrer": "https://app.example.com/*",
+        "map_container": "customer-map"
+      },
+      "api_key_policy": {
+        "restricted": true,
+        "allowed_apis": ["Maps JavaScript API"],
+        "allowed_referrers": ["https://app.example.com/*"]
+      },
+      "read_before_write": false,
+      "idempotency_key": "",
+      "retry_policy": "maps_js_loader_recoverable",
+      "quota_strategy": {
+        "batching": false,
+        "partial_response_fields": "not_applicable_client_loader",
+        "quota_user_or_key_restriction": "http-referrer and Maps JavaScript API restrictions"
+      }
+    },
+    {
+      "id": "youtube",
+      "operation": "search.list",
+      "purpose": "Read public training videos to embed approved links in the dashboard.",
+      "auth_profile": "youtube_public_read_api_key",
+      "requested_scopes": [],
+      "mutation": false,
+      "resource_identifiers": {
+        "query": "customer operations training",
+        "max_results": 5
+      },
+      "api_key_policy": {
+        "restricted": true,
+        "allowed_apis": ["YouTube Data API v3"],
+        "allowed_referrers": ["https://app.example.com/*"]
+      },
+      "read_before_write": false,
+      "idempotency_key": "",
+      "retry_policy": "default_exponential_backoff",
+      "quota_strategy": {
+        "batching": false,
+        "partial_response_fields": "items(id/videoId,snippet/title),nextPageToken",
+        "quota_user_or_key_restriction": "API key restricted to YouTube Data API v3 and approved referrers"
+      }
+    }
+  ],
+  "human_consent": {
+    "status": "confirmed",
+    "confirmed_by": "product-owner@example.com",
+    "confirmation_text": "I approve Google API mutations: Sheets KPI batch, Docs kickoff brief, Calendar customer review invitation."
+  },
+  "secrets": {
+    "token_storage": "server_secret_manager",
+    "client_secret_exposure": "never",
+    "refresh_tokens_encrypted": true,
+    "api_keys_restricted": true,
+    "oauth_tokens_server_side": true,
+    "no_static_secrets_in_client": true,
+    "maps_api_key_restriction": "http_referrer_and_api_restricted"
+  },
+  "test_matrix": [
+    {
+      "id": "unit-schema-policy",
+      "layer": "unit",
+      "covers": ["schema", "scope profiles", "service catalog"]
+    },
+    {
+      "id": "contract-google-payloads",
+      "layer": "contract",
+      "covers": ["Sheets ValueRange", "Docs batchUpdate", "Calendar event insert", "Maps loader", "YouTube search"]
+    },
+    {
+      "id": "sandbox-google-project",
+      "layer": "integration-sandbox",
+      "covers": ["enabled APIs", "test OAuth client", "disposable resources"]
+    },
+    {
+      "id": "preview-user-flow",
+      "layer": "e2e-preview",
+      "covers": ["dashboard load", "read-back verification", "Maps rendering"]
+    },
+    {
+      "id": "security-secrets-consent",
+      "layer": "security",
+      "covers": ["token storage", "API key restrictions", "log redaction"]
+    },
+    {
+      "id": "quota-error-stubs",
+      "layer": "quota-error",
+      "covers": ["400", "401", "403", "429", "5xx", "backoff"]
+    },
+    {
+      "id": "consent-mutation-blocker",
+      "layer": "consent-gate",
+      "covers": ["unconfirmed writes blocked", "confirmation text captured"]
+    }
+  ],
+  "evidence": {
+    "source": "local fixture for deterministic DoD validation",
+    "compiled_from": "assets/service-catalog.json and assets/auth-scope-policy.json",
+    "offline_only": "no Google, OAuth, HTTP, network, or MCP calls"
+  }
+}

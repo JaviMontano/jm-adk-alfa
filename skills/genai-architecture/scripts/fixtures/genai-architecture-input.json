@@ -1,0 +1,175 @@
+{
+  "system_name": "MetodologIA Knowledge Copilot",
+  "audience": "Founders, presales architects, and implementation engineers",
+  "business_goal": "Answer methodology and client-delivery questions with cited internal knowledge and controlled tool use.",
+  "scope": "technical",
+  "deployment_preference": "hybrid",
+  "data_sensitivity": "confidential",
+  "knowledge_base": {
+    "size": "large",
+    "update_frequency": "daily",
+    "languages": ["es", "en"],
+    "source_count": 1280
+  },
+  "knowledge_sources": [
+    {
+      "name": "Jarvis OS canon",
+      "type": "documents",
+      "update_frequency": "daily",
+      "access_model": "filesystem ACL plus manifest",
+      "sensitivity": "confidential",
+      "owner": "methodology-ops"
+    },
+    {
+      "name": "Client proposal archive",
+      "type": "documents",
+      "update_frequency": "weekly",
+      "access_model": "workspace-scoped read",
+      "sensitivity": "confidential",
+      "owner": "presales"
+    },
+    {
+      "name": "CRM account context",
+      "type": "crm",
+      "update_frequency": "real-time",
+      "access_model": "row-level security",
+      "sensitivity": "internal",
+      "owner": "growth"
+    }
+  ],
+  "rag_pipeline": [
+    {
+      "id": "query_processing",
+      "decision": "Classify intent and rewrite ambiguous bilingual questions.",
+      "mechanism": "Tier-3 classifier plus deterministic language detection.",
+      "owner": "agent-platform",
+      "metric": "intent_accuracy"
+    },
+    {
+      "id": "retrieval",
+      "decision": "Use hybrid vector plus keyword retrieval with ACL filters.",
+      "mechanism": "Qdrant hybrid search with metadata filters and reciprocal rank fusion.",
+      "owner": "knowledge-platform",
+      "metric": "retrieval_recall_at_k"
+    },
+    {
+      "id": "context_assembly",
+      "decision": "Re-rank, deduplicate, and preserve source provenance.",
+      "mechanism": "Cross-encoder re-rank plus citation budget per source family.",
+      "owner": "knowledge-platform",
+      "metric": "citation_accuracy"
+    },
+    {
+      "id": "generation",
+      "decision": "Route synthesis to a model tier based on complexity and risk.",
+      "mechanism": "Policy router with escalation when retrieval confidence is low.",
+      "owner": "agent-platform",
+      "metric": "cost_per_answer"
+    },
+    {
+      "id": "validation",
+      "decision": "Block unsupported claims and high-risk tool actions.",
+      "mechanism": "Grounding check, citation verification, PII mask, and tool whitelist.",
+      "owner": "quality",
+      "metric": "faithfulness"
+    }
+  ],
+  "use_cases": [
+    {
+      "name": "Proposal drafting support",
+      "intent": "retrieval-and-synthesis",
+      "latency_class": "standard",
+      "quality_risk": "high"
+    },
+    {
+      "name": "Client context lookup",
+      "intent": "connector-grounded-answer",
+      "latency_class": "low",
+      "quality_risk": "medium"
+    },
+    {
+      "name": "Delivery playbook execution",
+      "intent": "multi-step-tool-use",
+      "latency_class": "standard",
+      "quality_risk": "high"
+    }
+  ],
+  "model_tiers": [
+    {
+      "tier": "tier-1",
+      "class": "frontier",
+      "use_case": "architecture synthesis and high-risk proposal reasoning",
+      "trigger": "high complexity or low retrieval confidence",
+      "fallback": "tier-2 with human review"
+    },
+    {
+      "tier": "tier-2",
+      "class": "mid-size",
+      "use_case": "standard Q&A, summarization, and draft expansion",
+      "trigger": "normal complexity and grounded evidence present",
+      "fallback": "tier-3 extraction plus citation-only response"
+    },
+    {
+      "tier": "tier-3",
+      "class": "lightweight",
+      "use_case": "routing, extraction, PII masking, and format validation",
+      "trigger": "classification or policy task",
+      "fallback": "rule-based validator"
+    },
+    {
+      "tier": "tier-4",
+      "class": "cache-or-rule",
+      "use_case": "known safe answers and outage fallback",
+      "trigger": "cache hit or provider outage",
+      "fallback": "degraded response with no generation"
+    }
+  ],
+  "connectors": [
+    {
+      "name": "Document index",
+      "type": "documents",
+      "access_pattern": "indexed retrieval with source ACL preservation",
+      "security_control": "manifest hash plus path allowlist",
+      "fallback": "serve last indexed snapshot"
+    },
+    {
+      "name": "CRM",
+      "type": "crm",
+      "access_pattern": "real-time read-only query",
+      "security_control": "row-level security plus audit log",
+      "fallback": "omit CRM context and mark answer degraded"
+    }
+  ],
+  "quality_targets": [
+    {
+      "metric": "retrieval_recall_at_k",
+      "target": ">= 0.85",
+      "measurement": "labeled question set",
+      "owner": "quality"
+    },
+    {
+      "metric": "faithfulness",
+      "target": ">= 0.90",
+      "measurement": "LLM-as-judge plus human sampling",
+      "owner": "quality"
+    },
+    {
+      "metric": "citation_accuracy",
+      "target": ">= 0.95",
+      "measurement": "source support audit",
+      "owner": "knowledge-platform"
+    },
+    {
+      "metric": "p95_latency",
+      "target": "<= 4s",
+      "measurement": "production telemetry",
+      "owner": "agent-platform"
+    }
+  ],
+  "evidence": {
+    "source_inventory": "1280 governed documents",
+    "language_scope": "Spanish and English",
+    "security_requirement": "confidential internal knowledge with connector ACLs",
+    "workflow_need": "multi-step delivery playbook execution"
+  }
+}

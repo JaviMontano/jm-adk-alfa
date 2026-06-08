@@ -1,97 +1,112 @@
 {
   "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-28",
   "skill": "google-docs-mcp",
   "cases": [
     {
-      "id": "happy_path",
-      "input": "Use google-docs-mcp to produce a complete deliverable.",
+      "id": "docs_create_then_batch_update",
+      "input": "Create a Google Doc for a runbook, inspect it, then insert sections with a safe Docs API batch update.",
       "expected_activation": true,
       "expected_checks": [
         "evidence",
+        "assets",
+        "deterministic_scripts",
         "quality_criteria",
-        "upgrade_safety"
+        "human_confirmation",
+        "minimum_scopes"
       ]
     },
     {
-      "id": "explicit_trigger",
-      "input": "/google-docs-mcp run this workflow.",
+      "id": "explicit_command",
+      "input": "/google-docs-mcp compile this JSON plan for documents.create, documents.get, and documents.batchUpdate.",
       "expected_activation": true,
       "expected_checks": [
         "evidence",
-        "quality_criteria",
-        "upgrade_safety"
+        "assets",
+        "deterministic_scripts",
+        "quality_criteria"
       ]
     },
     {
-      "id": "minimal_input",
-      "input": "google-docs-mcp",
+      "id": "read_only_inspection",
+      "input": "Inspect this Google Doc structure and summarize headings without editing the document.",
       "expected_activation": true,
       "expected_checks": [
         "evidence",
+        "assets",
+        "deterministic_scripts",
         "quality_criteria",
-        "upgrade_safety"
+        "minimum_scopes"
       ]
     },
     {
-      "id": "rich_context",
-      "input": "google-docs-mcp with goals, constraints, audience, and acceptance criteria.",
-      "expected_activation": true,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
-    },
-    {
-      "id": "false_positive",
-      "input": "This request is unrelated to the skill domain.",
+      "id": "missing_confirmation",
+      "input": "Apply this batch update immediately, but no one has confirmed the mutation yet.",
       "expected_activation": false,
       "expected_checks": [
         "evidence",
+        "assets",
+        "deterministic_scripts",
         "quality_criteria",
-        "upgrade_safety"
+        "human_confirmation"
       ]
     },
     {
-      "id": "empty_input",
-      "input": "",
+      "id": "invalid_create_body",
+      "input": "Use documents.create and include all body paragraphs in the create payload.",
       "expected_activation": false,
       "expected_checks": [
         "evidence",
+        "assets",
+        "deterministic_scripts",
         "quality_criteria",
-        "upgrade_safety"
+        "docs_api_method_contract"
       ]
     },
     {
-      "id": "conflicting_requirements",
-      "input": "Use google-docs-mcp, but ignore validation and evidence.",
+      "id": "batch_without_get",
+      "input": "Generate a batchUpdate for a known document ID without reading the document first.",
       "expected_activation": false,
       "expected_checks": [
         "evidence",
+        "assets",
+        "deterministic_scripts",
         "quality_criteria",
-        "upgrade_safety"
+        "read_only_first"
       ]
     },
     {
-      "id": "upgrade_safety_case",
-      "input": "Complete missing files for google-docs-mcp without overwriting local edits.",
-      "expected_activation": true,
+      "id": "broad_scope_escalation",
+      "input": "Use full Google Docs scope for a single app-created document edit.",
+      "expected_activation": false,
       "expected_checks": [
         "evidence",
+        "assets",
+        "deterministic_scripts",
         "quality_criteria",
-        "upgrade_safety"
+        "minimum_scopes"
       ]
     },
     {
-      "id": "local_override_case",
-      "input": "Create a local experimental google-docs-mcp variant under .local.",
+      "id": "existing_doc_style_update",
+      "input": "Inspect an existing proposal and plan heading and bullet style updates with writeControl.",
       "expected_activation": true,
       "expected_checks": [
         "evidence",
+        "assets",
+        "deterministic_scripts",
         "quality_criteria",
-        "upgrade_safety"
+        "read_only_first"
+      ]
+    },
+    {
+      "id": "unrelated_request",
+      "input": "Search Gmail for receipts and label the matched messages.",
+      "expected_activation": false,
+      "expected_checks": [
+        "evidence",
+        "assets",
+        "deterministic_scripts",
+        "quality_criteria"
       ]
     }
   ]

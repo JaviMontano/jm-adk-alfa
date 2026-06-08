@@ -1,9 +1,69 @@
-[
-  {"id": "genai-architecture-happy-path", "type": "happy_path", "input": "Run genai architecture on this project", "expected_behavior": "Skill activates and produces the expected genai architecture output following the defined process", "tags": ["basic", "activation"]},
-  {"id": "genai-architecture-explicit-trigger", "type": "happy_path", "input": "Apply genai architecture analysis", "expected_behavior": "Skill recognizes the trigger phrase and executes the genai architecture workflow", "tags": ["trigger", "recognition"]},
-  {"id": "genai-architecture-with-context", "type": "happy_path", "input": "Apply genai architecture to analyze the current codebase with detailed output", "expected_behavior": "Skill produces comprehensive genai architecture analysis with evidence-tagged findings", "tags": ["detailed", "comprehensive"]},
-  {"id": "genai-architecture-minimal-input", "type": "happy_path", "input": "Quick genai architecture", "expected_behavior": "Skill activates with minimal input, applies reasonable defaults", "tags": ["minimal", "defaults"]},
-  {"id": "genai-architecture-false-positive", "type": "false_positive", "input": "What is the weather forecast for tomorrow?", "expected_behavior": "Skill should NOT activate — this input has no relation to genai architecture", "tags": ["false_positive", "should-not-activate"]},
-  {"id": "genai-architecture-edge-empty-input", "type": "edge_case", "input": "Run genai architecture but I have no files or documentation yet", "expected_behavior": "Skill handles gracefully — requests minimum viable input or produces gap analysis", "tags": ["edge_case", "empty-input", "boundary"]},
-  {"id": "genai-architecture-edge-conflicting", "type": "edge_case", "input": "Apply genai architecture but requirements contradict each other", "expected_behavior": "Skill detects contradiction, flags with [OPEN] tag, proposes resolution", "tags": ["edge_case", "conflict", "corner"]}
-]
+{
+  "skill": "genai-architecture",
+  "version": "1.0.0",
+  "cases": [
+    {
+      "id": "genai-architecture-rag-production",
+      "type": "happy_path",
+      "input": "Design a RAG architecture for a bilingual enterprise knowledge assistant with confidential documents and CRM context.",
+      "expected_behavior": "Produces a full architecture with RAG stages, connector security, model tiering, vector database decision, and quality metrics.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria"]
+    },
+    {
+      "id": "genai-architecture-vector-selection",
+      "type": "decision_quality",
+      "input": "Select a vector database for confidential internal knowledge with hybrid deployment.",
+      "expected_behavior": "Recommends a vector store from the matrix and explains deployment, filtering, scale, and operations trade-offs.",
+      "expected_checks": ["assets", "quality_criteria"]
+    },
+    {
+      "id": "genai-architecture-model-routing",
+      "type": "decision_quality",
+      "input": "Define LLM model routing for high-risk proposal generation and low-risk extraction tasks.",
+      "expected_behavior": "Defines tiers, triggers, fallback, escalation, cost control, and latency constraints.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria"]
+    },
+    {
+      "id": "genai-architecture-agent-workflow",
+      "type": "architecture",
+      "input": "Design agent workflow architecture with document retrieval, CRM lookup, and controlled tool use.",
+      "expected_behavior": "Includes intent routing, contextual augmentation, tool whitelist, input/output validation, audit logging, and degraded fallback.",
+      "expected_checks": ["assets", "quality_criteria"]
+    },
+    {
+      "id": "genai-architecture-quality-gates",
+      "type": "quality",
+      "input": "Plan quality assurance for hallucination reduction, source citations, and continuous improvement.",
+      "expected_behavior": "Defines retrieval recall, faithfulness, citation accuracy, p95 latency, cost, guardrails, and improvement cadence.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria"]
+    },
+    {
+      "id": "genai-architecture-cag-edge",
+      "type": "edge_case",
+      "input": "Design GenAI architecture for a small stable knowledge base that fits in the context window.",
+      "expected_behavior": "Considers CAG or hybrid CAG/RAG and documents limits around freshness, source attribution, and token cost.",
+      "expected_checks": ["assets", "quality_criteria"]
+    },
+    {
+      "id": "genai-architecture-invalid-rag",
+      "type": "negative",
+      "input": "Compile a GenAI architecture JSON that omits retrieval and validation stages.",
+      "expected_behavior": "Fails validation and reports missing RAG stage ids.",
+      "expected_checks": ["deterministic_scripts", "quality_criteria"]
+    },
+    {
+      "id": "genai-architecture-no-false-positive",
+      "type": "false_positive",
+      "input": "Write a short social media post about productivity.",
+      "expected_behavior": "Does not activate unless the request asks for GenAI, RAG, LLM, agent, vector database, or quality architecture.",
+      "expected_checks": ["quality_criteria"]
+    },
+    {
+      "id": "genai-architecture-evidence-tags",
+      "type": "compliance",
+      "input": "Produce a GenAI architecture report from structured source evidence.",
+      "expected_behavior": "Tags claims with CODE, INFERENCE, or ASSUMPTION and does not invent missing source details.",
+      "expected_checks": ["deterministic_scripts", "quality_criteria"]
+    }
+  ]
+}

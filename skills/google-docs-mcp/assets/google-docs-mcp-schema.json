@@ -1,0 +1,126 @@
+{
+  "schema": 1,
+  "skill": "google-docs-mcp",
+  "required_root_fields": [
+    "operation_id",
+    "request_title",
+    "mcp_server",
+    "operation_mode",
+    "requested_scope_profile",
+    "read_only_first",
+    "human_confirmation",
+    "operations",
+    "evidence"
+  ],
+  "allowed_operation_modes": [
+    "plan_only",
+    "safe_execution_checklist"
+  ],
+  "allowed_mcp_servers": [
+    "workspace-mcp"
+  ],
+  "allowed_actions": [
+    "create_document",
+    "get_document",
+    "batch_update"
+  ],
+  "read_only_actions": [
+    "get_document"
+  ],
+  "mutating_actions": [
+    "create_document",
+    "batch_update"
+  ],
+  "allowed_docs_api_methods": [
+    "documents.create",
+    "documents.get",
+    "documents.batchUpdate"
+  ],
+  "method_by_action": {
+    "create_document": "documents.create",
+    "get_document": "documents.get",
+    "batch_update": "documents.batchUpdate"
+  },
+  "required_operation_fields": [
+    "id",
+    "action",
+    "description",
+    "docs_api_method",
+    "mcp_tool",
+    "scope_profile"
+  ],
+  "required_read_only_first_fields": [
+    "document_resolved",
+    "structure_checked",
+    "revision_id_captured",
+    "existing_content_summary"
+  ],
+  "required_confirmation_fields": [
+    "status",
+    "confirmed_by",
+    "confirmation_text"
+  ],
+  "confirmation_required_for": [
+    "create_document",
+    "batch_update"
+  ],
+  "required_create_fields": [
+    "title",
+    "initial_content_strategy",
+    "follow_up_batch_update_required",
+    "document_id_capture",
+    "requires_human_confirmation"
+  ],
+  "allowed_initial_content_strategies": [
+    "blank_only",
+    "blank_then_batch_update"
+  ],
+  "blocked_create_fields": [
+    "body",
+    "content",
+    "requests",
+    "text"
+  ],
+  "required_get_fields": [
+    "document_id",
+    "fields",
+    "include_tabs_content",
+    "suggestions_view_mode",
+    "verify_document_id"
+  ],
+  "allowed_suggestions_view_modes": [
+    "DEFAULT_FOR_CURRENT_ACCESS",
+    "SUGGESTIONS_INLINE",
+    "PREVIEW_SUGGESTIONS_ACCEPTED",
+    "PREVIEW_WITHOUT_SUGGESTIONS"
+  ],
+  "required_batch_update_fields": [
+    "document_id",
+    "requests",
+    "write_control",
+    "requires_human_confirmation"
+  ],
+  "required_batch_request_fields": [
+    "type",
+    "payload"
+  ],
+  "allowed_batch_request_types": [
+    "insertText",
+    "deleteContentRange",
+    "replaceAllText",
+    "updateTextStyle",
+    "updateParagraphStyle",
+    "createParagraphBullets",
+    "insertTable",
+    "insertPageBreak"
+  ],
+  "required_evidence_fields": [
+    "repo_docs",
+    "google_docs_api",
+    "docs_scopes",
+    "docs_batch_update",
+    "docs_create_get",
+    "workspace_mcp_dev_server",
+    "mcp_tools_spec"
+  ]
+}

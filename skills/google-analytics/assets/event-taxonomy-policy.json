@@ -1,0 +1,68 @@
+{
+  "schema": 1,
+  "event_classes": [
+    {
+      "id": "automatic",
+      "setup": "no_manual_event_setup",
+      "examples": ["first_visit", "session_start", "user_engagement"],
+      "policy": "Inventory and avoid duplicating automatic events."
+    },
+    {
+      "id": "enhanced_measurement",
+      "setup": "usually_ui_toggle",
+      "examples": ["scroll", "click", "file_download"],
+      "policy": "Confirm enhanced measurement coverage before proposing custom equivalents."
+    },
+    {
+      "id": "recommended",
+      "setup": "manual",
+      "examples": ["login", "sign_up", "generate_lead", "purchase", "begin_checkout"],
+      "policy": "Prefer official recommended event names when a business action matches the reference."
+    },
+    {
+      "id": "custom",
+      "setup": "manual",
+      "examples": ["signup_newsletter", "dashboard_filter_apply"],
+      "policy": "Use only when automatic, enhanced, or recommended events do not fit."
+    }
+  ],
+  "naming_rules": {
+    "event_name_case": "lowercase_snake_case",
+    "event_name_pattern": "^[a-z][a-z0-9_]*$",
+    "custom_event_guidance": "verb_noun or object_action, stable over UI copy changes",
+    "blocked_patterns": [
+      "spaces",
+      "hyphens",
+      "camelCase",
+      "PascalCase",
+      "punctuation",
+      "temporary_campaign_names"
+    ],
+    "parameter_name_case": "lowercase_snake_case"
+  },
+  "parameter_rules": {
+    "required_fields": ["name", "type", "required", "scope", "value_source", "pii_risk", "notes"],
+    "pii_high_is_blocking": true,
+    "currency_required_when_value_is_monetary": true,
+    "items_array_for_ecommerce": "Use item-scoped parameters when modeling ecommerce item details.",
+    "custom_parameters": "Keep parameters stable, business-readable, and reportable."
+  },
+  "key_event_rules": {
+    "use_term": "key_event",
+    "legacy_term": "conversion",
+    "candidate_requirement": "Every key event must map to an event in the taxonomy.",
+    "value_requirement": "If value_strategy is monetary, currency_required must be true.",
+    "business_reason_required": true
+  },
+  "measurement_protocol_rules": {
+    "mode": "supplement_only",
+    "blocked_mode": "measurement_protocol_only",
+    "required_join_keys": ["client_id_or_app_instance_id"],
+    "session_guidance": "Include session_id when the offline/server event must reflect a specific session.",
+    "use_cases": [
+      "offline conversions",
+      "server-side interactions",
+      "online-to-offline behavior"
+    ]
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schema": 1,
+  "connector_types": [
+    {
+      "type": "crm",
+      "examples": ["Salesforce", "HubSpot"],
+      "default_access_pattern": "real-time query with row-level security"
+    },
+    {
+      "type": "erp",
+      "examples": ["SAP", "Oracle"],
+      "default_access_pattern": "hybrid cached reference data plus real-time transactional lookup"
+    },
+    {
+      "type": "itsm",
+      "examples": ["ServiceNow", "Jira Service Management"],
+      "default_access_pattern": "ticket retrieval plus controlled action tools"
+    },
+    {
+      "type": "documents",
+      "examples": ["Drive", "SharePoint", "Confluence"],
+      "default_access_pattern": "indexed documents with source ACL preservation"
+    },
+    {
+      "type": "web",
+      "examples": ["Search API", "site-specific crawler"],
+      "default_access_pattern": "time-boxed retrieval with freshness and citation checks"
+    }
+  ],
+  "mandatory_security_controls": [
+    "row-level security",
+    "OAuth or SAML authentication",
+    "tool input validation",
+    "tool output validation before model use",
+    "PII masking",
+    "audit logging",
+    "rate limiting",
+    "timeout and circuit breaker"
+  ],
+  "fallback_behaviors": [
+    "serve cached reference context",
+    "degrade to retrieval-only response",
+    "ask for human review",
+    "block high-risk action tools"
+  ]
+}

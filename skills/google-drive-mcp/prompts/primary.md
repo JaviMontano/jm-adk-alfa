@@ -1,27 +1,29 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: google-drive-mcp
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
-
-# Google Drive Mcp Primary Prompt
+# Google Drive MCP Primary Prompt
 
 ## Objective
 
-Execute `google-drive-mcp` for the user's task.
+Plan or execute safe Google Drive work through `workspace-mcp`.
 
 ## Required Inputs
 
 - Goal
-- Context
+- Drive target context: file name, folder path, file ID, Shared Drive, or query
 - Constraints
-- Definition of done
+- Intended operation: search/list, upload, download/export, folder organization,
+  copy/update, or sharing/permissions
+- Definition of done and confirmation requirements
 
 ## Process
 
-Discover -> Analyze -> Execute -> Validate.
+1. Discover read-only first with search/list or metadata inspection.
+2. Build explicit Drive parameters: `q`, `fields`, `trashed = false`, `spaces`,
+   `corpora`, page size, MIME/export type, and scope profile.
+3. Confirm before any upload, folder creation, copy/update, or permission change.
+4. Execute only the minimum MCP tool calls needed.
+5. Validate with evidence and residual limits.
 
 ## Output
 
-Return the deliverable in this shape: Markdown with summary, evidence, result, validation, and risks.
+Return Markdown with summary, evidence, MCP preflight, operation plan, validation,
+and risks. Use `scripts/compile-google-drive-mcp.py` for structured offline
+plans.

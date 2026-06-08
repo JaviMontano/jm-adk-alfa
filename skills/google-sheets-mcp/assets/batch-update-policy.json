@@ -1,0 +1,24 @@
+{
+  "schema": 1,
+  "method": "spreadsheets.batchUpdate",
+  "requirements": {
+    "requests_non_empty": true,
+    "include_spreadsheet_in_response_default": false,
+    "atomicity": "If any request is not valid, the entire request fails and nothing is applied.",
+    "request_order": "Requests are applied in the order specified.",
+    "collaboration_limit": "Collaborator changes can alter the final spreadsheet state relative to the submitted changes."
+  },
+  "allowed_request_types": [
+    "addSheet",
+    "updateSheetProperties",
+    "repeatCell",
+    "updateCells",
+    "addProtectedRange",
+    "setDataValidation",
+    "updateDimensionProperties",
+    "addNamedRange",
+    "autoResizeDimensions",
+    "updateBorders",
+    "mergeCells"
+  ]
+}

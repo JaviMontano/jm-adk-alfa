@@ -1,12 +1,14 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: google-drive-mcp
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
+# Google Drive MCP Quick Variation
 
-# Google Drive Mcp Quick Variation
+Use when the Drive task is low risk, specific, and read-only or already has
+clear confirmation.
 
-Use when the task is low risk and well specified.
+Return only:
 
-Return only the requested deliverable, validation status, and residual risks.
+- requested Drive result or plan
+- evidence tags
+- validation status
+- residual risks
+
+Even in quick mode, include `q`, `fields`, `trashed = false`, scope profile, and
+confirmation state when relevant.

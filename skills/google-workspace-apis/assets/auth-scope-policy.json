@@ -1,0 +1,19 @@
+{
+  "schema": 1,
+  "access_rank": {"read": 0, "write": 1},
+  "profiles": [
+    {"id": "gmail_readonly", "service": "gmail", "access": "read", "scopes": ["https://www.googleapis.com/auth/gmail.readonly"]},
+    {"id": "gmail_compose", "service": "gmail", "access": "write", "scopes": ["https://www.googleapis.com/auth/gmail.compose"]},
+    {"id": "gmail_send", "service": "gmail", "access": "write", "scopes": ["https://www.googleapis.com/auth/gmail.send"]},
+    {"id": "calendar_readonly", "service": "calendar", "access": "read", "scopes": ["https://www.googleapis.com/auth/calendar.readonly"]},
+    {"id": "calendar_events", "service": "calendar", "access": "write", "scopes": ["https://www.googleapis.com/auth/calendar.events"]},
+    {"id": "drive_metadata_readonly", "service": "drive", "access": "read", "scopes": ["https://www.googleapis.com/auth/drive.metadata.readonly"]},
+    {"id": "drive_file", "service": "drive", "access": "write", "scopes": ["https://www.googleapis.com/auth/drive.file"]},
+    {"id": "docs_readonly", "service": "docs", "access": "read", "scopes": ["https://www.googleapis.com/auth/documents.readonly"]},
+    {"id": "docs_documents", "service": "docs", "access": "write", "scopes": ["https://www.googleapis.com/auth/documents"]},
+    {"id": "sheets_readonly", "service": "sheets", "access": "read", "scopes": ["https://www.googleapis.com/auth/spreadsheets.readonly"]},
+    {"id": "sheets_spreadsheets", "service": "sheets", "access": "write", "scopes": ["https://www.googleapis.com/auth/spreadsheets"]},
+    {"id": "slides_readonly", "service": "slides", "access": "read", "scopes": ["https://www.googleapis.com/auth/presentations.readonly"]},
+    {"id": "slides_presentations", "service": "slides", "access": "write", "scopes": ["https://www.googleapis.com/auth/presentations"]}
+  ]
+}

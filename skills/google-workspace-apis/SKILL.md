@@ -1,11 +1,13 @@
 ---
 name: google-workspace-apis
 author: JM Labs (Javier Montaño)
-version: 1.0.0
+version: 1.1.0
 description: >
-  Integrate Google Workspace APIs — Sheets, Docs, Drive, Calendar, and Gmail
-  programmatic access for automation and data workflows. [EXPLICIT]
-  Trigger: "google sheets API", "google docs API", "google drive", "workspace API"
+  Integrate Google Workspace APIs across Gmail, Calendar, Drive, Docs, Sheets,
+  and Slides with least-privilege scopes, MCP-aware tool mapping, read-only-first
+  execution, and deterministic validation. [EXPLICIT]
+  Trigger: "google workspace apis", "workspace api automation", "gmail docs sheets drive api",
+  "integrate google workspace", "workspace mcp api plan"
 allowed-tools:
   - Read
   - Write
@@ -16,100 +18,113 @@ allowed-tools:
 
 # Google Workspace APIs
 
-> "Automate the boring parts so humans can do the interesting ones." — Unknown
-
 ## TL;DR
 
-Guides integration with Google Workspace APIs — reading/writing Google Sheets, generating Google Docs, managing Drive files, creating Calendar events, and sending Gmail programmatically. Use when building automations, data pipelines, or integrations that interact with Google Workspace. [EXPLICIT]
+Use this skill to design a Google Workspace automation that spans Gmail,
+Calendar, Drive, Docs, Sheets, and Slides. It produces an offline integration
+plan with service matrix, OAuth scopes, MCP tool-contract mapping, mutation
+gates, retry/idempotency policy, secrets policy, and validation matrix.
+
+## Deterministic Contract
+
+- Use `assets/workspace-service-matrix.json` as the operation catalog.
+- Use `assets/auth-scope-policy.json` for least-privilege scope profiles.
+- Use `assets/mcp-tool-contract.json` when a workflow uses Workspace MCP tools.
+- Run `scripts/compile-google-workspace-apis.py` against a structured JSON
+  input before finalizing a plan.
+- Run `scripts/check.sh` to verify positive and negative fixtures offline.
+- Do not call Google APIs, OAuth, MCP servers, or network resources from the
+  skill scripts.
 
 ## Procedure
 
 ### Step 1: Discover
-- Identify which Workspace APIs are needed (Sheets, Docs, Drive, Calendar, Gmail)
-- Check Google Cloud Console for existing API enablement and credentials
-- Review authentication requirements (service account vs OAuth2 user consent)
-- Determine data flow direction (read from, write to, or bidirectional)
+
+- Identify target Workspace services and exact operations.
+- Classify each operation as read-only or mutating.
+- Determine whether the implementation path is direct REST/client library, MCP,
+  or a mixed flow.
+- Capture concrete resource identifiers needed for sandbox validation.
 
 ### Step 2: Analyze
-- Choose auth strategy: service account for server-to-server, OAuth2 for user data
-- Plan API scope requirements (principle of least privilege)
-- Design rate limiting and quota management (Sheets API: 300 requests/min)
-- Evaluate batch request opportunities to reduce API calls
 
-### Step 3: Execute
-- Enable required APIs in Google Cloud Console
-- Set up credentials (service account key or OAuth2 client ID)
-- Use `googleapis` npm package or REST API directly
-- Implement Sheets integration: read ranges, append rows, format cells
-- Build Drive file management: upload, share, organize in folders
-- Create Calendar event automation with attendees and reminders
-- Add error handling for quota limits, auth expiration, and permission errors
+- Select the narrowest scope profile from `assets/auth-scope-policy.json`.
+- Prefer read-only probes before every write operation.
+- Map MCP tools to the same operation intent when MCP is part of the flow.
+- Define idempotency keys, rollback/compensation, and retry policy before writes.
+- Confirm credential storage, token handling, and key restrictions.
+
+### Step 3: Compile
+
+```bash
+python3 skills/google-workspace-apis/scripts/compile-google-workspace-apis.py \
+  --input skills/google-workspace-apis/scripts/fixtures/google-workspace-apis-input.json
+```
+
+The compiler emits a deterministic Markdown plan. It fails if scopes are too
+broad for the requested operation, a mutating operation lacks confirmation, a
+write skips read-before-write, or an MCP tool does not match the service.
 
 ### Step 4: Validate
-- Test API calls with actual Workspace resources (use test account/folder)
-- Verify service account has correct sharing permissions on target resources
-- Confirm rate limiting handles burst scenarios gracefully
-- Check that OAuth2 refresh tokens work for long-running automations
+
+- Run `bash skills/google-workspace-apis/scripts/check.sh`.
+- Validate the skill with `python3 -B scripts/validate-skill-dod.py --skill google-workspace-apis`.
+- Validate runtime script contracts with `python3 -B scripts/validate-skill-scripts.py --strict --run-checks --skill google-workspace-apis`.
+- Treat live API calls as a separate sandbox/live validation phase.
 
 ## Quality Criteria
 
-- [ ] API scopes follow principle of least privilege
-- [ ] Service account keys stored securely (not in source code)
-- [ ] Rate limiting and retry logic implemented for API quota management
-- [ ] Error responses handled with user-friendly messages
-- [ ] Evidence tags applied to all claims
+- [ ] Exact Workspace services and operations are listed.
+- [ ] OAuth scopes are minimal for the operation class.
+- [ ] Mutations require human confirmation and read-before-write.
+- [ ] MCP tool names map to service-compatible operations.
+- [ ] Secrets are never committed and tokens live in approved storage.
+- [ ] Retry, idempotency, quota, and rollback are explicit.
+- [ ] Validation matrix covers static, fixture, sandbox, and live-read-only layers.
 
 ## Anti-Patterns
 
-- Requesting broad OAuth scopes when narrow ones suffice
-- Storing service account JSON keys in the repository
-- Making individual API calls when batch requests are available
+- Requesting broad Drive/Gmail scopes for read-only tasks.
+- Sending email, creating events, or changing files without confirmation.
+- Treating MCP tool availability as proof of OAuth access.
+- Storing OAuth clients, refresh tokens, service-account keys, or API keys in
+  repo files.
+- Skipping partial-response fields and then blaming quota/performance later.
 
 ## MCP Integration
 
-This skill covers programmatic API integration patterns. For direct interactive access
-via MCP servers, use the specialized MCP skills:
+For direct interactive access, prefer the specialized skills:
+`gmail-mcp`, `google-calendar-mcp`, `google-drive-mcp`, `google-docs-mcp`,
+`google-sheets-mcp`, and `google-slides-mcp`. Use this integrator when the
+workflow crosses services or when REST/API and MCP execution paths must be
+coordinated in one plan.
 
-| Service | MCP Skill | MCP Server |
-|---------|-----------|------------|
-| Gmail | `gmail-mcp` | `gmail` |
-| Calendar | `google-calendar-mcp` | `google-workspace` |
-| Drive | `google-drive-mcp` | `google-workspace` |
-| Docs | `google-docs-mcp` | `google-workspace` |
-| Sheets | `google-sheets-mcp` | `google-workspace` |
-| Slides | `google-slides-mcp` | `google-workspace` |
+## Official References
 
-Setup guide: `docs/google-workspace-mcp-setup.md`
+- Google Workspace overview: https://developers.google.com/workspace
+- Workspace auth overview: https://developers.google.com/workspace/guides/auth-overview
+- Google Workspace MCP server guide: https://developers.google.com/workspace/guides/build-with-llms
+- MCP tools spec: https://modelcontextprotocol.io/specification/draft/server/tools
+- Gmail REST: https://developers.google.com/workspace/gmail/api/reference/rest
+- Calendar REST: https://developers.google.com/calendar/api/v3/reference
+- Drive REST: https://developers.google.com/drive/api/reference/rest/v3
+- Docs REST: https://developers.google.com/workspace/docs/api/reference/rest
+- Sheets REST: https://developers.google.com/workspace/sheets/api/reference/rest
+- Slides REST: https://developers.google.com/workspace/slides/api/reference/rest
 
 ## Related Skills
 
-- `gmail-mcp` — direct Gmail access via MCP
-- `google-calendar-mcp` — direct Calendar access via MCP
-- `google-drive-mcp` — direct Drive access via MCP
-- `google-docs-mcp` — direct Docs access via MCP
-- `google-sheets-mcp` — direct Sheets access via MCP
-- `google-slides-mcp` — direct Slides access via MCP
-- `cloud-functions` — Workspace API calls typically run in Cloud Functions
-- `scheduled-functions` — automated Workspace workflows run on schedules
-
-## Usage
-
-Example invocations:
-
-- "/google-workspace-apis" — Run the full google workspace apis workflow
-- "google workspace apis on this project" — Apply to current context
-
+- `gmail-mcp`
+- `google-calendar-mcp`
+- `google-drive-mcp`
+- `google-docs-mcp`
+- `google-sheets-mcp`
+- `google-slides-mcp`
+- `google-apis-integration`
 
 ## Assumptions & Limits
 
-- Assumes access to project artifacts (code, docs, configs) [EXPLICIT]
-- Requires English-language output unless otherwise specified [EXPLICIT]
-- Does not replace domain expert judgment for final decisions [EXPLICIT]
-
-## Edge Cases
-
-| Scenario | Handling |
-|----------|----------|
-| Empty or minimal input | Request clarification before proceeding |
-| Conflicting requirements | Flag conflicts explicitly, propose resolution |
-| Out-of-scope request | Redirect to appropriate skill or escalate |
+- The compiler validates plans offline; it does not prove OAuth, quota, billing,
+  permissions, or resource existence.
+- Live execution requires a separate sandbox account, explicit human approval,
+  and provider-side validation.

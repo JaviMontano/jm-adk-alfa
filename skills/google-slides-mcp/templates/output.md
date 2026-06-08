@@ -1,11 +1,4 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: google-slides-mcp
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
-
-# Google Slides Mcp Output
+# Google Slides MCP Operation Plan
 
 ## Summary
 
@@ -15,9 +8,29 @@ overwrite-policy: missing-only unless --force
 
 {evidence}
 
-## Result
+## MCP Preflight
 
-{result}
+{mcp_preflight}
+
+## Operation Table
+
+{operation_table}
+
+## Scope Review
+
+{scope_review}
+
+## Safety Gates
+
+{safety_gates}
+
+## Payload Preview
+
+{payload_preview}
+
+## Live MCP Checklist
+
+{live_checklist}
 
 ## Validation
 

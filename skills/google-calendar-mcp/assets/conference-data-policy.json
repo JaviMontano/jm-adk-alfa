@@ -1,0 +1,21 @@
+{
+  "schema": 1,
+  "source_docs": [
+    "https://developers.google.com/workspace/calendar/api/guides/create-events",
+    "https://developers.google.com/calendar/api/v3/reference/events",
+    "https://developers.google.com/workspace/calendar/api/v3/reference/events/insert"
+  ],
+  "google_meet": {
+    "conference_solution_key_type": "hangoutsMeet",
+    "required_request_parameter": {
+      "conferenceDataVersion": 1
+    },
+    "required_event_body_path": "conferenceData.createRequest.requestId",
+    "request_id_rule": "Generate a unique requestId for every new conference request; do not reuse one for a different Meet request.",
+    "async_rule": "Conference creation is asynchronous; read back event conferenceData or hangoutLink after mutation."
+  },
+  "idempotency": {
+    "event_id": "For create_event, a deterministic event id can prevent duplicate event creation after partial failures.",
+    "conference_request_id": "For Meet generation, conferenceData.createRequest.requestId guards the conference creation request."
+  }
+}

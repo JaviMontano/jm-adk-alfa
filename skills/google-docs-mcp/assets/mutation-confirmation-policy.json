@@ -1,0 +1,30 @@
+{
+  "schema": 1,
+  "source": "https://modelcontextprotocol.io/specification/draft/server/tools",
+  "confirmation_phrase_prefix": "CONFIRM GOOGLE DOCS MUTATION:",
+  "required_status": "confirmed",
+  "mutating_actions": [
+    "create_document",
+    "batch_update"
+  ],
+  "blocked_without_confirmation": [
+    "mcp__workspace-mcp__create_doc",
+    "mcp__workspace-mcp__modify_doc_text",
+    "mcp__workspace-mcp__find_and_replace_doc",
+    "mcp__workspace-mcp__insert_doc_elements"
+  ],
+  "required_confirmation_contains": [
+    "operation_id",
+    "document_id_or_title",
+    "docs_api_method",
+    "scope_profile",
+    "request_count",
+    "live_execution_intent"
+  ],
+  "read_only_tools_allowed_before_confirmation": [
+    "mcp__workspace-mcp__get_doc_content",
+    "mcp__workspace-mcp__search_docs",
+    "mcp__workspace-mcp__get_doc_as_markdown",
+    "mcp__workspace-mcp__export_doc_to_pdf"
+  ]
+}

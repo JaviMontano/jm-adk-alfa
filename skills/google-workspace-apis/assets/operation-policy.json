@@ -1,0 +1,18 @@
+{
+  "schema": 1,
+  "human_consent": {
+    "accepted_status": "confirmed",
+    "confirmation_text_prefix": "CONFIRM_GOOGLE_WORKSPACE_MUTATION:"
+  },
+  "secrets": {
+    "allowed_credential_storage": ["environment", "secret_manager", "local_oauth_store"],
+    "tokens_committed": false,
+    "api_keys_restricted": true
+  },
+  "retry": {
+    "default_policy": "bounded_exponential_backoff",
+    "max_attempts": 5,
+    "retryable_statuses": [408, 429, 500, 502, 503, 504]
+  },
+  "required_validation_layers": ["static", "fixture", "sandbox", "live-read-only"]
+}

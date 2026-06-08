@@ -1,12 +1,13 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: google-slides-mcp
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
+# Google Slides MCP Deep Variation
 
-# Google Slides Mcp Deep Variation
+Use when the request affects an important deck, has unclear permissions, requires batchUpdate payload design, or crosses read and mutation work.
 
-Use when the task has unclear requirements, high impact, or cross-file consequences.
+Include:
 
-Include discovery notes, options considered, selected approach, validation, and risks.
+- Discovery notes and missing inputs.
+- Operation selection mapped to Slides REST methods.
+- Least-privilege scope analysis.
+- JSON contract draft for `scripts/compile-google-slides-mcp.py`.
+- Human-confirmation gate text for each mutation.
+- Payload preview and write-control recommendation.
+- Post-mutation readback plan.

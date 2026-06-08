@@ -1,30 +1,32 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: google-workspace-apis
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
+# Google Workspace APIs
 
-# Google Workspace Apis
+Deterministic integrator for multi-service Google Workspace automation.
 
->
+## Use When
 
-## Triggers
+- A workflow spans Gmail, Calendar, Drive, Docs, Sheets, or Slides.
+- A direct REST/client-library plan must align with MCP tool execution.
+- You need scope selection, mutation gates, retry/idempotency, and validation
+  before touching live Google data.
 
-- google-workspace-apis
+## Deterministic Assets
 
-## Allowed Tools
+- `assets/workspace-service-matrix.json` defines supported services and methods.
+- `assets/auth-scope-policy.json` defines least-privilege profiles.
+- `assets/mcp-tool-contract.json` maps MCP tools to Workspace service actions.
+- `assets/google-workspace-apis-schema.json` defines compiler input.
+- `scripts/compile-google-workspace-apis.py` renders a stable Markdown plan.
 
-- Read
-- Write
-- Glob
-- Grep
-- Bash
+## Checks
 
-## Quick Use
+```bash
+python3 -B scripts/validate-skill-dod.py --skill google-workspace-apis
+python3 -B scripts/validate-skill-scripts.py --strict --run-checks --skill google-workspace-apis
+bash skills/google-workspace-apis/scripts/check.sh
+```
 
-Use this skill when the request clearly matches the triggers and requires the `google-workspace-apis` capability.
+## Output
 
-## Output Format
-
-Markdown with summary, evidence, result, validation, and risks.
+The compiler produces a Markdown plan with summary, evidence, service matrix,
+auth/scope plan, MCP mapping, workflow sequence, retry/idempotency, secrets,
+validation, and residual risks.

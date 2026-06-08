@@ -1,0 +1,28 @@
+{
+  "schema": 1,
+  "retry_policies": {
+    "default_exponential_backoff": {
+      "retryable_statuses": [408, 409, 429, 500, 502, 503, 504],
+      "max_attempts": 5,
+      "initial_delay_ms": 500,
+      "max_delay_ms": 32000,
+      "jitter": true,
+      "notes": "Use for transient errors, quota pressure, and server-side failures."
+    },
+    "calendar_event_write_backoff": {
+      "retryable_statuses": [408, 409, 429, 500, 502, 503, 504],
+      "max_attempts": 4,
+      "initial_delay_ms": 750,
+      "max_delay_ms": 20000,
+      "jitter": true,
+      "notes": "Use with stable event IDs or request IDs to avoid duplicate meetings."
+    }
+  },
+  "non_retryable_statuses": [400, 401, 403, 404],
+  "idempotency_guidance": [
+    "Use stable application operation keys for every mutation.",
+    "Prefer update or patch with read-back verification over blind overwrite.",
+    "Use deterministic event IDs or request IDs where the service supports them.",
+    "Persist mutation audit records before retrying writes."
+  ]
+}

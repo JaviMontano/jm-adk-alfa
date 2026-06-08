@@ -1,0 +1,12 @@
+{
+  "fragments": [
+    "# Google Drive MCP Plan: P-007 Alfa DoD Drive MCP checklist",
+    "[CODE] MCP server: workspace-mcp.",
+    "q: `name contains 'alfa' and trashed = false`",
+    "corpora: `user`",
+    "uploadType=multipart",
+    "Export MIME type: `application/pdf`",
+    "Permission: type `user`, role `commenter`, target `reviewer@example.com`",
+    "The compiler performed no network, OAuth, Drive, or MCP calls."
+  ]
+}

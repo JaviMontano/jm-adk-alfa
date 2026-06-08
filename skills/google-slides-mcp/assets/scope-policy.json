@@ -1,0 +1,81 @@
+{
+  "schema": 1,
+  "default_profile": "app_file",
+  "broad_scopes_to_avoid_by_default": [
+    "https://www.googleapis.com/auth/drive",
+    "https://www.googleapis.com/auth/drive.readonly"
+  ],
+  "profiles": [
+    {
+      "id": "app_file",
+      "scope": "https://www.googleapis.com/auth/drive.file",
+      "usage": "recommended_non_sensitive",
+      "mutation_allowed": true,
+      "allowed_actions": [
+        "presentations.create",
+        "presentations.get",
+        "presentations.batchUpdate",
+        "presentations.pages.get",
+        "presentations.pages.getThumbnail"
+      ],
+      "use_when": "Presentation is created by or explicitly opened with the app.",
+      "minimum_by_default": true
+    },
+    {
+      "id": "slides_readonly",
+      "scope": "https://www.googleapis.com/auth/presentations.readonly",
+      "usage": "sensitive",
+      "mutation_allowed": false,
+      "allowed_actions": [
+        "presentations.get",
+        "presentations.pages.get",
+        "presentations.pages.getThumbnail"
+      ],
+      "use_when": "Read-only access across Slides files is required and drive.file is insufficient.",
+      "minimum_by_default": true
+    },
+    {
+      "id": "slides_full",
+      "scope": "https://www.googleapis.com/auth/presentations",
+      "usage": "sensitive",
+      "mutation_allowed": true,
+      "allowed_actions": [
+        "presentations.create",
+        "presentations.get",
+        "presentations.batchUpdate",
+        "presentations.pages.get",
+        "presentations.pages.getThumbnail"
+      ],
+      "use_when": "Slides-wide mutation is required and drive.file cannot reach the file.",
+      "minimum_by_default": true
+    },
+    {
+      "id": "drive_readonly_exception",
+      "scope": "https://www.googleapis.com/auth/drive.readonly",
+      "usage": "restricted",
+      "mutation_allowed": false,
+      "allowed_actions": [
+        "presentations.get",
+        "presentations.pages.get",
+        "presentations.pages.getThumbnail"
+      ],
+      "use_when": "Only when Drive-wide read access is explicitly justified.",
+      "minimum_by_default": false
+    },
+    {
+      "id": "drive_full_exception",
+      "scope": "https://www.googleapis.com/auth/drive",
+      "usage": "restricted",
+      "mutation_allowed": true,
+      "allowed_actions": [
+        "presentations.create",
+        "presentations.get",
+        "presentations.batchUpdate",
+        "presentations.pages.get",
+        "presentations.pages.getThumbnail"
+      ],
+      "use_when": "Only when Drive-wide mutation is explicitly justified.",
+      "minimum_by_default": false
+    }
+  ]
+}

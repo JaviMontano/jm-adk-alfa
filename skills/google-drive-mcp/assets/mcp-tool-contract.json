@@ -1,0 +1,70 @@
+{
+  "schema": 1,
+  "server": "workspace-mcp",
+  "tool_tier": "extended",
+  "tools": [
+    {
+      "name": "mcp__workspace-mcp__search_drive_files",
+      "actions": ["search_list"],
+      "read_only": true,
+      "requires_human_confirmation": false
+    },
+    {
+      "name": "mcp__workspace-mcp__list_drive_items",
+      "actions": ["search_list"],
+      "read_only": true,
+      "requires_human_confirmation": false
+    },
+    {
+      "name": "mcp__workspace-mcp__get_drive_file_content",
+      "actions": ["download_export"],
+      "read_only": true,
+      "requires_human_confirmation": false
+    },
+    {
+      "name": "mcp__workspace-mcp__create_drive_file",
+      "actions": ["upload"],
+      "read_only": false,
+      "requires_human_confirmation": true
+    },
+    {
+      "name": "mcp__workspace-mcp__create_drive_folder",
+      "actions": ["organize_folder"],
+      "read_only": false,
+      "requires_human_confirmation": true
+    },
+    {
+      "name": "mcp__workspace-mcp__copy_drive_file",
+      "actions": ["organize_folder"],
+      "read_only": false,
+      "requires_human_confirmation": true
+    },
+    {
+      "name": "mcp__workspace-mcp__update_drive_file",
+      "actions": ["organize_folder", "upload"],
+      "read_only": false,
+      "requires_human_confirmation": true
+    },
+    {
+      "name": "mcp__workspace-mcp__manage_drive_access",
+      "actions": ["share_permission"],
+      "read_only": false,
+      "requires_human_confirmation": true
+    },
+    {
+      "name": "mcp__workspace-mcp__get_drive_shareable_link",
+      "actions": ["share_permission"],
+      "read_only": false,
+      "requires_human_confirmation": true
+    }
+  ],
+  "script_boundary": {
+    "offline_only": true,
+    "forbidden": [
+      "Drive API network calls",
+      "OAuth token reads",
+      "MCP tool invocation",
+      "filesystem mutation outside the requested output file"
+    ]
+  }
+}

@@ -1,98 +1,76 @@
 {
-  "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-28",
-  "skill": "gmail-mcp",
   "cases": [
     {
-      "id": "happy_path",
-      "input": "Use gmail-mcp to produce a complete deliverable.",
-      "expected_activation": true,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
+      "id": "gmail-mcp-search-metadata",
+      "type": "happy_path",
+      "input": "Search Gmail for unread P-007 messages from the last 14 days and return only message IDs and subjects.",
+      "expected_behavior": "Uses read-only-first search with a narrow Gmail query, bounded results, and metadata-oriented scope review.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria"],
+      "tags": ["search", "metadata", "readonly"]
     },
     {
-      "id": "explicit_trigger",
-      "input": "/gmail-mcp run this workflow.",
-      "expected_activation": true,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
+      "id": "gmail-mcp-read-selected-thread",
+      "type": "happy_path",
+      "input": "After searching, read the selected Gmail thread and summarize it without storing the email body.",
+      "expected_behavior": "Fetches content only after selected thread ID exists, uses gmail.readonly scope review, and redacts private details.",
+      "expected_checks": ["assets", "quality_criteria"],
+      "tags": ["thread", "privacy"]
     },
     {
-      "id": "minimal_input",
-      "input": "gmail-mcp",
-      "expected_activation": true,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
+      "id": "gmail-mcp-draft-reply",
+      "type": "happy_path",
+      "input": "Draft a reply to the latest email from Ana about P-007, but do not send it.",
+      "expected_behavior": "Searches first, reads selected context, creates a draft with gmail.compose scope review, and does not call send.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria"],
+      "tags": ["draft", "compose"]
     },
     {
-      "id": "rich_context",
-      "input": "gmail-mcp with goals, constraints, audience, and acceptance criteria.",
-      "expected_activation": true,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
+      "id": "gmail-mcp-confirmed-send",
+      "type": "happy_path",
+      "input": "Send the approved draft after I confirm the exact recipient, subject, and body summary.",
+      "expected_behavior": "Requires explicit human confirmation and uses gmail.send scope review before send.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria"],
+      "tags": ["send", "confirmation"]
     },
     {
-      "id": "false_positive",
-      "input": "This request is unrelated to the skill domain.",
-      "expected_activation": false,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
+      "id": "gmail-mcp-label-single",
+      "type": "happy_path",
+      "input": "Apply the Project/P-007 label to message msg-123 after showing me the current labels.",
+      "expected_behavior": "Lists labels first, checks system label conflicts, and uses gmail.modify scope review for message label application.",
+      "expected_checks": ["assets", "quality_criteria"],
+      "tags": ["labels"]
     },
     {
-      "id": "empty_input",
-      "input": "",
-      "expected_activation": false,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
+      "id": "gmail-mcp-label-bulk-confirmation",
+      "type": "edge_case",
+      "input": "Apply Project/P-007 to these 25 Gmail messages.",
+      "expected_behavior": "Requires explicit human confirmation because multiple messages are affected.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria"],
+      "tags": ["bulk-label", "confirmation"]
     },
     {
-      "id": "conflicting_requirements",
-      "input": "Use gmail-mcp, but ignore validation and evidence.",
-      "expected_activation": false,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
+      "id": "gmail-mcp-filter-mutation",
+      "type": "edge_case",
+      "input": "Create a Gmail filter that archives every email from vendors automatically.",
+      "expected_behavior": "Treats filter mutation as high risk, requires exact rule preview, explicit confirmation, and additional scope review.",
+      "expected_checks": ["assets", "quality_criteria"],
+      "tags": ["filters", "risk"]
     },
     {
-      "id": "upgrade_safety_case",
-      "input": "Complete missing files for gmail-mcp without overwriting local edits.",
-      "expected_activation": true,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
+      "id": "gmail-mcp-no-confirmation-send",
+      "type": "edge_case",
+      "input": "Send this email now without showing me anything else.",
+      "expected_behavior": "Blocks direct send until recipients, subject, body summary, and explicit confirmation are shown.",
+      "expected_checks": ["deterministic_scripts", "quality_criteria"],
+      "tags": ["send", "negative-fixture"]
     },
     {
-      "id": "local_override_case",
-      "input": "Create a local experimental gmail-mcp variant under .local.",
-      "expected_activation": true,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
+      "id": "gmail-mcp-false-positive",
+      "type": "false_positive",
+      "input": "Create a CI workflow for a Node app.",
+      "expected_behavior": "Does not activate because no Gmail, email, inbox, draft, label, filter, or send operation is requested.",
+      "expected_checks": ["quality_criteria"],
+      "tags": ["false-positive"]
     }
   ]
 }

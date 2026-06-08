@@ -1,8 +1,37 @@
-# DOCX Template — Google Analytics
-## Structure
-- Title: "Google Analytics Report"
-- Section 1: Executive Summary
-- Section 2: Findings / Deliverables
-- Section 3: Recommendations
-- Footer: "MetodologIA — {{date}}"
-## Formatting: Poppins headings, Montserrat body, JetBrains Mono code
+# GA4/GTM Measurement Plan
+
+## Executive Summary
+
+{{summary}}
+
+## Evidence
+
+{{evidence}}
+
+## Measurement Strategy
+
+{{measurement_strategy}}
+
+## Event Taxonomy
+
+{{event_taxonomy}}
+
+## Key Events
+
+{{key_event_plan}}
+
+## Privacy, Consent, And Debugging
+
+{{privacy_consent}}
+
+{{debug_checklist}}
+
+## Human Confirmation Gate
+
+{{human_confirmation_gate}}
+
+## Validation And Limits
+
+{{validation}}
+
+{{risks}}

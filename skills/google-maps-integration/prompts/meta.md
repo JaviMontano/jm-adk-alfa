@@ -9,21 +9,21 @@ description: "Evaluate and improve the Google Maps Integration skill."
 
 ## Evaluate
 
-1. Is `knowledge/body-of-knowledge.md` current? New standards, deprecated practices?
-2. Are the 4 sub-agents (lead, support, guardian, specialist) covering all perspectives?
-3. Are templates producing useful deliverables? Test with a real scenario.
-4. What edge cases have been encountered that aren't documented?
-5. Are there new insights from `insights/` that apply to this skill?
-6. Has the related skill landscape changed? New cross-references needed?
+1. [DOC] Is `knowledge/body-of-knowledge.md` current against official Google Maps Platform docs?
+2. [CODE] Does `assets/maps-platform-plan-schema.json` still match compiler validation?
+3. [CODE] Do positive and negative fixtures cover API selection, key restrictions, human confirmation, and no-price policy?
+4. [CODE] Are templates producing useful API selection, data-flow, marker, accessibility, privacy, and billing/quota sections?
+5. [INFERENCE] Are the 4 sub-agents covering security, accessibility, privacy, and offline determinism?
+6. [INFERENCE] Has the related skill landscape changed?
 
 ## Improve
 
-1. Update body of knowledge with new findings (tag with `[DOC]`)
-2. Add prompt variations for newly discovered use cases
-3. Refine quality criteria based on real-world feedback
-4. Update knowledge graph: new concepts, new `[[wikilinks]]`
-5. Test templates with edge-case inputs to verify robustness
-6. Propose Constitution amendment if recurring ambiguity found (XVII)
+1. [DOC] Update body of knowledge with new official-doc findings.
+2. [CODE] Update schema and fixtures together when the compiler contract changes.
+3. [CODE] Refine quality criteria based on validation failures.
+4. [CODE] Update knowledge graph with new APIs, libraries, or gates.
+5. [CODE] Test templates with edge-case inputs.
+6. [INFERENCE] Propose governance update only if ambiguity repeats.
 
 ## Trigger
 

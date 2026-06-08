@@ -1,0 +1,57 @@
+{
+  "schema": 1,
+  "policy_name": "google-drive-query-policy",
+  "defaults": {
+    "spaces": "drive",
+    "corpora": "user",
+    "page_size": 25,
+    "fields": "nextPageToken, files(id, name, mimeType, parents, size, modifiedTime, webViewLink, capabilities/canDownload, capabilities/canShare)"
+  },
+  "requirements": {
+    "q_required": true,
+    "must_exclude_trashed": true,
+    "trashed_clause": "trashed = false",
+    "fields_required": true,
+    "partial_fields_required": true,
+    "spaces_required": true,
+    "page_size_max": 100,
+    "prefer_specific_corpora": [
+      "user",
+      "drive"
+    ],
+    "all_drives_requires_reason": true
+  },
+  "search_templates": [
+    {
+      "id": "name_contains",
+      "q": "name contains '{term}' and trashed = false",
+      "use_when": "User searches by visible filename fragment."
+    },
+    {
+      "id": "folder_children",
+      "q": "'{parent_id}' in parents and trashed = false",
+      "use_when": "User lists direct children of a known folder."
+    },
+    {
+      "id": "mime_type_filter",
+      "q": "mimeType = '{mime_type}' and trashed = false",
+      "use_when": "User searches for one Drive or Workspace MIME type."
+    },
+    {
+      "id": "recent_modified",
+      "q": "modifiedTime > '{rfc3339_timestamp}' and trashed = false",
+      "use_when": "User searches by recency."
+    }
+  ],
+  "safe_fields_catalog": [
+    "nextPageToken",
+    "files(id,name,mimeType,parents,size,modifiedTime,webViewLink)",
+    "files(capabilities/canDownload,capabilities/canShare)",
+    "files(owners(displayName,emailAddress),shared,sharingUser)"
+  ],
+  "notes": [
+    "Use q to filter files before listing broad result sets.",
+    "Use fields to avoid returning the whole File resource when only IDs and metadata are needed.",
+    "Use corpora=user for My Drive searches and corpora=drive with driveId for one Shared Drive before using allDrives."
+  ]
+}

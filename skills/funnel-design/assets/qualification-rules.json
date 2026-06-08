@@ -1,0 +1,22 @@
+{
+  "schema": 1,
+  "sales_ready": {
+    "minimum_score": 80,
+    "required_signal": "conversion_intent",
+    "owner": "sales"
+  },
+  "mql": {
+    "minimum_score": 60,
+    "owner": "growth"
+  },
+  "disqualify_when": [
+    "outside_icp",
+    "invalid_contact",
+    "explicit_no_interest"
+  ],
+  "reactivate_when": [
+    "inactive_30_days",
+    "new_offer_relevance",
+    "return_visit_after_inactivity"
+  ]
+}

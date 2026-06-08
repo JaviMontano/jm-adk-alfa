@@ -1,0 +1,122 @@
+{
+  "schema_version": 1,
+  "project": {
+    "name": "weekly-client-status",
+    "owner": "jm-labs",
+    "environment": "sandbox",
+    "objective": "Compile a weekly status package from Sheets into Docs, Drive, Gmail, Calendar, and Slides."
+  },
+  "integration_mode": "rest-and-mcp",
+  "services": [
+    {
+      "id": "sheets",
+      "operation": "spreadsheets.values.get",
+      "purpose": "Read approved status rows.",
+      "mutation": false,
+      "auth_profile": "sheets_readonly",
+      "requested_scopes": ["https://www.googleapis.com/auth/spreadsheets.readonly"],
+      "mcp_tool": "sheets_read_values",
+      "read_before_write": false,
+      "resource_identifiers": {"spreadsheetId": "sheet_status_tracker", "range": "Status!A2:H"},
+      "quota_strategy": {"batching": false, "partial_response_fields": "values", "retry_policy": "bounded_exponential_backoff"}
+    },
+    {
+      "id": "docs",
+      "operation": "documents.create",
+      "purpose": "Create the weekly status document shell.",
+      "mutation": true,
+      "auth_profile": "docs_documents",
+      "requested_scopes": ["https://www.googleapis.com/auth/documents"],
+      "mcp_tool": "docs_create_document",
+      "read_before_write": true,
+      "idempotency_key": "weekly-status-doc",
+      "resource_identifiers": {"title": "Weekly Client Status"},
+      "quota_strategy": {"batching": false, "partial_response_fields": "documentId,title", "retry_policy": "bounded_exponential_backoff"}
+    },
+    {
+      "id": "drive",
+      "operation": "files.create",
+      "purpose": "Place the approved report in the client Drive folder.",
+      "mutation": true,
+      "auth_profile": "drive_file",
+      "requested_scopes": ["https://www.googleapis.com/auth/drive.file"],
+      "mcp_tool": "drive_upload_file",
+      "read_before_write": true,
+      "idempotency_key": "weekly-status-drive-file",
+      "resource_identifiers": {"folderId": "drive_client_folder", "name": "weekly-status.pdf"},
+      "quota_strategy": {"batching": false, "partial_response_fields": "id,name,parents", "retry_policy": "bounded_exponential_backoff"}
+    },
+    {
+      "id": "gmail",
+      "operation": "users.drafts.create",
+      "purpose": "Create a reviewable outbound draft.",
+      "mutation": true,
+      "auth_profile": "gmail_compose",
+      "requested_scopes": ["https://www.googleapis.com/auth/gmail.compose"],
+      "mcp_tool": "gmail_create_draft",
+      "read_before_write": true,
+      "idempotency_key": "weekly-status-gmail-draft",
+      "resource_identifiers": {"userId": "me", "to": "account-owner@example.com"},
+      "quota_strategy": {"batching": false, "partial_response_fields": "id,message.id", "retry_policy": "bounded_exponential_backoff"}
+    },
+    {
+      "id": "calendar",
+      "operation": "events.insert",
+      "purpose": "Create a follow-up meeting after owner approval.",
+      "mutation": true,
+      "auth_profile": "calendar_events",
+      "requested_scopes": ["https://www.googleapis.com/auth/calendar.events"],
+      "mcp_tool": "calendar_create_event",
+      "read_before_write": true,
+      "idempotency_key": "weekly-status-calendar-followup",
+      "resource_identifiers": {"calendarId": "primary", "summary": "Weekly client follow-up"},
+      "quota_strategy": {"batching": false, "partial_response_fields": "id,htmlLink", "retry_policy": "bounded_exponential_backoff"}
+    },
+    {
+      "id": "slides",
+      "operation": "presentations.get",
+      "purpose": "Read the presentation template before slide generation.",
+      "mutation": false,
+      "auth_profile": "slides_readonly",
+      "requested_scopes": ["https://www.googleapis.com/auth/presentations.readonly"],
+      "mcp_tool": "slides_get_presentation",
+      "read_before_write": false,
+      "resource_identifiers": {"presentationId": "slides_template"},
+      "quota_strategy": {"batching": false, "partial_response_fields": "presentationId,title,slides.objectId", "retry_policy": "bounded_exponential_backoff"}
+    }
+  ],
+  "workflow": {
+    "read_only_first": true,
+    "cross_service_steps": [
+      "Read Sheets status rows and validate approved fields.",
+      "Read Drive destination metadata before creating files.",
+      "Create Docs shell and capture document ID.",
+      "Upload approved PDF/report artifact to Drive.",
+      "Create Gmail draft for review, not live send.",
+      "Create Calendar follow-up only after approval.",
+      "Read Slides template for downstream presentation generation."
+    ],
+    "rollback_plan": "Delete sandbox-created artifacts or mark drafts/events cancelled after owner review."
+  },
+  "human_consent": {
+    "status": "confirmed",
+    "confirmed_by": "workspace-owner",
+    "confirmation_text": "CONFIRM_GOOGLE_WORKSPACE_MUTATION: create sandbox document, file, draft, and event only."
+  },
+  "secrets": {
+    "credential_storage": "environment",
+    "tokens_committed": false,
+    "api_keys_restricted": true
+  },
+  "test_matrix": [
+    {"id": "static-schema", "layer": "static", "covers": ["schema", "assets", "scope profiles"]},
+    {"id": "fixture-positive-negative", "layer": "fixture", "covers": ["consent", "broad scopes", "mcp mapping"]},
+    {"id": "sandbox-read-write", "layer": "sandbox", "covers": ["sandbox resources", "owner approval"]},
+    {"id": "live-read-only-probes", "layer": "live-read-only", "covers": ["api enablement", "oauth grants", "resource visibility"]}
+  ],
+  "evidence": {
+    "source": "local fixture",
+    "official_docs": "Google Workspace REST docs plus MCP tools spec",
+    "mode": "offline deterministic compiler"
+  }
+}

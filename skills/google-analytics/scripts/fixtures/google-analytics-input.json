@@ -1,0 +1,211 @@
+{
+  "plan_id": "ga4-gtm-lead-gen-2026-06-01",
+  "request_title": "Lead generation GA4/GTM implementation",
+  "implementation_mode": "hybrid",
+  "property_state": {
+    "ga4_account_created": true,
+    "ga4_property_created": true,
+    "web_data_stream_created": true,
+    "measurement_id_known": true,
+    "enhanced_measurement_reviewed": true
+  },
+  "measurement_strategy": {
+    "primary_business_goal": "Measure qualified lead generation from a product website.",
+    "reporting_questions": [
+      "Which acquisition paths produce sign ups?",
+      "Which landing pages generate qualified lead submissions?",
+      "Which debug checks prove events and parameters arrived before publish?"
+    ],
+    "kpis": [
+      "sign_up count",
+      "generate_lead key-event count",
+      "lead form completion rate"
+    ],
+    "implementation_surface": "hybrid",
+    "owner": "growth-analytics"
+  },
+  "consent_privacy": {
+    "region_profile": "US plus possible EU visitors",
+    "cmp_present": true,
+    "consent_mode_plan": "basic",
+    "default_denied_before_consent": true,
+    "ads_personalization_review": true,
+    "data_redaction_review": true,
+    "pii_policy": "No email, phone, full name, address, or raw IP values in event parameters.",
+    "legal_review_owner": "privacy-owner"
+  },
+  "events": [
+    {
+      "id": "evt-sign-up",
+      "event_name": "sign_up",
+      "event_type": "recommended",
+      "business_goal": "Measure account creation.",
+      "user_action": "Visitor creates an account.",
+      "recommended_event_candidate": true,
+      "implementation_surface": "gtm_ga4_event_tag",
+      "trigger": "dataLayer event signup_success",
+      "parameters": [
+        {
+          "name": "method",
+          "type": "string",
+          "required": true,
+          "scope": "event",
+          "value_source": "auth provider label",
+          "pii_risk": "low",
+          "notes": "Use provider category, not account identifier."
+        }
+      ],
+      "key_event_candidate": false,
+      "privacy_review": "No direct user identifier is collected.",
+      "debug_expectation": "Visible in DebugView with method parameter."
+    },
+    {
+      "id": "evt-generate-lead",
+      "event_name": "generate_lead",
+      "event_type": "recommended",
+      "business_goal": "Measure qualified lead form submissions.",
+      "user_action": "Visitor submits a lead form that passes validation.",
+      "recommended_event_candidate": true,
+      "implementation_surface": "gtm_ga4_event_tag",
+      "trigger": "dataLayer event lead_form_success",
+      "parameters": [
+        {
+          "name": "form_id",
+          "type": "string",
+          "required": true,
+          "scope": "event",
+          "value_source": "stable form registry key",
+          "pii_risk": "low",
+          "notes": "Do not send form title if it contains campaign PII."
+        },
+        {
+          "name": "value",
+          "type": "number",
+          "required": false,
+          "scope": "event",
+          "value_source": "lead scoring model",
+          "pii_risk": "low",
+          "notes": "Use a non-identifying score only."
+        },
+        {
+          "name": "currency",
+          "type": "string",
+          "required": false,
+          "scope": "event",
+          "value_source": "site commerce config",
+          "pii_risk": "low",
+          "notes": "Required when monetary value is sent."
+        }
+      ],
+      "key_event_candidate": true,
+      "privacy_review": "Form content and contact data are excluded.",
+      "debug_expectation": "Visible in DebugView and Realtime after form success."
+    },
+    {
+      "id": "evt-demo-video-progress",
+      "event_name": "demo_video_progress",
+      "event_type": "custom",
+      "business_goal": "Measure high-intent product engagement.",
+      "user_action": "Visitor reaches 75 percent of demo video.",
+      "recommended_event_candidate": false,
+      "custom_event_justification": "No automatic, enhanced, or recommended event captures this product-specific milestone.",
+      "implementation_surface": "gtag",
+      "trigger": "video player progress threshold",
+      "parameters": [
+        {
+          "name": "video_id",
+          "type": "string",
+          "required": true,
+          "scope": "event",
+          "value_source": "content catalog slug",
+          "pii_risk": "low",
+          "notes": "Stable ID independent from UI title."
+        },
+        {
+          "name": "percent",
+          "type": "number",
+          "required": true,
+          "scope": "event",
+          "value_source": "video player progress",
+          "pii_risk": "low",
+          "notes": "Send threshold number only."
+        }
+      ],
+      "key_event_candidate": false,
+      "privacy_review": "Video ID and percent do not identify a user.",
+      "debug_expectation": "Visible once per session at threshold."
+    }
+  ],
+  "key_events": [
+    {
+      "event_name": "generate_lead",
+      "business_reason": "Lead submission is the primary business action.",
+      "value_strategy": "derived",
+      "currency_required": false,
+      "expected_volume": "10-200 per day",
+      "owner": "growth-analytics"
+    }
+  ],
+  "tags": [
+    {
+      "id": "tag-google-config",
+      "platform": "google_tag_manager",
+      "tag_name": "GA4 - Google tag config",
+      "tag_type": "google_tag_config",
+      "trigger_name": "Initialization - All Pages after consent defaults",
+      "mutation_requested": true,
+      "consent_checks": [
+        "Consent defaults set before config tag",
+        "Analytics storage reviewed"
+      ],
+      "verification": "Tag Assistant shows one config tag after consent state is known."
+    },
+    {
+      "id": "tag-ga4-generate-lead",
+      "platform": "google_tag_manager",
+      "tag_name": "GA4 Event - generate_lead",
+      "tag_type": "ga4_event",
+      "trigger_name": "Custom Event - lead_form_success",
+      "mutation_requested": true,
+      "consent_checks": [
+        "analytics_storage consent checked",
+        "No form field values mapped"
+      ],
+      "verification": "GTM Preview fires once and GA4 DebugView receives generate_lead."
+    },
+    {
+      "id": "tag-key-event",
+      "platform": "ga4_ui",
+      "tag_name": "GA4 key event - generate_lead",
+      "tag_type": "ga4_key_event",
+      "trigger_name": "GA4 Admin key event configuration",
+      "mutation_requested": true,
+      "consent_checks": [
+        "Key event owner confirmed business value",
+        "No advertising personalization enabled without review"
+      ],
+      "verification": "Realtime event appears before marking as key event."
+    }
+  ],
+  "debug_plan": {
+    "gtm_preview": true,
+    "tag_assistant": true,
+    "ga4_debugview": true,
+    "realtime_report": true,
+    "network_request_review": true
+  },
+  "human_confirmation": {
+    "status": "confirmed",
+    "confirmed_by": "Javier",
+    "confirmation_text": "CONFIRM GA4/GTM MUTATION: approve offline recommendation for lead generation tags and key event plan.",
+    "mutations_allowed": true
+  },
+  "evidence": {
+    "ga4_collection_overview": "https://developers.google.com/analytics/devguides/collection/ga4",
+    "ga4_events_guide": "https://developers.google.com/analytics/devguides/collection/ga4/events",
+    "ga4_recommended_events": "https://developers.google.com/analytics/devguides/collection/ga4/reference/events",
+    "ga4_measurement_protocol": "https://developers.google.com/analytics/devguides/collection/protocol/ga4",
+    "tag_platform": "https://developers.google.com/tag-platform",
+    "gtm_web": "https://developers.google.com/tag-platform/tag-manager/web"
+  }
+}

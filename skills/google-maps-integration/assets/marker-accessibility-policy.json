@@ -1,0 +1,39 @@
+{
+  "schema": 1,
+  "sources": {
+    "advanced_markers": "https://developers.google.com/maps/documentation/javascript/advanced-markers/overview",
+    "marker_clustering": "https://developers.google.com/maps/documentation/javascript/marker-clustering"
+  },
+  "advanced_markers": {
+    "required_when": [
+      "custom_marker_html",
+      "interactive_marker",
+      "advanced_markers"
+    ],
+    "controls": [
+      "map_id_required",
+      "accessible_marker_name",
+      "keyboard_click_path",
+      "collision_behavior_reviewed"
+    ],
+    "rationale": "[DOC] Advanced Markers require a map ID and support click and keyboard interaction."
+  },
+  "marker_clustering": {
+    "recommended_threshold": 100,
+    "controls": [
+      "clusterer_library_selected",
+      "zoom_behavior_reviewed",
+      "alternate_result_list",
+      "cluster_summary_announced_outside_canvas"
+    ],
+    "rationale": "[DOC] MarkerClusterer combines nearby markers to simplify dense marker displays."
+  },
+  "accessibility_checks": [
+    "map summary near the map",
+    "keyboard path to search, markers, and results list",
+    "marker title or accessible name",
+    "non-map list/table alternative for locations",
+    "visible focus states outside the map canvas",
+    "route details available as text"
+  ]
+}

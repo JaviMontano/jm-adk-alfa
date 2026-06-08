@@ -1,0 +1,32 @@
+{
+  "schema": 1,
+  "consent_checks": [
+    "Document applicable region profile and consent basis.",
+    "Confirm CMP or custom banner ownership before collection.",
+    "Set consent defaults before Google tags fire when consent is required.",
+    "Document denied-state behavior for analytics and advertising storage.",
+    "Review data redaction and unwanted PII handling before launch.",
+    "Route legal sufficiency questions to the accountable human owner."
+  ],
+  "consent_mode_plans": [
+    "not_required_documented",
+    "basic",
+    "advanced",
+    "to_be_confirmed"
+  ],
+  "pii_blocklist_examples": [
+    "email",
+    "phone",
+    "full_name",
+    "address",
+    "government_id",
+    "credit_card",
+    "password",
+    "ip_address_raw"
+  ],
+  "blocking_rules": {
+    "pii_risk_high": "Reject the plan until the parameter is removed, hashed only where officially allowed, or replaced with a non-PII surrogate.",
+    "missing_legal_owner": "Reject mutation recommendation until legal_review_owner is supplied.",
+    "consent_required_unknown": "Mark the plan as blocked-for-confirmation."
+  }
+}

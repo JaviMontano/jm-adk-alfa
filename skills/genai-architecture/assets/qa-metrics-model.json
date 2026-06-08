@@ -1,0 +1,51 @@
+{
+  "schema": 1,
+  "metrics": [
+    {
+      "metric": "retrieval_precision_at_k",
+      "purpose": "Measures how many retrieved chunks are relevant.",
+      "minimum_target": ">= 0.80"
+    },
+    {
+      "metric": "retrieval_recall_at_k",
+      "purpose": "Measures whether required evidence is retrieved.",
+      "minimum_target": ">= 0.85"
+    },
+    {
+      "metric": "faithfulness",
+      "purpose": "Measures whether generated claims are grounded in context.",
+      "minimum_target": ">= 0.90"
+    },
+    {
+      "metric": "citation_accuracy",
+      "purpose": "Measures whether cited sources support the answer.",
+      "minimum_target": ">= 0.95"
+    },
+    {
+      "metric": "cost_per_answer",
+      "purpose": "Tracks inference and retrieval cost per completed answer.",
+      "minimum_target": "bounded by product budget"
+    },
+    {
+      "metric": "p95_latency",
+      "purpose": "Tracks production response latency.",
+      "minimum_target": "meets SLA"
+    }
+  ],
+  "guardrails": [
+    "prompt injection detection",
+    "PII masking",
+    "source citation enforcement",
+    "grounding check before final output",
+    "format validation",
+    "cost budget stop",
+    "tool whitelist"
+  ],
+  "improvement_cycle": [
+    "monitor",
+    "identify degradation",
+    "diagnose retrieval or generation failure",
+    "improve index/prompt/routing",
+    "validate against baseline"
+  ]
+}

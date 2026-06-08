@@ -1,0 +1,63 @@
+{
+  "schema": 1,
+  "policy_name": "google-drive-scope-policy",
+  "profiles": [
+    {
+      "id": "drive_metadata_readonly",
+      "scope": "https://www.googleapis.com/auth/drive.metadata.readonly",
+      "sensitivity": "restricted",
+      "allowed_actions": [
+        "search_list"
+      ],
+      "use_when": "Metadata lookup is enough and file bytes are not needed.",
+      "mutation_allowed": false
+    },
+    {
+      "id": "drive_readonly",
+      "scope": "https://www.googleapis.com/auth/drive.readonly",
+      "sensitivity": "restricted",
+      "allowed_actions": [
+        "search_list",
+        "download_export"
+      ],
+      "use_when": "The task needs read/download/export across accessible Drive files.",
+      "mutation_allowed": false
+    },
+    {
+      "id": "drive_file",
+      "scope": "https://www.googleapis.com/auth/drive.file",
+      "sensitivity": "non-sensitive",
+      "allowed_actions": [
+        "search_list",
+        "upload",
+        "download_export",
+        "organize_folder",
+        "share_permission"
+      ],
+      "use_when": "The task works on files created by the app or explicitly opened/shared with the app.",
+      "mutation_allowed": true,
+      "preferred_for_mutation": true
+    },
+    {
+      "id": "drive_full",
+      "scope": "https://www.googleapis.com/auth/drive",
+      "sensitivity": "restricted",
+      "allowed_actions": [
+        "search_list",
+        "upload",
+        "download_export",
+        "organize_folder",
+        "share_permission"
+      ],
+      "use_when": "Account-wide Drive management is explicitly required and narrower scopes cannot satisfy the request.",
+      "mutation_allowed": true,
+      "requires_escalation_reason": true
+    }
+  ],
+  "escalation_rules": [
+    "Prefer drive.file for per-file mutation.",
+    "Do not use readonly or metadata_readonly profiles for mutating operations.",
+    "Require a written reason before using drive_full.",
+    "Use read-only discovery before selecting a mutating scope profile."
+  ]
+}

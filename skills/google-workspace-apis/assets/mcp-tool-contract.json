@@ -1,0 +1,24 @@
+{
+  "schema": 1,
+  "official_reference": "https://modelcontextprotocol.io/specification/draft/server/tools",
+  "tools": {
+    "gmail_search_messages": {"service": "gmail", "operations": ["users.messages.list", "users.messages.get"]},
+    "gmail_create_draft": {"service": "gmail", "operations": ["users.drafts.create"]},
+    "gmail_send_message": {"service": "gmail", "operations": ["users.messages.send"]},
+    "calendar_list_events": {"service": "calendar", "operations": ["events.list", "freebusy.query"]},
+    "calendar_create_event": {"service": "calendar", "operations": ["events.insert"]},
+    "calendar_update_event": {"service": "calendar", "operations": ["events.patch"]},
+    "drive_search_files": {"service": "drive", "operations": ["files.list", "files.get"]},
+    "drive_upload_file": {"service": "drive", "operations": ["files.create"]},
+    "drive_share_file": {"service": "drive", "operations": ["permissions.create"]},
+    "docs_get_document": {"service": "docs", "operations": ["documents.get"]},
+    "docs_create_document": {"service": "docs", "operations": ["documents.create"]},
+    "docs_batch_update": {"service": "docs", "operations": ["documents.batchUpdate"]},
+    "sheets_read_values": {"service": "sheets", "operations": ["spreadsheets.get", "spreadsheets.values.get"]},
+    "sheets_update_values": {"service": "sheets", "operations": ["spreadsheets.values.update"]},
+    "sheets_batch_update": {"service": "sheets", "operations": ["spreadsheets.batchUpdate"]},
+    "slides_get_presentation": {"service": "slides", "operations": ["presentations.get", "presentations.pages.getThumbnail"]},
+    "slides_create_presentation": {"service": "slides", "operations": ["presentations.create"]},
+    "slides_batch_update": {"service": "slides", "operations": ["presentations.batchUpdate"]}
+  }
+}

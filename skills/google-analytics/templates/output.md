@@ -1,28 +1,56 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: google-analytics
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
-
-# Google Analytics Output
+# GA4/GTM Measurement Plan: {{title}}
 
 ## Summary
 
-{summary}
+- [CODE] Plan ID: `{{plan_id}}`.
+- [CODE] Implementation mode: `{{implementation_mode}}`.
+- [CODE] Mutating workflow: `{{mutating_workflow}}`.
+- [CODE] Primary business goal: {{primary_business_goal}}.
 
 ## Evidence
 
-{evidence}
+{{evidence}}
 
-## Result
+## Property And Stream Checklist
 
-{result}
+{{property_checklist}}
+
+## Measurement Strategy
+
+{{measurement_strategy}}
+
+## Event Taxonomy
+
+{{event_taxonomy}}
+
+## Parameter Contract
+
+{{parameter_contract}}
+
+## Key-Event Plan
+
+{{key_event_plan}}
+
+## Tag And Container Plan
+
+{{tag_plan}}
+
+## Privacy And Consent Checks
+
+{{privacy_consent}}
+
+## Debug Checklist
+
+{{debug_checklist}}
+
+## Human Confirmation Gate
+
+{{human_confirmation_gate}}
 
 ## Validation
 
-{validation}
+{{validation}}
 
-## Risks and Limits
+## Risks And Limits
 
-{risks}
+{{risks}}

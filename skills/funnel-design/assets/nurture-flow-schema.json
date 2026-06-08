@@ -1,0 +1,19 @@
+{
+  "schema": 1,
+  "required_fields": [
+    "id",
+    "trigger",
+    "delay",
+    "message",
+    "branch",
+    "exit"
+  ],
+  "allowed_branches": [
+    "continue",
+    "mql",
+    "sql",
+    "sales-ready",
+    "reactivate",
+    "disqualify"
+  ]
+}

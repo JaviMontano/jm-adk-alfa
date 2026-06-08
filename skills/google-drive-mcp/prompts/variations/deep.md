@@ -1,12 +1,16 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: google-drive-mcp
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
+# Google Drive MCP Deep Variation
 
-# Google Drive Mcp Deep Variation
+Use when the Drive task has unclear target files, Shared Drive ambiguity,
+permission changes, broad search scope, large uploads, exports, recursive folder
+work, or cross-account consequences.
 
-Use when the task has unclear requirements, high impact, or cross-file consequences.
+Include:
 
-Include discovery notes, options considered, selected approach, validation, and risks.
+- discovery notes and read-only evidence
+- options considered for corpus, scope, upload type, and export MIME type
+- selected operation plan with MCP tools
+- human confirmation prompts for every mutation
+- validation and risks
+
+Prefer compiling a structured plan with `scripts/compile-google-drive-mcp.py`
+before live MCP execution.

@@ -1,12 +1,13 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: google-docs-mcp
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
+# Google Docs MCP Quick Variation
 
-# Google Docs Mcp Quick Variation
+Use when the task is low risk, the document target is clear, and the operation
+is read-only or already has confirmation.
 
-Use when the task is low risk and well specified.
+Return only:
 
-Return only the requested deliverable, validation status, and residual risks.
+- Summary
+- Selected Docs API method and MCP tool
+- Scope profile
+- Confirmation status
+- Validation status
+- Residual risks

@@ -1,10 +1,15 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: google-apis-integration
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
-
 # Example Input
 
-Use `google-apis-integration` to produce a concise deliverable for a realistic project request.
+Plan a customer operations dashboard that reads product metrics from Google
+Sheets, writes a kickoff brief into Google Docs, schedules a review event in
+Google Calendar, renders customer locations with Maps JavaScript, and reads
+public YouTube training videos. The implementation must be offline-planned
+before any API call, use least-privilege auth, keep secrets out of client code,
+and require human consent before any write. [CODE]
+
+Use the structured fixture:
+
+```bash
+python3 skills/google-apis-integration/scripts/compile-google-apis-integration.py \
+  --input skills/google-apis-integration/scripts/fixtures/google-apis-integration-input.json
+```

@@ -1,0 +1,151 @@
+{
+  "schema": 1,
+  "skill": "google-workspace-apis",
+  "services": {
+    "gmail": {
+      "display_name": "Gmail API v1",
+      "official_reference": "https://developers.google.com/workspace/gmail/api/reference/rest",
+      "service_endpoint": "https://gmail.googleapis.com",
+      "operations": {
+        "users.messages.list": {
+          "method": "GET",
+          "path": "/gmail/v1/users/{userId}/messages",
+          "access": "read",
+          "mutation": false,
+          "minimum_scope_profile": "gmail_metadata_read",
+          "mcp_tool": "mcp__workspace-mcp__search_gmail_messages",
+          "notes": "Search message IDs and labels before fetching message bodies."
+        }
+      }
+    },
+    "calendar": {
+      "display_name": "Google Calendar API v3",
+      "official_reference": "https://developers.google.com/calendar/api/v3/reference",
+      "service_endpoint": "https://www.googleapis.com/calendar/v3",
+      "operations": {
+        "freebusy.query": {
+          "method": "POST",
+          "path": "/freeBusy",
+          "access": "read",
+          "mutation": false,
+          "minimum_scope_profile": "calendar_freebusy",
+          "mcp_tool": "mcp__workspace-mcp__query_calendar_freebusy",
+          "notes": "Check availability without reading full event details."
+        },
+        "events.list": {
+          "method": "GET",
+          "path": "/calendars/{calendarId}/events",
+          "access": "read",
+          "mutation": false,
+          "minimum_scope_profile": "calendar_events_readonly",
+          "mcp_tool": "mcp__workspace-mcp__list_calendar_events",
+          "notes": "Read a bounded event window before event mutation."
+        },
+        "events.insert": {
+          "method": "POST",
+          "path": "/calendars/{calendarId}/events",
+          "access": "write",
+          "mutation": true,
+          "minimum_scope_profile": "calendar_events_write",
+          "read_before_write_dependency": "freebusy.query",
+          "mcp_tool": "mcp__workspace-mcp__create_calendar_event",
+          "notes": "Create an event only after conflicts, attendees, sendUpdates, and Meet settings are reviewed."
+        }
+      }
+    },
+    "drive": {
+      "display_name": "Google Drive API v3",
+      "official_reference": "https://developers.google.com/drive/api/reference/rest/v3",
+      "service_endpoint": "https://www.googleapis.com/drive/v3",
+      "operations": {
+        "files.list": {
+          "method": "GET",
+          "path": "/files",
+          "access": "read",
+          "mutation": false,
+          "minimum_scope_profile": "drive_metadata_readonly",
+          "mcp_tool": "mcp__workspace-mcp__search_drive_files",
+          "notes": "Search metadata with explicit query filters and trashed=false."
+        }
+      }
+    },
+    "docs": {
+      "display_name": "Google Docs API v1",
+      "official_reference": "https://developers.google.com/workspace/docs/api/reference/rest",
+      "service_endpoint": "https://docs.googleapis.com",
+      "operations": {
+        "documents.get": {
+          "method": "GET",
+          "path": "/v1/documents/{documentId}",
+          "access": "read",
+          "mutation": false,
+          "minimum_scope_profile": "docs_readonly",
+          "mcp_tool": "mcp__workspace-mcp__get_doc_content",
+          "notes": "Read the document structure before calculating indexes."
+        },
+        "documents.batchUpdate": {
+          "method": "POST",
+          "path": "/v1/documents/{documentId}:batchUpdate",
+          "access": "write",
+          "mutation": true,
+          "minimum_scope_profile": "docs_file_write",
+          "read_before_write_dependency": "documents.get",
+          "mcp_tool": "mcp__workspace-mcp__modify_doc_text",
+          "notes": "Apply ordered document updates after reading structure and revision controls."
+        }
+      }
+    },
+    "sheets": {
+      "display_name": "Google Sheets API v4",
+      "official_reference": "https://developers.google.com/workspace/sheets/api/reference/rest",
+      "service_endpoint": "https://sheets.googleapis.com",
+      "operations": {
+        "spreadsheets.values.batchGet": {
+          "method": "GET",
+          "path": "/v4/spreadsheets/{spreadsheetId}/values:batchGet",
+          "access": "read",
+          "mutation": false,
+          "minimum_scope_profile": "sheets_readonly",
+          "mcp_tool": "mcp__workspace-mcp__read_sheet_values",
+          "notes": "Read one or more ranges before value writes."
+        },
+        "spreadsheets.values.batchUpdate": {
+          "method": "POST",
+          "path": "/v4/spreadsheets/{spreadsheetId}/values:batchUpdate",
+          "access": "write",
+          "mutation": true,
+          "minimum_scope_profile": "sheets_file_write",
+          "read_before_write_dependency": "spreadsheets.values.batchGet",
+          "mcp_tool": "mcp__workspace-mcp__modify_sheet_values",
+          "notes": "Set values in multiple ranges in one request."
+        }
+      }
+    },
+    "slides": {
+      "display_name": "Google Slides API v1",
+      "official_reference": "https://developers.google.com/workspace/slides/api/reference/rest",
+      "service_endpoint": "https://slides.googleapis.com",
+      "operations": {
+        "presentations.get": {
+          "method": "GET",
+          "path": "/v1/presentations/{presentationId}",
+          "access": "read",
+          "mutation": false,
+          "minimum_scope_profile": "slides_readonly",
+          "mcp_tool": "mcp__workspace-mcp__get_presentation",
+          "notes": "Read presentation structure and page IDs before updates."
+        },
+        "presentations.batchUpdate": {
+          "method": "POST",
+          "path": "/v1/presentations/{presentationId}:batchUpdate",
+          "access": "write",
+          "mutation": true,
+          "minimum_scope_profile": "slides_file_write",
+          "read_before_write_dependency": "presentations.get",
+          "mcp_tool": "mcp__workspace-mcp__batch_update_presentation",
+          "notes": "Apply ordered slide updates after reading page IDs and layout state."
+        }
+      }
+    }
+  }
+}

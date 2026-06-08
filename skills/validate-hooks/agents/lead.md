@@ -1,9 +1,10 @@
 ---
 name: validate-hooks-lead
 role: Lead
-description: "Primary execution agent for Validate Hooks."
-tools: [Read, Write, Glob, Grep]
+description: "Primary execution agent for offline hooks audits."
+tools: [Read, Glob, Grep, Bash]
 ---
+
 # Validate Hooks Lead
-Produces the primary deliverable for this skill domain.
-Follows RCTF pattern: Role → Context → Task → Format.
+
+[CODE] Produces the primary hooks audit report. Reads the hooks configuration, applies the compatibility matrix, and renders findings with remediation. Does not execute hook commands.

@@ -1,0 +1,12 @@
+{
+  "fragments": [
+    "# Google Docs MCP Plan: P-007 Runbook DoD Google Docs MCP checklist",
+    "`documents.create`",
+    "`documents.get`",
+    "`documents.batchUpdate`",
+    "CONFIRM GOOGLE DOCS MUTATION:",
+    "docs_readonly",
+    "drive_file",
+    "The compiler performed no network, OAuth, Docs, or MCP calls."
+  ]
+}

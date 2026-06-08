@@ -1,75 +1,32 @@
 {
   "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-28",
   "skill": "google-analytics",
   "nodes": [
-    {
-      "id": "google-analytics",
-      "type": "skill",
-      "label": "google-analytics"
-    },
-    {
-      "id": "google-analytics:inputs",
-      "type": "contract",
-      "label": "Expected inputs"
-    },
-    {
-      "id": "google-analytics:outputs",
-      "type": "contract",
-      "label": "Expected outputs"
-    },
-    {
-      "id": "google-analytics:quality",
-      "type": "gate",
-      "label": "Quality criteria"
-    },
-    {
-      "id": "google-analytics:ontology",
-      "type": "ontology",
-      "label": "Domain: general"
-    },
-    {
-      "id": "google-analytics:evidence",
-      "type": "gate",
-      "label": "Evidence / provenance requirements"
-    },
-    {
-      "id": "google-analytics:antipattern",
-      "type": "risk",
-      "label": "Canonical anti-pattern to avoid"
-    }
+    {"id": "google-analytics", "type": "skill", "label": "google-analytics"},
+    {"id": "ga4-property", "type": "concept", "label": "GA4 property and web data stream"},
+    {"id": "google-tag", "type": "concept", "label": "Google tag / gtag.js"},
+    {"id": "google-tag-manager", "type": "concept", "label": "Google Tag Manager"},
+    {"id": "event-taxonomy", "type": "contract", "label": "GA4 event taxonomy"},
+    {"id": "recommended-events", "type": "source-backed", "label": "GA4 recommended events"},
+    {"id": "key-events", "type": "contract", "label": "GA4 key-event plan"},
+    {"id": "measurement-protocol", "type": "constraint", "label": "Measurement Protocol supplement only"},
+    {"id": "consent-mode", "type": "privacy-gate", "label": "Consent and privacy checks"},
+    {"id": "tag-assistant", "type": "debug-gate", "label": "Tag Assistant"},
+    {"id": "debugview", "type": "debug-gate", "label": "GA4 DebugView"},
+    {"id": "human-confirmation", "type": "safety-gate", "label": "Human confirmation before mutations"}
   ],
   "edges": [
-    {
-      "from": "google-analytics",
-      "to": "google-analytics:inputs",
-      "type": "requires"
-    },
-    {
-      "from": "google-analytics",
-      "to": "google-analytics:outputs",
-      "type": "produces"
-    },
-    {
-      "from": "google-analytics",
-      "to": "google-analytics:quality",
-      "type": "validated_by"
-    },
-    {
-      "from": "google-analytics",
-      "to": "google-analytics:ontology",
-      "type": "classified_as"
-    },
-    {
-      "from": "google-analytics",
-      "to": "google-analytics:evidence",
-      "type": "validated_by"
-    },
-    {
-      "from": "google-analytics",
-      "to": "google-analytics:antipattern",
-      "type": "guards_against"
-    }
+    {"from": "google-analytics", "to": "ga4-property", "type": "requires"},
+    {"from": "google-analytics", "to": "event-taxonomy", "type": "produces"},
+    {"from": "event-taxonomy", "to": "recommended-events", "type": "prefers"},
+    {"from": "event-taxonomy", "to": "key-events", "type": "validates"},
+    {"from": "measurement-protocol", "to": "google-tag", "type": "supplements"},
+    {"from": "measurement-protocol", "to": "google-tag-manager", "type": "supplements"},
+    {"from": "consent-mode", "to": "google-tag", "type": "gates"},
+    {"from": "consent-mode", "to": "google-tag-manager", "type": "gates"},
+    {"from": "tag-assistant", "to": "google-tag-manager", "type": "verifies"},
+    {"from": "debugview", "to": "event-taxonomy", "type": "verifies"},
+    {"from": "human-confirmation", "to": "google-tag-manager", "type": "blocks_mutation_until_confirmed"},
+    {"from": "human-confirmation", "to": "key-events", "type": "blocks_mutation_until_confirmed"}
   ]
 }

@@ -1,8 +1,12 @@
 ---
 name: google-apis-integration-support
 role: Support
-description: "Execution support for Google Apis Integration."
-tools: [Read, Write, Edit, Glob, Grep]
+description: "Checks source alignment, fixtures, and output completeness for Google API plans."
+tools: [Read, Write, Edit, Glob, Grep, Bash]
 ---
-# Google Apis Integration Support
-Handles secondary tasks: evidence gathering, reference formatting, eval generation.
+
+# Google APIs Integration Support
+
+Review service operation mapping, OAuth/API-key profile selection, fixture
+coverage, and expected fragments. Confirm scripts remain offline and update
+examples, evals, prompts, and templates when the schema changes. [CODE]

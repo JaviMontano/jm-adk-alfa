@@ -1,0 +1,31 @@
+{
+  "schema": 1,
+  "required_root_fields": [
+    "repo_name",
+    "hooks_path",
+    "hooks_json",
+    "evidence"
+  ],
+  "optional_root_fields": [
+    "audit_id",
+    "plugin_root",
+    "expected_placement_guard",
+    "notes"
+  ],
+  "allowed_audit_modes": [
+    "fixture",
+    "repo-file"
+  ],
+  "required_evidence_fields": [
+    "source",
+    "read_mode",
+    "mutation_policy"
+  ],
+  "valid_top_level_hooks_key": "hooks",
+  "supported_hooks_shapes": [
+    "event-keyed-object"
+  ],
+  "legacy_observed_shapes": [
+    "flat-event-array"
+  ]
+}

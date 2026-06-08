@@ -26,55 +26,100 @@ allowed-tools:
 
 # Google Drive MCP
 
-> "Files are the atoms of digital work." — Unknown
-
 ## TL;DR
 
-Manages Google Drive directly from Claude Code via the Google Workspace MCP server. Upload, download, search, organize, move, copy, rename, and share files and folders — including Shared Drives. Supports path-based navigation (`/Work/Projects/file.doc`). [EXPLICIT]
+Plan and execute Google Drive work through the local `workspace-mcp` server with
+read-only discovery before mutation. Use this skill for Drive search/list,
+upload, download/export, folder organization, copy/update, and
+sharing/permissions. Use `scripts/compile-google-drive-mcp.py` when the request
+can be represented as structured JSON and a reproducible offline checklist is
+useful. [EXPLICIT]
 
 ## Prerequisites
 
 - Google Workspace MCP server configured (see `docs/google-workspace-mcp-setup.md`)
-- Google Drive API enabled in Google Cloud Console
-- OAuth2 credentials authenticated
+- Google Drive API enabled and OAuth credentials authenticated through the local
+  `workspace-mcp` setup
+- Drive operations scoped to the narrowest available permission profile:
+  prefer `drive.file` for created/opened files, `drive.metadata.readonly` for
+  metadata-only discovery, and `drive.readonly` only when full read/download
+  access is necessary
 
 ## Procedure
 
-### Step 1: Navigate & Search
-- Browse files using path notation (`/My Drive/Projects/`)
-- Search across Drive with keywords, file types, date ranges
-- List contents of folders and Shared Drives
+### Step 1: Discover Read-Only
+- Confirm `.mcp.json` exposes `workspace-mcp` with Drive tools before using MCP.
+- Use `mcp__workspace-mcp__search_drive_files` or
+  `mcp__workspace-mcp__list_drive_items` before any upload, folder creation,
+  copy/update, or sharing change.
+- Make Drive search explicit: include a `q` query, `trashed = false`, `fields`,
+  `spaces=drive`, and efficient `corpora` (`user` or a specific `drive` before
+  `allDrives`).
+- Request only useful fields such as `files(id,name,mimeType,parents,webViewLink,
+  capabilities/canDownload,capabilities/canShare)` and `nextPageToken`.
 
-### Step 2: File Operations
-- Upload files from local workspace to Drive
-- Download files from Drive to local workspace
-- Create new folders with organized structure
-- Move, copy, rename files between folders
+### Step 2: Select Scope And Operation Mode
+- Use `assets/scope-policy.json` to choose the least-privilege scope profile.
+- Treat `drive.file` as the preferred mutation profile for files created or
+  selected for the app; do not escalate to full `drive` unless the task truly
+  requires account-wide mutation.
+- Treat metadata-only lookup as `drive.metadata.readonly`; treat download/export
+  of all accessible files as `drive.readonly`.
+- Keep the offline compiler in `scripts/` for plan generation only. It must not
+  call Drive, OAuth, or MCP.
 
-### Step 3: Share & Collaborate
-- Share files/folders with specific users or teams
-- Set permissions (viewer, commenter, editor)
-- Access Shared Drives for team collaboration
+### Step 3: Plan File And Folder Work
+- For uploads, choose `uploadType=media` for small media-only uploads,
+  `uploadType=multipart` for small uploads with metadata, and
+  `uploadType=resumable` for files greater than 5 MB or interruption-prone
+  uploads.
+- For downloads, distinguish blob files from Google Workspace files: blob content
+  uses media download semantics, while Google Docs/Sheets/Slides use export MIME
+  types such as PDF, DOCX, XLSX, PPTX, CSV, or Markdown.
+- For folders, use `application/vnd.google-apps.folder`, verify the parent, and
+  check inherited sharing before creating or moving content.
 
-### Step 4: Organize
-- Create folder hierarchies for project organization
-- Move completed work to archive folders
-- Clean up duplicates and outdated files
+### Step 4: Confirm Mutations
+- Ask for human confirmation before upload, folder creation, copy/update, or
+  permission changes.
+- For sharing, verify `capabilities.canShare`, permission `type`, role, email or
+  domain target, notification behavior, expiration if applicable, and whether
+  link/domain/anyone access is being introduced.
+- Avoid broad `anyone` or domain-level sharing unless the user explicitly
+  confirms recipient, role, duration, and business reason.
+
+### Step 5: Validate And Report
+- Return evidence-tagged output with source of truth, selected MCP tool, query or
+  upload/export parameters, confirmation state, and residual limits.
+- Run `scripts/check.sh` when changing this skill.
 
 ## Quality Criteria
 
-- [ ] File paths validated before operations
-- [ ] Permissions set to minimum necessary access
-- [ ] Large file uploads handled with progress tracking
-- [ ] Shared Drive access confirmed before operations
-- [ ] Evidence tags on all claims
+- [ ] Read-only discovery happens before mutating Drive actions
+- [ ] Search/list requests include `q`, `fields`, `trashed = false`, `spaces`, and
+      efficient `corpora`
+- [ ] OAuth scope profile is least privilege for the requested operation
+- [ ] Upload plan selects `media`, `multipart`, or `resumable` from file size and
+      metadata needs
+- [ ] Download/export plan distinguishes blob content from Google Workspace
+      document export
+- [ ] Folder operations verify parent, MIME type, and inherited permission impact
+- [ ] Sharing/permission changes include human confirmation and capability checks
+- [ ] Scripts stay offline and deterministic; no Drive, OAuth, or MCP calls
+- [ ] Evidence tags applied to all claims
 
 ## Anti-Patterns
 
 - Deleting files without user confirmation
-- Sharing files with overly broad permissions ("anyone with link")
-- Uploading sensitive files (credentials, .env) to Drive
-- Deep recursive folder operations without size check
+- Running a mutating MCP tool before search/list discovery
+- Searching without `trashed = false`, partial `fields`, or an efficient corpus
+- Sharing with `anyone` or a whole domain without explicit confirmation
+- Uploading credentials, tokens, `.env`, or private local state to Drive
+- Treating Google Workspace documents as blob downloads instead of exports
+- Using full `drive` scope when `drive.file`, `drive.readonly`, or
+  `drive.metadata.readonly` is sufficient
+- Deep recursive folder moves without a count, parent, and inherited-permission
+  review
 
 ## Related Skills
 
@@ -89,10 +134,26 @@ Manages Google Drive directly from Claude Code via the Google Workspace MCP serv
 - "upload the report to my Drive in /Projects/Q2"
 - "search Drive for presentation files from last month"
 - "share the proposal folder with ana@company.com as editor"
+- "compile a safe Drive MCP plan from this JSON fixture"
 
 ## Assumptions & Limits
 
-- Requires authenticated Google Workspace MCP server [EXPLICIT]
-- Path navigation uses `/` as separator [EXPLICIT]
-- Large files may take time to upload/download [EXPLICIT]
-- Cannot access drives from non-authenticated accounts [EXPLICIT]
+- Requires authenticated local Google Workspace MCP server [EXPLICIT]
+- Uses local assets under `assets/` for deterministic Drive API policy, not live
+  Drive inspection [EXPLICIT]
+- `scripts/compile-google-drive-mcp.py` renders a plan/checklist only; it does
+  not call Drive, OAuth, or MCP [EXPLICIT]
+- Real Drive outcomes depend on account access, OAuth scopes, Shared Drive
+  policy, file capabilities, and user confirmation [EXPLICIT]
+- Large files may take time to upload/download/export in real MCP execution
+  [EXPLICIT]
+
+## Edge Cases
+
+| Scenario | Handling |
+|----------|----------|
+| Empty or broad search | Request a narrower `q`, target corpus, fields, and page size before calling Drive |
+| Shared Drive target | Use `corpora=drive`, `driveId`, and all-drive support flags when the MCP tool exposes them |
+| Google Docs/Sheets/Slides download | Export to a supported MIME type instead of blob download |
+| Permission mutation | Require human confirmation and verify `capabilities.canShare` first |
+| Broad access request | Surface risk and ask for explicit recipient, role, expiry, and reason |

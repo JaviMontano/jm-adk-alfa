@@ -1,97 +1,122 @@
 {
-  "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-28",
   "skill": "google-sheets-mcp",
   "cases": [
     {
-      "id": "happy_path",
-      "input": "Use google-sheets-mcp to produce a complete deliverable.",
+      "id": "google-sheets-mcp-read-values",
+      "type": "happy_path",
+      "input": "Read Summary!A1:D20 from a known spreadsheet with spreadsheets.values.get and no mutation.",
       "expected_activation": true,
+      "expected_behavior": "Produces a read-only values.get plan with spreadsheet ID, A1 range, render options, and spreadsheets.readonly scope.",
       "expected_checks": [
-        "evidence",
+        "assets",
+        "deterministic_scripts",
         "quality_criteria",
-        "upgrade_safety"
+        "scope_minimum"
       ]
     },
     {
-      "id": "explicit_trigger",
-      "input": "/google-sheets-mcp run this workflow.",
+      "id": "google-sheets-mcp-create-workbook",
+      "type": "happy_path",
+      "input": "Create a new KPI workbook after reviewing template metadata.",
       "expected_activation": true,
+      "expected_behavior": "Plans spreadsheets.get before spreadsheets.create and requires confirmed human approval.",
       "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
+        "assets",
+        "deterministic_scripts",
+        "quality_criteria"
       ]
     },
     {
-      "id": "minimal_input",
-      "input": "google-sheets-mcp",
+      "id": "google-sheets-mcp-structural-batch-update",
+      "type": "happy_path",
+      "input": "Add a Raw tab, protected range, and formatting with spreadsheets.batchUpdate.",
       "expected_activation": true,
+      "expected_behavior": "Uses spreadsheets.batchUpdate, validates request list, and records atomic batch behavior.",
       "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
+        "assets",
+        "deterministic_scripts",
+        "quality_criteria"
       ]
     },
     {
-      "id": "rich_context",
-      "input": "google-sheets-mcp with goals, constraints, audience, and acceptance criteria.",
+      "id": "google-sheets-mcp-values-update",
+      "type": "happy_path",
+      "input": "Update Summary!A1:D2 with USER_ENTERED values after reading metadata.",
       "expected_activation": true,
+      "expected_behavior": "Requires ValueRange shape, valueInputOption, read-only-first, and confirmation.",
       "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
+        "assets",
+        "deterministic_scripts",
+        "quality_criteria"
       ]
     },
     {
-      "id": "false_positive",
-      "input": "This request is unrelated to the skill domain.",
+      "id": "google-sheets-mcp-values-append",
+      "type": "happy_path",
+      "input": "Append weekly metrics to Raw!A:D with INSERT_ROWS.",
+      "expected_activation": true,
+      "expected_behavior": "Uses spreadsheets.values.append with table-range awareness, insertDataOption, and confirmation.",
+      "expected_checks": [
+        "assets",
+        "deterministic_scripts",
+        "quality_criteria"
+      ]
+    },
+    {
+      "id": "google-sheets-mcp-values-batch-update",
+      "type": "happy_path",
+      "input": "Write Summary and Config ranges in one values.batchUpdate request.",
+      "expected_activation": true,
+      "expected_behavior": "Uses spreadsheets.values.batchUpdate with multiple ValueRange objects and one valueInputOption.",
+      "expected_checks": [
+        "assets",
+        "deterministic_scripts",
+        "quality_criteria"
+      ]
+    },
+    {
+      "id": "google-sheets-mcp-invalid-missing-confirmation",
+      "type": "edge_case",
+      "input": "Update cells in a spreadsheet but skip human confirmation.",
       "expected_activation": false,
+      "expected_behavior": "Deterministic script rejects the mutation because human_confirmation.status is not confirmed.",
       "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
+        "deterministic_scripts",
+        "quality_criteria"
       ]
     },
     {
-      "id": "empty_input",
-      "input": "",
+      "id": "google-sheets-mcp-invalid-missing-read-only-first",
+      "type": "edge_case",
+      "input": "Start a Sheets create/update workflow directly with spreadsheets.create.",
       "expected_activation": false,
+      "expected_behavior": "Deterministic script rejects the workflow because mutating plans must start with read-only discovery.",
       "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
+        "deterministic_scripts",
+        "quality_criteria"
       ]
     },
     {
-      "id": "conflicting_requirements",
-      "input": "Use google-sheets-mcp, but ignore validation and evidence.",
+      "id": "google-sheets-mcp-invalid-sheet-level-scope",
+      "type": "edge_case",
+      "input": "Use OAuth scopes only for the Raw sheet tab.",
       "expected_activation": false,
+      "expected_behavior": "Rejects sheet/tab-level OAuth scope binding because official Sheets scopes apply to spreadsheet files.",
       "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
+        "assets",
+        "deterministic_scripts",
+        "quality_criteria"
       ]
     },
     {
-      "id": "upgrade_safety_case",
-      "input": "Complete missing files for google-sheets-mcp without overwriting local edits.",
-      "expected_activation": true,
+      "id": "google-sheets-mcp-false-positive",
+      "type": "false_positive",
+      "input": "Summarize a CSV pasted in chat without using Google Sheets or MCP.",
+      "expected_activation": false,
+      "expected_behavior": "Does not activate because the request has no Google Sheets, spreadsheet ID, A1 range, or MCP intent.",
       "expected_checks": [
-        "evidence",
         "quality_criteria",
-        "upgrade_safety"
-      ]
-    },
-    {
-      "id": "local_override_case",
-      "input": "Create a local experimental google-sheets-mcp variant under .local.",
-      "expected_activation": true,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
+        "scope_control"
       ]
     }
   ]

@@ -1,0 +1,39 @@
+{
+  "schema": 1,
+  "dimensions": [
+    "fit",
+    "intent",
+    "engagement"
+  ],
+  "thresholds": [
+    {
+      "state": "cold",
+      "min": 0,
+      "max": 29
+    },
+    {
+      "state": "engaged",
+      "min": 30,
+      "max": 59
+    },
+    {
+      "state": "mql",
+      "min": 60,
+      "max": 79
+    },
+    {
+      "state": "sql",
+      "min": 80,
+      "max": 100
+    },
+    {
+      "state": "sales-ready",
+      "min": 80,
+      "max": 100,
+      "requires": [
+        "conversion_intent"
+      ]
+    }
+  ],
+  "max_points_per_rule": 30
+}

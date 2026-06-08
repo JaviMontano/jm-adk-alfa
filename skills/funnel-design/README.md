@@ -7,11 +7,16 @@ overwrite-policy: missing-only unless --force
 
 # Funnel Design
 
->
+Deterministic funnel blueprinting for TOFU/MOFU/BOFU content maps, lead scoring, nurture paths, qualification rules, and sales handoff.
 
 ## Triggers
 
 - funnel-design
+- TOFU/MOFU/BOFU
+- content mapping
+- lead scoring
+- nurture flow
+- qualification rules
 
 ## Allowed Tools
 
@@ -23,8 +28,15 @@ overwrite-policy: missing-only unless --force
 
 ## Quick Use
 
-Use this skill when the request clearly matches the triggers and requires the `funnel-design` capability.
+Use this skill when a request needs a campaign funnel structure before content production, CRM automation, or analytics measurement.
+
+When structured data exists, run:
+
+```bash
+python3 skills/funnel-design/scripts/compile-funnel-design.py \
+  --input skills/funnel-design/scripts/fixtures/funnel-design-input.json
+```
 
 ## Output Format
 
-Markdown with summary, evidence, result, validation, and risks.
+Markdown with funnel context, TOFU/MOFU/BOFU content map, lead scoring, nurture flow, handoff rules, gaps, validation, and risks.

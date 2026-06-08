@@ -1,75 +1,103 @@
 {
   "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-28",
   "skill": "google-sheets-mcp",
   "nodes": [
     {
       "id": "google-sheets-mcp",
       "type": "skill",
-      "label": "google-sheets-mcp"
+      "label": "Google Sheets MCP"
     },
     {
-      "id": "google-sheets-mcp:inputs",
-      "type": "contract",
-      "label": "Expected inputs"
+      "id": "sheets-rest",
+      "type": "api",
+      "label": "Google Sheets API v4 REST"
     },
     {
-      "id": "google-sheets-mcp:outputs",
-      "type": "contract",
-      "label": "Expected outputs"
+      "id": "workspace-mcp",
+      "type": "mcp-server",
+      "label": "workspace-mcp"
     },
     {
-      "id": "google-sheets-mcp:quality",
+      "id": "offline-compiler",
+      "type": "script",
+      "label": "scripts/compile-google-sheets-mcp.py"
+    },
+    {
+      "id": "scope-policy",
+      "type": "asset",
+      "label": "assets/scope-policy.json"
+    },
+    {
+      "id": "confirmation-gate",
       "type": "gate",
-      "label": "Quality criteria"
+      "label": "Human confirmation for mutations"
     },
     {
-      "id": "google-sheets-mcp:ontology",
-      "type": "ontology",
-      "label": "Domain: tool-design-mcp"
+      "id": "spreadsheet-file-scope",
+      "type": "constraint",
+      "label": "Scopes bind to spreadsheet file"
     },
     {
-      "id": "google-sheets-mcp:evidence",
-      "type": "gate",
-      "label": "Evidence / provenance requirements"
+      "id": "values-methods",
+      "type": "operation-family",
+      "label": "spreadsheets.values methods"
     },
     {
-      "id": "google-sheets-mcp:antipattern",
+      "id": "structural-batch-update",
+      "type": "operation",
+      "label": "spreadsheets.batchUpdate"
+    },
+    {
+      "id": "sheet-tab-scope",
       "type": "risk",
-      "label": "Canonical anti-pattern to avoid"
+      "label": "Invalid sheet/tab-level OAuth scope assumption"
     }
   ],
   "edges": [
     {
       "from": "google-sheets-mcp",
-      "to": "google-sheets-mcp:inputs",
-      "type": "requires"
+      "to": "sheets-rest",
+      "type": "grounded_in"
     },
     {
       "from": "google-sheets-mcp",
-      "to": "google-sheets-mcp:outputs",
-      "type": "produces"
+      "to": "workspace-mcp",
+      "type": "uses"
     },
     {
       "from": "google-sheets-mcp",
-      "to": "google-sheets-mcp:quality",
+      "to": "offline-compiler",
       "type": "validated_by"
     },
     {
-      "from": "google-sheets-mcp",
-      "to": "google-sheets-mcp:ontology",
-      "type": "classified_as"
+      "from": "offline-compiler",
+      "to": "scope-policy",
+      "type": "loads"
     },
     {
-      "from": "google-sheets-mcp",
-      "to": "google-sheets-mcp:evidence",
+      "from": "offline-compiler",
+      "to": "confirmation-gate",
       "type": "validated_by"
     },
     {
-      "from": "google-sheets-mcp",
-      "to": "google-sheets-mcp:antipattern",
+      "from": "scope-policy",
+      "to": "spreadsheet-file-scope",
+      "type": "defines"
+    },
+    {
+      "from": "spreadsheet-file-scope",
+      "to": "sheet-tab-scope",
       "type": "guards_against"
+    },
+    {
+      "from": "sheets-rest",
+      "to": "values-methods",
+      "type": "includes"
+    },
+    {
+      "from": "sheets-rest",
+      "to": "structural-batch-update",
+      "type": "includes"
     }
   ]
 }

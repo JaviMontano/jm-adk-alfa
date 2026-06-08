@@ -1,0 +1,101 @@
+{
+  "schema": 1,
+  "sources": {
+    "maps_javascript_api": "https://developers.google.com/maps/documentation/javascript/overview",
+    "advanced_markers": "https://developers.google.com/maps/documentation/javascript/advanced-markers/overview",
+    "marker_clustering": "https://developers.google.com/maps/documentation/javascript/marker-clustering",
+    "geocoding_api": "https://developers.google.com/maps/documentation/geocoding/overview",
+    "places_api": "https://developers.google.com/maps/documentation/places/web-service/overview",
+    "directions_api": "https://developers.google.com/maps/documentation/directions/overview"
+  },
+  "api_decisions": [
+    {
+      "id": "maps-javascript-api",
+      "label": "Maps JavaScript API",
+      "restriction_name": "Maps JavaScript API",
+      "triggers": [
+        "interactive_map",
+        "advanced_markers",
+        "dense_markers"
+      ],
+      "rationale": "[DOC] Use for client-side interactive web maps, map styling, markers, custom data layers, and Maps JavaScript services.",
+      "required_controls": [
+        "restricted browser key",
+        "website referrer restriction",
+        "map container responsive sizing",
+        "loading strategy documented"
+      ]
+    },
+    {
+      "id": "places-api-new",
+      "label": "Places API (New)",
+      "restriction_name": "Places API",
+      "triggers": [
+        "location_search",
+        "place_details"
+      ],
+      "rationale": "[DOC] Use for place search, autocomplete, and place details with field minimization and place IDs.",
+      "required_controls": [
+        "session token for autocomplete sessions",
+        "selected fields only",
+        "place ID as durable reference",
+        "server-side key for web service calls"
+      ]
+    },
+    {
+      "id": "geocoding-api",
+      "label": "Geocoding API",
+      "restriction_name": "Geocoding API",
+      "triggers": [
+        "address_geocoding",
+        "reverse_geocoding"
+      ],
+      "rationale": "[DOC] Use to convert addresses, coordinates, or place IDs into coordinates, place IDs, or human-readable addresses.",
+      "required_controls": [
+        "cache normalized geocode results",
+        "avoid geocoding on every page load",
+        "validate address inputs before request",
+        "server-side key for web service calls"
+      ]
+    },
+    {
+      "id": "directions-api-legacy",
+      "label": "Directions API (Legacy)",
+      "restriction_name": "Directions API",
+      "triggers": [
+        "route_directions"
+      ],
+      "rationale": "[DOC] Use only when legacy Directions API is explicitly required; Google marks the product as Legacy and points migration toward newer services.",
+      "required_controls": [
+        "legacy status acknowledged",
+        "origin and destination source documented",
+        "waypoints confirmed by user",
+        "evaluate newer Routes API before production build"
+      ]
+    }
+  ],
+  "library_decisions": [
+    {
+      "id": "advanced-markers",
+      "label": "Advanced Markers",
+      "trigger": "advanced_markers",
+      "rationale": "[DOC] Advanced Markers support customizable markers, keyboard/click interaction, and require a map ID.",
+      "required_controls": [
+        "map ID configured",
+        "marker title or accessible name",
+        "click listener for keyboard focus when interactive"
+      ]
+    },
+    {
+      "id": "marker-clusterer",
+      "label": "@googlemaps/markerclusterer",
+      "trigger": "dense_markers",
+      "rationale": "[DOC] Marker clustering groups nearby markers to simplify dense map displays and improve visual clarity.",
+      "required_controls": [
+        "cluster threshold documented",
+        "alternate list or table available",
+        "cluster behavior tested at expected zoom levels"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "operation_id": "gdocs-invalid-batch-without-get",
+  "request_title": "Invalid batch update without get",
+  "mcp_server": "workspace-mcp",
+  "operation_mode": "safe_execution_checklist",
+  "requested_scope_profile": "drive_file",
+  "read_only_first": {
+    "document_resolved": true,
+    "structure_checked": true,
+    "revision_id_captured": true,
+    "existing_content_summary": "Caller claims inspection but no documents.get operation is present."
+  },
+  "human_confirmation": {
+    "status": "confirmed",
+    "confirmed_by": "owner@example.com",
+    "confirmation_text": "CONFIRM GOOGLE DOCS MUTATION: operation_id=gdocs-invalid-batch-without-get document_id_or_title=doc-missing-get docs_api_method=documents.batchUpdate scope_profile=drive_file request_count=1 live_execution_intent=test"
+  },
+  "operations": [
+    {
+      "id": "batch-update-without-get",
+      "action": "batch_update",
+      "description": "Incorrectly edits without a prior documents.get for the same document.",
+      "docs_api_method": "documents.batchUpdate",
+      "mcp_tool": "mcp__workspace-mcp__modify_doc_text",
+      "scope_profile": "drive_file",
+      "batch_update": {
+        "document_id": "doc-missing-get",
+        "write_control": {
+          "required_revision_id": "rev-missing-get"
+        },
+        "requires_human_confirmation": true,
+        "requests": [
+          {
+            "type": "insertText",
+            "payload": {
+              "location": {
+                "index": 1
+              },
+              "text": "Unsafe insert"
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "evidence": {
+    "repo_docs": "docs/google-workspace-mcp-setup.md; docs/mcp-integration.md",
+    "google_docs_api": "https://developers.google.com/workspace/docs/api/reference/rest",
+    "docs_scopes": "https://developers.google.com/workspace/docs/api/auth",
+    "docs_batch_update": "https://developers.google.com/workspace/docs/api/reference/rest/v1/documents/batchUpdate",
+    "docs_create_get": "https://developers.google.com/workspace/docs/api/reference/rest/v1/documents/create; https://developers.google.com/workspace/docs/api/reference/rest/v1/documents/get",
+    "workspace_mcp_dev_server": "https://developers.google.com/workspace/guides/build-with-llms",
+    "mcp_tools_spec": "https://modelcontextprotocol.io/specification/draft/server/tools"
+  }
+}

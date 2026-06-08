@@ -1,0 +1,19 @@
+{
+  "fragments": [
+    "Google Sheets MCP Plan: Weekly KPI Workbook",
+    "offline plan/checklist only",
+    "Official scope note",
+    "Sheets API scopes are applied to a spreadsheet file and cannot be limited to a specific sheet.",
+    "`spreadsheets.create`",
+    "`spreadsheets.get`",
+    "`spreadsheets.batchUpdate`",
+    "`spreadsheets.values.get`",
+    "`spreadsheets.values.update`",
+    "`spreadsheets.values.append`",
+    "`spreadsheets.values.batchUpdate`",
+    "human confirmation: confirmed",
+    "ValueRange required fields",
+    "batchUpdate requests are atomic",
+    "Scope bindings validated as spreadsheet_file"
+  ]
+}

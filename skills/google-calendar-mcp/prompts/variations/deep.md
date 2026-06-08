@@ -1,12 +1,13 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: google-calendar-mcp
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
+# Google Calendar MCP Deep Variation
 
-# Google Calendar Mcp Deep Variation
+Use when the request mutates Calendar, affects attendees, includes Google Meet, crosses timezones, edits/cancels an existing event, or has incomplete details.
 
-Use when the task has unclear requirements, high impact, or cross-file consequences.
+Include:
 
-Include discovery notes, options considered, selected approach, validation, and risks.
+- Discovery notes from read-only tools.
+- Missing inputs or confirmation required.
+- Minimum scope decision.
+- Payload preview with timezone, attendees, `sendUpdates`, and `conferenceData`.
+- MCP tool sequence and stop points.
+- Validation plan and post-mutation read-back checks.
+- Residual risks and assumptions.

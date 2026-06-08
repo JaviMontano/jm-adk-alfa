@@ -1,0 +1,87 @@
+{
+  "schema": 1,
+  "skill": "gmail-mcp",
+  "principle": "Verify the narrowest Gmail scope that can support the requested operation before any MCP call.",
+  "scopes": {
+    "gmail.metadata": {
+      "uri": "https://www.googleapis.com/auth/gmail.metadata",
+      "sensitivity": "restricted",
+      "use_for": [
+        "message metadata",
+        "headers",
+        "labels without body content"
+      ]
+    },
+    "gmail.readonly": {
+      "uri": "https://www.googleapis.com/auth/gmail.readonly",
+      "sensitivity": "restricted",
+      "use_for": [
+        "read message bodies",
+        "read threads",
+        "inspect draft content without mutation"
+      ]
+    },
+    "gmail.labels": {
+      "uri": "https://www.googleapis.com/auth/gmail.labels",
+      "sensitivity": "non-sensitive",
+      "use_for": [
+        "list labels",
+        "create labels",
+        "update labels",
+        "delete labels"
+      ]
+    },
+    "gmail.compose": {
+      "uri": "https://www.googleapis.com/auth/gmail.compose",
+      "sensitivity": "restricted",
+      "use_for": [
+        "create drafts",
+        "update drafts",
+        "send drafts when explicitly confirmed"
+      ]
+    },
+    "gmail.send": {
+      "uri": "https://www.googleapis.com/auth/gmail.send",
+      "sensitivity": "sensitive",
+      "use_for": [
+        "send approved messages only"
+      ]
+    },
+    "gmail.modify": {
+      "uri": "https://www.googleapis.com/auth/gmail.modify",
+      "sensitivity": "restricted",
+      "use_for": [
+        "message label application",
+        "mark read or unread",
+        "trash or untrash",
+        "read-write inbox organization"
+      ]
+    }
+  },
+  "operation_to_scope": {
+    "search_messages": "gmail.metadata",
+    "get_message_content": "gmail.readonly",
+    "get_thread_content": "gmail.readonly",
+    "draft_message": "gmail.compose",
+    "send_message": "gmail.send",
+    "modify_message_labels": "gmail.modify",
+    "list_labels": "gmail.labels",
+    "manage_label": "gmail.labels",
+    "list_filters": "gmail.metadata",
+    "manage_filter": "requires_explicit_settings_scope_review",
+    "trash_message": "gmail.modify",
+    "delete_message": "do_not_use_without_explicit_full_mail_scope_exception"
+  },
+  "scope_escalation_order": [
+    "gmail.metadata",
+    "gmail.readonly",
+    "gmail.labels",
+    "gmail.compose",
+    "gmail.send",
+    "gmail.modify"
+  ],
+  "avoid_by_default": {
+    "uri": "https://mail.google.com/",
+    "reason": "Full mailbox access including permanent deletion; only use with a documented exception."
+  }
+}

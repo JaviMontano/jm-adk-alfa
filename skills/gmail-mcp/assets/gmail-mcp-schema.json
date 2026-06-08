@@ -1,0 +1,73 @@
+{
+  "schema": 1,
+  "skill": "gmail-mcp",
+  "required_root_fields": [
+    "request_id",
+    "objective",
+    "operation",
+    "read_only_first",
+    "search",
+    "planned_actions",
+    "privacy",
+    "evidence"
+  ],
+  "allowed_operations": [
+    "search_messages",
+    "read_thread",
+    "triage_and_draft",
+    "draft_message",
+    "send_message",
+    "label_messages",
+    "safe_inbox_workflow"
+  ],
+  "required_search_fields": [
+    "query",
+    "label_ids",
+    "max_results",
+    "needs_body_access"
+  ],
+  "required_action_fields": [
+    "id",
+    "type",
+    "tool",
+    "description"
+  ],
+  "allowed_action_types": [
+    "search_messages",
+    "get_message_content",
+    "get_thread_content",
+    "draft_message",
+    "send_message",
+    "modify_message_labels",
+    "list_labels",
+    "manage_label",
+    "list_filters",
+    "manage_filter",
+    "trash_message",
+    "delete_message"
+  ],
+  "required_privacy_fields": [
+    "store_email_bodies",
+    "store_attachments",
+    "redact_pii",
+    "redact_credentials"
+  ],
+  "required_evidence_fields": [
+    "source",
+    "documentation_snapshot",
+    "compiler_mode"
+  ],
+  "allowed_tools": [
+    "mcp__workspace-mcp__search_gmail_messages",
+    "mcp__workspace-mcp__get_gmail_message_content",
+    "mcp__workspace-mcp__get_gmail_messages_content_batch",
+    "mcp__workspace-mcp__send_gmail_message",
+    "mcp__workspace-mcp__get_gmail_thread_content",
+    "mcp__workspace-mcp__modify_gmail_message_labels",
+    "mcp__workspace-mcp__list_gmail_labels",
+    "mcp__workspace-mcp__manage_gmail_label",
+    "mcp__workspace-mcp__manage_gmail_filter",
+    "mcp__workspace-mcp__list_gmail_filters",
+    "mcp__workspace-mcp__draft_gmail_message"
+  ]
+}

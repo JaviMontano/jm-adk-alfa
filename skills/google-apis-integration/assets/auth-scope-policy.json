@@ -1,0 +1,129 @@
+{
+  "schema": 1,
+  "profiles": [
+    {
+      "id": "sheets_readonly",
+      "service": "sheets",
+      "credential_type": "oauth2",
+      "access": "read",
+      "scopes": ["https://www.googleapis.com/auth/spreadsheets.readonly"],
+      "rationale": "Read spreadsheet metadata and values without write access."
+    },
+    {
+      "id": "sheets_write_file",
+      "service": "sheets",
+      "credential_type": "oauth2",
+      "access": "write",
+      "scopes": ["https://www.googleapis.com/auth/drive.file"],
+      "rationale": "Write only files created or opened for the app when that boundary is sufficient."
+    },
+    {
+      "id": "sheets_full_write",
+      "service": "sheets",
+      "credential_type": "oauth2",
+      "access": "write",
+      "scopes": ["https://www.googleapis.com/auth/spreadsheets"],
+      "broad_by_default": true,
+      "rationale": "Use only when app-file scoped access is insufficient."
+    },
+    {
+      "id": "docs_readonly",
+      "service": "docs",
+      "credential_type": "oauth2",
+      "access": "read",
+      "scopes": ["https://www.googleapis.com/auth/documents.readonly"],
+      "rationale": "Read document structure and content without edit access."
+    },
+    {
+      "id": "docs_write_file",
+      "service": "docs",
+      "credential_type": "oauth2",
+      "access": "write",
+      "scopes": ["https://www.googleapis.com/auth/drive.file"],
+      "rationale": "Create or update app-created/opened Docs with per-file access."
+    },
+    {
+      "id": "docs_full_write",
+      "service": "docs",
+      "credential_type": "oauth2",
+      "access": "write",
+      "scopes": ["https://www.googleapis.com/auth/documents"],
+      "broad_by_default": true,
+      "rationale": "Use only when document-wide edit scope is explicitly justified."
+    },
+    {
+      "id": "calendar_freebusy",
+      "service": "calendar",
+      "credential_type": "oauth2",
+      "access": "read",
+      "scopes": ["https://www.googleapis.com/auth/calendar.freebusy"],
+      "rationale": "Check busy/free data without reading event details."
+    },
+    {
+      "id": "calendar_events_readonly",
+      "service": "calendar",
+      "credential_type": "oauth2",
+      "access": "read",
+      "scopes": ["https://www.googleapis.com/auth/calendar.events.readonly"],
+      "rationale": "Read calendar event details without mutation."
+    },
+    {
+      "id": "calendar_events_write",
+      "service": "calendar",
+      "credential_type": "oauth2",
+      "access": "write",
+      "scopes": ["https://www.googleapis.com/auth/calendar.events"],
+      "rationale": "Create, edit, or delete calendar events."
+    },
+    {
+      "id": "maps_js_restricted_key",
+      "service": "maps_js",
+      "credential_type": "api_key",
+      "access": "browser_render",
+      "scopes": [],
+      "requires_key_restrictions": true,
+      "rationale": "Maps JavaScript loads in the browser through a restricted API key."
+    },
+    {
+      "id": "youtube_public_read_api_key",
+      "service": "youtube",
+      "credential_type": "api_key",
+      "access": "public_read",
+      "scopes": [],
+      "requires_key_restrictions": true,
+      "rationale": "Read public YouTube resources without private user data."
+    },
+    {
+      "id": "youtube_readonly_oauth",
+      "service": "youtube",
+      "credential_type": "oauth2",
+      "access": "read",
+      "scopes": ["https://www.googleapis.com/auth/youtube.readonly"],
+      "rationale": "Read authenticated YouTube account data."
+    },
+    {
+      "id": "youtube_upload",
+      "service": "youtube",
+      "credential_type": "oauth2",
+      "access": "upload",
+      "scopes": ["https://www.googleapis.com/auth/youtube.upload"],
+      "rationale": "Upload videos to an authenticated channel."
+    },
+    {
+      "id": "youtube_force_ssl",
+      "service": "youtube",
+      "credential_type": "oauth2",
+      "access": "write",
+      "scopes": ["https://www.googleapis.com/auth/youtube.force-ssl"],
+      "broad_by_default": true,
+      "rationale": "Manage authenticated YouTube resources when narrower upload/read scopes are insufficient."
+    }
+  ],
+  "access_rank": {
+    "public_read": 0,
+    "browser_render": 0,
+    "read": 1,
+    "write": 2,
+    "upload": 2
+  }
+}

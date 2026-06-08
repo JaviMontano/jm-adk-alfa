@@ -21,24 +21,25 @@ Use deep mode when thoroughness matters more than speed: architecture decisions,
 
 ## Execution (Deep)
 
-1. Load ALL knowledge: `knowledge/body-of-knowledge.md` + cross-referenced skills
-2. Check guardrails: `references/guardrails/*.json`
-3. Lead executes with exhaustive analysis:
-   - Cover ALL edge cases, not just common path
-   - Research: check standards, best practices, recent changes
-   - Document every assumption with `[ASSUMPTION]` tag
-4. Support reviews with expanded scope:
-   - Security, accessibility, performance, business viability
-   - Adversarial scenarios: what could go wrong?
-5. Guardian validates with strict criteria:
-   - Evidence tags 100% coverage (no untagged claims)
-   - Quality gate fully met
-   - Confidence >= 0.95 with evidence support
+1. [CODE] Load all local skill knowledge and every file in `assets/`.
+2. [DOC] Re-check official Google Maps Platform docs if the user asks for current guidance.
+3. [CODE] Lead executes exhaustive offline analysis:
+   - [CODE] Cover schema gaps, selected APIs, key restrictions, data flow, markers, accessibility, privacy, billing/quota, and confirmation.
+   - [DOC] Flag Directions API Legacy status when route directions are requested.
+   - [SUPUESTO] Document every missing user input as an assumption or open item.
+4. [CODE] Support reviews with expanded scope:
+   - [CODE] Security, accessibility, privacy, performance, quota exposure, and offline determinism.
+   - [INFERENCE] Adversarial scenarios: unrestricted key, missing consent, unbounded autocomplete, repeated geocoding, inaccessible marker-only results.
+5. [CODE] Guardian validates with strict criteria:
+   - [CODE] Evidence tags 100% coverage.
+   - [CODE] No monetary prices.
+   - [CODE] No external API calls.
+   - [CODE] Confidence >= 0.95 with evidence support.
 
 ## Output
 
-- Exhaustive deliverable with full evidence trail
-- Edge cases documented
-- Risk assessment included
-- Recommendations with priority ranking
-- Confidence score with justification
+- [CODE] Exhaustive deliverable with full evidence trail.
+- [CODE] Edge cases documented.
+- [CODE] Risk assessment included.
+- [CODE] Recommendations with priority ranking.
+- [CODE] Confidence score with justification.

@@ -2,16 +2,19 @@
 name: google-apis-integration-meta
 type: meta
 version: 2.0.0
-description: "Meta-prompt for Google Apis Integration skill routing."
+description: "Meta-prompt for routing multi-service Google API integration planning."
 ---
 
-# Google Apis Integration — Meta Prompt
+# Google APIs Integration - Meta Prompt
 
-Activate this skill when the user request matches:
-- Trigger phrases from SKILL.md description
-- Direct invocation: `/google-apis-integration`
+Activate this skill when the user asks for:
 
-## Skill Routing
-1. Load SKILL.md → read `## When to Activate` section
-2. If match → activate lead agent: `google-apis-integration-lead`
-3. If orchestrated → defer to orchestrating skill
+- A backend or web integration involving multiple Google APIs.
+- OAuth scope selection across Sheets, Docs, Calendar, YouTube, or Workspace APIs.
+- Maps JavaScript API loading, key restriction, or browser integration policy.
+- A plan/checklist for Google API quota, retries, idempotency, secrets, or consent.
+- Direct invocation: `/google-apis-integration`.
+
+Do not activate for a single live MCP action when a narrower MCP skill such as
+`google-sheets-mcp`, `google-docs-mcp`, or `google-calendar-mcp` is the better
+fit. [CODE]

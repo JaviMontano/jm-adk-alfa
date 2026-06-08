@@ -1,0 +1,31 @@
+{
+  "schema": 1,
+  "strategies": [
+    {
+      "manager": "native-git",
+      "install_command": "git config core.hooksPath .githooks",
+      "best_for": "portable shell hooks without additional package managers"
+    },
+    {
+      "manager": "pre-commit",
+      "install_command": "pre-commit install --hook-type pre-commit --hook-type commit-msg --hook-type pre-push",
+      "best_for": "polyglot repos that already use pre-commit"
+    },
+    {
+      "manager": "husky",
+      "install_command": "npx husky init",
+      "best_for": "Node projects with npm lifecycle hooks"
+    },
+    {
+      "manager": "lefthook",
+      "install_command": "lefthook install",
+      "best_for": "fast multi-language hook orchestration"
+    }
+  ],
+  "guardrails": [
+    "Default to plan-only unless user explicitly asks to install hooks.",
+    "Never overwrite existing hook files without backup or explicit confirmation.",
+    "Prefer repository-local hook configuration over global Git config.",
+    "Document bypass policy if any hook allows SKIP or --no-verify."
+  ]
+}

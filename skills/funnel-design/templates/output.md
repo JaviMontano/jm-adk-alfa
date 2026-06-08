@@ -9,15 +9,31 @@ overwrite-policy: missing-only unless --force
 
 ## Summary
 
-{summary}
+- Product: `{product}`
+- Audience: `{audience}`
+- Goal: `{goal}`
+- Conversion event: `{conversion_event}`
+- Sales motion: `{sales_motion}`
 
 ## Evidence
 
 {evidence}
 
-## Result
+## Stage Content Map
 
-{result}
+{stage_content_map}
+
+## Lead Scoring
+
+{lead_scoring}
+
+## Nurture Flow
+
+{nurture_flow}
+
+## Handoff Rules
+
+{handoff_rules}
 
 ## Validation
 

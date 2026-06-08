@@ -1,75 +1,98 @@
 {
   "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-28",
   "skill": "google-slides-mcp",
   "nodes": [
     {
       "id": "google-slides-mcp",
       "type": "skill",
-      "label": "google-slides-mcp"
+      "label": "Google Slides MCP"
     },
     {
-      "id": "google-slides-mcp:inputs",
-      "type": "contract",
-      "label": "Expected inputs"
+      "id": "slides-rest-operations",
+      "type": "api-contract",
+      "label": "Slides REST operations"
     },
     {
-      "id": "google-slides-mcp:outputs",
-      "type": "contract",
-      "label": "Expected outputs"
+      "id": "workspace-mcp-tools",
+      "type": "mcp-contract",
+      "label": "workspace-mcp Slides tools"
     },
     {
-      "id": "google-slides-mcp:quality",
-      "type": "gate",
-      "label": "Quality criteria"
+      "id": "scope-policy",
+      "type": "security-policy",
+      "label": "Least-privilege OAuth scopes"
     },
     {
-      "id": "google-slides-mcp:ontology",
-      "type": "ontology",
-      "label": "Domain: tool-design-mcp"
+      "id": "confirmation-gate",
+      "type": "safety-gate",
+      "label": "Human confirmation for mutations"
     },
     {
-      "id": "google-slides-mcp:evidence",
-      "type": "gate",
-      "label": "Evidence / provenance requirements"
+      "id": "offline-compiler",
+      "type": "script",
+      "label": "compile-google-slides-mcp.py"
     },
     {
-      "id": "google-slides-mcp:antipattern",
-      "type": "risk",
-      "label": "Canonical anti-pattern to avoid"
+      "id": "thumbnail-policy",
+      "type": "data-handling-policy",
+      "label": "Thumbnail contentUrl handling"
+    },
+    {
+      "id": "batchupdate-policy",
+      "type": "payload-policy",
+      "label": "batchUpdate request and write-control policy"
+    },
+    {
+      "id": "dod",
+      "type": "quality-gate",
+      "label": "Skill Definition of Done"
     }
   ],
   "edges": [
     {
       "from": "google-slides-mcp",
-      "to": "google-slides-mcp:inputs",
-      "type": "requires"
+      "to": "slides-rest-operations",
+      "type": "implements"
+    },
+    {
+      "from": "slides-rest-operations",
+      "to": "workspace-mcp-tools",
+      "type": "mapped_by"
+    },
+    {
+      "from": "workspace-mcp-tools",
+      "to": "scope-policy",
+      "type": "constrained_by"
+    },
+    {
+      "from": "workspace-mcp-tools",
+      "to": "confirmation-gate",
+      "type": "mutations_guarded_by"
     },
     {
       "from": "google-slides-mcp",
-      "to": "google-slides-mcp:outputs",
-      "type": "produces"
-    },
-    {
-      "from": "google-slides-mcp",
-      "to": "google-slides-mcp:quality",
+      "to": "offline-compiler",
       "type": "validated_by"
     },
     {
-      "from": "google-slides-mcp",
-      "to": "google-slides-mcp:ontology",
-      "type": "classified_as"
+      "from": "offline-compiler",
+      "to": "scope-policy",
+      "type": "loads"
+    },
+    {
+      "from": "offline-compiler",
+      "to": "thumbnail-policy",
+      "type": "loads"
+    },
+    {
+      "from": "offline-compiler",
+      "to": "batchupdate-policy",
+      "type": "loads"
     },
     {
       "from": "google-slides-mcp",
-      "to": "google-slides-mcp:evidence",
-      "type": "validated_by"
-    },
-    {
-      "from": "google-slides-mcp",
-      "to": "google-slides-mcp:antipattern",
-      "type": "guards_against"
+      "to": "dod",
+      "type": "must_pass"
     }
   ]
 }

@@ -1,0 +1,80 @@
+{
+  "schema": 1,
+  "server": "workspace-mcp",
+  "tool_tier": "extended",
+  "tools": [
+    {
+      "name": "mcp__workspace-mcp__search_docs",
+      "actions": [
+        "get_document"
+      ],
+      "read_only": true,
+      "requires_human_confirmation": false
+    },
+    {
+      "name": "mcp__workspace-mcp__get_doc_content",
+      "actions": [
+        "get_document"
+      ],
+      "read_only": true,
+      "requires_human_confirmation": false
+    },
+    {
+      "name": "mcp__workspace-mcp__get_doc_as_markdown",
+      "actions": [
+        "get_document"
+      ],
+      "read_only": true,
+      "requires_human_confirmation": false
+    },
+    {
+      "name": "mcp__workspace-mcp__export_doc_to_pdf",
+      "actions": [
+        "get_document"
+      ],
+      "read_only": true,
+      "requires_human_confirmation": false
+    },
+    {
+      "name": "mcp__workspace-mcp__create_doc",
+      "actions": [
+        "create_document"
+      ],
+      "read_only": false,
+      "requires_human_confirmation": true
+    },
+    {
+      "name": "mcp__workspace-mcp__modify_doc_text",
+      "actions": [
+        "batch_update"
+      ],
+      "read_only": false,
+      "requires_human_confirmation": true
+    },
+    {
+      "name": "mcp__workspace-mcp__find_and_replace_doc",
+      "actions": [
+        "batch_update"
+      ],
+      "read_only": false,
+      "requires_human_confirmation": true
+    },
+    {
+      "name": "mcp__workspace-mcp__insert_doc_elements",
+      "actions": [
+        "batch_update"
+      ],
+      "read_only": false,
+      "requires_human_confirmation": true
+    }
+  ],
+  "script_boundary": {
+    "offline_only": true,
+    "forbidden": [
+      "Docs API network calls",
+      "OAuth token reads",
+      "MCP tool invocation",
+      "filesystem mutation outside the requested output file"
+    ]
+  }
+}

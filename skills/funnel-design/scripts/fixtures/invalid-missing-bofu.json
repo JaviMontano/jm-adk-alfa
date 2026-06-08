@@ -1,0 +1,49 @@
+{
+  "product": "Broken Funnel",
+  "audience": "Operations leaders",
+  "offer": "AI sprint",
+  "goal": "Generate consultations",
+  "conversion_event": "booked diagnostic call",
+  "sales_motion": "sales-led",
+  "evidence": {
+    "source": "manual sample"
+  },
+  "stages": [
+    {
+      "id": "tofu",
+      "intent": "Awareness",
+      "core_question": "Why care?",
+      "content_assets": ["Blog", "Video"],
+      "cta": "Subscribe",
+      "metric": "visits",
+      "owner": "marketing"
+    },
+    {
+      "id": "mofu",
+      "intent": "Consideration",
+      "core_question": "Is this relevant?",
+      "content_assets": ["Worksheet", "Webinar"],
+      "cta": "Assess",
+      "metric": "submissions",
+      "owner": "growth"
+    }
+  ],
+  "lead_scoring": [
+    {
+      "name": "Assessment completed",
+      "points": 25,
+      "dimension": "intent",
+      "evidence": "submission"
+    }
+  ],
+  "nurture_paths": [
+    {
+      "id": "assessment",
+      "trigger": "Assessment completed",
+      "delay": "1 day",
+      "message": "Invite call",
+      "branch": "mql",
+      "exit": "call booked"
+    }
+  ]
+}

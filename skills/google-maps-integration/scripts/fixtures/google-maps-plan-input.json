@@ -1,0 +1,142 @@
+{
+  "schema_version": "maps-platform-plan-v1",
+  "project": {
+    "name": "clinic-locator",
+    "environment": "production-readiness",
+    "platform": "hybrid-web-server",
+    "deployment_origins": [
+      "https://clinic.example.com/*"
+    ],
+    "review_date": "2026-06-01"
+  },
+  "requirements": {
+    "features": [
+      "interactive_map",
+      "location_search",
+      "address_geocoding",
+      "reverse_geocoding",
+      "route_directions",
+      "dense_markers",
+      "advanced_markers",
+      "place_details"
+    ],
+    "marker_count_estimate": 450,
+    "requires_places_autocomplete": true,
+    "requires_server_side_geocoding": true,
+    "requires_directions": true,
+    "requires_personal_location": true
+  },
+  "apis": {
+    "candidate_apis": [
+      "Maps JavaScript API",
+      "Places API (New)",
+      "Geocoding API",
+      "Directions API (Legacy)"
+    ],
+    "directions_legacy_acknowledged": true
+  },
+  "keys": [
+    {
+      "name": "browser-maps-key",
+      "runtime": "browser",
+      "application_restriction": "http_referrers",
+      "api_restrictions": [
+        "Maps JavaScript API"
+      ],
+      "allowed_referrers": [
+        "https://clinic.example.com/*"
+      ],
+      "separate_from_server": true
+    },
+    {
+      "name": "server-location-key",
+      "runtime": "server",
+      "application_restriction": "ip_addresses",
+      "api_restrictions": [
+        "Places API",
+        "Geocoding API",
+        "Directions API"
+      ],
+      "allowed_ips": [
+        "203.0.113.10/32"
+      ],
+      "separate_from_client": true
+    }
+  ],
+  "data_flow": {
+    "places": {
+      "input": "user-entered clinic or address search",
+      "fields": [
+        "id",
+        "displayName",
+        "formattedAddress",
+        "location"
+      ],
+      "session_tokens": true,
+      "store_fields": [
+        "place_id",
+        "formatted_address",
+        "lat_lng"
+      ],
+      "avoid_fields": [
+        "reviews",
+        "photos"
+      ]
+    },
+    "geocoding": {
+      "direction": "address_to_coordinates_and_reverse",
+      "cache_policy": "cache normalized address results with a documented invalidation window",
+      "input_validation": "normalize address text and apply region/component constraints before request"
+    },
+    "directions": {
+      "origin_source": "confirmed place_id or consented user coordinates",
+      "destination_source": "clinic place_id",
+      "mode": "driving",
+      "waypoints_policy": "waypoints require explicit user confirmation",
+      "legacy_acknowledged": true
+    }
+  },
+  "map_ui": {
+    "advanced_markers": true,
+    "map_id_required": true,
+    "marker_clustering": {
+      "enabled": true,
+      "library": "@googlemaps/markerclusterer",
+      "threshold": 100
+    },
+    "accessibility": {
+      "map_summary": "Map showing clinic search results, with the same locations available in a keyboard-accessible list.",
+      "keyboard_paths": true,
+      "marker_titles": true,
+      "list_alternative": true
+    }
+  },
+  "billing_quota": {
+    "budgets_alerts_configured": true,
+    "quotas_reviewed": true,
+    "rate_limits_defined": true,
+    "no_prices": true,
+    "monitoring_owner": "platform-team"
+  },
+  "privacy": {
+    "collects_precise_location": true,
+    "consent_required": true,
+    "retention": "store place IDs and derived coordinates only when needed for locator behavior",
+    "redaction": "redact raw addresses and precise coordinates from application logs",
+    "human_confirmation_required": true
+  },
+  "human_confirmation": {
+    "status": "confirmed",
+    "confirmed_by": "Javier Montano",
+    "confirmation_text": "Compile an offline plan only; do not call Google APIs."
+  },
+  "operations": {
+    "offline_plan_only": true,
+    "external_api_calls": false
+  },
+  "evidence": {
+    "input_fixture": "scripts/fixtures/google-maps-plan-input.json",
+    "official_docs_reviewed": "Google Maps Platform official docs reviewed on 2026-06-01",
+    "local_assets": "assets/*.json and assets/*.md"
+  }
+}

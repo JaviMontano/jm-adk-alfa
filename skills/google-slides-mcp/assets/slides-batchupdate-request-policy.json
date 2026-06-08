@@ -1,0 +1,28 @@
+{
+  "schema": 1,
+  "allowed_request_keys": [
+    "createSlide",
+    "createShape",
+    "createImage",
+    "createTable",
+    "insertText",
+    "deleteText",
+    "replaceAllText",
+    "updateTextStyle",
+    "updateShapeProperties",
+    "updatePageProperties",
+    "updatePageElementTransform",
+    "updateSlidesPosition",
+    "deleteObject",
+    "duplicateObject"
+  ],
+  "write_control": {
+    "recommended_when": [
+      "collaborative presentation",
+      "high-impact deck",
+      "batch depends on current layout"
+    ],
+    "field": "requiredRevisionId"
+  },
+  "atomicity_note": "Slides validates every request before applying any request; valid batchUpdate requests are applied together."
+}

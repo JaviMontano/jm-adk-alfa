@@ -1,0 +1,113 @@
+{
+  "schema": 1,
+  "profiles": [
+    {
+      "id": "gmail_metadata_read",
+      "service": "gmail",
+      "credential_type": "oauth2_user_consent",
+      "access": "read",
+      "scopes": ["https://www.googleapis.com/auth/gmail.metadata"],
+      "rationale": "List message IDs, labels, and metadata without reading full message bodies."
+    },
+    {
+      "id": "gmail_modify",
+      "service": "gmail",
+      "credential_type": "oauth2_user_consent",
+      "access": "write",
+      "scopes": ["https://www.googleapis.com/auth/gmail.modify"],
+      "broad_by_default": true,
+      "rationale": "Modify labels or mailbox state only when read-only or compose scopes are insufficient."
+    },
+    {
+      "id": "calendar_freebusy",
+      "service": "calendar",
+      "credential_type": "oauth2_user_consent",
+      "access": "read",
+      "scopes": ["https://www.googleapis.com/auth/calendar.freebusy"],
+      "rationale": "Check free/busy blocks without reading event details."
+    },
+    {
+      "id": "calendar_events_readonly",
+      "service": "calendar",
+      "credential_type": "oauth2_user_consent",
+      "access": "read",
+      "scopes": ["https://www.googleapis.com/auth/calendar.events.readonly"],
+      "rationale": "Read event details without write access."
+    },
+    {
+      "id": "calendar_events_write",
+      "service": "calendar",
+      "credential_type": "oauth2_user_consent",
+      "access": "write",
+      "scopes": ["https://www.googleapis.com/auth/calendar.events"],
+      "rationale": "Create, update, or delete events after read-only-first review."
+    },
+    {
+      "id": "drive_metadata_readonly",
+      "service": "drive",
+      "credential_type": "oauth2_user_consent",
+      "access": "read",
+      "scopes": ["https://www.googleapis.com/auth/drive.metadata.readonly"],
+      "rationale": "Search file metadata without content access."
+    },
+    {
+      "id": "docs_readonly",
+      "service": "docs",
+      "credential_type": "oauth2_user_consent",
+      "access": "read",
+      "scopes": ["https://www.googleapis.com/auth/documents.readonly"],
+      "rationale": "Read document structure and content without edit access."
+    },
+    {
+      "id": "docs_file_write",
+      "service": "docs",
+      "credential_type": "oauth2_user_consent",
+      "access": "write",
+      "scopes": ["https://www.googleapis.com/auth/drive.file"],
+      "rationale": "Create or update app-created/opened Docs through the Drive file boundary."
+    },
+    {
+      "id": "sheets_readonly",
+      "service": "sheets",
+      "credential_type": "oauth2_user_consent",
+      "access": "read",
+      "scopes": ["https://www.googleapis.com/auth/spreadsheets.readonly"],
+      "rationale": "Read sheet metadata and values without write access."
+    },
+    {
+      "id": "sheets_file_write",
+      "service": "sheets",
+      "credential_type": "oauth2_user_consent",
+      "access": "write",
+      "scopes": ["https://www.googleapis.com/auth/drive.file"],
+      "rationale": "Write Sheets files created or opened by the app when sufficient."
+    },
+    {
+      "id": "slides_readonly",
+      "service": "slides",
+      "credential_type": "oauth2_user_consent",
+      "access": "read",
+      "scopes": ["https://www.googleapis.com/auth/presentations.readonly"],
+      "rationale": "Read presentation structure without edit access."
+    },
+    {
+      "id": "slides_file_write",
+      "service": "slides",
+      "credential_type": "oauth2_user_consent",
+      "access": "write",
+      "scopes": ["https://www.googleapis.com/auth/drive.file"],
+      "rationale": "Create or update app-created/opened Slides through the Drive file boundary."
+    }
+  ],
+  "access_rank": {
+    "read": 1,
+    "write": 2
+  },
+  "default_auth_sequence": [
+    "enable Workspace API in Google Cloud project",
+    "configure OAuth consent screen",
+    "request the narrowest service-specific scope",
+    "store refresh tokens server-side only",
+    "run sandbox read-only tests before write tests"
+  ]
+}

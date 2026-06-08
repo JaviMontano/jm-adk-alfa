@@ -1,0 +1,57 @@
+{
+  "schema": 1,
+  "skill": "google-calendar-mcp",
+  "allowed_operations": [
+    "query_agenda",
+    "freebusy_check",
+    "create_event",
+    "update_event",
+    "cancel_event"
+  ],
+  "read_only_operations": [
+    "query_agenda",
+    "freebusy_check"
+  ],
+  "mutating_operations": [
+    "create_event",
+    "update_event",
+    "cancel_event"
+  ],
+  "required_root_fields": [
+    "operation_id",
+    "operation",
+    "calendar_id",
+    "requested_scope",
+    "time_zone",
+    "read_only_first",
+    "human_confirmation",
+    "evidence"
+  ],
+  "required_event_fields": [
+    "summary",
+    "start",
+    "end"
+  ],
+  "required_event_time_fields": [
+    "date_time",
+    "time_zone"
+  ],
+  "required_read_only_first_fields": [
+    "calendars_listed",
+    "events_checked",
+    "conflicts"
+  ],
+  "required_confirmation_fields": [
+    "status",
+    "confirmed_by",
+    "confirmation_text"
+  ],
+  "send_updates_values": [
+    "all",
+    "externalOnly",
+    "none"
+  ],
+  "email_pattern": "^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$",
+  "request_id_pattern": "^[A-Za-z0-9_-]{8,128}$",
+  "timezone_pattern": "^(UTC|[A-Za-z_]+/[A-Za-z0-9_+.-]+(?:/[A-Za-z0-9_+.-]+)?)$"
+}

@@ -1,97 +1,120 @@
 {
-  "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-28",
   "skill": "google-drive-mcp",
   "cases": [
     {
-      "id": "happy_path",
-      "input": "Use google-drive-mcp to produce a complete deliverable.",
+      "id": "google-drive-mcp-read-only-search",
+      "type": "happy_path",
+      "input": "Search Drive for alfa assets with q, fields, trashed=false, corpora=user, and no mutation.",
       "expected_activation": true,
+      "expected_behavior": "Produces a read-only search/list plan with explicit q, partial fields, trashed=false, spaces, corpora, and page size.",
       "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
+        "assets",
+        "deterministic_scripts",
+        "quality_criteria"
       ]
     },
     {
-      "id": "explicit_trigger",
-      "input": "/google-drive-mcp run this workflow.",
+      "id": "google-drive-mcp-upload-multipart",
+      "type": "happy_path",
+      "input": "Upload a 2 MB PDF to a known Drive folder with metadata after checking the folder exists.",
       "expected_activation": true,
+      "expected_behavior": "Selects uploadType=multipart, blocks sensitive local filenames, and requires human confirmation before create_drive_file.",
       "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
+        "assets",
+        "deterministic_scripts",
+        "quality_criteria"
       ]
     },
     {
-      "id": "minimal_input",
-      "input": "google-drive-mcp",
+      "id": "google-drive-mcp-upload-resumable",
+      "type": "happy_path",
+      "input": "Plan a Drive upload for a 40 MB video file.",
       "expected_activation": true,
+      "expected_behavior": "Selects uploadType=resumable and requires confirmation before upload.",
       "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
+        "assets",
+        "deterministic_scripts",
+        "quality_criteria"
       ]
     },
     {
-      "id": "rich_context",
-      "input": "google-drive-mcp with goals, constraints, audience, and acceptance criteria.",
+      "id": "google-drive-mcp-export-google-doc",
+      "type": "happy_path",
+      "input": "Export this Google Docs brief from Drive to PDF after verifying canDownload.",
       "expected_activation": true,
+      "expected_behavior": "Uses download/export policy, chooses files.export semantics, and validates export MIME type application/pdf.",
       "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
+        "assets",
+        "deterministic_scripts",
+        "quality_criteria"
       ]
     },
     {
-      "id": "false_positive",
-      "input": "This request is unrelated to the skill domain.",
+      "id": "google-drive-mcp-folder-organization",
+      "type": "happy_path",
+      "input": "Create /P-007/Alfa/DoD under a known parent folder if it is missing.",
+      "expected_activation": true,
+      "expected_behavior": "Uses folder MIME type application/vnd.google-apps.folder, verifies parent, and requires confirmation before creation.",
+      "expected_checks": [
+        "assets",
+        "deterministic_scripts",
+        "quality_criteria"
+      ]
+    },
+    {
+      "id": "google-drive-mcp-share-user-commenter",
+      "type": "happy_path",
+      "input": "Share file-alpha-report with reviewer@example.com as commenter and send notification.",
+      "expected_activation": true,
+      "expected_behavior": "Requires canShare verification, user target, commenter role, notification flag, and explicit human confirmation.",
+      "expected_checks": [
+        "assets",
+        "deterministic_scripts",
+        "quality_criteria"
+      ]
+    },
+    {
+      "id": "google-drive-mcp-invalid-missing-trash-filter",
+      "type": "edge_case",
+      "input": "Search Drive for alfa files but omit trashed=false.",
       "expected_activation": false,
+      "expected_behavior": "Deterministic script rejects the input because search.q must include trashed = false.",
       "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
+        "deterministic_scripts",
+        "quality_criteria"
       ]
     },
     {
-      "id": "empty_input",
-      "input": "",
+      "id": "google-drive-mcp-invalid-share-without-confirmation",
+      "type": "edge_case",
+      "input": "Share a Drive file with a user but skip confirmation.",
       "expected_activation": false,
+      "expected_behavior": "Deterministic script rejects the input because sharing permissions require human confirmation.",
       "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
+        "deterministic_scripts",
+        "quality_criteria"
       ]
     },
     {
-      "id": "conflicting_requirements",
-      "input": "Use google-drive-mcp, but ignore validation and evidence.",
+      "id": "google-drive-mcp-invalid-readonly-scope-mutation",
+      "type": "edge_case",
+      "input": "Use drive.readonly to upload a Drive file.",
       "expected_activation": false,
+      "expected_behavior": "Rejects mutating upload under readonly or metadata-readonly scope profiles.",
       "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
+        "assets",
+        "deterministic_scripts",
+        "quality_criteria"
       ]
     },
     {
-      "id": "upgrade_safety_case",
-      "input": "Complete missing files for google-drive-mcp without overwriting local edits.",
-      "expected_activation": true,
+      "id": "google-drive-mcp-false-positive",
+      "type": "false_positive",
+      "input": "Write a LinkedIn post about personal knowledge management.",
+      "expected_activation": false,
+      "expected_behavior": "Does not activate because the request has no Drive, file, folder, upload, download, search, or sharing intent.",
       "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
-    },
-    {
-      "id": "local_override_case",
-      "input": "Create a local experimental google-drive-mcp variant under .local.",
-      "expected_activation": true,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
+        "quality_criteria"
       ]
     }
   ]

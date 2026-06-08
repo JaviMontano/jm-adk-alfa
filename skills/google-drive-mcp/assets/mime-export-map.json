@@ -1,0 +1,48 @@
+{
+  "schema": 1,
+  "policy_name": "google-drive-mime-export-map",
+  "workspace_mime_types": {
+    "application/vnd.google-apps.document": {
+      "label": "Google Docs",
+      "exports": [
+        {"mime_type": "application/pdf", "extension": ".pdf"},
+        {"mime_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document", "extension": ".docx"},
+        {"mime_type": "text/markdown", "extension": ".md"},
+        {"mime_type": "text/plain", "extension": ".txt"}
+      ]
+    },
+    "application/vnd.google-apps.spreadsheet": {
+      "label": "Google Sheets",
+      "exports": [
+        {"mime_type": "application/pdf", "extension": ".pdf"},
+        {"mime_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "extension": ".xlsx"},
+        {"mime_type": "text/csv", "extension": ".csv"},
+        {"mime_type": "text/tab-separated-values", "extension": ".tsv"}
+      ]
+    },
+    "application/vnd.google-apps.presentation": {
+      "label": "Google Slides",
+      "exports": [
+        {"mime_type": "application/pdf", "extension": ".pdf"},
+        {"mime_type": "application/vnd.openxmlformats-officedocument.presentationml.presentation", "extension": ".pptx"},
+        {"mime_type": "text/plain", "extension": ".txt"},
+        {"mime_type": "image/png", "extension": ".png"}
+      ]
+    },
+    "application/vnd.google-apps.drawing": {
+      "label": "Google Drawings",
+      "exports": [
+        {"mime_type": "application/pdf", "extension": ".pdf"},
+        {"mime_type": "image/png", "extension": ".png"},
+        {"mime_type": "image/jpeg", "extension": ".jpg"},
+        {"mime_type": "image/svg+xml", "extension": ".svg"}
+      ]
+    }
+  },
+  "folder_mime_type": "application/vnd.google-apps.folder",
+  "download_rules": [
+    "Blob files use media download semantics.",
+    "Google Workspace files use files.export with a supported export MIME type.",
+    "Check capabilities.canDownload before download or export."
+  ]
+}

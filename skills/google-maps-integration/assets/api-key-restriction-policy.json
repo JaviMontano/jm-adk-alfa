@@ -1,0 +1,52 @@
+{
+  "schema": 1,
+  "source": "https://developers.google.com/maps/api-security-best-practices",
+  "principles": [
+    "[DOC] Restrict each API key with one application restriction and one or more API restrictions.",
+    "[DOC] Use separate API keys for each app to reduce blast radius.",
+    "[DOC] Split client-side and server-side usage into separate projects or keys when platform types differ.",
+    "[DOC] Check API key usage and unexpected credential_id traffic before restricting, rotating, or deleting keys."
+  ],
+  "runtime_rules": {
+    "browser": {
+      "application_restrictions": [
+        "http_referrers",
+        "websites"
+      ],
+      "required_location_fields": [
+        "allowed_referrers"
+      ],
+      "forbidden_restrictions": [
+        "ip_addresses"
+      ],
+      "notes": [
+        "[DOC] Website restrictions are the expected application restriction for JavaScript platform traffic.",
+        "[DOC] Maps JavaScript API should be authorized when the app uses the Maps JavaScript API."
+      ]
+    },
+    "server": {
+      "application_restrictions": [
+        "ip_addresses"
+      ],
+      "required_location_fields": [
+        "allowed_ips"
+      ],
+      "forbidden_restrictions": [
+        "http_referrers",
+        "websites"
+      ],
+      "notes": [
+        "[DOC] Server-side web service calls should not share the browser key.",
+        "[DOC] IP restrictions are the expected fallback for web service platform traffic."
+      ]
+    }
+  },
+  "required_checks": [
+    "one_application_restriction_per_key",
+    "api_restrictions_only_for_selected_services",
+    "no_unrestricted_keys",
+    "client_server_key_separation",
+    "credential_usage_monitoring_owner",
+    "unused_services_disabled"
+  ]
+}

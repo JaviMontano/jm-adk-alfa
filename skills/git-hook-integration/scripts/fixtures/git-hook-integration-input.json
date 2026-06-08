@@ -1,0 +1,66 @@
+{
+  "repo_name": "jm-adk-alfa",
+  "hook_manager": "native-git",
+  "install_mode": "plan-only",
+  "hook_directory": ".githooks",
+  "hooks": [
+    {
+      "stage": "pre-commit",
+      "name": "quality-fast",
+      "command": "bash scripts/pre-tool-guard.sh && git diff --check",
+      "blocking": true,
+      "purpose": "Block dangerous local changes and whitespace errors before commit."
+    },
+    {
+      "stage": "commit-msg",
+      "name": "conventional-commit",
+      "command": "python3 scripts/validate-commit-message.py \"$1\"",
+      "blocking": true,
+      "purpose": "Enforce Conventional Commit headers."
+    },
+    {
+      "stage": "pre-push",
+      "name": "quality-full",
+      "command": "python3 scripts/count-components.py --check-docs && python3 scripts/validate-skills.py --strict",
+      "blocking": true,
+      "purpose": "Block publication when component counts or skill validation fail."
+    }
+  ],
+  "conventional_commits": {
+    "enabled": true,
+    "types": ["feat", "fix", "docs", "test", "ci", "chore", "refactor"],
+    "scopes": ["skills", "hooks", "scripts", "docs", "ci"],
+    "max_header_length": 72
+  },
+  "validation_commands": [
+    {
+      "name": "whitespace",
+      "command": "git diff --check",
+      "stage": "pre-commit",
+      "required": true
+    },
+    {
+      "name": "commit-message",
+      "command": "python3 scripts/validate-commit-message.py \"$1\"",
+      "stage": "commit-msg",
+      "required": true
+    },
+    {
+      "name": "component-counts",
+      "command": "python3 scripts/count-components.py --check-docs",
+      "stage": "pre-push",
+      "required": true
+    },
+    {
+      "name": "skills-strict",
+      "command": "python3 scripts/validate-skills.py --strict",
+      "stage": "pre-push",
+      "required": true
+    }
+  ],
+  "evidence": {
+    "repo_identity": "PRISTINO index reports 585 skills, 260 agents, 267 commands, 256 prompts",
+    "existing_hooks": "hooks/hooks.json contains runtime hooks, no repository Git hooks directory is tracked",
+    "risk_boundary": "plan-only output does not install or overwrite hooks"
+  }
+}

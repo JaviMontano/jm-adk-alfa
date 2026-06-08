@@ -1,11 +1,4 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: google-docs-mcp
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
-
-# Google Docs Mcp Output
+# Google Docs MCP Operation Plan
 
 ## Summary
 
@@ -15,9 +8,25 @@ overwrite-policy: missing-only unless --force
 
 {evidence}
 
-## Result
+## MCP Preflight
 
-{result}
+{mcp_preflight}
+
+## Scope Review
+
+{scope_review}
+
+## Docs API Plan
+
+{docs_api_plan}
+
+## BatchUpdate Checklist
+
+{batch_update_checklist}
+
+## Human Confirmation
+
+{human_confirmation}
 
 ## Validation
 

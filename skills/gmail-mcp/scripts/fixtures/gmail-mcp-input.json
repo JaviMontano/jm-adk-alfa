@@ -1,0 +1,73 @@
+{
+  "request_id": "gmail-p007-safe-triage",
+  "objective": "Find recent P-007 alpha messages, read the selected thread, draft a reply, label two reviewed messages, and send only after explicit confirmation.",
+  "operation": "safe_inbox_workflow",
+  "read_only_first": true,
+  "search": {
+    "query": "subject:\"P-007\" newer_than:14d -in:trash",
+    "label_ids": [
+      "INBOX"
+    ],
+    "max_results": 10,
+    "needs_body_access": true
+  },
+  "planned_actions": [
+    {
+      "id": "search-p007",
+      "type": "search_messages",
+      "tool": "mcp__workspace-mcp__search_gmail_messages",
+      "description": "Search metadata first with a narrow Gmail query and INBOX label filter."
+    },
+    {
+      "id": "read-thread",
+      "type": "get_thread_content",
+      "tool": "mcp__workspace-mcp__get_gmail_thread_content",
+      "description": "Read only the selected thread returned by the search."
+    },
+    {
+      "id": "draft-reply",
+      "type": "draft_message",
+      "tool": "mcp__workspace-mcp__draft_gmail_message",
+      "description": "Create a reply draft for human review before any send."
+    },
+    {
+      "id": "label-reviewed",
+      "type": "modify_message_labels",
+      "tool": "mcp__workspace-mcp__modify_gmail_message_labels",
+      "description": "Apply the user label Project/P-007 to reviewed messages after confirmation because multiple messages are affected.",
+      "message_ids": [
+        "msg-001",
+        "msg-002"
+      ],
+      "add_label_names": [
+        "Project/P-007"
+      ],
+      "remove_label_names": [],
+      "bulk": true,
+      "human_confirmation": "CONFIRMED: apply Project/P-007 to msg-001 and msg-002"
+    },
+    {
+      "id": "send-approved",
+      "type": "send_message",
+      "tool": "mcp__workspace-mcp__send_gmail_message",
+      "description": "Send only the approved draft after the user confirms recipients, subject, and body summary.",
+      "to": [
+        "recipient@example.com"
+      ],
+      "subject": "Re: P-007 alpha",
+      "body_summary": "Short acknowledgement and next-step summary.",
+      "human_confirmation": "CONFIRMED: send approved P-007 draft to recipient@example.com"
+    }
+  ],
+  "privacy": {
+    "store_email_bodies": false,
+    "store_attachments": false,
+    "redact_pii": true,
+    "redact_credentials": true
+  },
+  "evidence": {
+    "source": "offline fixture",
+    "documentation_snapshot": "Google Gmail API + MCP tools docs reviewed 2026-06-01",
+    "compiler_mode": "offline_only"
+  }
+}

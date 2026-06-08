@@ -1,0 +1,33 @@
+{
+  "request_id": "slides-invalid-broad-scope",
+  "request_title": "Invalid broad Drive scope",
+  "mcp_server": "workspace-mcp",
+  "operation_mode": "safe_execution_checklist",
+  "read_only_first": {
+    "status": "complete",
+    "checks": [
+      "workspace_mcp_tools_checked",
+      "oauth_scope_checked"
+    ]
+  },
+  "operations": [
+    {
+      "id": "read-drive-wide",
+      "action": "presentations.get",
+      "description": "Read using a broad Drive scope without exception.",
+      "mcp_tool": "mcp__workspace-mcp__get_presentation",
+      "scope_profile": "drive_readonly_exception",
+      "get": {
+        "presentation_id": "template_qbr_2026"
+      }
+    }
+  ],
+  "evidence": {
+    "compiler_mode": "offline_only",
+    "google_slides_rest": "fixture",
+    "google_slides_scopes": "fixture",
+    "google_workspace_mcp": "fixture",
+    "mcp_tools_spec": "fixture",
+    "local_docs": "fixture"
+  }
+}

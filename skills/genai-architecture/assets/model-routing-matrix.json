@@ -1,0 +1,48 @@
+{
+  "schema": 1,
+  "tiers": [
+    {
+      "tier": "tier-1",
+      "class": "frontier",
+      "fit": "complex reasoning, synthesis, architecture trade-offs, high-risk answers",
+      "cost": "high",
+      "latency": "high"
+    },
+    {
+      "tier": "tier-2",
+      "class": "mid-size",
+      "fit": "standard Q&A, summarization, drafting, classification with moderate risk",
+      "cost": "medium",
+      "latency": "medium"
+    },
+    {
+      "tier": "tier-3",
+      "class": "lightweight",
+      "fit": "routing, extraction, formatting, simple lookup, policy checks",
+      "cost": "low",
+      "latency": "low"
+    },
+    {
+      "tier": "tier-4",
+      "class": "cache-or-rule",
+      "fit": "known answers, high-frequency intents, outage fallback",
+      "cost": "minimal",
+      "latency": "minimal"
+    }
+  ],
+  "routing_criteria": [
+    "intent_complexity",
+    "retrieval_confidence",
+    "safety_risk",
+    "latency_sla",
+    "budget_remaining",
+    "tool_required"
+  ],
+  "fallback_order": ["tier-1", "tier-2", "tier-3", "tier-4"],
+  "mandatory_controls": [
+    "confidence-based escalation",
+    "budget guardrail per user/session",
+    "provider timeout",
+    "cached fallback for known safe responses"
+  ]
+}

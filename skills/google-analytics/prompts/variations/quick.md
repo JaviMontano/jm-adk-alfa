@@ -1,34 +1,30 @@
 ---
 name: google-analytics-quick
 type: variation
-version: 2.0.0
-description: "Google Analytics in quick mode."
+version: 2.1.0
+description: "Google Analytics quick mode for a compact GA4/GTM checklist."
 ---
 
-# Google Analytics — quick Mode
+# Google Analytics — Quick Mode
 
-## When to Use
+## When To Use
 
-Use quick mode when you need adjusted depth for the Google Analytics workflow.
-
-## Dynamic Parameters
-
-| Parameter | Required | Filled By |
-|-----------|----------|-----------|
-| `{{task}}` | Yes | User input |
-| `{{context}}` | No | Auto-detected |
-| `{{depth}}` | No | Set to "quick" |
+Use quick mode for a compact readiness or review checklist when the user does not need a full structured JSON compile.
 
 ## Execution
 
-1. Load skill: `skills/google-analytics/knowledge/body-of-knowledge.md`
-2. Check guardrails: `references/guardrails/*.json`
-3. Execute at quick depth with evidence tags
-4. Lead → Support → Guardian validation
-5. Confidence >= 0.95
+1. Load `SKILL.md` and `assets/event-taxonomy-policy.json`.
+2. Produce only:
+   - Property/data-stream readiness.
+   - Event taxonomy summary.
+   - Key-event candidates.
+   - Privacy/consent blockers.
+   - Debug checklist.
+   - Human-confirmation gate.
+3. Ask for missing critical inputs if the user requests mutation-ready GTM or GA4 key-event recommendations.
 
 ## Output
 
-- Deliverable calibrated to quick depth
-- Evidence-tagged, Constitution-compliant
-- Recommendations beyond the ask
+- Markdown.
+- Evidence tags.
+- No live Google Analytics, GTM, OAuth, MCP, or network calls.

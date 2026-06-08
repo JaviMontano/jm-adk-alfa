@@ -1,17 +1,14 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: validate-hooks
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
-
 # Validate Hooks
 
-THE CRITICAL SKILL -- validates hooks.json structure, event names, and type-event compatibility. Detects prompt/agent hooks on events lacking ToolUseContext. Triggers: validate hooks, check hooks.json, hooks audit, hook safety check.
+[CODE] Validates `hooks.json` structure, event names, hook type compatibility, ToolUseContext availability, command safety, and placement guard expectations.
 
 ## Triggers
 
 - validate-hooks
+- validate hooks
+- check hooks.json
+- hooks audit
+- hook safety check
 
 ## Allowed Tools
 
@@ -22,8 +19,21 @@ THE CRITICAL SKILL -- validates hooks.json structure, event names, and type-even
 
 ## Quick Use
 
-Use this skill when the request clearly matches the triggers and requires the `validate-hooks` capability.
+```bash
+python3 skills/validate-hooks/scripts/compile-validate-hooks.py \
+  --hooks-json hooks/hooks.json \
+  --plugin-root .
+```
+
+[CODE] The script reads configuration and script paths only. It does not execute hook commands and does not mutate config.
 
 ## Output Format
 
-Markdown with summary, evidence, result, validation, and risks.
+Markdown or HTML hooks audit with summary, evidence, findings, ToolUseContext compatibility, command safety, placement guard status, remediation checklist, validation, and residual limits.
+
+## Deterministic Assets
+
+- [CODE] `assets/hook-compatibility-matrix.json` is the executable source for the 22 events and 4 hook types.
+- [CODE] `assets/command-safety-policy.json` defines offline command-string checks.
+- [CODE] `assets/placement-guard-expectations.json` defines the expected PreToolUse placement guard registration.
+- [CODE] `scripts/check.sh` validates positive and negative fixtures.

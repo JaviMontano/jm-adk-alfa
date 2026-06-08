@@ -59,6 +59,20 @@ Load references:
   Read ${CLAUDE_SKILL_DIR}/references/vector-db-comparison.md
 ```
 
+## Bundled Assets and Scripts
+
+[EXPLICIT] Use `assets/` when the task needs deterministic GenAI architecture decisions instead of a free-form architecture narrative:
+
+- `assets/genai-architecture-schema.json`: validates required input fields and allowed values.
+- `assets/rag-pattern-model.json`: defines RAG variants, pipeline stages, retrieval methods, and chunking strategies.
+- `assets/model-routing-matrix.json`: defines LLM tiers, routing criteria, escalation, and fallback controls.
+- `assets/vector-db-selection-matrix.json`: defines vector database candidates and deterministic recommendation rules.
+- `assets/connector-security-model.json`: defines connector controls, security requirements, and degraded behavior.
+- `assets/qa-metrics-model.json`: defines GenAI metrics, guardrails, and continuous improvement cadence.
+- `assets/genai-architecture-report-template.md`: canonical Markdown report structure.
+
+[EXPLICIT] Use `scripts/compile-genai-architecture.py` to compile structured JSON into a deterministic Markdown architecture report. Use `scripts/check.sh` to validate fixtures and invalid-input behavior before declaring the skill complete.
+
 ---
 
 ## When to Use

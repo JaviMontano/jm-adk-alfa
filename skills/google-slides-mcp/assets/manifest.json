@@ -1,0 +1,80 @@
+{
+  "schema": 1,
+  "skill": "google-slides-mcp",
+  "assets": [
+    {
+      "path": "assets/google-slides-mcp-schema.json",
+      "type": "schema",
+      "purpose": "Stable structured input fields and supported Google Slides MCP operations.",
+      "used_by": [
+        "scripts/compile-google-slides-mcp.py",
+        "knowledge/body-of-knowledge.md"
+      ]
+    },
+    {
+      "path": "assets/mcp-tool-contract.json",
+      "type": "mcp-tool-contract",
+      "purpose": "Mapping between workspace-mcp tool names and Slides REST methods.",
+      "used_by": [
+        "scripts/compile-google-slides-mcp.py",
+        "SKILL.md"
+      ]
+    },
+    {
+      "path": "assets/scope-policy.json",
+      "type": "scope-policy",
+      "purpose": "Least-privilege OAuth scope profiles for Slides read and mutation workflows.",
+      "used_by": [
+        "scripts/compile-google-slides-mcp.py",
+        "knowledge/body-of-knowledge.md",
+        "evals/evals.json"
+      ]
+    },
+    {
+      "path": "assets/human-confirmation-policy.json",
+      "type": "confirmation-policy",
+      "purpose": "Human confirmation gate for presentations.create and presentations.batchUpdate.",
+      "used_by": [
+        "scripts/compile-google-slides-mcp.py",
+        "SKILL.md",
+        "examples/example-output.md"
+      ]
+    },
+    {
+      "path": "assets/slides-batchupdate-request-policy.json",
+      "type": "batchupdate-policy",
+      "purpose": "Supported Slides batchUpdate request keys and write-control recommendations.",
+      "used_by": [
+        "scripts/compile-google-slides-mcp.py",
+        "knowledge/body-of-knowledge.md"
+      ]
+    },
+    {
+      "path": "assets/thumbnail-policy.json",
+      "type": "thumbnail-policy",
+      "purpose": "Thumbnail MIME type, size, quota, and content URL handling rules.",
+      "used_by": [
+        "scripts/compile-google-slides-mcp.py",
+        "knowledge/body-of-knowledge.md"
+      ]
+    },
+    {
+      "path": "assets/google-slides-operation-template.md",
+      "type": "markdown-template",
+      "purpose": "Canonical deterministic Google Slides MCP operation report.",
+      "used_by": [
+        "scripts/compile-google-slides-mcp.py",
+        "templates/output.md"
+      ]
+    },
+    {
+      "path": "assets/source-map.md",
+      "type": "source-map",
+      "purpose": "Primary source and local documentation pointers used to update the skill.",
+      "used_by": [
+        "knowledge/body-of-knowledge.md",
+        "README.md"
+      ]
+    }
+  ]
+}

@@ -22,13 +22,15 @@ Use quick mode when you need adjusted depth for the Google Maps Integration work
 ## Execution
 
 1. Load skill: `skills/google-maps-integration/knowledge/body-of-knowledge.md`
-2. Check guardrails: `references/guardrails/*.json`
-3. Execute at quick depth with evidence tags
-4. Lead → Support → Guardian validation
-5. Confidence >= 0.95
+2. [CODE] Read `assets/maps-platform-plan-schema.json` and `assets/api-selection-policy.json`.
+3. [CODE] Produce a concise offline plan with API selection, key restrictions, data flow, marker clustering, accessibility, privacy, and human confirmation.
+4. [CONFIG] Do not call Google APIs.
+5. [CONFIG] Do not include monetary prices.
+6. [CODE] Lead -> Support -> Guardian validation.
+7. [CODE] Confidence >= 0.95.
 
 ## Output
 
-- Deliverable calibrated to quick depth
-- Evidence-tagged, Constitution-compliant
-- Recommendations beyond the ask
+- [CODE] Deliverable calibrated to quick depth.
+- [CODE] Evidence-tagged and Constitution-compliant.
+- [CODE] Residual risks and missing-input gaps only.

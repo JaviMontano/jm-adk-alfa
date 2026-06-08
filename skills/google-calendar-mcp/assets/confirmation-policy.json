@@ -1,0 +1,27 @@
+{
+  "schema": 1,
+  "source": "https://modelcontextprotocol.io/specification/draft/server/tools",
+  "mutating_operations": [
+    "create_event",
+    "update_event",
+    "cancel_event"
+  ],
+  "required_status": "confirmed",
+  "required_confirmation_contains": [
+    "operation",
+    "calendar_id",
+    "date_time",
+    "time_zone",
+    "attendees_or_none",
+    "send_updates",
+    "meet_policy"
+  ],
+  "blocked_without_confirmation": [
+    "mcp__workspace-mcp__manage_event",
+    "mcp__workspace-mcp__manage_out_of_office"
+  ],
+  "read_only_tools_allowed_before_confirmation": [
+    "mcp__workspace-mcp__list_calendars",
+    "mcp__workspace-mcp__get_events"
+  ]
+}

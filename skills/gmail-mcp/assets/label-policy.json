@@ -1,0 +1,34 @@
+{
+  "schema": 1,
+  "skill": "gmail-mcp",
+  "label_types": {
+    "SYSTEM": {
+      "reserved": true,
+      "examples": [
+        "INBOX",
+        "SPAM",
+        "TRASH",
+        "UNREAD",
+        "STARRED",
+        "IMPORTANT",
+        "SENT",
+        "DRAFT"
+      ]
+    },
+    "USER": {
+      "reserved": false,
+      "naming_rule": "Do not create a custom label with the same name as a system label."
+    }
+  },
+  "message_label_rules": [
+    "Labels are applied to messages; thread label views reflect labels present on messages in the thread.",
+    "A label applied to one message is associated with that message and its thread, not necessarily every message in the thread.",
+    "Labels cannot be applied to draft messages.",
+    "When a thread label is applied, newly added messages in the thread do not automatically inherit that prior label operation."
+  ],
+  "confirmation_rules": {
+    "single_message_label": "allowed_after_read_only_review",
+    "bulk_label_modify": "requires_human_confirmation",
+    "remove_inbox_or_add_trash": "requires_human_confirmation"
+  }
+}

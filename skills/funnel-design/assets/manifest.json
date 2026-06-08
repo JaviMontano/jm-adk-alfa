@@ -1,0 +1,60 @@
+{
+  "schema": 1,
+  "skill": "funnel-design",
+  "assets": [
+    {
+      "path": "assets/funnel-design-schema.json",
+      "type": "schema",
+      "purpose": "Required structured fields for funnel design inputs.",
+      "used_by": [
+        "scripts/compile-funnel-design.py",
+        "knowledge/body-of-knowledge.md"
+      ]
+    },
+    {
+      "path": "assets/stage-content-model.json",
+      "type": "stage-model",
+      "purpose": "Canonical TOFU/MOFU/BOFU stage requirements and buyer intent.",
+      "used_by": [
+        "scripts/compile-funnel-design.py",
+        "examples/example-output.md"
+      ]
+    },
+    {
+      "path": "assets/lead-scoring-model.json",
+      "type": "scoring-model",
+      "purpose": "Lead scoring dimensions and lifecycle thresholds.",
+      "used_by": [
+        "scripts/compile-funnel-design.py",
+        "templates/output.md"
+      ]
+    },
+    {
+      "path": "assets/nurture-flow-schema.json",
+      "type": "schema",
+      "purpose": "Required fields for deterministic nurture flow steps.",
+      "used_by": [
+        "scripts/compile-funnel-design.py",
+        "knowledge/body-of-knowledge.md"
+      ]
+    },
+    {
+      "path": "assets/qualification-rules.json",
+      "type": "rules",
+      "purpose": "Sales-ready, reactivation, and disqualification rules.",
+      "used_by": [
+        "scripts/compile-funnel-design.py",
+        "examples/example-output.md"
+      ]
+    },
+    {
+      "path": "assets/funnel-design-report-template.md",
+      "type": "markdown-template",
+      "purpose": "Canonical output structure for compiled funnel designs.",
+      "used_by": [
+        "scripts/compile-funnel-design.py",
+        "templates/output.md"
+      ]
+    }
+  ]
+}

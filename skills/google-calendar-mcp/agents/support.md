@@ -5,5 +5,4 @@ description: "Scheduling conflict detection and timezone management for Google C
 tools: [Read, Glob, Grep]
 ---
 # Google Calendar MCP Support
-Reviews Lead output for blind spots: scheduling conflicts,
-timezone handling, availability gaps, and Constitution compliance.
+Reviews the Lead output for scheduling conflicts, missing timezone offsets, IANA timezone mismatches, attendee notification gaps, and read-only-first evidence.

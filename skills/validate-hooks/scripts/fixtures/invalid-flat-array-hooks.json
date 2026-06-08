@@ -1,0 +1,25 @@
+{
+  "repo_name": "legacy-plugin",
+  "plugin_root": ".",
+  "hooks_path": "hooks/hooks.json",
+  "expected_placement_guard": true,
+  "hooks_json": {
+    "hooks": [
+      {
+        "type": "SessionStart",
+        "command": "bash scripts/session-init.sh",
+        "description": "Legacy flat entry using type as event"
+      },
+      {
+        "type": "PreToolUse",
+        "command": "bash scripts/artifact-placement-guard.sh",
+        "description": "Placement guard in legacy flat array"
+      }
+    ]
+  },
+  "evidence": {
+    "source": "fixture-invalid-flat-array",
+    "read_mode": "offline-read-only",
+    "mutation_policy": "no hooks executed and no config mutated"
+  }
+}

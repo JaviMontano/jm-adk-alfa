@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "project": {
+    "name": "Invalid Consent Fixture",
+    "owner": "JM Labs",
+    "environment": "serverless_backend"
+  },
+  "integration_mode": "serverless_backend",
+  "services": [
+    {
+      "id": "docs",
+      "operation": "documents.batchUpdate",
+      "purpose": "Attempt to write without consent.",
+      "auth_profile": "docs_write_file",
+      "requested_scopes": ["https://www.googleapis.com/auth/drive.file"],
+      "mutation": true,
+      "resource_identifiers": {
+        "document_id": "doc_invalid"
+      },
+      "read_before_write": true,
+      "idempotency_key": "docs-invalid-consent",
+      "retry_policy": "default_exponential_backoff",
+      "quota_strategy": {
+        "batching": true,
+        "partial_response_fields": "documentId,replies",
+        "quota_user_or_key_restriction": "quotaUser=invalid"
+      }
+    }
+  ],
+  "human_consent": {
+    "status": "pending",
+    "confirmed_by": "",
+    "confirmation_text": ""
+  },
+  "secrets": {
+    "token_storage": "server_secret_manager",
+    "client_secret_exposure": "never",
+    "refresh_tokens_encrypted": true,
+    "api_keys_restricted": true,
+    "oauth_tokens_server_side": true,
+    "no_static_secrets_in_client": true,
+    "maps_api_key_restriction": "http_referrer_and_api_restricted"
+  },
+  "test_matrix": [
+    {"id": "unit", "layer": "unit", "covers": ["schema"]},
+    {"id": "contract", "layer": "contract", "covers": ["payloads"]},
+    {"id": "sandbox", "layer": "integration-sandbox", "covers": ["test project"]},
+    {"id": "e2e", "layer": "e2e-preview", "covers": ["preview"]},
+    {"id": "security", "layer": "security", "covers": ["secrets"]},
+    {"id": "quota", "layer": "quota-error", "covers": ["errors"]},
+    {"id": "consent", "layer": "consent-gate", "covers": ["blocker"]}
+  ],
+  "evidence": {
+    "fixture": "negative consent"
+  }
+}

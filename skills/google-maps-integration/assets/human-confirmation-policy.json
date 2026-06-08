@@ -1,0 +1,37 @@
+{
+  "schema": 1,
+  "required_status": "confirmed",
+  "offline_only": true,
+  "external_api_calls_allowed": false,
+  "required_confirmation_fields": [
+    "status",
+    "confirmed_by",
+    "confirmation_text"
+  ],
+  "confirmation_text_must_include": [
+    "offline",
+    "do not call Google APIs"
+  ],
+  "gates": [
+    {
+      "id": "offline-plan-only",
+      "basis": "[CONFIG]",
+      "rule": "The compiler may only produce a local plan/checklist from fixtures and assets."
+    },
+    {
+      "id": "human-confirmation",
+      "basis": "[CODE]",
+      "rule": "A confirmed human gate is required before the plan is considered ready."
+    },
+    {
+      "id": "no-external-api-calls",
+      "basis": "[CONFIG]",
+      "rule": "The compiler must reject inputs that request external Google API calls."
+    },
+    {
+      "id": "no-monetary-prices",
+      "basis": "[CONFIG]",
+      "rule": "The compiler must reject monetary amounts in the input contract."
+    }
+  ]
+}

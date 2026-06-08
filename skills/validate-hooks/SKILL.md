@@ -20,6 +20,30 @@ This is the most critical validation skill in the PQA framework. An incorrectly 
 
 ---
 
+## When to Activate
+
+Activate when the request mentions `validate-hooks`, `validate hooks`, `check hooks.json`, `hooks audit`, `hook safety check`, ToolUseContext compatibility, hook event names, or placement guard validation. [EXPLICIT]
+
+Do not activate for ordinary Git hook planning unless the request concerns plugin/runtime `hooks.json`, runtime lifecycle events, or ToolUseContext behavior. [EXPLICIT]
+
+---
+
+## Deterministic Offline Contract
+
+This skill has an offline compiler and fixture gate: [EXPLICIT]
+
+- `assets/hooks-audit-schema.json` -- structured audit input contract.
+- `assets/hook-compatibility-matrix.json` -- executable version of the 22-event and 4-type compatibility matrix.
+- `assets/command-safety-policy.json` -- command string safety checks.
+- `assets/placement-guard-expectations.json` -- expected `PreToolUse` command placement guard registration.
+- `assets/validate-hooks-template.md` -- stable Markdown report template.
+- `scripts/compile-validate-hooks.py` -- compiles an audit report without executing hook commands.
+- `scripts/check.sh` -- validates positive and negative fixtures.
+
+The compiler may read a structured fixture with `--input` or a local `hooks.json` file with `--hooks-json`; it never executes hooks and only writes a report when `--output` is supplied. [EXPLICIT]
+
+---
+
 ## Type-Event Compatibility Matrix
 
 ### 4 Hook Types
@@ -111,6 +135,8 @@ This is the most critical validation skill in the PQA framework. An incorrectly 
 - Include a hooks safety summary: total hooks, safe count, warning count, critical count.
 - Prominently display any CRITICAL type-event incompatibilities at the top of the report.
 - If no CRITICAL findings: "Hooks validation PASSED".
+- Include placement guard status, command safety summary, and a remediation checklist.
+- Use `templates/output.md` or `templates/output.html` for stable output sections.
 
 ---
 
@@ -120,7 +146,11 @@ This is the most critical validation skill in the PQA framework. An incorrectly 
 - [ ] CRITICAL findings for type-event incompatibility include the explanation of WHY it fails (missing ToolUseContext).
 - [ ] Misspelled event names include a "Did you mean?" suggestion.
 - [ ] Script existence checks use the plugin root as base path, not CWD.
-- [ ] The report includes a hooks safety summary with total hooks, safe count, warning count, and critical count.
+- [ ] Command safety findings are based on offline string analysis only.
+- [ ] Placement guard expectations check for a `PreToolUse` command hook.
+- [ ] The report includes a hooks safety summary with total hooks, safe count, warning count, info count, and critical count.
+- [ ] The report includes findings with severity, event, hook type, rule, finding, and remediation.
+- [ ] The report includes a remediation checklist and residual limits.
 
 ## Assumptions & Limits
 
@@ -129,6 +159,7 @@ This is the most critical validation skill in the PQA framework. An incorrectly 
 - Cannot validate runtime behavior -- a hook command may be syntactically correct but fail at execution time (e.g., referencing a missing binary).
 - Does not evaluate matcher regex semantics -- only checks that the value is a string, not whether the pattern is correct or efficient.
 - Scope is limited to hooks.json structure. Hook behavior defined in settings.json or CLAUDE.md is outside this skill's responsibility.
+- The deterministic compiler does not execute hook commands and does not mutate hook configuration. [EXPLICIT]
 
 ## Good vs Bad
 
@@ -170,4 +201,4 @@ Example invocations:
 
 - "/validate-hooks" — Run the full validate hooks workflow
 - "validate hooks on this project" — Apply to current context
-
+- `python3 skills/validate-hooks/scripts/compile-validate-hooks.py --hooks-json hooks/hooks.json --plugin-root .` -- Compile an offline hooks audit report

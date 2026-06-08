@@ -1,75 +1,88 @@
 {
   "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-28",
   "skill": "google-apis-integration",
   "nodes": [
     {
       "id": "google-apis-integration",
       "type": "skill",
-      "label": "google-apis-integration"
+      "label": "Google APIs Integration"
     },
     {
-      "id": "google-apis-integration:inputs",
-      "type": "contract",
-      "label": "Expected inputs"
+      "id": "service-catalog",
+      "type": "asset",
+      "label": "Service and operation catalog"
     },
     {
-      "id": "google-apis-integration:outputs",
-      "type": "contract",
-      "label": "Expected outputs"
+      "id": "auth-scope-policy",
+      "type": "asset",
+      "label": "OAuth and API-key policy"
     },
     {
-      "id": "google-apis-integration:quality",
-      "type": "gate",
-      "label": "Quality criteria"
+      "id": "consent-secrets-policy",
+      "type": "asset",
+      "label": "Consent and secrets policy"
     },
     {
-      "id": "google-apis-integration:ontology",
-      "type": "ontology",
-      "label": "Domain: general"
+      "id": "error-retry-policy",
+      "type": "asset",
+      "label": "Error, quota, retry, and idempotency policy"
     },
     {
-      "id": "google-apis-integration:evidence",
-      "type": "gate",
-      "label": "Evidence / provenance requirements"
+      "id": "test-matrix-policy",
+      "type": "asset",
+      "label": "Required test layers"
     },
     {
-      "id": "google-apis-integration:antipattern",
-      "type": "risk",
-      "label": "Canonical anti-pattern to avoid"
+      "id": "offline-compiler",
+      "type": "script",
+      "label": "compile-google-apis-integration.py"
+    },
+    {
+      "id": "official-sources",
+      "type": "evidence",
+      "label": "Primary Google documentation"
     }
   ],
   "edges": [
     {
       "from": "google-apis-integration",
-      "to": "google-apis-integration:inputs",
-      "type": "requires"
+      "to": "service-catalog",
+      "type": "uses"
     },
     {
       "from": "google-apis-integration",
-      "to": "google-apis-integration:outputs",
-      "type": "produces"
+      "to": "auth-scope-policy",
+      "type": "uses"
     },
     {
       "from": "google-apis-integration",
-      "to": "google-apis-integration:quality",
+      "to": "consent-secrets-policy",
+      "type": "uses"
+    },
+    {
+      "from": "google-apis-integration",
+      "to": "error-retry-policy",
+      "type": "uses"
+    },
+    {
+      "from": "google-apis-integration",
+      "to": "test-matrix-policy",
       "type": "validated_by"
     },
     {
-      "from": "google-apis-integration",
-      "to": "google-apis-integration:ontology",
-      "type": "classified_as"
+      "from": "offline-compiler",
+      "to": "service-catalog",
+      "type": "reads"
     },
     {
-      "from": "google-apis-integration",
-      "to": "google-apis-integration:evidence",
-      "type": "validated_by"
+      "from": "offline-compiler",
+      "to": "auth-scope-policy",
+      "type": "reads"
     },
     {
-      "from": "google-apis-integration",
-      "to": "google-apis-integration:antipattern",
-      "type": "guards_against"
+      "from": "official-sources",
+      "to": "service-catalog",
+      "type": "informs"
     }
   ]
 }

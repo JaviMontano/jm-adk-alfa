@@ -1,28 +1,50 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: validate-hooks
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
-
-# Validate Hooks Output
+# Hooks Audit: {repo_name}
 
 ## Summary
 
-{summary}
+- [CODE] Hooks path: {hooks_path}.
+- [CODE] Hooks shape: {hooks_shape}.
+- [CODE] Total hook entries: {total_hooks}.
+- [CODE] Safe entries: {safe_count}.
+- [CODE] Findings: critical={critical_count}, warning={warning_count}, info={info_count}.
+- [CODE] Overall status: {status}.
 
 ## Evidence
 
 {evidence}
 
-## Result
+## Critical Findings
 
-{result}
+{critical_findings}
+
+## Findings
+
+{findings_table}
+
+## Event Coverage
+
+{event_coverage}
+
+## ToolUseContext Compatibility
+
+{tool_use_context}
+
+## Command Safety
+
+{command_safety}
+
+## Placement Guard
+
+{placement_guard}
+
+## Remediation Checklist
+
+{remediation_checklist}
 
 ## Validation
 
 {validation}
 
-## Risks and Limits
+## Risks And Limits
 
 {risks}

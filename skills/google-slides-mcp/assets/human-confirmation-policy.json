@@ -1,0 +1,15 @@
+{
+  "schema": 1,
+  "confirmation_phrase_prefix": "CONFIRM GOOGLE SLIDES MUTATION:",
+  "mutating_actions": [
+    "presentations.create",
+    "presentations.batchUpdate"
+  ],
+  "required_status": "confirmed",
+  "required_fields": [
+    "status",
+    "confirmed_by",
+    "confirmation_text"
+  ],
+  "live_execution_rule": "Do not call mutating MCP tools until the user confirms the exact operation, target presentation, and intended changes."
+}

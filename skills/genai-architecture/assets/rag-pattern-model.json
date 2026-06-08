@@ -1,0 +1,60 @@
+{
+  "schema": 1,
+  "variants": [
+    {
+      "id": "cag",
+      "label": "Context-Aware Generation",
+      "best_for": "Small, stable, curated knowledge bases that fit in context."
+    },
+    {
+      "id": "advanced-rag",
+      "label": "Advanced RAG",
+      "best_for": "Production knowledge systems that need hybrid retrieval, re-ranking, citations, and validation."
+    },
+    {
+      "id": "modular-rag",
+      "label": "Modular RAG",
+      "best_for": "Enterprise systems with multiple sources, per-query routing, swappable retrieval, and strict governance."
+    },
+    {
+      "id": "agentic-rag",
+      "label": "Agentic RAG",
+      "best_for": "Multi-step tasks that need iterative search, tool use, and self-evaluation."
+    }
+  ],
+  "stages": [
+    {
+      "id": "query_processing",
+      "label": "Query processing",
+      "required_decision": "intent classification, entity extraction, query rewrite, or decomposition"
+    },
+    {
+      "id": "retrieval",
+      "label": "Retrieval",
+      "required_decision": "vector, keyword, hybrid, graph, or connector retrieval"
+    },
+    {
+      "id": "context_assembly",
+      "label": "Context assembly",
+      "required_decision": "re-ranking, dedupe, context budget, and citation provenance"
+    },
+    {
+      "id": "generation",
+      "label": "Generation",
+      "required_decision": "prompt contract, model tier, parameters, and streaming behavior"
+    },
+    {
+      "id": "validation",
+      "label": "Validation",
+      "required_decision": "grounding, citation check, safety, PII, and format compliance"
+    }
+  ],
+  "retrieval_methods": ["vector", "keyword", "hybrid-rrf", "graph", "connector"],
+  "chunking_strategies": ["semantic", "recursive", "parent-child", "sentence", "paragraph", "fixed-size"],
+  "default_recommendations": {
+    "small_stable": "cag",
+    "medium_or_daily": "advanced-rag",
+    "large_or_regulated": "modular-rag",
+    "multi_step_tools": "agentic-rag"
+  }
+}

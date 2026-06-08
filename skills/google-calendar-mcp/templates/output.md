@@ -1,28 +1,37 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: google-calendar-mcp
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
-
-# Google Calendar Mcp Output
+# Google Calendar MCP Operation
 
 ## Summary
 
-{summary}
+{{SUMMARY}}
 
 ## Evidence
 
-{evidence}
+{{EVIDENCE}}
 
-## Result
+## Minimum Scope
 
-{result}
+{{SCOPE}}
+
+## Read-Only-First
+
+{{READ_ONLY_FIRST}}
+
+## Human Confirmation
+
+{{HUMAN_CONFIRMATION}}
+
+## Event Payload Preview
+
+{{PAYLOAD_PREVIEW}}
+
+## MCP Operation Plan
+
+{{MCP_OPERATION_PLAN}}
 
 ## Validation
 
-{validation}
+{{VALIDATION}}
 
 ## Risks and Limits
 
-{risks}
+{{RISKS}}

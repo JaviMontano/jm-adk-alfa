@@ -1,0 +1,48 @@
+{
+  "schema": 1,
+  "skill": "gmail-mcp",
+  "query_contract": {
+    "prefer_specific_q": true,
+    "max_results_default": 10,
+    "max_results_hard_limit": 50,
+    "prefer_label_ids_for_labels": true,
+    "require_reason_for_body_access": true
+  },
+  "safe_operators": [
+    "from:",
+    "to:",
+    "cc:",
+    "bcc:",
+    "subject:",
+    "after:",
+    "before:",
+    "newer:",
+    "older:",
+    "newer_than:",
+    "older_than:",
+    "label:",
+    "in:",
+    "is:",
+    "has:attachment",
+    "filename:"
+  ],
+  "date_handling": {
+    "date_string_timezone": "PST midnight in Gmail API search",
+    "preferred_precise_date_format": "unix_seconds",
+    "note": "Use absolute dates or Unix seconds when timezone accuracy matters."
+  },
+  "api_ui_differences": [
+    "Gmail UI alias expansion is not guaranteed in Gmail API responses.",
+    "Gmail API does not perform thread-wide searches in the same way the Gmail UI can."
+  ],
+  "unsafe_patterns": [
+    {
+      "pattern": "empty query with high max_results",
+      "guard": "Ask for a narrower query or cap max_results."
+    },
+    {
+      "pattern": "broad body access",
+      "guard": "Search metadata first, then fetch only selected message or thread IDs."
+    }
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "schema": 1,
+  "mcp_server": "workspace-mcp",
+  "tools": [
+    {
+      "name": "mcp__workspace-mcp__get_spreadsheet_info",
+      "operation_class": "read",
+      "rest_methods": [
+        "spreadsheets.get"
+      ],
+      "notes": "Use for spreadsheet metadata, sheets, ranges, field masks, and protected range review."
+    },
+    {
+      "name": "mcp__workspace-mcp__read_sheet_values",
+      "operation_class": "read",
+      "rest_methods": [
+        "spreadsheets.values.get"
+      ],
+      "notes": "Use for reading A1 ranges and preserving read-only-first discovery."
+    },
+    {
+      "name": "mcp__workspace-mcp__create_spreadsheet",
+      "operation_class": "mutation",
+      "rest_methods": [
+        "spreadsheets.create"
+      ],
+      "notes": "Use only after confirmation when creating a new spreadsheet resource."
+    },
+    {
+      "name": "mcp__workspace-mcp__modify_sheet_values",
+      "operation_class": "mutation",
+      "rest_methods": [
+        "spreadsheets.values.update",
+        "spreadsheets.values.append",
+        "spreadsheets.values.batchUpdate"
+      ],
+      "notes": "Use for value writes and appends after read-only-first discovery and confirmation."
+    },
+    {
+      "name": "mcp__workspace-mcp__format_sheet_range",
+      "operation_class": "mutation",
+      "rest_methods": [
+        "spreadsheets.batchUpdate"
+      ],
+      "notes": "Use for structural requests such as formatting, protected ranges, dimensions, and data validation."
+    }
+  ],
+  "mcp_tools_spec_requirements": {
+    "tool_name": "Unique tool identifier.",
+    "description": "Human-readable functionality description.",
+    "inputSchema": "Valid JSON Schema object for expected parameters.",
+    "outputSchema": "Optional schema for structured results when provided."
+  }
+}

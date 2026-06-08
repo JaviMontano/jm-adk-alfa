@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "value_range": {
+    "required_fields": [
+      "range",
+      "majorDimension",
+      "values"
+    ],
+    "allowed_major_dimensions": [
+      "ROWS",
+      "COLUMNS"
+    ],
+    "supported_input_value_types": [
+      "bool",
+      "string",
+      "double"
+    ],
+    "null_policy": "Null values are skipped; use an empty string to set an empty cell."
+  },
+  "value_input_options": {
+    "RAW": "Input is not parsed.",
+    "USER_ENTERED": "Input is parsed as if entered by a user."
+  },
+  "append": {
+    "table_detection": "The input range is searched for a logical table, and values append after the last row of that table.",
+    "allowed_insert_data_options": [
+      "OVERWRITE",
+      "INSERT_ROWS"
+    ]
+  },
+  "read_defaults": {
+    "majorDimension": "ROWS",
+    "valueRenderOption": "FORMATTED_VALUE",
+    "dateTimeRenderOption": "SERIAL_NUMBER"
+  }
+}

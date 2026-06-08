@@ -1,0 +1,86 @@
+{
+  "schema": 1,
+  "skill": "google-maps-integration",
+  "assets": [
+    {
+      "path": "assets/maps-platform-plan-schema.json",
+      "type": "schema",
+      "purpose": "Stable structured input contract for offline Google Maps Platform planning.",
+      "used_by": [
+        "scripts/compile-google-maps-plan.py",
+        "knowledge/body-of-knowledge.md",
+        "evals/evals.json"
+      ]
+    },
+    {
+      "path": "assets/api-selection-policy.json",
+      "type": "api-selection-policy",
+      "purpose": "Maps user requirements to Google Maps Platform APIs, JavaScript services, and marker libraries.",
+      "used_by": [
+        "scripts/compile-google-maps-plan.py",
+        "knowledge/body-of-knowledge.md",
+        "examples/example-output.md"
+      ]
+    },
+    {
+      "path": "assets/api-key-restriction-policy.json",
+      "type": "security-policy",
+      "purpose": "Client/server API key separation, application restrictions, API restrictions, and monitoring checks.",
+      "used_by": [
+        "scripts/compile-google-maps-plan.py",
+        "SKILL.md",
+        "templates/output.md"
+      ]
+    },
+    {
+      "path": "assets/data-flow-policy.json",
+      "type": "data-flow-policy",
+      "purpose": "Places, Geocoding, and Directions data-flow constraints, retention, and field minimization.",
+      "used_by": [
+        "scripts/compile-google-maps-plan.py",
+        "knowledge/body-of-knowledge.md",
+        "examples/example-output.md"
+      ]
+    },
+    {
+      "path": "assets/marker-accessibility-policy.json",
+      "type": "ui-accessibility-policy",
+      "purpose": "Advanced Markers, map ID, marker clustering, keyboard, and alternate-list requirements.",
+      "used_by": [
+        "scripts/compile-google-maps-plan.py",
+        "templates/output.html",
+        "knowledge/body-of-knowledge.md"
+      ]
+    },
+    {
+      "path": "assets/billing-quota-risk-checklist.md",
+      "type": "checklist",
+      "purpose": "Billing and quota exposure checks without monetary amounts.",
+      "used_by": [
+        "scripts/compile-google-maps-plan.py",
+        "README.md",
+        "templates/output.md"
+      ]
+    },
+    {
+      "path": "assets/human-confirmation-policy.json",
+      "type": "confirmation-policy",
+      "purpose": "Human confirmation and offline/no-network gates for generated plans.",
+      "used_by": [
+        "scripts/compile-google-maps-plan.py",
+        "SKILL.md",
+        "prompts/primary.md"
+      ]
+    },
+    {
+      "path": "assets/maps-platform-plan-template.md",
+      "type": "markdown-template",
+      "purpose": "Canonical deterministic Google Maps Platform plan report.",
+      "used_by": [
+        "scripts/compile-google-maps-plan.py",
+        "templates/output.md",
+        "examples/example-output.md"
+      ]
+    }
+  ]
+}

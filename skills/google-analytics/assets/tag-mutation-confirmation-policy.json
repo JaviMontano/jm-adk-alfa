@@ -1,0 +1,19 @@
+{
+  "schema": 1,
+  "required_status": "confirmed",
+  "confirmation_phrase_prefix": "CONFIRM GA4/GTM MUTATION:",
+  "mutating_tag_types": [
+    "google_tag_config",
+    "ga4_event",
+    "consent_initialization",
+    "conversion_linker",
+    "data_layer_event",
+    "ga4_key_event"
+  ],
+  "mutation_surfaces": [
+    "Google tag",
+    "Google Tag Manager container",
+    "GA4 key event configuration"
+  ],
+  "gate_message": "Do not recommend live tag/container mutation until the user confirms the exact scope, property/container, and rollback owner."
+}

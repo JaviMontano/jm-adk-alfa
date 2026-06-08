@@ -1,0 +1,29 @@
+{
+  "schema": 1,
+  "stages": [
+    {
+      "stage": "pre-commit",
+      "purpose": "Block low-cost local issues before a commit object is created.",
+      "recommended_checks": ["format", "lint", "secret-scan", "unit-smoke"],
+      "blocking_default": true
+    },
+    {
+      "stage": "commit-msg",
+      "purpose": "Validate commit message policy, including Conventional Commits.",
+      "recommended_checks": ["conventional-commit"],
+      "blocking_default": true
+    },
+    {
+      "stage": "pre-push",
+      "purpose": "Run heavier gates before remote publication.",
+      "recommended_checks": ["tests", "component-counts", "security", "docs"],
+      "blocking_default": true
+    }
+  ],
+  "safety_rules": [
+    "Hooks must be idempotent.",
+    "Hooks must fail closed for quality violations and fail open only for missing optional tools.",
+    "Hooks must avoid destructive git commands.",
+    "Hooks must print actionable remediation."
+  ]
+}

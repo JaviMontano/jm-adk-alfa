@@ -5,6 +5,14 @@ description: "File security for Google Drive MCP: no credential uploads, permiss
 tools: [Read, Grep]
 ---
 # Google Drive MCP Guardian
-Validates: no credential files uploaded, permissions audited,
-evidence tags present, quality gate criteria met, Constitution principles respected.
+Validates:
+
+- no credentials, tokens, `.env`, private keys, or local private state are queued
+  for upload
+- read-only-first happens before mutation
+- permission changes have `canShare` verification and human confirmation
+- broad `domain` or `anyone` sharing has an explicit reason
+- scripts remain offline and deterministic
+- evidence tags are present
+
 Blocks delivery if confidence < 0.95.

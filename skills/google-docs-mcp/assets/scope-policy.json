@@ -1,0 +1,49 @@
+{
+  "schema": 1,
+  "policy_name": "google-docs-scope-policy",
+  "source": "https://developers.google.com/workspace/docs/api/auth",
+  "profiles": [
+    {
+      "id": "docs_readonly",
+      "scope": "https://www.googleapis.com/auth/documents.readonly",
+      "sensitivity": "sensitive",
+      "allowed_actions": [
+        "get_document"
+      ],
+      "use_when": "The task only needs to inspect Docs content and structure.",
+      "mutation_allowed": false
+    },
+    {
+      "id": "drive_file",
+      "scope": "https://www.googleapis.com/auth/drive.file",
+      "sensitivity": "non-sensitive",
+      "allowed_actions": [
+        "create_document",
+        "get_document",
+        "batch_update"
+      ],
+      "use_when": "The task works on files created by the app or explicitly opened/shared with the app.",
+      "mutation_allowed": true,
+      "preferred_for_mutation": true
+    },
+    {
+      "id": "docs_full",
+      "scope": "https://www.googleapis.com/auth/documents",
+      "sensitivity": "sensitive",
+      "allowed_actions": [
+        "create_document",
+        "get_document",
+        "batch_update"
+      ],
+      "use_when": "Account-wide Google Docs mutation is explicitly required and narrower scopes cannot satisfy the request.",
+      "mutation_allowed": true,
+      "requires_escalation_reason": true
+    }
+  ],
+  "escalation_rules": [
+    "Prefer docs_readonly for inspection-only plans.",
+    "Prefer drive_file for creation or mutation of app-created or user-opened files.",
+    "Do not use docs_readonly for mutating operations.",
+    "Require a written reason before using docs_full."
+  ]
+}

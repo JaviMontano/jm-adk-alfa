@@ -1,0 +1,51 @@
+{
+  "schema": 1,
+  "source_docs": [
+    "https://developers.google.com/workspace/calendar/api/guides/create-events",
+    "https://developers.google.com/calendar/api/v3/reference/events",
+    "https://developers.google.com/workspace/calendar/api/v3/reference/events/insert",
+    "https://developers.google.com/calendar/api/v3/reference/events/list"
+  ],
+  "timed_event": {
+    "required_fields": [
+      "start.dateTime",
+      "start.timeZone",
+      "end.dateTime",
+      "end.timeZone"
+    ],
+    "date_time_format": "RFC3339 timestamp with timezone offset",
+    "timezone_format": "IANA timezone name, for example America/Bogota"
+  },
+  "agenda_query": {
+    "recommended_parameters": {
+      "singleEvents": true,
+      "orderBy": "startTime",
+      "timeMin": "RFC3339 timestamp with mandatory timezone offset",
+      "timeMax": "RFC3339 timestamp with mandatory timezone offset",
+      "timeZone": "IANA timezone name"
+    }
+  },
+  "attendees": {
+    "email_required": true,
+    "send_updates_required_when_attendees_present": true,
+    "send_updates_values": [
+      "all",
+      "externalOnly",
+      "none"
+    ],
+    "warning_for_none": "Google documents adverse sync effects for sendUpdates=none."
+  },
+  "reminders": {
+    "default_policy": "useDefault=true unless the user explicitly asks for overrides"
+  },
+  "post_mutation_readback_fields": [
+    "id",
+    "htmlLink",
+    "summary",
+    "start",
+    "end",
+    "attendees",
+    "hangoutLink",
+    "conferenceData"
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "required_fragments": [
+    "# AI Productivity Sprint Funnel Design",
+    "Audience: Operations leaders in 50-500 employee service companies",
+    "| TOFU | Recognize operational time loss",
+    "Lifecycle thresholds: cold=0-29; engaged=30-59; mql=60-79; sql=80-100; sales-ready=80-100",
+    "`diagnostic-intent`: trigger `Diagnostic page visit`",
+    "Sales-ready: score >= 80 plus `conversion_intent` owned by sales."
+  ]
+}

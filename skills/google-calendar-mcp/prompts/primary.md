@@ -1,27 +1,27 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: google-calendar-mcp
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
-
-# Google Calendar Mcp Primary Prompt
+# Google Calendar MCP Primary Prompt
 
 ## Objective
 
-Execute `google-calendar-mcp` for the user's task.
+Handle Google Calendar operations through `workspace-mcp` with read-only-first discovery, least-privilege scope selection, explicit timezone handling, attendee review, Google Meet `conferenceData` safety, and human confirmation before mutation.
 
 ## Required Inputs
 
-- Goal
-- Context
-- Constraints
-- Definition of done
+- Operation type: agenda query, freebusy check, create event, update event, cancel event, or out-of-office.
+- Calendar id, or permission to discover calendars.
+- Time window with timezone.
+- Event payload fields for mutation: summary, start, end, attendees, `sendUpdates`, Meet preference, reminders, recurrence if any.
+- Target event id for edit/cancel.
+- Human confirmation for any mutating operation.
 
 ## Process
 
-Discover -> Analyze -> Execute -> Validate.
+1. Read calendars/events before mutation.
+2. Select the minimum Calendar scope from `assets/scope-policy.json`.
+3. Compile or inspect the safe operation payload.
+4. Show tool inputs and ask for confirmation before `manage_event`.
+5. Execute only after confirmation when the runtime MCP is available.
+6. Read back the result and report evidence, validation, and risks.
 
 ## Output
 
-Return the deliverable in this shape: Markdown with summary, evidence, result, validation, and risks.
+Return Markdown with evidence, scope, read-only-first status, confirmation status, payload preview, MCP operation plan, validation, and residual risks.

@@ -1,0 +1,14 @@
+{
+  "fragments": [
+    "# Git Hook Integration Plan: jm-adk-alfa",
+    "Hook manager: native-git.",
+    "Install mode: plan-only.",
+    "Conventional commits: enabled.",
+    "| pre-commit | quality-fast | True | `bash scripts/pre-tool-guard.sh && git diff --check`",
+    "| commit-msg | conventional-commit | True | `python3 scripts/validate-commit-message.py \"$1\"`",
+    "Header regex:",
+    "Install command: `git config core.hooksPath .githooks`.",
+    "Default to plan-only unless user explicitly asks to install hooks.",
+    "Hook commands are rendered as plan output; this script does not install hooks."
+  ]
+}

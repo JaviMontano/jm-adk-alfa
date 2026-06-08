@@ -1,0 +1,11 @@
+{
+  "fragments": [
+    "# Hooks Audit: jm-adk-alfa",
+    "- [CODE] Hooks shape: event-keyed-object.",
+    "- [CODE] Overall status: PASS.",
+    "- [CODE] ToolUseContext is available only on PreToolUse, PermissionRequest, and PostToolUse.",
+    "- [CODE] Detected placement guard reference on PreToolUse as command.",
+    "- [CODE] No remediation required.",
+    "- [CODE] Command safety inspected by string analysis only."
+  ]
+}

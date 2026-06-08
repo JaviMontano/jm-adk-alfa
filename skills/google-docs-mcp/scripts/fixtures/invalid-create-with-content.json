@@ -1,0 +1,45 @@
+{
+  "operation_id": "gdocs-invalid-create-content",
+  "request_title": "Invalid create with body content",
+  "mcp_server": "workspace-mcp",
+  "operation_mode": "safe_execution_checklist",
+  "requested_scope_profile": "drive_file",
+  "read_only_first": {
+    "document_resolved": false,
+    "structure_checked": false,
+    "revision_id_captured": false,
+    "existing_content_summary": "Create-only fixture."
+  },
+  "human_confirmation": {
+    "status": "confirmed",
+    "confirmed_by": "owner@example.com",
+    "confirmation_text": "CONFIRM GOOGLE DOCS MUTATION: operation_id=gdocs-invalid-create-content document_id_or_title=Invalid docs_api_method=documents.create scope_profile=drive_file request_count=1 live_execution_intent=test"
+  },
+  "operations": [
+    {
+      "id": "create-doc-with-content",
+      "action": "create_document",
+      "description": "Incorrectly attempts to put body content into documents.create.",
+      "docs_api_method": "documents.create",
+      "mcp_tool": "mcp__workspace-mcp__create_doc",
+      "scope_profile": "drive_file",
+      "create": {
+        "title": "Invalid Create Payload",
+        "content": "This content must be inserted with documents.batchUpdate instead.",
+        "initial_content_strategy": "blank_then_batch_update",
+        "follow_up_batch_update_required": true,
+        "document_id_capture": true,
+        "requires_human_confirmation": true
+      }
+    }
+  ],
+  "evidence": {
+    "repo_docs": "docs/google-workspace-mcp-setup.md; docs/mcp-integration.md",
+    "google_docs_api": "https://developers.google.com/workspace/docs/api/reference/rest",
+    "docs_scopes": "https://developers.google.com/workspace/docs/api/auth",
+    "docs_batch_update": "https://developers.google.com/workspace/docs/api/reference/rest/v1/documents/batchUpdate",
+    "docs_create_get": "https://developers.google.com/workspace/docs/api/reference/rest/v1/documents/create; https://developers.google.com/workspace/docs/api/reference/rest/v1/documents/get",
+    "workspace_mcp_dev_server": "https://developers.google.com/workspace/guides/build-with-llms",
+    "mcp_tools_spec": "https://modelcontextprotocol.io/specification/draft/server/tools"
+  }
+}

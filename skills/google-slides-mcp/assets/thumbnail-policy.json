@@ -1,0 +1,25 @@
+{
+  "schema": 1,
+  "allowed_mime_types": [
+    "PNG"
+  ],
+  "default_mime_type": "PNG",
+  "allowed_thumbnail_sizes": [
+    "SMALL",
+    "MEDIUM",
+    "LARGE",
+    "THUMBNAIL_SIZE_UNSPECIFIED"
+  ],
+  "preferred_thumbnail_sizes": [
+    "SMALL",
+    "MEDIUM",
+    "LARGE"
+  ],
+  "content_url_lifetime_minutes_default": 30,
+  "allowed_content_url_handling": [
+    "do_not_persist",
+    "short_lived_preview",
+    "discard_after_review"
+  ],
+  "quota_note": "getThumbnail is an expensive read request."
+}

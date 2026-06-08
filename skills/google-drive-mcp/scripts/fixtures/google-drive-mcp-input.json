@@ -1,0 +1,102 @@
+{
+  "request_id": "gdrive-p007-alpha-dod",
+  "request_title": "P-007 Alfa DoD Drive MCP checklist",
+  "mcp_server": "workspace-mcp",
+  "operation_mode": "safe_execution_checklist",
+  "drive_space": "My Drive",
+  "read_only_first": true,
+  "operations": [
+    {
+      "id": "discover-alpha-assets",
+      "action": "search_list",
+      "description": "Find existing P-007 Alfa assets before uploading or sharing anything.",
+      "mcp_tool": "mcp__workspace-mcp__search_drive_files",
+      "scope_profile": "drive_metadata_readonly",
+      "search": {
+        "q": "name contains 'alfa' and trashed = false",
+        "fields": "nextPageToken, files(id, name, mimeType, parents, size, modifiedTime, webViewLink, capabilities/canDownload, capabilities/canShare)",
+        "corpora": "user",
+        "spaces": "drive",
+        "page_size": 25
+      }
+    },
+    {
+      "id": "create-alpha-folder",
+      "action": "organize_folder",
+      "description": "Create the target folder only after confirming it does not already exist.",
+      "mcp_tool": "mcp__workspace-mcp__create_drive_folder",
+      "scope_profile": "drive_file",
+      "folder": {
+        "folder_path": "/P-007/Alfa/DoD",
+        "parent_id": "root",
+        "folder_mime_type": "application/vnd.google-apps.folder",
+        "create_missing": true,
+        "fields": "id, name, mimeType, parents, webViewLink",
+        "requires_human_confirmation": true
+      }
+    },
+    {
+      "id": "upload-alpha-report",
+      "action": "upload",
+      "description": "Upload the compiled DoD report with metadata.",
+      "mcp_tool": "mcp__workspace-mcp__create_drive_file",
+      "scope_profile": "drive_file",
+      "upload": {
+        "local_path": "/workspace/artifacts/p-007-alpha-report.pdf",
+        "destination_parent_id": "folder-p007-alpha-dod",
+        "filename": "p-007-alpha-report.pdf",
+        "mime_type": "application/pdf",
+        "upload_type": "multipart",
+        "size_mb": 1.8,
+        "metadata": {
+          "name": "p-007-alpha-report.pdf",
+          "parents": ["folder-p007-alpha-dod"],
+          "mimeType": "application/pdf"
+        },
+        "fields": "id, name, mimeType, parents, webViewLink",
+        "requires_human_confirmation": true
+      }
+    },
+    {
+      "id": "export-source-brief",
+      "action": "download_export",
+      "description": "Export a Google Docs source brief to PDF after canDownload is verified.",
+      "mcp_tool": "mcp__workspace-mcp__get_drive_file_content",
+      "scope_profile": "drive_readonly",
+      "download_export": {
+        "file_id": "doc-alpha-brief",
+        "file_name": "P-007 Alfa Brief",
+        "source_mime_type": "application/vnd.google-apps.document",
+        "export_mime_type": "application/pdf",
+        "use_alt_media": false,
+        "destination_path": "/workspace/artifacts/p-007-alpha-brief.pdf",
+        "verify_can_download": true
+      }
+    },
+    {
+      "id": "share-alpha-report",
+      "action": "share_permission",
+      "description": "Share the report with one reviewer as commenter after canShare is verified.",
+      "mcp_tool": "mcp__workspace-mcp__manage_drive_access",
+      "scope_profile": "drive_file",
+      "share": {
+        "file_id": "file-alpha-report",
+        "permission": {
+          "type": "user",
+          "role": "commenter",
+          "emailAddress": "reviewer@example.com"
+        },
+        "send_notification_email": true,
+        "verify_capability": "canShare",
+        "fields": "id, type, role, emailAddress",
+        "requires_human_confirmation": true,
+        "reason": "Reviewer needs comment-only access for DoD validation."
+      }
+    }
+  ],
+  "evidence": {
+    "repo_docs": "docs/google-workspace-mcp-setup.md; docs/mcp-integration.md",
+    "google_drive_api": "Drive scopes, search files, files.list, uploads, files.create, REST v3, downloads/export, MIME types, sharing permissions",
+    "mcp_spec": "https://modelcontextprotocol.io/specification/draft/server/tools"
+  }
+}

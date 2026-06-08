@@ -1,0 +1,70 @@
+{
+  "schema": 1,
+  "skill": "google-analytics",
+  "assets": [
+    {
+      "path": "assets/ga4-gtm-plan-schema.json",
+      "type": "schema",
+      "purpose": "Stable input contract for offline GA4/GTM measurement plans.",
+      "used_by": [
+        "scripts/compile-google-analytics.py",
+        "knowledge/body-of-knowledge.md"
+      ]
+    },
+    {
+      "path": "assets/event-taxonomy-policy.json",
+      "type": "taxonomy-policy",
+      "purpose": "Event taxonomy, event naming, parameter, recommended-event, and key-event rules.",
+      "used_by": [
+        "scripts/compile-google-analytics.py",
+        "knowledge/body-of-knowledge.md",
+        "examples/example-output.md"
+      ]
+    },
+    {
+      "path": "assets/privacy-consent-policy.json",
+      "type": "privacy-policy",
+      "purpose": "Consent Mode, default consent, PII, data redaction, and legal review checks.",
+      "used_by": [
+        "scripts/compile-google-analytics.py",
+        "prompts/primary.md"
+      ]
+    },
+    {
+      "path": "assets/tag-mutation-confirmation-policy.json",
+      "type": "confirmation-policy",
+      "purpose": "Human-confirmation requirements before recommending live tag/container mutations.",
+      "used_by": [
+        "scripts/compile-google-analytics.py",
+        "SKILL.md"
+      ]
+    },
+    {
+      "path": "assets/debug-checklist-policy.json",
+      "type": "debug-policy",
+      "purpose": "Offline debug checklist for GTM Preview, Tag Assistant, GA4 DebugView, and Realtime reports.",
+      "used_by": [
+        "scripts/compile-google-analytics.py",
+        "templates/output.md"
+      ]
+    },
+    {
+      "path": "assets/source-map.md",
+      "type": "source-map",
+      "purpose": "Primary official Google sources used by this skill.",
+      "used_by": [
+        "knowledge/body-of-knowledge.md",
+        "examples/example-output.md"
+      ]
+    },
+    {
+      "path": "assets/ga4-gtm-plan-template.md",
+      "type": "markdown-template",
+      "purpose": "Canonical deterministic GA4/GTM measurement plan report.",
+      "used_by": [
+        "scripts/compile-google-analytics.py",
+        "templates/output.md"
+      ]
+    }
+  ]
+}

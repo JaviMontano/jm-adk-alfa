@@ -1,44 +1,41 @@
 ---
 name: google-workspace-apis-primary
 type: execution
-version: 2.0.0
-description: "Execute the Google Workspace Apis workflow with triad orchestration."
+version: 2.1.0
+description: "Execute a deterministic Google Workspace API integration plan."
 triad:
   lead: "google-workspace-apis-lead"
   support: "google-workspace-apis-support"
   guardian: "google-workspace-apis-guardian"
 ---
 
-# Google Workspace Apis — Execute
+# Google Workspace APIs — Execute
 
-## Dynamic Parameters
+## Inputs
 
-| Parameter | Description | Required | Filled By |
-|-----------|-------------|----------|-----------|
-| `{{task}}` | What to accomplish | Yes | User input |
-| `{{context}}` | Background and constraints | Yes | User or codebase |
-| `{{constraints}}` | Additional rules | No | Guardrails JSON |
-| `{{depth}}` | quick / standard / deep | No | Auto |
-| `{{output_format}}` | html / docx / xlsx / md | No | Auto |
+| Parameter | Description | Required |
+|---|---|---|
+| `{{task}}` | Business workflow to automate | Yes |
+| `{{services}}` | Gmail, Calendar, Drive, Docs, Sheets, Slides | Yes |
+| `{{runtime}}` | REST/client library, MCP, or mixed | Yes |
+| `{{constraints}}` | Security, privacy, quota, compliance limits | No |
 
-## Execution
+## Workflow
 
-1. **Load knowledge**: Read `knowledge/body-of-knowledge.md`
-2. **Check guardrails**: Read `references/guardrails/*.json`
-3. **Lead** (`google-workspace-apis-lead`): Execute SKILL.md Steps 1-4 for `{{task}}`
-   - Discover → Analyze → Execute → Validate
-   - Apply evidence tags on all claims
-4. **Support** (`google-workspace-apis-support`): Review for cross-cutting concerns
-   - Edge cases, security, accessibility, performance
-5. **Guardian** (`google-workspace-apis-guardian`): Validate
-   - Evidence tags complete
-   - Quality gate met
-   - Constitution XIII + XIV respected
-   - Output exceeds expectations
+1. Read `knowledge/body-of-knowledge.md`.
+2. Read the deterministic assets under `assets/`.
+3. Normalize the request into the compiler schema.
+4. Use the narrowest OAuth scope profile per operation.
+5. Enforce read-only-first before every mutation.
+6. Map MCP tools only when the tool belongs to the service/action.
+7. Run or instruct the user to run `scripts/compile-google-workspace-apis.py`.
+8. Report validation, limits, and live-check prerequisites.
 
-## Output
+## Required Output
 
-- Primary deliverable for `{{task}}` in `{{output_format}}`
-- Evidence tags on every claim
-- Recommendations beyond the ask
-- Confidence score (>= 0.95)
+- Summary with evidence tags.
+- Service matrix with exact method names.
+- OAuth scope plan and secrets policy.
+- MCP tool mapping when relevant.
+- Retry, idempotency, rollback, and validation matrix.
+- Explicit statement that offline checks do not prove live Google access.
