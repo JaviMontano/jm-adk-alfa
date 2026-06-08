@@ -1,7 +1,7 @@
 {
   "name": "jm-adk",
   "version": "5.2.0",
-  "description": "JM Agentic Development Kit — 601 skills (incl. the 30 Claude Certified Architect katas and the Jarvis OS capability pack), 261 agents, 267 commands, safe first-use onboarding, skill scaffolding, local-first workspaces, validation gates, and upgrade-safe GitHub sync.",
+  "description": "JM Agentic Development Kit — 602 skills (incl. the 30 Claude Certified Architect katas and the Jarvis OS capability pack), 261 agents, 267 commands, safe first-use onboarding, skill scaffolding, local-first workspaces, validation gates, and upgrade-safe GitHub sync.",
   "author": {
     "name": "Javier Montaño (JM Labs)",
     "url": "https://metodologia.info"

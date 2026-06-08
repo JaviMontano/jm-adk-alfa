@@ -1,0 +1,23 @@
+{
+  "schema": "jm-labs.alfa-repo-maintenance-orchestrator.contract.v1",
+  "report_schema": "jm-labs.alfa-repo-maintenance-orchestrator.report.v1",
+  "required_fields": [
+    "schema",
+    "skill",
+    "phases",
+    "baseline",
+    "policies",
+    "validation_gates",
+    "decision"
+  ],
+  "fixed_phase_order": [
+    "bootstrap",
+    "repo-sync-audit",
+    "local-state-preservation",
+    "branch-plan",
+    "import-consolidation-plan",
+    "cleanup-plan",
+    "validation-gates",
+    "closeout"
+  ]
+}

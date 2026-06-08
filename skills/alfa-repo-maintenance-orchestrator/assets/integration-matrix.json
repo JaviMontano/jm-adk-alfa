@@ -1,0 +1,13 @@
+{
+  "schema": "jm-labs.alfa-repo-maintenance-orchestrator.integration-matrix.v1",
+  "required_skills": [
+    "repo-sync-auditor",
+    "local-state-preservation",
+    "workspace-governance",
+    "git-workflow",
+    "safe-scripting-and-bash",
+    "quality-gatekeeper",
+    "tasklog-management",
+    "session-end-cleanup"
+  ]
+}

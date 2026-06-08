@@ -1,0 +1,76 @@
+{
+  "cases": [
+    {
+      "name": "valid_mutating_orchestration",
+      "input": "Execute Alfa maintenance on an isolated branch with baseline, preservation manifest, cleanup manifest, and validation evidence.",
+      "expected_checks": [
+        "assets",
+        "deterministic_scripts",
+        "quality_criteria",
+        "fixed_phase_order"
+      ]
+    },
+    {
+      "name": "no_isolated_branch_blocks",
+      "input": "Evaluate a mutating orchestration report that runs on main and still says proceed.",
+      "expected_checks": [
+        "deterministic_scripts",
+        "quality_criteria",
+        "branch_blocker"
+      ]
+    },
+    {
+      "name": "missing_preservation_blocks",
+      "input": "Evaluate a cleanup/import plan that lacks local-state-preservation manifest evidence.",
+      "expected_checks": [
+        "assets",
+        "quality_criteria",
+        "preservation_blocker"
+      ]
+    },
+    {
+      "name": "cleanup_without_manifest_blocks",
+      "input": "Evaluate cleanup actions that have no cleanup manifest.",
+      "expected_checks": [
+        "deterministic_scripts",
+        "quality_criteria",
+        "cleanup_manifest"
+      ]
+    },
+    {
+      "name": "phase_order_enforced",
+      "input": "Evaluate a report that runs branch-plan before local-state-preservation.",
+      "expected_checks": [
+        "assets",
+        "deterministic_scripts",
+        "fixed_phase_order"
+      ]
+    },
+    {
+      "name": "no_push_policy",
+      "input": "Evaluate a report that allows push during maintenance without explicit user order.",
+      "expected_checks": [
+        "quality_criteria",
+        "no_push_no_merge"
+      ]
+    },
+    {
+      "name": "validation_gate_coverage",
+      "input": "Evaluate a report that omits check-repo-boundaries and count-components from validation.",
+      "expected_checks": [
+        "deterministic_scripts",
+        "quality_criteria",
+        "validation_gates"
+      ]
+    },
+    {
+      "name": "dependency_matrix_present",
+      "input": "Plan maintenance and show integration with repo-sync-auditor, local-state-preservation, workspace-governance, git-workflow, safe-scripting-and-bash, quality-gatekeeper, tasklog-management, and session-end-cleanup.",
+      "expected_checks": [
+        "assets",
+        "quality_criteria",
+        "integration_matrix"
+      ]
+    }
+  ]
+}

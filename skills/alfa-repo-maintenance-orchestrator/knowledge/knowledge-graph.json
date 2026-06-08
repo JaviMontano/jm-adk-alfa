@@ -1,0 +1,41 @@
+{
+  "nodes": [
+    {
+      "id": "alfa-repo-maintenance-orchestrator",
+      "type": "skill",
+      "label": "Alfa Repo Maintenance Orchestrator"
+    },
+    {
+      "id": "phase-contract",
+      "type": "contract",
+      "label": "Fixed Phase Contract"
+    },
+    {
+      "id": "write-blockers",
+      "type": "policy",
+      "label": "Write Blockers"
+    },
+    {
+      "id": "validation-gates",
+      "type": "policy",
+      "label": "Validation Gates"
+    }
+  ],
+  "edges": [
+    {
+      "from": "alfa-repo-maintenance-orchestrator",
+      "to": "phase-contract",
+      "relationship": "enforces"
+    },
+    {
+      "from": "phase-contract",
+      "to": "write-blockers",
+      "relationship": "gates"
+    },
+    {
+      "from": "write-blockers",
+      "to": "validation-gates",
+      "relationship": "requires"
+    }
+  ]
+}
