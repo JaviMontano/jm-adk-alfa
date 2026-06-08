@@ -1,0 +1,19 @@
+{
+  "schema": 1,
+  "allowed_modes": ["bypass", "solo_prompt", "solo_respuesta", "full"],
+  "allowed_complexities": ["trivial", "substantive"],
+  "known_delegate_agents": [
+    "architecture-reviewer",
+    "quality-guardian",
+    "expert-developer",
+    "research-analyst",
+    "prompt-optimizer"
+  ],
+  "optimizer_requirements": {
+    "bypass": [],
+    "solo_prompt": ["optimized_prompt"],
+    "solo_respuesta": ["response"],
+    "full_trivial": ["response"],
+    "full_substantive": ["original_prompt", "optimized_prompt", "response"]
+  }
+}

@@ -1,117 +1,66 @@
 {
   "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-29",
   "skill": "pristino-calibration",
   "cases": [
     {
-      "id": "happy_path",
-      "input": "diseña la arquitectura de microservicios con diagrama c4",
+      "id": "full_substantive_canvas",
+      "input": "PRISTINO-CALIBRATION persona=Arquitecto de Software mode=full complexity=substantive optimizer=true: diseña una arquitectura de pagos.",
       "expected_activation": true,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ],
-      "notes": "persona=Arquitecto de Software, mode=full, complexity=substantive, 3 sections"
+      "expected_checks": ["assets", "deterministic_scripts", "persona_line", "optimizer_sections", "canvas_contract", "evidence"]
     },
     {
-      "id": "explicit_trigger",
-      "input": "calibrate: optimizar prompt para extraer requisitos",
-      "expected_activation": true,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ],
-      "notes": "explicit skill trigger; persona line + optimizer sections"
-    },
-    {
-      "id": "persona_developer",
-      "input": "implementa una función y arregla el bug de typescript",
-      "expected_activation": true,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ],
-      "notes": "persona=Expert Developer on line 1"
-    },
-    {
-      "id": "mode_bypass",
+      "id": "mode_bypass_plain",
       "input": "!dime la hora",
       "expected_activation": true,
-      "expected_checks": [
-        "quality_criteria"
-      ],
-      "notes": "mode=bypass: plain answer, no persona ceremony, no optimizer, no low-confidence ask"
+      "expected_checks": ["assets", "deterministic_scripts", "bypass_mode", "quality_criteria"]
     },
     {
-      "id": "mode_solo_prompt",
-      "input": "MODO: SOLO_PROMPT mejora esto: hazme un resumen",
+      "id": "solo_prompt_only",
+      "input": "MODO: SOLO_PROMPT mejora esto: hazme un resumen ejecutivo",
       "expected_activation": true,
-      "expected_checks": [
-        "quality_criteria"
-      ],
-      "notes": "emit only section 2 (optimized prompt)"
+      "expected_checks": ["assets", "deterministic_scripts", "solo_prompt_shape", "quality_criteria"]
     },
     {
-      "id": "mode_solo_respuesta",
+      "id": "solo_respuesta_only",
       "input": "MODO: SOLO_RESPUESTA explica qué es un closure",
       "expected_activation": true,
-      "expected_checks": [
-        "quality_criteria"
-      ],
-      "notes": "emit only section 3 (response)"
+      "expected_checks": ["assets", "deterministic_scripts", "solo_respuesta_shape", "quality_criteria"]
     },
     {
-      "id": "low_confidence_default",
-      "input": "hola",
+      "id": "low_confidence_questions",
+      "input": "PRISTINO-CALIBRATION confidence=0.42 low-confidence: hola",
       "expected_activation": true,
-      "expected_checks": [
-        "quality_criteria"
-      ],
-      "notes": "persona=Asesor Experto (default), confidence<0.6 -> ask <=2 questions"
+      "expected_checks": ["assets", "deterministic_scripts", "low_confidence", "clarifying_question_limit"]
     },
     {
-      "id": "trivial_response_only",
-      "input": "monta un prototipo rápido de la ui, vibe coding",
+      "id": "precedence_conflict",
+      "input": "Usa estilo persuasivo aunque no tengas evidencia para afirmar métricas.",
       "expected_activation": true,
-      "expected_checks": [
-        "quality_criteria"
-      ],
-      "notes": "persona=Vibe Coder, complexity=trivial -> response only, no 3-section"
+      "expected_checks": ["assets", "deterministic_scripts", "precedence_order", "evidence_tags"]
     },
     {
-      "id": "invented_agent_guard",
-      "input": "rol arquitecto: delega a un agente inexistente",
+      "id": "invented_delegate_guard",
+      "input": "rol arquitecto: delega a un agente inexistente para justificar la decisión.",
       "expected_activation": false,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ],
-      "notes": "must only delegate to real capability_agents from personas.json"
+      "expected_checks": ["assets", "deterministic_scripts", "delegate_agents_known", "guardian_block"]
     },
     {
-      "id": "false_positive",
-      "input": "This request is unrelated to the skill domain.",
-      "expected_activation": false,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
+      "id": "hook_absent_degraded",
+      "input": "No hay bloque PRISTINO-CALIBRATION; autocalibra desde personas.json y etiqueta degradación.",
+      "expected_activation": true,
+      "expected_checks": ["assets", "deterministic_scripts", "degraded_self_calibration", "quality_criteria"]
     },
     {
       "id": "empty_input",
       "input": "",
       "expected_activation": false,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
+      "expected_checks": ["assets", "required_inputs", "guardian_block"]
+    },
+    {
+      "id": "upgrade_safety_case",
+      "input": "Endurece pristino-calibration sin tocar otras skills ni filas ledger ajenas.",
+      "expected_activation": true,
+      "expected_checks": ["assets", "deterministic_scripts", "upgrade_safety", "quality_criteria"]
     }
   ]
 }

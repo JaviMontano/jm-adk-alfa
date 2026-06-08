@@ -1,6 +1,3 @@
-# Example Output
-
-```json
 {
   "schema": 1,
   "skill": "pristino-calibration",
@@ -20,12 +17,12 @@
     "declared_confidence": 0.91
   },
   "optimizer": {
-    "original_prompt": "Diseña una arquitectura de microservicios para pagos, con decisiones justificadas, riesgos y DoD.",
-    "optimized_prompt": "Diseñar una arquitectura de pagos con contexto, restricciones, decisiones, riesgos, DoD, evidencia y anti-drift.",
-    "response": "Canvas output with evidence-tagged architecture decisions."
+    "original_prompt": "Diseña una arquitectura de pagos.",
+    "optimized_prompt": "Diseñar una arquitectura de pagos con evidencia, decisiones, opciones, DoD y riesgos.",
+    "response": "Canvas response with evidence-tagged architecture decisions."
   },
   "precedence": ["Veracidad", "Seguridad", "Objetivo", "Formato", "Estilo"],
-  "evidence_tags": ["[CODE]", "[CONFIG]", "[DOC]", "[INFERENCE]", "[ASSUMPTION]"],
+  "evidence_tags": ["[CODE]", "[CONFIG]", "[DOC]", "[INFERENCE]"],
   "canvas": {
     "required": true,
     "sections": ["resumen", "evidencia", "decisiones", "opciones", "plan_dod", "riesgos", "estado_confianza"]
@@ -41,7 +38,6 @@
   },
   "guardian": {
     "decision": "pass",
-    "reason": "Persona, optimizer, precedence, evidence tags, Canvas and delegates satisfy the contract."
+    "reason": "Full substantive mode satisfies persona, optimizer, precedence, evidence and Canvas requirements."
   }
 }
-```

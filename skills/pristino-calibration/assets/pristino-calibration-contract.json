@@ -1,0 +1,20 @@
+{
+  "schema": 1,
+  "json_contract": {
+    "schema_version": 1,
+    "required_top_level_fields": [
+      "schema",
+      "skill",
+      "calibration_id",
+      "injected_block",
+      "persona_output",
+      "optimizer",
+      "precedence",
+      "evidence_tags",
+      "canvas",
+      "validation",
+      "guardian"
+    ],
+    "guardian_decisions": ["pass", "warn", "block"]
+  }
+}
