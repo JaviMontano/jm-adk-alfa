@@ -1,0 +1,34 @@
+{
+  "schema": 1,
+  "skill": "katas-posttooluse-normalization",
+  "assets": [
+    {
+      "path": "assets/posttooluse-normalization-contract.json",
+      "type": "contract",
+      "purpose": "Defines required report fields and Guardian decisions.",
+      "used_by": ["SKILL.md", "scripts/validate_posttooluse_normalization.py"]
+    },
+    {
+      "path": "assets/updated-output-policy.json",
+      "type": "policy",
+      "purpose": "Defines updatedMCPToolOutput shape and raw payload exclusion.",
+      "used_by": ["SKILL.md", "scripts/validate_posttooluse_normalization.py"]
+    },
+    {
+      "path": "assets/normalization-policy.json",
+      "type": "policy",
+      "purpose": "Defines canonical schema, matcher, status map, and fallback expectations.",
+      "used_by": ["SKILL.md", "scripts/validate_posttooluse_normalization.py"]
+    },
+    {
+      "path": "assets/evidence-policy.json",
+      "type": "policy",
+      "purpose": "Defines accepted evidence types for offline validation.",
+      "used_by": ["SKILL.md", "scripts/validate_posttooluse_normalization.py"]
+    }
+  ],
+  "offline": true,
+  "network_required": false,
+  "randomness_allowed": false,
+  "time_dependent": false
+}

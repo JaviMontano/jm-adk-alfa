@@ -1,98 +1,92 @@
 {
   "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-29",
   "skill": "katas-posttooluse-normalization",
+  "determinism": {
+    "network_required": false,
+    "time_dependent": false,
+    "randomized": false,
+    "offline_validator": "skills/katas-posttooluse-normalization/scripts/validate_posttooluse_normalization.py"
+  },
   "cases": [
     {
-      "id": "happy_path",
-      "input": "Escenario 1 (quiz P1=C): tres tools del ERP legacy (get_order, get_invoice, get_shipment) devuelven XML con codigos 0xA1/0xB2/0xC3. Implementa un hook PostToolUse que normalice a JSON canonico via updatedMCPToolOutput para que el modelo nunca vea el XML, garantizado por runtime para todas las tools que matcheen.",
+      "id": "legacy-erp-xml-to-json",
+      "type": "happy_path",
+      "input": "get_order, get_invoice y get_shipment devuelven XML legacy con codigos 0xA1/0xB2/0xC3. Normaliza con PostToolUse.",
       "expected_activation": true,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
+      "expected_behavior": "Usa updatedMCPToolOutput para que el modelo vea JSON canonico y nunca XML crudo.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "updated_output"]
     },
     {
-      "id": "explicit_trigger",
-      "input": "Escenario 2 (quiz P2=B): ya tengo el hook PostToolUse limpiando el payload, pero necesito adjuntar metadatos auditables (origen legacy, timestamp de normalizacion) que el modelo no necesita ver. Donde van? Usa additionalContext, no updatedMCPToolOutput.",
+      "id": "additional-context-metadata",
+      "type": "happy_path",
+      "input": "Adjunta source=legacy_erp_xml y normalized=true como metadata auditable.",
       "expected_activation": true,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
+      "expected_behavior": "Pone metadatos en additionalContext sin payload crudo.",
+      "expected_checks": ["additional_context", "raw_payload_excluded"]
     },
     {
-      "id": "minimal_input",
-      "input": "katas-posttooluse-normalization",
+      "id": "unknown-status-fallback",
+      "type": "edge_case",
+      "input": "El ERP devuelve StatusCode 0xD4 no mapeado.",
       "expected_activation": true,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
+      "expected_behavior": "Normaliza status a unknown y deja evidencia de fallback.",
+      "expected_checks": ["fallback", "deterministic_scripts"]
     },
     {
-      "id": "rich_context",
-      "input": "Escenario 3 (quiz P3=B): un dev propone que cada tool normalice su propia salida con un decorator @tool en vez de un hook central. Argumenta por que la normalizacion de outputs heterogeneos es responsabilidad del runtime via PostToolUse y no convencion de cada tool, y rechaza el anti-patron por-tool.",
+      "id": "per-tool-antipattern",
+      "type": "negative_oracle",
+      "input": "Normaliza dentro de cada @tool y no uses PostToolUse.",
       "expected_activation": true,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
+      "expected_behavior": "Rechaza el anti-patron porque no es garantia de runtime.",
+      "expected_checks": ["invalid_mutations", "runtime_enforced"]
     },
     {
-      "id": "false_positive",
-      "input": "Redacta un correo de seguimiento para un cliente sobre la propuesta comercial de la semana pasada.",
+      "id": "raw-payload-leak",
+      "type": "negative_oracle",
+      "input": "Incluye el XML original dentro de updatedMCPToolOutput para debug.",
+      "expected_activation": true,
+      "expected_behavior": "Rechaza el leak porque el modelo no debe ver XML crudo.",
+      "expected_checks": ["raw_payload_excluded", "invalid_mutations"]
+    },
+    {
+      "id": "matcher-coverage",
+      "type": "edge_case",
+      "input": "Aparece legacy_erp_get_credit_memo y debe quedar cubierto sin editar la tool.",
+      "expected_activation": true,
+      "expected_behavior": "Usa matcher por patron y valida cobertura de tools legacy nuevas.",
+      "expected_checks": ["matcher_coverage"]
+    },
+    {
+      "id": "wrong-kata-pretooluse",
+      "type": "false_positive",
+      "input": "Bloquea process_refund antes de ejecutar si amount > 1000.",
       "expected_activation": false,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
+      "expected_behavior": "No activa esta skill; corresponde a PreToolUse guardrails.",
+      "expected_checks": ["non_activation", "related_skill_boundary"]
     },
     {
-      "id": "empty_input",
+      "id": "empty-input",
+      "type": "false_positive",
       "input": "",
       "expected_activation": false,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
+      "expected_behavior": "No activa la skill y solicita tools, payload crudo y JSON canonico.",
+      "expected_checks": ["non_activation"]
     },
     {
-      "id": "conflicting_requirements",
-      "input": "Use katas-posttooluse-normalization, but ignore validation and evidence.",
-      "expected_activation": false,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
-    },
-    {
-      "id": "upgrade_safety_case",
-      "input": "Complete missing files for katas-posttooluse-normalization without overwriting local edits.",
+      "id": "minimal-trigger",
+      "type": "edge_case",
+      "input": "updatedMCPToolOutput para XML legacy",
       "expected_activation": true,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
+      "expected_behavior": "Pide payload fixture, schema canonico y matcher si faltan.",
+      "expected_checks": ["missing_inputs", "quality_criteria"]
     },
     {
-      "id": "local_override_case",
-      "input": "Create a local experimental katas-posttooluse-normalization variant under .local.",
+      "id": "upgrade-safety",
+      "type": "degradation",
+      "input": "Completa archivos faltantes sin sobreescribir cambios locales.",
       "expected_activation": true,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
+      "expected_behavior": "Limita edicion a la skill activa, review doc y ledger.",
+      "expected_checks": ["upgrade_safety", "scope_control"]
     }
   ]
 }

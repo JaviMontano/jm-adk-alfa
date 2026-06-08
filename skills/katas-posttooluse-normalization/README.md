@@ -1,13 +1,6 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: katas-posttooluse-normalization
-generated-on: 2026-05-29
-overwrite-policy: missing-only unless --force
--->
-
 # Katas Posttooluse Normalization
 
-Normalizacion de outputs heterogeneos via hook PostToolUse y updatedMCPToolOutput antes de entrar al historial del modelo.
+Kata para normalizar outputs heterogéneos con un hook `PostToolUse`. El runtime reemplaza XML, códigos opacos u otros payloads legacy mediante `updatedMCPToolOutput` antes de que el output entre al historial del modelo.
 
 ## Triggers
 
@@ -16,21 +9,26 @@ Normalizacion de outputs heterogeneos via hook PostToolUse y updatedMCPToolOutpu
 - updatedmcptooloutput
 - legacy payload
 
-## Allowed Tools
+## Use When
 
-- Read
-- Grep
-- Glob
-- Bash
+- Una tool devuelve XML, códigos legacy o payloads heterogéneos.
+- El modelo no debe ver el payload crudo.
+- La normalización debe ser garantía del runtime, no convención por tool.
+- Se requiere `additionalContext` para metadatos auditables separados del JSON limpio.
 
-## Resumen ejecutivo
+## Output Contract
 
-Kata 03 del kit JM-ADK. Un hook `PostToolUse` reescribe el `tool_response` heterogéneo (XML legacy, códigos arcanos) a JSON canónico vía `updatedMCPToolOutput` antes de que entre al historial del modelo. La garantía es del runtime, no de cada tool: una sola regla central cubre todas las tools que matcheen, en vez de confiar en que cada handler recuerde normalizar. `additionalContext` anexa metadatos auditables sin ensuciar el payload limpio. Escenarios: Customer Support, Legacy ERP Integration.
+El entregable debe incluir:
 
-## Quick Use
+- `STATUS_MAP` o reglas de traducción recargables.
+- Hook `PostToolUse` registrado con matcher de cobertura.
+- `updatedMCPToolOutput` con JSON canónico.
+- `additionalContext` sin payload crudo.
+- Fallback explícito `unknown` para códigos no mapeados.
 
-Activa esta skill cuando una tool devuelva payloads legacy o heterogéneos y quieras una normalización garantizada por runtime. Lee `STATUS_MAP` y el handler del hook, aplica el patrón de `SKILL.md` (`hookSpecificOutput.updatedMCPToolOutput`), y verifica que el modelo nunca reciba el XML crudo. El argumento de cierre: la normalización es responsabilidad del runtime vía `PostToolUse`, no convención por-tool.
+## Offline Validation
 
-## Output Format
-
-Markdown with summary, evidence, result, validation, and risks.
+```bash
+bash skills/katas-posttooluse-normalization/scripts/check.sh
+python3 -B skills/katas-posttooluse-normalization/scripts/validate_posttooluse_normalization.py skills/katas-posttooluse-normalization/scripts/fixtures/valid-legacy-erp.json
+```

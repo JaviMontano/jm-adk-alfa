@@ -1,23 +1,16 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: katas-posttooluse-normalization
-generated-on: 2026-05-29
-overwrite-policy: missing-only unless --force
--->
-
 # Example Output
 
 ## Summary
 
-Un solo hook `PostToolUse` con matcher sobre las tools del ERP normaliza el XML a JSON canónico. El modelo recibe `{order_id, status, amount}`; el XML crudo nunca entra al historial. La garantía es del runtime, así que `get_invoice`, `get_shipment` y cualquier tool legacy futura quedan cubiertas sin tocar sus handlers.
+Un hook `PostToolUse` central normaliza outputs del ERP legacy antes de que entren al historial del modelo. `updatedMCPToolOutput` entrega JSON canónico y `additionalContext` conserva metadatos auditables sin XML crudo.
 
-## STATUS_MAP
+## Status Map
 
 ```python
 STATUS_MAP = {"0xA1": "paid", "0xB2": "pending", "0xC3": "overdue"}
 ```
 
-## Patrón correcto (GOOD)
+## PostToolUse Hook
 
 ```python
 async def normalize_legacy(input, tool_use_id, ctx):
@@ -30,32 +23,31 @@ async def normalize_legacy(input, tool_use_id, ctx):
     return {
         "hookSpecificOutput": {
             "hookEventName": "PostToolUse",
-            "updatedMCPToolOutput": {"type": "text", "text": json.dumps(clean)},
+            "updatedMCPToolOutput": {
+                "type": "text",
+                "text": json.dumps(clean),
+            },
             "additionalContext": "source=legacy_erp_xml; normalized=true",
         }
     }
-# Registrado con un matcher sobre get_order|get_invoice|get_shipment.
 ```
 
-## Anti-patrón (ANTI)
+## Transformation Matrix
 
-```python
-@tool
-def get_order(id):
-    return normalize(legacy_erp.fetch(id))   # OK por casualidad
-
-@tool
-def get_shipment(id):
-    return legacy_erp.fetch(id)              # el dev olvidó normalizar -> XML crudo al contexto
-```
+| tool | raw status | normalized status | raw visible |
+|---|---|---|---|
+| `get_order` | `0xA1` | `paid` | no |
+| `get_invoice` | `0xB2` | `pending` | no |
+| `legacy_erp_get_shipment` | `0xD4` | `unknown` | no |
 
 ## Validation
 
-- El XML crudo nunca entra al historial: el modelo solo ve el JSON de `updatedMCPToolOutput`.
-- El matcher cubre las tres tools legacy y futuras, no una por una.
-- `0xD4` u otro código no mapeado cae en `"unknown"` (fallback explícito).
-- `additionalContext` lleva solo metadatos de auditoría.
+- `updatedMCPToolOutput.text` parsea a JSON con `order_id`, `status` y `amount`.
+- El matcher cubre `legacy_erp_*` y las tools ERP nombradas.
+- `additionalContext` no contiene XML ni payload crudo.
+- El anti-patrón por-tool queda rechazado.
 
-## Argumento
+## Risks And Limits
 
-La normalización de outputs heterogéneos es responsabilidad del runtime vía `PostToolUse`, no convención de cada tool. Quiz: C·B·B.
+- Cambios de dialecto XML requieren actualizar parser y fixtures.
+- Campos nuevos deben agregarse al esquema canónico y a la validación offline.

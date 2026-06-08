@@ -1,0 +1,92 @@
+{
+  "schema": 1,
+  "skill": "katas-posttooluse-normalization",
+  "cases": [
+    {
+      "id": "invalid-raw-visible-to-model",
+      "base": "valid-legacy-erp.json",
+      "operations": [
+        {
+          "op": "set",
+          "path": "validation.raw_payload_visible_to_model",
+          "value": true
+        }
+      ]
+    },
+    {
+      "id": "invalid-hook-event",
+      "base": "valid-legacy-erp.json",
+      "operations": [
+        {
+          "op": "set",
+          "path": "hook.event_name",
+          "value": "PreToolUse"
+        }
+      ]
+    },
+    {
+      "id": "invalid-missing-updated-output",
+      "base": "valid-legacy-erp.json",
+      "operations": [
+        {
+          "op": "remove",
+          "path": "hook.hook_specific_output.updatedMCPToolOutput"
+        }
+      ]
+    },
+    {
+      "id": "invalid-per-tool-normalization",
+      "base": "valid-legacy-erp.json",
+      "operations": [
+        {
+          "op": "set",
+          "path": "validation.per_tool_normalization",
+          "value": true
+        }
+      ]
+    },
+    {
+      "id": "invalid-no-fallback",
+      "base": "valid-unknown-status.json",
+      "operations": [
+        {
+          "op": "set",
+          "path": "validation.fallback_for_unknown_status",
+          "value": false
+        }
+      ]
+    },
+    {
+      "id": "invalid-additional-context-leaks-payload",
+      "base": "valid-legacy-erp.json",
+      "operations": [
+        {
+          "op": "set",
+          "path": "hook.hook_specific_output.additionalContext",
+          "value": "source=<OrderResponse><OrderId>A-4471</OrderId></OrderResponse>"
+        }
+      ]
+    },
+    {
+      "id": "invalid-missing-canonical-field",
+      "base": "valid-legacy-erp.json",
+      "operations": [
+        {
+          "op": "remove",
+          "path": "normalization.transformations.0.normalized_output.amount"
+        }
+      ]
+    },
+    {
+      "id": "invalid-empty-status-map",
+      "base": "valid-legacy-erp.json",
+      "operations": [
+        {
+          "op": "set",
+          "path": "normalization.status_map",
+          "value": {}
+        }
+      ]
+    }
+  ]
+}

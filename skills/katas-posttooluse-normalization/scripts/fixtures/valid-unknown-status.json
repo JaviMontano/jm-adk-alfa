@@ -1,0 +1,66 @@
+{
+  "schema": 1,
+  "skill": "katas-posttooluse-normalization",
+  "report_id": "ptu-normalization-valid-unknown-status",
+  "scenario": "unmapped status code falls back to unknown",
+  "evidence": [
+    {
+      "type": "raw_payload_fixture",
+      "detail": "Fixture includes StatusCode 0xD4 which is not present in STATUS_MAP."
+    },
+    {
+      "type": "fallback_test",
+      "detail": "Normalized output sets status to unknown for unmapped code."
+    },
+    {
+      "type": "additional_context_review",
+      "detail": "additionalContext contains source metadata only."
+    }
+  ],
+  "hook": {
+    "event_name": "PostToolUse",
+    "matcher": "legacy_erp_*",
+    "registered": true,
+    "runtime_enforced": true,
+    "hook_specific_output": {
+      "hookEventName": "PostToolUse",
+      "updatedMCPToolOutput": {
+        "type": "text",
+        "text": "{\"order_id\":\"S-9020\",\"status\":\"unknown\",\"amount\":42.0}"
+      },
+      "additionalContext": "source=legacy_erp_xml; status_fallback=unknown"
+    }
+  },
+  "normalization": {
+    "status_map": {
+      "0xA1": "paid",
+      "0xB2": "pending",
+      "0xC3": "overdue"
+    },
+    "canonical_schema": ["order_id", "status", "amount"],
+    "transformations": [
+      {
+        "tool_name": "legacy_erp_get_shipment",
+        "raw_payload": "<ShipmentResponse><OrderId>S-9020</OrderId><StatusCode>0xD4</StatusCode><Total>42.00</Total></ShipmentResponse>",
+        "normalized_output": {
+          "order_id": "S-9020",
+          "status": "unknown",
+          "amount": 42.0
+        },
+        "raw_payload_visible_to_model": false,
+        "fallback_for_unknown": "unknown"
+      }
+    ]
+  },
+  "validation": {
+    "raw_payload_visible_to_model": false,
+    "all_matched_tools_covered": true,
+    "fallback_for_unknown_status": true,
+    "per_tool_normalization": false,
+    "additional_context_contains_payload": false
+  },
+  "guardian": {
+    "decision": "pass",
+    "reason": "Unmapped legacy status codes fall back explicitly and raw payload remains hidden."
+  }
+}
