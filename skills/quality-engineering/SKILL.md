@@ -21,7 +21,9 @@ allowed-tools:
 
 # Quality Engineering
 
-Use this skill to produce an evidence-backed quality engineering framework for a project, product, service, or platform. The output is strategy: maturity assessment, test architecture, quality gates, metrics, roadmap, and priority actions. It does not write test suites or CI pipelines directly.
+Strategic quality engineering framework. Designs the system — QA teams execute it. For architects, engineering leads, and quality strategists who define *how* quality works. [EXPLICIT]
+
+Use this skill to produce an evidence-backed framework for a project, product, service, or platform. The output is strategy: maturity assessment, test architecture, quality gates, metrics, roadmap, and priority actions. It does not write test suites or CI pipelines directly.
 
 ## Deterministic Contract
 
