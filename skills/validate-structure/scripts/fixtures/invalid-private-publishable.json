@@ -1,0 +1,1 @@
+{"schema":"jm-labs.validate-structure.report.v1","skill":"validate-structure","clean_claim":false,"findings":[{"path":"user-context/jarvis-os/private.md","severity":"critical","status":"open","handling":"publish"}],"validation":{"status":"fail","evidence":"private path found"}}

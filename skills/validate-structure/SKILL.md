@@ -18,6 +18,16 @@ Validates that a Claude Code plugin's directory tree conforms to the official sp
 
 ---
 
+## Deterministic Safety Contract
+
+- `assets/structure-report-contract.json` defines the report shape.
+- `assets/private-transient-policy.json` blocks private and transient files from publishable structure.
+- `assets/clean-claim-policy.json` requires validation evidence before claiming a clean structure.
+- `scripts/validate_structure_report.py` validates reports offline.
+- `scripts/check.sh` runs structure safety fixtures.
+
+Fail closed when `clean_claim` is true without validation evidence, a critical finding is unresolved, or private/transient paths are reported as publishable. [EXPLICIT]
+
 ## Procedure
 
 ### Step 1 -- Locate Plugin Root
@@ -128,4 +138,3 @@ Example invocations:
 
 - "/validate-structure" — Run the full validate structure workflow
 - "validate structure on this project" — Apply to current context
-

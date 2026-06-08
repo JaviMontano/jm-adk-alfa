@@ -1,0 +1,1 @@
+{"schema":"jm-labs.validate-structure.report.v1","skill":"validate-structure","clean_claim":true,"findings":[{"path":"skills/bad","severity":"critical","status":"open","handling":"fix"}],"validation":{"status":"pass","evidence":"invalid fixture"}}
