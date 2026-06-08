@@ -1,46 +1,44 @@
-# QA Scorecard — 7 Quality Dimensions
+# QA Scorecard - 7 Quality Dimensions
 
-> Scoring methodology for the executive scorecard.
+This reference mirrors `assets/dimensions-policy.json` and
+`assets/scoring-policy.json`.
 
 ## Dimensions
 
-| # | Dimension | Weight | What It Measures |
-|---|-----------|--------|-----------------|
-| 1 | Structure | 15% | Directory layout, naming conventions, file placement |
-| 2 | Manifest | 10% | plugin.json completeness and correctness |
-| 3 | Components | 20% | Skill, agent, command frontmatter integrity |
-| 4 | Hooks | 10% | Hook configuration validity and type-event compatibility |
-| 5 | Cross-References | 15% | Reference integrity, orphan detection |
-| 6 | Security | 15% | Path traversal, secrets, injection risks |
-| 7 | Content Quality | 15% | Prose quality, procedure clarity, anti-pattern coverage |
+| Order | ID | Name | Measures |
+|-------|----|------|----------|
+| 1 | `structure` | Structure Conformance | Directory layout, naming, file placement |
+| 2 | `manifest` | Manifest Quality | Manifest completeness and correctness |
+| 3 | `components` | Component Standards | Skill, agent, command, and prompt contract integrity |
+| 4 | `hooks` | Hook Safety | Hook validity, type-event compatibility, and safe actions |
+| 5 | `references` | Reference Integrity | Cross-reference validity and orphan detection |
+| 6 | `security` | Security Posture | Path traversal, secret leakage, injection, and unsafe writes |
+| 7 | `content` | Content Quality | Procedure clarity, examples, anti-patterns, and output usefulness |
 
-## Scoring Per Dimension (0-100)
+## Status Rules
 
-| Score | Calculation |
-|-------|-------------|
-| 100 | Zero findings of any severity |
-| 90-99 | INFO findings only |
-| 80-89 | WARNING findings but no CRITICAL |
-| 60-79 | 1 CRITICAL finding |
-| 0-59 | 2+ CRITICAL findings |
+| Status | Rule | Points |
+|--------|------|--------|
+| `pass` | 0 critical and 0 warning findings | 10 |
+| `warn` | 0 critical and 1+ warning findings | 6 |
+| `fail` | 1+ critical findings | 2 |
+| `na` | Dimension not evaluated with explicit reason | Excluded |
 
-## Overall Grade
+Info findings do not reduce score.
 
-Weighted average of all 7 dimensions, mapped to letter grade:
+## Grade Rules
 
-| Grade | Range | Meaning |
-|-------|-------|---------|
-| A | 90-100 | Production ready |
-| B | 80-89 | Minor issues |
-| C | 70-79 | Needs improvement |
-| D | 60-69 | Significant issues |
-| F | 0-59 | Not ready for use |
+Percentage is `total_score / evaluated_max * 100`.
 
-## Scorecard Table Format
+| Grade | Range |
+|-------|-------|
+| A | 90-100 |
+| B | 80-89 |
+| C | 70-79 |
+| D | 60-69 |
+| F | 0-59 |
 
-```markdown
-| Dimension | Score | Grade | Notes |
-|-----------|-------|-------|-------|
-```
+## Action Ranking
 
-Notes column: brief explanation of deductions (e.g., "2 missing fields", "1 orphan skill").
+Rank failed dimensions before warning dimensions, then by expected improvement,
+critical count, warning count, and dimension order.

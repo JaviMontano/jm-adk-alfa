@@ -1,0 +1,14 @@
+{
+  "schema": 1,
+  "max_actions": 3,
+  "status_rank": {
+    "fail": 0,
+    "warn": 1
+  },
+  "rules": [
+    "Actions are required for fail dimensions before warn dimensions.",
+    "Pass and na dimensions must not appear in priority actions while fail or warn dimensions remain.",
+    "Sort by status rank, expected improvement descending, critical count descending, warning count descending, then dimension order.",
+    "Return at most 3 actions."
+  ]
+}

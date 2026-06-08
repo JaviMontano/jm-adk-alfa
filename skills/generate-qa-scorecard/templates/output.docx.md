@@ -1,10 +1,18 @@
-# Generate Qa Scorecard — DOCX Template
+# DOCX Template - Generate QA Scorecard
 
-## Document Structure
-- Title: Generate Qa Scorecard — [Client/Project Name]
-- Author: JM Labs
-- Date: {{DATE}}
+## Structure
 
-## Sections (mirror SKILL.md structure)
-See canonical SKILL.md for section blueprints.
-Use brand-config.json tokens: Navy #122562 · Gold #FFD700 · Blue #137DC5
+- Title: "QA Scorecard"
+- Section 1: Evidence Summary
+- Section 2: Scorecard
+- Section 3: Grade
+- Section 4: Top 3 Priority Actions
+- Section 5: Reduced Scope
+- Section 6: Guardian Decision
+- Footer: "JM Labs - {{date}}"
+
+## Formatting
+
+- Use readable system fonts.
+- Keep dimension ids, scores, percentages, and grades in monospace where useful.
+- Preserve evidence tags in factual claims.

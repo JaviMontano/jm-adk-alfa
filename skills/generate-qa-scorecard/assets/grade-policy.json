@@ -1,0 +1,10 @@
+{
+  "schema": 1,
+  "thresholds": [
+    {"grade": "A", "min_percent": 90, "max_percent": 100},
+    {"grade": "B", "min_percent": 80, "max_percent": 89.9999},
+    {"grade": "C", "min_percent": 70, "max_percent": 79.9999},
+    {"grade": "D", "min_percent": 60, "max_percent": 69.9999},
+    {"grade": "F", "min_percent": 0, "max_percent": 59.9999}
+  ]
+}

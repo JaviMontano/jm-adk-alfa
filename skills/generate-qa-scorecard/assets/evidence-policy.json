@@ -1,0 +1,17 @@
+{
+  "schema": 1,
+  "required_dimension_fields": [
+    "id",
+    "status",
+    "critical",
+    "warning",
+    "info",
+    "evidence"
+  ],
+  "rules": [
+    "Every evaluated dimension must include evidence.",
+    "Every na dimension must include a reason.",
+    "Any na dimension requires reduced_scope.active=true.",
+    "Do not invent missing audit results."
+  ]
+}

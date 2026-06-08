@@ -1,17 +1,15 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: generate-qa-scorecard
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
+# Generate QA Scorecard
 
-# Generate Qa Scorecard
-
->
+Deterministic executive scorecard generation for plugin quality findings.
 
 ## Triggers
 
-- generate-qa-scorecard
+- `generate-qa-scorecard`
+- `generate scorecard`
+- `qa scorecard`
+- `plugin grade`
+- `executive summary`
+- `quality scorecard`
 
 ## Allowed Tools
 
@@ -22,8 +20,20 @@ overwrite-policy: missing-only unless --force
 
 ## Quick Use
 
-Use this skill when the request clearly matches the triggers and requires the `generate-qa-scorecard` capability.
+Use this skill when validation or audit findings must become a compact scorecard
+with a numeric score, letter grade, and top 3 remediation actions.
 
 ## Output Format
 
-Markdown with summary, evidence, result, validation, and risks.
+Markdown or JSON with:
+
+- evidence summary
+- 7-dimension score table
+- total score and evaluated maximum
+- percentage and letter grade
+- top 3 priority actions
+- reduced-scope note when dimensions are `na`
+- Guardian decision
+
+Structured JSON scorecards can be validated offline with
+`scripts/validate_qa_scorecard.py`.

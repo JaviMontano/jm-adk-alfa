@@ -1,0 +1,42 @@
+{
+  "schema": 1,
+  "skill": "generate-qa-scorecard",
+  "assets": [
+    {
+      "path": "assets/scorecard-contract.json",
+      "type": "contract",
+      "purpose": "Defines required sections and structured fields for scorecard outputs.",
+      "used_by": ["SKILL.md", "templates/output.md", "scripts/validate_qa_scorecard.py"]
+    },
+    {
+      "path": "assets/dimensions-policy.json",
+      "type": "policy",
+      "purpose": "Defines the canonical 7 scorecard dimensions and stable order.",
+      "used_by": ["SKILL.md", "references/scorecard-dimensions.md", "scripts/validate_qa_scorecard.py"]
+    },
+    {
+      "path": "assets/scoring-policy.json",
+      "type": "policy",
+      "purpose": "Defines strict status and point rules.",
+      "used_by": ["SKILL.md", "knowledge/body-of-knowledge.md", "scripts/validate_qa_scorecard.py"]
+    },
+    {
+      "path": "assets/grade-policy.json",
+      "type": "policy",
+      "purpose": "Defines score percentage to letter grade thresholds.",
+      "used_by": ["SKILL.md", "examples/example-output.md", "scripts/validate_qa_scorecard.py"]
+    },
+    {
+      "path": "assets/action-priority-policy.json",
+      "type": "policy",
+      "purpose": "Defines deterministic top 3 action ranking.",
+      "used_by": ["SKILL.md", "agents/support.md", "scripts/validate_qa_scorecard.py"]
+    },
+    {
+      "path": "assets/evidence-policy.json",
+      "type": "policy",
+      "purpose": "Defines evidence and reduced-scope requirements.",
+      "used_by": ["SKILL.md", "prompts/primary.md", "scripts/validate_qa_scorecard.py"]
+    }
+  ]
+}

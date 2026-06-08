@@ -1,28 +1,25 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: generate-qa-scorecard
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
+# QA Scorecard
 
-# Generate Qa Scorecard Output
+## Evidence Summary
 
-## Summary
+{evidence_summary}
 
-{summary}
+## Scorecard
 
-## Evidence
+{scorecard_table}
 
-{evidence}
+## Grade
 
-## Result
+{grade}
 
-{result}
+## Top 3 Priority Actions
 
-## Validation
+{priority_actions}
 
-{validation}
+## Reduced Scope
 
-## Risks and Limits
+{reduced_scope}
 
-{risks}
+## Guardian Decision
+
+{guardian_decision}

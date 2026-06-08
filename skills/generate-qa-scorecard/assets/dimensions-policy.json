@@ -1,0 +1,12 @@
+{
+  "schema": 1,
+  "dimensions": [
+    {"id": "structure", "name": "Structure Conformance", "order": 1},
+    {"id": "manifest", "name": "Manifest Quality", "order": 2},
+    {"id": "components", "name": "Component Standards", "order": 3},
+    {"id": "hooks", "name": "Hook Safety", "order": 4},
+    {"id": "references", "name": "Reference Integrity", "order": 5},
+    {"id": "security", "name": "Security Posture", "order": 6},
+    {"id": "content", "name": "Content Quality", "order": 7}
+  ]
+}
