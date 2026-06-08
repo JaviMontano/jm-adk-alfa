@@ -1,0 +1,67 @@
+{
+  "schema": 1,
+  "skill": "quality-engineering",
+  "plan_id": "qe-valid-monolith-baseline",
+  "subject": "Billing Core",
+  "architecture_type": "monolith",
+  "evidence_summary": [
+    {"type": "user_fact", "detail": "Unit tests exist but release gates and shared dashboard are absent."}
+  ],
+  "assumptions": ["Repository inspection was not available for this fixture."],
+  "maturity_assessment": [
+    {"id": "test_strategy", "score": 45, "level": 3, "evidence": "Basic strategy exists for unit and integration tests."},
+    {"id": "test_automation", "score": 35, "level": 2, "evidence": "Some tests run in CI but automation is partial."},
+    {"id": "quality_gates_cicd", "score": 30, "level": 2, "evidence": "Commit checks exist but PR and release gates are incomplete."},
+    {"id": "test_data_management", "score": 25, "level": 2, "evidence": "Test data reset is manual and snapshots are not versioned."},
+    {"id": "quality_metrics_dashboards", "score": 40, "level": 2, "evidence": "Coverage is tracked but leading and lagging metrics are not combined."},
+    {"id": "shift_left_practices", "score": 30, "level": 2, "evidence": "Developers write some tests but quality ownership is uneven."}
+  ],
+  "overall_score": 34.17,
+  "overall_level": 2,
+  "target_level": 4,
+  "test_strategy": {
+    "shape": "test_pyramid",
+    "distribution": {"unit": 55, "integration": 25, "api": 15, "e2e": 5},
+    "rationale": "A monolith benefits from fast unit feedback with limited E2E surface.",
+    "test_data_strategy": {
+      "synthetic_data": "Use deterministic factories for critical billing cases.",
+      "masking_policy": "Mask customer identifiers in lower environments.",
+      "reset_policy": "Reset database snapshots before PR and nightly gates."
+    }
+  },
+  "quality_gates": [
+    {"id": "commit", "mode": "blocking", "blocking": true, "timeout_minutes": 5, "criteria": ["unit_tests_pass", "lint_pass", "sast_no_critical"], "bypassable_criteria": [], "on_failure": "Developer fixes locally before push."},
+    {"id": "pr", "mode": "blocking", "blocking": true, "timeout_minutes": 15, "criteria": ["integration_tests_pass", "contract_tests_pass", "coverage_floor_met"], "bypassable_criteria": [], "on_failure": "Tech lead reviews failed quality evidence."},
+    {"id": "nightly", "mode": "async", "blocking": false, "timeout_minutes": 60, "criteria": ["e2e_pass", "api_regression_pass", "performance_baseline_checked"], "bypassable_criteria": [], "on_failure": "QA lead investigates before next release window."},
+    {"id": "release", "mode": "blocking", "blocking": true, "timeout_minutes": 120, "criteria": ["load_sla_met", "smoke_pass", "security_signoff"], "bypassable_criteria": [], "on_failure": "Release manager blocks release until remediation is complete."},
+    {"id": "production", "mode": "blocking", "blocking": true, "timeout_minutes": 15, "criteria": ["smoke_pass", "canary_metrics_valid"], "bypassable_criteria": [], "on_failure": "On-call engineer rolls back or pauses rollout."}
+  ],
+  "metrics": {
+    "leading": [
+      {"id": "review_catch_rate", "target": ">=50%", "source": "Pull request review taxonomy."},
+      {"id": "coverage", "target": "70-80% risk-adjusted", "source": "Coverage reports with risk notes."},
+      {"id": "build_stability", "target": ">=95%", "source": "CI history."},
+      {"id": "flaky_rate", "target": "<2%", "source": "Quarantine log."},
+      {"id": "pr_gate_time", "target": "<=15 minutes", "source": "CI timing."},
+      {"id": "deployment_frequency", "target": ">=1/week", "source": "Release log."}
+    ],
+    "lagging": [
+      {"id": "production_incidents", "target": "<1/week", "source": "Incident register."},
+      {"id": "escaped_defects", "target": "<5%", "source": "Defect tracker."},
+      {"id": "critical_mttr", "target": "<=1 hour", "source": "Incident timeline."},
+      {"id": "regression_rate", "target": "<1%", "source": "Regression labels."}
+    ]
+  },
+  "roadmap": [
+    {"id": "foundations", "focus": "Baseline gates, strategy, and dashboard ownership.", "success_criteria": "Commit gate and metrics baseline are approved."},
+    {"id": "automation", "focus": "PR gate, integration tests, and deterministic test data.", "success_criteria": "PR gate pass rate exceeds 90 percent."},
+    {"id": "advanced", "focus": "Nightly regression, performance baseline, and release gate.", "success_criteria": "Release gate blocks unmet load and security criteria."},
+    {"id": "optimization", "focus": "Flaky reduction and quarterly metric review.", "success_criteria": "Flaky rate remains below 2 percent."}
+  ],
+  "priority_actions": [
+    {"dimension": "test_data_management", "expected_improvement": 36, "action": "Version deterministic test data snapshots and automate reset."},
+    {"dimension": "quality_gates_cicd", "expected_improvement": 31, "action": "Add blocking PR and release gates with explicit criteria."},
+    {"dimension": "shift_left_practices", "expected_improvement": 31, "action": "Make developers owners of unit quality and PR gate evidence."}
+  ],
+  "guardian": {"decision": "warn", "reason": "Plan is valid but current maturity is below target level 4."}
+}

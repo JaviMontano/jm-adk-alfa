@@ -1,0 +1,37 @@
+{
+  "schema": 1,
+  "skill": "quality-engineering",
+  "json_contract": {
+    "schema_version": 1,
+    "required_top_level_fields": [
+      "schema",
+      "skill",
+      "plan_id",
+      "subject",
+      "architecture_type",
+      "evidence_summary",
+      "assumptions",
+      "maturity_assessment",
+      "overall_score",
+      "overall_level",
+      "target_level",
+      "test_strategy",
+      "quality_gates",
+      "metrics",
+      "roadmap",
+      "priority_actions",
+      "guardian"
+    ],
+    "guardian_decisions": ["pass", "warn", "block"]
+  },
+  "required_markdown_sections": [
+    "Evidence Summary",
+    "Maturity Assessment",
+    "Test Strategy",
+    "Quality Gates",
+    "Metrics Dashboard",
+    "Roadmap",
+    "Top Priority Actions",
+    "Guardian Decision"
+  ]
+}

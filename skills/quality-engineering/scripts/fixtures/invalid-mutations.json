@@ -1,0 +1,48 @@
+{
+  "schema": 1,
+  "cases": [
+    {
+      "id": "invalid-missing-dimension",
+      "base": "valid-monolith-baseline.json",
+      "operations": [{"op": "remove", "path": "maturity_assessment.5"}]
+    },
+    {
+      "id": "invalid-level-mismatch",
+      "base": "valid-monolith-baseline.json",
+      "operations": [{"op": "set", "path": "maturity_assessment.0.level", "value": 5}]
+    },
+    {
+      "id": "invalid-distribution-mismatch",
+      "base": "valid-monolith-baseline.json",
+      "operations": [{"op": "set", "path": "test_strategy.distribution.unit", "value": 60}]
+    },
+    {
+      "id": "invalid-gate-timeout-too-high",
+      "base": "valid-monolith-baseline.json",
+      "operations": [{"op": "set", "path": "quality_gates.1.timeout_minutes", "value": 30}]
+    },
+    {
+      "id": "invalid-pr-gate-nonblocking",
+      "base": "valid-monolith-baseline.json",
+      "operations": [
+        {"op": "set", "path": "quality_gates.1.mode", "value": "async"},
+        {"op": "set", "path": "quality_gates.1.blocking", "value": false}
+      ]
+    },
+    {
+      "id": "invalid-missing-leading-metric",
+      "base": "valid-monolith-baseline.json",
+      "operations": [{"op": "remove", "path": "metrics.leading.5"}]
+    },
+    {
+      "id": "invalid-priority-order",
+      "base": "valid-monolith-baseline.json",
+      "operations": [
+        {"op": "set", "path": "priority_actions.0.dimension", "value": "quality_gates_cicd"},
+        {"op": "set", "path": "priority_actions.0.expected_improvement", "value": 31},
+        {"op": "set", "path": "priority_actions.1.dimension", "value": "test_data_management"},
+        {"op": "set", "path": "priority_actions.1.expected_improvement", "value": 36}
+      ]
+    }
+  ]
+}

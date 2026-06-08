@@ -1,28 +1,33 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: quality-engineering
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
+# Quality Engineering Report
 
-# Quality Engineering Output
+## Evidence Summary
 
-## Summary
+{{evidence_summary}}
 
-{summary}
+## Maturity Assessment
 
-## Evidence
+{{maturity_assessment}}
 
-{evidence}
+## Test Strategy
 
-## Result
+{{test_strategy}}
 
-{result}
+## Quality Gates
 
-## Validation
+{{quality_gates}}
 
-{validation}
+## Metrics Dashboard
 
-## Risks and Limits
+{{metrics_dashboard}}
 
-{risks}
+## Roadmap
+
+{{roadmap}}
+
+## Top Priority Actions
+
+{{priority_actions}}
+
+## Guardian Decision
+
+{{guardian_decision}}

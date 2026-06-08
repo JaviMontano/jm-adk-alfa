@@ -1,0 +1,42 @@
+{
+  "schema": 1,
+  "gates": [
+    {
+      "id": "commit",
+      "order": 1,
+      "mode": "blocking",
+      "timeout_minutes": 5,
+      "required_criteria": ["unit_tests_pass", "lint_pass", "sast_no_critical"]
+    },
+    {
+      "id": "pr",
+      "order": 2,
+      "mode": "blocking",
+      "timeout_minutes": 15,
+      "required_criteria": ["integration_tests_pass", "contract_tests_pass", "coverage_floor_met"]
+    },
+    {
+      "id": "nightly",
+      "order": 3,
+      "mode": "async",
+      "timeout_minutes": 60,
+      "required_criteria": ["e2e_pass", "api_regression_pass", "performance_baseline_checked"]
+    },
+    {
+      "id": "release",
+      "order": 4,
+      "mode": "blocking",
+      "timeout_minutes": 120,
+      "required_criteria": ["load_sla_met", "smoke_pass", "security_signoff"]
+    },
+    {
+      "id": "production",
+      "order": 5,
+      "mode": "blocking",
+      "timeout_minutes": 15,
+      "required_criteria": ["smoke_pass", "canary_metrics_valid"]
+    }
+  ],
+  "security_criteria": ["sast_no_critical", "security_signoff"],
+  "security_bypass_allowed": false
+}

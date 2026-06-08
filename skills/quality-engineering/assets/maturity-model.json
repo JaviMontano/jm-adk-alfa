@@ -1,0 +1,18 @@
+{
+  "schema": 1,
+  "levels": [
+    {"level": 1, "name": "ad_hoc", "min_score": 0, "max_score": 20},
+    {"level": 2, "name": "repeatable", "min_score": 21, "max_score": 40},
+    {"level": 3, "name": "defined", "min_score": 41, "max_score": 60},
+    {"level": 4, "name": "managed", "min_score": 61, "max_score": 80},
+    {"level": 5, "name": "optimizing", "min_score": 81, "max_score": 100}
+  ],
+  "dimensions": [
+    {"id": "test_strategy", "order": 1, "label": "Test Strategy and Planning"},
+    {"id": "test_automation", "order": 2, "label": "Test Automation"},
+    {"id": "quality_gates_cicd", "order": 3, "label": "Quality Gates and CI/CD"},
+    {"id": "test_data_management", "order": 4, "label": "Test Data Management"},
+    {"id": "quality_metrics_dashboards", "order": 5, "label": "Quality Metrics and Dashboards"},
+    {"id": "shift_left_practices", "order": 6, "label": "Shift-Left Practices"}
+  ]
+}

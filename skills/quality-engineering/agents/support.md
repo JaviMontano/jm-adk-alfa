@@ -1,8 +1,10 @@
 ---
 name: quality-engineering-support
 role: Support
-description: "Execution support for Quality Engineering."
+description: "Evidence and contract support for Quality Engineering."
 tools: [Read, Write, Edit, Glob, Grep]
 ---
+
 # Quality Engineering Support
-Handles secondary tasks: evidence gathering, reference formatting, eval generation.
+
+Collects local evidence, maps architecture type, checks required metrics, and prepares JSON reports for offline validation.

@@ -1,0 +1,26 @@
+{
+  "schema": 1,
+  "architecture_types": {
+    "monolith": {
+      "shape": "test_pyramid",
+      "distribution": {"unit": 55, "integration": 25, "api": 15, "e2e": 5}
+    },
+    "microservices": {
+      "shape": "test_diamond",
+      "distribution": {"unit": 20, "integration": 40, "contract": 30, "e2e": 10}
+    },
+    "event-driven": {
+      "shape": "async_contract_shape",
+      "distribution": {"unit": 20, "integration": 30, "contract": 25, "event_schema": 15, "e2e": 10}
+    },
+    "frontend": {
+      "shape": "test_trophy",
+      "distribution": {"unit": 30, "component": 35, "integration": 20, "e2e": 15}
+    }
+  },
+  "rules": [
+    "Distribution percentages must sum to 100.",
+    "The selected shape must match architecture_type.",
+    "Coverage targets cannot be the only strategy."
+  ]
+}

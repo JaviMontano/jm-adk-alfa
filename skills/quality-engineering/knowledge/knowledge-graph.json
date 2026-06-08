@@ -1,75 +1,23 @@
 {
   "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-28",
   "skill": "quality-engineering",
   "nodes": [
-    {
-      "id": "quality-engineering",
-      "type": "skill",
-      "label": "quality-engineering"
-    },
-    {
-      "id": "quality-engineering:inputs",
-      "type": "contract",
-      "label": "Expected inputs"
-    },
-    {
-      "id": "quality-engineering:outputs",
-      "type": "contract",
-      "label": "Expected outputs"
-    },
-    {
-      "id": "quality-engineering:quality",
-      "type": "gate",
-      "label": "Quality criteria"
-    },
-    {
-      "id": "quality-engineering:ontology",
-      "type": "ontology",
-      "label": "Domain: general"
-    },
-    {
-      "id": "quality-engineering:evidence",
-      "type": "gate",
-      "label": "Evidence / provenance requirements"
-    },
-    {
-      "id": "quality-engineering:antipattern",
-      "type": "risk",
-      "label": "Canonical anti-pattern to avoid"
-    }
+    {"id": "quality-engineering", "type": "skill", "label": "Quality Engineering"},
+    {"id": "evidence-summary", "type": "input", "label": "Evidence Summary"},
+    {"id": "maturity-assessment", "type": "assessment", "label": "Six-Dimension Maturity"},
+    {"id": "test-strategy", "type": "strategy", "label": "Architecture-Driven Test Shape"},
+    {"id": "quality-gates", "type": "gate", "label": "Quality Gates"},
+    {"id": "metrics-dashboard", "type": "metric", "label": "Leading and Lagging Metrics"},
+    {"id": "priority-actions", "type": "roadmap", "label": "Top Priority Actions"},
+    {"id": "guardian", "type": "decision", "label": "Guardian Decision"}
   ],
   "edges": [
-    {
-      "from": "quality-engineering",
-      "to": "quality-engineering:inputs",
-      "type": "requires"
-    },
-    {
-      "from": "quality-engineering",
-      "to": "quality-engineering:outputs",
-      "type": "produces"
-    },
-    {
-      "from": "quality-engineering",
-      "to": "quality-engineering:quality",
-      "type": "validated_by"
-    },
-    {
-      "from": "quality-engineering",
-      "to": "quality-engineering:ontology",
-      "type": "classified_as"
-    },
-    {
-      "from": "quality-engineering",
-      "to": "quality-engineering:evidence",
-      "type": "validated_by"
-    },
-    {
-      "from": "quality-engineering",
-      "to": "quality-engineering:antipattern",
-      "type": "guards_against"
-    }
+    {"from": "quality-engineering", "to": "evidence-summary", "type": "requires"},
+    {"from": "quality-engineering", "to": "maturity-assessment", "type": "produces"},
+    {"from": "quality-engineering", "to": "test-strategy", "type": "produces"},
+    {"from": "quality-engineering", "to": "quality-gates", "type": "produces"},
+    {"from": "quality-engineering", "to": "metrics-dashboard", "type": "produces"},
+    {"from": "maturity-assessment", "to": "priority-actions", "type": "prioritizes"},
+    {"from": "guardian", "to": "quality-engineering", "type": "validates"}
   ]
 }

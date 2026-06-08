@@ -2,16 +2,19 @@
 name: quality-engineering-meta
 type: meta
 version: 2.0.0
-description: "Meta-prompt for Quality Engineering skill routing."
+description: "Route requests to the Quality Engineering skill."
 ---
 
-# Quality Engineering — Meta Prompt
+# Quality Engineering Meta
 
-Activate this skill when the user request matches:
-- Trigger phrases from SKILL.md description
-- Direct invocation: `/quality-engineering`
+Activate when the user asks for:
 
-## Skill Routing
-1. Load SKILL.md → read `## When to Activate` section
-2. If match → activate lead agent: `quality-engineering-lead`
-3. If orchestrated → defer to orchestrating skill
+- quality engineering
+- quality maturity
+- test strategy
+- quality gates
+- test automation architecture
+- shift-left practices
+- quality metrics or dashboards
+
+Do not activate for unrelated weather, pricing, scheduling, or pure implementation requests unless they explicitly ask for quality strategy.

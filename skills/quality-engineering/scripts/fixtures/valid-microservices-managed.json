@@ -1,0 +1,67 @@
+{
+  "schema": 1,
+  "skill": "quality-engineering",
+  "plan_id": "qe-valid-microservices-managed",
+  "subject": "Atlas Services",
+  "architecture_type": "microservices",
+  "evidence_summary": [
+    {"type": "user_fact", "detail": "Eight services use CI, Pact contracts, masked data, and partial Playwright coverage."}
+  ],
+  "assumptions": [],
+  "maturity_assessment": [
+    {"id": "test_strategy", "score": 70, "level": 4, "evidence": "A service-level strategy exists and contract tests are used."},
+    {"id": "test_automation", "score": 72, "level": 4, "evidence": "CI runs unit, integration, contract, and partial E2E tests."},
+    {"id": "quality_gates_cicd", "score": 68, "level": 4, "evidence": "PR gates block, but release criteria need tighter evidence."},
+    {"id": "test_data_management", "score": 65, "level": 4, "evidence": "Masked test data is available across lower environments."},
+    {"id": "quality_metrics_dashboards", "score": 64, "level": 4, "evidence": "Dashboard exists but lagging indicators are incomplete."},
+    {"id": "shift_left_practices", "score": 70, "level": 4, "evidence": "Developers own unit and contract tests."}
+  ],
+  "overall_score": 68.17,
+  "overall_level": 4,
+  "target_level": 5,
+  "test_strategy": {
+    "shape": "test_diamond",
+    "distribution": {"unit": 20, "integration": 40, "contract": 30, "e2e": 10},
+    "rationale": "Microservices require heavier integration and contract coverage than UI E2E.",
+    "test_data_strategy": {
+      "synthetic_data": "Generate service-specific payloads from contract examples.",
+      "masking_policy": "Mask regulated data before lower-environment replication.",
+      "reset_policy": "Reset service databases before contract and nightly gates."
+    }
+  },
+  "quality_gates": [
+    {"id": "commit", "mode": "blocking", "blocking": true, "timeout_minutes": 5, "criteria": ["unit_tests_pass", "lint_pass", "sast_no_critical"], "bypassable_criteria": [], "on_failure": "Developer fixes locally before push."},
+    {"id": "pr", "mode": "blocking", "blocking": true, "timeout_minutes": 15, "criteria": ["integration_tests_pass", "contract_tests_pass", "coverage_floor_met"], "bypassable_criteria": [], "on_failure": "Service owner fixes or requests architecture review."},
+    {"id": "nightly", "mode": "async", "blocking": false, "timeout_minutes": 60, "criteria": ["e2e_pass", "api_regression_pass", "performance_baseline_checked"], "bypassable_criteria": [], "on_failure": "QA lead files a release-readiness risk."},
+    {"id": "release", "mode": "blocking", "blocking": true, "timeout_minutes": 120, "criteria": ["load_sla_met", "smoke_pass", "security_signoff"], "bypassable_criteria": [], "on_failure": "Release manager blocks release until evidence is green."},
+    {"id": "production", "mode": "blocking", "blocking": true, "timeout_minutes": 15, "criteria": ["smoke_pass", "canary_metrics_valid"], "bypassable_criteria": [], "on_failure": "On-call engineer pauses rollout or rolls back."}
+  ],
+  "metrics": {
+    "leading": [
+      {"id": "review_catch_rate", "target": ">=50%", "source": "PR quality labels."},
+      {"id": "coverage", "target": "70-80% risk-adjusted", "source": "Per-service coverage reports."},
+      {"id": "build_stability", "target": ">=95%", "source": "CI pass history."},
+      {"id": "flaky_rate", "target": "<2%", "source": "Flaky quarantine report."},
+      {"id": "pr_gate_time", "target": "<=15 minutes", "source": "CI timing export."},
+      {"id": "deployment_frequency", "target": ">=1/week", "source": "Release ledger."}
+    ],
+    "lagging": [
+      {"id": "production_incidents", "target": "<1/week", "source": "Incident register."},
+      {"id": "escaped_defects", "target": "<5%", "source": "Defect tracker."},
+      {"id": "critical_mttr", "target": "<=1 hour", "source": "Incident timeline."},
+      {"id": "regression_rate", "target": "<1%", "source": "Regression labels."}
+    ]
+  },
+  "roadmap": [
+    {"id": "foundations", "focus": "Normalize service-level quality evidence.", "success_criteria": "Every service reports the same leading metrics."},
+    {"id": "automation", "focus": "Expand contract and integration coverage.", "success_criteria": "Critical contracts cover provider and consumer expectations."},
+    {"id": "advanced", "focus": "Strengthen release gate and performance baseline.", "success_criteria": "Release gate blocks unmet SLA and security evidence."},
+    {"id": "optimization", "focus": "Use dashboard trends for continuous improvement.", "success_criteria": "Metrics drive monthly quality actions."}
+  ],
+  "priority_actions": [
+    {"dimension": "quality_metrics_dashboards", "expected_improvement": 17, "action": "Add missing lagging indicators to the shared dashboard."},
+    {"dimension": "test_data_management", "expected_improvement": 16, "action": "Automate masked data reset for contract and nightly gates."},
+    {"dimension": "quality_gates_cicd", "expected_improvement": 13, "action": "Tighten release gate evidence for load and security criteria."}
+  ],
+  "guardian": {"decision": "pass", "reason": "All required sections are present with evidence and target gaps."}
+}
