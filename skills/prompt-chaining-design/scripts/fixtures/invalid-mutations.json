@@ -1,0 +1,15 @@
+{
+  "schema": 1,
+  "cases": [
+    {"id": "integration_consumes_raw", "base": "valid-chain-design.json", "operations": [{"op": "set", "path": "integration_pass.consumes_summaries_only", "value": false}]},
+    {"id": "raw_units_allowed", "base": "valid-chain-design.json", "operations": [{"op": "set", "path": "integration_pass.raw_units_forbidden", "value": false}]},
+    {"id": "missing_transition_field", "base": "valid-chain-design.json", "operations": [{"op": "remove", "path": "transition_schema.fields.0"}]},
+    {"id": "missing_raw_payload_ban", "base": "valid-chain-design.json", "operations": [{"op": "remove", "path": "transition_schema.forbidden_payloads.0"}]},
+    {"id": "local_pass_multiple_units", "base": "valid-chain-design.json", "operations": [{"op": "set", "path": "unit_contract.one_unit_per_local_pass", "value": false}]},
+    {"id": "global_exception_enabled", "base": "valid-chain-design.json", "operations": [{"op": "set", "path": "local_pass_schema.throws_global_exception", "value": true}]},
+    {"id": "error_aborts_batch", "base": "valid-chain-design.json", "operations": [{"op": "set", "path": "error_handling.aborts_batch", "value": true}]},
+    {"id": "missing_error_detail_field", "base": "valid-chain-design.json", "operations": [{"op": "remove", "path": "local_pass_schema.fields.3"}]},
+    {"id": "chain_without_enough_reasons", "base": "valid-chain-design.json", "operations": [{"op": "set", "path": "single_pass_assessment.justification_reasons", "value": ["volume"]}]},
+    {"id": "guardian_passes_single_pass_block", "base": "valid-single-pass-block.json", "operations": [{"op": "set", "path": "guardian.decision", "value": "pass"}]}
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "schema": 1,
+  "skill": "prompt-chaining-design",
+  "chain_id": "valid-chain-design",
+  "single_pass_assessment": {
+    "use_chain": true,
+    "justification_reasons": ["volume", "parallelism", "error_isolation"]
+  },
+  "unit_contract": {
+    "atomic_unit": "source_file",
+    "one_unit_per_local_pass": true,
+    "idempotent": true,
+    "parallelizable": true
+  },
+  "local_pass_schema": {
+    "fields": ["unit_id", "status", "findings", "error_detail"],
+    "status_values": ["ok", "error"],
+    "throws_global_exception": false
+  },
+  "transition_schema": {
+    "fields": ["summaries", "schema_version", "unit_count", "error_count"],
+    "forbidden_payloads": ["raw_content", "raw_diff", "full_document"]
+  },
+  "integration_pass": {
+    "consumes_summaries_only": true,
+    "raw_units_forbidden": true,
+    "handles_error_summaries": true,
+    "does_not_abort_on_unit_error": true
+  },
+  "error_handling": {
+    "typed_per_unit": true,
+    "propagates_as_data": true,
+    "aborts_batch": false
+  },
+  "validation": {
+    "chain_justified": true,
+    "local_pass_one_unit": true,
+    "local_schema_typed": true,
+    "transition_schema_present": true,
+    "integration_uses_summaries_only": true,
+    "typed_error_state": true,
+    "deterministic_script_passed": true
+  },
+  "guardian": {
+    "decision": "pass",
+    "reason": "The chain is justified, local pass is typed and isolated, transition schema forbids raw data, and integration uses summaries only."
+  }
+}

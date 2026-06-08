@@ -88,6 +88,12 @@ result = model(f"Analiza todo esto y dame el reporte:\n{blob}")
 - ¿Existe un schema de transición que define qué viaja entre pases?
 - ¿Se justifica el chaining frente a un single-pass (volumen / paralelismo / aislamiento)?
 
+## Assets y validación offline
+
+- `assets/` define el contrato determinístico para justificación vs single-pass, unidad atómica, schema local, schema de transición, integración sobre resúmenes y errores tipados.
+- `scripts/check.sh` valida fixtures locales sin red, tiempo real ni aleatoriedad.
+- `scripts/validate_prompt_chaining_design.py` rechaza diseños donde el pase de integración consume crudos, falta schema, el pase local procesa varias unidades, no hay error tipado o Guardian aprueba un diseño bloqueado.
+
 ## Katas y skills relacionadas
 
 - `katas-multipass-prompt-chaining`

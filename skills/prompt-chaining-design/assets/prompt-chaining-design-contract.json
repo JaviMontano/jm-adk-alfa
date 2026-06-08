@@ -1,0 +1,20 @@
+{
+  "schema": 1,
+  "json_contract": {
+    "schema_version": 1,
+    "required_top_level_fields": [
+      "schema",
+      "skill",
+      "chain_id",
+      "single_pass_assessment",
+      "unit_contract",
+      "local_pass_schema",
+      "transition_schema",
+      "integration_pass",
+      "error_handling",
+      "validation",
+      "guardian"
+    ],
+    "guardian_decisions": ["pass", "warn", "block"]
+  }
+}
