@@ -1,0 +1,5 @@
+{
+  "schema": 1,
+  "justification_reasons": ["volume", "parallelism", "error_isolation", "attention_quality"],
+  "minimum_reasons_for_chain": 2
+}

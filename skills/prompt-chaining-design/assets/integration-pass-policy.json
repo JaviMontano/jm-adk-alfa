@@ -1,0 +1,9 @@
+{
+  "schema": 1,
+  "required_flags": [
+    "consumes_summaries_only",
+    "raw_units_forbidden",
+    "handles_error_summaries",
+    "does_not_abort_on_unit_error"
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "skill": "prompt-chaining-design",
+  "assets": [
+    {
+      "path": "assets/prompt-chaining-design-contract.json",
+      "type": "json_contract",
+      "purpose": "Defines required fields for chain design reports.",
+      "used_by": ["SKILL.md", "README.md", "scripts/validate_prompt_chaining_design.py", "evals/evals.json"]
+    },
+    {
+      "path": "assets/single-pass-gate-policy.json",
+      "type": "policy",
+      "purpose": "Defines when chaining is justified instead of single-pass.",
+      "used_by": ["SKILL.md", "scripts/validate_prompt_chaining_design.py"]
+    },
+    {
+      "path": "assets/local-pass-schema-policy.json",
+      "type": "policy",
+      "purpose": "Defines local pass schema fields and one-unit isolation.",
+      "used_by": ["knowledge/body-of-knowledge.md", "scripts/validate_prompt_chaining_design.py"]
+    },
+    {
+      "path": "assets/transition-schema-policy.json",
+      "type": "policy",
+      "purpose": "Defines transition schema over typed summaries only.",
+      "used_by": ["templates/output.md", "scripts/validate_prompt_chaining_design.py"]
+    },
+    {
+      "path": "assets/integration-pass-policy.json",
+      "type": "policy",
+      "purpose": "Requires integration pass to consume summaries, not raw units.",
+      "used_by": ["agents/guardian.md", "scripts/validate_prompt_chaining_design.py"]
+    }
+  ]
+}
