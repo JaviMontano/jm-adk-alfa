@@ -1,0 +1,31 @@
+{
+  "schema": "jm-labs.post-tool-use-validator.report.v1",
+  "skill": "post-tool-use-validator",
+  "tool_result": {
+    "tool": "Bash",
+    "command": "python3 scripts/validate-skills.py --strict",
+    "exit_code": 1,
+    "stdout_excerpt": "errors=2",
+    "stderr_excerpt": ""
+  },
+  "claim": {
+    "declared_status": "pass",
+    "summary": "Validation passed. [CÓDIGO]",
+    "evidence_tags": ["[CÓDIGO]"]
+  },
+  "checks": {
+    "command_succeeded": true,
+    "evidence_present": true,
+    "output_contains_secret": false,
+    "private_output": false,
+    "writes_outside_scope": false,
+    "quality_gates": [
+      {"name": "validate-skills", "status": "pass", "evidence": "invalid fixture"}
+    ]
+  },
+  "decision": {
+    "status": "pass",
+    "next_action": "proceed",
+    "reason": "Invalid fixture claims pass."
+  }
+}
