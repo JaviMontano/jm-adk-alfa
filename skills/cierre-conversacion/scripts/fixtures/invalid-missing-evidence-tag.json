@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "skill": "cierre-conversacion",
+  "trigger": {
+    "source": "explicit",
+    "reason": "User requested closeout."
+  },
+  "conversation": {
+    "objective": "Close without evidence.",
+    "scope": "Invalid fixture.",
+    "turns_observed": 16,
+    "evidence_tag": "[CONFIG]"
+  },
+  "summary": {
+    "description": "Missing trigger evidence tag.",
+    "evidence_tag": "[CÓDIGO]"
+  },
+  "completed_work": [],
+  "decisions": [],
+  "open_tasks": [],
+  "learnings": [],
+  "risks": [],
+  "validation": [],
+  "durable_update_plan": [],
+  "handoff": {
+    "next_action": "Continue.",
+    "evidence_tag": "[CONFIG]"
+  },
+  "guardian_decision": {
+    "decision": "block",
+    "rationale": "Invalid missing evidence tag.",
+    "evidence_tag": "[CÓDIGO]"
+  }
+}

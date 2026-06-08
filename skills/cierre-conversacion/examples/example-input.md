@@ -1,10 +1,3 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: cierre-conversacion
-generated-on: 2026-06-05
-overwrite-policy: missing-only unless --force
--->
-
 # Example Input
 
-Use `cierre-conversacion` to produce a concise deliverable for a realistic project request.
+Run `cierre-conversacion` for a JM Labs hardening session: one PR was merged, one stale worktree was stashed and removed, `cierre-conversacion` still fails DoD, and durable log writes have not been explicitly authorized.

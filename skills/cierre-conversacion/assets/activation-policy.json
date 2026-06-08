@@ -1,0 +1,18 @@
+{
+  "schema": 1,
+  "skill": "cierre-conversacion",
+  "activate_when": [
+    "explicit_closeout_request",
+    "session_audit_request",
+    "learning_harvest_request",
+    "long_session_handoff_required",
+    "pre_archive_or_pre_compaction_closeout"
+  ],
+  "do_not_activate_when": [
+    "generic_filesystem_cleanup",
+    "short_unrelated_summary",
+    "unresolved_active_skill_requires_work_first",
+    "request_to_erase_history_without_handoff"
+  ],
+  "default_mode": "report_only"
+}

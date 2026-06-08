@@ -1,24 +1,33 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: cierre-conversacion
-generated-on: 2026-06-05
-overwrite-policy: missing-only unless --force
--->
-
-# Cierre Conversacion Body of Knowledge
+# Cierre Conversacion Body Of Knowledge
 
 ## Canon
 
-Use this file for stable domain knowledge, standards, and reusable heuristics for `cierre-conversacion`.
+A closeout is not a generic summary. It is a continuity artifact that protects future work from lost decisions, stale state, false completion, and unapproved durable writes.
+
+## Evidence Discipline
+
+Use evidence tags on claims:
+
+- `[CÓDIGO]` for local commands, files, diffs, PR state, or CI output.
+- `[CONFIG]` for user instructions and workflow rules.
+- `[DOC]` for stable project documentation.
+- `[INFERENCIA]` for conclusions derived from observed evidence.
+- `[SUPUESTO]` for assumptions that may be wrong.
+- `[POR_CONFIRMAR]` for unresolved external or user confirmation.
+
+## Closeout Invariants
+
+- A completed task needs completion evidence.
+- A green merge claim needs PR/CI evidence.
+- Failed validation remains visible until fixed.
+- Durable writes require explicit authority.
+- Next handoff must name the next concrete action.
 
 ## Quality Signals
 
 | Signal | Target |
 |---|---|
-| Evidence coverage | Claims are grounded or marked as assumptions |
-| Scope control | Output stays inside the requested domain |
-| Update safety | Existing manual work is preserved |
-
-## Open Knowledge
-
-- Add project-specific references as they become stable.
+| Evidence coverage | Every claim is tagged or explicitly marked open |
+| False completion control | Guardian blocks pass when validation failed |
+| Durable update safety | Proposed writes are separate from confirmed writes |
+| Handoff clarity | A future session can continue without re-reading raw conversation |

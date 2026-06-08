@@ -357,7 +357,7 @@
 | 82 | `chatbot-design` | — |
 | 83 | `ci-cd-pipeline` | GitHub Actions CI/CD with build, lint, test, deploy stages, Firebase deploy toke |
 | 84 | `ci-pipeline-design` | — |
-| 85 | `cierre-conversacion` | Cosecha aprendizajes y cierra la conversacion al superar 15 turnos o por comando |
+| 85 | `cierre-conversacion` | Cosecha aprendizajes, valida evidencia y produce un cierre de conversacion repro |
 | 86 | `claude-md-architecture` | Estructurar memoria jerarquica CLAUDE.md user/team/module con at-imports y regla |
 | 87 | `client-browser-audit` | — |
 | 88 | `client-dossier` | — |

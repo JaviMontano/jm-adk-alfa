@@ -1,27 +1,24 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: cierre-conversacion
-generated-on: 2026-06-05
-overwrite-policy: missing-only unless --force
--->
-
 # Cierre Conversacion Primary Prompt
 
 ## Objective
 
-Execute `cierre-conversacion` for the user's task.
+Produce a deterministic closeout packet for the current conversation.
 
 ## Required Inputs
 
-- Goal
-- Context
-- Constraints
-- Definition of done
+- Current objective and scope.
+- Work completed, files touched, PRs, commands, or artifacts.
+- Decisions, risks, blockers, and open tasks.
+- Authority status for durable writes.
 
 ## Process
 
-Discover -> Analyze -> Execute -> Validate.
+1. Classify the trigger.
+2. Harvest evidence-backed facts.
+3. Build the packet in the template order.
+4. Mark unverified items `[POR_CONFIRMAR]`.
+5. Block false completion when validation or authority is missing.
 
 ## Output
 
-Return the deliverable in this shape: Markdown with summary, evidence, result, validation, and risks.
+Markdown with summary, completed work, decisions, open tasks, learnings, risks, validation, durable update plan, next handoff, and Guardian decision.

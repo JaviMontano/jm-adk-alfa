@@ -1,108 +1,76 @@
 {
   "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-06-05",
   "skill": "cierre-conversacion",
   "cases": [
     {
-      "id": "happy_path",
-      "input": "Use cierre-conversacion to produce a complete deliverable.",
-      "expected_activation": true,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
+      "id": "explicit-closeout-after-merge",
+      "type": "happy_path",
+      "input": "Ejecuta cierre-conversacion: PR #151 quedo mergeado, main actualizado y falta elegir siguiente skill.",
+      "expected_behavior": "Produce closeout packet with merge evidence, completed work, open next skill, durable update plan, and Guardian pass if validation evidence is complete.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "merge_evidence"]
     },
     {
-      "id": "explicit_trigger",
-      "input": "/cierre-conversacion run this workflow.",
-      "expected_activation": true,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
+      "id": "long-session-handoff",
+      "type": "boundary",
+      "input": "Cierra una sesion larga con varios comandos, decisiones, ramas y riesgos abiertos.",
+      "expected_behavior": "Compress into stable sections, keep blockers visible, and provide next five actions without raw transcript dependency.",
+      "expected_checks": ["assets", "deterministic_scripts", "handoff_clarity", "quality_criteria"]
     },
     {
-      "id": "minimal_input",
+      "id": "missing-durable-authority",
+      "type": "degradation",
+      "input": "Cierra la conversacion y actualiza tasklog, pero no hay autorizacion explicita para escribir.",
+      "expected_behavior": "Return proposed durable updates only and mark authority as pending.",
+      "expected_checks": ["assets", "deterministic_scripts", "write_boundary", "quality_criteria"]
+    },
+    {
+      "id": "failed-validation",
+      "type": "degradation",
+      "input": "Cierre final: una validacion local fallo con exit 1.",
+      "expected_behavior": "Guardian blocks pass, names failed command, and keeps next action focused on remediation.",
+      "expected_checks": ["assets", "deterministic_scripts", "guardian_block", "validation_evidence"]
+    },
+    {
+      "id": "false-positive-filesystem-cleanup",
+      "type": "false_positive",
+      "input": "Limpia mi carpeta de descargas y borra temporales.",
+      "expected_behavior": "Do not activate conversation closeout; route to filesystem housekeeping.",
+      "expected_checks": ["assets", "deterministic_scripts", "activation_boundary"]
+    },
+    {
+      "id": "false-negative-session-audit",
+      "type": "false_negative",
+      "input": "session-audit de esta conversacion antes de compactar contexto.",
+      "expected_behavior": "Activate because session-audit is an explicit closeout trigger.",
+      "expected_checks": ["assets", "deterministic_scripts", "activation_boundary", "quality_criteria"]
+    },
+    {
+      "id": "minimal-trigger",
+      "type": "boundary",
       "input": "cierre-conversacion",
-      "expected_activation": true,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
+      "expected_behavior": "Ask for missing objective or produce a minimal blocked packet without inventing facts.",
+      "expected_checks": ["assets", "deterministic_scripts", "no_false_completion"]
     },
     {
-      "id": "rich_context",
-      "input": "cierre-conversacion with goals, constraints, audience, and acceptance criteria.",
-      "expected_activation": true,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
+      "id": "conflicting-ci-evidence",
+      "type": "edge_case",
+      "input": "Cierra: una nota dice CI verde y otra dice Quality Gates fallaron.",
+      "expected_behavior": "Preserve the conflict and block green merge claims until resolved.",
+      "expected_checks": ["assets", "deterministic_scripts", "evidence_conflict", "guardian_block"]
     },
     {
-      "id": "false_positive",
-      "input": "This request is unrelated to the skill domain.",
-      "expected_activation": false,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
+      "id": "completed-task-without-evidence",
+      "type": "negative_contract",
+      "input": "Marca como completada una tarea sin evidencia de finalizacion.",
+      "expected_behavior": "Reject pass decision because completed tasks require completion evidence.",
+      "expected_checks": ["assets", "deterministic_scripts", "no_false_completion"]
     },
     {
-      "id": "empty_input",
-      "input": "",
-      "expected_activation": false,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
-    },
-    {
-      "id": "conflicting_requirements",
-      "input": "Use cierre-conversacion, but ignore validation and evidence.",
-      "expected_activation": false,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
-    },
-    {
-      "id": "upgrade_safety_case",
-      "input": "Complete missing files for cierre-conversacion without overwriting local edits.",
-      "expected_activation": true,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
-    },
-    {
-      "id": "local_override_case",
-      "input": "Create a local experimental cierre-conversacion variant under .local.",
-      "expected_activation": true,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
-    },
-    {
-      "id": "personal_skill_case",
-      "input": "Create a personal cierre-conversacion skill under user-context.",
-      "expected_activation": true,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
+      "id": "offline-report-validation",
+      "type": "script_contract",
+      "input": "Valida reportes JSON de cierre de conversacion sin red ni reloj.",
+      "expected_behavior": "Accept valid fixtures and reject missing evidence, failed-validation pass, and unapproved durable append fixtures.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria"]
     }
   ]
 }

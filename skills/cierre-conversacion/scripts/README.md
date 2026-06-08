@@ -1,23 +1,17 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: cierre-conversacion
-generated-on: 2026-06-05
-overwrite-policy: missing-only unless --force
--->
-
 # Cierre Conversacion Scripts
 
-This directory contains deterministic local automation for `cierre-conversacion`.
+This directory contains deterministic offline validation for JSON closeout reports.
 
 ## Contract
 
-- Scripts are non-destructive by default.
-- Runtime checks live in `check.sh`.
-- Fixtures in `fixtures/` are stable and valid JSON.
-- Any script that mutates files must require an explicit apply flag.
+- `check.sh` runs with no network, no wall-clock dependency, and no random input.
+- Valid fixtures must pass.
+- Invalid fixtures must fail.
+- Scripts are read-only and do not write durable logs.
 
 ## Validate
 
 ```bash
-python3 scripts/validate-skill-scripts.py --strict --run-checks
+bash skills/cierre-conversacion/scripts/check.sh
+python3 -B scripts/validate-skill-scripts.py --strict --run-checks --skill cierre-conversacion
 ```

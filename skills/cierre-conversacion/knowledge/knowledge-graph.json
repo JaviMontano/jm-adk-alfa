@@ -1,45 +1,58 @@
 {
   "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-06-05",
   "skill": "cierre-conversacion",
   "nodes": [
     {
       "id": "cierre-conversacion",
       "type": "skill",
-      "label": "cierre-conversacion"
+      "label": "Cierre Conversacion"
     },
     {
-      "id": "cierre-conversacion:inputs",
+      "id": "trigger-policy",
+      "type": "policy",
+      "label": "Activation policy"
+    },
+    {
+      "id": "evidence-tags",
+      "type": "taxonomy",
+      "label": "Evidence tags"
+    },
+    {
+      "id": "closeout-packet",
       "type": "contract",
-      "label": "Expected inputs"
+      "label": "Closeout packet"
     },
     {
-      "id": "cierre-conversacion:outputs",
-      "type": "contract",
-      "label": "Expected outputs"
+      "id": "durable-update-plan",
+      "type": "policy",
+      "label": "Durable update plan"
     },
     {
-      "id": "cierre-conversacion:quality",
+      "id": "guardian-decision",
       "type": "gate",
-      "label": "Quality criteria"
+      "label": "Guardian decision"
     }
   ],
   "edges": [
     {
       "from": "cierre-conversacion",
-      "to": "cierre-conversacion:inputs",
+      "to": "trigger-policy",
+      "type": "activated_by"
+    },
+    {
+      "from": "closeout-packet",
+      "to": "evidence-tags",
       "type": "requires"
     },
     {
-      "from": "cierre-conversacion",
-      "to": "cierre-conversacion:outputs",
-      "type": "produces"
+      "from": "closeout-packet",
+      "to": "durable-update-plan",
+      "type": "contains"
     },
     {
-      "from": "cierre-conversacion",
-      "to": "cierre-conversacion:quality",
-      "type": "validated_by"
+      "from": "guardian-decision",
+      "to": "closeout-packet",
+      "type": "validates"
     }
   ]
 }

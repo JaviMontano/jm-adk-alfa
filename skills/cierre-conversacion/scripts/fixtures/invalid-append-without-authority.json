@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "skill": "cierre-conversacion",
+  "trigger": {
+    "source": "explicit",
+    "reason": "User asked to close and update memory.",
+    "evidence_tag": "[CONFIG]"
+  },
+  "conversation": {
+    "objective": "Close with unsafe durable write.",
+    "scope": "Invalid fixture.",
+    "turns_observed": 20,
+    "evidence_tag": "[CONFIG]"
+  },
+  "summary": {
+    "description": "The packet tries to append without confirmed authority.",
+    "evidence_tag": "[CÓDIGO]"
+  },
+  "completed_work": [],
+  "decisions": [],
+  "open_tasks": [],
+  "learnings": [],
+  "risks": [],
+  "validation": [
+    {
+      "command": "bash check.sh",
+      "status": "pass",
+      "evidence": "Synthetic pass.",
+      "evidence_tag": "[CÓDIGO]"
+    }
+  ],
+  "durable_update_plan": [
+    {
+      "target": "memory",
+      "action": "append",
+      "authority": "pending",
+      "content_summary": "Write unconfirmed learning.",
+      "evidence_tag": "[SUPUESTO]"
+    }
+  ],
+  "handoff": {
+    "next_action": "Continue.",
+    "evidence_tag": "[CONFIG]"
+  },
+  "guardian_decision": {
+    "decision": "pass",
+    "rationale": "Incorrectly passes unsafe write.",
+    "evidence_tag": "[CONFIG]"
+  }
+}

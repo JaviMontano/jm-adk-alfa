@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "skill": "cierre-conversacion",
+  "assets": [
+    {
+      "path": "assets/activation-policy.json",
+      "type": "policy",
+      "purpose": "Defines when closeout activates and when it must not activate.",
+      "used_by": ["SKILL.md", "README.md", "evals/evals.json"]
+    },
+    {
+      "path": "assets/output-contract.json",
+      "type": "schema",
+      "purpose": "Defines required closeout sections, allowed statuses, and false-completion blockers.",
+      "used_by": ["SKILL.md", "templates/output.md", "scripts/validate_cierre_conversacion_report.py"]
+    },
+    {
+      "path": "assets/evidence-policy.json",
+      "type": "policy",
+      "purpose": "Defines evidence tags and evidence requirements for closeout claims.",
+      "used_by": ["SKILL.md", "knowledge/body-of-knowledge.md", "scripts/validate_cierre_conversacion_report.py"]
+    },
+    {
+      "path": "assets/harvest-checklist.json",
+      "type": "checklist",
+      "purpose": "Defines Guardian checks for a complete conversation harvest.",
+      "used_by": ["agents/guardian.md", "evals/evals.json", "README.md"]
+    },
+    {
+      "path": "assets/durable-update-policy.json",
+      "type": "policy",
+      "purpose": "Defines safe tasklog, changelog, memory, review doc, and ledger update boundaries.",
+      "used_by": ["SKILL.md", "prompts/primary.md", "scripts/validate_cierre_conversacion_report.py"]
+    }
+  ]
+}
