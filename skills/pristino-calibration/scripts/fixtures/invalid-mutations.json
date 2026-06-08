@@ -1,0 +1,15 @@
+{
+  "schema": 1,
+  "cases": [
+    {"id": "missing_persona_line", "base": "valid-full-substantive.json", "operations": [{"op": "set", "path": "persona_output.line_1", "value": ""}]},
+    {"id": "confidence_out_of_range", "base": "valid-full-substantive.json", "operations": [{"op": "set", "path": "injected_block.confidence", "value": 1.7}]},
+    {"id": "invented_delegate", "base": "valid-full-substantive.json", "operations": [{"op": "set", "path": "injected_block.delegate.0", "value": "invented-agent"}]},
+    {"id": "bad_precedence", "base": "valid-full-substantive.json", "operations": [{"op": "set", "path": "precedence.0", "value": "Estilo"}]},
+    {"id": "missing_optimized_prompt", "base": "valid-full-substantive.json", "operations": [{"op": "set", "path": "optimizer.optimized_prompt", "value": ""}]},
+    {"id": "missing_canvas_section", "base": "valid-full-substantive.json", "operations": [{"op": "remove", "path": "canvas.sections.2"}]},
+    {"id": "too_few_evidence_tags", "base": "valid-full-substantive.json", "operations": [{"op": "set", "path": "evidence_tags", "value": ["[CODE]"]}]},
+    {"id": "bypass_declares_persona", "base": "valid-bypass.json", "operations": [{"op": "set", "path": "persona_output.line_1", "value": "Asesor Experto"}]},
+    {"id": "bypass_has_optimizer", "base": "valid-bypass.json", "operations": [{"op": "set", "path": "optimizer.response", "value": "Unexpected optimizer response"}]},
+    {"id": "guardian_passes_invalid_delegate", "base": "valid-full-substantive.json", "operations": [{"op": "set", "path": "injected_block.delegate.0", "value": "invented-agent"}, {"op": "set", "path": "validation.delegate_agents_known", "value": false}]}
+  ]
+}

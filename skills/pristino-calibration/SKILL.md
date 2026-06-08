@@ -98,4 +98,5 @@ Self-check silently: persona line present? mode honored? sections match `OPTIMIZ
 ## Update-Safety Notes
 
 - Persona registry is `references/ontology/personas.json`; edit there, then run `python3 scripts/validate-personas.py`.
+- The `assets/` directory defines the local deterministic contract for persona mode shape, precedence, evidence tags and Canvas requirements.
 - Generated support files are missing-only by default; use `--force` only after reviewing diffs.

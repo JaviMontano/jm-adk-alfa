@@ -1,0 +1,5 @@
+{
+  "schema": 1,
+  "required_tags": ["[CODE]", "[CONFIG]", "[DOC]", "[INFERENCE]", "[ASSUMPTION]"],
+  "minimum_tags_for_substantive": 3
+}

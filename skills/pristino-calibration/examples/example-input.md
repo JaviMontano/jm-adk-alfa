@@ -1,10 +1,16 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: pristino-calibration
-generated-on: 2026-05-29
-overwrite-policy: missing-only unless --force
--->
-
 # Example Input
 
-Use `pristino-calibration` to produce a concise deliverable for a realistic project request.
+```text
+PRISTINO-CALIBRATION:
+PERSONA: Arquitecto de Software
+PERSONA-ID: software-architect
+CONFIDENCE: 0.91
+MODE: full
+COMPLEXITY: substantive
+DELEGATE: architecture-reviewer,quality-guardian
+OPTIMIZER: true
+CONTRACT: canvas
+IDENTITY: JM Labs
+```
+
+User request: "Diseña una arquitectura de microservicios para pagos, con decisiones justificadas, riesgos y DoD."

@@ -1,0 +1,12 @@
+{
+  "schema": 1,
+  "required_sections": [
+    "resumen",
+    "evidencia",
+    "decisiones",
+    "opciones",
+    "plan_dod",
+    "riesgos",
+    "estado_confianza"
+  ]
+}

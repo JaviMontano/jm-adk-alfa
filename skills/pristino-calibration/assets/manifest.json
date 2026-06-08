@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "skill": "pristino-calibration",
+  "assets": [
+    {
+      "path": "assets/pristino-calibration-contract.json",
+      "type": "json_contract",
+      "purpose": "Defines required fields for calibration reports.",
+      "used_by": ["SKILL.md", "README.md", "scripts/validate_pristino_calibration.py", "evals/evals.json"]
+    },
+    {
+      "path": "assets/mode-output-policy.json",
+      "type": "policy",
+      "purpose": "Defines allowed modes and optimizer section requirements.",
+      "used_by": ["SKILL.md", "prompts/primary.md", "scripts/validate_pristino_calibration.py"]
+    },
+    {
+      "path": "assets/precedence-policy.json",
+      "type": "policy",
+      "purpose": "Defines Veracidad > Seguridad > Objetivo > Formato > Estilo.",
+      "used_by": ["knowledge/body-of-knowledge.md", "scripts/validate_pristino_calibration.py"]
+    },
+    {
+      "path": "assets/evidence-tag-policy.json",
+      "type": "policy",
+      "purpose": "Defines evidence tags required for non-obvious claims.",
+      "used_by": ["SKILL.md", "templates/output.md", "scripts/validate_pristino_calibration.py"]
+    },
+    {
+      "path": "assets/canvas-contract-policy.json",
+      "type": "policy",
+      "purpose": "Defines Canvas sections required for substantive work.",
+      "used_by": ["SKILL.md", "examples/example-output.md", "scripts/validate_pristino_calibration.py"]
+    }
+  ]
+}

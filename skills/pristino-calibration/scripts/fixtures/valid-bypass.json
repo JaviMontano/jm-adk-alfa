@@ -1,0 +1,39 @@
+{
+  "schema": 1,
+  "skill": "pristino-calibration",
+  "calibration_id": "valid-bypass",
+  "injected_block": {
+    "persona": "Asesor Experto",
+    "persona_id": "expert-advisor",
+    "confidence": 0.8,
+    "mode": "bypass",
+    "complexity": "trivial",
+    "delegate": [],
+    "optimizer": false,
+    "contract": "plain"
+  },
+  "persona_output": {
+    "line_1": "",
+    "declared_confidence": 0.8
+  },
+  "optimizer": {},
+  "precedence": ["Veracidad", "Seguridad", "Objetivo", "Formato", "Estilo"],
+  "evidence_tags": [],
+  "canvas": {
+    "required": false,
+    "sections": []
+  },
+  "validation": {
+    "persona_line_valid": true,
+    "mode_shape_valid": true,
+    "precedence_valid": true,
+    "evidence_tags_present": true,
+    "canvas_contract_present": true,
+    "delegate_agents_known": true,
+    "deterministic_script_passed": true
+  },
+  "guardian": {
+    "decision": "pass",
+    "reason": "Bypass mode correctly omits persona ceremony and optimizer sections."
+  }
+}
