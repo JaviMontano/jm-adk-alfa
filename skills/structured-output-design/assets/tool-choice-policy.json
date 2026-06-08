@@ -1,0 +1,8 @@
+{
+  "schema": 1,
+  "forced_tool_choice": {
+    "type": "tool"
+  },
+  "require_name_match": true,
+  "free_text_fallback_blocked": true
+}

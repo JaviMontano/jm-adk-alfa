@@ -1,10 +1,3 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: structured-output-design
-generated-on: 2026-05-30
-overwrite-policy: missing-only unless --force
--->
-
 # Structured Output Design Body of Knowledge
 
 ## Canon
@@ -29,6 +22,7 @@ La salida estructurada de Claude se diseña como un **contrato de datos**, no co
 | `tool_choice` justificado | Forzado solo si no hay decisión de tool legítima |
 | Parseo tipado | Consumidor lee `tool_use.input`, no prosa |
 | Validación previa | Salida validada contra schema antes de aceptar; fallo → retry/escalada |
+| Validator offline | El paquete JSON pasa `scripts/validate_structured_output_design.py` sin red, tiempo ni aleatoriedad |
 
 ## Decisión de diseño: ¿forzar tool_choice?
 
@@ -40,3 +34,6 @@ La salida estructurada de Claude se diseña como un **contrato de datos**, no co
 
 "Devuelve JSON" en prosa + `json.loads(text)`. Se rompe cuando el modelo añade prosa o un code fence; los defaults `''` ocultan ausencia real; el enum cerrado descarta cada caso imprevisto. Es la firma exacta que el guardian debe rechazar.
 
+## Contrato verificable
+
+El contrato canonico vive en `assets/structured-output-design-contract.json`. Todo paquete automatizable debe contener la tool, su `input_schema`, `tool_choice`, controles de schema, casos de prueba y decision Guardian. El script local valida que el schema sea cerrado, que los opcionales usen union con `null`, que cada enum tenga escape, que el consumidor parse desde `tool_use.input`, que no exista fallback de texto libre y que haya canal de error/refusal.

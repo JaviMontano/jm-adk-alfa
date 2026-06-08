@@ -1,0 +1,10 @@
+{
+  "schema": 1,
+  "escape_values": [
+    "other",
+    "unknown",
+    "unclear"
+  ],
+  "details_suffix": "_details",
+  "details_field_nullable": true
+}

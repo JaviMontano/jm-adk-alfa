@@ -100,6 +100,17 @@ status = data["status"]          # closed enum drops every unforeseen real case
 - ¿`tool_choice` se fuerza solo cuando no hay una decisión de tool legítima que tomar?
 - ¿El consumidor parsea desde `tool_use.input` y nunca desde texto en prosa?
 - ¿La salida se valida contra el schema antes de aceptarse, con ruta a retry/escalada en caso de fallo?
+- ¿El diseño cumple `assets/structured-output-design-contract.json` y pasa `scripts/check.sh` con fixtures determinísticas?
+
+## Assets y validación offline
+
+- `assets/structured-output-design-contract.json` define el paquete JSON que documenta una tool estructurada.
+- `assets/json-schema-policy.json` exige `type=object`, `additionalProperties=false`, `required` reales y propiedades declaradas.
+- `assets/nullable-policy.json` prohíbe defaults falsos y requiere unión con `null`.
+- `assets/enum-escape-policy.json` exige `other` + campo `*_details` para todo enum cerrado.
+- `assets/tool-choice-policy.json` fija `tool_choice={"type":"tool","name":...}` cuando la única acción válida es emitir la estructura.
+- `assets/refusal-error-policy.json` exige canal de error/refusal y parseo desde `tool_use.input`.
+- `scripts/validate_structured_output_design.py` valida el paquete offline y `scripts/check.sh` ejecuta fixtures positivas y negativas.
 
 ## Katas y skills relacionadas
 

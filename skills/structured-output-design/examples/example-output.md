@@ -1,10 +1,3 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: structured-output-design
-generated-on: 2026-05-30
-overwrite-policy: missing-only unless --force
--->
-
 # Example Output
 
 ## Resumen
@@ -73,9 +66,9 @@ record = json.loads(resp.content[0].text)  # breaks 1/20; due_date "" pollutes D
 - [x] `tool_choice` forzado: la única acción válida es emitir la factura
 - [x] Consumidor parsea desde `tool_use.input`
 - [x] Validar contra el schema antes del insert; fallo -> retry/escalada
+- [x] El diseño JSON equivalente pasa `scripts/check.sh`.
 
 ## Riesgos y límites
 
 - Si aparecen documentos donde `total_amount` falta, reclasificarlo a nullable (revisar muestra).
 - Los valores capturados en `status_details` deben revisarse periódicamente para promover nuevos estados al enum con evidencia.
-

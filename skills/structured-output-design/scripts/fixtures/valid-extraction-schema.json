@@ -1,0 +1,140 @@
+{
+  "schema": 1,
+  "skill": "structured-output-design",
+  "design_id": "invoice-extraction-schema",
+  "tool": {
+    "name": "extract_invoice",
+    "input_schema": {
+      "$id": "jm-labs.invoice-extraction.v1",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "invoice_id": {
+          "type": "string"
+        },
+        "total_amount": {
+          "type": "number"
+        },
+        "due_date": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "paid",
+            "pending",
+            "overdue",
+            "other"
+          ]
+        },
+        "status_details": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "extraction_error": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "message": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "required": [
+        "invoice_id",
+        "total_amount",
+        "status"
+      ]
+    },
+    "tool_choice": {
+      "type": "tool",
+      "name": "extract_invoice"
+    },
+    "consumer": {
+      "parse_from": "tool_use.input",
+      "free_text_fallback_blocked": true,
+      "validate_before_accept": true,
+      "failure_route": "retry_then_escalate"
+    }
+  },
+  "schema_controls": {
+    "required_fields": [
+      "invoice_id",
+      "total_amount",
+      "status"
+    ],
+    "nullable_fields": [
+      "due_date",
+      "status_details",
+      "extraction_error"
+    ],
+    "enum_fields": [
+      "status"
+    ],
+    "error_channel": "extraction_error",
+    "required_fields_grounded": true,
+    "nullable_union_used": true,
+    "enum_escape_present": true,
+    "error_channel_present": true,
+    "schema_versioned": true,
+    "no_false_defaults": true
+  },
+  "test_cases": [
+    {
+      "id": "valid_invoice",
+      "expected_valid": true,
+      "expected_checks": [
+        "schema_closed",
+        "tool_choice_forced"
+      ]
+    },
+    {
+      "id": "missing_due_date_null",
+      "expected_valid": true,
+      "expected_checks": [
+        "nullable_union_used"
+      ]
+    },
+    {
+      "id": "unknown_status_other",
+      "expected_valid": true,
+      "expected_checks": [
+        "enum_escape_present"
+      ]
+    },
+    {
+      "id": "free_text_response",
+      "expected_valid": false,
+      "expected_checks": [
+        "free_text_fallback_blocked"
+      ]
+    }
+  ],
+  "validation": {
+    "schema_closed": true,
+    "required_fields_grounded": true,
+    "nullable_union_used": true,
+    "enum_escape_present": true,
+    "tool_choice_forced": true,
+    "typed_parse_source": true,
+    "free_text_fallback_blocked": true,
+    "error_channel_present": true,
+    "no_false_defaults": true,
+    "schema_versioned": true,
+    "test_cases_present": true,
+    "deterministic_script_passed": true
+  },
+  "guardian": {
+    "decision": "pass",
+    "reason": "Schema is closed, nullable fields use union null, enums have escape details, and tool output is forced."
+  }
+}

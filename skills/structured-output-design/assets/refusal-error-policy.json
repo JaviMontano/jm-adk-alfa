@@ -1,0 +1,11 @@
+{
+  "schema": 1,
+  "parse_from": "tool_use.input",
+  "allowed_failure_routes": [
+    "retry",
+    "escalate",
+    "retry_then_escalate"
+  ],
+  "validate_before_accept": true,
+  "minimum_test_cases": 4
+}

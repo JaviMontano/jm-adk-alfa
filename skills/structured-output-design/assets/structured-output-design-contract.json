@@ -1,0 +1,26 @@
+{
+  "schema": 1,
+  "json_contract": {
+    "schema_version": 1,
+    "required_top_level_fields": [
+      "schema",
+      "skill",
+      "design_id",
+      "tool",
+      "schema_controls",
+      "test_cases",
+      "validation",
+      "guardian"
+    ],
+    "required_tool_fields": [
+      "name",
+      "input_schema",
+      "tool_choice",
+      "consumer"
+    ],
+    "guardian_decisions": [
+      "pass",
+      "block"
+    ]
+  }
+}
