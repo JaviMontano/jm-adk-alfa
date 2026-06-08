@@ -1,0 +1,12 @@
+{
+  "schema": 1,
+  "required_snapshot_fields": ["source", "captured_at", "freshness"],
+  "allowed_freshness": ["fresh", "stale", "unknown"],
+  "required_validation_fields": ["pre_release_checks", "post_release_checks"],
+  "rules": [
+    "Stale or unknown snapshot freshness blocks healthy status.",
+    "Every check must include evidence.",
+    "Do not claim live production health from an offline fixture.",
+    "Validation must include pre-release and post-release checks."
+  ]
+}

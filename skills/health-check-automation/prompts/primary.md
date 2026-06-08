@@ -2,43 +2,44 @@
 name: health-check-automation-primary
 type: execution
 version: 2.0.0
-description: "Execute the Health Check Automation workflow with triad orchestration."
+description: "Execute deterministic health-check planning and report validation."
 triad:
   lead: "health-check-automation-lead"
   support: "health-check-automation-support"
   guardian: "health-check-automation-guardian"
 ---
 
-# Health Check Automation — Execute
+# Health Check Automation - Execute
 
 ## Dynamic Parameters
 
 | Parameter | Description | Required | Filled By |
 |-----------|-------------|----------|-----------|
-| `{{task}}` | What to accomplish | Yes | User input |
-| `{{context}}` | Background and constraints | Yes | User or codebase |
-| `{{constraints}}` | Additional rules | No | Guardrails JSON |
-| `{{depth}}` | quick / standard / deep | No | Auto |
-| `{{output_format}}` | html / docx / xlsx / md | No | Auto |
+| `{{health_surface}}` | Services, dependencies, resources, jobs, and alert routes | Yes | User or repo evidence |
+| `{{snapshot}}` | Captured values, timestamp, and source labels | Yes | User or fixture |
+| `{{thresholds}}` | Warning and critical thresholds | No | Assets or user input |
+| `{{constraints}}` | Release, production, ownership, or alerting constraints | No | User or policy |
+| `{{output_format}}` | md or json | No | Auto |
 
 ## Execution
 
-1. **Load knowledge**: Read `knowledge/body-of-knowledge.md`
-2. **Check guardrails**: Read `references/guardrails/*.json`
-3. **Lead** (`health-check-automation-lead`): Execute SKILL.md Steps 1-4 for `{{task}}`
-   - Discover → Analyze → Execute → Validate
-   - Apply evidence tags on all claims
-4. **Support** (`health-check-automation-support`): Review for cross-cutting concerns
-   - Edge cases, security, accessibility, performance
-5. **Guardian** (`health-check-automation-guardian`): Validate
-   - Evidence tags complete
-   - Quality gate met
-   - Constitution XIII + XIV respected
-   - Output exceeds expectations
+1. Load `knowledge/body-of-knowledge.md`.
+2. Load assets under `assets/` and apply policies in this order: contract,
+   service, dependency, resource, alert, degradation, evidence.
+3. Lead: inventory health surface, bind checks to evidence, and draft report.
+4. Support: challenge missing thresholds, stale snapshots, unknown required
+   checks, alert owner gaps, and false healthy decisions.
+5. Guardian: block healthy status when any required check is warn, fail,
+   unknown, stale, or missing evidence.
 
 ## Output
 
-- Primary deliverable for `{{task}}` in `{{output_format}}`
-- Evidence tags on every claim
-- Recommendations beyond the ask
-- Confidence score (>= 0.95)
+- Health Surface
+- Service Checks
+- Dependency Checks
+- Resource Checks
+- Alerts
+- Degradation
+- Validation Evidence
+- Risks And Limits
+- Guardian Decision

@@ -1,0 +1,10 @@
+{
+  "schema": 1,
+  "check_types": ["database", "queue", "cache", "external_api", "storage", "credential"],
+  "required_fields": ["id", "type", "required", "status", "owner", "evidence"],
+  "rules": [
+    "Required dependencies must have owner and evidence.",
+    "A failed required dependency makes the overall status unhealthy or degraded.",
+    "An unknown required dependency blocks healthy status."
+  ]
+}

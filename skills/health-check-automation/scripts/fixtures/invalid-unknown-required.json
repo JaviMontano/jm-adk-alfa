@@ -1,0 +1,14 @@
+{
+  "schema": 1,
+  "skill": "health-check-automation",
+  "scenario_id": "unknown-required",
+  "overall_status": "degraded",
+  "snapshot": {"source": "fixture", "captured_at": "2026-06-07T10:00:00Z", "freshness": "fresh"},
+  "checks": [
+    {"id": "nightly-job", "kind": "service", "type": "scheduled_job", "required": true, "status": "unknown", "evidence": "job evidence missing"}
+  ],
+  "alerts": {"severity": "warning", "owner": "ops", "trigger": "unknown job", "handoff": ["job"]},
+  "degradation": {"active": true, "mode": "report freshness unknown", "reason": "job unknown", "next_action": "rerun job check"},
+  "validation": {"pre_release_checks": ["validate"], "post_release_checks": ["rerun"]},
+  "guardian": {"decision": "warn", "reason": "unknown required should block"}
+}

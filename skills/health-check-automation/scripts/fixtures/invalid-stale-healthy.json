@@ -1,0 +1,14 @@
+{
+  "schema": 1,
+  "skill": "health-check-automation",
+  "scenario_id": "stale-healthy",
+  "overall_status": "healthy",
+  "snapshot": {"source": "old fixture", "captured_at": "2026-06-01T10:00:00Z", "freshness": "stale"},
+  "checks": [
+    {"id": "readiness", "kind": "service", "type": "readiness", "required": true, "status": "pass", "evidence": "old HTTP 200"}
+  ],
+  "alerts": {"severity": "info", "owner": "ops", "trigger": "warn or fail", "handoff": ["report"]},
+  "degradation": {"active": false, "mode": "", "reason": "", "next_action": ""},
+  "validation": {"pre_release_checks": ["validate"], "post_release_checks": ["rerun"]},
+  "guardian": {"decision": "pass", "reason": "stale evidence incorrectly accepted"}
+}

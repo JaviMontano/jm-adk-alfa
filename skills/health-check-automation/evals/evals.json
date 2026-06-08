@@ -1,9 +1,82 @@
-[
-  {"id": "health-check-automation-happy-path", "type": "happy_path", "input": "Run health check automation on this project", "expected_behavior": "Skill activates and produces the expected health check automation output following the defined process", "tags": ["basic", "activation"]},
-  {"id": "health-check-automation-explicit-trigger", "type": "happy_path", "input": "Apply health check automation analysis", "expected_behavior": "Skill recognizes the trigger phrase and executes the health check automation workflow", "tags": ["trigger", "recognition"]},
-  {"id": "health-check-automation-with-context", "type": "happy_path", "input": "Apply health check automation to analyze the current codebase with detailed output", "expected_behavior": "Skill produces comprehensive health check automation analysis with evidence-tagged findings", "tags": ["detailed", "comprehensive"]},
-  {"id": "health-check-automation-minimal-input", "type": "happy_path", "input": "Quick health check automation", "expected_behavior": "Skill activates with minimal input, applies reasonable defaults", "tags": ["minimal", "defaults"]},
-  {"id": "health-check-automation-false-positive", "type": "false_positive", "input": "What is the weather forecast for tomorrow?", "expected_behavior": "Skill should NOT activate — this input has no relation to health check automation", "tags": ["false_positive", "should-not-activate"]},
-  {"id": "health-check-automation-edge-empty-input", "type": "edge_case", "input": "Run health check automation but I have no files or documentation yet", "expected_behavior": "Skill handles gracefully — requests minimum viable input or produces gap analysis", "tags": ["edge_case", "empty-input", "boundary"]},
-  {"id": "health-check-automation-edge-conflicting", "type": "edge_case", "input": "Apply health check automation but requirements contradict each other", "expected_behavior": "Skill detects contradiction, flags with [OPEN] tag, proposes resolution", "tags": ["edge_case", "conflict", "corner"]}
-]
+{
+  "schema": 1,
+  "skill": "health-check-automation",
+  "determinism": {
+    "network": "forbidden for validation unless evidence is supplied as a fixture",
+    "time": "snapshot timestamp supplied by caller",
+    "randomness": "forbidden",
+    "oracle": "assets plus scripts/fixtures"
+  },
+  "cases": [
+    {
+      "id": "health-ready-service",
+      "type": "happy_path",
+      "input": "Create a health-check report for an API with readiness, dependency, resource, job, and alert evidence.",
+      "expected_behavior": "Marks the service healthy only when all required checks pass with evidence.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "service_policy"]
+    },
+    {
+      "id": "health-warning-resource",
+      "type": "happy_path",
+      "input": "Evaluate a service with disk usage above warning threshold but below critical threshold.",
+      "expected_behavior": "Returns degraded or warn status with alert routing and validation evidence.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "resource_policy", "alert_policy"]
+    },
+    {
+      "id": "health-failing-dependency",
+      "type": "degradation",
+      "input": "A required queue dependency is unavailable while service readiness still returns 200.",
+      "expected_behavior": "Blocks healthy status, marks dependency fail, and defines degraded behavior.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "dependency_policy", "degradation_policy"]
+    },
+    {
+      "id": "health-stale-snapshot",
+      "type": "false_negative_guard",
+      "input": "Mark the service healthy using a stale health snapshot.",
+      "expected_behavior": "Rejects healthy status because stale evidence cannot prove current health.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "evidence_policy"]
+    },
+    {
+      "id": "health-missing-alert-owner",
+      "type": "negative_output",
+      "input": "Return a health report with failing checks and no alert owner.",
+      "expected_behavior": "Rejects the report because alert routing is incomplete.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "alert_policy"]
+    },
+    {
+      "id": "health-false-positive-advice",
+      "type": "false_positive",
+      "input": "Explain what uptime means in software operations.",
+      "expected_behavior": "Does not activate because no health-check plan, report, or automation is requested.",
+      "expected_checks": ["quality_criteria", "activation_guard"]
+    },
+    {
+      "id": "health-minimal-input",
+      "type": "boundary",
+      "input": "Check if the system is healthy, but no services or evidence are provided.",
+      "expected_behavior": "Produces an evidence gap report and blocks healthy status.",
+      "expected_checks": ["assets", "quality_criteria", "evidence_policy"]
+    },
+    {
+      "id": "health-conflicting-thresholds",
+      "type": "conflict",
+      "input": "Disk usage is healthy below 70% and warning starts at 85%.",
+      "expected_behavior": "Flags conflicting thresholds and uses the stricter safe threshold until resolved.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "resource_policy"]
+    },
+    {
+      "id": "health-critical-resource",
+      "type": "negative_output",
+      "input": "Mark a service healthy while memory usage is above critical threshold.",
+      "expected_behavior": "Rejects healthy status and requires alert plus degradation handling.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "resource_policy", "degradation_policy"]
+    },
+    {
+      "id": "health-unknown-required-check",
+      "type": "negative_output",
+      "input": "Mark healthy while a required scheduled job check is unknown.",
+      "expected_behavior": "Rejects healthy status because required unknown checks block pass decisions.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "service_policy"]
+    }
+  ]
+}

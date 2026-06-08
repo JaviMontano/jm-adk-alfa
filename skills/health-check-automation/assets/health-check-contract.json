@@ -1,0 +1,32 @@
+{
+  "schema": 1,
+  "skill": "health-check-automation",
+  "required_markdown_sections": [
+    "Health Surface",
+    "Service Checks",
+    "Dependency Checks",
+    "Resource Checks",
+    "Alerts",
+    "Degradation",
+    "Validation Evidence",
+    "Risks And Limits",
+    "Guardian Decision"
+  ],
+  "json_contract": {
+    "schema_version": 1,
+    "required_top_level_fields": [
+      "schema",
+      "skill",
+      "scenario_id",
+      "overall_status",
+      "snapshot",
+      "checks",
+      "alerts",
+      "degradation",
+      "validation",
+      "guardian"
+    ],
+    "allowed_overall_statuses": ["healthy", "degraded", "unhealthy", "blocked"],
+    "allowed_check_statuses": ["pass", "warn", "fail", "unknown"]
+  }
+}

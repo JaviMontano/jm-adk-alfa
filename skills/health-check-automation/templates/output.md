@@ -1,28 +1,37 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: health-check-automation
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
+# Health Check Report
 
-# Health Check Automation Output
+## Health Surface
 
-## Summary
+{health_surface}
 
-{summary}
+## Service Checks
 
-## Evidence
+{service_checks}
 
-{evidence}
+## Dependency Checks
 
-## Result
+{dependency_checks}
 
-{result}
+## Resource Checks
 
-## Validation
+{resource_checks}
 
-{validation}
+## Alerts
 
-## Risks and Limits
+{alerts}
 
-{risks}
+## Degradation
+
+{degradation}
+
+## Validation Evidence
+
+{validation_evidence}
+
+## Risks And Limits
+
+{risks_and_limits}
+
+## Guardian Decision
+
+{guardian_decision}

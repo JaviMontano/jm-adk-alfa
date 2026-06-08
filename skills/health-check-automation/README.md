@@ -1,17 +1,16 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: health-check-automation
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
-
 # Health Check Automation
 
->
+Deterministic health-check planning for services, dependencies, resource usage,
+scheduled jobs, alert routing, and degraded operation.
 
 ## Triggers
 
-- health-check-automation
+- `health-check-automation`
+- `health check automation`
+- `health check plan`
+- `dependency status`
+- `resource usage alerts`
+- `service health snapshot`
 
 ## Allowed Tools
 
@@ -23,8 +22,22 @@ overwrite-policy: missing-only unless --force
 
 ## Quick Use
 
-Use this skill when the request clearly matches the triggers and requires the `health-check-automation` capability.
+Use this skill when a system needs health checks that can be reviewed offline.
+The skill turns a service inventory and captured evidence into pass, warn, fail,
+or unknown decisions with alert and degradation handling.
 
 ## Output Format
 
-Markdown with summary, evidence, result, validation, and risks.
+Markdown or JSON with:
+
+- health surface
+- service checks
+- dependency checks
+- resource checks
+- alert routing
+- degradation behavior
+- validation evidence
+- Guardian decision
+
+Structured JSON reports can be validated offline with
+`scripts/validate_health_check.py`.

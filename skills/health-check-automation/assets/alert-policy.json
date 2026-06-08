@@ -1,0 +1,10 @@
+{
+  "schema": 1,
+  "allowed_severities": ["info", "warning", "critical"],
+  "required_fields_when_not_healthy": ["severity", "owner", "trigger", "handoff"],
+  "rules": [
+    "Warn checks require warning or critical alert severity.",
+    "Fail checks require critical alert severity.",
+    "Alert handoff must include failed or warning checks and requested decision."
+  ]
+}
