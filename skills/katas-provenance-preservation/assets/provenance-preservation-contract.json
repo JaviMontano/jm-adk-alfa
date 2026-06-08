@@ -1,0 +1,27 @@
+{
+  "schema": 1,
+  "skill": "katas-provenance-preservation",
+  "json_contract": {
+    "schema_version": 1,
+    "required_top_level_fields": [
+      "schema",
+      "skill",
+      "report_id",
+      "scenario",
+      "evidence",
+      "source_registry",
+      "claims",
+      "validation",
+      "guardian"
+    ],
+    "guardian_decisions": ["pass", "warn", "block"]
+  },
+  "required_markdown_sections": [
+    "Summary",
+    "Source Registry",
+    "Claims",
+    "Conflicts",
+    "Validation",
+    "Risks And Limits"
+  ]
+}

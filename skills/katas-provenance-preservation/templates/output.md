@@ -1,30 +1,25 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: katas-provenance-preservation
-generated-on: 2026-05-29
-overwrite-policy: missing-only unless --force
--->
-
 # Katas Provenance Preservation Output
 
 ## Summary
 
 {summary}
 
-## Claims con provenance
+## Source Registry
 
-| claim | sources (id · name · date / value) | conflict | needs_human_review |
-|---|---|---|---|
-| {claim} | {sources} | {conflict} | {needs_human_review} |
+{source_registry}
 
-## Conflictos escalados
+## Claims
 
-{conflicts}  <!-- cada contradicción con ambas posturas, sin promediar; ruta de escalado Kata 16 -->
+{claims}
+
+## Conflicts
+
+{conflicts}
 
 ## Validation
 
-{validation}  <!-- test estructural: cada claim tiene sources[] no vacío con source_id existente -->
+{validation}
 
-## Risks and Limits
+## Risks And Limits
 
 {risks}

@@ -1,23 +1,17 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: katas-provenance-preservation
-generated-on: 2026-05-29
-overwrite-policy: missing-only unless --force
--->
+# Meta Prompt
 
-# Katas Provenance Preservation Meta Prompt
-
-Revisa si `katas-provenance-preservation` debe activarse, si el alcance es seguro y qué agentes de soporte participan.
+Activa `katas-provenance-preservation` cuando un reporte factual deba ser auditable claim por claim.
 
 ## Activation Check
 
-- ¿El output es un reporte factual derivado de múltiples fuentes y debe ser auditable?
-- ¿Hay agregación tras subagentes paralelos (Kata 4) donde se pierde el "quién dijo qué"?
-- ¿Existe riesgo de contradicción entre fuentes que deba marcarse en vez de resolverse en silencio?
-- ¿La petición pide explícitamente prosa libre sin trazabilidad? Si es así y no se puede preservar provenance, NO activar.
+- ¿Hay múltiples fuentes o subagentes?
+- ¿Hay claims factuales que requieren source_id?
+- ¿Existe riesgo de contradicción entre fuentes?
+- ¿El usuario pide preservar "quién dijo qué"?
 
-## No activar cuando
+## Do Not Activate
 
-- La petición es ajena al dominio (no involucra claims con fuentes).
+- No hay claims factuales ni fuentes.
+- La tarea es redacción general.
 - El input está vacío.
-- Se pide explícitamente ignorar validación y evidencia (conflicto con el invariante de la kata).
+- El usuario exige ignorar provenance y no hay forma segura de cumplir.

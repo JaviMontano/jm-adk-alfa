@@ -1,0 +1,12 @@
+{
+  "schema": 1,
+  "accepted_evidence_types": [
+    "source_registry",
+    "claim_mapping",
+    "conflict_trace",
+    "structural_test",
+    "aggregation_trace",
+    "human_escalation"
+  ],
+  "minimum_evidence_items": 2
+}

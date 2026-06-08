@@ -1,0 +1,8 @@
+{
+  "schema": 1,
+  "conflict_requires_multiple_source_values": true,
+  "conflict_requires_human_review": true,
+  "conflict_requires_escalation_route": true,
+  "allowed_escalation_routes": ["human_review", "kata-16-human-escalation"],
+  "forbidden_resolution_methods": ["average", "newest_wins", "model_choice", "silent_choice"]
+}
