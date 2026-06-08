@@ -1,0 +1,8 @@
+{
+  "schema": 1,
+  "risk_types": ["overlap", "confusing_name", "overloaded_modes", "missing_boundary", "prompt_keyword_bias"],
+  "rename_required_when": ["confusing_name"],
+  "split_required_when": ["overloaded_modes"],
+  "boundary_required_when": ["overlap", "missing_boundary", "prompt_keyword_bias"],
+  "reciprocal_boundary_required": true
+}

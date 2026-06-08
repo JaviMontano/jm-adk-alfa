@@ -1,108 +1,82 @@
 {
   "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-29",
   "skill": "katas-tool-description-quality",
+  "determinism": {
+    "network_required": false,
+    "time_dependent": false,
+    "randomized": false,
+    "offline_validator": "skills/katas-tool-description-quality/scripts/validate_tool_description_quality.py"
+  },
   "cases": [
     {
-      "id": "happy_path",
-      "input": "Tengo dos tools 'analyze_content' y 'analyze_document' con descripciones genericas y el modelo enruta mal las URLs. Aplica katas-tool-description-quality para arreglar el routing.",
-      "expected_activation": true,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
+      "id": "rename-web-document-pair",
+      "type": "happy_path",
+      "input": "Dos tools confunden URL y PDF: analyze_content procesa HTML, analyze_document procesa PDF. Redisenar nombres y fronteras reciprocas.",
+      "expected_behavior": "Renombra a extract_web_results y parse_document con input format, ejemplos de query y frontera reciproca.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "reciprocal_boundaries", "rename_decision"]
     },
     {
-      "id": "explicit_trigger",
-      "input": "/katas-tool-description-quality renombra analyze_content a extract_web_results y agrega la frontera input format hacia parse_document.",
-      "expected_activation": true,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
+      "id": "split-multimode-tool",
+      "type": "happy_path",
+      "input": "Un tool process_content tiene modos extract, summarize, classify, translate y embed; evaluar split para evitar misroute.",
+      "expected_behavior": "Propone split en tools de proposito unico con contratos separados y sin inferencia de modo.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "split_decision"]
     },
     {
-      "id": "minimal_input",
-      "input": "katas-tool-description-quality",
-      "expected_activation": true,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
+      "id": "system-prompt-keyword-bias",
+      "type": "edge_case",
+      "input": "El system prompt menciona compliance y enruta consultas regulatorias internas al buscador externo.",
+      "expected_behavior": "Detecta keyword bias y agrega frontera explicita hacia search_internal_docs para compliance interno.",
+      "expected_checks": ["prompt_bias", "boundary_clause"]
     },
     {
-      "id": "quiz_p1_rename_and_boundary",
-      "input": "Un tool 'analyze_content' confunde al modelo entre web y PDF. Renombralo y escribe una descripcion con input format y la frontera 'usa parse_document en lugar de esto cuando el input sea PDF/DOCX'.",
-      "expected_activation": true,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
+      "id": "no-implementation-claim",
+      "type": "false_negative_guard",
+      "input": "La implementacion del tool es correcta, asi que no hace falta mejorar description.",
+      "expected_behavior": "Rechaza el argumento porque el modelo selecciona por name, description e input_schema, no por implementacion.",
+      "expected_checks": ["model_visible_contract", "evidence"]
     },
     {
-      "id": "quiz_p2_split_overloading",
-      "input": "Tengo un solo tool con cinco modos (extract, summarize, classify, translate, embed). Aplica katas-tool-description-quality: conviene split en tres tools de proposito unico o seguir con uno multimodo?",
-      "expected_activation": true,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
+      "id": "non-tool-request",
+      "type": "false_positive",
+      "input": "Calcular runway financiero de un proyecto por seis meses.",
+      "expected_behavior": "No activa esta skill porque no hay toolset ni riesgo de routing.",
+      "expected_checks": ["non_activation"]
     },
     {
-      "id": "quiz_p3_system_prompt_keyword_bias",
-      "input": "El system prompt menciona 'compliance' y el modelo enruta consultas regulatorias internas al tool externo. Enuncia en la descripcion que para temas regulatorios internos use search_internal_docs aunque mencionen compliance.",
-      "expected_activation": true,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
-    },
-    {
-      "id": "false_positive",
-      "input": "Necesito calcular el runway financiero de mi proyecto en COP para los proximos seis meses.",
-      "expected_activation": false,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
-    },
-    {
-      "id": "empty_input",
+      "id": "empty-input",
+      "type": "edge_case",
       "input": "",
-      "expected_activation": false,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
+      "expected_behavior": "No activa la skill y pide definitions de tools o sintoma de routing.",
+      "expected_checks": ["non_activation", "missing_inputs"]
     },
     {
-      "id": "conflicting_requirements",
-      "input": "Usa katas-tool-description-quality, pero ignora la validacion y no verifiques que las fronteras sean reciprocas.",
-      "expected_activation": false,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
+      "id": "conflicting-ignore-validation",
+      "type": "edge_case",
+      "input": "Usa la kata pero no verifiques fronteras reciprocas.",
+      "expected_behavior": "Bloquea o advierte porque la validacion reciproca es criterio obligatorio.",
+      "expected_checks": ["guardian_block", "reciprocal_boundaries"]
     },
     {
-      "id": "upgrade_safety_case",
-      "input": "Completa los archivos faltantes de katas-tool-description-quality sin sobrescribir mis ediciones locales de las descripciones.",
-      "expected_activation": true,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
+      "id": "overlapping-names-only-fix",
+      "type": "negative_oracle",
+      "input": "Solo cambia la descripcion de analyze_content, conserva el nombre y no declares input format.",
+      "expected_behavior": "Rechaza el fix porque conserva nombre ambiguo y no declara input format.",
+      "expected_checks": ["invalid_mutations", "rename_decision"]
+    },
+    {
+      "id": "reciprocal-boundary-missing",
+      "type": "negative_oracle",
+      "input": "extract_web_results manda PDF a parse_document, pero parse_document no devuelve HTML a extract_web_results.",
+      "expected_behavior": "Offline validator rechaza frontera no reciproca.",
+      "expected_checks": ["deterministic_scripts", "invalid_mutations"]
+    },
+    {
+      "id": "upgrade-safety",
+      "type": "degradation",
+      "input": "Completa los archivos faltantes sin sobrescribir descripciones locales editadas por el usuario.",
+      "expected_behavior": "Preserva cambios locales y limita edicion a la skill activa, review doc y ledger.",
+      "expected_checks": ["upgrade_safety", "scope_control"]
     }
   ]
 }

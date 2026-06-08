@@ -1,0 +1,28 @@
+{
+  "schema": 1,
+  "skill": "katas-tool-description-quality",
+  "json_contract": {
+    "schema_version": 1,
+    "required_top_level_fields": [
+      "schema",
+      "skill",
+      "report_id",
+      "scenario",
+      "evidence",
+      "tools",
+      "overlap_findings",
+      "priority_actions",
+      "validation",
+      "guardian"
+    ],
+    "guardian_decisions": ["pass", "warn", "block"]
+  },
+  "required_markdown_sections": [
+    "Summary",
+    "Evidence",
+    "Rewritten Tools",
+    "Rename And Split Decisions",
+    "Validation",
+    "Risks And Limits"
+  ]
+}

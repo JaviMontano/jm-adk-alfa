@@ -1,0 +1,15 @@
+{
+  "schema": 1,
+  "allowed_evidence_types": ["tool_definition", "routing_log", "eval_case", "system_prompt", "assumption"],
+  "required": [
+    "Every finding must include a risk_type and evidence.",
+    "Every rewritten tool must include input_format, example_queries, and boundary.",
+    "Reciprocal boundaries must point to existing tools when declared.",
+    "Guardian reason must be non-empty."
+  ],
+  "blocked_claims": [
+    "implementation proves routing correctness",
+    "generic description is sufficient",
+    "boundary reciprocity can be skipped"
+  ]
+}
