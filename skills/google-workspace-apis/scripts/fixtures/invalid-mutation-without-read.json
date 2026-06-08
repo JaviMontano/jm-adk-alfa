@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "project": {"name": "invalid-no-read", "owner": "jm-labs", "environment": "sandbox", "objective": "Update Sheets without read-before-write."},
+  "integration_mode": "rest",
+  "services": [
+    {
+      "id": "sheets",
+      "operation": "spreadsheets.values.update",
+      "purpose": "Write status values without prior read.",
+      "mutation": true,
+      "auth_profile": "sheets_spreadsheets",
+      "requested_scopes": ["https://www.googleapis.com/auth/spreadsheets"],
+      "mcp_tool": "sheets_update_values",
+      "read_before_write": false,
+      "idempotency_key": "invalid-sheets-write",
+      "resource_identifiers": {"spreadsheetId": "sheet_status_tracker", "range": "Status!A2:H2"},
+      "quota_strategy": {"batching": false, "partial_response_fields": "updatedRange", "retry_policy": "bounded_exponential_backoff"}
+    }
+  ],
+  "workflow": {"read_only_first": true, "cross_service_steps": ["Write values."], "rollback_plan": "Restore previous values."},
+  "human_consent": {
+    "status": "confirmed",
+    "confirmed_by": "workspace-owner",
+    "confirmation_text": "CONFIRM_GOOGLE_WORKSPACE_MUTATION: run negative fixture."
+  },
+  "secrets": {"credential_storage": "environment", "tokens_committed": false, "api_keys_restricted": true},
+  "test_matrix": [
+    {"id": "static", "layer": "static", "covers": ["schema"]},
+    {"id": "fixture", "layer": "fixture", "covers": ["negative"]},
+    {"id": "sandbox", "layer": "sandbox", "covers": ["not-run"]},
+    {"id": "live", "layer": "live-read-only", "covers": ["not-run"]}
+  ],
+  "evidence": {"source": "negative fixture"}
+}

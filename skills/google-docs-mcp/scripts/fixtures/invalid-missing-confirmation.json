@@ -1,0 +1,44 @@
+{
+  "operation_id": "gdocs-invalid-confirmation",
+  "request_title": "Invalid missing confirmation",
+  "mcp_server": "workspace-mcp",
+  "operation_mode": "safe_execution_checklist",
+  "requested_scope_profile": "drive_file",
+  "read_only_first": {
+    "document_resolved": true,
+    "structure_checked": true,
+    "revision_id_captured": true,
+    "existing_content_summary": "Document inspected before mutation."
+  },
+  "human_confirmation": {
+    "status": "pending",
+    "confirmed_by": "",
+    "confirmation_text": ""
+  },
+  "operations": [
+    {
+      "id": "create-doc",
+      "action": "create_document",
+      "description": "Create a blank document without confirmation.",
+      "docs_api_method": "documents.create",
+      "mcp_tool": "mcp__workspace-mcp__create_doc",
+      "scope_profile": "drive_file",
+      "create": {
+        "title": "Invalid Confirmation Doc",
+        "initial_content_strategy": "blank_only",
+        "follow_up_batch_update_required": false,
+        "document_id_capture": true,
+        "requires_human_confirmation": true
+      }
+    }
+  ],
+  "evidence": {
+    "repo_docs": "docs/google-workspace-mcp-setup.md; docs/mcp-integration.md",
+    "google_docs_api": "https://developers.google.com/workspace/docs/api/reference/rest",
+    "docs_scopes": "https://developers.google.com/workspace/docs/api/auth",
+    "docs_batch_update": "https://developers.google.com/workspace/docs/api/reference/rest/v1/documents/batchUpdate",
+    "docs_create_get": "https://developers.google.com/workspace/docs/api/reference/rest/v1/documents/create; https://developers.google.com/workspace/docs/api/reference/rest/v1/documents/get",
+    "workspace_mcp_dev_server": "https://developers.google.com/workspace/guides/build-with-llms",
+    "mcp_tools_spec": "https://modelcontextprotocol.io/specification/draft/server/tools"
+  }
+}

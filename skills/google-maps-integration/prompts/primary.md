@@ -24,21 +24,26 @@ triad:
 ## Execution
 
 1. **Load knowledge**: Read `knowledge/body-of-knowledge.md`
-2. **Check guardrails**: Read `references/guardrails/*.json`
-3. **Lead** (`google-maps-integration-lead`): Execute SKILL.md Steps 1-4 for `{{task}}`
-   - Discover → Analyze → Execute → Validate
-   - Apply evidence tags on all claims
-4. **Support** (`google-maps-integration-support`): Review for cross-cutting concerns
-   - Edge cases, security, accessibility, performance
-5. **Guardian** (`google-maps-integration-guardian`): Validate
-   - Evidence tags complete
-   - Quality gate met
-   - Constitution XIII + XIV respected
-   - Output exceeds expectations
+2. **Load assets**: Read `assets/manifest.json`, `assets/maps-platform-plan-schema.json`, and the policy asset relevant to the request.
+3. **Check guardrails**: Read `references/guardrails/*.json` when available.
+4. **Lead** (`google-maps-integration-lead`): Build or validate a schema-compliant offline plan input for `{{task}}`.
+   - [CODE] Select APIs and libraries from `assets/api-selection-policy.json`.
+   - [CODE] Apply key restrictions from `assets/api-key-restriction-policy.json`.
+   - [CODE] Apply Places, Geocoding, and Directions data-flow controls from `assets/data-flow-policy.json`.
+   - [CODE] Apply marker/accessibility controls from `assets/marker-accessibility-policy.json`.
+5. **Support** (`google-maps-integration-support`): Review for security, accessibility, privacy, billing/quota exposure, and offline determinism.
+6. **Guardian** (`google-maps-integration-guardian`): Validate.
+   - [CODE] Evidence tags complete.
+   - [CODE] No monetary prices.
+   - [CODE] Human confirmation is present.
+   - [CODE] External API calls remain disabled.
+   - [CODE] Output follows `templates/output.md` or `templates/output.html`.
 
 ## Output
 
-- Primary deliverable for `{{task}}` in `{{output_format}}`
-- Evidence tags on every claim
-- Recommendations beyond the ask
-- Confidence score (>= 0.95)
+- [CODE] Primary deliverable for `{{task}}` in `{{output_format}}`.
+- [CODE] Evidence tags on every claim.
+- [CODE] API selection, key restrictions, data flow, marker clustering, accessibility, privacy, billing/quota checklist, human confirmation, and residual risks.
+- [CONFIG] No external API calls.
+- [CONFIG] No monetary prices.
+- [CODE] Confidence score (>= 0.95).

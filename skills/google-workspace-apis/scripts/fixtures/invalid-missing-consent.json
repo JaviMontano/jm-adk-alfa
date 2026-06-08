@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "project": {"name": "invalid-consent", "owner": "jm-labs", "environment": "sandbox", "objective": "Create a Calendar event without consent."},
+  "integration_mode": "mcp",
+  "services": [
+    {
+      "id": "calendar",
+      "operation": "events.insert",
+      "purpose": "Create event without approval.",
+      "mutation": true,
+      "auth_profile": "calendar_events",
+      "requested_scopes": ["https://www.googleapis.com/auth/calendar.events"],
+      "mcp_tool": "calendar_create_event",
+      "read_before_write": true,
+      "idempotency_key": "invalid-calendar-event",
+      "resource_identifiers": {"calendarId": "primary"},
+      "quota_strategy": {"batching": false, "partial_response_fields": "id", "retry_policy": "bounded_exponential_backoff"}
+    }
+  ],
+  "workflow": {"read_only_first": true, "cross_service_steps": ["Read availability.", "Create event."], "rollback_plan": "Delete sandbox event."},
+  "human_consent": {"status": "pending", "confirmed_by": "", "confirmation_text": ""},
+  "secrets": {"credential_storage": "environment", "tokens_committed": false, "api_keys_restricted": true},
+  "test_matrix": [
+    {"id": "static", "layer": "static", "covers": ["schema"]},
+    {"id": "fixture", "layer": "fixture", "covers": ["negative"]},
+    {"id": "sandbox", "layer": "sandbox", "covers": ["not-run"]},
+    {"id": "live", "layer": "live-read-only", "covers": ["not-run"]}
+  ],
+  "evidence": {"source": "negative fixture"}
+}

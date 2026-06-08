@@ -5,7 +5,7 @@ generated-on: 2026-05-28
 overwrite-policy: missing-only unless --force
 -->
 
-# Google Sheets Mcp Output
+# Google Sheets MCP Plan: {request_title}
 
 ## Summary
 
@@ -15,9 +15,29 @@ overwrite-policy: missing-only unless --force
 
 {evidence}
 
-## Result
+## MCP Preflight
 
-{result}
+{mcp_preflight}
+
+## Official Scope Note
+
+{scope_note}
+
+## Operation Plan
+
+{operation_plan}
+
+## Value Contract
+
+{value_contract}
+
+## Structural Batch Update Contract
+
+{batch_update_contract}
+
+## Confirmation Gate
+
+{confirmation_gate}
 
 ## Validation
 

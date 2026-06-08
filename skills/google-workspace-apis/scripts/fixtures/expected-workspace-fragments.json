@@ -1,0 +1,14 @@
+{
+  "fragments": [
+    "Google Workspace APIs Integration Plan",
+    "[CODE] weekly-client-status uses 6 Workspace operations",
+    "sheets spreadsheets.values.get GET access=read mutation=false",
+    "docs documents.create POST access=write mutation=true",
+    "gmail users.drafts.create POST access=write mutation=true",
+    "calendar events.insert POST access=write mutation=true",
+    "slides presentations.get GET access=read mutation=false",
+    "docs_create_document is mapped to docs:documents.create",
+    "human_consent.status=confirmed",
+    "Offline validation does not prove OAuth grants"
+  ]
+}

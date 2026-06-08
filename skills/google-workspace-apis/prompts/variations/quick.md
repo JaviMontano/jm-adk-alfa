@@ -1,34 +1,28 @@
 ---
 name: google-workspace-apis-quick
 type: variation
-version: 2.0.0
-description: "Google Workspace Apis in quick mode."
+version: 2.1.0
+description: "Quick Google Workspace API integration triage."
 ---
 
-# Google Workspace Apis — quick Mode
+# Google Workspace APIs — Quick Mode
 
-## When to Use
+## Use When
 
-Use quick mode when you need adjusted depth for the Google Workspace Apis workflow.
-
-## Dynamic Parameters
-
-| Parameter | Required | Filled By |
-|-----------|----------|-----------|
-| `{{task}}` | Yes | User input |
-| `{{context}}` | No | Auto-detected |
-| `{{depth}}` | No | Set to "quick" |
+Use quick mode to decide whether a Workspace workflow is safe to design before
+writing code or configuring MCP tools.
 
 ## Execution
 
-1. Load skill: `skills/google-workspace-apis/knowledge/body-of-knowledge.md`
-2. Check guardrails: `references/guardrails/*.json`
-3. Execute at quick depth with evidence tags
-4. Lead → Support → Guardian validation
-5. Confidence >= 0.95
+1. List requested services and operations.
+2. Mark each operation read-only or mutating.
+3. Pick the narrowest scope profile from `assets/auth-scope-policy.json`.
+4. Identify the MCP tool mapping when MCP is in scope.
+5. State missing resource IDs, consent, and sandbox prerequisites.
 
 ## Output
 
-- Deliverable calibrated to quick depth
-- Evidence-tagged, Constitution-compliant
-- Recommendations beyond the ask
+- Short service matrix.
+- Scope and consent blockers.
+- Offline validation command.
+- Residual live checks.

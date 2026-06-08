@@ -1,0 +1,52 @@
+{
+  "schema": 1,
+  "checks": [
+    {
+      "id": "destructive-root-delete",
+      "severity": "CRITICAL",
+      "pattern": "\\brm\\s+-rf\\s+/",
+      "finding": "Command string contains a root delete pattern.",
+      "remediation": "Replace with a scoped cleanup command that targets a temporary directory only."
+    },
+    {
+      "id": "hard-reset",
+      "severity": "CRITICAL",
+      "pattern": "\\bgit\\s+reset\\s+--hard\\b",
+      "finding": "Command string can discard local work.",
+      "remediation": "Remove hard reset from hooks; use a read-only validation command."
+    },
+    {
+      "id": "git-clean-force",
+      "severity": "CRITICAL",
+      "pattern": "\\bgit\\s+clean\\s+-fd",
+      "finding": "Command string can delete untracked files.",
+      "remediation": "Move cleanup to an explicit maintainer command outside hook execution."
+    },
+    {
+      "id": "sudo",
+      "severity": "WARNING",
+      "pattern": "\\bsudo\\b",
+      "finding": "Command string requests elevated privileges.",
+      "remediation": "Hooks should run with normal user privileges and fail closed."
+    },
+    {
+      "id": "network-pipe-shell",
+      "severity": "WARNING",
+      "pattern": "(curl|wget).*(\\||>)\\s*(bash|sh)",
+      "finding": "Command string appears to fetch and execute remote content.",
+      "remediation": "Vendor scripts locally and call deterministic project-local files."
+    },
+    {
+      "id": "secret-file-read",
+      "severity": "WARNING",
+      "pattern": "(\\.env|id_rsa|id_ed25519|credentials\\.json|secrets?\\.)",
+      "finding": "Command string references sensitive files or secret-like paths.",
+      "remediation": "Remove secret reads from hooks and pass only safe environment variables."
+    }
+  ],
+  "portable_script_prefixes": [
+    "bash scripts/",
+    "./scripts/",
+    "python3 scripts/"
+  ]
+}

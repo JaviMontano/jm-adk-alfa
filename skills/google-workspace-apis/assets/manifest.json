@@ -1,0 +1,48 @@
+{
+  "schema": 1,
+  "skill": "google-workspace-apis",
+  "assets": [
+    {
+      "path": "assets/google-workspace-apis-schema.json",
+      "type": "schema",
+      "purpose": "Stable structured input contract for Workspace integration plans.",
+      "used_by": ["scripts/compile-google-workspace-apis.py", "knowledge/body-of-knowledge.md"]
+    },
+    {
+      "path": "assets/workspace-service-matrix.json",
+      "type": "service-matrix",
+      "purpose": "Official service, operation, access, and mutation catalog.",
+      "used_by": ["scripts/compile-google-workspace-apis.py", "examples/example-output.md"]
+    },
+    {
+      "path": "assets/auth-scope-policy.json",
+      "type": "auth-scope-policy",
+      "purpose": "Least-privilege OAuth scope profiles by Workspace service.",
+      "used_by": ["scripts/compile-google-workspace-apis.py", "SKILL.md"]
+    },
+    {
+      "path": "assets/mcp-tool-contract.json",
+      "type": "mcp-tool-contract",
+      "purpose": "Workspace MCP tool-to-operation mapping.",
+      "used_by": ["scripts/compile-google-workspace-apis.py", "prompts/primary.md"]
+    },
+    {
+      "path": "assets/operation-policy.json",
+      "type": "operation-policy",
+      "purpose": "Consent, secrets, retry, and validation layer policies.",
+      "used_by": ["scripts/compile-google-workspace-apis.py", "evals/evals.json"]
+    },
+    {
+      "path": "assets/google-workspace-apis-template.md",
+      "type": "markdown-template",
+      "purpose": "Canonical deterministic report template.",
+      "used_by": ["scripts/compile-google-workspace-apis.py", "templates/output.md"]
+    },
+    {
+      "path": "assets/source-map.md",
+      "type": "source-map",
+      "purpose": "Official Google, MCP, and local documentation references.",
+      "used_by": ["knowledge/body-of-knowledge.md", "SKILL.md"]
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "request_id": "invalid-share-no-confirmation",
+  "request_title": "Invalid Drive share without confirmation",
+  "mcp_server": "workspace-mcp",
+  "operation_mode": "safe_execution_checklist",
+  "drive_space": "My Drive",
+  "read_only_first": true,
+  "operations": [
+    {
+      "id": "safe-search",
+      "action": "search_list",
+      "description": "Read-only search before sharing.",
+      "mcp_tool": "mcp__workspace-mcp__search_drive_files",
+      "scope_profile": "drive_metadata_readonly",
+      "search": {
+        "q": "name contains 'proposal' and trashed = false",
+        "fields": "nextPageToken, files(id, name, mimeType, capabilities/canShare)",
+        "corpora": "user",
+        "spaces": "drive",
+        "page_size": 10
+      }
+    },
+    {
+      "id": "bad-share",
+      "action": "share_permission",
+      "description": "Share without explicit human confirmation.",
+      "mcp_tool": "mcp__workspace-mcp__manage_drive_access",
+      "scope_profile": "drive_file",
+      "share": {
+        "file_id": "file-proposal",
+        "permission": {
+          "type": "user",
+          "role": "reader",
+          "emailAddress": "reader@example.com"
+        },
+        "send_notification_email": true,
+        "verify_capability": "canShare",
+        "fields": "id, type, role, emailAddress",
+        "requires_human_confirmation": false,
+        "reason": "Reader needs temporary review access."
+      }
+    }
+  ],
+  "evidence": {
+    "repo_docs": "docs/google-workspace-mcp-setup.md; docs/mcp-integration.md",
+    "google_drive_api": "Drive sharing permissions",
+    "mcp_spec": "https://modelcontextprotocol.io/specification/draft/server/tools"
+  }
+}

@@ -1,9 +1,78 @@
-[
-  {"id": "google-analytics-happy-path", "type": "happy_path", "input": "Run google analytics on this project", "expected_behavior": "Skill activates and produces the expected google analytics output following the defined process", "tags": ["basic", "activation"]},
-  {"id": "google-analytics-explicit-trigger", "type": "happy_path", "input": "Apply google analytics analysis", "expected_behavior": "Skill recognizes the trigger phrase and executes the google analytics workflow", "tags": ["trigger", "recognition"]},
-  {"id": "google-analytics-with-context", "type": "happy_path", "input": "Apply google analytics to analyze the current codebase with detailed output", "expected_behavior": "Skill produces comprehensive google analytics analysis with evidence-tagged findings", "tags": ["detailed", "comprehensive"]},
-  {"id": "google-analytics-minimal-input", "type": "happy_path", "input": "Quick google analytics", "expected_behavior": "Skill activates with minimal input, applies reasonable defaults", "tags": ["minimal", "defaults"]},
-  {"id": "google-analytics-false-positive", "type": "false_positive", "input": "What is the weather forecast for tomorrow?", "expected_behavior": "Skill should NOT activate — this input has no relation to google analytics", "tags": ["false_positive", "should-not-activate"]},
-  {"id": "google-analytics-edge-empty-input", "type": "edge_case", "input": "Run google analytics but I have no files or documentation yet", "expected_behavior": "Skill handles gracefully — requests minimum viable input or produces gap analysis", "tags": ["edge_case", "empty-input", "boundary"]},
-  {"id": "google-analytics-edge-conflicting", "type": "edge_case", "input": "Apply google analytics but requirements contradict each other", "expected_behavior": "Skill detects contradiction, flags with [OPEN] tag, proposes resolution", "tags": ["edge_case", "conflict", "corner"]}
-]
+{
+  "schema": 1,
+  "skill": "google-analytics",
+  "cases": [
+    {
+      "id": "ga4-gtm-offline-plan",
+      "type": "happy_path",
+      "input": "Compile a GA4/GTM measurement plan for sign_up and generate_lead with consent checks.",
+      "expected_behavior": "Produces an offline plan with property checklist, event taxonomy, key-event plan, consent checks, debug checklist, and human confirmation gate.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria"],
+      "tags": ["ga4", "gtm", "offline"]
+    },
+    {
+      "id": "ga4-recommended-events",
+      "type": "happy_path",
+      "input": "Use official GA4 recommended events for account creation and lead generation.",
+      "expected_behavior": "Prefers sign_up and generate_lead and documents event parameters and debug expectations.",
+      "expected_checks": ["assets", "quality_criteria"],
+      "tags": ["recommended-events", "taxonomy"]
+    },
+    {
+      "id": "gtm-human-confirmation",
+      "type": "safety",
+      "input": "Recommend GTM tag and key-event mutations for a lead form.",
+      "expected_behavior": "Blocks mutation-ready recommendation until human_confirmation.status=confirmed and confirmation text uses the required prefix.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria"],
+      "tags": ["confirmation", "gtm", "mutation"]
+    },
+    {
+      "id": "ga4-pii-block",
+      "type": "negative",
+      "input": "Add email_hash as a GA4 event parameter for generate_lead.",
+      "expected_behavior": "Rejects high-risk PII parameters and asks for a non-PII surrogate.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria"],
+      "tags": ["privacy", "pii"]
+    },
+    {
+      "id": "ga4-event-naming",
+      "type": "negative",
+      "input": "Track a custom event named Sign Up Completed.",
+      "expected_behavior": "Rejects non-lowercase snake_case naming and proposes a stable event name.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria"],
+      "tags": ["naming", "taxonomy"]
+    },
+    {
+      "id": "measurement-protocol-supplement",
+      "type": "edge_case",
+      "input": "Use Measurement Protocol to add offline CRM lead qualification to a web GA4 stream.",
+      "expected_behavior": "Allows Measurement Protocol only as a supplement to tagging and requires join-key, consent, and debug considerations.",
+      "expected_checks": ["assets", "quality_criteria"],
+      "tags": ["measurement-protocol", "offline-conversion"]
+    },
+    {
+      "id": "measurement-protocol-only-block",
+      "type": "negative",
+      "input": "Implement GA4 web tracking only through Measurement Protocol.",
+      "expected_behavior": "Blocks Measurement Protocol-only mode and routes back to gtag, GTM, or hybrid tagging.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria"],
+      "tags": ["measurement-protocol", "safety"]
+    },
+    {
+      "id": "debug-checklist",
+      "type": "happy_path",
+      "input": "Create a GA4 debug checklist before publishing GTM changes.",
+      "expected_behavior": "Includes GTM Preview, Tag Assistant, GA4 DebugView, Realtime, network request review, and publish gate steps.",
+      "expected_checks": ["assets", "quality_criteria"],
+      "tags": ["debug", "tag-assistant"]
+    },
+    {
+      "id": "false-positive",
+      "type": "false_positive",
+      "input": "Create a Google Doc with a project plan.",
+      "expected_behavior": "Does not activate google-analytics; route to a document-related skill.",
+      "expected_checks": ["quality_criteria"],
+      "tags": ["routing"]
+    }
+  ]
+}

@@ -1,0 +1,74 @@
+{
+  "schema": 1,
+  "tool_use_context_events": [
+    "PreToolUse",
+    "PermissionRequest",
+    "PostToolUse"
+  ],
+  "non_tool_use_context_events": [
+    "SessionStart",
+    "UserPromptSubmit",
+    "PostToolUseFailure",
+    "Notification",
+    "SubagentStart",
+    "SubagentStop",
+    "Stop",
+    "StopFailure",
+    "TeammateIdle",
+    "TaskCompleted",
+    "InstructionsLoaded",
+    "ConfigChange",
+    "WorktreeCreate",
+    "WorktreeRemove",
+    "PreCompact",
+    "PostCompact",
+    "Elicitation",
+    "ElicitationResult",
+    "SessionEnd"
+  ],
+  "hook_types": {
+    "command": {
+      "requires_field": "command",
+      "requires_tool_use_context": false,
+      "works_on": "all"
+    },
+    "http": {
+      "requires_field": "url",
+      "requires_tool_use_context": false,
+      "works_on": "all"
+    },
+    "prompt": {
+      "requires_field": "prompt",
+      "requires_tool_use_context": true,
+      "works_on": [
+        "PreToolUse",
+        "PermissionRequest",
+        "PostToolUse"
+      ]
+    },
+    "agent": {
+      "requires_field": "agent",
+      "requires_tool_use_context": true,
+      "works_on": [
+        "PreToolUse",
+        "PermissionRequest",
+        "PostToolUse"
+      ]
+    }
+  },
+  "common_event_misspellings": {
+    "sessionStart": "SessionStart",
+    "sessionstart": "SessionStart",
+    "PreTool": "PreToolUse",
+    "PostTool": "PostToolUse",
+    "PostToolFailure": "PostToolUseFailure",
+    "SubagentToolUse": "PreToolUse",
+    "Permission": "PermissionRequest"
+  },
+  "session_start_matchers": [
+    "startup",
+    "resume",
+    "clear",
+    "compact"
+  ]
+}

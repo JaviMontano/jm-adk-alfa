@@ -1,75 +1,108 @@
 {
   "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-28",
   "skill": "google-maps-integration",
   "nodes": [
     {
       "id": "google-maps-integration",
       "type": "skill",
-      "label": "google-maps-integration"
+      "label": "Google Maps Integration"
     },
     {
-      "id": "google-maps-integration:inputs",
+      "id": "maps-platform-plan-schema",
       "type": "contract",
-      "label": "Expected inputs"
+      "label": "Stable offline plan schema"
     },
     {
-      "id": "google-maps-integration:outputs",
-      "type": "contract",
-      "label": "Expected outputs"
+      "id": "maps-javascript-api",
+      "type": "api",
+      "label": "Maps JavaScript API"
     },
     {
-      "id": "google-maps-integration:quality",
-      "type": "gate",
-      "label": "Quality criteria"
+      "id": "advanced-markers",
+      "type": "feature",
+      "label": "Advanced Markers"
     },
     {
-      "id": "google-maps-integration:ontology",
-      "type": "ontology",
-      "label": "Domain: general"
+      "id": "marker-clusterer",
+      "type": "library",
+      "label": "@googlemaps/markerclusterer"
     },
     {
-      "id": "google-maps-integration:evidence",
-      "type": "gate",
-      "label": "Evidence / provenance requirements"
+      "id": "places-api-new",
+      "type": "api",
+      "label": "Places API (New)"
     },
     {
-      "id": "google-maps-integration:antipattern",
+      "id": "geocoding-api",
+      "type": "api",
+      "label": "Geocoding API"
+    },
+    {
+      "id": "directions-api-legacy",
+      "type": "api",
+      "label": "Directions API (Legacy)"
+    },
+    {
+      "id": "api-key-restrictions",
+      "type": "security-control",
+      "label": "API key restrictions"
+    },
+    {
+      "id": "billing-quota-risk",
       "type": "risk",
-      "label": "Canonical anti-pattern to avoid"
+      "label": "Billing and quota exposure"
+    },
+    {
+      "id": "human-confirmation-gate",
+      "type": "gate",
+      "label": "Human confirmation and offline gate"
     }
   ],
   "edges": [
     {
       "from": "google-maps-integration",
-      "to": "google-maps-integration:inputs",
+      "to": "maps-platform-plan-schema",
       "type": "requires"
     },
     {
       "from": "google-maps-integration",
-      "to": "google-maps-integration:outputs",
-      "type": "produces"
+      "to": "maps-javascript-api",
+      "type": "selects"
     },
     {
       "from": "google-maps-integration",
-      "to": "google-maps-integration:quality",
-      "type": "validated_by"
+      "to": "advanced-markers",
+      "type": "plans"
     },
     {
       "from": "google-maps-integration",
-      "to": "google-maps-integration:ontology",
-      "type": "classified_as"
+      "to": "marker-clusterer",
+      "type": "plans"
     },
     {
       "from": "google-maps-integration",
-      "to": "google-maps-integration:evidence",
-      "type": "validated_by"
+      "to": "places-api-new",
+      "type": "selects"
     },
     {
       "from": "google-maps-integration",
-      "to": "google-maps-integration:antipattern",
-      "type": "guards_against"
+      "to": "geocoding-api",
+      "type": "selects"
+    },
+    {
+      "from": "google-maps-integration",
+      "to": "directions-api-legacy",
+      "type": "selects_with_legacy_gate"
+    },
+    {
+      "from": "api-key-restrictions",
+      "to": "billing-quota-risk",
+      "type": "reduces"
+    },
+    {
+      "from": "human-confirmation-gate",
+      "to": "google-maps-integration",
+      "type": "validates"
     }
   ]
 }

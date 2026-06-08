@@ -1,0 +1,41 @@
+{
+  "schema": 1,
+  "skill": "gmail-mcp",
+  "never_store": [
+    "OAuth tokens",
+    "refresh tokens",
+    "credentials.json",
+    "message bodies",
+    "attachments",
+    "private email addresses unless required for the active task"
+  ],
+  "redact_by_default": [
+    "email addresses",
+    "phone numbers",
+    "physical addresses",
+    "access tokens",
+    "verification codes",
+    "password reset links",
+    "financial account identifiers"
+  ],
+  "safe_evidence": [
+    "message id",
+    "thread id",
+    "label id",
+    "query string",
+    "scope family",
+    "operation type",
+    "confirmation status"
+  ],
+  "unsafe_evidence": [
+    "full message body",
+    "attachment payload",
+    "credential file path contents",
+    "OAuth token values"
+  ],
+  "attachment_policy": {
+    "default": "metadata_only",
+    "store_in_repo": false,
+    "requires_user_request": true
+  }
+}

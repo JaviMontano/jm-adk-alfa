@@ -1,0 +1,21 @@
+{
+  "schema": 1,
+  "required_layers": [
+    "unit",
+    "contract",
+    "integration-sandbox",
+    "e2e-preview",
+    "security",
+    "quota-error",
+    "consent-gate"
+  ],
+  "coverage_expectations": {
+    "unit": "Validate local schema, service catalog mapping, and scope profile selection.",
+    "contract": "Validate request/response payload shape for each planned API operation.",
+    "integration-sandbox": "Use a non-production Google Cloud project and disposable resources.",
+    "e2e-preview": "Run user-visible flows with test accounts and read-back verification.",
+    "security": "Verify OAuth consent, key restrictions, secret storage, and logging redaction.",
+    "quota-error": "Exercise 400, 401, 403, 429, and 5xx paths with deterministic stubs.",
+    "consent-gate": "Verify mutating operations cannot run without explicit confirmation."
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "fragments": [
+    "# Google Maps Platform Offline Plan",
+    "[INFERENCE] Selected APIs: Maps JavaScript API, Places API (New), Geocoding API, Directions API (Legacy).",
+    "[DOC] `Advanced Markers`: Advanced Markers support customizable markers, keyboard/click interaction, and require a map ID.",
+    "[CODE] `browser-maps-key` runtime `browser` uses `http_referrers` and APIs: Maps JavaScript API.",
+    "[CODE] Places session tokens enabled: True.",
+    "[CODE] Marker clustering library: `@googlemaps/markerclusterer`.",
+    "[CONFIG] External API calls: False.",
+    "[INFERENCE] Directions API is Legacy, so new production builds should evaluate newer routing services before final implementation."
+  ]
+}

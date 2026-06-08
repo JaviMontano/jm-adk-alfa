@@ -1,9 +1,78 @@
-[
-  {"id": "google-apis-integration-happy-path", "type": "happy_path", "input": "Run google apis integration on this project", "expected_behavior": "Skill activates and produces the expected google apis integration output following the defined process", "tags": ["basic", "activation"]},
-  {"id": "google-apis-integration-explicit-trigger", "type": "happy_path", "input": "Apply google apis integration analysis", "expected_behavior": "Skill recognizes the trigger phrase and executes the google apis integration workflow", "tags": ["trigger", "recognition"]},
-  {"id": "google-apis-integration-with-context", "type": "happy_path", "input": "Apply google apis integration to analyze the current codebase with detailed output", "expected_behavior": "Skill produces comprehensive google apis integration analysis with evidence-tagged findings", "tags": ["detailed", "comprehensive"]},
-  {"id": "google-apis-integration-minimal-input", "type": "happy_path", "input": "Quick google apis integration", "expected_behavior": "Skill activates with minimal input, applies reasonable defaults", "tags": ["minimal", "defaults"]},
-  {"id": "google-apis-integration-false-positive", "type": "false_positive", "input": "What is the weather forecast for tomorrow?", "expected_behavior": "Skill should NOT activate — this input has no relation to google apis integration", "tags": ["false_positive", "should-not-activate"]},
-  {"id": "google-apis-integration-edge-empty-input", "type": "edge_case", "input": "Run google apis integration but I have no files or documentation yet", "expected_behavior": "Skill handles gracefully — requests minimum viable input or produces gap analysis", "tags": ["edge_case", "empty-input", "boundary"]},
-  {"id": "google-apis-integration-edge-conflicting", "type": "edge_case", "input": "Apply google apis integration but requirements contradict each other", "expected_behavior": "Skill detects contradiction, flags with [OPEN] tag, proposes resolution", "tags": ["edge_case", "conflict", "corner"]}
-]
+{
+  "schema": 1,
+  "skill": "google-apis-integration",
+  "cases": [
+    {
+      "id": "google-apis-integration-multi-service-plan",
+      "type": "happy_path",
+      "input": "Plan Sheets, Docs, Calendar, Maps JavaScript, and YouTube Data API integration for a dashboard with no live API calls.",
+      "expected_activation": true,
+      "expected_behavior": "Compiles a deterministic offline plan with service operations, least-privilege auth, consent, secrets, quota/error handling, retry/idempotency, and test matrix.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria"],
+      "tags": ["multi-service", "offline", "planning"]
+    },
+    {
+      "id": "google-apis-integration-oauth-scope-review",
+      "type": "happy_path",
+      "input": "Review OAuth scopes for Google Sheets write, Docs write, Calendar event creation, and YouTube upload.",
+      "expected_activation": true,
+      "expected_behavior": "Selects service-specific OAuth profiles, blocks broad read-only scope use, and requires escalation reasons for broad write scopes.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria"],
+      "tags": ["oauth", "scopes", "least-privilege"]
+    },
+    {
+      "id": "google-apis-integration-maps-api-key",
+      "type": "happy_path",
+      "input": "Add Maps JavaScript to the plan with browser rendering and key restrictions.",
+      "expected_activation": true,
+      "expected_behavior": "Uses the Maps JS restricted API-key profile instead of OAuth scopes and verifies referrer/API restrictions.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria"],
+      "tags": ["maps", "api-key", "browser"]
+    },
+    {
+      "id": "google-apis-integration-consent-gate",
+      "type": "edge_case",
+      "input": "Write to Docs and Calendar without asking the user to confirm the changes.",
+      "expected_activation": true,
+      "expected_behavior": "Blocks mutating operation planning until human_consent.status=confirmed and confirmation text are present.",
+      "expected_checks": ["deterministic_scripts", "quality_criteria", "confirmation_gate"],
+      "tags": ["negative-fixture", "consent"]
+    },
+    {
+      "id": "google-apis-integration-idempotency",
+      "type": "edge_case",
+      "input": "Retry Calendar and Docs writes but do not provide operation keys.",
+      "expected_activation": true,
+      "expected_behavior": "Rejects mutating operations that lack idempotency keys and retry policy mapping.",
+      "expected_checks": ["deterministic_scripts", "quality_criteria"],
+      "tags": ["retry", "idempotency", "negative-fixture"]
+    },
+    {
+      "id": "google-apis-integration-secrets-policy",
+      "type": "edge_case",
+      "input": "Put OAuth client secrets and refresh tokens in the static frontend so Maps and YouTube can use them.",
+      "expected_activation": true,
+      "expected_behavior": "Rejects client-side OAuth secrets and committed tokens while allowing only restricted browser API keys where applicable.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria"],
+      "tags": ["secrets", "security"]
+    },
+    {
+      "id": "google-apis-integration-test-matrix",
+      "type": "happy_path",
+      "input": "Generate a test matrix for multi-Google-API integration before implementation.",
+      "expected_activation": true,
+      "expected_behavior": "Includes unit, contract, integration-sandbox, e2e-preview, security, quota-error, and consent-gate layers.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria"],
+      "tags": ["testing", "matrix"]
+    },
+    {
+      "id": "google-apis-integration-false-positive",
+      "type": "false_positive",
+      "input": "Write a generic product brief without Google APIs, OAuth, maps, video, documents, sheets, or calendar requirements.",
+      "expected_activation": false,
+      "expected_behavior": "Does not activate because the request lacks Google API integration intent.",
+      "expected_checks": ["quality_criteria"],
+      "tags": ["false-positive"]
+    }
+  ]
+}

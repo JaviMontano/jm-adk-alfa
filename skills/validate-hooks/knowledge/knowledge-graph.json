@@ -1,75 +1,73 @@
 {
   "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-28",
   "skill": "validate-hooks",
   "nodes": [
     {
       "id": "validate-hooks",
       "type": "skill",
-      "label": "validate-hooks"
+      "label": "Validate Hooks"
     },
     {
-      "id": "validate-hooks:inputs",
+      "id": "hooks-json-structure",
       "type": "contract",
-      "label": "Expected inputs"
+      "label": "hooks.json structure"
     },
     {
-      "id": "validate-hooks:outputs",
-      "type": "contract",
-      "label": "Expected outputs"
+      "id": "hook-event-matrix",
+      "type": "asset",
+      "label": "22 event compatibility matrix"
     },
     {
-      "id": "validate-hooks:quality",
-      "type": "gate",
-      "label": "Quality criteria"
+      "id": "tool-use-context",
+      "type": "runtime-context",
+      "label": "ToolUseContext availability"
     },
     {
-      "id": "validate-hooks:ontology",
-      "type": "ontology",
-      "label": "Domain: agentic-architecture/hooks"
+      "id": "command-safety",
+      "type": "policy",
+      "label": "Command safety policy"
     },
     {
-      "id": "validate-hooks:evidence",
-      "type": "gate",
-      "label": "Evidence / provenance requirements"
+      "id": "placement-guard",
+      "type": "policy",
+      "label": "Placement guard expectations"
     },
     {
-      "id": "validate-hooks:antipattern",
-      "type": "risk",
-      "label": "Canonical anti-pattern to avoid"
+      "id": "offline-compiler",
+      "type": "script",
+      "label": "compile-validate-hooks.py"
     }
   ],
   "edges": [
     {
       "from": "validate-hooks",
-      "to": "validate-hooks:inputs",
-      "type": "requires"
+      "to": "hooks-json-structure",
+      "type": "validates"
     },
     {
       "from": "validate-hooks",
-      "to": "validate-hooks:outputs",
-      "type": "produces"
+      "to": "hook-event-matrix",
+      "type": "uses"
     },
     {
       "from": "validate-hooks",
-      "to": "validate-hooks:quality",
-      "type": "validated_by"
+      "to": "tool-use-context",
+      "type": "checks"
     },
     {
       "from": "validate-hooks",
-      "to": "validate-hooks:ontology",
-      "type": "classified_as"
+      "to": "command-safety",
+      "type": "checks"
     },
     {
       "from": "validate-hooks",
-      "to": "validate-hooks:evidence",
-      "type": "validated_by"
+      "to": "placement-guard",
+      "type": "checks"
     },
     {
       "from": "validate-hooks",
-      "to": "validate-hooks:antipattern",
-      "type": "guards_against"
+      "to": "offline-compiler",
+      "type": "implemented_by"
     }
   ]
 }

@@ -1,0 +1,50 @@
+{
+  "schema": 1,
+  "policy_name": "google-drive-upload-policy",
+  "upload_types": [
+    {
+      "id": "media",
+      "query_value": "media",
+      "max_size_mb": 5,
+      "metadata_supported": false,
+      "use_when": "Small media-only upload where metadata is not important."
+    },
+    {
+      "id": "multipart",
+      "query_value": "multipart",
+      "max_size_mb": 5,
+      "metadata_supported": true,
+      "use_when": "Small upload with metadata in the same request."
+    },
+    {
+      "id": "resumable",
+      "query_value": "resumable",
+      "max_size_mb": 5242880,
+      "metadata_supported": true,
+      "use_when": "Files greater than 5 MB or uploads likely to be interrupted."
+    }
+  ],
+  "requirements": {
+    "metadata_fields": [
+      "name",
+      "parents",
+      "mimeType"
+    ],
+    "response_fields": [
+      "id",
+      "name",
+      "mimeType",
+      "parents",
+      "webViewLink"
+    ],
+    "confirm_before_upload": true,
+    "block_sensitive_local_patterns": [
+      ".env",
+      "credentials.json",
+      "token.json",
+      "client_secret",
+      ".pem",
+      ".key"
+    ]
+  }
+}

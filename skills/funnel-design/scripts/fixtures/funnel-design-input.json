@@ -1,0 +1,112 @@
+{
+  "product": "AI Productivity Sprint",
+  "audience": "Operations leaders in 50-500 employee service companies",
+  "offer": "A guided sprint to identify and automate operational time sinks with AI",
+  "goal": "Generate qualified consultations",
+  "conversion_event": "booked diagnostic call",
+  "sales_motion": "sales-led",
+  "evidence": {
+    "icp": "operations leaders, 50-500 employees",
+    "source_notes": "webinar notes, ICP brief, 12 prior consultation notes",
+    "primary_pain": "manual coordination and reporting load"
+  },
+  "stages": [
+    {
+      "id": "tofu",
+      "intent": "Recognize operational time loss",
+      "core_question": "Where is the team losing time every week?",
+      "content_assets": [
+        "Blog: Where operations teams lose time",
+        "LinkedIn carousel: 5 invisible coordination costs",
+        "3-minute explainer video"
+      ],
+      "cta": "Subscribe for the operations AI checklist",
+      "metric": "engaged visitors",
+      "owner": "marketing"
+    },
+    {
+      "id": "mofu",
+      "intent": "Diagnose productivity gap and compare approaches",
+      "core_question": "Which workflow should we automate first?",
+      "content_assets": [
+        "Self-assessment",
+        "Webinar replay",
+        "ROI worksheet"
+      ],
+      "cta": "Complete the self-assessment",
+      "metric": "MQL score increase",
+      "owner": "growth"
+    },
+    {
+      "id": "bofu",
+      "intent": "Decide whether to book a diagnostic call",
+      "core_question": "Can this sprint reduce risk and produce a useful first automation?",
+      "content_assets": [
+        "Case story",
+        "Diagnostic call page",
+        "Objection FAQ"
+      ],
+      "cta": "Book diagnostic call",
+      "metric": "qualified calls booked",
+      "owner": "sales"
+    }
+  ],
+  "lead_scoring": [
+    {
+      "name": "High-fit industry",
+      "points": 20,
+      "dimension": "fit",
+      "evidence": "industry matches ICP"
+    },
+    {
+      "name": "Team size 50-500",
+      "points": 15,
+      "dimension": "fit",
+      "evidence": "company size field"
+    },
+    {
+      "name": "Self-assessment completed",
+      "points": 25,
+      "dimension": "intent",
+      "evidence": "assessment submission"
+    },
+    {
+      "name": "Webinar attendance",
+      "points": 15,
+      "dimension": "engagement",
+      "evidence": "webinar attended"
+    },
+    {
+      "name": "Diagnostic page visit",
+      "points": 20,
+      "dimension": "intent",
+      "evidence": "diagnostic page event"
+    }
+  ],
+  "nurture_paths": [
+    {
+      "id": "new-subscriber",
+      "trigger": "TOFU subscription",
+      "delay": "0 days",
+      "message": "Send operations AI checklist",
+      "branch": "continue",
+      "exit": "self-assessment completed or unsubscribe"
+    },
+    {
+      "id": "assessment-completed",
+      "trigger": "Self-assessment completed",
+      "delay": "1 day",
+      "message": "Send workflow prioritization note",
+      "branch": "mql",
+      "exit": "score >= 60 or no engagement after 14 days"
+    },
+    {
+      "id": "diagnostic-intent",
+      "trigger": "Diagnostic page visit",
+      "delay": "same day",
+      "message": "Invite diagnostic call",
+      "branch": "sales-ready",
+      "exit": "call booked or explicit no interest"
+    }
+  ]
+}

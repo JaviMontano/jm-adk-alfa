@@ -1,12 +1,11 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: google-calendar-mcp
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
+# Google Calendar MCP Quick Variation
 
-# Google Calendar Mcp Quick Variation
+Use when the task is read-only or already includes calendar id, date window, timezone, and clear intent.
 
-Use when the task is low risk and well specified.
+Return:
 
-Return only the requested deliverable, validation status, and residual risks.
+- [CODE] Operation and calendar id.
+- [DOC] Minimum scope.
+- [CODE] Read-only-first status.
+- [CODE] Result or payload preview.
+- [INFERENCE] Residual risks.

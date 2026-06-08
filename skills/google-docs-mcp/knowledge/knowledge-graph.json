@@ -1,7 +1,5 @@
 {
   "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-28",
   "skill": "google-docs-mcp",
   "nodes": [
     {
@@ -10,66 +8,91 @@
       "label": "google-docs-mcp"
     },
     {
-      "id": "google-docs-mcp:inputs",
-      "type": "contract",
-      "label": "Expected inputs"
+      "id": "docs-api:create",
+      "type": "api_method",
+      "label": "documents.create"
     },
     {
-      "id": "google-docs-mcp:outputs",
-      "type": "contract",
-      "label": "Expected outputs"
+      "id": "docs-api:get",
+      "type": "api_method",
+      "label": "documents.get"
     },
     {
-      "id": "google-docs-mcp:quality",
+      "id": "docs-api:batch-update",
+      "type": "api_method",
+      "label": "documents.batchUpdate"
+    },
+    {
+      "id": "scope:docs-readonly",
+      "type": "scope",
+      "label": "documents.readonly"
+    },
+    {
+      "id": "scope:drive-file",
+      "type": "scope",
+      "label": "drive.file"
+    },
+    {
+      "id": "gate:human-confirmation",
       "type": "gate",
-      "label": "Quality criteria"
+      "label": "Human confirmation before mutation"
     },
     {
-      "id": "google-docs-mcp:ontology",
-      "type": "ontology",
-      "label": "Domain: tool-design-mcp"
-    },
-    {
-      "id": "google-docs-mcp:evidence",
-      "type": "gate",
-      "label": "Evidence / provenance requirements"
-    },
-    {
-      "id": "google-docs-mcp:antipattern",
-      "type": "risk",
-      "label": "Canonical anti-pattern to avoid"
+      "id": "script:compiler",
+      "type": "script",
+      "label": "compile-google-docs-mcp.py"
     }
   ],
   "edges": [
     {
       "from": "google-docs-mcp",
-      "to": "google-docs-mcp:inputs",
+      "to": "docs-api:create",
+      "type": "plans"
+    },
+    {
+      "from": "google-docs-mcp",
+      "to": "docs-api:get",
+      "type": "plans"
+    },
+    {
+      "from": "google-docs-mcp",
+      "to": "docs-api:batch-update",
+      "type": "plans"
+    },
+    {
+      "from": "docs-api:get",
+      "to": "docs-api:batch-update",
+      "type": "precedes"
+    },
+    {
+      "from": "docs-api:create",
+      "to": "gate:human-confirmation",
       "type": "requires"
     },
     {
-      "from": "google-docs-mcp",
-      "to": "google-docs-mcp:outputs",
-      "type": "produces"
+      "from": "docs-api:batch-update",
+      "to": "gate:human-confirmation",
+      "type": "requires"
     },
     {
-      "from": "google-docs-mcp",
-      "to": "google-docs-mcp:quality",
-      "type": "validated_by"
+      "from": "docs-api:get",
+      "to": "scope:docs-readonly",
+      "type": "uses_minimum_scope"
     },
     {
-      "from": "google-docs-mcp",
-      "to": "google-docs-mcp:ontology",
-      "type": "classified_as"
+      "from": "docs-api:create",
+      "to": "scope:drive-file",
+      "type": "uses_preferred_mutation_scope"
     },
     {
-      "from": "google-docs-mcp",
-      "to": "google-docs-mcp:evidence",
-      "type": "validated_by"
+      "from": "docs-api:batch-update",
+      "to": "scope:drive-file",
+      "type": "uses_preferred_mutation_scope"
     },
     {
-      "from": "google-docs-mcp",
-      "to": "google-docs-mcp:antipattern",
-      "type": "guards_against"
+      "from": "script:compiler",
+      "to": "gate:human-confirmation",
+      "type": "validates"
     }
   ]
 }

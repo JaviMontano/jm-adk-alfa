@@ -1,0 +1,63 @@
+{
+  "operation_id": "portfolio-review-20260603-1500-bogota",
+  "operation": "create_event",
+  "calendar_id": "primary",
+  "requested_scope": "https://www.googleapis.com/auth/calendar.events",
+  "time_zone": "America/Bogota",
+  "calendar_access": {
+    "write_access_confirmed": true,
+    "source": "fixture read-only preflight"
+  },
+  "read_only_first": {
+    "calendars_listed": true,
+    "events_checked": true,
+    "conflicts": []
+  },
+  "human_confirmation": {
+    "status": "confirmed",
+    "confirmed_by": "user",
+    "confirmation_text": "Create Portfolio review on primary for 2026-06-03 15:00 America/Bogota with Ana and Javier, Google Meet, send updates to all."
+  },
+  "event": {
+    "summary": "Portfolio review",
+    "description": "Review active portfolio priorities and next actions.",
+    "location": "Google Meet",
+    "start": {
+      "date_time": "2026-06-03T15:00:00-05:00",
+      "time_zone": "America/Bogota"
+    },
+    "end": {
+      "date_time": "2026-06-03T15:45:00-05:00",
+      "time_zone": "America/Bogota"
+    },
+    "attendees": [
+      {
+        "email": "ana@example.com",
+        "optional": false
+      },
+      {
+        "email": "javier@example.com",
+        "optional": false
+      }
+    ],
+    "send_updates": "all",
+    "meet": {
+      "required": true,
+      "conference_data_version": 1,
+      "request_id": "portfolio-review-20260603-1500-bogota"
+    },
+    "reminders": {
+      "useDefault": true
+    }
+  },
+  "idempotency": {
+    "event_id": "portfolio-review-20260603-1500-bogota",
+    "conference_request_id": "portfolio-review-20260603-1500-bogota",
+    "retry_policy": "Reuse event_id only for the same intended event; generate a fresh requestId for a different Meet request."
+  },
+  "evidence": {
+    "source": "offline fixture",
+    "calendar_window_checked": "2026-06-03T14:30:00-05:00/2026-06-03T16:00:00-05:00",
+    "mcp_calls_executed_by_script": "none"
+  }
+}

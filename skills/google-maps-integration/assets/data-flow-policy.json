@@ -1,0 +1,49 @@
+{
+  "schema": 1,
+  "sources": {
+    "places_api": "https://developers.google.com/maps/documentation/places/web-service/overview",
+    "geocoding_api": "https://developers.google.com/maps/documentation/geocoding/overview",
+    "directions_api": "https://developers.google.com/maps/documentation/directions/overview"
+  },
+  "places": {
+    "required_controls": [
+      "session_tokens",
+      "selected_fields",
+      "place_id_as_reference",
+      "avoid_reviews_and_photos_unless_required"
+    ],
+    "recommended_fields": [
+      "id",
+      "displayName",
+      "formattedAddress",
+      "location"
+    ],
+    "rationale": "[DOC] Places API (New) supports search, autocomplete, details, photos, and place IDs; the skill plans only the fields needed for the use case."
+  },
+  "geocoding": {
+    "required_controls": [
+      "normalized_input",
+      "cache_policy",
+      "reverse_geocoding_purpose",
+      "component_or_region_constraint_when_available"
+    ],
+    "rationale": "[DOC] Geocoding API converts addresses, coordinates, and place IDs into coordinates, place IDs, or human-readable addresses."
+  },
+  "directions": {
+    "required_controls": [
+      "legacy_acknowledged",
+      "origin_destination_source",
+      "waypoints_policy",
+      "travel_mode_documented",
+      "response_retention_policy"
+    ],
+    "rationale": "[DOC] Directions API (Legacy) calculates routes using origins, destinations, waypoints, travel mode, travel time, distance, and turns."
+  },
+  "privacy_controls": [
+    "collect only fields required by the feature",
+    "redact raw addresses and precise coordinates from logs",
+    "store place IDs and normalized derived data where possible",
+    "ask for consent before precise user location collection",
+    "document retention and deletion policy"
+  ]
+}

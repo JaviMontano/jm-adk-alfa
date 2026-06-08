@@ -1,0 +1,44 @@
+{
+  "request_id": "gmail-invalid-send",
+  "objective": "Send an email without explicit human confirmation.",
+  "operation": "send_message",
+  "read_only_first": true,
+  "search": {
+    "query": "to:recipient@example.com newer_than:7d",
+    "label_ids": [
+      "INBOX"
+    ],
+    "max_results": 5,
+    "needs_body_access": false
+  },
+  "planned_actions": [
+    {
+      "id": "search-context",
+      "type": "search_messages",
+      "tool": "mcp__workspace-mcp__search_gmail_messages",
+      "description": "Search metadata first."
+    },
+    {
+      "id": "send-without-confirmation",
+      "type": "send_message",
+      "tool": "mcp__workspace-mcp__send_gmail_message",
+      "description": "Unsafe direct send without the required confirmation phrase.",
+      "to": [
+        "recipient@example.com"
+      ],
+      "subject": "Unsafe send",
+      "body_summary": "This should be rejected."
+    }
+  ],
+  "privacy": {
+    "store_email_bodies": false,
+    "store_attachments": false,
+    "redact_pii": true,
+    "redact_credentials": true
+  },
+  "evidence": {
+    "source": "offline negative fixture",
+    "documentation_snapshot": "Google Gmail API + MCP tools docs reviewed 2026-06-01",
+    "compiler_mode": "offline_only"
+  }
+}

@@ -1,17 +1,27 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: google-docs-mcp
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
+# Google Docs MCP Meta Prompt
 
-# Google Docs Mcp Meta Prompt
-
-Review whether `google-docs-mcp` should activate, whether the scope is safe, and which support agents should participate.
+Review whether `google-docs-mcp` should activate, whether the requested Docs
+operation is safe, and which agent lens should lead.
 
 ## Activation Check
 
-- Trigger match
-- Domain fit
-- Sufficient input
-- No safer specialized skill available
+- Trigger references Google Docs, document creation, document inspection, or
+  document editing.
+- The work can be represented by `documents.create`, `documents.get`,
+  `documents.batchUpdate`, or a local `workspace-mcp` Docs tool.
+- The request is not better handled by Drive, Sheets, Slides, Gmail, or Calendar.
+
+## Safety Check
+
+- Read-only inspection may proceed with read-only tooling and least privilege.
+- `documents.create` and `documents.batchUpdate` require confirmation before live
+  execution.
+- Batch updates require a prior `documents.get` for the same document.
+- Broad `documents` scope requires escalation reason.
+
+## Agent Routing
+
+- Lead handles operation planning and output.
+- Support reviews request ordering, indexes, styling, and scope.
+- Guardian blocks missing evidence, missing confirmation, or unsafe scope.
+- Specialist joins for tables, styles, bullets, and rich content requests.

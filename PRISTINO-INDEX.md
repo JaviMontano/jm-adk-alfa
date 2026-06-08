@@ -509,7 +509,7 @@
 | 234 | `github-actions-ci` | — |
 | 235 | `gmail-mcp` | — |
 | 236 | `google-analytics` | — |
-| 237 | `google-apis-integration` | Google Sheets API v4, Docs API v1, Calendar API v3, Maps JS API, YouTube Data AP |
+| 237 | `google-apis-integration` | Multi-service Google API integration planning for Google Sheets API v4, Docs API |
 | 238 | `google-calendar-mcp` | — |
 | 239 | `google-docs-mcp` | — |
 | 240 | `google-drive-mcp` | — |

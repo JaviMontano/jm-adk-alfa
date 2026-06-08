@@ -1,0 +1,34 @@
+{
+  "schema": 1,
+  "skill": "gmail-mcp",
+  "send_workflow": [
+    "Search or read the relevant message/thread first.",
+    "Draft the proposed message whenever possible.",
+    "Present recipients, cc, bcc, subject, thread context, body summary, attachments, and risks.",
+    "Require explicit human confirmation before send.",
+    "Call the send tool only after confirmation and scope review."
+  ],
+  "confirmation_required_fields": [
+    "to",
+    "subject",
+    "body_summary",
+    "send_scope",
+    "tool",
+    "confirmation_phrase"
+  ],
+  "confirmation_phrase_prefix": "CONFIRMED:",
+  "direct_send": {
+    "default": "block",
+    "allow_only_if": [
+      "user explicitly asks to send now",
+      "final recipient and content are shown",
+      "human confirmation phrase is present",
+      "scope review allows gmail.send or equivalent"
+    ]
+  },
+  "gmail_api_requirements": [
+    "messages.send sends to recipients in To, Cc, and Bcc headers.",
+    "messages.send accepts a Message request body and returns a Message on success.",
+    "Raw Gmail API sends require MIME content encoded as base64URL; MCP tools may abstract this but the safety review must still check recipients and content."
+  ]
+}

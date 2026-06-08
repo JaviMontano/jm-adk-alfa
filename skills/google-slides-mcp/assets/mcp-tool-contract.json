@@ -1,0 +1,44 @@
+{
+  "schema": 1,
+  "server": "workspace-mcp",
+  "tool_tier": "extended",
+  "offline_compiler": true,
+  "tools": [
+    {
+      "name": "mcp__workspace-mcp__create_presentation",
+      "action": "presentations.create",
+      "rest_method": "POST /v1/presentations",
+      "read_only": false,
+      "requires_human_confirmation": true
+    },
+    {
+      "name": "mcp__workspace-mcp__get_presentation",
+      "action": "presentations.get",
+      "rest_method": "GET /v1/presentations/{presentationId}",
+      "read_only": true,
+      "requires_human_confirmation": false
+    },
+    {
+      "name": "mcp__workspace-mcp__batch_update_presentation",
+      "action": "presentations.batchUpdate",
+      "rest_method": "POST /v1/presentations/{presentationId}:batchUpdate",
+      "read_only": false,
+      "requires_human_confirmation": true
+    },
+    {
+      "name": "mcp__workspace-mcp__get_page",
+      "action": "presentations.pages.get",
+      "rest_method": "GET /v1/presentations/{presentationId}/pages/{pageObjectId}",
+      "read_only": true,
+      "requires_human_confirmation": false
+    },
+    {
+      "name": "mcp__workspace-mcp__get_page_thumbnail",
+      "action": "presentations.pages.getThumbnail",
+      "rest_method": "GET /v1/presentations/{presentationId}/pages/{pageObjectId}/thumbnail",
+      "read_only": true,
+      "expensive_read": true,
+      "requires_human_confirmation": false
+    }
+  ]
+}

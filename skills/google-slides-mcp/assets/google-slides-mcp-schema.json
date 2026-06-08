@@ -1,0 +1,106 @@
+{
+  "schema": 1,
+  "required_root_fields": [
+    "request_id",
+    "request_title",
+    "mcp_server",
+    "operation_mode",
+    "read_only_first",
+    "operations",
+    "evidence"
+  ],
+  "allowed_operation_modes": [
+    "plan_only",
+    "safe_execution_checklist"
+  ],
+  "allowed_mcp_servers": [
+    "workspace-mcp"
+  ],
+  "allowed_actions": [
+    "presentations.create",
+    "presentations.get",
+    "presentations.batchUpdate",
+    "presentations.pages.get",
+    "presentations.pages.getThumbnail"
+  ],
+  "read_only_actions": [
+    "presentations.get",
+    "presentations.pages.get",
+    "presentations.pages.getThumbnail"
+  ],
+  "mutating_actions": [
+    "presentations.create",
+    "presentations.batchUpdate"
+  ],
+  "required_operation_fields": [
+    "id",
+    "action",
+    "description",
+    "mcp_tool",
+    "scope_profile"
+  ],
+  "required_read_only_first_fields": [
+    "status",
+    "checks"
+  ],
+  "allowed_read_only_first_statuses": [
+    "complete",
+    "not_required_read_only_plan"
+  ],
+  "minimum_read_only_first_checks": [
+    "workspace_mcp_tools_checked",
+    "oauth_scope_checked"
+  ],
+  "required_create_fields": [
+    "title",
+    "human_confirmation"
+  ],
+  "allowed_create_body_fields": [
+    "title",
+    "presentationId"
+  ],
+  "required_get_fields": [
+    "presentation_id"
+  ],
+  "required_page_get_fields": [
+    "presentation_id",
+    "page_object_id"
+  ],
+  "required_thumbnail_fields": [
+    "presentation_id",
+    "page_object_id",
+    "thumbnail_size",
+    "content_url_handling"
+  ],
+  "required_batch_update_fields": [
+    "presentation_id",
+    "requests",
+    "human_confirmation"
+  ],
+  "required_confirmation_fields": [
+    "status",
+    "confirmed_by",
+    "confirmation_text"
+  ],
+  "required_evidence_fields": [
+    "google_slides_rest",
+    "google_slides_scopes",
+    "google_workspace_mcp",
+    "mcp_tools_spec",
+    "local_docs"
+  ],
+  "allowed_thumbnail_sizes": [
+    "SMALL",
+    "MEDIUM",
+    "LARGE",
+    "THUMBNAIL_SIZE_UNSPECIFIED"
+  ],
+  "allowed_thumbnail_mime_types": [
+    "PNG"
+  ],
+  "allowed_content_url_handling": [
+    "do_not_persist",
+    "short_lived_preview",
+    "discard_after_review"
+  ]
+}

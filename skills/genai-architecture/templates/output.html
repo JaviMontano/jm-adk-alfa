@@ -1,33 +1,39 @@
-<!-- JM Labs Brand Template: Genai Architecture -->
-<!-- Uses: brand/jmlabs/brand-config.json + brand/jmlabs/corporate-template.css -->
-<!-- Replace: {{TITLE}}, {{SUBTITLE}}, {{CONTENT}}, {{DATE}} -->
+<!-- JM Labs Brand Template: GenAI Architecture -->
 <!DOCTYPE html>
 <html lang="es" class="dark">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>{{TITLE}} | Genai Architecture | JM Labs</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<title>{{SYSTEM_NAME}} | GenAI Architecture | JM Labs</title>
 <style>
-:root{--navy:#122562;--gold:#FFD700;--blue:#137DC5;--bg:#0B1120;--bg-alt:#0F1929;--heading:#F1F5F9;--text-s:#94A3B8}
-body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--heading);margin:0;padding:2rem}
-.c{max-width:1000px;margin:0 auto}
-h1{font-family:'Poppins',sans-serif;font-weight:900;font-size:clamp(2rem,5vw,3rem)}
-h1 .gold{color:var(--gold)}
-h2{font-family:'Poppins',sans-serif;color:var(--gold);border-bottom:1px solid rgba(255,255,255,.05);padding-bottom:.5rem}
-.card{background:var(--bg-alt);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:1.5rem;margin:1rem 0}
-table{width:100%;border-collapse:collapse}
-th{font-family:'Poppins',sans-serif;color:var(--gold);text-align:left;padding:.75rem;border-bottom:2px solid var(--gold)}
-td{padding:.75rem;border-bottom:1px solid rgba(255,255,255,.05)}
-footer{text-align:center;margin-top:3rem;border-top:2px solid var(--gold);padding:1.5rem;font-size:.75rem;color:var(--text-s)}
+:root{--navy:#122562;--gold:#FFD700;--blue:#137DC5;--bg:#0B1120;--panel:#0F1929;--heading:#F1F5F9;--text:#CBD5E1;--muted:#94A3B8}
+body{font-family:Inter,system-ui,sans-serif;background:var(--bg);color:var(--text);margin:0;padding:2rem}
+.wrap{max-width:1120px;margin:0 auto}
+h1,h2{font-family:Poppins,Inter,sans-serif;color:var(--heading)}
+h1{font-size:clamp(2rem,5vw,3rem);margin:.2rem 0}
+h2{color:var(--gold);border-bottom:1px solid rgba(255,255,255,.08);padding-bottom:.45rem}
+.kicker{color:var(--gold);font-weight:800;text-transform:uppercase;letter-spacing:.08em}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem}
+.card{background:var(--panel);border:1px solid rgba(255,255,255,.08);border-radius:8px;padding:1rem}
+table{width:100%;border-collapse:collapse;margin:1rem 0}
+th{color:var(--gold);text-align:left;border-bottom:2px solid var(--gold);padding:.65rem}
+td{border-bottom:1px solid rgba(255,255,255,.08);padding:.65rem;vertical-align:top}
+.muted{color:var(--muted)}
+footer{text-align:center;margin-top:3rem;border-top:2px solid var(--gold);padding:1.5rem;font-size:.78rem;color:var(--muted)}
 </style>
 </head>
 <body>
-<div class="c">
-  <h1>JM <span class="gold">Labs</span></h1>
-  <h2>{{TITLE}}</h2>
-  <p style="color:var(--text-s)">{{SUBTITLE}}</p>
-  <div class="card">{{CONTENT}}</div>
-  <footer>JM Labs · Genai Architecture · {{DATE}}</footer>
-</div>
+<main class="wrap">
+  <p class="kicker">JM Labs · GenAI Architecture</p>
+  <h1>{{SYSTEM_NAME}}</h1>
+  <p class="muted">{{BUSINESS_GOAL}}</p>
+  <section class="grid">
+    <div class="card"><strong>Pattern</strong><br>{{RECOMMENDED_PATTERN}}</div>
+    <div class="card"><strong>Vector store</strong><br>{{RECOMMENDED_VECTOR_DB}}</div>
+    <div class="card"><strong>Scope</strong><br>{{SCOPE}}</div>
+    <div class="card"><strong>Sensitivity</strong><br>{{DATA_SENSITIVITY}}</div>
+  </section>
+  <section class="card">{{CONTENT}}</section>
+  <footer>JM Labs · GenAI Architecture · {{DATE}}</footer>
+</main>
 </body>
 </html>

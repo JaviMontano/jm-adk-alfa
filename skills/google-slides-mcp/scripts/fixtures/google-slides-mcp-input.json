@@ -1,0 +1,114 @@
+{
+  "request_id": "slides-plan-2026-qbr",
+  "request_title": "Build QBR draft deck with safe thumbnail preview",
+  "mcp_server": "workspace-mcp",
+  "operation_mode": "safe_execution_checklist",
+  "read_only_first": {
+    "status": "complete",
+    "checks": [
+      "workspace_mcp_tools_checked",
+      "oauth_scope_checked",
+      "template_presentation_read",
+      "page_thumbnail_policy_checked"
+    ]
+  },
+  "operations": [
+    {
+      "id": "read-template",
+      "action": "presentations.get",
+      "description": "Read the existing QBR template before copying layout decisions.",
+      "mcp_tool": "mcp__workspace-mcp__get_presentation",
+      "scope_profile": "app_file",
+      "get": {
+        "presentation_id": "template_qbr_2026"
+      }
+    },
+    {
+      "id": "read-title-page",
+      "action": "presentations.pages.get",
+      "description": "Inspect the template title slide page object.",
+      "mcp_tool": "mcp__workspace-mcp__get_page",
+      "scope_profile": "app_file",
+      "page_get": {
+        "presentation_id": "template_qbr_2026",
+        "page_object_id": "slide_title"
+      }
+    },
+    {
+      "id": "preview-title-page",
+      "action": "presentations.pages.getThumbnail",
+      "description": "Generate a temporary thumbnail preview for visual verification.",
+      "mcp_tool": "mcp__workspace-mcp__get_page_thumbnail",
+      "scope_profile": "app_file",
+      "thumbnail": {
+        "presentation_id": "template_qbr_2026",
+        "page_object_id": "slide_title",
+        "mime_type": "PNG",
+        "thumbnail_size": "MEDIUM",
+        "content_url_handling": "discard_after_review"
+      }
+    },
+    {
+      "id": "create-draft",
+      "action": "presentations.create",
+      "description": "Create a blank QBR draft presentation.",
+      "mcp_tool": "mcp__workspace-mcp__create_presentation",
+      "scope_profile": "app_file",
+      "create": {
+        "title": "QBR Draft 2026",
+        "presentation_id": "draft_qbr_2026",
+        "body": {
+          "title": "QBR Draft 2026",
+          "presentationId": "draft_qbr_2026"
+        },
+        "human_confirmation": {
+          "status": "confirmed",
+          "confirmed_by": "javier",
+          "confirmation_text": "CONFIRM GOOGLE SLIDES MUTATION: create QBR Draft 2026 in my Workspace account."
+        }
+      }
+    },
+    {
+      "id": "write-core-slides",
+      "action": "presentations.batchUpdate",
+      "description": "Create core slides and insert title text in the draft deck.",
+      "mcp_tool": "mcp__workspace-mcp__batch_update_presentation",
+      "scope_profile": "app_file",
+      "batch_update": {
+        "presentation_id": "draft_qbr_2026",
+        "write_control": {
+          "requiredRevisionId": "rev-from-create-response"
+        },
+        "requests": [
+          {
+            "createSlide": {
+              "objectId": "slide_exec_summary",
+              "slideLayoutReference": {
+                "predefinedLayout": "TITLE_AND_BODY"
+              }
+            }
+          },
+          {
+            "insertText": {
+              "objectId": "slide_exec_summary_title",
+              "text": "Executive Summary"
+            }
+          }
+        ],
+        "human_confirmation": {
+          "status": "confirmed",
+          "confirmed_by": "javier",
+          "confirmation_text": "CONFIRM GOOGLE SLIDES MUTATION: batch update draft_qbr_2026 with the approved core slides."
+        }
+      }
+    }
+  ],
+  "evidence": {
+    "compiler_mode": "offline_only",
+    "google_slides_rest": "Slides REST v1 supports presentations.create/get/batchUpdate and presentations.pages.get/getThumbnail.",
+    "google_slides_scopes": "drive.file is the recommended narrow app-file scope; presentations.readonly and presentations are Slides-specific alternatives.",
+    "google_workspace_mcp": "Google Workspace developer docs describe an MCP server for retrieving current Workspace documentation.",
+    "mcp_tools_spec": "MCP tools expose named tools with schemas and can request additional input before completion.",
+    "local_docs": "docs/google-workspace-mcp-setup.md and docs/mcp-integration.md define workspace-mcp setup for JM-ADK."
+  }
+}

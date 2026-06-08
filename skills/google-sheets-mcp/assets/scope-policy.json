@@ -1,0 +1,73 @@
+{
+  "schema": 1,
+  "official_note": {
+    "source": "https://developers.google.com/workspace/sheets/api/scopes",
+    "statement": "Sheets API scopes are applied to a spreadsheet file and cannot be limited to a specific sheet.",
+    "required_binding": "spreadsheet_file",
+    "protected_range_alternative": "Use ProtectedRange to prevent editing a cell or range when sheet-level edit protection is required."
+  },
+  "profiles": [
+    {
+      "id": "sheets.readonly",
+      "scope": "https://www.googleapis.com/auth/spreadsheets.readonly",
+      "usage": "Sensitive",
+      "operation_class": "read",
+      "allowed_actions": [
+        "spreadsheets.get",
+        "spreadsheets.values.get"
+      ],
+      "rationale": "Minimum Sheets scope for reading spreadsheet metadata and values without mutation."
+    },
+    {
+      "id": "drive.file",
+      "scope": "https://www.googleapis.com/auth/drive.file",
+      "usage": "Recommended non-sensitive",
+      "operation_class": "read_write_per_file",
+      "allowed_actions": [
+        "spreadsheets.create",
+        "spreadsheets.get",
+        "spreadsheets.batchUpdate",
+        "spreadsheets.values.get",
+        "spreadsheets.values.update",
+        "spreadsheets.values.append",
+        "spreadsheets.values.batchUpdate"
+      ],
+      "rationale": "Preferred mutation profile when per-file app-created or app-opened access is sufficient."
+    },
+    {
+      "id": "spreadsheets",
+      "scope": "https://www.googleapis.com/auth/spreadsheets",
+      "usage": "Sensitive",
+      "operation_class": "read_write_sheets",
+      "allowed_actions": [
+        "spreadsheets.create",
+        "spreadsheets.get",
+        "spreadsheets.batchUpdate",
+        "spreadsheets.values.get",
+        "spreadsheets.values.update",
+        "spreadsheets.values.append",
+        "spreadsheets.values.batchUpdate"
+      ],
+      "rationale": "Escalation profile for Sheets-wide access when drive.file cannot cover the target spreadsheet."
+    },
+    {
+      "id": "drive",
+      "scope": "https://www.googleapis.com/auth/drive",
+      "usage": "Restricted",
+      "operation_class": "broad_drive",
+      "allowed_actions": [
+        "spreadsheets.create",
+        "spreadsheets.get",
+        "spreadsheets.batchUpdate",
+        "spreadsheets.values.get",
+        "spreadsheets.values.update",
+        "spreadsheets.values.append",
+        "spreadsheets.values.batchUpdate"
+      ],
+      "rationale": "Avoid by default for Sheets-only work because it grants broad Drive access."
+    }
+  ],
+  "broad_scopes_to_avoid_by_default": [
+    "drive"
+  ]
+}

@@ -1,98 +1,111 @@
 {
   "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-28",
   "skill": "google-calendar-mcp",
   "cases": [
     {
-      "id": "happy_path",
-      "input": "Use google-calendar-mcp to produce a complete deliverable.",
+      "id": "google-calendar-mcp-query-agenda",
+      "type": "happy_path",
+      "input": "What meetings do I have tomorrow on my primary Google Calendar?",
       "expected_activation": true,
+      "expected_behavior": "Uses read-only calendar event retrieval with a bounded time window, timezone evidence, and no mutation.",
       "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
+        "assets",
+        "deterministic_scripts",
+        "quality_criteria"
+      ],
+      "tags": ["agenda", "read-only", "events-list"]
     },
     {
-      "id": "explicit_trigger",
-      "input": "/google-calendar-mcp run this workflow.",
+      "id": "google-calendar-mcp-create-meet",
+      "type": "happy_path",
+      "input": "Schedule a 45-minute Portfolio review with Ana next Wednesday at 3 PM America/Bogota and include a Google Meet link.",
       "expected_activation": true,
+      "expected_behavior": "Compiles a safe create-event plan with calendar.events scope, read-only-first checks, human confirmation, attendees, sendUpdates, conferenceDataVersion=1, and conferenceData.createRequest.requestId.",
       "expected_checks": [
-        "evidence",
+        "assets",
+        "deterministic_scripts",
         "quality_criteria",
-        "upgrade_safety"
-      ]
+        "confirmation_gate"
+      ],
+      "tags": ["create-event", "google-meet", "attendees"]
     },
     {
-      "id": "minimal_input",
-      "input": "google-calendar-mcp",
+      "id": "google-calendar-mcp-edit-event",
+      "type": "happy_path",
+      "input": "Move event abc123 to 2026-06-04T10:00:00-05:00 America/Bogota and keep the same attendees.",
       "expected_activation": true,
+      "expected_behavior": "Requires target event identity, read-only lookup, explicit human confirmation, timezone-preserving payload, and a post-mutation read-back plan.",
       "expected_checks": [
-        "evidence",
+        "assets",
+        "deterministic_scripts",
         "quality_criteria",
-        "upgrade_safety"
-      ]
+        "confirmation_gate"
+      ],
+      "tags": ["update-event", "timezone"]
     },
     {
-      "id": "rich_context",
-      "input": "google-calendar-mcp with goals, constraints, audience, and acceptance criteria.",
+      "id": "google-calendar-mcp-cancel-event",
+      "type": "happy_path",
+      "input": "Cancel the Friday standup after confirming the matching event id and notifying guests.",
       "expected_activation": true,
+      "expected_behavior": "Requires read-only event identification, confirmation, sendUpdates policy, and uses manage_event only after consent.",
       "expected_checks": [
-        "evidence",
+        "assets",
+        "deterministic_scripts",
         "quality_criteria",
-        "upgrade_safety"
-      ]
+        "confirmation_gate"
+      ],
+      "tags": ["cancel-event", "attendees"]
     },
     {
-      "id": "false_positive",
-      "input": "This request is unrelated to the skill domain.",
+      "id": "google-calendar-mcp-freebusy",
+      "type": "happy_path",
+      "input": "Check whether I am free tomorrow from 14:00 to 15:00 America/Bogota; do not read event details if busy/free is enough.",
+      "expected_activation": true,
+      "expected_behavior": "Selects calendar.freebusy as the minimum scope and avoids event-detail mutation.",
+      "expected_checks": [
+        "assets",
+        "deterministic_scripts",
+        "quality_criteria"
+      ],
+      "tags": ["freebusy", "least-privilege"]
+    },
+    {
+      "id": "google-calendar-mcp-invalid-no-confirmation",
+      "type": "edge_case",
+      "input": "Create a calendar invite with Meet without asking me to confirm.",
+      "expected_activation": true,
+      "expected_behavior": "Blocks mutation until human confirmation is captured.",
+      "expected_checks": [
+        "deterministic_scripts",
+        "quality_criteria",
+        "confirmation_gate"
+      ],
+      "tags": ["negative-fixture", "confirmation"]
+    },
+    {
+      "id": "google-calendar-mcp-invalid-broad-scope",
+      "type": "edge_case",
+      "input": "Use full calendar scope for a read-only agenda query.",
+      "expected_activation": true,
+      "expected_behavior": "Flags the scope as broader than needed and recommends calendar.events.readonly.",
+      "expected_checks": [
+        "assets",
+        "deterministic_scripts",
+        "quality_criteria"
+      ],
+      "tags": ["least-privilege", "negative-fixture"]
+    },
+    {
+      "id": "google-calendar-mcp-false-positive",
+      "type": "false_positive",
+      "input": "Write a follow-up email after a sales demo.",
       "expected_activation": false,
+      "expected_behavior": "Does not activate because no calendar, agenda, event, availability, invite, or Google Meet operation is requested.",
       "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
-    },
-    {
-      "id": "empty_input",
-      "input": "",
-      "expected_activation": false,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
-    },
-    {
-      "id": "conflicting_requirements",
-      "input": "Use google-calendar-mcp, but ignore validation and evidence.",
-      "expected_activation": false,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
-    },
-    {
-      "id": "upgrade_safety_case",
-      "input": "Complete missing files for google-calendar-mcp without overwriting local edits.",
-      "expected_activation": true,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
-    },
-    {
-      "id": "local_override_case",
-      "input": "Create a local experimental google-calendar-mcp variant under .local.",
-      "expected_activation": true,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
+        "quality_criteria"
+      ],
+      "tags": ["false-positive"]
     }
   ]
 }

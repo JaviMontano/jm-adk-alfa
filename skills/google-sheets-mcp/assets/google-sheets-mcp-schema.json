@@ -1,0 +1,116 @@
+{
+  "schema": 1,
+  "required_root_fields": [
+    "request_id",
+    "request_title",
+    "mcp_server",
+    "operation_mode",
+    "read_only_first",
+    "human_confirmation",
+    "operations",
+    "evidence"
+  ],
+  "allowed_mcp_servers": [
+    "workspace-mcp"
+  ],
+  "allowed_operation_modes": [
+    "plan_only",
+    "safe_execution_checklist"
+  ],
+  "allowed_actions": [
+    "spreadsheets.create",
+    "spreadsheets.get",
+    "spreadsheets.batchUpdate",
+    "spreadsheets.values.get",
+    "spreadsheets.values.update",
+    "spreadsheets.values.append",
+    "spreadsheets.values.batchUpdate"
+  ],
+  "read_only_actions": [
+    "spreadsheets.get",
+    "spreadsheets.values.get"
+  ],
+  "mutating_actions": [
+    "spreadsheets.create",
+    "spreadsheets.batchUpdate",
+    "spreadsheets.values.update",
+    "spreadsheets.values.append",
+    "spreadsheets.values.batchUpdate"
+  ],
+  "required_operation_fields": [
+    "id",
+    "action",
+    "description",
+    "mcp_tool",
+    "scope_profile",
+    "scope_binding"
+  ],
+  "required_spreadsheet_get_fields": [
+    "spreadsheet_id",
+    "fields",
+    "include_grid_data"
+  ],
+  "required_spreadsheet_create_fields": [
+    "spreadsheet_body"
+  ],
+  "required_batch_update_fields": [
+    "spreadsheet_id",
+    "batch_update"
+  ],
+  "required_values_get_fields": [
+    "spreadsheet_id",
+    "range_a1",
+    "major_dimension",
+    "value_render_option",
+    "date_time_render_option"
+  ],
+  "required_values_write_fields": [
+    "spreadsheet_id",
+    "value_range",
+    "value_input_option",
+    "requires_human_confirmation",
+    "confirmation_key"
+  ],
+  "required_values_append_fields": [
+    "spreadsheet_id",
+    "value_range",
+    "value_input_option",
+    "insert_data_option",
+    "requires_human_confirmation",
+    "confirmation_key"
+  ],
+  "required_values_batch_update_fields": [
+    "spreadsheet_id",
+    "batch_values",
+    "requires_human_confirmation",
+    "confirmation_key"
+  ],
+  "required_evidence_fields": [
+    "google_sheets_rest",
+    "google_sheets_scopes",
+    "google_workspace_mcp",
+    "mcp_tools_spec",
+    "local_setup_docs"
+  ],
+  "allowed_major_dimensions": [
+    "ROWS",
+    "COLUMNS"
+  ],
+  "allowed_value_input_options": [
+    "RAW",
+    "USER_ENTERED"
+  ],
+  "allowed_value_render_options": [
+    "FORMATTED_VALUE",
+    "UNFORMATTED_VALUE",
+    "FORMULA"
+  ],
+  "allowed_date_time_render_options": [
+    "SERIAL_NUMBER",
+    "FORMATTED_STRING"
+  ],
+  "allowed_insert_data_options": [
+    "OVERWRITE",
+    "INSERT_ROWS"
+  ]
+}

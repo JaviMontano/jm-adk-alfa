@@ -1,0 +1,77 @@
+{
+  "schema": 1,
+  "source": "https://developers.google.com/workspace/docs/api/reference/rest",
+  "methods": [
+    {
+      "id": "documents.create",
+      "action": "create_document",
+      "http": "POST /v1/documents",
+      "read_only": false,
+      "mutating": true,
+      "summary": "Creates a blank Google Doc using document metadata such as title.",
+      "required_payload": [
+        "title"
+      ],
+      "blocked_payload": [
+        "body",
+        "content",
+        "requests",
+        "text"
+      ],
+      "follow_up": "Use documents.batchUpdate to insert body content."
+    },
+    {
+      "id": "documents.get",
+      "action": "get_document",
+      "http": "GET /v1/documents/{documentId}",
+      "read_only": true,
+      "mutating": false,
+      "summary": "Retrieves the latest document structure and content visible to the caller.",
+      "recommended_fields": [
+        "documentId",
+        "title",
+        "body/content",
+        "tabs",
+        "revisionId"
+      ],
+      "safety_use": "Resolve structure, indexes, and revision information before batch updates."
+    },
+    {
+      "id": "documents.batchUpdate",
+      "action": "batch_update",
+      "http": "POST /v1/documents/{documentId}:batchUpdate",
+      "read_only": false,
+      "mutating": true,
+      "summary": "Applies one or more update requests to a document in the order provided.",
+      "requires": [
+        "documentId",
+        "requests[]"
+      ],
+      "recommended": [
+        "writeControl.requiredRevisionId",
+        "prior documents.get",
+        "human confirmation"
+      ]
+    }
+  ],
+  "batch_request_policy": {
+    "supported_request_types": [
+      "insertText",
+      "deleteContentRange",
+      "replaceAllText",
+      "updateTextStyle",
+      "updateParagraphStyle",
+      "createParagraphBullets",
+      "insertTable",
+      "insertPageBreak"
+    ],
+    "validation_rules": [
+      "Each request must have exactly one Docs API request type and an object payload.",
+      "Text insertion requires payload.text and payload.location.index.",
+      "Range operations require payload.range.startIndex and payload.range.endIndex.",
+      "Style operations require payload.fields.",
+      "Table insertion requires positive rows and columns.",
+      "Batch updates require prior document inspection in this skill."
+    ]
+  }
+}

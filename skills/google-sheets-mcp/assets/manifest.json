@@ -1,0 +1,78 @@
+{
+  "schema": 1,
+  "skill": "google-sheets-mcp",
+  "assets": [
+    {
+      "path": "assets/google-sheets-mcp-schema.json",
+      "type": "schema",
+      "purpose": "Required structured input fields, operation types, and validation rules for safe Sheets MCP plans.",
+      "used_by": [
+        "scripts/compile-google-sheets-mcp.py",
+        "knowledge/body-of-knowledge.md"
+      ]
+    },
+    {
+      "path": "assets/scope-policy.json",
+      "type": "scope-policy",
+      "purpose": "Least-privilege Sheets OAuth scope profiles and official spreadsheet-file binding note.",
+      "used_by": [
+        "scripts/compile-google-sheets-mcp.py",
+        "knowledge/body-of-knowledge.md"
+      ]
+    },
+    {
+      "path": "assets/mcp-tool-contract.json",
+      "type": "mcp-tool-contract",
+      "purpose": "Local workspace-mcp Sheets tool names mapped to official REST methods and operation classes.",
+      "used_by": [
+        "scripts/compile-google-sheets-mcp.py",
+        "SKILL.md"
+      ]
+    },
+    {
+      "path": "assets/operation-safety-policy.json",
+      "type": "safety-policy",
+      "purpose": "Read-only-first, human-confirmation, and offline-only gates for Sheets MCP operations.",
+      "used_by": [
+        "scripts/compile-google-sheets-mcp.py",
+        "prompts/primary.md"
+      ]
+    },
+    {
+      "path": "assets/value-range-policy.json",
+      "type": "value-policy",
+      "purpose": "ValueRange shape, value input options, append behavior, and value render defaults.",
+      "used_by": [
+        "scripts/compile-google-sheets-mcp.py",
+        "examples/example-output.md"
+      ]
+    },
+    {
+      "path": "assets/batch-update-policy.json",
+      "type": "batch-update-policy",
+      "purpose": "Structural batchUpdate request types, atomicity note, and response-shaping guidance.",
+      "used_by": [
+        "scripts/compile-google-sheets-mcp.py",
+        "knowledge/body-of-knowledge.md"
+      ]
+    },
+    {
+      "path": "assets/source-map.md",
+      "type": "source-map",
+      "purpose": "Primary official and local documentation references used by this skill.",
+      "used_by": [
+        "knowledge/body-of-knowledge.md",
+        "examples/example-output.md"
+      ]
+    },
+    {
+      "path": "assets/google-sheets-mcp-template.md",
+      "type": "markdown-template",
+      "purpose": "Canonical deterministic Google Sheets MCP report structure.",
+      "used_by": [
+        "scripts/compile-google-sheets-mcp.py",
+        "templates/output.md"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "fragments": [
+    "# Google Calendar MCP Operation: portfolio-review-20260603-1500-bogota",
+    "`create_event` on `primary` for `Portfolio review`",
+    "https://www.googleapis.com/auth/calendar.events",
+    "Calendars listed: True",
+    "Status: `confirmed`",
+    "\"conferenceDataVersion\": 1",
+    "\"requestId\": \"portfolio-review-20260603-1500-bogota\"",
+    "mcp__workspace-mcp__manage_event",
+    "Compiler made no Google Calendar, OAuth, or MCP calls"
+  ]
+}

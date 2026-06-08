@@ -1,0 +1,29 @@
+{
+  "schema": 1,
+  "stages": [
+    {
+      "id": "tofu",
+      "label": "TOFU",
+      "buyer_intent": "Recognize problem or opportunity",
+      "content_role": "Educate and create relevance",
+      "minimum_assets": 2,
+      "default_cta": "Subscribe, watch, read, or self-identify"
+    },
+    {
+      "id": "mofu",
+      "label": "MOFU",
+      "buyer_intent": "Compare approaches and assess fit",
+      "content_role": "Build trust and diagnose need",
+      "minimum_assets": 2,
+      "default_cta": "Download, attend, assess, or calculate"
+    },
+    {
+      "id": "bofu",
+      "label": "BOFU",
+      "buyer_intent": "Decide vendor or next step",
+      "content_role": "Reduce risk and trigger action",
+      "minimum_assets": 2,
+      "default_cta": "Book, buy, trial, or talk to sales"
+    }
+  ]
+}

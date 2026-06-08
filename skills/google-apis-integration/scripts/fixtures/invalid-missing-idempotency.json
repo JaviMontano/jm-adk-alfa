@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "project": {
+    "name": "Invalid Idempotency Fixture",
+    "owner": "JM Labs",
+    "environment": "serverless_backend"
+  },
+  "integration_mode": "serverless_backend",
+  "services": [
+    {
+      "id": "calendar",
+      "operation": "events.insert",
+      "purpose": "Attempt to create an event without an operation key.",
+      "auth_profile": "calendar_events_write",
+      "requested_scopes": ["https://www.googleapis.com/auth/calendar.events"],
+      "mutation": true,
+      "resource_identifiers": {
+        "calendar_id": "primary",
+        "event_summary": "Invalid Event"
+      },
+      "read_before_write": true,
+      "idempotency_key": "",
+      "retry_policy": "calendar_event_write_backoff",
+      "quota_strategy": {
+        "batching": false,
+        "partial_response_fields": "id,htmlLink,status",
+        "quota_user_or_key_restriction": "quotaUser=invalid"
+      }
+    }
+  ],
+  "human_consent": {
+    "status": "confirmed",
+    "confirmed_by": "product-owner@example.com",
+    "confirmation_text": "I approve Google API mutations: Calendar invalid event."
+  },
+  "secrets": {
+    "token_storage": "server_secret_manager",
+    "client_secret_exposure": "never",
+    "refresh_tokens_encrypted": true,
+    "api_keys_restricted": true,
+    "oauth_tokens_server_side": true,
+    "no_static_secrets_in_client": true,
+    "maps_api_key_restriction": "http_referrer_and_api_restricted"
+  },
+  "test_matrix": [
+    {"id": "unit", "layer": "unit", "covers": ["schema"]},
+    {"id": "contract", "layer": "contract", "covers": ["payloads"]},
+    {"id": "sandbox", "layer": "integration-sandbox", "covers": ["test project"]},
+    {"id": "e2e", "layer": "e2e-preview", "covers": ["preview"]},
+    {"id": "security", "layer": "security", "covers": ["secrets"]},
+    {"id": "quota", "layer": "quota-error", "covers": ["errors"]},
+    {"id": "consent", "layer": "consent-gate", "covers": ["blocker"]}
+  ],
+  "evidence": {
+    "fixture": "negative missing idempotency"
+  }
+}

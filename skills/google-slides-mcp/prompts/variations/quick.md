@@ -1,12 +1,12 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: google-slides-mcp
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
+# Google Slides MCP Quick Variation
 
-# Google Slides Mcp Quick Variation
+Use when the Slides request is low risk and already includes target IDs, operations, scope profile, and confirmation text.
 
-Use when the task is low risk and well specified.
+Return:
 
-Return only the requested deliverable, validation status, and residual risks.
+- Offline compiler status.
+- Operation table.
+- Scope profile.
+- Confirmation status.
+- Next live MCP call, if safe.
+- Residual risks.

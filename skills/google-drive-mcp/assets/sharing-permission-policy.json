@@ -1,0 +1,56 @@
+{
+  "schema": 1,
+  "policy_name": "google-drive-sharing-permission-policy",
+  "permission_types": [
+    "user",
+    "group",
+    "domain",
+    "anyone"
+  ],
+  "roles": [
+    "owner",
+    "organizer",
+    "fileOrganizer",
+    "writer",
+    "commenter",
+    "reader"
+  ],
+  "safe_default_role": "reader",
+  "requirements": {
+    "confirm_before_permission_change": true,
+    "verify_capability": "canShare",
+    "fields": "id, type, role, emailAddress, domain, expirationTime, allowFileDiscovery",
+    "user_or_group_requires_email": true,
+    "domain_requires_domain": true,
+    "anyone_requires_explicit_reason": true,
+    "domain_requires_explicit_reason": true,
+    "owner_transfer_out_of_scope": true
+  },
+  "risk_flags": [
+    {
+      "id": "public_link",
+      "condition": "type=anyone",
+      "message": "Anyone access can expose content beyond intended recipients."
+    },
+    {
+      "id": "domain_wide",
+      "condition": "type=domain",
+      "message": "Domain-wide access can propagate beyond the immediate project team."
+    },
+    {
+      "id": "writer_or_higher",
+      "condition": "role in writer, owner, organizer, fileOrganizer",
+      "message": "Write or organizer roles can alter content or sharing."
+    }
+  ],
+  "confirmation_prompt_fields": [
+    "file_id",
+    "permission.type",
+    "permission.role",
+    "permission.emailAddress",
+    "permission.domain",
+    "permission.expirationTime",
+    "send_notification_email",
+    "reason"
+  ]
+}

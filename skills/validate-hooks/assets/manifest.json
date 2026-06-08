@@ -1,0 +1,51 @@
+{
+  "schema": 1,
+  "skill": "validate-hooks",
+  "assets": [
+    {
+      "path": "assets/hooks-audit-schema.json",
+      "type": "schema",
+      "purpose": "Required structured input fields and supported offline audit modes.",
+      "used_by": [
+        "scripts/compile-validate-hooks.py",
+        "knowledge/body-of-knowledge.md"
+      ]
+    },
+    {
+      "path": "assets/hook-compatibility-matrix.json",
+      "type": "compatibility-matrix",
+      "purpose": "Canonical event names, hook types, ToolUseContext classification, and type-event compatibility.",
+      "used_by": [
+        "scripts/compile-validate-hooks.py",
+        "references/hook-compatibility-matrix.md"
+      ]
+    },
+    {
+      "path": "assets/command-safety-policy.json",
+      "type": "command-safety-policy",
+      "purpose": "Offline command-string checks for destructive, secret-reading, and network pipe patterns.",
+      "used_by": [
+        "scripts/compile-validate-hooks.py",
+        "examples/example-output.md"
+      ]
+    },
+    {
+      "path": "assets/placement-guard-expectations.json",
+      "type": "placement-policy",
+      "purpose": "Expected placement guard event, command fragments, and remediation wording.",
+      "used_by": [
+        "scripts/compile-validate-hooks.py",
+        "templates/output.md"
+      ]
+    },
+    {
+      "path": "assets/validate-hooks-template.md",
+      "type": "markdown-template",
+      "purpose": "Canonical deterministic hooks audit report structure.",
+      "used_by": [
+        "scripts/compile-validate-hooks.py",
+        "templates/output.md"
+      ]
+    }
+  ]
+}

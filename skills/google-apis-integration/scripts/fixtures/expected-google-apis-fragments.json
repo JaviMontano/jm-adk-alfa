@@ -1,0 +1,14 @@
+{
+  "fragments": [
+    "Project: `Customer Operations Dashboard`",
+    "Services planned: 5",
+    "Mutating operations: 3",
+    "`sheets` uses `POST` `spreadsheets.values.batchUpdate`; mutation=true",
+    "`docs` auth profile `docs_write_file` uses `https://www.googleapis.com/auth/drive.file`",
+    "`calendar` idempotency key: `calendar-review-event-20260603`",
+    "`maps_js` auth profile `maps_js_restricted_key` uses `restricted-api-key/no-oauth-scope`",
+    "`youtube` `search.list`: Search public YouTube resources with API key or OAuth.",
+    "Human consent status: `confirmed`",
+    "No live Google, OAuth, HTTP, network, or MCP call was made."
+  ]
+}

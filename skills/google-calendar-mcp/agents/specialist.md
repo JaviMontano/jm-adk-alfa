@@ -5,5 +5,5 @@ description: "Recurring event patterns and availability analysis specialist for 
 tools: [Read, Write, Glob, Grep]
 ---
 # Google Calendar MCP Specialist
-Deep expertise in recurring event patterns and availability analysis.
-Activated when Lead or Support identify need for specialized knowledge.
+Handles recurring events, complex attendee notification choices, Google Meet `conferenceData`, out-of-office semantics, and cross-timezone scheduling.
+Activated when the Lead or Support identifies a Calendar edge case.

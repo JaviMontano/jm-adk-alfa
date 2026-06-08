@@ -1,0 +1,69 @@
+{
+  "schema": 1,
+  "skill": "google-docs-mcp",
+  "assets": [
+    {
+      "path": "assets/google-docs-mcp-schema.json",
+      "type": "schema",
+      "purpose": "Required structured input fields, Docs API operations, request types, and validation rules for safe Docs MCP plans.",
+      "used_by": [
+        "scripts/compile-google-docs-mcp.py",
+        "knowledge/body-of-knowledge.md"
+      ]
+    },
+    {
+      "path": "assets/docs-operation-policy.json",
+      "type": "operation-policy",
+      "purpose": "Official Docs API method map for documents.create, documents.get, and documents.batchUpdate.",
+      "used_by": [
+        "scripts/compile-google-docs-mcp.py",
+        "examples/example-output.md"
+      ]
+    },
+    {
+      "path": "assets/scope-policy.json",
+      "type": "scope-policy",
+      "purpose": "Least-privilege Docs OAuth scope profiles and escalation guidance.",
+      "used_by": [
+        "scripts/compile-google-docs-mcp.py",
+        "knowledge/body-of-knowledge.md"
+      ]
+    },
+    {
+      "path": "assets/mutation-confirmation-policy.json",
+      "type": "confirmation-policy",
+      "purpose": "Human-confirmation requirements for Google Docs mutations.",
+      "used_by": [
+        "scripts/compile-google-docs-mcp.py",
+        "prompts/primary.md"
+      ]
+    },
+    {
+      "path": "assets/mcp-tool-contract.json",
+      "type": "mcp-tool-contract",
+      "purpose": "Local workspace-mcp Docs tool names and read-only/mutating classifications.",
+      "used_by": [
+        "scripts/compile-google-docs-mcp.py",
+        "SKILL.md"
+      ]
+    },
+    {
+      "path": "assets/source-map.md",
+      "type": "source-map",
+      "purpose": "Primary local and official documentation references used by this skill.",
+      "used_by": [
+        "knowledge/body-of-knowledge.md",
+        "examples/example-output.md"
+      ]
+    },
+    {
+      "path": "assets/google-docs-mcp-template.md",
+      "type": "markdown-template",
+      "purpose": "Canonical deterministic Google Docs MCP report structure.",
+      "used_by": [
+        "scripts/compile-google-docs-mcp.py",
+        "templates/output.md"
+      ]
+    }
+  ]
+}

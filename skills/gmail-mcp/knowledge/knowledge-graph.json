@@ -1,75 +1,113 @@
 {
   "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-28",
   "skill": "gmail-mcp",
   "nodes": [
     {
       "id": "gmail-mcp",
       "type": "skill",
-      "label": "gmail-mcp"
+      "label": "Gmail MCP"
     },
     {
-      "id": "gmail-mcp:inputs",
-      "type": "contract",
-      "label": "Expected inputs"
+      "id": "gmail-mcp:workspace-mcp",
+      "type": "mcp-server",
+      "label": "workspace-mcp"
     },
     {
-      "id": "gmail-mcp:outputs",
-      "type": "contract",
-      "label": "Expected outputs"
+      "id": "gmail-mcp:read-only-first",
+      "type": "safety-gate",
+      "label": "Read-only-first"
     },
     {
-      "id": "gmail-mcp:quality",
-      "type": "gate",
-      "label": "Quality criteria"
+      "id": "gmail-mcp:scope-matrix",
+      "type": "asset",
+      "label": "Minimum scope matrix"
     },
     {
-      "id": "gmail-mcp:ontology",
-      "type": "ontology",
-      "label": "Domain: tool-design-mcp"
+      "id": "gmail-mcp:confirmation",
+      "type": "safety-gate",
+      "label": "Human confirmation"
     },
     {
-      "id": "gmail-mcp:evidence",
-      "type": "gate",
-      "label": "Evidence / provenance requirements"
+      "id": "gmail-mcp:privacy",
+      "type": "safety-gate",
+      "label": "Privacy and redaction"
     },
     {
-      "id": "gmail-mcp:antipattern",
-      "type": "risk",
-      "label": "Canonical anti-pattern to avoid"
+      "id": "gmail-mcp:search",
+      "type": "operation",
+      "label": "Search messages"
+    },
+    {
+      "id": "gmail-mcp:draft",
+      "type": "operation",
+      "label": "Draft message"
+    },
+    {
+      "id": "gmail-mcp:send",
+      "type": "operation",
+      "label": "Send message"
+    },
+    {
+      "id": "gmail-mcp:labels",
+      "type": "operation",
+      "label": "Manage labels"
+    },
+    {
+      "id": "gmail-mcp:offline-compiler",
+      "type": "script",
+      "label": "compile-gmail-mcp.py"
     }
   ],
   "edges": [
     {
       "from": "gmail-mcp",
-      "to": "gmail-mcp:inputs",
+      "to": "gmail-mcp:workspace-mcp",
+      "type": "uses"
+    },
+    {
+      "from": "gmail-mcp",
+      "to": "gmail-mcp:read-only-first",
       "type": "requires"
     },
     {
       "from": "gmail-mcp",
-      "to": "gmail-mcp:outputs",
-      "type": "produces"
-    },
-    {
-      "from": "gmail-mcp",
-      "to": "gmail-mcp:quality",
+      "to": "gmail-mcp:scope-matrix",
       "type": "validated_by"
     },
     {
-      "from": "gmail-mcp",
-      "to": "gmail-mcp:ontology",
-      "type": "classified_as"
+      "from": "gmail-mcp:send",
+      "to": "gmail-mcp:confirmation",
+      "type": "requires"
+    },
+    {
+      "from": "gmail-mcp:labels",
+      "to": "gmail-mcp:confirmation",
+      "type": "requires_for_bulk"
     },
     {
       "from": "gmail-mcp",
-      "to": "gmail-mcp:evidence",
-      "type": "validated_by"
+      "to": "gmail-mcp:privacy",
+      "type": "guards"
     },
     {
-      "from": "gmail-mcp",
-      "to": "gmail-mcp:antipattern",
-      "type": "guards_against"
+      "from": "gmail-mcp:offline-compiler",
+      "to": "gmail-mcp:scope-matrix",
+      "type": "reads"
+    },
+    {
+      "from": "gmail-mcp:offline-compiler",
+      "to": "gmail-mcp:confirmation",
+      "type": "validates"
+    },
+    {
+      "from": "gmail-mcp:search",
+      "to": "gmail-mcp:read-only-first",
+      "type": "satisfies"
+    },
+    {
+      "from": "gmail-mcp:draft",
+      "to": "gmail-mcp:send",
+      "type": "precedes"
     }
   ]
 }

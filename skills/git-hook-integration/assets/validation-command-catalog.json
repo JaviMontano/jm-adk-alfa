@@ -1,0 +1,35 @@
+{
+  "schema": 1,
+  "commands": [
+    {
+      "name": "format",
+      "stage": "pre-commit",
+      "purpose": "Check formatting and whitespace before commit."
+    },
+    {
+      "name": "secret-scan",
+      "stage": "pre-commit",
+      "purpose": "Detect accidental secrets before local commit."
+    },
+    {
+      "name": "conventional-commit",
+      "stage": "commit-msg",
+      "purpose": "Validate commit message format."
+    },
+    {
+      "name": "unit-smoke",
+      "stage": "pre-commit",
+      "purpose": "Run fast local tests."
+    },
+    {
+      "name": "full-gates",
+      "stage": "pre-push",
+      "purpose": "Run slower tests before publication."
+    },
+    {
+      "name": "component-counts",
+      "stage": "pre-push",
+      "purpose": "Detect registry or index drift."
+    }
+  ]
+}

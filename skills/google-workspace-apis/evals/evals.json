@@ -1,9 +1,52 @@
-[
-  {"id": "google-workspace-apis-happy-path", "type": "happy_path", "input": "Run google workspace apis on this project", "expected_behavior": "Skill activates and produces the expected google workspace apis output following the defined process", "tags": ["basic", "activation"]},
-  {"id": "google-workspace-apis-explicit-trigger", "type": "happy_path", "input": "Apply google workspace apis analysis", "expected_behavior": "Skill recognizes the trigger phrase and executes the google workspace apis workflow", "tags": ["trigger", "recognition"]},
-  {"id": "google-workspace-apis-with-context", "type": "happy_path", "input": "Apply google workspace apis to analyze the current codebase with detailed output", "expected_behavior": "Skill produces comprehensive google workspace apis analysis with evidence-tagged findings", "tags": ["detailed", "comprehensive"]},
-  {"id": "google-workspace-apis-minimal-input", "type": "happy_path", "input": "Quick google workspace apis", "expected_behavior": "Skill activates with minimal input, applies reasonable defaults", "tags": ["minimal", "defaults"]},
-  {"id": "google-workspace-apis-false-positive", "type": "false_positive", "input": "What is the weather forecast for tomorrow?", "expected_behavior": "Skill should NOT activate — this input has no relation to google workspace apis", "tags": ["false_positive", "should-not-activate"]},
-  {"id": "google-workspace-apis-edge-empty-input", "type": "edge_case", "input": "Run google workspace apis but I have no files or documentation yet", "expected_behavior": "Skill handles gracefully — requests minimum viable input or produces gap analysis", "tags": ["edge_case", "empty-input", "boundary"]},
-  {"id": "google-workspace-apis-edge-conflicting", "type": "edge_case", "input": "Apply google workspace apis but requirements contradict each other", "expected_behavior": "Skill detects contradiction, flags with [OPEN] tag, proposes resolution", "tags": ["edge_case", "conflict", "corner"]}
-]
+{
+  "cases": [
+    {
+      "id": "workspace-integrator-cross-service-plan",
+      "type": "happy_path",
+      "input": "Plan a Gmail, Calendar, Drive, Docs, Sheets, and Slides Workspace automation with MCP mapping.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "service_matrix", "mcp_mapping"]
+    },
+    {
+      "id": "workspace-integrator-least-privilege",
+      "type": "quality_gate",
+      "input": "Choose scopes for reading Sheets data and drafting Gmail messages.",
+      "expected_checks": ["assets", "quality_criteria", "least_privilege_scopes"]
+    },
+    {
+      "id": "workspace-integrator-read-only-first",
+      "type": "quality_gate",
+      "input": "Create a Calendar event and update a Doc after reading current resources.",
+      "expected_checks": ["deterministic_scripts", "quality_criteria", "read_only_first"]
+    },
+    {
+      "id": "workspace-integrator-missing-consent",
+      "type": "negative",
+      "input": "Send Gmail and create Calendar events without human confirmation.",
+      "expected_checks": ["deterministic_scripts", "human_consent_gate", "quality_criteria"]
+    },
+    {
+      "id": "workspace-integrator-broad-scope",
+      "type": "negative",
+      "input": "Use a broad Drive scope for metadata-only listing.",
+      "expected_checks": ["deterministic_scripts", "least_privilege_scopes", "quality_criteria"]
+    },
+    {
+      "id": "workspace-integrator-tool-mismatch",
+      "type": "negative",
+      "input": "Map a Calendar event insert to a Drive MCP upload tool.",
+      "expected_checks": ["deterministic_scripts", "mcp_mapping", "quality_criteria"]
+    },
+    {
+      "id": "workspace-integrator-secret-policy",
+      "type": "security",
+      "input": "Review a plan that stores OAuth credentials and refresh tokens.",
+      "expected_checks": ["assets", "quality_criteria", "secrets_policy"]
+    },
+    {
+      "id": "workspace-integrator-validation-matrix",
+      "type": "validation",
+      "input": "Generate the validation matrix for a mixed REST and MCP Workspace workflow.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "validation_matrix"]
+    }
+  ]
+}

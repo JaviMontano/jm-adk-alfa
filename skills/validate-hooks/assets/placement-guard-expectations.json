@@ -1,0 +1,16 @@
+{
+  "schema": 1,
+  "enabled": true,
+  "event": "PreToolUse",
+  "command_fragments": [
+    "artifact-placement-guard.sh",
+    "placement-guard"
+  ],
+  "required_policy_reference": "references/guardrails/placement-policy.json",
+  "expected_behavior": [
+    "Task artifacts are routed to workspace/*/artifacts/**.",
+    "Kit internals are maintainer-mode gated.",
+    "Ad-hoc writes are blocked or routed before mutation."
+  ],
+  "remediation": "Register the placement guard as a command hook on PreToolUse and keep policy checks read-only before tool execution."
+}

@@ -1,0 +1,13 @@
+{
+  "fragments": [
+    "# GenAI Architecture: MetodologIA Knowledge Copilot",
+    "Recommended pattern: Agentic RAG (agentic-rag)",
+    "Recommended vector store: Qdrant",
+    "| query_processing | Classify intent and rewrite ambiguous bilingual questions.",
+    "| retrieval | Use hybrid vector plus keyword retrieval with ACL filters.",
+    "Mandatory routing controls",
+    "| CRM | crm | real-time read-only query",
+    "| retrieval_recall_at_k | >= 0.85",
+    "[CODE] Required RAG stages are present"
+  ]
+}

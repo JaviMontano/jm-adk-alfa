@@ -1,0 +1,11 @@
+{
+  "fragments": [
+    "# GA4/GTM Measurement Plan: Lead generation GA4/GTM implementation",
+    "Measurement Protocol mode: `not planned`",
+    "`sign_up`",
+    "`generate_lead`",
+    "## Human Confirmation Gate",
+    "CONFIRM GA4/GTM MUTATION:",
+    "The compiler performed no network, OAuth, Google Analytics, GTM, or MCP calls."
+  ]
+}

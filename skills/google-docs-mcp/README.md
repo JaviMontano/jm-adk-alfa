@@ -1,36 +1,27 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: google-docs-mcp
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
+# Google Docs MCP
 
-# Google Docs Mcp
+Use this skill to plan safe Google Docs work through the local `workspace-mcp`
+server: create blank documents, inspect document structure, compile
+`documents.batchUpdate` request sequences, and prepare export handoffs.
 
->
+## Deterministic Resources
 
-## Triggers
-
-- google-docs-mcp
-
-## Allowed Tools
-
-- Read
-- Write
-- Bash
-- mcp__workspace-mcp__get_doc_content
-- mcp__workspace-mcp__create_doc
-- mcp__workspace-mcp__modify_doc_text
-- mcp__workspace-mcp__search_docs
-- mcp__workspace-mcp__find_and_replace_doc
-- mcp__workspace-mcp__insert_doc_elements
-- mcp__workspace-mcp__get_doc_as_markdown
-- mcp__workspace-mcp__export_doc_to_pdf
-
-## Quick Use
-
-Use this skill when the request clearly matches the triggers and requires the `google-docs-mcp` capability.
+- `assets/google-docs-mcp-schema.json` defines the stable structured request
+  contract for Docs MCP plans.
+- `assets/docs-operation-policy.json` maps supported Docs API REST methods:
+  `documents.create`, `documents.get`, and `documents.batchUpdate`.
+- `assets/scope-policy.json` defines least-privilege scope profiles, including
+  `documents.readonly`, `drive.file`, and escalation-only `documents`.
+- `assets/mutation-confirmation-policy.json` defines human-confirmation gates for
+  document creation and batch updates.
+- `assets/mcp-tool-contract.json` maps local `workspace-mcp` Docs tools to
+  read-only or mutating operation classes.
+- `assets/google-docs-mcp-template.md` is the canonical Markdown report template.
+- `scripts/compile-google-docs-mcp.py` renders an offline Markdown plan and
+  checklist from JSON. It does not call Google Docs, OAuth, or MCP tools.
 
 ## Output Format
 
-Markdown with summary, evidence, result, validation, and risks.
+Markdown or HTML with evidence, MCP preflight, scope review, operation plan,
+Docs API request payload checklist, mutation-confirmation gate, validation, and
+residual risks.

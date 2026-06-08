@@ -1,0 +1,52 @@
+{
+  "repo_name": "jm-adk-alfa",
+  "plugin_root": ".",
+  "hooks_path": "hooks/hooks.json",
+  "expected_placement_guard": true,
+  "hooks_json": {
+    "hooks": {
+      "SessionStart": [
+        {
+          "type": "command",
+          "matcher": "startup",
+          "command": "printf 'session start check'",
+          "description": "Read-only startup signal"
+        }
+      ],
+      "PreToolUse": [
+        {
+          "type": "command",
+          "matcher": "Write",
+          "command": "bash scripts/artifact-placement-guard.sh",
+          "description": "Placement guard for workspace and maintainer-mode writes"
+        }
+      ],
+      "PermissionRequest": [
+        {
+          "type": "prompt",
+          "matcher": "Bash",
+          "prompt": "Assess whether the requested command is safe to approve."
+        }
+      ],
+      "PostToolUse": [
+        {
+          "type": "agent",
+          "matcher": "Bash",
+          "agent": "validate-hooks-specialist"
+        }
+      ],
+      "Notification": [
+        {
+          "type": "http",
+          "matcher": "system",
+          "url": "https://hooks.example.invalid/notify"
+        }
+      ]
+    }
+  },
+  "evidence": {
+    "source": "fixture-valid-hooks-audit",
+    "read_mode": "offline-read-only",
+    "mutation_policy": "no hooks executed and no config mutated"
+  }
+}

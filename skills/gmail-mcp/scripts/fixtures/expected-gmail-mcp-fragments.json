@@ -1,0 +1,14 @@
+{
+  "fragments": [
+    "# Gmail MCP Operation Plan",
+    "Plan `gmail-p007-safe-triage` compiles a `safe_inbox_workflow` Gmail MCP workflow",
+    "compiler_mode: `offline_only`",
+    "`mcp__workspace-mcp__search_gmail_messages`",
+    "`mcp__workspace-mcp__draft_gmail_message`",
+    "`gmail.send`",
+    "`label-reviewed` confirmation: present",
+    "Script mode: offline plan/checklist only",
+    "Store email bodies: False",
+    "Gmail API search can differ from Gmail UI search"
+  ]
+}

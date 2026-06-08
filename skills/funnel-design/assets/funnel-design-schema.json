@@ -1,0 +1,50 @@
+{
+  "schema": 1,
+  "required_root_fields": [
+    "product",
+    "audience",
+    "offer",
+    "goal",
+    "conversion_event",
+    "sales_motion",
+    "evidence",
+    "stages",
+    "lead_scoring",
+    "nurture_paths"
+  ],
+  "allowed_sales_motions": [
+    "self-serve",
+    "product-led",
+    "sales-led",
+    "partner-led",
+    "hybrid"
+  ],
+  "required_stage_ids": [
+    "tofu",
+    "mofu",
+    "bofu"
+  ],
+  "required_stage_fields": [
+    "id",
+    "intent",
+    "core_question",
+    "content_assets",
+    "cta",
+    "metric",
+    "owner"
+  ],
+  "required_scoring_fields": [
+    "name",
+    "points",
+    "dimension",
+    "evidence"
+  ],
+  "required_nurture_fields": [
+    "id",
+    "trigger",
+    "delay",
+    "message",
+    "branch",
+    "exit"
+  ]
+}

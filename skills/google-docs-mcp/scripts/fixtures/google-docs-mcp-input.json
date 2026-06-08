@@ -1,0 +1,108 @@
+{
+  "operation_id": "gdocs-p007-runbook-dod",
+  "request_title": "P-007 Runbook DoD Google Docs MCP checklist",
+  "mcp_server": "workspace-mcp",
+  "operation_mode": "safe_execution_checklist",
+  "requested_scope_profile": "drive_file",
+  "read_only_first": {
+    "document_resolved": true,
+    "structure_checked": true,
+    "revision_id_captured": true,
+    "existing_content_summary": "Blank app-created document inspected before inserting the runbook sections."
+  },
+  "human_confirmation": {
+    "status": "confirmed",
+    "confirmed_by": "owner@example.com",
+    "confirmation_text": "CONFIRM GOOGLE DOCS MUTATION: operation_id=gdocs-p007-runbook-dod document_id_or_title=P-007 Runbook DoD docs_api_method=documents.create+documents.batchUpdate scope_profile=drive_file request_count=3 live_execution_intent=plan-approved"
+  },
+  "operations": [
+    {
+      "id": "create-runbook-doc",
+      "action": "create_document",
+      "description": "Create a blank Google Doc for the P-007 runbook DoD checklist.",
+      "docs_api_method": "documents.create",
+      "mcp_tool": "mcp__workspace-mcp__create_doc",
+      "scope_profile": "drive_file",
+      "create": {
+        "title": "P-007 Runbook DoD Checklist",
+        "initial_content_strategy": "blank_then_batch_update",
+        "follow_up_batch_update_required": true,
+        "document_id_capture": true,
+        "requires_human_confirmation": true
+      }
+    },
+    {
+      "id": "inspect-runbook-doc",
+      "action": "get_document",
+      "description": "Inspect the new document structure and capture a revision before editing.",
+      "docs_api_method": "documents.get",
+      "mcp_tool": "mcp__workspace-mcp__get_doc_content",
+      "scope_profile": "docs_readonly",
+      "get": {
+        "document_id": "doc-p007-runbook-dod",
+        "fields": "documentId,title,body/content,startIndex,endIndex,revisionId,tabs",
+        "include_tabs_content": true,
+        "suggestions_view_mode": "DEFAULT_FOR_CURRENT_ACCESS",
+        "verify_document_id": true
+      }
+    },
+    {
+      "id": "insert-runbook-sections",
+      "action": "batch_update",
+      "description": "Insert title, checklist bullets, and heading style using ordered Docs API requests.",
+      "docs_api_method": "documents.batchUpdate",
+      "mcp_tool": "mcp__workspace-mcp__insert_doc_elements",
+      "scope_profile": "drive_file",
+      "batch_update": {
+        "document_id": "doc-p007-runbook-dod",
+        "write_control": {
+          "required_revision_id": "rev-p007-runbook-001"
+        },
+        "requires_human_confirmation": true,
+        "requests": [
+          {
+            "type": "insertText",
+            "payload": {
+              "location": {
+                "index": 1
+              },
+              "text": "P-007 Runbook DoD Checklist\n\n- Scope confirmed\n- Sources cited\n- Mutations confirmed\n"
+            }
+          },
+          {
+            "type": "updateParagraphStyle",
+            "payload": {
+              "range": {
+                "startIndex": 1,
+                "endIndex": 28
+              },
+              "paragraphStyle": {
+                "namedStyleType": "HEADING_1"
+              },
+              "fields": "namedStyleType"
+            }
+          },
+          {
+            "type": "createParagraphBullets",
+            "payload": {
+              "range": {
+                "startIndex": 30,
+                "endIndex": 96
+              },
+              "bulletPreset": "BULLET_DISC_CIRCLE_SQUARE"
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "evidence": {
+    "repo_docs": "docs/google-workspace-mcp-setup.md; docs/mcp-integration.md",
+    "google_docs_api": "https://developers.google.com/workspace/docs/api/reference/rest",
+    "docs_scopes": "https://developers.google.com/workspace/docs/api/auth",
+    "docs_batch_update": "https://developers.google.com/workspace/docs/api/reference/rest/v1/documents/batchUpdate",
+    "docs_create_get": "https://developers.google.com/workspace/docs/api/reference/rest/v1/documents/create; https://developers.google.com/workspace/docs/api/reference/rest/v1/documents/get",
+    "workspace_mcp_dev_server": "https://developers.google.com/workspace/guides/build-with-llms",
+    "mcp_tools_spec": "https://modelcontextprotocol.io/specification/draft/server/tools"
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "schema": 1,
+  "skill": "gmail-mcp",
+  "compiler_mode": "offline_only",
+  "read_only_first": {
+    "required": true,
+    "first_action_types": [
+      "search_messages",
+      "list_labels",
+      "list_filters",
+      "get_message_content",
+      "get_thread_content"
+    ],
+    "rationale": "Inspect message metadata/content before drafting, sending, changing labels, filters, or deleting."
+  },
+  "human_confirmation_required_for": [
+    "send_message",
+    "delete_message",
+    "trash_message",
+    "manage_filter",
+    "bulk_label_modify"
+  ],
+  "bulk_label_message_threshold": 1,
+  "direct_send_default": "blocked_without_explicit_confirmation",
+  "draft_first_preference": true,
+  "forbidden_in_scripts": [
+    "real Gmail API calls",
+    "real MCP tool calls",
+    "network calls",
+    "OAuth token reads",
+    "credential file reads",
+    "message body persistence"
+  ],
+  "safe_script_outputs": [
+    "plan",
+    "checklist",
+    "scope review",
+    "confirmation checklist",
+    "tool sequence proposal"
+  ]
+}

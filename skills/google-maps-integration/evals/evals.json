@@ -1,9 +1,132 @@
-[
-  {"id": "google-maps-integration-happy-path", "type": "happy_path", "input": "Run google maps integration on this project", "expected_behavior": "Skill activates and produces the expected google maps integration output following the defined process", "tags": ["basic", "activation"]},
-  {"id": "google-maps-integration-explicit-trigger", "type": "happy_path", "input": "Apply google maps integration analysis", "expected_behavior": "Skill recognizes the trigger phrase and executes the google maps integration workflow", "tags": ["trigger", "recognition"]},
-  {"id": "google-maps-integration-with-context", "type": "happy_path", "input": "Apply google maps integration to analyze the current codebase with detailed output", "expected_behavior": "Skill produces comprehensive google maps integration analysis with evidence-tagged findings", "tags": ["detailed", "comprehensive"]},
-  {"id": "google-maps-integration-minimal-input", "type": "happy_path", "input": "Quick google maps integration", "expected_behavior": "Skill activates with minimal input, applies reasonable defaults", "tags": ["minimal", "defaults"]},
-  {"id": "google-maps-integration-false-positive", "type": "false_positive", "input": "What is the weather forecast for tomorrow?", "expected_behavior": "Skill should NOT activate — this input has no relation to google maps integration", "tags": ["false_positive", "should-not-activate"]},
-  {"id": "google-maps-integration-edge-empty-input", "type": "edge_case", "input": "Run google maps integration but I have no files or documentation yet", "expected_behavior": "Skill handles gracefully — requests minimum viable input or produces gap analysis", "tags": ["edge_case", "empty-input", "boundary"]},
-  {"id": "google-maps-integration-edge-conflicting", "type": "edge_case", "input": "Apply google maps integration but requirements contradict each other", "expected_behavior": "Skill detects contradiction, flags with [OPEN] tag, proposes resolution", "tags": ["edge_case", "conflict", "corner"]}
-]
+{
+  "schema": 1,
+  "skill": "google-maps-integration",
+  "cases": [
+    {
+      "id": "maps-platform-offline-plan-happy-path",
+      "type": "happy_path",
+      "input": "Compile the offline Maps Platform plan from scripts/fixtures/google-maps-plan-input.json.",
+      "expected_behavior": "Produces a deterministic Markdown plan with API selection, key restrictions, data flow, marker clustering, accessibility, privacy, billing/quota risk, and human confirmation.",
+      "expected_checks": [
+        "assets",
+        "deterministic_scripts",
+        "quality_criteria"
+      ],
+      "tags": [
+        "offline",
+        "compiler",
+        "maps-platform"
+      ]
+    },
+    {
+      "id": "api-selection-all-core-products",
+      "type": "happy_path",
+      "input": "Plan a web locator with interactive map, Places search, geocoding, Directions, dense markers, and Advanced Markers.",
+      "expected_behavior": "Selects Maps JavaScript API, Places API (New), Geocoding API, Directions API (Legacy), Advanced Markers, and MarkerClusterer.",
+      "expected_checks": [
+        "assets",
+        "quality_criteria"
+      ],
+      "tags": [
+        "api-selection",
+        "official-docs"
+      ]
+    },
+    {
+      "id": "api-key-restrictions-client-server",
+      "type": "security",
+      "input": "Plan browser map rendering plus server-side Places, Geocoding, and Directions calls.",
+      "expected_behavior": "Requires separate browser and server keys, application restrictions, API restrictions, and monitoring owner.",
+      "expected_checks": [
+        "assets",
+        "quality_criteria"
+      ],
+      "tags": [
+        "api-keys",
+        "security"
+      ]
+    },
+    {
+      "id": "missing-human-confirmation-rejected",
+      "type": "negative",
+      "input": "Compile scripts/fixtures/invalid-missing-confirmation.json.",
+      "expected_behavior": "Rejects the input because human_confirmation.status is not confirmed.",
+      "expected_checks": [
+        "deterministic_scripts",
+        "quality_criteria"
+      ],
+      "tags": [
+        "confirmation",
+        "negative"
+      ]
+    },
+    {
+      "id": "unrestricted-browser-key-rejected",
+      "type": "negative",
+      "input": "Compile scripts/fixtures/invalid-unrestricted-client-key.json.",
+      "expected_behavior": "Rejects the browser key because it has no allowed referrers.",
+      "expected_checks": [
+        "deterministic_scripts",
+        "quality_criteria"
+      ],
+      "tags": [
+        "api-key",
+        "negative"
+      ]
+    },
+    {
+      "id": "monetary-amount-rejected",
+      "type": "negative",
+      "input": "Compile scripts/fixtures/invalid-price-amount.json.",
+      "expected_behavior": "Rejects monetary per-request language because this skill must not output prices.",
+      "expected_checks": [
+        "deterministic_scripts",
+        "quality_criteria"
+      ],
+      "tags": [
+        "billing-quota",
+        "negative"
+      ]
+    },
+    {
+      "id": "dense-markers-require-clustering",
+      "type": "edge_case",
+      "input": "Plan a map with more than the local marker clustering threshold.",
+      "expected_behavior": "Requires MarkerClusterer, zoom behavior review, and non-map result list.",
+      "expected_checks": [
+        "assets",
+        "quality_criteria"
+      ],
+      "tags": [
+        "markers",
+        "accessibility"
+      ]
+    },
+    {
+      "id": "directions-legacy-acknowledgement",
+      "type": "edge_case",
+      "input": "Plan route directions using Directions API.",
+      "expected_behavior": "Flags Directions API as Legacy and requires explicit acknowledgement before production planning.",
+      "expected_checks": [
+        "assets",
+        "quality_criteria"
+      ],
+      "tags": [
+        "directions",
+        "legacy"
+      ]
+    },
+    {
+      "id": "false-positive-weather",
+      "type": "false_positive",
+      "input": "What is the weather forecast for tomorrow?",
+      "expected_behavior": "Does not activate google-maps-integration because the request is weather, not Maps Platform integration planning.",
+      "expected_checks": [
+        "quality_criteria"
+      ],
+      "tags": [
+        "false-positive"
+      ]
+    }
+  ]
+}

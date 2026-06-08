@@ -1,0 +1,219 @@
+{
+  "request_id": "sheets-plan-001",
+  "request_title": "Weekly KPI Workbook",
+  "mcp_server": "workspace-mcp",
+  "operation_mode": "safe_execution_checklist",
+  "read_only_first": {
+    "enabled": true,
+    "metadata_checked": true,
+    "ranges_checked": true,
+    "formula_impact_checked": true,
+    "protected_ranges_reviewed": true
+  },
+  "human_confirmation": {
+    "status": "confirmed",
+    "confirmed_by": "owner",
+    "confirmation_text": "CONFIRM_SHEETS_MUTATION sheets-plan-001",
+    "mutation_count": 5
+  },
+  "operations": [
+    {
+      "id": "op-001",
+      "action": "spreadsheets.get",
+      "description": "Fetch template spreadsheet metadata, sheets, and protected ranges before mutation.",
+      "mcp_tool": "mcp__workspace-mcp__get_spreadsheet_info",
+      "scope_profile": "sheets.readonly",
+      "scope_binding": "spreadsheet_file",
+      "spreadsheet_id": "spreadsheet-template-123",
+      "ranges": [
+        "Config!A1:D20"
+      ],
+      "fields": "spreadsheetId,properties.title,sheets.properties,sheets.protectedRanges",
+      "include_grid_data": false
+    },
+    {
+      "id": "op-002",
+      "action": "spreadsheets.create",
+      "description": "Create the Weekly KPI workbook with Summary and Raw sheets.",
+      "mcp_tool": "mcp__workspace-mcp__create_spreadsheet",
+      "scope_profile": "drive.file",
+      "scope_binding": "spreadsheet_file",
+      "spreadsheet_body": {
+        "properties": {
+          "title": "Weekly KPI Workbook"
+        },
+        "sheets": [
+          {
+            "properties": {
+              "title": "Summary"
+            }
+          },
+          {
+            "properties": {
+              "title": "Raw"
+            }
+          }
+        ]
+      },
+      "requires_human_confirmation": true,
+      "confirmation_key": "CONFIRM_SHEETS_MUTATION sheets-plan-001"
+    },
+    {
+      "id": "op-003",
+      "action": "spreadsheets.batchUpdate",
+      "description": "Apply structural setup: resize columns and protect the header range.",
+      "mcp_tool": "mcp__workspace-mcp__format_sheet_range",
+      "scope_profile": "drive.file",
+      "scope_binding": "spreadsheet_file",
+      "spreadsheet_id": "{created_spreadsheet_id}",
+      "batch_update": {
+        "requests": [
+          {
+            "updateDimensionProperties": {
+              "range": {
+                "sheetId": 0,
+                "dimension": "COLUMNS",
+                "startIndex": 0,
+                "endIndex": 4
+              },
+              "properties": {
+                "pixelSize": 160
+              },
+              "fields": "pixelSize"
+            }
+          },
+          {
+            "addProtectedRange": {
+              "protectedRange": {
+                "range": {
+                  "sheetId": 0,
+                  "startRowIndex": 0,
+                  "endRowIndex": 1
+                },
+                "description": "Protect KPI headers"
+              }
+            }
+          }
+        ],
+        "includeSpreadsheetInResponse": false
+      },
+      "requires_human_confirmation": true,
+      "confirmation_key": "CONFIRM_SHEETS_MUTATION sheets-plan-001"
+    },
+    {
+      "id": "op-004",
+      "action": "spreadsheets.values.get",
+      "description": "Read existing Summary header range after structural setup.",
+      "mcp_tool": "mcp__workspace-mcp__read_sheet_values",
+      "scope_profile": "drive.file",
+      "scope_binding": "spreadsheet_file",
+      "spreadsheet_id": "{created_spreadsheet_id}",
+      "range_a1": "Summary!A1:D2",
+      "major_dimension": "ROWS",
+      "value_render_option": "FORMATTED_VALUE",
+      "date_time_render_option": "SERIAL_NUMBER"
+    },
+    {
+      "id": "op-005",
+      "action": "spreadsheets.values.update",
+      "description": "Write KPI headers and first status row.",
+      "mcp_tool": "mcp__workspace-mcp__modify_sheet_values",
+      "scope_profile": "drive.file",
+      "scope_binding": "spreadsheet_file",
+      "spreadsheet_id": "{created_spreadsheet_id}",
+      "value_input_option": "USER_ENTERED",
+      "value_range": {
+        "range": "Summary!A1:D2",
+        "majorDimension": "ROWS",
+        "values": [
+          [
+            "Metric",
+            "Owner",
+            "Target",
+            "Status"
+          ],
+          [
+            "Pipeline",
+            "Sales",
+            120,
+            "Green"
+          ]
+        ]
+      },
+      "requires_human_confirmation": true,
+      "confirmation_key": "CONFIRM_SHEETS_MUTATION sheets-plan-001"
+    },
+    {
+      "id": "op-006",
+      "action": "spreadsheets.values.append",
+      "description": "Append current weekly metrics to the Raw data table.",
+      "mcp_tool": "mcp__workspace-mcp__modify_sheet_values",
+      "scope_profile": "drive.file",
+      "scope_binding": "spreadsheet_file",
+      "spreadsheet_id": "{created_spreadsheet_id}",
+      "value_input_option": "USER_ENTERED",
+      "insert_data_option": "INSERT_ROWS",
+      "value_range": {
+        "range": "Raw!A1:D1",
+        "majorDimension": "ROWS",
+        "values": [
+          [
+            "2026-W23",
+            "Pipeline",
+            120,
+            "Green"
+          ]
+        ]
+      },
+      "requires_human_confirmation": true,
+      "confirmation_key": "CONFIRM_SHEETS_MUTATION sheets-plan-001"
+    },
+    {
+      "id": "op-007",
+      "action": "spreadsheets.values.batchUpdate",
+      "description": "Write summary formulas and reporting labels in one values batch update.",
+      "mcp_tool": "mcp__workspace-mcp__modify_sheet_values",
+      "scope_profile": "drive.file",
+      "scope_binding": "spreadsheet_file",
+      "spreadsheet_id": "{created_spreadsheet_id}",
+      "batch_values": {
+        "valueInputOption": "USER_ENTERED",
+        "data": [
+          {
+            "range": "Summary!A4:B5",
+            "majorDimension": "ROWS",
+            "values": [
+              [
+                "Last update",
+                "2026-06-01"
+              ],
+              [
+                "Rows loaded",
+                "=COUNTA(Raw!A:A)-1"
+              ]
+            ]
+          },
+          {
+            "range": "Config!A1:B1",
+            "majorDimension": "ROWS",
+            "values": [
+              [
+                "owner",
+                "jm-labs"
+              ]
+            ]
+          }
+        ]
+      },
+      "requires_human_confirmation": true,
+      "confirmation_key": "CONFIRM_SHEETS_MUTATION sheets-plan-001"
+    }
+  ],
+  "evidence": {
+    "google_sheets_rest": "https://developers.google.com/workspace/sheets/api/reference/rest",
+    "google_sheets_scopes": "https://developers.google.com/workspace/sheets/api/scopes",
+    "google_workspace_mcp": "https://developers.google.com/workspace/guides/build-with-llms",
+    "mcp_tools_spec": "https://modelcontextprotocol.io/specification/draft/server/tools",
+    "local_setup_docs": "docs/google-workspace-mcp-setup.md; docs/mcp-integration.md"
+  }
+}

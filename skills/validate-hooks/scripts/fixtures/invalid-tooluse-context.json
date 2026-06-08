@@ -1,0 +1,43 @@
+{
+  "repo_name": "broken-plugin",
+  "plugin_root": ".",
+  "hooks_path": "hooks/hooks.json",
+  "expected_placement_guard": true,
+  "hooks_json": {
+    "hooks": {
+      "SessionStart": [
+        {
+          "type": "prompt",
+          "matcher": "startup",
+          "prompt": "Summarize the session before startup."
+        }
+      ],
+      "PostToolUseFailure": [
+        {
+          "type": "agent",
+          "matcher": "Bash",
+          "agent": "fix-common-issues"
+        }
+      ],
+      "PreToolUse": [
+        {
+          "type": "intercept",
+          "matcher": "Bash",
+          "command": "echo unsupported type"
+        }
+      ],
+      "Stop": [
+        {
+          "type": "command",
+          "matcher": "stop",
+          "command": "git reset --hard HEAD"
+        }
+      ]
+    }
+  },
+  "evidence": {
+    "source": "fixture-invalid-tooluse-context",
+    "read_mode": "offline-read-only",
+    "mutation_policy": "no hooks executed and no config mutated"
+  }
+}

@@ -1,0 +1,117 @@
+{
+  "schema": 1,
+  "schema_version": "maps-platform-plan-v1",
+  "required_root_fields": [
+    "schema_version",
+    "project",
+    "requirements",
+    "apis",
+    "keys",
+    "data_flow",
+    "map_ui",
+    "billing_quota",
+    "privacy",
+    "human_confirmation",
+    "operations",
+    "evidence"
+  ],
+  "required_project_fields": [
+    "name",
+    "environment",
+    "platform",
+    "deployment_origins",
+    "review_date"
+  ],
+  "required_requirements_fields": [
+    "features",
+    "marker_count_estimate",
+    "requires_places_autocomplete",
+    "requires_server_side_geocoding",
+    "requires_directions",
+    "requires_personal_location"
+  ],
+  "allowed_features": [
+    "interactive_map",
+    "location_search",
+    "address_geocoding",
+    "reverse_geocoding",
+    "route_directions",
+    "dense_markers",
+    "advanced_markers",
+    "place_details"
+  ],
+  "allowed_platforms": [
+    "web",
+    "server",
+    "hybrid-web-server"
+  ],
+  "allowed_api_restrictions": [
+    "Maps JavaScript API",
+    "Places API",
+    "Geocoding API",
+    "Directions API"
+  ],
+  "allowed_candidate_apis": [
+    "Maps JavaScript API",
+    "Places API (New)",
+    "Geocoding API",
+    "Directions API (Legacy)"
+  ],
+  "allowed_key_runtimes": [
+    "browser",
+    "server"
+  ],
+  "browser_application_restrictions": [
+    "http_referrers",
+    "websites"
+  ],
+  "server_application_restrictions": [
+    "ip_addresses"
+  ],
+  "required_key_fields": [
+    "name",
+    "runtime",
+    "application_restriction",
+    "api_restrictions"
+  ],
+  "required_data_flow_sections": [
+    "places",
+    "geocoding",
+    "directions"
+  ],
+  "required_accessibility_fields": [
+    "map_summary",
+    "keyboard_paths",
+    "marker_titles",
+    "list_alternative"
+  ],
+  "required_privacy_fields": [
+    "collects_precise_location",
+    "consent_required",
+    "retention",
+    "redaction",
+    "human_confirmation_required"
+  ],
+  "required_billing_quota_fields": [
+    "budgets_alerts_configured",
+    "quotas_reviewed",
+    "rate_limits_defined",
+    "no_prices",
+    "monitoring_owner"
+  ],
+  "required_operation_fields": [
+    "offline_plan_only",
+    "external_api_calls"
+  ],
+  "confirmation_statuses": [
+    "confirmed"
+  ],
+  "marker_cluster_threshold_default": 100,
+  "forbidden_monetary_patterns": [
+    "\\$\\s*\\d",
+    "\\bUSD\\b",
+    "\\bEUR\\b",
+    "\\bCOP\\b",
+    "\\bper\\s+request\\b"
+  ]
+}

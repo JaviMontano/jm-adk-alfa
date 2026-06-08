@@ -9,20 +9,32 @@ overwrite-policy: missing-only unless --force
 
 ## Summary
 
-{summary}
+{{SUMMARY}}
 
 ## Evidence
 
-{evidence}
+{{EVIDENCE}}
 
-## Result
+## Hook Matrix
 
-{result}
+{{HOOK_MATRIX}}
+
+## Conventional Commit Policy
+
+{{COMMIT_POLICY}}
+
+## Validation Commands
+
+{{VALIDATION_COMMANDS}}
+
+## Installation Plan
+
+{{INSTALLATION_PLAN}}
 
 ## Validation
 
-{validation}
+{{VALIDATION}}
 
 ## Risks and Limits
 
-{risks}
+{{RISKS}}

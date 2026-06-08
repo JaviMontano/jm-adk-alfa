@@ -1,0 +1,180 @@
+{
+  "schema": 1,
+  "skill": "google-analytics",
+  "required_root_fields": [
+    "plan_id",
+    "request_title",
+    "implementation_mode",
+    "property_state",
+    "measurement_strategy",
+    "consent_privacy",
+    "events",
+    "key_events",
+    "tags",
+    "debug_plan",
+    "human_confirmation",
+    "evidence"
+  ],
+  "allowed_implementation_modes": [
+    "gtag",
+    "gtm",
+    "hybrid",
+    "measurement_protocol_supplement"
+  ],
+  "blocked_implementation_modes": [
+    "measurement_protocol_only"
+  ],
+  "required_property_state_fields": [
+    "ga4_account_created",
+    "ga4_property_created",
+    "web_data_stream_created",
+    "measurement_id_known",
+    "enhanced_measurement_reviewed"
+  ],
+  "required_measurement_strategy_fields": [
+    "primary_business_goal",
+    "reporting_questions",
+    "kpis",
+    "implementation_surface",
+    "owner"
+  ],
+  "allowed_implementation_surfaces": [
+    "gtag",
+    "gtm",
+    "hybrid",
+    "measurement_protocol_supplement"
+  ],
+  "required_consent_privacy_fields": [
+    "region_profile",
+    "cmp_present",
+    "consent_mode_plan",
+    "default_denied_before_consent",
+    "ads_personalization_review",
+    "data_redaction_review",
+    "pii_policy",
+    "legal_review_owner"
+  ],
+  "allowed_consent_mode_plans": [
+    "not_required_documented",
+    "basic",
+    "advanced",
+    "to_be_confirmed"
+  ],
+  "required_event_fields": [
+    "id",
+    "event_name",
+    "event_type",
+    "business_goal",
+    "user_action",
+    "recommended_event_candidate",
+    "implementation_surface",
+    "trigger",
+    "parameters",
+    "key_event_candidate",
+    "privacy_review",
+    "debug_expectation"
+  ],
+  "allowed_event_types": [
+    "automatic",
+    "enhanced_measurement",
+    "recommended",
+    "custom"
+  ],
+  "allowed_event_surfaces": [
+    "gtag",
+    "gtm_ga4_event_tag",
+    "data_layer",
+    "measurement_protocol_supplement",
+    "ga4_ui_existing"
+  ],
+  "event_name_pattern": "^[a-z][a-z0-9_]*$",
+  "required_parameter_fields": [
+    "name",
+    "type",
+    "required",
+    "scope",
+    "value_source",
+    "pii_risk",
+    "notes"
+  ],
+  "allowed_parameter_types": [
+    "string",
+    "number",
+    "boolean",
+    "array",
+    "object"
+  ],
+  "allowed_parameter_scopes": [
+    "event",
+    "item",
+    "user_property"
+  ],
+  "allowed_pii_risks": [
+    "low",
+    "medium",
+    "high"
+  ],
+  "required_key_event_fields": [
+    "event_name",
+    "business_reason",
+    "value_strategy",
+    "currency_required",
+    "expected_volume",
+    "owner"
+  ],
+  "allowed_value_strategies": [
+    "none",
+    "static",
+    "monetary",
+    "derived"
+  ],
+  "required_tag_fields": [
+    "id",
+    "platform",
+    "tag_name",
+    "tag_type",
+    "trigger_name",
+    "mutation_requested",
+    "consent_checks",
+    "verification"
+  ],
+  "allowed_tag_platforms": [
+    "google_tag",
+    "google_tag_manager",
+    "ga4_ui"
+  ],
+  "allowed_tag_types": [
+    "google_tag_config",
+    "ga4_event",
+    "consent_initialization",
+    "conversion_linker",
+    "data_layer_event",
+    "ga4_key_event"
+  ],
+  "required_debug_plan_fields": [
+    "gtm_preview",
+    "tag_assistant",
+    "ga4_debugview",
+    "realtime_report",
+    "network_request_review"
+  ],
+  "required_confirmation_fields": [
+    "status",
+    "confirmed_by",
+    "confirmation_text",
+    "mutations_allowed"
+  ],
+  "confirmation_required_for": [
+    "tag_mutation",
+    "container_mutation",
+    "key_event_mutation"
+  ],
+  "required_evidence_fields": [
+    "ga4_collection_overview",
+    "ga4_events_guide",
+    "ga4_recommended_events",
+    "ga4_measurement_protocol",
+    "tag_platform",
+    "gtm_web"
+  ]
+}

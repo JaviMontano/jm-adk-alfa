@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "project": {
+    "name": "Invalid Broad Scope Fixture",
+    "owner": "JM Labs",
+    "environment": "serverless_backend"
+  },
+  "integration_mode": "serverless_backend",
+  "services": [
+    {
+      "id": "sheets",
+      "operation": "spreadsheets.values.get",
+      "purpose": "Read values with an unnecessarily broad write profile.",
+      "auth_profile": "sheets_full_write",
+      "requested_scopes": ["https://www.googleapis.com/auth/spreadsheets"],
+      "mutation": false,
+      "resource_identifiers": {
+        "spreadsheet_id": "sheet_invalid",
+        "range": "Data!A1:B5"
+      },
+      "read_before_write": false,
+      "idempotency_key": "",
+      "retry_policy": "default_exponential_backoff",
+      "quota_strategy": {
+        "batching": false,
+        "partial_response_fields": "values",
+        "quota_user_or_key_restriction": "quotaUser=invalid"
+      }
+    }
+  ],
+  "human_consent": {
+    "status": "not_required",
+    "confirmed_by": "",
+    "confirmation_text": ""
+  },
+  "secrets": {
+    "token_storage": "server_secret_manager",
+    "client_secret_exposure": "never",
+    "refresh_tokens_encrypted": true,
+    "api_keys_restricted": true,
+    "oauth_tokens_server_side": true,
+    "no_static_secrets_in_client": true,
+    "maps_api_key_restriction": "http_referrer_and_api_restricted"
+  },
+  "test_matrix": [
+    {"id": "unit", "layer": "unit", "covers": ["schema"]},
+    {"id": "contract", "layer": "contract", "covers": ["payloads"]},
+    {"id": "sandbox", "layer": "integration-sandbox", "covers": ["test project"]},
+    {"id": "e2e", "layer": "e2e-preview", "covers": ["preview"]},
+    {"id": "security", "layer": "security", "covers": ["secrets"]},
+    {"id": "quota", "layer": "quota-error", "covers": ["errors"]},
+    {"id": "consent", "layer": "consent-gate", "covers": ["blocker"]}
+  ],
+  "evidence": {
+    "fixture": "negative broad scope"
+  }
+}

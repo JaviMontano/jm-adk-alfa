@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "project": {"name": "invalid-broad-scope", "owner": "jm-labs", "environment": "sandbox", "objective": "Read Gmail with a send scope."},
+  "integration_mode": "mcp",
+  "services": [
+    {
+      "id": "gmail",
+      "operation": "users.messages.list",
+      "purpose": "List messages with overly broad scope.",
+      "mutation": false,
+      "auth_profile": "gmail_send",
+      "requested_scopes": ["https://www.googleapis.com/auth/gmail.send"],
+      "mcp_tool": "gmail_search_messages",
+      "read_before_write": false,
+      "resource_identifiers": {"userId": "me", "q": "newer_than:7d"},
+      "quota_strategy": {"batching": false, "partial_response_fields": "messages/id", "retry_policy": "bounded_exponential_backoff"}
+    }
+  ],
+  "workflow": {"read_only_first": true, "cross_service_steps": ["List Gmail messages."], "rollback_plan": "No mutation expected."},
+  "human_consent": {"status": "not_required", "confirmed_by": "", "confirmation_text": ""},
+  "secrets": {"credential_storage": "environment", "tokens_committed": false, "api_keys_restricted": true},
+  "test_matrix": [
+    {"id": "static", "layer": "static", "covers": ["schema"]},
+    {"id": "fixture", "layer": "fixture", "covers": ["negative"]},
+    {"id": "sandbox", "layer": "sandbox", "covers": ["not-run"]},
+    {"id": "live", "layer": "live-read-only", "covers": ["not-run"]}
+  ],
+  "evidence": {"source": "negative fixture"}
+}

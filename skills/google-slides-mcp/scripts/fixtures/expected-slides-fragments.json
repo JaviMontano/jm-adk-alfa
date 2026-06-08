@@ -1,0 +1,11 @@
+{
+  "fragments": [
+    "Plan `slides-plan-2026-qbr` covers `Build QBR draft deck with safe thumbnail preview`.",
+    "mcp__workspace-mcp__batch_update_presentation",
+    "presentations.pages.getThumbnail",
+    "https://www.googleapis.com/auth/drive.file",
+    "CONFIRM GOOGLE SLIDES MUTATION:",
+    "The compiler performed no network, OAuth, Google Slides, or MCP calls.",
+    "Thumbnail `contentUrl` is temporary and requester-scoped"
+  ]
+}

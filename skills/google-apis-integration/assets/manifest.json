@@ -1,0 +1,78 @@
+{
+  "schema": 1,
+  "skill": "google-apis-integration",
+  "assets": [
+    {
+      "path": "assets/google-apis-integration-schema.json",
+      "type": "schema",
+      "purpose": "Stable structured input contract for deterministic multi-Google-API integration plans.",
+      "used_by": [
+        "scripts/compile-google-apis-integration.py",
+        "knowledge/body-of-knowledge.md"
+      ]
+    },
+    {
+      "path": "assets/service-catalog.json",
+      "type": "service-catalog",
+      "purpose": "Official service and operation catalog for Sheets, Docs, Calendar, Maps JavaScript, and YouTube.",
+      "used_by": [
+        "scripts/compile-google-apis-integration.py",
+        "examples/example-output.md"
+      ]
+    },
+    {
+      "path": "assets/auth-scope-policy.json",
+      "type": "auth-scope-policy",
+      "purpose": "Least-privilege OAuth scope and restricted API-key profiles by service and operation class.",
+      "used_by": [
+        "scripts/compile-google-apis-integration.py",
+        "SKILL.md"
+      ]
+    },
+    {
+      "path": "assets/error-retry-policy.json",
+      "type": "error-retry-policy",
+      "purpose": "Quota, error, retry, backoff, and idempotency policies for offline checklists.",
+      "used_by": [
+        "scripts/compile-google-apis-integration.py",
+        "knowledge/body-of-knowledge.md"
+      ]
+    },
+    {
+      "path": "assets/consent-secrets-policy.json",
+      "type": "security-policy",
+      "purpose": "Human consent gate and secret handling requirements for multi-API plans.",
+      "used_by": [
+        "scripts/compile-google-apis-integration.py",
+        "prompts/primary.md"
+      ]
+    },
+    {
+      "path": "assets/test-matrix-policy.json",
+      "type": "test-policy",
+      "purpose": "Required validation layers and coverage expectations for generated plans.",
+      "used_by": [
+        "scripts/compile-google-apis-integration.py",
+        "evals/evals.json"
+      ]
+    },
+    {
+      "path": "assets/source-map.md",
+      "type": "source-map",
+      "purpose": "Primary official documentation references used by this skill.",
+      "used_by": [
+        "knowledge/body-of-knowledge.md",
+        "SKILL.md"
+      ]
+    },
+    {
+      "path": "assets/google-apis-integration-template.md",
+      "type": "markdown-template",
+      "purpose": "Canonical deterministic Google APIs integration report structure.",
+      "used_by": [
+        "scripts/compile-google-apis-integration.py",
+        "templates/output.md"
+      ]
+    }
+  ]
+}

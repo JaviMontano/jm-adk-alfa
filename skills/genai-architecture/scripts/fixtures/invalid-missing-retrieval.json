@@ -1,0 +1,70 @@
+{
+  "system_name": "Incomplete GenAI System",
+  "audience": "Architecture team",
+  "business_goal": "Validate error handling.",
+  "scope": "technical",
+  "deployment_preference": "managed",
+  "data_sensitivity": "internal",
+  "knowledge_base": {
+    "size": "medium",
+    "update_frequency": "daily",
+    "languages": ["en"],
+    "source_count": 10
+  },
+  "knowledge_sources": [
+    {
+      "name": "Docs",
+      "type": "documents",
+      "update_frequency": "daily",
+      "access_model": "read-only",
+      "sensitivity": "internal",
+      "owner": "docs"
+    }
+  ],
+  "rag_pipeline": [
+    {
+      "id": "query_processing",
+      "decision": "Classify intent.",
+      "mechanism": "Rule-based classifier.",
+      "owner": "platform",
+      "metric": "intent_accuracy"
+    }
+  ],
+  "use_cases": [
+    {
+      "name": "Docs Q&A",
+      "intent": "retrieval-and-synthesis",
+      "latency_class": "standard",
+      "quality_risk": "medium"
+    }
+  ],
+  "model_tiers": [
+    {
+      "tier": "tier-2",
+      "class": "mid-size",
+      "use_case": "standard Q&A",
+      "trigger": "normal complexity",
+      "fallback": "tier-3"
+    }
+  ],
+  "connectors": [
+    {
+      "name": "Docs",
+      "type": "documents",
+      "access_pattern": "indexed retrieval",
+      "security_control": "ACL",
+      "fallback": "cached snapshot"
+    }
+  ],
+  "quality_targets": [
+    {
+      "metric": "faithfulness",
+      "target": ">= 0.90",
+      "measurement": "judge",
+      "owner": "quality"
+    }
+  ],
+  "evidence": {
+    "fixture": "invalid"
+  }
+}

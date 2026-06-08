@@ -1,0 +1,37 @@
+{
+  "schema": 1,
+  "checks": [
+    {
+      "id": "gtm_preview",
+      "tool": "Google Tag Manager Preview",
+      "purpose": "Verify tags, triggers, variables, and firing order before publish."
+    },
+    {
+      "id": "tag_assistant",
+      "tool": "Tag Assistant",
+      "purpose": "Inspect fired tags, data layer exchanges, and event trigger path."
+    },
+    {
+      "id": "ga4_debugview",
+      "tool": "GA4 DebugView",
+      "purpose": "Confirm events and parameters arrive during debug sessions."
+    },
+    {
+      "id": "realtime_report",
+      "tool": "GA4 Realtime",
+      "purpose": "Confirm live receipt after deployment without waiting for standard reports."
+    },
+    {
+      "id": "network_request_review",
+      "tool": "Browser developer tools",
+      "purpose": "Check request payload shape without collecting restricted data."
+    }
+  ],
+  "publish_gate": [
+    "Preview connected successfully.",
+    "Expected tag fires once per intended action.",
+    "Unexpected duplicate tags are absent.",
+    "Consent state is visible before event tags fire.",
+    "Version name and description document the measurement change."
+  ]
+}

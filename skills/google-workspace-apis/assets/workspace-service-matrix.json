@@ -1,0 +1,58 @@
+{
+  "schema": 1,
+  "services": {
+    "gmail": {
+      "official_reference": "https://developers.google.com/workspace/gmail/api/reference/rest",
+      "operations": {
+        "users.messages.list": {"method": "GET", "access": "read", "mutation": false, "notes": "Search or list message IDs before reading or drafting."},
+        "users.messages.get": {"method": "GET", "access": "read", "mutation": false, "notes": "Read message metadata/content with partial fields."},
+        "users.drafts.create": {"method": "POST", "access": "write", "mutation": true, "notes": "Create a draft without sending."},
+        "users.messages.send": {"method": "POST", "access": "write", "mutation": true, "notes": "Send mail only after human confirmation."}
+      }
+    },
+    "calendar": {
+      "official_reference": "https://developers.google.com/calendar/api/v3/reference",
+      "operations": {
+        "events.list": {"method": "GET", "access": "read", "mutation": false, "notes": "Read bounded event windows."},
+        "freebusy.query": {"method": "POST", "access": "read", "mutation": false, "notes": "Check availability with minimal details."},
+        "events.insert": {"method": "POST", "access": "write", "mutation": true, "notes": "Create an event after attendee/payload review."},
+        "events.patch": {"method": "PATCH", "access": "write", "mutation": true, "notes": "Patch known events after reading current state."}
+      }
+    },
+    "drive": {
+      "official_reference": "https://developers.google.com/drive/api/reference/rest/v3",
+      "operations": {
+        "files.list": {"method": "GET", "access": "read", "mutation": false, "notes": "Search files with query and fields."},
+        "files.get": {"method": "GET", "access": "read", "mutation": false, "notes": "Read file metadata."},
+        "files.create": {"method": "POST", "access": "write", "mutation": true, "notes": "Upload or create Drive files."},
+        "permissions.create": {"method": "POST", "access": "write", "mutation": true, "notes": "Share files only after access review."}
+      }
+    },
+    "docs": {
+      "official_reference": "https://developers.google.com/workspace/docs/api/reference/rest",
+      "operations": {
+        "documents.get": {"method": "GET", "access": "read", "mutation": false, "notes": "Read document structure before edits."},
+        "documents.create": {"method": "POST", "access": "write", "mutation": true, "notes": "Create a blank document."},
+        "documents.batchUpdate": {"method": "POST", "access": "write", "mutation": true, "notes": "Apply ordered document update requests."}
+      }
+    },
+    "sheets": {
+      "official_reference": "https://developers.google.com/workspace/sheets/api/reference/rest",
+      "operations": {
+        "spreadsheets.get": {"method": "GET", "access": "read", "mutation": false, "notes": "Read spreadsheet metadata and optional grid data."},
+        "spreadsheets.values.get": {"method": "GET", "access": "read", "mutation": false, "notes": "Read A1 range values."},
+        "spreadsheets.values.update": {"method": "PUT", "access": "write", "mutation": true, "notes": "Write values to a range."},
+        "spreadsheets.batchUpdate": {"method": "POST", "access": "write", "mutation": true, "notes": "Apply structural spreadsheet requests."}
+      }
+    },
+    "slides": {
+      "official_reference": "https://developers.google.com/workspace/slides/api/reference/rest",
+      "operations": {
+        "presentations.get": {"method": "GET", "access": "read", "mutation": false, "notes": "Read presentation structure."},
+        "presentations.create": {"method": "POST", "access": "write", "mutation": true, "notes": "Create a presentation."},
+        "presentations.batchUpdate": {"method": "POST", "access": "write", "mutation": true, "notes": "Apply ordered slide requests."},
+        "presentations.pages.getThumbnail": {"method": "GET", "access": "read", "mutation": false, "notes": "Render thumbnail evidence."}
+      }
+    }
+  }
+}

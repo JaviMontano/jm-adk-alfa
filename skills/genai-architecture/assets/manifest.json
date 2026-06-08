@@ -1,0 +1,69 @@
+{
+  "schema": 1,
+  "skill": "genai-architecture",
+  "assets": [
+    {
+      "path": "assets/genai-architecture-schema.json",
+      "type": "schema",
+      "purpose": "Required structured fields for GenAI architecture inputs.",
+      "used_by": [
+        "scripts/compile-genai-architecture.py",
+        "knowledge/body-of-knowledge.md"
+      ]
+    },
+    {
+      "path": "assets/rag-pattern-model.json",
+      "type": "architecture-model",
+      "purpose": "Canonical RAG stages, variants, retrieval methods, and chunking strategies.",
+      "used_by": [
+        "scripts/compile-genai-architecture.py",
+        "examples/example-output.md"
+      ]
+    },
+    {
+      "path": "assets/model-routing-matrix.json",
+      "type": "routing-matrix",
+      "purpose": "LLM tiering, routing criteria, escalation, and fallback contract.",
+      "used_by": [
+        "scripts/compile-genai-architecture.py",
+        "templates/output.md"
+      ]
+    },
+    {
+      "path": "assets/vector-db-selection-matrix.json",
+      "type": "selection-matrix",
+      "purpose": "Vector database candidates and deterministic recommendation rules.",
+      "used_by": [
+        "scripts/compile-genai-architecture.py",
+        "examples/example-output.md"
+      ]
+    },
+    {
+      "path": "assets/connector-security-model.json",
+      "type": "security-model",
+      "purpose": "Knowledge connector types, mandatory controls, and degraded behavior.",
+      "used_by": [
+        "scripts/compile-genai-architecture.py",
+        "knowledge/body-of-knowledge.md"
+      ]
+    },
+    {
+      "path": "assets/qa-metrics-model.json",
+      "type": "quality-model",
+      "purpose": "GenAI quality metrics, guardrails, and continuous improvement cadence.",
+      "used_by": [
+        "scripts/compile-genai-architecture.py",
+        "templates/output.md"
+      ]
+    },
+    {
+      "path": "assets/genai-architecture-report-template.md",
+      "type": "markdown-template",
+      "purpose": "Canonical deterministic report structure.",
+      "used_by": [
+        "scripts/compile-genai-architecture.py",
+        "templates/output.md"
+      ]
+    }
+  ]
+}

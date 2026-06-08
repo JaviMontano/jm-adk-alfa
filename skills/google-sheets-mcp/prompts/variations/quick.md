@@ -5,8 +5,10 @@ generated-on: 2026-05-28
 overwrite-policy: missing-only unless --force
 -->
 
-# Google Sheets Mcp Quick Variation
+# Google Sheets MCP Quick Variation
 
-Use when the task is low risk and well specified.
+Use when the task is read-only or already has spreadsheet ID, range, scope,
+and confirmation details. [CODE]
 
-Return only the requested deliverable, validation status, and residual risks.
+Return only the operation summary, selected REST method, minimum scope, MCP tool,
+confirmation status, validation status, and residual risks. [CODE]

@@ -1,0 +1,60 @@
+{
+  "schema": 1,
+  "skill": "git-hook-integration",
+  "assets": [
+    {
+      "path": "assets/git-hook-integration-schema.json",
+      "type": "schema",
+      "purpose": "Required structured fields and allowed values for Git hook integration plans.",
+      "used_by": [
+        "scripts/compile-git-hook-integration.py",
+        "knowledge/body-of-knowledge.md"
+      ]
+    },
+    {
+      "path": "assets/hook-stage-model.json",
+      "type": "hook-model",
+      "purpose": "Canonical hook stages, blocking policy, and stage responsibilities.",
+      "used_by": [
+        "scripts/compile-git-hook-integration.py",
+        "examples/example-output.md"
+      ]
+    },
+    {
+      "path": "assets/conventional-commit-policy.json",
+      "type": "commit-policy",
+      "purpose": "Conventional Commit types, header length, and regex contract.",
+      "used_by": [
+        "scripts/compile-git-hook-integration.py",
+        "templates/output.md"
+      ]
+    },
+    {
+      "path": "assets/install-strategy-model.json",
+      "type": "install-strategy",
+      "purpose": "Supported hook manager strategies and non-destructive install rules.",
+      "used_by": [
+        "scripts/compile-git-hook-integration.py",
+        "knowledge/body-of-knowledge.md"
+      ]
+    },
+    {
+      "path": "assets/validation-command-catalog.json",
+      "type": "validation-catalog",
+      "purpose": "Canonical validation command categories for hook plans.",
+      "used_by": [
+        "scripts/compile-git-hook-integration.py",
+        "examples/example-output.md"
+      ]
+    },
+    {
+      "path": "assets/git-hook-integration-template.md",
+      "type": "markdown-template",
+      "purpose": "Canonical deterministic Git hook integration report structure.",
+      "used_by": [
+        "scripts/compile-git-hook-integration.py",
+        "templates/output.md"
+      ]
+    }
+  ]
+}

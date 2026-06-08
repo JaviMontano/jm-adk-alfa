@@ -1419,7 +1419,7 @@
     "id": "google-apis-integration",
     "path": "skills/google-apis-integration",
     "name": "Google Apis Integration",
-    "description": "Google Sheets API v4, Docs API v1, Calendar API v3, Maps JS API, YouTube Data API v3 integration patterns. [EXPLICIT]"
+    "description": "Multi-service Google API integration planning for Google Sheets API v4, Docs API v1, Calendar API v3, Maps JavaScript API, and YouTube Data API v3 with deterministic offline auth, scope, quota, retry, consent, secrets, operation, and test-matrix checklists. [DOC]"
   },
   {
     "id": "google-calendar-mcp",

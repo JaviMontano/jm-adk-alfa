@@ -1,0 +1,41 @@
+{
+  "repo_name": "jm-adk-alfa",
+  "hook_manager": "native-git",
+  "install_mode": "plan-only",
+  "hook_directory": ".githooks",
+  "hooks": [
+    {
+      "stage": "pre-commit",
+      "name": "quality-fast",
+      "command": "git diff --check",
+      "blocking": true,
+      "purpose": "Block whitespace errors."
+    },
+    {
+      "stage": "pre-push",
+      "name": "quality-full",
+      "command": "python3 scripts/validate-skills.py --strict",
+      "blocking": true,
+      "purpose": "Block publication when skills validation fails."
+    }
+  ],
+  "conventional_commits": {
+    "enabled": true,
+    "types": ["feat", "fix"],
+    "scopes": ["skills"],
+    "max_header_length": 72
+  },
+  "validation_commands": [
+    {
+      "name": "skills-strict",
+      "command": "python3 scripts/validate-skills.py --strict",
+      "stage": "pre-push",
+      "required": true
+    }
+  ],
+  "evidence": {
+    "repo_identity": "fixture",
+    "existing_hooks": "fixture",
+    "risk_boundary": "fixture"
+  }
+}

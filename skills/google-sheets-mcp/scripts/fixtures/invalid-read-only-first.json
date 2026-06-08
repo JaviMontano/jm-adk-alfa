@@ -1,0 +1,43 @@
+{
+  "request_id": "sheets-plan-invalid-readonly",
+  "request_title": "Invalid Read Only First",
+  "mcp_server": "workspace-mcp",
+  "operation_mode": "safe_execution_checklist",
+  "read_only_first": {
+    "enabled": true,
+    "metadata_checked": true,
+    "ranges_checked": true,
+    "formula_impact_checked": true,
+    "protected_ranges_reviewed": true
+  },
+  "human_confirmation": {
+    "status": "confirmed",
+    "confirmed_by": "owner",
+    "confirmation_text": "CONFIRM_SHEETS_MUTATION sheets-plan-invalid-readonly",
+    "mutation_count": 1
+  },
+  "operations": [
+    {
+      "id": "op-001",
+      "action": "spreadsheets.create",
+      "description": "Create without a prior read-only discovery operation.",
+      "mcp_tool": "mcp__workspace-mcp__create_spreadsheet",
+      "scope_profile": "drive.file",
+      "scope_binding": "spreadsheet_file",
+      "spreadsheet_body": {
+        "properties": {
+          "title": "Invalid Workbook"
+        }
+      },
+      "requires_human_confirmation": true,
+      "confirmation_key": "CONFIRM_SHEETS_MUTATION sheets-plan-invalid-readonly"
+    }
+  ],
+  "evidence": {
+    "google_sheets_rest": "https://developers.google.com/workspace/sheets/api/reference/rest",
+    "google_sheets_scopes": "https://developers.google.com/workspace/sheets/api/scopes",
+    "google_workspace_mcp": "https://developers.google.com/workspace/guides/build-with-llms",
+    "mcp_tools_spec": "https://modelcontextprotocol.io/specification/draft/server/tools",
+    "local_setup_docs": "docs/google-workspace-mcp-setup.md; docs/mcp-integration.md"
+  }
+}

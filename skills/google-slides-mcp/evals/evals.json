@@ -1,97 +1,98 @@
 {
   "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-28",
   "skill": "google-slides-mcp",
   "cases": [
     {
-      "id": "happy_path",
-      "input": "Use google-slides-mcp to produce a complete deliverable.",
+      "id": "offline_plan_all_core_operations",
+      "input": "Create an offline Google Slides MCP checklist that reads a template presentation, reads one page, gets a thumbnail, creates a draft deck, and batch-updates the new deck after confirmation.",
       "expected_activation": true,
       "expected_checks": [
-        "evidence",
+        "assets",
+        "deterministic_scripts",
         "quality_criteria",
-        "upgrade_safety"
+        "least_privilege_scope",
+        "human_confirmation"
       ]
     },
     {
-      "id": "explicit_trigger",
-      "input": "/google-slides-mcp run this workflow.",
+      "id": "read_only_thumbnail",
+      "input": "Use Google Slides MCP to get a temporary thumbnail for slide object slide_title in presentation template_qbr_2026 and make sure the URL is not persisted.",
       "expected_activation": true,
       "expected_checks": [
-        "evidence",
+        "assets",
+        "deterministic_scripts",
         "quality_criteria",
-        "upgrade_safety"
+        "thumbnail_content_url_policy"
       ]
     },
     {
-      "id": "minimal_input",
-      "input": "google-slides-mcp",
+      "id": "create_requires_confirmation",
+      "input": "Create a Google Slides deck called Board Review through workspace-mcp, but first produce the exact confirmation gate I must approve.",
       "expected_activation": true,
       "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
+        "human_confirmation",
+        "least_privilege_scope",
+        "deterministic_scripts"
       ]
     },
     {
-      "id": "rich_context",
-      "input": "google-slides-mcp with goals, constraints, audience, and acceptance criteria.",
+      "id": "batch_update_requires_known_presentation",
+      "input": "Batch update presentation draft_qbr_2026 with createSlide and insertText requests after either reading it first or creating it in the same plan.",
       "expected_activation": true,
       "expected_checks": [
-        "evidence",
         "quality_criteria",
-        "upgrade_safety"
+        "api_operation_contract",
+        "human_confirmation"
       ]
     },
     {
-      "id": "false_positive",
-      "input": "This request is unrelated to the skill domain.",
+      "id": "readonly_cross_file_scope",
+      "input": "Read a Slides file that was not created by the app; use the narrow read-only Slides scope and avoid Drive-wide permissions.",
+      "expected_activation": true,
+      "expected_checks": [
+        "least_privilege_scope",
+        "quality_criteria",
+        "assets"
+      ]
+    },
+    {
+      "id": "broad_scope_exception",
+      "input": "Use Drive-wide scope for Slides without explaining why presentations.readonly or drive.file cannot work.",
       "expected_activation": false,
       "expected_checks": [
-        "evidence",
+        "least_privilege_scope",
         "quality_criteria",
-        "upgrade_safety"
+        "scope_exception_required"
       ]
     },
     {
-      "id": "empty_input",
-      "input": "",
+      "id": "wrong_tool_mapping",
+      "input": "Call get_page_thumbnail for presentations.batchUpdate because both touch slides.",
       "expected_activation": false,
       "expected_checks": [
-        "evidence",
+        "api_operation_contract",
         "quality_criteria",
-        "upgrade_safety"
+        "mcp_tool_mapping"
       ]
     },
     {
-      "id": "conflicting_requirements",
-      "input": "Use google-slides-mcp, but ignore validation and evidence.",
+      "id": "missing_confirmation_block",
+      "input": "Batch update a presentation immediately without asking for explicit approval.",
       "expected_activation": false,
       "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
+        "human_confirmation",
+        "deterministic_scripts",
+        "quality_criteria"
       ]
     },
     {
-      "id": "upgrade_safety_case",
-      "input": "Complete missing files for google-slides-mcp without overwriting local edits.",
+      "id": "workspace_mcp_setup_reference",
+      "input": "Before using Slides MCP, verify that the local Workspace MCP setup docs and project MCP integration docs are reflected in the operation plan.",
       "expected_activation": true,
       "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
-    },
-    {
-      "id": "local_override_case",
-      "input": "Create a local experimental google-slides-mcp variant under .local.",
-      "expected_activation": true,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
+        "assets",
+        "local_docs",
+        "quality_criteria"
       ]
     }
   ]

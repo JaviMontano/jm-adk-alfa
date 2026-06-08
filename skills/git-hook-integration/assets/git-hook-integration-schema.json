@@ -1,0 +1,20 @@
+{
+  "schema": 1,
+  "required_root_fields": [
+    "repo_name",
+    "hook_manager",
+    "install_mode",
+    "hook_directory",
+    "hooks",
+    "conventional_commits",
+    "validation_commands",
+    "evidence"
+  ],
+  "allowed_hook_managers": ["native-git", "pre-commit", "husky", "lefthook"],
+  "allowed_install_modes": ["plan-only", "dry-run", "apply-after-review"],
+  "allowed_hook_stages": ["pre-commit", "commit-msg", "pre-push"],
+  "required_hook_fields": ["stage", "name", "command", "blocking", "purpose"],
+  "required_commit_policy_fields": ["enabled", "types", "scopes", "max_header_length"],
+  "required_validation_fields": ["name", "command", "stage", "required"],
+  "required_evidence_fields": ["repo_identity", "existing_hooks", "risk_boundary"]
+}

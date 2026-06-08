@@ -1,0 +1,78 @@
+{
+  "schema": 1,
+  "skill": "gmail-mcp",
+  "assets": [
+    {
+      "path": "assets/gmail-mcp-schema.json",
+      "type": "schema",
+      "purpose": "Required structured input fields for deterministic offline Gmail MCP plans.",
+      "used_by": [
+        "scripts/compile-gmail-mcp.py",
+        "knowledge/body-of-knowledge.md"
+      ]
+    },
+    {
+      "path": "assets/operation-safety-policy.json",
+      "type": "safety-policy",
+      "purpose": "Read-only-first ordering, confirmation gates, and no-real-call constraints.",
+      "used_by": [
+        "scripts/compile-gmail-mcp.py",
+        "SKILL.md"
+      ]
+    },
+    {
+      "path": "assets/scope-matrix.json",
+      "type": "scope-matrix",
+      "purpose": "Minimum Gmail OAuth scope family to verify before each operation.",
+      "used_by": [
+        "scripts/compile-gmail-mcp.py",
+        "knowledge/body-of-knowledge.md"
+      ]
+    },
+    {
+      "path": "assets/search-query-patterns.json",
+      "type": "search-policy",
+      "purpose": "Safe Gmail API query patterns for search, labels, and date handling.",
+      "used_by": [
+        "scripts/compile-gmail-mcp.py",
+        "examples/example-output.md"
+      ]
+    },
+    {
+      "path": "assets/label-policy.json",
+      "type": "label-policy",
+      "purpose": "System/user label constraints, draft limitations, and bulk label gates.",
+      "used_by": [
+        "scripts/compile-gmail-mcp.py",
+        "knowledge/body-of-knowledge.md"
+      ]
+    },
+    {
+      "path": "assets/send-draft-policy.json",
+      "type": "send-policy",
+      "purpose": "Draft-first and human-confirmed send workflow.",
+      "used_by": [
+        "scripts/compile-gmail-mcp.py",
+        "examples/example-output.md"
+      ]
+    },
+    {
+      "path": "assets/privacy-redaction-policy.json",
+      "type": "privacy-policy",
+      "purpose": "PII, attachment, credential, and message-body handling rules.",
+      "used_by": [
+        "scripts/compile-gmail-mcp.py",
+        "templates/output.md"
+      ]
+    },
+    {
+      "path": "assets/gmail-mcp-template.md",
+      "type": "markdown-template",
+      "purpose": "Canonical deterministic Gmail MCP plan structure.",
+      "used_by": [
+        "scripts/compile-gmail-mcp.py",
+        "templates/output.md"
+      ]
+    }
+  ]
+}

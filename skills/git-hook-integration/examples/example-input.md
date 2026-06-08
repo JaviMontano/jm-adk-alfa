@@ -7,4 +7,25 @@ overwrite-policy: missing-only unless --force
 
 # Example Input
 
-Use `git-hook-integration` to produce a concise deliverable for a realistic project request.
+Create a plan-only Git hook integration for `jm-adk-alfa`.
+
+Requirements:
+
+- Use native Git hooks in `.githooks`.
+- Add a fast `pre-commit` gate for repository guardrails and whitespace.
+- Add a blocking `commit-msg` gate for Conventional Commits.
+- Add a slower `pre-push` gate for component counts and strict skill validation.
+- Do not install or overwrite hooks in this run.
+
+Structured input lives at:
+
+```text
+skills/git-hook-integration/scripts/fixtures/git-hook-integration-input.json
+```
+
+Deterministic command:
+
+```bash
+python3 skills/git-hook-integration/scripts/compile-git-hook-integration.py \
+  --input skills/git-hook-integration/scripts/fixtures/git-hook-integration-input.json
+```

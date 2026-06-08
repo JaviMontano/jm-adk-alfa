@@ -1,0 +1,88 @@
+{
+  "plan_id": "ga4-invalid-mp-only",
+  "request_title": "Invalid Measurement Protocol only plan",
+  "implementation_mode": "measurement_protocol_only",
+  "property_state": {
+    "ga4_account_created": true,
+    "ga4_property_created": true,
+    "web_data_stream_created": true,
+    "measurement_id_known": true,
+    "enhanced_measurement_reviewed": true
+  },
+  "measurement_strategy": {
+    "primary_business_goal": "Measure offline conversions only.",
+    "reporting_questions": ["Which offline conversions occurred?"],
+    "kpis": ["offline conversion count"],
+    "implementation_surface": "measurement_protocol_supplement",
+    "owner": "analytics"
+  },
+  "consent_privacy": {
+    "region_profile": "US",
+    "cmp_present": true,
+    "consent_mode_plan": "basic",
+    "default_denied_before_consent": true,
+    "ads_personalization_review": true,
+    "data_redaction_review": true,
+    "pii_policy": "No PII parameters.",
+    "legal_review_owner": "privacy-owner"
+  },
+  "events": [
+    {
+      "id": "evt-offline-lead",
+      "event_name": "generate_lead",
+      "event_type": "recommended",
+      "business_goal": "Measure offline lead qualification.",
+      "user_action": "CRM marks a lead qualified.",
+      "recommended_event_candidate": true,
+      "implementation_surface": "measurement_protocol_supplement",
+      "trigger": "server-side CRM event",
+      "parameters": [],
+      "key_event_candidate": true,
+      "privacy_review": "No PII.",
+      "debug_expectation": "Should not compile as MP-only."
+    }
+  ],
+  "key_events": [
+    {
+      "event_name": "generate_lead",
+      "business_reason": "Lead is primary action.",
+      "value_strategy": "none",
+      "currency_required": false,
+      "expected_volume": "daily",
+      "owner": "analytics"
+    }
+  ],
+  "tags": [
+    {
+      "id": "tag-offline",
+      "platform": "google_tag",
+      "tag_name": "Measurement Protocol supplemental generate_lead",
+      "tag_type": "ga4_event",
+      "trigger_name": "server-side CRM event",
+      "mutation_requested": false,
+      "consent_checks": ["client_id join key consent checked"],
+      "verification": "Validate against tagging collection."
+    }
+  ],
+  "debug_plan": {
+    "gtm_preview": true,
+    "tag_assistant": true,
+    "ga4_debugview": true,
+    "realtime_report": true,
+    "network_request_review": true
+  },
+  "human_confirmation": {
+    "status": "not_required",
+    "confirmed_by": "",
+    "confirmation_text": "",
+    "mutations_allowed": false
+  },
+  "evidence": {
+    "ga4_collection_overview": "https://developers.google.com/analytics/devguides/collection/ga4",
+    "ga4_events_guide": "https://developers.google.com/analytics/devguides/collection/ga4/events",
+    "ga4_recommended_events": "https://developers.google.com/analytics/devguides/collection/ga4/reference/events",
+    "ga4_measurement_protocol": "https://developers.google.com/analytics/devguides/collection/protocol/ga4",
+    "tag_platform": "https://developers.google.com/tag-platform",
+    "gtm_web": "https://developers.google.com/tag-platform/tag-manager/web"
+  }
+}

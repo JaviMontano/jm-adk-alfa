@@ -1,0 +1,87 @@
+{
+  "schema": 1,
+  "skill": "google-drive-mcp",
+  "assets": [
+    {
+      "path": "assets/google-drive-mcp-schema.json",
+      "type": "schema",
+      "purpose": "Required structured input fields, operation types, and validation rules for safe Drive MCP plans.",
+      "used_by": [
+        "scripts/compile-google-drive-mcp.py",
+        "knowledge/body-of-knowledge.md"
+      ]
+    },
+    {
+      "path": "assets/query-policy.json",
+      "type": "query-policy",
+      "purpose": "Search/list defaults for q, fields, trashed=false, corpora, spaces, and pagination.",
+      "used_by": [
+        "scripts/compile-google-drive-mcp.py",
+        "examples/example-output.md"
+      ]
+    },
+    {
+      "path": "assets/scope-policy.json",
+      "type": "scope-policy",
+      "purpose": "Least-privilege Drive OAuth scope profiles and escalation guidance.",
+      "used_by": [
+        "scripts/compile-google-drive-mcp.py",
+        "knowledge/body-of-knowledge.md"
+      ]
+    },
+    {
+      "path": "assets/upload-policy.json",
+      "type": "upload-policy",
+      "purpose": "Deterministic uploadType selection for media, multipart, and resumable uploads.",
+      "used_by": [
+        "scripts/compile-google-drive-mcp.py",
+        "examples/example-output.md"
+      ]
+    },
+    {
+      "path": "assets/sharing-permission-policy.json",
+      "type": "sharing-permission-policy",
+      "purpose": "Permission type, role, capability, and human-confirmation policy.",
+      "used_by": [
+        "scripts/compile-google-drive-mcp.py",
+        "knowledge/body-of-knowledge.md"
+      ]
+    },
+    {
+      "path": "assets/mime-export-map.json",
+      "type": "mime-export-map",
+      "purpose": "Google Workspace MIME type to export MIME type mappings.",
+      "used_by": [
+        "scripts/compile-google-drive-mcp.py",
+        "examples/example-output.md"
+      ]
+    },
+    {
+      "path": "assets/mcp-tool-contract.json",
+      "type": "mcp-tool-contract",
+      "purpose": "Local workspace-mcp Drive tool names and read-only/mutating classifications.",
+      "used_by": [
+        "scripts/compile-google-drive-mcp.py",
+        "SKILL.md"
+      ]
+    },
+    {
+      "path": "assets/source-map.md",
+      "type": "source-map",
+      "purpose": "Primary local and official documentation references used by this skill.",
+      "used_by": [
+        "knowledge/body-of-knowledge.md",
+        "examples/example-output.md"
+      ]
+    },
+    {
+      "path": "assets/google-drive-mcp-template.md",
+      "type": "markdown-template",
+      "purpose": "Canonical deterministic Google Drive MCP report structure.",
+      "used_by": [
+        "scripts/compile-google-drive-mcp.py",
+        "templates/output.md"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,70 @@
+{
+  "schema": 1,
+  "skill": "google-calendar-mcp",
+  "assets": [
+    {
+      "path": "assets/google-calendar-operation-schema.json",
+      "type": "schema",
+      "purpose": "Required structured input fields and supported Calendar MCP operations.",
+      "used_by": [
+        "scripts/compile-google-calendar-mcp.py",
+        "knowledge/body-of-knowledge.md"
+      ]
+    },
+    {
+      "path": "assets/scope-policy.json",
+      "type": "scope-policy",
+      "purpose": "Least-privilege Calendar OAuth scope selection by operation.",
+      "used_by": [
+        "scripts/compile-google-calendar-mcp.py",
+        "knowledge/body-of-knowledge.md",
+        "evals/evals.json"
+      ]
+    },
+    {
+      "path": "assets/calendar-event-payload-policy.json",
+      "type": "event-payload-policy",
+      "purpose": "Timezone, attendees, reminders, sendUpdates, and event payload constraints.",
+      "used_by": [
+        "scripts/compile-google-calendar-mcp.py",
+        "examples/example-output.md"
+      ]
+    },
+    {
+      "path": "assets/conference-data-policy.json",
+      "type": "conference-data-policy",
+      "purpose": "Google Meet conferenceDataVersion and requestId idempotency rules.",
+      "used_by": [
+        "scripts/compile-google-calendar-mcp.py",
+        "knowledge/body-of-knowledge.md"
+      ]
+    },
+    {
+      "path": "assets/confirmation-policy.json",
+      "type": "confirmation-policy",
+      "purpose": "Human-confirmation gates before mutating Calendar operations.",
+      "used_by": [
+        "scripts/compile-google-calendar-mcp.py",
+        "SKILL.md"
+      ]
+    },
+    {
+      "path": "assets/read-only-first-checklist.md",
+      "type": "checklist",
+      "purpose": "Read-only-first operational checklist before MCP mutation.",
+      "used_by": [
+        "scripts/compile-google-calendar-mcp.py",
+        "README.md"
+      ]
+    },
+    {
+      "path": "assets/google-calendar-operation-template.md",
+      "type": "markdown-template",
+      "purpose": "Canonical deterministic Calendar MCP operation report.",
+      "used_by": [
+        "scripts/compile-google-calendar-mcp.py",
+        "templates/output.md"
+      ]
+    }
+  ]
+}

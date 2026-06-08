@@ -1,28 +1,44 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: genai-architecture
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
+# GenAI Architecture: {system_name}
 
-# Genai Architecture Output
+## Executive Summary
 
-## Summary
-
-{summary}
+- [CODE] Audience: {audience}
+- [CODE] Business goal: {business_goal}
+- [CODE] Recommended pattern: {recommended_pattern}
+- [CODE] Recommended vector store: {recommended_vector_db}
 
 ## Evidence
 
 {evidence}
 
-## Result
+## Knowledge Base Profile
 
-{result}
+{knowledge_base_profile}
+
+## RAG Pipeline
+
+{rag_pipeline}
+
+## LLM Orchestration
+
+{model_routing}
+
+## Vector Database Decision
+
+{vector_decision}
+
+## Knowledge Connectors
+
+{connectors}
+
+## Quality And Guardrails
+
+{quality}
 
 ## Validation
 
 {validation}
 
-## Risks and Limits
+## Risks And Limits
 
 {risks}

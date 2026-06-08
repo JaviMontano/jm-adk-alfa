@@ -1,0 +1,107 @@
+{
+  "schema": 1,
+  "required_root_fields": [
+    "request_id",
+    "request_title",
+    "mcp_server",
+    "operation_mode",
+    "drive_space",
+    "read_only_first",
+    "operations",
+    "evidence"
+  ],
+  "allowed_operation_modes": [
+    "plan_only",
+    "safe_execution_checklist"
+  ],
+  "allowed_mcp_servers": [
+    "workspace-mcp"
+  ],
+  "allowed_actions": [
+    "search_list",
+    "upload",
+    "download_export",
+    "organize_folder",
+    "share_permission"
+  ],
+  "read_only_actions": [
+    "search_list",
+    "download_export"
+  ],
+  "mutating_actions": [
+    "upload",
+    "organize_folder",
+    "share_permission"
+  ],
+  "allowed_corpora": [
+    "user",
+    "drive",
+    "domain",
+    "allDrives"
+  ],
+  "preferred_corpora": [
+    "user",
+    "drive"
+  ],
+  "allowed_spaces": [
+    "drive",
+    "appDataFolder"
+  ],
+  "required_operation_fields": [
+    "id",
+    "action",
+    "description",
+    "mcp_tool",
+    "scope_profile"
+  ],
+  "required_search_fields": [
+    "q",
+    "fields",
+    "corpora",
+    "spaces",
+    "page_size"
+  ],
+  "required_upload_fields": [
+    "local_path",
+    "destination_parent_id",
+    "filename",
+    "mime_type",
+    "upload_type",
+    "size_mb",
+    "metadata",
+    "fields",
+    "requires_human_confirmation"
+  ],
+  "required_download_export_fields": [
+    "file_id",
+    "file_name",
+    "source_mime_type",
+    "destination_path",
+    "verify_can_download"
+  ],
+  "required_folder_fields": [
+    "folder_path",
+    "parent_id",
+    "folder_mime_type",
+    "create_missing",
+    "fields",
+    "requires_human_confirmation"
+  ],
+  "required_share_fields": [
+    "file_id",
+    "permission",
+    "send_notification_email",
+    "verify_capability",
+    "fields",
+    "requires_human_confirmation"
+  ],
+  "required_permission_fields": [
+    "type",
+    "role"
+  ],
+  "required_evidence_fields": [
+    "repo_docs",
+    "google_drive_api",
+    "mcp_spec"
+  ]
+}

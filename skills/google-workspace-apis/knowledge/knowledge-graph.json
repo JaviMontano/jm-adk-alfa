@@ -1,75 +1,24 @@
 {
   "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-28",
   "skill": "google-workspace-apis",
   "nodes": [
-    {
-      "id": "google-workspace-apis",
-      "type": "skill",
-      "label": "google-workspace-apis"
-    },
-    {
-      "id": "google-workspace-apis:inputs",
-      "type": "contract",
-      "label": "Expected inputs"
-    },
-    {
-      "id": "google-workspace-apis:outputs",
-      "type": "contract",
-      "label": "Expected outputs"
-    },
-    {
-      "id": "google-workspace-apis:quality",
-      "type": "gate",
-      "label": "Quality criteria"
-    },
-    {
-      "id": "google-workspace-apis:ontology",
-      "type": "ontology",
-      "label": "Domain: general"
-    },
-    {
-      "id": "google-workspace-apis:evidence",
-      "type": "gate",
-      "label": "Evidence / provenance requirements"
-    },
-    {
-      "id": "google-workspace-apis:antipattern",
-      "type": "risk",
-      "label": "Canonical anti-pattern to avoid"
-    }
+    {"id": "google-workspace-apis", "type": "skill", "label": "Google Workspace APIs"},
+    {"id": "service-matrix", "type": "asset", "label": "Workspace service matrix"},
+    {"id": "auth-scope-policy", "type": "asset", "label": "Least-privilege auth and scope policy"},
+    {"id": "mcp-tool-contract", "type": "asset", "label": "MCP tool contract"},
+    {"id": "read-only-first", "type": "gate", "label": "Read-only-first before mutation"},
+    {"id": "human-consent", "type": "gate", "label": "Human confirmation for mutations"},
+    {"id": "offline-compiler", "type": "script", "label": "Deterministic offline compiler"},
+    {"id": "live-validation", "type": "limit", "label": "Provider-side live validation"}
   ],
   "edges": [
-    {
-      "from": "google-workspace-apis",
-      "to": "google-workspace-apis:inputs",
-      "type": "requires"
-    },
-    {
-      "from": "google-workspace-apis",
-      "to": "google-workspace-apis:outputs",
-      "type": "produces"
-    },
-    {
-      "from": "google-workspace-apis",
-      "to": "google-workspace-apis:quality",
-      "type": "validated_by"
-    },
-    {
-      "from": "google-workspace-apis",
-      "to": "google-workspace-apis:ontology",
-      "type": "classified_as"
-    },
-    {
-      "from": "google-workspace-apis",
-      "to": "google-workspace-apis:evidence",
-      "type": "validated_by"
-    },
-    {
-      "from": "google-workspace-apis",
-      "to": "google-workspace-apis:antipattern",
-      "type": "guards_against"
-    }
+    {"from": "google-workspace-apis", "to": "service-matrix", "type": "uses"},
+    {"from": "google-workspace-apis", "to": "auth-scope-policy", "type": "uses"},
+    {"from": "google-workspace-apis", "to": "mcp-tool-contract", "type": "uses"},
+    {"from": "auth-scope-policy", "to": "read-only-first", "type": "supports"},
+    {"from": "mcp-tool-contract", "to": "human-consent", "type": "guards"},
+    {"from": "offline-compiler", "to": "read-only-first", "type": "validates"},
+    {"from": "offline-compiler", "to": "human-consent", "type": "validates"},
+    {"from": "google-workspace-apis", "to": "live-validation", "type": "does_not_replace"}
   ]
 }

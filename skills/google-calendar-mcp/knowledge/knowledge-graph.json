@@ -1,75 +1,98 @@
 {
   "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-28",
   "skill": "google-calendar-mcp",
   "nodes": [
     {
       "id": "google-calendar-mcp",
       "type": "skill",
-      "label": "google-calendar-mcp"
+      "label": "Google Calendar MCP"
     },
     {
-      "id": "google-calendar-mcp:inputs",
-      "type": "contract",
-      "label": "Expected inputs"
+      "id": "google-calendar-mcp:scope-policy",
+      "type": "asset",
+      "label": "Least-privilege Calendar scope policy"
     },
     {
-      "id": "google-calendar-mcp:outputs",
-      "type": "contract",
-      "label": "Expected outputs"
-    },
-    {
-      "id": "google-calendar-mcp:quality",
+      "id": "google-calendar-mcp:read-only-first",
       "type": "gate",
-      "label": "Quality criteria"
+      "label": "Read-only-first before mutation"
     },
     {
-      "id": "google-calendar-mcp:ontology",
-      "type": "ontology",
-      "label": "Domain: tool-design-mcp"
-    },
-    {
-      "id": "google-calendar-mcp:evidence",
+      "id": "google-calendar-mcp:confirmation",
       "type": "gate",
-      "label": "Evidence / provenance requirements"
+      "label": "Human confirmation for create/edit/cancel"
     },
     {
-      "id": "google-calendar-mcp:antipattern",
-      "type": "risk",
-      "label": "Canonical anti-pattern to avoid"
+      "id": "google-calendar-mcp:timezone",
+      "type": "contract",
+      "label": "RFC3339 timestamps plus IANA timezone"
+    },
+    {
+      "id": "google-calendar-mcp:attendees",
+      "type": "contract",
+      "label": "Attendees and sendUpdates policy"
+    },
+    {
+      "id": "google-calendar-mcp:conference-data",
+      "type": "asset",
+      "label": "Google Meet conferenceData and requestId"
+    },
+    {
+      "id": "google-calendar-mcp:offline-compiler",
+      "type": "script",
+      "label": "Offline deterministic operation compiler"
+    },
+    {
+      "id": "google-calendar-mcp:mcp-tools",
+      "type": "tooling",
+      "label": "workspace-mcp Calendar tools"
     }
   ],
   "edges": [
     {
       "from": "google-calendar-mcp",
-      "to": "google-calendar-mcp:inputs",
+      "to": "google-calendar-mcp:scope-policy",
       "type": "requires"
     },
     {
       "from": "google-calendar-mcp",
-      "to": "google-calendar-mcp:outputs",
-      "type": "produces"
-    },
-    {
-      "from": "google-calendar-mcp",
-      "to": "google-calendar-mcp:quality",
+      "to": "google-calendar-mcp:read-only-first",
       "type": "validated_by"
     },
     {
       "from": "google-calendar-mcp",
-      "to": "google-calendar-mcp:ontology",
-      "type": "classified_as"
-    },
-    {
-      "from": "google-calendar-mcp",
-      "to": "google-calendar-mcp:evidence",
+      "to": "google-calendar-mcp:confirmation",
       "type": "validated_by"
     },
     {
       "from": "google-calendar-mcp",
-      "to": "google-calendar-mcp:antipattern",
-      "type": "guards_against"
+      "to": "google-calendar-mcp:timezone",
+      "type": "requires"
+    },
+    {
+      "from": "google-calendar-mcp",
+      "to": "google-calendar-mcp:attendees",
+      "type": "requires"
+    },
+    {
+      "from": "google-calendar-mcp",
+      "to": "google-calendar-mcp:conference-data",
+      "type": "uses"
+    },
+    {
+      "from": "google-calendar-mcp:offline-compiler",
+      "to": "google-calendar-mcp:scope-policy",
+      "type": "loads"
+    },
+    {
+      "from": "google-calendar-mcp:offline-compiler",
+      "to": "google-calendar-mcp:confirmation",
+      "type": "enforces"
+    },
+    {
+      "from": "google-calendar-mcp:mcp-tools",
+      "to": "google-calendar-mcp:read-only-first",
+      "type": "supports"
     }
   ]
 }

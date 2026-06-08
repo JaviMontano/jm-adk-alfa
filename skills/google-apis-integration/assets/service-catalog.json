@@ -1,0 +1,180 @@
+{
+  "schema": 1,
+  "services": {
+    "sheets": {
+      "display_name": "Google Sheets API v4",
+      "official_reference": "https://developers.google.com/workspace/sheets/api/reference/rest",
+      "credential_family": "oauth2",
+      "operations": {
+        "spreadsheets.get": {
+          "method": "GET",
+          "path": "/v4/spreadsheets/{spreadsheetId}",
+          "access": "read",
+          "mutation": false,
+          "notes": "Read spreadsheet metadata and optionally grid data with field selection."
+        },
+        "spreadsheets.values.get": {
+          "method": "GET",
+          "path": "/v4/spreadsheets/{spreadsheetId}/values/{range}",
+          "access": "read",
+          "mutation": false,
+          "notes": "Read cell values from an A1 range."
+        },
+        "spreadsheets.values.batchUpdate": {
+          "method": "POST",
+          "path": "/v4/spreadsheets/{spreadsheetId}/values:batchUpdate",
+          "access": "write",
+          "mutation": true,
+          "notes": "Update multiple ValueRange payloads in one request."
+        },
+        "spreadsheets.batchUpdate": {
+          "method": "POST",
+          "path": "/v4/spreadsheets/{spreadsheetId}:batchUpdate",
+          "access": "write",
+          "mutation": true,
+          "notes": "Apply structural spreadsheet requests such as sheet, format, and validation changes."
+        }
+      }
+    },
+    "docs": {
+      "display_name": "Google Docs API v1",
+      "official_reference": "https://developers.google.com/workspace/docs/api/reference/rest",
+      "credential_family": "oauth2",
+      "operations": {
+        "documents.get": {
+          "method": "GET",
+          "path": "/v1/documents/{documentId}",
+          "access": "read",
+          "mutation": false,
+          "notes": "Read document structure before composing write indexes."
+        },
+        "documents.create": {
+          "method": "POST",
+          "path": "/v1/documents",
+          "access": "write",
+          "mutation": true,
+          "notes": "Create a blank document; content insertion is handled with documents.batchUpdate."
+        },
+        "documents.batchUpdate": {
+          "method": "POST",
+          "path": "/v1/documents/{documentId}:batchUpdate",
+          "access": "write",
+          "mutation": true,
+          "notes": "Apply ordered document update requests."
+        }
+      }
+    },
+    "calendar": {
+      "display_name": "Google Calendar API v3",
+      "official_reference": "https://developers.google.com/calendar/api/v3/reference",
+      "credential_family": "oauth2",
+      "operations": {
+        "events.list": {
+          "method": "GET",
+          "path": "/calendar/v3/calendars/{calendarId}/events",
+          "access": "read",
+          "mutation": false,
+          "notes": "Read bounded event windows with timeMin/timeMax."
+        },
+        "freebusy.query": {
+          "method": "POST",
+          "path": "/calendar/v3/freeBusy",
+          "access": "read",
+          "mutation": false,
+          "notes": "Check availability without reading full event details."
+        },
+        "events.insert": {
+          "method": "POST",
+          "path": "/calendar/v3/calendars/{calendarId}/events",
+          "access": "write",
+          "mutation": true,
+          "notes": "Create an event; invitations and Meet require explicit payload review."
+        },
+        "events.patch": {
+          "method": "PATCH",
+          "path": "/calendar/v3/calendars/{calendarId}/events/{eventId}",
+          "access": "write",
+          "mutation": true,
+          "notes": "Patch selected event fields after reading the current event."
+        },
+        "events.delete": {
+          "method": "DELETE",
+          "path": "/calendar/v3/calendars/{calendarId}/events/{eventId}",
+          "access": "write",
+          "mutation": true,
+          "notes": "Delete or cancel a known event after confirmation."
+        }
+      }
+    },
+    "maps_js": {
+      "display_name": "Maps JavaScript API",
+      "official_reference": "https://developers.google.com/maps/documentation/javascript/overview",
+      "credential_family": "api_key",
+      "operations": {
+        "maps.load_js_api": {
+          "method": "BROWSER_LOAD",
+          "path": "https://maps.googleapis.com/maps/api/js",
+          "access": "browser_render",
+          "mutation": false,
+          "notes": "Load the Maps JavaScript API with a restricted browser API key."
+        },
+        "maps.add_markers": {
+          "method": "BROWSER_RENDER",
+          "path": "Map and marker library objects",
+          "access": "browser_render",
+          "mutation": false,
+          "notes": "Render map markers client-side from already-authorized application data."
+        },
+        "maps.places_library": {
+          "method": "BROWSER_LIBRARY",
+          "path": "Maps JavaScript places library",
+          "access": "browser_render",
+          "mutation": false,
+          "notes": "Use the Places library only when enabled and key-restricted."
+        }
+      }
+    },
+    "youtube": {
+      "display_name": "YouTube Data API v3",
+      "official_reference": "https://developers.google.com/youtube/v3/docs",
+      "credential_family": "api_key_or_oauth2",
+      "operations": {
+        "search.list": {
+          "method": "GET",
+          "path": "/youtube/v3/search",
+          "access": "public_read",
+          "mutation": false,
+          "notes": "Search public YouTube resources with API key or OAuth."
+        },
+        "videos.list": {
+          "method": "GET",
+          "path": "/youtube/v3/videos",
+          "access": "public_read",
+          "mutation": false,
+          "notes": "Read public video metadata with partial response fields."
+        },
+        "playlists.insert": {
+          "method": "POST",
+          "path": "/youtube/v3/playlists",
+          "access": "write",
+          "mutation": true,
+          "notes": "Create an authenticated playlist."
+        },
+        "playlistItems.insert": {
+          "method": "POST",
+          "path": "/youtube/v3/playlistItems",
+          "access": "write",
+          "mutation": true,
+          "notes": "Add a video to an authenticated playlist."
+        },
+        "videos.insert": {
+          "method": "POST",
+          "path": "/upload/youtube/v3/videos",
+          "access": "upload",
+          "mutation": true,
+          "notes": "Upload authenticated video resources with upload-specific OAuth scope."
+        }
+      }
+    }
+  }
+}

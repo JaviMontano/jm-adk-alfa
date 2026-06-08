@@ -1,0 +1,29 @@
+{
+  "request_id": "invalid-missing-trashed",
+  "request_title": "Invalid Drive search without trash filter",
+  "mcp_server": "workspace-mcp",
+  "operation_mode": "plan_only",
+  "drive_space": "My Drive",
+  "read_only_first": true,
+  "operations": [
+    {
+      "id": "bad-search",
+      "action": "search_list",
+      "description": "Search without excluding trash.",
+      "mcp_tool": "mcp__workspace-mcp__search_drive_files",
+      "scope_profile": "drive_metadata_readonly",
+      "search": {
+        "q": "name contains 'alfa'",
+        "fields": "nextPageToken, files(id, name, mimeType)",
+        "corpora": "user",
+        "spaces": "drive",
+        "page_size": 25
+      }
+    }
+  ],
+  "evidence": {
+    "repo_docs": "docs/google-workspace-mcp-setup.md; docs/mcp-integration.md",
+    "google_drive_api": "Drive files.list and search files",
+    "mcp_spec": "https://modelcontextprotocol.io/specification/draft/server/tools"
+  }
+}

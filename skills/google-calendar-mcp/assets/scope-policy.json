@@ -1,0 +1,35 @@
+{
+  "schema": 1,
+  "source": "https://developers.google.com/workspace/calendar/api/auth",
+  "last_reviewed": "2026-06-01",
+  "minimum_scopes": {
+    "freebusy_check": {
+      "scope": "https://www.googleapis.com/auth/calendar.freebusy",
+      "rationale": "Availability-only operation; no event detail or mutation required."
+    },
+    "query_agenda": {
+      "scope": "https://www.googleapis.com/auth/calendar.events.readonly",
+      "rationale": "Read event details from accessible calendars without edit permission."
+    },
+    "create_event": {
+      "scope": "https://www.googleapis.com/auth/calendar.events",
+      "rationale": "Create and edit events on accessible calendars."
+    },
+    "update_event": {
+      "scope": "https://www.googleapis.com/auth/calendar.events",
+      "rationale": "Modify existing events on accessible calendars."
+    },
+    "cancel_event": {
+      "scope": "https://www.googleapis.com/auth/calendar.events",
+      "rationale": "Cancel/delete events on accessible calendars."
+    },
+    "app_created_calendar_event": {
+      "scope": "https://www.googleapis.com/auth/calendar.app.created",
+      "rationale": "Manage secondary calendars and events created by the app only."
+    }
+  },
+  "broad_scopes_to_avoid_by_default": [
+    "https://www.googleapis.com/auth/calendar",
+    "https://www.googleapis.com/auth/calendar.readonly"
+  ]
+}

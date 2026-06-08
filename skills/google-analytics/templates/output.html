@@ -1,30 +1,55 @@
-<!-- MetodologIA Brand Template: Google Analytics -->
-<!-- Uses: references/brand/design-tokens.json + html-template.html -->
-<!-- Replace: {{TITLE}}, {{SUBTITLE}}, {{CONTENT}}, {{DATE}} -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>{{TITLE}} | Google Analytics | MetodologIA</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Montserrat:wght@300;400;500&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{TITLE}} | GA4/GTM Measurement Plan</title>
 <style>
-:root{--navy:#0A122A;--surface:#1E293B;--gold:#FFD700;--cyan:#137DC5;--text:#FFF;--muted:#94A3B8}
-body{font-family:'Montserrat',sans-serif;background:var(--navy);color:var(--text);margin:0;padding:2rem}
-.c{max-width:1000px;margin:0 auto}
-h1{font-family:'Poppins',sans-serif;background:linear-gradient(135deg,#fff,var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-h2{font-family:'Poppins',sans-serif;color:var(--gold);border-bottom:1px solid rgba(255,255,255,.05);padding-bottom:.5rem}
-.card{background:rgba(30,41,59,.4);backdrop-filter:blur(24px);border:1px solid rgba(255,255,255,.05);border-radius:12px;padding:1.5rem;margin:1rem 0}
-table{width:100%;border-collapse:collapse}
-th{font-family:'Poppins',sans-serif;color:var(--gold);text-align:left;padding:.75rem;border-bottom:2px solid var(--gold)}
-td{padding:.75rem;border-bottom:1px solid rgba(255,255,255,.05)}
-footer{text-align:center;margin-top:3rem;border-top:2px solid var(--gold);padding:1.5rem;font-family:'JetBrains Mono',monospace;font-size:.75rem;color:var(--muted)}
-@media print{body{background:#fff;color:#1a1a1a}h1{-webkit-text-fill-color:#0A122A}h2{color:#0A122A}}
+:root{--navy:#122562;--gold:#FFD700;--cyan:#137DC5;--dark:#1F2833;--lavender:#BBA0CC;--gray:#808080;--paper:#ffffff;--ink:#1F2833}
+*{box-sizing:border-box}
+body{margin:0;font-family:Trebuchet MS,Arial,sans-serif;background:#f7f9fc;color:var(--ink);line-height:1.5}
+header{background:var(--navy);color:#fff;padding:32px 24px;border-bottom:6px solid var(--gold)}
+main{max-width:1120px;margin:0 auto;padding:24px}
+h1,h2,h3{font-family:Poppins,Trebuchet MS,Arial,sans-serif;margin:0 0 12px}
+h1{font-size:2rem}
+h2{font-size:1.25rem;color:var(--navy);border-bottom:2px solid var(--cyan);padding-bottom:6px;margin-top:28px}
+p{margin:0 0 12px}
+section{margin:0 0 22px}
+.meta{font-family:JetBrains Mono,Consolas,monospace;color:#e8eefb;font-size:.9rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+.panel{background:var(--paper);border:1px solid #d9e2ef;border-radius:8px;padding:16px}
+table{width:100%;border-collapse:collapse;background:var(--paper);border:1px solid #d9e2ef}
+th,td{padding:10px;border-bottom:1px solid #d9e2ef;text-align:left;vertical-align:top}
+th{background:#eef5ff;color:var(--navy);font-family:Poppins,Trebuchet MS,Arial,sans-serif}
+code{font-family:JetBrains Mono,Consolas,monospace;background:#eef5ff;color:var(--navy);padding:1px 4px;border-radius:4px}
+.gate{border-left:6px solid var(--gold)}
+.risk{border-left:6px solid var(--lavender)}
+footer{max-width:1120px;margin:0 auto;padding:20px 24px;color:var(--gray);font-family:JetBrains Mono,Consolas,monospace;font-size:.8rem}
+@media print{body{background:#fff}header{background:#fff;color:var(--ink);border-bottom:3px solid var(--navy)}.meta{color:var(--gray)}main{padding:12px}.panel,table{break-inside:avoid}}
 </style>
 </head>
-<body><div class="c">
-<h1>{{TITLE}}</h1>
-<p style="color:var(--muted);font-family:'JetBrains Mono',monospace;font-size:.85rem">{{SUBTITLE}}</p>
-<hr style="border:none;height:4px;background:linear-gradient(90deg,var(--gold),var(--cyan));border-radius:2px;margin:1.5rem 0">
-{{CONTENT}}
-<footer><span style="color:var(--gold)">MetodologIA</span> — {{DATE}}<br>Made with Pristino Agent</footer>
-</div></body></html>
+<body>
+<header>
+  <h1>{{TITLE}}</h1>
+  <p class="meta">GA4/GTM measurement plan | {{DATE}}</p>
+</header>
+<main>
+  <section class="grid">
+    <div class="panel"><h2>Summary</h2>{{SUMMARY}}</div>
+    <div class="panel gate"><h2>Human Gate</h2>{{HUMAN_CONFIRMATION_GATE}}</div>
+  </section>
+  <section><h2>Evidence</h2>{{EVIDENCE}}</section>
+  <section><h2>Property And Stream Checklist</h2>{{PROPERTY_CHECKLIST}}</section>
+  <section><h2>Measurement Strategy</h2>{{MEASUREMENT_STRATEGY}}</section>
+  <section><h2>Event Taxonomy</h2>{{EVENT_TAXONOMY}}</section>
+  <section><h2>Parameter Contract</h2>{{PARAMETER_CONTRACT}}</section>
+  <section><h2>Key-Event Plan</h2>{{KEY_EVENT_PLAN}}</section>
+  <section><h2>Tag And Container Plan</h2>{{TAG_PLAN}}</section>
+  <section><h2>Privacy And Consent Checks</h2>{{PRIVACY_CONSENT}}</section>
+  <section><h2>Debug Checklist</h2>{{DEBUG_CHECKLIST}}</section>
+  <section><h2>Validation</h2>{{VALIDATION}}</section>
+  <section class="panel risk"><h2>Risks And Limits</h2>{{RISKS}}</section>
+</main>
+<footer>MetodologIA / JM Labs - deterministic offline GA4/GTM output template</footer>
+</body>
+</html>

@@ -1,0 +1,58 @@
+{
+  "schema": 1,
+  "retry_policies": {
+    "default_exponential_backoff": {
+      "max_attempts": 5,
+      "initial_delay_seconds": 1,
+      "max_delay_seconds": 32,
+      "jitter": true,
+      "retryable_statuses": [403, 429, 500, 502, 503, 504],
+      "retryable_reasons": ["rateLimitExceeded", "userRateLimitExceeded", "backendError", "internalError"],
+      "non_retryable_statuses": [400, 404],
+      "auth_statuses": [401],
+      "notes": "Use bounded exponential backoff for quota and transient server errors; refresh or re-authenticate for auth failures."
+    },
+    "calendar_event_write_backoff": {
+      "max_attempts": 5,
+      "initial_delay_seconds": 1,
+      "max_delay_seconds": 32,
+      "jitter": true,
+      "retryable_statuses": [403, 429, 500, 503],
+      "requires_read_back": true,
+      "notes": "Read back event state after writes that create invitations or conference data."
+    },
+    "maps_js_loader_recoverable": {
+      "max_attempts": 2,
+      "initial_delay_seconds": 0,
+      "max_delay_seconds": 2,
+      "jitter": false,
+      "retryable_statuses": [],
+      "requires_key_diagnostics": true,
+      "notes": "Browser loader errors should surface key restriction, API enablement, billing, or referrer diagnostics."
+    },
+    "youtube_upload_resumable": {
+      "max_attempts": 5,
+      "initial_delay_seconds": 2,
+      "max_delay_seconds": 64,
+      "jitter": true,
+      "retryable_statuses": [403, 429, 500, 502, 503, 504],
+      "requires_resumable_upload": true,
+      "notes": "Large uploads should use resumable upload semantics and recoverable chunk retries."
+    }
+  },
+  "quota_strategy_required": [
+    "partial_response_fields",
+    "batching",
+    "quota_user_or_key_restriction"
+  ],
+  "idempotency": {
+    "required_for_mutations": true,
+    "accepted_sources": [
+      "client_generated_operation_id",
+      "calendar_request_id",
+      "document_revision_guard",
+      "spreadsheet_batch_key",
+      "youtube_upload_session_id"
+    ]
+  }
+}

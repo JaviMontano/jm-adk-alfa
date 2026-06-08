@@ -1,0 +1,21 @@
+{
+  "schema": 1,
+  "required_layers": [
+    "static-schema",
+    "auth-scope",
+    "mcp-contract",
+    "read-only-first",
+    "consent-gate",
+    "secrets",
+    "retry-idempotency",
+    "sandbox-integration",
+    "readback-verification"
+  ],
+  "coverage_expectations": [
+    "Every planned service maps to an official REST reference.",
+    "Every operation maps to a minimum OAuth scope profile.",
+    "Every MCP tool has name, description, inputSchema, and outputSchema.",
+    "Every mutation is blocked until consent and read-only-first checks pass.",
+    "No test requires live Google APIs in the offline compiler."
+  ]
+}

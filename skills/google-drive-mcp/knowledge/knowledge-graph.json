@@ -1,75 +1,93 @@
 {
   "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-28",
   "skill": "google-drive-mcp",
   "nodes": [
     {
       "id": "google-drive-mcp",
       "type": "skill",
-      "label": "google-drive-mcp"
+      "label": "Google Drive MCP"
     },
     {
-      "id": "google-drive-mcp:inputs",
-      "type": "contract",
-      "label": "Expected inputs"
+      "id": "drive:search-list",
+      "type": "operation",
+      "label": "Search and list"
     },
     {
-      "id": "google-drive-mcp:outputs",
-      "type": "contract",
-      "label": "Expected outputs"
+      "id": "drive:scopes",
+      "type": "policy",
+      "label": "Least-privilege scopes"
     },
     {
-      "id": "google-drive-mcp:quality",
+      "id": "drive:upload",
+      "type": "operation",
+      "label": "Upload"
+    },
+    {
+      "id": "drive:download-export",
+      "type": "operation",
+      "label": "Download and export"
+    },
+    {
+      "id": "drive:folder-organization",
+      "type": "operation",
+      "label": "Folder organization"
+    },
+    {
+      "id": "drive:sharing-permissions",
+      "type": "policy",
+      "label": "Sharing and permissions"
+    },
+    {
+      "id": "mcp:read-only-first",
       "type": "gate",
-      "label": "Quality criteria"
+      "label": "Read-only-first"
     },
     {
-      "id": "google-drive-mcp:ontology",
-      "type": "ontology",
-      "label": "Domain: tool-design-mcp"
-    },
-    {
-      "id": "google-drive-mcp:evidence",
-      "type": "gate",
-      "label": "Evidence / provenance requirements"
-    },
-    {
-      "id": "google-drive-mcp:antipattern",
-      "type": "risk",
-      "label": "Canonical anti-pattern to avoid"
+      "id": "skill:deterministic-assets",
+      "type": "asset-set",
+      "label": "Deterministic assets and scripts"
     }
   ],
   "edges": [
     {
       "from": "google-drive-mcp",
-      "to": "google-drive-mcp:inputs",
+      "to": "drive:search-list",
       "type": "requires"
     },
     {
       "from": "google-drive-mcp",
-      "to": "google-drive-mcp:outputs",
-      "type": "produces"
+      "to": "drive:scopes",
+      "type": "uses"
     },
     {
       "from": "google-drive-mcp",
-      "to": "google-drive-mcp:quality",
-      "type": "validated_by"
+      "to": "drive:upload",
+      "type": "supports"
     },
     {
       "from": "google-drive-mcp",
-      "to": "google-drive-mcp:ontology",
-      "type": "classified_as"
+      "to": "drive:download-export",
+      "type": "supports"
     },
     {
       "from": "google-drive-mcp",
-      "to": "google-drive-mcp:evidence",
-      "type": "validated_by"
+      "to": "drive:folder-organization",
+      "type": "supports"
     },
     {
       "from": "google-drive-mcp",
-      "to": "google-drive-mcp:antipattern",
-      "type": "guards_against"
+      "to": "drive:sharing-permissions",
+      "type": "guards"
+    },
+    {
+      "from": "drive:sharing-permissions",
+      "to": "mcp:read-only-first",
+      "type": "requires"
+    },
+    {
+      "from": "skill:deterministic-assets",
+      "to": "google-drive-mcp",
+      "type": "validates"
     }
   ]
 }

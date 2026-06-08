@@ -1,11 +1,4 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: gmail-mcp
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
-
-# Gmail Mcp Output
+# Gmail MCP Output
 
 ## Summary
 
@@ -15,13 +8,25 @@ overwrite-policy: missing-only unless --force
 
 {evidence}
 
-## Result
+## Scope Review
 
-{result}
+{scope_review}
 
-## Validation
+## Safety Gates
 
-{validation}
+{safety_gates}
+
+## Tool Sequence
+
+{tool_sequence}
+
+## Confirmation Checklist
+
+{confirmation_checklist}
+
+## Privacy Controls
+
+{privacy_controls}
 
 ## Risks and Limits
 

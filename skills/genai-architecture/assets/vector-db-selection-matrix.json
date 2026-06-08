@@ -1,0 +1,82 @@
+{
+  "schema": 1,
+  "platforms": [
+    {
+      "name": "Pinecone",
+      "deployment": "managed",
+      "scale": "large",
+      "metadata_filtering": "strong",
+      "hybrid_search": true,
+      "best_for": "teams that prefer managed operations and high scale"
+    },
+    {
+      "name": "Qdrant",
+      "deployment": "hybrid",
+      "scale": "large",
+      "metadata_filtering": "strong",
+      "hybrid_search": true,
+      "best_for": "self-hosted or cloud deployments with rich filtering"
+    },
+    {
+      "name": "Weaviate",
+      "deployment": "hybrid",
+      "scale": "large",
+      "metadata_filtering": "strong",
+      "hybrid_search": true,
+      "best_for": "schema-rich semantic search and managed or self-hosted options"
+    },
+    {
+      "name": "Milvus",
+      "deployment": "self-hosted",
+      "scale": "large",
+      "metadata_filtering": "strong",
+      "hybrid_search": true,
+      "best_for": "teams with infrastructure expertise and massive self-hosted scale"
+    },
+    {
+      "name": "Chroma",
+      "deployment": "self-hosted",
+      "scale": "medium",
+      "metadata_filtering": "basic",
+      "hybrid_search": false,
+      "best_for": "local prototypes and embedded experiments"
+    },
+    {
+      "name": "pgvector",
+      "deployment": "existing-postgres",
+      "scale": "medium",
+      "metadata_filtering": "strong",
+      "hybrid_search": true,
+      "best_for": "teams already standardized on PostgreSQL"
+    }
+  ],
+  "selection_rules": [
+    {
+      "condition": "deployment_preference == existing-postgres",
+      "recommendation": "pgvector"
+    },
+    {
+      "condition": "data_sensitivity in regulated/confidential and deployment_preference == self-hosted",
+      "recommendation": "Qdrant"
+    },
+    {
+      "condition": "deployment_preference == managed and knowledge_base.size == large",
+      "recommendation": "Pinecone"
+    },
+    {
+      "condition": "deployment_preference == hybrid",
+      "recommendation": "Qdrant"
+    },
+    {
+      "condition": "default",
+      "recommendation": "Qdrant"
+    }
+  ],
+  "required_decisions": [
+    "embedding model consistency",
+    "metadata schema",
+    "index update cadence",
+    "backup and restore path",
+    "recall quality measurement"
+  ]
+}

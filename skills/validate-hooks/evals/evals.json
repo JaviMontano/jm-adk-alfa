@@ -1,9 +1,68 @@
-[
-  {"id": "validate-hooks-happy-path", "type": "happy_path", "input": "Run validate hooks on this project", "expected_behavior": "Skill activates and produces the expected validate hooks output following the defined process", "tags": ["basic", "activation"]},
-  {"id": "validate-hooks-explicit-trigger", "type": "happy_path", "input": "Apply validate hooks analysis", "expected_behavior": "Skill recognizes the trigger phrase and executes the validate hooks workflow", "tags": ["trigger", "recognition"]},
-  {"id": "validate-hooks-with-context", "type": "happy_path", "input": "Apply validate hooks to analyze the current codebase with detailed output", "expected_behavior": "Skill produces comprehensive validate hooks analysis with evidence-tagged findings", "tags": ["detailed", "comprehensive"]},
-  {"id": "validate-hooks-minimal-input", "type": "happy_path", "input": "Quick validate hooks", "expected_behavior": "Skill activates with minimal input, applies reasonable defaults", "tags": ["minimal", "defaults"]},
-  {"id": "validate-hooks-false-positive", "type": "false_positive", "input": "What is the weather forecast for tomorrow?", "expected_behavior": "Skill should NOT activate — this input has no relation to validate hooks", "tags": ["false_positive", "should-not-activate"]},
-  {"id": "validate-hooks-edge-empty-input", "type": "edge_case", "input": "Run validate hooks but I have no files or documentation yet", "expected_behavior": "Skill handles gracefully — requests minimum viable input or produces gap analysis", "tags": ["edge_case", "empty-input", "boundary"]},
-  {"id": "validate-hooks-edge-conflicting", "type": "edge_case", "input": "Apply validate hooks but requirements contradict each other", "expected_behavior": "Skill detects contradiction, flags with [OPEN] tag, proposes resolution", "tags": ["edge_case", "conflict", "corner"]}
-]
+{
+  "cases": [
+    {
+      "id": "validate-hooks-canonical-pass",
+      "type": "happy_path",
+      "input": "Audit a canonical hooks.json with command, http, prompt, and agent hooks registered on compatible events.",
+      "expected_behavior": "Renders a PASS report with event-keyed structure, ToolUseContext compatibility, command safety, placement guard evidence, and no remediation items.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria"],
+      "tags": ["canonical-structure", "compatibility"]
+    },
+    {
+      "id": "validate-hooks-tooluse-context-critical",
+      "type": "edge_case",
+      "input": "Audit hooks where SessionStart uses prompt and PostToolUseFailure uses agent.",
+      "expected_behavior": "Reports critical findings explaining that those events do not provide ToolUseContext and recommends command type or moving to PreToolUse, PermissionRequest, or PostToolUse.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria"],
+      "tags": ["toolusecontext", "critical"]
+    },
+    {
+      "id": "validate-hooks-flat-array-structure",
+      "type": "edge_case",
+      "input": "Audit a hooks.json whose hooks key is a flat array of entries using type as event name.",
+      "expected_behavior": "Reports a critical structure finding and recommends converting to an event-keyed hooks object.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria"],
+      "tags": ["structure", "legacy-shape"]
+    },
+    {
+      "id": "validate-hooks-command-safety",
+      "type": "edge_case",
+      "input": "Audit command hooks containing git reset --hard, git clean -fd, sudo, network pipe-to-shell, or secret file references.",
+      "expected_behavior": "Produces command safety findings without executing commands and adds specific remediation checklist items.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria"],
+      "tags": ["command-safety", "offline"]
+    },
+    {
+      "id": "validate-hooks-placement-guard",
+      "type": "happy_path",
+      "input": "Audit whether artifact-placement-guard.sh is registered as a PreToolUse command hook.",
+      "expected_behavior": "Detects placement guard on PreToolUse when present and warns when expected placement guard is absent.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria"],
+      "tags": ["placement-guard", "pretooluse"]
+    },
+    {
+      "id": "validate-hooks-event-name-suggestion",
+      "type": "edge_case",
+      "input": "Audit hooks with sessionStart, PreTool, and PostToolFailure event names.",
+      "expected_behavior": "Reports unrecognized event warnings with Did-you-mean style remediation to canonical event names.",
+      "expected_checks": ["assets", "quality_criteria"],
+      "tags": ["event-names", "suggestions"]
+    },
+    {
+      "id": "validate-hooks-script-reference",
+      "type": "edge_case",
+      "input": "Audit command hooks that reference missing scripts, non-executable shell scripts, absolute paths, or ../ traversal.",
+      "expected_behavior": "Reports critical or warning findings for script existence, portability, and executable-bit issues without running the scripts.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria"],
+      "tags": ["script-references", "portability"]
+    },
+    {
+      "id": "validate-hooks-false-positive",
+      "type": "false_positive",
+      "input": "Write a weekly product update email for a marketing campaign.",
+      "expected_behavior": "Does not activate because the request does not mention hooks, hooks.json, hook safety, plugin runtime events, or ToolUseContext.",
+      "expected_checks": ["quality_criteria"],
+      "tags": ["false-positive"]
+    }
+  ]
+}
