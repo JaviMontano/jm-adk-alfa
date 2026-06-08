@@ -1,10 +1,3 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: mcp-engineering
-generated-on: 2026-05-30
-overwrite-policy: missing-only unless --force
--->
-
 ---
 name: mcp-engineering-support
 role: support
@@ -22,4 +15,4 @@ Detecta blind spots en la integración MCP antes de que lleguen a producción.
 - Verificar que el scope elegido replica como se espera (un servidor en `~/.claude.json` no llega al equipo).
 - Detectar categorías de error faltantes (auth, rate_limit, transient, fatal) y casos donde `retryAfterSeconds` debería existir.
 - Señalar dependencias del servidor (binario, env-vars requeridas) que el equipo debe tener.
-- Surface risks and validation gaps.
+- Revisar que `builtin_review` justifique MCP frente a Read/Grep/Bash y que `validation` tenga flags verificables.

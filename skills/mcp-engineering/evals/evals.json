@@ -1,7 +1,5 @@
 {
   "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-30",
   "skill": "mcp-engineering",
   "cases": [
     {
@@ -9,9 +7,12 @@
       "input": "Integra el servidor MCP 'billing' para todo el equipo usando BILLING_API_KEY y dame la config versionable.",
       "expected_activation": true,
       "expected_checks": [
+        "assets",
+        "deterministic_scripts",
+        "scope_policy",
+        "secret_policy",
         "evidence",
-        "quality_criteria",
-        "upgrade_safety"
+        "quality_criteria"
       ]
     },
     {
@@ -19,9 +20,12 @@
       "input": "Nuestro servidor MCP devuelve 429 y 500 y el modelo reintenta a ciegas. Diseña un contrato de error tipado con isRetryable y retryAfterSeconds.",
       "expected_activation": true,
       "expected_checks": [
+        "assets",
+        "deterministic_scripts",
+        "typed_error_contract",
+        "client_retry_policy",
         "evidence",
-        "quality_criteria",
-        "upgrade_safety"
+        "quality_criteria"
       ]
     },
     {
@@ -29,9 +33,11 @@
       "input": "Debo poner este servidor MCP en .mcp.json o en ~/.claude.json? Es solo para mi uso personal.",
       "expected_activation": true,
       "expected_checks": [
+        "assets",
+        "deterministic_scripts",
+        "scope_policy",
         "evidence",
-        "quality_criteria",
-        "upgrade_safety"
+        "quality_criteria"
       ]
     },
     {
@@ -39,9 +45,12 @@
       "input": "Commitearon un token literal de la API en .mcp.json. Que hago para sanearlo?",
       "expected_activation": true,
       "expected_checks": [
+        "assets",
+        "deterministic_scripts",
+        "secret_rotation",
+        "history_purge",
         "evidence",
-        "quality_criteria",
-        "upgrade_safety"
+        "quality_criteria"
       ]
     },
     {
@@ -49,19 +58,24 @@
       "input": "/mcp-engineering configura el mcp server con env-var expansion.",
       "expected_activation": true,
       "expected_checks": [
+        "assets",
+        "deterministic_scripts",
+        "secret_policy",
         "evidence",
-        "quality_criteria",
-        "upgrade_safety"
+        "quality_criteria"
       ]
     },
     {
-      "id": "minimal_input",
-      "input": "mcp server config",
+      "id": "minimal_but_actionable_input",
+      "input": "Configure a personal MCP server in ~/.claude.json using SEARCH_API_KEY and typed errors for auth/rate_limit/transient/fatal.",
       "expected_activation": true,
       "expected_checks": [
+        "assets",
+        "deterministic_scripts",
+        "scope_policy",
+        "typed_error_contract",
         "evidence",
-        "quality_criteria",
-        "upgrade_safety"
+        "quality_criteria"
       ]
     },
     {
@@ -69,9 +83,11 @@
       "input": "Quiero buscar una cadena en mis archivos locales con grep.",
       "expected_activation": false,
       "expected_checks": [
-        "evidence",
+        "assets",
+        "deterministic_scripts",
+        "builtin_review",
         "quality_criteria",
-        "upgrade_safety"
+        "evidence"
       ]
     },
     {
@@ -79,37 +95,43 @@
       "input": "Redacta el acta de la reunion de ayer en espanol.",
       "expected_activation": false,
       "expected_checks": [
-        "evidence",
+        "assets",
         "quality_criteria",
-        "upgrade_safety"
+        "activation_scope"
       ]
     },
     {
-      "id": "empty_input",
-      "input": "",
-      "expected_activation": false,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
-    },
-    {
-      "id": "conflicting_requirements",
+      "id": "literal_secret_rejected",
       "input": "Configura el mcp server pero deja la API key literal en el archivo versionado, sin env-var.",
       "expected_activation": false,
       "expected_checks": [
+        "assets",
+        "deterministic_scripts",
+        "reject_literal_secret",
         "evidence",
-        "quality_criteria",
-        "upgrade_safety"
+        "quality_criteria"
       ]
     },
     {
-      "id": "false_positive",
-      "input": "This request is unrelated to the skill domain.",
+      "id": "generic_error_rejected",
+      "input": "The MCP server returns only 'Something went wrong, please try again' and asks the model to decide retries.",
       "expected_activation": false,
       "expected_checks": [
+        "assets",
+        "deterministic_scripts",
+        "typed_error_contract",
+        "client_retry_policy",
         "evidence",
+        "quality_criteria"
+      ]
+    },
+    {
+      "id": "upgrade_safety_case",
+      "input": "Harden mcp-engineering assets, evals, examples and scripts without touching other skills or unrelated ledger rows.",
+      "expected_activation": true,
+      "expected_checks": [
+        "assets",
+        "deterministic_scripts",
         "quality_criteria",
         "upgrade_safety"
       ]

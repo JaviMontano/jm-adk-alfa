@@ -1,0 +1,68 @@
+{
+  "schema": 1,
+  "skill": "mcp-engineering",
+  "assets": [
+    {
+      "path": "assets/mcp-engineering-contract.json",
+      "type": "json_contract",
+      "purpose": "Defines required fields for MCP engineering certification reports.",
+      "used_by": [
+        "SKILL.md",
+        "README.md",
+        "scripts/validate_mcp_engineering.py",
+        "evals/evals.json",
+        "examples/example-output.md"
+      ]
+    },
+    {
+      "path": "assets/scope-policy.json",
+      "type": "policy",
+      "purpose": "Maps team inheritance to .mcp.json and personal inheritance to ~/.claude.json.",
+      "used_by": [
+        "SKILL.md",
+        "prompts/meta.md",
+        "scripts/validate_mcp_engineering.py"
+      ]
+    },
+    {
+      "path": "assets/secret-policy.json",
+      "type": "policy",
+      "purpose": "Requires env-var expansion and secret leak remediation.",
+      "used_by": [
+        "SKILL.md",
+        "prompts/primary.md",
+        "scripts/validate_mcp_engineering.py"
+      ]
+    },
+    {
+      "path": "assets/typed-error-policy.json",
+      "type": "policy",
+      "purpose": "Defines typed MCP error categories and retryability.",
+      "used_by": [
+        "SKILL.md",
+        "knowledge/body-of-knowledge.md",
+        "scripts/validate_mcp_engineering.py"
+      ]
+    },
+    {
+      "path": "assets/client-retry-policy.json",
+      "type": "policy",
+      "purpose": "Keeps bounded retry policy in the client, not in model reasoning.",
+      "used_by": [
+        "SKILL.md",
+        "templates/output.md",
+        "scripts/validate_mcp_engineering.py"
+      ]
+    },
+    {
+      "path": "assets/evidence-policy.json",
+      "type": "policy",
+      "purpose": "Defines evidence needed for scope, env-var, error mapping and built-in review.",
+      "used_by": [
+        "README.md",
+        "examples/example-output.md",
+        "scripts/validate_mcp_engineering.py"
+      ]
+    }
+  ]
+}

@@ -1,10 +1,3 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: mcp-engineering
-generated-on: 2026-05-30
-overwrite-policy: missing-only unless --force
--->
-
 # Mcp Engineering Output
 
 ## Summary
@@ -29,6 +22,13 @@ overwrite-policy: missing-only unless --force
 {error_contract_block}
 ```
 
+### Retry Policy
+
+- Owner: {client_or_model}
+- Max attempts: {max_attempts}
+- Respects `retryAfterSeconds`: {retry_after_check}
+- Non-retryable action: {nonretryable_action}
+
 ## Validation
 
 - [ ] Scope correcto ({.mcp.json equipo | ~/.claude.json personal})
@@ -36,6 +36,7 @@ overwrite-policy: missing-only unless --force
 - [ ] Error con `errorCategory` + `isRetryable` (+ `retryAfterSeconds`)
 - [ ] Política de reintento en el cliente, no en el modelo
 - [ ] MCP justificado (ningún built-in aplica)
+- [ ] Reporte JSON compatible con `assets/mcp-engineering-contract.json` cuando se requiera validación offline
 
 ## Risks and Limits
 

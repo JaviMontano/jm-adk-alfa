@@ -1,0 +1,11 @@
+{
+  "schema": 1,
+  "skill": "mcp-engineering",
+  "owner": "client",
+  "allowed_max_attempts": [2, 3],
+  "required_flags": {
+    "respects_retry_after_seconds": true,
+    "model_decides_retry": false
+  },
+  "nonretryable_action_required": true
+}

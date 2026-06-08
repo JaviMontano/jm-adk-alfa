@@ -1,0 +1,14 @@
+{
+  "schema": 1,
+  "skill": "mcp-engineering",
+  "minimum_evidence_items": 3,
+  "accepted_evidence_types": [
+    "inheritance_scope",
+    "env_var_reference",
+    "error_mapping",
+    "retry_policy",
+    "builtin_review",
+    "secret_scan",
+    "remediation_plan"
+  ]
+}

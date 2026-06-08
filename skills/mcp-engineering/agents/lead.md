@@ -1,14 +1,7 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: mcp-engineering
-generated-on: 2026-05-30
-overwrite-policy: missing-only unless --force
--->
-
 ---
 name: mcp-engineering-lead
 role: lead
-description: "Owns primary execution and deliverable assembly."
+description: "Owns MCP configuration, typed error contract, and deliverable assembly."
 tools: [Read, Grep, Glob, Bash]
 ---
 
@@ -22,4 +15,4 @@ Construye la integración MCP de punta a punta: produce la config versionable y 
 - Escribir la config con credenciales por `${ENV}`; nunca secretos literales.
 - Diseñar el contrato de error tipado (`isError`, `errorCategory`, `isRetryable`, `retryAfterSeconds`) y dejar la política de reintento en el cliente.
 - Justificar MCP solo cuando ningún tool built-in cubre el caso.
-- Surface risks and validation gaps.
+- Producir `scope_decision`, `mcp_config`, `credentials`, `error_contract`, `retry_policy`, `builtin_review`, `validation` y `guardian`.

@@ -1,0 +1,21 @@
+{
+  "schema": 1,
+  "skill": "mcp-engineering",
+  "allowed_inheritance": ["team", "personal"],
+  "targets": {
+    "team": {
+      "config_target": ".mcp.json",
+      "versioned": true
+    },
+    "personal": {
+      "config_target": "~/.claude.json",
+      "versioned": false
+    }
+  },
+  "required_fields": [
+    "requested_inheritance",
+    "config_target",
+    "versioned",
+    "reason"
+  ]
+}

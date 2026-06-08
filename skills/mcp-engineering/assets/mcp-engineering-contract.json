@@ -1,0 +1,23 @@
+{
+  "schema": 1,
+  "skill": "mcp-engineering",
+  "json_contract": {
+    "schema_version": 1,
+    "required_top_level_fields": [
+      "schema",
+      "skill",
+      "report_id",
+      "scenario",
+      "scope_decision",
+      "mcp_config",
+      "credentials",
+      "error_contract",
+      "retry_policy",
+      "builtin_review",
+      "evidence",
+      "validation",
+      "guardian"
+    ],
+    "guardian_decisions": ["pass", "warn", "block"]
+  }
+}

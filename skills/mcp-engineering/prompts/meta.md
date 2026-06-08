@@ -1,10 +1,3 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: mcp-engineering
-generated-on: 2026-05-30
-overwrite-policy: missing-only unless --force
--->
-
 # Mcp Engineering Meta Prompt
 
 Decide si `mcp-engineering` debe activarse, si el alcance es seguro y qué agentes de apoyo intervienen.
@@ -15,6 +8,12 @@ Decide si `mcp-engineering` debe activarse, si el alcance es seguro y qué agent
 - ¿Un tool built-in (Read/Grep/Bash) resolvería el caso sin MCP? Si sí, no actives.
 - ¿Hay riesgo de secreto literal en archivo versionado? Activa al guardian de inmediato.
 - ¿El input define quién hereda el servidor y qué errores devuelve?
+
+## No activar cuando
+
+- La tarea es sólo lectura, búsqueda o shell local ya cubierta por Read/Grep/Bash.
+- El pedido exige secretos literales en archivos versionados o errores genéricos sin contrato tipado.
+- No hay servidor MCP, scope, credenciales ni contrato de error que diseñar.
 
 ## Routing de agentes
 

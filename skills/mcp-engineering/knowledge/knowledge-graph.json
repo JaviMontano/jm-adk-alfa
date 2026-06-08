@@ -1,7 +1,5 @@
 {
   "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-30",
   "skill": "mcp-engineering",
   "nodes": [
     {
@@ -70,6 +68,16 @@
       "label": "Evidence / provenance requirements"
     },
     {
+      "id": "mcp-engineering:assets-contract",
+      "type": "contract",
+      "label": "assets/mcp-engineering-contract.json"
+    },
+    {
+      "id": "mcp-engineering:offline-validator",
+      "type": "script",
+      "label": "scripts/validate_mcp_engineering.py"
+    },
+    {
       "id": "mcp-engineering:antipattern",
       "type": "risk",
       "label": "Canonical anti-pattern to avoid"
@@ -134,6 +142,16 @@
     {
       "from": "mcp-engineering",
       "to": "mcp-engineering:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "mcp-engineering",
+      "to": "mcp-engineering:assets-contract",
+      "type": "governed_by"
+    },
+    {
+      "from": "mcp-engineering:assets-contract",
+      "to": "mcp-engineering:offline-validator",
       "type": "validated_by"
     },
     {
