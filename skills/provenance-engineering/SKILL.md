@@ -39,6 +39,25 @@ No la uses cuando el output es prosa exploratoria sin consecuencias de decisión
 5. **Hazlo visible para el humano.** En el render, expón `source_id` y `as_of` junto a cada claim; los conflictos se muestran como tales, no enterrados.
 6. **Blinda con un test estructural.** Agrega un test que recorra el output y falle si existe cualquier claim con `source[]` vacío o si un conflicto fue silenciosamente resuelto.
 
+## Assets determinísticos
+
+- Usa `assets/provenance-engineering-contract.json` para reportes JSON auditables.
+- Usa `assets/claim-source-policy.json` para exigir `source_id`, `locator`, `as_of` y `source_type`.
+- Usa `assets/conflict-policy.json` para bloquear promedios, primera fuente, fuente mas reciente o cualquier resolucion silenciosa.
+- Usa `assets/escalation-policy.json` para exigir escalacion humana por conflicto.
+- Usa `assets/render-policy.json` para mostrar source, fecha y marcador de conflicto.
+- Usa `assets/structural-test-policy.json` para convertir la invariante en test offline.
+
+## Validacion offline
+
+Cuando produzcas un reporte JSON de provenance, validalo con:
+
+```bash
+bash skills/provenance-engineering/scripts/check.sh
+```
+
+El validator falla si hay claims sin source, source ids desconocidos, conflictos no preservados, conflictos no escalados, fechas ocultas, tests estructurales incompletos o Guardian pass con validacion falsa.
+
 ## Patrón correcto
 
 ```python

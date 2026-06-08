@@ -1,0 +1,5 @@
+{
+  "schema": 1,
+  "skill": "provenance-engineering",
+  "required_flags": ["source_ids_visible", "as_of_visible", "conflict_marker_visible"]
+}

@@ -1,7 +1,5 @@
 {
   "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-30",
   "skill": "provenance-engineering",
   "cases": [
     {
@@ -9,10 +7,13 @@
       "input": "Estamos extrayendo nombre legal, dirección y fecha de constitución de tres documentos KYC distintos por entidad. El output va a un analista que aprueba la cuenta. Diseña el pipeline con provenance tipada.",
       "expected_activation": true,
       "expected_checks": [
+        "assets",
+        "deterministic_scripts",
         "typed_claim_source",
         "conflict_marking",
         "as_of_visible",
-        "structural_test"
+        "structural_test",
+        "quality_criteria"
       ]
     },
     {
@@ -20,9 +21,12 @@
       "input": "Dos reportes dan ingresos distintos para la misma empresa (USD 4.2M vs USD 4.8M). El pipeline actual promedia los dos valores. Arréglalo.",
       "expected_activation": true,
       "expected_checks": [
+        "assets",
+        "deterministic_scripts",
         "conflict_marking",
         "escalation_not_resolution",
-        "typed_claim_source"
+        "typed_claim_source",
+        "quality_criteria"
       ]
     },
     {
@@ -30,8 +34,11 @@
       "input": "Agrega un test estructural que falle el CI si algún claim del output de due diligence no tiene source[].",
       "expected_activation": true,
       "expected_checks": [
+        "assets",
+        "deterministic_scripts",
         "typed_claim_source",
-        "structural_test"
+        "structural_test",
+        "quality_criteria"
       ]
     },
     {
@@ -39,52 +46,91 @@
       "input": "/provenance-engineering revisa este merge de claims multi-fuente.",
       "expected_activation": true,
       "expected_checks": [
+        "assets",
+        "deterministic_scripts",
         "typed_claim_source",
         "conflict_marking",
-        "structural_test"
+        "structural_test",
+        "quality_criteria"
       ]
     },
     {
       "id": "minimal_input",
       "input": "provenance engineering",
-      "expected_activation": true,
+      "expected_activation": false,
       "expected_checks": [
-        "typed_claim_source",
-        "conflict_marking"
+        "assets",
+        "deterministic_scripts",
+        "required_inputs",
+        "guardian_block",
+        "quality_criteria"
       ]
     },
     {
       "id": "single_undisputed_source",
       "input": "Formatea este único CSV ya validado como una tabla bonita; no hay otras fuentes ni posibilidad de conflicto.",
       "expected_activation": false,
-      "expected_checks": []
+      "expected_checks": [
+        "assets",
+        "activation_scope",
+        "quality_criteria"
+      ]
     },
     {
       "id": "prose_only_no_decision",
       "input": "Escribe un párrafo creativo de marketing inspirado en estas notas.",
       "expected_activation": false,
-      "expected_checks": []
+      "expected_checks": [
+        "assets",
+        "activation_scope",
+        "quality_criteria"
+      ]
     },
     {
       "id": "empty_input",
       "input": "",
       "expected_activation": false,
-      "expected_checks": []
+      "expected_checks": [
+        "assets",
+        "required_inputs",
+        "guardian_block",
+        "quality_criteria"
+      ]
     },
     {
       "id": "anti_pattern_request",
       "input": "Usa provenance-engineering pero entrega solo un resumen en prosa sin source_id ni fecha y promedia los conflictos.",
       "expected_activation": false,
-      "expected_checks": []
+      "expected_checks": [
+        "assets",
+        "deterministic_scripts",
+        "conflict_marking",
+        "escalation_not_resolution",
+        "guardian_block",
+        "quality_criteria"
+      ]
     },
     {
       "id": "false_positive",
-      "input": "This request is unrelated to the skill domain.",
+      "input": "Ayudame a elegir nombres para un newsletter interno.",
       "expected_activation": false,
       "expected_checks": [
-        "evidence",
+        "assets",
+        "activation_scope",
         "quality_criteria",
         "upgrade_safety"
+      ]
+    },
+    {
+      "id": "unknown_source_id_rejected",
+      "input": "El reporte tiene claims con source_id que no existe en el inventario de fuentes; endurece la validacion.",
+      "expected_activation": true,
+      "expected_checks": [
+        "assets",
+        "deterministic_scripts",
+        "typed_claim_source",
+        "structural_test",
+        "quality_criteria"
       ]
     }
   ]

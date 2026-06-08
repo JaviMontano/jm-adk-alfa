@@ -1,0 +1,42 @@
+{
+  "schema": 1,
+  "skill": "provenance-engineering",
+  "assets": [
+    {
+      "path": "assets/provenance-engineering-contract.json",
+      "type": "json_contract",
+      "purpose": "Defines required fields for deterministic provenance reports.",
+      "used_by": ["SKILL.md", "README.md", "scripts/validate_provenance_engineering.py", "evals/evals.json"]
+    },
+    {
+      "path": "assets/claim-source-policy.json",
+      "type": "policy",
+      "purpose": "Requires sources and claims to carry stable provenance fields.",
+      "used_by": ["knowledge/body-of-knowledge.md", "scripts/validate_provenance_engineering.py"]
+    },
+    {
+      "path": "assets/conflict-policy.json",
+      "type": "policy",
+      "purpose": "Requires conflicts to preserve all values and blocks silent resolution.",
+      "used_by": ["SKILL.md", "scripts/validate_provenance_engineering.py"]
+    },
+    {
+      "path": "assets/escalation-policy.json",
+      "type": "policy",
+      "purpose": "Requires every conflict to be escalated to a human reviewer.",
+      "used_by": ["agents/guardian.md", "scripts/validate_provenance_engineering.py"]
+    },
+    {
+      "path": "assets/render-policy.json",
+      "type": "policy",
+      "purpose": "Requires source ids, dates, and conflict markers to be visible.",
+      "used_by": ["templates/output.md", "scripts/validate_provenance_engineering.py"]
+    },
+    {
+      "path": "assets/structural-test-policy.json",
+      "type": "policy",
+      "purpose": "Defines structural test flags for the provenance invariant.",
+      "used_by": ["scripts/validate_provenance_engineering.py", "evals/evals.json"]
+    }
+  ]
+}

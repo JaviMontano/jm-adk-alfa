@@ -1,10 +1,3 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: provenance-engineering
-generated-on: 2026-05-30
-overwrite-policy: missing-only unless --force
--->
-
 # Provenance Engineering Body of Knowledge
 
 ## Canon
@@ -39,3 +32,4 @@ Resumen en prosa sin `source_id`, sin fecha y sin señal de conflicto. Variante 
 
 - Normalización de valores para distinguir conflicto real de diferencia de formato.
 - Propagación de `source[]` en claims derivados (sumas, dedupe, joins).
+- Uso de `assets/structural-test-policy.json` como contrato minimo cuando el lenguaje o framework cambia.

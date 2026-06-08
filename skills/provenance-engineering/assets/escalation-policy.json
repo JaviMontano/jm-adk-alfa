@@ -1,0 +1,7 @@
+{
+  "schema": 1,
+  "skill": "provenance-engineering",
+  "required_escalation_fields": ["escalation_id", "conflict_id", "assignee_type", "reason", "source_ids", "as_of_visible", "status"],
+  "required_assignee_type": "human",
+  "allowed_statuses": ["queued", "in_review", "resolved"]
+}

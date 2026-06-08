@@ -1,0 +1,21 @@
+{
+  "schema": 1,
+  "skill": "provenance-engineering",
+  "json_contract": {
+    "schema_version": 1,
+    "required_top_level_fields": [
+      "schema",
+      "skill",
+      "report_id",
+      "sources",
+      "claims",
+      "conflicts",
+      "escalations",
+      "render",
+      "structural_tests",
+      "validation",
+      "guardian"
+    ],
+    "guardian_decisions": ["pass", "warn", "block"]
+  }
+}
