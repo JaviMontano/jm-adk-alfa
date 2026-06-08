@@ -1,0 +1,9 @@
+{
+  "schema": 1,
+  "max_actions": 3,
+  "sort_order": [
+    "largest_gap_to_target_level_min_score",
+    "lower_current_score",
+    "canonical_dimension_order"
+  ]
+}

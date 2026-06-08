@@ -1,0 +1,52 @@
+{
+  "schema": 1,
+  "skill": "quality-engineering",
+  "assets": [
+    {
+      "path": "assets/quality-framework-contract.json",
+      "type": "contract",
+      "purpose": "Defines required report fields, markdown sections, and Guardian decisions.",
+      "used_by": ["SKILL.md", "scripts/validate_quality_engineering.py"]
+    },
+    {
+      "path": "assets/maturity-model.json",
+      "type": "policy",
+      "purpose": "Defines score bands and six canonical maturity dimensions.",
+      "used_by": ["SKILL.md", "scripts/validate_quality_engineering.py"]
+    },
+    {
+      "path": "assets/test-strategy-policy.json",
+      "type": "policy",
+      "purpose": "Maps architecture type to deterministic test strategy shape and distribution.",
+      "used_by": ["SKILL.md", "scripts/validate_quality_engineering.py"]
+    },
+    {
+      "path": "assets/gate-policy.json",
+      "type": "policy",
+      "purpose": "Defines canonical quality gates, modes, criteria, and timeout ceilings.",
+      "used_by": ["SKILL.md", "scripts/validate_quality_engineering.py"]
+    },
+    {
+      "path": "assets/metrics-policy.json",
+      "type": "policy",
+      "purpose": "Defines required leading and lagging quality metrics.",
+      "used_by": ["SKILL.md", "scripts/validate_quality_engineering.py"]
+    },
+    {
+      "path": "assets/action-priority-policy.json",
+      "type": "policy",
+      "purpose": "Defines priority action count and deterministic sorting.",
+      "used_by": ["SKILL.md", "scripts/validate_quality_engineering.py"]
+    },
+    {
+      "path": "assets/evidence-policy.json",
+      "type": "policy",
+      "purpose": "Defines minimum evidence requirements and blocked claims.",
+      "used_by": ["SKILL.md", "scripts/validate_quality_engineering.py"]
+    }
+  ],
+  "offline": true,
+  "network_required": false,
+  "randomness_allowed": false,
+  "time_dependent": false
+}

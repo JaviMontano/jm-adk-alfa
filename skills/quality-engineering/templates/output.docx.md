@@ -1,10 +1,20 @@
-# Quality Engineering — DOCX Template
+# Quality Engineering Report
 
 ## Document Structure
-- Title: Quality Engineering — [Client/Project Name]
-- Author: JM Labs
-- Date: {{DATE}}
 
-## Sections (mirror SKILL.md structure)
-See canonical SKILL.md for section blueprints.
-Use brand-config.json tokens: Navy #122562 · Gold #FFD700 · Blue #137DC5
+- Title: Quality Engineering Report - {{SUBJECT}}
+- Author: JM Labs
+- Version: {{VERSION}}
+
+## Required Sections
+
+1. Evidence Summary
+2. Maturity Assessment
+3. Test Strategy
+4. Quality Gates
+5. Metrics Dashboard
+6. Roadmap
+7. Top Priority Actions
+8. Guardian Decision
+
+Use the same canonical order and labels as `templates/output.md`.

@@ -1,0 +1,16 @@
+{
+  "schema": 1,
+  "allowed_evidence_types": ["file", "command", "user_fact", "assumption", "reduced_scope"],
+  "required": [
+    "Every maturity score must include non-empty evidence.",
+    "Every gate must include non-empty on_failure handling.",
+    "Every metric must include source or assumption.",
+    "Guardian reason must be non-empty."
+  ],
+  "blocked_claims": [
+    "quality complete without gates",
+    "coverage alone is sufficient",
+    "security criteria are bypassable",
+    "score without evidence"
+  ]
+}

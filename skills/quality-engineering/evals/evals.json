@@ -1,9 +1,82 @@
-[
-  {"id": "quality-engineering-happy-path", "type": "happy_path", "input": "Run quality engineering on this project", "expected_behavior": "Skill activates and produces the expected quality engineering output following the defined process", "tags": ["basic", "activation"]},
-  {"id": "quality-engineering-explicit-trigger", "type": "happy_path", "input": "Apply quality engineering analysis", "expected_behavior": "Skill recognizes the trigger phrase and executes the quality engineering workflow", "tags": ["trigger", "recognition"]},
-  {"id": "quality-engineering-with-context", "type": "happy_path", "input": "Apply quality engineering to analyze the current codebase with detailed output", "expected_behavior": "Skill produces comprehensive quality engineering analysis with evidence-tagged findings", "tags": ["detailed", "comprehensive"]},
-  {"id": "quality-engineering-minimal-input", "type": "happy_path", "input": "Quick quality engineering", "expected_behavior": "Skill activates with minimal input, applies reasonable defaults", "tags": ["minimal", "defaults"]},
-  {"id": "quality-engineering-false-positive", "type": "false_positive", "input": "What is the weather forecast for tomorrow?", "expected_behavior": "Skill should NOT activate — this input has no relation to quality engineering", "tags": ["false_positive", "should-not-activate"]},
-  {"id": "quality-engineering-edge-empty-input", "type": "edge_case", "input": "Run quality engineering but I have no files or documentation yet", "expected_behavior": "Skill handles gracefully — requests minimum viable input or produces gap analysis", "tags": ["edge_case", "empty-input", "boundary"]},
-  {"id": "quality-engineering-edge-conflicting", "type": "edge_case", "input": "Apply quality engineering but requirements contradict each other", "expected_behavior": "Skill detects contradiction, flags with [OPEN] tag, proposes resolution", "tags": ["edge_case", "conflict", "corner"]}
-]
+{
+  "schema": 1,
+  "skill": "quality-engineering",
+  "determinism": {
+    "network_required": false,
+    "time_dependent": false,
+    "randomized": false,
+    "offline_validator": "skills/quality-engineering/scripts/validate_quality_engineering.py"
+  },
+  "cases": [
+    {
+      "id": "monolith-baseline-full-report",
+      "type": "happy_path",
+      "input": "Assess quality engineering for a monolith with unit tests, partial CI, no release gate, and weak metrics.",
+      "expected_behavior": "Produces six maturity dimensions, test_pyramid distribution, five gates, required metrics, roadmap, and three priority actions.",
+      "expected_checks": ["assets", "quality_criteria", "canonical_dimensions", "test_shape_policy", "gate_policy", "metrics_policy", "priority_actions"]
+    },
+    {
+      "id": "microservices-contract-heavy",
+      "type": "happy_path",
+      "input": "Design quality gates and automation architecture for a microservices platform with Pact contracts and CI checks.",
+      "expected_behavior": "Uses test_diamond distribution with contract tests and does not over-rely on E2E tests.",
+      "expected_checks": ["architecture_mapping", "contract_tests", "blocking_pr_gate"]
+    },
+    {
+      "id": "frontend-test-trophy",
+      "type": "happy_path",
+      "input": "Plan quality metrics for a frontend app with component tests, accessibility scans, and flaky E2E tests.",
+      "expected_behavior": "Uses test_trophy distribution and includes flaky rate, build stability, review catch rate, incidents, and escaped defects.",
+      "expected_checks": ["frontend_shape", "leading_metrics", "lagging_metrics"]
+    },
+    {
+      "id": "event-driven-async",
+      "type": "happy_path",
+      "input": "Assess an event-driven service where schema compatibility and eventual consistency are primary risks.",
+      "expected_behavior": "Uses async_contract_shape and includes event schema validation as a quality criterion.",
+      "expected_checks": ["event_schema", "async_strategy", "quality_gates"]
+    },
+    {
+      "id": "coverage-only-false-positive",
+      "type": "false_positive_guard",
+      "input": "Just set coverage to 90 percent and call the quality strategy done.",
+      "expected_behavior": "Rejects coverage-only strategy and requires gates, metrics, maturity, roadmap, and evidence.",
+      "expected_checks": ["coverage_not_sufficient", "guardian_warn_or_block"]
+    },
+    {
+      "id": "weather-non-trigger",
+      "type": "false_positive",
+      "input": "What is the weather forecast for tomorrow?",
+      "expected_behavior": "Does not activate quality-engineering because the input has no quality strategy intent.",
+      "expected_checks": ["non_activation"]
+    },
+    {
+      "id": "minimal-context-degraded",
+      "type": "degradation",
+      "input": "Create a quality strategy for Project Atlas. No repository access is available.",
+      "expected_behavior": "Produces a reduced-scope plan with explicit assumptions and Guardian warn decision.",
+      "expected_checks": ["assumptions", "reduced_scope", "guardian_warn"]
+    },
+    {
+      "id": "conflicting-gates",
+      "type": "edge_case",
+      "input": "Make PR gates nonblocking but guarantee no critical issues merge.",
+      "expected_behavior": "Flags the conflict because PR gates must block critical criteria.",
+      "expected_checks": ["conflict_detection", "blocking_pr_gate"]
+    },
+    {
+      "id": "regulated-release",
+      "type": "edge_case",
+      "input": "Design quality gates for a healthcare release with masked test data, audit evidence, SAST, DAST, and sign-off.",
+      "expected_behavior": "Requires masking, security sign-off, release gate blocking, and auditable evidence.",
+      "expected_checks": ["regulated_data", "security_criteria", "release_gate"]
+    },
+    {
+      "id": "invalid-json-oracle",
+      "type": "negative_oracle",
+      "input": "Validate a quality report with missing dimension, wrong test shape, and misordered priority actions.",
+      "expected_behavior": "Offline validator rejects the report deterministically.",
+      "expected_checks": ["deterministic_scripts", "invalid_mutations"]
+    }
+  ]
+}

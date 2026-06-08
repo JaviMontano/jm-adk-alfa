@@ -1,0 +1,21 @@
+{
+  "schema": 1,
+  "leading": [
+    {"id": "review_catch_rate", "target": ">=50%"},
+    {"id": "coverage", "target": "70-80% risk-adjusted"},
+    {"id": "build_stability", "target": ">=95%"},
+    {"id": "flaky_rate", "target": "<2%"},
+    {"id": "pr_gate_time", "target": "<=15 minutes"},
+    {"id": "deployment_frequency", "target": ">=1/week"}
+  ],
+  "lagging": [
+    {"id": "production_incidents", "target": "<1/week"},
+    {"id": "escaped_defects", "target": "<5%"},
+    {"id": "critical_mttr", "target": "<=1 hour"},
+    {"id": "regression_rate", "target": "<1%"}
+  ],
+  "rules": [
+    "Coverage cannot be the only metric.",
+    "Leading and lagging metrics must both be present."
+  ]
+}
