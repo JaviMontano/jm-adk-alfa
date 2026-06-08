@@ -1,75 +1,49 @@
 {
-  "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-28",
   "skill": "health-check-automation",
+  "schema": 1,
   "nodes": [
     {
-      "id": "health-check-automation",
-      "type": "skill",
-      "label": "health-check-automation"
+      "id": "health-surface",
+      "type": "input",
+      "description": "Services, dependencies, resources, jobs, and alert routes in scope."
     },
     {
-      "id": "health-check-automation:inputs",
-      "type": "contract",
-      "label": "Expected inputs"
+      "id": "captured-evidence",
+      "type": "input",
+      "description": "Snapshot metadata, observed values, command output, and source labels."
     },
     {
-      "id": "health-check-automation:outputs",
-      "type": "contract",
-      "label": "Expected outputs"
+      "id": "deterministic-check",
+      "type": "control",
+      "description": "Named check with required flag, status, threshold, and evidence source."
     },
     {
-      "id": "health-check-automation:quality",
-      "type": "gate",
-      "label": "Quality criteria"
+      "id": "status-classification",
+      "type": "decision",
+      "description": "Check-level pass, warn, fail, or unknown result."
     },
     {
-      "id": "health-check-automation:ontology",
-      "type": "ontology",
-      "label": "Domain: general"
+      "id": "alert-routing",
+      "type": "handoff",
+      "description": "Severity, owner, trigger, and handoff evidence for warn or fail outcomes."
     },
     {
-      "id": "health-check-automation:evidence",
-      "type": "gate",
-      "label": "Evidence / provenance requirements"
+      "id": "degradation-plan",
+      "type": "control",
+      "description": "Behavior when required checks fail, warn, or cannot be verified."
     },
     {
-      "id": "health-check-automation:antipattern",
-      "type": "risk",
-      "label": "Canonical anti-pattern to avoid"
+      "id": "guardian-decision",
+      "type": "output",
+      "description": "Overall healthy, degraded, unhealthy, or blocked decision."
     }
   ],
   "edges": [
-    {
-      "from": "health-check-automation",
-      "to": "health-check-automation:inputs",
-      "type": "requires"
-    },
-    {
-      "from": "health-check-automation",
-      "to": "health-check-automation:outputs",
-      "type": "produces"
-    },
-    {
-      "from": "health-check-automation",
-      "to": "health-check-automation:quality",
-      "type": "validated_by"
-    },
-    {
-      "from": "health-check-automation",
-      "to": "health-check-automation:ontology",
-      "type": "classified_as"
-    },
-    {
-      "from": "health-check-automation",
-      "to": "health-check-automation:evidence",
-      "type": "validated_by"
-    },
-    {
-      "from": "health-check-automation",
-      "to": "health-check-automation:antipattern",
-      "type": "guards_against"
-    }
+    {"from": "health-surface", "to": "deterministic-check", "relation": "defines_scope"},
+    {"from": "captured-evidence", "to": "deterministic-check", "relation": "supports"},
+    {"from": "deterministic-check", "to": "status-classification", "relation": "produces"},
+    {"from": "status-classification", "to": "alert-routing", "relation": "triggers"},
+    {"from": "status-classification", "to": "degradation-plan", "relation": "requires_when_not_pass"},
+    {"from": "status-classification", "to": "guardian-decision", "relation": "rolls_up_to"}
   ]
 }

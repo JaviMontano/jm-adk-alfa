@@ -1,0 +1,48 @@
+{
+  "schema": 1,
+  "skill": "health-check-automation",
+  "assets": [
+    {
+      "path": "assets/health-check-contract.json",
+      "type": "contract",
+      "purpose": "Defines required sections and structured fields for health-check outputs.",
+      "used_by": ["SKILL.md", "templates/output.md", "scripts/validate_health_check.py"]
+    },
+    {
+      "path": "assets/service-policy.json",
+      "type": "policy",
+      "purpose": "Defines service and scheduled job status rules.",
+      "used_by": ["SKILL.md", "knowledge/body-of-knowledge.md", "scripts/validate_health_check.py"]
+    },
+    {
+      "path": "assets/dependency-policy.json",
+      "type": "policy",
+      "purpose": "Defines dependency status, owner, and required evidence rules.",
+      "used_by": ["SKILL.md", "prompts/primary.md", "scripts/validate_health_check.py"]
+    },
+    {
+      "path": "assets/resource-policy.json",
+      "type": "policy",
+      "purpose": "Defines supported resource units and threshold requirements.",
+      "used_by": ["SKILL.md", "agents/support.md", "scripts/validate_health_check.py"]
+    },
+    {
+      "path": "assets/alert-policy.json",
+      "type": "policy",
+      "purpose": "Defines alert severity, owner, trigger, and handoff requirements.",
+      "used_by": ["SKILL.md", "agents/guardian.md", "scripts/validate_health_check.py"]
+    },
+    {
+      "path": "assets/degradation-policy.json",
+      "type": "policy",
+      "purpose": "Defines degraded, unhealthy, and blocked status behavior.",
+      "used_by": ["SKILL.md", "prompts/variations/deep.md", "scripts/validate_health_check.py"]
+    },
+    {
+      "path": "assets/evidence-policy.json",
+      "type": "policy",
+      "purpose": "Defines evidence source, freshness, and validation requirements.",
+      "used_by": ["SKILL.md", "examples/example-output.md", "scripts/validate_health_check.py"]
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "schema": 1,
+  "check_types": ["readiness", "liveness", "scheduled_job", "synthetic_transaction"],
+  "required_fields": ["id", "type", "required", "status", "evidence"],
+  "rules": [
+    "Required service checks must not be unknown in a healthy report.",
+    "Scheduled jobs require an observed duration or completion evidence.",
+    "Service readiness does not replace dependency checks."
+  ]
+}

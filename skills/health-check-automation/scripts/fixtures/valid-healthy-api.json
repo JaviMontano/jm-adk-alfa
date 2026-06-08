@@ -1,0 +1,74 @@
+{
+  "schema": 1,
+  "skill": "health-check-automation",
+  "scenario_id": "healthy-qa-report-api",
+  "overall_status": "healthy",
+  "snapshot": {
+    "source": "release-candidate fixture",
+    "captured_at": "2026-06-07T10:00:00Z",
+    "freshness": "fresh"
+  },
+  "checks": [
+    {
+      "id": "readiness",
+      "kind": "service",
+      "type": "readiness",
+      "required": true,
+      "status": "pass",
+      "evidence": "HTTP 200 captured in fixture"
+    },
+    {
+      "id": "queue",
+      "kind": "dependency",
+      "type": "queue",
+      "required": true,
+      "status": "pass",
+      "owner": "platform-oncall",
+      "evidence": "queue status available"
+    },
+    {
+      "id": "disk",
+      "kind": "resource",
+      "type": "disk",
+      "required": true,
+      "status": "pass",
+      "unit": "percent",
+      "observed": 71,
+      "warning_threshold": 80,
+      "critical_threshold": 90,
+      "evidence": "disk usage fixture"
+    },
+    {
+      "id": "memory",
+      "kind": "resource",
+      "type": "memory",
+      "required": true,
+      "status": "pass",
+      "unit": "percent",
+      "observed": 63,
+      "warning_threshold": 75,
+      "critical_threshold": 90,
+      "evidence": "memory usage fixture"
+    }
+  ],
+  "alerts": {
+    "severity": "info",
+    "owner": "qa-oncall",
+    "trigger": "required check changes to warn or fail",
+    "handoff": ["health report", "captured fixture"]
+  },
+  "degradation": {
+    "active": false,
+    "mode": "",
+    "reason": "",
+    "next_action": ""
+  },
+  "validation": {
+    "pre_release_checks": ["validate fixture", "confirm alert route"],
+    "post_release_checks": ["rerun readiness", "rerun scheduled job"]
+  },
+  "guardian": {
+    "decision": "pass",
+    "reason": "all required checks passed with fresh evidence"
+  }
+}

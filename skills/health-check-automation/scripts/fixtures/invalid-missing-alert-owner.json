@@ -1,0 +1,22 @@
+{
+  "schema": 1,
+  "skill": "health-check-automation",
+  "scenario_id": "missing-alert-owner",
+  "overall_status": "degraded",
+  "snapshot": {"source": "fixture", "captured_at": "2026-06-07T10:00:00Z", "freshness": "fresh"},
+  "checks": [
+    {
+      "id": "queue",
+      "kind": "dependency",
+      "type": "queue",
+      "required": true,
+      "status": "fail",
+      "owner": "platform",
+      "evidence": "queue unavailable"
+    }
+  ],
+  "alerts": {"severity": "critical", "owner": "", "trigger": "queue fail", "handoff": ["queue"]},
+  "degradation": {"active": true, "mode": "async disabled", "reason": "queue failed", "next_action": "restore queue"},
+  "validation": {"pre_release_checks": ["validate"], "post_release_checks": ["rerun"]},
+  "guardian": {"decision": "warn", "reason": "missing owner should fail"}
+}

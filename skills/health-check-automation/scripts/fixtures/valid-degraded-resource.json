@@ -1,0 +1,53 @@
+{
+  "schema": 1,
+  "skill": "health-check-automation",
+  "scenario_id": "degraded-disk-warning",
+  "overall_status": "degraded",
+  "snapshot": {
+    "source": "staging fixture",
+    "captured_at": "2026-06-07T10:05:00Z",
+    "freshness": "fresh"
+  },
+  "checks": [
+    {
+      "id": "readiness",
+      "kind": "service",
+      "type": "readiness",
+      "required": true,
+      "status": "pass",
+      "evidence": "HTTP 200 captured in fixture"
+    },
+    {
+      "id": "disk",
+      "kind": "resource",
+      "type": "disk",
+      "required": true,
+      "status": "warn",
+      "unit": "percent",
+      "observed": 84,
+      "warning_threshold": 80,
+      "critical_threshold": 90,
+      "evidence": "disk usage fixture"
+    }
+  ],
+  "alerts": {
+    "severity": "warning",
+    "owner": "platform-oncall",
+    "trigger": "disk usage reached warning threshold",
+    "handoff": ["disk check", "cleanup recommendation", "next validation command"]
+  },
+  "degradation": {
+    "active": true,
+    "mode": "capacity risk",
+    "reason": "required disk check is warn",
+    "next_action": "free disk space or scale volume before release"
+  },
+  "validation": {
+    "pre_release_checks": ["validate disk fixture", "confirm owner acknowledged warning"],
+    "post_release_checks": ["rerun disk check", "confirm usage below warning threshold"]
+  },
+  "guardian": {
+    "decision": "warn",
+    "reason": "release is degraded because disk is above warning threshold"
+  }
+}

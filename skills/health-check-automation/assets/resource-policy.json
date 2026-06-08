@@ -1,0 +1,21 @@
+{
+  "schema": 1,
+  "check_types": ["cpu", "memory", "disk", "queue_depth", "error_rate", "latency"],
+  "allowed_units": ["percent", "count", "milliseconds", "seconds"],
+  "required_fields": [
+    "id",
+    "type",
+    "required",
+    "status",
+    "unit",
+    "observed",
+    "warning_threshold",
+    "critical_threshold",
+    "evidence"
+  ],
+  "rules": [
+    "Warning threshold must be less strict than critical threshold for ascending metrics.",
+    "Observed values at or above critical threshold must be fail.",
+    "Observed values at or above warning threshold must be warn unless critical is reached."
+  ]
+}

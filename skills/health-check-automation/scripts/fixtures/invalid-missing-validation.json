@@ -1,0 +1,14 @@
+{
+  "schema": 1,
+  "skill": "health-check-automation",
+  "scenario_id": "missing-validation",
+  "overall_status": "healthy",
+  "snapshot": {"source": "fixture", "captured_at": "2026-06-07T10:00:00Z", "freshness": "fresh"},
+  "checks": [
+    {"id": "readiness", "kind": "service", "type": "readiness", "required": true, "status": "pass", "evidence": "HTTP 200"}
+  ],
+  "alerts": {"severity": "info", "owner": "ops", "trigger": "warn or fail", "handoff": ["readiness"]},
+  "degradation": {"active": false, "mode": "", "reason": "", "next_action": ""},
+  "validation": {"pre_release_checks": ["validate"], "post_release_checks": []},
+  "guardian": {"decision": "pass", "reason": "missing post-release validation should fail"}
+}

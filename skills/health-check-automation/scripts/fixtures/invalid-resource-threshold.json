@@ -1,0 +1,25 @@
+{
+  "schema": 1,
+  "skill": "health-check-automation",
+  "scenario_id": "bad-resource-threshold",
+  "overall_status": "healthy",
+  "snapshot": {"source": "fixture", "captured_at": "2026-06-07T10:00:00Z", "freshness": "fresh"},
+  "checks": [
+    {
+      "id": "disk",
+      "kind": "resource",
+      "type": "disk",
+      "required": true,
+      "status": "pass",
+      "unit": "percent",
+      "observed": 95,
+      "warning_threshold": 80,
+      "critical_threshold": 90,
+      "evidence": "disk fixture"
+    }
+  ],
+  "alerts": {"severity": "info", "owner": "ops", "trigger": "warn or fail", "handoff": ["disk"]},
+  "degradation": {"active": false, "mode": "", "reason": "", "next_action": ""},
+  "validation": {"pre_release_checks": ["validate"], "post_release_checks": ["rerun"]},
+  "guardian": {"decision": "pass", "reason": "critical disk incorrectly passed"}
+}

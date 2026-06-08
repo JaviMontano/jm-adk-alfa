@@ -1,34 +1,26 @@
 ---
 name: health-check-automation-quick
-type: variation
+type: execution
 version: 2.0.0
-description: "Health Check Automation in quick mode."
+description: "Fast health-check triage with deterministic gates."
 ---
 
-# Health Check Automation — quick Mode
+# Quick Health Triage
 
-## When to Use
+Use when the user needs an immediate healthy, degraded, unhealthy, or blocked
+decision from supplied evidence.
 
-Use quick mode when you need adjusted depth for the Health Check Automation workflow.
+## Steps
 
-## Dynamic Parameters
-
-| Parameter | Required | Filled By |
-|-----------|----------|-----------|
-| `{{task}}` | Yes | User input |
-| `{{context}}` | No | Auto-detected |
-| `{{depth}}` | No | Set to "quick" |
-
-## Execution
-
-1. Load skill: `skills/health-check-automation/knowledge/body-of-knowledge.md`
-2. Check guardrails: `references/guardrails/*.json`
-3. Execute at quick depth with evidence tags
-4. Lead → Support → Guardian validation
-5. Confidence >= 0.95
+1. List required checks and supplied evidence.
+2. Mark each check pass, warn, fail, or unknown.
+3. Block healthy status if any required check is not pass.
+4. Require alert owner and trigger for warn or fail outcomes.
+5. Record validation evidence and residual risks.
 
 ## Output
 
-- Deliverable calibrated to quick depth
-- Evidence-tagged, Constitution-compliant
-- Recommendations beyond the ask
+- Decision
+- Blocking checks
+- Alert handoff
+- Validation check

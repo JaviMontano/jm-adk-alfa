@@ -1,0 +1,11 @@
+{
+  "schema": 1,
+  "statuses": ["healthy", "degraded", "unhealthy", "blocked"],
+  "rules": [
+    "Overall healthy requires every required check to pass.",
+    "Any required fail makes the report unhealthy unless a documented degraded mode absorbs the failure.",
+    "Any required unknown makes the report blocked.",
+    "Any required warn makes the report degraded unless the caller explicitly accepts the risk."
+  ],
+  "required_fields_when_not_healthy": ["mode", "reason", "next_action"]
+}

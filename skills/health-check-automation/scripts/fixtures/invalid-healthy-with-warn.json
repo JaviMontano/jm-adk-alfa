@@ -1,0 +1,25 @@
+{
+  "schema": 1,
+  "skill": "health-check-automation",
+  "scenario_id": "healthy-with-warning",
+  "overall_status": "healthy",
+  "snapshot": {"source": "fixture", "captured_at": "2026-06-07T10:00:00Z", "freshness": "fresh"},
+  "checks": [
+    {
+      "id": "memory",
+      "kind": "resource",
+      "type": "memory",
+      "required": true,
+      "status": "warn",
+      "unit": "percent",
+      "observed": 82,
+      "warning_threshold": 75,
+      "critical_threshold": 90,
+      "evidence": "memory fixture"
+    }
+  ],
+  "alerts": {"severity": "info", "owner": "ops", "trigger": "memory warn", "handoff": ["memory"]},
+  "degradation": {"active": false, "mode": "", "reason": "", "next_action": ""},
+  "validation": {"pre_release_checks": ["validate"], "post_release_checks": ["rerun"]},
+  "guardian": {"decision": "pass", "reason": "incorrect healthy decision"}
+}
