@@ -17,6 +17,16 @@ allowed-tools:
 
 **TL;DR**: Scans project artifacts for exposed credentials, API keys, passwords, tokens, and sensitive data. Implements Gate G0: no pipeline execution proceeds with unmasked secrets. Detects patterns across configuration files, documents, and code artifacts, then masks or flags findings for remediation.
 
+## Deterministic Safety Contract
+
+- `assets/secrets-report-contract.json` defines the G0 report shape.
+- `assets/token-pattern-policy.json` defines token-like patterns that must be masked.
+- `assets/g0-block-policy.json` defines hard-stop behavior for unmasked secrets.
+- `scripts/validate_secrets_sanitization_report.py` validates reports offline.
+- `scripts/check.sh` runs positive and negative fixtures.
+
+Fail closed when a report claims pass while a critical finding is unresolved, a token-like value is unmasked, or evidence is missing. [EXPLICIT]
+
 ## Principio Rector
 Un solo secreto expuesto puede comprometer todo el proyecto. Gate G0 es un hard stop: si se detectan credenciales sin enmascarar en cualquier artefacto del proyecto, el pipeline se detiene hasta que se remedien. La seguridad no es una fase — es una precondición. [EXPLICIT]
 

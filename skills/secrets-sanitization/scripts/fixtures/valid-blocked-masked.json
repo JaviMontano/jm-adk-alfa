@@ -1,0 +1,1 @@
+{"schema":"jm-labs.secrets-sanitization.report.v1","skill":"secrets-sanitization","gate":"G0","status":"blocked","scan":{"evidence":"secret scan completed"},"findings":[{"path":".env","severity":"critical","status":"open","value_masked":true,"excerpt":"OPENAI_API_KEY=sk-...MASKED"}],"decision":{"next_action":"mask-or-rotate"}}
