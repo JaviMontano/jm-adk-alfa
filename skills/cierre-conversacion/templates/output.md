@@ -1,28 +1,41 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: cierre-conversacion
-generated-on: 2026-06-05
-overwrite-policy: missing-only unless --force
--->
-
 # Cierre Conversacion Output
 
 ## Summary
 
 {summary}
 
-## Evidence
+## Completed Work
 
-{evidence}
+{completed_work}
 
-## Result
+## Decisions
 
-{result}
+{decisions}
+
+## Open Tasks
+
+{open_tasks}
+
+## Learnings
+
+{learnings}
+
+## Risks And Blockers
+
+{risks}
 
 ## Validation
 
 {validation}
 
-## Risks and Limits
+## Durable Update Plan
 
-{risks}
+{durable_update_plan}
+
+## Next Handoff
+
+{handoff}
+
+## Guardian Decision
+
+{guardian_decision}

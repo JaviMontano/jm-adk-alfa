@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "skill": "cierre-conversacion",
+  "trigger": {
+    "source": "explicit",
+    "reason": "User requested closeout.",
+    "evidence_tag": "[CONFIG]"
+  },
+  "conversation": {
+    "objective": "Close with an unsupported done task.",
+    "scope": "Invalid fixture.",
+    "turns_observed": 17,
+    "evidence_tag": "[CONFIG]"
+  },
+  "summary": {
+    "description": "A done task lacks completion evidence.",
+    "evidence_tag": "[CÓDIGO]"
+  },
+  "completed_work": [],
+  "decisions": [],
+  "open_tasks": [
+    {
+      "description": "Claim branch deleted.",
+      "status": "done",
+      "next_action": "Continue.",
+      "evidence_tag": "[CÓDIGO]"
+    }
+  ],
+  "learnings": [],
+  "risks": [],
+  "validation": [],
+  "durable_update_plan": [],
+  "handoff": {
+    "next_action": "Continue.",
+    "evidence_tag": "[CONFIG]"
+  },
+  "guardian_decision": {
+    "decision": "block",
+    "rationale": "This should fail before decision is considered.",
+    "evidence_tag": "[CÓDIGO]"
+  }
+}

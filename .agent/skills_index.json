@@ -507,7 +507,7 @@
     "id": "cierre-conversacion",
     "path": "skills/cierre-conversacion",
     "name": "Cierre Conversacion",
-    "description": "Cosecha aprendizajes y cierra la conversacion al superar 15 turnos o por comando explicito."
+    "description": "Cosecha aprendizajes, valida evidencia y produce un cierre de conversacion reproducible con handoff, riesgos y plan de actualizaciones durables."
   },
   {
     "id": "claude-md-architecture",

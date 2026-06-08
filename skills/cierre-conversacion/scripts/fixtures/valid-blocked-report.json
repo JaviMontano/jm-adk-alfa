@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "skill": "cierre-conversacion",
+  "trigger": {
+    "source": "threshold",
+    "reason": "Conversation exceeded the handoff threshold.",
+    "evidence_tag": "[CONFIG]"
+  },
+  "conversation": {
+    "objective": "Produce a blocked closeout without inventing missing evidence.",
+    "scope": "Session audit only.",
+    "turns_observed": 18,
+    "evidence_tag": "[CONFIG]"
+  },
+  "summary": {
+    "description": "The closeout is intentionally blocked because validation evidence is missing.",
+    "evidence_tag": "[CÓDIGO]"
+  },
+  "completed_work": [],
+  "decisions": [
+    {
+      "description": "Do not claim completion without validation evidence.",
+      "evidence_tag": "[CONFIG]"
+    }
+  ],
+  "open_tasks": [
+    {
+      "description": "Run the missing validation command.",
+      "status": "blocked",
+      "next_action": "Execute the required command and record output.",
+      "evidence_tag": "[POR_CONFIRMAR]"
+    }
+  ],
+  "learnings": [],
+  "risks": [
+    {
+      "description": "A future session may need to reconstruct command evidence.",
+      "evidence_tag": "[INFERENCIA]"
+    }
+  ],
+  "validation": [
+    {
+      "command": "python3 -B scripts/validate-skills.py --strict",
+      "status": "unknown",
+      "evidence": "Command has not been run in this closeout.",
+      "evidence_tag": "[POR_CONFIRMAR]"
+    }
+  ],
+  "durable_update_plan": [
+    {
+      "target": "none",
+      "action": "skip",
+      "authority": "not-applicable",
+      "content_summary": "No durable write is safe until validation evidence exists.",
+      "evidence_tag": "[CONFIG]"
+    }
+  ],
+  "handoff": {
+    "next_action": "Run validation before marking any task complete.",
+    "evidence_tag": "[CONFIG]"
+  },
+  "guardian_decision": {
+    "decision": "block",
+    "rationale": "Missing validation evidence prevents a pass decision.",
+    "evidence_tag": "[CÓDIGO]"
+  }
+}

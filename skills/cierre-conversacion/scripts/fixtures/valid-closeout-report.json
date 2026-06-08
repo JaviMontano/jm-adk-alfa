@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "skill": "cierre-conversacion",
+  "trigger": {
+    "source": "explicit",
+    "reason": "User requested cierre-conversacion after a hardening session.",
+    "evidence_tag": "[CONFIG]"
+  },
+  "conversation": {
+    "objective": "Close a deterministic skill hardening session.",
+    "scope": "One active skill, PR evidence, local validation, and next handoff.",
+    "turns_observed": 24,
+    "evidence_tag": "[CONFIG]"
+  },
+  "summary": {
+    "description": "The session merged one PR and selected the next failing skill for hardening.",
+    "evidence_tag": "[CÓDIGO]"
+  },
+  "completed_work": [
+    {
+      "description": "Merged the active PR after Quality Gates passed.",
+      "completion_evidence": "gh pr view reported state MERGED and merge commit.",
+      "evidence_tag": "[CÓDIGO]"
+    }
+  ],
+  "decisions": [
+    {
+      "description": "Continue with exactly one active skill at a time.",
+      "evidence_tag": "[CONFIG]"
+    }
+  ],
+  "open_tasks": [
+    {
+      "description": "Harden cierre-conversacion from a fresh branch.",
+      "status": "open",
+      "next_action": "Create branch, add deterministic assets, validate, and open PR.",
+      "evidence_tag": "[CÓDIGO]"
+    }
+  ],
+  "learnings": [
+    {
+      "description": "Stashing stale mixed worktrees preserves recovery while removing process blockers.",
+      "evidence_tag": "[INFERENCIA]"
+    }
+  ],
+  "risks": [
+    {
+      "description": "CI is unknown until the next PR is opened.",
+      "evidence_tag": "[POR_CONFIRMAR]"
+    }
+  ],
+  "validation": [
+    {
+      "command": "python3 -B scripts/validate-skill-dod.py --skill cierre-conversacion",
+      "status": "fail",
+      "evidence": "Initial DoD failed before hardening.",
+      "evidence_tag": "[CÓDIGO]"
+    }
+  ],
+  "durable_update_plan": [
+    {
+      "target": "ledger",
+      "action": "propose",
+      "authority": "pending",
+      "content_summary": "Mark cierre-conversacion dod-complete only after validation evidence exists.",
+      "evidence_tag": "[CONFIG]"
+    }
+  ],
+  "handoff": {
+    "next_action": "Fix the failing skill DoD, then rerun local validations.",
+    "evidence_tag": "[CONFIG]"
+  },
+  "guardian_decision": {
+    "decision": "block",
+    "rationale": "The next skill still has a failing DoD check.",
+    "evidence_tag": "[CÓDIGO]"
+  }
+}

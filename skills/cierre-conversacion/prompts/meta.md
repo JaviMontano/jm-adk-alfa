@@ -1,17 +1,19 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: cierre-conversacion
-generated-on: 2026-06-05
-overwrite-policy: missing-only unless --force
--->
-
 # Cierre Conversacion Meta Prompt
 
-Review whether `cierre-conversacion` should activate, whether the scope is safe, and which support agents should participate.
+Decide whether this request is a real closeout.
 
-## Activation Check
+## Activate When
 
-- Trigger match
-- Domain fit
-- Sufficient input
-- No safer specialized skill available
+- The user explicitly asks to close, audit, harvest, summarize for handoff, or end a long conversation.
+- The current workflow requires a final ReleasePacket, retrospective, or next-session handoff.
+- The conversation has accumulated enough state that losing decisions, risks, or validations would harm continuity.
+
+## Do Not Activate When
+
+- The request is only generic cleanup of files or downloads.
+- The user wants a normal short summary with no closure or handoff.
+- A more specific active skill must finish first.
+
+## Routing Output
+
+Return activation decision, evidence, missing authority for durable writes, and whether Guardian should start in `pass` or `block` posture.

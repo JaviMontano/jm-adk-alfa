@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "skill": "cierre-conversacion",
+  "trigger": {
+    "source": "explicit",
+    "reason": "User requested final closeout.",
+    "evidence_tag": "[CONFIG]"
+  },
+  "conversation": {
+    "objective": "Close after failed validation.",
+    "scope": "Invalid fixture.",
+    "turns_observed": 21,
+    "evidence_tag": "[CONFIG]"
+  },
+  "summary": {
+    "description": "A failed validation is hidden behind a pass decision.",
+    "evidence_tag": "[CÓDIGO]"
+  },
+  "completed_work": [],
+  "decisions": [],
+  "open_tasks": [],
+  "learnings": [],
+  "risks": [],
+  "validation": [
+    {
+      "command": "python3 -B scripts/validate-skills.py --strict",
+      "status": "fail",
+      "evidence": "Synthetic failure.",
+      "evidence_tag": "[CÓDIGO]"
+    }
+  ],
+  "durable_update_plan": [
+    {
+      "target": "none",
+      "action": "skip",
+      "authority": "not-applicable",
+      "content_summary": "No durable write.",
+      "evidence_tag": "[CONFIG]"
+    }
+  ],
+  "handoff": {
+    "next_action": "Incorrectly continue.",
+    "evidence_tag": "[CONFIG]"
+  },
+  "guardian_decision": {
+    "decision": "pass",
+    "rationale": "Incorrectly ignores failed validation.",
+    "evidence_tag": "[CONFIG]"
+  }
+}

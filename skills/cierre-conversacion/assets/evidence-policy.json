@@ -1,0 +1,18 @@
+{
+  "schema": 1,
+  "skill": "cierre-conversacion",
+  "allowed_tags": [
+    "[CÓDIGO]",
+    "[CONFIG]",
+    "[DOC]",
+    "[INFERENCIA]",
+    "[SUPUESTO]",
+    "[POR_CONFIRMAR]"
+  ],
+  "rules": [
+    "Every non-obvious claim must carry an evidence_tag.",
+    "Completed tasks cannot rely on [SUPUESTO] or [POR_CONFIRMAR].",
+    "Validation claims must name a command, artifact, PR, CI result, or explicit skip reason.",
+    "Contradictory evidence must be preserved and Guardian must block green completion."
+  ]
+}

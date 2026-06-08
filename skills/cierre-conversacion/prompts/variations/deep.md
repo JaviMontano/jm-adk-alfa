@@ -1,12 +1,12 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: cierre-conversacion
-generated-on: 2026-06-05
-overwrite-policy: missing-only unless --force
--->
-
 # Cierre Conversacion Deep Variation
 
-Use when the task has unclear requirements, high impact, or cross-file consequences.
+Use for long sessions, PR/merge workflows, context compaction, or multi-step process handoff.
 
-Include discovery notes, options considered, selected approach, validation, and risks.
+Include:
+
+- Timeline of important decisions.
+- Commands and validation evidence.
+- Completed and pending PR/branch state.
+- Durable learning candidates.
+- Top blockers and next five actions.
+- Guardian decision with pass/block rationale.

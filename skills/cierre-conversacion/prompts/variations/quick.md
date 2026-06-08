@@ -1,12 +1,12 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: cierre-conversacion
-generated-on: 2026-06-05
-overwrite-policy: missing-only unless --force
--->
-
 # Cierre Conversacion Quick Variation
 
-Use when the task is low risk and well specified.
+Use only when the session is low risk and all validation evidence is already available.
 
-Return only the requested deliverable, validation status, and residual risks.
+Return:
+
+- Summary.
+- Decisions.
+- Open tasks.
+- Validation.
+- Next handoff.
+- Guardian decision.

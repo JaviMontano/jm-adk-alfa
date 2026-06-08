@@ -1,0 +1,16 @@
+{
+  "schema": 1,
+  "skill": "cierre-conversacion",
+  "checks": [
+    "activation_source_recorded",
+    "summary_is_evidence_tagged",
+    "decisions_have_evidence",
+    "completed_work_has_completion_evidence",
+    "open_tasks_have_next_actions",
+    "learnings_are_not_overclaimed",
+    "risks_and_blockers_preserved",
+    "validation_statuses_named",
+    "durable_updates_authority_declared",
+    "handoff_names_next_action"
+  ]
+}

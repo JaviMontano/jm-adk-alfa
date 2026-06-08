@@ -1,8 +1,0 @@
-{
-  "schema": 1,
-  "skill": "cierre-conversacion",
-  "mode": "dry-run",
-  "input": {
-    "goal": "Run deterministic automation for cierre-conversacion."
-  }
-}

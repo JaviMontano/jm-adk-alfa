@@ -1,0 +1,25 @@
+{
+  "schema": 1,
+  "skill": "cierre-conversacion",
+  "required_sections": [
+    "summary",
+    "completed_work",
+    "decisions",
+    "open_tasks",
+    "learnings",
+    "risks",
+    "validation",
+    "durable_update_plan",
+    "handoff",
+    "guardian_decision"
+  ],
+  "guardian_decisions": ["pass", "block"],
+  "task_statuses": ["done", "open", "blocked", "proposed"],
+  "validation_statuses": ["pass", "fail", "skipped", "unknown"],
+  "false_completion_blocks": [
+    "done_task_without_completion_evidence",
+    "guardian_pass_with_failed_validation",
+    "durable_append_without_confirmed_authority",
+    "merge_or_ci_claim_without_evidence"
+  ]
+}
