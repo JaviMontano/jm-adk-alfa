@@ -1,0 +1,68 @@
+{
+  "schema": 1,
+  "skill": "message-batch-orchestration",
+  "assets": [
+    {
+      "path": "assets/message-batch-orchestration-contract.json",
+      "type": "json_contract",
+      "purpose": "Defines required fields for offline batch orchestration reports.",
+      "used_by": [
+        "SKILL.md",
+        "README.md",
+        "scripts/validate_message_batch_orchestration.py",
+        "evals/evals.json",
+        "examples/example-output.md"
+      ]
+    },
+    {
+      "path": "assets/workload-policy.json",
+      "type": "policy",
+      "purpose": "Requires offline, latency-tolerant, non-streaming workload scope.",
+      "used_by": [
+        "SKILL.md",
+        "prompts/meta.md",
+        "scripts/validate_message_batch_orchestration.py"
+      ]
+    },
+    {
+      "path": "assets/custom-id-policy.json",
+      "type": "policy",
+      "purpose": "Requires unique, stable custom_id values from business ids.",
+      "used_by": [
+        "SKILL.md",
+        "prompts/primary.md",
+        "scripts/validate_message_batch_orchestration.py"
+      ]
+    },
+    {
+      "path": "assets/lifecycle-policy.json",
+      "type": "policy",
+      "purpose": "Requires create, polling to ended, and results retrieval.",
+      "used_by": [
+        "SKILL.md",
+        "knowledge/body-of-knowledge.md",
+        "scripts/validate_message_batch_orchestration.py"
+      ]
+    },
+    {
+      "path": "assets/retry-fragmentation-policy.json",
+      "type": "policy",
+      "purpose": "Requires fragmentation and retry only for failed custom_ids.",
+      "used_by": [
+        "SKILL.md",
+        "templates/output.md",
+        "scripts/validate_message_batch_orchestration.py"
+      ]
+    },
+    {
+      "path": "assets/evidence-policy.json",
+      "type": "policy",
+      "purpose": "Defines evidence needed for workload, custom_id, status polling and fragmentation.",
+      "used_by": [
+        "README.md",
+        "examples/example-output.md",
+        "scripts/validate_message_batch_orchestration.py"
+      ]
+    }
+  ]
+}

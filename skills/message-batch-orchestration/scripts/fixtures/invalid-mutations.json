@@ -1,0 +1,120 @@
+{
+  "schema": 1,
+  "skill": "message-batch-orchestration",
+  "cases": [
+    {
+      "id": "duplicate_custom_id",
+      "base": "valid-ticket-backfill.json",
+      "operations": [
+        {
+          "op": "set",
+          "path": "request_modeling.custom_ids.1",
+          "value": "T-100"
+        }
+      ]
+    },
+    {
+      "id": "index_based_custom_id",
+      "base": "valid-ticket-backfill.json",
+      "operations": [
+        {
+          "op": "set",
+          "path": "request_modeling.custom_id_source",
+          "value": "loop_index"
+        },
+        {
+          "op": "set",
+          "path": "request_modeling.index_based_custom_id",
+          "value": true
+        }
+      ]
+    },
+    {
+      "id": "realtime_streaming_workload",
+      "base": "valid-ticket-backfill.json",
+      "operations": [
+        {
+          "op": "set",
+          "path": "workload.realtime_required",
+          "value": true
+        },
+        {
+          "op": "set",
+          "path": "workload.streaming_required",
+          "value": true
+        }
+      ]
+    },
+    {
+      "id": "assumes_immediate_completion",
+      "base": "valid-ticket-backfill.json",
+      "operations": [
+        {
+          "op": "set",
+          "path": "batch_lifecycle.assumes_immediate_completion",
+          "value": true
+        }
+      ]
+    },
+    {
+      "id": "terminal_status_not_ended",
+      "base": "valid-ticket-backfill.json",
+      "operations": [
+        {
+          "op": "set",
+          "path": "batch_lifecycle.terminal_status",
+          "value": "in_progress"
+        }
+      ]
+    },
+    {
+      "id": "retry_entire_batch",
+      "base": "valid-ticket-backfill.json",
+      "operations": [
+        {
+          "op": "set",
+          "path": "retry_policy.retries_batch_complete",
+          "value": true
+        },
+        {
+          "op": "set",
+          "path": "retry_policy.retry_custom_ids",
+          "value": ["T-100", "T-101", "T-102"]
+        }
+      ]
+    },
+    {
+      "id": "retry_includes_success",
+      "base": "valid-ticket-backfill.json",
+      "operations": [
+        {
+          "op": "set",
+          "path": "retry_policy.retry_custom_ids",
+          "value": ["T-100", "T-101"]
+        }
+      ]
+    },
+    {
+      "id": "unbounded_retries",
+      "base": "valid-ticket-backfill.json",
+      "operations": [
+        {
+          "op": "set",
+          "path": "retry_policy.max_retries",
+          "value": 10
+        }
+      ]
+    },
+    {
+      "id": "successes_not_persisted",
+      "base": "valid-ticket-backfill.json",
+      "operations": [
+        {
+          "op": "set",
+          "path": "result_fragmentation.success_persisted",
+          "value": false
+        }
+      ]
+    }
+  ]
+}

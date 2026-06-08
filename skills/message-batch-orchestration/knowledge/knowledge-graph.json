@@ -1,7 +1,5 @@
 {
   "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-30",
   "skill": "message-batch-orchestration",
   "nodes": [
     {
@@ -27,7 +25,7 @@
     {
       "id": "message-batch-orchestration:batches-api",
       "type": "concept",
-      "label": "Message Batches API (offline, ~50% descuento)"
+      "label": "Message Batches API (offline)"
     },
     {
       "id": "message-batch-orchestration:custom-id",
@@ -63,6 +61,16 @@
       "id": "message-batch-orchestration:evidence",
       "type": "gate",
       "label": "Evidence / provenance requirements"
+    },
+    {
+      "id": "message-batch-orchestration:assets-contract",
+      "type": "contract",
+      "label": "assets/message-batch-orchestration-contract.json"
+    },
+    {
+      "id": "message-batch-orchestration:offline-validator",
+      "type": "script",
+      "label": "scripts/validate_message_batch_orchestration.py"
     },
     {
       "id": "message-batch-orchestration:antipattern",
@@ -129,6 +137,16 @@
     {
       "from": "message-batch-orchestration",
       "to": "message-batch-orchestration:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "message-batch-orchestration",
+      "to": "message-batch-orchestration:assets-contract",
+      "type": "governed_by"
+    },
+    {
+      "from": "message-batch-orchestration:assets-contract",
+      "to": "message-batch-orchestration:offline-validator",
       "type": "validated_by"
     },
     {

@@ -1,0 +1,12 @@
+{
+  "schema": 1,
+  "skill": "message-batch-orchestration",
+  "required_flags": {
+    "batch_id_persisted": true,
+    "processing_status_polling": true,
+    "assumes_immediate_completion": false,
+    "results_retrieved": true
+  },
+  "terminal_status": "ended",
+  "minimum_backoff_steps": 2
+}

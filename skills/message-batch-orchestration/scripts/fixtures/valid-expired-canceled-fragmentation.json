@@ -1,0 +1,85 @@
+{
+  "schema": 1,
+  "skill": "message-batch-orchestration",
+  "report_id": "dataset-expired-canceled-retry",
+  "scenario": "Retry only expired and canceled records from an offline enrichment batch.",
+  "workload": {
+    "mode": "offline",
+    "latency_tolerant": true,
+    "realtime_required": false,
+    "streaming_required": false,
+    "item_count": 50000,
+    "business_id_field": "record_id"
+  },
+  "request_modeling": {
+    "custom_id_source": "record_id",
+    "custom_ids": ["R-200", "R-201", "R-202", "R-203"],
+    "uniqueness_validated": true,
+    "index_based_custom_id": false
+  },
+  "batch_lifecycle": {
+    "create_request_count": 4,
+    "batch_id_persisted": true,
+    "processing_status_polling": true,
+    "terminal_status": "ended",
+    "assumes_immediate_completion": false,
+    "polling_backoff_seconds": [2, 4, 8],
+    "results_retrieved": true
+  },
+  "result_fragmentation": {
+    "succeeded_custom_ids": ["R-200", "R-203"],
+    "failed_custom_ids": ["R-201", "R-202"],
+    "failure_types": [
+      {
+        "custom_id": "R-201",
+        "result_type": "expired"
+      },
+      {
+        "custom_id": "R-202",
+        "result_type": "canceled"
+      }
+    ],
+    "success_persisted": true
+  },
+  "retry_policy": {
+    "selective_retry": true,
+    "retry_custom_ids": ["R-201", "R-202"],
+    "retries_batch_complete": false,
+    "max_retries": 3,
+    "retry_attempts_used": 2
+  },
+  "persistence": {
+    "success_sink": "enrichment-results.jsonl",
+    "idempotent_writes": true,
+    "preserves_successes_before_retry": true
+  },
+  "evidence": [
+    {
+      "type": "workload_scope",
+      "detail": "The enrichment job is a latency-tolerant offline dataset run."
+    },
+    {
+      "type": "status_polling",
+      "detail": "Polling waits for processing_status ended before reading results."
+    },
+    {
+      "type": "retry_subset",
+      "detail": "Retry set is exactly R-201 and R-202."
+    }
+  ],
+  "validation": {
+    "offline_gate_passed": true,
+    "custom_ids_unique": true,
+    "custom_ids_stable": true,
+    "polls_until_ended": true,
+    "fragments_results": true,
+    "retries_only_failed_custom_ids": true,
+    "retry_cap_enforced": true,
+    "synchronous_loop_absent": true,
+    "deterministic_script_passed": true
+  },
+  "guardian": {
+    "decision": "pass",
+    "reason": "Expired and canceled records are isolated and retried without touching successful outputs."
+  }
+}
