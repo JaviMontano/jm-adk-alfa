@@ -1,0 +1,11 @@
+{
+  "schema": 1,
+  "required_fields": [
+    "hook",
+    "enforcement_active",
+    "denies_write_in_plan",
+    "reverts_on_plan_hash_change",
+    "deny_reasons"
+  ],
+  "hook": "PreToolUse"
+}

@@ -1,10 +1,3 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: plan-mode-workflow
-generated-on: 2026-05-30
-overwrite-policy: missing-only unless --force
--->
-
 # Plan Mode Workflow Deep Variation
 
 Úsala cuando el repo es desconocido, el blast radius es amplio o varios agentes comparten el workspace.

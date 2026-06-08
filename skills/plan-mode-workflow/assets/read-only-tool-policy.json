@@ -1,0 +1,17 @@
+{
+  "schema": 1,
+  "allowed_read_tools": [
+    "Read",
+    "Grep",
+    "Glob",
+    "Bash:read-only"
+  ],
+  "required_blocked_write_tools": [
+    "Write",
+    "Edit",
+    "MultiEdit",
+    "NotebookEdit",
+    "Bash:mutation",
+    "MCP:mutation"
+  ]
+}

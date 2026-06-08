@@ -1,0 +1,124 @@
+{
+  "schema": 1,
+  "cases": [
+    {
+      "id": "default_mode_not_plan",
+      "base": "valid-signed-ready.json",
+      "operations": [
+        {
+          "op": "set",
+          "path": "mode_state.default_start_mode",
+          "value": "execute"
+        }
+      ]
+    },
+    {
+      "id": "read_only_step_mutates",
+      "base": "valid-signed-ready.json",
+      "operations": [
+        {
+          "op": "set",
+          "path": "read_only_exploration.0.mutates",
+          "value": true
+        }
+      ]
+    },
+    {
+      "id": "missing_required_write_tool",
+      "base": "valid-signed-ready.json",
+      "operations": [
+        {
+          "op": "remove",
+          "path": "write_tool_policy.blocked_write_tools.0"
+        }
+      ]
+    },
+    {
+      "id": "bypass_permissions_enabled",
+      "base": "valid-signed-ready.json",
+      "operations": [
+        {
+          "op": "set",
+          "path": "write_tool_policy.bypass_permissions",
+          "value": true
+        }
+      ]
+    },
+    {
+      "id": "hook_disabled",
+      "base": "valid-signed-ready.json",
+      "operations": [
+        {
+          "op": "set",
+          "path": "hook_enforcement.enforcement_active",
+          "value": false
+        }
+      ]
+    },
+    {
+      "id": "plan_change_does_not_resign",
+      "base": "valid-signed-ready.json",
+      "operations": [
+        {
+          "op": "set",
+          "path": "hook_enforcement.reverts_on_plan_hash_change",
+          "value": false
+        }
+      ]
+    },
+    {
+      "id": "approval_hash_mismatch",
+      "base": "valid-signed-ready.json",
+      "operations": [
+        {
+          "op": "set",
+          "path": "approval_event.plan_hash",
+          "value": "3333333333333333333333333333333333333333333333333333333333333333"
+        }
+      ]
+    },
+    {
+      "id": "ready_without_signature",
+      "base": "valid-blocked-unsigned.json",
+      "operations": [
+        {
+          "op": "set",
+          "path": "execution.action",
+          "value": "ready"
+        },
+        {
+          "op": "set",
+          "path": "execution.blocking_gaps",
+          "value": []
+        },
+        {
+          "op": "set",
+          "path": "execution.executed_plan_hash",
+          "value": "2222222222222222222222222222222222222222222222222222222222222222"
+        }
+      ]
+    },
+    {
+      "id": "guardian_passes_blocked_unsigned",
+      "base": "valid-blocked-unsigned.json",
+      "operations": [
+        {
+          "op": "set",
+          "path": "guardian.decision",
+          "value": "pass"
+        }
+      ]
+    },
+    {
+      "id": "plan_changed_after_signature_but_ready",
+      "base": "valid-signed-ready.json",
+      "operations": [
+        {
+          "op": "set",
+          "path": "plan_artifact.status",
+          "value": "changed_after_signature"
+        }
+      ]
+    }
+  ]
+}

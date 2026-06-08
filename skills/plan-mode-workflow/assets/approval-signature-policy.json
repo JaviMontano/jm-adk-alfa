@@ -1,0 +1,30 @@
+{
+  "schema": 1,
+  "required_plan_fields": [
+    "path",
+    "sha256",
+    "status",
+    "objective",
+    "files_to_touch",
+    "acceptance_criteria",
+    "risks"
+  ],
+  "plan_statuses": [
+    "draft",
+    "signed",
+    "changed_after_signature"
+  ],
+  "required_approval_fields": [
+    "status",
+    "plan_hash",
+    "approved_by",
+    "signed_at"
+  ],
+  "approval_statuses": [
+    "none",
+    "signed",
+    "invalidated"
+  ],
+  "sha256_pattern": "^[a-f0-9]{64}$",
+  "signed_at_pattern": "^20[0-9]{2}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$"
+}
