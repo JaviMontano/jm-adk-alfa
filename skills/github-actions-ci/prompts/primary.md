@@ -2,43 +2,45 @@
 name: github-actions-ci-primary
 type: execution
 version: 2.0.0
-description: "Execute the Github Actions Ci workflow with triad orchestration."
+description: "Execute deterministic GitHub Actions CI/CD workflow planning."
 triad:
   lead: "github-actions-ci-lead"
   support: "github-actions-ci-support"
   guardian: "github-actions-ci-guardian"
 ---
 
-# Github Actions Ci — Execute
+# GitHub Actions CI/CD - Execute
 
 ## Dynamic Parameters
 
 | Parameter | Description | Required | Filled By |
 |-----------|-------------|----------|-----------|
-| `{{task}}` | What to accomplish | Yes | User input |
-| `{{context}}` | Background and constraints | Yes | User or codebase |
-| `{{constraints}}` | Additional rules | No | Guardrails JSON |
-| `{{depth}}` | quick / standard / deep | No | Auto |
-| `{{output_format}}` | html / docx / xlsx / md | No | Auto |
+| `{{repo_surface}}` | Languages, commands, lockfiles, deploy targets, existing workflows | Yes | User or repo evidence |
+| `{{workflow_goal}}` | CI, deploy, release, scheduled job, or reusable workflow | Yes | User input |
+| `{{constraints}}` | Branch policy, environments, secrets, runners, compliance rules | No | User or repo evidence |
+| `{{output_format}}` | md or json | No | Auto |
 
 ## Execution
 
-1. **Load knowledge**: Read `knowledge/body-of-knowledge.md`
-2. **Check guardrails**: Read `references/guardrails/*.json`
-3. **Lead** (`github-actions-ci-lead`): Execute SKILL.md Steps 1-4 for `{{task}}`
-   - Discover → Analyze → Execute → Validate
-   - Apply evidence tags on all claims
-4. **Support** (`github-actions-ci-support`): Review for cross-cutting concerns
-   - Edge cases, security, accessibility, performance
-5. **Guardian** (`github-actions-ci-guardian`): Validate
-   - Evidence tags complete
-   - Quality gate met
-   - Constitution XIII + XIV respected
-   - Output exceeds expectations
+1. Load `knowledge/body-of-knowledge.md`.
+2. Load assets under `assets/` and apply policies in this order: contract,
+   triggers, permissions, action pinning, cache, matrix, secrets, deployment,
+   evidence.
+3. Lead: inventory pipeline surface and draft the workflow plan.
+4. Support: challenge unsafe triggers, broad permissions, unpinned actions,
+   cache invalidation gaps, inline secrets, unbounded matrices, and deploy gates.
+5. Guardian: block ready status when any required protection or validation
+   evidence is missing.
 
 ## Output
 
-- Primary deliverable for `{{task}}` in `{{output_format}}`
-- Evidence tags on every claim
-- Recommendations beyond the ask
-- Confidence score (>= 0.95)
+- Pipeline Surface
+- Triggers
+- Jobs
+- Permissions
+- Actions And Cache
+- Matrix
+- Secrets And Environments
+- Deployment Gates
+- Validation Evidence
+- Guardian Decision

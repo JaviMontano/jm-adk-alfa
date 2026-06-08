@@ -2,33 +2,29 @@
 name: github-actions-ci-meta
 type: self-improvement
 version: 2.0.0
-description: "Evaluate and improve the Github Actions Ci skill."
+description: "Evaluate and improve deterministic GitHub Actions CI/CD planning."
 ---
 
-# Github Actions Ci — Self-Improvement
+# GitHub Actions CI/CD - Self-Improvement
 
 ## Evaluate
 
-1. Is `knowledge/body-of-knowledge.md` current? New standards, deprecated practices?
-2. Are the 4 sub-agents (lead, support, guardian, specialist) covering all perspectives?
-3. Are templates producing useful deliverables? Test with a real scenario.
-4. What edge cases have been encountered that aren't documented?
-5. Are there new insights from `insights/` that apply to this skill?
-6. Has the related skill landscape changed? New cross-references needed?
+1. Do new workflow types require new trigger, permission, or deploy policies?
+2. Did any real workflow require a safe exception to action pinning or cache
+   invalidation?
+3. Are invalid fixtures rejecting broad permissions, inline secrets, unpinned
+   actions, PR deploys, and missing validation?
+4. Do evals still cover false positives, degradation, conflicts, and boundaries?
 
 ## Improve
 
-1. Update body of knowledge with new findings (tag with `[DOC]`)
-2. Add prompt variations for newly discovered use cases
-3. Refine quality criteria based on real-world feedback
-4. Update knowledge graph: new concepts, new `[[wikilinks]]`
-5. Test templates with edge-case inputs to verify robustness
-6. Propose Constitution amendment if recurring ambiguity found (XVII)
+1. Add a fixture before changing validator behavior.
+2. Update assets before prompts so policy remains the source of truth.
+3. Add evals for new false-positive or false-negative patterns.
+4. Record non-automatable GitHub settings, such as repository secrets or
+   environment reviewers, as handoff risks.
 
 ## Trigger
 
-Run this meta-prompt when:
-- Skill hasn't been reviewed in 30+ days
-- User reports unexpected output quality
-- New related skills added to the kit
-- Insights file updated with relevant patterns
+Run this meta-prompt when a workflow plan fails review, a new deploy target is
+introduced, or the validator rejects a legitimate workflow plan.

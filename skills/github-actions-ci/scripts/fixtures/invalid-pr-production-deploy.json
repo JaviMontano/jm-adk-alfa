@@ -1,0 +1,18 @@
+{
+  "schema": 1,
+  "skill": "github-actions-ci",
+  "scenario_id": "pr-production-deploy",
+  "decision": "ready",
+  "triggers": ["pull_request"],
+  "permissions": {"mode": "least-privilege", "default": {"contents": "read"}, "justification": ""},
+  "jobs": [
+    {"id": "deploy", "purpose": "deploy prod", "runs_on": "ubuntu-latest", "needs": [], "commands": ["deploy"], "permissions": {"contents": "read"}, "deploy": true}
+  ],
+  "actions": [{"name": "third-party/deploy", "ref": "0123456789abcdef0123456789abcdef01234567", "required_pin": true}],
+  "cache": {"enabled": false, "key": "", "invalidation_source": ""},
+  "matrix": {"enabled": false, "dimensions": {}, "max_combinations": 0},
+  "secrets": [{"name": "DEPLOY_TOKEN", "scope": "prod", "used_by": "deploy"}],
+  "deployment": {"enabled": true, "environment": "production", "branch_gate": "refs/heads/main", "needs": ["deploy"], "concurrency": "production", "production_from_pull_request": true},
+  "validation": {"local_commands": ["npm test"], "expected_checks": ["deploy"]},
+  "guardian": {"decision": "pass", "reason": "PR production deploy incorrectly accepted"}
+}

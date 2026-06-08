@@ -1,0 +1,18 @@
+{
+  "schema": 1,
+  "skill": "github-actions-ci",
+  "scenario_id": "missing-validation",
+  "decision": "ready",
+  "triggers": ["pull_request"],
+  "permissions": {"mode": "least-privilege", "default": {"contents": "read"}, "justification": ""},
+  "jobs": [
+    {"id": "ci", "purpose": "test", "runs_on": "ubuntu-latest", "needs": [], "commands": ["npm test"], "permissions": {"contents": "read"}, "deploy": false}
+  ],
+  "actions": [{"name": "actions/checkout", "ref": "v4", "required_pin": false}],
+  "cache": {"enabled": false, "key": "", "invalidation_source": ""},
+  "matrix": {"enabled": false, "dimensions": {}, "max_combinations": 0},
+  "secrets": [],
+  "deployment": {"enabled": false, "environment": "", "branch_gate": "", "needs": [], "concurrency": "", "production_from_pull_request": false},
+  "validation": {"local_commands": [], "expected_checks": []},
+  "guardian": {"decision": "pass", "reason": "missing validation incorrectly accepted"}
+}

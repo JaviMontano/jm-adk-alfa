@@ -1,0 +1,20 @@
+{
+  "schema": 1,
+  "required_fields_when_enabled": ["key", "invalidation_source"],
+  "accepted_invalidation_sources": [
+    "package-lock.json",
+    "npm-shrinkwrap.json",
+    "pnpm-lock.yaml",
+    "yarn.lock",
+    "poetry.lock",
+    "requirements.txt",
+    "Cargo.lock",
+    "go.sum",
+    "pom.xml",
+    "gradle.lockfile"
+  ],
+  "rules": [
+    "Cache keys must include a dependency lockfile or equivalent invalidation source.",
+    "Cache restore keys must not be broader than the dependency ecosystem and operating system."
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "skill": "github-actions-ci",
+  "required_markdown_sections": [
+    "Pipeline Surface",
+    "Triggers",
+    "Jobs",
+    "Permissions",
+    "Actions And Cache",
+    "Matrix",
+    "Secrets And Environments",
+    "Deployment Gates",
+    "Validation Evidence",
+    "Guardian Decision"
+  ],
+  "json_contract": {
+    "schema_version": 1,
+    "required_top_level_fields": [
+      "schema",
+      "skill",
+      "scenario_id",
+      "decision",
+      "triggers",
+      "permissions",
+      "jobs",
+      "actions",
+      "cache",
+      "matrix",
+      "secrets",
+      "deployment",
+      "validation",
+      "guardian"
+    ],
+    "allowed_decisions": ["ready", "needs_changes", "blocked"]
+  }
+}

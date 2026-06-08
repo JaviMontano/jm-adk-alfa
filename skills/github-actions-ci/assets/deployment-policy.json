@@ -1,0 +1,10 @@
+{
+  "schema": 1,
+  "required_fields_when_enabled": ["environment", "branch_gate", "needs", "concurrency"],
+  "blocked_events": ["pull_request"],
+  "rules": [
+    "Production deploy requires a protected environment.",
+    "Deploy jobs require branch gates and upstream validation jobs.",
+    "Deploy jobs require concurrency to avoid overlapping releases."
+  ]
+}

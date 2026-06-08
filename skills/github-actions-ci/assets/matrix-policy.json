@@ -1,0 +1,10 @@
+{
+  "schema": 1,
+  "max_total_combinations": 12,
+  "required_fields_when_enabled": ["dimensions", "max_combinations"],
+  "rules": [
+    "Matrix dimensions must be bounded.",
+    "Allowed failure entries require explicit justification.",
+    "Unsupported runtime versions should not be included without a compatibility reason."
+  ]
+}

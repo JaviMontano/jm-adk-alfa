@@ -1,0 +1,11 @@
+{
+  "schema": 1,
+  "official_prefixes": ["actions/", "github/"],
+  "immutable_ref_pattern": "^[a-f0-9]{40}$",
+  "requires_immutable_refs_for": ["release", "deploy", "publish"],
+  "rules": [
+    "Release, deploy, and publish workflows require immutable third-party action references.",
+    "Official GitHub actions may use version tags in non-release CI when risk is documented.",
+    "Mutable branch refs such as main and master are not acceptable for ready release plans."
+  ]
+}

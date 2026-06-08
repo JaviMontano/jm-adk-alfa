@@ -1,0 +1,60 @@
+{
+  "schema": 1,
+  "skill": "github-actions-ci",
+  "assets": [
+    {
+      "path": "assets/ci-workflow-contract.json",
+      "type": "contract",
+      "purpose": "Defines required sections and structured fields for CI/CD workflow plans.",
+      "used_by": ["SKILL.md", "templates/output.md", "scripts/validate_github_actions_ci.py"]
+    },
+    {
+      "path": "assets/triggers-policy.json",
+      "type": "policy",
+      "purpose": "Defines safe workflow triggers and deploy event restrictions.",
+      "used_by": ["SKILL.md", "prompts/primary.md", "scripts/validate_github_actions_ci.py"]
+    },
+    {
+      "path": "assets/permissions-policy.json",
+      "type": "policy",
+      "purpose": "Defines least-privilege permissions and broad permission blockers.",
+      "used_by": ["SKILL.md", "agents/guardian.md", "scripts/validate_github_actions_ci.py"]
+    },
+    {
+      "path": "assets/action-pinning-policy.json",
+      "type": "policy",
+      "purpose": "Defines immutable action reference requirements.",
+      "used_by": ["SKILL.md", "knowledge/body-of-knowledge.md", "scripts/validate_github_actions_ci.py"]
+    },
+    {
+      "path": "assets/cache-policy.json",
+      "type": "policy",
+      "purpose": "Defines cache key and invalidation-source requirements.",
+      "used_by": ["SKILL.md", "prompts/variations/deep.md", "scripts/validate_github_actions_ci.py"]
+    },
+    {
+      "path": "assets/matrix-policy.json",
+      "type": "policy",
+      "purpose": "Defines bounded matrix dimensions and allowed failure rules.",
+      "used_by": ["SKILL.md", "agents/support.md", "scripts/validate_github_actions_ci.py"]
+    },
+    {
+      "path": "assets/secrets-policy.json",
+      "type": "policy",
+      "purpose": "Defines secret name, scope, and no-inline-value requirements.",
+      "used_by": ["SKILL.md", "examples/example-output.md", "scripts/validate_github_actions_ci.py"]
+    },
+    {
+      "path": "assets/deployment-policy.json",
+      "type": "policy",
+      "purpose": "Defines branch gates, protected environments, and concurrency requirements for deploy jobs.",
+      "used_by": ["SKILL.md", "agents/specialist.md", "scripts/validate_github_actions_ci.py"]
+    },
+    {
+      "path": "assets/evidence-policy.json",
+      "type": "policy",
+      "purpose": "Defines validation commands and expected checks required before ready status.",
+      "used_by": ["SKILL.md", "examples/example-output.md", "scripts/validate_github_actions_ci.py"]
+    }
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "schema": 1,
+  "skill": "github-actions-ci",
+  "scenario_id": "node-ci-matrix",
+  "decision": "ready",
+  "triggers": ["pull_request", "push"],
+  "permissions": {
+    "mode": "least-privilege",
+    "default": {"contents": "read"},
+    "justification": ""
+  },
+  "jobs": [
+    {
+      "id": "ci",
+      "purpose": "lint, test, and build",
+      "runs_on": "ubuntu-latest",
+      "needs": [],
+      "commands": ["npm ci", "npm run lint", "npm test", "npm run build"],
+      "permissions": {"contents": "read"},
+      "deploy": false
+    }
+  ],
+  "actions": [
+    {"name": "actions/checkout", "ref": "v4", "required_pin": false},
+    {"name": "actions/setup-node", "ref": "v4", "required_pin": false}
+  ],
+  "cache": {
+    "enabled": true,
+    "key": "npm-${{ runner.os }}-${{ matrix.node }}-${{ hashFiles('package-lock.json') }}",
+    "invalidation_source": "package-lock.json"
+  },
+  "matrix": {
+    "enabled": true,
+    "dimensions": {"node": ["20", "22"]},
+    "max_combinations": 2
+  },
+  "secrets": [],
+  "deployment": {
+    "enabled": false,
+    "environment": "",
+    "branch_gate": "",
+    "needs": [],
+    "concurrency": "",
+    "production_from_pull_request": false
+  },
+  "validation": {
+    "local_commands": ["npm ci", "npm run lint", "npm test", "npm run build"],
+    "expected_checks": ["ci"]
+  },
+  "guardian": {
+    "decision": "pass",
+    "reason": "CI plan is bounded and has validation evidence"
+  }
+}
