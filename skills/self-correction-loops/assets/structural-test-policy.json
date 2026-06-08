@@ -1,0 +1,10 @@
+{
+  "schema": 1,
+  "required_boolean_flags": [
+    "injected_mismatch_flags_true",
+    "silent_overwrite_rejected",
+    "epsilon_justified",
+    "independent_recompute",
+    "deterministic_script_passed"
+  ]
+}

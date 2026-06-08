@@ -1,0 +1,14 @@
+{
+  "schema": 1,
+  "allowed_data_types": [
+    "integer",
+    "currency",
+    "float"
+  ],
+  "integer_epsilon": 0,
+  "currency_min_epsilon": 0,
+  "currency_max_epsilon": 0.01,
+  "float_min_epsilon": 0,
+  "float_max_epsilon": 0.000001,
+  "reason_required": true
+}

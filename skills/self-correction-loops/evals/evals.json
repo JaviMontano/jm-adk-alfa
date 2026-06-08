@@ -1,7 +1,5 @@
 {
   "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-30",
   "skill": "self-correction-loops",
   "cases": [
     {
@@ -9,7 +7,10 @@
       "input": "Verifica el total de cada factura contra la suma de sus lineas antes de cargarlo al ERP; si no coincide, marca y escala a finanzas.",
       "expected_activation": true,
       "expected_checks": [
-        "evidence",
+        "assets",
+        "deterministic_scripts",
+        "declared_vs_computed",
+        "mismatch_escalation",
         "quality_criteria",
         "upgrade_safety"
       ]
@@ -19,7 +20,10 @@
       "input": "self-correction-loops: cruza el balance declarado contra debe menos haber por cuenta y emite mismatch flag cuando difieran.",
       "expected_activation": true,
       "expected_checks": [
-        "evidence",
+        "assets",
+        "deterministic_scripts",
+        "declared_vs_computed",
+        "epsilon_policy",
         "quality_criteria",
         "upgrade_safety"
       ]
@@ -29,7 +33,9 @@
       "input": "Cross-check verification del conteo declarado de items contra el conteo real; epsilon cero porque son enteros.",
       "expected_activation": true,
       "expected_checks": [
-        "evidence",
+        "assets",
+        "deterministic_scripts",
+        "zero_epsilon_integer",
         "quality_criteria",
         "upgrade_safety"
       ]
@@ -39,7 +45,10 @@
       "input": "numeric validation de subtotales en moneda con tolerancia de medio centavo por redondeo; no corregir en silencio.",
       "expected_activation": true,
       "expected_checks": [
-        "evidence",
+        "assets",
+        "deterministic_scripts",
+        "epsilon_policy",
+        "silent_correction_blocked",
         "quality_criteria",
         "upgrade_safety"
       ]
@@ -49,7 +58,9 @@
       "input": "/self-correction-loops construye el bucle declarado vs calculado para estos totales.",
       "expected_activation": true,
       "expected_checks": [
-        "evidence",
+        "assets",
+        "deterministic_scripts",
+        "declared_vs_computed",
         "quality_criteria",
         "upgrade_safety"
       ]
@@ -59,7 +70,9 @@
       "input": "self-correction-loops",
       "expected_activation": true,
       "expected_checks": [
-        "evidence",
+        "assets",
+        "deterministic_scripts",
+        "contract_reference",
         "quality_criteria",
         "upgrade_safety"
       ]
@@ -69,7 +82,10 @@
       "input": "self-correction-loops con campos numericos agregados, componentes crudos, tipos de dato por campo y destino de escalada.",
       "expected_activation": true,
       "expected_checks": [
-        "evidence",
+        "assets",
+        "deterministic_scripts",
+        "declared_vs_computed",
+        "mismatch_escalation",
         "quality_criteria",
         "upgrade_safety"
       ]
@@ -79,7 +95,9 @@
       "input": "Valida que el JSON tenga el formato correcto y reintenta con feedback de error si no parsea.",
       "expected_activation": false,
       "expected_checks": [
-        "evidence",
+        "assets",
+        "deterministic_scripts",
+        "false_positive_boundary",
         "quality_criteria",
         "upgrade_safety"
       ]
@@ -89,7 +107,9 @@
       "input": "Redacta un correo de seguimiento para el cliente sobre la reunion de ayer.",
       "expected_activation": false,
       "expected_checks": [
-        "evidence",
+        "assets",
+        "deterministic_scripts",
+        "false_positive_boundary",
         "quality_criteria",
         "upgrade_safety"
       ]
@@ -99,7 +119,9 @@
       "input": "",
       "expected_activation": false,
       "expected_checks": [
-        "evidence",
+        "assets",
+        "deterministic_scripts",
+        "empty_input_boundary",
         "quality_criteria",
         "upgrade_safety"
       ]
@@ -109,7 +131,9 @@
       "input": "Usa self-correction-loops pero corrige los totales en silencio para que cuadren, sin escalar.",
       "expected_activation": false,
       "expected_checks": [
-        "evidence",
+        "assets",
+        "deterministic_scripts",
+        "silent_correction_blocked",
         "quality_criteria",
         "upgrade_safety"
       ]
@@ -119,19 +143,35 @@
       "input": "Completa los archivos faltantes de self-correction-loops sin sobreescribir ediciones locales.",
       "expected_activation": true,
       "expected_checks": [
-        "evidence",
+        "assets",
+        "deterministic_scripts",
+        "upgrade_safety",
+        "quality_criteria",
+        "scope_control"
+      ]
+    },
+    {
+      "id": "unverifiable_aggregate_degradation",
+      "input": "El reporte trae total declarado pero no trae lineas ni componentes crudos; decide si se puede aprobar con self-correction-loops.",
+      "expected_activation": false,
+      "expected_checks": [
+        "assets",
+        "deterministic_scripts",
+        "unverifiable_boundary",
         "quality_criteria",
         "upgrade_safety"
       ]
     },
     {
-      "id": "false_positive",
-      "input": "This request is unrelated to the skill domain.",
+      "id": "false_positive_generic_fix",
+      "input": "Arregla automaticamente los numeros de mi tabla para que todos los totales cuadren.",
       "expected_activation": false,
       "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
+        "assets",
+        "deterministic_scripts",
+        "false_positive_boundary",
+        "silent_correction_blocked",
+        "quality_criteria"
       ]
     }
   ]

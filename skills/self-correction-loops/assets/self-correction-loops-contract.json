@@ -1,0 +1,33 @@
+{
+  "schema": 1,
+  "json_contract": {
+    "schema_version": 1,
+    "required_top_level_fields": [
+      "schema",
+      "skill",
+      "check_id",
+      "fields",
+      "records",
+      "escalations",
+      "structural_tests",
+      "validation",
+      "guardian"
+    ],
+    "record_required_fields": [
+      "record_id",
+      "field",
+      "data_type",
+      "declared",
+      "computed",
+      "delta",
+      "epsilon",
+      "mismatch",
+      "action",
+      "overwritten"
+    ],
+    "guardian_decisions": [
+      "pass",
+      "block"
+    ]
+  }
+}

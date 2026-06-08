@@ -1,10 +1,3 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: self-correction-loops
-generated-on: 2026-05-30
-overwrite-policy: missing-only unless --force
--->
-
 # Example Input
 
 Un extractor entrega facturas con el `total` ya declarado y las lineas que lo componen. Quiero verificar cada total antes de cargarlo al ERP: si el declarado no coincide con la suma de las lineas, debe marcarse y escalar a finanzas, no cargarse corregido en silencio.
@@ -22,4 +15,4 @@ Un extractor entrega facturas con el `total` ya declarado y las lineas que lo co
 }
 ```
 
-La suma de lineas es 1.200.000 pero el `total` declarado es 1.250.000. Construye el bucle de verificacion cruzada con epsilon de medio centavo y aplica la regla de no-silencio.
+La suma de lineas es 1.200.000 pero el `total` declarado es 1.250.000. Construye el bucle de verificacion cruzada con epsilon de medio centavo, emite el contrato de `assets/self-correction-loops-contract.json` y aplica la regla de no-silencio.

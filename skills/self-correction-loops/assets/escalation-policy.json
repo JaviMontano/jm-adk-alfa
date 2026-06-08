@@ -1,0 +1,17 @@
+{
+  "schema": 1,
+  "required_fields": [
+    "record_id",
+    "assignee_type",
+    "reason",
+    "declared_visible",
+    "computed_visible"
+  ],
+  "allowed_assignee_types": [
+    "human",
+    "finance_owner",
+    "operations_owner"
+  ],
+  "declared_visible_required": true,
+  "computed_visible_required": true
+}

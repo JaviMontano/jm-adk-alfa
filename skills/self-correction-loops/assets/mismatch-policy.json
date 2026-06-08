@@ -1,0 +1,15 @@
+{
+  "schema": 1,
+  "match_action": "accept",
+  "mismatch_action": "escalate_to_human",
+  "allowed_actions": [
+    "accept",
+    "escalate_to_human"
+  ],
+  "forbidden_when_mismatch": [
+    "overwrite_declared",
+    "auto_correct",
+    "accept"
+  ],
+  "overwritten_must_be_false": true
+}
