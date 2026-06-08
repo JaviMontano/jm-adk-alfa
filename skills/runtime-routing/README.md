@@ -1,34 +1,22 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: runtime-routing
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
-
 # Runtime Routing
 
 Route agentic work across Claude, Codex, Gemini, Antigravity, VS Code, and local adapters with explicit validation limits.
 
-## Triggers
+## Use It For
 
-- runtime-routing
-- codex
-- claude
-- antigravity
-- gemini
-- vscode
+- Choosing the runtime for a repo task when Codex, Claude, Gemini, Antigravity, VS Code, MCP, hooks, or local adapters have different capabilities.
+- Recording which capability claims are verified, pending, or unsupported.
+- Selecting the lowest-permission runtime that can complete the task.
+- Producing a local-first fallback when runtime support is uncertain.
 
-## Allowed Tools
+## Deterministic Contract
 
-- Read
-- Grep
-- Glob
-- Bash
+The canonical JSON report is defined in `assets/runtime-routing-contract.json`. A valid report includes evidence, capability matrix, recommendation, fallback, validation flags, and Guardian decision.
 
-## Quick Use
+## Validation
 
-Use this skill when the request clearly matches the triggers and requires the `runtime-routing` capability.
+```bash
+bash skills/runtime-routing/scripts/check.sh
+```
 
-## Output Format
-
-Markdown with summary, evidence, result, validation, and risks.
+The check executes valid fixtures and rejects invalid mutations for missing evidence, unsupported recommendations, hidden validation limits, missing fallback, and inconsistent Guardian decisions.

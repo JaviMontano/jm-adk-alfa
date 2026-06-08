@@ -1,0 +1,9 @@
+{
+  "schema": 1,
+  "skill": "runtime-routing",
+  "json_contract": {
+    "schema_version": 1,
+    "required_top_level_fields": ["schema", "skill", "route_id", "task", "evidence", "capability_matrix", "recommendation", "fallback", "validation", "guardian"],
+    "guardian_decisions": ["pass", "warn", "block"]
+  }
+}

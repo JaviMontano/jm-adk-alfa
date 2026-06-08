@@ -1,0 +1,7 @@
+{
+  "schema": 1,
+  "skill": "runtime-routing",
+  "allowed_runtimes": ["codex", "claude", "gemini", "antigravity", "vscode", "local-adapter"],
+  "allowed_permission_levels": ["low", "medium", "high"],
+  "preferred_permission_order": ["low", "medium", "high"]
+}

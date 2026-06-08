@@ -1,0 +1,48 @@
+{
+  "schema": 1,
+  "skill": "runtime-routing",
+  "base_report": {
+    "schema": 1,
+    "skill": "runtime-routing",
+    "route_id": "invalid-base",
+    "task": {"objective": "Route a local repo task.", "required_capabilities": ["local_files", "shell"]},
+    "evidence": [{"id": "ev-1", "source_type": "executed_check", "locator": "git status", "verified": true}],
+    "capability_matrix": [
+      {"runtime": "codex", "capabilities": ["local_files", "shell"], "evidence_ids": ["ev-1"], "validation_status": "verified", "permission_level": "low", "risk": "local only"}
+    ],
+    "recommendation": {
+      "runtime": "codex",
+      "permission_level": "low",
+      "lowest_permission": true,
+      "reason": "Codex has verified local capabilities.",
+      "validation_limit_labels": ["remote runtimes not observed"]
+    },
+    "fallback": {
+      "local_first": true,
+      "path": "Use repo-local scripts.",
+      "missing_data_handling": "Dato requerido",
+      "validation_limits": ["auth may be missing"]
+    },
+    "validation": {
+      "evidence_grounded": true,
+      "runtime_supported": true,
+      "lowest_permission_selected": true,
+      "fallback_defined": true,
+      "validation_limits_visible": true,
+      "deterministic_script_passed": true
+    },
+    "guardian": {"decision": "pass", "reason": "Base report is valid before mutation."}
+  },
+  "mutations": [
+    {"id": "missing_evidence", "set": [{"path": "evidence", "value": []}]},
+    {"id": "unknown_evidence_id", "set": [{"path": "capability_matrix.0.evidence_ids.0", "value": "ev-missing"}]},
+    {"id": "unsupported_recommendation", "set": [{"path": "capability_matrix.0.validation_status", "value": "unsupported"}]},
+    {"id": "unknown_runtime", "set": [{"path": "capability_matrix.0.runtime", "value": "mystery-runtime"}]},
+    {"id": "missing_required_capability", "set": [{"path": "capability_matrix.0.capabilities", "value": ["local_files"]}]},
+    {"id": "missing_fallback", "set": [{"path": "fallback.local_first", "value": false}]},
+    {"id": "hidden_validation_limits", "set": [{"path": "recommendation.validation_limit_labels", "value": []}]},
+    {"id": "not_lowest_permission", "set": [{"path": "recommendation.lowest_permission", "value": false}]},
+    {"id": "guardian_pass_on_failed_validation", "set": [{"path": "validation.runtime_supported", "value": false}]},
+    {"id": "bad_missing_data_mode", "set": [{"path": "fallback.missing_data_handling", "value": "invent"}]}
+  ]
+}

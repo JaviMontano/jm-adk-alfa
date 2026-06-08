@@ -1,0 +1,42 @@
+{
+  "schema": 1,
+  "skill": "runtime-routing",
+  "route_id": "local-adapter-route",
+  "task": {
+    "objective": "Run deterministic adapter generation from repo-local scripts.",
+    "required_capabilities": ["local_files", "shell", "repo_adapters"]
+  },
+  "evidence": [
+    {"id": "ev-adapt-script", "source_type": "repo_file", "locator": "scripts/adapt.sh", "verified": true},
+    {"id": "ev-skill-assets", "source_type": "repo_file", "locator": "skills/*/assets/manifest.json", "verified": true}
+  ],
+  "capability_matrix": [
+    {"runtime": "local-adapter", "capabilities": ["local_files", "shell", "repo_adapters"], "evidence_ids": ["ev-adapt-script", "ev-skill-assets"], "validation_status": "verified", "permission_level": "low", "risk": "limited to repo-local adapter generation"},
+    {"runtime": "antigravity", "capabilities": ["repo_adapters"], "evidence_ids": [], "validation_status": "pending", "permission_level": "medium", "risk": "target runtime not observed"}
+  ],
+  "recommendation": {
+    "runtime": "local-adapter",
+    "permission_level": "low",
+    "lowest_permission": true,
+    "reason": "Repo-local adapter scripts satisfy the task without requiring an external runtime.",
+    "validation_limit_labels": ["Antigravity active runtime not observed"]
+  },
+  "fallback": {
+    "local_first": true,
+    "path": "Run repo-local adapter script and mark target runtime validation pending.",
+    "missing_data_handling": "validation_pending",
+    "validation_limits": ["adapter docs do not prove active runtime execution"]
+  },
+  "validation": {
+    "evidence_grounded": true,
+    "runtime_supported": true,
+    "lowest_permission_selected": true,
+    "fallback_defined": true,
+    "validation_limits_visible": true,
+    "deterministic_script_passed": true
+  },
+  "guardian": {
+    "decision": "pass",
+    "reason": "Local adapter route is verified and validation limits remain visible."
+  }
+}
