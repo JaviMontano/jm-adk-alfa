@@ -1,0 +1,5 @@
+{
+  "schema": "jm-labs.pre-tool-use-guard.dangerous-command-policy.v1",
+  "block_patterns": ["git reset --hard", "git clean -fd", "rm -rf", "sudo", "chmod -R 777"],
+  "blocked_exit_code": 2
+}

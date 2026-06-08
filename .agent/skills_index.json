@@ -2535,7 +2535,7 @@
     "id": "pre-tool-use-guard",
     "path": "skills/pre-tool-use-guard",
     "name": "Pre Tool Use Guard",
-    "description": ">"
+    "description": "Block dangerous commands before execution using the exit-code-2 deny pattern, deterministic write-scope policy, private path protection, and offline report validation. [EXPLICIT]"
   },
   {
     "id": "presentation-design",

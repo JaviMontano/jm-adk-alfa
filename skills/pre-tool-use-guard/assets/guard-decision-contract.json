@@ -1,0 +1,6 @@
+{
+  "schema": "jm-labs.pre-tool-use-guard.contract.v1",
+  "report_schema": "jm-labs.pre-tool-use-guard.decision.v1",
+  "required_fields": ["schema", "skill", "tool_call", "scope", "checks", "decision"],
+  "validator": "scripts/validate_pre_tool_use_guard.py"
+}

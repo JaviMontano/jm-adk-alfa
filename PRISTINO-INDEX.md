@@ -695,7 +695,7 @@
 | 420 | `portfolio-sites` | — |
 | 421 | `post-tool-use-validator` | — |
 | 422 | `pre-compact-context` | — |
-| 423 | `pre-tool-use-guard` | — |
+| 423 | `pre-tool-use-guard` | Block dangerous commands before execution using the exit-code-2 deny pattern, de |
 | 424 | `presentation-design` | — |
 | 425 | `press-release` | — |
 | 426 | `pricing-strategy` | — |

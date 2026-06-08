@@ -1,0 +1,26 @@
+{
+  "schema": "jm-labs.pre-tool-use-guard.decision.v1",
+  "skill": "pre-tool-use-guard",
+  "tool_call": {
+    "tool": "Bash",
+    "command": "python3 scripts/rewrite_docs.py",
+    "cwd": "/Users/deonto/Documents/workspace/jm-adk-alfa"
+  },
+  "scope": {
+    "allowed_write_roots": ["skills/pre-tool-use-guard/"],
+    "protected_roots": ["docs/"]
+  },
+  "checks": {
+    "destructive_command": false,
+    "private_path_touch": false,
+    "writes_outside_scope": true,
+    "secrets_exposure": false,
+    "may_write": true
+  },
+  "decision": {
+    "action": "allow",
+    "exit_code": 0,
+    "reason": "Invalid fixture allows out-of-scope write.",
+    "evidence": ["invalid fixture"]
+  }
+}

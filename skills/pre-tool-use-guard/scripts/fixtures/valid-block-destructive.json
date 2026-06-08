@@ -1,0 +1,26 @@
+{
+  "schema": "jm-labs.pre-tool-use-guard.decision.v1",
+  "skill": "pre-tool-use-guard",
+  "tool_call": {
+    "tool": "Bash",
+    "command": "git reset --hard HEAD",
+    "cwd": "/Users/deonto/Documents/workspace/jm-adk-alfa"
+  },
+  "scope": {
+    "allowed_write_roots": ["skills/pre-tool-use-guard/"],
+    "protected_roots": ["user-context/jarvis-os", ".git"]
+  },
+  "checks": {
+    "destructive_command": true,
+    "private_path_touch": false,
+    "writes_outside_scope": false,
+    "secrets_exposure": false,
+    "may_write": true
+  },
+  "decision": {
+    "action": "block",
+    "exit_code": 2,
+    "reason": "Command can discard local work.",
+    "evidence": ["dangerous command policy matched destructive git reset"]
+  }
+}
