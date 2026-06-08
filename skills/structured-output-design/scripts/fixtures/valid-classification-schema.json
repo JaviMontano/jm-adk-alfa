@@ -1,0 +1,134 @@
+{
+  "schema": 1,
+  "skill": "structured-output-design",
+  "design_id": "ticket-classification-schema",
+  "tool": {
+    "name": "classify_ticket",
+    "input_schema": {
+      "$id": "jm-labs.ticket-classification.v1",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "ticket_id": {
+          "type": "string"
+        },
+        "priority": {
+          "type": "string",
+          "enum": [
+            "low",
+            "medium",
+            "high",
+            "other"
+          ]
+        },
+        "priority_details": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "owner_team": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "classification_error": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "message": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "required": [
+        "ticket_id",
+        "priority"
+      ]
+    },
+    "tool_choice": {
+      "type": "tool",
+      "name": "classify_ticket"
+    },
+    "consumer": {
+      "parse_from": "tool_use.input",
+      "free_text_fallback_blocked": true,
+      "validate_before_accept": true,
+      "failure_route": "escalate"
+    }
+  },
+  "schema_controls": {
+    "required_fields": [
+      "ticket_id",
+      "priority"
+    ],
+    "nullable_fields": [
+      "priority_details",
+      "owner_team",
+      "classification_error"
+    ],
+    "enum_fields": [
+      "priority"
+    ],
+    "error_channel": "classification_error",
+    "required_fields_grounded": true,
+    "nullable_union_used": true,
+    "enum_escape_present": true,
+    "error_channel_present": true,
+    "schema_versioned": true,
+    "no_false_defaults": true
+  },
+  "test_cases": [
+    {
+      "id": "known_priority",
+      "expected_valid": true,
+      "expected_checks": [
+        "schema_closed"
+      ]
+    },
+    {
+      "id": "optional_owner_absent",
+      "expected_valid": true,
+      "expected_checks": [
+        "nullable_union_used"
+      ]
+    },
+    {
+      "id": "unexpected_priority_other",
+      "expected_valid": true,
+      "expected_checks": [
+        "enum_escape_present"
+      ]
+    },
+    {
+      "id": "extra_property",
+      "expected_valid": false,
+      "expected_checks": [
+        "schema_closed"
+      ]
+    }
+  ],
+  "validation": {
+    "schema_closed": true,
+    "required_fields_grounded": true,
+    "nullable_union_used": true,
+    "enum_escape_present": true,
+    "tool_choice_forced": true,
+    "typed_parse_source": true,
+    "free_text_fallback_blocked": true,
+    "error_channel_present": true,
+    "no_false_defaults": true,
+    "schema_versioned": true,
+    "test_cases_present": true,
+    "deterministic_script_passed": true
+  },
+  "guardian": {
+    "decision": "pass",
+    "reason": "Classification schema is closed, nullable-safe, escape-ready, and parsed only from tool_use.input."
+  }
+}

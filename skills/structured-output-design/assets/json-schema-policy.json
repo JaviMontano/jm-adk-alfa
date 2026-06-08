@@ -1,0 +1,16 @@
+{
+  "schema": 1,
+  "root_type": "object",
+  "additional_properties": false,
+  "required_controls": [
+    "required_fields",
+    "nullable_fields",
+    "enum_fields",
+    "error_channel",
+    "required_fields_grounded",
+    "nullable_union_used",
+    "enum_escape_present",
+    "schema_versioned",
+    "no_false_defaults"
+  ]
+}

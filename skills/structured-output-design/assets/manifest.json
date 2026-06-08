@@ -1,0 +1,62 @@
+{
+  "schema": 1,
+  "skill": "structured-output-design",
+  "assets": [
+    {
+      "path": "assets/structured-output-design-contract.json",
+      "type": "json_contract",
+      "purpose": "Defines the deterministic JSON package accepted by the offline validator.",
+      "used_by": [
+        "SKILL.md",
+        "scripts/validate_structured_output_design.py",
+        "scripts/fixtures/valid-extraction-schema.json",
+        "scripts/fixtures/valid-classification-schema.json"
+      ]
+    },
+    {
+      "path": "assets/json-schema-policy.json",
+      "type": "policy",
+      "purpose": "Requires closed JSON object schemas with declared properties and grounded required fields.",
+      "used_by": [
+        "SKILL.md",
+        "scripts/validate_structured_output_design.py"
+      ]
+    },
+    {
+      "path": "assets/nullable-policy.json",
+      "type": "policy",
+      "purpose": "Requires optional fields to use nullable union types and rejects false defaults.",
+      "used_by": [
+        "SKILL.md",
+        "scripts/validate_structured_output_design.py"
+      ]
+    },
+    {
+      "path": "assets/enum-escape-policy.json",
+      "type": "policy",
+      "purpose": "Requires enum escape values plus sibling details fields.",
+      "used_by": [
+        "SKILL.md",
+        "scripts/validate_structured_output_design.py"
+      ]
+    },
+    {
+      "path": "assets/tool-choice-policy.json",
+      "type": "policy",
+      "purpose": "Requires forced tool_choice for single-action structured extraction.",
+      "used_by": [
+        "SKILL.md",
+        "scripts/validate_structured_output_design.py"
+      ]
+    },
+    {
+      "path": "assets/refusal-error-policy.json",
+      "type": "policy",
+      "purpose": "Requires typed parse source, no free-text fallback, and explicit failure route.",
+      "used_by": [
+        "SKILL.md",
+        "scripts/validate_structured_output_design.py"
+      ]
+    }
+  ]
+}

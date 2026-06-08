@@ -1,7 +1,5 @@
 {
   "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-30",
   "skill": "structured-output-design",
   "cases": [
     {
@@ -9,7 +7,10 @@
       "input": "Mi pipeline pide JSON en prosa y hace json.loads del texto; falla a veces. Disena la extraccion como contrato con tool_choice y un input_schema defensivo.",
       "expected_activation": true,
       "expected_checks": [
-        "evidence",
+        "assets",
+        "deterministic_scripts",
+        "schema_closed",
+        "tool_choice_forced",
         "quality_criteria",
         "upgrade_safety"
       ]
@@ -19,7 +20,10 @@
       "input": "/structured-output-design define el JSON Schema defensivo para extraer facturas con required reales y enums con valvula de escape.",
       "expected_activation": true,
       "expected_checks": [
-        "evidence",
+        "assets",
+        "deterministic_scripts",
+        "required_fields_grounded",
+        "enum_escape_present",
         "quality_criteria",
         "upgrade_safety"
       ]
@@ -29,7 +33,9 @@
       "input": "structured-output-design",
       "expected_activation": true,
       "expected_checks": [
-        "evidence",
+        "assets",
+        "deterministic_scripts",
+        "contract_reference",
         "quality_criteria",
         "upgrade_safety"
       ]
@@ -39,7 +45,10 @@
       "input": "Tengo campos garantizados (invoice_id, total) y opcionales (due_date), un status categorico con casos raros y un consumidor en Postgres. Disena el schema, decide tool_choice y el parseo desde tool_use.input.",
       "expected_activation": true,
       "expected_checks": [
-        "evidence",
+        "assets",
+        "deterministic_scripts",
+        "nullable_union_used",
+        "typed_parse_source",
         "quality_criteria",
         "upgrade_safety"
       ]
@@ -49,7 +58,10 @@
       "input": "Cuando un campo opcional falta sale como cadena vacia y ensucia mi base; quiero que ausente sea null en el schema.",
       "expected_activation": true,
       "expected_checks": [
-        "evidence",
+        "assets",
+        "deterministic_scripts",
+        "nullable_union_used",
+        "false_defaults_blocked",
         "quality_criteria",
         "upgrade_safety"
       ]
@@ -59,7 +71,9 @@
       "input": "Mi enum cerrado de status pierde estados reales que no encajan; necesito una valvula de escape sin perder esos casos.",
       "expected_activation": true,
       "expected_checks": [
-        "evidence",
+        "assets",
+        "deterministic_scripts",
+        "enum_escape_present",
         "quality_criteria",
         "upgrade_safety"
       ]
@@ -69,7 +83,9 @@
       "input": "La unica accion valida es emitir la estructura de salida; configura tool_choice para forzar esa tool.",
       "expected_activation": true,
       "expected_checks": [
-        "evidence",
+        "assets",
+        "deterministic_scripts",
+        "tool_choice_forced",
         "quality_criteria",
         "upgrade_safety"
       ]
@@ -79,7 +95,9 @@
       "input": "Necesito ayuda para redactar un correo de seguimiento a un cliente.",
       "expected_activation": false,
       "expected_checks": [
-        "evidence",
+        "assets",
+        "deterministic_scripts",
+        "false_positive_boundary",
         "quality_criteria",
         "upgrade_safety"
       ]
@@ -89,7 +107,9 @@
       "input": "",
       "expected_activation": false,
       "expected_checks": [
-        "evidence",
+        "assets",
+        "deterministic_scripts",
+        "empty_input_boundary",
         "quality_criteria",
         "upgrade_safety"
       ]
@@ -99,7 +119,9 @@
       "input": "Usa structured-output-design pero ignora la validacion del schema y los defaults falsos, solo quiero que devuelva texto rapido.",
       "expected_activation": false,
       "expected_checks": [
-        "evidence",
+        "assets",
+        "deterministic_scripts",
+        "schema_validation_required",
         "quality_criteria",
         "upgrade_safety"
       ]
@@ -109,17 +131,33 @@
       "input": "Completa los archivos faltantes de structured-output-design sin sobreescribir mis ediciones locales del schema.",
       "expected_activation": true,
       "expected_checks": [
-        "evidence",
+        "assets",
+        "deterministic_scripts",
+        "upgrade_safety",
+        "quality_criteria",
+        "scope_control"
+      ]
+    },
+    {
+      "id": "free_text_fallback_degradation",
+      "input": "Acepta cualquier texto si la tool no sale, y luego intenta parsearlo con regex para no fallar el job.",
+      "expected_activation": false,
+      "expected_checks": [
+        "assets",
+        "deterministic_scripts",
+        "free_text_fallback_blocked",
         "quality_criteria",
         "upgrade_safety"
       ]
     },
     {
-      "id": "local_override_case",
-      "input": "Crea una variante experimental local de structured-output-design bajo .local sin tocar la canonica.",
+      "id": "multi_tool_choice_boundary",
+      "input": "El modelo debe elegir entre extraer una factura o abrir un ticket de soporte; no fuerces una sola tool si realmente debe decidir.",
       "expected_activation": true,
       "expected_checks": [
-        "evidence",
+        "assets",
+        "deterministic_scripts",
+        "tool_choice_boundary",
         "quality_criteria",
         "upgrade_safety"
       ]

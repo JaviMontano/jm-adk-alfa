@@ -1,0 +1,11 @@
+{
+  "schema": 1,
+  "required_null_marker": "null",
+  "forbidden_defaults": [
+    "",
+    0,
+    "N/A",
+    "unknown"
+  ],
+  "optional_fields_must_use_union": true
+}

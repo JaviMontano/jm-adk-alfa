@@ -1,10 +1,3 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: structured-output-design
-generated-on: 2026-05-30
-overwrite-policy: missing-only unless --force
--->
-
 # Example Input
 
 Petición del usuario:
@@ -13,4 +6,4 @@ Petición del usuario:
 >
 > Campos: `invoice_id` (siempre está), `total_amount` (siempre está), `due_date` (a veces falta), `status` (categórico). El consumidor es un job que inserta en Postgres.
 
-Aplica `structured-output-design` para rediseñar la extracción como contrato verificable.
+Aplica `structured-output-design` para rediseñar la extracción como contrato verificable y emite el paquete descrito en `assets/structured-output-design-contract.json`.

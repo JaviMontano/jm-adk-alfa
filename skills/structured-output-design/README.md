@@ -1,10 +1,3 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: structured-output-design
-generated-on: 2026-05-30
-overwrite-policy: missing-only unless --force
--->
-
 # structured-output-design
 
 ## Resumen ejecutivo
@@ -32,6 +25,14 @@ Capacidad de ingeniería para forzar que Claude emita datos estructurados como u
 3. Fuerza `tool_choice` solo si no hay decisión de tool legítima.
 4. Parsea desde `tool_use.input`; valida contra el schema; enruta fallos a retry/escalada.
 
+## Assets y scripts
+
+- `assets/manifest.json` registra los contratos y políticas de la skill.
+- `assets/structured-output-design-contract.json` define el paquete JSON verificable.
+- `assets/json-schema-policy.json`, `assets/nullable-policy.json` y `assets/enum-escape-policy.json` endurecen el schema.
+- `assets/tool-choice-policy.json` y `assets/refusal-error-policy.json` fijan parseo tipado, fallback bloqueado y canal de error.
+- `scripts/check.sh` ejecuta `scripts/validate_structured_output_design.py` con fixtures determinísticas.
+
 ## Output Format
 
-Markdown con resumen, evidencia, schema propuesto, patrón GOOD/ANTI, checklist y riesgos. Ver `SKILL.md` para el patrón completo, `prompts/` para prompts de producción y `evals/evals.json` para los casos de activación.
+Markdown con resumen, evidencia, schema propuesto, patrón GOOD/ANTI, checklist y riesgos. Si se requiere evidencia automatizable, emitir el JSON descrito en `assets/structured-output-design-contract.json`.
