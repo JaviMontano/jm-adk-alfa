@@ -1,0 +1,25 @@
+{
+  "schema": 1,
+  "requires_escalation_when": [
+    "failure is non-retryable",
+    "failure is human-required",
+    "evidence is missing",
+    "retry attempts are exhausted",
+    "destructive action lacks approval",
+    "state is uncertain"
+  ],
+  "required_fields_when_required": [
+    "owner",
+    "trigger",
+    "handoff"
+  ],
+  "handoff_evidence": [
+    "failed command or workflow",
+    "exit code or error class",
+    "error excerpt",
+    "state impact",
+    "retry attempts",
+    "validation output",
+    "requested decision"
+  ]
+}

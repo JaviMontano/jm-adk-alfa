@@ -1,0 +1,30 @@
+{
+  "schema": 1,
+  "retryable_categories": [
+    "timeout",
+    "rate_limit",
+    "transient_network",
+    "dependency_unavailable"
+  ],
+  "non_retryable_categories": [
+    "schema_contract",
+    "auth_failed",
+    "authorization_failed",
+    "configuration_error",
+    "data_integrity",
+    "quota_exhausted",
+    "unknown"
+  ],
+  "human_required_categories": [
+    "destructive_action",
+    "production_state_uncertain",
+    "missing_evidence"
+  ],
+  "recoverability_values": ["retryable", "not_retryable", "human_required"],
+  "rules": [
+    "Unknown state is not retryable.",
+    "Authentication and authorization failures are not retryable until credentials or permissions are fixed.",
+    "Schema and data integrity failures are not retryable until the contract or data issue is corrected.",
+    "Transient categories require idempotency evidence before retry."
+  ]
+}

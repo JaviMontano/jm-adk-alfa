@@ -1,0 +1,38 @@
+{
+  "schema": 1,
+  "skill": "error-recovery-automation",
+  "scenario_id": "missing-evidence",
+  "decision": "recover",
+  "error": {
+    "category": "timeout",
+    "recoverability": "retryable"
+  },
+  "retry": {
+    "enabled": true,
+    "max_attempts": 3,
+    "backoff_strategy": "exponential",
+    "base_delay_seconds": 5,
+    "max_delay_seconds": 60,
+    "jitter": "none",
+    "stop_conditions": ["attempt limit reached"]
+  },
+  "rollback": {"required": false, "plan": [], "verification": []},
+  "escalation": {"required": false, "owner": "", "trigger": "", "handoff": []},
+  "evidence": {
+    "observed_error": "",
+    "classification_basis": "timeout",
+    "attempted_command": "qa",
+    "validation_source": "log"
+  },
+  "validation": {
+    "pre_retry_checks": ["check state"],
+    "post_recovery_checks": ["check result"]
+  },
+  "safety": {
+    "idempotency_checked": true,
+    "side_effects": "none",
+    "destructive_action": false,
+    "approval_required": false,
+    "state_changed": false
+  }
+}

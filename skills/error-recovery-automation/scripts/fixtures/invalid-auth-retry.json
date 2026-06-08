@@ -1,0 +1,38 @@
+{
+  "schema": 1,
+  "skill": "error-recovery-automation",
+  "scenario_id": "auth-failure-retry",
+  "decision": "recover",
+  "error": {
+    "category": "auth_failed",
+    "recoverability": "retryable"
+  },
+  "retry": {
+    "enabled": true,
+    "max_attempts": 3,
+    "backoff_strategy": "exponential",
+    "base_delay_seconds": 5,
+    "max_delay_seconds": 60,
+    "jitter": "none",
+    "stop_conditions": ["attempt limit reached"]
+  },
+  "rollback": {"required": false, "plan": [], "verification": []},
+  "escalation": {"required": false, "owner": "", "trigger": "", "handoff": []},
+  "evidence": {
+    "observed_error": "401 Unauthorized",
+    "classification_basis": "credential expired",
+    "attempted_command": "deploy",
+    "validation_source": "command output"
+  },
+  "validation": {
+    "pre_retry_checks": ["check token"],
+    "post_recovery_checks": ["check deployment"]
+  },
+  "safety": {
+    "idempotency_checked": true,
+    "side_effects": "none",
+    "destructive_action": false,
+    "approval_required": false,
+    "state_changed": false
+  }
+}

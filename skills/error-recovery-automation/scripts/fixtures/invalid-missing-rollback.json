@@ -1,0 +1,38 @@
+{
+  "schema": 1,
+  "skill": "error-recovery-automation",
+  "scenario_id": "state-changed-no-rollback",
+  "decision": "recover",
+  "error": {
+    "category": "timeout",
+    "recoverability": "retryable"
+  },
+  "retry": {
+    "enabled": true,
+    "max_attempts": 2,
+    "backoff_strategy": "exponential",
+    "base_delay_seconds": 5,
+    "max_delay_seconds": 30,
+    "jitter": "none",
+    "stop_conditions": ["attempt limit reached"]
+  },
+  "rollback": {"required": false, "plan": [], "verification": []},
+  "escalation": {"required": false, "owner": "", "trigger": "", "handoff": []},
+  "evidence": {
+    "observed_error": "timeout after writing artifact",
+    "classification_basis": "timeout but state changed",
+    "attempted_command": "publish-report",
+    "validation_source": "publish log"
+  },
+  "validation": {
+    "pre_retry_checks": ["check artifact"],
+    "post_recovery_checks": ["check publish"]
+  },
+  "safety": {
+    "idempotency_checked": true,
+    "side_effects": "known_reversible",
+    "destructive_action": false,
+    "approval_required": false,
+    "state_changed": true
+  }
+}

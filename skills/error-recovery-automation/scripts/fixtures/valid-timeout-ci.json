@@ -1,0 +1,57 @@
+{
+  "schema": 1,
+  "skill": "error-recovery-automation",
+  "scenario_id": "timeout-ci-before-artifact",
+  "decision": "recover",
+  "error": {
+    "category": "timeout",
+    "recoverability": "retryable"
+  },
+  "retry": {
+    "enabled": true,
+    "max_attempts": 3,
+    "backoff_strategy": "exponential",
+    "base_delay_seconds": 5,
+    "max_delay_seconds": 60,
+    "jitter": "none",
+    "stop_conditions": [
+      "attempt limit reached",
+      "error class changes",
+      "state impact detected"
+    ]
+  },
+  "rollback": {
+    "required": false,
+    "plan": [],
+    "verification": []
+  },
+  "escalation": {
+    "required": false,
+    "owner": "",
+    "trigger": "",
+    "handoff": []
+  },
+  "evidence": {
+    "observed_error": "requests.exceptions.Timeout before report artifact upload",
+    "classification_basis": "Timeout occurred before external state changed",
+    "attempted_command": "python3 -B scripts/qa/run-adversarial-tests.py",
+    "validation_source": "local adversarial test command output"
+  },
+  "validation": {
+    "pre_retry_checks": [
+      "confirm working tree is clean",
+      "confirm no report artifact exists"
+    ],
+    "post_recovery_checks": [
+      "rerun adversarial tests",
+      "confirm report manifest contains expected entry"
+    ]
+  },
+  "safety": {
+    "idempotency_checked": true,
+    "side_effects": "none",
+    "destructive_action": false,
+    "approval_required": false,
+    "state_changed": false
+  }
+}

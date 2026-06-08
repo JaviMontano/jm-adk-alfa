@@ -1,0 +1,38 @@
+{
+  "schema": 1,
+  "skill": "error-recovery-automation",
+  "scenario_id": "unbounded-retry",
+  "decision": "recover",
+  "error": {
+    "category": "rate_limit",
+    "recoverability": "retryable"
+  },
+  "retry": {
+    "enabled": true,
+    "max_attempts": 12,
+    "backoff_strategy": "exponential",
+    "base_delay_seconds": 10,
+    "max_delay_seconds": 1200,
+    "jitter": "random",
+    "stop_conditions": []
+  },
+  "rollback": {"required": false, "plan": [], "verification": []},
+  "escalation": {"required": false, "owner": "", "trigger": "", "handoff": []},
+  "evidence": {
+    "observed_error": "429",
+    "classification_basis": "rate limit",
+    "attempted_command": "api-sync",
+    "validation_source": "api response"
+  },
+  "validation": {
+    "pre_retry_checks": ["check quota"],
+    "post_recovery_checks": ["check sync"]
+  },
+  "safety": {
+    "idempotency_checked": true,
+    "side_effects": "none",
+    "destructive_action": false,
+    "approval_required": false,
+    "state_changed": false
+  }
+}

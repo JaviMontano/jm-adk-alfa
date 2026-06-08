@@ -1,9 +1,82 @@
-[
-  {"id": "error-recovery-automation-happy-path", "type": "happy_path", "input": "Run error recovery automation on this project", "expected_behavior": "Skill activates and produces the expected error recovery automation output following the defined process", "tags": ["basic", "activation"]},
-  {"id": "error-recovery-automation-explicit-trigger", "type": "happy_path", "input": "Apply error recovery automation analysis", "expected_behavior": "Skill recognizes the trigger phrase and executes the error recovery automation workflow", "tags": ["trigger", "recognition"]},
-  {"id": "error-recovery-automation-with-context", "type": "happy_path", "input": "Apply error recovery automation to analyze the current codebase with detailed output", "expected_behavior": "Skill produces comprehensive error recovery automation analysis with evidence-tagged findings", "tags": ["detailed", "comprehensive"]},
-  {"id": "error-recovery-automation-minimal-input", "type": "happy_path", "input": "Quick error recovery automation", "expected_behavior": "Skill activates with minimal input, applies reasonable defaults", "tags": ["minimal", "defaults"]},
-  {"id": "error-recovery-automation-false-positive", "type": "false_positive", "input": "What is the weather forecast for tomorrow?", "expected_behavior": "Skill should NOT activate — this input has no relation to error recovery automation", "tags": ["false_positive", "should-not-activate"]},
-  {"id": "error-recovery-automation-edge-empty-input", "type": "edge_case", "input": "Run error recovery automation but I have no files or documentation yet", "expected_behavior": "Skill handles gracefully — requests minimum viable input or produces gap analysis", "tags": ["edge_case", "empty-input", "boundary"]},
-  {"id": "error-recovery-automation-edge-conflicting", "type": "edge_case", "input": "Apply error recovery automation but requirements contradict each other", "expected_behavior": "Skill detects contradiction, flags with [OPEN] tag, proposes resolution", "tags": ["edge_case", "conflict", "corner"]}
-]
+{
+  "schema": 1,
+  "skill": "error-recovery-automation",
+  "determinism": {
+    "network": "forbidden for validation",
+    "time": "provided by caller when needed",
+    "randomness": "forbidden; retry jitter must be none or deterministic",
+    "oracle": "assets plus scripts/fixtures"
+  },
+  "cases": [
+    {
+      "id": "recovery-timeout-ci",
+      "type": "happy_path",
+      "input": "Classify a CI timeout before artifact upload and decide if retry is safe.",
+      "expected_behavior": "Classifies the timeout as retryable, allows bounded deterministic retry, and requires post-recovery validation.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "classification_policy", "retry_policy"]
+    },
+    {
+      "id": "recovery-rate-limit-api",
+      "type": "happy_path",
+      "input": "Recover from an API 429 rate limit while no external state changed.",
+      "expected_behavior": "Uses bounded exponential backoff, idempotency checks, stop conditions, and validation evidence.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "retry_policy", "evidence_policy"]
+    },
+    {
+      "id": "recovery-partial-deploy",
+      "type": "degradation",
+      "input": "A deployment failed after writing a partial artifact and before health checks passed.",
+      "expected_behavior": "Blocks retry until rollback or checkpoint validation is complete, then defines post-recovery checks.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "rollback_policy"]
+    },
+    {
+      "id": "recovery-schema-contract",
+      "type": "false_negative_guard",
+      "input": "Retry a job that failed because the response schema removed a required field.",
+      "expected_behavior": "Rejects blind retry because schema contract failures are non-retryable without a fix.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "classification_policy"]
+    },
+    {
+      "id": "recovery-auth-failure",
+      "type": "false_negative_guard",
+      "input": "Retry a failed production publish caused by expired credentials.",
+      "expected_behavior": "Blocks retry and escalates to the credential owner with required evidence.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "escalation_policy"]
+    },
+    {
+      "id": "recovery-unsafe-destructive",
+      "type": "negative_output",
+      "input": "Retry a destructive cleanup command without approval or rollback.",
+      "expected_behavior": "Rejects the recovery plan because destructive actions require approval and rollback handling.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "rollback_policy"]
+    },
+    {
+      "id": "recovery-minimal-evidence",
+      "type": "boundary",
+      "input": "Something failed in automation, but only the command name is available.",
+      "expected_behavior": "Produces an evidence gap report and does not classify recoverability beyond blocked-by-missing-evidence.",
+      "expected_checks": ["assets", "quality_criteria", "evidence_policy"]
+    },
+    {
+      "id": "recovery-false-positive-debugging",
+      "type": "false_positive",
+      "input": "Explain what exponential backoff means in distributed systems.",
+      "expected_behavior": "Does not activate as a recovery workflow because no failed automation or recovery decision is requested.",
+      "expected_checks": ["quality_criteria", "activation_guard"]
+    },
+    {
+      "id": "recovery-conflicting-request",
+      "type": "conflict",
+      "input": "Retry forever until it passes, but do not risk duplicate writes.",
+      "expected_behavior": "Blocks unbounded retry and requires bounded attempts plus idempotency proof.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "retry_policy"]
+    },
+    {
+      "id": "recovery-missing-validation",
+      "type": "negative_output",
+      "input": "Return a recovery plan with no pre-retry or post-recovery checks.",
+      "expected_behavior": "Rejects the plan because validation evidence is mandatory.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "evidence_policy"]
+    }
+  ]
+}

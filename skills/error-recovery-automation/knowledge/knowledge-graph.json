@@ -1,75 +1,44 @@
 {
-  "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-28",
   "skill": "error-recovery-automation",
+  "schema": 1,
   "nodes": [
     {
-      "id": "error-recovery-automation",
-      "type": "skill",
-      "label": "error-recovery-automation"
+      "id": "failure-evidence",
+      "type": "input",
+      "description": "Observed command, exit code, error excerpt, state impact, and last safe checkpoint."
     },
     {
-      "id": "error-recovery-automation:inputs",
-      "type": "contract",
-      "label": "Expected inputs"
+      "id": "error-classification",
+      "type": "decision",
+      "description": "Mapping from observed failure to category and recoverability."
     },
     {
-      "id": "error-recovery-automation:outputs",
-      "type": "contract",
-      "label": "Expected outputs"
+      "id": "bounded-retry",
+      "type": "control",
+      "description": "Deterministic retry policy with attempts, backoff, idempotency, and stop conditions."
     },
     {
-      "id": "error-recovery-automation:quality",
-      "type": "gate",
-      "label": "Quality criteria"
+      "id": "rollback-plan",
+      "type": "control",
+      "description": "State protection plan with rollback steps and verification."
     },
     {
-      "id": "error-recovery-automation:ontology",
-      "type": "ontology",
-      "label": "Domain: general"
+      "id": "escalation-handoff",
+      "type": "handoff",
+      "description": "Owner, trigger, evidence bundle, and requested decision for non-retryable failures."
     },
     {
-      "id": "error-recovery-automation:evidence",
-      "type": "gate",
-      "label": "Evidence / provenance requirements"
-    },
-    {
-      "id": "error-recovery-automation:antipattern",
-      "type": "risk",
-      "label": "Canonical anti-pattern to avoid"
+      "id": "validation-evidence",
+      "type": "output",
+      "description": "Pre-retry and post-recovery checks proving the outcome."
     }
   ],
   "edges": [
-    {
-      "from": "error-recovery-automation",
-      "to": "error-recovery-automation:inputs",
-      "type": "requires"
-    },
-    {
-      "from": "error-recovery-automation",
-      "to": "error-recovery-automation:outputs",
-      "type": "produces"
-    },
-    {
-      "from": "error-recovery-automation",
-      "to": "error-recovery-automation:quality",
-      "type": "validated_by"
-    },
-    {
-      "from": "error-recovery-automation",
-      "to": "error-recovery-automation:ontology",
-      "type": "classified_as"
-    },
-    {
-      "from": "error-recovery-automation",
-      "to": "error-recovery-automation:evidence",
-      "type": "validated_by"
-    },
-    {
-      "from": "error-recovery-automation",
-      "to": "error-recovery-automation:antipattern",
-      "type": "guards_against"
-    }
+    {"from": "failure-evidence", "to": "error-classification", "relation": "supports"},
+    {"from": "error-classification", "to": "bounded-retry", "relation": "permits_when_retryable"},
+    {"from": "error-classification", "to": "rollback-plan", "relation": "requires_when_stateful"},
+    {"from": "error-classification", "to": "escalation-handoff", "relation": "requires_when_not_retryable"},
+    {"from": "bounded-retry", "to": "validation-evidence", "relation": "must_produce"},
+    {"from": "rollback-plan", "to": "validation-evidence", "relation": "must_verify"}
   ]
 }

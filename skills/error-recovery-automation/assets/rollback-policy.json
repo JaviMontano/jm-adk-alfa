@@ -1,0 +1,20 @@
+{
+  "schema": 1,
+  "requires_rollback_when": [
+    "state changed",
+    "artifact was partially written",
+    "deployment started",
+    "migration started",
+    "destructive action requested",
+    "idempotency cannot be proven"
+  ],
+  "required_fields_when_required": [
+    "plan",
+    "verification"
+  ],
+  "rules": [
+    "Rollback steps must be scoped to the affected state.",
+    "Rollback verification must be separate from rollback execution.",
+    "Retry cannot proceed while required rollback is undefined."
+  ]
+}

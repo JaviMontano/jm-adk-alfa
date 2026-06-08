@@ -1,34 +1,26 @@
 ---
 name: error-recovery-automation-quick
-type: variation
+type: execution
 version: 2.0.0
-description: "Error Recovery Automation in quick mode."
+description: "Fast recovery triage with deterministic safety gates."
 ---
 
-# Error Recovery Automation — quick Mode
+# Quick Recovery Triage
 
-## When to Use
+Use when the user needs an immediate go/no-go decision.
 
-Use quick mode when you need adjusted depth for the Error Recovery Automation workflow.
+## Steps
 
-## Dynamic Parameters
-
-| Parameter | Required | Filled By |
-|-----------|----------|-----------|
-| `{{task}}` | Yes | User input |
-| `{{context}}` | No | Auto-detected |
-| `{{depth}}` | No | Set to "quick" |
-
-## Execution
-
-1. Load skill: `skills/error-recovery-automation/knowledge/body-of-knowledge.md`
-2. Check guardrails: `references/guardrails/*.json`
-3. Execute at quick depth with evidence tags
-4. Lead → Support → Guardian validation
-5. Confidence >= 0.95
+1. Identify failed command, error excerpt, and state impact.
+2. Classify as retryable, blocked, or human-required.
+3. Allow retry only when attempts, max delay, idempotency, and stop conditions
+   are explicit.
+4. Require rollback before retry when state changed.
+5. Escalate when evidence is missing or retry is unsafe.
 
 ## Output
 
-- Deliverable calibrated to quick depth
-- Evidence-tagged, Constitution-compliant
-- Recommendations beyond the ask
+- Decision: retry, block, or escalate
+- Evidence used
+- Required next command or handoff
+- Validation check

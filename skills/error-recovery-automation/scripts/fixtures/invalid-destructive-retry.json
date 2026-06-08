@@ -1,0 +1,38 @@
+{
+  "schema": 1,
+  "skill": "error-recovery-automation",
+  "scenario_id": "destructive-cleanup",
+  "decision": "recover",
+  "error": {
+    "category": "timeout",
+    "recoverability": "retryable"
+  },
+  "retry": {
+    "enabled": true,
+    "max_attempts": 2,
+    "backoff_strategy": "exponential",
+    "base_delay_seconds": 5,
+    "max_delay_seconds": 30,
+    "jitter": "none",
+    "stop_conditions": ["attempt limit reached"]
+  },
+  "rollback": {"required": true, "plan": ["restore backup"], "verification": ["verify restore"]},
+  "escalation": {"required": false, "owner": "", "trigger": "", "handoff": []},
+  "evidence": {
+    "observed_error": "timeout during cleanup",
+    "classification_basis": "timeout was observed",
+    "attempted_command": "cleanup-artifacts",
+    "validation_source": "cleanup log"
+  },
+  "validation": {
+    "pre_retry_checks": ["check backup"],
+    "post_recovery_checks": ["check cleanup"]
+  },
+  "safety": {
+    "idempotency_checked": true,
+    "side_effects": "known_reversible",
+    "destructive_action": true,
+    "approval_required": false,
+    "state_changed": true
+  }
+}

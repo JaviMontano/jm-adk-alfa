@@ -1,0 +1,32 @@
+{
+  "schema": 1,
+  "skill": "error-recovery-automation",
+  "required_markdown_sections": [
+    "Failure Summary",
+    "Classification",
+    "Recovery Plan",
+    "Retry Policy Or Retry Block",
+    "Rollback Plan",
+    "Escalation Handoff",
+    "Validation Evidence",
+    "Risks And Limits",
+    "Guardian Decision"
+  ],
+  "json_contract": {
+    "required_top_level_fields": [
+      "schema",
+      "skill",
+      "scenario_id",
+      "decision",
+      "error",
+      "retry",
+      "rollback",
+      "escalation",
+      "evidence",
+      "validation",
+      "safety"
+    ],
+    "allowed_decisions": ["recover", "block", "escalate"],
+    "schema_version": 1
+  }
+}

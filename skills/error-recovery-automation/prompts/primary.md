@@ -2,43 +2,45 @@
 name: error-recovery-automation-primary
 type: execution
 version: 2.0.0
-description: "Execute the Error Recovery Automation workflow with triad orchestration."
+description: "Execute deterministic recovery planning for failed automations."
 triad:
   lead: "error-recovery-automation-lead"
   support: "error-recovery-automation-support"
   guardian: "error-recovery-automation-guardian"
 ---
 
-# Error Recovery Automation — Execute
+# Error Recovery Automation - Execute
 
 ## Dynamic Parameters
 
 | Parameter | Description | Required | Filled By |
 |-----------|-------------|----------|-----------|
-| `{{task}}` | What to accomplish | Yes | User input |
-| `{{context}}` | Background and constraints | Yes | User or codebase |
-| `{{constraints}}` | Additional rules | No | Guardrails JSON |
-| `{{depth}}` | quick / standard / deep | No | Auto |
-| `{{output_format}}` | html / docx / xlsx / md | No | Auto |
+| `{{failure}}` | Failed command, workflow, log excerpt, or incident summary | Yes | User input |
+| `{{state_impact}}` | Known state changes, artifacts, migrations, writes, or deployments | Yes | User or repo evidence |
+| `{{last_safe_checkpoint}}` | Commit, artifact, backup, checkpoint, or known safe state | No | User or repo evidence |
+| `{{constraints}}` | Approval, production, data, compliance, or tool constraints | No | User or guardrails |
+| `{{output_format}}` | md or json | No | Auto |
 
 ## Execution
 
-1. **Load knowledge**: Read `knowledge/body-of-knowledge.md`
-2. **Check guardrails**: Read `references/guardrails/*.json`
-3. **Lead** (`error-recovery-automation-lead`): Execute SKILL.md Steps 1-4 for `{{task}}`
-   - Discover → Analyze → Execute → Validate
-   - Apply evidence tags on all claims
-4. **Support** (`error-recovery-automation-support`): Review for cross-cutting concerns
-   - Edge cases, security, accessibility, performance
-5. **Guardian** (`error-recovery-automation-guardian`): Validate
-   - Evidence tags complete
-   - Quality gate met
-   - Constitution XIII + XIV respected
-   - Output exceeds expectations
+1. Load `knowledge/body-of-knowledge.md`.
+2. Load assets under `assets/` and apply their policies in this order:
+   classification, retry, rollback, escalation, evidence, output contract.
+3. Lead: capture failure evidence, classify recoverability, and draft the
+   recovery plan.
+4. Support: challenge idempotency, destructive side effects, missing evidence,
+   rollback feasibility, and validation gaps.
+5. Guardian: block delivery if retry is unbounded, evidence is missing,
+   rollback is required but absent, or escalation lacks owner and handoff.
 
 ## Output
 
-- Primary deliverable for `{{task}}` in `{{output_format}}`
-- Evidence tags on every claim
-- Recommendations beyond the ask
-- Confidence score (>= 0.95)
+- Failure Summary
+- Classification
+- Recovery Plan
+- Retry Policy or Retry Block
+- Rollback Plan
+- Escalation Handoff
+- Validation Evidence
+- Risks And Limits
+- Guardian Decision

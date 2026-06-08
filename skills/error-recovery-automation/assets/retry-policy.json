@@ -1,0 +1,26 @@
+{
+  "schema": 1,
+  "strategy": "exponential",
+  "max_attempts": 5,
+  "max_delay_seconds": 900,
+  "allowed_jitter": ["none", "deterministic"],
+  "required_fields_when_enabled": [
+    "max_attempts",
+    "backoff_strategy",
+    "base_delay_seconds",
+    "max_delay_seconds",
+    "jitter",
+    "stop_conditions"
+  ],
+  "required_safety": [
+    "idempotency_checked",
+    "side_effects"
+  ],
+  "stop_conditions": [
+    "attempt limit reached",
+    "error class changes",
+    "state impact detected",
+    "evidence unavailable",
+    "owner escalation required"
+  ]
+}
