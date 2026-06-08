@@ -1,0 +1,30 @@
+{
+  "schema": 1,
+  "skill": "generate-qa-scorecard",
+  "required_markdown_sections": [
+    "Evidence Summary",
+    "Scorecard",
+    "Grade",
+    "Top 3 Priority Actions",
+    "Reduced Scope",
+    "Guardian Decision"
+  ],
+  "json_contract": {
+    "schema_version": 1,
+    "required_top_level_fields": [
+      "schema",
+      "skill",
+      "scorecard_id",
+      "subject",
+      "dimensions",
+      "total_score",
+      "evaluated_max",
+      "percentage",
+      "grade",
+      "priority_actions",
+      "reduced_scope",
+      "guardian"
+    ],
+    "guardian_decisions": ["pass", "warn", "block"]
+  }
+}

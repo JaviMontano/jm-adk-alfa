@@ -1,10 +1,11 @@
 ---
 name: generate-qa-scorecard
 version: 1.0.0
-author: JM Labs (Javier Montaño)
+author: JM Labs (Javier Montano)
 description: >
-  Produces a compact executive scorecard grading a plugin across 7 quality dimensions
-  with a letter grade, numeric score, and top 3 priority actions. [EXPLICIT]
+  Produces deterministic executive QA scorecards for plugins across 7 quality
+  dimensions, with strict PASS/WARN/FAIL/N/A status, numeric score, letter
+  grade, top 3 priority actions, and validation evidence. [EXPLICIT]
   Trigger: generate scorecard, qa scorecard, plugin grade, executive summary. [EXPLICIT]
 allowed-tools:
   - Read
@@ -17,116 +18,100 @@ allowed-tools:
 
 > "A dashboard is only as good as the decisions it enables."
 
-Produces a compact 7-dimension scorecard from validation and audit findings. Each dimension receives PASS/WARN/FAIL status and a numeric score. The total score maps to a letter grade (A-F) with top 3 priority actions for improvement. [EXPLICIT]
+## TL;DR
 
----
+Use this skill when validation and audit findings must become a compact
+executive scorecard with deterministic math and ranked remediation actions.
+[EXPLICIT]
+
+The output must not invent quality signals. It must map findings to the 7
+approved dimensions, calculate scores from strict status rules, assign a letter
+grade from the evaluated denominator, and rank the top 3 actions by expected
+score improvement. [EXPLICIT]
 
 ## Procedure
 
-1. **Collect or receive findings** -- gather results from all validation and audit skills. If results are not available in the current session, inform the user and suggest running the relevant skills first. Map findings to their source dimensions. [EXPLICIT]
+### Step 1: Collect Evidence
 
-2. **Build the 7-dimension scorecard** -- evaluate each dimension based on findings from its corresponding source:
-   - **Structure Conformance** -- sourced from `validate-structure` findings
-   - **Manifest Quality** -- sourced from `validate-manifest` findings
-   - **Component Standards** -- sourced from `validate-components` findings
-   - **Hook Safety** -- sourced from `validate-hooks` findings
-   - **Reference Integrity** -- sourced from `validate-cross-refs` findings
-   - **Security Posture** -- sourced from `audit-security` findings
-   - **Content Quality** -- sourced from `audit-content-quality` findings
+- Gather validation and audit findings from supplied reports, logs, or reviewed
+  artifacts.
+- Use `assets/evidence-policy.json` to record source, severity, affected
+  dimension, and whether a dimension is unevaluated.
+- If no evidence exists for a dimension, mark it `na` with a reason instead of
+  silently omitting it.
 
-3. **Assign status per dimension** -- apply strict rules:
-   - **PASS**: 0 critical findings AND 0 warning findings in that dimension
-   - **WARN**: 0 critical findings AND 1 or more warning findings
-   - **FAIL**: 1 or more critical findings (regardless of warnings)
-   - If a dimension was not evaluated, mark it as `N/A` with a note
+### Step 2: Score The 7 Dimensions
 
-4. **Calculate numeric score** -- assign points per dimension:
-   - PASS = 10 points
-   - WARN = 6 points
-   - FAIL = 2 points
-   - N/A = excluded from total (adjust denominator)
-   - Sum all points. Maximum possible = 70 (if all 7 evaluated). [EXPLICIT]
+- Use `assets/dimensions-policy.json` for the canonical dimension ids and names.
+- Use `assets/scoring-policy.json` for strict status and point rules:
+  `pass=10`, `warn=6`, `fail=2`, and `na=excluded`.
+- A dimension with one or more critical findings is `fail`.
+- A dimension with no critical findings and one or more warning findings is
+  `warn`.
+- A dimension with only info or zero findings is `pass`.
 
-5. **Assign letter grade** based on total score (out of 70):
-   - **A**: 63-70 (90-100%) -- Production ready
-   - **B**: 56-62 (80-89%) -- Minor issues, safe to use
-   - **C**: 49-55 (70-79%) -- Needs improvement
-   - **D**: 42-48 (60-69%) -- Significant issues
-   - **F**: below 42 (<60%) -- Not ready for use
+### Step 3: Calculate Grade
 
-6. **Determine top 3 priority actions** -- select the 3 most impactful improvements:
-   - Prioritize FAIL dimensions over WARN dimensions
-   - Within a dimension, prioritize by critical count, then warning count
-   - Each action: dimension name, what to fix, expected score improvement
+- Use `assets/grade-policy.json` to calculate percent:
+  `total_score / evaluated_max * 100`.
+- Letter grades are deterministic: `A>=90`, `B>=80`, `C>=70`, `D>=60`, `F<60`.
+- If fewer than 7 dimensions are evaluated, state the reduced scope and do not
+  imply full readiness.
 
-7. **Output the scorecard** -- render as a compact Markdown table:
-   ```
-   | Dimension              | Status | Score | Findings (C/W/I) |
-   |------------------------|--------|-------|-------------------|
-   | Structure Conformance  | PASS   | 10    | 0 / 0 / 2         |
-   | ...                    | ...    | ...   | ...               |
-   | **Total**              |        | XX/70 |                   |
-   | **Grade**              |        | X     |                   |
-   ```
-   Follow with the top 3 priority actions as a numbered list. [EXPLICIT]
+### Step 4: Rank Top Actions
+
+- Use `assets/action-priority-policy.json`.
+- Rank `fail` dimensions before `warn` dimensions.
+- Within the same status, rank by expected score improvement, critical count,
+  warning count, then stable dimension order.
+- Return at most 3 priority actions.
+
+### Step 5: Validate And Handoff
+
+- Produce the output sections from `assets/scorecard-contract.json`.
+- Validate structured JSON scorecards with
+  `scripts/validate_qa_scorecard.py` or `scripts/check.sh`.
+- For Markdown scorecards, preserve the same table, math, grade, and action
+  ranking contract.
 
 ## Quality Criteria
 
-- [ ] All 7 dimensions are evaluated or explicitly marked N/A with justification.
-- [ ] The PASS/WARN/FAIL logic is applied strictly -- no subjective overrides.
-- [ ] The numeric score math is correct and verifiable from the table.
-- [ ] The letter grade matches the defined thresholds exactly (A=90-100%, B=80-89%, C=70-79%, D=60-69%, F=<60%).
-- [ ] Priority actions are ranked by impact, not by alphabetical or discovery order.
-
-## Assumptions & Limits
-
-- Read-only. This skill aggregates findings but does not modify any plugin files.
-- The scoring model (PASS=10, WARN=6, FAIL=2) is a simplification -- it does not weight dimensions differently. A FAIL in Security is treated the same as a FAIL in Content Quality numerically.
-- N/A dimensions are excluded from the denominator, which can make partial evaluations appear better than they are. The skill mitigates this by noting reduced scope.
-- Cannot distinguish between "1 critical finding" and "20 critical findings" within a dimension -- both score FAIL=2. The priority actions section provides the nuance.
-- The letter grade thresholds are percentage-based and recalculate proportionally when dimensions are N/A.
-
-## Good vs Bad
-
-**Bad scorecard:**
-```
-Grade: B
-Score: 58/70
-```
-Missing: no per-dimension breakdown, no finding counts, no priority actions. [EXPLICIT]
-
-**Good scorecard:**
-```
-| Dimension             | Status | Score | Findings (C/W/I) |
-|-----------------------|--------|-------|-------------------|
-| Structure Conformance | PASS   | 10    | 0 / 0 / 2         |
-| Hook Safety           | FAIL   | 2     | 1 / 0 / 0         |
-| **Total**             |        | 54/70 |                   |
-| **Grade**             |        | **C** |                   |
-
-Priority Actions:
-1. Hook Safety (FAIL): Fix prompt hook on SessionStart — change type to command. +8 points. [EXPLICIT]
-```
-Includes: per-dimension status with finding counts, verifiable math, grade, ranked priority actions with expected improvement. [EXPLICIT]
-
-## Anti-Patterns
-
-1. **Subjective grading** -- assigning PASS to a dimension with warnings because "they are minor." The rules are strict: warnings mean WARN. [EXPLICIT]
-2. **Missing dimension** -- silently omitting a dimension instead of marking it N/A, inflating the apparent score. [EXPLICIT]
-3. **Score without context** -- reporting "52/70 = B" without showing the per-dimension breakdown that explains where points were lost. [EXPLICIT]
-4. **Priority actions from passing dimensions** -- recommending improvements to dimensions that already scored PASS while FAIL dimensions remain unaddressed. [EXPLICIT]
-
-## Edge Cases
-
-1. **All dimensions PASS** -- score is 70/70, grade A. Priority actions section should state "No critical actions needed" and optionally suggest polish items from INFO findings. [EXPLICIT]
-2. **All dimensions FAIL** -- score is 14/70, grade F. Limit priority actions to the 3 most impactful (not all 7). Note that comprehensive rework is needed. [EXPLICIT]
-3. **Mixed N/A dimensions** -- if only 4 of 7 dimensions were evaluated, maximum score is 40. Recalculate grade thresholds proportionally: A = 90%+ of evaluated max, etc. Clearly note the reduced scope. [EXPLICIT]
-4. **Dimensions with only INFO findings** -- INFO findings do not affect PASS/WARN/FAIL status. A dimension with 0 critical, 0 warnings, and 5 INFO items is still PASS. [EXPLICIT]
+- [ ] All 7 dimensions are present or explicitly marked `na`.
+- [ ] Every evaluated dimension has critical, warning, and info counts.
+- [ ] Status follows the strict severity rules.
+- [ ] Total score, evaluated maximum, percentage, and grade are mathematically
+  consistent.
+- [ ] Top actions are ranked by deterministic impact rules.
+- [ ] Reduced scope is disclosed when any dimension is `na`.
+- [ ] Evidence tags are applied to user-facing factual claims.
 
 ## Usage
 
 Example invocations:
 
-- "/generate-qa-scorecard" — Run the full generate qa scorecard workflow
-- "generate qa scorecard on this project" — Apply to current context
+- "/generate-qa-scorecard" - Generate a deterministic executive QA scorecard.
+- "Create a QA scorecard from these audit findings."
+- "Validate this scorecard JSON before sending it to leadership."
+- "Rank the top 3 plugin quality actions by score improvement."
 
+## Assumptions & Limits
+
+- Read-only: this skill aggregates findings and does not modify plugin files.
+  [EXPLICIT]
+- Requires supplied findings or reviewed artifacts; it does not fabricate audit
+  results. [EXPLICIT]
+- N/A dimensions are excluded from the denominator and must be disclosed.
+  [EXPLICIT]
+- Security and content failures use the same numeric points; action ranking
+  carries the severity nuance. [EXPLICIT]
+
+## Edge Cases
+
+| Scenario | Handling |
+|----------|----------|
+| All dimensions pass | Score 70/70, grade A, and state no critical actions needed |
+| All dimensions fail | Score 14/70, grade F, and return top 3 actions only |
+| Some dimensions N/A | Recalculate denominator and disclose reduced scope |
+| Info-only dimension | Status remains pass and score remains 10 |
+| Missing action for fail | Block scorecard readiness |
+| Grade/math mismatch | Block output until corrected |

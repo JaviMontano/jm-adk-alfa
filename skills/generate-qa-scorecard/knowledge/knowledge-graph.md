@@ -1,13 +1,21 @@
-# Generate Qa Scorecard — Knowledge Graph
+# Generate QA Scorecard - Knowledge Graph
 
 ## Core Concepts
-- generate-qa-scorecard: primary capability
-- validation-gate: quality control checkpoint
-- evidence-tagging: [EXPLICIT]/[INFERRED]/[OPEN] claims
 
-## Dependencies
-- Upstream: input-analysis, context-optimization
-- Downstream: output-engineering, rendering-engine
+- [[evidence-source]] provides findings and evaluation scope.
+- [[quality-dimension]] maps findings to one of 7 canonical dimensions.
+- [[status-rule]] maps severity counts to pass, warn, fail, or na.
+- [[score-math]] calculates total score, evaluated max, percentage, and grade.
+- [[priority-action]] ranks remediation by status, impact, and finding counts.
+- [[reduced-scope-note]] discloses unevaluated dimensions.
+- [[guardian-decision]] blocks inconsistent scorecards.
 
-## Skill Relationships
-Part of the JM Labs canonical skill registry.
+## Flow
+
+- [[evidence-source]] -> [[quality-dimension]]
+- [[quality-dimension]] -> [[status-rule]]
+- [[status-rule]] -> [[score-math]]
+- [[status-rule]] -> [[priority-action]]
+- [[quality-dimension]] -> [[reduced-scope-note]]
+- [[score-math]] -> [[guardian-decision]]
+- [[priority-action]] -> [[guardian-decision]]

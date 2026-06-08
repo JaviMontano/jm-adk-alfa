@@ -1,0 +1,16 @@
+{
+  "schema": 1,
+  "points": {
+    "pass": 10,
+    "warn": 6,
+    "fail": 2
+  },
+  "allowed_statuses": ["pass", "warn", "fail", "na"],
+  "rules": [
+    "pass requires critical=0 and warning=0",
+    "warn requires critical=0 and warning>0",
+    "fail requires critical>0",
+    "na requires evaluated=false and a reason",
+    "info findings do not reduce score"
+  ]
+}

@@ -1,0 +1,92 @@
+{
+  "schema": 1,
+  "skill": "generate-qa-scorecard",
+  "scorecard_id": "scorecard-valid-all-pass",
+  "subject": "JM Labs plugin alpha",
+  "dimensions": [
+    {
+      "id": "structure",
+      "status": "pass",
+      "critical": 0,
+      "warning": 0,
+      "info": 1,
+      "score": 10,
+      "evaluated": true,
+      "evidence": "All required folders and entrypoint files are present."
+    },
+    {
+      "id": "manifest",
+      "status": "pass",
+      "critical": 0,
+      "warning": 0,
+      "info": 0,
+      "score": 10,
+      "evaluated": true,
+      "evidence": "Manifest fields match the expected schema."
+    },
+    {
+      "id": "components",
+      "status": "pass",
+      "critical": 0,
+      "warning": 0,
+      "info": 0,
+      "score": 10,
+      "evaluated": true,
+      "evidence": "Component files pass local deterministic validation."
+    },
+    {
+      "id": "hooks",
+      "status": "pass",
+      "critical": 0,
+      "warning": 0,
+      "info": 0,
+      "score": 10,
+      "evaluated": true,
+      "evidence": "Hook definitions are explicit and have offline checks."
+    },
+    {
+      "id": "references",
+      "status": "pass",
+      "critical": 0,
+      "warning": 0,
+      "info": 0,
+      "score": 10,
+      "evaluated": true,
+      "evidence": "Referenced files resolve inside the plugin tree."
+    },
+    {
+      "id": "security",
+      "status": "pass",
+      "critical": 0,
+      "warning": 0,
+      "info": 0,
+      "score": 10,
+      "evaluated": true,
+      "evidence": "No secrets, network-only checks, or unsafe commands are present."
+    },
+    {
+      "id": "content",
+      "status": "pass",
+      "critical": 0,
+      "warning": 0,
+      "info": 2,
+      "score": 10,
+      "evaluated": true,
+      "evidence": "Examples and README use concrete plugin evidence."
+    }
+  ],
+  "total_score": 70,
+  "evaluated_max": 70,
+  "percentage": 100.0,
+  "grade": "A",
+  "priority_actions": [],
+  "reduced_scope": {
+    "active": false,
+    "dimensions": [],
+    "note": "Full scope evaluated."
+  },
+  "guardian": {
+    "decision": "pass",
+    "reason": "All seven dimensions pass with deterministic evidence."
+  }
+}

@@ -1,33 +1,33 @@
-<!-- JM Labs Brand Template: Generate Qa Scorecard -->
-<!-- Uses: brand/jmlabs/brand-config.json + brand/jmlabs/corporate-template.css -->
-<!-- Replace: {{TITLE}}, {{SUBTITLE}}, {{CONTENT}}, {{DATE}} -->
 <!DOCTYPE html>
-<html lang="es" class="dark">
+<html lang="en">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>{{TITLE}} | Generate Qa Scorecard | JM Labs</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>{{TITLE}} | QA Scorecard | JM Labs</title>
 <style>
-:root{--navy:#122562;--gold:#FFD700;--blue:#137DC5;--bg:#0B1120;--bg-alt:#0F1929;--heading:#F1F5F9;--text-s:#94A3B8}
-body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--heading);margin:0;padding:2rem}
-.c{max-width:1000px;margin:0 auto}
-h1{font-family:'Poppins',sans-serif;font-weight:900;font-size:clamp(2rem,5vw,3rem)}
-h1 .gold{color:var(--gold)}
-h2{font-family:'Poppins',sans-serif;color:var(--gold);border-bottom:1px solid rgba(255,255,255,.05);padding-bottom:.5rem}
-.card{background:var(--bg-alt);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:1.5rem;margin:1rem 0}
-table{width:100%;border-collapse:collapse}
-th{font-family:'Poppins',sans-serif;color:var(--gold);text-align:left;padding:.75rem;border-bottom:2px solid var(--gold)}
-td{padding:.75rem;border-bottom:1px solid rgba(255,255,255,.05)}
-footer{text-align:center;margin-top:3rem;border-top:2px solid var(--gold);padding:1.5rem;font-size:.75rem;color:var(--text-s)}
+:root{--ink:#172033;--surface:#f7f9fb;--line:#d9e2ec;--ok:#047857;--warn:#b45309;--fail:#b91c1c;--muted:#52606d}
+body{font-family:Arial,Helvetica,sans-serif;background:var(--surface);color:var(--ink);margin:0;padding:2rem;line-height:1.5}
+.wrap{max-width:980px;margin:0 auto}
+h1{font-size:2rem;margin:0 0 .25rem}
+h2{font-size:1.1rem;margin-top:1.6rem;border-bottom:1px solid var(--line);padding-bottom:.35rem}
+.meta{font-family:Menlo,Consolas,monospace;font-size:.85rem;color:var(--muted)}
+.panel{background:#fff;border:1px solid var(--line);border-radius:8px;padding:1rem;margin:1rem 0}
+.pass{border-left:4px solid var(--ok)}
+.warn{border-left:4px solid var(--warn)}
+.fail,.block{border-left:4px solid var(--fail)}
+table{width:100%;border-collapse:collapse;background:#fff}
+th,td{padding:.6rem;border-bottom:1px solid var(--line);text-align:left}
+code{font-family:Menlo,Consolas,monospace}
+footer{margin-top:2rem;border-top:1px solid var(--line);padding-top:1rem;font-size:.85rem;color:var(--muted)}
+@media print{body{background:#fff}.panel{break-inside:avoid}}
 </style>
 </head>
 <body>
-<div class="c">
-  <h1>JM <span class="gold">Labs</span></h1>
-  <h2>{{TITLE}}</h2>
-  <p style="color:var(--text-s)">{{SUBTITLE}}</p>
-  <div class="card">{{CONTENT}}</div>
-  <footer>JM Labs · Generate Qa Scorecard · {{DATE}}</footer>
-</div>
+<main class="wrap">
+<h1>{{TITLE}}</h1>
+<p class="meta">{{SUBTITLE}}</p>
+{{CONTENT}}
+<footer>JM Labs - {{DATE}}</footer>
+</main>
 </body>
 </html>

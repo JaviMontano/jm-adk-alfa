@@ -1,0 +1,103 @@
+{
+  "schema": 1,
+  "skill": "generate-qa-scorecard",
+  "scorecard_id": "scorecard-invalid-status-mismatch",
+  "subject": "JM Labs plugin beta",
+  "dimensions": [
+    {
+      "id": "structure",
+      "status": "pass",
+      "critical": 0,
+      "warning": 0,
+      "info": 2,
+      "score": 10,
+      "evaluated": true,
+      "evidence": "The plugin root includes skills, agents, commands, and docs folders."
+    },
+    {
+      "id": "manifest",
+      "status": "pass",
+      "critical": 0,
+      "warning": 1,
+      "info": 0,
+      "score": 10,
+      "evaluated": true,
+      "evidence": "The manifest is parseable but omits the support contact field."
+    },
+    {
+      "id": "components",
+      "status": "pass",
+      "critical": 0,
+      "warning": 0,
+      "info": 1,
+      "score": 10,
+      "evaluated": true,
+      "evidence": "Component inventory count matches the generated ledger."
+    },
+    {
+      "id": "hooks",
+      "status": "fail",
+      "critical": 1,
+      "warning": 0,
+      "info": 0,
+      "score": 2,
+      "evaluated": true,
+      "evidence": "A shell hook runs without a deterministic offline guard."
+    },
+    {
+      "id": "references",
+      "status": "pass",
+      "critical": 0,
+      "warning": 0,
+      "info": 0,
+      "score": 10,
+      "evaluated": true,
+      "evidence": "Every referenced file exists under the plugin repository."
+    },
+    {
+      "id": "security",
+      "status": "warn",
+      "critical": 0,
+      "warning": 2,
+      "info": 0,
+      "score": 6,
+      "evaluated": true,
+      "evidence": "Two examples mention tokens without redaction evidence."
+    },
+    {
+      "id": "content",
+      "status": "na",
+      "critical": 0,
+      "warning": 0,
+      "info": 0,
+      "score": null,
+      "evaluated": false,
+      "reason": "Content audit source files were not included in the review bundle."
+    }
+  ],
+  "total_score": 48,
+  "evaluated_max": 60,
+  "percentage": 80.0,
+  "grade": "B",
+  "priority_actions": [
+    {
+      "dimension": "hooks",
+      "expected_improvement": 8,
+      "action": "Add an offline hook validator and block shell hooks without strict mode."
+    },
+    {
+      "dimension": "security",
+      "expected_improvement": 4,
+      "action": "Replace token examples with redacted fixtures and record the evidence."
+    }
+  ],
+  "reduced_scope": {
+    "active": true,
+    "dimensions": ["content"],
+    "note": "The score excludes content because the source bundle omitted content files."
+  },
+  "guardian": {
+    "decision": "warn",
+    "reason": "The scorecard is valid but excludes one declared dimension."
+  }
+}

@@ -1,9 +1,82 @@
-[
-  {"id": "generate-qa-scorecard-happy-path", "type": "happy_path", "input": "Run generate qa scorecard on this project", "expected_behavior": "Skill activates and produces the expected generate qa scorecard output following the defined process", "tags": ["basic", "activation"]},
-  {"id": "generate-qa-scorecard-explicit-trigger", "type": "happy_path", "input": "Apply generate qa scorecard analysis", "expected_behavior": "Skill recognizes the trigger phrase and executes the generate qa scorecard workflow", "tags": ["trigger", "recognition"]},
-  {"id": "generate-qa-scorecard-with-context", "type": "happy_path", "input": "Apply generate qa scorecard to analyze the current codebase with detailed output", "expected_behavior": "Skill produces comprehensive generate qa scorecard analysis with evidence-tagged findings", "tags": ["detailed", "comprehensive"]},
-  {"id": "generate-qa-scorecard-minimal-input", "type": "happy_path", "input": "Quick generate qa scorecard", "expected_behavior": "Skill activates with minimal input, applies reasonable defaults", "tags": ["minimal", "defaults"]},
-  {"id": "generate-qa-scorecard-false-positive", "type": "false_positive", "input": "What is the weather forecast for tomorrow?", "expected_behavior": "Skill should NOT activate — this input has no relation to generate qa scorecard", "tags": ["false_positive", "should-not-activate"]},
-  {"id": "generate-qa-scorecard-edge-empty-input", "type": "edge_case", "input": "Run generate qa scorecard but I have no files or documentation yet", "expected_behavior": "Skill handles gracefully — requests minimum viable input or produces gap analysis", "tags": ["edge_case", "empty-input", "boundary"]},
-  {"id": "generate-qa-scorecard-edge-conflicting", "type": "edge_case", "input": "Apply generate qa scorecard but requirements contradict each other", "expected_behavior": "Skill detects contradiction, flags with [OPEN] tag, proposes resolution", "tags": ["edge_case", "conflict", "corner"]}
-]
+{
+  "schema": 1,
+  "skill": "generate-qa-scorecard",
+  "determinism": {
+    "network": "forbidden",
+    "time": "not used",
+    "randomness": "forbidden",
+    "oracle": "assets plus scripts/fixtures"
+  },
+  "cases": [
+    {
+      "id": "scorecard-all-pass",
+      "type": "happy_path",
+      "input": "Generate a QA scorecard where all 7 dimensions have zero critical and zero warning findings.",
+      "expected_behavior": "Produces 70/70, 100%, grade A, no critical actions needed.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "scoring_policy"]
+    },
+    {
+      "id": "scorecard-mixed-findings",
+      "type": "happy_path",
+      "input": "Generate a scorecard with pass, warn, fail, and info-only dimensions.",
+      "expected_behavior": "Applies strict status rules, calculates total score, and ranks top actions by expected improvement.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "action_priority_policy"]
+    },
+    {
+      "id": "scorecard-reduced-scope",
+      "type": "boundary",
+      "input": "Generate a scorecard when two dimensions were not evaluated.",
+      "expected_behavior": "Marks dimensions na, excludes them from denominator, and discloses reduced scope.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "evidence_policy"]
+    },
+    {
+      "id": "scorecard-status-mismatch",
+      "type": "negative_output",
+      "input": "Mark a dimension pass even though it has one warning.",
+      "expected_behavior": "Rejects the scorecard because warning findings require warn status.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "scoring_policy"]
+    },
+    {
+      "id": "scorecard-grade-mismatch",
+      "type": "negative_output",
+      "input": "Return 44/60 with grade B.",
+      "expected_behavior": "Rejects the scorecard because grade must match percentage thresholds.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "grade_policy"]
+    },
+    {
+      "id": "scorecard-missing-dimension",
+      "type": "false_negative_guard",
+      "input": "Produce a scorecard with only 6 rows and no na row for the missing dimension.",
+      "expected_behavior": "Rejects the scorecard because all 7 dimensions must be present.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "dimensions_policy"]
+    },
+    {
+      "id": "scorecard-actions-from-pass",
+      "type": "negative_output",
+      "input": "Recommend priority actions from pass dimensions while fail dimensions remain.",
+      "expected_behavior": "Rejects action ranking because fail and warn dimensions must be prioritized first.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "action_priority_policy"]
+    },
+    {
+      "id": "scorecard-false-positive-definition",
+      "type": "false_positive",
+      "input": "Explain what quality assurance means.",
+      "expected_behavior": "Does not activate as a scorecard generator unless findings or scoring are requested.",
+      "expected_checks": ["quality_criteria", "activation_guard"]
+    },
+    {
+      "id": "scorecard-no-evidence",
+      "type": "degradation",
+      "input": "Generate an executive QA scorecard without any findings or audit evidence.",
+      "expected_behavior": "Blocks final scorecard and requests evidence instead of inventing counts.",
+      "expected_checks": ["assets", "quality_criteria", "evidence_policy"]
+    },
+    {
+      "id": "scorecard-top-three-limit",
+      "type": "boundary",
+      "input": "Generate scorecard with seven failed dimensions.",
+      "expected_behavior": "Returns exactly top 3 priority actions, ranked by impact and stable dimension order.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "action_priority_policy"]
+    }
+  ]
+}
