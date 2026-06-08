@@ -1,0 +1,11 @@
+{
+  "schema": 1,
+  "skill": "firma-pdf-legal",
+  "boundaries": {
+    "no_legal_advice": true,
+    "no_signature_generation": true,
+    "user_supplied_signature_required": true,
+    "consent_required": true,
+    "expert_review_message": "Legal validity, authority to sign, and enforceability require qualified review when uncertain."
+  }
+}

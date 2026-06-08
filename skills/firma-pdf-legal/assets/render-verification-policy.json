@@ -1,0 +1,11 @@
+{
+  "schema": 1,
+  "skill": "firma-pdf-legal",
+  "verification": {
+    "required": true,
+    "format": "png",
+    "min_dpi": 120,
+    "success_condition": "rendered_png_exists_and_hash_is_recorded",
+    "failure_condition": "render_missing_or_anchor_not_found"
+  }
+}
