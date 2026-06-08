@@ -1,7 +1,5 @@
 {
   "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-28",
   "skill": "runtime-routing",
   "nodes": [
     {
@@ -27,7 +25,7 @@
     {
       "id": "runtime-routing:ontology",
       "type": "ontology",
-      "label": "Domain: general"
+      "label": "Domain: runtime-capability-routing"
     },
     {
       "id": "runtime-routing:evidence",
@@ -38,6 +36,26 @@
       "id": "runtime-routing:antipattern",
       "type": "risk",
       "label": "Canonical anti-pattern to avoid"
+    },
+    {
+      "id": "runtime-routing:capability-matrix",
+      "type": "contract",
+      "label": "Runtime capability matrix"
+    },
+    {
+      "id": "runtime-routing:lowest-permission",
+      "type": "gate",
+      "label": "Lowest-permission verified runtime"
+    },
+    {
+      "id": "runtime-routing:validation-limits",
+      "type": "gate",
+      "label": "Validation limits are visible"
+    },
+    {
+      "id": "runtime-routing:fallback",
+      "type": "contract",
+      "label": "Local-first fallback"
     }
   ],
   "edges": [
@@ -70,6 +88,26 @@
       "from": "runtime-routing",
       "to": "runtime-routing:antipattern",
       "type": "guards_against"
+    },
+    {
+      "from": "runtime-routing",
+      "to": "runtime-routing:capability-matrix",
+      "type": "produces"
+    },
+    {
+      "from": "runtime-routing:capability-matrix",
+      "to": "runtime-routing:lowest-permission",
+      "type": "validated_by"
+    },
+    {
+      "from": "runtime-routing:evidence",
+      "to": "runtime-routing:validation-limits",
+      "type": "defines"
+    },
+    {
+      "from": "runtime-routing:validation-limits",
+      "to": "runtime-routing:fallback",
+      "type": "requires"
     }
   ]
 }

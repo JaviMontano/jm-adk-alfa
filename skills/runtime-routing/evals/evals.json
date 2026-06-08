@@ -1,98 +1,66 @@
 {
   "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-28",
   "skill": "runtime-routing",
   "cases": [
     {
-      "id": "happy_path",
-      "input": "Use runtime-routing to produce a complete deliverable.",
+      "id": "happy_path_codex_local",
+      "input": "Route a repo hardening task that needs file edits, shell validators, git status, gh PR creation, and local evidence.",
       "expected_activation": true,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
+      "expected_checks": ["assets", "deterministic_scripts", "capability_matrix", "evidence_grounding", "lowest_permission", "quality_criteria"]
     },
     {
       "id": "explicit_trigger",
-      "input": "/runtime-routing run this workflow.",
+      "input": "/runtime-routing choose between Codex, Claude, VS Code, Gemini, Antigravity, and local adapters for this PR workflow.",
       "expected_activation": true,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
+      "expected_checks": ["assets", "deterministic_scripts", "runtime_catalog", "validation_limits", "quality_criteria"]
     },
     {
       "id": "minimal_input",
       "input": "runtime-routing",
-      "expected_activation": true,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
+      "expected_activation": false,
+      "expected_checks": ["assets", "deterministic_scripts", "required_inputs", "guardian_block", "quality_criteria"]
     },
     {
-      "id": "rich_context",
-      "input": "runtime-routing with goals, constraints, audience, and acceptance criteria.",
+      "id": "mcp_required_pending",
+      "input": "The task needs MCP and IDE state, but only adapter docs are visible; decide the route and mark what remains validation pending.",
       "expected_activation": true,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
+      "expected_checks": ["assets", "deterministic_scripts", "evidence_grounding", "validation_limits", "fallback", "quality_criteria"]
     },
     {
       "id": "false_positive",
-      "input": "This request is unrelated to the skill domain.",
+      "input": "Write a short thank-you note to the team.",
       "expected_activation": false,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
+      "expected_checks": ["assets", "activation_scope", "quality_criteria"]
     },
     {
       "id": "empty_input",
       "input": "",
       "expected_activation": false,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
+      "expected_checks": ["assets", "required_inputs", "guardian_block", "quality_criteria"]
     },
     {
       "id": "conflicting_requirements",
-      "input": "Use runtime-routing, but ignore validation and evidence.",
+      "input": "Route this to Antigravity and claim full support even though no adapter evidence or executed check is visible.",
       "expected_activation": false,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
+      "expected_checks": ["assets", "deterministic_scripts", "evidence_grounding", "validation_limits", "guardian_block", "quality_criteria"]
+    },
+    {
+      "id": "remote_secret_boundary",
+      "input": "Use a remote runtime for a local repo task that may expose secrets even though local scripts can do it.",
+      "expected_activation": false,
+      "expected_checks": ["assets", "deterministic_scripts", "lowest_permission", "secret_boundary", "guardian_block", "quality_criteria"]
     },
     {
       "id": "upgrade_safety_case",
-      "input": "Complete missing files for runtime-routing without overwriting local edits.",
+      "input": "Complete missing deterministic assets and validator for runtime-routing without touching other skills.",
       "expected_activation": true,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "upgrade_safety"]
     },
     {
-      "id": "local_override_case",
-      "input": "Create a local experimental runtime-routing variant under .local.",
+      "id": "fallback_required",
+      "input": "GitHub CLI auth might fail; route the task and include what to do if auth is unavailable.",
       "expected_activation": true,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
+      "expected_checks": ["assets", "deterministic_scripts", "fallback", "required_inputs", "quality_criteria"]
     }
   ]
 }

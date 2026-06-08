@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "skill": "runtime-routing",
+  "assets": [
+    {
+      "path": "assets/runtime-routing-contract.json",
+      "type": "json_contract",
+      "purpose": "Defines required fields for deterministic runtime routing reports.",
+      "used_by": ["SKILL.md", "README.md", "scripts/validate_runtime_routing.py", "evals/evals.json"]
+    },
+    {
+      "path": "assets/runtime-catalog-policy.json",
+      "type": "policy",
+      "purpose": "Defines allowed runtime ids and permission levels.",
+      "used_by": ["SKILL.md", "scripts/validate_runtime_routing.py"]
+    },
+    {
+      "path": "assets/evidence-policy.json",
+      "type": "policy",
+      "purpose": "Defines accepted evidence for runtime capability claims.",
+      "used_by": ["knowledge/body-of-knowledge.md", "scripts/validate_runtime_routing.py"]
+    },
+    {
+      "path": "assets/capability-matrix-policy.json",
+      "type": "policy",
+      "purpose": "Defines capability matrix fields and validation statuses.",
+      "used_by": ["templates/output.md", "scripts/validate_runtime_routing.py"]
+    },
+    {
+      "path": "assets/fallback-policy.json",
+      "type": "policy",
+      "purpose": "Requires local-first fallback and visible validation limits.",
+      "used_by": ["agents/guardian.md", "scripts/validate_runtime_routing.py"]
+    }
+  ]
+}

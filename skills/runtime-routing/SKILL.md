@@ -50,6 +50,24 @@ allowed-tools:
 3. Execute: route to the matching doc, command, skill, or script.
 4. Validate: mark unverified support instead of inventing claims.
 
+## Deterministic Assets
+
+- Use `assets/runtime-routing-contract.json` when the route decision must be machine-checkable.
+- Use `assets/runtime-catalog-policy.json` for allowed runtime ids and permission levels.
+- Use `assets/evidence-policy.json` to ground each runtime capability claim in repo files, executed checks, current runtime metadata, or explicit user config.
+- Use `assets/capability-matrix-policy.json` to compare supported, pending, and unsupported capabilities.
+- Use `assets/fallback-policy.json` to require a local-first fallback and visible validation limits.
+
+## Offline Validation
+
+Validate JSON routing reports with:
+
+```bash
+bash skills/runtime-routing/scripts/check.sh
+```
+
+The validator fails if a runtime recommendation has no evidence, cites unknown evidence ids, recommends an unsupported runtime, hides validation limits, omits fallback, or lets Guardian pass on failed validation.
+
 ## Safety Limits
 
 - Do not claim Antigravity, Codex, Claude, Gemini, or VS Code support beyond visible repo evidence or executed checks.

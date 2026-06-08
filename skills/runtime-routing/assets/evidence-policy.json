@@ -1,0 +1,7 @@
+{
+  "schema": 1,
+  "skill": "runtime-routing",
+  "allowed_source_types": ["repo_file", "executed_check", "current_runtime", "user_config"],
+  "required_fields": ["id", "source_type", "locator", "verified"],
+  "minimum_verified_evidence": 1
+}

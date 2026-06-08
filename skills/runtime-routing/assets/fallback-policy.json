@@ -1,0 +1,6 @@
+{
+  "schema": 1,
+  "skill": "runtime-routing",
+  "required_fields": ["local_first", "path", "missing_data_handling", "validation_limits"],
+  "allowed_missing_data_handling": ["Dato requerido", "validation_pending", "pause_for_auth"]
+}

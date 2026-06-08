@@ -1,0 +1,44 @@
+{
+  "schema": 1,
+  "skill": "runtime-routing",
+  "route_id": "codex-pr-route",
+  "task": {
+    "objective": "Harden a repo skill, run validators, create PR, and watch Quality Gates.",
+    "required_capabilities": ["local_files", "shell", "git", "github_cli"]
+  },
+  "evidence": [
+    {"id": "ev-current-runtime", "source_type": "current_runtime", "locator": "Codex workspace context", "verified": true},
+    {"id": "ev-git-status", "source_type": "executed_check", "locator": "git status --short --branch", "verified": true},
+    {"id": "ev-gh-pr-list", "source_type": "executed_check", "locator": "gh pr list", "verified": true}
+  ],
+  "capability_matrix": [
+    {"runtime": "codex", "capabilities": ["local_files", "shell", "git", "github_cli"], "evidence_ids": ["ev-current-runtime", "ev-git-status", "ev-gh-pr-list"], "validation_status": "verified", "permission_level": "low", "risk": "uses current local permissions only"},
+    {"runtime": "claude", "capabilities": ["chat"], "evidence_ids": [], "validation_status": "pending", "permission_level": "medium", "risk": "active session not observed"},
+    {"runtime": "vscode", "capabilities": ["ide_state"], "evidence_ids": [], "validation_status": "pending", "permission_level": "medium", "risk": "active IDE state not observed"}
+  ],
+  "recommendation": {
+    "runtime": "codex",
+    "permission_level": "low",
+    "lowest_permission": true,
+    "reason": "Codex is the lowest-permission verified runtime for local file edits, shell validators, git, and gh.",
+    "validation_limit_labels": ["Claude session not observed", "VS Code adapter not observed"]
+  },
+  "fallback": {
+    "local_first": true,
+    "path": "Use repo-local scripts and pause for GitHub auth if gh fails.",
+    "missing_data_handling": "Dato requerido",
+    "validation_limits": ["remote runtime support remains validation_pending"]
+  },
+  "validation": {
+    "evidence_grounded": true,
+    "runtime_supported": true,
+    "lowest_permission_selected": true,
+    "fallback_defined": true,
+    "validation_limits_visible": true,
+    "deterministic_script_passed": true
+  },
+  "guardian": {
+    "decision": "pass",
+    "reason": "Recommended runtime is evidence-grounded, verified, lowest-permission, and has fallback."
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "schema": 1,
+  "skill": "runtime-routing",
+  "required_fields": ["runtime", "capabilities", "evidence_ids", "validation_status", "permission_level", "risk"],
+  "allowed_validation_statuses": ["verified", "pending", "unsupported"],
+  "required_task_fields": ["objective", "required_capabilities"]
+}
