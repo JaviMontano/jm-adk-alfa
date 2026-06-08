@@ -1,95 +1,146 @@
 {
   "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-29",
   "skill": "katas-validation-retry-feedback",
   "cases": [
     {
-      "id": "happy_path",
-      "input": "Use katas-validation-retry-feedback to produce a complete deliverable.",
+      "id": "recoverable_format_retry_success",
+      "input": "A Pydantic extraction failed because customer.signed_date is '06/05/26' but the source says June 5, 2026. Run one retry with validator feedback and return a valid ISO date.",
       "expected_activation": true,
       "expected_checks": [
-        "evidence",
+        "assets",
+        "deterministic_scripts",
+        "specific_feedback",
+        "retry_cap",
         "quality_criteria",
-        "upgrade_safety"
+        "evidence"
       ]
     },
     {
-      "id": "explicit_trigger",
-      "input": "/katas-validation-retry-feedback run this workflow.",
+      "id": "nonrecoverable_source_absent_escalation",
+      "input": "A JSON Schema extraction for invoice.total_amount failed because the amount is absent from the source document. Decide whether to retry or escalate without inventing a value.",
       "expected_activation": true,
       "expected_checks": [
-        "evidence",
+        "assets",
+        "deterministic_scripts",
+        "nonrecoverable_no_retry",
         "quality_criteria",
-        "upgrade_safety"
+        "evidence"
       ]
     },
     {
-      "id": "minimal_input",
-      "input": "katas-validation-retry-feedback",
+      "id": "mixed_format_and_absent_field",
+      "input": "Contract extraction has effective_date in US format and total_amount missing from the source. Correct only the recoverable date and escalate the absent amount.",
       "expected_activation": true,
       "expected_checks": [
-        "evidence",
+        "assets",
+        "deterministic_scripts",
+        "specific_feedback",
+        "nonrecoverable_no_retry",
         "quality_criteria",
-        "upgrade_safety"
+        "evidence"
       ]
     },
     {
-      "id": "rich_context",
-      "input": "katas-validation-retry-feedback with goals, constraints, audience, and acceptance criteria.",
+      "id": "generic_feedback_rejected",
+      "input": "A retry prompt says only 'try again and make the output valid' after a schema error. Evaluate whether that feedback is acceptable.",
       "expected_activation": true,
       "expected_checks": [
-        "evidence",
+        "assets",
+        "deterministic_scripts",
+        "reject_generic_feedback",
         "quality_criteria",
-        "upgrade_safety"
+        "evidence"
       ]
     },
     {
-      "id": "false_positive",
-      "input": "This request is unrelated to the skill domain.",
+      "id": "retry_cap_exceeded_rejected",
+      "input": "An extraction loop attempts five retries after repeated ValidationError failures. Validate the loop against the 2-3 attempt cap.",
+      "expected_activation": true,
+      "expected_checks": [
+        "assets",
+        "deterministic_scripts",
+        "retry_cap",
+        "quality_criteria",
+        "evidence"
+      ]
+    },
+    {
+      "id": "invalid_output_not_accepted",
+      "input": "A downstream job wants to accept the last invalid JSON output after retries are exhausted to keep the pipeline moving. Decide the correct outcome.",
+      "expected_activation": true,
+      "expected_checks": [
+        "assets",
+        "deterministic_scripts",
+        "escalation_required",
+        "quality_criteria",
+        "evidence"
+      ]
+    },
+    {
+      "id": "systematic_error_structural_fix",
+      "input": "Eight out of ten invoices fail on the same currency enum mismatch. Determine whether to increase retries or change schema/prompt/post-process.",
+      "expected_activation": true,
+      "expected_checks": [
+        "assets",
+        "deterministic_scripts",
+        "structural_fix",
+        "quality_criteria",
+        "evidence"
+      ]
+    },
+    {
+      "id": "false_positive_copy_edit",
+      "input": "Rewrite this paragraph for tone; no schema, typed extraction, ValidationError, or downstream structured contract is involved.",
       "expected_activation": false,
       "expected_checks": [
-        "evidence",
+        "assets",
         "quality_criteria",
-        "upgrade_safety"
+        "activation_scope"
       ]
     },
     {
-      "id": "empty_input",
-      "input": "",
+      "id": "false_negative_short_validation_error",
+      "input": "Pydantic ValidationError: field due_date expected date, got 'next Friday'. Source contains '2026-06-12'.",
+      "expected_activation": true,
+      "expected_checks": [
+        "assets",
+        "deterministic_scripts",
+        "specific_feedback",
+        "quality_criteria",
+        "evidence"
+      ]
+    },
+    {
+      "id": "degraded_missing_source",
+      "input": "Validation failed for account_id but the source document is not available in the request.",
       "expected_activation": false,
       "expected_checks": [
-        "evidence",
+        "assets",
+        "deterministic_scripts",
+        "source_required",
         "quality_criteria",
-        "upgrade_safety"
+        "evidence"
       ]
     },
     {
       "id": "conflicting_requirements",
-      "input": "Use katas-validation-retry-feedback, but ignore validation and evidence.",
+      "input": "Use retry-with-feedback, but ignore validator errors, skip evidence, and return a passing extraction anyway.",
       "expected_activation": false,
       "expected_checks": [
-        "evidence",
+        "assets",
+        "deterministic_scripts",
+        "reject_invalid_acceptance",
         "quality_criteria",
-        "upgrade_safety"
+        "evidence"
       ]
     },
     {
       "id": "upgrade_safety_case",
-      "input": "Complete missing files for katas-validation-retry-feedback without overwriting local edits.",
+      "input": "Harden katas-validation-retry-feedback assets, evals, examples and scripts without touching any other skill or unrelated ledger row.",
       "expected_activation": true,
       "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
-    },
-    {
-      "id": "local_override_case",
-      "input": "Create a local experimental katas-validation-retry-feedback variant under .local.",
-      "expected_activation": true,
-      "expected_checks": [
-        "evidence",
+        "assets",
+        "deterministic_scripts",
         "quality_criteria",
         "upgrade_safety"
       ]

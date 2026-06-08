@@ -1,10 +1,3 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: katas-validation-retry-feedback
-generated-on: 2026-05-29
-overwrite-policy: missing-only unless --force
--->
-
 # Example Input — Kata 26
 
 Un pipeline de Structured Extraction procesa contratos PDF y extrae campos tipados con este schema:
@@ -27,4 +20,4 @@ ValidationError:
 
 Notas del analista: el contrato menciona la fecha "January 15, 2026" pero NO contiene un monto total en ninguna cláusula. `max_retries=2`.
 
-Pregunta: ¿cómo se debe reintentar y qué se escala?
+Pregunta: produce un reporte JSON compatible con `assets/validation-retry-contract.json` que muestre el retry del campo recuperable, la escalada del campo ausente, la evidencia y la decisión Guardian.

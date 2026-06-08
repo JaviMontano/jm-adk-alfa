@@ -1,0 +1,108 @@
+{
+  "schema": 1,
+  "skill": "katas-validation-retry-feedback",
+  "cases": [
+    {
+      "id": "generic_feedback_message",
+      "base": "valid-recoverable-retry-success.json",
+      "operations": [
+        {
+          "op": "set",
+          "path": "attempts.0.feedback.message",
+          "value": "Try again and make it valid."
+        }
+      ]
+    },
+    {
+      "id": "attempt_cap_too_high",
+      "base": "valid-recoverable-retry-success.json",
+      "operations": [
+        {
+          "op": "set",
+          "path": "outcome.max_attempts",
+          "value": 5
+        }
+      ]
+    },
+    {
+      "id": "nonrecoverable_retry_allowed",
+      "base": "valid-recoverable-retry-success.json",
+      "operations": [
+        {
+          "op": "set",
+          "path": "attempts.0.validator_error.error_type",
+          "value": "source_absent"
+        },
+        {
+          "op": "set",
+          "path": "classification.recoverability",
+          "value": "nonrecoverable"
+        },
+        {
+          "op": "set",
+          "path": "classification.nonrecoverable_errors",
+          "value": ["source_absent"]
+        }
+      ]
+    },
+    {
+      "id": "missing_error_path",
+      "base": "valid-recoverable-retry-success.json",
+      "operations": [
+        {
+          "op": "remove",
+          "path": "attempts.0.validator_error.path"
+        }
+      ]
+    },
+    {
+      "id": "feedback_omits_expected",
+      "base": "valid-recoverable-retry-success.json",
+      "operations": [
+        {
+          "op": "set",
+          "path": "attempts.0.feedback.expected",
+          "value": "date"
+        }
+      ]
+    },
+    {
+      "id": "invalid_output_accepted",
+      "base": "valid-recoverable-retry-success.json",
+      "operations": [
+        {
+          "op": "set",
+          "path": "attempts.1.status",
+          "value": "failed"
+        },
+        {
+          "op": "set",
+          "path": "validation.invalid_output_accepted",
+          "value": true
+        }
+      ]
+    },
+    {
+      "id": "retry_count_mismatch",
+      "base": "valid-recoverable-retry-success.json",
+      "operations": [
+        {
+          "op": "set",
+          "path": "outcome.retry_count",
+          "value": 2
+        }
+      ]
+    },
+    {
+      "id": "unknown_error_type",
+      "base": "valid-recoverable-retry-success.json",
+      "operations": [
+        {
+          "op": "set",
+          "path": "attempts.0.validator_error.error_type",
+          "value": "mystery_error"
+        }
+      ]
+    }
+  ]
+}

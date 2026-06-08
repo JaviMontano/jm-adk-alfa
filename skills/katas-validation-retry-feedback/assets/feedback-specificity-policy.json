@@ -1,0 +1,26 @@
+{
+  "schema": 1,
+  "skill": "katas-validation-retry-feedback",
+  "required_feedback_fields": [
+    "message",
+    "path",
+    "expected",
+    "previous_value",
+    "scope_paths",
+    "allowed_retry"
+  ],
+  "message_must_include": [
+    "path",
+    "expected",
+    "previous_value"
+  ],
+  "forbidden_generic_phrases": [
+    "try again",
+    "fix it",
+    "make it valid",
+    "please correct",
+    "invalid output",
+    "something is wrong"
+  ],
+  "scope_must_match_error_path": true
+}

@@ -1,10 +1,3 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: katas-validation-retry-feedback
-generated-on: 2026-05-29
-overwrite-policy: missing-only unless --force
--->
-
 # Kata 26 · Prompt de producción — Validación y Retry con Error Feedback
 
 ## Objetivo
@@ -22,11 +15,13 @@ Aplicar retry-with-error-feedback a una extracción tipada que falla validación
 
 1. Ejecuta `extract` contra el documento con `tools=[schema]` y `tool_choice` forzado.
 2. `validate` la extracción contra el schema.
-3. Si falla: construye feedback = error específico + output previo + "corrige SOLO lo que el error señala", y reintenta.
-4. Clasifica el error: recuperable (formato) → reintentar; no recuperable (dato ausente en la fuente) → escalar de inmediato, no inventar.
-5. Al agotar `max_retries`: devolver `needs_human_review=True` con la `error_chain`.
-6. Si el mismo error domina los casos: recomendar fix estructural (schema/prompt/post-process), no subir retries.
+3. Si falla: registra `validator_error.error_type`, `path`, `expected` y `actual`.
+4. Clasifica el error: recuperable (formato, tipo, estructura) o no recuperable (dato ausente, policy/auth/unsafe).
+5. Para errores recuperables: construye feedback con path, expectativa, valor previo y "corrige SOLO lo que el error señala"; reintenta sólo esos paths.
+6. Para errores no recuperables: no reintentes el campo; escala con `needs_human_review=True` y `error_chain`.
+7. Respeta `max_attempts` total de 2-3. Al agotarlo sin salida válida: escalar, no aceptar la extracción fallida.
+8. Si el mismo error domina los casos: recomendar fix estructural (schema/prompt/post-process), no subir retries.
 
 ## Output
 
-Markdown con summary, evidence, result (extracción válida o registro de escalada), validation y risks.
+Markdown o JSON con summary, evidence, attempts, classification, outcome, validation, guardian y risks. Cuando sea JSON, alinéalo con `assets/validation-retry-contract.json`.

@@ -1,0 +1,85 @@
+{
+  "schema": 1,
+  "skill": "katas-validation-retry-feedback",
+  "report_id": "invoice-117-recoverable-date",
+  "scenario": "Invoice extraction retries a recoverable date format error.",
+  "source": "Invoice 117 says service_date June 5, 2026 and total_amount USD 1400.",
+  "schema_under_validation": "InvoiceFields(service_date: date, total_amount: Decimal)",
+  "evidence": [
+    {
+      "type": "source_excerpt",
+      "detail": "Invoice source contains June 5, 2026."
+    },
+    {
+      "type": "validator_error",
+      "detail": "service_date failed ISO date parsing."
+    },
+    {
+      "type": "previous_output",
+      "detail": "Attempt 1 output had service_date='06/05/26'."
+    }
+  ],
+  "attempts": [
+    {
+      "attempt": 1,
+      "status": "failed",
+      "output": {
+        "service_date": "06/05/26",
+        "total_amount": "1400.00"
+      },
+      "validator_error": {
+        "error_type": "format_error",
+        "path": "service_date",
+        "expected": "ISO 8601 date YYYY-MM-DD",
+        "actual": "06/05/26"
+      },
+      "feedback": {
+        "message": "Path service_date failed format_error: expected ISO 8601 date YYYY-MM-DD, previous value 06/05/26. Correct only service_date using source text June 5, 2026.",
+        "path": "service_date",
+        "expected": "ISO 8601 date YYYY-MM-DD",
+        "previous_value": "06/05/26",
+        "scope_paths": ["service_date"],
+        "allowed_retry": true
+      }
+    },
+    {
+      "attempt": 2,
+      "status": "valid",
+      "output": {
+        "service_date": "2026-06-05",
+        "total_amount": "1400.00"
+      }
+    }
+  ],
+  "classification": {
+    "recoverability": "recoverable",
+    "recoverable_errors": ["format_error"],
+    "nonrecoverable_errors": [],
+    "retry_allowed": true,
+    "escalation_required": false,
+    "reason": "The source contains the date and the error is a format conversion."
+  },
+  "outcome": {
+    "final_status": "valid",
+    "retry_count": 1,
+    "max_attempts": 2,
+    "needs_human_review": false,
+    "error_chain": [
+      "service_date format_error corrected on attempt 2"
+    ],
+    "structural_fix_required": false
+  },
+  "validation": {
+    "generic_feedback_count": 0,
+    "retry_count_with_specific_feedback": 1,
+    "retry_count_exceeds_cap": false,
+    "nonrecoverable_retried": false,
+    "exhausted_attempts_escalated": false,
+    "invalid_output_accepted": false,
+    "deterministic_script_passed": true
+  },
+  "guardian": {
+    "decision": "pass",
+    "reason": "The only failed field was recoverable and the retry feedback names the path, expected format, and previous value."
+  }
+}

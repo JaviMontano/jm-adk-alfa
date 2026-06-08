@@ -1,0 +1,22 @@
+{
+  "schema": 1,
+  "skill": "katas-validation-retry-feedback",
+  "minimum_evidence_items": 2,
+  "accepted_evidence_types": [
+    "source_excerpt",
+    "validator_error",
+    "previous_output",
+    "absence_check",
+    "schema_contract",
+    "retry_log",
+    "human_review_route"
+  ],
+  "required_for_retry": [
+    "validator_error",
+    "previous_output"
+  ],
+  "required_for_source_absent": [
+    "source_excerpt",
+    "absence_check"
+  ]
+}

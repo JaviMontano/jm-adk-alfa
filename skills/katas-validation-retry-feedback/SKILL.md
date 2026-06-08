@@ -35,6 +35,18 @@ Cuando una extracción tipada falla la validación (Pydantic / JSON Schema), no 
 - Error recuperable (formato) y error no recuperable (información ausente en la fuente) son ramas distintas del flujo.
 - Si el 80% de los fallos es el mismo error sistemático, el fix no es subir `max_retries`: es ajustar el schema/prompt o normalizar en post-process.
 
+## Contrato determinístico
+
+Usa los assets de `assets/` como contrato de salida antes de certificar la kata:
+
+- `assets/validation-retry-contract.json`: campos JSON obligatorios y decisiones Guardian permitidas.
+- `assets/error-classification-policy.json`: errores recuperables, no recuperables y reglas de retry.
+- `assets/feedback-specificity-policy.json`: señales mínimas para considerar específico un feedback de retry.
+- `assets/retry-limit-policy.json`: cap total de 2-3 intentos y reglas de escalada.
+- `assets/evidence-policy.json`: evidencia mínima aceptada para validar el reporte.
+
+Cuando el entregable sea JSON, valida offline con `scripts/validate_validation_retry_feedback.py`. Para la smoke determinística completa ejecuta `scripts/check.sh`, que acepta fixtures válidos y rechaza mutaciones inválidas.
+
 ## Patrón correcto
 
 ```python
@@ -82,6 +94,7 @@ Mismo prompt cinco veces sin feedback específico, más aceptar la salida fallid
 - Describir el loop con feedback específico (error real, no mensaje genérico).
 - Identificar patrones sistemáticos para un fix estructural en lugar de subir retries.
 - Escalar con la cadena de errores cuando `max_retries` se agota (`needs_human_review`).
+- Probar que ningún intento supera el cap total de 2-3 intentos ni reintenta un error marcado como no recuperable.
 
 ## Cuándo activar
 

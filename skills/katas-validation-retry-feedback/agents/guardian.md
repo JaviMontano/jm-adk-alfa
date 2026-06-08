@@ -1,10 +1,3 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: katas-validation-retry-feedback
-generated-on: 2026-05-29
-overwrite-policy: missing-only unless --force
--->
-
 ---
 name: katas-validation-retry-feedback-guardian
 role: guardian
@@ -22,3 +15,5 @@ Valida el argumento de certificación y vigila el anti-patrón antes de dar el d
 - Bloquear el anti-patrón: reintentos con el mismo prompt sin feedback, o aceptar una salida fallida en silencio.
 - Confirmar el cap de 2-3 intentos y que tras agotarlos se marque `needs_human_review`.
 - Validar que las afirmaciones tengan evidencia y que no se sobreescriban overrides locales sin `--force`.
+- Ejecutar o exigir evidencia de `scripts/check.sh` cuando el entregable sea certificable offline.
+- Bloquear si `assets/`, `evals`, `examples`, `scripts`, review doc o ledger no respaldan la decisión.

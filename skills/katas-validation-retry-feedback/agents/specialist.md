@@ -1,10 +1,3 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: katas-validation-retry-feedback
-generated-on: 2026-05-29
-overwrite-policy: missing-only unless --force
--->
-
 ---
 name: katas-validation-retry-feedback-specialist
 role: specialist
@@ -22,3 +15,4 @@ Aporta el detalle de SDK / Claude Code para implementar el retry con feedback de
 - Modelar el schema con Pydantic / JSON Schema y capturar `ValidationError` para alimentar el feedback.
 - Diseñar la estructura del registro de escalada (`needs_human_review`, `error_chain`, `attempts`) que consume el sistema downstream.
 - Recomendar telemetría de fallos por tipo para distinguir errores recuperables de patrones sistemáticos.
+- Traducir errores reales a `error_type`, `path`, `expected`, `actual` y `scope_paths` sin perder el campo original.

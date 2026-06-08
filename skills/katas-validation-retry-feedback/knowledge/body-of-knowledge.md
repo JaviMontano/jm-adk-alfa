@@ -1,10 +1,3 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: katas-validation-retry-feedback
-generated-on: 2026-05-29
-overwrite-policy: missing-only unless --force
--->
-
 # Kata 26 · Body of Knowledge — Validación y Retry con Error Feedback
 
 ## Canon
@@ -19,6 +12,21 @@ Una extracción tipada que falla validación no se reintenta a ciegas. El retry-
 - **Escalada con cadena de errores:** al agotar `max_retries`, marcar `needs_human_review` y conservar la `error_chain` para el revisor humano.
 - **Patrón sistemático:** si el mismo error aparece en ~80% de los casos, el fix es estructural (ajustar schema/prompt o normalizar en post-process), no subir el número de reintentos.
 
+## Taxonomía determinística
+
+| Tipo | Recuperable | Acción |
+|---|---:|---|
+| `missing_required_field` | Sí | Reintentar si la fuente contiene el dato |
+| `type_mismatch` | Sí | Reintentar con path, tipo esperado y valor previo |
+| `format_error` | Sí | Reintentar con formato esperado y cita de fuente |
+| `enum_mismatch` | Sí | Reintentar si hay normalización inequívoca |
+| `transient_parse_error` | Sí | Reintentar una vez con output previo |
+| `source_absent` | No | Escalar sin inventar |
+| `policy_violation` | No | Bloquear o escalar |
+| `unsafe_request` | No | Bloquear |
+| `auth_required` | No | Escalar a operador |
+| `schema_contract_conflict` | No | Fix estructural de schema/prompt/post-process |
+
 ## Señales de calidad
 
 | Señal | Objetivo |
@@ -28,6 +36,7 @@ Una extracción tipada que falla validación no se reintenta a ciegas. El retry-
 | Cap de intentos | Máximo 2-3 intentos antes de escalar |
 | Escalada trazable | `needs_human_review` + cadena de errores al agotar intentos |
 | Contrato downstream | Ninguna salida no validada llega a consumidores del schema |
+| Script offline | `scripts/check.sh` acepta fixtures válidos y rechaza mutaciones inválidas |
 
 ## Anti-patrón canónico
 
