@@ -1,7 +1,5 @@
 {
   "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-28",
   "skill": "safe-scripting-and-bash",
   "nodes": [
     {
@@ -27,7 +25,7 @@
     {
       "id": "safe-scripting-and-bash:ontology",
       "type": "ontology",
-      "label": "Domain: general"
+      "label": "Domain: safe-local-automation"
     },
     {
       "id": "safe-scripting-and-bash:evidence",
@@ -38,6 +36,26 @@
       "id": "safe-scripting-and-bash:antipattern",
       "type": "risk",
       "label": "Canonical anti-pattern to avoid"
+    },
+    {
+      "id": "safe-scripting-and-bash:write-surface",
+      "type": "contract",
+      "label": "Declared write surface"
+    },
+    {
+      "id": "safe-scripting-and-bash:dry-run",
+      "type": "gate",
+      "label": "Dry-run default for writes"
+    },
+    {
+      "id": "safe-scripting-and-bash:destructive-guard",
+      "type": "gate",
+      "label": "Dangerous shell patterns blocked"
+    },
+    {
+      "id": "safe-scripting-and-bash:offline-validation",
+      "type": "gate",
+      "label": "Offline syntax and fixture smoke validation"
     }
   ],
   "edges": [
@@ -70,6 +88,26 @@
       "from": "safe-scripting-and-bash",
       "to": "safe-scripting-and-bash:antipattern",
       "type": "guards_against"
+    },
+    {
+      "from": "safe-scripting-and-bash",
+      "to": "safe-scripting-and-bash:write-surface",
+      "type": "produces"
+    },
+    {
+      "from": "safe-scripting-and-bash:write-surface",
+      "to": "safe-scripting-and-bash:dry-run",
+      "type": "requires"
+    },
+    {
+      "from": "safe-scripting-and-bash:destructive-guard",
+      "to": "safe-scripting-and-bash:antipattern",
+      "type": "blocks"
+    },
+    {
+      "from": "safe-scripting-and-bash:offline-validation",
+      "to": "safe-scripting-and-bash:quality",
+      "type": "supports"
     }
   ]
 }

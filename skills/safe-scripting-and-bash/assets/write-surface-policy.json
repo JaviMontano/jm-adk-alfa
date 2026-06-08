@@ -1,0 +1,7 @@
+{
+  "schema": 1,
+  "skill": "safe-scripting-and-bash",
+  "allowed_scopes": ["read_only", "narrow_write", "broad_write"],
+  "required_fields": ["scope", "paths", "overwrites_possible", "destructive_intent"],
+  "broad_write_requires_force": true
+}

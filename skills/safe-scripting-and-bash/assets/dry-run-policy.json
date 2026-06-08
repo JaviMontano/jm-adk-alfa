@@ -1,0 +1,7 @@
+{
+  "schema": 1,
+  "skill": "safe-scripting-and-bash",
+  "required_flags": ["dry_run_default", "apply_requires_flag", "force_required_for_overwrite"],
+  "allowed_apply_flags": ["--apply"],
+  "allowed_force_flags": ["--force"]
+}

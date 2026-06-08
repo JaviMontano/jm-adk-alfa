@@ -53,6 +53,25 @@ allowed-tools:
 3. Execute: implement with repo-root detection and dry-run-first behavior when writes are possible.
 4. Validate: run syntax checks and non-destructive smoke tests.
 
+## Deterministic Assets
+
+- Use `assets/safe-scripting-and-bash-contract.json` for machine-checkable script plans or reviews.
+- Use `assets/write-surface-policy.json` to declare read/write scope, paths, and broad-write risk.
+- Use `assets/dry-run-policy.json` to require dry-run default, explicit apply, and explicit force for overwrites.
+- Use `assets/destructive-command-policy.json` to block unsafe shell patterns unless explicitly approved and isolated.
+- Use `assets/portability-policy.json` for Bash portability, quoting, repo-root detection, and tempdir rules.
+- Use `assets/validation-policy.json` to require syntax checks and deterministic smoke tests.
+
+## Offline Validation
+
+Validate JSON script-safety reports with:
+
+```bash
+bash skills/safe-scripting-and-bash/scripts/check.sh
+```
+
+The validator fails on missing dry-run, missing repo-root detection, unknown write surface, unguarded destructive commands, secrets exposure, unsafe tempdirs, missing validation, or Guardian pass on failed checks.
+
 ## Safety Limits
 
 - No `rm -rf`, hard reset, force push, or broad overwrite without explicit approval.

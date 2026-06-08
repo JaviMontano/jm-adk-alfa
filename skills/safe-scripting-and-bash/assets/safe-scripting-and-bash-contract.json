@@ -1,0 +1,9 @@
+{
+  "schema": 1,
+  "skill": "safe-scripting-and-bash",
+  "json_contract": {
+    "schema_version": 1,
+    "required_top_level_fields": ["schema", "skill", "script_id", "purpose", "write_surface", "command_contract", "safety_controls", "portability", "validation", "guardian"],
+    "guardian_decisions": ["pass", "warn", "block"]
+  }
+}

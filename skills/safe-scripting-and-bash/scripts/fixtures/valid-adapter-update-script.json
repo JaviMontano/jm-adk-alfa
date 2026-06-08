@@ -1,0 +1,53 @@
+{
+  "schema": 1,
+  "skill": "safe-scripting-and-bash",
+  "script_id": "adapter-update-script",
+  "purpose": "Update generated adapter files from a deterministic source directory.",
+  "write_surface": {
+    "scope": "narrow_write",
+    "paths": ["generated/adapters"],
+    "overwrites_possible": true,
+    "destructive_intent": false
+  },
+  "command_contract": {
+    "entrypoint": "scripts/update-adapters.sh",
+    "arguments": ["--dry-run", "--apply", "--force", "--fixture"],
+    "repo_root_detection": true,
+    "idempotent": true
+  },
+  "safety_controls": {
+    "dry_run_default": true,
+    "apply_requires_flag": true,
+    "force_required_for_overwrite": true,
+    "apply_flag": "--apply",
+    "force_flag": "--force",
+    "dangerous_patterns": [],
+    "secret_controls": ["never_print_env", "redact_tokens", "no_credential_persistence"],
+    "network_required": false
+  },
+  "portability": {
+    "bash_shebang": true,
+    "set_euo_pipefail": true,
+    "repo_root_detection": true,
+    "quoted_variables": true,
+    "mktemp_dir": true,
+    "cleanup_trap": true,
+    "literal_paths": ["generated/adapters"]
+  },
+  "validation": {
+    "bash_n": true,
+    "dry_run_smoke": true,
+    "fixture_smoke": true,
+    "no_network_required": true,
+    "deterministic_script_passed": true,
+    "write_surface_declared": true,
+    "command_contract_complete": true,
+    "dry_run_and_force_guarded": true,
+    "portability_controls_present": true,
+    "offline_validation_present": true
+  },
+  "guardian": {
+    "decision": "pass",
+    "reason": "Write surface, dry-run, force, portability, and offline validation checks pass."
+  }
+}

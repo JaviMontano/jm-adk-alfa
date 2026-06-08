@@ -1,0 +1,42 @@
+{
+  "schema": 1,
+  "skill": "safe-scripting-and-bash",
+  "assets": [
+    {
+      "path": "assets/safe-scripting-and-bash-contract.json",
+      "type": "json_contract",
+      "purpose": "Defines required fields for deterministic safe scripting reports.",
+      "used_by": ["SKILL.md", "README.md", "scripts/validate_safe_scripting_and_bash.py", "evals/evals.json"]
+    },
+    {
+      "path": "assets/write-surface-policy.json",
+      "type": "policy",
+      "purpose": "Defines allowed write surface scopes and required path declarations.",
+      "used_by": ["knowledge/body-of-knowledge.md", "scripts/validate_safe_scripting_and_bash.py"]
+    },
+    {
+      "path": "assets/dry-run-policy.json",
+      "type": "policy",
+      "purpose": "Requires dry-run default, apply flag, and force flag for overwrites.",
+      "used_by": ["SKILL.md", "scripts/validate_safe_scripting_and_bash.py"]
+    },
+    {
+      "path": "assets/destructive-command-policy.json",
+      "type": "policy",
+      "purpose": "Blocks dangerous shell patterns in reusable scripts.",
+      "used_by": ["agents/guardian.md", "scripts/validate_safe_scripting_and_bash.py"]
+    },
+    {
+      "path": "assets/portability-policy.json",
+      "type": "policy",
+      "purpose": "Defines Bash portability requirements.",
+      "used_by": ["templates/output.md", "scripts/validate_safe_scripting_and_bash.py"]
+    },
+    {
+      "path": "assets/validation-policy.json",
+      "type": "policy",
+      "purpose": "Defines offline validation requirements.",
+      "used_by": ["evals/evals.json", "scripts/validate_safe_scripting_and_bash.py"]
+    }
+  ]
+}

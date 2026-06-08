@@ -1,0 +1,5 @@
+{
+  "schema": 1,
+  "skill": "safe-scripting-and-bash",
+  "required_flags": ["bash_n", "dry_run_smoke", "fixture_smoke", "no_network_required", "deterministic_script_passed"]
+}

@@ -1,0 +1,56 @@
+{
+  "schema": 1,
+  "skill": "safe-scripting-and-bash",
+  "base_report": {
+    "schema": 1,
+    "skill": "safe-scripting-and-bash",
+    "script_id": "invalid-base",
+    "purpose": "Update generated files safely.",
+    "write_surface": {"scope": "narrow_write", "paths": ["generated"], "overwrites_possible": true, "destructive_intent": false},
+    "command_contract": {"entrypoint": "scripts/update.sh", "arguments": ["--dry-run", "--apply", "--force"], "repo_root_detection": true, "idempotent": true},
+    "safety_controls": {
+      "dry_run_default": true,
+      "apply_requires_flag": true,
+      "force_required_for_overwrite": true,
+      "apply_flag": "--apply",
+      "force_flag": "--force",
+      "dangerous_patterns": [],
+      "secret_controls": ["never_print_env", "redact_tokens", "no_credential_persistence"],
+      "network_required": false
+    },
+    "portability": {
+      "bash_shebang": true,
+      "set_euo_pipefail": true,
+      "repo_root_detection": true,
+      "quoted_variables": true,
+      "mktemp_dir": true,
+      "cleanup_trap": true,
+      "literal_paths": ["generated"]
+    },
+    "validation": {
+      "bash_n": true,
+      "dry_run_smoke": true,
+      "fixture_smoke": true,
+      "no_network_required": true,
+      "deterministic_script_passed": true,
+      "write_surface_declared": true,
+      "command_contract_complete": true,
+      "dry_run_and_force_guarded": true,
+      "portability_controls_present": true,
+      "offline_validation_present": true
+    },
+    "guardian": {"decision": "pass", "reason": "Base report is valid before mutation."}
+  },
+  "mutations": [
+    {"id": "missing_dry_run", "set": [{"path": "safety_controls.dry_run_default", "value": false}]},
+    {"id": "missing_apply_flag", "set": [{"path": "safety_controls.apply_requires_flag", "value": false}]},
+    {"id": "missing_force_for_overwrite", "set": [{"path": "safety_controls.force_required_for_overwrite", "value": false}]},
+    {"id": "dangerous_rm_rf", "set": [{"path": "safety_controls.dangerous_patterns", "value": ["rm -rf"]}]},
+    {"id": "prints_env", "set": [{"path": "safety_controls.secret_controls", "value": ["redact_tokens"]}]},
+    {"id": "network_required", "set": [{"path": "safety_controls.network_required", "value": true}]},
+    {"id": "missing_repo_root_detection", "set": [{"path": "command_contract.repo_root_detection", "value": false}]},
+    {"id": "absolute_user_path", "set": [{"path": "portability.literal_paths", "value": ["/Users/example/project"]}]},
+    {"id": "missing_bash_n", "set": [{"path": "validation.bash_n", "value": false}]},
+    {"id": "guardian_pass_on_failed_validation", "set": [{"path": "validation.dry_run_and_force_guarded", "value": false}]}
+  ]
+}
