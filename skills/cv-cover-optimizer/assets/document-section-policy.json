@@ -1,0 +1,16 @@
+{
+  "schema": 1,
+  "skill": "cv-cover-optimizer",
+  "cv_required_signals": [
+    "experience",
+    "education",
+    "skills",
+    "achievements_or_logros",
+    "contact"
+  ],
+  "cover_letter": {
+    "max_words": 400,
+    "preferred_words": 350,
+    "requires_target_role_connection": true
+  }
+}

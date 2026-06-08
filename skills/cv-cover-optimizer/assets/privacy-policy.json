@@ -1,0 +1,10 @@
+{
+  "schema": 1,
+  "skill": "cv-cover-optimizer",
+  "rules": [
+    "Use synthetic contact data in fixtures and examples.",
+    "Do not expose real direct contact data in public samples.",
+    "Preserve user-provided contact data only when the requested output needs it.",
+    "Never invent personal identifiers."
+  ]
+}
