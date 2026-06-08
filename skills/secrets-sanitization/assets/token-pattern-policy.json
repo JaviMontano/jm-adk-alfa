@@ -1,0 +1,1 @@
+{"schema":"jm-labs.secrets-sanitization.token-pattern-policy.v1","patterns":["ghp_","sk-","xoxb-","AKIA"],"must_be_masked":true}

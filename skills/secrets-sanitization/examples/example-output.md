@@ -1,18 +1,11 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: secrets-sanitization
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
-
 # Example Output
 
-## Summary
-
-Example output for `secrets-sanitization`.
-
-## Validation
-
-- Skill activated intentionally.
-- Output follows the requested format.
-- Risks and assumptions are explicit.
+```json
+{
+  "schema": "jm-labs.secrets-sanitization.report.v1",
+  "skill": "secrets-sanitization",
+  "gate": "G0",
+  "status": "blocked",
+  "decision": {"next_action": "mask-or-rotate"}
+}
+```

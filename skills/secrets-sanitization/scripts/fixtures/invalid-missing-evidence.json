@@ -1,0 +1,1 @@
+{"schema":"jm-labs.secrets-sanitization.report.v1","skill":"secrets-sanitization","gate":"G0","status":"pass","scan":{"evidence":""},"findings":[],"decision":{"next_action":"proceed"}}

@@ -1,0 +1,1 @@
+{"schema":"jm-labs.secrets-sanitization.report.v1","skill":"secrets-sanitization","gate":"G0","status":"pass","scan":{"evidence":"secret scan completed"},"findings":[{"path":"config.yml","severity":"critical","status":"open","value_masked":true,"excerpt":"password=***"}],"decision":{"next_action":"proceed"}}

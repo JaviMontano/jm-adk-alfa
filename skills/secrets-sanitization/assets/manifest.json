@@ -1,0 +1,9 @@
+{
+  "skill": "secrets-sanitization",
+  "assets": [
+    {"path":"assets/README.md","type":"documentation","purpose":"Explains G0 policy assets.","used_by":["SKILL.md","README.md"]},
+    {"path":"assets/secrets-report-contract.json","type":"contract","purpose":"Defines G0 report shape.","used_by":["SKILL.md","scripts/validate_secrets_sanitization_report.py"]},
+    {"path":"assets/token-pattern-policy.json","type":"policy","purpose":"Defines token-like blockers.","used_by":["SKILL.md","scripts/validate_secrets_sanitization_report.py"]},
+    {"path":"assets/g0-block-policy.json","type":"policy","purpose":"Defines hard-stop behavior.","used_by":["SKILL.md","scripts/validate_secrets_sanitization_report.py"]}
+  ]
+}

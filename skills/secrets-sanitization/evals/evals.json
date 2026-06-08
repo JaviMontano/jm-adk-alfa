@@ -1,9 +1,12 @@
-[
-  {"id": "secrets-sanitization-happy-path", "type": "happy_path", "input": "Run secrets sanitization on this project", "expected_behavior": "Skill activates and produces the expected secrets sanitization output following the defined process", "tags": ["basic", "activation"]},
-  {"id": "secrets-sanitization-explicit-trigger", "type": "happy_path", "input": "Apply secrets sanitization analysis", "expected_behavior": "Skill recognizes the trigger phrase and executes the secrets sanitization workflow", "tags": ["trigger", "recognition"]},
-  {"id": "secrets-sanitization-with-context", "type": "happy_path", "input": "Apply secrets sanitization to analyze the current codebase with detailed output", "expected_behavior": "Skill produces comprehensive secrets sanitization analysis with evidence-tagged findings", "tags": ["detailed", "comprehensive"]},
-  {"id": "secrets-sanitization-minimal-input", "type": "happy_path", "input": "Quick secrets sanitization", "expected_behavior": "Skill activates with minimal input, applies reasonable defaults", "tags": ["minimal", "defaults"]},
-  {"id": "secrets-sanitization-false-positive", "type": "false_positive", "input": "What is the weather forecast for tomorrow?", "expected_behavior": "Skill should NOT activate — this input has no relation to secrets sanitization", "tags": ["false_positive", "should-not-activate"]},
-  {"id": "secrets-sanitization-edge-empty-input", "type": "edge_case", "input": "Run secrets sanitization but I have no files or documentation yet", "expected_behavior": "Skill handles gracefully — requests minimum viable input or produces gap analysis", "tags": ["edge_case", "empty-input", "boundary"]},
-  {"id": "secrets-sanitization-edge-conflicting", "type": "edge_case", "input": "Apply secrets sanitization but requirements contradict each other", "expected_behavior": "Skill detects contradiction, flags with [OPEN] tag, proposes resolution", "tags": ["edge_case", "conflict", "corner"]}
-]
+{
+  "cases": [
+    {"name":"valid_clean_g0","input":"Validate clean G0 report with no findings.","expected_checks":["assets","deterministic_scripts","quality_criteria"]},
+    {"name":"block_unmasked_github_token","input":"Report contains ghp token without masking.","expected_checks":["assets","deterministic_scripts","quality_criteria"]},
+    {"name":"block_unmasked_openai_key","input":"Report contains sk token without masking.","expected_checks":["quality_criteria","secret_blocker"]},
+    {"name":"block_critical_pass","input":"Critical secret finding while status pass.","expected_checks":["deterministic_scripts","quality_criteria"]},
+    {"name":"allow_masked_false_positive","input":"Masked token-like sample marked false positive.","expected_checks":["assets","quality_criteria"]},
+    {"name":"evidence_required","input":"G0 report without scan evidence.","expected_checks":["assets","deterministic_scripts"]},
+    {"name":"private_path_secret","input":"Private path secret is inventoried but not printed.","expected_checks":["quality_criteria","private_boundary"]},
+    {"name":"rotation_required","input":"Confirmed exposed credential requires rotation.","expected_checks":["assets","quality_criteria"]}
+  ]
+}
