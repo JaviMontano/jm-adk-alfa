@@ -3,7 +3,12 @@ name: quality-metrics-deep
 type: variation
 variant: deep
 ---
-# Quality Metrics — Deep Analysis
 
-Full depth execution. Load all `references/` files from canonical. Run L3 progressive loading.
-Apply all Validation Gate criteria strictly.
+# Quality Metrics Deep
+
+Use the full contract:
+
+- read all `assets/*.json`
+- inspect local report artifacts when available
+- include evidence for every metric, gate, trend, score, and priority action
+- emit JSON when offline validation is required

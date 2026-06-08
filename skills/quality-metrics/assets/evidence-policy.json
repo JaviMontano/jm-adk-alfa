@@ -1,0 +1,16 @@
+{
+  "schema": 1,
+  "allowed_evidence_types": ["file", "command", "ci_artifact", "user_fact", "assumption", "reduced_scope"],
+  "required": [
+    "Every measured metric must include non-empty evidence.",
+    "Every gate must include non-empty on_failure handling.",
+    "Trend status unknown requires a non-empty reason.",
+    "Guardian reason must be non-empty."
+  ],
+  "blocked_claims": [
+    "coverage alone proves quality",
+    "metric pass without evidence",
+    "gate enforced without enforcement behavior",
+    "missing canonical metric without reduced-scope reason"
+  ]
+}

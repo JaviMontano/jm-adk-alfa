@@ -1,0 +1,10 @@
+{
+  "schema": 1,
+  "required_gate_ids": ["coverage", "complexity", "duplication", "lighthouse", "bundle_size", "firestore_io"],
+  "required_fields": ["id", "tool", "threshold", "enforced", "on_failure"],
+  "rules": [
+    "Every canonical metric must have exactly one gate.",
+    "A gate is enforced only when it blocks or alerts as declared.",
+    "No metric can be pass without evidence."
+  ]
+}

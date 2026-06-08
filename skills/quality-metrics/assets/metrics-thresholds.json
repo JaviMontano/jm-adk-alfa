@@ -1,0 +1,50 @@
+{
+  "schema": 1,
+  "score_points": {"pass": 10, "warn": 6, "fail": 2},
+  "metrics": [
+    {
+      "id": "coverage",
+      "order": 1,
+      "pass_min": 80,
+      "warn_min": 70,
+      "fields": ["lines", "branches", "functions", "statements"]
+    },
+    {
+      "id": "complexity",
+      "order": 2,
+      "pass_max": 15,
+      "warn_max": 20,
+      "fields": ["max_cyclomatic"]
+    },
+    {
+      "id": "duplication",
+      "order": 3,
+      "pass_max_exclusive": 5,
+      "warn_max_exclusive": 8,
+      "fields": ["percent"]
+    },
+    {
+      "id": "lighthouse",
+      "order": 4,
+      "pass_min": {"performance": 90, "accessibility": 95, "best_practices": 90, "seo": 90},
+      "warn_delta": 10,
+      "fields": ["performance", "accessibility", "best_practices", "seo"]
+    },
+    {
+      "id": "bundle_size",
+      "order": 5,
+      "pass_max_kb": 250,
+      "warn_max_kb": 300,
+      "fields": ["initial_gzip_kb"]
+    },
+    {
+      "id": "firestore_io",
+      "order": 6,
+      "pass_max_reads_per_day": 50000,
+      "fail_max_reads_per_day": 100000,
+      "warn_spike_multiplier": 3.0,
+      "fail_spike_multiplier": 5.0,
+      "fields": ["reads_per_day", "writes_per_day", "deletes_per_day", "read_spike_multiplier"]
+    }
+  ]
+}

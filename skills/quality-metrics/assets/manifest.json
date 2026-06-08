@@ -1,0 +1,46 @@
+{
+  "schema": 1,
+  "skill": "quality-metrics",
+  "assets": [
+    {
+      "path": "assets/quality-metrics-contract.json",
+      "type": "contract",
+      "purpose": "Defines required report fields, markdown sections, and Guardian decisions.",
+      "used_by": ["SKILL.md", "scripts/validate_quality_metrics.py"]
+    },
+    {
+      "path": "assets/metrics-thresholds.json",
+      "type": "policy",
+      "purpose": "Defines canonical metric order, thresholds, warning bands, and scoring points.",
+      "used_by": ["SKILL.md", "scripts/validate_quality_metrics.py"]
+    },
+    {
+      "path": "assets/gate-policy.json",
+      "type": "policy",
+      "purpose": "Defines required gate enforcement fields and threshold behavior.",
+      "used_by": ["SKILL.md", "scripts/validate_quality_metrics.py"]
+    },
+    {
+      "path": "assets/trend-policy.json",
+      "type": "policy",
+      "purpose": "Defines trend window and regression-trigger rules.",
+      "used_by": ["SKILL.md", "scripts/validate_quality_metrics.py"]
+    },
+    {
+      "path": "assets/action-priority-policy.json",
+      "type": "policy",
+      "purpose": "Defines top action count and deterministic sorting.",
+      "used_by": ["SKILL.md", "scripts/validate_quality_metrics.py"]
+    },
+    {
+      "path": "assets/evidence-policy.json",
+      "type": "policy",
+      "purpose": "Defines minimum evidence requirements and blocked claims.",
+      "used_by": ["SKILL.md", "scripts/validate_quality_metrics.py"]
+    }
+  ],
+  "offline": true,
+  "network_required": false,
+  "randomness_allowed": false,
+  "time_dependent": false
+}

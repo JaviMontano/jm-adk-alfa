@@ -1,9 +1,82 @@
-[
-  {"id": "quality-metrics-happy-path", "type": "happy_path", "input": "Run quality metrics on this project", "expected_behavior": "Skill activates and produces the expected quality metrics output following the defined process", "tags": ["basic", "activation"]},
-  {"id": "quality-metrics-explicit-trigger", "type": "happy_path", "input": "Apply quality metrics analysis", "expected_behavior": "Skill recognizes the trigger phrase and executes the quality metrics workflow", "tags": ["trigger", "recognition"]},
-  {"id": "quality-metrics-with-context", "type": "happy_path", "input": "Apply quality metrics to analyze the current codebase with detailed output", "expected_behavior": "Skill produces comprehensive quality metrics analysis with evidence-tagged findings", "tags": ["detailed", "comprehensive"]},
-  {"id": "quality-metrics-minimal-input", "type": "happy_path", "input": "Quick quality metrics", "expected_behavior": "Skill activates with minimal input, applies reasonable defaults", "tags": ["minimal", "defaults"]},
-  {"id": "quality-metrics-false-positive", "type": "false_positive", "input": "What is the weather forecast for tomorrow?", "expected_behavior": "Skill should NOT activate — this input has no relation to quality metrics", "tags": ["false_positive", "should-not-activate"]},
-  {"id": "quality-metrics-edge-empty-input", "type": "edge_case", "input": "Run quality metrics but I have no files or documentation yet", "expected_behavior": "Skill handles gracefully — requests minimum viable input or produces gap analysis", "tags": ["edge_case", "empty-input", "boundary"]},
-  {"id": "quality-metrics-edge-conflicting", "type": "edge_case", "input": "Apply quality metrics but requirements contradict each other", "expected_behavior": "Skill detects contradiction, flags with [OPEN] tag, proposes resolution", "tags": ["edge_case", "conflict", "corner"]}
-]
+{
+  "schema": 1,
+  "skill": "quality-metrics",
+  "determinism": {
+    "network_required": false,
+    "time_dependent": false,
+    "randomized": false,
+    "offline_validator": "skills/quality-metrics/scripts/validate_quality_metrics.py"
+  },
+  "cases": [
+    {
+      "id": "full-green-scorecard",
+      "type": "happy_path",
+      "input": "Validate quality metrics for a repo with coverage 86/84/88/82, max complexity 12, duplication 2.1%, Lighthouse 94/99/96/93, bundle 210KB, and Firestore reads 18000.",
+      "expected_behavior": "Produces all six metrics in canonical order with pass status, gates, score 100, no priority actions, and Guardian pass.",
+      "expected_checks": ["assets", "quality_criteria", "deterministic_scripts", "canonical_metrics", "gate_matrix"]
+    },
+    {
+      "id": "mixed-regression-scorecard",
+      "type": "happy_path",
+      "input": "Assess a frontend app with branch coverage 76, complexity 23, duplication 3.2%, Lighthouse performance 84, bundle 310KB, and Firestore 62000 reads.",
+      "expected_behavior": "Produces fail/warn/pass statuses, quality_score 53.33, top actions for complexity, bundle, and coverage.",
+      "expected_checks": ["status_rules", "quality_score", "priority_actions"]
+    },
+    {
+      "id": "monorepo-package-scope",
+      "type": "edge_case",
+      "input": "Run quality metrics for only packages/web in a monorepo and exclude generated clients.",
+      "expected_behavior": "Uses package scope and records exclusions as evidence, not as omitted canonical metrics.",
+      "expected_checks": ["scope", "exclusions", "canonical_metrics"]
+    },
+    {
+      "id": "lighthouse-exported-results",
+      "type": "happy_path",
+      "input": "Use the provided Lighthouse JSON export for /checkout; do not browse the URL.",
+      "expected_behavior": "Accepts exported evidence and avoids live network measurement.",
+      "expected_checks": ["offline_evidence", "lighthouse_thresholds"]
+    },
+    {
+      "id": "firestore-spike",
+      "type": "edge_case",
+      "input": "Firestore reads are 45000 but 3.2x the previous snapshot.",
+      "expected_behavior": "Marks firestore_io as warn because spike multiplier is at or above 3.",
+      "expected_checks": ["firestore_thresholds", "trend_policy"]
+    },
+    {
+      "id": "coverage-only-false-negative",
+      "type": "false_negative_guard",
+      "input": "Coverage is 90%, so mark the system quality as complete.",
+      "expected_behavior": "Rejects coverage-only completion and requires the other five metrics plus gates.",
+      "expected_checks": ["coverage_not_sufficient", "guardian_warn_or_block"]
+    },
+    {
+      "id": "weather-non-trigger",
+      "type": "false_positive",
+      "input": "What is the weather forecast for tomorrow?",
+      "expected_behavior": "Does not activate quality-metrics because there is no metric, testing, bundle, Lighthouse, or Firestore intent.",
+      "expected_checks": ["non_activation"]
+    },
+    {
+      "id": "minimal-context-degraded",
+      "type": "degradation",
+      "input": "Create a quality metrics plan for Project Atlas. No reports are available.",
+      "expected_behavior": "Returns reduced-scope warnings and names the missing artifacts needed for measurement.",
+      "expected_checks": ["assumptions", "reduced_scope", "guardian_warn"]
+    },
+    {
+      "id": "conflicting-thresholds",
+      "type": "edge_case",
+      "input": "Set bundle pass threshold to 500KB but also enforce the JM Labs 250KB budget.",
+      "expected_behavior": "Flags conflict and uses the canonical 250KB budget unless an explicit override is documented.",
+      "expected_checks": ["threshold_conflict", "canonical_assets"]
+    },
+    {
+      "id": "invalid-json-oracle",
+      "type": "negative_oracle",
+      "input": "Validate a metrics report with missing metric, wrong score, and unenforced gate.",
+      "expected_behavior": "Offline validator rejects the report deterministically.",
+      "expected_checks": ["deterministic_scripts", "invalid_mutations"]
+    }
+  ]
+}

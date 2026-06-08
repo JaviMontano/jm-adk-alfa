@@ -1,75 +1,26 @@
 {
   "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-28",
   "skill": "quality-metrics",
   "nodes": [
-    {
-      "id": "quality-metrics",
-      "type": "skill",
-      "label": "quality-metrics"
-    },
-    {
-      "id": "quality-metrics:inputs",
-      "type": "contract",
-      "label": "Expected inputs"
-    },
-    {
-      "id": "quality-metrics:outputs",
-      "type": "contract",
-      "label": "Expected outputs"
-    },
-    {
-      "id": "quality-metrics:quality",
-      "type": "gate",
-      "label": "Quality criteria"
-    },
-    {
-      "id": "quality-metrics:ontology",
-      "type": "ontology",
-      "label": "Domain: general"
-    },
-    {
-      "id": "quality-metrics:evidence",
-      "type": "gate",
-      "label": "Evidence / provenance requirements"
-    },
-    {
-      "id": "quality-metrics:antipattern",
-      "type": "risk",
-      "label": "Canonical anti-pattern to avoid"
-    }
+    {"id": "quality-metrics", "type": "skill", "label": "Quality Metrics"},
+    {"id": "evidence-summary", "type": "input", "label": "Evidence Summary"},
+    {"id": "coverage", "type": "metric", "label": "Coverage"},
+    {"id": "complexity", "type": "metric", "label": "Cyclomatic Complexity"},
+    {"id": "duplication", "type": "metric", "label": "Duplication"},
+    {"id": "lighthouse", "type": "metric", "label": "Lighthouse"},
+    {"id": "bundle-size", "type": "metric", "label": "Bundle Size"},
+    {"id": "firestore-io", "type": "metric", "label": "Firestore I/O"},
+    {"id": "gate-matrix", "type": "gate", "label": "Metric Gates"},
+    {"id": "guardian", "type": "decision", "label": "Guardian Decision"}
   ],
   "edges": [
-    {
-      "from": "quality-metrics",
-      "to": "quality-metrics:inputs",
-      "type": "requires"
-    },
-    {
-      "from": "quality-metrics",
-      "to": "quality-metrics:outputs",
-      "type": "produces"
-    },
-    {
-      "from": "quality-metrics",
-      "to": "quality-metrics:quality",
-      "type": "validated_by"
-    },
-    {
-      "from": "quality-metrics",
-      "to": "quality-metrics:ontology",
-      "type": "classified_as"
-    },
-    {
-      "from": "quality-metrics",
-      "to": "quality-metrics:evidence",
-      "type": "validated_by"
-    },
-    {
-      "from": "quality-metrics",
-      "to": "quality-metrics:antipattern",
-      "type": "guards_against"
-    }
+    {"from": "quality-metrics", "to": "evidence-summary", "type": "requires"},
+    {"from": "coverage", "to": "gate-matrix", "type": "gated_by"},
+    {"from": "complexity", "to": "gate-matrix", "type": "gated_by"},
+    {"from": "duplication", "to": "gate-matrix", "type": "gated_by"},
+    {"from": "lighthouse", "to": "gate-matrix", "type": "gated_by"},
+    {"from": "bundle-size", "to": "gate-matrix", "type": "gated_by"},
+    {"from": "firestore-io", "to": "gate-matrix", "type": "gated_by"},
+    {"from": "guardian", "to": "quality-metrics", "type": "validates"}
   ]
 }

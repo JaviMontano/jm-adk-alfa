@@ -1,28 +1,25 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: quality-metrics
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
+# Quality Metrics Report
 
-# Quality Metrics Output
+## Evidence Summary
 
-## Summary
+{{evidence_summary}}
 
-{summary}
+## Metric Scorecard
 
-## Evidence
+{{metric_scorecard}}
 
-{evidence}
+## Gate Matrix
 
-## Result
+{{gate_matrix}}
 
-{result}
+## Trend Assessment
 
-## Validation
+{{trend_assessment}}
 
-{validation}
+## Priority Actions
 
-## Risks and Limits
+{{priority_actions}}
 
-{risks}
+## Guardian Decision
+
+{{guardian_decision}}

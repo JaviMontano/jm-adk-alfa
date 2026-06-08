@@ -2,16 +2,11 @@
 name: quality-metrics-meta
 type: meta
 version: 2.0.0
-description: "Meta-prompt for Quality Metrics skill routing."
+description: "Route requests to the Quality Metrics skill."
 ---
 
-# Quality Metrics — Meta Prompt
+# Quality Metrics Meta
 
-Activate this skill when the user request matches:
-- Trigger phrases from SKILL.md description
-- Direct invocation: `/quality-metrics`
+Activate when the user asks for quality metrics, metric gates, coverage thresholds, complexity, duplication, Lighthouse, bundle size, Firestore reads/writes, or quality scorecards.
 
-## Skill Routing
-1. Load SKILL.md → read `## When to Activate` section
-2. If match → activate lead agent: `quality-metrics-lead`
-3. If orchestrated → defer to orchestrating skill
+Do not activate for unrelated weather, pricing, scheduling, or pure feature implementation requests.
