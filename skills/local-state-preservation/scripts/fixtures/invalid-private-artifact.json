@@ -1,0 +1,67 @@
+{
+  "schema": 1,
+  "skill": "local-state-preservation",
+  "mode": "archive-bundle",
+  "scope": {
+    "repository": "/repo/jm-adk-alfa",
+    "branch": "codex/example",
+    "head": "0123456789abcdef0123456789abcdef01234567"
+  },
+  "mutation_policy": {
+    "default_mutates_files": false,
+    "requires_explicit_apply": true
+  },
+  "surfaces": {
+    "tracked_changes": [],
+    "untracked_files": [],
+    "ignored_files": [],
+    "stashes": [],
+    "worktrees": [],
+    "clones": [],
+    "private_path_exclusions": [
+      {
+        "path": "user-context/jarvis-os",
+        "handling": "excluded",
+        "reason": "private context"
+      }
+    ]
+  },
+  "artifacts": [
+    {
+      "kind": "archive",
+      "path": ".local/preservation/private.tar.gz",
+      "destination_path": ".local/preservation/private.tar.gz",
+      "source_paths": [
+        "user-context/jarvis-os"
+      ],
+      "sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+      "size_bytes": 10,
+      "overwrites_existing": false
+    }
+  ],
+  "non_touch_decisions": [
+    {
+      "surface": "stashes",
+      "decision": "inventory-only",
+      "reason": "required",
+      "evidence": "git stash list"
+    },
+    {
+      "surface": "private_paths",
+      "decision": "excluded",
+      "reason": "private context",
+      "evidence": "surface inventory"
+    }
+  ],
+  "validation": {
+    "status": "pass",
+    "commands": [
+      {
+        "command": "tar -tzf private.tar.gz",
+        "status": "pass",
+        "evidence": "output"
+      }
+    ]
+  },
+  "next_action": "proceed"
+}

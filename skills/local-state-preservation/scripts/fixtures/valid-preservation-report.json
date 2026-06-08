@@ -1,0 +1,144 @@
+{
+  "schema": 1,
+  "skill": "local-state-preservation",
+  "mode": "archive-bundle",
+  "scope": {
+    "repository": "/Users/deonto/Documents/workspace/jm-adk-alfa",
+    "branch": "codex/example",
+    "head": "45e31a02",
+    "upstream": "origin/main"
+  },
+  "mutation_policy": {
+    "default_mutates_files": false,
+    "requires_explicit_apply": true,
+    "allowed_write_roots": [
+      "workspace/2026-06-08-alfa-repo-sync-cleanup/",
+      ".local/archive/2026-06-08-alfa-cleanup/"
+    ],
+    "private_path_patterns": [
+      "user-context/jarvis-os",
+      "user-context/**",
+      ".env",
+      "*.pem"
+    ]
+  },
+  "surfaces": {
+    "tracked_changes": [
+      {
+        "path": "skills/example/SKILL.md",
+        "status": "M",
+        "evidence": "git status --short reports a tracked modification"
+      }
+    ],
+    "untracked_files": [
+      {
+        "path": "docs/audits/example.md",
+        "status": "untracked",
+        "evidence": "git status --short reports ?? docs/audits/example.md"
+      }
+    ],
+    "ignored_files": [
+      {
+        "path": "workspace/old-session/notes.md",
+        "status": "ignored",
+        "evidence": "git status --ignored --short reports !! workspace/old-session/notes.md"
+      }
+    ],
+    "stashes": [
+      {
+        "path": "stash@{0}",
+        "status": "present",
+        "decision": "inventory-only",
+        "touched": false,
+        "evidence": "git stash list was read without apply, pop, drop, or rewrite"
+      }
+    ],
+    "worktrees": [
+      {
+        "path": "/Users/deonto/Documents/workspace/jm-adk-alfa-worktrees/import",
+        "status": "dirty",
+        "evidence": "git worktree list --porcelain reports the sibling worktree"
+      }
+    ],
+    "clones": [
+      {
+        "path": "/Users/deonto/dev/jm-adk-alfa",
+        "status": "divergent",
+        "evidence": "sibling clone inventory recorded branch main at 10f50621"
+      }
+    ],
+    "private_path_exclusions": [
+      {
+        "path": "user-context/jarvis-os",
+        "handling": "excluded",
+        "reason": "private local context must not enter publishable preservation artifacts"
+      }
+    ]
+  },
+  "artifacts": [
+    {
+      "path": "workspace/2026-06-08-alfa-repo-sync-cleanup/patches/tracked.patch",
+      "destination_path": "workspace/2026-06-08-alfa-repo-sync-cleanup/patches/tracked.patch",
+      "kind": "patch",
+      "source_paths": [
+        "skills/example/SKILL.md"
+      ],
+      "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "size_bytes": 128,
+      "overwrites_existing": false
+    },
+    {
+      "path": ".local/archive/2026-06-08-alfa-cleanup/old-session.tar.gz",
+      "destination_path": ".local/archive/2026-06-08-alfa-cleanup/old-session.tar.gz",
+      "kind": "archive",
+      "source_paths": [
+        "workspace/old-session/notes.md"
+      ],
+      "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "size_bytes": 2048,
+      "overwrites_existing": false
+    },
+    {
+      "path": ".local/archive/2026-06-08-alfa-cleanup/MANIFEST.json",
+      "destination_path": ".local/archive/2026-06-08-alfa-cleanup/MANIFEST.json",
+      "kind": "manifest",
+      "source_paths": [
+        "workspace/old-session/notes.md",
+        "docs/audits/example.md"
+      ],
+      "sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+      "size_bytes": 512,
+      "overwrites_existing": false
+    }
+  ],
+  "non_touch_decisions": [
+    {
+      "surface": "stashes",
+      "decision": "inventory-only",
+      "reason": "stashes are user rollback points and were not explicitly authorized for mutation",
+      "evidence": "only git stash list was used"
+    },
+    {
+      "surface": "private_paths",
+      "decision": "do-not-move-or-publish",
+      "reason": "private context must remain local and ignored",
+      "evidence": "surfaces.private_path_exclusions records user-context/jarvis-os"
+    }
+  ],
+  "validation": {
+    "status": "pass",
+    "commands": [
+      {
+        "command": "git status --short --branch",
+        "status": "pass",
+        "evidence": "## codex/example...origin/main"
+      },
+      {
+        "command": "python3 skills/local-state-preservation/scripts/validate_local_state_preservation.py report.json",
+        "status": "pass",
+        "evidence": "validator exited 0"
+      }
+    ]
+  },
+  "next_action": "proceed"
+}

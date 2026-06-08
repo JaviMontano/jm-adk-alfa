@@ -1,0 +1,105 @@
+{
+  "schema": 1,
+  "skill": "local-state-preservation",
+  "mode": "patch-bundle",
+  "scope": {
+    "repository": "/repo/jm-adk-alfa",
+    "branch": "codex/example-preserve",
+    "head": "0123456789abcdef0123456789abcdef01234567",
+    "upstream": "origin/main"
+  },
+  "mutation_policy": {
+    "default_mutates_files": false,
+    "requires_explicit_apply": true
+  },
+  "surfaces": {
+    "tracked_changes": [
+      {
+        "path": "skills/example/SKILL.md",
+        "status": "modified",
+        "evidence": "git status --short --branch"
+      }
+    ],
+    "untracked_files": [
+      {
+        "path": "skills/example/assets/manifest.json",
+        "status": "untracked",
+        "evidence": "git status --short --branch"
+      }
+    ],
+    "ignored_files": [],
+    "stashes": [
+      {
+        "path": "stash@{0}",
+        "status": "inventory-only",
+        "decision": "inventory-only",
+        "touched": false,
+        "evidence": "git stash list"
+      }
+    ],
+    "worktrees": [
+      {
+        "path": "/repo/jm-adk-alfa-retrospective-gate",
+        "status": "dirty",
+        "evidence": "git worktree list --porcelain"
+      }
+    ],
+    "clones": [],
+    "private_path_exclusions": [
+      {
+        "path": "user-context/jarvis-os",
+        "handling": "excluded",
+        "reason": "private context is inventory-only"
+      }
+    ]
+  },
+  "artifacts": [
+    {
+      "kind": "patch",
+      "path": ".local/preservation/example.patch",
+      "destination_path": ".local/preservation/example.patch",
+      "source_paths": [
+        "skills/example/SKILL.md"
+      ],
+      "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "size_bytes": 128,
+      "overwrites_existing": false
+    },
+    {
+      "kind": "manifest",
+      "path": ".local/preservation/manifest.json",
+      "destination_path": ".local/preservation/manifest.json",
+      "source_paths": [
+        "skills/example/assets/manifest.json"
+      ],
+      "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "size_bytes": 256,
+      "overwrites_existing": false
+    }
+  ],
+  "non_touch_decisions": [
+    {
+      "surface": "stashes",
+      "decision": "inventory-only",
+      "reason": "stash mutation is outside the requested preservation step",
+      "evidence": "git stash list"
+    },
+    {
+      "surface": "private_paths",
+      "decision": "do-not-move-or-publish",
+      "reason": "private context must not be moved into publishable artifacts",
+      "evidence": "surface inventory"
+    }
+  ],
+  "validation": {
+    "status": "pass",
+    "commands": [
+      {
+        "command": "python3 skills/local-state-preservation/scripts/validate_local_state_preservation.py report.json",
+        "status": "pass",
+        "evidence": "validator returned 0"
+      }
+    ]
+  },
+  "next_action": "proceed"
+}

@@ -1,0 +1,68 @@
+{
+  "skill": "local-state-preservation",
+  "assets": [
+    {
+      "path": "assets/README.md",
+      "type": "documentation",
+      "purpose": "Explains the bundled preservation contract assets.",
+      "used_by": [
+        "SKILL.md",
+        "README.md"
+      ]
+    },
+    {
+      "path": "assets/preservation-report-contract.json",
+      "type": "contract",
+      "purpose": "Defines required fields for preservation reports.",
+      "used_by": [
+        "SKILL.md",
+        "scripts/validate_local_state_preservation.py"
+      ]
+    },
+    {
+      "path": "assets/surface-inventory-policy.json",
+      "type": "policy",
+      "purpose": "Defines repository surfaces that must be inventoried.",
+      "used_by": [
+        "SKILL.md",
+        "knowledge/body-of-knowledge.md"
+      ]
+    },
+    {
+      "path": "assets/archive-manifest-policy.json",
+      "type": "policy",
+      "purpose": "Defines preservation artifact metadata and manifest expectations.",
+      "used_by": [
+        "SKILL.md",
+        "scripts/validate_local_state_preservation.py"
+      ]
+    },
+    {
+      "path": "assets/private-path-policy.json",
+      "type": "policy",
+      "purpose": "Defines private path exclusions and blocked publication actions.",
+      "used_by": [
+        "SKILL.md",
+        "scripts/validate_local_state_preservation.py"
+      ]
+    },
+    {
+      "path": "assets/non-touch-policy.json",
+      "type": "policy",
+      "purpose": "Defines stash and private path non-touch decisions.",
+      "used_by": [
+        "SKILL.md",
+        "scripts/validate_local_state_preservation.py"
+      ]
+    },
+    {
+      "path": "assets/preservation-template.md",
+      "type": "template",
+      "purpose": "Provides a copy-ready JSON report shape for preservation packets.",
+      "used_by": [
+        "SKILL.md",
+        "templates/output.md"
+      ]
+    }
+  ]
+}

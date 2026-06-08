@@ -1,6 +1,6 @@
 # JM-ADK Architecture v5.2.0
 
-> 600 Skills · 261 Agents · 267 Commands · 256 Prompts · 1384 physical components
+> 601 Skills · 261 Agents · 267 Commands · 256 Prompts · 1385 physical components
 
 ## Directory Structure
 
@@ -12,7 +12,7 @@ jm-adk-alfa/
 ├── agents/                         # 261 specialist agents
 ├── commands/                       # 267 user-invocable commands
 ├── prompts/                        # 256 top-level prompt files
-├── skills/                         # 600 SDK skill modules
+├── skills/                         # 601 SDK skill modules
 │   └── {skill}/
 │       ├── SKILL.md
 │       ├── README.md

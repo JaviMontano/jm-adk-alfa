@@ -1,0 +1,124 @@
+{
+  "schema": 1,
+  "skill": "local-state-preservation",
+  "cases": [
+    {
+      "id": "dirty_worktree_before_cleanup",
+      "input": "Before removing a stale worktree, inventory tracked changes, untracked files, stashes, worktrees, and create a preservation packet.",
+      "expected_activation": true,
+      "expected_checks": [
+        "assets",
+        "deterministic_scripts",
+        "evidence",
+        "quality_criteria",
+        "artifact_checksums",
+        "non_touch_decisions"
+      ]
+    },
+    {
+      "id": "explicit_trigger_before_pull",
+      "input": "/local-state-preservation preserve this repo before git pull --ff-only.",
+      "expected_activation": true,
+      "expected_checks": [
+        "assets",
+        "deterministic_scripts",
+        "evidence",
+        "quality_criteria"
+      ]
+    },
+    {
+      "id": "untracked_import_branch",
+      "input": "I have a branch with untracked skill files; capture them before switching branches.",
+      "expected_activation": true,
+      "expected_checks": [
+        "assets",
+        "deterministic_scripts",
+        "evidence",
+        "quality_criteria",
+        "archive_manifest"
+      ]
+    },
+    {
+      "id": "stash_non_touch_boundary",
+      "input": "Record stashes and worktrees but do not pop, drop, apply, or rewrite them.",
+      "expected_activation": true,
+      "expected_checks": [
+        "assets",
+        "deterministic_scripts",
+        "evidence",
+        "quality_criteria",
+        "non_touch_decisions"
+      ]
+    },
+    {
+      "id": "false_positive_readme_summary",
+      "input": "Summarize the README and suggest three clearer section titles.",
+      "expected_activation": false,
+      "expected_checks": [
+        "assets",
+        "deterministic_scripts",
+        "evidence",
+        "quality_criteria"
+      ]
+    },
+    {
+      "id": "empty_input",
+      "input": "",
+      "expected_activation": false,
+      "expected_checks": [
+        "assets",
+        "deterministic_scripts",
+        "evidence",
+        "quality_criteria"
+      ]
+    },
+    {
+      "id": "conflicting_destructive_order",
+      "input": "Run git clean -fd now and preserve local files afterward.",
+      "expected_activation": true,
+      "expected_checks": [
+        "assets",
+        "deterministic_scripts",
+        "evidence",
+        "quality_criteria",
+        "block_destructive_order"
+      ]
+    },
+    {
+      "id": "private_path_redaction",
+      "input": "Preserve this repo but exclude user-context/jarvis-os and any .env material from artifacts.",
+      "expected_activation": true,
+      "expected_checks": [
+        "assets",
+        "deterministic_scripts",
+        "evidence",
+        "quality_criteria",
+        "private_path_exclusions"
+      ]
+    },
+    {
+      "id": "validation_failure_degradation",
+      "input": "A preservation report has a failed checksum command but says next_action proceed.",
+      "expected_activation": true,
+      "expected_checks": [
+        "assets",
+        "deterministic_scripts",
+        "evidence",
+        "quality_criteria",
+        "validation_failure_blocks"
+      ]
+    },
+    {
+      "id": "clean_tree_inventory_only",
+      "input": "Verify the repo is clean before branch deletion and emit an inventory-only packet.",
+      "expected_activation": true,
+      "expected_checks": [
+        "assets",
+        "deterministic_scripts",
+        "evidence",
+        "quality_criteria",
+        "empty_surface_arrays"
+      ]
+    }
+  ]
+}

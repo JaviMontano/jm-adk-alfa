@@ -1,0 +1,24 @@
+{
+  "schema": "jm-labs.local-state-preservation.archive-policy.v1",
+  "artifact_kinds": [
+    "patch",
+    "archive",
+    "manifest",
+    "report",
+    "checksum"
+  ],
+  "required_artifact_fields": [
+    "path",
+    "destination_path",
+    "kind",
+    "source_paths",
+    "sha256",
+    "size_bytes"
+  ],
+  "checksum_algorithm": "sha256",
+  "cleanup_requires_manifest": true,
+  "archive_roots": [
+    "workspace/",
+    ".local/archive/"
+  ]
+}

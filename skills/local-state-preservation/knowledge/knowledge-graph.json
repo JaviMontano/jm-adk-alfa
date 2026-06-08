@@ -1,0 +1,51 @@
+{
+  "nodes": [
+    {
+      "id": "local-state-preservation",
+      "type": "skill",
+      "label": "Local State Preservation"
+    },
+    {
+      "id": "preservation-packet",
+      "type": "artifact",
+      "label": "Preservation Packet"
+    },
+    {
+      "id": "private-boundary",
+      "type": "policy",
+      "label": "Private Path Boundary"
+    },
+    {
+      "id": "stash-non-touch",
+      "type": "policy",
+      "label": "Stash Non-Touch Decision"
+    },
+    {
+      "id": "offline-validator",
+      "type": "script",
+      "label": "Offline Preservation Validator"
+    }
+  ],
+  "edges": [
+    {
+      "from": "local-state-preservation",
+      "to": "preservation-packet",
+      "relationship": "produces"
+    },
+    {
+      "from": "preservation-packet",
+      "to": "private-boundary",
+      "relationship": "must_respect"
+    },
+    {
+      "from": "preservation-packet",
+      "to": "stash-non-touch",
+      "relationship": "must_record"
+    },
+    {
+      "from": "offline-validator",
+      "to": "preservation-packet",
+      "relationship": "validates"
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "schema": "jm-labs.local-state-preservation.private-path-policy.v1",
+  "private_path_patterns": [
+    "user-context/jarvis-os",
+    "user-context/**",
+    ".env",
+    "*.pem",
+    "*.key"
+  ],
+  "allowed_action": "inventory-exclusion-only",
+  "forbidden_actions": [
+    "publish",
+    "move-into-git",
+    "copy-payload-to-preservation-artifact",
+    "include-in-public-archive"
+  ],
+  "required_report_field": "scope.private_path_exclusions"
+}

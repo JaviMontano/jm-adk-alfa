@@ -1,0 +1,74 @@
+{
+  "schema": 1,
+  "skill": "local-state-preservation",
+  "mode": "patch-bundle",
+  "scope": {
+    "repository": "/Users/deonto/Documents/workspace/jm-adk-alfa",
+    "branch": "codex/example",
+    "head": "45e31a02"
+  },
+  "mutation_policy": {
+    "default_mutates_files": false,
+    "requires_explicit_apply": true
+  },
+  "surfaces": {
+    "tracked_changes": [],
+    "untracked_files": [],
+    "ignored_files": [],
+    "stashes": [
+      {
+        "path": "stash@{0}",
+        "status": "present",
+        "decision": "inventory-only",
+        "touched": false,
+        "evidence": "git stash list only"
+      }
+    ],
+    "worktrees": [],
+    "clones": [],
+    "private_path_exclusions": [
+      {
+        "path": "user-context/jarvis-os",
+        "handling": "excluded",
+        "reason": "private local context"
+      }
+    ]
+  },
+  "artifacts": [
+    {
+      "path": "workspace/2026-06-08-alfa-repo-sync-cleanup/patches/tracked.patch",
+      "destination_path": "workspace/2026-06-08-alfa-repo-sync-cleanup/patches/tracked.patch",
+      "kind": "patch",
+      "source_paths": [
+        "skills/example/SKILL.md"
+      ],
+      "size_bytes": 128,
+      "overwrites_existing": false
+    }
+  ],
+  "non_touch_decisions": [
+    {
+      "surface": "stashes",
+      "decision": "inventory-only",
+      "reason": "stashes are rollback points",
+      "evidence": "git stash list only"
+    },
+    {
+      "surface": "private_paths",
+      "decision": "do-not-move-or-publish",
+      "reason": "private context remains local",
+      "evidence": "private path exclusion recorded"
+    }
+  ],
+  "validation": {
+    "status": "pass",
+    "commands": [
+      {
+        "command": "python3 validator report.json",
+        "status": "pass",
+        "evidence": "expected fixture should fail"
+      }
+    ]
+  },
+  "next_action": "proceed"
+}

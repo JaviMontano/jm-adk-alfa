@@ -1,0 +1,18 @@
+{
+  "schema": "jm-labs.local-state-preservation.non-touch-policy.v1",
+  "required_non_touch_surfaces": [
+    "stashes",
+    "private_paths"
+  ],
+  "decisions": {
+    "stashes": "inventory-only",
+    "private_paths": "do-not-move-or-publish"
+  },
+  "blocked_without_explicit_user_order": [
+    "git stash pop",
+    "git stash apply",
+    "git stash drop",
+    "copy private path payload",
+    "archive private path payload"
+  ]
+}
