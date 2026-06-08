@@ -1,0 +1,15 @@
+{
+  "schema": 1,
+  "required_mapping_fields": [
+    "claim_id",
+    "path",
+    "mapping_status",
+    "observed_state"
+  ],
+  "mapping_statuses": [
+    "supports",
+    "contradicts",
+    "missing",
+    "not_checked"
+  ]
+}

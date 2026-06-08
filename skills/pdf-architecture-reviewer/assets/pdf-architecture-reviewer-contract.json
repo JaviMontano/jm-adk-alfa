@@ -1,0 +1,25 @@
+{
+  "schema": 1,
+  "json_contract": {
+    "schema_version": 1,
+    "required_top_level_fields": [
+      "schema",
+      "skill",
+      "report_id",
+      "document",
+      "page_evidence",
+      "architecture_claims",
+      "repo_mapping",
+      "official_source_requirements",
+      "contradictions",
+      "decisions",
+      "validation",
+      "guardian"
+    ],
+    "guardian_decisions": [
+      "pass",
+      "warn",
+      "block"
+    ]
+  }
+}

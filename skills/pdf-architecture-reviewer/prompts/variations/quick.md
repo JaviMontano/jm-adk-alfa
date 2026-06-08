@@ -1,12 +1,14 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: pdf-architecture-reviewer
-generated-on: 2026-05-29
-overwrite-policy: missing-only unless --force
--->
-
 # Pdf Architecture Reviewer Quick Variation
 
-Use when the task is low risk and well specified.
+Use when the user provides page-indexed excerpts and asks for a narrow claim-to-repo check.
 
-Return only the requested deliverable, validation status, and residual risks.
+Return:
+
+- document read status,
+- claims with page evidence IDs,
+- repo mapping table,
+- official source requirements,
+- decision status,
+- Guardian pass/warn/block.
+
+Do not authorize implementation when required official sources remain unsatisfied.

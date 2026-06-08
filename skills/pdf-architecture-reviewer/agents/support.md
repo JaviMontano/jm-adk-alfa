@@ -1,23 +1,16 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: pdf-architecture-reviewer
-generated-on: 2026-05-29
-overwrite-policy: missing-only unless --force
--->
-
 ---
 name: pdf-architecture-reviewer-support
 role: support
-description: "Reviews blind spots, dependencies, and implementation details."
+description: "Checks blind spots in page scope, extraction quality, repo paths, and decision evidence."
 tools: [Read, Grep, Glob]
 ---
 
 # Pdf Architecture Reviewer Support
 
-Reviews blind spots, dependencies, and implementation details.
-
 ## Responsibilities
 
-- Follow the skill procedure.
-- Preserve local overrides and existing manual files.
-- Surface risks and validation gaps.
+- Check whether all cited pages are inside the reviewed page range.
+- Flag OCR or extraction degradation that weakens claims.
+- Look for missing repo paths or incomplete mapping coverage.
+- Confirm official source requirement records exist for implementation claims.
+- Confirm the report remains scoped to the active document and repo evidence.

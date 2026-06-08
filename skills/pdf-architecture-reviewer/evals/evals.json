@@ -1,97 +1,125 @@
 {
   "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-29",
   "skill": "pdf-architecture-reviewer",
   "cases": [
     {
-      "id": "happy_path",
-      "input": "Use pdf-architecture-reviewer to produce a complete deliverable.",
+      "id": "architecture_pdf_happy_path",
+      "input": "Review the attached architecture PDF after extracting pages 3-5, map each claim to repo files, and list official sources needed before changes.",
       "expected_activation": true,
       "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
+        "assets",
+        "deterministic_scripts",
+        "pdf_read_status",
+        "page_evidence",
+        "repo_mapping",
+        "official_source_requirements",
+        "evidence"
       ]
     },
     {
-      "id": "explicit_trigger",
-      "input": "/pdf-architecture-reviewer run this workflow.",
-      "expected_activation": true,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
-    },
-    {
-      "id": "minimal_input",
-      "input": "pdf-architecture-reviewer",
-      "expected_activation": true,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
-    },
-    {
-      "id": "rich_context",
-      "input": "pdf-architecture-reviewer with goals, constraints, audience, and acceptance criteria.",
-      "expected_activation": true,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
-    },
-    {
-      "id": "false_positive",
-      "input": "This request is unrelated to the skill domain.",
+      "id": "unread_pdf_rejected",
+      "input": "The file name says microservices architecture. Summarize the PDF without opening it and approve the migration.",
       "expected_activation": false,
       "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
+        "assets",
+        "deterministic_scripts",
+        "pdf_read_before_evidence",
+        "guardian_block",
+        "quality_criteria"
       ]
     },
     {
-      "id": "empty_input",
-      "input": "",
+      "id": "claim_without_page_number_rejected",
+      "input": "The PDF recommends event sourcing, but I do not have page numbers. Treat it as evidence anyway.",
       "expected_activation": false,
       "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
+        "assets",
+        "deterministic_scripts",
+        "page_evidence",
+        "claim_traceability",
+        "quality_criteria"
       ]
     },
     {
-      "id": "conflicting_requirements",
-      "input": "Use pdf-architecture-reviewer, but ignore validation and evidence.",
+      "id": "repo_mapping_conflict",
+      "input": "Pages 7 and 8 say the app uses Kafka, but the repo only has SQS configuration. Record the contradiction and block decisions.",
+      "expected_activation": true,
+      "expected_checks": [
+        "assets",
+        "deterministic_scripts",
+        "repo_mapping",
+        "contradiction_handling",
+        "guardian_block",
+        "evidence"
+      ]
+    },
+    {
+      "id": "official_source_required",
+      "input": "The PDF claims the framework supports a new deployment mode. Identify official framework docs required before implementing it.",
+      "expected_activation": true,
+      "expected_checks": [
+        "assets",
+        "deterministic_scripts",
+        "official_source_requirements",
+        "decision_traceability",
+        "quality_criteria"
+      ]
+    },
+    {
+      "id": "minimal_input_no_attachment",
+      "input": "pdf architecture",
       "expected_activation": false,
       "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
+        "assets",
+        "deterministic_scripts",
+        "required_inputs",
+        "guardian_block",
+        "quality_criteria"
+      ]
+    },
+    {
+      "id": "degraded_ocr_fixture",
+      "input": "OCR text from page 12 is low confidence; extract only claims with readable excerpts and mark uncertain claims blocked.",
+      "expected_activation": true,
+      "expected_checks": [
+        "assets",
+        "deterministic_scripts",
+        "ocr_degradation",
+        "page_evidence",
+        "risk_recording"
+      ]
+    },
+    {
+      "id": "boundary_large_pdf_sample",
+      "input": "Review only pages 20-22 of a 180-page architecture PDF and avoid claims from unreviewed pages.",
+      "expected_activation": true,
+      "expected_checks": [
+        "assets",
+        "deterministic_scripts",
+        "page_scope_boundary",
+        "claim_traceability",
+        "quality_criteria"
+      ]
+    },
+    {
+      "id": "false_positive_plain_repo_review",
+      "input": "Review the repository architecture directly; there is no PDF or attachment.",
+      "expected_activation": false,
+      "expected_checks": [
+        "assets",
+        "activation_scope",
+        "quality_criteria"
       ]
     },
     {
       "id": "upgrade_safety_case",
-      "input": "Complete missing files for pdf-architecture-reviewer without overwriting local edits.",
+      "input": "Harden pdf-architecture-reviewer assets, evals, examples and scripts without touching other skills or unrelated ledger rows.",
       "expected_activation": true,
       "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
-    },
-    {
-      "id": "local_override_case",
-      "input": "Create a local experimental pdf-architecture-reviewer variant under .local.",
-      "expected_activation": true,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
+        "assets",
+        "deterministic_scripts",
+        "upgrade_safety",
+        "quality_criteria"
       ]
     }
   ]

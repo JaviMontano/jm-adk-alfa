@@ -1,24 +1,38 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: pdf-architecture-reviewer
-generated-on: 2026-05-29
-overwrite-policy: missing-only unless --force
--->
-
 # Pdf Architecture Reviewer Body of Knowledge
 
-## Canon
+## Evidence Hierarchy
 
-Use this file for stable domain knowledge, standards, and reusable heuristics for `pdf-architecture-reviewer`.
+| Evidence Type | Role | Can Authorize Change |
+|---|---|---|
+| Read PDF page excerpt | Source of document claim | No |
+| Repository code, config, or docs | Confirms repo state | No by itself |
+| Official vendor/framework/source docs | Confirms external behavior | Yes, when linked to a verified claim |
+| User summary of attachment | Context only | No |
+| File name or unreviewed page | Not evidence | No |
+
+## Deterministic Review Rules
+
+- A claim is valid only when it links to one or more page evidence IDs.
+- Page evidence must include page number, excerpt, extraction method, and linked claim IDs.
+- Repo mapping is required for every implementation-impacting claim.
+- A contradiction exists when PDF evidence and repo evidence disagree or when the repo lacks a required component.
+- Required official sources must be named before implementation is authorized.
+- Guardian pass is impossible when the PDF is unread, evidence is unpaginated, repo mapping is missing, contradictions are unresolved, or official sources are still required.
+
+## Common Anti-Patterns
+
+- Approving a change because the PDF title sounds authoritative.
+- Treating OCR output with no page number as verified evidence.
+- Merging multiple claims from different pages into one untraceable summary.
+- Reporting repo alignment without naming paths or observed state.
+- Calling a decision complete while official source requirements remain open.
 
 ## Quality Signals
 
 | Signal | Target |
 |---|---|
-| Evidence coverage | Claims are grounded or marked as assumptions |
-| Scope control | Output stays inside the requested domain |
-| Update safety | Existing manual work is preserved |
-
-## Open Knowledge
-
-- Add project-specific references as they become stable.
+| Page traceability | Every claim has page evidence |
+| Repo traceability | Every impactful claim maps to repo state |
+| Conflict handling | Contradictions are explicit and blocking |
+| Official source readiness | Required official sources are named or satisfied |
+| Determinism | Structured report passes the offline validator |

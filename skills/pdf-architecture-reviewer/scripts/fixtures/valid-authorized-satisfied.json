@@ -1,0 +1,84 @@
+{
+  "schema": 1,
+  "skill": "pdf-architecture-reviewer",
+  "report_id": "valid-authorized-satisfied",
+  "document": {
+    "document_id": "payments-target-architecture",
+    "file_name": "payments-target-architecture.pdf",
+    "sha256": "6e7b9c1d0f4a3b2c5d8e9f00112233445566778899aabbccddeeff0012345678",
+    "extraction_status": "read",
+    "extraction_method": "text_layer",
+    "page_count": 24,
+    "pages_reviewed": [
+      4,
+      5
+    ]
+  },
+  "page_evidence": [
+    {
+      "evidence_id": "pe-payment-queue",
+      "page": 4,
+      "excerpt": "Payment settlement events are persisted to a durable queue before worker processing.",
+      "extraction_method": "text_layer",
+      "claim_ids": [
+        "claim-payment-queue"
+      ]
+    }
+  ],
+  "architecture_claims": [
+    {
+      "claim_id": "claim-payment-queue",
+      "claim": "Payment settlement events require a durable queue before worker processing.",
+      "status": "supported",
+      "page_evidence_ids": [
+        "pe-payment-queue"
+      ],
+      "official_source_required": true,
+      "decision_impact": "Queue durability settings may be changed only after vendor semantics are confirmed."
+    }
+  ],
+  "repo_mapping": [
+    {
+      "claim_id": "claim-payment-queue",
+      "path": "services/payments/config/messaging.yml",
+      "mapping_status": "supports",
+      "observed_state": "settlement events use queue transport with persistence enabled"
+    }
+  ],
+  "official_source_requirements": [
+    {
+      "claim_id": "claim-payment-queue",
+      "source_kind": "vendor_docs",
+      "requirement_reason": "Queue persistence behavior is controlled by the vendor runtime and must be verified from official docs.",
+      "status": "satisfied",
+      "official_source_ids": [
+        "vendor-queue-docs-2026-06-08"
+      ]
+    }
+  ],
+  "contradictions": [],
+  "decisions": [
+    {
+      "decision_id": "decision-authorize-queue",
+      "action": "authorize",
+      "claim_ids": [
+        "claim-payment-queue"
+      ],
+      "rationale": "The PDF claim has page evidence, repo mapping supports it, and the required official source is satisfied.",
+      "blocking_gaps": []
+    }
+  ],
+  "validation": {
+    "pdf_read_before_evidence": true,
+    "page_evidence_present": true,
+    "claims_trace_to_pages": true,
+    "repo_mapping_traceable": true,
+    "official_sources_identified": true,
+    "contradictions_recorded": true,
+    "deterministic_script_passed": true
+  },
+  "guardian": {
+    "decision": "pass",
+    "reason": "All required evidence and official source requirements are satisfied."
+  }
+}

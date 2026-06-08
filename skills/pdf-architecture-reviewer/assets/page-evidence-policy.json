@@ -1,0 +1,12 @@
+{
+  "schema": 1,
+  "required_page_evidence_fields": [
+    "evidence_id",
+    "page",
+    "excerpt",
+    "extraction_method",
+    "claim_ids"
+  ],
+  "minimum_excerpt_length": 24,
+  "allow_unreviewed_pages": false
+}
