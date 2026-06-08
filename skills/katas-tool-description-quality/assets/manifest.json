@@ -1,0 +1,40 @@
+{
+  "schema": 1,
+  "skill": "katas-tool-description-quality",
+  "assets": [
+    {
+      "path": "assets/tool-description-contract.json",
+      "type": "contract",
+      "purpose": "Defines required report fields and Guardian decisions.",
+      "used_by": ["SKILL.md", "scripts/validate_tool_description_quality.py"]
+    },
+    {
+      "path": "assets/description-quality-policy.json",
+      "type": "policy",
+      "purpose": "Defines required description elements and blocked generic wording.",
+      "used_by": ["SKILL.md", "scripts/validate_tool_description_quality.py"]
+    },
+    {
+      "path": "assets/routing-risk-policy.json",
+      "type": "policy",
+      "purpose": "Defines deterministic overlap, rename, split, and prompt-bias rules.",
+      "used_by": ["SKILL.md", "scripts/validate_tool_description_quality.py"]
+    },
+    {
+      "path": "assets/action-priority-policy.json",
+      "type": "policy",
+      "purpose": "Defines maximum action count and deterministic sorting.",
+      "used_by": ["SKILL.md", "scripts/validate_tool_description_quality.py"]
+    },
+    {
+      "path": "assets/evidence-policy.json",
+      "type": "policy",
+      "purpose": "Defines minimum evidence requirements and blocked claims.",
+      "used_by": ["SKILL.md", "scripts/validate_tool_description_quality.py"]
+    }
+  ],
+  "offline": true,
+  "network_required": false,
+  "randomness_allowed": false,
+  "time_dependent": false
+}

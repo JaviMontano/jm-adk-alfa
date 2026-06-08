@@ -1,0 +1,93 @@
+{
+  "schema": 1,
+  "skill": "katas-tool-description-quality",
+  "report_id": "tdq-valid-split-overloaded-tool",
+  "scenario": "single overloaded content tool",
+  "evidence": [
+    {
+      "type": "tool_definition",
+      "detail": "process_content accepted modes extract, summarize, classify, translate, and embed in one description."
+    },
+    {
+      "type": "misroute_sample",
+      "detail": "Summarization requests sometimes selected extract mode because the mode was not explicit in the tool contract."
+    }
+  ],
+  "tools": [
+    {
+      "name": "extract_text",
+      "split_from": "process_content",
+      "description": "Extracts verbatim text from supplied content without summarizing or classifying it. Use when the user asks for exact source text, fields, or raw sections; for summaries use summarize_text instead.",
+      "input_format": "Plain text, markdown, HTML, or document text payload",
+      "example_queries": [
+        "Extract every heading from this markdown document.",
+        "Return the raw clauses from this contract text."
+      ],
+      "boundary": "For summaries or labels use summarize_text or classify_text instead.",
+      "action": "split"
+    },
+    {
+      "name": "summarize_text",
+      "split_from": "process_content",
+      "description": "Creates a concise summary from supplied text while preserving stated facts. Use when the user asks for a short brief, abstract, or recap; for exact extraction use extract_text instead.",
+      "input_format": "Plain text or markdown text payload",
+      "example_queries": [
+        "Summarize this transcript in five bullets.",
+        "Create a one paragraph abstract from this article."
+      ],
+      "boundary": "For exact source extraction use extract_text; for category labels use classify_text instead.",
+      "action": "split"
+    },
+    {
+      "name": "classify_text",
+      "split_from": "process_content",
+      "description": "Assigns one or more labels from a declared taxonomy to supplied text. Use when the request provides labels or asks for categorization; for summaries use summarize_text instead.",
+      "input_format": "Text payload plus explicit taxonomy or label set",
+      "example_queries": [
+        "Classify these support tickets by priority.",
+        "Apply the provided compliance taxonomy to this policy excerpt."
+      ],
+      "boundary": "For summarization use summarize_text; for raw extraction use extract_text instead.",
+      "action": "split"
+    }
+  ],
+  "overlap_findings": [
+    {
+      "tool": "process_content",
+      "risk_type": "overloaded_modes",
+      "severity": "high",
+      "recommended_action": "split",
+      "requires_boundary": true,
+      "evidence": "One tool exposes multiple modes with different output contracts."
+    },
+    {
+      "tool": "process_content",
+      "risk_type": "missing_boundary",
+      "severity": "medium",
+      "recommended_action": "boundary_only",
+      "requires_boundary": true,
+      "evidence": "The original description never states when to choose extraction instead of summarization."
+    }
+  ],
+  "priority_actions": [
+    {
+      "tool": "process_content",
+      "action": "split",
+      "reason": "Overloaded modes are the highest severity issue and require separate tool contracts."
+    },
+    {
+      "tool": "process_content",
+      "action": "boundary_only",
+      "reason": "Each split tool must state its neighboring boundary."
+    }
+  ],
+  "validation": {
+    "overlapping_contracts_remaining": false,
+    "reciprocal_boundaries": true,
+    "expected_misroute_rate_pct": 3.5
+  },
+  "guardian": {
+    "decision": "pass",
+    "reason": "The overloaded tool is split into single-purpose contracts with deterministic routing boundaries."
+  }
+}

@@ -1,28 +1,25 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: katas-tool-description-quality
-generated-on: 2026-05-29
-overwrite-policy: missing-only unless --force
--->
-
 # Katas Tool Description Quality Output
 
 ## Summary
 
-{summary — qué tools estaban ambiguos y qué se hizo: rename, split o frontera}
+{{summary}}
 
 ## Evidence
 
-{evidence — pares con contrato solapado detectados, keywords del system prompt que sesgaban el routing}
+{{evidence}}
 
-## Result
+## Rewritten Tools
 
-{result — el JSON de tools reescrito, cada description con input format + ejemplo de query + frontera recíproca}
+{{rewritten_tools}}
+
+## Rename And Split Decisions
+
+{{rename_split_decisions}}
 
 ## Validation
 
-{validation — confirmación de que no queda contrato solapado y de que las fronteras son recíprocas; misroute esperado}
+{{validation}}
 
-## Risks and Limits
+## Risks And Limits
 
-{risks — fronteras que siguen siendo borrosas, tools fuera de alcance, dependencia del wording del system prompt}
+{{risks}}

@@ -1,0 +1,10 @@
+{
+  "schema": 1,
+  "max_actions": 3,
+  "sort_order": [
+    "severity_high_before_medium_before_low",
+    "risk_type_order",
+    "tool_name"
+  ],
+  "risk_type_order": ["overloaded_modes", "confusing_name", "overlap", "prompt_keyword_bias", "missing_boundary"]
+}

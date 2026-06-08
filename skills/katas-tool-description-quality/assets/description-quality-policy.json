@@ -1,0 +1,20 @@
+{
+  "schema": 1,
+  "required_tool_fields": [
+    "name",
+    "description",
+    "input_format",
+    "example_queries",
+    "boundary",
+    "action"
+  ],
+  "allowed_actions": ["keep", "rename", "split", "boundary_only"],
+  "blocked_descriptions": [
+    "Analyzes content",
+    "Analyzes documents",
+    "Processes data",
+    "Handles requests"
+  ],
+  "required_description_phrases": ["Use when", "for"],
+  "max_expected_misroute_rate_pct": 5
+}

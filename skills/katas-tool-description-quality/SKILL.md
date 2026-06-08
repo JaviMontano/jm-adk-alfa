@@ -35,6 +35,22 @@ Cuando dos tools tienen descripciones genéricas (`Analyzes content` vs `Analyze
 - **El system prompt interactúa con la descripción:** ciertas keywords en el prompt pueden sesgar el routing hacia un tool aunque el contenido pida otro.
 - La frontera debe ser **recíproca:** si A dice "para PDF usa B", B debe decir "para HTML usa A".
 
+## Contrato deterministico
+
+Usa los assets solo cuando el caso requiera detalle verificable:
+
+- `assets/tool-description-contract.json`: campos obligatorios del reporte.
+- `assets/description-quality-policy.json`: elementos minimos por descripcion.
+- `assets/routing-risk-policy.json`: reglas para overlap, rename, split y sesgo de prompt.
+- `assets/action-priority-policy.json`: orden deterministico de acciones.
+- `assets/evidence-policy.json`: evidencia aceptada y claims bloqueados.
+
+Cuando se requiera handoff machine-checkable, emite JSON que pase:
+
+```bash
+python3 -B skills/katas-tool-description-quality/scripts/validate_tool_description_quality.py <report.json>
+```
+
 ## Patrón correcto
 
 ```json

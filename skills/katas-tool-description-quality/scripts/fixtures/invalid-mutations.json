@@ -1,0 +1,106 @@
+{
+  "schema": 1,
+  "skill": "katas-tool-description-quality",
+  "cases": [
+    {
+      "id": "invalid-generic-description",
+      "base": "valid-web-document-rename.json",
+      "operations": [
+        {
+          "op": "set",
+          "path": "tools.0.description",
+          "value": "Analyzes content"
+        }
+      ]
+    },
+    {
+      "id": "invalid-missing-input-format",
+      "base": "valid-web-document-rename.json",
+      "operations": [
+        {
+          "op": "remove",
+          "path": "tools.0.input_format"
+        }
+      ]
+    },
+    {
+      "id": "invalid-empty-example-query",
+      "base": "valid-web-document-rename.json",
+      "operations": [
+        {
+          "op": "set",
+          "path": "tools.0.example_queries",
+          "value": []
+        }
+      ]
+    },
+    {
+      "id": "invalid-non-reciprocal-boundary",
+      "base": "valid-web-document-rename.json",
+      "operations": [
+        {
+          "op": "remove",
+          "path": "tools.1.reciprocal_boundary_to"
+        }
+      ]
+    },
+    {
+      "id": "invalid-rename-missing-source",
+      "base": "valid-web-document-rename.json",
+      "operations": [
+        {
+          "op": "remove",
+          "path": "tools.0.renamed_from"
+        }
+      ]
+    },
+    {
+      "id": "invalid-overlap-remaining",
+      "base": "valid-web-document-rename.json",
+      "operations": [
+        {
+          "op": "set",
+          "path": "validation.overlapping_contracts_remaining",
+          "value": true
+        }
+      ]
+    },
+    {
+      "id": "invalid-high-misroute-rate",
+      "base": "valid-web-document-rename.json",
+      "operations": [
+        {
+          "op": "set",
+          "path": "validation.expected_misroute_rate_pct",
+          "value": 12
+        }
+      ]
+    },
+    {
+      "id": "invalid-priority-order",
+      "base": "valid-web-document-rename.json",
+      "operations": [
+        {
+          "op": "set",
+          "path": "priority_actions.0.tool",
+          "value": "analyze_document"
+        },
+        {
+          "op": "set",
+          "path": "priority_actions.0.action",
+          "value": "boundary_only"
+        },
+        {
+          "op": "set",
+          "path": "priority_actions.1.tool",
+          "value": "analyze_content"
+        },
+        {
+          "op": "set",
+          "path": "priority_actions.1.action",
+          "value": "rename"
+        }
+      ]
+    }
+  ]
+}

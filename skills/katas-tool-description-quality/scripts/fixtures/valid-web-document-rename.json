@@ -1,0 +1,83 @@
+{
+  "schema": 1,
+  "skill": "katas-tool-description-quality",
+  "report_id": "tdq-valid-web-document-rename",
+  "scenario": "web and document routing ambiguity",
+  "evidence": [
+    {
+      "type": "tool_definition",
+      "detail": "analyze_content and analyze_document used generic descriptions that did not separate URL or HTML input from file documents."
+    },
+    {
+      "type": "routing_trace",
+      "detail": "PDF extraction requests were routed to the HTML parser when both tools shared the same verb."
+    }
+  ],
+  "tools": [
+    {
+      "name": "extract_web_results",
+      "renamed_from": "analyze_content",
+      "description": "Extracts search result records from URL or raw HTML input. Use when the request supplies a web page, search results page, or HTML string; for PDF or DOCX files use parse_document instead.",
+      "input_format": "URL string or raw HTML string",
+      "example_queries": [
+        "Extract result titles and links from https://example.test/search?q=ai",
+        "Parse this HTML snippet into search result records."
+      ],
+      "boundary": "For PDF, DOCX, or local file content use parse_document instead.",
+      "reciprocal_boundary_to": "parse_document",
+      "action": "rename"
+    },
+    {
+      "name": "parse_document",
+      "renamed_from": "analyze_document",
+      "description": "Extracts structured text and metadata from PDF or DOCX input. Use when the request supplies a local document path, uploaded document bytes, or document MIME type; for URL or raw HTML input use extract_web_results instead.",
+      "input_format": "PDF or DOCX path, bytes, or document MIME payload",
+      "example_queries": [
+        "Parse /tmp/contract.pdf into section headings and text.",
+        "Extract metadata from the uploaded DOCX file."
+      ],
+      "boundary": "For URL, web search result pages, or raw HTML use extract_web_results instead.",
+      "reciprocal_boundary_to": "extract_web_results",
+      "action": "rename"
+    }
+  ],
+  "overlap_findings": [
+    {
+      "tool": "analyze_content",
+      "risk_type": "confusing_name",
+      "severity": "high",
+      "recommended_action": "rename",
+      "requires_boundary": true,
+      "evidence": "The name hides whether content means web HTML, files, or arbitrary text."
+    },
+    {
+      "tool": "analyze_document",
+      "risk_type": "overlap",
+      "severity": "medium",
+      "recommended_action": "boundary_only",
+      "requires_boundary": true,
+      "evidence": "The description lacks a reciprocal boundary against web extraction."
+    }
+  ],
+  "priority_actions": [
+    {
+      "tool": "analyze_content",
+      "action": "rename",
+      "reason": "The confusing name is the highest severity routing risk."
+    },
+    {
+      "tool": "analyze_document",
+      "action": "boundary_only",
+      "reason": "The document parser needs a reciprocal boundary to stop URL and HTML requests from crossing over."
+    }
+  ],
+  "validation": {
+    "overlapping_contracts_remaining": false,
+    "reciprocal_boundaries": true,
+    "expected_misroute_rate_pct": 4
+  },
+  "guardian": {
+    "decision": "pass",
+    "reason": "Both rewritten tool contracts include name, input format, examples, action, and reciprocal boundaries."
+  }
+}

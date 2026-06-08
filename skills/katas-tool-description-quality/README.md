@@ -1,32 +1,26 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: katas-tool-description-quality
-generated-on: 2026-05-29
-overwrite-policy: missing-only unless --force
--->
-
 # Katas Tool Description Quality
 
-Kata 21 del kit JM-ADK. La descripción de un tool es el único mecanismo que el modelo usa para escoger entre tools similares: input format, ejemplos de query y frontera explícita. Descripciones genéricas y solapadas (`Analyzes content` vs `Analyzes documents`) producen misroute en 20–30% de los turnos, invisible hasta que un downstream rompe. El remedio canónico: rename + split sobre overloading.
+Kata para convertir descripciones de tools en contratos de seleccion no solapados. Una descripcion valida declara input format, ejemplo de query y frontera explicita reciproca con tools vecinos.
 
-## Triggers
+## Use
 
-- tool description quality
-- tool routing ambiguity
-- rename split tools
-- tool contract
+Usa esta skill cuando:
 
-## Allowed Tools
+- dos o mas tools compiten por el mismo turno
+- el modelo responde bien pero con el tool incorrecto
+- un tool multimodo necesita split
+- un nombre de tool induce routing ambiguo
+- el system prompt sesga la seleccion por keywords
 
-- Read
-- Grep
-- Glob
-- Bash
+## Contract
 
-## Quick Use
+El contrato deterministico vive en `assets/`. Reportes JSON pueden validarse offline con:
 
-Actívala cuando dos o más tools confunden al modelo (respuestas correctas pero del tool equivocado), cuando diseñas una toolset nueva y quieres prevenir misroute, o cuando un tool acumula modos y conviene evaluar split. Entrega: tools renombrados con input format + frontera recíproca, y la justificación del rename/split.
+```bash
+bash skills/katas-tool-description-quality/scripts/check.sh
+python3 -B skills/katas-tool-description-quality/scripts/validate_tool_description_quality.py <report.json>
+```
 
-## Output Format
+## Output
 
-Markdown con summary, evidence, result, validation, y risks.
+Un reporte completo incluye evidencia de solapamiento, tools reescritos, decisiones de rename/split, fronteras reciprocas, validacion de misroute esperado y decision Guardian.
