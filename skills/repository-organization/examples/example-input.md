@@ -1,10 +1,3 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: repository-organization
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
-
 # Example Input
 
-Use `repository-organization` to produce a concise deliverable for a realistic project request.
+Audit JM-ADK Alfa repository organization. Confirm transient files are under `workspace/` or `.local/archive/`, private paths such as `user-context/jarvis-os` are not published, and any proposed move has a manifest.

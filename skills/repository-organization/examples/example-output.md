@@ -1,18 +1,13 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: repository-organization
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
-
 # Example Output
 
-## Summary
-
-Example output for `repository-organization`.
-
-## Validation
-
-- Skill activated intentionally.
-- Output follows the requested format.
-- Risks and assumptions are explicit.
+```json
+{
+  "schema": "jm-labs.repository-organization.report.v1",
+  "skill": "repository-organization",
+  "clean_claim": false,
+  "decision": {
+    "status": "blocked",
+    "reason": "Cleanup action lacks a manifest."
+  }
+}
+```

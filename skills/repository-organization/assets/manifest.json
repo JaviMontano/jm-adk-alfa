@@ -1,0 +1,10 @@
+{
+  "skill": "repository-organization",
+  "assets": [
+    {"path":"assets/README.md","type":"documentation","purpose":"Explains organization policy assets.","used_by":["SKILL.md","README.md"]},
+    {"path":"assets/repository-organization-contract.json","type":"contract","purpose":"Defines report shape.","used_by":["SKILL.md","scripts/validate_repository_organization_report.py"]},
+    {"path":"assets/transient-placement-policy.json","type":"policy","purpose":"Defines transient file placement.","used_by":["SKILL.md","scripts/validate_repository_organization_report.py"]},
+    {"path":"assets/move-manifest-policy.json","type":"policy","purpose":"Requires manifests for file moves.","used_by":["SKILL.md","scripts/validate_repository_organization_report.py"]},
+    {"path":"assets/private-boundary-policy.json","type":"policy","purpose":"Defines private path boundaries.","used_by":["SKILL.md","scripts/validate_repository_organization_report.py"]}
+  ]
+}

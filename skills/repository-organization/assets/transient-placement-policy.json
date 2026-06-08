@@ -1,0 +1,1 @@
+{"schema":"jm-labs.repository-organization.transient-policy.v1","allowed_roots":["workspace/",".local/archive/"],"block_active_transients_outside_allowed_roots":true}
