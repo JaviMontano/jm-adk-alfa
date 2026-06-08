@@ -1,0 +1,15 @@
+{
+  "schema": 1,
+  "actions": [
+    "none",
+    "blocked",
+    "ready",
+    "executed"
+  ],
+  "required_fields": [
+    "action",
+    "executed_plan_hash",
+    "writes",
+    "blocking_gaps"
+  ]
+}

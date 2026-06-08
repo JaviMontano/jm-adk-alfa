@@ -1,0 +1,66 @@
+{
+  "schema": 1,
+  "skill": "plan-mode-workflow",
+  "assets": [
+    {
+      "path": "assets/plan-mode-workflow-contract.json",
+      "type": "json_contract",
+      "purpose": "Defines required fields for deterministic plan-mode workflow reports.",
+      "used_by": [
+        "SKILL.md",
+        "README.md",
+        "scripts/validate_plan_mode_workflow.py",
+        "evals/evals.json"
+      ]
+    },
+    {
+      "path": "assets/mode-state-policy.json",
+      "type": "policy",
+      "purpose": "Requires explicit mode state and default Plan Mode start.",
+      "used_by": [
+        "SKILL.md",
+        "knowledge/body-of-knowledge.md",
+        "scripts/validate_plan_mode_workflow.py"
+      ]
+    },
+    {
+      "path": "assets/read-only-tool-policy.json",
+      "type": "policy",
+      "purpose": "Defines read-only tools and write tools blocked by the hook.",
+      "used_by": [
+        "agents/support.md",
+        "prompts/primary.md",
+        "scripts/validate_plan_mode_workflow.py"
+      ]
+    },
+    {
+      "path": "assets/approval-signature-policy.json",
+      "type": "policy",
+      "purpose": "Defines signed plan event fields and hash matching requirements.",
+      "used_by": [
+        "agents/lead.md",
+        "templates/output.md",
+        "scripts/validate_plan_mode_workflow.py"
+      ]
+    },
+    {
+      "path": "assets/hook-enforcement-policy.json",
+      "type": "policy",
+      "purpose": "Defines PreToolUse enforcement flags and plan-change re-sign behavior.",
+      "used_by": [
+        "agents/guardian.md",
+        "prompts/meta.md",
+        "scripts/validate_plan_mode_workflow.py"
+      ]
+    },
+    {
+      "path": "assets/execution-decision-policy.json",
+      "type": "policy",
+      "purpose": "Defines when execution is blocked, ready, or executed.",
+      "used_by": [
+        "templates/output.md",
+        "scripts/validate_plan_mode_workflow.py"
+      ]
+    }
+  ]
+}

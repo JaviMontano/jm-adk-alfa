@@ -1,0 +1,14 @@
+{
+  "schema": 1,
+  "allowed_modes": [
+    "plan",
+    "execute"
+  ],
+  "required_fields": [
+    "current_mode",
+    "default_start_mode",
+    "plan_hash_current",
+    "signed_plan_hash"
+  ],
+  "default_start_mode": "plan"
+}

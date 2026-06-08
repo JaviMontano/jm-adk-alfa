@@ -1,0 +1,86 @@
+{
+  "schema": 1,
+  "skill": "plan-mode-workflow",
+  "workflow_id": "valid-blocked-unsigned",
+  "mode_state": {
+    "current_mode": "plan",
+    "default_start_mode": "plan",
+    "plan_hash_current": "2222222222222222222222222222222222222222222222222222222222222222",
+    "signed_plan_hash": ""
+  },
+  "read_only_exploration": [
+    {
+      "tool": "Grep",
+      "purpose": "Find schema references without editing files.",
+      "mutates": false
+    }
+  ],
+  "plan_artifact": {
+    "path": "plan.md",
+    "sha256": "2222222222222222222222222222222222222222222222222222222222222222",
+    "status": "draft",
+    "objective": "Prepare a bounded migration plan.",
+    "files_to_touch": [
+      "db/schema.sql"
+    ],
+    "acceptance_criteria": [
+      "approval event signs the exact hash"
+    ],
+    "risks": [
+      "write before signature would bypass governance"
+    ]
+  },
+  "approval_event": {
+    "status": "none",
+    "plan_hash": "",
+    "approved_by": "",
+    "signed_at": ""
+  },
+  "hook_enforcement": {
+    "hook": "PreToolUse",
+    "enforcement_active": true,
+    "denies_write_in_plan": true,
+    "reverts_on_plan_hash_change": true,
+    "deny_reasons": [
+      "No signed plan hash is present."
+    ]
+  },
+  "write_tool_policy": {
+    "allowed_read_tools": [
+      "Read",
+      "Grep",
+      "Glob",
+      "Bash:read-only"
+    ],
+    "blocked_write_tools": [
+      "Write",
+      "Edit",
+      "MultiEdit",
+      "NotebookEdit",
+      "Bash:mutation",
+      "MCP:mutation"
+    ],
+    "bypass_permissions": false
+  },
+  "execution": {
+    "action": "blocked",
+    "executed_plan_hash": "",
+    "writes": [],
+    "blocking_gaps": [
+      "plan hash has not been signed"
+    ]
+  },
+  "validation": {
+    "plan_mode_read_only": true,
+    "write_tools_enumerated": true,
+    "signed_hash_matches_plan": false,
+    "hook_blocks_writes": true,
+    "plan_change_requires_resign": true,
+    "no_bypass_permissions": true,
+    "deterministic_script_passed": true
+  },
+  "guardian": {
+    "decision": "block",
+    "reason": "Execution remains blocked until the plan hash is signed."
+  }
+}

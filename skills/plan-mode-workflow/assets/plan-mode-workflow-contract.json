@@ -1,0 +1,25 @@
+{
+  "schema": 1,
+  "json_contract": {
+    "schema_version": 1,
+    "required_top_level_fields": [
+      "schema",
+      "skill",
+      "workflow_id",
+      "mode_state",
+      "read_only_exploration",
+      "plan_artifact",
+      "approval_event",
+      "hook_enforcement",
+      "write_tool_policy",
+      "execution",
+      "validation",
+      "guardian"
+    ],
+    "guardian_decisions": [
+      "pass",
+      "warn",
+      "block"
+    ]
+  }
+}

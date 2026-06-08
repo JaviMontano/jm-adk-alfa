@@ -79,6 +79,12 @@ def run(repo):
 - ¿El hook enumera explícitamente las tools de escritura a bloquear?
 - ¿El plan firmado y el diff final quedan como rastro de qué se autorizó?
 
+## Assets y validación offline
+
+- `assets/` define el contrato determinístico de modo, plan firmado, aprobación, hook, write-tools y decisión de ejecución.
+- `scripts/check.sh` valida fixtures locales sin red, tiempo real ni aleatoriedad.
+- `scripts/validate_plan_mode_workflow.py` rechaza mutaciones donde se escribe en `plan`, falta firma, el hash no coincide, el hook no bloquea, se usa `bypassPermissions` o Guardian aprueba un caso bloqueado.
+
 ## Katas y skills relacionadas
 
 - Kata 07 cubre el diseño del gate de aprobación read-only.

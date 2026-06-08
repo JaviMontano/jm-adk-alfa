@@ -1,0 +1,92 @@
+{
+  "schema": 1,
+  "skill": "plan-mode-workflow",
+  "workflow_id": "valid-signed-ready",
+  "mode_state": {
+    "current_mode": "execute",
+    "default_start_mode": "plan",
+    "plan_hash_current": "1111111111111111111111111111111111111111111111111111111111111111",
+    "signed_plan_hash": "1111111111111111111111111111111111111111111111111111111111111111"
+  },
+  "read_only_exploration": [
+    {
+      "tool": "Read",
+      "purpose": "Inspect AGENTS.md before planning writes.",
+      "mutates": false
+    },
+    {
+      "tool": "Bash:read-only",
+      "purpose": "Run git status and rg queries without modifying files.",
+      "mutates": false
+    }
+  ],
+  "plan_artifact": {
+    "path": "plan.md",
+    "sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+    "status": "signed",
+    "objective": "Rename one database column after read-only exploration.",
+    "files_to_touch": [
+      "db/schema.sql",
+      "services/payments/handler.py"
+    ],
+    "acceptance_criteria": [
+      "tests pass",
+      "diff touches only planned files"
+    ],
+    "risks": [
+      "shared workspace writes require signed plan"
+    ]
+  },
+  "approval_event": {
+    "status": "signed",
+    "plan_hash": "1111111111111111111111111111111111111111111111111111111111111111",
+    "approved_by": "lead-payments",
+    "signed_at": "2026-06-08T12:00:00Z"
+  },
+  "hook_enforcement": {
+    "hook": "PreToolUse",
+    "enforcement_active": true,
+    "denies_write_in_plan": true,
+    "reverts_on_plan_hash_change": true,
+    "deny_reasons": [
+      "Plan Mode is read-only until plan hash is signed.",
+      "Plan hash changed after signature."
+    ]
+  },
+  "write_tool_policy": {
+    "allowed_read_tools": [
+      "Read",
+      "Grep",
+      "Glob",
+      "Bash:read-only"
+    ],
+    "blocked_write_tools": [
+      "Write",
+      "Edit",
+      "MultiEdit",
+      "NotebookEdit",
+      "Bash:mutation",
+      "MCP:mutation"
+    ],
+    "bypass_permissions": false
+  },
+  "execution": {
+    "action": "ready",
+    "executed_plan_hash": "1111111111111111111111111111111111111111111111111111111111111111",
+    "writes": [],
+    "blocking_gaps": []
+  },
+  "validation": {
+    "plan_mode_read_only": true,
+    "write_tools_enumerated": true,
+    "signed_hash_matches_plan": true,
+    "hook_blocks_writes": true,
+    "plan_change_requires_resign": true,
+    "no_bypass_permissions": true,
+    "deterministic_script_passed": true
+  },
+  "guardian": {
+    "decision": "pass",
+    "reason": "The exact plan hash is signed and the hook blocks writes while in Plan Mode."
+  }
+}

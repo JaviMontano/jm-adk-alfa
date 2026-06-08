@@ -1,17 +1,18 @@
 {
   "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-30",
   "skill": "plan-mode-workflow",
   "cases": [
     {
-      "id": "happy_path",
-      "input": "Vamos a tocar un repo de pagos desconocido por primera vez. Diseña un gate de dos modos: explora en read-only, dame un plan.md firmable y bloquea escritura hasta que firme el hash.",
+      "id": "happy_path_signed_plan",
+      "input": "Vamos a tocar un repo de pagos desconocido por primera vez. Diseña un gate de dos modos: explora en read-only, dame un plan.md firmable y bloquea escritura hasta que firme el hash exacto.",
       "expected_activation": true,
       "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
+        "assets",
+        "deterministic_scripts",
+        "read_only_exploration",
+        "plan_hash_signature",
+        "hook_enforcement",
+        "quality_criteria"
       ]
     },
     {
@@ -19,39 +20,47 @@
       "input": "/plan-mode-workflow opera este repo en read-only y firma el plan antes de escribir.",
       "expected_activation": true,
       "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
+        "assets",
+        "deterministic_scripts",
+        "read_only_exploration",
+        "plan_hash_signature",
+        "quality_criteria"
       ]
     },
     {
       "id": "approval_gate_required",
-      "input": "Compliance exige una aprobación auditable (hash + aprobador + timestamp) antes de mutar archivos en producción. Implementa el plan approval gate con hook PreToolUse.",
+      "input": "Compliance exige una aprobacion auditable con hash, aprobador y timestamp antes de mutar archivos en produccion. Implementa el plan approval gate con hook PreToolUse.",
       "expected_activation": true,
       "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
+        "assets",
+        "deterministic_scripts",
+        "approval_event",
+        "hook_enforcement",
+        "quality_criteria"
       ]
     },
     {
       "id": "shared_workspace_write_risk",
-      "input": "Otro dev tiene cambios sin commitear en el mismo módulo. Necesito read-only exploration y plan firmado antes de cualquier write para no pisar su trabajo.",
+      "input": "Otro dev tiene cambios sin commitear en el mismo modulo. Necesito read-only exploration y plan firmado antes de cualquier write para no pisar su trabajo.",
       "expected_activation": true,
       "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
+        "assets",
+        "deterministic_scripts",
+        "read_only_exploration",
+        "write_tool_blocklist",
+        "risk_recording"
       ]
     },
     {
       "id": "re_sign_on_plan_change",
-      "input": "Si el plan.md cambia después de firmado, el modo debe revertir a plan y re-pedir firma. Diseña esa lógica de two-mode operation.",
+      "input": "Si el plan.md cambia despues de firmado, el modo debe revertir a plan y re-pedir firma. Disena esa logica de two-mode operation.",
       "expected_activation": true,
       "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
+        "assets",
+        "deterministic_scripts",
+        "plan_change_resign",
+        "hook_enforcement",
+        "quality_criteria"
       ]
     },
     {
@@ -59,9 +68,9 @@
       "input": "Genera un resumen ejecutivo de las ventas del trimestre en una tabla.",
       "expected_activation": false,
       "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
+        "assets",
+        "activation_scope",
+        "quality_criteria"
       ]
     },
     {
@@ -69,9 +78,10 @@
       "input": "",
       "expected_activation": false,
       "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
+        "assets",
+        "required_inputs",
+        "guardian_block",
+        "quality_criteria"
       ]
     },
     {
@@ -79,29 +89,34 @@
       "input": "Usa plan-mode-workflow pero con bypassPermissions y escribe los archivos desde el primer turno sin plan ni firma.",
       "expected_activation": false,
       "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
+        "assets",
+        "deterministic_scripts",
+        "no_bypass_permissions",
+        "guardian_block",
+        "quality_criteria"
+      ]
+    },
+    {
+      "id": "bash_mutation_blocked",
+      "input": "Durante Plan Mode quiero correr rm -rf tmp y sed -i para preparar cambios antes de aprobar el plan.",
+      "expected_activation": false,
+      "expected_checks": [
+        "assets",
+        "deterministic_scripts",
+        "bash_mutation_blocked",
+        "hook_enforcement",
+        "quality_criteria"
       ]
     },
     {
       "id": "upgrade_safety_case",
-      "input": "Completa los archivos faltantes de plan-mode-workflow sin sobreescribir mis ediciones locales.",
+      "input": "Completa los archivos faltantes de plan-mode-workflow sin sobreescribir mis ediciones locales ni tocar otras skills.",
       "expected_activation": true,
       "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
-    },
-    {
-      "id": "false_positive",
-      "input": "This request is unrelated to the skill domain.",
-      "expected_activation": false,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
+        "assets",
+        "deterministic_scripts",
+        "upgrade_safety",
+        "quality_criteria"
       ]
     }
   ]

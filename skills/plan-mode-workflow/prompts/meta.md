@@ -1,10 +1,3 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: plan-mode-workflow
-generated-on: 2026-05-30
-overwrite-policy: missing-only unless --force
--->
-
 # Plan Mode Workflow Meta Prompt
 
 Evalúa si `plan-mode-workflow` debe activarse, si el gate diseñado es inviolable y qué agentes de soporte participan.
