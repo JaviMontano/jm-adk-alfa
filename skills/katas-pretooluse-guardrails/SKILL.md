@@ -77,6 +77,15 @@ options = ClaudeAgentOptions(
 
 Las políticas críticas (límites monetarios, dominios prohibidos, paths protegidos) viven en hooks `PreToolUse` con `permissionDecision` estructurado, no en system prompts. Un guardarraíl es determinista solo si el SDK puede aplicarlo sin depender de que el modelo elija obedecer.
 
+## Contrato determinístico
+
+- La política debe vivir en `dict` o JSON recargable, nunca sólo en `system_prompt`.
+- El hook debe declarar `event_name: PreToolUse`, estar registrado y bloquear antes de ejecutar la tool.
+- Todo `deny` debe incluir `permissionDecisionReason` y evidencia de cero side-effects.
+- Todo reporte debe incluir al menos un caso `deny` y un caso `allow`.
+- La validación offline usa `assets/pretooluse-guardrail-contract.json`, `assets/permission-decision-policy.json`, `assets/policy-source-policy.json`, `assets/side-effect-policy.json` y `assets/evidence-policy.json`.
+- Comando local: `bash skills/katas-pretooluse-guardrails/scripts/check.sh`.
+
 ## Cuándo activar
 
 - Hay un límite duro de negocio (montos, dominios, rutas) que NO puede romperse.

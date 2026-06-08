@@ -1,0 +1,40 @@
+{
+  "schema": 1,
+  "skill": "katas-pretooluse-guardrails",
+  "assets": [
+    {
+      "path": "assets/pretooluse-guardrail-contract.json",
+      "type": "contract",
+      "purpose": "Defines required report fields and Guardian decisions.",
+      "used_by": ["SKILL.md", "scripts/validate_pretooluse_guardrails.py"]
+    },
+    {
+      "path": "assets/permission-decision-policy.json",
+      "type": "policy",
+      "purpose": "Defines allowed permission decisions and denial output requirements.",
+      "used_by": ["SKILL.md", "scripts/validate_pretooluse_guardrails.py"]
+    },
+    {
+      "path": "assets/policy-source-policy.json",
+      "type": "policy",
+      "purpose": "Defines valid reloadable policy sources and rule fields.",
+      "used_by": ["SKILL.md", "scripts/validate_pretooluse_guardrails.py"]
+    },
+    {
+      "path": "assets/side-effect-policy.json",
+      "type": "policy",
+      "purpose": "Defines side-effect expectations for deny and allow cases.",
+      "used_by": ["SKILL.md", "scripts/validate_pretooluse_guardrails.py"]
+    },
+    {
+      "path": "assets/evidence-policy.json",
+      "type": "policy",
+      "purpose": "Defines accepted evidence types for offline validation.",
+      "used_by": ["SKILL.md", "scripts/validate_pretooluse_guardrails.py"]
+    }
+  ],
+  "offline": true,
+  "network_required": false,
+  "randomness_allowed": false,
+  "time_dependent": false
+}

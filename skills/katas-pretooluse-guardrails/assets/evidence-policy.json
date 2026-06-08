@@ -1,0 +1,12 @@
+{
+  "schema": 1,
+  "accepted_evidence_types": [
+    "policy_file",
+    "hook_code",
+    "decision_trace",
+    "side_effect_counter",
+    "prompt_injection_test",
+    "reload_test"
+  ],
+  "minimum_evidence_items": 2
+}

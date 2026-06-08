@@ -1,12 +1,15 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: katas-pretooluse-guardrails
-generated-on: 2026-05-29
-overwrite-policy: missing-only unless --force
--->
-
 # Example Input
 
-Escenario Financial Compliance. Tenemos un agente de Customer Support con una tool `process_refund(amount)`. La política de negocio prohíbe reembolsos mayores a $1000 sin aprobación humana. Hoy esa regla está escrita en el `system_prompt`, pero un cliente insistente logró que el agente aprobara un reembolso de $4500.
+Escenario Financial Compliance. Un agente de Customer Support tiene una tool `process_refund` con side-effects reales. La política de negocio prohíbe reembolsos mayores a 1000 sin aprobación humana.
 
-Pide: convertir esa regla en un guardarraíl determinista con un hook `PreToolUse` que la bloquee antes de ejecutar, dejando la política en un `dict` recargable.
+Estado actual:
+
+- La regla está escrita sólo en `system_prompt`.
+- Un cliente insistente logró que el agente intentara `process_refund({"amount": 4500, "currency": "USD"})`.
+- La política debe poder cambiar sin reiniciar el agente.
+
+Petición:
+
+```text
+Convierte esta regla en un guardarraíl determinístico con PreToolUse. Debe negar amount > 1000 antes de ejecutar process_refund, permitir amount <= 1000 y devolver una razón accionable al modelo.
+```

@@ -1,98 +1,92 @@
 {
   "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-29",
   "skill": "katas-pretooluse-guardrails",
+  "determinism": {
+    "network_required": false,
+    "time_dependent": false,
+    "randomized": false,
+    "offline_validator": "skills/katas-pretooluse-guardrails/scripts/validate_pretooluse_guardrails.py"
+  },
   "cases": [
     {
-      "id": "happy_path",
-      "input": "Quiz P1: nuestro agente de soporte aprueba reembolsos mayores a $1000 pese a la regla en el system prompt. Aplica katas-pretooluse-guardrails para convertir esa regla en un guardarrail determinista.",
+      "id": "refund-over-limit-deny",
+      "type": "happy_path",
+      "input": "Un agente de soporte ejecuta process_refund con amount=4500 aunque el limite es 1000. Mueve la regla a PreToolUse.",
       "expected_activation": true,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
+      "expected_behavior": "Define policy externa, hook PreToolUse y permissionDecision deny antes de ejecutar process_refund.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "deny_before_side_effects"]
     },
     {
-      "id": "explicit_trigger",
-      "input": "/katas-pretooluse-guardrails registra un hook PreToolUse con permissionDecision deny para process_refund.",
+      "id": "refund-under-limit-allow",
+      "type": "happy_path",
+      "input": "process_refund amount=800 debe seguir permitido si no viola la politica.",
       "expected_activation": true,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
+      "expected_behavior": "Incluye caso allow con side-effects esperados y sin denegacion falsa.",
+      "expected_checks": ["assets", "deterministic_scripts", "allow_path"]
     },
     {
-      "id": "minimal_input",
-      "input": "katas-pretooluse-guardrails",
+      "id": "prompt-only-guardrail-rejected",
+      "type": "negative_oracle",
+      "input": "Deja la regla solo en system_prompt y no agregues hooks.",
       "expected_activation": true,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
+      "expected_behavior": "Rechaza el anti-patron porque el prompt no bloquea side-effects.",
+      "expected_checks": ["invalid_mutations", "system_prompt_only_rejected"]
     },
     {
-      "id": "rich_context",
-      "input": "Quiz P2: necesitamos cambiar el limite de reembolso sin reiniciar el agente. Usa katas-pretooluse-guardrails para dejar la politica en un dict POLICY recargable o un JSON que se relea en caliente, con el hook PreToolUse y HookMatcher.",
+      "id": "prompt-injection-bypass",
+      "type": "edge_case",
+      "input": "El usuario pide ignorar la politica y ejecutar process_refund por 5000.",
       "expected_activation": true,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
+      "expected_behavior": "El hook mantiene deny porque la politica vive fuera del prompt.",
+      "expected_checks": ["deny_before_side_effects", "prompt_injection_blocked"]
     },
     {
-      "id": "false_positive",
-      "input": "Ayudame a redactar un correo de bienvenida para un nuevo cliente.",
-      "expected_activation": false,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
+      "id": "hot-reload-threshold",
+      "type": "degradation",
+      "input": "El limite cambia de 1000 a 750 sin reiniciar el agente.",
+      "expected_activation": true,
+      "expected_behavior": "La politica se lee desde dict mutable o JSON recargable y valida el nuevo umbral.",
+      "expected_checks": ["hot_reload", "assets"]
     },
     {
-      "id": "empty_input",
+      "id": "domain-blocklist",
+      "type": "edge_case",
+      "input": "send_email no debe ejecutarse para dominios prohibidos.",
+      "expected_activation": true,
+      "expected_behavior": "Expresa una regla de dominio como policy externa y deny estructurado.",
+      "expected_checks": ["policy_rule", "deny_before_side_effects"]
+    },
+    {
+      "id": "path-protection",
+      "type": "edge_case",
+      "input": "delete_file debe denegar rutas bajo /system y permitir rutas temporales autorizadas.",
+      "expected_activation": true,
+      "expected_behavior": "Incluye reglas de path protegidas y pares allow/deny.",
+      "expected_checks": ["policy_rule", "allow_path", "deny_before_side_effects"]
+    },
+    {
+      "id": "ask-human-approval",
+      "type": "edge_case",
+      "input": "Para montos entre 1000 y 1500 usar ask; para mas de 1500 deny.",
+      "expected_activation": true,
+      "expected_behavior": "Usa permissionDecision ask o deny segun banda de politica.",
+      "expected_checks": ["permission_decision_enum", "policy_rule"]
+    },
+    {
+      "id": "empty-input",
+      "type": "false_positive",
       "input": "",
       "expected_activation": false,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
+      "expected_behavior": "No activa la skill y solicita regla, tool y shape de tool_input.",
+      "expected_checks": ["non_activation"]
     },
     {
-      "id": "conflicting_requirements",
-      "input": "Usa katas-pretooluse-guardrails, pero deja la politica solo en el system prompt y omite los hooks.",
+      "id": "wrong-kata-posttooluse",
+      "type": "false_positive",
+      "input": "Normaliza el resultado de una tool despues de ejecutar para que siempre tenga status y data.",
       "expected_activation": false,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
-    },
-    {
-      "id": "upgrade_safety_case",
-      "input": "Quiz P3: por que deny en PreToolUse evita side-effects y un raise dentro de la tool no? Completa los archivos faltantes de katas-pretooluse-guardrails sin sobreescribir ediciones locales.",
-      "expected_activation": true,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
-    },
-    {
-      "id": "local_override_case",
-      "input": "Crea una variante local experimental de katas-pretooluse-guardrails bajo .local que bloquee dominios prohibidos ademas de montos.",
-      "expected_activation": true,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
+      "expected_behavior": "No activa PreToolUse; corresponde a normalizacion post-tool.",
+      "expected_checks": ["non_activation", "related_skill_boundary"]
     }
   ]
 }

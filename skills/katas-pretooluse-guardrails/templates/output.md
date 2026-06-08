@@ -1,36 +1,27 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: katas-pretooluse-guardrails
-generated-on: 2026-05-29
-overwrite-policy: missing-only unless --force
--->
-
 # Katas Pretooluse Guardrails Output
 
 ## Summary
 
 {summary}
 
-## Patrón correcto (GOOD)
+## Policy
+
+{policy}
+
+## PreToolUse Hook
 
 ```python
-{good_code}
+{hook_code}
 ```
 
-## Anti-patrón descartado
+## Decision Matrix
 
-```python
-{anti_code}
-```
-
-## Argumento de certificación
-
-{certification_argument}
+{decision_matrix}
 
 ## Validation
 
 {validation}
 
-## Risks and Limits
+## Risks And Limits
 
 {risks}

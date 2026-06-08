@@ -1,0 +1,13 @@
+{
+  "schema": 1,
+  "allowed_decisions": ["allow", "deny", "ask"],
+  "deny_requires_reason": true,
+  "ask_requires_reason": true,
+  "deny_requires_no_side_effects": true,
+  "hook_event_name": "PreToolUse",
+  "required_hook_output_fields": [
+    "hookEventName",
+    "permissionDecision",
+    "permissionDecisionReason"
+  ]
+}

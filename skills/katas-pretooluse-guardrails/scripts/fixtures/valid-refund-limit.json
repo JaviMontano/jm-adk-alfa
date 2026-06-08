@@ -1,0 +1,78 @@
+{
+  "schema": 1,
+  "skill": "katas-pretooluse-guardrails",
+  "report_id": "ptu-valid-refund-limit",
+  "scenario": "refund limit enforced before process_refund side-effects",
+  "evidence": [
+    {
+      "type": "policy_file",
+      "detail": "POLICY declares max_refund_amount=1000 outside the system prompt."
+    },
+    {
+      "type": "decision_trace",
+      "detail": "amount=4500 returns deny before process_refund executes; amount=800 returns allow."
+    },
+    {
+      "type": "prompt_injection_test",
+      "detail": "User instruction to ignore policy does not alter the deny decision."
+    }
+  ],
+  "policy": {
+    "source": "dict",
+    "hot_reload": true,
+    "system_prompt_only": false,
+    "rules": [
+      {
+        "id": "refund-over-limit-deny",
+        "target_tool": "process_refund",
+        "field": "amount",
+        "operator": "gt",
+        "value": 1000,
+        "decision": "deny"
+      }
+    ]
+  },
+  "hook": {
+    "event_name": "PreToolUse",
+    "matcher": "*",
+    "registered": true,
+    "blocks_before_execution": true,
+    "denial_output": {
+      "hookEventName": "PreToolUse",
+      "permissionDecision": "deny",
+      "permissionDecisionReason": "Refund amount exceeds policy limit 1000."
+    }
+  },
+  "decisions": [
+    {
+      "tool_name": "process_refund",
+      "tool_input": {
+        "amount": 4500,
+        "currency": "USD"
+      },
+      "expected_decision": "deny",
+      "expected_side_effects": false,
+      "reason": "Amount exceeds max_refund_amount."
+    },
+    {
+      "tool_name": "process_refund",
+      "tool_input": {
+        "amount": 800,
+        "currency": "USD"
+      },
+      "expected_decision": "allow",
+      "expected_side_effects": true,
+      "reason": "Amount is within policy limit."
+    }
+  ],
+  "validation": {
+    "denied_tool_executed": false,
+    "allowed_tool_executed": true,
+    "system_prompt_only": false,
+    "prompt_injection_bypassed": false
+  },
+  "guardian": {
+    "decision": "pass",
+    "reason": "The hard refund limit is enforced by PreToolUse before process_refund can mutate state."
+  }
+}

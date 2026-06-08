@@ -1,0 +1,28 @@
+{
+  "schema": 1,
+  "skill": "katas-pretooluse-guardrails",
+  "json_contract": {
+    "schema_version": 1,
+    "required_top_level_fields": [
+      "schema",
+      "skill",
+      "report_id",
+      "scenario",
+      "evidence",
+      "policy",
+      "hook",
+      "decisions",
+      "validation",
+      "guardian"
+    ],
+    "guardian_decisions": ["pass", "warn", "block"]
+  },
+  "required_markdown_sections": [
+    "Summary",
+    "Policy",
+    "PreToolUse Hook",
+    "Decision Matrix",
+    "Validation",
+    "Risks And Limits"
+  ]
+}

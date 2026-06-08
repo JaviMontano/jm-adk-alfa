@@ -1,0 +1,92 @@
+{
+  "schema": 1,
+  "skill": "katas-pretooluse-guardrails",
+  "cases": [
+    {
+      "id": "invalid-system-prompt-only-policy",
+      "base": "valid-refund-limit.json",
+      "operations": [
+        {
+          "op": "set",
+          "path": "policy.system_prompt_only",
+          "value": true
+        }
+      ]
+    },
+    {
+      "id": "invalid-missing-pretooluse-event",
+      "base": "valid-refund-limit.json",
+      "operations": [
+        {
+          "op": "set",
+          "path": "hook.event_name",
+          "value": "PostToolUse"
+        }
+      ]
+    },
+    {
+      "id": "invalid-deny-side-effects",
+      "base": "valid-refund-limit.json",
+      "operations": [
+        {
+          "op": "set",
+          "path": "decisions.0.expected_side_effects",
+          "value": true
+        }
+      ]
+    },
+    {
+      "id": "invalid-missing-deny-reason",
+      "base": "valid-refund-limit.json",
+      "operations": [
+        {
+          "op": "remove",
+          "path": "decisions.0.reason"
+        }
+      ]
+    },
+    {
+      "id": "invalid-no-allow-case",
+      "base": "valid-refund-limit.json",
+      "operations": [
+        {
+          "op": "remove",
+          "path": "decisions.1"
+        }
+      ]
+    },
+    {
+      "id": "invalid-permission-decision-text",
+      "base": "valid-refund-limit.json",
+      "operations": [
+        {
+          "op": "set",
+          "path": "hook.denial_output.permissionDecision",
+          "value": "blocked"
+        }
+      ]
+    },
+    {
+      "id": "invalid-no-hot-reload",
+      "base": "valid-domain-and-path-policy.json",
+      "operations": [
+        {
+          "op": "set",
+          "path": "policy.hot_reload",
+          "value": false
+        }
+      ]
+    },
+    {
+      "id": "invalid-prompt-injection-bypass",
+      "base": "valid-refund-limit.json",
+      "operations": [
+        {
+          "op": "set",
+          "path": "validation.prompt_injection_bypassed",
+          "value": true
+        }
+      ]
+    }
+  ]
+}
