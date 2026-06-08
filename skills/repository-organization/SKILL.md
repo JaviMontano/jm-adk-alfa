@@ -22,6 +22,17 @@ allowed-tools:
 
 Audits and improves repository structure for navigability and maintainability. Checks naming consistency (kebab-case slugs), directory patterns (self-documenting layout), file organization (no accumulation without structure), and staleness (empty/outdated directories). Implements Constitution XVIII auto-organization: when files accumulate without structure, organize into named subdirectories with READMEs. [EXPLICIT]
 
+## Deterministic Safety Contract
+
+- Use `assets/repository-organization-contract.json` for report shape.
+- Use `assets/transient-placement-policy.json` to classify workspace/archive files.
+- Use `assets/move-manifest-policy.json` before moving, archiving, or deleting local files.
+- Use `assets/private-boundary-policy.json` to keep private context out of publishable paths.
+- Validate reports with `scripts/validate_repository_organization_report.py`.
+- Run `scripts/check.sh` before claiming the repo is organized.
+
+Fail closed when a private path is moved or published, a cleanup action lacks a manifest, or `clean_claim` is true while unresolved transient/private findings remain. [EXPLICIT]
+
 ## Procedure
 
 ### Step 1: Discover

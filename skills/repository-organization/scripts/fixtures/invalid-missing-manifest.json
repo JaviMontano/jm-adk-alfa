@@ -1,0 +1,16 @@
+{
+  "schema": "jm-labs.repository-organization.report.v1",
+  "skill": "repository-organization",
+  "scan": {"root": "/repo", "evidence": "find ."},
+  "clean_claim": false,
+  "findings": [],
+  "actions": [
+    {
+      "action": "archive",
+      "source_path": "workspace/tmp.md",
+      "destination_path": ".local/archive/tmp.md",
+      "sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    }
+  ],
+  "decision": {"status": "pass", "validated": true, "reason": "invalid"}
+}

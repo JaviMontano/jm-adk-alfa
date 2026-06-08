@@ -1,9 +1,12 @@
-[
-  {"id": "repository-organization-happy-path", "type": "happy_path", "input": "Run repository organization on this project", "expected_behavior": "Skill activates and produces the expected repository organization output following the defined process", "tags": ["basic", "activation"]},
-  {"id": "repository-organization-explicit-trigger", "type": "happy_path", "input": "Apply repository organization analysis", "expected_behavior": "Skill recognizes the trigger phrase and executes the repository organization workflow", "tags": ["trigger", "recognition"]},
-  {"id": "repository-organization-with-context", "type": "happy_path", "input": "Apply repository organization to analyze the current codebase with detailed output", "expected_behavior": "Skill produces comprehensive repository organization analysis with evidence-tagged findings", "tags": ["detailed", "comprehensive"]},
-  {"id": "repository-organization-minimal-input", "type": "happy_path", "input": "Quick repository organization", "expected_behavior": "Skill activates with minimal input, applies reasonable defaults", "tags": ["minimal", "defaults"]},
-  {"id": "repository-organization-false-positive", "type": "false_positive", "input": "What is the weather forecast for tomorrow?", "expected_behavior": "Skill should NOT activate — this input has no relation to repository organization", "tags": ["false_positive", "should-not-activate"]},
-  {"id": "repository-organization-edge-empty-input", "type": "edge_case", "input": "Run repository organization but I have no files or documentation yet", "expected_behavior": "Skill handles gracefully — requests minimum viable input or produces gap analysis", "tags": ["edge_case", "empty-input", "boundary"]},
-  {"id": "repository-organization-edge-conflicting", "type": "edge_case", "input": "Apply repository organization but requirements contradict each other", "expected_behavior": "Skill detects contradiction, flags with [OPEN] tag, proposes resolution", "tags": ["edge_case", "conflict", "corner"]}
-]
+{
+  "cases": [
+    {"name": "valid_report_with_manifest", "input": "Validate organization report with transient archive manifest.", "expected_checks": ["assets", "deterministic_scripts", "quality_criteria"]},
+    {"name": "block_private_publish", "input": "Validate report moving user-context/jarvis-os into docs.", "expected_checks": ["assets", "quality_criteria", "private_boundary"]},
+    {"name": "block_move_without_manifest", "input": "Validate cleanup action without manifest.", "expected_checks": ["deterministic_scripts", "quality_criteria", "manifest_required"]},
+    {"name": "block_clean_claim_with_findings", "input": "Validate clean claim despite unresolved transient findings.", "expected_checks": ["quality_criteria", "clean_claim"]},
+    {"name": "transient_location_policy", "input": "Check workspace and .local/archive placement.", "expected_checks": ["assets", "quality_criteria"]},
+    {"name": "private_inventory_only", "input": "Record private path as excluded inventory.", "expected_checks": ["assets", "deterministic_scripts"]},
+    {"name": "rename_requires_manifest", "input": "Validate rename proposal includes manifest.", "expected_checks": ["quality_criteria", "manifest_required"]},
+    {"name": "evidence_required", "input": "Validate report with no scan evidence.", "expected_checks": ["assets", "deterministic_scripts", "quality_criteria"]}
+  ]
+}

@@ -1,0 +1,1 @@
+{"schema":"jm-labs.repository-organization.move-manifest-policy.v1","manifest_required_for":["move","archive","delete","rename"],"required_fields":["source_path","destination_path","action","sha256"]}
