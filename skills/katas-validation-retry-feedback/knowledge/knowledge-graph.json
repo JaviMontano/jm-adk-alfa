@@ -1,7 +1,5 @@
 {
   "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-29",
   "skill": "katas-validation-retry-feedback",
   "nodes": [
     {
@@ -70,6 +68,16 @@
       "label": "Evidence / provenance requirements"
     },
     {
+      "id": "katas-validation-retry-feedback:assets-contract",
+      "type": "contract",
+      "label": "assets/validation-retry-contract.json"
+    },
+    {
+      "id": "katas-validation-retry-feedback:offline-validator",
+      "type": "script",
+      "label": "scripts/validate_validation_retry_feedback.py"
+    },
+    {
       "id": "katas-validation-retry-feedback:antipattern",
       "type": "risk",
       "label": "Canonical anti-pattern to avoid"
@@ -134,6 +142,16 @@
     {
       "from": "katas-validation-retry-feedback",
       "to": "katas-validation-retry-feedback:evidence",
+      "type": "validated_by"
+    },
+    {
+      "from": "katas-validation-retry-feedback",
+      "to": "katas-validation-retry-feedback:assets-contract",
+      "type": "governed_by"
+    },
+    {
+      "from": "katas-validation-retry-feedback:assets-contract",
+      "to": "katas-validation-retry-feedback:offline-validator",
       "type": "validated_by"
     },
     {

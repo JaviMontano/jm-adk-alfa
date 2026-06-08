@@ -1,0 +1,58 @@
+{
+  "schema": 1,
+  "skill": "katas-validation-retry-feedback",
+  "assets": [
+    {
+      "path": "assets/validation-retry-contract.json",
+      "type": "json_contract",
+      "purpose": "Defines required report fields and Guardian decisions for retry feedback validation.",
+      "used_by": [
+        "SKILL.md",
+        "README.md",
+        "scripts/validate_validation_retry_feedback.py",
+        "evals/evals.json",
+        "examples/example-output.md"
+      ]
+    },
+    {
+      "path": "assets/error-classification-policy.json",
+      "type": "policy",
+      "purpose": "Separates recoverable validation errors from nonrecoverable escalation cases.",
+      "used_by": [
+        "SKILL.md",
+        "knowledge/body-of-knowledge.md",
+        "scripts/validate_validation_retry_feedback.py"
+      ]
+    },
+    {
+      "path": "assets/feedback-specificity-policy.json",
+      "type": "policy",
+      "purpose": "Requires path, expectation, previous value, and scoped correction in retry feedback.",
+      "used_by": [
+        "SKILL.md",
+        "prompts/primary.md",
+        "scripts/validate_validation_retry_feedback.py"
+      ]
+    },
+    {
+      "path": "assets/retry-limit-policy.json",
+      "type": "policy",
+      "purpose": "Bounds retry loops to 2-3 total attempts and requires escalation when exhausted.",
+      "used_by": [
+        "SKILL.md",
+        "prompts/variations/quick.md",
+        "scripts/validate_validation_retry_feedback.py"
+      ]
+    },
+    {
+      "path": "assets/evidence-policy.json",
+      "type": "policy",
+      "purpose": "Defines accepted evidence types and minimum evidence count for certification.",
+      "used_by": [
+        "README.md",
+        "examples/example-output.md",
+        "scripts/validate_validation_retry_feedback.py"
+      ]
+    }
+  ]
+}

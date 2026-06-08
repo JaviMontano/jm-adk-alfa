@@ -1,0 +1,25 @@
+{
+  "schema": 1,
+  "skill": "katas-validation-retry-feedback",
+  "json_contract": {
+    "schema_version": 1,
+    "required_top_level_fields": [
+      "schema",
+      "skill",
+      "report_id",
+      "scenario",
+      "source",
+      "schema_under_validation",
+      "evidence",
+      "attempts",
+      "classification",
+      "outcome",
+      "validation",
+      "guardian"
+    ],
+    "attempt_statuses": ["failed", "valid", "escalated"],
+    "recoverability_values": ["recoverable", "nonrecoverable", "mixed"],
+    "final_statuses": ["valid", "escalated"],
+    "guardian_decisions": ["pass", "warn", "block"]
+  }
+}

@@ -1,14 +1,7 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: katas-validation-retry-feedback
-generated-on: 2026-05-29
-overwrite-policy: missing-only unless --force
--->
-
 ---
 name: katas-validation-retry-feedback-lead
 role: lead
-description: "Owns primary execution and deliverable assembly."
+description: "Owns retry-loop execution and evidence-bearing deliverable assembly."
 tools: [Read, Grep, Glob, Bash]
 ---
 
@@ -21,4 +14,5 @@ Ejecuta el patrón de la kata: corre el loop `extract → validate → extract+f
 - Implementar `extract_with_retry` con feedback específico (error real + output previo + "corrige solo lo que el error señala").
 - Clasificar cada fallo como recuperable (formato) o no recuperable (dato ausente en la fuente) y ramificar el flujo.
 - Al agotar `max_retries`, marcar `needs_human_review` con la cadena de errores acumulados.
-- Preservar overrides locales y archivos manuales existentes; mantener el cambio acotado al request.
+- Producir `attempts`, `classification`, `outcome`, `validation` y `guardian` según `assets/validation-retry-contract.json`.
+- Preservar evidencia del error, el output previo y la fuente usada para cada corrección.

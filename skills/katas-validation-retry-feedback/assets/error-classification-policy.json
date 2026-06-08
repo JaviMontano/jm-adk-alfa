@@ -1,0 +1,30 @@
+{
+  "schema": 1,
+  "skill": "katas-validation-retry-feedback",
+  "recoverable_error_types": [
+    "missing_required_field",
+    "type_mismatch",
+    "format_error",
+    "enum_mismatch",
+    "transient_parse_error"
+  ],
+  "nonrecoverable_error_types": [
+    "source_absent",
+    "policy_violation",
+    "unsafe_request",
+    "auth_required",
+    "schema_contract_conflict"
+  ],
+  "retry_rules": {
+    "recoverable_errors_may_retry": true,
+    "nonrecoverable_errors_must_not_retry": true,
+    "mixed_errors_retry_only_recoverable_paths": true,
+    "source_absent_requires_human_review": true
+  },
+  "required_error_fields": [
+    "error_type",
+    "path",
+    "expected",
+    "actual"
+  ]
+}

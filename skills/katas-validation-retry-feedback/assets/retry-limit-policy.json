@@ -1,0 +1,17 @@
+{
+  "schema": 1,
+  "skill": "katas-validation-retry-feedback",
+  "minimum_total_attempts": 1,
+  "allowed_total_attempts": [2, 3],
+  "max_retry_count": 2,
+  "exhaustion_requires": [
+    "final_status=escalated",
+    "needs_human_review=true",
+    "error_chain_non_empty"
+  ],
+  "forbidden": [
+    "accept_invalid_output",
+    "retry_nonrecoverable_error",
+    "increase_attempt_cap_without_structural_fix"
+  ]
+}

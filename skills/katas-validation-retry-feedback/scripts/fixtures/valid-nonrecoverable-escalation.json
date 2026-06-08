@@ -1,0 +1,70 @@
+{
+  "schema": 1,
+  "skill": "katas-validation-retry-feedback",
+  "report_id": "contract-042-absent-total",
+  "scenario": "Contract extraction escalates an absent total_amount without retrying.",
+  "source": "Contract 042 contains party_name Acme Corp and effective_date January 15, 2026, but no total amount clause.",
+  "schema_under_validation": "ContractFields(party_name: str, effective_date: date, total_amount: Decimal | null)",
+  "evidence": [
+    {
+      "type": "source_excerpt",
+      "detail": "The excerpt contains no total amount clause."
+    },
+    {
+      "type": "validator_error",
+      "detail": "total_amount failed Decimal validation."
+    },
+    {
+      "type": "absence_check",
+      "detail": "Reviewer search found no amount in the source."
+    }
+  ],
+  "attempts": [
+    {
+      "attempt": 1,
+      "status": "escalated",
+      "output": {
+        "party_name": "Acme Corp",
+        "effective_date": "2026-01-15",
+        "total_amount": null
+      },
+      "validator_error": {
+        "error_type": "source_absent",
+        "path": "total_amount",
+        "expected": "Decimal amount present in source",
+        "actual": null
+      }
+    }
+  ],
+  "classification": {
+    "recoverability": "nonrecoverable",
+    "recoverable_errors": [],
+    "nonrecoverable_errors": ["source_absent"],
+    "retry_allowed": false,
+    "escalation_required": true,
+    "reason": "The required field is absent from the source; retrying would fabricate data."
+  },
+  "outcome": {
+    "final_status": "escalated",
+    "retry_count": 0,
+    "max_attempts": 2,
+    "needs_human_review": true,
+    "error_chain": [
+      "total_amount: source_absent, escalated without retry"
+    ],
+    "structural_fix_required": false
+  },
+  "validation": {
+    "generic_feedback_count": 0,
+    "retry_count_with_specific_feedback": 0,
+    "retry_count_exceeds_cap": false,
+    "nonrecoverable_retried": false,
+    "exhausted_attempts_escalated": false,
+    "invalid_output_accepted": false,
+    "deterministic_script_passed": true
+  },
+  "guardian": {
+    "decision": "pass",
+    "reason": "The absent field was escalated without retry and without inventing a value."
+  }
+}

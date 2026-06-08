@@ -1,10 +1,3 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: katas-validation-retry-feedback
-generated-on: 2026-05-29
-overwrite-policy: missing-only unless --force
--->
-
 ---
 name: katas-validation-retry-feedback-support
 role: support
@@ -22,3 +15,4 @@ Detecta blind spots del loop de retry: dependencias downstream del schema y modo
 - Detectar fallos sistemáticos (mismo error en la mayoría de los casos) que pidan fix estructural en lugar de más retries.
 - Revisar que ningún contrato downstream consuma una extracción no validada.
 - Confirmar que un dato ausente en la fuente nunca se "rellene" para satisfacer el schema (riesgo de alucinación).
+- Confirmar que `retry_count`, `max_attempts`, `nonrecoverable_retried` e `invalid_output_accepted` sean verificables.
