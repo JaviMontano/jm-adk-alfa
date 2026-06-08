@@ -1,0 +1,93 @@
+{
+  "schema": 1,
+  "skill": "katas-provenance-preservation",
+  "cases": [
+    {
+      "id": "invalid-claim-without-source",
+      "base": "valid-company-report.json",
+      "operations": [
+        {
+          "op": "set",
+          "path": "claims.0.sources",
+          "value": []
+        }
+      ]
+    },
+    {
+      "id": "invalid-unknown-source-ref",
+      "base": "valid-company-report.json",
+      "operations": [
+        {
+          "op": "set",
+          "path": "claims.0.sources.0.source_id",
+          "value": "doc-Z"
+        }
+      ]
+    },
+    {
+      "id": "invalid-conflict-not-escalated",
+      "base": "valid-company-report.json",
+      "operations": [
+        {
+          "op": "set",
+          "path": "claims.1.needs_human_review",
+          "value": false
+        }
+      ]
+    },
+    {
+      "id": "invalid-conflict-average",
+      "base": "valid-company-report.json",
+      "operations": [
+        {
+          "op": "set",
+          "path": "claims.1.resolution_method",
+          "value": "average"
+        }
+      ]
+    },
+    {
+      "id": "invalid-conflict-resolved-value",
+      "base": "valid-company-report.json",
+      "operations": [
+        {
+          "op": "set",
+          "path": "claims.1.resolved_value",
+          "value": "456"
+        }
+      ]
+    },
+    {
+      "id": "invalid-source-missing-date",
+      "base": "valid-company-report.json",
+      "operations": [
+        {
+          "op": "remove",
+          "path": "source_registry.0.publication_date"
+        }
+      ]
+    },
+    {
+      "id": "invalid-free-prose-only",
+      "base": "valid-company-report.json",
+      "operations": [
+        {
+          "op": "set",
+          "path": "validation.free_prose_only",
+          "value": true
+        }
+      ]
+    },
+    {
+      "id": "invalid-structural-test-failed",
+      "base": "valid-subagent-aggregation.json",
+      "operations": [
+        {
+          "op": "set",
+          "path": "validation.structural_test_passed",
+          "value": false
+        }
+      ]
+    }
+  ]
+}

@@ -71,6 +71,15 @@ summary = "La empresa tiene ARR de 12M USD y 462 empleados..."
 - Conectar con Kata 4 (agregación tras subagentes paralelos) y Kata 15 (verificación numérica).
 - Demostrar un test estructural que asserta que cada `claim` del output tiene un campo `sources[]` no vacío con `source_id` existente.
 
+## Contrato determinístico
+
+- `source_registry[]` declara cada fuente con `source_id`, `source_name` y `publication_date`.
+- Cada `claim` debe tener `sources[]` no vacío y cada `source_id` debe existir en `source_registry`.
+- Los conflictos deben conservar todos los valores contradictorios, marcar `conflict=true`, fijar `needs_human_review=true` y declarar `escalation_route`.
+- Está prohibido resolver conflictos con `average`, `newest_wins`, `model_choice` o `silent_choice`.
+- La validación offline usa `assets/provenance-preservation-contract.json`, `assets/claim-source-policy.json`, `assets/conflict-policy.json` y `assets/evidence-policy.json`.
+- Comando local: `bash skills/katas-provenance-preservation/scripts/check.sh`.
+
 ## Cuándo activar
 
 - Extracción estructurada que agrega datos de múltiples documentos o fuentes.

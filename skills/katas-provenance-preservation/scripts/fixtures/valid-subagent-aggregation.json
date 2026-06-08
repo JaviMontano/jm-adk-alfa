@@ -1,0 +1,78 @@
+{
+  "schema": 1,
+  "skill": "katas-provenance-preservation",
+  "report_id": "prov-valid-subagent-aggregation",
+  "scenario": "parallel subagent aggregation with provenance preserved",
+  "evidence": [
+    {
+      "type": "aggregation_trace",
+      "detail": "Each subagent output carries source_id before the aggregation step."
+    },
+    {
+      "type": "structural_test",
+      "detail": "The aggregated claims list passes the no-claim-without-source assertion."
+    },
+    {
+      "type": "human_escalation",
+      "detail": "Conflicting market-size values are routed to kata-16-human-escalation."
+    }
+  ],
+  "source_registry": [
+    {
+      "source_id": "analyst-1-doc-7",
+      "source_name": "Analyst One Market Memo",
+      "publication_date": "2026-02-04"
+    },
+    {
+      "source_id": "analyst-2-doc-3",
+      "source_name": "Analyst Two Market Memo",
+      "publication_date": "2026-02-06"
+    },
+    {
+      "source_id": "dataset-1",
+      "source_name": "Customer Export",
+      "publication_date": "2026-02-01"
+    }
+  ],
+  "claims": [
+    {
+      "claim_id": "claim-customer-count",
+      "claim": "Active customers = 1840",
+      "sources": [
+        {
+          "source_id": "dataset-1",
+          "value": "1840"
+        }
+      ],
+      "conflict": false
+    },
+    {
+      "claim_id": "claim-market-size",
+      "claim": "Estimated market size",
+      "sources": [
+        {
+          "source_id": "analyst-1-doc-7",
+          "value": "4.2B USD"
+        },
+        {
+          "source_id": "analyst-2-doc-3",
+          "value": "4.8B USD"
+        }
+      ],
+      "conflict": true,
+      "needs_human_review": true,
+      "escalation_route": "kata-16-human-escalation"
+    }
+  ],
+  "validation": {
+    "claims_without_sources": 0,
+    "unknown_source_refs": 0,
+    "conflicts_silenced": 0,
+    "free_prose_only": false,
+    "structural_test_passed": true
+  },
+  "guardian": {
+    "decision": "pass",
+    "reason": "Aggregation preserves source IDs from subagents and escalates conflicting values."
+  }
+}

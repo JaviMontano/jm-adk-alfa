@@ -1,0 +1,9 @@
+{
+  "schema": 1,
+  "required_source_fields": ["source_id", "source_name", "publication_date"],
+  "required_claim_fields": ["claim_id", "claim", "sources", "conflict"],
+  "source_id_must_exist": true,
+  "sources_min_length": 1,
+  "publication_date_format": "YYYY-MM-DD",
+  "free_prose_claims_allowed": false
+}

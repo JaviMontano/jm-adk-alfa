@@ -1,118 +1,92 @@
 {
   "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-29",
   "skill": "katas-provenance-preservation",
+  "determinism": {
+    "network_required": false,
+    "time_dependent": false,
+    "randomized": false,
+    "offline_validator": "skills/katas-provenance-preservation/scripts/validate_provenance_preservation.py"
+  },
   "cases": [
     {
-      "id": "happy_path",
-      "input": "Agrega hechos de tres documentos sobre una empresa y produce un reporte factual auditable con provenance tipada (claim, source_id, source_name, publication_date).",
+      "id": "company-report-provenance",
+      "type": "happy_path",
+      "input": "Agrega ARR y headcount desde doc-A, doc-B y doc-C con provenance tipada.",
       "expected_activation": true,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
+      "expected_behavior": "Cada claim tiene sources[] y cada source_id existe en source_registry.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "claim_source_mapping"]
     },
     {
-      "id": "explicit_trigger",
-      "input": "/katas-provenance-preservation mapea cada claim a su source y marca los conflictos.",
+      "id": "headcount-conflict-escalated",
+      "type": "happy_path",
+      "input": "doc-A dice headcount 450 y doc-C dice 462.",
       "expected_activation": true,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
+      "expected_behavior": "Registra ambas posturas, marca conflict=true y escala a humano sin elegir ni promediar.",
+      "expected_checks": ["assets", "deterministic_scripts", "conflict_flag", "human_escalation"]
     },
     {
-      "id": "minimal_input",
-      "input": "katas-provenance-preservation",
+      "id": "claim-without-source",
+      "type": "negative_oracle",
+      "input": "Incluye un claim de crecimiento sin source_id porque parece obvio.",
       "expected_activation": true,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
+      "expected_behavior": "Rechaza el claim sin fuente.",
+      "expected_checks": ["invalid_mutations", "no_claim_without_source"]
     },
     {
-      "id": "quiz_p1_conflict_routing",
-      "input": "Dos fuentes contradicen el headcount de fin de 2025 (doc-A=450, doc-C=462). El reporte agregado debe preservar ambas posturas, marcar el conflicto y escalar a humano para que juzgue; la fuente más reciente no decide sola.",
+      "id": "unknown-source-ref",
+      "type": "negative_oracle",
+      "input": "Un claim apunta a doc-Z, pero doc-Z no está en source_registry.",
       "expected_activation": true,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
+      "expected_behavior": "Falla validación por source_id inexistente.",
+      "expected_checks": ["invalid_mutations", "source_registry"]
     },
     {
-      "id": "quiz_p2_invariant",
-      "input": "Define el invariante del schema de salida: no hay claim sin source con id y fecha de publicacion. Cada afirmacion factual debe tener un sources[] tipado no vacio.",
+      "id": "newest-wins-rejected",
+      "type": "negative_oracle",
+      "input": "La fuente más reciente dice 462, úsala y descarta 450.",
       "expected_activation": true,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
+      "expected_behavior": "Rechaza newest_wins como resolución silenciosa del conflicto.",
+      "expected_checks": ["conflict_policy", "invalid_mutations"]
     },
     {
-      "id": "quiz_p3_structural_test",
-      "input": "Escribe el test estructural que asserta que cada claim_in_output tiene un campo sources[] no vacio con un source_id existente.",
+      "id": "parallel-subagent-aggregation",
+      "type": "edge_case",
+      "input": "Tres subagentes devuelven claims; el agregador debe preservar source_id de cada uno.",
       "expected_activation": true,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
+      "expected_behavior": "El contrato de agregación rechaza claims huérfanos.",
+      "expected_checks": ["aggregation_trace", "claim_source_mapping"]
     },
     {
-      "id": "false_positive",
-      "input": "This request is unrelated to the skill domain.",
-      "expected_activation": false,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
+      "id": "free-prose-false-fix",
+      "type": "negative_oracle",
+      "input": "Devuelve sólo un resumen: ARR 12M y 462 empleados.",
+      "expected_activation": true,
+      "expected_behavior": "Bloquea prosa libre sin trazabilidad claim por claim.",
+      "expected_checks": ["free_prose_rejected", "invalid_mutations"]
     },
     {
-      "id": "empty_input",
+      "id": "empty-input",
+      "type": "false_positive",
       "input": "",
       "expected_activation": false,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
+      "expected_behavior": "No activa y solicita fuentes, claims y formato de salida.",
+      "expected_checks": ["non_activation"]
     },
     {
-      "id": "conflicting_requirements",
-      "input": "Usa katas-provenance-preservation pero ignora la validacion y entrega solo un resumen en prosa libre sin source_id.",
+      "id": "unrelated-copywriting",
+      "type": "false_positive",
+      "input": "Redacta un correo comercial de seguimiento.",
       "expected_activation": false,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
+      "expected_behavior": "No activa porque no hay reporte factual con fuentes.",
+      "expected_checks": ["non_activation"]
     },
     {
-      "id": "upgrade_safety_case",
-      "input": "Complete missing files for katas-provenance-preservation without overwriting local edits.",
+      "id": "upgrade-safety",
+      "type": "degradation",
+      "input": "Completa archivos faltantes sin sobreescribir cambios locales.",
       "expected_activation": true,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
-    },
-    {
-      "id": "local_override_case",
-      "input": "Create a local experimental katas-provenance-preservation variant under .local.",
-      "expected_activation": true,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
+      "expected_behavior": "Limita edición a la skill activa, review doc y ledger.",
+      "expected_checks": ["upgrade_safety", "scope_control"]
     }
   ]
 }

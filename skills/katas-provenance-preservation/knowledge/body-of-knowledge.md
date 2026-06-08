@@ -1,41 +1,34 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: katas-provenance-preservation
-generated-on: 2026-05-29
-overwrite-policy: missing-only unless --force
--->
-
-# Katas Provenance Preservation Body of Knowledge
+# Body Of Knowledge
 
 ## Canon
 
-Kata 20 · Preservación de Provenance. Cada afirmación factual extraída de fuentes mantiene un mapeo tipado a su origen: `claim, source_id, source_name, publication_date`. Escenarios: Multi-Agent Orchestration, Structured Extraction.
+- Provenance tipada es parte del schema, no una nota opcional.
+- `source_registry[]` declara todas las fuentes con `source_id`, `source_name` y `publication_date`.
+- Cada `claim` factual debe tener `sources[]` no vacío.
+- Cada `source_id` referenciado por un claim debe existir en `source_registry`.
+- Los conflictos se preservan con todos los valores contradictorios, `conflict=true`, `needs_human_review=true` y una ruta de escalado.
+- La fecha de publicación informa al humano, pero no resuelve automáticamente un conflicto.
 
-### Conceptos clave
+## Quality Signals
 
-- **Invariante de schema.** "No hay claim sin source" no es una recomendación: es una propiedad del schema del output. Un claim sin `sources[]` no válido no debe existir en el resultado.
-- **Política de conflictos.** Si dos fuentes contradicen un dato, se registran ambas bajo `conflict=true` con `needs_human_review=true`. No se promedia, no se elige. La resolución se escala a humano vía Kata 16.
-- **La fecha informa, no decide.** `publication_date` debe estar presente para que el humano juzgue. La fuente más reciente no siempre gana (un reporte anual auditado puede pesar más que un deck de inversores posterior).
-- **El punto de fuga es la agregación.** Tras subagentes paralelos (Kata 4), el "quién dijo qué" se pierde si la fuente no es campo obligatorio en el contrato de agregación.
-- **Verificación numérica adyacente (Kata 15).** Provenance dice de dónde viene un número; la verificación numérica confirma que el número es correcto. Son complementarias.
-
-### Señales de calidad
-
-| Señal | Objetivo |
+| Signal | Target |
 |---|---|
-| Cobertura de provenance | Cada `claim` del output tiene `sources[]` no vacío con `source_id` existente |
-| Conflictos explícitos | Toda contradicción entre fuentes está marcada `conflict=true` y escalada, nunca silenciada |
-| Fecha presente | Cada fuente lleva `publication_date` para que el humano pueda juzgar |
-| Auditabilidad | El output es verificable claim por claim, no prosa libre |
+| No orphan claims | `claims_without_sources=0` |
+| Registry integrity | `unknown_source_refs=0` |
+| Conflict preservation | `conflicts_silenced=0` |
+| Human review | todo conflicto tiene `needs_human_review=true` |
+| Auditability | el resultado es verificable claim por claim |
 
-### Anti-patrón canónico
+## Anti-Patterns
 
-```python
-summary = "La empresa tiene ARR de 12M USD y 462 empleados..."
-```
+- Prosa libre sin source IDs.
+- Elegir el dato más reciente sin registrar el conflicto.
+- Promediar valores contradictorios.
+- Crear `resolved_value` en un claim marcado como conflicto.
+- Agregar claims de subagentes sin preservar `source_id`.
 
-Prosa libre sin `source_id`, sin fecha y sin conflicto marcado: se ve correcta, no es auditable, y puede alucinar el dato de headcount (462) ocultando que doc-A decía 450.
+## Boundaries
 
-## Open Knowledge
-
-- Añadir referencias específicas de proyecto a medida que se estabilicen.
+- Provenance preserva de dónde viene un dato; no reemplaza verificación numérica.
+- Si el problema principal es cálculo, combinar con una skill de verificación numérica.
+- Si el problema principal es escalado operativo, usar la ruta humana declarada por el contrato.

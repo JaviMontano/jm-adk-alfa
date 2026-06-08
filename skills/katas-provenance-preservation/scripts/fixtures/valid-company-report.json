@@ -1,0 +1,82 @@
+{
+  "schema": 1,
+  "skill": "katas-provenance-preservation",
+  "report_id": "prov-valid-company-report",
+  "scenario": "company facts aggregated from three documents",
+  "evidence": [
+    {
+      "type": "source_registry",
+      "detail": "Three source documents are registered with stable source_id values and publication dates."
+    },
+    {
+      "type": "claim_mapping",
+      "detail": "Each factual claim maps to one or more source references."
+    },
+    {
+      "type": "conflict_trace",
+      "detail": "Headcount disagreement preserves both values and routes to human review."
+    }
+  ],
+  "source_registry": [
+    {
+      "source_id": "doc-A",
+      "source_name": "Annual Report",
+      "publication_date": "2025-12-01"
+    },
+    {
+      "source_id": "doc-B",
+      "source_name": "Investor Deck",
+      "publication_date": "2025-09-15"
+    },
+    {
+      "source_id": "doc-C",
+      "source_name": "Press Release",
+      "publication_date": "2026-01-10"
+    }
+  ],
+  "claims": [
+    {
+      "claim_id": "claim-arr-q3-2025",
+      "claim": "ARR Q3 2025 = 12M USD",
+      "sources": [
+        {
+          "source_id": "doc-A",
+          "value": "12M USD"
+        },
+        {
+          "source_id": "doc-B",
+          "value": "12M USD"
+        }
+      ],
+      "conflict": false
+    },
+    {
+      "claim_id": "claim-headcount-2025",
+      "claim": "Headcount end-2025",
+      "sources": [
+        {
+          "source_id": "doc-A",
+          "value": "450"
+        },
+        {
+          "source_id": "doc-C",
+          "value": "462"
+        }
+      ],
+      "conflict": true,
+      "needs_human_review": true,
+      "escalation_route": "human_review"
+    }
+  ],
+  "validation": {
+    "claims_without_sources": 0,
+    "unknown_source_refs": 0,
+    "conflicts_silenced": 0,
+    "free_prose_only": false,
+    "structural_test_passed": true
+  },
+  "guardian": {
+    "decision": "pass",
+    "reason": "Every claim has typed source provenance and the headcount conflict is escalated without silent resolution."
+  }
+}

@@ -1,29 +1,23 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: katas-provenance-preservation
-generated-on: 2026-05-29
-overwrite-policy: missing-only unless --force
--->
-
-# Katas Provenance Preservation Primary Prompt
+# Primary Prompt
 
 ## Objective
 
-Producir un output factual auditable aplicando la Kata 20: cada claim con su provenance tipada, los conflictos marcados y escalados.
+Producir un reporte factual auditable con provenance tipada: no hay claim sin fuente y los conflictos se preservan.
 
 ## Required Inputs
 
-- Las fuentes a agregar (documentos, resultados de subagentes, datasets), cada una con un identificador estable.
-- Las afirmaciones o preguntas factuales a responder.
-- El formato de salida esperado (JSON de `claims[]` o markdown auditable).
+- Fuentes con identificador estable, nombre y fecha de publicación.
+- Claims o preguntas factuales a responder.
+- Valores aportados por cada fuente o subagente.
 
 ## Process
 
-1. Para cada afirmación factual, localiza la(s) fuente(s) que la sustentan y captura `source_id`, `source_name`, `publication_date`.
-2. Emite un objeto `claim` con `sources[]` no vacío. Si no hay fuente, no emitas el claim.
-3. Si dos fuentes contradicen un dato, registra ambas, fija `conflict=true` y `needs_human_review=true`, y escala vía Kata 16. No promedies ni elijas.
-4. Valida estructuralmente: cada `claim` tiene `sources[]` con `source_id` existente.
+1. Construye `source_registry[]`.
+2. Emite cada claim con `claim_id`, `claim`, `sources[]` y `conflict`.
+3. Rechaza claims huérfanos.
+4. Preserva conflictos con todos los valores y `needs_human_review=true`.
+5. Valida `claims_without_sources=0`, `unknown_source_refs=0` y `conflicts_silenced=0`.
 
 ## Output
 
-Retorna `claims[]` tipados. Por cada claim: `claim`, `sources[]` (con `id`/`name`/`date` o `value`), `conflict`, y cuando aplique `needs_human_review`.
+Entrega `Summary`, `Source Registry`, `Claims`, `Conflicts`, `Validation` y `Risks And Limits`.

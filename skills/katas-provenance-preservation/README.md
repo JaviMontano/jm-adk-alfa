@@ -1,17 +1,6 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: katas-provenance-preservation
-generated-on: 2026-05-29
-overwrite-policy: missing-only unless --force
--->
-
 # Katas Provenance Preservation
 
-Kata 20 · Preservación de Provenance. Provenance tipada: no hay claim sin source; los conflictos entre fuentes se marcan con `conflict=true` y se escalan a humano, nunca se promedian ni se eligen en silencio.
-
-## Resumen ejecutivo
-
-Cuando se agregan hechos de muchas fuentes (especialmente tras subagentes paralelos), cada afirmación factual debe mantener un mapeo tipado a su origen: `claim, source_id, source_name, publication_date`. Esto convierte un resumen no auditable en un artefacto verificable claim por claim, y evita que alucinaciones en prosa libre pasen desapercibidas. Escenarios: Multi-Agent Orchestration, Structured Extraction.
+Kata para preservar provenance tipada en reportes factuales. El invariante central es simple: no hay `claim` sin `sources[]`, y cada `source_id` debe existir en `source_registry`.
 
 ## Triggers
 
@@ -20,17 +9,25 @@ Cuando se agregan hechos de muchas fuentes (especialmente tras subagentes parale
 - conflict flag
 - source provenance
 
-## Allowed Tools
+## Use When
 
-- Read
-- Grep
-- Glob
-- Bash
+- Un reporte agrega hechos desde varias fuentes.
+- Subagentes paralelos aportan datos que deben auditarse claim por claim.
+- Dos fuentes pueden contradecirse.
+- El output debe evitar prosa libre sin trazabilidad.
 
-## Quick Use
+## Output Contract
 
-Actívala cuando el output sea un reporte factual derivado de varias fuentes y deba ser auditable. Para cada claim emite un objeto con `sources[]` no vacío (cada uno con `source_id`, `name`, `date`). Si dos fuentes contradicen un mismo dato, registra ambas, marca `conflict=true`, fija `needs_human_review=true` y escala vía Kata 16.
+El entregable debe incluir:
 
-## Output Format
+- `source_registry[]` con `source_id`, `source_name` y `publication_date`.
+- `claims[]` con `claim_id`, `claim`, `sources[]` y `conflict`.
+- Conflictos preservados con ambas posturas y `needs_human_review=true`.
+- Validación estructural: cero claims sin fuentes y cero source refs desconocidos.
 
-Markdown o JSON con: lista de `claims[]`, cada uno con `sources[]` tipadas, bandera `conflict`, y nota de validación estructural (cada claim tiene fuente).
+## Offline Validation
+
+```bash
+bash skills/katas-provenance-preservation/scripts/check.sh
+python3 -B skills/katas-provenance-preservation/scripts/validate_provenance_preservation.py skills/katas-provenance-preservation/scripts/fixtures/valid-company-report.json
+```
