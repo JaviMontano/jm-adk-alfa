@@ -2,9 +2,12 @@
 name: pre-tool-use-guard
 author: JM Labs (Javier Montaño)
 version: 1.0.0
-description: >
-  Block dangerous commands before execution using exit code 2 pattern. [EXPLICIT]
-  Trigger: "pre tool use guard"
+description: "Block dangerous commands before execution using the exit-code-2 deny pattern, deterministic write-scope policy, private path protection, and offline report validation. [EXPLICIT]"
+triggers:
+  - pre tool use guard
+  - dangerous command guard
+  - exit code 2 block
+  - tool call safety
 allowed-tools:
   - Read
   - Write
@@ -13,41 +16,38 @@ allowed-tools:
   - Bash
 ---
 # Pre Tool Use Guard
-> "Method over hacks."
-## TL;DR
-Block dangerous commands before execution using exit code 2 pattern. [EXPLICIT]
+
+Blocks unsafe tool calls before execution. The contract is intentionally narrow: a report either allows the call, requires explicit approval, or blocks it with the exit-code-2 pattern.
+
+## Deterministic Contract
+
+- `assets/guard-decision-contract.json` defines the JSON report shape.
+- `assets/dangerous-command-policy.json` lists command patterns that must fail closed.
+- `assets/write-boundary-policy.json` defines protected and allowed write surfaces.
+- `assets/private-path-policy.json` defines private path markers.
+- `scripts/validate_pre_tool_use_guard.py` validates reports offline.
+- `scripts/check.sh` runs positive and negative fixtures.
+
 ## Procedure
-### Step 1: Discover
-- Gather context and requirements
-### Step 2: Analyze
-- Evaluate options per Constitution XIII/XIV
-### Step 3: Execute
-- Implement with evidence tags
-### Step 4: Validate
-- Verify quality criteria met
-## Quality Criteria
-- [ ] Evidence tags applied
-- [ ] Constitution-compliant
-- [ ] Actionable output
+
+1. Parse the proposed tool call, command, cwd, and write scope.
+2. Detect destructive commands, private path touches, secret exposure risk, and writes outside declared scope.
+3. Set `decision.action` to `block` and `decision.exit_code` to `2` for any hard blocker.
+4. Allow only read-only or explicitly scoped safe writes.
+5. Validate the report before presenting the decision.
+
+## Fail-Closed Conditions
+
+- `git reset --hard`, `git clean -fd`, broad deletion, or equivalent destructive shell.
+- Writes outside declared `allowed_write_roots`.
+- Any action touching `user-context/jarvis-os`, `.env`, credentials, or secret-like paths.
+- Missing evidence for an allow decision.
+- Any blocker with `decision.action: allow`.
 
 ## Usage
 
-Example invocations:
+Run the fixture gate:
 
-- "/pre-tool-use-guard" — Run the full pre tool use guard workflow
-- "pre tool use guard on this project" — Apply to current context
-
-
-## Assumptions & Limits
-
-- Assumes access to project artifacts (code, docs, configs) [EXPLICIT]
-- Requires English-language output unless otherwise specified [EXPLICIT]
-- Does not replace domain expert judgment for final decisions [EXPLICIT]
-
-## Edge Cases
-
-| Scenario | Handling |
-|----------|----------|
-| Empty or minimal input | Request clarification before proceeding |
-| Conflicting requirements | Flag conflicts explicitly, propose resolution |
-| Out-of-scope request | Redirect to appropriate skill or escalate |
+```bash
+bash skills/pre-tool-use-guard/scripts/check.sh
+```

@@ -1,0 +1,26 @@
+{
+  "schema": "jm-labs.pre-tool-use-guard.decision.v1",
+  "skill": "pre-tool-use-guard",
+  "tool_call": {
+    "tool": "Bash",
+    "command": "cp -R user-context/jarvis-os docs/jarvis-os",
+    "cwd": "/Users/deonto/Documents/workspace/jm-adk-alfa"
+  },
+  "scope": {
+    "allowed_write_roots": ["docs/"],
+    "protected_roots": ["user-context/jarvis-os"]
+  },
+  "checks": {
+    "destructive_command": false,
+    "private_path_touch": true,
+    "writes_outside_scope": false,
+    "secrets_exposure": false,
+    "may_write": true
+  },
+  "decision": {
+    "action": "allow",
+    "exit_code": 0,
+    "reason": "Invalid fixture allows private path publication.",
+    "evidence": ["invalid fixture"]
+  }
+}

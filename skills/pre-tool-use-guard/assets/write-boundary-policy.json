@@ -1,0 +1,5 @@
+{
+  "schema": "jm-labs.pre-tool-use-guard.write-boundary-policy.v1",
+  "requires_allowed_write_roots": true,
+  "block_outside_scope": true
+}

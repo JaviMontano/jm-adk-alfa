@@ -1,0 +1,35 @@
+{
+  "skill": "pre-tool-use-guard",
+  "assets": [
+    {
+      "path": "assets/README.md",
+      "type": "documentation",
+      "purpose": "Explains guard policy assets.",
+      "used_by": ["SKILL.md", "README.md"]
+    },
+    {
+      "path": "assets/guard-decision-contract.json",
+      "type": "contract",
+      "purpose": "Defines pre-tool guard report shape.",
+      "used_by": ["SKILL.md", "scripts/validate_pre_tool_use_guard.py"]
+    },
+    {
+      "path": "assets/dangerous-command-policy.json",
+      "type": "policy",
+      "purpose": "Defines commands that must fail closed.",
+      "used_by": ["SKILL.md", "scripts/validate_pre_tool_use_guard.py"]
+    },
+    {
+      "path": "assets/write-boundary-policy.json",
+      "type": "policy",
+      "purpose": "Defines write scope enforcement.",
+      "used_by": ["SKILL.md", "scripts/validate_pre_tool_use_guard.py"]
+    },
+    {
+      "path": "assets/private-path-policy.json",
+      "type": "policy",
+      "purpose": "Defines private path blockers.",
+      "used_by": ["SKILL.md", "scripts/validate_pre_tool_use_guard.py"]
+    }
+  ]
+}

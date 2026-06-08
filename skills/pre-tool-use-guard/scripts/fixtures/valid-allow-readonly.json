@@ -1,0 +1,26 @@
+{
+  "schema": "jm-labs.pre-tool-use-guard.decision.v1",
+  "skill": "pre-tool-use-guard",
+  "tool_call": {
+    "tool": "Bash",
+    "command": "git status --short --branch",
+    "cwd": "/Users/deonto/Documents/workspace/jm-adk-alfa"
+  },
+  "scope": {
+    "allowed_write_roots": [],
+    "protected_roots": ["user-context/jarvis-os", ".git"]
+  },
+  "checks": {
+    "destructive_command": false,
+    "private_path_touch": false,
+    "writes_outside_scope": false,
+    "secrets_exposure": false,
+    "may_write": false
+  },
+  "decision": {
+    "action": "allow",
+    "exit_code": 0,
+    "reason": "Read-only status command.",
+    "evidence": ["command is read-only and does not touch protected paths"]
+  }
+}

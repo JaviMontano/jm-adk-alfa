@@ -1,0 +1,5 @@
+{
+  "schema": "jm-labs.pre-tool-use-guard.private-path-policy.v1",
+  "private_markers": ["user-context/jarvis-os", ".env", ".pem", ".key", "credentials"],
+  "required_action": "block"
+}
