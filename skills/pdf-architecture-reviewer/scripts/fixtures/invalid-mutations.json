@@ -1,0 +1,122 @@
+{
+  "schema": 1,
+  "cases": [
+    {
+      "id": "unread_pdf_treated_as_evidence",
+      "base": "valid-authorized-satisfied.json",
+      "operations": [
+        {
+          "op": "set",
+          "path": "document.extraction_status",
+          "value": "unread"
+        }
+      ]
+    },
+    {
+      "id": "missing_page_evidence",
+      "base": "valid-authorized-satisfied.json",
+      "operations": [
+        {
+          "op": "remove",
+          "path": "page_evidence.0"
+        }
+      ]
+    },
+    {
+      "id": "claim_points_to_unknown_page_evidence",
+      "base": "valid-authorized-satisfied.json",
+      "operations": [
+        {
+          "op": "set",
+          "path": "architecture_claims.0.page_evidence_ids.0",
+          "value": "pe-missing"
+        }
+      ]
+    },
+    {
+      "id": "claim_without_repo_mapping",
+      "base": "valid-authorized-satisfied.json",
+      "operations": [
+        {
+          "op": "remove",
+          "path": "repo_mapping.0"
+        }
+      ]
+    },
+    {
+      "id": "official_source_requirement_missing",
+      "base": "valid-authorized-satisfied.json",
+      "operations": [
+        {
+          "op": "remove",
+          "path": "official_source_requirements.0"
+        }
+      ]
+    },
+    {
+      "id": "satisfied_requirement_without_source_id",
+      "base": "valid-authorized-satisfied.json",
+      "operations": [
+        {
+          "op": "set",
+          "path": "official_source_requirements.0.official_source_ids",
+          "value": []
+        }
+      ]
+    },
+    {
+      "id": "authorize_with_unsatisfied_official_source",
+      "base": "valid-blocked-official-source-required.json",
+      "operations": [
+        {
+          "op": "set",
+          "path": "decisions.0.action",
+          "value": "authorize"
+        },
+        {
+          "op": "set",
+          "path": "decisions.0.blocking_gaps",
+          "value": []
+        }
+      ]
+    },
+    {
+      "id": "contradicted_claim_without_contradiction",
+      "base": "valid-blocked-official-source-required.json",
+      "operations": [
+        {
+          "op": "set",
+          "path": "architecture_claims.0.status",
+          "value": "contradicted"
+        },
+        {
+          "op": "set",
+          "path": "repo_mapping.0.mapping_status",
+          "value": "contradicts"
+        }
+      ]
+    },
+    {
+      "id": "guardian_passes_blocked_report",
+      "base": "valid-blocked-official-source-required.json",
+      "operations": [
+        {
+          "op": "set",
+          "path": "guardian.decision",
+          "value": "pass"
+        }
+      ]
+    },
+    {
+      "id": "page_evidence_outside_reviewed_scope",
+      "base": "valid-authorized-satisfied.json",
+      "operations": [
+        {
+          "op": "set",
+          "path": "page_evidence.0.page",
+          "value": 9
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "schema": 1,
+  "required_decision_fields": [
+    "decision_id",
+    "action",
+    "claim_ids",
+    "rationale",
+    "blocking_gaps"
+  ],
+  "actions": [
+    "authorize",
+    "block",
+    "defer",
+    "needs_official_source"
+  ],
+  "blocking_claim_statuses": [
+    "contradicted",
+    "unverified",
+    "repo_missing"
+  ]
+}

@@ -1,12 +1,15 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: pdf-architecture-reviewer
-generated-on: 2026-05-29
-overwrite-policy: missing-only unless --force
--->
-
 # Pdf Architecture Reviewer Deep Variation
 
-Use when the task has unclear requirements, high impact, or cross-file consequences.
+Use when the PDF is long, OCR quality is mixed, repo mapping spans multiple folders, or decisions could change implementation.
 
-Include discovery notes, options considered, selected approach, validation, and risks.
+Include:
+
+- page scope and extraction confidence,
+- claim inventory,
+- repo evidence and missing-path analysis,
+- contradiction register,
+- official source requirement register,
+- decision matrix,
+- validation evidence and Guardian decision.
+
+Sample reviewed pages deterministically when the user asks for a bounded slice. Do not cite unreviewed pages.

@@ -1,75 +1,88 @@
 {
   "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-29",
   "skill": "pdf-architecture-reviewer",
   "nodes": [
     {
       "id": "pdf-architecture-reviewer",
       "type": "skill",
-      "label": "pdf-architecture-reviewer"
+      "label": "PDF architecture claim-to-repo reviewer"
     },
     {
-      "id": "pdf-architecture-reviewer:inputs",
-      "type": "contract",
-      "label": "Expected inputs"
-    },
-    {
-      "id": "pdf-architecture-reviewer:outputs",
-      "type": "contract",
-      "label": "Expected outputs"
-    },
-    {
-      "id": "pdf-architecture-reviewer:quality",
+      "id": "document-read-status",
       "type": "gate",
-      "label": "Quality criteria"
+      "label": "PDF must be read before evidence exists"
     },
     {
-      "id": "pdf-architecture-reviewer:ontology",
-      "type": "ontology",
-      "label": "Domain: prompt-structured-output"
+      "id": "page-evidence",
+      "type": "contract",
+      "label": "Page-numbered excerpts"
     },
     {
-      "id": "pdf-architecture-reviewer:evidence",
-      "type": "gate",
-      "label": "Evidence / provenance requirements"
+      "id": "architecture-claims",
+      "type": "contract",
+      "label": "Atomic architecture claims"
     },
     {
-      "id": "pdf-architecture-reviewer:antipattern",
+      "id": "repo-mapping",
+      "type": "contract",
+      "label": "Claim-to-repository mapping"
+    },
+    {
+      "id": "official-source-requirements",
+      "type": "contract",
+      "label": "Official sources required before decisions"
+    },
+    {
+      "id": "contradictions",
       "type": "risk",
-      "label": "Canonical anti-pattern to avoid"
+      "label": "PDF and repo disagreement"
+    },
+    {
+      "id": "guardian-decision",
+      "type": "gate",
+      "label": "Authorize, block, or defer"
     }
   ],
   "edges": [
     {
       "from": "pdf-architecture-reviewer",
-      "to": "pdf-architecture-reviewer:inputs",
+      "to": "document-read-status",
       "type": "requires"
     },
     {
-      "from": "pdf-architecture-reviewer",
-      "to": "pdf-architecture-reviewer:outputs",
-      "type": "produces"
+      "from": "document-read-status",
+      "to": "page-evidence",
+      "type": "enables"
     },
     {
-      "from": "pdf-architecture-reviewer",
-      "to": "pdf-architecture-reviewer:quality",
+      "from": "page-evidence",
+      "to": "architecture-claims",
+      "type": "supports"
+    },
+    {
+      "from": "architecture-claims",
+      "to": "repo-mapping",
       "type": "validated_by"
     },
     {
-      "from": "pdf-architecture-reviewer",
-      "to": "pdf-architecture-reviewer:ontology",
-      "type": "classified_as"
+      "from": "architecture-claims",
+      "to": "official-source-requirements",
+      "type": "requires"
     },
     {
-      "from": "pdf-architecture-reviewer",
-      "to": "pdf-architecture-reviewer:evidence",
-      "type": "validated_by"
+      "from": "repo-mapping",
+      "to": "contradictions",
+      "type": "detects"
     },
     {
-      "from": "pdf-architecture-reviewer",
-      "to": "pdf-architecture-reviewer:antipattern",
-      "type": "guards_against"
+      "from": "contradictions",
+      "to": "guardian-decision",
+      "type": "blocks_when_unresolved"
+    },
+    {
+      "from": "official-source-requirements",
+      "to": "guardian-decision",
+      "type": "blocks_until_satisfied"
     }
   ]
 }

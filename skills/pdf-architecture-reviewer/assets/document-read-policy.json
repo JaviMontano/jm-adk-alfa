@@ -1,0 +1,19 @@
+{
+  "schema": 1,
+  "required_document_fields": [
+    "document_id",
+    "file_name",
+    "sha256",
+    "extraction_status",
+    "extraction_method",
+    "page_count",
+    "pages_reviewed"
+  ],
+  "read_status": "read",
+  "sha256_pattern": "^[a-f0-9]{64}$",
+  "allowed_extraction_methods": [
+    "text_layer",
+    "ocr_fixture",
+    "manual_page_excerpt"
+  ]
+}

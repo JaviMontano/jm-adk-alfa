@@ -1,32 +1,30 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: pdf-architecture-reviewer
-generated-on: 2026-05-29
-overwrite-policy: missing-only unless --force
--->
-
 # Pdf Architecture Reviewer
 
-Extract architecture from a PDF/attachment and map claims to the repo: evidence per page, contradictions, decisions, and which official source each claim requires. Never treats a PDF as evidence before reading it.
+`pdf-architecture-reviewer` turns a read PDF or attachment excerpt into a deterministic architecture review. It maps every architecture claim to page evidence, compares the claim with repository evidence, records contradictions, and identifies which official source must confirm the claim before a change is authorized.
 
-## Triggers
+The skill must not treat an attachment name, user summary, screenshot, or unread PDF as evidence. Evidence starts only after page text has been extracted, paginated, and recorded in the report contract.
 
-- pdf architecture
-- attachment review
-- claim mapping
-- document architecture
-- pdf evidence
+## Deterministic Contract
 
-## Allowed Tools
+The canonical offline report shape lives in `assets/pdf-architecture-reviewer-contract.json`. A valid report includes:
 
-- Read
-- Grep
-- Glob
+- `document` metadata with `extraction_status: "read"`, `sha256`, `page_count`, and `pages_reviewed`.
+- `page_evidence` entries with page numbers, excerpts, extraction method, and linked claim IDs.
+- `architecture_claims` that trace to page evidence and repository mapping.
+- `repo_mapping` entries that compare PDF claims to code, docs, config, or missing repo evidence.
+- `official_source_requirements` for claims that need official documentation before implementation.
+- `contradictions`, `decisions`, `validation`, and `guardian` sections.
 
-## Quick Use
+## Local Validation
 
-Use this skill when the request clearly matches the triggers and requires the `pdf-architecture-reviewer` capability.
+Run the deterministic check:
 
-## Output Format
+```bash
+bash skills/pdf-architecture-reviewer/scripts/check.sh
+```
 
-Markdown with summary, evidence, result, validation, and risks.
+The check validates known-good report fixtures and rejects mutated reports that skip PDF reading, omit page evidence, authorize unsupported changes, or pass Guardian despite unresolved contradictions.
+
+## Output Standard
+
+The output should separate PDF evidence from repo evidence and decision evidence. If a claim lacks page evidence, repo mapping, or required official source coverage, mark it as blocked or unverified instead of turning it into implementation guidance.

@@ -1,0 +1,68 @@
+{
+  "schema": 1,
+  "skill": "pdf-architecture-reviewer",
+  "assets": [
+    {
+      "path": "assets/pdf-architecture-reviewer-contract.json",
+      "type": "json_contract",
+      "purpose": "Defines required top-level fields and valid Guardian decisions for structured PDF architecture reports.",
+      "used_by": [
+        "SKILL.md",
+        "README.md",
+        "scripts/validate_pdf_architecture_reviewer.py",
+        "evals/evals.json",
+        "examples/example-output.md"
+      ]
+    },
+    {
+      "path": "assets/document-read-policy.json",
+      "type": "policy",
+      "purpose": "Requires page-indexed extraction before PDF content can be evidence.",
+      "used_by": [
+        "SKILL.md",
+        "prompts/meta.md",
+        "scripts/validate_pdf_architecture_reviewer.py"
+      ]
+    },
+    {
+      "path": "assets/page-evidence-policy.json",
+      "type": "policy",
+      "purpose": "Defines page evidence fields, extraction methods, and minimum excerpt requirements.",
+      "used_by": [
+        "knowledge/body-of-knowledge.md",
+        "templates/output.md",
+        "scripts/validate_pdf_architecture_reviewer.py"
+      ]
+    },
+    {
+      "path": "assets/repo-mapping-policy.json",
+      "type": "policy",
+      "purpose": "Defines allowed claim-to-repo mapping statuses and required mapping fields.",
+      "used_by": [
+        "agents/specialist.md",
+        "templates/output.md",
+        "scripts/validate_pdf_architecture_reviewer.py"
+      ]
+    },
+    {
+      "path": "assets/official-source-requirement-policy.json",
+      "type": "policy",
+      "purpose": "Requires official source requirement records for implementation-impacting claims.",
+      "used_by": [
+        "SKILL.md",
+        "agents/guardian.md",
+        "scripts/validate_pdf_architecture_reviewer.py"
+      ]
+    },
+    {
+      "path": "assets/decision-policy.json",
+      "type": "policy",
+      "purpose": "Blocks authorization when document evidence, repo mapping, contradictions, or official sources are incomplete.",
+      "used_by": [
+        "agents/guardian.md",
+        "templates/output.md",
+        "scripts/validate_pdf_architecture_reviewer.py"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "schema": 1,
+  "required_requirement_fields": [
+    "claim_id",
+    "source_kind",
+    "requirement_reason",
+    "status",
+    "official_source_ids"
+  ],
+  "source_kinds": [
+    "vendor_docs",
+    "framework_docs",
+    "product_docs",
+    "standard",
+    "internal_adr"
+  ],
+  "requirement_statuses": [
+    "required",
+    "satisfied",
+    "blocked"
+  ]
+}

@@ -1,0 +1,84 @@
+{
+  "schema": 1,
+  "skill": "pdf-architecture-reviewer",
+  "report_id": "valid-blocked-official-source-required",
+  "document": {
+    "document_id": "deployment-target-architecture",
+    "file_name": "deployment-target-architecture.pdf",
+    "sha256": "8f1e2d3c4b5a69788776655443322110ffeeddccbbaa99887766554433221100",
+    "extraction_status": "read",
+    "extraction_method": "ocr_fixture",
+    "page_count": 18,
+    "pages_reviewed": [
+      7,
+      8
+    ]
+  },
+  "page_evidence": [
+    {
+      "evidence_id": "pe-runtime-mode",
+      "page": 7,
+      "excerpt": "The target deployment mode uses zero-downtime rolling upgrades for every worker group.",
+      "extraction_method": "ocr_fixture",
+      "claim_ids": [
+        "claim-runtime-mode"
+      ]
+    }
+  ],
+  "architecture_claims": [
+    {
+      "claim_id": "claim-runtime-mode",
+      "claim": "Worker groups should use zero-downtime rolling upgrades.",
+      "status": "supported",
+      "page_evidence_ids": [
+        "pe-runtime-mode"
+      ],
+      "official_source_required": true,
+      "decision_impact": "Deployment settings cannot be changed until official platform support is verified."
+    }
+  ],
+  "repo_mapping": [
+    {
+      "claim_id": "claim-runtime-mode",
+      "path": "deploy/workers/rollout.yml",
+      "mapping_status": "supports",
+      "observed_state": "rollout strategy is present but platform behavior is not documented in repo"
+    }
+  ],
+  "official_source_requirements": [
+    {
+      "claim_id": "claim-runtime-mode",
+      "source_kind": "framework_docs",
+      "requirement_reason": "Official platform rollout guarantees are required before authorizing deployment changes.",
+      "status": "required",
+      "official_source_ids": []
+    }
+  ],
+  "contradictions": [],
+  "decisions": [
+    {
+      "decision_id": "decision-needs-official-source",
+      "action": "needs_official_source",
+      "claim_ids": [
+        "claim-runtime-mode"
+      ],
+      "rationale": "The PDF and repo mapping are traceable, but official platform docs are still required.",
+      "blocking_gaps": [
+        "official source required for claim-runtime-mode"
+      ]
+    }
+  ],
+  "validation": {
+    "pdf_read_before_evidence": true,
+    "page_evidence_present": true,
+    "claims_trace_to_pages": true,
+    "repo_mapping_traceable": true,
+    "official_sources_identified": true,
+    "contradictions_recorded": true,
+    "deterministic_script_passed": true
+  },
+  "guardian": {
+    "decision": "block",
+    "reason": "The required official source is not satisfied."
+  }
+}
