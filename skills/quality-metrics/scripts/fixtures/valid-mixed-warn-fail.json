@@ -1,0 +1,79 @@
+{
+  "schema": 1,
+  "skill": "quality-metrics",
+  "report_id": "qm-valid-mixed-warn-fail",
+  "subject": "Project Atlas Frontend",
+  "scope": "frontend",
+  "evidence_summary": [
+    {"type": "ci_artifact", "detail": "Metric evidence came from coverage, ESLint, jscpd, Lighthouse, bundle, and Firestore exports."}
+  ],
+  "exclusions": ["node_modules", "generated clients"],
+  "metrics": [
+    {
+      "id": "coverage",
+      "status": "warn",
+      "measured": true,
+      "values": {"lines": 84, "branches": 76, "functions": 88, "statements": 82},
+      "score": 6,
+      "evidence": "Branch coverage is 76, below the pass threshold but above the warn floor."
+    },
+    {
+      "id": "complexity",
+      "status": "fail",
+      "measured": true,
+      "values": {"max_cyclomatic": 23},
+      "score": 2,
+      "evidence": "ESLint reports max cyclomatic complexity 23."
+    },
+    {
+      "id": "duplication",
+      "status": "pass",
+      "measured": true,
+      "values": {"percent": 3.2},
+      "score": 10,
+      "evidence": "jscpd reports duplication 3.2 percent."
+    },
+    {
+      "id": "lighthouse",
+      "status": "warn",
+      "measured": true,
+      "values": {"performance": 84, "accessibility": 98, "best_practices": 93, "seo": 91},
+      "score": 6,
+      "evidence": "Lighthouse performance is 84, below pass but within warn band."
+    },
+    {
+      "id": "bundle_size",
+      "status": "fail",
+      "measured": true,
+      "values": {"initial_gzip_kb": 310},
+      "score": 2,
+      "evidence": "Initial gzip bundle is 310KB."
+    },
+    {
+      "id": "firestore_io",
+      "status": "warn",
+      "measured": true,
+      "values": {"reads_per_day": 62000, "writes_per_day": 2100, "deletes_per_day": 100, "read_spike_multiplier": 2.2},
+      "score": 6,
+      "evidence": "Daily reads exceed the 50000 read warning budget."
+    }
+  ],
+  "gates": [
+    {"id": "coverage", "tool": "vitest coverage", "threshold": "all coverage dimensions >=80%", "enforced": true, "on_failure": "Block PR until coverage recovers."},
+    {"id": "complexity", "tool": "eslint complexity", "threshold": "max cyclomatic <=15", "enforced": true, "on_failure": "Block PR until complexity is reduced or split."},
+    {"id": "duplication", "tool": "jscpd", "threshold": "duplication <5%", "enforced": true, "on_failure": "Block PR until duplicated code is refactored."},
+    {"id": "lighthouse", "tool": "lighthouse-ci", "threshold": "performance >=90, accessibility >=95, best practices >=90, seo >=90", "enforced": true, "on_failure": "Block PR or release until Lighthouse scores recover."},
+    {"id": "bundle_size", "tool": "size-limit", "threshold": "initial gzip <=250KB", "enforced": true, "on_failure": "Block PR until bundle budget is met."},
+    {"id": "firestore_io", "tool": "usage export", "threshold": "reads <=50000/day and spike <3x", "enforced": true, "on_failure": "Alert owner and block release if usage remains above threshold."}
+  ],
+  "trend_window": 3,
+  "trend_assessment": {"status": "unknown", "snapshots": 1, "reason": "Only one snapshot was supplied, so three-snapshot trend regression cannot be determined."},
+  "quality_score": 53.33,
+  "overall_status": "fail",
+  "priority_actions": [
+    {"metric": "complexity", "expected_improvement": 8, "action": "Reduce max cyclomatic complexity below 15."},
+    {"metric": "bundle_size", "expected_improvement": 8, "action": "Reduce initial gzip bundle below 250KB."},
+    {"metric": "coverage", "expected_improvement": 4, "action": "Raise branch coverage to at least 80 percent."}
+  ],
+  "guardian": {"decision": "warn", "reason": "Report is valid, but two metrics fail and three metrics warn."}
+}

@@ -1,0 +1,6 @@
+{
+  "schema": 1,
+  "default_window": 3,
+  "regression_rule": "A metric moving in the wrong direction for 3 consecutive snapshots triggers warn or fail escalation.",
+  "allowed_statuses": ["stable", "improving", "regressing", "unknown"]
+}

@@ -14,74 +14,70 @@ allowed-tools:
   - Grep
 ---
 
-# 084 — Quality Metrics {Testing}
+# Quality Metrics
 
-## Purpose
-Define, collect, and enforce quantitative quality thresholds across the entire stack. Every metric has a target, a measurement tool, and a CI enforcement gate. [EXPLICIT]
+Code coverage, cyclomatic complexity, duplication, Lighthouse scores, bundle size, and Firestore read/write tracking.
 
-## Physics — 3 Immutable Laws
+Use this skill to define, collect, and enforce quantitative quality thresholds across an application or repository. Every metric has a numeric target, evidence source, CI gate, and deterministic status.
 
-1. **Law of Measurement**: What is not measured degrades. Every quality dimension has a numeric target tracked over time. [EXPLICIT]
-2. **Law of Thresholds**: Metrics without enforced thresholds are vanity metrics. Every metric has a pass/fail gate in CI. [EXPLICIT]
-3. **Law of Trends**: Absolute values matter less than direction. A metric moving in the wrong direction for 3 consecutive sprints triggers intervention. [EXPLICIT]
+## Deterministic Contract
 
-## Protocol
+Load these files only when needed:
 
-### Phase 1 — Metric Collection
-1. **Code coverage**: `vitest --coverage` or `jest --coverage` → lcov report. [EXPLICIT]
-2. **Cyclomatic complexity**: `eslint-plugin-complexity` with max 15 per function. [EXPLICIT]
-3. **Duplication**: `jscpd` with threshold < 5% duplication. [EXPLICIT]
-4. **Lighthouse**: `lighthouse-ci` for Performance, Accessibility, Best Practices, SEO. [EXPLICIT]
-5. **Bundle size**: `size-limit` or `bundlesize` with per-route budgets. [EXPLICIT]
-6. **Firestore I/O**: Cloud Monitoring dashboard tracking read/write/delete counts per day. [EXPLICIT]
+- `assets/quality-metrics-contract.json`: required report fields and Guardian decisions.
+- `assets/metrics-thresholds.json`: canonical metric order, thresholds, warn bands, and score points.
+- `assets/gate-policy.json`: required gate fields and enforcement policy.
+- `assets/trend-policy.json`: deterministic trend window and regression rules.
+- `assets/action-priority-policy.json`: top action sorting rules.
+- `assets/evidence-policy.json`: accepted evidence types and blocked claims.
 
-### Phase 2 — Dashboard & Reporting
-1. Aggregate metrics in CI summary (GitHub Actions job summary). [EXPLICIT]
-2. Track trends in spreadsheet or dashboard (weekly snapshot). [EXPLICIT]
-3. Flag regressions as PR comments via `danger.js` or custom action. [EXPLICIT]
+When a machine-checkable handoff is required, emit JSON that passes:
 
-## I/O
+```bash
+python3 -B skills/quality-metrics/scripts/validate_quality_metrics.py <report.json>
+```
 
-| Input | Output |
-|-------|--------|
-| Source code | Coverage report (lcov, HTML) |
-| ESLint config | Complexity report per function |
-| Built bundle | Bundle size report (per-chunk) |
-| Deployed URL | Lighthouse JSON + HTML report |
-| Firebase project | Firestore read/write daily counts |
+## Inputs
 
-## Quality Gates — 5 Checks
+Parse the request for:
 
-1. **Coverage >= 80%** lines, branches, functions, statements. [EXPLICIT]
-2. **Cyclomatic complexity <= 15** per function — no exceptions. [EXPLICIT]
-3. **Code duplication < 5%** across codebase. [EXPLICIT]
-4. **Lighthouse scores**: Performance >= 90, Accessibility >= 95, Best Practices >= 90, SEO >= 90. [EXPLICIT]
-5. **Bundle size < 250KB** initial load (gzipped) — per-route budgets enforced. [EXPLICIT]
+- `subject`: repository, app, product, package, or service being measured.
+- `scope`: `repo`, `package`, `route`, `frontend`, `backend`, or `firebase`.
+- `evidence_sources`: local reports, command output, user facts, CI artifacts, or assumptions.
+- `trend_window`: sprint or snapshot count. Default is `3` because regressions require three consecutive snapshots.
 
-## Edge Cases
+## Workflow
 
-- **Monorepo projects**: Measure metrics per package, not aggregate only.
-- **Third-party code**: Exclude `node_modules` and generated files from duplication/complexity.
-- **Lighthouse variance**: Run 3x and take median to reduce noise.
-- **Firestore spikes**: Set billing alert at 50K reads/day. Investigate any 3x spike.
+1. Confirm the request is about quality metrics, coverage, complexity, duplication, Lighthouse, bundle size, Firestore reads/writes, or quality thresholds.
+2. Gather local evidence with read-only inspection when available. Examples: coverage summary, ESLint complexity output, jscpd report, Lighthouse JSON, bundle report, or Firestore usage snapshot.
+3. Evaluate the six canonical metrics in this order: `coverage`, `complexity`, `duplication`, `lighthouse`, `bundle_size`, `firestore_io`.
+4. Derive metric status from `assets/metrics-thresholds.json`. Do not invent thresholds.
+5. Define one enforcement gate per canonical metric. Each gate has `enforced`, `tool`, `threshold`, and `on_failure`.
+6. Compute `quality_score`: `pass=10`, `warn=6`, `fail=2`; `na` is excluded from the denominator.
+7. Sort priority actions by severity, then expected improvement, then canonical metric order.
+8. Run Guardian validation before final output.
 
-## Self-Correction Triggers
+## Output Requirements
 
-- Any metric below threshold for 2 consecutive PRs → block merge until fixed.
-- Lighthouse performance drops below 80 → performance audit sprint (skill 096).
-- Bundle size exceeds budget → run bundle analysis (skill 099).
-- Firestore reads spike 3x → review queries, add caching (skill 100).
+Every final report includes:
 
-## Usage
+- Evidence Summary
+- Metric Scorecard
+- Gate Matrix
+- Trend Assessment
+- Priority Actions
+- Guardian Decision
 
-Example invocations:
+For JSON reports, use schema version `1`, skill `quality-metrics`, and the canonical metric order defined in assets.
 
-- "/quality-metrics" — Run the full quality metrics workflow
-- "quality metrics on this project" — Apply to current context
+## Guardrails
 
+- Do not treat a metric as passing without evidence.
+- Do not call a metric enforced unless a gate blocks or alerts as declared.
+- Do not use network-only Lighthouse or Firestore checks as the only evidence unless the user explicitly provided exported results.
+- Do not mark generated code or third-party dependencies as measured scope unless they are explicitly included.
+- Do not call quality complete if any canonical metric is missing without a reduced-scope reason.
 
-## Assumptions & Limits
+## Handoff
 
-- Assumes access to project artifacts (code, docs, configs) [EXPLICIT]
-- Requires English-language output unless otherwise specified [EXPLICIT]
-- Does not replace domain expert judgment for final decisions [EXPLICIT]
+If evidence is missing, return `guardian.decision="warn"` or `guardian.decision="block"` with concrete missing inputs and reduced-scope notes.

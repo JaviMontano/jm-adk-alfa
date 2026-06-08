@@ -1,29 +1,27 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: quality-metrics
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
-
 # Quality Metrics
 
-Code coverage, cyclomatic complexity, duplication, Lighthouse scores, bundle size, and Firestore read/write tracking
+Measures and gates code coverage, cyclomatic complexity, duplication, Lighthouse scores, bundle size, and Firestore I/O.
 
-## Triggers
+## Use
 
-- quality-metrics
+Use this skill for:
 
-## Allowed Tools
+- quality metric baselines
+- CI threshold design
+- regression tracking
+- bundle and Lighthouse budgets
+- Firestore read/write cost guardrails
+- compact metric scorecards
 
-- Read
-- Grep
-- Glob
-- Bash
+## Contract
 
-## Quick Use
+The deterministic report contract lives in `assets/`. JSON reports can be validated offline with:
 
-Use this skill when the request clearly matches the triggers and requires the `quality-metrics` capability.
+```bash
+bash skills/quality-metrics/scripts/check.sh
+python3 -B skills/quality-metrics/scripts/validate_quality_metrics.py <report.json>
+```
 
-## Output Format
+## Output
 
-Markdown with summary, evidence, result, validation, and risks.
+A complete report includes evidence summary, six canonical metrics, gate matrix, trend assessment, priority actions, and Guardian decision.

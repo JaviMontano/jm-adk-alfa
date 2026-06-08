@@ -1,10 +1,18 @@
-# Quality Metrics — DOCX Template
+# Quality Metrics Report
 
 ## Document Structure
-- Title: Quality Metrics — [Client/Project Name]
-- Author: JM Labs
-- Date: {{DATE}}
 
-## Sections (mirror SKILL.md structure)
-See canonical SKILL.md for section blueprints.
-Use brand-config.json tokens: Navy #122562 · Gold #FFD700 · Blue #137DC5
+- Title: Quality Metrics Report - {{SUBJECT}}
+- Author: JM Labs
+- Version: {{VERSION}}
+
+## Required Sections
+
+1. Evidence Summary
+2. Metric Scorecard
+3. Gate Matrix
+4. Trend Assessment
+5. Priority Actions
+6. Guardian Decision
+
+Use the same canonical order and labels as `templates/output.md`.

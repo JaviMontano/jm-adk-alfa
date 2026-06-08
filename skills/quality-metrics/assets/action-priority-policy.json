@@ -1,0 +1,9 @@
+{
+  "schema": 1,
+  "max_actions": 3,
+  "sort_order": [
+    "status_severity_fail_before_warn",
+    "expected_improvement_desc",
+    "canonical_metric_order"
+  ]
+}

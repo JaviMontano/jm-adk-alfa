@@ -1,0 +1,43 @@
+{
+  "schema": 1,
+  "cases": [
+    {
+      "id": "invalid-missing-metric",
+      "base": "valid-mixed-warn-fail.json",
+      "operations": [{"op": "remove", "path": "metrics.5"}]
+    },
+    {
+      "id": "invalid-status-mismatch",
+      "base": "valid-mixed-warn-fail.json",
+      "operations": [{"op": "set", "path": "metrics.1.status", "value": "pass"}]
+    },
+    {
+      "id": "invalid-score-mismatch",
+      "base": "valid-mixed-warn-fail.json",
+      "operations": [{"op": "set", "path": "quality_score", "value": 90}]
+    },
+    {
+      "id": "invalid-unenforced-gate",
+      "base": "valid-mixed-warn-fail.json",
+      "operations": [{"op": "set", "path": "gates.4.enforced", "value": false}]
+    },
+    {
+      "id": "invalid-missing-gate",
+      "base": "valid-mixed-warn-fail.json",
+      "operations": [{"op": "remove", "path": "gates.0"}]
+    },
+    {
+      "id": "invalid-trend-window",
+      "base": "valid-mixed-warn-fail.json",
+      "operations": [{"op": "set", "path": "trend_window", "value": 2}]
+    },
+    {
+      "id": "invalid-priority-order",
+      "base": "valid-mixed-warn-fail.json",
+      "operations": [
+        {"op": "set", "path": "priority_actions.0.metric", "value": "bundle_size"},
+        {"op": "set", "path": "priority_actions.1.metric", "value": "complexity"}
+      ]
+    }
+  ]
+}

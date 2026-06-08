@@ -1,0 +1,33 @@
+{
+  "schema": 1,
+  "skill": "quality-metrics",
+  "json_contract": {
+    "schema_version": 1,
+    "required_top_level_fields": [
+      "schema",
+      "skill",
+      "report_id",
+      "subject",
+      "scope",
+      "evidence_summary",
+      "exclusions",
+      "metrics",
+      "gates",
+      "trend_window",
+      "trend_assessment",
+      "quality_score",
+      "overall_status",
+      "priority_actions",
+      "guardian"
+    ],
+    "guardian_decisions": ["pass", "warn", "block"]
+  },
+  "required_markdown_sections": [
+    "Evidence Summary",
+    "Metric Scorecard",
+    "Gate Matrix",
+    "Trend Assessment",
+    "Priority Actions",
+    "Guardian Decision"
+  ]
+}

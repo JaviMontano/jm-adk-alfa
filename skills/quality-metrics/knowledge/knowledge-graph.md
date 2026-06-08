@@ -1,13 +1,20 @@
-# Quality Metrics — Knowledge Graph
+# Quality Metrics Knowledge Graph
 
-## Core Concepts
-- quality-metrics: primary capability
-- validation-gate: quality control checkpoint
-- evidence-tagging: [EXPLICIT]/[INFERRED]/[OPEN] claims
+## Core Nodes
 
-## Dependencies
-- Upstream: input-analysis, context-optimization
-- Downstream: output-engineering, rendering-engine
+- `quality-metrics`: produces a metric scorecard.
+- `coverage`: line, branch, function, and statement coverage.
+- `complexity`: max cyclomatic complexity.
+- `duplication`: duplicated code percentage.
+- `lighthouse`: web quality scores.
+- `bundle-size`: initial gzipped bundle budget.
+- `firestore-io`: daily reads, writes, deletes, and spike multiplier.
+- `guardian`: validates score, gates, evidence, and actions.
 
-## Skill Relationships
-Part of the JM Labs canonical skill registry.
+## Edges
+
+- `quality-metrics` requires `evidence-summary`.
+- Each metric requires a gate.
+- Metric statuses drive `quality_score`.
+- Non-pass metrics drive `priority_actions`.
+- `guardian` blocks missing evidence or missing canonical metrics.
