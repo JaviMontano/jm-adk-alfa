@@ -1,0 +1,19 @@
+{
+  "schema": 1,
+  "required_field_spec_fields": [
+    "field",
+    "data_type",
+    "declared_path",
+    "components_path",
+    "formula",
+    "epsilon",
+    "epsilon_reason",
+    "verifiable"
+  ],
+  "required_formula_terms": [
+    "declared",
+    "computed",
+    "components"
+  ],
+  "verifiable_required": true
+}

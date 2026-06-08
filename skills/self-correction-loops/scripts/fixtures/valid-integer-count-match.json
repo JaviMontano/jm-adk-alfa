@@ -1,0 +1,53 @@
+{
+  "schema": 1,
+  "skill": "self-correction-loops",
+  "check_id": "inventory-count-cross-check",
+  "fields": [
+    {
+      "field": "item_count",
+      "data_type": "integer",
+      "declared_path": "$.batch.item_count",
+      "components_path": "$.batch.items[*]",
+      "formula": "computed=count(components); compare declared item_count to computed",
+      "epsilon": 0,
+      "epsilon_reason": "Integer counts require exact equality.",
+      "verifiable": true
+    }
+  ],
+  "records": [
+    {
+      "record_id": "BATCH-17:item_count",
+      "field": "item_count",
+      "data_type": "integer",
+      "declared": 3,
+      "computed": 3,
+      "delta": 0,
+      "epsilon": 0,
+      "mismatch": false,
+      "action": "accept",
+      "overwritten": false
+    }
+  ],
+  "escalations": [],
+  "structural_tests": {
+    "injected_mismatch_flags_true": true,
+    "silent_overwrite_rejected": true,
+    "epsilon_justified": true,
+    "independent_recompute": true,
+    "deterministic_script_passed": true
+  },
+  "validation": {
+    "fields_verifiable": true,
+    "epsilon_justified": true,
+    "records_recomputed": true,
+    "mismatches_visible": true,
+    "mismatches_escalated": true,
+    "silent_correction_blocked": true,
+    "structural_tests_passed": true,
+    "deterministic_script_passed": true
+  },
+  "guardian": {
+    "decision": "pass",
+    "reason": "Declared integer count equals independently computed count with zero epsilon."
+  }
+}

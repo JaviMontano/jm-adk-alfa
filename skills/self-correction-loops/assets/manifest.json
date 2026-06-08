@@ -1,0 +1,62 @@
+{
+  "schema": 1,
+  "skill": "self-correction-loops",
+  "assets": [
+    {
+      "path": "assets/self-correction-loops-contract.json",
+      "type": "json_contract",
+      "purpose": "Defines the deterministic JSON report accepted by the offline validator.",
+      "used_by": [
+        "SKILL.md",
+        "scripts/validate_self_correction_loops.py",
+        "scripts/fixtures/valid-invoice-mismatch.json",
+        "scripts/fixtures/valid-integer-count-match.json"
+      ]
+    },
+    {
+      "path": "assets/cross-check-policy.json",
+      "type": "policy",
+      "purpose": "Requires independent declared and computed paths for each verifiable numeric field.",
+      "used_by": [
+        "SKILL.md",
+        "scripts/validate_self_correction_loops.py"
+      ]
+    },
+    {
+      "path": "assets/epsilon-policy.json",
+      "type": "policy",
+      "purpose": "Pins deterministic epsilon rules by data type.",
+      "used_by": [
+        "SKILL.md",
+        "scripts/validate_self_correction_loops.py"
+      ]
+    },
+    {
+      "path": "assets/mismatch-policy.json",
+      "type": "policy",
+      "purpose": "Defines mismatch actions and forbids silent correction.",
+      "used_by": [
+        "SKILL.md",
+        "scripts/validate_self_correction_loops.py"
+      ]
+    },
+    {
+      "path": "assets/escalation-policy.json",
+      "type": "policy",
+      "purpose": "Requires human escalation with declared and computed values visible.",
+      "used_by": [
+        "SKILL.md",
+        "scripts/validate_self_correction_loops.py"
+      ]
+    },
+    {
+      "path": "assets/structural-test-policy.json",
+      "type": "policy",
+      "purpose": "Defines deterministic structural tests required before Guardian pass.",
+      "used_by": [
+        "SKILL.md",
+        "scripts/validate_self_correction_loops.py"
+      ]
+    }
+  ]
+}

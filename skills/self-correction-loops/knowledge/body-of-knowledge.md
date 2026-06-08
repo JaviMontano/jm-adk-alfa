@@ -1,10 +1,3 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: self-correction-loops
-generated-on: 2026-05-30
-overwrite-policy: missing-only unless --force
--->
-
 # Self Correction Loops Body of Knowledge
 
 ## Canon
@@ -33,11 +26,12 @@ Conceptos clave:
 | Epsilon justificado | Cero enteros, tolerancia documentada en moneda/floats |
 | No-silencio | Mismatch escala con declarado y calculado visibles; nunca sobreescribe |
 | Test de mismatch | Caso inyectado produce `mismatch=true` |
+| Validator offline | El JSON de evidencia pasa `scripts/validate_self_correction_loops.py` sin red, tiempo ni aleatoriedad |
 
 ## Anti-patron
 
 Confiar en lo declarado sin recomputar, o "corregir" via `total=computed` silencioso: ambos ocultan que la fuente, el calculo o los datos estaban en conflicto y propagan un dato falso con apariencia de validado.
 
-## Open Knowledge
+## Contrato verificable
 
-- Anadir referencias especificas del dominio (reglas de redondeo bancario, tolerancias regulatorias) a medida que se estabilicen.
+El contrato canonico vive en `assets/self-correction-loops-contract.json`. Todo reporte automatizable debe incluir campos verificables, registros recomputados, escalaciones para cada mismatch, pruebas estructurales y decision Guardian. El script local valida que cada `mismatch` se derive de `abs(declared - computed) > epsilon`, que enteros usen epsilon cero y que ningun registro marque `overwritten=true`.

@@ -98,6 +98,15 @@ def verify_total_bad(invoice: dict) -> dict:
 - [ ] Ante discrepancia se emite `mismatch=true` con `declared` y `computed` ambos visibles.
 - [ ] Un mismatch escala a humano; el campo NO se sobreescribe.
 - [ ] Test estructural: caso con mismatch inyectado produce el flag, nunca un `total=computed` silencioso.
+- [ ] El reporte cumple `assets/self-correction-loops-contract.json` y pasa `scripts/check.sh` con fixtures validas e invalidas.
+
+## Assets y validacion offline
+
+- `assets/self-correction-loops-contract.json` define los campos obligatorios del reporte JSON.
+- `assets/epsilon-policy.json` fija tolerancias permitidas por tipo de dato.
+- `assets/mismatch-policy.json` y `assets/escalation-policy.json` obligan a mostrar ambos valores y escalar sin sobreescribir.
+- `assets/structural-test-policy.json` declara las pruebas estructurales que deben quedar en `true`.
+- `scripts/validate_self_correction_loops.py` valida reportes offline y `scripts/check.sh` ejecuta fixtures deterministicas positivas y negativas.
 
 ## Katas y skills relacionadas
 

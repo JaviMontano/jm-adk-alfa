@@ -1,0 +1,160 @@
+{
+  "schema": 1,
+  "base_report": {
+    "schema": 1,
+    "skill": "self-correction-loops",
+    "check_id": "invoice-total-cross-check",
+    "fields": [
+      {
+        "field": "total",
+        "data_type": "currency",
+        "declared_path": "$.invoice.total",
+        "components_path": "$.invoice.lines[*].amount",
+        "formula": "computed=sum(components.amount); compare declared total to computed",
+        "epsilon": 0.005,
+        "epsilon_reason": "Half-cent currency tolerance for deterministic rounding.",
+        "verifiable": true
+      }
+    ],
+    "records": [
+      {
+        "record_id": "INV-2026-0042:total",
+        "field": "total",
+        "data_type": "currency",
+        "declared": 1250000,
+        "computed": 1200000,
+        "delta": 50000,
+        "epsilon": 0.005,
+        "mismatch": true,
+        "action": "escalate_to_human",
+        "overwritten": false
+      }
+    ],
+    "escalations": [
+      {
+        "record_id": "INV-2026-0042:total",
+        "assignee_type": "finance_owner",
+        "reason": "Declared invoice total differs from recomputed line sum.",
+        "declared_visible": true,
+        "computed_visible": true
+      }
+    ],
+    "structural_tests": {
+      "injected_mismatch_flags_true": true,
+      "silent_overwrite_rejected": true,
+      "epsilon_justified": true,
+      "independent_recompute": true,
+      "deterministic_script_passed": true
+    },
+    "validation": {
+      "fields_verifiable": true,
+      "epsilon_justified": true,
+      "records_recomputed": true,
+      "mismatches_visible": true,
+      "mismatches_escalated": true,
+      "silent_correction_blocked": true,
+      "structural_tests_passed": true,
+      "deterministic_script_passed": true
+    },
+    "guardian": {
+      "decision": "pass",
+      "reason": "Mismatch remains visible and escalated; no declared value was overwritten."
+    }
+  },
+  "mutations": [
+    {
+      "id": "missing_fields",
+      "set": [
+        {
+          "path": "fields",
+          "value": []
+        }
+      ]
+    },
+    {
+      "id": "integer_nonzero_epsilon",
+      "set": [
+        {
+          "path": "fields.0.data_type",
+          "value": "integer"
+        },
+        {
+          "path": "records.0.data_type",
+          "value": "integer"
+        }
+      ]
+    },
+    {
+      "id": "empty_epsilon_reason",
+      "set": [
+        {
+          "path": "fields.0.epsilon_reason",
+          "value": ""
+        }
+      ]
+    },
+    {
+      "id": "wrong_mismatch_flag",
+      "set": [
+        {
+          "path": "records.0.mismatch",
+          "value": false
+        }
+      ]
+    },
+    {
+      "id": "silent_overwrite",
+      "set": [
+        {
+          "path": "records.0.overwritten",
+          "value": true
+        }
+      ]
+    },
+    {
+      "id": "mismatch_accepted",
+      "set": [
+        {
+          "path": "records.0.action",
+          "value": "accept"
+        }
+      ]
+    },
+    {
+      "id": "missing_escalation",
+      "set": [
+        {
+          "path": "escalations",
+          "value": []
+        }
+      ]
+    },
+    {
+      "id": "structural_test_false",
+      "set": [
+        {
+          "path": "structural_tests.injected_mismatch_flags_true",
+          "value": false
+        }
+      ]
+    },
+    {
+      "id": "validation_claim_false",
+      "set": [
+        {
+          "path": "validation.records_recomputed",
+          "value": false
+        }
+      ]
+    },
+    {
+      "id": "guardian_blocks_green_report",
+      "set": [
+        {
+          "path": "guardian.decision",
+          "value": "block"
+        }
+      ]
+    }
+  ]
+}

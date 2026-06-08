@@ -1,10 +1,3 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: self-correction-loops
-generated-on: 2026-05-30
-overwrite-policy: missing-only unless --force
--->
-
 # Example Output
 
 ## Summary
@@ -67,6 +60,7 @@ def verify_total_bad(invoice: dict) -> dict:
 - [x] Mismatch tipado con declarado y calculado visibles.
 - [x] Escala a humano; total NO sobreescrito.
 - [x] Cubierto por test de mismatch inyectado.
+- [x] El reporte JSON equivalente pasa `scripts/check.sh`.
 
 ## Risks and Limits
 
