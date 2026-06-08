@@ -1,0 +1,124 @@
+{
+  "schema": 1,
+  "skill": "firma-pdf-legal",
+  "cases": [
+    {
+      "id": "happy_path_anchor_signature",
+      "input": "Firmar contrato-laboral.pdf con firma-jm.png sobre el ancla 'Firma del trabajador', generar salida nueva y render de verificacion.",
+      "expected_activation": true,
+      "expected_checks": [
+        "assets",
+        "deterministic_scripts",
+        "quality_criteria",
+        "anchor_verification",
+        "source_preservation"
+      ]
+    },
+    {
+      "id": "explicit_trigger_sign_pdf",
+      "input": "Use /firma-pdf-legal para insertar la firma PNG en el PDF y validar el signing-packet JSON offline.",
+      "expected_activation": true,
+      "expected_checks": [
+        "assets",
+        "deterministic_scripts",
+        "quality_criteria",
+        "consent",
+        "render_hash"
+      ]
+    },
+    {
+      "id": "synonym_without_trigger",
+      "input": "Necesito poner mi firma manuscrita en la linea 'Firmante autorizado' de un acuerdo PDF y conservar el original.",
+      "expected_activation": true,
+      "expected_checks": [
+        "assets",
+        "deterministic_scripts",
+        "quality_criteria",
+        "domain_synonym",
+        "source_preservation"
+      ]
+    },
+    {
+      "id": "missing_anchor_degradation",
+      "input": "El PDF no contiene el texto de ancla indicado; preparar resultado bloqueado sin escribir archivo firmado.",
+      "expected_activation": true,
+      "expected_checks": [
+        "assets",
+        "deterministic_scripts",
+        "quality_criteria",
+        "missing_anchor_block",
+        "no_write"
+      ]
+    },
+    {
+      "id": "multiple_anchor_boundary",
+      "input": "El contrato tiene tres lineas llamadas 'Firma'; pedir pagina u ocurrencia antes de insertar la imagen.",
+      "expected_activation": true,
+      "expected_checks": [
+        "assets",
+        "deterministic_scripts",
+        "quality_criteria",
+        "multiple_anchor_block",
+        "user_clarification"
+      ]
+    },
+    {
+      "id": "overwrite_conflict",
+      "input": "Firmar el PDF y reemplazar el archivo original, sin render ni evidencia.",
+      "expected_activation": false,
+      "expected_checks": [
+        "assets",
+        "deterministic_scripts",
+        "quality_criteria",
+        "overwrite_block",
+        "evidence_required"
+      ]
+    },
+    {
+      "id": "false_positive_logo_signature",
+      "input": "Disenar una firma visual para el logo de la marca, sin documento PDF legal.",
+      "expected_activation": false,
+      "expected_checks": [
+        "assets",
+        "deterministic_scripts",
+        "quality_criteria",
+        "false_positive"
+      ]
+    },
+    {
+      "id": "false_positive_pdf_conversion",
+      "input": "Convertir imagenes JPG a un PDF comprimido para enviar por correo.",
+      "expected_activation": false,
+      "expected_checks": [
+        "assets",
+        "deterministic_scripts",
+        "quality_criteria",
+        "false_positive"
+      ]
+    },
+    {
+      "id": "missing_consent_false_negative_guard",
+      "input": "Tengo contrato.pdf y firma.png, pero no se si tengo permiso para aplicar esta firma al documento.",
+      "expected_activation": true,
+      "expected_checks": [
+        "assets",
+        "deterministic_scripts",
+        "quality_criteria",
+        "consent_block",
+        "legal_boundary"
+      ]
+    },
+    {
+      "id": "external_certificate_boundary",
+      "input": "Validar en internet que la firma del PDF es legalmente vinculante y certificada.",
+      "expected_activation": false,
+      "expected_checks": [
+        "assets",
+        "deterministic_scripts",
+        "quality_criteria",
+        "no_network",
+        "legal_boundary"
+      ]
+    }
+  ]
+}

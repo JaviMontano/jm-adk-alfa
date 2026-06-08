@@ -1,0 +1,52 @@
+{
+  "schema": 1,
+  "skill": "firma-pdf-legal",
+  "document": {
+    "path": "acuerdo-servicios.pdf",
+    "sha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+    "pages": 2
+  },
+  "signature": {
+    "path": "firma-autorizada.png",
+    "sha256": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+    "width_px": 720,
+    "height_px": 220,
+    "transparent_background": true
+  },
+  "placement": {
+    "strategy": "anchor_text",
+    "anchor": "Firmante autorizado",
+    "page": 2,
+    "x": 96.0,
+    "y": 512.0,
+    "width": 140.0,
+    "height": 36.0,
+    "mention": "Aceptado"
+  },
+  "verification": {
+    "anchor_found": true,
+    "placed_count": 1,
+    "rendered_png": "acuerdo-servicios.verify.png",
+    "render_sha256": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+  },
+  "consent": {
+    "user_confirmed": true,
+    "source_preserved": true,
+    "operation_mode": "dry_run",
+    "user_supplied_signature": true
+  },
+  "evidence": [
+    {
+      "source": "document.sha256",
+      "claim": "Source PDF hash recorded"
+    },
+    {
+      "source": "placement.anchor",
+      "claim": "Signature line anchor selected"
+    },
+    {
+      "source": "verification.render_sha256",
+      "claim": "Verification render hash recorded"
+    }
+  ]
+}
