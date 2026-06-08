@@ -1,0 +1,1 @@
+{"schema":"jm-labs.validate-structure.report.v1","skill":"validate-structure","clean_claim":true,"findings":[],"validation":{"status":"pass","evidence":"scripts/check-repo-boundaries.sh passed"}}

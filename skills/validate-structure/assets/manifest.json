@@ -1,0 +1,9 @@
+{
+  "skill": "validate-structure",
+  "assets": [
+    {"path":"assets/README.md","type":"documentation","purpose":"Explains structure assets.","used_by":["SKILL.md","README.md"]},
+    {"path":"assets/structure-report-contract.json","type":"contract","purpose":"Defines structure report shape.","used_by":["SKILL.md","scripts/validate_structure_report.py"]},
+    {"path":"assets/private-transient-policy.json","type":"policy","purpose":"Defines private/transient blockers.","used_by":["SKILL.md","scripts/validate_structure_report.py"]},
+    {"path":"assets/clean-claim-policy.json","type":"policy","purpose":"Defines clean-claim requirements.","used_by":["SKILL.md","scripts/validate_structure_report.py"]}
+  ]
+}

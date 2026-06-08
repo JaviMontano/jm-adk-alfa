@@ -1,10 +1,3 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: validate-structure
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
-
 # Example Input
 
-Use `validate-structure` to produce a concise deliverable for a realistic project request.
+Validate the plugin structure and confirm that no private path or transient workspace file is treated as publishable. Do not claim clean structure unless the report includes validation evidence.
