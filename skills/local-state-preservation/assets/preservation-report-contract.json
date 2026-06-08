@@ -1,0 +1,44 @@
+{
+  "schema": "jm-labs.local-state-preservation.report-contract.v1",
+  "report_schema": 1,
+  "required_top_level_fields": [
+    "schema",
+    "skill",
+    "mode",
+    "scope",
+    "mutation_policy",
+    "surfaces",
+    "artifacts",
+    "non_touch_decisions",
+    "validation",
+    "next_action"
+  ],
+  "required_scope_fields": [
+    "repository",
+    "branch",
+    "head"
+  ],
+  "required_mutation_policy_fields": [
+    "default_mutates_files",
+    "requires_explicit_apply"
+  ],
+  "required_surfaces": [
+    "tracked_changes",
+    "untracked_files",
+    "ignored_files",
+    "stashes",
+    "worktrees",
+    "clones",
+    "private_path_exclusions"
+  ],
+  "required_validation_fields": [
+    "status",
+    "commands"
+  ],
+  "validator": "scripts/validate_local_state_preservation.py",
+  "removed_legacy_fields": [
+    "repo",
+    "allowed_write_roots",
+    "inventories"
+  ]
+}

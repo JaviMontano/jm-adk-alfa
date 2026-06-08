@@ -2082,6 +2082,12 @@
     "description": ">"
   },
   {
+    "id": "local-state-preservation",
+    "path": "skills/local-state-preservation",
+    "name": "Local State Preservation",
+    "description": "Preserves dirty local repository state before sync, cleanup, branch switching, imports, or archive operations by inventorying tracked changes, untracked files, ignored files, worktrees, stashes, private paths, patches, archives, checksums, and explicit non-touch decisions."
+  },
+  {
     "id": "localization-guide",
     "path": "skills/localization-guide",
     "name": "Localization Guide",

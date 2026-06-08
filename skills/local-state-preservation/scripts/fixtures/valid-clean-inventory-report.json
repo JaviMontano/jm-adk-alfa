@@ -1,0 +1,50 @@
+{
+  "schema": 1,
+  "skill": "local-state-preservation",
+  "mode": "inventory-only",
+  "scope": {
+    "repository": "/repo/jm-adk-alfa",
+    "branch": "main",
+    "head": "fedcba9876543210fedcba9876543210fedcba98",
+    "upstream": "origin/main"
+  },
+  "mutation_policy": {
+    "default_mutates_files": false,
+    "requires_explicit_apply": true
+  },
+  "surfaces": {
+    "tracked_changes": [],
+    "untracked_files": [],
+    "ignored_files": [],
+    "stashes": [],
+    "worktrees": [],
+    "clones": [],
+    "private_path_exclusions": []
+  },
+  "artifacts": [],
+  "non_touch_decisions": [
+    {
+      "surface": "stashes",
+      "decision": "inventory-only",
+      "reason": "no stash operations were requested",
+      "evidence": "git stash list"
+    },
+    {
+      "surface": "private_paths",
+      "decision": "do-not-move-or-publish",
+      "reason": "inventory found no declared private paths",
+      "evidence": "surface inventory"
+    }
+  ],
+  "validation": {
+    "status": "pass",
+    "commands": [
+      {
+        "command": "git status --short --branch",
+        "status": "pass",
+        "evidence": "clean branch output"
+      }
+    ]
+  },
+  "next_action": "proceed"
+}

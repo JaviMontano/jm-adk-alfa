@@ -10,7 +10,7 @@ Role: homologated AGENTS mirror for runtimes that load `AGENTS.md`.
 ## Environment
 
 IDE family: agents | Triad: sequential/checklist by runtime | Tools: MCP via config (see Tool Access) | MCP: yes via `~/.codex/config.toml` | Multimodal: runtime-dependent
-Components: 600 skills · 261 agents · 267 commands · 256 prompts
+Components: 601 skills · 261 agents · 267 commands · 256 prompts
 
 ## Awakening
 

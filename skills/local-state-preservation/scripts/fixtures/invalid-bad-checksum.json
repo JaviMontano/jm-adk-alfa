@@ -1,0 +1,61 @@
+{
+  "schema": 1,
+  "skill": "local-state-preservation",
+  "mode": "archive-bundle",
+  "scope": {
+    "repository": "/repo/jm-adk-alfa",
+    "branch": "codex/example",
+    "head": "0123456789abcdef0123456789abcdef01234567"
+  },
+  "mutation_policy": {
+    "default_mutates_files": false,
+    "requires_explicit_apply": true
+  },
+  "surfaces": {
+    "tracked_changes": [],
+    "untracked_files": [],
+    "ignored_files": [],
+    "stashes": [],
+    "worktrees": [],
+    "clones": [],
+    "private_path_exclusions": []
+  },
+  "artifacts": [
+    {
+      "kind": "archive",
+      "path": ".local/preservation/files.tar.gz",
+      "destination_path": ".local/preservation/files.tar.gz",
+      "source_paths": [
+        "skills/example"
+      ],
+      "sha256": "not-a-sha",
+      "size_bytes": 10,
+      "overwrites_existing": false
+    }
+  ],
+  "non_touch_decisions": [
+    {
+      "surface": "stashes",
+      "decision": "inventory-only",
+      "reason": "required",
+      "evidence": "git stash list"
+    },
+    {
+      "surface": "private_paths",
+      "decision": "excluded",
+      "reason": "required",
+      "evidence": "inventory"
+    }
+  ],
+  "validation": {
+    "status": "pass",
+    "commands": [
+      {
+        "command": "shasum -a 256 files.tar.gz",
+        "status": "pass",
+        "evidence": "output"
+      }
+    ]
+  },
+  "next_action": "proceed"
+}

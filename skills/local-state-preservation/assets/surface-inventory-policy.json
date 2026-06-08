@@ -1,0 +1,24 @@
+{
+  "schema": "jm-labs.local-state-preservation.surface-policy.v1",
+  "required_surfaces": [
+    "tracked_changes",
+    "untracked_files",
+    "ignored_files",
+    "stashes",
+    "worktrees",
+    "clones"
+  ],
+  "default_decisions": {
+    "tracked_changes": "patch",
+    "untracked_files": "archive-or-manifest",
+    "ignored_files": "archive-or-exclude",
+    "stashes": "inventory-only",
+    "worktrees": "inventory-and-preserve-if-dirty",
+    "clones": "inventory-and-preserve-if-dirty"
+  },
+  "required_evidence_commands": [
+    "git status --short --branch",
+    "git stash list",
+    "git worktree list --porcelain"
+  ]
+}
