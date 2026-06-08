@@ -1,0 +1,11 @@
+{
+  "schema": 1,
+  "skill": "prompting-and-meta-prompting",
+  "required_safety_flags": [
+    "no_secret_capture",
+    "no_hidden_cot_request",
+    "unsafe_automation_blocked"
+  ],
+  "required_evidence_requirements": ["cite_inputs", "mark_assumptions", "mark_missing_data"],
+  "forbidden_prompt_goals": ["credential_capture", "hidden_chain_of_thought", "unsafe_automation", "invent_missing_facts"]
+}

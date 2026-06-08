@@ -1,0 +1,21 @@
+{
+  "schema": 1,
+  "skill": "prompting-and-meta-prompting",
+  "json_contract": {
+    "schema_version": 1,
+    "required_top_level_fields": [
+      "schema",
+      "skill",
+      "artifact_id",
+      "request",
+      "prompt_artifact",
+      "meta_prompt",
+      "acceptance_criteria",
+      "eval_cases",
+      "safety",
+      "validation",
+      "guardian"
+    ],
+    "guardian_decisions": ["pass", "warn", "block"]
+  }
+}

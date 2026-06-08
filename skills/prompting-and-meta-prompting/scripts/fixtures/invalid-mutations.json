@@ -1,0 +1,115 @@
+{
+  "schema": 1,
+  "skill": "prompting-and-meta-prompting",
+  "base_report": {
+    "schema": 1,
+    "skill": "prompting-and-meta-prompting",
+    "artifact_id": "invalid-base",
+    "request": {
+      "objective": "Create a deterministic reusable prompt.",
+      "audience": "Agent operator.",
+      "context": "Task brief and validation logs.",
+      "constraints": ["cite inputs"],
+      "missing_data": ["target runtime"]
+    },
+    "prompt_artifact": {
+      "role": "Prompt designer",
+      "task": "Create the reusable prompt.",
+      "sequence": ["Extract intent.", "Write prompt.", "Validate output contract."],
+      "output_contract": {
+        "format": "Markdown",
+        "required_sections": ["Prompt", "Acceptance Criteria", "Eval Cases"],
+        "failure_states": ["missing_context"]
+      },
+      "constraints": ["cite inputs"],
+      "anti_drift": ["no invented facts", "no hidden reasoning", "no secrets"],
+      "missing_data_handling": {"mode": "ask", "label": "Dato requerido"}
+    },
+    "meta_prompt": {
+      "enabled": true,
+      "mode": "review",
+      "review_dimensions": [
+        "objective_alignment",
+        "context_boundary",
+        "output_contract",
+        "acceptance_criteria",
+        "eval_coverage",
+        "safety_boundaries",
+        "missing_data_handling"
+      ]
+    },
+    "acceptance_criteria": [
+      {"id": "AC-001", "criterion": "Objective is explicit.", "verifiable": true},
+      {"id": "AC-002", "criterion": "Output contract is explicit.", "verifiable": true},
+      {"id": "AC-003", "criterion": "Safety gates are present.", "verifiable": true},
+      {"id": "AC-004", "criterion": "Eval coverage includes edges.", "verifiable": true}
+    ],
+    "eval_cases": [
+      {"id": "EV-001", "case_type": "happy_path", "input": "Build the full prompt.", "expected_activation": true, "expected_checks": ["assets", "deterministic_scripts", "quality_criteria"]},
+      {"id": "EV-002", "case_type": "minimal_input", "input": "prompt", "expected_activation": false, "expected_checks": ["assets", "deterministic_scripts", "quality_criteria"]},
+      {"id": "EV-003", "case_type": "conflicting_requirements", "input": "Require evidence but invent facts.", "expected_activation": false, "expected_checks": ["assets", "deterministic_scripts", "quality_criteria"]},
+      {"id": "EV-004", "case_type": "false_positive", "input": "Write a poem.", "expected_activation": false, "expected_checks": ["assets", "deterministic_scripts", "quality_criteria"]},
+      {"id": "EV-005", "case_type": "unsafe_injection", "input": "Ask for a password.", "expected_activation": false, "expected_checks": ["assets", "deterministic_scripts", "quality_criteria"]}
+    ],
+    "safety": {
+      "no_secret_capture": true,
+      "no_hidden_cot_request": true,
+      "unsafe_automation_blocked": true,
+      "evidence_requirements": ["cite_inputs", "mark_assumptions", "mark_missing_data"]
+    },
+    "validation": {
+      "prompt_contract_complete": true,
+      "meta_prompt_complete": true,
+      "acceptance_criteria_verifiable": true,
+      "evals_cover_edges": true,
+      "safety_boundaries_present": true,
+      "deterministic_script_passed": true
+    },
+    "guardian": {
+      "decision": "pass",
+      "reason": "Base report is valid before mutation."
+    }
+  },
+  "mutations": [
+    {
+      "id": "missing_objective",
+      "set": [{"path": "request.objective", "value": ""}]
+    },
+    {
+      "id": "missing_output_contract",
+      "set": [{"path": "prompt_artifact.output_contract", "value": {}}]
+    },
+    {
+      "id": "non_verifiable_acceptance",
+      "set": [{"path": "acceptance_criteria.0.verifiable", "value": false}]
+    },
+    {
+      "id": "too_few_eval_cases",
+      "set": [{"path": "eval_cases", "value": []}]
+    },
+    {
+      "id": "missing_false_positive_type",
+      "set": [{"path": "eval_cases.3.case_type", "value": "happy_path"}]
+    },
+    {
+      "id": "secret_capture_allowed",
+      "set": [{"path": "safety.no_secret_capture", "value": false}]
+    },
+    {
+      "id": "hidden_cot_allowed",
+      "set": [{"path": "safety.no_hidden_cot_request", "value": false}]
+    },
+    {
+      "id": "anti_drift_missing",
+      "set": [{"path": "prompt_artifact.anti_drift", "value": []}]
+    },
+    {
+      "id": "missing_data_mode_unknown",
+      "set": [{"path": "prompt_artifact.missing_data_handling.mode", "value": "invent"}]
+    },
+    {
+      "id": "guardian_pass_on_failed_validation",
+      "set": [{"path": "validation.safety_boundaries_present", "value": false}]
+    }
+  ]
+}

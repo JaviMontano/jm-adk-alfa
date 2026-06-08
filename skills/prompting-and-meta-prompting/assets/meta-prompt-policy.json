@@ -1,0 +1,14 @@
+{
+  "schema": 1,
+  "skill": "prompting-and-meta-prompting",
+  "required_review_dimensions": [
+    "objective_alignment",
+    "context_boundary",
+    "output_contract",
+    "acceptance_criteria",
+    "eval_coverage",
+    "safety_boundaries",
+    "missing_data_handling"
+  ],
+  "allowed_modes": ["review", "rewrite", "scorecard"]
+}

@@ -1,0 +1,10 @@
+{
+  "schema": 1,
+  "skill": "prompting-and-meta-prompting",
+  "required_request_fields": ["objective", "audience", "context", "constraints", "missing_data"],
+  "required_prompt_fields": ["role", "task", "sequence", "output_contract", "constraints", "anti_drift", "missing_data_handling"],
+  "required_output_contract_fields": ["format", "required_sections", "failure_states"],
+  "minimum_sequence_steps": 3,
+  "minimum_anti_drift_rules": 3,
+  "allowed_missing_data_modes": ["ask", "mark_required", "defer_validation"]
+}
