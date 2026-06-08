@@ -1296,12 +1296,6 @@
     "description": "Rules authoring: request.auth, request.resource, resource.data. Custom claims. Role-based. Rate limiting in rules. [EXPLICIT]"
   },
   {
-    "id": "firma-pdf-legal",
-    "path": "skills/firma-pdf-legal",
-    "name": "Firma Pdf Legal",
-    "description": "Coloca firma manuscrita sobre una linea legal de PDF usando ancla verificable, salida nueva, render de evidencia y contrato offline deterministico."
-  },
-  {
     "id": "first-use-onboarding",
     "path": "skills/first-use-onboarding",
     "name": "First Use Onboarding",
