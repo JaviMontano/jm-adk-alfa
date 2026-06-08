@@ -1,7 +1,5 @@
 {
   "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-29",
   "skill": "official-source-verifier",
   "nodes": [
     {
@@ -10,66 +8,86 @@
       "label": "official-source-verifier"
     },
     {
-      "id": "official-source-verifier:inputs",
+      "id": "official-source-verifier:source-registry",
       "type": "contract",
-      "label": "Expected inputs"
+      "label": "Source registry with URL, publisher, date and role"
     },
     {
-      "id": "official-source-verifier:outputs",
-      "type": "contract",
-      "label": "Expected outputs"
+      "id": "official-source-verifier:source-priority",
+      "type": "policy",
+      "label": "Official source priority over secondary sources"
     },
     {
-      "id": "official-source-verifier:quality",
+      "id": "official-source-verifier:claims",
+      "type": "contract",
+      "label": "Claim-level evidence mapping"
+    },
+    {
+      "id": "official-source-verifier:decision",
       "type": "gate",
-      "label": "Quality criteria"
+      "label": "Decision traces to verified claims"
+    },
+    {
+      "id": "official-source-verifier:secondary-risk",
+      "type": "risk",
+      "label": "Secondary source elevated to authority"
+    },
+    {
+      "id": "official-source-verifier:assets-contract",
+      "type": "contract",
+      "label": "assets/official-source-verifier-contract.json"
+    },
+    {
+      "id": "official-source-verifier:offline-validator",
+      "type": "script",
+      "label": "scripts/validate_official_source_verifier.py"
     },
     {
       "id": "official-source-verifier:ontology",
       "type": "ontology",
-      "label": "Domain: general"
-    },
-    {
-      "id": "official-source-verifier:evidence",
-      "type": "gate",
-      "label": "Evidence / provenance requirements"
-    },
-    {
-      "id": "official-source-verifier:antipattern",
-      "type": "risk",
-      "label": "Canonical anti-pattern to avoid"
+      "label": "Domain: source-verification"
     }
   ],
   "edges": [
     {
       "from": "official-source-verifier",
-      "to": "official-source-verifier:inputs",
+      "to": "official-source-verifier:source-registry",
       "type": "requires"
     },
     {
-      "from": "official-source-verifier",
-      "to": "official-source-verifier:outputs",
-      "type": "produces"
+      "from": "official-source-verifier:source-registry",
+      "to": "official-source-verifier:source-priority",
+      "type": "governed_by"
+    },
+    {
+      "from": "official-source-verifier:source-priority",
+      "to": "official-source-verifier:claims",
+      "type": "supports"
+    },
+    {
+      "from": "official-source-verifier:claims",
+      "to": "official-source-verifier:decision",
+      "type": "authorizes"
+    },
+    {
+      "from": "official-source-verifier:secondary-risk",
+      "to": "official-source-verifier:source-priority",
+      "type": "violates"
     },
     {
       "from": "official-source-verifier",
-      "to": "official-source-verifier:quality",
+      "to": "official-source-verifier:assets-contract",
+      "type": "governed_by"
+    },
+    {
+      "from": "official-source-verifier:assets-contract",
+      "to": "official-source-verifier:offline-validator",
       "type": "validated_by"
     },
     {
       "from": "official-source-verifier",
       "to": "official-source-verifier:ontology",
       "type": "classified_as"
-    },
-    {
-      "from": "official-source-verifier",
-      "to": "official-source-verifier:evidence",
-      "type": "validated_by"
-    },
-    {
-      "from": "official-source-verifier",
-      "to": "official-source-verifier:antipattern",
-      "type": "guards_against"
     }
   ]
 }

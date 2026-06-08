@@ -1,34 +1,32 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: official-source-verifier
-generated-on: 2026-05-29
-overwrite-policy: missing-only unless --force
--->
-
 # Official Source Verifier
 
-Consult official sources (ADK, Agent Skills spec, GitHub/Git docs, framework docs) when a decision depends on them. Prioritizes official over secondary, cites source and date, records the change a finding justifies. Never elevates a secondary source to authority.
+Verifica decisiones técnicas contra fuentes oficiales antes de cambiar código, documentación o criterios de arquitectura.
 
-## Triggers
+## Resumen ejecutivo
 
-- official source
-- verify docs
-- adk spec
-- authoritative reference
-- source priority
+Usa esta skill cuando una decisión dependa de documentación vigente de ADK, Agent Skills, GitHub/Git, frameworks, SDKs, APIs o servicios cloud. El resultado debe priorizar fuentes oficiales, fechar la consulta, mapear cada claim a evidencia y registrar qué cambio justifica cada hallazgo.
 
-## Allowed Tools
+## Contrato determinístico
 
-- Read
-- Grep
-- Glob
-- WebFetch
-- WebSearch
+El entregable certificable es un reporte JSON compatible con `assets/official-source-verifier-contract.json` y validable offline con `scripts/check.sh`.
+
+Debe incluir:
+
+- `question`: decisión concreta que depende de fuentes oficiales.
+- `source_registry`: fuentes oficiales y secundarias, con URL, fecha de consulta y rol.
+- `claims`: cada claim con fuente oficial primaria o, si no existe, marcado como `unverified`.
+- `decision`: cambio autorizado por la evidencia y su alcance.
+- `validation`: flags que prueban que no se elevó una fuente secundaria a autoridad.
+- `guardian`: decisión final.
 
 ## Quick Use
 
-Use this skill when the request clearly matches the triggers and requires the `official-source-verifier` capability.
+1. Identifica la decisión que necesita autoridad externa.
+2. Busca primero fuentes oficiales y registra fecha de consulta.
+3. Usa fuentes secundarias sólo como pistas, nunca como autoridad.
+4. Vincula cada claim a fuentes por `source_id`.
+5. Autoriza cambios sólo cuando la fuente oficial justifique el hallazgo.
 
 ## Output Format
 
-Markdown with summary, evidence, result, validation, and risks.
+Markdown o JSON con summary, evidence, result, validation y risks. Para validación offline usa el JSON contract de `assets/`.

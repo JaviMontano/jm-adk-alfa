@@ -1,0 +1,14 @@
+{
+  "schema": 1,
+  "skill": "official-source-verifier",
+  "allowed_scopes": ["code", "documentation", "config", "workflow", "none"],
+  "change_authorized_requires": [
+    "all_claims_verified",
+    "decision_traced_to_claim",
+    "no_blocking_gaps"
+  ],
+  "blocked_decision": {
+    "change_authorized": false,
+    "scope": "none"
+  }
+}

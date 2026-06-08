@@ -1,0 +1,68 @@
+{
+  "schema": 1,
+  "skill": "official-source-verifier",
+  "assets": [
+    {
+      "path": "assets/official-source-verifier-contract.json",
+      "type": "json_contract",
+      "purpose": "Defines required fields for official source verification reports.",
+      "used_by": [
+        "SKILL.md",
+        "README.md",
+        "scripts/validate_official_source_verifier.py",
+        "evals/evals.json",
+        "examples/example-output.md"
+      ]
+    },
+    {
+      "path": "assets/source-priority-policy.json",
+      "type": "policy",
+      "purpose": "Defines official, secondary and community source priority roles.",
+      "used_by": [
+        "SKILL.md",
+        "knowledge/body-of-knowledge.md",
+        "scripts/validate_official_source_verifier.py"
+      ]
+    },
+    {
+      "path": "assets/claim-evidence-policy.json",
+      "type": "policy",
+      "purpose": "Requires official evidence for verified claims.",
+      "used_by": [
+        "SKILL.md",
+        "prompts/primary.md",
+        "scripts/validate_official_source_verifier.py"
+      ]
+    },
+    {
+      "path": "assets/citation-policy.json",
+      "type": "policy",
+      "purpose": "Requires URL, publisher and accessed_date for each source.",
+      "used_by": [
+        "SKILL.md",
+        "templates/output.md",
+        "scripts/validate_official_source_verifier.py"
+      ]
+    },
+    {
+      "path": "assets/decision-policy.json",
+      "type": "policy",
+      "purpose": "Allows changes only when traced to verified official claims.",
+      "used_by": [
+        "SKILL.md",
+        "agents/guardian.md",
+        "scripts/validate_official_source_verifier.py"
+      ]
+    },
+    {
+      "path": "assets/evidence-policy.json",
+      "type": "policy",
+      "purpose": "Defines accepted evidence types and minimum evidence count.",
+      "used_by": [
+        "README.md",
+        "examples/example-output.md",
+        "scripts/validate_official_source_verifier.py"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "schema": 1,
+  "skill": "official-source-verifier",
+  "claim_statuses": ["verified", "unverified", "conflict"],
+  "required_claim_fields": [
+    "claim_id",
+    "claim",
+    "status",
+    "source_ids",
+    "official_source_ids",
+    "secondary_source_ids",
+    "decision_impact"
+  ],
+  "verified_requires_official_source": true,
+  "unverified_blocks_change": true,
+  "conflict_requires_blocking_gap": true
+}

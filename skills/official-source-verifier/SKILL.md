@@ -19,66 +19,53 @@ allowed-tools:
 
 # Official Source Verifier
 
-## Inputs Expected
+## Capacidad
 
-- Goal or task to complete.
-- Relevant context, constraints, and audience.
-- Existing files or references when the request depends on a codebase or document.
+Verifica decisiones técnicas contra fuentes oficiales antes de modificar código, documentación o criterios de arquitectura. Prioriza documentación oficial sobre blogs, issues, respuestas de foro, snippets o resúmenes generados. Si una fuente secundaria ayuda al descubrimiento, se marca como pista y nunca se eleva a autoridad.
 
-## Outputs Expected
+## Cuándo usarla
 
-- A concise deliverable in the requested format.
-- Evidence notes for non-obvious claims.
-- Validation status and remaining risks.
+- Una decisión depende de documentación vigente de ADK, Agent Skills spec, GitHub/Git, frameworks, SDKs, APIs o servicios cloud.
+- Una propuesta cita una fuente secundaria y hay que confirmar si una fuente oficial la respalda.
+- Un cambio de repo necesita registrar qué fuente oficial justifica el hallazgo.
+- Hay contradicción entre fuentes y se requiere priorización explícita.
 
-## Procedure
+No la uses para hechos triviales del código local que pueden verificarse directamente con Read/Grep/Glob.
 
-### Discover
+## Contrato determinístico
 
-Read the user request, inspect relevant project artifacts, and identify missing critical information.
+Usa los assets de `assets/` para certificar reportes:
 
-### Analyze
+- `assets/official-source-verifier-contract.json`: campos obligatorios del reporte.
+- `assets/source-priority-policy.json`: jerarquía oficial, vendor, spec, repo, secondary.
+- `assets/claim-evidence-policy.json`: cada claim debe mapear a fuente oficial o quedar `unverified`.
+- `assets/citation-policy.json`: URL, fecha de consulta y extracto/paráfrasis breve.
+- `assets/decision-policy.json`: cambios autorizados sólo por evidencia oficial.
+- `assets/evidence-policy.json`: evidencia mínima aceptada.
 
-Map intent to the skill domain, choose the smallest viable approach, and identify risks before execution.
+Cuando el entregable sea JSON, valida offline con `scripts/validate_official_source_verifier.py`. Para la smoke determinística completa ejecuta `scripts/check.sh`, que acepta fixtures válidos y rechaza mutaciones inválidas.
 
-### Execute
+## Procedimiento
 
-Produce the deliverable using the allowed tools and keep changes scoped to the request.
+1. Define la `question`: la decisión concreta que depende de autoridad externa.
+2. Registra fuentes en `source_registry` con `source_id`, `source_type`, `url`, `accessed_date`, `publisher`, `official`, y `role`.
+3. Busca primero fuentes oficiales. Usa fuentes secundarias sólo para descubrir rutas o vocabulario.
+4. Para cada claim, exige `source_ids` y `official_source_ids`; si no hay fuente oficial, marca `status=unverified` y no autorices cambios.
+5. Si fuentes oficiales se contradicen, prioriza spec o docs oficiales del proveedor más cercano al producto afectado y registra el conflicto.
+6. La `decision` debe declarar `change_authorized`, `justified_change`, `scope`, y `blocking_gaps`.
+7. Guardian bloquea si una fuente secundaria es autoridad, si falta fecha de consulta, si hay claim sin fuente oficial, o si el cambio no está justificado.
 
-### Validate
+## Checklist de validación
 
-Check quality criteria, edge cases, assumptions, and evidence requirements before final delivery.
-
-## Quality Criteria
-
-- The output directly addresses the user goal.
-- Claims are tagged with evidence when required by the host environment.
-- No local overrides or generated files are overwritten without explicit force.
-- The result is actionable and has clear acceptance criteria.
-
-## Edge Cases
-
-- Empty input: ask for the missing objective.
-- Conflicting requirements: state the conflict and choose the safer interpretation.
-- Local customization: preserve local files and prefer additive changes.
-
-## Assumptions and Limits
-
-- This skill does not replace expert review for high-risk legal, medical, financial, or security decisions.
-- If evidence is unavailable, mark the claim as an assumption or open question.
+- ¿Cada fuente tiene URL, publisher, fecha de consulta y tipo?
+- ¿Cada claim tiene evidencia oficial o queda marcado `unverified`?
+- ¿Ninguna fuente secundaria se usa como autoridad?
+- ¿La decisión autorizada está vinculada a claims oficiales?
+- ¿Los gaps bloqueantes impiden marcar `pass`?
+- ¿El reporte pasa `scripts/check.sh` si se requiere evidencia offline?
 
 ## Related Skills
 
 - `workspace-governance`
-- `workflow-forge`
-- `quality-guardian`
-
-## Evidence Requirements
-
-- Cite code, config, docs, or tests used to justify findings.
-- Mark inferences and assumptions explicitly.
-
-## Update-Safety Notes
-
-- Generated support files are missing-only by default.
-- Use `--force` only after reviewing diffs.
+- `quality-gatekeeper`
+- `repo-sync-auditor`

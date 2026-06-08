@@ -1,0 +1,103 @@
+{
+  "schema": 1,
+  "skill": "official-source-verifier",
+  "cases": [
+    {
+      "id": "secondary_marked_authority",
+      "base": "valid-official-doc-change.json",
+      "operations": [
+        {
+          "op": "set",
+          "path": "source_registry.1.role",
+          "value": "authority"
+        }
+      ]
+    },
+    {
+      "id": "missing_accessed_date",
+      "base": "valid-official-doc-change.json",
+      "operations": [
+        {
+          "op": "remove",
+          "path": "source_registry.0.accessed_date"
+        }
+      ]
+    },
+    {
+      "id": "verified_claim_without_official_source",
+      "base": "valid-official-doc-change.json",
+      "operations": [
+        {
+          "op": "set",
+          "path": "claims.0.official_source_ids",
+          "value": []
+        }
+      ]
+    },
+    {
+      "id": "change_authorized_with_unverified_claim",
+      "base": "valid-unverified-blocked.json",
+      "operations": [
+        {
+          "op": "set",
+          "path": "decision.change_authorized",
+          "value": true
+        },
+        {
+          "op": "set",
+          "path": "decision.scope",
+          "value": "code"
+        },
+        {
+          "op": "set",
+          "path": "decision.blocking_gaps",
+          "value": []
+        }
+      ]
+    },
+    {
+      "id": "guardian_pass_on_blocked",
+      "base": "valid-unverified-blocked.json",
+      "operations": [
+        {
+          "op": "set",
+          "path": "guardian.decision",
+          "value": "pass"
+        }
+      ]
+    },
+    {
+      "id": "source_url_not_http",
+      "base": "valid-official-doc-change.json",
+      "operations": [
+        {
+          "op": "set",
+          "path": "source_registry.0.url",
+          "value": "cli-manual"
+        }
+      ]
+    },
+    {
+      "id": "decision_not_traced",
+      "base": "valid-official-doc-change.json",
+      "operations": [
+        {
+          "op": "set",
+          "path": "validation.decision_traced_to_claim",
+          "value": false
+        }
+      ]
+    },
+    {
+      "id": "official_source_not_official_flag",
+      "base": "valid-official-doc-change.json",
+      "operations": [
+        {
+          "op": "set",
+          "path": "source_registry.0.official",
+          "value": false
+        }
+      ]
+    }
+  ]
+}
