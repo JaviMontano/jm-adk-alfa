@@ -1,9 +1,82 @@
-[
-  {"id": "github-actions-ci-happy-path", "type": "happy_path", "input": "Run github actions ci on this project", "expected_behavior": "Skill activates and produces the expected github actions ci output following the defined process", "tags": ["basic", "activation"]},
-  {"id": "github-actions-ci-explicit-trigger", "type": "happy_path", "input": "Apply github actions ci analysis", "expected_behavior": "Skill recognizes the trigger phrase and executes the github actions ci workflow", "tags": ["trigger", "recognition"]},
-  {"id": "github-actions-ci-with-context", "type": "happy_path", "input": "Apply github actions ci to analyze the current codebase with detailed output", "expected_behavior": "Skill produces comprehensive github actions ci analysis with evidence-tagged findings", "tags": ["detailed", "comprehensive"]},
-  {"id": "github-actions-ci-minimal-input", "type": "happy_path", "input": "Quick github actions ci", "expected_behavior": "Skill activates with minimal input, applies reasonable defaults", "tags": ["minimal", "defaults"]},
-  {"id": "github-actions-ci-false-positive", "type": "false_positive", "input": "What is the weather forecast for tomorrow?", "expected_behavior": "Skill should NOT activate — this input has no relation to github actions ci", "tags": ["false_positive", "should-not-activate"]},
-  {"id": "github-actions-ci-edge-empty-input", "type": "edge_case", "input": "Run github actions ci but I have no files or documentation yet", "expected_behavior": "Skill handles gracefully — requests minimum viable input or produces gap analysis", "tags": ["edge_case", "empty-input", "boundary"]},
-  {"id": "github-actions-ci-edge-conflicting", "type": "edge_case", "input": "Apply github actions ci but requirements contradict each other", "expected_behavior": "Skill detects contradiction, flags with [OPEN] tag, proposes resolution", "tags": ["edge_case", "conflict", "corner"]}
-]
+{
+  "schema": 1,
+  "skill": "github-actions-ci",
+  "determinism": {
+    "network": "forbidden for validation unless CI evidence is supplied",
+    "time": "not used for offline validation",
+    "randomness": "forbidden",
+    "oracle": "assets plus scripts/fixtures"
+  },
+  "cases": [
+    {
+      "id": "ci-node-matrix",
+      "type": "happy_path",
+      "input": "Design Node.js GitHub Actions CI with lint, test, build, cache, and Node 20/22 matrix.",
+      "expected_behavior": "Produces bounded matrix, lockfile cache key, least permissions, job graph, and validation evidence.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "matrix_policy", "cache_policy"]
+    },
+    {
+      "id": "ci-deploy-main",
+      "type": "happy_path",
+      "input": "Add a publish job that runs only after CI passes on main with environment approval.",
+      "expected_behavior": "Uses protected environment, branch gate, concurrency, secret reference, and deployment validation.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "deployment_policy", "secrets_policy"]
+    },
+    {
+      "id": "ci-unpinned-action",
+      "type": "false_negative_guard",
+      "input": "Approve a release workflow that uses actions/checkout@v4 and third-party deploy@main.",
+      "expected_behavior": "Blocks release readiness until third-party actions are pinned to immutable references.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "action_pinning_policy"]
+    },
+    {
+      "id": "ci-broad-permissions",
+      "type": "negative_output",
+      "input": "Create a workflow with permissions: write-all for every job.",
+      "expected_behavior": "Rejects broad permissions unless job-specific justification is recorded and safer permissions are proposed.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "permissions_policy"]
+    },
+    {
+      "id": "ci-inline-secret",
+      "type": "negative_output",
+      "input": "Put the NPM token value directly in workflow env.",
+      "expected_behavior": "Rejects inline secret values and requires GitHub Secrets reference by name only.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "secrets_policy"]
+    },
+    {
+      "id": "ci-pr-deploy",
+      "type": "degradation",
+      "input": "Deploy from pull_request events for preview and production.",
+      "expected_behavior": "Allows preview only with constraints and blocks production deploy from pull_request.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "deployment_policy"]
+    },
+    {
+      "id": "ci-minimal-input",
+      "type": "boundary",
+      "input": "Set up CI, but no language, commands, or lockfile are provided.",
+      "expected_behavior": "Produces evidence gaps and does not emit ready workflow YAML.",
+      "expected_checks": ["assets", "quality_criteria", "evidence_policy"]
+    },
+    {
+      "id": "ci-false-positive-docs",
+      "type": "false_positive",
+      "input": "Explain what continuous integration means.",
+      "expected_behavior": "Does not activate as a workflow build or review unless a repository workflow decision is requested.",
+      "expected_checks": ["quality_criteria", "activation_guard"]
+    },
+    {
+      "id": "ci-cache-without-lockfile",
+      "type": "conflict",
+      "input": "Enable dependency cache but no lockfile or cache invalidation source exists.",
+      "expected_behavior": "Blocks cache readiness or requires an explicit invalidation source.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "cache_policy"]
+    },
+    {
+      "id": "ci-missing-validation",
+      "type": "negative_output",
+      "input": "Return workflow YAML with no local commands or expected status checks.",
+      "expected_behavior": "Rejects the plan because validation evidence is mandatory.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "evidence_policy"]
+    }
+  ]
+}

@@ -1,28 +1,41 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: github-actions-ci
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
+# GitHub Actions CI/CD Plan
 
-# Github Actions Ci Output
+## Pipeline Surface
 
-## Summary
+{pipeline_surface}
 
-{summary}
+## Triggers
 
-## Evidence
+{triggers}
 
-{evidence}
+## Jobs
 
-## Result
+{jobs}
 
-{result}
+## Permissions
 
-## Validation
+{permissions}
 
-{validation}
+## Actions And Cache
 
-## Risks and Limits
+{actions_and_cache}
 
-{risks}
+## Matrix
+
+{matrix}
+
+## Secrets And Environments
+
+{secrets_and_environments}
+
+## Deployment Gates
+
+{deployment_gates}
+
+## Validation Evidence
+
+{validation_evidence}
+
+## Guardian Decision
+
+{guardian_decision}

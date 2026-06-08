@@ -1,0 +1,18 @@
+{
+  "schema": 1,
+  "skill": "github-actions-ci",
+  "scenario_id": "large-matrix",
+  "decision": "ready",
+  "triggers": ["pull_request"],
+  "permissions": {"mode": "least-privilege", "default": {"contents": "read"}, "justification": ""},
+  "jobs": [
+    {"id": "ci", "purpose": "test", "runs_on": "ubuntu-latest", "needs": [], "commands": ["npm test"], "permissions": {"contents": "read"}, "deploy": false}
+  ],
+  "actions": [{"name": "actions/checkout", "ref": "v4", "required_pin": false}],
+  "cache": {"enabled": false, "key": "", "invalidation_source": ""},
+  "matrix": {"enabled": true, "dimensions": {"node": ["16", "18", "20", "22"], "os": ["ubuntu", "macos", "windows", "linux"]}, "max_combinations": 16},
+  "secrets": [],
+  "deployment": {"enabled": false, "environment": "", "branch_gate": "", "needs": [], "concurrency": "", "production_from_pull_request": false},
+  "validation": {"local_commands": ["npm test"], "expected_checks": ["ci"]},
+  "guardian": {"decision": "pass", "reason": "oversized matrix incorrectly accepted"}
+}

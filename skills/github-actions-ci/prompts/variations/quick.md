@@ -1,34 +1,26 @@
 ---
 name: github-actions-ci-quick
-type: variation
+type: execution
 version: 2.0.0
-description: "Github Actions Ci in quick mode."
+description: "Fast GitHub Actions CI review with deterministic safety gates."
 ---
 
-# Github Actions Ci — quick Mode
+# Quick CI Review
 
-## When to Use
+Use when the user needs an immediate pass, warn, or block decision on a workflow
+plan.
 
-Use quick mode when you need adjusted depth for the Github Actions Ci workflow.
+## Steps
 
-## Dynamic Parameters
-
-| Parameter | Required | Filled By |
-|-----------|----------|-----------|
-| `{{task}}` | Yes | User input |
-| `{{context}}` | No | Auto-detected |
-| `{{depth}}` | No | Set to "quick" |
-
-## Execution
-
-1. Load skill: `skills/github-actions-ci/knowledge/body-of-knowledge.md`
-2. Check guardrails: `references/guardrails/*.json`
-3. Execute at quick depth with evidence tags
-4. Lead → Support → Guardian validation
-5. Confidence >= 0.95
+1. Identify triggers, jobs, permissions, actions, secrets, cache, deploy gates,
+   and validation evidence.
+2. Block ready status for unpinned required actions, broad permissions, inline
+   secrets, missing lockfile cache keys, or PR production deploys.
+3. Return the smallest change set needed to pass Guardian review.
 
 ## Output
 
-- Deliverable calibrated to quick depth
-- Evidence-tagged, Constitution-compliant
-- Recommendations beyond the ask
+- Decision
+- Blocking checks
+- Required edits
+- Validation checks

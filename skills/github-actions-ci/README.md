@@ -1,17 +1,16 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: github-actions-ci
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
+# GitHub Actions CI/CD
 
-# Github Actions Ci
-
->
+Deterministic CI/CD workflow planning for GitHub Actions.
 
 ## Triggers
 
-- github-actions-ci
+- `github-actions-ci`
+- `GitHub Actions`
+- `CI/CD`
+- `CI pipeline`
+- `deploy workflow`
+- `workflow permissions`
+- `matrix build`
 
 ## Allowed Tools
 
@@ -23,8 +22,24 @@ overwrite-policy: missing-only unless --force
 
 ## Quick Use
 
-Use this skill when the request clearly matches the triggers and requires the `github-actions-ci` capability.
+Use this skill when a repository needs a GitHub Actions plan or review that can
+be validated offline before writing or changing workflow YAML.
 
 ## Output Format
 
-Markdown with summary, evidence, result, validation, and risks.
+Markdown or JSON with:
+
+- pipeline surface
+- triggers
+- jobs and dependency graph
+- permissions
+- action pinning
+- cache policy
+- matrix strategy
+- secrets and environments
+- deployment gates
+- validation evidence
+- Guardian decision
+
+Structured JSON workflow plans can be validated offline with
+`scripts/validate_github_actions_ci.py`.

@@ -1,75 +1,25 @@
 {
-  "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-28",
   "skill": "github-actions-ci",
+  "schema": 1,
   "nodes": [
-    {
-      "id": "github-actions-ci",
-      "type": "skill",
-      "label": "github-actions-ci"
-    },
-    {
-      "id": "github-actions-ci:inputs",
-      "type": "contract",
-      "label": "Expected inputs"
-    },
-    {
-      "id": "github-actions-ci:outputs",
-      "type": "contract",
-      "label": "Expected outputs"
-    },
-    {
-      "id": "github-actions-ci:quality",
-      "type": "gate",
-      "label": "Quality criteria"
-    },
-    {
-      "id": "github-actions-ci:ontology",
-      "type": "ontology",
-      "label": "Domain: general"
-    },
-    {
-      "id": "github-actions-ci:evidence",
-      "type": "gate",
-      "label": "Evidence / provenance requirements"
-    },
-    {
-      "id": "github-actions-ci:antipattern",
-      "type": "risk",
-      "label": "Canonical anti-pattern to avoid"
-    }
+    {"id": "pipeline-surface", "type": "input", "description": "Workflows, commands, languages, environments, and deploy targets."},
+    {"id": "trigger-policy", "type": "control", "description": "Events that start workflows and jobs."},
+    {"id": "job-graph", "type": "control", "description": "Jobs, dependencies, runners, steps, and validation commands."},
+    {"id": "permission-boundary", "type": "control", "description": "Least-privilege workflow and job permissions."},
+    {"id": "action-pinning", "type": "control", "description": "Immutable references for required third-party actions."},
+    {"id": "cache-contract", "type": "control", "description": "Cache keys, restore keys, and invalidation source."},
+    {"id": "secret-boundary", "type": "control", "description": "Secret names, scopes, and no inline secret values."},
+    {"id": "deployment-gate", "type": "control", "description": "Protected environments, branch gates, concurrency, and approvals."},
+    {"id": "validation-evidence", "type": "output", "description": "Local commands and expected CI checks."}
   ],
   "edges": [
-    {
-      "from": "github-actions-ci",
-      "to": "github-actions-ci:inputs",
-      "type": "requires"
-    },
-    {
-      "from": "github-actions-ci",
-      "to": "github-actions-ci:outputs",
-      "type": "produces"
-    },
-    {
-      "from": "github-actions-ci",
-      "to": "github-actions-ci:quality",
-      "type": "validated_by"
-    },
-    {
-      "from": "github-actions-ci",
-      "to": "github-actions-ci:ontology",
-      "type": "classified_as"
-    },
-    {
-      "from": "github-actions-ci",
-      "to": "github-actions-ci:evidence",
-      "type": "validated_by"
-    },
-    {
-      "from": "github-actions-ci",
-      "to": "github-actions-ci:antipattern",
-      "type": "guards_against"
-    }
+    {"from": "pipeline-surface", "to": "trigger-policy", "relation": "defines"},
+    {"from": "trigger-policy", "to": "job-graph", "relation": "starts"},
+    {"from": "job-graph", "to": "permission-boundary", "relation": "requires"},
+    {"from": "job-graph", "to": "action-pinning", "relation": "requires"},
+    {"from": "job-graph", "to": "cache-contract", "relation": "may_use"},
+    {"from": "secret-boundary", "to": "deployment-gate", "relation": "protects"},
+    {"from": "deployment-gate", "to": "validation-evidence", "relation": "must_produce"},
+    {"from": "job-graph", "to": "validation-evidence", "relation": "must_produce"}
   ]
 }

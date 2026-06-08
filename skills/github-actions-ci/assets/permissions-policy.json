@@ -1,0 +1,11 @@
+{
+  "schema": 1,
+  "recommended_default": {"contents": "read"},
+  "blocked_without_justification": ["write-all"],
+  "allowed_levels": ["none", "read", "write"],
+  "rules": [
+    "Prefer workflow default contents: read.",
+    "Add write permissions only at the job that needs them.",
+    "write-all requires explicit safe justification and should block ready status by default."
+  ]
+}

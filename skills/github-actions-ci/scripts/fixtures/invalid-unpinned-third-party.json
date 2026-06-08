@@ -1,0 +1,18 @@
+{
+  "schema": 1,
+  "skill": "github-actions-ci",
+  "scenario_id": "unpinned-third-party",
+  "decision": "ready",
+  "triggers": ["push"],
+  "permissions": {"mode": "least-privilege", "default": {"contents": "read"}, "justification": ""},
+  "jobs": [
+    {"id": "publish", "purpose": "publish", "runs_on": "ubuntu-latest", "needs": [], "commands": ["npm publish"], "permissions": {"contents": "read"}, "deploy": true}
+  ],
+  "actions": [{"name": "third-party/publish", "ref": "main", "required_pin": true}],
+  "cache": {"enabled": false, "key": "", "invalidation_source": ""},
+  "matrix": {"enabled": false, "dimensions": {}, "max_combinations": 0},
+  "secrets": [{"name": "NPM_TOKEN", "scope": "prod", "used_by": "publish"}],
+  "deployment": {"enabled": true, "environment": "prod", "branch_gate": "refs/heads/main", "needs": ["publish"], "concurrency": "prod", "production_from_pull_request": false},
+  "validation": {"local_commands": ["npm test"], "expected_checks": ["publish"]},
+  "guardian": {"decision": "pass", "reason": "incorrect unpinned action"}
+}

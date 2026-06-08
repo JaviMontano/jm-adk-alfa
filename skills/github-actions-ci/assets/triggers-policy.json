@@ -1,0 +1,9 @@
+{
+  "schema": 1,
+  "allowed_events": ["pull_request", "push", "workflow_dispatch", "schedule", "release", "workflow_call"],
+  "rules": [
+    "Production deploy jobs must not run from pull_request.",
+    "Push deploy jobs require an explicit branch allowlist.",
+    "workflow_dispatch must not bypass validation jobs."
+  ]
+}

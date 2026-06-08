@@ -1,0 +1,65 @@
+{
+  "schema": 1,
+  "skill": "github-actions-ci",
+  "scenario_id": "main-publish",
+  "decision": "ready",
+  "triggers": ["push", "workflow_dispatch"],
+  "permissions": {
+    "mode": "least-privilege",
+    "default": {"contents": "read"},
+    "justification": ""
+  },
+  "jobs": [
+    {
+      "id": "ci",
+      "purpose": "lint, test, and build before publish",
+      "runs_on": "ubuntu-latest",
+      "needs": [],
+      "commands": ["npm ci", "npm test", "npm run build"],
+      "permissions": {"contents": "read"},
+      "deploy": false
+    },
+    {
+      "id": "publish",
+      "purpose": "publish package from protected main branch",
+      "runs_on": "ubuntu-latest",
+      "needs": ["ci"],
+      "commands": ["npm publish"],
+      "permissions": {"contents": "read", "id-token": "write"},
+      "deploy": true
+    }
+  ],
+  "actions": [
+    {"name": "actions/checkout", "ref": "v4", "required_pin": false},
+    {"name": "third-party/publish", "ref": "0123456789abcdef0123456789abcdef01234567", "required_pin": true}
+  ],
+  "cache": {
+    "enabled": true,
+    "key": "npm-${{ runner.os }}-${{ hashFiles('package-lock.json') }}",
+    "invalidation_source": "package-lock.json"
+  },
+  "matrix": {
+    "enabled": false,
+    "dimensions": {},
+    "max_combinations": 0
+  },
+  "secrets": [
+    {"name": "NPM_TOKEN", "scope": "npm-production", "used_by": "publish"}
+  ],
+  "deployment": {
+    "enabled": true,
+    "environment": "npm-production",
+    "branch_gate": "refs/heads/main",
+    "needs": ["ci"],
+    "concurrency": "publish-main",
+    "production_from_pull_request": false
+  },
+  "validation": {
+    "local_commands": ["npm ci", "npm test", "npm run build"],
+    "expected_checks": ["ci", "environment approval: npm-production"]
+  },
+  "guardian": {
+    "decision": "pass",
+    "reason": "publish is gated by CI, main branch, protected environment, and pinned action"
+  }
+}

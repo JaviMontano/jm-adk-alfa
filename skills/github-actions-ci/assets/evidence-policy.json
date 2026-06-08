@@ -1,0 +1,9 @@
+{
+  "schema": 1,
+  "required_validation_fields": ["local_commands", "expected_checks"],
+  "rules": [
+    "Ready status requires local commands and expected CI checks.",
+    "A workflow plan cannot claim a GitHub run passed without supplied run evidence.",
+    "Validation evidence must name commands or checks, not only say tested."
+  ]
+}
