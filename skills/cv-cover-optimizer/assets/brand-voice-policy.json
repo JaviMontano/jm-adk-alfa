@@ -1,0 +1,17 @@
+{
+  "schema": 1,
+  "skill": "cv-cover-optimizer",
+  "max_trademarks": 1,
+  "avoid": [
+    "stacked_trademarks",
+    "hustle_glorification",
+    "inflated_seniority",
+    "generic_superlatives_without_evidence"
+  ],
+  "blocked_phrases": [
+    "24/7",
+    "always-on",
+    "siempre encendido",
+    "sin descanso"
+  ]
+}

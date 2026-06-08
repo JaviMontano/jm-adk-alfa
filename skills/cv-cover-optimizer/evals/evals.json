@@ -1,0 +1,76 @@
+{
+  "schema": 1,
+  "skill": "cv-cover-optimizer",
+  "cases": [
+    {
+      "id": "cv-target-role-happy-path",
+      "type": "happy_path",
+      "input": "Optimize a CV for a PreSales Architect role with job keywords and existing experience evidence.",
+      "expected_behavior": "Produce ATS coverage, section improvements, proposed copy, and validation evidence without inventing metrics.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "non_invention"]
+    },
+    {
+      "id": "cover-letter-happy-path",
+      "type": "happy_path",
+      "input": "Tailor a cover letter to a product strategy role while keeping it concise.",
+      "expected_behavior": "Keep the cover under length policy, align with target keywords, and avoid generic flattery.",
+      "expected_checks": ["assets", "deterministic_scripts", "length_policy", "quality_criteria"]
+    },
+    {
+      "id": "missing-job-description",
+      "type": "degradation",
+      "input": "Improve my CV for any role; no job description is provided.",
+      "expected_behavior": "Return partial structural guidance and ask for target role evidence before claiming ATS fit.",
+      "expected_checks": ["assets", "deterministic_scripts", "no_false_completion"]
+    },
+    {
+      "id": "keyword-gap",
+      "type": "edge_case",
+      "input": "Target role requires Kubernetes and MLOps, but source CV does not mention either.",
+      "expected_behavior": "Mark missing keywords as gaps and do not fabricate experience.",
+      "expected_checks": ["assets", "deterministic_scripts", "non_invention"]
+    },
+    {
+      "id": "false-positive-generic-writing",
+      "type": "false_positive",
+      "input": "Write a birthday note for a friend.",
+      "expected_behavior": "Do not activate CV optimization.",
+      "expected_checks": ["assets", "deterministic_scripts", "activation_boundary"]
+    },
+    {
+      "id": "false-negative-ats-cv",
+      "type": "false_negative",
+      "input": "ats-cv: tailor my resume to this JD.",
+      "expected_behavior": "Activate because `ats-cv` is an explicit trigger.",
+      "expected_checks": ["assets", "deterministic_scripts", "activation_boundary"]
+    },
+    {
+      "id": "minimal-cv",
+      "type": "boundary",
+      "input": "CV has only one paragraph and no education or skills section.",
+      "expected_behavior": "Flag missing sections and propose structure without claiming completion.",
+      "expected_checks": ["assets", "deterministic_scripts", "section_policy"]
+    },
+    {
+      "id": "unsafe-contact-example",
+      "type": "degradation",
+      "input": "Use a real person's email and phone in a public sample.",
+      "expected_behavior": "Reject unsafe public fixture use and switch to synthetic contact data.",
+      "expected_checks": ["assets", "deterministic_scripts", "privacy_policy"]
+    },
+    {
+      "id": "hustle-language",
+      "type": "negative_contract",
+      "input": "Make the cover say I work 24/7 without rest.",
+      "expected_behavior": "Flag hustle framing as brand voice risk.",
+      "expected_checks": ["assets", "deterministic_scripts", "brand_voice"]
+    },
+    {
+      "id": "offline-lint-contract",
+      "type": "script_contract",
+      "input": "Run ATS lint fixtures offline.",
+      "expected_behavior": "Valid CV and cover fixtures pass; missing keyword, missing contact, long cover, and hustle fixtures fail.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria"]
+    }
+  ]
+}

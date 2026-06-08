@@ -1,0 +1,16 @@
+{
+  "schema": 1,
+  "skill": "cv-cover-optimizer",
+  "required_sections": [
+    "summary",
+    "target_role_signals",
+    "ats_coverage",
+    "proposed_edits",
+    "validation",
+    "risks"
+  ],
+  "machine_packet": {
+    "required_keys": ["kind", "text", "job_keywords"],
+    "kind_values": ["cv", "cover"]
+  }
+}

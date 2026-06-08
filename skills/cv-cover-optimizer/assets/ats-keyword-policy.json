@@ -1,0 +1,11 @@
+{
+  "schema": 1,
+  "skill": "cv-cover-optimizer",
+  "coverage_rule": "All provided job_keywords must appear naturally in the optimized text or be reported as gaps.",
+  "forbidden": [
+    "keyword_stuffing",
+    "invented_experience",
+    "claiming_missing_keyword_as_covered"
+  ],
+  "validator": "scripts/ats_lint.py"
+}

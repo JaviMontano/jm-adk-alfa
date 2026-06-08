@@ -750,6 +750,12 @@
     "description": "Extender Claude Code con slash commands y skills usando context fork, allowed-tools whitelist y argument-hint, con scope correcto."
   },
   {
+    "id": "cv-cover-optimizer",
+    "path": "skills/cv-cover-optimizer",
+    "name": "Cv Cover Optimizer",
+    "description": "Optimiza CV y carta de presentacion para ATS, rol objetivo y voz de marca con lint offline de keywords, secciones, longitud, contacto y tono."
+  },
+  {
     "id": "cv-enhancement",
     "path": "skills/cv-enhancement",
     "name": "Cv Enhancement",

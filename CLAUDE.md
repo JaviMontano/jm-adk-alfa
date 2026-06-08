@@ -1,6 +1,6 @@
 # JM Agentic Development Kit (JM-ADK) v5.2.0
 
-> Convierte intención en resultados. 602 skills · 261 agents · 267 commands · 256 prompts · safe first-use onboarding · safe scaffolding · local-first workspaces.
+> Convierte intención en resultados. 603 skills · 261 agents · 267 commands · 256 prompts · safe first-use onboarding · safe scaffolding · local-first workspaces.
 
 ## Environment
 
