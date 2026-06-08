@@ -1,0 +1,12 @@
+{
+  "schema": "jm-labs.alfa-repo-maintenance-orchestrator.write-blocker-policy.v1",
+  "blockers": [
+    "unknown_baseline",
+    "mutating_on_main",
+    "missing_preservation_manifest",
+    "cleanup_without_manifest",
+    "push_allowed_without_user_order",
+    "main_merge_allowed_without_user_order"
+  ],
+  "fail_closed": true
+}

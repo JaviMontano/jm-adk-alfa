@@ -150,6 +150,12 @@
     "description": ">"
   },
   {
+    "id": "alfa-repo-maintenance-orchestrator",
+    "path": "skills/alfa-repo-maintenance-orchestrator",
+    "name": "Alfa Repo Maintenance Orchestrator",
+    "description": "Orchestrates JM-ADK Alfa repository maintenance in fixed safety phases: bootstrap, repo sync audit, local state preservation, isolated branch planning, selective import or consolidation planning, cleanup planning, validation gates, and closeout blockers."
+  },
+  {
     "id": "analytics-engineering",
     "path": "skills/analytics-engineering",
     "name": "Analytics Engineering",

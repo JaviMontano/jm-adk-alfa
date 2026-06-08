@@ -1,0 +1,15 @@
+{
+  "schema": "jm-labs.alfa-repo-maintenance-orchestrator.validation-gates.v1",
+  "required_gates": [
+    "git-status",
+    "check-repo-boundaries",
+    "count-components",
+    "validate-skills-strict",
+    "validate-skill-dod",
+    "validate-skill-scripts-skill",
+    "validate-skill-scripts-global",
+    "validate-runtime-instructions",
+    "check-devkit-readiness",
+    "diff-check"
+  ]
+}

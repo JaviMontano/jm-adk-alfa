@@ -1,0 +1,29 @@
+{
+  "skill": "alfa-repo-maintenance-orchestrator",
+  "assets": [
+    {
+      "path": "assets/orchestration-report-contract.json",
+      "type": "contract",
+      "purpose": "Defines the structured orchestration report.",
+      "used_by": ["SKILL.md", "scripts/validate_alfa_maintenance_orchestration.py"]
+    },
+    {
+      "path": "assets/write-blocker-policy.json",
+      "type": "policy",
+      "purpose": "Defines blockers before mutating maintenance work.",
+      "used_by": ["SKILL.md", "scripts/validate_alfa_maintenance_orchestration.py"]
+    },
+    {
+      "path": "assets/integration-matrix.json",
+      "type": "policy",
+      "purpose": "Defines required skill integrations.",
+      "used_by": ["SKILL.md", "scripts/validate_alfa_maintenance_orchestration.py"]
+    },
+    {
+      "path": "assets/validation-gates.json",
+      "type": "policy",
+      "purpose": "Defines required validation gates.",
+      "used_by": ["SKILL.md", "scripts/validate_alfa_maintenance_orchestration.py"]
+    }
+  ]
+}
