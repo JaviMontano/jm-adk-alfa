@@ -1,0 +1,48 @@
+{
+  "schema": 1,
+  "skill": "official-source-verifier",
+  "report_id": "sdk-parameter-unverified",
+  "question": "Does the SDK support the proposed beta_parameter option?",
+  "source_registry": [
+    {
+      "source_id": "src-forum",
+      "source_type": "community",
+      "publisher": "Community Forum",
+      "title": "SDK beta parameter thread",
+      "url": "https://example.invalid/forum/sdk-beta",
+      "accessed_date": "2026-06-08",
+      "official": false,
+      "role": "discovery"
+    }
+  ],
+  "claims": [
+    {
+      "claim_id": "claim-beta-parameter",
+      "claim": "The SDK supports beta_parameter.",
+      "status": "unverified",
+      "source_ids": ["src-forum"],
+      "official_source_ids": [],
+      "secondary_source_ids": ["src-forum"],
+      "decision_impact": "Blocks the proposed code change until an official source confirms the parameter."
+    }
+  ],
+  "decision": {
+    "change_authorized": false,
+    "justified_change": "No change authorized because official evidence is missing.",
+    "scope": "none",
+    "blocking_gaps": ["No official SDK documentation or repository source confirms beta_parameter."]
+  },
+  "validation": {
+    "official_sources_first": true,
+    "secondary_sources_not_authority": true,
+    "all_claims_have_official_source": false,
+    "all_sources_have_accessed_date": true,
+    "decision_traced_to_claim": true,
+    "unverified_claims_block_change": true,
+    "deterministic_script_passed": true
+  },
+  "guardian": {
+    "decision": "block",
+    "reason": "The only source is community discovery evidence, so the change remains blocked."
+  }
+}

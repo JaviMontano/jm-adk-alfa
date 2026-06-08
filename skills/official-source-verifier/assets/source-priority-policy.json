@@ -1,0 +1,28 @@
+{
+  "schema": 1,
+  "skill": "official-source-verifier",
+  "official_source_types": [
+    "official_docs",
+    "official_spec",
+    "official_repo",
+    "vendor_docs"
+  ],
+  "non_authority_source_types": [
+    "secondary",
+    "community",
+    "generated_summary",
+    "issue_comment"
+  ],
+  "authority_roles": ["authority"],
+  "non_authority_roles": ["discovery", "context"],
+  "required_source_fields": [
+    "source_id",
+    "source_type",
+    "publisher",
+    "title",
+    "url",
+    "accessed_date",
+    "official",
+    "role"
+  ]
+}

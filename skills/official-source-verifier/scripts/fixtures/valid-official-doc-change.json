@@ -1,8 +1,3 @@
-# Example Output
-
-## JSON Report
-
-```json
 {
   "schema": 1,
   "skill": "official-source-verifier",
@@ -58,14 +53,6 @@
   },
   "guardian": {
     "decision": "pass",
-    "reason": "The authorized change is traced to an official GitHub CLI source and the secondary source is marked discovery-only."
+    "reason": "The authorized change is traced to an official GitHub CLI source and the secondary source is discovery-only."
   }
 }
-```
-
-## Validation
-
-- Official source is primary authority.
-- Secondary source is discovery-only.
-- Claim has source, date, and decision impact.
-- Authorized change is scoped to documentation.

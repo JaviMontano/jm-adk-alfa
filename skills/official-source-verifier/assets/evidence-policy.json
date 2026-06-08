@@ -1,0 +1,14 @@
+{
+  "schema": 1,
+  "skill": "official-source-verifier",
+  "minimum_sources": 1,
+  "minimum_claims": 1,
+  "accepted_evidence_types": [
+    "official_source",
+    "secondary_source",
+    "claim_mapping",
+    "decision_trace",
+    "conflict_note",
+    "blocked_gap"
+  ]
+}

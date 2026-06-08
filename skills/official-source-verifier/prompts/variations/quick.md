@@ -1,12 +1,10 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: official-source-verifier
-generated-on: 2026-05-29
-overwrite-policy: missing-only unless --force
--->
-
 # Official Source Verifier Quick Variation
 
-Use when the task is low risk and well specified.
+Use when the decision is narrow and a single official source can answer it.
 
-Return only the requested deliverable, validation status, and residual risks.
+Return:
+
+- The official source record with URL, publisher and accessed date.
+- One or two claim records.
+- The decision and whether the change is authorized.
+- Residual risks or blocked gaps.

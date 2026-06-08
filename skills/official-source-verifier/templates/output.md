@@ -1,19 +1,20 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: official-source-verifier
-generated-on: 2026-05-29
-overwrite-policy: missing-only unless --force
--->
-
 # Official Source Verifier Output
 
 ## Summary
 
 {summary}
 
-## Evidence
+## Source Registry
 
-{evidence}
+| Source ID | Type | Publisher | Official | Accessed | Role |
+|---|---|---|---|---|---|
+| {source_id} | {source_type} | {publisher} | {official} | {accessed_date} | {role} |
+
+## Claims
+
+| Claim ID | Status | Official Sources | Decision Impact |
+|---|---|---|---|
+| {claim_id} | {status} | {official_source_ids} | {decision_impact} |
 
 ## Result
 
@@ -21,7 +22,11 @@ overwrite-policy: missing-only unless --force
 
 ## Validation
 
-{validation}
+- Official sources checked first: {official_sources_first}
+- Secondary sources are not authority: {secondary_sources_not_authority}
+- All verified claims have official sources: {all_claims_have_official_source}
+- All sources have accessed date: {all_sources_have_accessed_date}
+- Decision traces to claim: {decision_traced_to_claim}
 
 ## Risks and Limits
 
