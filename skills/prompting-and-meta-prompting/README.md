@@ -1,34 +1,31 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: prompting-and-meta-prompting
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
-
 # Prompting And Meta Prompting
 
 Transform intentions into durable prompts, meta-prompts, acceptance criteria, and eval-ready prompt systems.
 
-## Triggers
+## Use It For
 
-- prompting
-- meta-prompting
-- prompt-optimizer
-- system-prompt
-- prompt-design
+- Turning vague requests into executable prompts with role, task sequence, constraints, and output contract.
+- Creating meta-prompts that review future prompts for objective alignment, safety, output shape, and eval coverage.
+- Designing acceptance criteria and eval cases before a prompt is treated as reusable.
+- Hardening prompt systems against drift, missing data, credential capture, hidden chain-of-thought requests, and unverifiable outputs.
 
-## Allowed Tools
+## Deterministic Contract
 
-- Read
-- Write
-- Grep
-- Glob
-- Bash
+The canonical report shape is defined in `assets/prompting-and-meta-prompting-contract.json`. A valid report includes:
 
-## Quick Use
+- `request`: objective, audience, context, constraints, and missing data.
+- `prompt_artifact`: role, task, sequence, output contract, anti-drift rules, and missing-data handling.
+- `meta_prompt`: enabled flag and review dimensions.
+- `acceptance_criteria`: verifiable criteria with stable ids.
+- `eval_cases`: happy path, minimal input, conflicting requirements, and false positive coverage.
+- `safety`: no secret capture, no hidden chain-of-thought request, unsafe automation blocked, and evidence requirements.
 
-Use this skill when the request clearly matches the triggers and requires the `prompting-and-meta-prompting` capability.
+## Validation
 
-## Output Format
+Run the offline validator before treating a prompt-system report as deterministic evidence:
 
-Markdown with summary, evidence, result, validation, and risks.
+```bash
+bash skills/prompting-and-meta-prompting/scripts/check.sh
+```
+
+The check passes only when valid fixtures pass and invalid mutations fail for contract, eval, safety, and Guardian consistency reasons.

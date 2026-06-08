@@ -1,7 +1,5 @@
 {
   "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-28",
   "skill": "prompting-and-meta-prompting",
   "nodes": [
     {
@@ -27,7 +25,7 @@
     {
       "id": "prompting-and-meta-prompting:ontology",
       "type": "ontology",
-      "label": "Domain: general"
+      "label": "Domain: prompt-system-design"
     },
     {
       "id": "prompting-and-meta-prompting:evidence",
@@ -38,6 +36,26 @@
       "id": "prompting-and-meta-prompting:antipattern",
       "type": "risk",
       "label": "Canonical anti-pattern to avoid"
+    },
+    {
+      "id": "prompting-and-meta-prompting:meta-prompt",
+      "type": "contract",
+      "label": "Meta-prompt review dimensions"
+    },
+    {
+      "id": "prompting-and-meta-prompting:acceptance-criteria",
+      "type": "gate",
+      "label": "Verifiable acceptance criteria"
+    },
+    {
+      "id": "prompting-and-meta-prompting:eval-cases",
+      "type": "gate",
+      "label": "Deterministic eval coverage"
+    },
+    {
+      "id": "prompting-and-meta-prompting:safety",
+      "type": "gate",
+      "label": "Secret, hidden-reasoning, and unsafe automation guard"
     }
   ],
   "edges": [
@@ -70,6 +88,26 @@
       "from": "prompting-and-meta-prompting",
       "to": "prompting-and-meta-prompting:antipattern",
       "type": "guards_against"
+    },
+    {
+      "from": "prompting-and-meta-prompting",
+      "to": "prompting-and-meta-prompting:meta-prompt",
+      "type": "produces"
+    },
+    {
+      "from": "prompting-and-meta-prompting",
+      "to": "prompting-and-meta-prompting:acceptance-criteria",
+      "type": "validated_by"
+    },
+    {
+      "from": "prompting-and-meta-prompting:acceptance-criteria",
+      "to": "prompting-and-meta-prompting:eval-cases",
+      "type": "drives"
+    },
+    {
+      "from": "prompting-and-meta-prompting:safety",
+      "to": "prompting-and-meta-prompting:antipattern",
+      "type": "blocks"
     }
   ]
 }

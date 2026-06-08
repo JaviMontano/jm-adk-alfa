@@ -1,0 +1,7 @@
+{
+  "schema": 1,
+  "skill": "prompting-and-meta-prompting",
+  "minimum_criteria": 4,
+  "required_fields": ["id", "criterion", "verifiable"],
+  "id_pattern": "^AC-[0-9]{3}$"
+}

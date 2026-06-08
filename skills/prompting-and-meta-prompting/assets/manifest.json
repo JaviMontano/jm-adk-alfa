@@ -1,0 +1,42 @@
+{
+  "schema": 1,
+  "skill": "prompting-and-meta-prompting",
+  "assets": [
+    {
+      "path": "assets/prompting-and-meta-prompting-contract.json",
+      "type": "json_contract",
+      "purpose": "Defines required fields for deterministic prompt-system reports.",
+      "used_by": ["SKILL.md", "README.md", "scripts/validate_prompting_and_meta_prompting.py", "evals/evals.json"]
+    },
+    {
+      "path": "assets/prompt-component-policy.json",
+      "type": "policy",
+      "purpose": "Defines required prompt artifact components.",
+      "used_by": ["knowledge/body-of-knowledge.md", "scripts/validate_prompting_and_meta_prompting.py"]
+    },
+    {
+      "path": "assets/meta-prompt-policy.json",
+      "type": "policy",
+      "purpose": "Defines review dimensions for reusable meta-prompts.",
+      "used_by": ["SKILL.md", "scripts/validate_prompting_and_meta_prompting.py"]
+    },
+    {
+      "path": "assets/acceptance-criteria-policy.json",
+      "type": "policy",
+      "purpose": "Requires acceptance criteria to be stable and verifiable.",
+      "used_by": ["templates/output.md", "scripts/validate_prompting_and_meta_prompting.py"]
+    },
+    {
+      "path": "assets/eval-case-policy.json",
+      "type": "policy",
+      "purpose": "Defines required eval coverage for prompt systems.",
+      "used_by": ["evals/evals.json", "scripts/validate_prompting_and_meta_prompting.py"]
+    },
+    {
+      "path": "assets/safety-anti-drift-policy.json",
+      "type": "policy",
+      "purpose": "Blocks unsafe prompt optimization and unverifiable drift.",
+      "used_by": ["agents/guardian.md", "scripts/validate_prompting_and_meta_prompting.py"]
+    }
+  ]
+}

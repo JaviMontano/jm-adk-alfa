@@ -1,0 +1,7 @@
+{
+  "schema": 1,
+  "skill": "prompting-and-meta-prompting",
+  "minimum_cases": 5,
+  "required_case_types": ["happy_path", "minimal_input", "conflicting_requirements", "false_positive", "unsafe_injection"],
+  "required_checks": ["assets", "deterministic_scripts", "quality_criteria"]
+}
