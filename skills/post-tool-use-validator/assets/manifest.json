@@ -1,0 +1,35 @@
+{
+  "skill": "post-tool-use-validator",
+  "assets": [
+    {
+      "path": "assets/README.md",
+      "type": "documentation",
+      "purpose": "Explains post-tool validation policy assets.",
+      "used_by": ["SKILL.md", "README.md"]
+    },
+    {
+      "path": "assets/post-tool-validation-contract.json",
+      "type": "contract",
+      "purpose": "Defines post-tool report shape.",
+      "used_by": ["SKILL.md", "scripts/validate_post_tool_use_report.py"]
+    },
+    {
+      "path": "assets/evidence-policy.json",
+      "type": "policy",
+      "purpose": "Defines evidence requirements for pass claims.",
+      "used_by": ["SKILL.md", "scripts/validate_post_tool_use_report.py"]
+    },
+    {
+      "path": "assets/secret-output-policy.json",
+      "type": "policy",
+      "purpose": "Defines unmasked secret blockers.",
+      "used_by": ["SKILL.md", "scripts/validate_post_tool_use_report.py"]
+    },
+    {
+      "path": "assets/scope-validation-policy.json",
+      "type": "policy",
+      "purpose": "Defines write and private output blockers.",
+      "used_by": ["SKILL.md", "scripts/validate_post_tool_use_report.py"]
+    }
+  ]
+}

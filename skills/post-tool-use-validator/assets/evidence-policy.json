@@ -1,0 +1,5 @@
+{
+  "schema": "jm-labs.post-tool-use-validator.evidence-policy.v1",
+  "requires_evidence_for_pass": true,
+  "accepted_evidence_tags": ["[CÓDIGO]", "[CONFIG]", "[DOC]", "[INFERENCIA]", "[SUPUESTO]"]
+}

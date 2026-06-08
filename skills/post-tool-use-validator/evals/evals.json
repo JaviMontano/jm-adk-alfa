@@ -1,9 +1,44 @@
-[
-  {"id": "post-tool-use-validator-happy-path", "type": "happy_path", "input": "Run post tool use validator on this project", "expected_behavior": "Skill activates and produces the expected post tool use validator output following the defined process", "tags": ["basic", "activation"]},
-  {"id": "post-tool-use-validator-explicit-trigger", "type": "happy_path", "input": "Apply post tool use validator analysis", "expected_behavior": "Skill recognizes the trigger phrase and executes the post tool use validator workflow", "tags": ["trigger", "recognition"]},
-  {"id": "post-tool-use-validator-with-context", "type": "happy_path", "input": "Apply post tool use validator to analyze the current codebase with detailed output", "expected_behavior": "Skill produces comprehensive post tool use validator analysis with evidence-tagged findings", "tags": ["detailed", "comprehensive"]},
-  {"id": "post-tool-use-validator-minimal-input", "type": "happy_path", "input": "Quick post tool use validator", "expected_behavior": "Skill activates with minimal input, applies reasonable defaults", "tags": ["minimal", "defaults"]},
-  {"id": "post-tool-use-validator-false-positive", "type": "false_positive", "input": "What is the weather forecast for tomorrow?", "expected_behavior": "Skill should NOT activate — this input has no relation to post tool use validator", "tags": ["false_positive", "should-not-activate"]},
-  {"id": "post-tool-use-validator-edge-empty-input", "type": "edge_case", "input": "Run post tool use validator but I have no files or documentation yet", "expected_behavior": "Skill handles gracefully — requests minimum viable input or produces gap analysis", "tags": ["edge_case", "empty-input", "boundary"]},
-  {"id": "post-tool-use-validator-edge-conflicting", "type": "edge_case", "input": "Apply post tool use validator but requirements contradict each other", "expected_behavior": "Skill detects contradiction, flags with [OPEN] tag, proposes resolution", "tags": ["edge_case", "conflict", "corner"]}
-]
+{
+  "cases": [
+    {
+      "name": "pass_success_with_evidence",
+      "input": "Validate successful validate-skills output with evidence tags and quality gates.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "evidence_present"]
+    },
+    {
+      "name": "fail_failed_command_claimed_pass",
+      "input": "Validate failed command output that is declared pass.",
+      "expected_checks": ["deterministic_scripts", "quality_criteria", "status_consistency"]
+    },
+    {
+      "name": "fail_missing_evidence",
+      "input": "Validate pass report with no evidence tags and no command evidence.",
+      "expected_checks": ["assets", "quality_criteria", "evidence_required"]
+    },
+    {
+      "name": "block_unmasked_secret",
+      "input": "Validate output containing an unmasked API token.",
+      "expected_checks": ["deterministic_scripts", "quality_criteria", "secret_blocker"]
+    },
+    {
+      "name": "block_out_of_scope_write",
+      "input": "Validate report that writes outside allowed roots.",
+      "expected_checks": ["assets", "quality_criteria", "scope_boundary"]
+    },
+    {
+      "name": "fail_quality_gate",
+      "input": "Validate report with a failed quality gate and pass decision.",
+      "expected_checks": ["deterministic_scripts", "quality_criteria", "gate_consistency"]
+    },
+    {
+      "name": "warn_partial_validation",
+      "input": "Validate report where global check was blocked by host resources but targeted gates passed.",
+      "expected_checks": ["assets", "quality_criteria", "residual_risk"]
+    },
+    {
+      "name": "block_private_output",
+      "input": "Validate output that includes user-context/jarvis-os content.",
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria"]
+    }
+  ]
+}

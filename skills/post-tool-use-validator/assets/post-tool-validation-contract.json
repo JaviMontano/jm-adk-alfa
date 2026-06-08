@@ -1,0 +1,6 @@
+{
+  "schema": "jm-labs.post-tool-use-validator.contract.v1",
+  "report_schema": "jm-labs.post-tool-use-validator.report.v1",
+  "required_fields": ["schema", "skill", "tool_result", "claim", "checks", "decision"],
+  "validator": "scripts/validate_post_tool_use_report.py"
+}

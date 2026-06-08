@@ -1,0 +1,31 @@
+{
+  "schema": "jm-labs.post-tool-use-validator.report.v1",
+  "skill": "post-tool-use-validator",
+  "tool_result": {
+    "tool": "Bash",
+    "command": "bash scripts/check-repo-boundaries.sh",
+    "exit_code": 0,
+    "stdout_excerpt": "Repo boundaries OK",
+    "stderr_excerpt": ""
+  },
+  "claim": {
+    "declared_status": "pass",
+    "summary": "All good.",
+    "evidence_tags": []
+  },
+  "checks": {
+    "command_succeeded": true,
+    "evidence_present": false,
+    "output_contains_secret": false,
+    "private_output": false,
+    "writes_outside_scope": false,
+    "quality_gates": [
+      {"name": "repo-boundaries", "status": "pass", "evidence": "Repo boundaries OK"}
+    ]
+  },
+  "decision": {
+    "status": "pass",
+    "next_action": "proceed",
+    "reason": "Invalid fixture omits evidence."
+  }
+}

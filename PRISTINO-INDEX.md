@@ -693,7 +693,7 @@
 | 418 | `poc-lab` | [EXPLICIT] |
 | 419 | `podcast-prep` | — |
 | 420 | `portfolio-sites` | — |
-| 421 | `post-tool-use-validator` | — |
+| 421 | `post-tool-use-validator` | Validate tool outputs against exit codes, evidence tags, quality gates, secret e |
 | 422 | `pre-compact-context` | — |
 | 423 | `pre-tool-use-guard` | Block dangerous commands before execution using the exit-code-2 deny pattern, de |
 | 424 | `presentation-design` | — |
