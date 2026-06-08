@@ -1,10 +1,3 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: provenance-engineering
-generated-on: 2026-05-30
-overwrite-policy: missing-only unless --force
--->
-
 # Example Input
 
 Estamos consolidando el perfil de una entidad para onboarding KYC a partir de tres documentos:

@@ -1,10 +1,3 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: provenance-engineering
-generated-on: 2026-05-30
-overwrite-policy: missing-only unless --force
--->
-
 # Example Output
 
 ## Summary
@@ -51,6 +44,7 @@ return f"Revenue is USD {revenue}M."  # analyst cannot audit origin or see the d
 - [x] Conflicto escalado al analista, no promediado
 - [x] `as_of` visible en el render
 - [x] Test estructural de provenance en verde (`assert_provenance`)
+- [x] Fixture JSON validado por `skills/provenance-engineering/scripts/check.sh`
 
 ## Risks and Limits
 

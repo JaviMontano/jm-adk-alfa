@@ -1,0 +1,10 @@
+{
+  "schema": 1,
+  "skill": "provenance-engineering",
+  "required_conflict_fields": ["conflict_id", "attribute", "claim_ids", "values", "source_ids", "resolution_policy", "status"],
+  "required_resolution_policy": "escalate",
+  "allowed_statuses": ["open", "deferred", "resolved_by_human"],
+  "forbidden_resolution_policies": ["average", "first_source", "latest_source", "silent_pick"],
+  "minimum_sources_per_conflict": 2,
+  "minimum_values_per_conflict": 2
+}

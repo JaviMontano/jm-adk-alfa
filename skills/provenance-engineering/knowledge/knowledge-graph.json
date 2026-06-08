@@ -1,7 +1,5 @@
 {
   "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-30",
   "skill": "provenance-engineering",
   "nodes": [
     {
@@ -73,6 +71,21 @@
       "id": "provenance-engineering:antipattern",
       "type": "risk",
       "label": "Canonical anti-pattern to avoid"
+    },
+    {
+      "id": "provenance-engineering:assets-contract",
+      "type": "contract",
+      "label": "Deterministic provenance report contract"
+    },
+    {
+      "id": "provenance-engineering:human-escalation",
+      "type": "gate",
+      "label": "Every conflict has human escalation"
+    },
+    {
+      "id": "provenance-engineering:render-policy",
+      "type": "gate",
+      "label": "source_id, as_of, and conflict marker visible"
     }
   ],
   "edges": [
@@ -140,6 +153,21 @@
       "from": "provenance-engineering",
       "to": "provenance-engineering:antipattern",
       "type": "guards_against"
+    },
+    {
+      "from": "provenance-engineering",
+      "to": "provenance-engineering:assets-contract",
+      "type": "validated_by"
+    },
+    {
+      "from": "provenance-engineering:conflict-marking",
+      "to": "provenance-engineering:human-escalation",
+      "type": "requires"
+    },
+    {
+      "from": "provenance-engineering:render-policy",
+      "to": "provenance-engineering:as-of-visible",
+      "type": "enforces"
     }
   ]
 }

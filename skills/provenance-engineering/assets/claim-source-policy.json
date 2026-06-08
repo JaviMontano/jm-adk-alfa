@@ -1,0 +1,8 @@
+{
+  "schema": 1,
+  "skill": "provenance-engineering",
+  "required_source_fields": ["source_id", "locator", "as_of", "source_type"],
+  "required_claim_fields": ["claim_id", "attribute", "value", "source_ids", "as_of", "conflict"],
+  "allowed_source_types": ["document", "spreadsheet", "database", "api", "human_review"],
+  "date_pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+}

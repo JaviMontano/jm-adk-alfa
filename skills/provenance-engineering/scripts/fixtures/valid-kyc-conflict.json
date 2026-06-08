@@ -1,0 +1,63 @@
+{
+  "schema": 1,
+  "skill": "provenance-engineering",
+  "report_id": "kyc-conflict-report",
+  "sources": [
+    {"source_id": "doc-A", "locator": "certificate p.1", "as_of": "2021-03-12", "source_type": "document"},
+    {"source_id": "doc-B", "locator": "financials p.5", "as_of": "2024-09-30", "source_type": "document"},
+    {"source_id": "doc-C", "locator": "audit p.2", "as_of": "2025-02-15", "source_type": "document"}
+  ],
+  "claims": [
+    {"claim_id": "claim-address", "attribute": "address", "value": "Carrera 7 #71-21, Bogota", "source_ids": ["doc-A", "doc-B"], "as_of": "2024-09-30", "conflict": false},
+    {"claim_id": "claim-revenue", "attribute": "revenue", "value": "USD 4.2M | USD 4.8M", "source_ids": ["doc-B", "doc-C"], "as_of": "2025-02-15", "conflict": true}
+  ],
+  "conflicts": [
+    {
+      "conflict_id": "conflict-revenue",
+      "attribute": "revenue",
+      "claim_ids": ["claim-revenue"],
+      "values": ["USD 4.2M", "USD 4.8M"],
+      "source_ids": ["doc-B", "doc-C"],
+      "resolution_policy": "escalate",
+      "status": "open"
+    }
+  ],
+  "escalations": [
+    {
+      "escalation_id": "esc-revenue",
+      "conflict_id": "conflict-revenue",
+      "assignee_type": "human",
+      "reason": "Revenue values differ across source documents.",
+      "source_ids": ["doc-B", "doc-C"],
+      "as_of_visible": true,
+      "status": "queued"
+    }
+  ],
+  "render": {
+    "source_ids_visible": true,
+    "as_of_visible": true,
+    "conflict_marker_visible": true
+  },
+  "structural_tests": {
+    "no_claim_without_source": true,
+    "no_unknown_sources": true,
+    "no_silent_conflict_resolution": true,
+    "conflicts_escalated": true,
+    "dates_visible": true,
+    "deterministic_script_passed": true
+  },
+  "validation": {
+    "sources_valid": true,
+    "all_claims_have_sources": true,
+    "all_claim_sources_exist": true,
+    "conflicts_preserved": true,
+    "conflicts_escalated": true,
+    "render_dates_and_sources": true,
+    "structural_tests_passed": true,
+    "deterministic_script_passed": true
+  },
+  "guardian": {
+    "decision": "pass",
+    "reason": "All claims have sources and the revenue conflict is preserved and escalated."
+  }
+}
