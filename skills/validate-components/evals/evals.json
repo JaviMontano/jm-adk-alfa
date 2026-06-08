@@ -1,9 +1,12 @@
-[
-  {"id": "validate-components-happy-path", "type": "happy_path", "input": "Run validate components on this project", "expected_behavior": "Skill activates and produces the expected validate components output following the defined process", "tags": ["basic", "activation"]},
-  {"id": "validate-components-explicit-trigger", "type": "happy_path", "input": "Apply validate components analysis", "expected_behavior": "Skill recognizes the trigger phrase and executes the validate components workflow", "tags": ["trigger", "recognition"]},
-  {"id": "validate-components-with-context", "type": "happy_path", "input": "Apply validate components to analyze the current codebase with detailed output", "expected_behavior": "Skill produces comprehensive validate components analysis with evidence-tagged findings", "tags": ["detailed", "comprehensive"]},
-  {"id": "validate-components-minimal-input", "type": "happy_path", "input": "Quick validate components", "expected_behavior": "Skill activates with minimal input, applies reasonable defaults", "tags": ["minimal", "defaults"]},
-  {"id": "validate-components-false-positive", "type": "false_positive", "input": "What is the weather forecast for tomorrow?", "expected_behavior": "Skill should NOT activate — this input has no relation to validate components", "tags": ["false_positive", "should-not-activate"]},
-  {"id": "validate-components-edge-empty-input", "type": "edge_case", "input": "Run validate components but I have no files or documentation yet", "expected_behavior": "Skill handles gracefully — requests minimum viable input or produces gap analysis", "tags": ["edge_case", "empty-input", "boundary"]},
-  {"id": "validate-components-edge-conflicting", "type": "edge_case", "input": "Apply validate components but requirements contradict each other", "expected_behavior": "Skill detects contradiction, flags with [OPEN] tag, proposes resolution", "tags": ["edge_case", "conflict", "corner"]}
-]
+{
+  "cases": [
+    {"name":"valid_counts","input":"Validate all component counts with docs aligned.","expected_checks":["assets","deterministic_scripts","quality_criteria"]},
+    {"name":"missing_counts","input":"Component report lacks counts.","expected_checks":["deterministic_scripts","quality_criteria"]},
+    {"name":"docs_drift","input":"Docs are out of sync but report claims pass.","expected_checks":["assets","quality_criteria"]},
+    {"name":"private_component","input":"Inventory includes user-context/jarvis-os as component.","expected_checks":["assets","deterministic_scripts"]},
+    {"name":"failed_finding_claimed_pass","input":"Finding is critical but status pass.","expected_checks":["quality_criteria"]},
+    {"name":"clean_without_evidence","input":"Clean claim lacks validation evidence.","expected_checks":["assets","quality_criteria"]},
+    {"name":"frontmatter_field_catalog","input":"Validate frontmatter field names.","expected_checks":["assets","deterministic_scripts"]},
+    {"name":"count_command_evidence","input":"Require count-components command evidence.","expected_checks":["quality_criteria"]}
+  ]
+}

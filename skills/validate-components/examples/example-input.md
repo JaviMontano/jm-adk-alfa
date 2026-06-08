@@ -1,10 +1,3 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: validate-components
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
-
 # Example Input
 
-Use `validate-components` to produce a concise deliverable for a realistic project request.
+Validate component counts and frontmatter for JM-ADK Alfa. Confirm docs counts match, no private paths are included as publishable components, and clean status has validation evidence.

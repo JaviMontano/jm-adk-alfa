@@ -1,0 +1,9 @@
+{
+  "skill": "validate-components",
+  "assets": [
+    {"path":"assets/README.md","type":"documentation","purpose":"Explains component validation assets.","used_by":["SKILL.md","README.md"]},
+    {"path":"assets/component-report-contract.json","type":"contract","purpose":"Defines component report shape.","used_by":["SKILL.md","scripts/validate_components_report.py"]},
+    {"path":"assets/count-consistency-policy.json","type":"policy","purpose":"Defines count/doc alignment policy.","used_by":["SKILL.md","scripts/validate_components_report.py"]},
+    {"path":"assets/private-component-policy.json","type":"policy","purpose":"Defines private component blockers.","used_by":["SKILL.md","scripts/validate_components_report.py"]}
+  ]
+}
