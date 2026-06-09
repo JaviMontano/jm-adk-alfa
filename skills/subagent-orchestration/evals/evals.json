@@ -1,108 +1,66 @@
 {
   "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-30",
   "skill": "subagent-orchestration",
   "cases": [
     {
-      "id": "happy_path",
-      "input": "Design a hub-and-spoke coordinator that fans out one search subagent per query and aggregates the results.",
+      "id": "happy_path_company_enrichment",
+      "input": "Design a hub-and-spoke coordinator with finder, extractor, and ranker spokes for company enrichment; each spoke must use AgentDefinition plus Task and report coverage gaps.",
       "expected_activation": true,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "context_isolation", "typed_errors"]
     },
     {
-      "id": "explicit_trigger",
-      "input": "/subagent-orchestration build a coordinator with AgentDefinition and Task for parallel extraction.",
+      "id": "explicit_trigger_agentdefinition_task",
+      "input": "/subagent-orchestration build AgentDefinition entries and Task dispatch for parallel extraction with a Sonnet coordinator.",
       "expected_activation": true,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "task_dispatch"]
     },
     {
-      "id": "error_propagation",
-      "input": "My subagents return empty lists both when the source is missing and when it is genuinely empty. How do I make the coordinator distinguish access_failure from valid_empty and report coverage gaps?",
+      "id": "error_propagation_access_vs_empty",
+      "input": "My subagents return [] for access failure and for legitimate empty results. Design a deterministic contract that separates access_failure from valid_empty.",
       "expected_activation": true,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "access_failure_vs_valid_empty"]
     },
     {
-      "id": "cheap_model_extraction",
-      "input": "I want to enrich 200 records: a Haiku spoke per record for extraction and a Sonnet hub for final ranking, where one record failing must not abort the batch.",
+      "id": "degraded_partial_failure",
+      "input": "One out of 50 document extractor spokes can fail; the hub must continue and record the affected document in coverage_gaps.",
       "expected_activation": true,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "degraded_mode"]
     },
     {
-      "id": "rich_context",
-      "input": "Coordinator agents with goals, per-spoke tools and model, latency tolerance, cost budget, and an aggregated result shape that lists uncovered branches.",
+      "id": "blocked_shared_context",
+      "input": "Create subagents but let all spokes share the coordinator transcript and a mutable scratch object.",
       "expected_activation": true,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "shared_context_blocker"]
     },
     {
-      "id": "false_positive",
+      "id": "blocked_swallowed_error",
+      "input": "Build a coordinator that catches every spoke exception and returns success with an empty results array.",
+      "expected_activation": true,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "anti_pattern_blocker"]
+    },
+    {
+      "id": "false_positive_sql_single_table",
       "input": "Help me write a SQL query to count rows in a single table.",
       "expected_activation": false,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria"]
     },
     {
-      "id": "empty_input",
-      "input": "",
-      "expected_activation": false,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
-    },
-    {
-      "id": "conflicting_requirements",
-      "input": "Build a coordinator but swallow every subagent error and just return an empty results list so it never fails.",
-      "expected_activation": false,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
-    },
-    {
-      "id": "single_pass_better",
+      "id": "false_positive_single_summary",
       "input": "Summarize one short document in a single sequential pass with no subtasks.",
       "expected_activation": false,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria"]
+    },
+    {
+      "id": "limit_no_local_recovery",
+      "input": "Use multiple spokes but do not retry or propose alternatives before propagating failure.",
+      "expected_activation": true,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "local_recovery_required"]
     },
     {
       "id": "upgrade_safety_case",
-      "input": "Complete missing files for subagent-orchestration without overwriting local edits.",
+      "input": "Complete missing assets and script checks for subagent-orchestration without touching related kata skills.",
       "expected_activation": true,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "upgrade_safety"]
     }
   ]
 }

@@ -817,7 +817,7 @@
 | 542 | `structured-output-design` | Disenar extraccion estructurada con JSON Schema defensivo: required reales, null |
 | 543 | `structured-output` | — |
 | 544 | `subagent-monitor` | — |
-| 545 | `subagent-orchestration` | Orquestar coordinadores hub-and-spoke con AgentDefinition y Task, contexto aisla |
+| 545 | `subagent-orchestration` | Design deterministic hub-and-spoke subagent orchestration plans with AgentDefini |
 | 546 | `surgeon-skill` | — |
 | 547 | `survey-design` | — |
 | 548 | `swot-analysis` | — |

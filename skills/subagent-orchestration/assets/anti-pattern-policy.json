@@ -1,0 +1,20 @@
+{
+  "schema": 1,
+  "skill": "subagent-orchestration",
+  "blocked_patterns": [
+    "monolithic_agent",
+    "shared_context",
+    "shared_mutable_state",
+    "fail_fast_unrelated_spokes",
+    "except_return_empty_success",
+    "access_failure_as_valid_empty",
+    "missing_coverage_gap"
+  ],
+  "blocked_text_markers": [
+    "swallow every error",
+    "return success with empty results",
+    "shared coordinator transcript",
+    "one agent with all context",
+    "abort the batch on any spoke failure"
+  ]
+}

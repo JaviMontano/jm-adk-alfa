@@ -3267,7 +3267,7 @@
     "id": "subagent-orchestration",
     "path": "skills/subagent-orchestration",
     "name": "Subagent Orchestration",
-    "description": "Orquestar coordinadores hub-and-spoke con AgentDefinition y Task, contexto aislado por subagente y propagacion de errores estructurada."
+    "description": "Design deterministic hub-and-spoke subagent orchestration plans with AgentDefinition plus Task dispatch, fresh-session context isolation, typed spoke errors, local recovery, coverage-gap aggregation, and bounded partial-failure behavior."
   },
   {
     "id": "surgeon-skill",

@@ -1,0 +1,42 @@
+{
+  "schema": 1,
+  "skill": "subagent-orchestration",
+  "assets": [
+    {
+      "path": "assets/orchestration-contract.json",
+      "type": "contract",
+      "purpose": "Defines the required JSON shape for subagent orchestration plans.",
+      "used_by": ["SKILL.md", "templates/output.md", "scripts/validate_orchestration_plan.py"]
+    },
+    {
+      "path": "assets/isolation-policy.json",
+      "type": "policy",
+      "purpose": "Requires Task dispatch, fresh-session spokes, and last-message-only coordinator consumption.",
+      "used_by": ["SKILL.md", "scripts/validate_orchestration_plan.py"]
+    },
+    {
+      "path": "assets/error-propagation-policy.json",
+      "type": "policy",
+      "purpose": "Defines typed spoke failures, valid-empty semantics, and local recovery.",
+      "used_by": ["SKILL.md", "templates/output.md", "scripts/validate_orchestration_plan.py"]
+    },
+    {
+      "path": "assets/aggregation-policy.json",
+      "type": "policy",
+      "purpose": "Defines partial failure behavior and explicit coverage gaps.",
+      "used_by": ["SKILL.md", "templates/output.md", "scripts/validate_orchestration_plan.py"]
+    },
+    {
+      "path": "assets/anti-pattern-policy.json",
+      "type": "policy",
+      "purpose": "Blocks monolithic, shared-context, fail-fast, and swallowed-error plans.",
+      "used_by": ["SKILL.md", "scripts/validate_orchestration_plan.py"]
+    },
+    {
+      "path": "assets/model-tool-policy.json",
+      "type": "policy",
+      "purpose": "Guides minimal tools and model role selection per spoke.",
+      "used_by": ["SKILL.md", "scripts/validate_orchestration_plan.py"]
+    }
+  ]
+}

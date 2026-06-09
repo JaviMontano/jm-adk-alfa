@@ -1,0 +1,27 @@
+{
+  "schema": 1,
+  "skill": "subagent-orchestration",
+  "required_failure_fields": [
+    "failure_type",
+    "attempted_query",
+    "partial_results",
+    "suggested_alternatives"
+  ],
+  "failure_type_examples": [
+    "access_failure",
+    "rate_limited",
+    "permission_denied",
+    "parse_failure"
+  ],
+  "valid_empty": {
+    "status": "ok",
+    "empty_valid": true,
+    "must_not_use_failure_type": true
+  },
+  "local_recovery": {
+    "required": true,
+    "max_attempts_min": 1,
+    "max_attempts_max": 3,
+    "strategy_examples": ["retry_once", "alternate_query", "degrade_to_partial"]
+  }
+}

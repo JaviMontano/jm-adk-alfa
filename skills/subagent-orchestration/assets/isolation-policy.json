@@ -1,0 +1,13 @@
+{
+  "schema": 1,
+  "skill": "subagent-orchestration",
+  "dispatch_tool": "Task",
+  "required_isolation": "fresh_session",
+  "coordinator_consumption": "last_message_only",
+  "forbidden": [
+    "shared coordinator transcript",
+    "shared mutable state",
+    "all context concatenated into one agent",
+    "coordinator reads spoke transcript"
+  ]
+}
