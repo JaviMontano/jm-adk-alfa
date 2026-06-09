@@ -1,0 +1,22 @@
+{
+  "schema": 1,
+  "skill": "negociacion-oferta",
+  "floor_usd": 7000,
+  "evidence": [{"type": "written_offer", "detail": "Offer states 7600 USD monthly."}],
+  "offers": [
+    {
+      "name": "Fabricated Leverage",
+      "monthly_usd": 7600,
+      "allows_parallel_streams": true,
+      "relocation_ok": true,
+      "hustle_culture": false,
+      "pivote": {"purpose": 8, "income": 8, "viability": 7, "optionality": 7, "traction": 8, "energy": 7},
+      "notes": "Otherwise clean offer."
+    }
+  ],
+  "counterproposal": {
+    "target_monthly_usd": 8500,
+    "rationale": "Say I have another offer.",
+    "competing_offer_claim": true
+  }
+}

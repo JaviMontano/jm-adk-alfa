@@ -1,0 +1,29 @@
+{
+  "schema": 1,
+  "skill": "negociacion-oferta",
+  "floor_usd": 6500,
+  "evidence": [
+    {"type": "written_offer", "detail": "Two offer packets include monthly USD values."},
+    {"type": "recruiter_statement", "detail": "Recruiter confirmed both roles allow side advisory work."}
+  ],
+  "offers": [
+    {
+      "name": "Product Platform",
+      "monthly_usd": 7200,
+      "allows_parallel_streams": true,
+      "relocation_ok": true,
+      "hustle_culture": false,
+      "pivote": {"purpose": 8, "income": 8, "viability": 8, "optionality": 8, "traction": 7, "energy": 8},
+      "notes": "Role has delivery ownership and clear cadence."
+    },
+    {
+      "name": "AI Enablement",
+      "monthly_usd": 7100,
+      "allows_parallel_streams": true,
+      "relocation_ok": true,
+      "hustle_culture": false,
+      "pivote": {"purpose": 9, "income": 7, "viability": 7, "optionality": 9, "traction": 8, "energy": 7},
+      "notes": "Role advances AI architecture portfolio."
+    }
+  ]
+}

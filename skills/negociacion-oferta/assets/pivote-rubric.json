@@ -1,0 +1,14 @@
+{
+  "schema": 1,
+  "skill": "negociacion-oferta",
+  "dimensions": [
+    {"id": "purpose", "label": "Purpose fit", "min": 0, "max": 10},
+    {"id": "income", "label": "Income fit", "min": 0, "max": 10},
+    {"id": "viability", "label": "Viability of execution", "min": 0, "max": 10},
+    {"id": "optionality", "label": "Future optionality", "min": 0, "max": 10},
+    {"id": "traction", "label": "Momentum and proof", "min": 0, "max": 10},
+    {"id": "energy", "label": "Energy sustainability", "min": 0, "max": 10}
+  ],
+  "pass_rule": "average >= 7 and no dimension < 5",
+  "rounding": "display with two decimals"
+}

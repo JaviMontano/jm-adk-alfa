@@ -1,0 +1,8 @@
+{
+  "schema": 1,
+  "skill": "negociacion-oferta",
+  "allowed_moves": ["ask_for_target_monthly_usd", "ask_for_scope_adjustment", "ask_for_parallel_stream_clause", "ask_for_relocation_support", "ask_clarifying_questions"],
+  "blocked_moves": ["fabricated_competing_offer", "unsupported_market_rate", "ultimatum_pressure", "hustle_glorification", "guaranteed_outcome_claim"],
+  "tone": "firm, grateful, concise, non-servile, non-pressuring",
+  "leverage_rule": "use only supplied evidence and user-stated constraints"
+}

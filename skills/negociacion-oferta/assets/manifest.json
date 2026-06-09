@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "skill": "negociacion-oferta",
+  "assets": [
+    {
+      "path": "assets/acceptance-filters.json",
+      "type": "policy",
+      "purpose": "Defines hard pass/fail filters for offer scoring.",
+      "used_by": ["SKILL.md", "README.md", "scripts/score_oferta.py", "evals/evals.json"]
+    },
+    {
+      "path": "assets/pivote-rubric.json",
+      "type": "rubric",
+      "purpose": "Defines six bounded PIVOTE dimensions and pass rule.",
+      "used_by": ["SKILL.md", "knowledge/body-of-knowledge.md", "scripts/score_oferta.py"]
+    },
+    {
+      "path": "assets/evidence-policy.json",
+      "type": "policy",
+      "purpose": "Defines allowed evidence types and claim support rules.",
+      "used_by": ["SKILL.md", "examples/example-output.md", "scripts/score_oferta.py"]
+    },
+    {
+      "path": "assets/counteroffer-policy.json",
+      "type": "policy",
+      "purpose": "Defines safe counterproposal moves and blocked leverage.",
+      "used_by": ["SKILL.md", "templates/output.md", "scripts/score_oferta.py"]
+    },
+    {
+      "path": "assets/output-contract.json",
+      "type": "schema",
+      "purpose": "Defines expected output sections and packet keys.",
+      "used_by": ["SKILL.md", "templates/output.md", "scripts/check.sh"]
+    }
+  ]
+}

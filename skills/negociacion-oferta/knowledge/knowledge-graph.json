@@ -1,0 +1,19 @@
+{
+  "schema": 1,
+  "skill": "negociacion-oferta",
+  "nodes": [
+    {"id": "offer_packet", "type": "input"},
+    {"id": "acceptance_filters", "type": "policy"},
+    {"id": "pivote_rubric", "type": "rubric"},
+    {"id": "evidence_policy", "type": "policy"},
+    {"id": "counterproposal", "type": "output"},
+    {"id": "decision_packet", "type": "output"}
+  ],
+  "edges": [
+    {"from": "offer_packet", "to": "acceptance_filters", "relation": "is_scored_by"},
+    {"from": "offer_packet", "to": "pivote_rubric", "relation": "provides_dimensions_for"},
+    {"from": "evidence_policy", "to": "counterproposal", "relation": "bounds_claims_in"},
+    {"from": "acceptance_filters", "to": "decision_packet", "relation": "determines"},
+    {"from": "pivote_rubric", "to": "decision_packet", "relation": "ranks"}
+  ]
+}
