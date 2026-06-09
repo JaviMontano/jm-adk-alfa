@@ -1,0 +1,8 @@
+{
+  "schema": "jm-labs.asset.policy.v1",
+  "dry_run_default": true,
+  "apply_requires_explicit_flag": true,
+  "overwrite_requires_force": true,
+  "gitignored_required": true,
+  "tracked_targets_forbidden": [".jm-adk.local.json", ".env", "secrets.json"]
+}

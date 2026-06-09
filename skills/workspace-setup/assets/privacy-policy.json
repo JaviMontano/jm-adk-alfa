@@ -1,0 +1,8 @@
+{
+  "schema": "jm-labs.asset.policy.v1",
+  "local_only_required": true,
+  "stores_secrets_required": false,
+  "secret_scan_required": true,
+  "minimum_redactions": ["tokens", "passwords"],
+  "blocked_terms": ["api_key", "password", "token", "secret"]
+}

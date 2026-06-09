@@ -3651,7 +3651,7 @@
     "id": "workspace-setup",
     "path": "skills/workspace-setup",
     "name": "Workspace Setup",
-    "description": "Safe local workspace profile setup with runtime preferences, command policy, privacy boundaries, and quality checklist."
+    "description": "Design deterministic local workspace profile setup plans with runtime preferences, command policy, privacy boundaries, write safety, evidence, and offline validation."
   },
   {
     "id": "x-ray-skill",

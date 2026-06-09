@@ -1,0 +1,42 @@
+{
+  "schema": 1,
+  "skill": "workspace-setup",
+  "assets": [
+    {
+      "path": "assets/workspace-setup-plan-contract.json",
+      "type": "schema",
+      "purpose": "Defines required fields for deterministic local workspace setup plans.",
+      "used_by": ["SKILL.md", "scripts/validate_workspace_setup_plan.py", "evals/evals.json"]
+    },
+    {
+      "path": "assets/runtime-preferences-policy.json",
+      "type": "policy",
+      "purpose": "Defines required runtime preference fields.",
+      "used_by": ["SKILL.md", "scripts/validate_workspace_setup_plan.py", "examples/example-output.md"]
+    },
+    {
+      "path": "assets/command-policy.json",
+      "type": "policy",
+      "purpose": "Defines safe command allow/prohibit/escalation categories.",
+      "used_by": ["SKILL.md", "scripts/validate_workspace_setup_plan.py", "knowledge/body-of-knowledge.md"]
+    },
+    {
+      "path": "assets/privacy-policy.json",
+      "type": "policy",
+      "purpose": "Defines local-only profile and no-secret storage requirements.",
+      "used_by": ["SKILL.md", "scripts/validate_workspace_setup_plan.py", "evals/evals.json"]
+    },
+    {
+      "path": "assets/write-policy.json",
+      "type": "policy",
+      "purpose": "Defines dry-run default, explicit apply, overwrite force, and gitignore requirements.",
+      "used_by": ["SKILL.md", "scripts/validate_workspace_setup_plan.py", "README.md"]
+    },
+    {
+      "path": "assets/evidence-policy.json",
+      "type": "policy",
+      "purpose": "Defines evidence tag and validation check requirements.",
+      "used_by": ["SKILL.md", "scripts/validate_workspace_setup_plan.py", "templates/output.md"]
+    }
+  ]
+}

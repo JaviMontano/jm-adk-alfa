@@ -1,0 +1,7 @@
+{
+  "schema": "jm-labs.asset.policy.v1",
+  "required_sections": ["allowed", "prohibited", "escalation_required"],
+  "must_prohibit": ["git reset --hard", "rm -rf"],
+  "must_escalate": ["network", "destructive"],
+  "forbidden_allowed_patterns": ["git reset --hard", "rm -rf", "curl | sh", "export .*KEY=", "gh secret set"]
+}

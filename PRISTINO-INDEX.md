@@ -881,7 +881,7 @@
 | 606 | `workshop-facilitator` | — |
 | 607 | `workshop-proposal` | — |
 | 608 | `workspace-governance` | — |
-| 609 | `workspace-setup` | Safe local workspace profile setup with runtime preferences, command policy, pri |
+| 609 | `workspace-setup` | Design deterministic local workspace profile setup plans with runtime preference |
 | 610 | `x-ray-skill` | — |
 | 611 | `xlsx-template-creator` | [EXPLICIT] |
 

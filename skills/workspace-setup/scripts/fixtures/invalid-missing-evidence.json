@@ -1,0 +1,13 @@
+{
+  "schema": "jm-labs.workspace-setup.plan.v1",
+  "skill": "workspace-setup",
+  "mode": "dry-run",
+  "target_file": ".jm-adk.local.json",
+  "existing_profile": {"detected": false, "overwrite": false, "force": false},
+  "profile": {"goal": "no evidence", "runtime": "Codex", "autonomy": "review first", "workspace_area": "workspace/", "output_format": "markdown"},
+  "commands": {"allowed": ["git status --short --branch"], "prohibited": ["git reset --hard", "rm -rf"], "escalation_required": ["network", "destructive"]},
+  "privacy": {"local_only": true, "stores_secrets": false, "secret_scan_performed": true, "redactions": ["tokens", "passwords"]},
+  "write_policy": {"dry_run_default": true, "apply_requires_explicit_flag": true, "overwrite_requires_force": true, "gitignored": true},
+  "evidence": [],
+  "validation": {"status": "pass", "offline": true, "network_required": false, "deterministic": true, "checks": ["assets", "deterministic_scripts", "quality_criteria", "runtime_preferences", "command_policy", "privacy_policy", "write_policy", "evidence_required"]}
+}

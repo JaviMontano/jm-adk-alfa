@@ -1,33 +1,34 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: workspace-setup
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
-
 # Workspace Setup
 
-Safe local workspace profile setup with runtime preferences, command policy, privacy boundaries, and quality checklist.
+Designs deterministic local workspace profile setup plans for `.jm-adk.local.json`.
 
-## Triggers
+## Use When
 
-- workspace-setup
-- setup-workspace
-- local-profile
-- workspace-profile
+- The user approved local profile setup or requested a dry-run preview.
+- Runtime, autonomy, command policy, privacy, and output preferences need reusable local defaults.
+- Existing local state must be preserved unless explicit overwrite authority exists.
 
-## Allowed Tools
+## Do Not Use When
 
-- Read
-- Write
-- Grep
-- Glob
-- Bash
+- The request asks to store secrets, credentials, tokens, or raw personal data.
+- The user only needs a one-shot answer and no reusable local profile.
+- The plan would require network access, live account state, wall-clock time, or random values to validate.
 
-## Quick Use
+## Required Output
 
-Use this skill when the request clearly matches the triggers and requires the `workspace-setup` capability.
+Return a setup plan that can be validated offline:
 
-## Output Format
+- target file: `.jm-adk.local.json`
+- mode: `dry-run` or `apply`
+- profile preferences: goal, runtime, autonomy, workspace area, output format
+- command policy: allowed commands, prohibited commands, escalation-required commands
+- privacy policy: local-only, no secrets, secret scan performed, redaction categories
+- write policy: dry-run default, explicit apply, overwrite requires force, gitignored target
+- evidence and validation checks
 
-Markdown with summary, evidence, result, validation, and risks.
+## Validation
+
+```bash
+bash skills/workspace-setup/scripts/check.sh
+python3 skills/workspace-setup/scripts/validate_workspace_setup_plan.py skills/workspace-setup/scripts/fixtures/valid-dry-run-profile.json
+```

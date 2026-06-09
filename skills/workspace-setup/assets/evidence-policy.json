@@ -1,0 +1,16 @@
+{
+  "schema": "jm-labs.asset.policy.v1",
+  "allowed_evidence_tags": ["[CÓDIGO]", "[CONFIG]", "[DOC]", "[INFERENCIA]", "[SUPUESTO]"],
+  "required_validation_checks": [
+    "assets",
+    "deterministic_scripts",
+    "quality_criteria",
+    "runtime_preferences",
+    "command_policy",
+    "privacy_policy",
+    "write_policy",
+    "evidence_required"
+  ],
+  "network_required": false,
+  "deterministic": true
+}
