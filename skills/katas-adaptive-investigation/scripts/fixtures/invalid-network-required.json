@@ -1,0 +1,32 @@
+{
+  "schema": "jm-labs.katas-adaptive-investigation.report.v1",
+  "skill": "katas-adaptive-investigation",
+  "objective": "Map an unfamiliar service.",
+  "scope": "src",
+  "hypothesis": "The entrypoint is api.py.",
+  "budget": {
+    "files": {"limit": 5, "used": 1},
+    "queries": {"limit": 5, "used": 2},
+    "minutes": {"limit": 10, "used": 2},
+    "status": "complete",
+    "pending_questions": []
+  },
+  "topology": {
+    "cheap_mapping": [
+      {"tool": "Glob", "pattern": "src/**/*.py", "result_count": 9, "evidence_tag": "[CODIGO]"},
+      {"tool": "Grep", "pattern": "entrypoint", "result_count": 1, "evidence_tag": "[CODIGO]"}
+    ],
+    "candidates": ["src/api.py"]
+  },
+  "prioritized_plan": [
+    {"priority": 1, "target": "src/api.py", "rationale": "Only entrypoint candidate.", "source": "topology"}
+  ],
+  "findings": [
+    {"id": "api-entrypoint", "target": "src/api.py", "summary": "api.py is the entrypoint.", "source": "src/api.py", "evidence_tag": "[CODIGO]", "invalidates_hypothesis": false, "deep_dive_after_mapping": true}
+  ],
+  "replans": [],
+  "scratchpad": {"persisted": true, "source": "scratchpad.md", "sections": ["topology", "plan", "findings", "budget", "risks"]},
+  "evidence": [{"claim": "Evidence exists.", "evidence_tag": "[CODIGO]", "source": "src/api.py"}],
+  "validation": {"status": "pass", "offline": true, "network_required": true, "deterministic": true, "uses_randomness": false, "checks": ["assets", "deterministic_scripts", "quality_criteria", "exploration_budget", "cheap_mapping_before_deep_dive", "selective_deep_dive", "replan_gate", "evidence_required", "scratchpad_persistence"]},
+  "risks": {"remaining": [], "forbidden_patterns": []}
+}

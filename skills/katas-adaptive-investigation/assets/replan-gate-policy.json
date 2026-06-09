@@ -1,0 +1,17 @@
+{
+  "schema": "jm-labs.asset.replan-gate-policy.v1",
+  "skill": "katas-adaptive-investigation",
+  "allowed_trigger": "finding.invalidates_hypothesis == true",
+  "forbidden_triggers": [
+    "finding_refines_hypothesis",
+    "turn_boundary",
+    "new_idea_without_evidence",
+    "habitual_replan"
+  ],
+  "required_replan_fields": [
+    "trigger_finding_id",
+    "invalidated_hypothesis",
+    "new_plan_order",
+    "evidence_tag"
+  ]
+}

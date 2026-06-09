@@ -25,7 +25,8 @@ Investigar un dominio o repositorio desconocido aplicando el patron de la Kata 1
 3. **Deep-dive selectivo.** Con `Read`, profundiza SOLO en los objetivos priorizados, descontando del presupuesto en cada paso.
 4. **Re-plan condicional.** Re-planifica SOLO si un hallazgo invalida la hipotesis vigente; si solo la refina, continua sin re-plan.
 5. **Persistencia.** Anota plan y `Hallazgos` en el scratchpad. Al agotar presupuesto, reporta encontrado + pendiente.
+6. **Validacion offline.** Para handoffs criticos, emite el JSON de `assets/adaptive-investigation-report-contract.json` y validalo con `scripts/check.sh`.
 
 ## Output
 
-Return the deliverable in this shape: Markdown with summary, evidence, result, validation, and risks. Incluye el presupuesto consumido y los re-planes disparados con su justificacion.
+Return the deliverable in this shape: Markdown with summary, evidence, result, validation, risks, budget consumed, replans with invalidation evidence, and scratchpad location.

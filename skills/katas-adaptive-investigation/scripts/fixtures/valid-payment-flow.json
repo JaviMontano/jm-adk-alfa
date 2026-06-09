@@ -1,0 +1,85 @@
+{
+  "schema": "jm-labs.katas-adaptive-investigation.report.v1",
+  "skill": "katas-adaptive-investigation",
+  "objective": "Map the payment flow in an unfamiliar service before editing it.",
+  "scope": "src/payments",
+  "hypothesis": "Refund processing is probably coordinated by charge.py.",
+  "budget": {
+    "files": {"limit": 50, "used": 7},
+    "queries": {"limit": 20, "used": 4},
+    "minutes": {"limit": 30, "used": 12},
+    "status": "complete",
+    "pending_questions": []
+  },
+  "topology": {
+    "cheap_mapping": [
+      {"tool": "Glob", "pattern": "src/payments/**/*.py", "result_count": 38, "evidence_tag": "[CODIGO]"},
+      {"tool": "Grep", "pattern": "refund|charge|gateway", "result_count": 6, "evidence_tag": "[CODIGO]"}
+    ],
+    "candidates": ["src/payments/refund.py", "src/payments/charge.py", "src/payments/gateway.py"]
+  },
+  "prioritized_plan": [
+    {"priority": 1, "target": "src/payments/refund.py", "rationale": "Directly matches the investigation objective.", "source": "topology"},
+    {"priority": 2, "target": "src/payments/charge.py", "rationale": "Original hypothesis names this module.", "source": "topology"},
+    {"priority": 3, "target": "src/payments/gateway.py", "rationale": "Shared gateway symbol appears in cheap grep.", "source": "topology"}
+  ],
+  "findings": [
+    {
+      "id": "refund-delegates-gateway",
+      "target": "src/payments/refund.py",
+      "summary": "Refund execution delegates to gateway.process_refund instead of charge.py.",
+      "source": "src/payments/refund.py",
+      "evidence_tag": "[CODIGO]",
+      "invalidates_hypothesis": true,
+      "deep_dive_after_mapping": true
+    },
+    {
+      "id": "charge-records-ledger",
+      "target": "src/payments/charge.py",
+      "summary": "charge.py records ledger state but does not coordinate refunds.",
+      "source": "src/payments/charge.py",
+      "evidence_tag": "[CODIGO]",
+      "invalidates_hypothesis": false,
+      "deep_dive_after_mapping": true
+    }
+  ],
+  "replans": [
+    {
+      "trigger_finding_id": "refund-delegates-gateway",
+      "invalidated_hypothesis": "Refund processing is coordinated by charge.py.",
+      "new_plan_order": ["src/payments/gateway.py", "src/payments/charge.py", "src/payments/refund.py"],
+      "evidence_tag": "[CODIGO]"
+    }
+  ],
+  "scratchpad": {
+    "persisted": true,
+    "source": "scratchpad/adaptive-investigation.md",
+    "sections": ["topology", "plan", "findings", "budget", "risks"]
+  },
+  "evidence": [
+    {"claim": "Cheap mapping preceded deep-dive reads.", "evidence_tag": "[CODIGO]", "source": "topology.cheap_mapping"},
+    {"claim": "Only an invalidating finding triggered re-plan.", "evidence_tag": "[CODIGO]", "source": "replans[0]"}
+  ],
+  "validation": {
+    "status": "pass",
+    "offline": true,
+    "network_required": false,
+    "deterministic": true,
+    "uses_randomness": false,
+    "checks": [
+      "assets",
+      "deterministic_scripts",
+      "quality_criteria",
+      "exploration_budget",
+      "cheap_mapping_before_deep_dive",
+      "selective_deep_dive",
+      "replan_gate",
+      "evidence_required",
+      "scratchpad_persistence"
+    ]
+  },
+  "risks": {
+    "remaining": ["Gateway side effects still require a separate implementation review."],
+    "forbidden_patterns": []
+  }
+}

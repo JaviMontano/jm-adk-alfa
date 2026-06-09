@@ -1,0 +1,32 @@
+{
+  "schema": "jm-labs.asset.adaptive-investigation-report-contract.v1",
+  "report_schema": "jm-labs.katas-adaptive-investigation.report.v1",
+  "skill": "katas-adaptive-investigation",
+  "required_top_level_fields": [
+    "schema",
+    "skill",
+    "objective",
+    "scope",
+    "hypothesis",
+    "budget",
+    "topology",
+    "prioritized_plan",
+    "findings",
+    "replans",
+    "scratchpad",
+    "evidence",
+    "validation",
+    "risks"
+  ],
+  "required_validation_checks": [
+    "assets",
+    "deterministic_scripts",
+    "quality_criteria",
+    "exploration_budget",
+    "cheap_mapping_before_deep_dive",
+    "selective_deep_dive",
+    "replan_gate",
+    "evidence_required",
+    "scratchpad_persistence"
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "schema": "jm-labs.asset.adaptive-investigation-evidence-policy.v1",
+  "skill": "katas-adaptive-investigation",
+  "allowed_tags": ["[CODIGO]", "[CÓDIGO]", "[CONFIG]", "[DOC]", "[INFERENCIA]", "[SUPUESTO]"],
+  "source_required": true,
+  "network_required": false,
+  "random_required": false,
+  "wall_clock_required": false
+}

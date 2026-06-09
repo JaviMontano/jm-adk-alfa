@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "skill": "katas-adaptive-investigation",
+  "assets": [
+    {
+      "path": "assets/adaptive-investigation-report-contract.json",
+      "type": "schema",
+      "purpose": "Defines the required deterministic report fields for adaptive investigation.",
+      "used_by": ["SKILL.md", "scripts/validate_adaptive_investigation_report.py", "evals/evals.json"]
+    },
+    {
+      "path": "assets/exploration-budget-policy.json",
+      "type": "policy",
+      "purpose": "Defines hard file, query, and minute budget accounting.",
+      "used_by": ["SKILL.md", "scripts/validate_adaptive_investigation_report.py", "examples/example-output.md"]
+    },
+    {
+      "path": "assets/replan-gate-policy.json",
+      "type": "policy",
+      "purpose": "Defines the invalidation-only gate for re-planning.",
+      "used_by": ["SKILL.md", "scripts/validate_adaptive_investigation_report.py", "knowledge/body-of-knowledge.md"]
+    },
+    {
+      "path": "assets/evidence-policy.json",
+      "type": "policy",
+      "purpose": "Defines required evidence tags and local source references.",
+      "used_by": ["SKILL.md", "scripts/validate_adaptive_investigation_report.py", "templates/output.md"]
+    },
+    {
+      "path": "assets/scratchpad-policy.json",
+      "type": "policy",
+      "purpose": "Defines required persisted sections for topology, plan, findings, budget, and risks.",
+      "used_by": ["SKILL.md", "scripts/validate_adaptive_investigation_report.py", "prompts/primary.md"]
+    }
+  ]
+}

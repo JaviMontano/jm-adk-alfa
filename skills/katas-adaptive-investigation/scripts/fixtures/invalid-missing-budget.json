@@ -1,0 +1,15 @@
+{
+  "schema": "jm-labs.katas-adaptive-investigation.report.v1",
+  "skill": "katas-adaptive-investigation",
+  "objective": "Map an unfamiliar service.",
+  "scope": "src",
+  "hypothesis": "The entrypoint is api.py.",
+  "topology": {"cheap_mapping": [], "candidates": []},
+  "prioritized_plan": [],
+  "findings": [],
+  "replans": [],
+  "scratchpad": {"persisted": true, "source": "scratchpad.md", "sections": ["topology", "plan", "findings", "budget", "risks"]},
+  "evidence": [],
+  "validation": {"status": "pass", "offline": true, "network_required": false, "deterministic": true, "uses_randomness": false, "checks": []},
+  "risks": {"remaining": [], "forbidden_patterns": []}
+}
