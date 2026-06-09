@@ -1,0 +1,8 @@
+{
+  "schema": 1,
+  "skill": "validation-retry-design",
+  "min": 1,
+  "max": 3,
+  "requires_counter": true,
+  "requires_error_chain": true
+}

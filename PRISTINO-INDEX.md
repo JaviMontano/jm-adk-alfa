@@ -858,7 +858,7 @@
 | 583 | `validate-hooks` | THE CRITICAL SKILL -- validates hooks.json structure, event names, and type-even |
 | 584 | `validate-manifest` | Validates plugin.json completeness, field correctness, and consistency with actu |
 | 585 | `validate-structure` | Validates plugin directory layout against the official Claude Code plugin spec.  |
-| 586 | `validation-retry-design` | Disenar loop de validacion y retry con error feedback especifico, distinguiendo  |
+| 586 | `validation-retry-design` | Design deterministic extract-validate-retry loops with actionable validation err |
 | 587 | `value-proposition` | — |
 | 588 | `vanilla-javascript` | — |
 | 589 | `vendor-evaluation` | — |

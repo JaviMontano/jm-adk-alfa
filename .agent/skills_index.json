@@ -3513,7 +3513,7 @@
     "id": "validation-retry-design",
     "path": "skills/validation-retry-design",
     "name": "Validation Retry Design",
-    "description": "Disenar loop de validacion y retry con error feedback especifico, distinguiendo recuperable de no recuperable, con tope y escalada."
+    "description": "Design deterministic extract-validate-retry loops with actionable validation errors, recoverable vs not-recoverable classification, retry budgets, systematic-error detection, escalation packets, and offline validation."
   },
   {
     "id": "value-proposition",

@@ -1,0 +1,7 @@
+{
+  "schema": 1,
+  "skill": "validation-retry-design",
+  "recoverable_examples": ["invalid_json", "schema_mismatch", "field_out_of_range"],
+  "not_recoverable_examples": ["source_missing", "irreconcilable_ambiguity", "permission_denied"],
+  "rule": "Only recoverable errors are eligible for retry."
+}

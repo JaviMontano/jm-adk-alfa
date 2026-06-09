@@ -1,7 +1,7 @@
 ---
 name: validation-retry-design
-version: 1.0.0
-description: "Disenar loop de validacion y retry con error feedback especifico, distinguiendo recuperable de no recuperable, con tope y escalada."
+version: 1.1.0
+description: "Design deterministic extract-validate-retry loops with actionable validation errors, recoverable vs not-recoverable classification, retry budgets, systematic-error detection, escalation packets, and offline validation."
 owner: "JM Labs"
 triggers:
   - validation retry design
@@ -17,9 +17,21 @@ allowed-tools:
 
 # Validation Retry Design
 
-## Capacidad
+## Purpose
 
-Capacidad de ingenieria para construir un loop `extract -> validate -> retry-with-error-feedback` que no reintenta a ciegas. Cuando un paso del agente produce una salida que falla la validacion, el loop reinyecta el **error especifico** (no el prompt original sin cambios) para que el siguiente intento corrija exactamente lo que rompio. El diseno distingue fallas **recuperables** (formato invalido, JSON malformado, campo fuera de rango) de **no recuperables** (dato ausente en la fuente, ambiguedad irresoluble), aplica un tope de reintentos (max 2-3) y, al agotarlo, **escala** con la cadena completa de errores en vez de aceptar una salida fallida en silencio.
+Design deterministic `extract -> validate -> retry-with-error-feedback` loops that never retry blindly. The loop must reinject the exact validation error, classify recoverable versus not-recoverable failures, enforce a retry budget, detect systematic repeat errors, and escalate with a complete error chain instead of accepting a failed output silently.
+
+## Deterministic Contract
+
+Use `assets/retry-loop-contract.json` and validate plans with `scripts/validate_retry_plan.py`. A valid plan must include:
+
+- Validator output with actionable `code`, `message`, `path`, and `recoverability`.
+- Retry feedback that includes previous output and exact validation error.
+- Failure classification with recoverable and not-recoverable categories.
+- `max_retries` between 1 and 3.
+- Systematic repeat-error detection.
+- Escalation packet with reason, error chain, and last output.
+- Validation flags: `offline=true`, `network_required=false`, `deterministic=true`.
 
 ## Cuando usarla
 
@@ -38,7 +50,15 @@ Capacidad de ingenieria para construir un loop `extract -> validate -> retry-wit
 5. **Detecta patron sistematico.** Si el mismo error reaparece en cada intento, no es ruido: es un defecto estructural (prompt, schema o fuente). Rompe el loop y reporta el fix estructural en vez de gastar reintentos.
 6. **Escala al agotar.** Al llegar al tope o ante una falla no recuperable, retorna estado de escalada con la cadena de errores completa y el ultimo output, para revision humana o un agente superior.
 
-## Patron correcto
+## Output Rules
+
+- Reference `assets/error-feedback-policy.json`, `assets/recoverability-policy.json`, `assets/retry-budget-policy.json`, `assets/systematic-error-policy.json`, `assets/escalation-policy.json`, and `assets/anti-pattern-policy.json`.
+- Never retry the original prompt unchanged after a validation failure.
+- Never use boolean-only validation.
+- Never retry not-recoverable missing-source or irresolvable ambiguity errors.
+- Never return the last failed output as success.
+
+## Pattern
 
 ```python
 # GOOD: retry informado, modo de falla clasificado, tope y escalada
@@ -72,7 +92,7 @@ def build_prompt(task, prev_output, last_error):
     )
 ```
 
-## Anti-patron
+## Anti-Pattern
 
 ```python
 # ANTI: reintento ciego + falla silenciosa
@@ -94,6 +114,15 @@ Por que falla: reenviar el prompt original sin el error hace que el modelo repit
 - [ ] Hay tope de reintentos (max 2-3) con contador y cadena de errores.
 - [ ] Se detecta patron sistematico para disparar fix estructural en vez de gastar reintentos.
 - [ ] Al agotar reintentos hay escalada con la cadena completa de errores; nunca se acepta salida fallida en silencio.
+
+## Scripts
+
+Run:
+
+```bash
+python3 skills/validation-retry-design/scripts/validate_retry_plan.py --input <plan.json>
+bash skills/validation-retry-design/scripts/check.sh
+```
 
 ## Katas y skills relacionadas
 

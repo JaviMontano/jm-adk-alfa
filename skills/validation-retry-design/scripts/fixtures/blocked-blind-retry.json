@@ -1,0 +1,38 @@
+{
+  "schema": 1,
+  "skill": "validation-retry-design",
+  "validator": {
+    "error_fields": ["code", "message", "path", "recoverability"],
+    "boolean_only": false
+  },
+  "retry_feedback": {
+    "prompt_includes": ["previous_output"],
+    "reuses_original_prompt_unchanged": true
+  },
+  "failure_classification": {
+    "recoverable": ["invalid_json"],
+    "not_recoverable": ["source_missing"],
+    "retry_not_recoverable": false
+  },
+  "retry_budget": {
+    "max_retries": 3,
+    "tracks_attempt_count": true,
+    "stores_error_chain": true
+  },
+  "systematic_detection": {
+    "repeat_threshold": 2,
+    "structural_fix_hint": true
+  },
+  "escalation": {
+    "fields": ["reason", "error_chain", "last_output", "recommended_next_step"],
+    "reasons": ["not_recoverable", "budget_exhausted", "systematic_repeat_error"],
+    "return_failed_output_as_success": false
+  },
+  "notes": "retry original prompt unchanged",
+  "validation": {
+    "offline": true,
+    "network_required": false,
+    "deterministic": true,
+    "result": "blocked"
+  }
+}

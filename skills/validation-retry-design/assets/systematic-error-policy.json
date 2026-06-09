@@ -1,0 +1,7 @@
+{
+  "schema": 1,
+  "skill": "validation-retry-design",
+  "repeat_threshold": 2,
+  "requires_structural_fix_hint": true,
+  "stop_reason": "systematic_repeat_error"
+}

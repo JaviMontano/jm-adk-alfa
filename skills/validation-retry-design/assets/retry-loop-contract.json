@@ -1,0 +1,17 @@
+{
+  "schema": 1,
+  "skill": "validation-retry-design",
+  "required_top_level_fields": [
+    "schema",
+    "skill",
+    "validator",
+    "retry_feedback",
+    "failure_classification",
+    "retry_budget",
+    "systematic_detection",
+    "escalation",
+    "validation"
+  ],
+  "max_retries_min": 1,
+  "max_retries_max": 3
+}
