@@ -1,0 +1,12 @@
+{
+  "schema": "jm-labs.subagent-monitor.report.v1",
+  "skill": "subagent-monitor",
+  "swarm_id": "no-evidence",
+  "task": "Missing evidence",
+  "agents": [{"id": "guardian", "role": "guardian", "required": true}],
+  "timeout_policy": {"per_agent_seconds": 300, "action": "cancel-and-record", "uses_wall_clock_evidence": false, "sequence_based": true},
+  "results": [{"agent_id": "guardian", "status": "pass", "result_type": "guardian_decision", "sequence": 1, "evidence_tag": "[CONFIG]"}],
+  "aggregation": {"status": "pass", "partial_failure_policy": "block-on-required-agent-failure", "blockers": [], "coverage_gaps": [], "result_count": 1},
+  "evidence": [],
+  "validation": {"status": "pass", "offline": true, "network_required": false, "deterministic": true, "checks": ["assets", "deterministic_scripts", "quality_criteria", "timeout_policy", "typed_results", "aggregation_policy", "partial_failure_handling", "evidence_required"]}
+}

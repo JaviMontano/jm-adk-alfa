@@ -1,0 +1,7 @@
+{
+  "schema": "jm-labs.asset.policy.v1",
+  "statuses": ["pass", "warn", "block", "error", "timeout"],
+  "result_types": ["spoke_report", "guardian_decision", "artifact", "timeout_notice", "error_notice"],
+  "one_result_per_agent": true,
+  "required_fields": ["agent_id", "status", "result_type", "sequence", "evidence_tag"]
+}

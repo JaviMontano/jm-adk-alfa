@@ -1,0 +1,20 @@
+{
+  "schema": "jm-labs.subagent-monitor.report.v1",
+  "skill": "subagent-monitor",
+  "swarm_id": "optional-reviewer-session",
+  "task": "Aggregate required agents and one optional reviewer",
+  "agents": [
+    {"id": "coordinator", "role": "coordinator", "required": true},
+    {"id": "guardian", "role": "guardian", "required": true},
+    {"id": "style-reviewer", "role": "reviewer", "required": false}
+  ],
+  "timeout_policy": {"per_agent_seconds": 180, "action": "cancel-and-record", "uses_wall_clock_evidence": false, "sequence_based": true},
+  "results": [
+    {"agent_id": "coordinator", "status": "pass", "result_type": "spoke_report", "sequence": 1, "evidence_tag": "[CÓDIGO]"},
+    {"agent_id": "guardian", "status": "pass", "result_type": "guardian_decision", "sequence": 2, "evidence_tag": "[CONFIG]"},
+    {"agent_id": "style-reviewer", "status": "error", "result_type": "error_notice", "sequence": 3, "evidence_tag": "[CÓDIGO]", "error": "optional reviewer unavailable"}
+  ],
+  "aggregation": {"status": "warn", "partial_failure_policy": "block-on-required-agent-failure", "blockers": [], "coverage_gaps": ["style-reviewer unavailable"], "result_count": 3},
+  "evidence": [{"claim": "Optional reviewer failure is preserved as a warning.", "evidence_tag": "[CÓDIGO]", "source": "results"}],
+  "validation": {"status": "warn", "offline": true, "network_required": false, "deterministic": true, "checks": ["assets", "deterministic_scripts", "quality_criteria", "timeout_policy", "typed_results", "aggregation_policy", "partial_failure_handling", "evidence_required"]}
+}
