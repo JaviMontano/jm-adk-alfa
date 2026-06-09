@@ -1,0 +1,19 @@
+{
+  "schema": 1,
+  "skill": "onboarding-90-dias",
+  "role": {"title": "Product Lead", "context": "New product leadership role for platform team"},
+  "constraints": {"weekly_hours": 40, "recovery_days_per_week": 2},
+  "evidence": [{"id": "brief", "type": "role_brief", "detail": "Role brief names platform leadership"}],
+  "stakeholders": [{"name": "VP Product", "cadence": "weekly"}],
+  "phases": [
+    {"day": 30, "theme": "Learn product system", "priorities": [
+      {"title": "Map users", "evidence_ref": "brief", "deliverable": "User map", "validation_signal": "VP reviews user map", "estimated_hours_per_week": 3},
+      {"title": "Map metrics", "evidence_ref": "brief", "deliverable": "Metrics map", "validation_signal": "VP reviews metrics map", "estimated_hours_per_week": 3},
+      {"title": "Map roadmap", "evidence_ref": "brief", "deliverable": "Roadmap notes", "validation_signal": "VP reviews roadmap notes", "estimated_hours_per_week": 3},
+      {"title": "Map risks", "evidence_ref": "brief", "deliverable": "Risk list", "validation_signal": "VP reviews risk list", "estimated_hours_per_week": 3},
+      {"title": "Map vendors", "evidence_ref": "brief", "deliverable": "Vendor list", "validation_signal": "VP reviews vendor list", "estimated_hours_per_week": 3}
+    ]},
+    {"day": 60, "theme": "Contribute product clarity", "priorities": [{"title": "Clarify top bet", "evidence_ref": "brief", "deliverable": "Top bet brief", "validation_signal": "VP reviews top bet", "estimated_hours_per_week": 6}]},
+    {"day": 90, "theme": "Propose product cadence", "priorities": [{"title": "Set planning cadence", "evidence_ref": "brief", "deliverable": "Planning cadence", "validation_signal": "VP reviews cadence", "estimated_hours_per_week": 4}]}
+  ]
+}

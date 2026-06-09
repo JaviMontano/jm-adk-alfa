@@ -1,0 +1,13 @@
+{
+  "schema": 1,
+  "skill": "onboarding-90-dias",
+  "role": {"title": "Product Lead", "context": "New product leadership role"},
+  "constraints": {"weekly_hours": 40, "recovery_days_per_week": 2},
+  "evidence": [{"id": "brief", "type": "role_brief", "detail": "Role brief supplied by user"}],
+  "stakeholders": [{"name": "Manager", "cadence": "weekly"}],
+  "phases": [
+    {"day": 30, "theme": "Learn product system", "priorities": [{"title": "Map users", "evidence_ref": "brief", "deliverable": "User map", "validation_signal": "Manager reviews map", "estimated_hours_per_week": 5}]},
+    {"day": 60, "theme": "Contribute roadmap clarity", "priorities": [{"title": "Draft roadmap note", "evidence_ref": "brief", "deliverable": "Roadmap note", "validation_signal": "Manager reviews note", "estimated_hours_per_week": 5}]},
+    {"day": 90, "theme": "Garantiza promocion", "priorities": [{"title": "Asegura ascenso", "evidence_ref": "brief", "deliverable": "Resultado garantizado", "validation_signal": "Manager reviews cadence", "estimated_hours_per_week": 5}]}
+  ]
+}

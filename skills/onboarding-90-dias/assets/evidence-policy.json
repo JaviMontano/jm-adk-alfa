@@ -1,0 +1,7 @@
+{
+  "schema": 1,
+  "skill": "onboarding-90-dias",
+  "allowed_evidence_types": ["role_brief", "manager_input", "user_constraint", "stakeholder_note", "team_doc", "manual_entry"],
+  "claims_requiring_evidence": ["role_expectation", "stakeholder_commitment", "deliverable", "validation_signal", "capacity_constraint"],
+  "missing_evidence_behavior": "block or mark open question"
+}

@@ -1,0 +1,13 @@
+{
+  "schema": 1,
+  "skill": "onboarding-90-dias",
+  "required_phases": [30, 60, 90],
+  "max_priorities_per_phase": 4,
+  "preferred_priorities_per_phase": 3,
+  "required_priority_fields": ["title", "evidence_ref", "deliverable", "validation_signal", "estimated_hours_per_week"],
+  "phase_themes": {
+    "30": "learn, listen, map systems, and ship one small trust artifact",
+    "60": "contribute, reduce ambiguity, and validate working agreements",
+    "90": "own a bounded improvement, document learning, and propose next cadence"
+  }
+}

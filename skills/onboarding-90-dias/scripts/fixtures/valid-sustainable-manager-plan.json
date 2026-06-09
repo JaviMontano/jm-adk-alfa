@@ -1,0 +1,17 @@
+{
+  "schema": 1,
+  "skill": "onboarding-90-dias",
+  "role": {"title": "Delivery Lead", "context": "Transition into delivery leadership for an existing client account"},
+  "constraints": {"weekly_hours": 42, "recovery_days_per_week": 1},
+  "evidence": [
+    {"id": "team-doc", "type": "team_doc", "detail": "Team document lists active delivery ceremonies"},
+    {"id": "stakeholder", "type": "stakeholder_note", "detail": "Account owner requested risk visibility"},
+    {"id": "constraint", "type": "user_constraint", "detail": "User wants sustainable operating cadence"}
+  ],
+  "stakeholders": [{"name": "Account owner", "cadence": "biweekly risk review"}],
+  "phases": [
+    {"day": 30, "theme": "Learn delivery system and risk map", "priorities": [{"title": "Build delivery risk map", "evidence_ref": "stakeholder", "deliverable": "Risk map with owners", "validation_signal": "Account owner reviews risk map", "estimated_hours_per_week": 7}]},
+    {"day": 60, "theme": "Stabilize delivery rituals and reporting", "priorities": [{"title": "Tune ceremony cadence", "evidence_ref": "team-doc", "deliverable": "Ceremony improvement proposal", "validation_signal": "Team accepts updated cadence", "estimated_hours_per_week": 8}]},
+    {"day": 90, "theme": "Institutionalize sustainable operating model", "priorities": [{"title": "Publish operating model", "evidence_ref": "constraint", "deliverable": "Operating model with recovery boundaries", "validation_signal": "Model reviewed by account owner", "estimated_hours_per_week": 8}]}
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "schema": 1,
+  "skill": "onboarding-90-dias",
+  "assets": [
+    {"path": "assets/phase-contract.json", "type": "contract", "purpose": "Defines required phases and priority limits.", "used_by": ["SKILL.md", "README.md", "scripts/plan_30_60_90.py", "evals/evals.json"]},
+    {"path": "assets/burnout-policy.json", "type": "policy", "purpose": "Defines hour limits, recovery rules, and blocked hustle terms.", "used_by": ["SKILL.md", "examples/example-output.md", "scripts/plan_30_60_90.py"]},
+    {"path": "assets/evidence-policy.json", "type": "policy", "purpose": "Defines evidence types and claim support requirements.", "used_by": ["SKILL.md", "knowledge/body-of-knowledge.md", "scripts/plan_30_60_90.py"]},
+    {"path": "assets/validation-policy.json", "type": "policy", "purpose": "Defines validation signals and blocked performance promises.", "used_by": ["SKILL.md", "templates/output.md", "scripts/plan_30_60_90.py"]},
+    {"path": "assets/output-contract.json", "type": "schema", "purpose": "Defines output sections and packet keys.", "used_by": ["SKILL.md", "templates/output.md", "scripts/check.sh"]}
+  ]
+}

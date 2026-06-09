@@ -1,0 +1,7 @@
+{
+  "schema": 1,
+  "skill": "onboarding-90-dias",
+  "required_signals": ["observable_deliverable", "stakeholder_review", "documented_learning", "cadence_check"],
+  "blocked_promises": ["garantiza promocion", "asegura ascenso", "resultado garantizado", "exito seguro"],
+  "validation_rule": "progress must be observable without promising business or career outcomes"
+}

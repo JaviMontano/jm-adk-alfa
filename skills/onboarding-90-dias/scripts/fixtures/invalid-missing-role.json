@@ -1,0 +1,8 @@
+{
+  "schema": 1,
+  "skill": "onboarding-90-dias",
+  "constraints": {"weekly_hours": 40, "recovery_days_per_week": 2},
+  "evidence": [{"id": "brief", "type": "role_brief", "detail": "Role brief supplied by user"}],
+  "stakeholders": [{"name": "Manager", "cadence": "weekly"}],
+  "phases": []
+}

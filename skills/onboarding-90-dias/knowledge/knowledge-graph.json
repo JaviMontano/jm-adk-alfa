@@ -1,0 +1,18 @@
+{
+  "schema": 1,
+  "skill": "onboarding-90-dias",
+  "nodes": [
+    {"id": "role_context", "type": "input"},
+    {"id": "phase_contract", "type": "contract"},
+    {"id": "burnout_policy", "type": "policy"},
+    {"id": "evidence_policy", "type": "policy"},
+    {"id": "phase_plan", "type": "output"},
+    {"id": "validation_packet", "type": "output"}
+  ],
+  "edges": [
+    {"from": "role_context", "to": "phase_contract", "relation": "is_structured_by"},
+    {"from": "burnout_policy", "to": "phase_plan", "relation": "bounds"},
+    {"from": "evidence_policy", "to": "validation_packet", "relation": "supports"},
+    {"from": "phase_contract", "to": "validation_packet", "relation": "determines"}
+  ]
+}
