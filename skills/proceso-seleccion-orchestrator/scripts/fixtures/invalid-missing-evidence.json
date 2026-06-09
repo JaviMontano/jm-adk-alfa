@@ -1,0 +1,12 @@
+{
+  "schema": 1,
+  "skill": "proceso-seleccion-orchestrator",
+  "candidate": {"alias": "CAND-NO-EV", "target_role": "Architect"},
+  "board": {"status": "active", "as_of": "2026-06-08"},
+  "evidence": [],
+  "contacts": [],
+  "stages": [],
+  "next_action": {},
+  "risks": [],
+  "validation": {"offline": true, "network_used": false, "result": "pass"}
+}

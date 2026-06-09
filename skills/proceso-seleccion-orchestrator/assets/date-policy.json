@@ -1,0 +1,6 @@
+{
+  "schema": 1,
+  "accepted_format": "YYYY-MM-DD",
+  "blocked_relative_terms": ["today", "tomorrow", "yesterday", "next", "last", "ayer", "manana", "proximo", "siguiente semana"],
+  "rule": "Never resolve relative dates from the current clock; require explicit ISO dates or block."
+}

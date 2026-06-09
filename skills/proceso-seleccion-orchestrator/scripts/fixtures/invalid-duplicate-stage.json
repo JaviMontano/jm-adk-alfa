@@ -1,0 +1,17 @@
+{
+  "schema": 1,
+  "skill": "proceso-seleccion-orchestrator",
+  "candidate": {"alias": "CAND-DUP", "target_role": "Architect"},
+  "board": {"status": "active", "as_of": "2026-06-08"},
+  "evidence": [
+    {"id": "E-300", "type": "manual_entry", "source": "Note", "received_date": "2026-06-08", "summary": "Two stages were copied with the same id."}
+  ],
+  "contacts": [{"name": "Laura Ruiz", "role": "Recruiter", "evidence_ref": "E-300"}],
+  "stages": [
+    {"id": "S-300", "sequence": 1, "label": "Screen", "owner": "Laura Ruiz", "status": "completed", "status_reason": "Completed.", "evidence_ref": "E-300"},
+    {"id": "S-300", "sequence": 1, "label": "Screen duplicate", "owner": "Laura Ruiz", "status": "pending", "status_reason": "Copied twice.", "evidence_ref": "E-300"}
+  ],
+  "next_action": {"owner": "Candidate", "action": "Resolve duplicate.", "stage_id": "S-300", "evidence_ref": "E-300"},
+  "risks": [],
+  "validation": {"offline": true, "network_used": false, "result": "pass"}
+}

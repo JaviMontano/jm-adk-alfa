@@ -1,0 +1,18 @@
+{
+  "schema": 1,
+  "skill": "proceso-seleccion-orchestrator",
+  "candidate": {"alias": "CAND-CONFLICT", "target_role": "Architect"},
+  "board": {"status": "active", "as_of": "2026-06-08"},
+  "evidence": [
+    {"id": "E-600", "type": "manual_entry", "source": "Note A", "received_date": "2026-06-08", "summary": "Final interview pending."},
+    {"id": "E-601", "type": "manual_entry", "source": "Note B", "received_date": "2026-06-08", "summary": "Final interview completed."}
+  ],
+  "contacts": [{"name": "Oscar Leon", "role": "Hiring Manager", "evidence_ref": "E-600"}],
+  "stages": [
+    {"id": "S-600", "sequence": 1, "label": "Final interview", "owner": "Oscar Leon", "status": "pending", "status_reason": "Note A says pending.", "evidence_ref": "E-600"},
+    {"id": "S-601", "sequence": 2, "label": "Final interview", "owner": "Oscar Leon", "status": "completed", "status_reason": "Note B says completed.", "evidence_ref": "E-601"}
+  ],
+  "next_action": {"owner": "Candidate", "action": "Resolve status conflict.", "stage_id": "S-600", "evidence_ref": "E-600"},
+  "risks": [],
+  "validation": {"offline": true, "network_used": false, "result": "pass"}
+}

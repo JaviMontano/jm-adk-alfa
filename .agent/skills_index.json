@@ -2610,6 +2610,12 @@
     "description": "GDPR consent banner, data export, right to deletion. CCPA. Cookie policy. Firebase data deletion pipeline. [EXPLICIT]"
   },
   {
+    "id": "proceso-seleccion-orchestrator",
+    "path": "skills/proceso-seleccion-orchestrator",
+    "name": "Proceso Seleccion Orchestrator",
+    "description": "This skill should be used when the user asks to track a hiring or selection process, extract interview stages from supplied notes or emails, reconcile interviewer roles, build a candidate status board, identify the next action, or audit handoff evidence for an active selection workflow."
+  },
+  {
     "id": "product-roadmapping",
     "path": "skills/product-roadmapping",
     "name": "Product Roadmapping",

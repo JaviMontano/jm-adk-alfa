@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "skill": "proceso-seleccion-orchestrator",
+  "candidate": {"alias": "CAND-REL", "target_role": "Consultant"},
+  "board": {"status": "blocked", "as_of": "2026-06-08"},
+  "evidence": [
+    {
+      "id": "E-100",
+      "type": "copied_email",
+      "source": "Recruiter email excerpt",
+      "received_date": "tomorrow",
+      "summary": "Recruiter says next interview is tomorrow."
+    }
+  ],
+  "contacts": [{"name": "Rita Mesa", "role": "Recruiter", "evidence_ref": "E-100"}],
+  "stages": [
+    {
+      "id": "S-100",
+      "sequence": 1,
+      "label": "Hiring manager interview",
+      "owner": "Rita Mesa",
+      "status": "scheduled",
+      "status_reason": "Scheduled for tomorrow.",
+      "evidence_ref": "E-100"
+    }
+  ],
+  "next_action": {
+    "owner": "Candidate",
+    "action": "Confirm tomorrow interview time.",
+    "stage_id": "S-100",
+    "due_date": "tomorrow",
+    "evidence_ref": "E-100"
+  },
+  "risks": [],
+  "validation": {"offline": true, "network_used": false, "result": "blocked"}
+}

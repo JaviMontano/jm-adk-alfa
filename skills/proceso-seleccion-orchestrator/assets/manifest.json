@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "skill": "proceso-seleccion-orchestrator",
+  "assets": [
+    {
+      "path": "assets/output-contract.json",
+      "type": "contract",
+      "purpose": "Defines the required deterministic selection-board report fields.",
+      "used_by": ["SKILL.md", "templates/output.md", "scripts/selection_board_validator.py"]
+    },
+    {
+      "path": "assets/evidence-policy.json",
+      "type": "policy",
+      "purpose": "Defines allowed evidence types and required evidence fields.",
+      "used_by": ["SKILL.md", "scripts/selection_board_validator.py"]
+    },
+    {
+      "path": "assets/status-policy.json",
+      "type": "policy",
+      "purpose": "Defines allowed stage and board statuses.",
+      "used_by": ["SKILL.md", "scripts/selection_board_validator.py"]
+    },
+    {
+      "path": "assets/date-policy.json",
+      "type": "policy",
+      "purpose": "Requires ISO dates and blocks relative date normalization.",
+      "used_by": ["SKILL.md", "scripts/selection_board_validator.py"]
+    },
+    {
+      "path": "assets/risk-policy.json",
+      "type": "policy",
+      "purpose": "Defines risk severity order and mitigation requirements.",
+      "used_by": ["SKILL.md", "templates/output.md", "scripts/selection_board_validator.py"]
+    }
+  ]
+}

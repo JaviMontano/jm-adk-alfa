@@ -1,0 +1,16 @@
+{
+  "schema": 1,
+  "skill": "proceso-seleccion-orchestrator",
+  "candidate": {"alias": "CAND-NET", "target_role": "Architect"},
+  "board": {"status": "active", "as_of": "2026-06-08"},
+  "evidence": [
+    {"id": "E-700", "type": "manual_entry", "source": "Note", "received_date": "2026-06-08", "summary": "Valid offline evidence."}
+  ],
+  "contacts": [{"name": "Paula Mora", "role": "Recruiter", "evidence_ref": "E-700"}],
+  "stages": [
+    {"id": "S-700", "sequence": 1, "label": "Screen", "owner": "Paula Mora", "status": "pending", "status_reason": "Pending.", "evidence_ref": "E-700"}
+  ],
+  "next_action": {"owner": "Candidate", "action": "Wait for screen.", "stage_id": "S-700", "evidence_ref": "E-700"},
+  "risks": [],
+  "validation": {"offline": true, "network_used": true, "result": "pass"}
+}
