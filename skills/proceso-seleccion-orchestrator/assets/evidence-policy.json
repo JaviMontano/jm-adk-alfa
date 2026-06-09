@@ -1,0 +1,7 @@
+{
+  "schema": 1,
+  "allowed_types": ["copied_email", "recruiter_note", "interview_note", "manual_entry", "scheduler_note", "feedback_summary"],
+  "required_fields": ["id", "type", "source", "received_date", "summary"],
+  "id_pattern": "E-###",
+  "privacy_rule": "Use short summaries and evidence IDs; do not reproduce full private messages in the final board."
+}

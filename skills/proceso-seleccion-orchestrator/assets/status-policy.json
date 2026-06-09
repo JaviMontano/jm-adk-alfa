@@ -1,0 +1,7 @@
+{
+  "schema": 1,
+  "board_statuses": ["active", "blocked", "closed"],
+  "stage_statuses": ["pending", "scheduled", "completed", "blocked", "declined", "unknown"],
+  "terminal_statuses": ["declined", "closed"],
+  "conflict_rule": "The same normalized stage label and owner cannot have two different statuses without a blocker."
+}

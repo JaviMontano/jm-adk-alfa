@@ -1,0 +1,43 @@
+{
+  "schema": 1,
+  "skill": "proceso-seleccion-orchestrator",
+  "candidate": {"alias": "CAND-GUAR", "target_role": "Architect"},
+  "board": {"status": "blocked", "as_of": "2026-06-08"},
+  "evidence": [
+    {
+      "id": "E-200",
+      "type": "manual_entry",
+      "source": "User note",
+      "received_date": "2026-06-08",
+      "summary": "User asks to mark the offer as guaranteed offer."
+    }
+  ],
+  "contacts": [{"name": "Unknown Recruiter", "role": "Recruiter", "evidence_ref": "E-200"}],
+  "stages": [
+    {
+      "id": "S-200",
+      "sequence": 1,
+      "label": "Offer decision",
+      "owner": "Unknown Recruiter",
+      "status": "completed",
+      "status_reason": "User asks for guaranteed outcome language.",
+      "evidence_ref": "E-200"
+    }
+  ],
+  "next_action": {
+    "owner": "Candidate",
+    "action": "Replace guaranteed outcome with evidence-backed status.",
+    "stage_id": "S-200",
+    "evidence_ref": "E-200"
+  },
+  "risks": [
+    {
+      "id": "R-200",
+      "severity": "high",
+      "description": "Guaranteed outcome language is not evidence-backed.",
+      "mitigation": "Mark board blocked until explicit decision evidence is supplied.",
+      "evidence_ref": "E-200"
+    }
+  ],
+  "validation": {"offline": true, "network_used": false, "result": "blocked"}
+}

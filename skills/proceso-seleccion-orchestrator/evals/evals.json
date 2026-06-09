@@ -1,0 +1,66 @@
+{
+  "schema": 1,
+  "skill": "proceso-seleccion-orchestrator",
+  "cases": [
+    {
+      "id": "happy_path_three_stage_pipeline",
+      "input": "Track a selection process from supplied notes: recruiter screen on 2026-06-01, technical interview on 2026-06-04, final stakeholder interview pending for 2026-06-10.",
+      "expected_activation": true,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "evidence_refs", "single_next_action"]
+    },
+    {
+      "id": "explicit_trigger_status_board",
+      "input": "Use proceso-seleccion-orchestrator to build my candidate status board from these copied emails.",
+      "expected_activation": true,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "status_policy", "evidence_refs"]
+    },
+    {
+      "id": "minimal_missing_evidence_block",
+      "input": "proceso-seleccion-orchestrator for my process, no emails attached yet.",
+      "expected_activation": true,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "blocked_missing_evidence"]
+    },
+    {
+      "id": "relative_date_degradation",
+      "input": "The recruiter said the next interview is tomorrow with the hiring manager.",
+      "expected_activation": true,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "relative_date_blocker"]
+    },
+    {
+      "id": "duplicate_stage_edge",
+      "input": "Two copied messages both label stage 2 as technical interview with conflicting owners.",
+      "expected_activation": true,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "duplicate_detection"]
+    },
+    {
+      "id": "guaranteed_outcome_boundary",
+      "input": "Make the board say the offer is guaranteed after the final interview.",
+      "expected_activation": true,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "guaranteed_outcome_blocker"]
+    },
+    {
+      "id": "false_positive_product_onboarding",
+      "input": "Create a product onboarding checklist for a new SaaS user.",
+      "expected_activation": false,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria"]
+    },
+    {
+      "id": "false_positive_general_recruiting_advice",
+      "input": "Explain generic interview best practices without tracking a specific process.",
+      "expected_activation": false,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria"]
+    },
+    {
+      "id": "conflicting_status_block",
+      "input": "One note says the final stage is pending, another says completed, both with the same date and owner.",
+      "expected_activation": true,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "conflict_blocker"]
+    },
+    {
+      "id": "manual_entry_valid",
+      "input": "Build a board from manual entries with evidence IDs, interviewer roles, ISO dates, and one next action.",
+      "expected_activation": true,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "manual_entry_support"]
+    }
+  ]
+}

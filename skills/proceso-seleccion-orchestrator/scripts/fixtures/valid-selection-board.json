@@ -1,0 +1,90 @@
+{
+  "schema": 1,
+  "skill": "proceso-seleccion-orchestrator",
+  "candidate": {
+    "alias": "JM-CAND-01",
+    "target_role": "PreSales Architect"
+  },
+  "board": {
+    "status": "active",
+    "as_of": "2026-06-08"
+  },
+  "evidence": [
+    {
+      "id": "E-001",
+      "type": "copied_email",
+      "source": "Recruiter email excerpt",
+      "received_date": "2026-06-01",
+      "summary": "Ana Gomez confirmed recruiter screen completed."
+    },
+    {
+      "id": "E-002",
+      "type": "interview_note",
+      "source": "Manual interview note",
+      "received_date": "2026-06-04",
+      "summary": "Luis Perez completed technical interview and requested portfolio evidence."
+    },
+    {
+      "id": "E-003",
+      "type": "scheduler_note",
+      "source": "Coordinator note",
+      "received_date": "2026-06-06",
+      "summary": "Maria Rios proposed final stakeholder interview for 2026-06-10."
+    }
+  ],
+  "contacts": [
+    {"name": "Ana Gomez", "role": "Recruiter", "evidence_ref": "E-001"},
+    {"name": "Luis Perez", "role": "Technical Lead", "evidence_ref": "E-002"},
+    {"name": "Maria Rios", "role": "Hiring Manager", "evidence_ref": "E-003"}
+  ],
+  "stages": [
+    {
+      "id": "S-001",
+      "sequence": 1,
+      "label": "Recruiter screen",
+      "owner": "Ana Gomez",
+      "status": "completed",
+      "status_reason": "Recruiter screen completion is explicit.",
+      "evidence_ref": "E-001"
+    },
+    {
+      "id": "S-002",
+      "sequence": 2,
+      "label": "Technical interview",
+      "owner": "Luis Perez",
+      "status": "completed",
+      "status_reason": "Technical interview completion is explicit.",
+      "evidence_ref": "E-002"
+    },
+    {
+      "id": "S-003",
+      "sequence": 3,
+      "label": "Final stakeholder interview",
+      "owner": "Maria Rios",
+      "status": "scheduled",
+      "status_reason": "Final stakeholder interview is proposed with an ISO date.",
+      "evidence_ref": "E-003"
+    }
+  ],
+  "next_action": {
+    "owner": "Candidate",
+    "action": "Confirm portfolio evidence before the final stakeholder interview.",
+    "stage_id": "S-003",
+    "due_date": "2026-06-10",
+    "evidence_ref": "E-003"
+  },
+  "risks": [
+    {
+      "id": "R-001",
+      "severity": "medium",
+      "description": "Portfolio evidence was requested but is not attached in the supplied notes.",
+      "mitigation": "Collect portfolio links or mark the action blocked.",
+      "evidence_ref": "E-002"
+    }
+  ],
+  "validation": {
+    "offline": true,
+    "network_used": false,
+    "result": "pass"
+  }
+}

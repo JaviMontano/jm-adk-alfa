@@ -1,0 +1,18 @@
+{
+  "schema": 1,
+  "skill": "proceso-seleccion-orchestrator",
+  "nodes": [
+    {"id": "evidence", "type": "concept", "label": "Evidence item"},
+    {"id": "contact", "type": "concept", "label": "Interviewer or process contact"},
+    {"id": "stage", "type": "concept", "label": "Selection stage"},
+    {"id": "next_action", "type": "concept", "label": "Single next action"},
+    {"id": "blocker", "type": "risk", "label": "Determinism blocker"}
+  ],
+  "edges": [
+    {"from": "contact", "to": "evidence", "relation": "requires_reference"},
+    {"from": "stage", "to": "evidence", "relation": "requires_reference"},
+    {"from": "next_action", "to": "stage", "relation": "targets"},
+    {"from": "next_action", "to": "evidence", "relation": "requires_reference"},
+    {"from": "blocker", "to": "next_action", "relation": "may_suspend"}
+  ]
+}

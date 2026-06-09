@@ -1,0 +1,10 @@
+{
+  "schema": 1,
+  "required_top_level": ["schema", "skill", "candidate", "board", "evidence", "contacts", "stages", "next_action", "risks", "validation"],
+  "candidate_required": ["alias", "target_role"],
+  "board_required": ["status", "as_of"],
+  "stage_required": ["id", "sequence", "label", "owner", "status", "status_reason", "evidence_ref"],
+  "next_action_required": ["owner", "action", "stage_id", "evidence_ref"],
+  "risk_required": ["id", "severity", "description", "mitigation", "evidence_ref"],
+  "deterministic_sort": ["evidence.received_date", "evidence.id", "contacts.name", "contacts.role", "stages.sequence", "risks.severity_rank", "risks.id"]
+}

@@ -1,0 +1,1 @@
+Build a full evidence-backed selection board, reconcile duplicate or conflicting stage signals, document blockers, validate the JSON report offline, and include a concise handoff for the next session.

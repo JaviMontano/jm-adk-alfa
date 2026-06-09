@@ -1,0 +1,1 @@
+Extract only supplied selection-process evidence, build the JSON board defined in `assets/output-contract.json`, validate it with `scripts/selection_board_validator.py`, then produce the markdown handoff from `templates/output.md`.

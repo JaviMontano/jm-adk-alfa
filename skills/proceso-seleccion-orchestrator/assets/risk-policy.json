@@ -1,0 +1,7 @@
+{
+  "schema": 1,
+  "severity_order": ["high", "medium", "low"],
+  "allowed_severities": ["low", "medium", "high"],
+  "required_fields": ["id", "severity", "description", "mitigation"],
+  "blocker_terms": ["guaranteed hire", "guaranteed offer", "contratacion garantizada", "oferta garantizada", "seleccion garantizada"]
+}
