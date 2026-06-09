@@ -1,0 +1,11 @@
+{
+  "schema": 1,
+  "skill": "tool-use-design",
+  "unique_anchor_required": true,
+  "failure_mode": "non_unique_anchor",
+  "fallback": "read_write_full_rewrite",
+  "rules": [
+    "Do not call edit safe when old_string is ambiguous.",
+    "If no unique anchor exists, read the file and write a full deterministic replacement."
+  ]
+}

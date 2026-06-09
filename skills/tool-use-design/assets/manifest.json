@@ -1,0 +1,42 @@
+{
+  "schema": 1,
+  "skill": "tool-use-design",
+  "assets": [
+    {
+      "path": "assets/tool-use-contract.json",
+      "type": "contract",
+      "purpose": "Defines the required JSON shape for tool-use design reports.",
+      "used_by": ["SKILL.md", "templates/output.md", "scripts/validate_tool_use_design.py"]
+    },
+    {
+      "path": "assets/description-contract-policy.json",
+      "type": "policy",
+      "purpose": "Requires purpose, input format, examples, and boundaries for each tool.",
+      "used_by": ["SKILL.md", "scripts/validate_tool_use_design.py"]
+    },
+    {
+      "path": "assets/boundary-policy.json",
+      "type": "policy",
+      "purpose": "Defines reciprocal delegation and overload split requirements.",
+      "used_by": ["SKILL.md", "templates/output.md", "scripts/validate_tool_use_design.py"]
+    },
+    {
+      "path": "assets/repo-strategy-policy.json",
+      "type": "policy",
+      "purpose": "Defines grep-read-edit flow and read-all blockers.",
+      "used_by": ["SKILL.md", "templates/output.md", "scripts/validate_tool_use_design.py"]
+    },
+    {
+      "path": "assets/edit-safety-policy.json",
+      "type": "policy",
+      "purpose": "Defines unique-anchor edit safety and fallback.",
+      "used_by": ["SKILL.md", "templates/output.md", "scripts/validate_tool_use_design.py"]
+    },
+    {
+      "path": "assets/anti-pattern-policy.json",
+      "type": "policy",
+      "purpose": "Blocks generic descriptions, unresolved overload, and upfront read-all.",
+      "used_by": ["SKILL.md", "scripts/validate_tool_use_design.py"]
+    }
+  ]
+}

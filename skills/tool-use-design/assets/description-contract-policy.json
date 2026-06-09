@@ -1,0 +1,13 @@
+{
+  "schema": 1,
+  "skill": "tool-use-design",
+  "required_fields": ["purpose", "input_format", "examples", "boundary"],
+  "minimum_examples": 1,
+  "generic_description_markers": [
+    "analyzes content",
+    "processes the file",
+    "does stuff",
+    "handles data",
+    "works with files"
+  ]
+}

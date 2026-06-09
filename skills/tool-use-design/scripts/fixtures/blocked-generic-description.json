@@ -1,0 +1,49 @@
+{
+  "schema": 1,
+  "skill": "tool-use-design",
+  "tool_contracts": [
+    {
+      "name": "analyze",
+      "purpose": "Analyzes content.",
+      "input_format": "text",
+      "examples": ["analyze('x')"],
+      "boundary": {
+        "use_for": "Analyze text.",
+        "not_for": "Process files.",
+        "delegate_to": ["process"]
+      }
+    },
+    {
+      "name": "process",
+      "purpose": "Processes the file.",
+      "input_format": "path",
+      "examples": ["process('/repo/a.py')"],
+      "boundary": {
+        "use_for": "Process a file.",
+        "not_for": "Analyze text.",
+        "delegate_to": ["analyze"]
+      }
+    }
+  ],
+  "overload_resolution": {
+    "decision": "rename_split",
+    "resolved_by_prose": false,
+    "split_tools": ["analyze", "process"]
+  },
+  "repo_strategy": {
+    "sequence": ["grep", "read", "edit"],
+    "read_all_upfront": false,
+    "glob_all_then_read_all": false
+  },
+  "edit_safety": {
+    "unique_anchor_required": true,
+    "failure_mode": "non_unique_anchor",
+    "fallback": "read_write_full_rewrite"
+  },
+  "validation": {
+    "offline": true,
+    "network_required": false,
+    "deterministic": true,
+    "result": "blocked"
+  }
+}

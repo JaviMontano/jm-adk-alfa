@@ -837,7 +837,7 @@
 | 562 | `test-strategy` | — |
 | 563 | `testimonial-collector` | — |
 | 564 | `testing-strategy` | — |
-| 565 | `tool-use-design` | Disenar descripciones de tools como contrato de routing y aplicar la estrategia  |
+| 565 | `tool-use-design` | Design deterministic tool-description routing contracts with explicit input form |
 | 566 | `trade-off-analysis` | — |
 | 567 | `training-material` | — |
 | 568 | `triad-composition` | Select a deterministic Lead + Support + Guardian triad from the PRISTINO composi |

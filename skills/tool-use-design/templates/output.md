@@ -1,10 +1,3 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: tool-use-design
-generated-on: 2026-05-30
-overwrite-policy: missing-only unless --force
--->
-
 # Tool Use Design Output
 
 ## Summary
@@ -22,7 +15,25 @@ overwrite-policy: missing-only unless --force
 {result}
 ```
 
-## Anti-pattern evitado
+## Tool Contract Table
+
+| Tool | Purpose | Input format | Examples | Boundary |
+| --- | --- | --- | --- | --- |
+| {tool} | {purpose} | {input_format} | {examples} | {boundary} |
+
+## Repo Strategy
+
+- Sequence: grep -> read -> edit
+- Read all upfront: no
+- Glob all then read all: no
+
+## Edit Safety
+
+- Unique anchor required: yes
+- Failure mode: non_unique_anchor
+- Fallback: read_write_full_rewrite
+
+## Anti-pattern Avoided
 
 ```python
 # ANTI — descripción genérica sin frontera + Glob("**/*") + Read all
@@ -36,6 +47,7 @@ overwrite-policy: missing-only unless --force
 - [ ] Routing inmediato (sin pedir aclaración).
 - [ ] Edit failure mode (anchor no único) + fallback Read+Write documentados.
 - [ ] Flujo `Grep → Read → Edit`, sin read-all upfront.
+- [ ] Offline validator passed.
 
 ## Risks and Limits
 

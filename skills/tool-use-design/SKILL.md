@@ -1,7 +1,7 @@
 ---
 name: tool-use-design
-version: 1.0.0
-description: "Disenar descripciones de tools como contrato de routing y aplicar la estrategia de built-in tools grep then read then edit."
+version: 1.1.0
+description: "Design deterministic tool-description routing contracts with explicit input formats, examples, reciprocal boundaries, overload split decisions, Grep then Read then Edit repository strategy, Edit failure fallback, and offline validation."
 owner: "JM Labs"
 triggers:
   - tool use design
@@ -17,9 +17,22 @@ allowed-tools:
 
 # Tool Use Design
 
-## Capacidad
+## Purpose
 
-Diseñar la descripción de cada tool como un **contrato de routing** que el modelo lee para decidir, sin contexto adicional, cuándo invocarla y con qué forma de entrada; y aplicar la estrategia canónica de built-in tools `Grep → Read → Edit` para operar sobre repositorios sin saturar la ventana. La descripción no es documentación humana: es la única señal que recibe el planner para discriminar entre tools que compiten. Una frontera recíproca bien escrita (cada descripción dice qué hace y qué NO hace, delegando explícitamente en su vecina) elimina ambigüedad de selección.
+Design each tool description as a deterministic routing contract that a planner can use without hidden context. The contract must define purpose, input format, examples, reciprocal boundaries, overload split decisions, `Grep -> Read -> Edit` repository strategy, and `Edit` fallback when the anchor is not unique.
+
+## Deterministic Contract
+
+Use `assets/tool-use-contract.json` and validate reports with `scripts/validate_tool_use_design.py`. A valid report must include:
+
+- Two or more tool contracts.
+- Purpose, input format, examples, and boundary for every tool.
+- Reciprocal delegation between competing tools.
+- Explicit overload resolution as `rename_split` when one tool has more than one responsibility.
+- Repository strategy sequence `grep`, `read`, `edit`.
+- `read_all_upfront=false` and `glob_all_then_read_all=false`.
+- Edit safety: unique anchor required and fallback `read_write_full_rewrite`.
+- Validation flags: `offline=true`, `network_required=false`, `deterministic=true`.
 
 ## Cuándo usarla
 
@@ -29,7 +42,7 @@ Diseñar la descripción de cada tool como un **contrato de routing** que el mod
 - Vas a operar sobre un repo desconocido y necesitas un protocolo de lectura que evite el `read-all` masivo.
 - Edit falla de forma intermitente (anchor no único) y falta un fallback documentado.
 
-## Cómo construir
+## Workflow
 
 1. **Inventaria el tool surface** y detecta solapamientos: dos tools que un humano podría confundir son dos tools que el modelo confundirá.
 2. **Escribe cada descripción como contrato**: propósito en una frase, **input format** explícito, 1–2 ejemplos de invocación y la **frontera** ("usa X para A; para B usa Y").
@@ -38,7 +51,15 @@ Diseñar la descripción de cada tool como un **contrato de routing** que el mod
 5. **Codifica la estrategia de built-in tools** `Grep → Read → Edit`: localizar con Grep/Glob, leer solo los archivos relevantes con Read, mutar con Edit. **Nunca** un `Glob("**/*") + Read all` upfront.
 6. **Valida con el checklist** antes de cerrar: fronteras recíprocas, decisión de tool inmediata, sin lectura masiva.
 
-## Patrón correcto
+## Output Rules
+
+- Reference `assets/description-contract-policy.json`, `assets/boundary-policy.json`, `assets/repo-strategy-policy.json`, `assets/edit-safety-policy.json`, and `assets/anti-pattern-policy.json`.
+- Never accept generic descriptions such as "analyzes content" or "processes files".
+- Never allow `Glob("**/*")` plus read-all as an upfront discovery strategy.
+- Never treat an ambiguous `Edit` anchor as safe without fallback.
+- Never resolve overloaded tools with prose only; split and rename.
+
+## Pattern
 
 ```python
 # GOOD — descripciones como contrato con frontera recíproca + estrategia Grep→Read→Edit
@@ -75,7 +96,7 @@ src = read_file(path=hits[0].path)                  # Read only the relevant fil
 edit_file(path=hits[0].path, old_string=unique_anchor, new_string=patched)  # Edit
 ```
 
-## Anti-patrón
+## Anti-Pattern
 
 ```python
 # ANTI — descripciones genéricas + read masivo upfront
@@ -90,6 +111,17 @@ all_files = glob("**/*")
 context = "".join(read_file(p) for p in all_files)  # ~200k tokens, satura la ventana
 # Edit sin fallback documentado: si el anchor no es único, falla en silencio.
 ```
+
+## Scripts
+
+Run:
+
+```bash
+python3 skills/tool-use-design/scripts/validate_tool_use_design.py --input <report.json>
+bash skills/tool-use-design/scripts/check.sh
+```
+
+The validator is offline and rejects generic descriptions, missing examples, missing reciprocal boundaries, unresolved overload, read-all upfront, missing edit fallback, and non-deterministic validation flags.
 
 ## Checklist de validación
 
