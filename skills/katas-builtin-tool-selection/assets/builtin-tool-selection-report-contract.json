@@ -1,0 +1,28 @@
+{
+  "schema": "jm-labs.asset.builtin-tool-selection-report-contract.v1",
+  "report_schema": "jm-labs.katas-builtin-tool-selection.report.v1",
+  "skill": "katas-builtin-tool-selection",
+  "required_top_level_fields": [
+    "schema",
+    "skill",
+    "objective",
+    "scope",
+    "selected_strategy",
+    "tool_decisions",
+    "read_plan",
+    "edit_plan",
+    "evidence",
+    "validation",
+    "risks"
+  ],
+  "required_validation_checks": [
+    "assets",
+    "deterministic_scripts",
+    "quality_criteria",
+    "tool_fit",
+    "read_economy",
+    "edit_anchor_safety",
+    "fallback_policy",
+    "evidence_required"
+  ]
+}

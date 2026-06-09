@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "skill": "katas-builtin-tool-selection",
+  "assets": [
+    {
+      "path": "assets/builtin-tool-selection-report-contract.json",
+      "type": "schema",
+      "purpose": "Defines the deterministic report contract for built-in tool selection.",
+      "used_by": ["SKILL.md", "scripts/validate_tool_selection_report.py", "evals/evals.json"]
+    },
+    {
+      "path": "assets/tool-fit-policy.json",
+      "type": "policy",
+      "purpose": "Maps content, path, read, edit, write, and shell intents to the correct tool.",
+      "used_by": ["SKILL.md", "scripts/validate_tool_selection_report.py", "knowledge/body-of-knowledge.md"]
+    },
+    {
+      "path": "assets/read-economy-policy.json",
+      "type": "policy",
+      "purpose": "Forbids mass upfront reads and requires search before selective reads.",
+      "used_by": ["SKILL.md", "scripts/validate_tool_selection_report.py", "examples/example-output.md"]
+    },
+    {
+      "path": "assets/edit-anchor-policy.json",
+      "type": "policy",
+      "purpose": "Requires unique Edit anchors and defines safe Write fallback rules.",
+      "used_by": ["SKILL.md", "scripts/validate_tool_selection_report.py", "templates/output.md"]
+    },
+    {
+      "path": "assets/evidence-policy.json",
+      "type": "policy",
+      "purpose": "Defines evidence tag and offline validation requirements.",
+      "used_by": ["SKILL.md", "scripts/validate_tool_selection_report.py", "prompts/primary.md"]
+    }
+  ]
+}

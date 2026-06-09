@@ -1,0 +1,8 @@
+{
+  "schema": "jm-labs.asset.read-economy-policy.v1",
+  "skill": "katas-builtin-tool-selection",
+  "mass_read_upfront_allowed": false,
+  "search_before_read_required_when_target_unknown": true,
+  "max_files_read_without_search": 1,
+  "forbidden_patterns": ["read_all_files", "repo_wide_read", "read_before_search_unknown_target"]
+}

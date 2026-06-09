@@ -1,0 +1,17 @@
+{
+  "schema": "jm-labs.katas-builtin-tool-selection.report.v1",
+  "skill": "katas-builtin-tool-selection",
+  "objective": "Edit a refund threshold.",
+  "scope": "repo",
+  "selected_strategy": "Grep-Read-Edit",
+  "tool_decisions": [
+    {"intent": "content-search", "chosen_tool": "Grep", "rationale": "Find symbol.", "evidence_tag": "[CODIGO]"},
+    {"intent": "file-read", "chosen_tool": "Read", "rationale": "Read target.", "evidence_tag": "[CODIGO]"},
+    {"intent": "targeted-edit", "chosen_tool": "Edit", "rationale": "Edit target.", "evidence_tag": "[CODIGO]"}
+  ],
+  "read_plan": {"mass_read_upfront": false, "search_before_read": true, "files_considered": 3, "files_read": ["src/app.py"]},
+  "edit_plan": {"operation": "Edit", "anchor": {"old_text": "if amount > 1000:", "unique_match_count": 1}, "fallback": {"declared": true, "action": "expand-anchor", "trigger": "", "full_file_read_before_write": false, "reason": "Expand if needed."}},
+  "evidence": [{"claim": "Evidence exists.", "evidence_tag": "[CODIGO]", "source": "tool_decisions"}],
+  "validation": {"status": "pass", "offline": true, "network_required": true, "deterministic": true, "uses_randomness": false, "checks": ["assets", "deterministic_scripts", "quality_criteria", "tool_fit", "read_economy", "edit_anchor_safety", "fallback_policy", "evidence_required"]},
+  "risks": {"remaining": [], "forbidden_patterns": []}
+}

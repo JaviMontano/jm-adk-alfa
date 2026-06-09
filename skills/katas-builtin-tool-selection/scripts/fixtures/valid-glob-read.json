@@ -1,0 +1,34 @@
+{
+  "schema": "jm-labs.katas-builtin-tool-selection.report.v1",
+  "skill": "katas-builtin-tool-selection",
+  "objective": "List test files by path pattern and read one representative file.",
+  "scope": "web app repo",
+  "selected_strategy": "Glob-Read",
+  "tool_decisions": [
+    {"intent": "path-search", "chosen_tool": "Glob", "rationale": "The task asks for files ending in .test.tsx by name.", "evidence_tag": "[CODIGO]"},
+    {"intent": "file-read", "chosen_tool": "Read", "rationale": "Only one selected test file is read after path search.", "evidence_tag": "[CODIGO]"}
+  ],
+  "read_plan": {
+    "mass_read_upfront": false,
+    "search_before_read": true,
+    "files_considered": 24,
+    "files_read": ["src/components/Button.test.tsx"]
+  },
+  "edit_plan": {
+    "operation": "none",
+    "anchor": {"old_text": "", "unique_match_count": 0},
+    "fallback": {"declared": false, "action": "", "trigger": "", "full_file_read_before_write": false, "reason": ""}
+  },
+  "evidence": [
+    {"claim": "Glob is correct for path pattern search.", "evidence_tag": "[CODIGO]", "source": "tool_decisions[0]"}
+  ],
+  "validation": {
+    "status": "pass",
+    "offline": true,
+    "network_required": false,
+    "deterministic": true,
+    "uses_randomness": false,
+    "checks": ["assets", "deterministic_scripts", "quality_criteria", "tool_fit", "read_economy", "edit_anchor_safety", "fallback_policy", "evidence_required"]
+  },
+  "risks": {"remaining": [], "forbidden_patterns": []}
+}

@@ -24,6 +24,7 @@ Resolver una tarea de exploración o modificación de codebase escogiendo el bui
 2. `Read` selectivo solo de los archivos relevantes, siguiendo imports.
 3. `Edit` con un anchor único; si el anchor matchea varias líneas, amplíalo con contexto suficiente o cae a `Read` entero + `Write` completo.
 4. Valida: el tool elegido coincide con la intención, no hubo `Read` masivo upfront, el anchor era único.
+5. Para handoffs críticos, emite el JSON de `assets/builtin-tool-selection-report-contract.json` y validalo con `scripts/check.sh`.
 
 ## Output
 

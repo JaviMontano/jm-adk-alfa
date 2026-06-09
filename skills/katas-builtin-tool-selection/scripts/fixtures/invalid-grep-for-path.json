@@ -1,0 +1,16 @@
+{
+  "schema": "jm-labs.katas-builtin-tool-selection.report.v1",
+  "skill": "katas-builtin-tool-selection",
+  "objective": "Find files ending in .test.tsx.",
+  "scope": "repo",
+  "selected_strategy": "Glob-Read",
+  "tool_decisions": [
+    {"intent": "path-search", "chosen_tool": "Grep", "rationale": "Incorrectly searches content for a path pattern.", "evidence_tag": "[CODIGO]"},
+    {"intent": "file-read", "chosen_tool": "Read", "rationale": "Read one file.", "evidence_tag": "[CODIGO]"}
+  ],
+  "read_plan": {"mass_read_upfront": false, "search_before_read": true, "files_considered": 4, "files_read": ["src/Button.test.tsx"]},
+  "edit_plan": {"operation": "none", "anchor": {"old_text": "", "unique_match_count": 0}, "fallback": {"declared": false, "action": "", "trigger": "", "full_file_read_before_write": false, "reason": ""}},
+  "evidence": [{"claim": "Tool mismatch exists.", "evidence_tag": "[CODIGO]", "source": "tool_decisions[0]"}],
+  "validation": {"status": "pass", "offline": true, "network_required": false, "deterministic": true, "uses_randomness": false, "checks": ["assets", "deterministic_scripts", "quality_criteria", "tool_fit", "read_economy", "edit_anchor_safety", "fallback_policy", "evidence_required"]},
+  "risks": {"remaining": [], "forbidden_patterns": []}
+}

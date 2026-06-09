@@ -1,0 +1,36 @@
+{
+  "schema": "jm-labs.katas-builtin-tool-selection.report.v1",
+  "skill": "katas-builtin-tool-selection",
+  "objective": "Replace a hardcoded refund threshold without reading the full repository.",
+  "scope": "Python repo",
+  "selected_strategy": "Grep-Read-Edit",
+  "tool_decisions": [
+    {"intent": "content-search", "chosen_tool": "Grep", "rationale": "The target is a function call in file contents.", "evidence_tag": "[CODIGO]"},
+    {"intent": "file-read", "chosen_tool": "Read", "rationale": "Only the matched file is read before editing.", "evidence_tag": "[CODIGO]"},
+    {"intent": "targeted-edit", "chosen_tool": "Edit", "rationale": "The replacement has a unique anchor.", "evidence_tag": "[CODIGO]"}
+  ],
+  "read_plan": {
+    "mass_read_upfront": false,
+    "search_before_read": true,
+    "files_considered": 12,
+    "files_read": ["src/payments/refund.py"]
+  },
+  "edit_plan": {
+    "operation": "Edit",
+    "anchor": {"old_text": "if amount > 1000:", "unique_match_count": 1},
+    "fallback": {"declared": true, "action": "expand-anchor", "trigger": "", "full_file_read_before_write": false, "reason": "Expand anchor if another identical line appears."}
+  },
+  "evidence": [
+    {"claim": "Grep found processRefund before Read.", "evidence_tag": "[CODIGO]", "source": "tool_decisions[0]"},
+    {"claim": "Edit anchor matched exactly once.", "evidence_tag": "[CODIGO]", "source": "edit_plan.anchor.unique_match_count"}
+  ],
+  "validation": {
+    "status": "pass",
+    "offline": true,
+    "network_required": false,
+    "deterministic": true,
+    "uses_randomness": false,
+    "checks": ["assets", "deterministic_scripts", "quality_criteria", "tool_fit", "read_economy", "edit_anchor_safety", "fallback_policy", "evidence_required"]
+  },
+  "risks": {"remaining": ["Confirm MAX_REFUND import in the target module."], "forbidden_patterns": []}
+}

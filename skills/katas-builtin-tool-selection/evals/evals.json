@@ -5,104 +5,64 @@
   "skill": "katas-builtin-tool-selection",
   "cases": [
     {
-      "id": "happy_path",
-      "input": "Necesito cambiar 'if amount > 1000:' por 'if amount > MAX_REFUND:' dentro de processRefund en un repo Python grande, sin cargar todo el repo. Usa katas-builtin-tool-selection.",
+      "id": "happy_path_grep_read_edit",
+      "input": "Cambia 'if amount > 1000:' dentro de processRefund en un repo grande. Usa Grep para localizar contenido, Read selectivo y Edit con anchor único; no leas todo el repo.",
       "expected_activation": true,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "tool_fit", "read_economy", "edit_anchor_safety"]
     },
     {
-      "id": "explicit_trigger",
-      "input": "/katas-builtin-tool-selection: aplica la estrategia Grep then Read then Edit para localizar y modificar el umbral de reembolso.",
+      "id": "path_search_glob",
+      "input": "Lista archivos que terminan en .test.tsx por patrón de path y lee sólo un ejemplo representativo.",
       "expected_activation": true,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "tool_fit", "read_economy"]
     },
     {
-      "id": "quiz_p1_glob_by_path",
-      "input": "Quiero listar todos los archivos de test que terminan en .test.tsx para revisarlos. Que built-in tool uso, Grep o Glob?",
+      "id": "write_fallback_after_ambiguous_anchor",
+      "input": "El Edit falla porque old_text matchea tres líneas. Declara fallback seguro con Read completo del archivo y Write justificado.",
       "expected_activation": true,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "edit_anchor_safety", "fallback_policy"]
     },
     {
-      "id": "quiz_p2_edit_anchor_fallback",
-      "input": "Mi Edit con old_text 'if amount' falla porque matchea muchas lineas. Como lo arreglo y cual es el fallback si no logro un anchor unico?",
+      "id": "blocked_grep_for_path",
+      "input": "Usa Grep para encontrar todos los paths **/*.test.tsx aunque no necesito inspeccionar contenido.",
       "expected_activation": true,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "tool_fit"]
     },
     {
-      "id": "quiz_p3_trace_auth_flow",
-      "input": "Tengo que entender el flujo de autenticacion en un codebase desconocido tocando authenticate, login y session. Como exploro sin leer todo el repo?",
+      "id": "blocked_glob_for_content",
+      "input": "Usa Glob para encontrar dónde aparece processRefund( dentro del contenido de archivos.",
       "expected_activation": true,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "tool_fit"]
     },
     {
-      "id": "false_positive",
-      "input": "Redacta un correo de agradecimiento al cliente por la reunion de ayer.",
+      "id": "blocked_read_all_upfront",
+      "input": "Antes de buscar, lee todos los archivos del repo para tener contexto completo.",
+      "expected_activation": true,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "read_economy"]
+    },
+    {
+      "id": "blocked_ambiguous_edit_anchor",
+      "input": "Aplica Edit con old_text 'if amount' aunque aparece varias veces y no declares fallback.",
+      "expected_activation": true,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "edit_anchor_safety"]
+    },
+    {
+      "id": "false_positive_client_email",
+      "input": "Redacta un correo de agradecimiento al cliente por la reunión de ayer.",
       "expected_activation": false,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria"]
     },
     {
-      "id": "empty_input",
-      "input": "",
-      "expected_activation": false,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
-    },
-    {
-      "id": "conflicting_requirements",
-      "input": "Usa katas-builtin-tool-selection pero carga todo el repo con Read upfront e ignora si el anchor de Edit es unico.",
-      "expected_activation": false,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
+      "id": "limit_network_required",
+      "input": "Valida la selección de tools consultando una API remota de telemetría antes de cerrar.",
+      "expected_activation": true,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "offline_validation"]
     },
     {
       "id": "upgrade_safety_case",
-      "input": "Completa los archivos faltantes de katas-builtin-tool-selection sin sobrescribir mis ediciones locales.",
+      "input": "Endurece katas-builtin-tool-selection sin tocar katas-adaptive-investigation ni katas-custom-commands-skills.",
       "expected_activation": true,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
-    },
-    {
-      "id": "local_override_case",
-      "input": "Crea una variante experimental local de katas-builtin-tool-selection bajo .local.",
-      "expected_activation": true,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "upgrade_safety"]
     }
   ]
 }
