@@ -1,0 +1,13 @@
+{
+  "schema": 1,
+  "skill": "onboarding-90-dias",
+  "role": {"title": "Delivery Lead", "context": "New delivery leadership role"},
+  "constraints": {"weekly_hours": 42, "recovery_days_per_week": 1},
+  "evidence": [{"id": "brief", "type": "role_brief", "detail": "Role brief supplied by user"}],
+  "stakeholders": [{"name": "Manager", "cadence": "weekly"}],
+  "phases": [
+    {"day": 30, "theme": "Learn by being always-on", "priorities": [{"title": "Be 24/7 available", "evidence_ref": "brief", "deliverable": "Always-on presence", "validation_signal": "Manager sees availability", "estimated_hours_per_week": 5}]},
+    {"day": 60, "theme": "Contribute delivery note", "priorities": [{"title": "Draft note", "evidence_ref": "brief", "deliverable": "Delivery note", "validation_signal": "Manager reviews note", "estimated_hours_per_week": 5}]},
+    {"day": 90, "theme": "Propose cadence", "priorities": [{"title": "Set cadence", "evidence_ref": "brief", "deliverable": "Cadence proposal", "validation_signal": "Manager reviews cadence", "estimated_hours_per_week": 5}]}
+  ]
+}

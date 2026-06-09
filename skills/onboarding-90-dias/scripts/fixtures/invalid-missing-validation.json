@@ -1,0 +1,13 @@
+{
+  "schema": 1,
+  "skill": "onboarding-90-dias",
+  "role": {"title": "AI Architect", "context": "New architecture role with delivery scope"},
+  "constraints": {"weekly_hours": 40, "recovery_days_per_week": 2},
+  "evidence": [{"id": "brief", "type": "role_brief", "detail": "Role brief supplied by user"}],
+  "stakeholders": [{"name": "Manager", "cadence": "weekly"}],
+  "phases": [
+    {"day": 30, "theme": "Learn team context", "priorities": [{"title": "Map stakeholders", "evidence_ref": "brief", "deliverable": "Stakeholder map", "validation_signal": "", "estimated_hours_per_week": 5}]},
+    {"day": 60, "theme": "Contribute architecture note", "priorities": [{"title": "Draft note", "evidence_ref": "brief", "deliverable": "Architecture note", "validation_signal": "Manager reviews note", "estimated_hours_per_week": 5}]},
+    {"day": 90, "theme": "Propose cadence", "priorities": [{"title": "Set cadence", "evidence_ref": "brief", "deliverable": "Cadence proposal", "validation_signal": "Manager reviews cadence", "estimated_hours_per_week": 5}]}
+  ]
+}

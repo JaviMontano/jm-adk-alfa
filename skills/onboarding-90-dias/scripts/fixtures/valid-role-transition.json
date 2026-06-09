@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "skill": "onboarding-90-dias",
+  "role": {"title": "AI Architect", "context": "New enterprise architecture role with discovery and delivery responsibilities"},
+  "constraints": {"weekly_hours": 40, "recovery_days_per_week": 2},
+  "evidence": [
+    {"id": "role-brief", "type": "role_brief", "detail": "Role brief names architecture discovery and delivery enablement"},
+    {"id": "manager-input", "type": "manager_input", "detail": "Manager asked for stakeholder mapping first"},
+    {"id": "capacity", "type": "user_constraint", "detail": "User wants sustainable cadence below forty five hours"}
+  ],
+  "stakeholders": [{"name": "Manager", "cadence": "weekly review"}],
+  "phases": [
+    {
+      "day": 30,
+      "theme": "Learn systems and map stakeholders",
+      "priorities": [
+        {"title": "Map architecture stakeholders", "evidence_ref": "manager-input", "deliverable": "Stakeholder map reviewed with manager", "validation_signal": "Manager confirms map coverage", "estimated_hours_per_week": 6},
+        {"title": "Read role and project context", "evidence_ref": "role-brief", "deliverable": "Context brief with open questions", "validation_signal": "Brief shared in weekly review", "estimated_hours_per_week": 8}
+      ]
+    },
+    {
+      "day": 60,
+      "theme": "Contribute to one bounded architecture deliverable",
+      "priorities": [
+        {"title": "Draft reference architecture note", "evidence_ref": "role-brief", "deliverable": "One architecture note", "validation_signal": "Reviewed by project lead", "estimated_hours_per_week": 10}
+      ]
+    },
+    {
+      "day": 90,
+      "theme": "Propose sustainable operating cadence",
+      "priorities": [
+        {"title": "Document lessons and next cadence", "evidence_ref": "capacity", "deliverable": "90 day retrospective and cadence proposal", "validation_signal": "Review completed with manager", "estimated_hours_per_week": 6}
+      ]
+    }
+  ]
+}

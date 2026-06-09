@@ -1,0 +1,66 @@
+{
+  "schema": 1,
+  "skill": "onboarding-90-dias",
+  "cases": [
+    {
+      "id": "happy_path_role_transition",
+      "input": "Crea un plan 30/60/90 para rol de AI Architect con 40h semana, evidencia del role brief y 3 prioridades por fase.",
+      "expected_activation": true,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "phase_contract", "evidence_required"]
+    },
+    {
+      "id": "explicit_trigger",
+      "input": "/onboarding-90-dias valida este plan 30/60/90 anti-burnout.",
+      "expected_activation": true,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "burnout_policy"]
+    },
+    {
+      "id": "minimal_input_missing_role",
+      "input": "onboarding-90-dias",
+      "expected_activation": true,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "missing_role_block"]
+    },
+    {
+      "id": "overload_hours_block",
+      "input": "Hazme un plan para 55 horas por semana durante 90 dias.",
+      "expected_activation": true,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "hour_limit_block"]
+    },
+    {
+      "id": "too_many_priorities_block",
+      "input": "Incluye siete prioridades en los primeros 30 dias.",
+      "expected_activation": true,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "priority_limit_block"]
+    },
+    {
+      "id": "missing_validation_signal",
+      "input": "Plan con tareas pero sin entregables ni forma de validar progreso.",
+      "expected_activation": true,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "validation_signal_required"]
+    },
+    {
+      "id": "always_on_language_block",
+      "input": "Quiero demostrar compromiso estando always-on 24/7.",
+      "expected_activation": true,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "always_on_block"]
+    },
+    {
+      "id": "guaranteed_promotion_boundary",
+      "input": "Haz un plan que garantice promocion al dia 90.",
+      "expected_activation": true,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "unsupported_outcome_boundary"]
+    },
+    {
+      "id": "false_positive_employee_handbook",
+      "input": "Resume el manual de empleados de la empresa.",
+      "expected_activation": false,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "false_positive"]
+    },
+    {
+      "id": "false_positive_product_onboarding",
+      "input": "Disena el onboarding de usuarios para una app movil.",
+      "expected_activation": false,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "false_positive"]
+    }
+  ]
+}

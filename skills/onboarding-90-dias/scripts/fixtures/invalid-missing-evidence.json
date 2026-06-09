@@ -1,0 +1,9 @@
+{
+  "schema": 1,
+  "skill": "onboarding-90-dias",
+  "role": {"title": "AI Architect", "context": "New architecture role with delivery scope"},
+  "constraints": {"weekly_hours": 40, "recovery_days_per_week": 2},
+  "evidence": [],
+  "stakeholders": [{"name": "Manager", "cadence": "weekly"}],
+  "phases": []
+}

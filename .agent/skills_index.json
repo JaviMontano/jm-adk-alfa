@@ -2370,6 +2370,12 @@
     "description": ">"
   },
   {
+    "id": "onboarding-90-dias",
+    "path": "skills/onboarding-90-dias",
+    "name": "Onboarding 90 Dias",
+    "description": "Genera y valida planes 30/60/90 para nuevos roles con evidencia, hitos verificables, limites anti-burnout, prioridades acotadas y sin promesas de desempeno no sustentadas."
+  },
+  {
     "id": "onboarding-playbook",
     "path": "skills/onboarding-playbook",
     "name": "Onboarding Playbook",

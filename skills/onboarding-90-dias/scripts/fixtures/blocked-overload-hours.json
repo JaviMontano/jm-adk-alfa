@@ -1,0 +1,13 @@
+{
+  "schema": 1,
+  "skill": "onboarding-90-dias",
+  "role": {"title": "Principal Consultant", "context": "New client-facing principal consulting role"},
+  "constraints": {"weekly_hours": 55, "recovery_days_per_week": 1},
+  "evidence": [{"id": "role", "type": "role_brief", "detail": "Role brief names client leadership"}],
+  "stakeholders": [{"name": "Sponsor", "cadence": "weekly"}],
+  "phases": [
+    {"day": 30, "theme": "Learn account context", "priorities": [{"title": "Map account context", "evidence_ref": "role", "deliverable": "Context map", "validation_signal": "Sponsor reviews context map", "estimated_hours_per_week": 12}]},
+    {"day": 60, "theme": "Contribute delivery plan", "priorities": [{"title": "Draft delivery plan", "evidence_ref": "role", "deliverable": "Delivery plan", "validation_signal": "Sponsor reviews delivery plan", "estimated_hours_per_week": 12}]},
+    {"day": 90, "theme": "Propose next cadence", "priorities": [{"title": "Set account cadence", "evidence_ref": "role", "deliverable": "Cadence proposal", "validation_signal": "Sponsor reviews cadence", "estimated_hours_per_week": 12}]}
+  ]
+}

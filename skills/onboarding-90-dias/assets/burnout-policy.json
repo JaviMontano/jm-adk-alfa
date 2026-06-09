@@ -1,0 +1,8 @@
+{
+  "schema": 1,
+  "skill": "onboarding-90-dias",
+  "max_weekly_hours": 45,
+  "minimum_recovery_days_per_week": 1,
+  "blocked_terms": ["always-on", "24/7", "sin descanso", "no dormir", "hustle", "siempre disponible"],
+  "rewrite_rule": "replace availability theater with explicit operating cadence and recovery boundaries"
+}
