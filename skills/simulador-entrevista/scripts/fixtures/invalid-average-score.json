@@ -1,0 +1,17 @@
+{
+  "schema": 1,
+  "skill": "simulador-entrevista",
+  "overall_score": 4,
+  "session": {"role": "generic", "language": "en", "turn": 1, "one_question_mode": true},
+  "question": {"id": "Q-EN-ACHIEVEMENT-001", "angle": "achievement", "prompt": "What is your most measurable achievement and your exact role?"},
+  "answer_summary": "Uses an overall score.",
+  "evidence_snippets": [{"id": "EV-300", "snippet": "measurable result"}],
+  "scores": {
+    "substance": {"score": 4, "evidence_ref": "EV-300", "rationale": "Good."},
+    "english": {"score": 4, "evidence_ref": "EV-300", "rationale": "Good."},
+    "presence": {"score": 4, "evidence_ref": "EV-300", "rationale": "Good."}
+  },
+  "flags": [],
+  "next_step": {"target_dimension": "substance", "action": "Practice detail.", "practice_prompt": "Add one metric."},
+  "validation": {"offline": true, "network_used": false, "result": "pass"}
+}

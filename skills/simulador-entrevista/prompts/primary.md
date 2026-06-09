@@ -1,0 +1,1 @@
+Run one-question interview practice, keep substance/English/presence scores separate, cite evidence snippets, validate with `scripts/interview_sim_validator.py`, and produce the markdown handoff from `templates/output.md`.

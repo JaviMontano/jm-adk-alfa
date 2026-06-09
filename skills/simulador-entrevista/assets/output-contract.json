@@ -1,0 +1,9 @@
+{
+  "schema": 1,
+  "required_top_level": ["schema", "skill", "session", "question", "answer_summary", "evidence_snippets", "scores", "flags", "next_step", "validation"],
+  "session_required": ["role", "language", "turn", "one_question_mode"],
+  "question_required": ["id", "angle", "prompt"],
+  "score_dimensions": ["substance", "english", "presence"],
+  "forbidden_fields": ["overall_score", "average_score", "final_score"],
+  "deterministic_next_step": "lowest score with stable tie order: substance, english, presence"
+}

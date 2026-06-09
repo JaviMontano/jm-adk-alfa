@@ -1,0 +1,33 @@
+{
+  "schema": 1,
+  "skill": "simulador-entrevista",
+  "session": {
+    "role": "generic",
+    "language": "es",
+    "turn": 2,
+    "one_question_mode": true
+  },
+  "question": {
+    "id": "Q-ES-PRIORITY-001",
+    "angle": "prioridad",
+    "prompt": "Como manejas prioridades en conflicto?"
+  },
+  "answer_summary": "La respuesta prioriza impacto, alinea stakeholders y declara trade-offs.",
+  "evidence_snippets": [
+    {"id": "EV-010", "snippet": "priorizo por impacto al cliente"},
+    {"id": "EV-011", "snippet": "alineo a los stakeholders antes de comprometer fechas"},
+    {"id": "EV-012", "snippet": "explico trade-offs y riesgos"}
+  ],
+  "scores": {
+    "substance": {"score": 4, "evidence_ref": "EV-010", "rationale": "Criterio de priorizacion claro."},
+    "english": {"score": 3, "evidence_ref": "EV-011", "rationale": "No aplica por idioma espanol, se evalua claridad verbal equivalente."},
+    "presence": {"score": 4, "evidence_ref": "EV-012", "rationale": "Muestra calma y criterio ante tensiones."}
+  },
+  "flags": [],
+  "next_step": {
+    "target_dimension": "english",
+    "action": "Convert the answer into a concise English version.",
+    "practice_prompt": "Answer the same question in English using three short sentences."
+  },
+  "validation": {"offline": true, "network_used": false, "result": "pass"}
+}

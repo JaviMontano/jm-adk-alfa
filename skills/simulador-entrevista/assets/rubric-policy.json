@@ -1,0 +1,10 @@
+{
+  "schema": 1,
+  "dimensions": {
+    "substance": "Business relevance, clarity, evidence, impact, and ownership.",
+    "english": "Fluency, precision, grammar, vocabulary, and professional register.",
+    "presence": "Structure, calm, executive signal, and leadership poise."
+  },
+  "score_range": [1, 5],
+  "rule": "Scores are never averaged or collapsed."
+}

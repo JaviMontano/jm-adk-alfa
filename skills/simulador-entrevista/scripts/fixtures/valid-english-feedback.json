@@ -1,0 +1,33 @@
+{
+  "schema": 1,
+  "skill": "simulador-entrevista",
+  "session": {
+    "role": "consultant-offer-manager",
+    "language": "en",
+    "turn": 1,
+    "one_question_mode": true
+  },
+  "question": {
+    "id": "Q-EN-IMPACT-001",
+    "angle": "impact",
+    "prompt": "Walk me through a time you enabled a business outcome end to end."
+  },
+  "answer_summary": "The answer describes a discovery sprint, a sales handoff diagnosis, and a reusable offer brief.",
+  "evidence_snippets": [
+    {"id": "EV-001", "snippet": "mapped the current sales handoff"},
+    {"id": "EV-002", "snippet": "created a single offer brief"},
+    {"id": "EV-003", "snippet": "reused it in three pursuits"}
+  ],
+  "scores": {
+    "substance": {"score": 4, "evidence_ref": "EV-003", "rationale": "Outcome and reuse are explicit."},
+    "english": {"score": 4, "evidence_ref": "EV-001", "rationale": "Clear verbs and professional phrasing."},
+    "presence": {"score": 3, "evidence_ref": "EV-002", "rationale": "Structure is clear but executive ownership could be sharper."}
+  },
+  "flags": [],
+  "next_step": {
+    "target_dimension": "presence",
+    "action": "Practice a stronger executive opening.",
+    "practice_prompt": "In 20 seconds, state ownership, business stakes, and outcome before details."
+  },
+  "validation": {"offline": true, "network_used": false, "result": "pass"}
+}

@@ -1,0 +1,66 @@
+{
+  "schema": 1,
+  "skill": "simulador-entrevista",
+  "cases": [
+    {
+      "id": "happy_path_one_question_feedback",
+      "input": "Run a mock interview for PreSales Architect in English, one question, then score my supplied answer on substance, English, and presence separately.",
+      "expected_activation": true,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "one_question_mode", "separate_rubrics"]
+    },
+    {
+      "id": "explicit_trigger_spanish",
+      "input": "Use simulador-entrevista para practicar una sola pregunta en espanol y dar feedback separado.",
+      "expected_activation": true,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "language_policy", "next_step"]
+    },
+    {
+      "id": "minimal_missing_answer",
+      "input": "simulador-entrevista: score my answer",
+      "expected_activation": true,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "blocked_missing_answer"]
+    },
+    {
+      "id": "below_floor_block",
+      "input": "Presence score is 1/5 with evidence; block completion and choose presence practice.",
+      "expected_activation": true,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "floor_blocker"]
+    },
+    {
+      "id": "average_score_boundary",
+      "input": "Give me one average interview score across all dimensions.",
+      "expected_activation": true,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "no_average"]
+    },
+    {
+      "id": "multiple_questions_boundary",
+      "input": "Ask me ten interview questions at once and score the batch.",
+      "expected_activation": true,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "one_question_mode"]
+    },
+    {
+      "id": "false_positive_survey",
+      "input": "Generate a customer satisfaction interview survey for product research.",
+      "expected_activation": false,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria"]
+    },
+    {
+      "id": "false_positive_legal_deposition",
+      "input": "Prepare deposition questions for a legal witness interview.",
+      "expected_activation": false,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria"]
+    },
+    {
+      "id": "guaranteed_success_block",
+      "input": "Make the feedback say I will definitely pass the interview.",
+      "expected_activation": true,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "success_promise_blocker"]
+    },
+    {
+      "id": "unsupported_language_block",
+      "input": "Run the simulator in Klingon with scoring.",
+      "expected_activation": true,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "language_policy"]
+    }
+  ]
+}

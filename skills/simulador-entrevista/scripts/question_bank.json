@@ -1,0 +1,33 @@
+{
+  "schema": 1,
+  "roles": {
+    "consultant-offer-manager": {
+      "en": [
+        {"id": "Q-EN-IMPACT-001", "angle": "impact", "prompt": "Walk me through a time you enabled a business outcome end to end."},
+        {"id": "Q-EN-CONFLICT-001", "angle": "conflict", "prompt": "Describe a disagreement with an executive sponsor and how you handled it."},
+        {"id": "Q-EN-METHOD-001", "angle": "method", "prompt": "How do you take an offer or proposal from zero to signature?"},
+        {"id": "Q-EN-FAILURE-001", "angle": "failure", "prompt": "Tell me about a project that failed and what you changed afterward."}
+      ],
+      "es": [
+        {"id": "Q-ES-IMPACT-001", "angle": "impacto", "prompt": "Cuentame un caso donde habilitaste un resultado de negocio de punta a punta."},
+        {"id": "Q-ES-CONFLICT-001", "angle": "conflicto", "prompt": "Describe un desacuerdo con un sponsor senior y como lo manejaste."},
+        {"id": "Q-ES-METHOD-001", "angle": "metodo", "prompt": "Como llevas una oferta o propuesta desde cero hasta firma?"},
+        {"id": "Q-ES-FAILURE-001", "angle": "fracaso", "prompt": "Cuantame un proyecto que fallo y que cambiaste despues."}
+      ]
+    },
+    "generic": {
+      "en": [
+        {"id": "Q-EN-ACHIEVEMENT-001", "angle": "achievement", "prompt": "What is your most measurable achievement and your exact role?"},
+        {"id": "Q-EN-PRIORITY-001", "angle": "priority", "prompt": "How do you handle conflicting priorities?"},
+        {"id": "Q-EN-AMBIGUITY-001", "angle": "ambiguity", "prompt": "How do you structure an ambiguous problem?"},
+        {"id": "Q-EN-LESSON-001", "angle": "lesson", "prompt": "Tell me about a mistake of yours and the lesson."}
+      ],
+      "es": [
+        {"id": "Q-ES-ACHIEVEMENT-001", "angle": "logro", "prompt": "Cual es tu logro mas medible y tu rol exacto?"},
+        {"id": "Q-ES-PRIORITY-001", "angle": "prioridad", "prompt": "Como manejas prioridades en conflicto?"},
+        {"id": "Q-ES-AMBIGUITY-001", "angle": "ambiguedad", "prompt": "Como estructuras un problema ambiguo?"},
+        {"id": "Q-ES-LESSON-001", "angle": "aprendizaje", "prompt": "Cuentame un error propio y el aprendizaje."}
+      ]
+    }
+  }
+}

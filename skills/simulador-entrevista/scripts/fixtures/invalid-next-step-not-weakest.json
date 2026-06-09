@@ -1,0 +1,16 @@
+{
+  "schema": 1,
+  "skill": "simulador-entrevista",
+  "session": {"role": "generic", "language": "en", "turn": 1, "one_question_mode": true},
+  "question": {"id": "Q-EN-PRIORITY-001", "angle": "priority", "prompt": "How do you handle conflicting priorities?"},
+  "answer_summary": "Presence is weakest but next step targets substance.",
+  "evidence_snippets": [{"id": "EV-500", "snippet": "I pause and align priorities."}],
+  "scores": {
+    "substance": {"score": 4, "evidence_ref": "EV-500", "rationale": "Good content."},
+    "english": {"score": 4, "evidence_ref": "EV-500", "rationale": "Clear."},
+    "presence": {"score": 2, "evidence_ref": "EV-500", "rationale": "Thin leadership signal."}
+  },
+  "flags": [],
+  "next_step": {"target_dimension": "substance", "action": "Wrong target.", "practice_prompt": "Add more content."},
+  "validation": {"offline": true, "network_used": false, "result": "pass"}
+}

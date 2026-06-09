@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "skill": "simulador-entrevista",
+  "assets": [
+    {
+      "path": "assets/output-contract.json",
+      "type": "contract",
+      "purpose": "Defines required feedback report fields.",
+      "used_by": ["SKILL.md", "templates/output.md", "scripts/interview_sim_validator.py"]
+    },
+    {
+      "path": "assets/rubric-policy.json",
+      "type": "policy",
+      "purpose": "Defines separate substance, English, and presence rubrics.",
+      "used_by": ["SKILL.md", "scripts/interview_sim_validator.py"]
+    },
+    {
+      "path": "assets/question-policy.json",
+      "type": "policy",
+      "purpose": "Requires one question per turn and stable question IDs.",
+      "used_by": ["SKILL.md", "scripts/question_bank.json", "scripts/interview_sim_validator.py"]
+    },
+    {
+      "path": "assets/feedback-policy.json",
+      "type": "policy",
+      "purpose": "Defines score floor, flags, and weakest-dimension next-step selection.",
+      "used_by": ["SKILL.md", "templates/output.md", "scripts/interview_sim_validator.py"]
+    },
+    {
+      "path": "assets/safety-policy.json",
+      "type": "policy",
+      "purpose": "Blocks success guarantees and fabricated experience guidance.",
+      "used_by": ["SKILL.md", "scripts/interview_sim_validator.py"]
+    }
+  ]
+}
