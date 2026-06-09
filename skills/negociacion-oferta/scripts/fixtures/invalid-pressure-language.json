@@ -1,0 +1,21 @@
+{
+  "schema": 1,
+  "skill": "negociacion-oferta",
+  "floor_usd": 7000,
+  "evidence": [{"type": "written_offer", "detail": "Offer states 7600 USD monthly."}],
+  "offers": [
+    {
+      "name": "Pressure Draft",
+      "monthly_usd": 7600,
+      "allows_parallel_streams": true,
+      "relocation_ok": true,
+      "hustle_culture": false,
+      "pivote": {"purpose": 8, "income": 8, "viability": 7, "optionality": 7, "traction": 8, "energy": 7},
+      "notes": "Clean offer."
+    }
+  ],
+  "counterproposal": {
+    "target_monthly_usd": 8500,
+    "draft": "Esta es su ultima oportunidad antes de que sea tarde."
+  }
+}

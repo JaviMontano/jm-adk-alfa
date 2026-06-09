@@ -2292,6 +2292,12 @@
     "description": ">"
   },
   {
+    "id": "negociacion-oferta",
+    "path": "skills/negociacion-oferta",
+    "name": "Negociacion Oferta",
+    "description": "Evalua ofertas profesionales con filtros de aceptacion, PIVOTE, evidencia suministrada y contrapropuestas sin presion, numeros inventados ni claims de mercado vivo."
+  },
+  {
     "id": "newsletter-design",
     "path": "skills/newsletter-design",
     "name": "Newsletter Design",

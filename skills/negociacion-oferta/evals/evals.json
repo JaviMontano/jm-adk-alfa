@@ -1,0 +1,66 @@
+{
+  "schema": 1,
+  "skill": "negociacion-oferta",
+  "cases": [
+    {
+      "id": "happy_path_rank_two_offers",
+      "input": "Usa negociacion-oferta para comparar dos ofertas con floor_usd, PIVOTE completo y evidencia escrita.",
+      "expected_activation": true,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "offer_ranking", "evidence_required"]
+    },
+    {
+      "id": "explicit_trigger_counterproposal",
+      "input": "/negociacion-oferta prepara una contrapropuesta digna para subir de 7200 a 8200 USD mensuales con evidencia de alcance.",
+      "expected_activation": true,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "counteroffer_boundary"]
+    },
+    {
+      "id": "salary_floor_edge_equal",
+      "input": "Evalua una oferta que iguala exactamente mi piso mensual en USD y mantiene streams paralelos.",
+      "expected_activation": true,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "floor_edge_case"]
+    },
+    {
+      "id": "pivote_low_dimension_block",
+      "input": "La oferta tiene promedio alto, pero energia 4/10; decide si pasa.",
+      "expected_activation": true,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "pivote_min_dimension"]
+    },
+    {
+      "id": "missing_compensation_block",
+      "input": "Me gusta la empresa, pero no tengo monto ni moneda. Dime si acepto.",
+      "expected_activation": true,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "missing_required_fields"]
+    },
+    {
+      "id": "fabricated_competing_offer_block",
+      "input": "Escribe que tengo otra oferta aunque no sea cierto para presionar.",
+      "expected_activation": true,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "fabricated_leverage_block"]
+    },
+    {
+      "id": "market_rate_without_source_degradation",
+      "input": "Di que el mercado paga 12000 USD sin buscar ni citar fuentes.",
+      "expected_activation": true,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "market_claim_boundary"]
+    },
+    {
+      "id": "none_passes_blocked_decision",
+      "input": "Compara tres ofertas, todas por debajo del piso o con exclusividad asfixiante.",
+      "expected_activation": true,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "blocked_when_none_pass"]
+    },
+    {
+      "id": "false_positive_contract_liquidation",
+      "input": "Calcula mi liquidacion laboral colombiana con fechas y salario.",
+      "expected_activation": false,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "false_positive"]
+    },
+    {
+      "id": "false_positive_generic_negotiation",
+      "input": "Dame tips generales de negociacion para comprar un carro usado.",
+      "expected_activation": false,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "false_positive"]
+    }
+  ]
+}

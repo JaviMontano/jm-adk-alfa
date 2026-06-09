@@ -1,0 +1,14 @@
+{
+  "schema": 1,
+  "skill": "negociacion-oferta",
+  "allowed_types": ["written_offer", "recruiter_statement", "contract_clause", "user_constraint", "documented_competing_offer", "scope_detail", "market_source"],
+  "required_for_claims": {
+    "compensation": ["written_offer", "recruiter_statement"],
+    "exclusivity": ["contract_clause", "recruiter_statement"],
+    "relocation": ["written_offer", "recruiter_statement", "user_constraint"],
+    "competing_offer": ["documented_competing_offer"],
+    "market_rate": ["market_source"],
+    "scope": ["scope_detail", "written_offer"]
+  },
+  "missing_evidence_behavior": "block or mark as open question"
+}

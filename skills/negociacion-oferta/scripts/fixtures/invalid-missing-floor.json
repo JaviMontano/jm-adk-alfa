@@ -1,0 +1,16 @@
+{
+  "schema": 1,
+  "skill": "negociacion-oferta",
+  "evidence": [{"type": "written_offer", "detail": "Offer states 7200 USD monthly."}],
+  "offers": [
+    {
+      "name": "No Floor",
+      "monthly_usd": 7200,
+      "allows_parallel_streams": true,
+      "relocation_ok": true,
+      "hustle_culture": false,
+      "pivote": {"purpose": 8, "income": 8, "viability": 7, "optionality": 7, "traction": 8, "energy": 7},
+      "notes": "Missing floor."
+    }
+  ]
+}

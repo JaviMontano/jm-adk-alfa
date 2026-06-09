@@ -1,0 +1,7 @@
+{
+  "schema": 1,
+  "skill": "negociacion-oferta",
+  "floor_usd": 7000,
+  "evidence": [{"type": "user_constraint", "detail": "User requires at least 7000 USD monthly."}],
+  "offers": []
+}

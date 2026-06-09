@@ -1,0 +1,12 @@
+{
+  "schema": 1,
+  "skill": "negociacion-oferta",
+  "hard_filters": [
+    {"id": "compensation_floor", "rule": "monthly_usd >= floor_usd"},
+    {"id": "parallel_streams", "rule": "allows_parallel_streams is true unless a documented exception is supplied and monthly_usd >= exclusive_exception_floor_usd"},
+    {"id": "pivote_gate", "rule": "PIVOTE average >= 7 and every dimension >= 5"},
+    {"id": "no_hustle", "rule": "hustle_culture is false and notes contain no hustle phrases"},
+    {"id": "relocation_compatible", "rule": "relocation_ok is true"}
+  ],
+  "blocked_defaults": ["missing_offers", "missing_floor_usd", "missing_pivote_dimension", "missing_evidence"]
+}

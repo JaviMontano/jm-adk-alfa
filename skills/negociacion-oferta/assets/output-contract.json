@@ -1,0 +1,7 @@
+{
+  "schema": 1,
+  "skill": "negociacion-oferta",
+  "required_sections": ["summary", "inputs_used", "offer_scores", "ranking_or_blocker", "counterproposal", "open_questions", "validation", "risks"],
+  "packet_required_keys": ["floor_usd", "evidence", "offers"],
+  "exit_codes": {"0": "one or more offers pass", "1": "packet issues or no passing offers", "3": "bad input"}
+}

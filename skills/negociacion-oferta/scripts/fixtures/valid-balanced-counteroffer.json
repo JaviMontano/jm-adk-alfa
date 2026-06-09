@@ -1,0 +1,28 @@
+{
+  "schema": 1,
+  "skill": "negociacion-oferta",
+  "floor_usd": 7000,
+  "exclusive_exception_floor_usd": 10000,
+  "evidence": [
+    {"type": "written_offer", "detail": "Offer letter states 7600 USD monthly retainer."},
+    {"type": "scope_detail", "detail": "Scope includes advisory and delivery leadership."},
+    {"type": "user_constraint", "detail": "User needs to preserve parallel advisory streams."}
+  ],
+  "offers": [
+    {
+      "name": "Sofka Advisory",
+      "monthly_usd": 7600,
+      "allows_parallel_streams": true,
+      "relocation_ok": true,
+      "hustle_culture": false,
+      "pivote": {"purpose": 8, "income": 8, "viability": 7, "optionality": 7, "traction": 8, "energy": 7},
+      "notes": "Written scope confirms advisory plus delivery leadership."
+    }
+  ],
+  "counterproposal": {
+    "target_monthly_usd": 8200,
+    "rationale": "Scope includes advisory plus delivery leadership.",
+    "competing_offer_claim": false,
+    "market_rate_claim": false
+  }
+}

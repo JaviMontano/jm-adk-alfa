@@ -1,0 +1,20 @@
+{
+  "schema": 1,
+  "skill": "negociacion-oferta",
+  "floor_usd": 8000,
+  "evidence": [
+    {"type": "written_offer", "detail": "Offer letter states 6200 USD monthly."},
+    {"type": "contract_clause", "detail": "Contract requires full exclusivity without exception."}
+  ],
+  "offers": [
+    {
+      "name": "Low Floor Exclusive",
+      "monthly_usd": 6200,
+      "allows_parallel_streams": false,
+      "relocation_ok": true,
+      "hustle_culture": false,
+      "pivote": {"purpose": 8, "income": 5, "viability": 7, "optionality": 4, "traction": 7, "energy": 7},
+      "notes": "Full exclusivity blocks parallel streams."
+    }
+  ]
+}
