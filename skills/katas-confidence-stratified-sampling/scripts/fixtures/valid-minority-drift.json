@@ -1,0 +1,57 @@
+{
+  "schema": "jm-labs.katas-confidence-stratified-sampling.report.v1",
+  "skill": "katas-confidence-stratified-sampling",
+  "extraction_task": "Contract extraction with minority amendment segment monitoring.",
+  "labeled_validation_set": {
+    "size": 180,
+    "fields": ["effective_date", "counterparty"],
+    "document_types": ["contract", "amendment"]
+  },
+  "calibration": {
+    "method": "empirical-bucket-calibration",
+    "uses_raw_confidence_for_routing": false,
+    "buckets": [
+      {"bucket": "0.70-0.79", "sample_count": 40, "empirical_accuracy": 0.68, "calibrated_confidence": 0.68},
+      {"bucket": "0.90-1.00", "sample_count": 85, "empirical_accuracy": 0.88, "calibrated_confidence": 0.88}
+    ]
+  },
+  "sampling": {
+    "strategy": "stratified",
+    "random_total_only": false,
+    "includes_minority_segments": true,
+    "strata": [
+      {"document_type": "contract", "score_bucket": "0.90-1.00", "population_size": 500, "sample_size": 35},
+      {"document_type": "amendment", "score_bucket": "0.70-0.79", "population_size": 45, "sample_size": 15}
+    ]
+  },
+  "accuracy_report": {
+    "aggregate_only": false,
+    "rows": [
+      {"document_type": "contract", "field": "effective_date", "accuracy": 0.91, "n": 90},
+      {"document_type": "contract", "field": "counterparty", "accuracy": 0.89, "n": 90},
+      {"document_type": "amendment", "field": "effective_date", "accuracy": 0.69, "n": 45},
+      {"document_type": "amendment", "field": "counterparty", "accuracy": 0.72, "n": 45}
+    ]
+  },
+  "routing": {
+    "basis": "calibrated_confidence",
+    "auto_threshold": 0.9,
+    "human_review_threshold": 0.8,
+    "decisions": [
+      {"document_type": "contract", "field": "effective_date", "calibrated_confidence": 0.88, "route": "control_sample"},
+      {"document_type": "amendment", "field": "effective_date", "calibrated_confidence": 0.68, "route": "human_review"}
+    ]
+  },
+  "evidence": [
+    {"claim": "Minority amendment segment remains sampled.", "evidence_tag": "[CODIGO]", "source": "sampling.strata[1]"}
+  ],
+  "validation": {
+    "status": "warn",
+    "offline": true,
+    "network_required": false,
+    "deterministic": true,
+    "uses_randomness": false,
+    "checks": ["assets", "deterministic_scripts", "quality_criteria", "labeled_validation_set", "calibration_buckets", "stratified_sampling", "segmented_accuracy", "calibrated_routing", "evidence_required"]
+  },
+  "risks": {"remaining": ["Amendment effective_date requires manual review until retrained."], "forbidden_patterns": []}
+}

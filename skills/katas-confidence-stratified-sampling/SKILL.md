@@ -76,6 +76,24 @@ print(f"Accuracy: {global_acc}")  # 97% global que oculta 60% en un segmento
 - Describir stratified sampling y por qué supera al random sampling para detectar drift en segmentos minoritarios.
 - Rechazar reportar accuracy agregada; exigir desglose por `document_type` y field.
 - Conectar la calibración con el routing operativo (auto vs human).
+- Emitir reportes críticos compatibles con `assets/confidence-calibration-report-contract.json`.
+- Validar labeled set, buckets, sampling, accuracy segmentada y routing con `scripts/check.sh`.
+
+## Contrato determinístico
+
+La skill usa `assets/` como contrato offline:
+
+- `assets/calibration-policy.json`: exige labeled validation set y calibración empírica por bucket; bloquea routing por raw confidence.
+- `assets/stratified-sampling-policy.json`: exige estratos por `document_type` y `score_bucket`, incluyendo segmentos minoritarios.
+- `assets/accuracy-reporting-policy.json`: bloquea reportes aggregate-only y exige filas por `document_type` + field.
+- `assets/routing-policy.json`: auto/human/control se decide por `calibrated_confidence`.
+- `assets/evidence-policy.json`: evidencia local, sin red ni random.
+
+Validación local:
+
+```bash
+bash skills/katas-confidence-stratified-sampling/scripts/check.sh
+```
 
 ## Cuándo activar
 

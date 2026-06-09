@@ -30,6 +30,7 @@ En extracciones masivas el modelo emite `field_confidence` scores. Esos scores s
 | Cobertura de muestreo | Stratified sampling alcanza document_types minoritarios |
 | Routing conectado | La decisión auto vs human deriva de la accuracy calibrada |
 | Update safety | El trabajo manual existente se preserva |
+| Offline contract | `assets/` y `scripts/check.sh` validan labeled set, buckets, sampling, accuracy y routing |
 
 ## Anti-patrón canónico
 
@@ -41,6 +42,15 @@ print(f"Accuracy: {global_acc}")  # 97% global que oculta 60% en un segmento
 ```
 
 El número global "97% accuracy" da seguridad falsa mientras un `document_type` falla en silencio. El stratified sampling es la red que captura nuevos modos de error.
+
+## Deterministic Validation
+
+- Exigir `labeled_validation_set.size > 0`, campos y `document_types`.
+- Calibrar con `method=empirical-bucket-calibration` y `uses_raw_confidence_for_routing=false`.
+- Exigir buckets con `sample_count`, `empirical_accuracy` y `calibrated_confidence` en rango 0..1.
+- Exigir `sampling.strategy=stratified`, `random_total_only=false` y cobertura de todos los `document_types`.
+- Rechazar `accuracy_report.aggregate_only=true`.
+- Exigir `routing.basis=calibrated_confidence`.
 
 ## Quiz canónico (B·B·B)
 

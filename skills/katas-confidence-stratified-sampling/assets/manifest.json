@@ -1,0 +1,42 @@
+{
+  "schema": 1,
+  "skill": "katas-confidence-stratified-sampling",
+  "assets": [
+    {
+      "path": "assets/confidence-calibration-report-contract.json",
+      "type": "schema",
+      "purpose": "Defines the deterministic report contract for confidence calibration.",
+      "used_by": ["SKILL.md", "scripts/validate_confidence_report.py", "evals/evals.json"]
+    },
+    {
+      "path": "assets/calibration-policy.json",
+      "type": "policy",
+      "purpose": "Requires labeled validation sets and empirical calibration buckets.",
+      "used_by": ["SKILL.md", "scripts/validate_confidence_report.py", "knowledge/body-of-knowledge.md"]
+    },
+    {
+      "path": "assets/stratified-sampling-policy.json",
+      "type": "policy",
+      "purpose": "Requires sampling by document_type and confidence bucket.",
+      "used_by": ["SKILL.md", "scripts/validate_confidence_report.py", "examples/example-output.md"]
+    },
+    {
+      "path": "assets/accuracy-reporting-policy.json",
+      "type": "policy",
+      "purpose": "Rejects aggregate-only accuracy and requires document_type plus field rows.",
+      "used_by": ["SKILL.md", "scripts/validate_confidence_report.py", "templates/output.md"]
+    },
+    {
+      "path": "assets/routing-policy.json",
+      "type": "policy",
+      "purpose": "Requires auto/human routing to use calibrated confidence.",
+      "used_by": ["SKILL.md", "scripts/validate_confidence_report.py", "prompts/primary.md"]
+    },
+    {
+      "path": "assets/evidence-policy.json",
+      "type": "policy",
+      "purpose": "Defines evidence tag and offline validation requirements.",
+      "used_by": ["SKILL.md", "scripts/validate_confidence_report.py", "evals/evals.json"]
+    }
+  ]
+}

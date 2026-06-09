@@ -1,0 +1,8 @@
+{
+  "schema": "jm-labs.asset.calibration-policy.v1",
+  "skill": "katas-confidence-stratified-sampling",
+  "requires_labeled_validation_set": true,
+  "method": "empirical-bucket-calibration",
+  "raw_confidence_routing_allowed": false,
+  "bucket_fields": ["bucket", "sample_count", "empirical_accuracy", "calibrated_confidence"]
+}

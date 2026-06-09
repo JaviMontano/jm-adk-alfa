@@ -25,6 +25,7 @@ Diseñar un pipeline de extracción masiva con confianza calibrada y routing ope
 3. Stratified sampling: muestrea proporcional por `document_type` y rango de score, cubriendo segmentos minoritarios.
 4. Enruta high-confidence calibrada a auto (con muestreo de control) y low a revisión humana.
 5. Reporta accuracy desglosada por `document_type` y field; nunca un único número global.
+6. Para handoffs críticos, emite el JSON de `assets/confidence-calibration-report-contract.json` y validalo con `scripts/check.sh`.
 
 ## Output
 

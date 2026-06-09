@@ -31,4 +31,21 @@ Invoca esta skill cuando un pipeline de extracción estructurada emita confidenc
 
 ## Output Format
 
-Markdown con summary, evidence, result (decisiones de routing + tabla de accuracy por `document_type`), validation y risks.
+Markdown con summary, evidence, result (decisiones de routing + tabla de accuracy por `document_type` y field), validation y risks. Para handoffs críticos, incluir un JSON compatible con `assets/confidence-calibration-report-contract.json`.
+
+## Deterministic Assets
+
+- `assets/manifest.json` lista el contrato local.
+- `assets/calibration-policy.json` exige labeled validation y buckets empíricos.
+- `assets/stratified-sampling-policy.json` exige cobertura por `document_type` y rango de score.
+- `assets/accuracy-reporting-policy.json` rechaza accuracy agregada como única métrica.
+- `assets/routing-policy.json` exige decisiones basadas en confianza calibrada.
+- `assets/evidence-policy.json` exige evidencia local offline.
+
+## Offline Check
+
+Run:
+
+```bash
+bash skills/katas-confidence-stratified-sampling/scripts/check.sh
+```

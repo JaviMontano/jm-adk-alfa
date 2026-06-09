@@ -1,0 +1,8 @@
+{
+  "schema": "jm-labs.asset.accuracy-reporting-policy.v1",
+  "skill": "katas-confidence-stratified-sampling",
+  "aggregate_only_allowed": false,
+  "required_dimensions": ["document_type", "field"],
+  "required_metrics": ["accuracy", "n"],
+  "forbidden_patterns": ["global_accuracy_only", "single_average"]
+}

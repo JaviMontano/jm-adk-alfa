@@ -7,4 +7,4 @@ overwrite-policy: missing-only unless --force
 
 # Example Input
 
-Use `katas-confidence-stratified-sampling` to produce a concise deliverable for a realistic project request.
+Un pipeline extrae `total` y `vendor` de facturas y recibos. Cada field trae `field_confidence` raw. Tenemos un labeled validation set de 240 ejemplos con truth labels. Hay que decidir qué documentos pueden ir a auto, cuáles a revisión humana y qué sampling de control ejecutar sin ocultar fallas de receipts en un promedio global.
