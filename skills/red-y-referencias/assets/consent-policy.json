@@ -1,0 +1,7 @@
+{
+  "schema": 1,
+  "statuses": ["explicit_granted", "explicit_denied", "not_requested", "expired", "unknown"],
+  "actions_requiring_explicit_consent": ["list_reference", "recruiter_contact", "ask_intro"],
+  "safe_without_prior_consent": ["request_consent", "no_contact"],
+  "rule": "Relationship strength never implies consent."
+}

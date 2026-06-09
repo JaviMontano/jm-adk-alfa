@@ -1,0 +1,6 @@
+{
+  "schema": 1,
+  "stale_after_days": 30,
+  "clock_source": "packet.as_of",
+  "rule": "Compute stale follow-up only from supplied ISO dates; never from the current clock."
+}

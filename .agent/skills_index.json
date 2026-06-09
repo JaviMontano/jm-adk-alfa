@@ -2790,6 +2790,12 @@
     "description": ">"
   },
   {
+    "id": "red-y-referencias",
+    "path": "skills/red-y-referencias",
+    "name": "Red Y Referencias",
+    "description": "This skill should be used when the user asks to manage a professional reference network, request or audit explicit consent, plan referral follow-ups, map relationship context, decide whether a reference can be contacted, or create an evidence-backed networking handoff."
+  },
+  {
     "id": "release-strategy",
     "path": "skills/release-strategy",
     "name": "Release Strategy",

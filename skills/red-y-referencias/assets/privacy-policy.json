@@ -1,0 +1,6 @@
+{
+  "schema": 1,
+  "blocked_direct_details": ["email_address", "phone_number", "payment_identifier", "private_channel_handle"],
+  "allowed_display": ["contact_label", "relationship", "consent_status", "allowed_actions"],
+  "rule": "Use privacy-safe labels and short evidence summaries, not raw contact details."
+}

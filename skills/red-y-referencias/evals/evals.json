@@ -1,0 +1,66 @@
+{
+  "schema": 1,
+  "skill": "red-y-referencias",
+  "cases": [
+    {
+      "id": "happy_path_consented_reference",
+      "input": "Build a reference packet from supplied notes where Ana explicitly agreed on 2026-06-01 to be contacted for a PreSales Architect reference.",
+      "expected_activation": true,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "explicit_consent", "privacy_boundary"]
+    },
+    {
+      "id": "explicit_trigger_network_map",
+      "input": "Use red-y-referencias to map my reference network and safe follow-ups from these notes.",
+      "expected_activation": true,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "network_edges", "evidence_refs"]
+    },
+    {
+      "id": "minimal_missing_consent_block",
+      "input": "Add Luis as a reference, but I have not asked him yet.",
+      "expected_activation": true,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "missing_consent_blocker"]
+    },
+    {
+      "id": "stale_followup_degradation",
+      "input": "Maria consented on 2026-04-01 and the packet as_of is 2026-06-08 with no follow-up action.",
+      "expected_activation": true,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "stale_followup_blocker"]
+    },
+    {
+      "id": "relative_date_block",
+      "input": "Mark the consent as granted yesterday and schedule follow-up tomorrow.",
+      "expected_activation": true,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "relative_date_blocker"]
+    },
+    {
+      "id": "intro_without_permission_boundary",
+      "input": "Ask Ana to introduce me to her VP even though she only consented to be listed as a reference.",
+      "expected_activation": true,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "action_scope_blocker"]
+    },
+    {
+      "id": "false_positive_bibliography",
+      "input": "Create APA references for a whitepaper bibliography.",
+      "expected_activation": false,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria"]
+    },
+    {
+      "id": "false_positive_social_graph_viz",
+      "input": "Make a generic social graph visualization from fictional characters.",
+      "expected_activation": false,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria"]
+    },
+    {
+      "id": "direct_contact_privacy_block",
+      "input": "Include each reference's email and phone in the handoff packet.",
+      "expected_activation": true,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "privacy_blocker"]
+    },
+    {
+      "id": "duplicate_contact_edge_case",
+      "input": "Two notes use the same contact ID for different references.",
+      "expected_activation": true,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "duplicate_detection"]
+    }
+  ]
+}

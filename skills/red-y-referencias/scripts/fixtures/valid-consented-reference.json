@@ -1,0 +1,52 @@
+{
+  "schema": 1,
+  "skill": "red-y-referencias",
+  "packet": {
+    "status": "active",
+    "as_of": "2026-06-08"
+  },
+  "evidence": [
+    {
+      "id": "E-001",
+      "type": "consent_message",
+      "date": "2026-06-01",
+      "source": "Copied consent summary",
+      "summary": "Ana Gomez explicitly agreed to be listed as a reference and allowed one recruiter contact."
+    },
+    {
+      "id": "E-002",
+      "type": "followup_log",
+      "date": "2026-06-05",
+      "source": "Manual follow-up log",
+      "summary": "Thank-you message was sent after consent."
+    }
+  ],
+  "contacts": [
+    {
+      "id": "C-001",
+      "contact_label": "Ana Gomez",
+      "relationship": "Former delivery stakeholder",
+      "consent_status": "explicit_granted",
+      "consent_evidence_ref": "E-001",
+      "last_contact_date": "2026-06-05",
+      "allowed_actions": ["list_reference", "recruiter_contact", "send_thanks"]
+    }
+  ],
+  "actions": [
+    {
+      "id": "A-001",
+      "contact_id": "C-001",
+      "action_type": "recruiter_contact",
+      "due_date": "2026-06-12",
+      "status": "planned",
+      "evidence_ref": "E-001"
+    }
+  ],
+  "network_edges": [],
+  "blockers": [],
+  "validation": {
+    "offline": true,
+    "network_used": false,
+    "result": "pass"
+  }
+}

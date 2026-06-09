@@ -1,0 +1,17 @@
+{
+  "schema": 1,
+  "skill": "red-y-referencias",
+  "packet": {"status": "active", "as_of": "2026-06-08"},
+  "evidence": [
+    {"id": "E-600", "type": "relationship_note", "date": "2026-06-08", "source": "Note", "summary": "Unresolved edge target."}
+  ],
+  "contacts": [
+    {"id": "C-600", "contact_label": "Ana Gomez", "relationship": "Stakeholder", "consent_status": "unknown", "consent_evidence_ref": "E-600", "allowed_actions": ["request_consent"]}
+  ],
+  "actions": [],
+  "network_edges": [
+    {"id": "N-600", "from_contact_id": "C-600", "to_contact_id": "C-999", "relationship": "Worked together", "evidence_ref": "E-600"}
+  ],
+  "blockers": [],
+  "validation": {"offline": true, "network_used": false, "result": "pass"}
+}

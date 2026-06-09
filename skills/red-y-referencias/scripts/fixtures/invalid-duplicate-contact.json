@@ -1,0 +1,16 @@
+{
+  "schema": 1,
+  "skill": "red-y-referencias",
+  "packet": {"status": "active", "as_of": "2026-06-08"},
+  "evidence": [
+    {"id": "E-500", "type": "manual_note", "date": "2026-06-08", "source": "Note", "summary": "Two contacts share one id."}
+  ],
+  "contacts": [
+    {"id": "C-500", "contact_label": "Ana Gomez", "relationship": "Stakeholder", "consent_status": "unknown", "consent_evidence_ref": "E-500", "allowed_actions": ["request_consent"]},
+    {"id": "C-500", "contact_label": "Luis Perez", "relationship": "Collaborator", "consent_status": "unknown", "consent_evidence_ref": "E-500", "allowed_actions": ["request_consent"]}
+  ],
+  "actions": [],
+  "network_edges": [],
+  "blockers": [],
+  "validation": {"offline": true, "network_used": false, "result": "pass"}
+}

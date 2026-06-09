@@ -1,0 +1,25 @@
+{
+  "schema": 1,
+  "skill": "red-y-referencias",
+  "packet": {"status": "blocked", "as_of": "today"},
+  "evidence": [
+    {"id": "E-200", "type": "consent_message", "date": "yesterday", "source": "Copied note", "summary": "Ana consented yesterday."}
+  ],
+  "contacts": [
+    {
+      "id": "C-200",
+      "contact_label": "Ana Gomez",
+      "relationship": "Former stakeholder",
+      "consent_status": "explicit_granted",
+      "consent_evidence_ref": "E-200",
+      "last_contact_date": "yesterday",
+      "allowed_actions": ["list_reference"]
+    }
+  ],
+  "actions": [
+    {"id": "A-200", "contact_id": "C-200", "action_type": "list_reference", "due_date": "tomorrow", "status": "planned", "evidence_ref": "E-200"}
+  ],
+  "network_edges": [],
+  "blockers": ["relative date supplied"],
+  "validation": {"offline": true, "network_used": false, "result": "blocked"}
+}

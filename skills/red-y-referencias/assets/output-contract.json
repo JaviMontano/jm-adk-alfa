@@ -1,0 +1,10 @@
+{
+  "schema": 1,
+  "required_top_level": ["schema", "skill", "packet", "evidence", "contacts", "actions", "network_edges", "blockers", "validation"],
+  "packet_required": ["status", "as_of"],
+  "evidence_required": ["id", "type", "date", "source", "summary"],
+  "contact_required": ["id", "contact_label", "relationship", "consent_status", "consent_evidence_ref", "allowed_actions"],
+  "action_required": ["id", "contact_id", "action_type", "status", "evidence_ref"],
+  "network_edge_required": ["id", "from_contact_id", "to_contact_id", "relationship", "evidence_ref"],
+  "deterministic_sort": ["evidence.date", "evidence.id", "contacts.id", "actions.id", "network_edges.id"]
+}
