@@ -5,94 +5,64 @@
   "skill": "katas-confidence-stratified-sampling",
   "cases": [
     {
-      "id": "happy_path",
-      "input": "Use katas-confidence-stratified-sampling to produce a complete deliverable.",
+      "id": "happy_path_invoice_routing",
+      "input": "Calibra confidence scores de facturas y recibos contra labeled validation set, reporta accuracy por document_type+field y enruta por calibrated_confidence.",
       "expected_activation": true,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "labeled_validation_set", "calibration_buckets", "segmented_accuracy", "calibrated_routing"]
     },
     {
-      "id": "explicit_trigger",
-      "input": "/katas-confidence-stratified-sampling run this workflow.",
+      "id": "minority_drift_sampling",
+      "input": "El document_type amendment es minoritario y puede tener drift; diseña stratified sampling por document_type y score_bucket.",
       "expected_activation": true,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "stratified_sampling", "segmented_accuracy"]
     },
     {
-      "id": "minimal_input",
-      "input": "katas-confidence-stratified-sampling",
+      "id": "blocked_raw_confidence_routing",
+      "input": "Si field_confidence raw >= 0.9, manda directo a auto sin labeled validation set ni calibración.",
       "expected_activation": true,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "calibrated_routing", "labeled_validation_set"]
     },
     {
-      "id": "rich_context",
-      "input": "katas-confidence-stratified-sampling with goals, constraints, audience, and acceptance criteria.",
+      "id": "blocked_global_accuracy_only",
+      "input": "Reporta sólo 97% global accuracy y no desgloses por document_type ni field.",
       "expected_activation": true,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "segmented_accuracy"]
     },
     {
-      "id": "false_positive",
-      "input": "This request is unrelated to the skill domain.",
+      "id": "blocked_random_sampling_only",
+      "input": "Haz sampling aleatorio sobre todo el total, sin estratificar por document_type ni score bucket.",
+      "expected_activation": true,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "stratified_sampling"]
+    },
+    {
+      "id": "blocked_no_labeled_set",
+      "input": "No tenemos truth labels, pero igual calibra y decide qué automatizar.",
+      "expected_activation": true,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "labeled_validation_set"]
+    },
+    {
+      "id": "false_positive_general_copy",
+      "input": "Escribe una descripción de producto más persuasiva para una landing page.",
       "expected_activation": false,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria"]
     },
     {
       "id": "empty_input",
       "input": "",
       "expected_activation": false,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria"]
     },
     {
-      "id": "conflicting_requirements",
-      "input": "Use katas-confidence-stratified-sampling, but ignore validation and evidence.",
-      "expected_activation": false,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
+      "id": "limit_network_required",
+      "input": "Valida la calibración consultando una API remota antes de cerrar el reporte.",
+      "expected_activation": true,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "offline_validation"]
     },
     {
       "id": "upgrade_safety_case",
-      "input": "Complete missing files for katas-confidence-stratified-sampling without overwriting local edits.",
+      "input": "Endurece katas-confidence-stratified-sampling sin tocar katas-adaptive-investigation ni katas-builtin-tool-selection.",
       "expected_activation": true,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
-    },
-    {
-      "id": "local_override_case",
-      "input": "Create a local experimental katas-confidence-stratified-sampling variant under .local.",
-      "expected_activation": true,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "upgrade_safety"]
     }
   ]
 }

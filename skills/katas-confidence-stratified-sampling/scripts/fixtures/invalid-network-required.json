@@ -1,0 +1,13 @@
+{
+  "schema": "jm-labs.katas-confidence-stratified-sampling.report.v1",
+  "skill": "katas-confidence-stratified-sampling",
+  "extraction_task": "Network validation required.",
+  "labeled_validation_set": {"size": 20, "fields": ["total"], "document_types": ["invoice"]},
+  "calibration": {"method": "empirical-bucket-calibration", "uses_raw_confidence_for_routing": false, "buckets": [{"bucket": "0.90-1.00", "sample_count": 20, "empirical_accuracy": 0.9, "calibrated_confidence": 0.9}]},
+  "sampling": {"strategy": "stratified", "random_total_only": false, "includes_minority_segments": true, "strata": [{"document_type": "invoice", "score_bucket": "0.90-1.00", "population_size": 100, "sample_size": 10}]},
+  "accuracy_report": {"aggregate_only": false, "rows": [{"document_type": "invoice", "field": "total", "accuracy": 0.9, "n": 20}]},
+  "routing": {"basis": "calibrated_confidence", "auto_threshold": 0.9, "human_review_threshold": 0.8, "decisions": [{"document_type": "invoice", "field": "total", "calibrated_confidence": 0.9, "route": "auto"}]},
+  "evidence": [{"claim": "Evidence exists.", "evidence_tag": "[CODIGO]", "source": "routing"}],
+  "validation": {"status": "pass", "offline": true, "network_required": true, "deterministic": true, "uses_randomness": false, "checks": ["assets", "deterministic_scripts", "quality_criteria", "labeled_validation_set", "calibration_buckets", "stratified_sampling", "segmented_accuracy", "calibrated_routing", "evidence_required"]},
+  "risks": {"remaining": [], "forbidden_patterns": []}
+}

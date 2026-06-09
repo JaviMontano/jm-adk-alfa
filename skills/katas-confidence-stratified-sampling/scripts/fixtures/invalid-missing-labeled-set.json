@@ -1,0 +1,12 @@
+{
+  "schema": "jm-labs.katas-confidence-stratified-sampling.report.v1",
+  "skill": "katas-confidence-stratified-sampling",
+  "extraction_task": "Missing labeled set.",
+  "calibration": {"method": "empirical-bucket-calibration", "uses_raw_confidence_for_routing": false, "buckets": []},
+  "sampling": {"strategy": "stratified", "random_total_only": false, "includes_minority_segments": true, "strata": []},
+  "accuracy_report": {"aggregate_only": false, "rows": []},
+  "routing": {"basis": "calibrated_confidence", "auto_threshold": 0.9, "human_review_threshold": 0.8, "decisions": []},
+  "evidence": [],
+  "validation": {"status": "pass", "offline": true, "network_required": false, "deterministic": true, "uses_randomness": false, "checks": []},
+  "risks": {"remaining": [], "forbidden_patterns": []}
+}

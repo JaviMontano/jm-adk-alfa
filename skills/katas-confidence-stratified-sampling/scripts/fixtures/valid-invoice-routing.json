@@ -1,0 +1,58 @@
+{
+  "schema": "jm-labs.katas-confidence-stratified-sampling.report.v1",
+  "skill": "katas-confidence-stratified-sampling",
+  "extraction_task": "Invoice and receipt field extraction with calibrated routing.",
+  "labeled_validation_set": {
+    "size": 240,
+    "fields": ["total", "vendor"],
+    "document_types": ["invoice", "receipt"]
+  },
+  "calibration": {
+    "method": "empirical-bucket-calibration",
+    "uses_raw_confidence_for_routing": false,
+    "buckets": [
+      {"bucket": "0.80-0.89", "sample_count": 70, "empirical_accuracy": 0.81, "calibrated_confidence": 0.81},
+      {"bucket": "0.90-1.00", "sample_count": 90, "empirical_accuracy": 0.92, "calibrated_confidence": 0.92}
+    ]
+  },
+  "sampling": {
+    "strategy": "stratified",
+    "random_total_only": false,
+    "includes_minority_segments": true,
+    "strata": [
+      {"document_type": "invoice", "score_bucket": "0.90-1.00", "population_size": 900, "sample_size": 45},
+      {"document_type": "receipt", "score_bucket": "0.90-1.00", "population_size": 120, "sample_size": 20}
+    ]
+  },
+  "accuracy_report": {
+    "aggregate_only": false,
+    "rows": [
+      {"document_type": "invoice", "field": "total", "accuracy": 0.94, "n": 120},
+      {"document_type": "invoice", "field": "vendor", "accuracy": 0.91, "n": 120},
+      {"document_type": "receipt", "field": "total", "accuracy": 0.86, "n": 60},
+      {"document_type": "receipt", "field": "vendor", "accuracy": 0.82, "n": 60}
+    ]
+  },
+  "routing": {
+    "basis": "calibrated_confidence",
+    "auto_threshold": 0.9,
+    "human_review_threshold": 0.8,
+    "decisions": [
+      {"document_type": "invoice", "field": "total", "calibrated_confidence": 0.92, "route": "auto"},
+      {"document_type": "receipt", "field": "vendor", "calibrated_confidence": 0.82, "route": "control_sample"}
+    ]
+  },
+  "evidence": [
+    {"claim": "Routing uses calibrated confidence, not raw score.", "evidence_tag": "[CODIGO]", "source": "routing.basis"},
+    {"claim": "Accuracy is segmented by document_type and field.", "evidence_tag": "[CODIGO]", "source": "accuracy_report.rows"}
+  ],
+  "validation": {
+    "status": "pass",
+    "offline": true,
+    "network_required": false,
+    "deterministic": true,
+    "uses_randomness": false,
+    "checks": ["assets", "deterministic_scripts", "quality_criteria", "labeled_validation_set", "calibration_buckets", "stratified_sampling", "segmented_accuracy", "calibrated_routing", "evidence_required"]
+  },
+  "risks": {"remaining": ["Refresh validation set after document template drift."], "forbidden_patterns": []}
+}

@@ -1,0 +1,8 @@
+{
+  "schema": "jm-labs.asset.stratified-sampling-policy.v1",
+  "skill": "katas-confidence-stratified-sampling",
+  "strategy": "stratified",
+  "required_dimensions": ["document_type", "score_bucket"],
+  "minority_segments_required": true,
+  "random_total_sampling_only_allowed": false
+}

@@ -1,0 +1,29 @@
+{
+  "schema": "jm-labs.asset.confidence-calibration-report-contract.v1",
+  "report_schema": "jm-labs.katas-confidence-stratified-sampling.report.v1",
+  "skill": "katas-confidence-stratified-sampling",
+  "required_top_level_fields": [
+    "schema",
+    "skill",
+    "extraction_task",
+    "labeled_validation_set",
+    "calibration",
+    "sampling",
+    "accuracy_report",
+    "routing",
+    "evidence",
+    "validation",
+    "risks"
+  ],
+  "required_validation_checks": [
+    "assets",
+    "deterministic_scripts",
+    "quality_criteria",
+    "labeled_validation_set",
+    "calibration_buckets",
+    "stratified_sampling",
+    "segmented_accuracy",
+    "calibrated_routing",
+    "evidence_required"
+  ]
+}

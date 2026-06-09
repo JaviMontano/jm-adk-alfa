@@ -1,0 +1,9 @@
+{
+  "schema": "jm-labs.asset.confidence-evidence-policy.v1",
+  "skill": "katas-confidence-stratified-sampling",
+  "allowed_tags": ["[CODIGO]", "[CÓDIGO]", "[CONFIG]", "[DOC]", "[INFERENCIA]", "[SUPUESTO]"],
+  "source_required": true,
+  "offline": true,
+  "network_required": false,
+  "random_required": false
+}

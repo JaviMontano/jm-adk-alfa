@@ -1,0 +1,8 @@
+{
+  "schema": "jm-labs.asset.routing-policy.v1",
+  "skill": "katas-confidence-stratified-sampling",
+  "basis": "calibrated_confidence",
+  "routes": ["auto", "human_review", "control_sample"],
+  "auto_requires_calibrated_threshold": true,
+  "low_confidence_route": "human_review"
+}
