@@ -1,0 +1,18 @@
+{
+  "schema": 1,
+  "skill": "subagent-orchestration",
+  "allowed_model_roles": [
+    "extraction",
+    "classification",
+    "reasoning",
+    "verification",
+    "aggregation"
+  ],
+  "allowed_models": ["haiku", "sonnet", "opus"],
+  "rules": [
+    "Each spoke declares model and model_role.",
+    "Extraction and classification spokes should prefer haiku unless the user supplies a reason.",
+    "Each spoke declares only the tools required for its task.",
+    "A coordinator may use a stronger model than extraction spokes."
+  ]
+}

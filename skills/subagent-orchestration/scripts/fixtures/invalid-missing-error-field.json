@@ -1,0 +1,57 @@
+{
+  "schema": 1,
+  "skill": "subagent-orchestration",
+  "coordinator": {
+    "id": "missing-error-field-hub",
+    "fanout_justification": "The plan decomposes but omits part of the error contract.",
+    "consumes_last_message_only": true,
+    "reads_spoke_transcript": false
+  },
+  "spokes": [
+    {
+      "id": "finder",
+      "task": "Find source.",
+      "agent_definition": {
+        "description": "Finds source.",
+        "prompt": "Find source.",
+        "tools": ["WebFetch"],
+        "model": "haiku",
+        "model_role": "extraction"
+      },
+      "dispatch": {"tool": "Task"},
+      "isolation": {"mode": "fresh_session", "shared_context": false, "shared_mutable_state": false}
+    },
+    {
+      "id": "extractor",
+      "task": "Extract facts.",
+      "agent_definition": {
+        "description": "Extracts facts.",
+        "prompt": "Extract facts.",
+        "tools": ["Read"],
+        "model": "haiku",
+        "model_role": "extraction"
+      },
+      "dispatch": {"tool": "Task"},
+      "isolation": {"mode": "fresh_session", "shared_context": false, "shared_mutable_state": false}
+    }
+  ],
+  "failure_contract": {
+    "required_fields": ["failure_type", "attempted_query", "partial_results"],
+    "failure_types": ["access_failure"],
+    "valid_empty": {"status": "ok", "empty_valid": true},
+    "local_recovery": {"max_attempts": 1, "strategies": ["alternate_query"]}
+  },
+  "aggregation": {
+    "partial_failure_policy": "continue_with_coverage_gap",
+    "distinguish_access_failure_from_valid_empty": true,
+    "coverage_gap_fields": ["spoke_id", "reason", "attempted_query"],
+    "abort_on_first_failure": false,
+    "empty_success_on_failure": false
+  },
+  "validation": {
+    "offline": true,
+    "network_required": false,
+    "deterministic": true,
+    "result": "pass"
+  }
+}

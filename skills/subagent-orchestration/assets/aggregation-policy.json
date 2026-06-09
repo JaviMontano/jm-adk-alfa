@@ -1,0 +1,15 @@
+{
+  "schema": 1,
+  "skill": "subagent-orchestration",
+  "partial_failure_policy": "continue_with_coverage_gap",
+  "coverage_gap_required_fields": [
+    "spoke_id",
+    "reason",
+    "attempted_query"
+  ],
+  "rules": [
+    "abort_on_first_failure must be false",
+    "empty_success_on_failure must be false",
+    "distinguish_access_failure_from_valid_empty must be true"
+  ]
+}

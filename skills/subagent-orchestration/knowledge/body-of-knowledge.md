@@ -1,15 +1,8 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: subagent-orchestration
-generated-on: 2026-05-30
-overwrite-policy: missing-only unless --force
--->
-
 # Subagent Orchestration Body of Knowledge
 
 ## Canon
 
-La orquestación de subagentes es un patrón hub-and-spoke. El hub (coordinador) descompone la tarea y despacha spokes (subagentes) con `AgentDefinition` + `Task`. Cada spoke es una sesión nueva con contexto vacío, sus propias tools y su propio modelo; el hub recibe únicamente el último mensaje de cada spoke, no su transcript. Esto da dos propiedades: aislamiento de contexto (el ruido de un spoke no contamina a los demás) y contención del blast radius (el fallo de un spoke no tumba al resto).
+La orquestación de subagentes es un patrón hub-and-spoke. El hub descompone la tarea y despacha spokes con `AgentDefinition` + `Task`. Cada spoke es una sesión nueva con contexto vacío, sus propias tools y su propio modelo; el hub recibe únicamente el último mensaje de cada spoke, no su transcript. Esto da dos propiedades verificables: aislamiento de contexto y contención del blast radius.
 
 ## Conceptos
 
@@ -19,6 +12,7 @@ La orquestación de subagentes es un patrón hub-and-spoke. El hub (coordinador)
 - **Local recovery primero:** ante un fallo, el spoke intenta reintento acotado o query alternativa antes de propagar el error.
 - **access_failure != valid_empty:** un `[]` por acceso fallido es semánticamente distinto de un `[]` legítimo; el diseño debe distinguirlos.
 - **Coverage gap annotation:** el resultado del hub registra explícitamente qué ramas quedaron sin cobertura y por qué.
+- **Valid empty:** resultado vacío legítimo con `status="ok"` y `empty_valid=true`; nunca es un fallo.
 
 ## Señales de calidad
 
@@ -29,6 +23,7 @@ La orquestación de subagentes es un patrón hub-and-spoke. El hub (coordinador)
 | Semántica de error | `access_failure` y `valid_empty` quedan distinguibles |
 | Trazabilidad de cobertura | Coverage gaps explícitos por rama |
 | Costo | Extracción delegada a modelo barato |
+| Determinismo | Plan validable offline contra `assets/orchestration-contract.json` |
 
 ## Decisión de diseño
 
@@ -38,6 +33,11 @@ Usa hub-and-spoke cuando las subtareas son independientes y se benefician de con
 
 Un solo agente con todo el contexto concatenado (sin aislamiento, atención saturada, sin paralelización) y un manejo de error tipo `except: return {"results": []}` que vuelve indistinguible un fallo de acceso de un vacío legítimo, oculta el coverage gap y elimina el blast radius.
 
-## Open knowledge
+## Evidencia Requerida
 
-- Añadir referencias específicas del proyecto (límites de fan-out, políticas de reintento) a medida que se estabilicen.
+- Contrato de spokes con `AgentDefinition`.
+- Uso de `Task` como dispatch tool.
+- Política de aislamiento `fresh_session`.
+- Contrato de error con cuatro campos mínimos.
+- Política de local recovery.
+- Política de agregación con coverage gaps.

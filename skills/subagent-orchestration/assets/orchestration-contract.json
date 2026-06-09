@@ -1,0 +1,17 @@
+{
+  "schema": 1,
+  "skill": "subagent-orchestration",
+  "required_top_level_fields": [
+    "schema",
+    "skill",
+    "coordinator",
+    "spokes",
+    "failure_contract",
+    "aggregation",
+    "validation"
+  ],
+  "minimum_spokes": 2,
+  "coordinator_required": ["id", "fanout_justification", "consumes_last_message_only"],
+  "spoke_required": ["id", "task", "agent_definition", "dispatch", "isolation"],
+  "validation_required": ["offline", "network_required", "deterministic", "result"]
+}
