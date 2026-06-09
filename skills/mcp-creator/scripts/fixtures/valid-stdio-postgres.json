@@ -1,18 +1,3 @@
-# Example Output
-
-## Summary
-
-Offline MCP config plan for `postgres-local`; no MCP config is written and no live server is contacted.
-
-## Evidence
-
-- The requested transport is `stdio`. `[CONFIG]`
-- Secret material is referenced through `${DATABASE_URL}` only. `[DOC]`
-- Live validation is deferred because setup has not been approved. `[INFERENCIA]`
-
-## Result
-
-```json
 {
   "schema": "jm-labs.mcp-creator.plan.v1",
   "skill": "mcp-creator",
@@ -48,7 +33,7 @@ Offline MCP config plan for `postgres-local`; no MCP config is written and no li
   },
   "evidence": [
     {
-      "claim": "The config plan uses an env var instead of a hardcoded database URL.",
+      "claim": "The stdio config uses DATABASE_URL as an env placeholder.",
       "evidence_tag": "[DOC]",
       "source": "secret policy"
     }
@@ -71,13 +56,3 @@ Offline MCP config plan for `postgres-local`; no MCP config is written and no li
     ]
   }
 }
-```
-
-## Validation
-
-- `bash skills/mcp-creator/scripts/check.sh` must pass before any apply step.
-
-## Risks and Limits
-
-- The plan does not prove the server is reachable.
-- User approval is still required before writing config or running OAuth.

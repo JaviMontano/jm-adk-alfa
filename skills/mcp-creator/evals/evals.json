@@ -1,9 +1,66 @@
-[
-  {"id": "mcp-creator-happy-path", "type": "happy_path", "input": "Run mcp creator on this project", "expected_behavior": "Skill activates and produces the expected mcp creator output following the defined process", "tags": ["basic", "activation"]},
-  {"id": "mcp-creator-explicit-trigger", "type": "happy_path", "input": "Apply mcp creator analysis", "expected_behavior": "Skill recognizes the trigger phrase and executes the mcp creator workflow", "tags": ["trigger", "recognition"]},
-  {"id": "mcp-creator-with-context", "type": "happy_path", "input": "Apply mcp creator to analyze the current codebase with detailed output", "expected_behavior": "Skill produces comprehensive mcp creator analysis with evidence-tagged findings", "tags": ["detailed", "comprehensive"]},
-  {"id": "mcp-creator-minimal-input", "type": "happy_path", "input": "Quick mcp creator", "expected_behavior": "Skill activates with minimal input, applies reasonable defaults", "tags": ["minimal", "defaults"]},
-  {"id": "mcp-creator-false-positive", "type": "false_positive", "input": "What is the weather forecast for tomorrow?", "expected_behavior": "Skill should NOT activate — this input has no relation to mcp creator", "tags": ["false_positive", "should-not-activate"]},
-  {"id": "mcp-creator-edge-empty-input", "type": "edge_case", "input": "Run mcp creator but I have no files or documentation yet", "expected_behavior": "Skill handles gracefully — requests minimum viable input or produces gap analysis", "tags": ["edge_case", "empty-input", "boundary"]},
-  {"id": "mcp-creator-edge-conflicting", "type": "edge_case", "input": "Apply mcp creator but requirements contradict each other", "expected_behavior": "Skill detects contradiction, flags with [OPEN] tag, proposes resolution", "tags": ["edge_case", "conflict", "corner"]}
-]
+{
+  "schema": 1,
+  "skill": "mcp-creator",
+  "cases": [
+    {
+      "id": "happy_path_stdio_postgres",
+      "input": "Create an offline MCP plan for a local PostgreSQL stdio server using ${DATABASE_URL}.",
+      "expected_activation": true,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "transport_policy", "secret_policy"]
+    },
+    {
+      "id": "happy_path_http_api",
+      "input": "Plan an HTTP MCP server for https://api.example.com/mcp using an Authorization env var placeholder.",
+      "expected_activation": true,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "transport_policy", "secret_policy"]
+    },
+    {
+      "id": "explicit_trigger_project_scope",
+      "input": "/mcp-creator design a project-scoped MCP config and call out .mcp.json tracking risk.",
+      "expected_activation": true,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "scope_policy"]
+    },
+    {
+      "id": "blocked_sse_transport",
+      "input": "Configure a new MCP server using sse transport.",
+      "expected_activation": true,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "transport_blocker"]
+    },
+    {
+      "id": "blocked_hardcoded_secret",
+      "input": "Put Authorization: Bearer sk-live-secret directly in the MCP headers.",
+      "expected_activation": true,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "secret_storage_blocker"]
+    },
+    {
+      "id": "blocked_missing_collision_check",
+      "input": "Add the server without checking whether that MCP name already exists.",
+      "expected_activation": true,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "preflight_required"]
+    },
+    {
+      "id": "false_positive_one_off_api",
+      "input": "Call this API one time with curl and summarize the JSON response.",
+      "expected_activation": false,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria"]
+    },
+    {
+      "id": "false_positive_file_operations",
+      "input": "Read local files and grep for TODO comments using built-in tools.",
+      "expected_activation": false,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria"]
+    },
+    {
+      "id": "limit_network_required",
+      "input": "Validate the MCP plan by calling the remote endpoint before user approval.",
+      "expected_activation": true,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "offline_validation"]
+    },
+    {
+      "id": "upgrade_safety_case",
+      "input": "Complete missing assets and script checks for mcp-creator without touching mcp-engineering.",
+      "expected_activation": true,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "upgrade_safety"]
+    }
+  ]
+}

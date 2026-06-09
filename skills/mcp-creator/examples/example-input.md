@@ -1,10 +1,12 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: mcp-creator
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
-
 # Example Input
 
-Use `mcp-creator` to produce a concise deliverable for a realistic project request.
+Create a deterministic MCP configuration plan for a local PostgreSQL server.
+
+- server name: `postgres-local`
+- transport: `stdio`
+- command: `npx`
+- args: `-y`, `@modelcontextprotocol/server-postgres`, `${DATABASE_URL}`
+- scope: `local`
+- auth: database URL from env var only
+- existing config was read; no name collision found
+- live connection test must be deferred until the user approves setup

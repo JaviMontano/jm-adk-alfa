@@ -1,0 +1,60 @@
+{
+  "schema": "jm-labs.mcp-creator.plan.v1",
+  "skill": "mcp-creator",
+  "server": {
+    "name": "analytics-api",
+    "name_collision_checked": true,
+    "description": "Remote analytics API MCP endpoint"
+  },
+  "transport": {
+    "type": "http",
+    "url": "https://api.example.com/mcp",
+    "headers": {
+      "Authorization": "${ANALYTICS_API_TOKEN}"
+    }
+  },
+  "scope": {
+    "type": "project",
+    "config_path": ".mcp.json",
+    "tracked_file": true,
+    "rationale": "Team-shared endpoint with secrets supplied by env vars."
+  },
+  "auth": {
+    "type": "env",
+    "env_vars": ["ANALYTICS_API_TOKEN"],
+    "secrets_hardcoded": false
+  },
+  "preflight": {
+    "existing_config_reviewed": true,
+    "live_validation_deferred": true,
+    "deferred_reason": "Remote endpoint check requires explicit approval"
+  },
+  "rollback": {
+    "remove_command": "claude mcp remove analytics-api",
+    "config_backup_required": true
+  },
+  "evidence": [
+    {
+      "claim": "Project scope is tracked and requires env-var auth.",
+      "evidence_tag": "[CONFIG]",
+      "source": "scope policy"
+    }
+  ],
+  "validation": {
+    "status": "pass",
+    "offline": true,
+    "network_required": false,
+    "deterministic": true,
+    "checks": [
+      "assets",
+      "deterministic_scripts",
+      "quality_criteria",
+      "transport_policy",
+      "scope_policy",
+      "secret_policy",
+      "preflight_required",
+      "rollback_plan",
+      "evidence_required"
+    ]
+  }
+}

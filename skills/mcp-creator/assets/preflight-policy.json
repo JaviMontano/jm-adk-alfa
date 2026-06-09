@@ -1,0 +1,7 @@
+{
+  "schema": "jm-labs.asset.policy.v1",
+  "required_preflight": ["existing_config_reviewed", "live_validation_deferred", "deferred_reason"],
+  "server_required": ["name", "name_collision_checked", "description"],
+  "rollback_required": ["remove_command", "config_backup_required"],
+  "live_validation_requires_approval": true
+}

@@ -1,0 +1,12 @@
+{
+  "schema": "jm-labs.mcp-creator.plan.v1",
+  "skill": "mcp-creator",
+  "server": {"name": "plain-http-api", "name_collision_checked": true, "description": "Insecure HTTP endpoint"},
+  "transport": {"type": "http", "url": "http://api.example.com/mcp", "headers": {"Authorization": "${API_TOKEN}"}},
+  "scope": {"type": "local", "config_path": "~/.claude.json", "tracked_file": false, "rationale": "Personal API"},
+  "auth": {"type": "env", "env_vars": ["API_TOKEN"], "secrets_hardcoded": false},
+  "preflight": {"existing_config_reviewed": true, "live_validation_deferred": true, "deferred_reason": "No approval"},
+  "rollback": {"remove_command": "claude mcp remove plain-http-api", "config_backup_required": true},
+  "evidence": [{"claim": "The endpoint uses plain HTTP.", "evidence_tag": "[CONFIG]", "source": "input"}],
+  "validation": {"status": "block", "offline": true, "network_required": false, "deterministic": true, "checks": ["assets", "deterministic_scripts", "quality_criteria", "transport_policy", "scope_policy", "secret_policy", "preflight_required", "rollback_plan", "evidence_required"]}
+}

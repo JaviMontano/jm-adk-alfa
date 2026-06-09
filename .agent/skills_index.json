@@ -2139,7 +2139,7 @@
     "id": "mcp-creator",
     "path": "skills/mcp-creator",
     "name": "Mcp Creator",
-    "description": "[EXPLICIT]"
+    "description": "Design deterministic MCP server configuration plans with transport, scope, auth, secret, preflight, validation, and rollback controls; validate offline before any live setup."
   },
   {
     "id": "mcp-engineering",

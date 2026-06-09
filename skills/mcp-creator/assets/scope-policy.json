@@ -1,0 +1,6 @@
+{
+  "schema": "jm-labs.asset.policy.v1",
+  "allowed_scopes": ["local", "project", "user", "plugin"],
+  "tracked_file_scopes": ["project"],
+  "required_fields": ["type", "config_path", "tracked_file", "rationale"]
+}

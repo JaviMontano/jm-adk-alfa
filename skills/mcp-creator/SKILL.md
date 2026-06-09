@@ -1,12 +1,7 @@
 ---
 name: mcp-creator
-version: 1.0.0
-description:  [EXPLICIT]
-  This skill should be used when the user asks to "configure an MCP server", "connect Claude to [EXPLICIT]
-  an external tool", "set up a database MCP", "add an API integration via MCP", or "list MCP [EXPLICIT]
-  servers". Also triggers on mentions of Model Context Protocol, stdio transport, MCP JSON config, [EXPLICIT]
-  or remote tool connections. Use this skill even if the user only wants to check existing MCP [EXPLICIT]
-  configuration — the full setup and validation workflow applies. [EXPLICIT]
+version: 1.1.0
+description: "Design deterministic MCP server configuration plans with transport, scope, auth, secret, preflight, validation, and rollback controls; validate offline before any live setup."
 argument-hint: server-name [transport: stdio|http] [EXPLICIT]
 model: opus [EXPLICIT]
 context: fork [EXPLICIT]
@@ -18,9 +13,24 @@ allowed-tools:
   - Glob
   - Grep
 ---
-# MCP Creator [EXPLICIT]
- [EXPLICIT]
-Configure Model Context Protocol servers — the bridge between Claude Code and external tools, databases, APIs. [EXPLICIT]
+# MCP Creator
+
+## Purpose
+
+Design deterministic Model Context Protocol server configuration plans. The skill produces a validated plan for stdio or HTTP servers, scopes the config, prevents secret leakage, records preflight evidence, and defers live connectivity checks until the user explicitly approves setup.
+
+## Deterministic Contract
+
+Use `assets/mcp-config-plan-contract.json` and validate plans with `scripts/validate_mcp_config_plan.py`. A valid plan must include:
+
+- `server.name` in kebab-case and `name_collision_checked=true`.
+- `transport.type` of `stdio` or `http`; never `sse`.
+- Stdio command/args or HTTPS URL according to transport.
+- Scope decision: `local`, `project`, `user`, or `plugin`, with tracked-file risk called out.
+- Auth policy with `secrets_hardcoded=false` and env-var placeholders for secrets.
+- Preflight evidence for existing config review, collision check, and live validation deferral.
+- Validation checks for assets, deterministic scripts, quality criteria, transport policy, scope policy, secret policy, preflight, rollback, and evidence.
+- Offline validation flags: `offline=true`, `network_required=false`, `deterministic=true`.
  [EXPLICIT]
 ## Assumptions & Limits [EXPLICIT]
  [EXPLICIT]

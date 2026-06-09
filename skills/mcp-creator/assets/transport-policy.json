@@ -1,0 +1,8 @@
+{
+  "schema": "jm-labs.asset.policy.v1",
+  "allowed_transports": ["stdio", "http"],
+  "blocked_transports": ["sse"],
+  "stdio_required": ["command", "args"],
+  "http_required": ["url"],
+  "http_url_prefix": "https://"
+}
