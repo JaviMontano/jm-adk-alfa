@@ -1,0 +1,17 @@
+{
+  "schema": "jm-labs.asset.contract.v1",
+  "plan_schema": "jm-labs.mcp-creator.plan.v1",
+  "required_top_level": [
+    "schema",
+    "skill",
+    "server",
+    "transport",
+    "scope",
+    "auth",
+    "preflight",
+    "rollback",
+    "evidence",
+    "validation"
+  ],
+  "offline_validation_required": true
+}

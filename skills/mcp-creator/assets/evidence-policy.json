@@ -1,0 +1,17 @@
+{
+  "schema": "jm-labs.asset.policy.v1",
+  "allowed_evidence_tags": ["[CÓDIGO]", "[CONFIG]", "[DOC]", "[INFERENCIA]", "[SUPUESTO]"],
+  "required_validation_checks": [
+    "assets",
+    "deterministic_scripts",
+    "quality_criteria",
+    "transport_policy",
+    "scope_policy",
+    "secret_policy",
+    "preflight_required",
+    "rollback_plan",
+    "evidence_required"
+  ],
+  "network_required": false,
+  "deterministic": true
+}

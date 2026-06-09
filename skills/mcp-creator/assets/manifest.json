@@ -1,0 +1,42 @@
+{
+  "schema": 1,
+  "skill": "mcp-creator",
+  "assets": [
+    {
+      "path": "assets/mcp-config-plan-contract.json",
+      "type": "schema",
+      "purpose": "Defines required MCP configuration plan fields.",
+      "used_by": ["SKILL.md", "scripts/validate_mcp_config_plan.py", "evals/evals.json"]
+    },
+    {
+      "path": "assets/transport-policy.json",
+      "type": "policy",
+      "purpose": "Defines allowed transports and required config fields.",
+      "used_by": ["SKILL.md", "scripts/validate_mcp_config_plan.py", "examples/example-output.md"]
+    },
+    {
+      "path": "assets/scope-policy.json",
+      "type": "policy",
+      "purpose": "Defines scope storage and tracked-file risk rules.",
+      "used_by": ["SKILL.md", "scripts/validate_mcp_config_plan.py", "knowledge/body-of-knowledge.md"]
+    },
+    {
+      "path": "assets/secret-policy.json",
+      "type": "policy",
+      "purpose": "Blocks hardcoded secrets and requires env-var placeholders.",
+      "used_by": ["SKILL.md", "scripts/validate_mcp_config_plan.py", "evals/evals.json"]
+    },
+    {
+      "path": "assets/preflight-policy.json",
+      "type": "policy",
+      "purpose": "Defines existing config review, collision checks, live validation deferral, and rollback requirements.",
+      "used_by": ["SKILL.md", "scripts/validate_mcp_config_plan.py", "README.md"]
+    },
+    {
+      "path": "assets/evidence-policy.json",
+      "type": "policy",
+      "purpose": "Defines evidence tag and validation check requirements.",
+      "used_by": ["SKILL.md", "scripts/validate_mcp_config_plan.py", "templates/output.md"]
+    }
+  ]
+}

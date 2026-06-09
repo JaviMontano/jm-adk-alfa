@@ -629,7 +629,7 @@
 | 354 | `market-intelligence` | — |
 | 355 | `marketing-context` | — |
 | 356 | `maturity-assessment` | [EXPLICIT] |
-| 357 | `mcp-creator` | [EXPLICIT] |
+| 357 | `mcp-creator` | Design deterministic MCP server configuration plans with transport, scope, auth, |
 | 358 | `mcp-engineering` | Configurar MCP servers (project vs user scope, env-var expansion) y disenar cont |
 | 359 | `meeting-notes` | — |
 | 360 | `mermaid-diagramming` | — |
