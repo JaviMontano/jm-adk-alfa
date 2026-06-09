@@ -1,0 +1,16 @@
+{
+  "schema": 1,
+  "skill": "gratitud-post-proceso",
+  "recipient": {"name_or_role": "Laura", "relationship": "recruiter", "channel": "email"},
+  "process": {"context": "Product Manager selection process", "stage": "post-interview"},
+  "evidence": [
+    {"type": "topic_discussed", "detail": "discovery continuo"},
+    {"type": "topic_discussed", "detail": "priorizacion por impacto"},
+    {"type": "next_step_supplied", "detail": "Laura confirmo que compartira proximos pasos"}
+  ],
+  "message": {
+    "subject": "Gracias por la conversacion",
+    "body": "Hola Laura, gracias por el espacio y por compartir mas contexto sobre el rol. Me gusto conversar sobre discovery continuo y priorizacion por impacto porque conecta con mi experiencia entre negocio y tecnologia. Quedo atento a los proximos pasos que comentaste.",
+    "next_step_claim": "Quedo atento a los proximos pasos que comentaste."
+  }
+}

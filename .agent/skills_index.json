@@ -1482,6 +1482,12 @@
     "description": ">"
   },
   {
+    "id": "gratitud-post-proceso",
+    "path": "skills/gratitud-post-proceso",
+    "name": "Gratitud Post Proceso",
+    "description": "Redacta agradecimientos post-proceso diferenciados por persona, evidencia de interaccion, voz de marca y lint offline contra FOMO, hustle, servilismo y promesas no verificables."
+  },
+  {
     "id": "grid-systems",
     "path": "skills/grid-systems",
     "name": "Grid Systems",

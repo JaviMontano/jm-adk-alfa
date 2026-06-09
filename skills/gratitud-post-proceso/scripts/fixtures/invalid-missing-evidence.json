@@ -1,0 +1,8 @@
+{
+  "schema": 1,
+  "skill": "gratitud-post-proceso",
+  "recipient": {"name_or_role": "Ana", "relationship": "hiring manager", "channel": "email"},
+  "process": {"context": "interview", "stage": "post-interview"},
+  "evidence": [],
+  "message": {"subject": "Gracias", "body": "Hola Ana, gracias por el espacio y por la conversacion. Aprecio mucho el tiempo compartido y quedo atento a cualquier informacion adicional que sea util para continuar.", "next_step_claim": ""}
+}

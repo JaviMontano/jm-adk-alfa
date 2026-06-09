@@ -1,0 +1,7 @@
+{
+  "schema": 1,
+  "skill": "gratitud-post-proceso",
+  "required_sections": ["summary", "recipient", "evidence_used", "message", "tone_checks", "validation", "risks"],
+  "packet_required_keys": ["recipient", "process", "evidence", "message"],
+  "exit_codes": {"0": "valid packet", "1": "validation issues", "3": "bad input"}
+}

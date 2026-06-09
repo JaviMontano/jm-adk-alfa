@@ -1,0 +1,7 @@
+{
+  "schema": 1,
+  "skill": "gratitud-post-proceso",
+  "blocked_claims": ["acceptance_expected", "offer_promised", "deadline_guessed", "commitment_unsupplied", "exclusive_availability"],
+  "allowed_follow_up": ["available_to_expand", "waiting_for_next_steps", "thanks_for_context"],
+  "default_next_step_policy": "neutral_when_unsupplied"
+}

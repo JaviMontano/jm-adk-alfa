@@ -1,0 +1,7 @@
+{
+  "schema": 1,
+  "skill": "gratitud-post-proceso",
+  "max_distinctive_phrases_per_message": 1,
+  "forbidden_tone": ["fomo", "hustle_glorification", "servility", "pressure"],
+  "preferred_tone": ["calm", "specific", "professional", "warm", "concise"]
+}

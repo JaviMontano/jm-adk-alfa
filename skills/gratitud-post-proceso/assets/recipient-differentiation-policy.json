@@ -1,0 +1,10 @@
+{
+  "schema": 1,
+  "skill": "gratitud-post-proceso",
+  "required_recipient_fields": ["name_or_role", "relationship", "channel"],
+  "differentiation_rules": [
+    "Every message must include a recipient-specific reason for gratitude.",
+    "Multi-recipient packets must not reuse the same evidence detail for every recipient unless the process was shared.",
+    "Role-only recipients are allowed when a name is unknown."
+  ]
+}

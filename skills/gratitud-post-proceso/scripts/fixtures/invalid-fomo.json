@@ -1,0 +1,8 @@
+{
+  "schema": 1,
+  "skill": "gratitud-post-proceso",
+  "recipient": {"name_or_role": "Laura", "relationship": "recruiter", "channel": "email"},
+  "process": {"context": "interview", "stage": "post-interview"},
+  "evidence": [{"type": "topic_discussed", "detail": "discovery continuo"}],
+  "message": {"subject": "Ultima oportunidad", "body": "Hola Laura, gracias por la conversacion sobre discovery continuo. Esta es la ultima oportunidad antes de que sea tarde y no te lo pierdas porque puedo aportar muchisimo al equipo.", "next_step_claim": ""}
+}

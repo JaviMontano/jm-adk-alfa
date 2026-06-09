@@ -1,0 +1,8 @@
+{
+  "schema": 1,
+  "skill": "gratitud-post-proceso",
+  "recipient": {"name_or_role": "Marta", "relationship": "hiring manager", "channel": "email"},
+  "process": {"context": "interview", "stage": "post-interview"},
+  "evidence": [{"type": "topic_discussed", "detail": "priorizacion estrategica"}],
+  "message": {"subject": "Gracias", "body": "Hola Marta, gracias por conversar sobre priorizacion estrategica y por compartir el contexto del equipo. Me alegra haber entendido mejor los retos del rol y quedo atento a los proximos pasos que mencionaste.", "next_step_claim": "Quedo atento a los proximos pasos que mencionaste."}
+}
