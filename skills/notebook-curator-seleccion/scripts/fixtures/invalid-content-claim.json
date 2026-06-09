@@ -1,0 +1,10 @@
+{
+  "schema": 1,
+  "skill": "notebook-curator-seleccion",
+  "archetype": "SEL-EMPRESA",
+  "notebook_id": "SEL-CLAIM",
+  "retrieval_mode": "offline",
+  "sources": [
+    {"slot": "empresa-research", "title": "Company deck", "evidence_type": "metadata", "evidence_detail": "Deck title supplied only", "content_claim": "Company is AI-native"}
+  ]
+}

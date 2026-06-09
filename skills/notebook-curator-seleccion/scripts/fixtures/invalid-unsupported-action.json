@@ -1,0 +1,11 @@
+{
+  "schema": 1,
+  "skill": "notebook-curator-seleccion",
+  "archetype": "SEL-EMPRESA",
+  "notebook_id": "SEL-ACTION",
+  "retrieval_mode": "offline",
+  "sources": [],
+  "curation_actions": [
+    {"action": "delete_all", "reason": "Start from scratch"}
+  ]
+}

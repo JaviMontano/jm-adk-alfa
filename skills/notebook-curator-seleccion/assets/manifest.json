@@ -1,0 +1,11 @@
+{
+  "schema": 1,
+  "skill": "notebook-curator-seleccion",
+  "assets": [
+    {"path": "assets/source-slot-contract.json", "type": "contract", "purpose": "Defines canonical SEL-EMPRESA slots.", "used_by": ["SKILL.md", "README.md", "scripts/validate_archetype.py", "evals/evals.json"]},
+    {"path": "assets/evidence-policy.json", "type": "policy", "purpose": "Defines evidence requirements for present sources and content claims.", "used_by": ["SKILL.md", "examples/example-output.md", "scripts/validate_archetype.py"]},
+    {"path": "assets/curation-policy.json", "type": "policy", "purpose": "Defines allowed and blocked curation actions.", "used_by": ["SKILL.md", "templates/output.md", "scripts/validate_archetype.py"]},
+    {"path": "assets/offline-boundary-policy.json", "type": "policy", "purpose": "Blocks network and NotebookLM live-sync dependencies from deterministic validation.", "used_by": ["SKILL.md", "README.md", "scripts/validate_archetype.py"]},
+    {"path": "assets/output-contract.json", "type": "schema", "purpose": "Defines output sections and packet keys.", "used_by": ["SKILL.md", "templates/output.md", "scripts/check.sh"]}
+  ]
+}

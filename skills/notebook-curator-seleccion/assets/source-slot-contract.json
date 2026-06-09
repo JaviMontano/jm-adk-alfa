@@ -1,0 +1,7 @@
+{
+  "schema": 1,
+  "skill": "notebook-curator-seleccion",
+  "archetype": "SEL-EMPRESA",
+  "required_slots": ["job-description", "empresa-research", "proceso-log", "entrevista-notas", "material-prep", "oferta-precontrato", "notas-gratitud", "post-mortem"],
+  "slot_rule": "every required slot must be present exactly once for complete readiness"
+}

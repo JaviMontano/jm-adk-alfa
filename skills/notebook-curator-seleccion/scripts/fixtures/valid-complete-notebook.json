@@ -1,0 +1,20 @@
+{
+  "schema": 1,
+  "skill": "notebook-curator-seleccion",
+  "archetype": "SEL-EMPRESA",
+  "notebook_id": "SEL-ACME",
+  "retrieval_mode": "offline",
+  "sources": [
+    {"slot": "job-description", "title": "ACME role description", "evidence_type": "exported_doc", "evidence_detail": "Exported PDF supplied by user"},
+    {"slot": "empresa-research", "title": "ACME research notes", "evidence_type": "user_note", "evidence_detail": "Manual company research notes"},
+    {"slot": "proceso-log", "title": "Selection timeline", "evidence_type": "metadata", "evidence_detail": "Timeline extracted from user log"},
+    {"slot": "entrevista-notas", "title": "Panel interview notes", "evidence_type": "source_excerpt", "evidence_detail": "Excerpted notes from panel conversation"},
+    {"slot": "material-prep", "title": "Prep matrix", "evidence_type": "manual_entry", "evidence_detail": "User created preparation matrix"},
+    {"slot": "oferta-precontrato", "title": "Offer draft", "evidence_type": "exported_doc", "evidence_detail": "Offer draft exported as text"},
+    {"slot": "notas-gratitud", "title": "Thank you drafts", "evidence_type": "manual_entry", "evidence_detail": "Drafts written after interviews"},
+    {"slot": "post-mortem", "title": "Process retrospective", "evidence_type": "user_note", "evidence_detail": "Retrospective notes after process"}
+  ],
+  "curation_actions": [
+    {"action": "mark_optional", "reason": "Benefits appendix is useful but not canonical"}
+  ]
+}

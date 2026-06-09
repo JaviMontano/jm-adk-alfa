@@ -1,0 +1,18 @@
+{
+  "schema": 1,
+  "skill": "notebook-curator-seleccion",
+  "nodes": [
+    {"id": "source_inventory", "type": "input"},
+    {"id": "slot_contract", "type": "contract"},
+    {"id": "evidence_policy", "type": "policy"},
+    {"id": "offline_boundary", "type": "policy"},
+    {"id": "curation_actions", "type": "output"},
+    {"id": "readiness_packet", "type": "output"}
+  ],
+  "edges": [
+    {"from": "source_inventory", "to": "slot_contract", "relation": "is_validated_by"},
+    {"from": "evidence_policy", "to": "readiness_packet", "relation": "supports"},
+    {"from": "offline_boundary", "to": "curation_actions", "relation": "limits"},
+    {"from": "slot_contract", "to": "readiness_packet", "relation": "determines"}
+  ]
+}

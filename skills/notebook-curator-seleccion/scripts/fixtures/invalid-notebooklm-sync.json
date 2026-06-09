@@ -1,0 +1,9 @@
+{
+  "schema": 1,
+  "skill": "notebook-curator-seleccion",
+  "archetype": "SEL-EMPRESA",
+  "notebook_id": "SEL-SYNC",
+  "retrieval_mode": "offline",
+  "notebooklm_sync": true,
+  "sources": []
+}
