@@ -3387,7 +3387,7 @@
     "id": "tool-use-design",
     "path": "skills/tool-use-design",
     "name": "Tool Use Design",
-    "description": "Disenar descripciones de tools como contrato de routing y aplicar la estrategia de built-in tools grep then read then edit."
+    "description": "Design deterministic tool-description routing contracts with explicit input formats, examples, reciprocal boundaries, overload split decisions, Grep then Read then Edit repository strategy, Edit failure fallback, and offline validation."
   },
   {
     "id": "trade-off-analysis",

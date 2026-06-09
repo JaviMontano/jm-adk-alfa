@@ -1,0 +1,16 @@
+{
+  "schema": 1,
+  "skill": "tool-use-design",
+  "required_top_level_fields": [
+    "schema",
+    "skill",
+    "tool_contracts",
+    "overload_resolution",
+    "repo_strategy",
+    "edit_safety",
+    "validation"
+  ],
+  "minimum_tool_contracts": 2,
+  "tool_required": ["name", "purpose", "input_format", "examples", "boundary"],
+  "validation_required": ["offline", "network_required", "deterministic", "result"]
+}

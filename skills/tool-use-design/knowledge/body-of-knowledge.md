@@ -1,10 +1,3 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: tool-use-design
-generated-on: 2026-05-30
-overwrite-policy: missing-only unless --force
--->
-
 # Tool Use Design Body of Knowledge
 
 ## Canon
@@ -28,6 +21,7 @@ La descripción de un tool es un **contrato de routing**, no documentación huma
 | Input format | Cada descripción declara la forma de entrada + 1–2 ejemplos |
 | Edit safety | El failure mode (anchor no único) tiene fallback Read+Write documentado |
 | Economía de contexto | Flujo `Grep → Read → Edit`, sin `Glob("**/*") + Read all` |
+| Determinismo | Reporte validable offline contra `assets/tool-use-contract.json` |
 
 ## Decisión de diseño
 
@@ -39,7 +33,11 @@ La descripción de un tool es un **contrato de routing**, no documentación huma
 
 Descripciones genéricas (`"Analyzes content"`, `"Processes the file"`) sin input format ni frontera, que obligan al modelo a adivinar el tool; y `Glob("**/*") + Read all` upfront (~200k tokens) que satura la ventana antes de empezar.
 
-## Open Knowledge
+## Evidencia Requerida
 
-- Katas de referencia: `katas-21`, `katas-23`.
-- Skills relacionadas: `katas-tool-description-quality`, `katas-builtin-tool-selection`.
+- Tool contracts con purpose, input_format, examples y boundary.
+- Pares de frontera recíproca entre tools que compiten.
+- Decisión `rename_split` para tools sobrecargadas.
+- Estrategia `grep -> read -> edit` sin read-all.
+- `Edit` failure mode y fallback.
+- Validación offline con `scripts/validate_tool_use_design.py`.

@@ -1,0 +1,49 @@
+{
+  "schema": 1,
+  "skill": "tool-use-design",
+  "tool_contracts": [
+    {
+      "name": "search_code",
+      "purpose": "Find files or symbols by pattern.",
+      "input_format": "regex_or_literal string",
+      "examples": ["search_code(pattern='class Checkout')"],
+      "boundary": {
+        "use_for": "Locate candidates.",
+        "not_for": "Read full contents.",
+        "delegate_to": ["read_file"]
+      }
+    },
+    {
+      "name": "read_file",
+      "purpose": "Read one known file.",
+      "input_format": "absolute_path string",
+      "examples": ["read_file(path='/repo/a.py')"],
+      "boundary": {
+        "use_for": "Inspect a selected file.",
+        "not_for": "Discover files.",
+        "delegate_to": ["search_code"]
+      }
+    }
+  ],
+  "overload_resolution": {
+    "decision": "rename_split",
+    "resolved_by_prose": false,
+    "split_tools": ["search_code", "read_file"]
+  },
+  "repo_strategy": {
+    "sequence": ["grep", "read", "edit"],
+    "read_all_upfront": true,
+    "glob_all_then_read_all": true
+  },
+  "edit_safety": {
+    "unique_anchor_required": true,
+    "failure_mode": "non_unique_anchor",
+    "fallback": "read_write_full_rewrite"
+  },
+  "validation": {
+    "offline": true,
+    "network_required": false,
+    "deterministic": true,
+    "result": "blocked"
+  }
+}

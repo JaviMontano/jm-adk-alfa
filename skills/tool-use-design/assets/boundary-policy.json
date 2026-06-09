@@ -1,0 +1,11 @@
+{
+  "schema": 1,
+  "skill": "tool-use-design",
+  "boundary_required_fields": ["use_for", "not_for", "delegate_to"],
+  "overload_resolution": "rename_split",
+  "rules": [
+    "Every delegate_to target must exist in tool_contracts.",
+    "Competing tools must delegate to each other explicitly.",
+    "A tool with multiple responsibilities must be split and renamed, not explained with prose."
+  ]
+}

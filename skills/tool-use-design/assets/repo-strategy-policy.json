@@ -1,0 +1,12 @@
+{
+  "schema": 1,
+  "skill": "tool-use-design",
+  "required_sequence": ["grep", "read", "edit"],
+  "read_all_upfront_allowed": false,
+  "glob_all_then_read_all_allowed": false,
+  "rules": [
+    "Locate with grep or glob.",
+    "Read only selected files.",
+    "Edit only after a unique anchor or full rewrite fallback is selected."
+  ]
+}

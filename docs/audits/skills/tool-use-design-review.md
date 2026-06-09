@@ -1,0 +1,95 @@
+# tool-use-design Review
+
+## SkillTicket
+
+- skill activa: `tool-use-design`
+- estado ledger inicial: `pending`
+- rama: `codex/harden-tool-use-design-dod-20260609`
+- scope permitido: `skills/tool-use-design/**`, esta review doc, fila ledger e indices generados
+- riesgo deterministico inicial: faltaban `assets/`, no habia script offline, evals no exigian assets ni deterministic scripts, y el routing de tools podia quedar como prosa no verificable
+
+## SpokeReport
+
+### Coordinator
+
+- status: pass
+- findings: rama creada desde `origin/main` limpio
+- coverage_gaps: ninguno para iniciar
+- recommended_changes: mantener una sola skill activa
+- risk: bajo
+
+### Ledger Auditor
+
+- status: warn
+- findings: fila ledger existia como `pending`
+- coverage_gaps: registrar evidencia local antes de `dod-complete`
+- recommended_changes: actualizar una sola fila y crear review doc
+- risk: medio
+
+### Determinism Auditor
+
+- status: block
+- findings: faltaban assets, contrato tipado, validator offline y fixtures negativos
+- coverage_gaps: descripciones genericas, fronteras ausentes, read-all upfront, overload por prosa, edit sin fallback
+- recommended_changes: agregar contrato JSON y checker offline
+- risk: alto antes del hardening
+
+### Eval Designer
+
+- status: pass
+- findings: se reemplazaron evals genericos por 10 casos con positivos, falsos positivos, bloqueos y limites
+- coverage_gaps: ninguno observado despues del cambio
+- recommended_changes: mantener casos de generic description, read-all y missing boundary
+- risk: bajo
+
+### Script Engineer
+
+- status: pass
+- findings: `validate_tool_use_design.py` valida tool contracts, fronteras, estrategia repo y edit safety offline
+- coverage_gaps: no ejecuta tools reales; valida contratos de routing antes de uso
+- recommended_changes: ejecutar `scripts/check.sh` antes de cerrar un redesign de tools
+- risk: bajo
+
+### Integrator
+
+- status: pass
+- findings: cambios confinados a la skill activa, review doc, ledger e indices generados
+- coverage_gaps: adaptadores pendientes de regeneracion por cambios de descripcion
+- recommended_changes: correr adaptadores e indice antes de PR
+- risk: bajo
+
+### Guardian
+
+- status: pass
+- findings: DoD por skill y scripts estrictos pasan localmente
+- coverage_gaps: requiere repo checks y Quality Gates antes de merge
+- recommended_changes: abrir PR solo tras repo checks verdes
+- risk: medio hasta CI
+
+## HardeningBrief
+
+- skill: `tool-use-design`
+- scope_allowed: `skills/tool-use-design/**`, `docs/audits/skills/tool-use-design-review.md`, fila ledger e indices generados
+- required_changes: assets manifest, contrato de tool-use, policies de description/boundary/repo/edit/anti-pattern, evals deterministas, validator offline, fixtures valid/blocked/invalid, review doc
+- forbidden_changes: tocar katas relacionadas, aceptar read-all upfront, resolver overloading con prosa, omitir fallback de Edit
+- validation_plan: skill checks, repo checks, doc-factory, script checks globales, `git diff --check`
+- merge_criteria: validacion local verde, PR listo, Quality Gates verdes, squash merge y limpieza
+
+## Local Evidence
+
+- `bash skills/tool-use-design/scripts/check.sh` -> pass (`valid=2 blocked=2 invalid=6`)
+- `python3 -B scripts/validate-skill-dod.py --skill tool-use-design` -> pass (`errors=0`)
+- `python3 -B scripts/validate-skill-scripts.py --strict --run-checks --skill tool-use-design` -> pass (`errors=0`)
+- `bash scripts/adapt.sh all` -> pass (`611 skills indexed`)
+- `bash scripts/generate-pristino-index.sh` -> pass (`Skills: 611`, `Components: 1395`)
+- `python3 -B scripts/count-components.py --check-docs` -> pass (`skills=611`, `components=1395`)
+- `python3 -B scripts/validate-skills.py --strict` -> pass (`warnings=0 errors=0`)
+- `bash scripts/check-repo-boundaries.sh` -> pass (`Repo boundaries OK`)
+- `python3 -B scripts/qa/run-adversarial-tests.py` -> pass (`passed=11 failed=0 total=11`)
+- `bash scripts/doc-factory/check.sh` -> pass
+- `python3 -B scripts/validate-skill-scripts.py --strict --run-checks` -> pass (`skills_with_scripts=152 warnings=0 errors=0`)
+- `git diff --check` -> pass
+
+## Guardian Decision
+
+Authorized for PR after local skill and repo validations. Do not merge until Quality Gates pass.

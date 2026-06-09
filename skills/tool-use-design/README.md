@@ -1,10 +1,3 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: tool-use-design
-generated-on: 2026-05-30
-overwrite-policy: missing-only unless --force
--->
-
 # Tool Use Design
 
 Capacidad de ingeniería para diseñar la descripción de cada tool como **contrato de routing** (propósito, input format, ejemplos y frontera recíproca) y aplicar la estrategia canónica de built-in tools `Grep → Read → Edit`, evitando descripciones genéricas y lecturas masivas que saturan la ventana de contexto.
@@ -31,6 +24,12 @@ La descripción de un tool es la única señal que el planner del modelo lee par
 
 Invócala cuando definas o refactorices el tool surface de un agente, cuando dos tools se solapen, cuando el modelo elija el tool equivocado, o cuando necesites un protocolo de lectura de repos que evite el read-all masivo. Entregable: un set de descripciones-contrato + el flujo `Grep → Read → Edit` validado contra el checklist.
 
-## Output Format
+## Offline Validation
 
-Markdown con summary, evidence, result (bloque GOOD), anti-pattern (bloque ANTI), validation checklist y risks.
+```bash
+bash skills/tool-use-design/scripts/check.sh
+python3 -B scripts/validate-skill-dod.py --skill tool-use-design
+python3 -B scripts/validate-skill-scripts.py --strict --run-checks --skill tool-use-design
+```
+
+El contrato de salida vive en `assets/tool-use-contract.json` y el validator offline en `scripts/validate_tool_use_design.py`.

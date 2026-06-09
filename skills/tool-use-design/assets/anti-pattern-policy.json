@@ -1,0 +1,13 @@
+{
+  "schema": 1,
+  "skill": "tool-use-design",
+  "blocked_patterns": [
+    "generic_description",
+    "missing_input_format",
+    "missing_examples",
+    "missing_reciprocal_boundary",
+    "overload_resolved_by_prose",
+    "glob_all_read_all_upfront",
+    "edit_without_fallback"
+  ]
+}
