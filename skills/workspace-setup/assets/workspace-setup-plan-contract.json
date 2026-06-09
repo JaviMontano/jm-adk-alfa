@@ -1,0 +1,20 @@
+{
+  "schema": "jm-labs.asset.contract.v1",
+  "plan_schema": "jm-labs.workspace-setup.plan.v1",
+  "required_top_level": [
+    "schema",
+    "skill",
+    "mode",
+    "target_file",
+    "existing_profile",
+    "profile",
+    "commands",
+    "privacy",
+    "write_policy",
+    "evidence",
+    "validation"
+  ],
+  "target_file": ".jm-adk.local.json",
+  "modes": ["dry-run", "apply"],
+  "offline_validation_required": true
+}

@@ -1,0 +1,7 @@
+{
+  "schema": "jm-labs.asset.policy.v1",
+  "required_profile_fields": ["goal", "runtime", "autonomy", "workspace_area", "output_format"],
+  "workspace_area_prefixes": ["workspace/", ".local/"],
+  "allowed_output_formats": ["markdown", "json", "markdown+json"],
+  "empty_values_allowed": false
+}

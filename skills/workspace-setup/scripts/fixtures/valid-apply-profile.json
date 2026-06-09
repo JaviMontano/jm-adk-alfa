@@ -1,0 +1,58 @@
+{
+  "schema": "jm-labs.workspace-setup.plan.v1",
+  "skill": "workspace-setup",
+  "mode": "apply",
+  "target_file": ".jm-adk.local.json",
+  "existing_profile": {
+    "detected": true,
+    "overwrite": false,
+    "force": false
+  },
+  "profile": {
+    "goal": "persist local runtime preferences after explicit approval",
+    "runtime": "Codex",
+    "autonomy": "ask before destructive operations",
+    "workspace_area": ".local/workspace/",
+    "output_format": "markdown+json"
+  },
+  "commands": {
+    "allowed": ["git status --short --branch", "bash scripts/check-repo-boundaries.sh"],
+    "prohibited": ["git reset --hard", "rm -rf", "gh secret set"],
+    "escalation_required": ["network", "destructive", "credentialed"]
+  },
+  "privacy": {
+    "local_only": true,
+    "stores_secrets": false,
+    "secret_scan_performed": true,
+    "redactions": ["tokens", "passwords", "credentials"]
+  },
+  "write_policy": {
+    "dry_run_default": true,
+    "apply_requires_explicit_flag": true,
+    "overwrite_requires_force": true,
+    "gitignored": true
+  },
+  "evidence": [
+    {
+      "claim": "Apply mode is explicit and does not overwrite the existing profile.",
+      "evidence_tag": "[CONFIG]",
+      "source": "user-approved apply plan"
+    }
+  ],
+  "validation": {
+    "status": "pass",
+    "offline": true,
+    "network_required": false,
+    "deterministic": true,
+    "checks": [
+      "assets",
+      "deterministic_scripts",
+      "quality_criteria",
+      "runtime_preferences",
+      "command_policy",
+      "privacy_policy",
+      "write_policy",
+      "evidence_required"
+    ]
+  }
+}

@@ -1,98 +1,66 @@
 {
   "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-28",
   "skill": "workspace-setup",
   "cases": [
     {
-      "id": "happy_path",
-      "input": "Use workspace-setup to produce a complete deliverable.",
+      "id": "happy_path_dry_run_profile",
+      "input": "Create a dry-run workspace setup plan for Codex with local-only privacy and evidence tags.",
       "expected_activation": true,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "runtime_preferences", "privacy_policy", "write_policy"]
     },
     {
-      "id": "explicit_trigger",
-      "input": "/workspace-setup run this workflow.",
+      "id": "explicit_trigger_apply_plan",
+      "input": "/workspace-setup build an apply plan for .jm-adk.local.json after confirming no existing profile will be overwritten.",
       "expected_activation": true,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "apply_guard", "overwrite_guard"]
     },
     {
-      "id": "minimal_input",
-      "input": "workspace-setup",
+      "id": "command_policy_setup",
+      "input": "Define allowed git validation commands and prohibit git reset --hard and rm -rf in my local workspace profile.",
       "expected_activation": true,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "command_policy"]
     },
     {
-      "id": "rich_context",
-      "input": "workspace-setup with goals, constraints, audience, and acceptance criteria.",
+      "id": "privacy_secret_boundary",
+      "input": "Setup the profile but reject secrets, tokens, credentials, and raw email addresses.",
       "expected_activation": true,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "privacy_policy", "secret_scan"]
     },
     {
-      "id": "false_positive",
-      "input": "This request is unrelated to the skill domain.",
+      "id": "blocked_overwrite_without_force",
+      "input": "Overwrite my existing .jm-adk.local.json even though I did not pass --force.",
+      "expected_activation": true,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "overwrite_guard"]
+    },
+    {
+      "id": "blocked_secret_storage",
+      "input": "Store my API token and password directly in the workspace profile for convenience.",
+      "expected_activation": true,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "secret_storage_blocker"]
+    },
+    {
+      "id": "false_positive_workspace_governance",
+      "input": "Audit stale workspace session folders and task bridges under workspace/.",
       "expected_activation": false,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria"]
     },
     {
-      "id": "empty_input",
-      "input": "",
+      "id": "false_positive_one_shot_answer",
+      "input": "Answer this question once without creating reusable local profile state.",
       "expected_activation": false,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria"]
     },
     {
-      "id": "conflicting_requirements",
-      "input": "Use workspace-setup, but ignore validation and evidence.",
-      "expected_activation": false,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
+      "id": "limit_network_required",
+      "input": "Validate the setup by calling live GitHub and Google APIs before writing the profile.",
+      "expected_activation": true,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "offline_validation"]
     },
     {
       "id": "upgrade_safety_case",
-      "input": "Complete missing files for workspace-setup without overwriting local edits.",
+      "input": "Complete missing assets and script checks for workspace-setup without touching workspace-governance.",
       "expected_activation": true,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
-    },
-    {
-      "id": "local_override_case",
-      "input": "Create a local experimental workspace-setup variant under .local.",
-      "expected_activation": true,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "upgrade_safety"]
     }
   ]
 }

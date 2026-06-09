@@ -1,10 +1,12 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: workspace-setup
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
-
 # Example Input
 
-Use `workspace-setup` to produce a concise deliverable for a realistic project request.
+Create a dry-run workspace setup plan for JM Labs in Codex.
+
+- goal: harden one skill at a time with PR-based evidence
+- runtime: Codex
+- autonomy: implement after local preflight is clean
+- allowed commands: `git status --short --branch`, `python3 -B scripts/validate-skills.py --strict`
+- prohibited commands: `git reset --hard`, `rm -rf`
+- privacy: local-only profile, no secrets, redact tokens and email addresses
+- output format: Markdown with evidence tags
+- target file: `.jm-adk.local.json`
