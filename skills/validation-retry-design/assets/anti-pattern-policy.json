@@ -1,0 +1,12 @@
+{
+  "schema": 1,
+  "skill": "validation-retry-design",
+  "blocked_patterns": [
+    "retry_original_prompt_unchanged",
+    "boolean_only_validator",
+    "retry_not_recoverable_error",
+    "max_retries_above_three",
+    "return_failed_output_as_success",
+    "missing_error_chain"
+  ]
+}

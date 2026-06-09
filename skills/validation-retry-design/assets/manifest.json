@@ -1,0 +1,48 @@
+{
+  "schema": 1,
+  "skill": "validation-retry-design",
+  "assets": [
+    {
+      "path": "assets/retry-loop-contract.json",
+      "type": "contract",
+      "purpose": "Defines the required JSON shape for validation retry loop plans.",
+      "used_by": ["SKILL.md", "templates/output.md", "scripts/validate_retry_plan.py"]
+    },
+    {
+      "path": "assets/error-feedback-policy.json",
+      "type": "policy",
+      "purpose": "Requires exact actionable validation errors in retry prompts.",
+      "used_by": ["SKILL.md", "scripts/validate_retry_plan.py"]
+    },
+    {
+      "path": "assets/recoverability-policy.json",
+      "type": "policy",
+      "purpose": "Defines recoverable and not-recoverable failure classes.",
+      "used_by": ["SKILL.md", "scripts/validate_retry_plan.py"]
+    },
+    {
+      "path": "assets/retry-budget-policy.json",
+      "type": "policy",
+      "purpose": "Caps retry budgets to deterministic limits.",
+      "used_by": ["SKILL.md", "scripts/validate_retry_plan.py"]
+    },
+    {
+      "path": "assets/systematic-error-policy.json",
+      "type": "policy",
+      "purpose": "Stops repeat-error loops and requires a structural fix hint.",
+      "used_by": ["SKILL.md", "scripts/validate_retry_plan.py"]
+    },
+    {
+      "path": "assets/escalation-policy.json",
+      "type": "policy",
+      "purpose": "Defines escalation packet fields after budget exhaustion or not-recoverable errors.",
+      "used_by": ["SKILL.md", "templates/output.md", "scripts/validate_retry_plan.py"]
+    },
+    {
+      "path": "assets/anti-pattern-policy.json",
+      "type": "policy",
+      "purpose": "Blocks blind retries, boolean-only validators, and silent failed-output acceptance.",
+      "used_by": ["SKILL.md", "scripts/validate_retry_plan.py"]
+    }
+  ]
+}

@@ -1,108 +1,66 @@
 {
   "schema": 1,
-  "generated_by": "scripts/scaffold-skill.py",
-  "generated_on": "2026-05-30",
   "skill": "validation-retry-design",
   "cases": [
     {
-      "id": "happy_path",
-      "input": "Design an extract -> validate -> retry-with-error-feedback loop for an agent step that emits JSON and sometimes returns invalid format.",
+      "id": "happy_path_json_repair",
+      "input": "Design an extract validate retry loop for JSON output with exact validation error feedback and max 3 retries.",
       "expected_activation": true,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "error_feedback", "retry_budget"]
     },
     {
-      "id": "explicit_trigger",
-      "input": "/validation-retry-design build a retry loop that reinjects the specific validation error instead of resending the original prompt.",
+      "id": "explicit_trigger_specific_error",
+      "input": "/validation-retry-design reinject the specific schema error instead of the original prompt.",
       "expected_activation": true,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "specific_error"]
     },
     {
-      "id": "recoverable_vs_not",
-      "input": "My extractor fails sometimes because the field is missing in the source and sometimes because the JSON is malformed. Help me decide when to retry and when to escalate.",
+      "id": "recoverable_vs_not_recoverable",
+      "input": "Classify malformed JSON as recoverable but missing source data as not recoverable and escalate.",
       "expected_activation": true,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "recoverability"]
     },
     {
-      "id": "retry_budget",
-      "input": "Add a retry budget of max 3 with an accumulated error chain and an escalation path when it is exhausted.",
+      "id": "systematic_repeat_error",
+      "input": "Stop after the same validation error repeats twice and report a structural fix hint.",
       "expected_activation": true,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "systematic_detection"]
     },
     {
-      "id": "systematic_pattern",
-      "input": "The validator returns the same error on every retry; design the loop so it stops and reports a structural fix instead of burning retries.",
+      "id": "blocked_blind_retry",
+      "input": "Retry the same prompt three times without passing the validation error back.",
       "expected_activation": true,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "blind_retry_blocker"]
     },
     {
-      "id": "false_positive",
+      "id": "blocked_accept_failed_output",
+      "input": "If all retries fail, return the last output as if it passed.",
+      "expected_activation": true,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "silent_failure_blocker"]
+    },
+    {
+      "id": "false_positive_marketing_email",
       "input": "Write a marketing email about a product launch next week.",
       "expected_activation": false,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria"]
     },
     {
-      "id": "empty_input",
-      "input": "",
+      "id": "false_positive_simple_lint",
+      "input": "Run the existing linter once and summarize the output.",
       "expected_activation": false,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria"]
     },
     {
-      "id": "conflicting_requirements",
-      "input": "Use validation-retry-design but just retry the same prompt blindly and accept whatever comes out without validating or escalating.",
-      "expected_activation": false,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
+      "id": "limit_retry_budget_too_high",
+      "input": "Set max retries to 10 because the model might eventually fix itself.",
+      "expected_activation": true,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "budget_limit"]
     },
     {
       "id": "upgrade_safety_case",
-      "input": "Complete missing files for validation-retry-design without overwriting local edits.",
+      "input": "Complete missing assets and script checks for validation-retry-design without touching related kata skills.",
       "expected_activation": true,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
-    },
-    {
-      "id": "local_override_case",
-      "input": "Create a local experimental validation-retry-design variant under .local.",
-      "expected_activation": true,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "upgrade_safety"]
     }
   ]
 }

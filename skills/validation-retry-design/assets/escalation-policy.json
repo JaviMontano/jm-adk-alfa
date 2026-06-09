@@ -1,0 +1,6 @@
+{
+  "schema": 1,
+  "skill": "validation-retry-design",
+  "required_fields": ["reason", "error_chain", "last_output", "recommended_next_step"],
+  "allowed_reasons": ["not_recoverable", "budget_exhausted", "systematic_repeat_error"]
+}

@@ -1,0 +1,7 @@
+{
+  "schema": 1,
+  "skill": "validation-retry-design",
+  "required_error_fields": ["code", "message", "path", "recoverability"],
+  "retry_prompt_required": ["previous_output", "exact_error", "correction_instruction"],
+  "forbidden": ["retry_original_prompt_unchanged", "boolean_only_validator"]
+}
