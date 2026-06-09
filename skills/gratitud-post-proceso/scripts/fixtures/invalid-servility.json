@@ -1,0 +1,8 @@
+{
+  "schema": 1,
+  "skill": "gratitud-post-proceso",
+  "recipient": {"name_or_role": "Carlos", "relationship": "interviewer", "channel": "email"},
+  "process": {"context": "interview", "stage": "post-interview"},
+  "evidence": [{"type": "topic_discussed", "detail": "modelo operativo"}],
+  "message": {"subject": "Perdon", "body": "Carlos, perdon por molestar y disculpa la molestia. Se que no merezco otra respuesta, pero queria agradecer la conversacion sobre modelo operativo y quedar absolutamente disponible siempre.", "next_step_claim": ""}
+}

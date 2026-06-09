@@ -1,0 +1,8 @@
+{
+  "schema": 1,
+  "skill": "gratitud-post-proceso",
+  "required_evidence": ["process_context", "interaction_detail"],
+  "allowed_evidence_types": ["topic_discussed", "advice_received", "next_step_supplied", "contribution", "shared_decision"],
+  "missing_evidence_policy": "block_or_template_only",
+  "forbidden_evidence": ["invented_outcome", "guessed_deadline", "unsupplied_relationship_warmth"]
+}

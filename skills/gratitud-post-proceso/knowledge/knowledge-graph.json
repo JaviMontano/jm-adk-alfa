@@ -1,0 +1,19 @@
+{
+  "schema": 1,
+  "skill": "gratitud-post-proceso",
+  "nodes": [
+    {"id": "recipient", "type": "input", "label": "Recipient identity or role"},
+    {"id": "process_context", "type": "input", "label": "Process context"},
+    {"id": "interaction_evidence", "type": "evidence", "label": "Interaction-specific detail"},
+    {"id": "message", "type": "output", "label": "Thank-you message"},
+    {"id": "tone_guardrails", "type": "policy", "label": "Brand and tone guardrails"},
+    {"id": "promise_boundary", "type": "policy", "label": "Unsupported commitment boundary"}
+  ],
+  "edges": [
+    {"from": "recipient", "to": "message", "relation": "personalizes"},
+    {"from": "process_context", "to": "message", "relation": "frames"},
+    {"from": "interaction_evidence", "to": "message", "relation": "grounds"},
+    {"from": "tone_guardrails", "to": "message", "relation": "constrains"},
+    {"from": "promise_boundary", "to": "message", "relation": "limits"}
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "skill": "gratitud-post-proceso",
+  "assets": [
+    {
+      "path": "assets/recipient-differentiation-policy.json",
+      "type": "policy",
+      "purpose": "Defines recipient fields and differentiation rules.",
+      "used_by": ["SKILL.md", "README.md", "scripts/lint_gratitud.py", "evals/evals.json"]
+    },
+    {
+      "path": "assets/evidence-policy.json",
+      "type": "policy",
+      "purpose": "Defines required process and interaction evidence.",
+      "used_by": ["SKILL.md", "knowledge/body-of-knowledge.md", "scripts/lint_gratitud.py"]
+    },
+    {
+      "path": "assets/brand-voice-policy.json",
+      "type": "policy",
+      "purpose": "Defines tone blockers and distinctive phrase limits.",
+      "used_by": ["SKILL.md", "examples/example-output.md", "scripts/lint_gratitud.py"]
+    },
+    {
+      "path": "assets/promise-boundary-policy.json",
+      "type": "policy",
+      "purpose": "Defines unsupported outcome and commitment boundaries.",
+      "used_by": ["SKILL.md", "templates/output.md", "scripts/lint_gratitud.py"]
+    },
+    {
+      "path": "assets/output-contract.json",
+      "type": "schema",
+      "purpose": "Defines output sections and machine packet keys.",
+      "used_by": ["SKILL.md", "templates/output.md", "scripts/check.sh"]
+    }
+  ]
+}

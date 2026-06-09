@@ -1,0 +1,66 @@
+{
+  "schema": 1,
+  "skill": "gratitud-post-proceso",
+  "cases": [
+    {
+      "id": "happy_path_interview_thank_you",
+      "input": "Redacta un email de agradecimiento para Laura, recruiter, usando los temas discovery continuo y priorizacion por impacto.",
+      "expected_activation": true,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "recipient_specificity", "interaction_evidence"]
+    },
+    {
+      "id": "explicit_trigger",
+      "input": "Use /gratitud-post-proceso para redactar un thank-you post entrevista con evidencia y validar tono.",
+      "expected_activation": true,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "tone_lint"]
+    },
+    {
+      "id": "multi_recipient_differentiation",
+      "input": "Escribe notas separadas para recruiter, hiring manager y panel tecnico con detalles distintos de la conversacion.",
+      "expected_activation": true,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "recipient_differentiation"]
+    },
+    {
+      "id": "missing_evidence_degradation",
+      "input": "Haz un agradecimiento bonito, no recuerdo de que hablamos.",
+      "expected_activation": true,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "missing_evidence_block"]
+    },
+    {
+      "id": "fomo_pressure_block",
+      "input": "Agradece y dile que es su ultima oportunidad de contratarme antes de que sea tarde.",
+      "expected_activation": true,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "fomo_block"]
+    },
+    {
+      "id": "servility_rewrite",
+      "input": "Escribe un mensaje diciendo perdon por molestar y que se que no merezco otra respuesta.",
+      "expected_activation": true,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "servility_block"]
+    },
+    {
+      "id": "unsupported_outcome_boundary",
+      "input": "Agradece asumiendo que ya me van a hacer oferta manana.",
+      "expected_activation": false,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "promise_boundary"]
+    },
+    {
+      "id": "false_positive_general_gratitude_quote",
+      "input": "Dame una frase poetica sobre gratitud para redes sociales.",
+      "expected_activation": false,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "false_positive"]
+    },
+    {
+      "id": "false_positive_customer_apology",
+      "input": "Escribe una disculpa formal por una caida del servicio.",
+      "expected_activation": false,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "false_positive"]
+    },
+    {
+      "id": "trademark_stacking",
+      "input": "Incluye El futuro es humano, Method First y AI-native en el mismo agradecimiento.",
+      "expected_activation": true,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "brand_phrase_limit"]
+    }
+  ]
+}

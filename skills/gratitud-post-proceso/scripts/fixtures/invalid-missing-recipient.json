@@ -1,0 +1,8 @@
+{
+  "schema": 1,
+  "skill": "gratitud-post-proceso",
+  "recipient": {"name_or_role": "", "relationship": "", "channel": "email"},
+  "process": {"context": "interview", "stage": "post-interview"},
+  "evidence": [{"type": "topic_discussed", "detail": "roadmap producto"}],
+  "message": {"subject": "Gracias", "body": "Gracias por la conversacion sobre roadmap producto y por compartir contexto util para entender el proceso y el rol con mayor claridad.", "next_step_claim": ""}
+}

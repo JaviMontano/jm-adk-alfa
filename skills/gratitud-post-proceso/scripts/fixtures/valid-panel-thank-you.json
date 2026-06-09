@@ -1,0 +1,15 @@
+{
+  "schema": 1,
+  "skill": "gratitud-post-proceso",
+  "recipient": {"name_or_role": "panel tecnico", "relationship": "interview panel", "channel": "linkedin"},
+  "process": {"context": "technical interview", "stage": "post-panel"},
+  "evidence": [
+    {"type": "topic_discussed", "detail": "tradeoffs de arquitectura"},
+    {"type": "advice_received", "detail": "profundizar metricas de observabilidad"}
+  ],
+  "message": {
+    "subject": "",
+    "body": "Gracias por la conversacion tecnica y por las preguntas sobre tradeoffs de arquitectura. Me resulto especialmente valioso el punto sobre profundizar metricas de observabilidad, porque ayuda a conectar decisiones tecnicas con impacto operativo. Aprecio el tiempo y el contexto compartido.",
+    "next_step_claim": ""
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "schema": 1,
+  "skill": "gratitud-post-proceso",
+  "recipient": {"name_or_role": "equipo evaluador", "relationship": "panel", "channel": "email"},
+  "process": {"context": "panel interview", "stage": "post-panel"},
+  "evidence": [{"type": "topic_discussed", "detail": "estrategia AI"}],
+  "message": {"subject": "Gracias", "body": "Gracias por el espacio sobre estrategia AI. El futuro es humano, method first y ai-native resumen como podria aportar al equipo desde una mirada practica, rigurosa y conectada con negocio.", "next_step_claim": ""}
+}
