@@ -1,0 +1,15 @@
+{
+  "schema": 1,
+  "skill": "validar-liquidacion-co",
+  "recommendations": [
+    "do_not_sign_yet",
+    "sign_under_reservation",
+    "no_objection_arithmetic_only"
+  ],
+  "rules": [
+    "Use no_objection_arithmetic_only only when arithmetic reconciles and no open questions remain.",
+    "Use sign_under_reservation only with non-empty reservation_text.",
+    "Use do_not_sign_yet when evidence is missing, amounts do not reconcile, or the user asks for legal certainty."
+  ],
+  "scope": "The recommendation is arithmetic-only and does not replace legal or accounting review."
+}

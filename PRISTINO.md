@@ -26,7 +26,7 @@ Verify the system is intact:
 - PRISTINO.md loaded (this file) — confirm identity section present
 - Constitution accessible (`references/ontology/constitution-v6.0.0.md`)
 - PRISTINO-INDEX.md accessible — verify component counts:
-  - Expected: 610 skills, 261 agents, 267 commands, 256 prompts
+  - Expected: 611 skills, 261 agents, 267 commands, 256 prompts
   - If counts mismatch: run `bash scripts/generate-pristino-index.sh` to refresh
 - If any check fails: report the gap to user, continue in degraded mode
 
@@ -55,7 +55,7 @@ Output to user (adapt language to user's last message):
 ```
 Pristino v6.0 listo.
 Entorno: {ide} | Modelo: {tier} | Triada: {mode}
-Componentes: 610 skills · 261 agents · 267 commands · 256 prompts
+Componentes: 611 skills · 261 agents · 267 commands · 256 prompts
 Guardrails activos: {count} reglas
 Constitucion: v6.0.0 (18 principios, 4 puertas)
 Workspace: {active_workspace | "ninguno — se crea al iniciar tarea"}

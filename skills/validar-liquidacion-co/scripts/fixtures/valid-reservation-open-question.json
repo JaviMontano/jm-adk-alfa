@@ -1,0 +1,50 @@
+{
+  "schema": 1,
+  "skill": "validar-liquidacion-co",
+  "currency": "COP",
+  "evidence": [
+    {
+      "id": "E-001",
+      "type": "payroll_summary",
+      "source": "User-supplied payroll export",
+      "summary": "Salary bases COP 2400000, 90 worked days, no explicit vacation days, reported components, deduction, and net amount."
+    },
+    {
+      "id": "E-002",
+      "type": "deduction_note",
+      "source": "User note",
+      "summary": "A COP 150000 equipment deduction appears but supporting authorization is not attached."
+    }
+  ],
+  "calculation_basis": {
+    "salary_base_prestaciones": 2400000,
+    "salary_base_vacaciones": 2400000,
+    "days_worked": 90,
+    "evidence_ref": "E-001"
+  },
+  "reported_components": {
+    "cesantias": 600000,
+    "intereses_cesantias": 18000,
+    "prima": 600000,
+    "vacaciones": 300000
+  },
+  "deductions": {
+    "equipment": 150000
+  },
+  "other_payments": {},
+  "net_reported": 1368000,
+  "open_questions": [
+    "Confirm written authorization and legal basis for the COP 150000 equipment deduction."
+  ],
+  "paz_y_salvo": {
+    "recommendation": "sign_under_reservation",
+    "reservation_text": "Arithmetic reviewed; deduction basis remains open."
+  },
+  "validation": {
+    "offline": true,
+    "network_used": false,
+    "not_legal_advice": true,
+    "legal_review_recommended": true,
+    "result": "pass"
+  }
+}

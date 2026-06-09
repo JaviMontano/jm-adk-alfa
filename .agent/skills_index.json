@@ -3474,6 +3474,12 @@
     "description": "Ensures deliverables are business-readable, scannable, and cognitively accessible. Provides 5 standards: information hierarchy, cognitive load reduction, scannability, microcopy, and readability heuri"
   },
   {
+    "id": "validar-liquidacion-co",
+    "path": "skills/validar-liquidacion-co",
+    "name": "Validar Liquidacion Co",
+    "description": "This skill should be used when the user asks to validate a Colombian labor settlement calculation, recompute cesantias, intereses de cesantias, prima, vacaciones, deductions, net payment, or review paz y salvo questions with an arithmetic-only, evidence-backed report."
+  },
+  {
     "id": "validate-components",
     "path": "skills/validate-components",
     "name": "Validate Components",

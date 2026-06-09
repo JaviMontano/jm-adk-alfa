@@ -1,0 +1,1 @@
+Build an arithmetic-only liquidation validation report from supplied evidence, recompute components using `assets/formula-policy.json`, validate with `scripts/liquidacion_validator.py`, and preserve legal-review boundaries.

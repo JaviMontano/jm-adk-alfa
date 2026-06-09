@@ -1,0 +1,21 @@
+{
+  "schema": 1,
+  "skill": "validar-liquidacion-co",
+  "not_legal_advice_required": true,
+  "legal_review_recommended_required": true,
+  "forbidden_claims": [
+    "legally final",
+    "fully compliant",
+    "safe to sign",
+    "firma tranquilo",
+    "cumple totalmente",
+    "definitive legal conclusion"
+  ],
+  "stop_conditions": [
+    "signature automation",
+    "litigation advice",
+    "final compliance opinion",
+    "professional legal certainty",
+    "payroll-system access"
+  ]
+}

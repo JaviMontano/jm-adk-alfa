@@ -1,0 +1,8 @@
+{
+  "schema": 1,
+  "skill": "validar-liquidacion-co",
+  "currency": "COP",
+  "rounding": "ROUND_HALF_UP",
+  "amount_tolerance": 1,
+  "unit": "peso"
+}

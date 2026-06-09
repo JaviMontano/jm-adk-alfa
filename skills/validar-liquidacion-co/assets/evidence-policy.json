@@ -1,0 +1,14 @@
+{
+  "schema": 1,
+  "skill": "validar-liquidacion-co",
+  "allowed_types": [
+    "settlement_doc",
+    "payroll_summary",
+    "manual_entry",
+    "deduction_note",
+    "vacation_note"
+  ],
+  "required_fields": ["id", "type", "source", "summary"],
+  "basis_rule": "calculation_basis.evidence_ref must reference one supplied evidence id.",
+  "source_rule": "Do not use network, payroll systems, calendars, or inferred legal tables unless the user supplies them as evidence."
+}
