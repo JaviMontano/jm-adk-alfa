@@ -33,4 +33,22 @@ Activala al investigar un dominio o repositorio desconocido. Flujo: mapeo barato
 
 ## Output Format
 
-Markdown with summary, evidence, result, validation, and risks.
+Markdown with summary, topology, prioritized plan, findings, replans, budget, evidence, validation, and risks. Critical handoffs may also include a JSON report that matches `assets/adaptive-investigation-report-contract.json`.
+
+## Deterministic Assets
+
+- `assets/manifest.json` lists the local contract assets.
+- `assets/exploration-budget-policy.json` requires file/query/minute limits before exploration.
+- `assets/replan-gate-policy.json` blocks re-plan on mere refinement.
+- `assets/evidence-policy.json` forbids network, random, or wall-clock-only evidence.
+- `assets/scratchpad-policy.json` requires persisted topology, plan, findings, budget, and risks.
+
+## Offline Check
+
+Run:
+
+```bash
+bash skills/katas-adaptive-investigation/scripts/check.sh
+```
+
+The check validates deterministic valid/invalid JSON fixtures without network access.

@@ -1,0 +1,10 @@
+{
+  "schema": "jm-labs.asset.exploration-budget-policy.v1",
+  "skill": "katas-adaptive-investigation",
+  "budget_dimensions": ["files", "queries", "minutes"],
+  "limits_required_before_mapping": true,
+  "usage_must_not_exceed_limit": true,
+  "budget_statuses": ["complete", "exhausted_with_pending"],
+  "exhausted_status_requires_pending_questions": true,
+  "forbidden_patterns": ["read_all_files", "unbounded_exploration", "repo_wide_read_without_budget"]
+}

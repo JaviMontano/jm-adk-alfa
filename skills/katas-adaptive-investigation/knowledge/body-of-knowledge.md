@@ -20,6 +20,7 @@ Conceptos clave:
 - **Presupuesto de exploracion.** Limite duro de archivos / queries / minutos; al agotarse se reporta encontrado + pendiente.
 - **Persistencia.** Plan y findings viven en un scratchpad (Kata 18) para sobrevivir a la ventana de contexto.
 - **Paralelismo.** Deep-dives independientes se reparten a subagentes (Kata 4).
+- **Contrato offline.** `assets/` define reporte, presupuesto, evidencia, re-plan y scratchpad; `scripts/check.sh` prueba fixtures validos e invalidos sin red.
 
 ## Quality Signals
 
@@ -40,6 +41,14 @@ for task in plan:
 ```
 
 Variantes del mismo error: `read_all_files()` sin budget; `re_plan()` en cada turno por reflejo en vez de por invalidacion.
+
+## Deterministic Validation
+
+- Aceptar solo reportes que declaran `budget.files`, `budget.queries` y `budget.minutes` con `used <= limit`.
+- Exigir `Glob` y `Grep` en `topology.cheap_mapping` antes de cualquier finding de deep-dive.
+- Exigir que cada `prioritized_plan.target` provenga de `topology.candidates`.
+- Permitir `replans[]` solo cuando el `trigger_finding_id` apunta a un finding con `invalidates_hypothesis=true`.
+- Rechazar reportes que requieren red, random, evidencia de reloj o lectura total del repositorio.
 
 ## Quiz canonico
 

@@ -1,0 +1,68 @@
+{
+  "schema": "jm-labs.katas-adaptive-investigation.report.v1",
+  "skill": "katas-adaptive-investigation",
+  "objective": "Understand ownership boundaries in a large unfamiliar monorepo.",
+  "scope": "services",
+  "hypothesis": "The boundary probably follows service folder names.",
+  "budget": {
+    "files": {"limit": 10, "used": 10},
+    "queries": {"limit": 6, "used": 6},
+    "minutes": {"limit": 20, "used": 18},
+    "status": "exhausted_with_pending",
+    "pending_questions": ["Confirm whether shared/auth owns cross-service token refresh."]
+  },
+  "topology": {
+    "cheap_mapping": [
+      {"tool": "Glob", "pattern": "services/**/README.md", "result_count": 14, "evidence_tag": "[CODIGO]"},
+      {"tool": "Grep", "pattern": "owner|boundary|auth", "result_count": 22, "evidence_tag": "[CODIGO]"}
+    ],
+    "candidates": ["services/payments/README.md", "services/shared/auth.md", "services/orders/README.md"]
+  },
+  "prioritized_plan": [
+    {"priority": 1, "target": "services/shared/auth.md", "rationale": "Most cross-service references point to auth.", "source": "topology"},
+    {"priority": 2, "target": "services/payments/README.md", "rationale": "Payments imports shared auth.", "source": "topology"},
+    {"priority": 3, "target": "services/orders/README.md", "rationale": "Orders has secondary references.", "source": "topology"}
+  ],
+  "findings": [
+    {
+      "id": "auth-cross-service",
+      "target": "services/shared/auth.md",
+      "summary": "Auth is shared, but ownership is not fully documented within the budget.",
+      "source": "services/shared/auth.md",
+      "evidence_tag": "[DOC]",
+      "invalidates_hypothesis": false,
+      "deep_dive_after_mapping": true
+    }
+  ],
+  "replans": [],
+  "scratchpad": {
+    "persisted": true,
+    "source": "scratchpad/adaptive-investigation.md",
+    "sections": ["topology", "plan", "findings", "budget", "risks"]
+  },
+  "evidence": [
+    {"claim": "Budget exhaustion was reported with pending questions.", "evidence_tag": "[CODIGO]", "source": "budget.pending_questions"}
+  ],
+  "validation": {
+    "status": "warn",
+    "offline": true,
+    "network_required": false,
+    "deterministic": true,
+    "uses_randomness": false,
+    "checks": [
+      "assets",
+      "deterministic_scripts",
+      "quality_criteria",
+      "exploration_budget",
+      "cheap_mapping_before_deep_dive",
+      "selective_deep_dive",
+      "replan_gate",
+      "evidence_required",
+      "scratchpad_persistence"
+    ]
+  },
+  "risks": {
+    "remaining": ["Boundary confirmation remains pending because the budget is exhausted."],
+    "forbidden_patterns": []
+  }
+}

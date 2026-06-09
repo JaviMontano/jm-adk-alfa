@@ -69,6 +69,23 @@ read_all_files()
 - Definir un presupuesto de exploracion explicito (archivos / queries / minutos).
 - Enunciar el criterio de re-planificacion: que dispara un re-plan (un hallazgo que invalida la hipotesis) y que NO lo dispara (un hallazgo que solo la refina).
 - Conectar con Kata 4 (subagentes para deep-dive paralelo) y Kata 18 (scratchpad como memoria persistente del plan y los findings).
+- Emitir un reporte compatible con `assets/adaptive-investigation-report-contract.json`.
+- Validar reportes criticos con `scripts/check.sh` o `scripts/validate_adaptive_investigation_report.py` antes de cerrar.
+
+## Contrato deterministico
+
+La skill usa `assets/` como contrato offline:
+
+- `assets/exploration-budget-policy.json`: el presupuesto de archivos, queries y minutos se declara antes del mapeo; el uso nunca puede exceder el limite.
+- `assets/replan-gate-policy.json`: un re-plan requiere un finding con `invalidates_hypothesis=true`; los refinamientos no disparan re-plan.
+- `assets/evidence-policy.json`: cada claim lleva evidencia local y no requiere red, reloj ni random.
+- `assets/scratchpad-policy.json`: topologia, plan, findings, budget y riesgos se persisten para handoff.
+
+Cuando exista un reporte JSON de cierre, validarlo con:
+
+```bash
+bash skills/katas-adaptive-investigation/scripts/check.sh
+```
 
 ## Cuando activar
 

@@ -1,0 +1,8 @@
+{
+  "schema": "jm-labs.asset.scratchpad-policy.v1",
+  "skill": "katas-adaptive-investigation",
+  "persisted_required": true,
+  "required_sections": ["topology", "plan", "findings", "budget", "risks"],
+  "handoff_required_on_budget_exhaustion": true,
+  "must_include_evidence_sources": true
+}

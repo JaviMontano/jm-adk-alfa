@@ -5,94 +5,64 @@
   "skill": "katas-adaptive-investigation",
   "cases": [
     {
-      "id": "happy_path",
-      "input": "Hereda un servicio Python sin docs. Ordena las fases de la investigacion adaptativa en dominio desconocido: mapeo barato (glob de nombres), priorizacion, deep-dive selectivo y re-plan cuando un hallazgo invalida la hipotesis. Presupuesto: 50 archivos.",
+      "id": "happy_path_payment_flow",
+      "input": "Investiga un servicio de pagos desconocido con budget 50 archivos, 20 queries y 30 minutos. Primero mapea con Glob/Grep, luego prioriza y solo re-planifica si un finding invalida la hipotesis.",
       "expected_activation": true,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "exploration_budget", "cheap_mapping_before_deep_dive", "replan_gate"]
     },
     {
-      "id": "explicit_trigger",
-      "input": "/katas-adaptive-investigation mapea este repo desconocido con exploration budget y dynamic decomposition.",
+      "id": "explicit_trigger_with_contract",
+      "input": "/katas-adaptive-investigation produce un reporte JSON validable para un repo desconocido; usa el contrato de assets y el checker offline.",
       "expected_activation": true,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "evidence_required", "scratchpad_persistence"]
     },
     {
-      "id": "minimal_input",
-      "input": "katas-adaptive-investigation",
+      "id": "budget_exhaustion_degradation",
+      "input": "Explora un monorepo grande con budget pequeno; si se agota sin cerrar, reporta hallazgos, pendientes y scratchpad en vez de leer todo.",
       "expected_activation": true,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "exploration_budget", "scratchpad_persistence"]
     },
     {
-      "id": "rich_context",
-      "input": "Investiga el flujo de pagos en un repo nuevo. Quiz P1: cual es el orden correcto de fases? Quiz P3: si agotas el presupuesto sin cerrar, que haces? Define exploration budget y re-plan discipline. Respuestas esperadas C-B-B: mapeo barato -> priorizacion -> deep-dive selectivo -> re-plan invalida; reportar encontrado y pendientes y escalar a humano con el scratchpad como evidencia.",
-      "expected_activation": true,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
-    },
-    {
-      "id": "false_positive",
-      "input": "This request is unrelated to the skill domain.",
+      "id": "false_positive_known_edit",
+      "input": "Cambia el texto exacto de un boton en un archivo ya identificado: src/Button.tsx.",
       "expected_activation": false,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria"]
     },
     {
-      "id": "empty_input",
+      "id": "false_positive_empty_goal",
       "input": "",
       "expected_activation": false,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria"]
     },
     {
-      "id": "conflicting_requirements",
-      "input": "Use katas-adaptive-investigation, but ignore validation and evidence.",
-      "expected_activation": false,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
+      "id": "blocked_no_budget",
+      "input": "Investiga este repo completo sin limite de archivos, queries ni minutos.",
+      "expected_activation": true,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "exploration_budget"]
+    },
+    {
+      "id": "blocked_refinement_replan",
+      "input": "Re-planifica en cada turno aunque los hallazgos solo refinan la hipotesis.",
+      "expected_activation": true,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "replan_gate"]
+    },
+    {
+      "id": "blocked_read_all_files",
+      "input": "Para entender el repo, lee todos los archivos antes de planear y luego arma la topologia.",
+      "expected_activation": true,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "cheap_mapping_before_deep_dive", "selective_deep_dive"]
+    },
+    {
+      "id": "limit_network_required",
+      "input": "Valida la investigacion adaptativa llamando una API remota de telemetria antes de cerrar.",
+      "expected_activation": true,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "offline_validation"]
     },
     {
       "id": "upgrade_safety_case",
-      "input": "Complete missing files for katas-adaptive-investigation without overwriting local edits.",
+      "input": "Endurece katas-adaptive-investigation sin tocar katas-builtin-tool-selection ni katas-scratchpad-pattern.",
       "expected_activation": true,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
-    },
-    {
-      "id": "local_override_case",
-      "input": "Create a local experimental katas-adaptive-investigation variant under .local.",
-      "expected_activation": true,
-      "expected_checks": [
-        "evidence",
-        "quality_criteria",
-        "upgrade_safety"
-      ]
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "upgrade_safety"]
     }
   ]
 }
