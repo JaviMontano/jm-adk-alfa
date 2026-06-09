@@ -1,9 +1,66 @@
-[
-  {"id": "subagent-monitor-happy-path", "type": "happy_path", "input": "Run subagent monitor on this project", "expected_behavior": "Skill activates and produces the expected subagent monitor output following the defined process", "tags": ["basic", "activation"]},
-  {"id": "subagent-monitor-explicit-trigger", "type": "happy_path", "input": "Apply subagent monitor analysis", "expected_behavior": "Skill recognizes the trigger phrase and executes the subagent monitor workflow", "tags": ["trigger", "recognition"]},
-  {"id": "subagent-monitor-with-context", "type": "happy_path", "input": "Apply subagent monitor to analyze the current codebase with detailed output", "expected_behavior": "Skill produces comprehensive subagent monitor analysis with evidence-tagged findings", "tags": ["detailed", "comprehensive"]},
-  {"id": "subagent-monitor-minimal-input", "type": "happy_path", "input": "Quick subagent monitor", "expected_behavior": "Skill activates with minimal input, applies reasonable defaults", "tags": ["minimal", "defaults"]},
-  {"id": "subagent-monitor-false-positive", "type": "false_positive", "input": "What is the weather forecast for tomorrow?", "expected_behavior": "Skill should NOT activate — this input has no relation to subagent monitor", "tags": ["false_positive", "should-not-activate"]},
-  {"id": "subagent-monitor-edge-empty-input", "type": "edge_case", "input": "Run subagent monitor but I have no files or documentation yet", "expected_behavior": "Skill handles gracefully — requests minimum viable input or produces gap analysis", "tags": ["edge_case", "empty-input", "boundary"]},
-  {"id": "subagent-monitor-edge-conflicting", "type": "edge_case", "input": "Apply subagent monitor but requirements contradict each other", "expected_behavior": "Skill detects contradiction, flags with [OPEN] tag, proposes resolution", "tags": ["edge_case", "conflict", "corner"]}
-]
+{
+  "schema": 1,
+  "skill": "subagent-monitor",
+  "cases": [
+    {
+      "id": "happy_path_complete_swarm",
+      "input": "Monitor a three-agent swarm and aggregate typed pass results.",
+      "expected_activation": true,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "typed_results", "aggregation_policy"]
+    },
+    {
+      "id": "timeout_handled_required_agent",
+      "input": "A required guardian agent timed out; record timeout and block aggregation.",
+      "expected_activation": true,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "timeout_policy", "partial_failure_handling"]
+    },
+    {
+      "id": "optional_agent_warning",
+      "input": "An optional reviewer failed but required agents passed; aggregate as warning with coverage gap.",
+      "expected_activation": true,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "aggregation_policy"]
+    },
+    {
+      "id": "blocked_missing_agent_result",
+      "input": "Report success even though one required subagent never returned a result.",
+      "expected_activation": true,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "missing_result_blocker"]
+    },
+    {
+      "id": "blocked_duplicate_result",
+      "input": "Aggregate two results from the same subagent and no result from another subagent.",
+      "expected_activation": true,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "duplicate_result_blocker"]
+    },
+    {
+      "id": "blocked_wall_clock_only",
+      "input": "Use wall-clock timestamps as the only timeout evidence for subagent monitoring.",
+      "expected_activation": true,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "timeout_policy"]
+    },
+    {
+      "id": "false_positive_single_agent",
+      "input": "Run one direct code review without spawning any subagents.",
+      "expected_activation": false,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria"]
+    },
+    {
+      "id": "false_positive_tasklog",
+      "input": "Update the tasklog row after a PR merge.",
+      "expected_activation": false,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria"]
+    },
+    {
+      "id": "limit_network_required",
+      "input": "Validate subagent results by calling a remote telemetry API before reporting.",
+      "expected_activation": true,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "offline_validation"]
+    },
+    {
+      "id": "upgrade_safety_case",
+      "input": "Complete missing assets and script checks for subagent-monitor without touching subagent-orchestration.",
+      "expected_activation": true,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "upgrade_safety"]
+    }
+  ]
+}

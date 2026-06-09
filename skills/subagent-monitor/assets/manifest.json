@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "skill": "subagent-monitor",
+  "assets": [
+    {
+      "path": "assets/subagent-monitor-report-contract.json",
+      "type": "schema",
+      "purpose": "Defines required monitor report fields.",
+      "used_by": ["SKILL.md", "scripts/validate_subagent_monitor_report.py", "evals/evals.json"]
+    },
+    {
+      "path": "assets/timeout-policy.json",
+      "type": "policy",
+      "purpose": "Defines bounded timeout and non-wall-clock evidence requirements.",
+      "used_by": ["SKILL.md", "scripts/validate_subagent_monitor_report.py", "examples/example-output.md"]
+    },
+    {
+      "path": "assets/typed-result-policy.json",
+      "type": "policy",
+      "purpose": "Defines one typed result per registered agent.",
+      "used_by": ["SKILL.md", "scripts/validate_subagent_monitor_report.py", "knowledge/body-of-knowledge.md"]
+    },
+    {
+      "path": "assets/aggregation-policy.json",
+      "type": "policy",
+      "purpose": "Defines pass, warn, and block aggregation rules.",
+      "used_by": ["SKILL.md", "scripts/validate_subagent_monitor_report.py", "evals/evals.json"]
+    },
+    {
+      "path": "assets/evidence-policy.json",
+      "type": "policy",
+      "purpose": "Defines evidence tag and validation check requirements.",
+      "used_by": ["SKILL.md", "scripts/validate_subagent_monitor_report.py", "templates/output.md"]
+    }
+  ]
+}

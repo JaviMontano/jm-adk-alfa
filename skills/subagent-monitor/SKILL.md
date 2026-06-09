@@ -3,8 +3,7 @@ name: subagent-monitor
 author: JM Labs (Javier Montaño)
 version: 1.0.0
 description: >
-  Track subagent execution, timeout handling, result aggregation. [EXPLICIT]
-  Trigger: "subagent monitor"
+  Track subagent execution with deterministic timeout policy, typed results, partial failure aggregation, evidence, and offline validation. Trigger: "subagent monitor"
 allowed-tools:
   - Read
   - Write
@@ -15,20 +14,34 @@ allowed-tools:
 # Subagent Monitor
 > "Method over hacks."
 ## TL;DR
-Track subagent execution, timeout handling, result aggregation. [EXPLICIT]
+Track subagent execution with deterministic timeout policy, typed results, partial failure aggregation, evidence, and offline validation.
+
+## Deterministic Contract
+
+Use `assets/subagent-monitor-report-contract.json` and validate reports with `scripts/validate_subagent_monitor_report.py`. A valid report must include:
+
+- Stable `swarm_id` and task summary.
+- Agent registry with deterministic roles and status values.
+- Timeout policy that is bounded, monotonic, and not based on wall-clock evidence.
+- One typed result per agent with `agent_id`, `status`, `result_type`, evidence tag, and optional error.
+- Aggregation policy that preserves blockers and partial failures instead of reporting success silently.
+- Evidence entries with approved tags and source.
+- Validation checks for assets, deterministic scripts, quality criteria, timeout policy, typed results, aggregation policy, partial failure handling, and evidence.
 ## Procedure
 ### Step 1: Discover
-- Gather context and requirements
+- Gather agent list, task contract, timeout budget, and expected result types.
 ### Step 2: Analyze
-- Evaluate options per Constitution XIII/XIV
+- Identify timeout and partial-failure policy before dispatch.
 ### Step 3: Execute
-- Implement with evidence tags
+- Track sequence-based start/completion, collect typed results, and record errors.
 ### Step 4: Validate
-- Verify quality criteria met
+- Run the offline report validator before accepting the aggregate result.
 ## Quality Criteria
 - [ ] Evidence tags applied
-- [ ] Constitution-compliant
-- [ ] Actionable output
+- [ ] Timeout policy is bounded and non-silent
+- [ ] Every agent has exactly one typed result
+- [ ] Aggregation status reflects blockers, warnings, and coverage gaps
+- [ ] Offline validator passes
 
 ## Usage
 

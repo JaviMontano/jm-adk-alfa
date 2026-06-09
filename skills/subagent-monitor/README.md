@@ -1,30 +1,35 @@
-<!--
-generated-by: scripts/scaffold-skill.py
-generated-for: subagent-monitor
-generated-on: 2026-05-28
-overwrite-policy: missing-only unless --force
--->
-
 # Subagent Monitor
 
->
+Produces deterministic monitoring reports for subagent execution, timeouts, typed results, and aggregation.
 
-## Triggers
+## Use When
 
-- subagent-monitor
+- A task dispatches multiple subagents or spoke agents.
+- The coordinator needs one report covering status, timeouts, blockers, and partial failures.
+- The result must prove that every agent either completed, warned, blocked, failed, or timed out.
 
-## Allowed Tools
+## Do Not Use When
 
-- Read
-- Write
-- Glob
-- Grep
-- Bash
+- There is only one direct task and no subagent lifecycle to monitor.
+- The desired output depends on live wall-clock timing as evidence.
+- The caller wants to hide failed or timed-out agents and still report success.
 
-## Quick Use
+## Required Output
 
-Use this skill when the request clearly matches the triggers and requires the `subagent-monitor` capability.
+Return a JSON-compatible monitor report with:
 
-## Output Format
+- `swarm_id`
+- task summary
+- agent registry
+- timeout policy
+- typed results
+- aggregation summary
+- evidence entries
+- validation checks
 
-Markdown with summary, evidence, result, validation, and risks.
+## Validation
+
+```bash
+bash skills/subagent-monitor/scripts/check.sh
+python3 skills/subagent-monitor/scripts/validate_subagent_monitor_report.py skills/subagent-monitor/scripts/fixtures/valid-complete-swarm.json
+```

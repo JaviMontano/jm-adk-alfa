@@ -1,0 +1,12 @@
+{
+  "schema": "jm-labs.subagent-monitor.report.v1",
+  "skill": "subagent-monitor",
+  "swarm_id": "silent-timeout",
+  "task": "Required timeout hidden as success",
+  "agents": [{"id": "guardian", "role": "guardian", "required": true}],
+  "timeout_policy": {"per_agent_seconds": 300, "action": "cancel-and-record", "uses_wall_clock_evidence": false, "sequence_based": true},
+  "results": [{"agent_id": "guardian", "status": "timeout", "result_type": "timeout_notice", "sequence": 1, "evidence_tag": "[CÓDIGO]", "error": "timeout after budget"}],
+  "aggregation": {"status": "pass", "partial_failure_policy": "block-on-required-agent-failure", "blockers": [], "coverage_gaps": [], "result_count": 1},
+  "evidence": [{"claim": "Timeout was recorded but aggregation stayed pass.", "evidence_tag": "[CÓDIGO]", "source": "results"}],
+  "validation": {"status": "pass", "offline": true, "network_required": false, "deterministic": true, "checks": ["assets", "deterministic_scripts", "quality_criteria", "timeout_policy", "typed_results", "aggregation_policy", "partial_failure_handling", "evidence_required"]}
+}

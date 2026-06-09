@@ -1,0 +1,8 @@
+{
+  "schema": "jm-labs.asset.policy.v1",
+  "min_per_agent_seconds": 1,
+  "max_per_agent_seconds": 3600,
+  "required_action": "cancel-and-record",
+  "uses_wall_clock_evidence_required": false,
+  "sequence_based_required": true
+}

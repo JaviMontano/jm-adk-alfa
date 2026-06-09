@@ -1,0 +1,17 @@
+{
+  "schema": "jm-labs.asset.contract.v1",
+  "report_schema": "jm-labs.subagent-monitor.report.v1",
+  "required_top_level": [
+    "schema",
+    "skill",
+    "swarm_id",
+    "task",
+    "agents",
+    "timeout_policy",
+    "results",
+    "aggregation",
+    "evidence",
+    "validation"
+  ],
+  "offline_validation_required": true
+}

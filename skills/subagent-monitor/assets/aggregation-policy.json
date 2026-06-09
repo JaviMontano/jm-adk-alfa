@@ -1,0 +1,8 @@
+{
+  "schema": "jm-labs.asset.policy.v1",
+  "statuses": ["pass", "warn", "block"],
+  "required_partial_failure_policy": "block-on-required-agent-failure",
+  "required_agent_failure_statuses": ["block", "error", "timeout"],
+  "optional_agent_failure_status": "warn",
+  "silent_success_forbidden": true
+}
