@@ -1,0 +1,17 @@
+{
+  "schema": "jm-labs.katas-builtin-tool-selection.report.v1",
+  "skill": "katas-builtin-tool-selection",
+  "objective": "Use Write fallback after ambiguous anchor.",
+  "scope": "repo",
+  "selected_strategy": "Grep-Read-Write",
+  "tool_decisions": [
+    {"intent": "content-search", "chosen_tool": "Grep", "rationale": "Find symbol.", "evidence_tag": "[CODIGO]"},
+    {"intent": "file-read", "chosen_tool": "Read", "rationale": "Read target.", "evidence_tag": "[CODIGO]"},
+    {"intent": "full-file-write", "chosen_tool": "Write", "rationale": "Fallback write.", "evidence_tag": "[CODIGO]"}
+  ],
+  "read_plan": {"mass_read_upfront": false, "search_before_read": true, "files_considered": 3, "files_read": ["src/app.py"]},
+  "edit_plan": {"operation": "Write", "anchor": {"old_text": "if amount", "unique_match_count": 4}, "fallback": {"declared": true, "action": "read-and-write-full-file", "trigger": "ambiguous-anchor", "full_file_read_before_write": false, "reason": "Anchor ambiguous."}},
+  "evidence": [{"claim": "Write fallback skipped full read.", "evidence_tag": "[CODIGO]", "source": "edit_plan.fallback"}],
+  "validation": {"status": "pass", "offline": true, "network_required": false, "deterministic": true, "uses_randomness": false, "checks": ["assets", "deterministic_scripts", "quality_criteria", "tool_fit", "read_economy", "edit_anchor_safety", "fallback_policy", "evidence_required"]},
+  "risks": {"remaining": [], "forbidden_patterns": []}
+}

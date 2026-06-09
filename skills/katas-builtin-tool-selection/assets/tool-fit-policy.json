@@ -1,0 +1,19 @@
+{
+  "schema": "jm-labs.asset.tool-fit-policy.v1",
+  "skill": "katas-builtin-tool-selection",
+  "intent_to_tool": {
+    "content-search": "Grep",
+    "path-search": "Glob",
+    "file-read": "Read",
+    "targeted-edit": "Edit",
+    "full-file-write": "Write",
+    "shell-command": "Bash"
+  },
+  "strategy_order": ["Grep|Glob", "Read", "Edit|Write"],
+  "forbidden_mismatches": [
+    "Grep for path-only search",
+    "Glob for content search",
+    "Read before search when target is unknown",
+    "Edit without unique anchor"
+  ]
+}

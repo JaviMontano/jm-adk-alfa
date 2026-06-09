@@ -1,0 +1,9 @@
+{
+  "schema": "jm-labs.asset.builtin-tool-selection-evidence-policy.v1",
+  "skill": "katas-builtin-tool-selection",
+  "allowed_tags": ["[CODIGO]", "[CÓDIGO]", "[CONFIG]", "[DOC]", "[INFERENCIA]", "[SUPUESTO]"],
+  "source_required": true,
+  "offline": true,
+  "network_required": false,
+  "random_required": false
+}

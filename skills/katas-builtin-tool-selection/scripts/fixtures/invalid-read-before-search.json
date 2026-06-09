@@ -1,0 +1,16 @@
+{
+  "schema": "jm-labs.katas-builtin-tool-selection.report.v1",
+  "skill": "katas-builtin-tool-selection",
+  "objective": "Edit a refund threshold.",
+  "scope": "repo",
+  "selected_strategy": "Grep-Read-Edit",
+  "tool_decisions": [
+    {"intent": "file-read", "chosen_tool": "Read", "rationale": "Read a file before searching.", "evidence_tag": "[CODIGO]"},
+    {"intent": "targeted-edit", "chosen_tool": "Edit", "rationale": "Edit target.", "evidence_tag": "[CODIGO]"}
+  ],
+  "read_plan": {"mass_read_upfront": false, "search_before_read": false, "files_considered": 8, "files_read": ["src/app.py"]},
+  "edit_plan": {"operation": "Edit", "anchor": {"old_text": "if amount > 1000:", "unique_match_count": 1}, "fallback": {"declared": true, "action": "expand-anchor", "trigger": "", "full_file_read_before_write": false, "reason": "Expand if needed."}},
+  "evidence": [{"claim": "Read happened before search.", "evidence_tag": "[CODIGO]", "source": "read_plan"}],
+  "validation": {"status": "pass", "offline": true, "network_required": false, "deterministic": true, "uses_randomness": false, "checks": ["assets", "deterministic_scripts", "quality_criteria", "tool_fit", "read_economy", "edit_anchor_safety", "fallback_policy", "evidence_required"]},
+  "risks": {"remaining": [], "forbidden_patterns": []}
+}

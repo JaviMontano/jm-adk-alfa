@@ -39,6 +39,7 @@ Kata 23. Selección de built-in tools de Claude Code. Cada tool tiene un uso pri
 | Token economy | No hay `Read` masivo upfront; la exploración es incremental |
 | Edit safety | Los anchors de `Edit` son únicos; fallback `Read` + `Write` definido |
 | Evidence coverage | Las afirmaciones se apoyan en matches reales o se marcan como supuestos |
+| Offline contract | `assets/` y `scripts/check.sh` validan tool-fit, economía de lectura, anchor y fallback |
 
 ## Anti-patrón canónico
 
@@ -51,6 +52,15 @@ edit(old_text="if amount", ...)  # múltiples líneas matchean → falla
 ```
 
 Dos errores combinados: cargar el repositorio entero upfront y editar con un anchor ambiguo.
+
+## Deterministic Validation
+
+- Aceptar `Grep` sólo para búsqueda por contenido; aceptar `Glob` sólo para búsqueda por path.
+- Exigir `search_before_read=true` cuando el target es desconocido.
+- Rechazar `read_plan.mass_read_upfront=true`.
+- Para `Edit`, exigir `anchor.unique_match_count == 1` y fallback declarado.
+- Para `Write`, exigir trigger `ambiguous-anchor`, lectura completa previa y razón explícita.
+- Rechazar reportes que requieren red, random o contienen `read_all_files`, `repo_wide_read`, `ambiguous_edit_anchor` o `tool_mismatch` como patrón aceptado.
 
 ## Open Knowledge
 

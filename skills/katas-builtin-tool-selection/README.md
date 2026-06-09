@@ -33,4 +33,22 @@ Activa esta skill cuando haya que explorar o modificar un codebase eligiendo ent
 
 ## Output Format
 
-Markdown con summary, evidence, result, validation y risks.
+Markdown con summary, evidence, result, validation y risks. Para handoffs críticos, incluir un JSON compatible con `assets/builtin-tool-selection-report-contract.json`.
+
+## Deterministic Assets
+
+- `assets/manifest.json` lista el contrato local.
+- `assets/tool-fit-policy.json` mapea intención a tool correcto.
+- `assets/read-economy-policy.json` bloquea `Read` masivo upfront.
+- `assets/edit-anchor-policy.json` exige anchor único o fallback `Read` + `Write` seguro.
+- `assets/evidence-policy.json` exige evidencia local offline.
+
+## Offline Check
+
+Run:
+
+```bash
+bash skills/katas-builtin-tool-selection/scripts/check.sh
+```
+
+El check valida fixtures determinísticos sin red.

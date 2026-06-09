@@ -1,0 +1,17 @@
+{
+  "schema": "jm-labs.katas-builtin-tool-selection.report.v1",
+  "skill": "katas-builtin-tool-selection",
+  "objective": "Understand a repo by reading all files.",
+  "scope": "repo",
+  "selected_strategy": "Grep-Read-Edit",
+  "tool_decisions": [
+    {"intent": "content-search", "chosen_tool": "Grep", "rationale": "Find symbol.", "evidence_tag": "[CODIGO]"},
+    {"intent": "file-read", "chosen_tool": "Read", "rationale": "Read everything first.", "evidence_tag": "[CODIGO]"},
+    {"intent": "targeted-edit", "chosen_tool": "Edit", "rationale": "Edit target.", "evidence_tag": "[CODIGO]"}
+  ],
+  "read_plan": {"mass_read_upfront": true, "search_before_read": false, "files_considered": 500, "files_read": ["src/a.py", "src/b.py"]},
+  "edit_plan": {"operation": "Edit", "anchor": {"old_text": "if amount > 1000:", "unique_match_count": 1}, "fallback": {"declared": true, "action": "expand-anchor", "trigger": "", "full_file_read_before_write": false, "reason": "Expand if needed."}},
+  "evidence": [{"claim": "Mass read was attempted.", "evidence_tag": "[CODIGO]", "source": "read_plan"}],
+  "validation": {"status": "pass", "offline": true, "network_required": false, "deterministic": true, "uses_randomness": false, "checks": ["assets", "deterministic_scripts", "quality_criteria", "tool_fit", "read_economy", "edit_anchor_safety", "fallback_policy", "evidence_required"]},
+  "risks": {"remaining": [], "forbidden_patterns": []}
+}

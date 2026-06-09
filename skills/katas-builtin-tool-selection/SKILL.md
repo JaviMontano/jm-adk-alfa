@@ -69,6 +69,23 @@ edit(old_text="if amount", ...)  # múltiples líneas matchean → falla
 - Describir el failure mode de `Edit` (anchor no único/inexistente) y su fallback `Read` + `Write`.
 - Defender la estrategia `Grep` → `Read` → `Edit`.
 - Rechazar el `Read` masivo upfront sobre el repositorio.
+- Emitir reportes críticos compatibles con `assets/builtin-tool-selection-report-contract.json`.
+- Validar tool-fit, economía de lectura y seguridad de anchor con `scripts/check.sh`.
+
+## Contrato determinístico
+
+La skill usa `assets/` como contrato offline:
+
+- `assets/tool-fit-policy.json`: contenido usa `Grep`, paths usan `Glob`, lectura usa `Read`, edición dirigida usa `Edit`, fallback completo usa `Write`.
+- `assets/read-economy-policy.json`: si el target es desconocido, buscar antes de leer; `Read` masivo upfront queda bloqueado.
+- `assets/edit-anchor-policy.json`: `Edit` requiere `unique_match_count=1`; `Write` como fallback requiere lectura completa previa y razón explícita.
+- `assets/evidence-policy.json`: evidencia local, sin red ni random.
+
+Validación local:
+
+```bash
+bash skills/katas-builtin-tool-selection/scripts/check.sh
+```
 
 ## Cuándo activar
 

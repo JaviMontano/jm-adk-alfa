@@ -1,0 +1,8 @@
+{
+  "schema": "jm-labs.asset.edit-anchor-policy.v1",
+  "skill": "katas-builtin-tool-selection",
+  "edit_anchor_unique_match_count": 1,
+  "ambiguous_anchor_actions": ["expand-anchor", "read-and-write-full-file"],
+  "write_fallback_requires_full_read": true,
+  "write_fallback_requires_reason": true
+}
