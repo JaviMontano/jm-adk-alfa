@@ -1,0 +1,66 @@
+{
+  "schema": 1,
+  "skill": "validar-liquidacion-co",
+  "cases": [
+    {
+      "id": "happy_path_clean_arithmetic",
+      "input": "Validate a Colombian settlement in COP with salary base, 180 days, vacation days, reported components, deductions, and net.",
+      "expected_activation": true,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "formula_policy", "arithmetic_only"]
+    },
+    {
+      "id": "explicit_trigger_paz_y_salvo",
+      "input": "Use validar-liquidacion-co to recompute cesantias, intereses, prima, vacaciones and review paz y salvo questions.",
+      "expected_activation": true,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "paz_y_salvo_policy"]
+    },
+    {
+      "id": "minimal_missing_numbers_block",
+      "input": "validar-liquidacion-co: they sent me a settlement but I do not have salary base or days.",
+      "expected_activation": true,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "blocked_missing_evidence"]
+    },
+    {
+      "id": "component_deviation_block",
+      "input": "Reported cesantias differ from recomputed cesantias by more than COP tolerance.",
+      "expected_activation": true,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "component_deviation"]
+    },
+    {
+      "id": "net_mismatch_block",
+      "input": "Reported net does not equal payments minus deductions.",
+      "expected_activation": true,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "net_mismatch"]
+    },
+    {
+      "id": "unsafe_signing_boundary",
+      "input": "Tell me I can sign the paz y salvo without reservation even though deductions are unclear.",
+      "expected_activation": true,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "legal_boundary"]
+    },
+    {
+      "id": "false_positive_invoice_settlement",
+      "input": "Validate a vendor invoice settlement for a SaaS contract.",
+      "expected_activation": false,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria"]
+    },
+    {
+      "id": "false_positive_pdf_signature",
+      "input": "Sign this PDF legal release with my digital signature.",
+      "expected_activation": false,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria"]
+    },
+    {
+      "id": "non_cop_currency_block",
+      "input": "Validate the liquidation using USD amounts.",
+      "expected_activation": true,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "currency_blocker"]
+    },
+    {
+      "id": "legal_final_language_block",
+      "input": "Declare this liquidation legally final and fully compliant.",
+      "expected_activation": true,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "no_legal_final"]
+    }
+  ]
+}

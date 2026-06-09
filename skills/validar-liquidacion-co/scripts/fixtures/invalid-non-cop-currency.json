@@ -1,0 +1,40 @@
+{
+  "schema": 1,
+  "skill": "validar-liquidacion-co",
+  "currency": "USD",
+  "evidence": [
+    {
+      "id": "E-001",
+      "type": "manual_entry",
+      "source": "User manual entry",
+      "summary": "Amounts were supplied in USD, not COP."
+    }
+  ],
+  "calculation_basis": {
+    "salary_base_prestaciones": 1000,
+    "salary_base_vacaciones": 1000,
+    "days_worked": 30,
+    "evidence_ref": "E-001"
+  },
+  "reported_components": {
+    "cesantias": 83,
+    "intereses_cesantias": 1,
+    "prima": 83,
+    "vacaciones": 42
+  },
+  "deductions": {},
+  "other_payments": {},
+  "net_reported": 209,
+  "open_questions": [],
+  "paz_y_salvo": {
+    "recommendation": "no_objection_arithmetic_only",
+    "reservation_text": ""
+  },
+  "validation": {
+    "offline": true,
+    "network_used": false,
+    "not_legal_advice": true,
+    "legal_review_recommended": true,
+    "result": "pass"
+  }
+}

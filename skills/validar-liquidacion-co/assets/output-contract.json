@@ -1,0 +1,29 @@
+{
+  "schema": 1,
+  "skill": "validar-liquidacion-co",
+  "required_top_level_fields": [
+    "schema",
+    "skill",
+    "currency",
+    "evidence",
+    "calculation_basis",
+    "reported_components",
+    "deductions",
+    "net_reported",
+    "open_questions",
+    "paz_y_salvo",
+    "validation"
+  ],
+  "field_contract": {
+    "currency": "Must be COP.",
+    "evidence": "Non-empty list of evidence records with id, type, source, and summary.",
+    "calculation_basis": "Object with salary_base_prestaciones, salary_base_vacaciones, days_worked, optional vacation_days, and evidence_ref.",
+    "reported_components": "Object with cesantias, intereses_cesantias, prima, and vacaciones.",
+    "deductions": "Object of non-negative COP deduction amounts.",
+    "other_payments": "Optional object of non-negative COP payment amounts.",
+    "net_reported": "Reported final amount after payments and deductions.",
+    "open_questions": "List of unresolved evidence, deduction, vacation, or paz y salvo questions.",
+    "paz_y_salvo": "Object with recommendation and optional reservation_text.",
+    "validation": "Object with offline, network_used, not_legal_advice, legal_review_recommended, and result."
+  }
+}

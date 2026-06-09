@@ -1,0 +1,42 @@
+{
+  "schema": 1,
+  "skill": "validar-liquidacion-co",
+  "currency": "COP",
+  "evidence": [
+    {
+      "id": "E-001",
+      "type": "deduction_note",
+      "source": "User-supplied deduction note",
+      "summary": "Deduction was entered as a negative amount."
+    }
+  ],
+  "calculation_basis": {
+    "salary_base_prestaciones": 2400000,
+    "salary_base_vacaciones": 2400000,
+    "days_worked": 90,
+    "evidence_ref": "E-001"
+  },
+  "reported_components": {
+    "cesantias": 600000,
+    "intereses_cesantias": 18000,
+    "prima": 600000,
+    "vacaciones": 300000
+  },
+  "deductions": {
+    "equipment": -150000
+  },
+  "other_payments": {},
+  "net_reported": 1668000,
+  "open_questions": [],
+  "paz_y_salvo": {
+    "recommendation": "no_objection_arithmetic_only",
+    "reservation_text": ""
+  },
+  "validation": {
+    "offline": true,
+    "network_used": false,
+    "not_legal_advice": true,
+    "legal_review_recommended": true,
+    "result": "pass"
+  }
+}

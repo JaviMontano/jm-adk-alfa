@@ -1,0 +1,19 @@
+{
+  "schema": 1,
+  "skill": "validar-liquidacion-co",
+  "nodes": [
+    {"id": "evidence", "type": "concept", "label": "Evidence item"},
+    {"id": "formula", "type": "policy", "label": "Formula policy"},
+    {"id": "component", "type": "concept", "label": "Settlement component"},
+    {"id": "net", "type": "concept", "label": "Net payment"},
+    {"id": "paz_y_salvo", "type": "concept", "label": "Paz y salvo posture"},
+    {"id": "legal_boundary", "type": "risk", "label": "No legal-final conclusion"}
+  ],
+  "edges": [
+    {"from": "component", "to": "formula", "relation": "recomputed_by"},
+    {"from": "component", "to": "evidence", "relation": "requires_reference"},
+    {"from": "net", "to": "component", "relation": "sums"},
+    {"from": "paz_y_salvo", "to": "evidence", "relation": "requires_open_question_review"},
+    {"from": "legal_boundary", "to": "paz_y_salvo", "relation": "limits"}
+  ]
+}

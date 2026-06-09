@@ -1,0 +1,22 @@
+{
+  "schema": 1,
+  "skill": "validar-liquidacion-co",
+  "scope": "Arithmetic recomputation using supplied inputs only.",
+  "formulas": {
+    "cesantias": "salary_base_prestaciones * days_worked / 360",
+    "intereses_cesantias": "cesantias * 0.12 * days_worked / 360",
+    "prima": "salary_base_prestaciones * days_worked / 360",
+    "vacaciones_with_vacation_days": "salary_base_vacaciones * vacation_days / 30",
+    "vacaciones_without_vacation_days": "salary_base_vacaciones * days_worked / 720",
+    "net": "sum(reported_components) + sum(other_payments) - sum(deductions)"
+  },
+  "forbidden_inference": [
+    "contract_type",
+    "salary_factor_inclusion",
+    "transport_allowance_treatment",
+    "indemnity",
+    "sanctions",
+    "collective_agreement_terms",
+    "deductions_not_supplied"
+  ]
+}

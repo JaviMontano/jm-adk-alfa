@@ -1,0 +1,42 @@
+{
+  "schema": 1,
+  "skill": "validar-liquidacion-co",
+  "assets": [
+    {
+      "path": "assets/output-contract.json",
+      "type": "contract",
+      "purpose": "Defines the required JSON shape for arithmetic validation reports.",
+      "used_by": ["SKILL.md", "templates/output.md", "scripts/liquidacion_validator.py"]
+    },
+    {
+      "path": "assets/formula-policy.json",
+      "type": "policy",
+      "purpose": "Defines deterministic formulas for cesantias, intereses, prima, vacaciones, and net reconciliation.",
+      "used_by": ["SKILL.md", "scripts/liquidacion_validator.py"]
+    },
+    {
+      "path": "assets/tolerance-policy.json",
+      "type": "policy",
+      "purpose": "Defines COP rounding and allowed arithmetic tolerance.",
+      "used_by": ["SKILL.md", "scripts/liquidacion_validator.py"]
+    },
+    {
+      "path": "assets/evidence-policy.json",
+      "type": "policy",
+      "purpose": "Defines allowed evidence types and required evidence fields.",
+      "used_by": ["SKILL.md", "templates/output.md", "scripts/liquidacion_validator.py"]
+    },
+    {
+      "path": "assets/paz-y-salvo-policy.json",
+      "type": "policy",
+      "purpose": "Defines arithmetic-only paz y salvo recommendation states and open-question handling.",
+      "used_by": ["SKILL.md", "templates/output.md", "scripts/liquidacion_validator.py"]
+    },
+    {
+      "path": "assets/legal-boundary-policy.json",
+      "type": "policy",
+      "purpose": "Blocks legal-final, compliance-certainty, and safe-to-sign language.",
+      "used_by": ["SKILL.md", "templates/output.md", "scripts/liquidacion_validator.py"]
+    }
+  ]
+}
