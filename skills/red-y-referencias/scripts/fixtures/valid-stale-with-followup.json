@@ -1,0 +1,68 @@
+{
+  "schema": 1,
+  "skill": "red-y-referencias",
+  "packet": {
+    "status": "active",
+    "as_of": "2026-06-08"
+  },
+  "evidence": [
+    {
+      "id": "E-010",
+      "type": "consent_message",
+      "date": "2026-04-20",
+      "source": "Copied consent summary",
+      "summary": "Maria Rios explicitly agreed to be listed as a reference."
+    },
+    {
+      "id": "E-011",
+      "type": "relationship_note",
+      "date": "2026-04-21",
+      "source": "Manual relationship note",
+      "summary": "Maria worked with Sofia on a delivery engagement."
+    }
+  ],
+  "contacts": [
+    {
+      "id": "C-010",
+      "contact_label": "Maria Rios",
+      "relationship": "Former manager",
+      "consent_status": "explicit_granted",
+      "consent_evidence_ref": "E-010",
+      "last_contact_date": "2026-04-20",
+      "allowed_actions": ["list_reference", "follow_up"]
+    },
+    {
+      "id": "C-011",
+      "contact_label": "Sofia Martin",
+      "relationship": "Shared delivery contact",
+      "consent_status": "unknown",
+      "consent_evidence_ref": "E-011",
+      "allowed_actions": ["request_consent"]
+    }
+  ],
+  "actions": [
+    {
+      "id": "A-010",
+      "contact_id": "C-010",
+      "action_type": "follow_up",
+      "due_date": "2026-06-10",
+      "status": "planned",
+      "evidence_ref": "E-010"
+    }
+  ],
+  "network_edges": [
+    {
+      "id": "N-010",
+      "from_contact_id": "C-010",
+      "to_contact_id": "C-011",
+      "relationship": "Worked on the same delivery engagement",
+      "evidence_ref": "E-011"
+    }
+  ],
+  "blockers": [],
+  "validation": {
+    "offline": true,
+    "network_used": false,
+    "result": "pass"
+  }
+}

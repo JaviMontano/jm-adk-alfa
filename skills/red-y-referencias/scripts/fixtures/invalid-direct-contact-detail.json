@@ -1,0 +1,24 @@
+{
+  "schema": 1,
+  "skill": "red-y-referencias",
+  "packet": {"status": "active", "as_of": "2026-06-08"},
+  "evidence": [
+    {"id": "E-400", "type": "consent_message", "date": "2026-06-01", "source": "Message", "summary": "Ana at ana@example.com consented."}
+  ],
+  "contacts": [
+    {
+      "id": "C-400",
+      "contact_label": "Ana Gomez +57 300 123 4567",
+      "relationship": "Former stakeholder",
+      "consent_status": "explicit_granted",
+      "consent_evidence_ref": "E-400",
+      "allowed_actions": ["list_reference"]
+    }
+  ],
+  "actions": [
+    {"id": "A-400", "contact_id": "C-400", "action_type": "list_reference", "status": "planned", "evidence_ref": "E-400"}
+  ],
+  "network_edges": [],
+  "blockers": [],
+  "validation": {"offline": true, "network_used": false, "result": "pass"}
+}

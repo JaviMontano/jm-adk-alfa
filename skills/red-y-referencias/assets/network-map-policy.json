@@ -1,0 +1,7 @@
+{
+  "schema": 1,
+  "node_id_pattern": "C-###",
+  "edge_id_pattern": "N-###",
+  "required_edge_fields": ["from_contact_id", "to_contact_id", "relationship", "evidence_ref"],
+  "rule": "Network edges require both contacts and one evidence reference."
+}

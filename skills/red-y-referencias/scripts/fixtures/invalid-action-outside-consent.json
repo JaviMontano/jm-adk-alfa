@@ -1,0 +1,24 @@
+{
+  "schema": 1,
+  "skill": "red-y-referencias",
+  "packet": {"status": "active", "as_of": "2026-06-08"},
+  "evidence": [
+    {"id": "E-700", "type": "consent_message", "date": "2026-06-01", "source": "Consent summary", "summary": "Ana consented only to be listed as a reference."}
+  ],
+  "contacts": [
+    {
+      "id": "C-700",
+      "contact_label": "Ana Gomez",
+      "relationship": "Former stakeholder",
+      "consent_status": "explicit_granted",
+      "consent_evidence_ref": "E-700",
+      "allowed_actions": ["list_reference"]
+    }
+  ],
+  "actions": [
+    {"id": "A-700", "contact_id": "C-700", "action_type": "ask_intro", "status": "planned", "evidence_ref": "E-700"}
+  ],
+  "network_edges": [],
+  "blockers": [],
+  "validation": {"offline": true, "network_used": false, "result": "pass"}
+}

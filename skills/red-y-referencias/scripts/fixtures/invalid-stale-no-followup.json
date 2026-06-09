@@ -1,0 +1,23 @@
+{
+  "schema": 1,
+  "skill": "red-y-referencias",
+  "packet": {"status": "active", "as_of": "2026-06-08"},
+  "evidence": [
+    {"id": "E-300", "type": "consent_message", "date": "2026-04-01", "source": "Consent summary", "summary": "Maria consented to be listed."}
+  ],
+  "contacts": [
+    {
+      "id": "C-300",
+      "contact_label": "Maria Rios",
+      "relationship": "Former manager",
+      "consent_status": "explicit_granted",
+      "consent_evidence_ref": "E-300",
+      "last_contact_date": "2026-04-01",
+      "allowed_actions": ["list_reference"]
+    }
+  ],
+  "actions": [],
+  "network_edges": [],
+  "blockers": [],
+  "validation": {"offline": true, "network_used": false, "result": "pass"}
+}

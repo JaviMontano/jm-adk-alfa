@@ -1,0 +1,24 @@
+{
+  "schema": 1,
+  "skill": "red-y-referencias",
+  "packet": {"status": "blocked", "as_of": "2026-06-08"},
+  "evidence": [
+    {"id": "E-100", "type": "manual_note", "date": "2026-06-08", "source": "User note", "summary": "Luis is a possible reference but has not been asked."}
+  ],
+  "contacts": [
+    {
+      "id": "C-100",
+      "contact_label": "Luis Perez",
+      "relationship": "Former collaborator",
+      "consent_status": "not_requested",
+      "consent_evidence_ref": "E-100",
+      "allowed_actions": ["list_reference"]
+    }
+  ],
+  "actions": [
+    {"id": "A-100", "contact_id": "C-100", "action_type": "list_reference", "status": "planned", "evidence_ref": "E-100"}
+  ],
+  "network_edges": [],
+  "blockers": ["C-100 missing explicit consent"],
+  "validation": {"offline": true, "network_used": false, "result": "blocked"}
+}

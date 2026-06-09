@@ -1,0 +1,19 @@
+{
+  "schema": 1,
+  "skill": "red-y-referencias",
+  "nodes": [
+    {"id": "evidence", "type": "concept", "label": "Evidence item"},
+    {"id": "contact", "type": "concept", "label": "Reference contact"},
+    {"id": "consent", "type": "policy", "label": "Explicit consent"},
+    {"id": "action", "type": "concept", "label": "Allowed action"},
+    {"id": "edge", "type": "concept", "label": "Network edge"},
+    {"id": "privacy_blocker", "type": "risk", "label": "Direct contact detail blocker"}
+  ],
+  "edges": [
+    {"from": "contact", "to": "evidence", "relation": "requires_reference"},
+    {"from": "consent", "to": "evidence", "relation": "requires_reference"},
+    {"from": "action", "to": "consent", "relation": "bounded_by"},
+    {"from": "edge", "to": "evidence", "relation": "requires_reference"},
+    {"from": "privacy_blocker", "to": "action", "relation": "can_block"}
+  ]
+}

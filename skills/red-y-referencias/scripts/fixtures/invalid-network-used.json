@@ -1,0 +1,17 @@
+{
+  "schema": 1,
+  "skill": "red-y-referencias",
+  "packet": {"status": "active", "as_of": "2026-06-08"},
+  "evidence": [
+    {"id": "E-800", "type": "manual_note", "date": "2026-06-08", "source": "Note", "summary": "Offline evidence."}
+  ],
+  "contacts": [
+    {"id": "C-800", "contact_label": "Ana Gomez", "relationship": "Stakeholder", "consent_status": "unknown", "consent_evidence_ref": "E-800", "allowed_actions": ["request_consent"]}
+  ],
+  "actions": [
+    {"id": "A-800", "contact_id": "C-800", "action_type": "request_consent", "status": "planned", "evidence_ref": "E-800"}
+  ],
+  "network_edges": [],
+  "blockers": [],
+  "validation": {"offline": true, "network_used": true, "result": "pass"}
+}

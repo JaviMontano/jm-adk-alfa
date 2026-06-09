@@ -1,0 +1,1 @@
+Build the reference packet from supplied evidence only, enforce explicit consent and privacy boundaries, validate it with `scripts/reference_network_validator.py`, then produce the markdown handoff from `templates/output.md`.

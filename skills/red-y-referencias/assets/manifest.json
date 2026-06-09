@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "skill": "red-y-referencias",
+  "assets": [
+    {
+      "path": "assets/output-contract.json",
+      "type": "contract",
+      "purpose": "Defines required reference packet fields and stable ordering.",
+      "used_by": ["SKILL.md", "templates/output.md", "scripts/reference_network_validator.py"]
+    },
+    {
+      "path": "assets/consent-policy.json",
+      "type": "policy",
+      "purpose": "Defines consent statuses and which actions require explicit consent.",
+      "used_by": ["SKILL.md", "scripts/reference_network_validator.py"]
+    },
+    {
+      "path": "assets/followup-policy.json",
+      "type": "policy",
+      "purpose": "Defines stale follow-up calculation from packet as_of.",
+      "used_by": ["SKILL.md", "scripts/reference_network_validator.py"]
+    },
+    {
+      "path": "assets/privacy-policy.json",
+      "type": "policy",
+      "purpose": "Blocks direct contact details in reference packets.",
+      "used_by": ["SKILL.md", "templates/output.md", "scripts/reference_network_validator.py"]
+    },
+    {
+      "path": "assets/network-map-policy.json",
+      "type": "policy",
+      "purpose": "Defines evidence-backed network node and edge requirements.",
+      "used_by": ["SKILL.md", "scripts/reference_network_validator.py"]
+    }
+  ]
+}
