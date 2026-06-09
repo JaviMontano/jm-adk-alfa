@@ -3078,6 +3078,12 @@
     "description": ">"
   },
   {
+    "id": "simulador-entrevista",
+    "path": "skills/simulador-entrevista",
+    "name": "Simulador Entrevista",
+    "description": "This skill should be used when the user asks to run a mock interview, practice one interview question at a time, score an answer across separate substance, English, and presence rubrics, choose the next practice step, or validate interview feedback without averaging the dimensions."
+  },
+  {
     "id": "skill-forge",
     "path": "skills/skill-forge",
     "name": "Skill Forge",

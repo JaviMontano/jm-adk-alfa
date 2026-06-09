@@ -1,0 +1,7 @@
+{
+  "schema": 1,
+  "floor": 2,
+  "below_floor_flag": "below_floor",
+  "weakest_dimension_order": ["substance", "english", "presence"],
+  "required_next_step_fields": ["target_dimension", "action", "practice_prompt"]
+}

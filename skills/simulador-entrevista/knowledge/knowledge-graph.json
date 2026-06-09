@@ -1,0 +1,18 @@
+{
+  "schema": 1,
+  "skill": "simulador-entrevista",
+  "nodes": [
+    {"id": "question", "type": "concept", "label": "One interview question"},
+    {"id": "answer", "type": "concept", "label": "Submitted answer"},
+    {"id": "evidence", "type": "concept", "label": "Evidence snippet"},
+    {"id": "rubric", "type": "policy", "label": "Separate rubric"},
+    {"id": "next_step", "type": "concept", "label": "Targeted practice step"},
+    {"id": "blocker", "type": "risk", "label": "Invalid scoring blocker"}
+  ],
+  "edges": [
+    {"from": "answer", "to": "evidence", "relation": "provides"},
+    {"from": "rubric", "to": "evidence", "relation": "requires_reference"},
+    {"from": "next_step", "to": "rubric", "relation": "targets_weakest"},
+    {"from": "blocker", "to": "rubric", "relation": "prevents_completion"}
+  ]
+}

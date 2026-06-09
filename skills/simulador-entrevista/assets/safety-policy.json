@@ -1,0 +1,6 @@
+{
+  "schema": 1,
+  "blocked_success_terms": ["guaranteed pass", "definitely pass", "will get hired", "pasas seguro", "contratacion garantizada"],
+  "blocked_fabrication_terms": ["invent", "fabricate", "make up experience", "mentir", "inventar experiencia"],
+  "rule": "Practice feedback cannot promise hiring success or help fabricate experience."
+}

@@ -1,0 +1,21 @@
+{
+  "schema": 1,
+  "skill": "simulador-entrevista",
+  "session": {"role": "generic", "language": "en", "turn": 1, "one_question_mode": false},
+  "question": {
+    "id": "Q-BATCH-001",
+    "angle": "batch",
+    "prompt": "Answer these questions.",
+    "prompts": ["Question one?", "Question two?"]
+  },
+  "answer_summary": "Multiple questions were asked.",
+  "evidence_snippets": [{"id": "EV-600", "snippet": "batch answer"}],
+  "scores": {
+    "substance": {"score": 3, "evidence_ref": "EV-600", "rationale": "Ok."},
+    "english": {"score": 3, "evidence_ref": "EV-600", "rationale": "Ok."},
+    "presence": {"score": 3, "evidence_ref": "EV-600", "rationale": "Ok."}
+  },
+  "flags": [],
+  "next_step": {"target_dimension": "substance", "action": "Split questions.", "practice_prompt": "Answer one question only."},
+  "validation": {"offline": true, "network_used": false, "result": "pass"}
+}

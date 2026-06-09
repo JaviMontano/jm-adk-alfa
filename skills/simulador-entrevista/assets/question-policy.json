@@ -1,0 +1,7 @@
+{
+  "schema": 1,
+  "languages": ["es", "en"],
+  "one_question_mode": true,
+  "custom_question_id": "Q-CUSTOM-001",
+  "rule": "Ask or evaluate exactly one question per turn."
+}

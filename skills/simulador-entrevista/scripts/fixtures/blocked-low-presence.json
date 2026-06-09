@@ -1,0 +1,19 @@
+{
+  "schema": 1,
+  "skill": "simulador-entrevista",
+  "session": {"role": "generic", "language": "en", "turn": 1, "one_question_mode": true},
+  "question": {"id": "Q-EN-ACHIEVEMENT-001", "angle": "achievement", "prompt": "What is your most measurable achievement and your exact role?"},
+  "answer_summary": "The answer includes a measurable achievement but is hard to follow.",
+  "evidence_snippets": [
+    {"id": "EV-100", "snippet": "reduced rework by 20 percent"},
+    {"id": "EV-101", "snippet": "I was kind of involved in many things"}
+  ],
+  "scores": {
+    "substance": {"score": 3, "evidence_ref": "EV-100", "rationale": "Some measurable signal exists."},
+    "english": {"score": 3, "evidence_ref": "EV-101", "rationale": "Understandable but vague."},
+    "presence": {"score": 1, "evidence_ref": "EV-101", "rationale": "Ownership and structure are unclear."}
+  },
+  "flags": [{"type": "below_floor", "dimension": "presence"}],
+  "next_step": {"target_dimension": "presence", "action": "Rebuild the answer using situation-action-result.", "practice_prompt": "State role first, then one action, then one result."},
+  "validation": {"offline": true, "network_used": false, "result": "blocked"}
+}
