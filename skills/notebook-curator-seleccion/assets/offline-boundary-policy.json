@@ -1,0 +1,7 @@
+{
+  "schema": 1,
+  "skill": "notebook-curator-seleccion",
+  "retrieval_mode": "offline",
+  "blocked_dependencies": ["network", "NotebookLM live sync", "browser fetch", "URL scraping", "wall-clock source freshness"],
+  "allowed_inputs": ["exported source inventory", "manual notes", "source excerpts", "metadata"]
+}

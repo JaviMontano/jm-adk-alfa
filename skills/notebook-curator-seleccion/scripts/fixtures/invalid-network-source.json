@@ -1,0 +1,10 @@
+{
+  "schema": 1,
+  "skill": "notebook-curator-seleccion",
+  "archetype": "SEL-EMPRESA",
+  "notebook_id": "SEL-NET",
+  "retrieval_mode": "offline",
+  "sources": [
+    {"slot": "job-description", "title": "URL only", "evidence_type": "metadata", "evidence_detail": "Only URL was supplied", "requires_network": true}
+  ]
+}

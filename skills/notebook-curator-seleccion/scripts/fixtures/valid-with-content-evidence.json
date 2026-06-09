@@ -1,0 +1,17 @@
+{
+  "schema": 1,
+  "skill": "notebook-curator-seleccion",
+  "archetype": "SEL-EMPRESA",
+  "notebook_id": "SEL-BETA",
+  "retrieval_mode": "offline",
+  "sources": [
+    {"slot": "job-description", "title": "Role spec", "evidence_type": "source_excerpt", "evidence_detail": "Excerpt supplied for role responsibilities", "content_claim": "Role requires architecture leadership", "content_evidence": "Excerpt says architecture leadership is core"},
+    {"slot": "empresa-research", "title": "Company dossier", "evidence_type": "user_note", "evidence_detail": "User notes from research session"},
+    {"slot": "proceso-log", "title": "Process log", "evidence_type": "metadata", "evidence_detail": "Process dates entered manually"},
+    {"slot": "entrevista-notas", "title": "Interview notes", "evidence_type": "manual_entry", "evidence_detail": "Notes typed after interview"},
+    {"slot": "material-prep", "title": "Prep notes", "evidence_type": "manual_entry", "evidence_detail": "Prepared questions and examples"},
+    {"slot": "oferta-precontrato", "title": "Offer notes", "evidence_type": "user_note", "evidence_detail": "Offer constraints summarized by user"},
+    {"slot": "notas-gratitud", "title": "Gratitude note", "evidence_type": "manual_entry", "evidence_detail": "Thank you note draft"},
+    {"slot": "post-mortem", "title": "Retrospective", "evidence_type": "user_note", "evidence_detail": "Lessons learned summary"}
+  ]
+}

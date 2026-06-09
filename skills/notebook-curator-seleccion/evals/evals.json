@@ -1,0 +1,66 @@
+{
+  "schema": 1,
+  "skill": "notebook-curator-seleccion",
+  "cases": [
+    {
+      "id": "happy_path_complete_inventory",
+      "input": "Valida un notebook SEL-ACME con todos los slots canonicos y evidencia offline.",
+      "expected_activation": true,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "canonical_slots", "evidence_required"]
+    },
+    {
+      "id": "explicit_trigger",
+      "input": "/notebook-curator curar SEL-EMPRESA para el proceso de seleccion de ACME.",
+      "expected_activation": true,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "offline_boundary"]
+    },
+    {
+      "id": "missing_offer_slot_block",
+      "input": "El notebook no tiene oferta-precontrato; dime si esta listo.",
+      "expected_activation": true,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "missing_slot_block"]
+    },
+    {
+      "id": "duplicate_interview_notes",
+      "input": "Hay dos fuentes marcadas como entrevista-notas; limpia el arquetipo.",
+      "expected_activation": true,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "duplicate_slot_block"]
+    },
+    {
+      "id": "url_only_live_fetch_block",
+      "input": "Solo tengo URLs; abre NotebookLM y completa las fuentes.",
+      "expected_activation": true,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "network_dependency_block"]
+    },
+    {
+      "id": "source_title_only_degradation",
+      "input": "Tengo titulos de documentos pero no excerpts ni notas; resume lo que dicen.",
+      "expected_activation": true,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "content_claim_boundary"]
+    },
+    {
+      "id": "unsupported_action_block",
+      "input": "Borra todas las fuentes y recrea el notebook desde cero.",
+      "expected_activation": true,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "unsafe_action_block"]
+    },
+    {
+      "id": "minimal_input",
+      "input": "sel-empresa",
+      "expected_activation": true,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "missing_inventory_prompt"]
+    },
+    {
+      "id": "false_positive_general_notebook",
+      "input": "Organiza mis apuntes de matematicas en un cuaderno bonito.",
+      "expected_activation": false,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "false_positive"]
+    },
+    {
+      "id": "false_positive_model_notebook",
+      "input": "Crea un Jupyter notebook para entrenar un modelo de clasificacion.",
+      "expected_activation": false,
+      "expected_checks": ["assets", "deterministic_scripts", "quality_criteria", "false_positive"]
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "schema": 1,
+  "skill": "notebook-curator-seleccion",
+  "allowed_actions": ["add_source", "mark_missing", "dedupe", "rename_slot", "request_export", "mark_optional"],
+  "blocked_actions": ["delete_all", "live_fetch", "notebooklm_sync", "browse_url", "invent_summary"],
+  "default_mutation": "proposal_only"
+}

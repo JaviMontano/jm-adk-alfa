@@ -1,6 +1,6 @@
 # JM-ADK Architecture v5.2.0
 
-> 605 Skills · 261 Agents · 267 Commands · 256 Prompts · 1389 physical components
+> 606 Skills · 261 Agents · 267 Commands · 256 Prompts · 1390 physical components
 
 ## Directory Structure
 

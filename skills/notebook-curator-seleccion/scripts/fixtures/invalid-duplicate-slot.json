@@ -1,0 +1,11 @@
+{
+  "schema": 1,
+  "skill": "notebook-curator-seleccion",
+  "archetype": "SEL-EMPRESA",
+  "notebook_id": "SEL-DUP",
+  "retrieval_mode": "offline",
+  "sources": [
+    {"slot": "job-description", "title": "Role spec A", "evidence_type": "exported_doc", "evidence_detail": "First role spec document"},
+    {"slot": "job-description", "title": "Role spec B", "evidence_type": "exported_doc", "evidence_detail": "Second role spec document"}
+  ]
+}

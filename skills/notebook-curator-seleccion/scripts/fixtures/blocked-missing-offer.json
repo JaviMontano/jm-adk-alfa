@@ -1,0 +1,16 @@
+{
+  "schema": 1,
+  "skill": "notebook-curator-seleccion",
+  "archetype": "SEL-EMPRESA",
+  "notebook_id": "SEL-GAMMA",
+  "retrieval_mode": "offline",
+  "sources": [
+    {"slot": "job-description", "title": "Role spec", "evidence_type": "exported_doc", "evidence_detail": "Exported role document"},
+    {"slot": "empresa-research", "title": "Research notes", "evidence_type": "user_note", "evidence_detail": "Company research notes"},
+    {"slot": "proceso-log", "title": "Timeline", "evidence_type": "metadata", "evidence_detail": "Timeline from user log"},
+    {"slot": "entrevista-notas", "title": "Interview notes", "evidence_type": "manual_entry", "evidence_detail": "Notes typed by user"},
+    {"slot": "material-prep", "title": "Prep matrix", "evidence_type": "manual_entry", "evidence_detail": "Prep notes from user"},
+    {"slot": "notas-gratitud", "title": "Thanks", "evidence_type": "manual_entry", "evidence_detail": "Draft thank you note"},
+    {"slot": "post-mortem", "title": "Retro", "evidence_type": "user_note", "evidence_detail": "Lessons learned note"}
+  ]
+}

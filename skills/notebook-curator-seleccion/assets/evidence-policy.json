@@ -1,0 +1,8 @@
+{
+  "schema": 1,
+  "skill": "notebook-curator-seleccion",
+  "allowed_evidence_types": ["exported_doc", "user_note", "source_excerpt", "metadata", "manual_entry"],
+  "required_fields": ["slot", "title", "evidence_type", "evidence_detail"],
+  "content_claim_rule": "content_claim requires supplied content_evidence",
+  "missing_evidence_behavior": "block readiness"
+}

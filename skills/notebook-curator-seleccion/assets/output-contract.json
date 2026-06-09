@@ -1,0 +1,7 @@
+{
+  "schema": 1,
+  "skill": "notebook-curator-seleccion",
+  "required_sections": ["summary", "slot_table", "missing_or_duplicate_slots", "curation_actions", "open_questions", "validation", "risks"],
+  "packet_required_keys": ["archetype", "notebook_id", "retrieval_mode", "sources"],
+  "exit_codes": {"0": "complete archetype", "1": "blocked or invalid packet", "3": "bad input"}
+}

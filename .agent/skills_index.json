@@ -2316,6 +2316,12 @@
     "description": ">"
   },
   {
+    "id": "notebook-curator-seleccion",
+    "path": "skills/notebook-curator-seleccion",
+    "name": "Notebook Curator Seleccion",
+    "description": "Cura notebooks SEL-EMPRESA para procesos de seleccion con slots canonicos, evidencia offline, deduplicacion y bloqueo de claims no leidos o dependencias de red."
+  },
+  {
     "id": "notification-handler",
     "path": "skills/notification-handler",
     "name": "Notification Handler",
